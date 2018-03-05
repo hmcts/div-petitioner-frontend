@@ -1,0 +1,14 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "You can&#39;t use desertion as your reason for divorce",
+                    "reason": "For desertion to have taken place your {{ divorceWho }} must have left without your consent.",
+                    "proceed": "If you want to proceed with your divorce application, you must <a href=\"/reason-for-divorce\">choose another fact which applies to you</a>."
+                }
+            }
+        }
+    }
+}

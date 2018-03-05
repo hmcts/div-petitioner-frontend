@@ -1,0 +1,22 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you know your {{ divorceWho }}&#39;s home address?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+                    "respondentKnowsHomeAddress": {
+                        "required": "Select yes if you know your {{ divorceWho }}&#39;s home address"
+                    }
+                }
+
+            }
+        }
+    }
+}

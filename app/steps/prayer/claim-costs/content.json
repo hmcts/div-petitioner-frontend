@@ -1,0 +1,41 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Do you want to apply to claim your divorce costs?",
+                    "introWhenClaimingAdultery": "You can ask the court to order your {{ divorceWho }}, and/or the person with whom the adultery was committed, to pay some or all of the divorce costs.",
+                    "introWhenNotClaimingAdultery": "You can ask the court to order your {{ divorceWho }} to pay some or all of the divorce costs.",
+                    "infoAboutFees": "This could include all the fees you have to pay during the divorce, such as application fees, solicitors fees, and additional court fees.",
+                    "warning5YearsSeparation": "The court does not normally make a costs order where the application is based on 5 years separation.",
+                    "whoCosts": "Who do you want to claim the costs from?",
+                    "your": "Your",
+                    "theCorespondent": "{{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} (the co-respondent)",
+                    "youHaveToPayFeeNow": "The court will make a judgement on who should pay, and how much, at a later stage in the divorce.",
+                    "youHaveToPayFeeAppNow": "You'll have to pay your application fee now. ",
+                    "warning": "Warning",
+                    "no": "No",
+                    "yes": "Yes"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Applying to claim the divorce costs?"
+                },
+
+                "errors": {
+                    "claimsCosts": {
+                        "required": "Select yes if you want to claim costs",
+                        "invalid": "Select yes if you want to claim costs"
+                    },
+                    "claimsCostsFrom": {
+                        "invalid": "Select who you'd like to claim costs from"
+                    },
+                    "reasonForDivorceAdulteryIsNamed": {
+                        "invalid": "Unable to determine if adultery is the reason for divorce"
+                    }
+                }
+            }
+        }
+    }
+}

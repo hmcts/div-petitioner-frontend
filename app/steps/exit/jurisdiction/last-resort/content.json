@@ -1,0 +1,15 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "You can't apply for a divorce in England or Wales",
+                    "reason": "Your answers indicate that the courts of England and Wales do not have jurisdiction to grant you a divorce"
+
+                }
+            }
+        }
+    }
+}

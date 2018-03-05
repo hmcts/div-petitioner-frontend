@@ -1,0 +1,22 @@
+{% from "common/components/formElements.html" import date %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    {{ date(
+        dayField = fields.reasonForDivorceDesertionDay,
+        dayName = 'reasonForDivorceDesertionDay',
+        monthField = fields.reasonForDivorceDesertionMonth,
+        monthName = 'reasonForDivorceDesertionMonth',
+        yearField = fields.reasonForDivorceDesertionYear,
+        yearName = 'reasonForDivorceDesertionYear',
+        dateField = fields.reasonForDivorceDesertionDate,
+        hint = content.dateHint,
+        id = 'reasonForDivorceDesertionDate',
+        hiddenLegend = content.question
+    ) }}
+
+{% endblock %}

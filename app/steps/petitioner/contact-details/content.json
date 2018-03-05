@@ -1,0 +1,34 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Enter your contact details",
+                    "communicate": "You need to agree to receive notifications about your divorce and court documents by email.",
+                    "email": "Your email address",
+                    "petitionerPhoneNumber": "Your phone number",
+                    "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email."
+                },
+
+                "checkYourAnswersContent": {
+                    "email": "Your email address",
+                    "petitionerPhoneNumber": "Your phone number"
+                },
+
+                "errors": {
+                    "petitionerEmail": {
+                        "required": "Enter your email address",
+                        "invalid": "Enter a valid email address"
+                    },
+                    "petitionerPhoneNumber": {
+                        "invalid": "Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
+                    },
+                    "petitionerConsent": {
+                        "required": "You must agree to receive notifications and court documents by email to use this service."
+                    }
+                }
+            }
+        }
+    }
+}

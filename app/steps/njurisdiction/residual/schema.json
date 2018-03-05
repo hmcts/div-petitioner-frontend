@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "residualJurisdiction",
+    "type": "object",
+    "properties": {
+        "residualJurisdictionEligible": {
+            "type": "string",
+            "enum": ["Yes", "No"]
+        }
+    },
+    "required": [
+        "residualJurisdictionEligible"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Your application has been saved",
+                    "link": "A link to your application has been sent to:",
+                    "time": "Your application will be saved for 6 months"
+                }
+            }
+        }
+    }
+}

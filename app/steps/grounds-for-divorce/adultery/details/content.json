@@ -1,0 +1,43 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Your account of the adultery",
+                    "description": "Provide the following information about the adultery. If you don't know any of this information, say that you don't know and explain why.",
+                    "remember": "Your {{ divorceWho }}  will be sent a copy of your divorce application, so you may want to avoid writing anything that will cause conflict between you. You can discuss your statement with your {{ divorceWho }} if you want to.",
+                    "whatDoYouKnow": "What do you know about the adultery?",
+                    "whatElseDoYouKnow": "What else do you know about the adultery?",
+                    "whereDidAdulteryHappen": "Where did the adultery happen?",
+                    "whenDidAdulteryHappen": "When did the adultery happen?"
+                },
+                "checkYourAnswersContent": {
+                    "question": "What you know of the adultery"
+                },
+                "errors": {
+                    "reasonForDivorceAdulteryDetails": {
+                        "required": "Enter what you believe you know about the adultery",
+                        "invalid": "Please answer this question"
+                    },
+                    "reasonForDivorceAdulteryWhenDetails": {
+                        "required": "Enter when you believe the adultery happened",
+                        "invalid": "Please answer this question"
+                    },
+                    "reasonForDivorceAdulteryWhereDetails": {
+                        "required": "Enter where you believe the adultery happened",
+                        "invalid": "Please answer this question"
+                    },
+                    "reasonForDivorceAdulteryKnowWhen": {
+                        "required": "Please answer this question",
+                        "invalid": "Please answer this question"
+                    },
+                    "reasonForDivorceAdulteryKnowWhere": {
+                        "required": "Please answer this question",
+                        "invalid": "Please answer this question"
+                    }
+                }
+            }
+        }
+    }
+}

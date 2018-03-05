@@ -1,0 +1,11 @@
+node_modules/*
+docs/*
+govuk_modules/*
+public/*
+app/assets/javascripts/*
+app/steps/sitemap/*
+lib/*
+coverage/*
+test/crossbrowser/reports/*
+webpack.config.js
+Gruntfile.js

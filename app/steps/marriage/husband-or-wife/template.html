@@ -1,0 +1,40 @@
+{% from "common/components/formElements.html" import radioButton, checkBox %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <fieldset id="divorceWho" class="form-group {{ 'form-group-error' if fields.divorceWho.error }}">
+        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+        {{ errorsFor(fields.divorceWho) }}
+        {{ radioButton(
+            value = 'husband',
+            label = content.husband,
+            name = 'divorceWho',
+            field = fields.divorceWho
+        ) }}
+        {{ radioButton(
+            value = 'wife',
+            label = content.wife,
+            name = 'divorceWho',
+            field = fields.divorceWho
+        ) }}
+    </fieldset>
+
+    <fieldset class="form-group">
+        <legend class="form-label-bold">
+            {{ content.marriageIsSameSexCouple | safe }}
+        </legend>
+
+        {{ errorsFor(fields.marriageIsSameSexCouple) }}
+        {{ checkBox(
+            id = 'marriageIsSameSexCoupleId',
+            label = content.marriageIsSameSexCoupleText,
+            name = 'marriageIsSameSexCouple',
+            field = fields.marriageIsSameSexCouple
+        ) }}
+    </fieldset>
+
+{% endblock %}

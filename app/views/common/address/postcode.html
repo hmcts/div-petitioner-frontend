@@ -1,0 +1,12 @@
+{% import "../components/findAddressComponent.html" as address %}
+{% extends "question.html" %}
+
+{% block question %}
+{{ title }}
+{% endblock %}
+
+{% block form %}
+
+{{ address.findAddressComponent(addresses) }}
+
+{% endblock %}

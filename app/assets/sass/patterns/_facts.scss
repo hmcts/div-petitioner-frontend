@@ -1,0 +1,38 @@
+.facts {
+
+  details {
+    max-width: 570px;
+    background: $panel-colour;
+
+    &:hover {
+      outline: 1px solid $black;
+    }
+
+    summary {
+
+      max-width: 510px;
+      width: 100%;
+      padding: 15px 30px;
+      @include bold-19();
+      color: $black;
+
+      &:focus {
+        outline: 3px solid $focus-colour;
+      }
+
+      &:hover {
+        color: $black;
+
+      }
+    }
+
+    p {
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-bottom: 15px;
+    }
+  }
+
+  margin-bottom: $gutter;
+
+}

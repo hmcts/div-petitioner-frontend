@@ -1,0 +1,18 @@
+<tr>
+  <th>
+    {{ content.question | safe }}<br/>
+    {% if fields.livingArrangementsLastLivedTogetherAddress.value %}
+      <span class="address">{{ fields.livingArrangementsLastLivedTogetherAddress.value.address | join("<br/>") | safe }}</span>
+    {% endif %}
+  </th>
+  <td>
+    {% if fields.respondentLivesAtLastAddress.value === 'Yes' %}
+      {{ content.yes }}
+    {% elseif fields.respondentLivesAtLastAddress.value === 'No' %}
+      {{ content['no-' + session.divorceWho] | safe }}
+    {% elseif fields.respondentLivesAtLastAddress.value === 'Unknown' %}
+      {{ content['unknown-' + session.divorceWho] | safe }}
+    {% endif %}
+  </td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

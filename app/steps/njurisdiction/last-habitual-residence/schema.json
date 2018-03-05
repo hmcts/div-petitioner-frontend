@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "lastHabitualResidence",
+    "type": "object",
+    "properties": {
+        "jurisdictionLastHabitualResident": {
+            "type": "string",
+            "enum": ["Yes", "No"]
+        }
+    },
+    "required": [
+        "jurisdictionLastHabitualResident"
+    ]
+}

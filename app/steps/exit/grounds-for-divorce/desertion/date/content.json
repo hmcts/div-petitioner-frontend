@@ -1,0 +1,14 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "You can&#39;t use desertion as your reason for divorce",
+                    "reason": "Your {{ divorceWho }} must have deserted you for at least 2 years for you to use it as your reason for divorce.",
+                    "proceed": "If you want to proceed with your divorce application, you must <a href=\"/reason-for-divorce\">choose another fact which applies to you</a>."
+                }
+            }
+        }
+    }
+}

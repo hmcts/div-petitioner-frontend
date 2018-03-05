@@ -1,0 +1,29 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "how-your-connected": "How you're connected to England and Wales",
+                    "see-you-legal-connections": "See the legal versions",
+                    "connections": "How you're legally connected to England and Wales",
+                    "connectionA": "My {{ divorceWho }} and I are both habitually resident in England and Wales",
+                    "connectionB": "My {{ divorceWho }} and I were both last habitually resident in England and Wales and one of us still lives there",
+                    "connectionC": "My {{ divorceWho }} is habitually resident in England and Wales",
+                    "connectionD": "I’m habitually resident in England and Wales and have lived there for at least 12 months",
+                    "connectionF": "My {{ divorceWho }} and I are both domiciled in England and Wales",
+                    "connectionE": "I’m domiciled and habitually resident in England and Wales and have lived there for at least six months",
+                    "connectionG": "The courts of England and Wales have jurisdiction on a residual basis",
+                    "legalA": "The Petitioner and the Respondent are habitually resident in England and Wales",
+                    "legalB": "The Petitioner and the Respondent were last habitually resident, insofar as one of them still resides there",
+                    "legalC": "The Respondent is habitually resident in England and Wales",
+                    "legalD": "The Petitioner is habitually resident in England and Wales and has resided there for at least a year immediately prior to the presentation of the petition",
+                    "legalF": "The Petitioner and Respondent are both domiciled in England and Wales",
+                    "legalE": "The Petitioner is domiciled and habitually resident in England and Wales and has resided there for at least six months immediately prior to the petition",
+                    "legalG": "The courts of England and Wales have residual jurisdiction, meaning either: no other court in any EU Member State has jurisdiction and either the Petitioner or the Respondent is domiciled in England and Wales; or (for same sex couples only) the Petitioner or the Respondent married each other in England and Wales, no other court in any EU Member State has jurisdiction, and it would be in the interests of justice for the court to assume jurisdiction in this case"
+                }
+            }
+        }
+    }
+}

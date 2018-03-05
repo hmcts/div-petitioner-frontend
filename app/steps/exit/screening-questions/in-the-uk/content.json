@@ -1,0 +1,21 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Sorry, you can&#39;t use this service yet",
+                    "reason": "You must have been married in England or Wales to use this service.",
+                    "offline": "You can still apply for a divorce offline.",
+                    "paper": "Download and fill in the paper <a href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115\" target=\"_blank\">divorce petition and instructions</a>."
+                },
+
+                "errors": {
+
+                }
+
+            }
+        }
+    }
+}

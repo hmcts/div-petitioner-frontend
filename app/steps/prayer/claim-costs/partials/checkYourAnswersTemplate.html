@@ -1,0 +1,20 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>{{ fields.claimsCosts.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{% if fields.claimsCostsFrom.value %}
+  <tr>
+    <th>{{ content.whoCosts | safe }}</th>
+    <td>
+      {%- for claimsCostsFrom in fields.claimsCostsFrom.value -%}
+        {% if claimsCostsFrom === "respondent" %}
+          {{ content.your }} {{ session.divorceWho }} <br/>
+        {% elseif claimsCostsFrom === "correspondent" %}
+          {{ content.theCorespondent | safe }}
+        {% endif %}
+      {%- endfor -%}
+    </td>
+    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  </tr>
+{% endif %}

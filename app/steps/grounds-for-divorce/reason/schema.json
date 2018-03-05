@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "reason-for-divorce",
+    "type": "object",
+    "properties": {
+        "reasonForDivorce": {
+            "type": "string",
+            "enum": [
+                "unreasonable-behaviour",
+                "adultery",
+                "separation-2-years",
+                "separation-5-years",
+                "desertion"
+            ]
+        }
+    },
+    "required": [
+        "reasonForDivorce"
+    ]
+}

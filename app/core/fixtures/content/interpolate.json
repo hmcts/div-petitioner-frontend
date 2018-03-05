@@ -1,0 +1,19 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you have an address for your {{divorceWho}}?",
+                    "answer": "Yes, I do have an address for my {{screening-questions.respondent}}"
+                },
+
+                "errors": {
+
+                }
+
+            }
+        }
+    }
+}

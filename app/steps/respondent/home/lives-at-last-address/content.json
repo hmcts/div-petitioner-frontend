@@ -1,0 +1,26 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Does your {{ divorceWho }} still live at this address?",
+                    "yes": "Yes",
+                    "no-husband": "No, he lives at another address",
+                    "unknown-husband": "No, and I don't know where he lives",
+                    "no-wife": "No, she lives at another address",
+                    "unknown-wife": "No, and I don't know where she lives"
+                },
+
+                "errors": {
+                    "respondentLivesAtLastAddress": {
+                        "required": "Select yes if your {{ divorceWho }} lives at this address",
+                        "invalid": "Address is invalid"
+                    }
+                }
+
+            }
+        }
+    }
+}

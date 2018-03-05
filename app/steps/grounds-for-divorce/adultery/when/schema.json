@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "adultery-know-when",
+    "type": "object",
+    "properties": {
+        "reasonForDivorceAdulteryKnowWhen": {
+            "type": "string",
+            "enum": ["Yes", "No"]
+        }
+    },
+    "required": [
+        "reasonForDivorceAdulteryKnowWhen"
+    ]
+}

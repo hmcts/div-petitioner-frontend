@@ -1,0 +1,18 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Sitemap"
+                },
+
+                "errors": {
+
+                }
+
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "desertion-details",
+    "type": "object",
+    "properties": {
+        "reasonForDivorceDesertionDetails": {
+            "type": "string",
+            "minLength": 1
+        }
+    },
+    "required": [
+        "reasonForDivorceDesertionDetails"
+    ]
+}

@@ -1,0 +1,34 @@
+{% from "common/components/formElements.html" import radioButton, yesNoRadio %}
+{% extends "question.html" %}
+{% block question %}
+{{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+<p class="text">
+{{ content.divorcePetitionCopy | safe }}
+</p>
+
+<p class="text">
+{{ content.court | safe }}
+</p>
+
+<div id="petitionerContactDetailsConfidential" class="form-group {{ 'form-group-error' if fields.petitionerContactDetailsConfidential.error }}">
+    <fieldset>
+        <legend class="visually-hidden">{{ content.question }}</legend>
+        {{ errorsFor(fields.petitionerContactDetailsConfidential) }}
+        {{ radioButton(
+        value = 'share',
+        label = content.share,
+        name = 'petitionerContactDetailsConfidential',
+        field = fields.petitionerContactDetailsConfidential
+        ) }}
+        {{ radioButton(
+        value = 'keep',
+        label = content.keep,
+        name = 'petitionerContactDetailsConfidential',
+        field = fields.petitionerContactDetailsConfidential
+        ) }}
+    </fieldset>
+</div>
+{% endblock %}

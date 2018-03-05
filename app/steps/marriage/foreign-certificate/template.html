@@ -1,0 +1,36 @@
+{% from "common/components/formElements.html" import textField %}
+{% extends "question.html" %}
+{% block question %}
+{{ content.question | safe}}
+{% endblock %}
+{% block form %}
+
+<fieldset class="form-group">
+  <legend class="form-label-bold">{{ content.countryOfMarriage | safe }}</legend>
+    {{ textField(
+      name = 'countryName',
+      field = fields.countryName,
+      hint = content.countryName
+    ) }}
+</fieldset>
+
+<fieldset class="form-group">
+
+      {% if session.certificateInEnglish === 'No' %}
+        <legend class="form-label-bold">{{ content.placeOfMarriageTranslation | safe }}</legend>
+        {{ textField(
+          name = 'placeOfMarriage',
+          field = fields.placeOfMarriage,
+          hint = content.wordsOfTranslation
+        )}}
+      {% else %}
+        <legend class="form-label-bold">{{ content.placeOfMarriage | safe }}</legend>
+        {{ textField(
+          name = 'placeOfMarriage',
+          field = fields.placeOfMarriage
+        )}}
+
+      {% endif %}
+  </fieldset>
+
+{% endblock %}

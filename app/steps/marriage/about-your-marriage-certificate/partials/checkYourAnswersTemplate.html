@@ -1,0 +1,12 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>{{ fields.certificateInEnglish.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{% if fields.certifiedTranslation.value %}
+<tr>
+  <th>{{ content.cyaCertifiedTranslation | safe }}</th>
+  <td>{{ fields.certifiedTranslation.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{% endif %}

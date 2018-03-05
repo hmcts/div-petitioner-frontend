@@ -1,0 +1,11 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>
+    <ul class="list list-bullet">
+      {%- for details in fields.reasonForDivorceBehaviourDetails.value -%}
+        <li>{{ details }}</li>
+      {%- endfor -%}
+    </ul>
+  </td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

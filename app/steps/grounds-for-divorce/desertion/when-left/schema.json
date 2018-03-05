@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "desertion-date",
+    "type": "object",
+    "properties": {
+        "reasonForDivorceDesertionDay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+        },
+        "reasonForDivorceDesertionMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "reasonForDivorceDesertionYear": {
+            "type": "integer"
+        },
+        "reasonForDivorceDesertionBeforeMarriage": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceDesertionDateInFuture": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceDesertionDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "reasonForDivorceDesertionAlright": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "reasonForDivorceDesertionDay",
+        "reasonForDivorceDesertionMonth",
+        "reasonForDivorceDesertionYear",
+        "reasonForDivorceDesertionBeforeMarriage",
+        "reasonForDivorceDesertionDateInFuture",
+        "reasonForDivorceDesertionDate"
+    ]
+}

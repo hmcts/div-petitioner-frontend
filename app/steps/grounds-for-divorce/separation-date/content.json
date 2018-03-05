@@ -1,0 +1,52 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "When did you separate from your {{ divorceWho }}?",
+                    "dateHint" : "For example, 31 3 1980",
+                    "day": "Day",
+                    "month": "Month",
+                    "year": "Year"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Separation date"
+                },
+
+                "errors": {
+
+                    "reasonForDivorceSeperationDay": {
+                        "required": "Enter the day for your separation date",
+                        "invalid": "Enter a valid day for your separation date"
+                    },
+                    "reasonForDivorceSeperationMonth": {
+                        "required": "Enter the month for your separation date",
+                        "invalid": "Enter a valid month for your separation date"
+                    },
+                    "reasonForDivorceSeperationYear": {
+                        "required": "Enter the year for your separation date",
+                        "invalid": "Enter a valid year for your separation date"
+                    },
+                    "reasonForDivorceSeperationDate": {
+                        "required": "Enter the date that you separated from your {{ divorceWho }}",
+                        "invalid": "Enter a valid date"
+                    },
+                    "reasonForDivorceSeperationDateInFuture": {
+                        "invalid": "Enter a separation date that is in the past"
+                    },
+                    "reasonForDivorceSeperationDateBeforeMarriageDate": {
+                        "invalid": "Enter a separation date that is after your marriage date"
+                    },
+                    "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": {
+                        "required": "Enter the date that you separated from your {{ divorceWho }}"
+                    }
+
+                }
+
+            }
+        }
+    }
+}

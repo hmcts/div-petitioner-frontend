@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "has-marriage-broken",
+  "type": "object",
+  "properties": {
+    "screenHasMarriageBroken": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "screenHasMarriageBroken"
+  ]
+}

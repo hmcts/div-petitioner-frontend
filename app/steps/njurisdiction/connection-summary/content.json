@@ -1,0 +1,36 @@
+{
+    "lng": "en",
+    "resources": {
+
+        "en": {
+
+            "translation": {
+
+                "content": {
+                    "heading": "You can use English or Welsh courts to get a divorce",
+                    "description": "Your answers indicate that you can apply for a divorce in England and Wales because:",
+                    "reason-A": "both you and your {{divorceWho}} are habitually resident",
+                    "reason-B": "you and your {{divorceWho}} were both last habitually resident and one of you still lives here",
+                    "reason-C": "your {{divorceWho}} is habitually resident",
+                    "reason-D": "you’re habitually resident and have lived here for at least 12 months",
+                    "reason-E": "you’re domiciled and habitually resident and have lived here for at least 6 months",
+                    "reason-F": "both you and your {{divorceWho}} are domiciled",
+                    "reason-G": "the courts of England and Wales have jurisdiction on a residual basis",
+                    "question": "Do you want to change your answers?",
+                    "clarification": "You only need to do this if your {{divorceWho}} may disagree with these connections.",
+                    "confident": "I'm confident these connections are right",
+                    "needInfo": "I'm still not sure, and I want to change my answers",
+                    "showAll": "Show me all the connections, I‘ll choose myself",
+                    "connectionSummaryTitle":"Connection Summary"
+                },
+                "errors": {
+
+                    "connectionSummary": {
+
+                        "required": "Select yes if you're confident these connections are right"
+                    }
+                }
+            }
+        }
+    }
+}

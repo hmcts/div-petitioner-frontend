@@ -1,0 +1,35 @@
+{
+    "lng": "en",
+    "resources": {
+
+        "en": {
+
+            "translation": {
+
+                "content": {
+                    "heading": "Residual jurisdiction",
+                    "residualTextSame1":"Your answers indicate that the main grounds under which the courts of England and Wales have jurisdiction to consider your divorce application don't apply. However, you may still be able to apply for a divorce in England or Wales based on the court’s ‘residual jurisdiction’.",
+                    "residualTextSame2":"Usually, to be eligible for residual jurisdiction, you or your {{ divorceWho }} must be domiciled in England or Wales, and neither of you must be nationals of, or habitually resident in, another country in the EU (except Denmark).",
+                    "residualTextSameConHead":"In addition, if you’re married to a member of the same sex, you may be eligible for residual jurisdiction if all the following apply:",
+                    "residualTextSameCon1":"you married each other in England and Wales",
+                    "residualTextSameCon2":"neither of you are nationals of, or habitually resident in, another country in the EU (except Denmark)",
+                    "residualTextSameCon3":"it would be in the interests of justice for the court to consider the application (this may apply if, for example, your home country doesn’t allow divorce between same-sex couples)",
+                    "residualTextSame3":"However, residual jurisdiction can be more complex. If you're not sure if it applies to you, you should seek legal advice.",
+                    "residualTextOposite1":"Your answers indicate that the main grounds under which the courts of England and Wales have jurisdiction to consider your divorce application don't apply. However, you may still be able to apply for a divorce in England or Wales based on the court’s ‘residual jurisdiction’.",
+                    "residualTextOposite2":"Usually, to be eligible for residual jurisdiction, you or your {{ divorceWho }} must be domiciled in England or Wales, and neither of you must be nationals of, or habitually resident in, another country in the EU (except Denmark).",
+                    "residualTextOposite3":"However, residual jurisdiction can be more complex. If you're not sure if it applies to you, you should seek legal advice.",
+                    "question":"Are you eligible for residual jurisdiction?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                 "errors": {
+
+                    "residualJurisdictionEligible": {
+                        "required": "Select yes if residual jurisdiction applies to you"
+                    }
+
+                }
+            }
+        }
+    }
+}

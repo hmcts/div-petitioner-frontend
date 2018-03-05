@@ -1,0 +1,33 @@
+{
+    "lng": "en",
+    "resources": {
+
+        "en": {
+
+            "translation": {
+
+                "content": {
+
+                    "question": "Are you and your {{ divorceWho }} mainly based in England or Wales?",
+                    "explained": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
+                    "indicates": "If your lives are mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
+                    "findOutMore": "Find out why the court needs to know this",
+                    "legallyConnected": "You must be legally connected to England or Wales for the court to be able to grant you a divorce here.",
+                    "answer": "These legal connections are based on whether you and your {{ divorceWho }} are 'habitually resident' and 'domiciled' in England or Wales. You'll be asked about your domicile next.",
+                    "notCompleteList": "The examples above aren't a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
+                    "instruction": "Select the statement which applies to you:",
+                    "both": "Yes, both of us are based here",
+                    "onlyMe": "Only I'm based here",
+                    "onlyRespondent": "Only my {{ divorceWho }} is based here",
+                    "neither": "No, neither of us are based here"
+                },
+                "errors": {
+
+                    "jurisdictionResidence": {
+                        "required": "Select an answer to continue"
+                    }
+                }
+            }
+        }
+    }
+}

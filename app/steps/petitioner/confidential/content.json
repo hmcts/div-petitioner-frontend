@@ -1,0 +1,29 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Do you need your contact details kept private from your {{ divorceWho }}?",
+                    "divorcePetitionCopy": "A copy of your divorce petition will be sent to your {{ divorceWho }}.",
+                    "court": "The court won't include your address, email or phone number if you want them to be kept confidential.",
+                    "share": "I don't need my contact details kept private",
+                    "keep": "Keep my contact details private"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "How your contact details can be shared"
+                },
+
+                "errors": {
+                    "petitionerContactDetailsConfidential": {
+                        "required": "Select 'Keep my contact details private' if you want your address, email and phone number kept confidential",
+                        "invalid": "Select 'Keep my contact details private' if you want your address, email and phone number kept confidential"
+                    }
+
+                }
+
+            }
+        }
+    }
+}

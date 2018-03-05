@@ -1,0 +1,20 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Do you know where the adultery took place?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "errors": {
+                    "reasonForDivorceAdulteryKnowWhere": {
+                        "required": "Select yes if you know where the adultery happened",
+                        "invalid": "Select yes if you know where the adultery happened"
+                    }
+                }
+            }
+        }
+    }
+}

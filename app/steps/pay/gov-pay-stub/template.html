@@ -1,0 +1,23 @@
+{% from "common/components/formElements.html" import radioButton, textField %}
+{% extends "question.html" %}
+
+{% block form %}
+
+<fieldset class="form-group inline">
+  <legend class="form-label-bold text">{{ content.title | safe }}</legend>
+  {{ errorsFor(fields.mockedOutcome) }}
+  {{ radioButton(
+    value = 'success',
+    label = content.success,
+    name = 'mockedOutcome',
+    field = fields.mockedOutcome
+  ) }}
+  {{ radioButton(
+    value = 'failure',
+    label = content.failure,
+    name = 'mockedOutcome',
+    field = fields.mockedOutcome
+  ) }}
+</fieldset>
+
+{% endblock %}

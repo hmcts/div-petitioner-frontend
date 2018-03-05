@@ -1,0 +1,46 @@
+#reasonForDivorce {
+
+  .multiple-choice {
+    border: 1px solid #dee0e2;
+    padding: 11px 20px 8px 54px;
+    background: #dee0e2;
+    margin-bottom: 10px;
+    &:hover {
+      border: 1px solid #0b0c0c;
+    }
+    label {
+      padding-left: 16px;
+    }
+
+  }
+
+  .selected-reason-state {
+      background: #fff;
+      border-color: #0b0c0c
+  }
+
+  .multiple-choice [type=radio] + label::before {
+    border: 2px solid;
+    width: 34px;
+    height: 34px;
+    top: 18px;
+    left: 15px;
+  }
+
+  .multiple-choice [type=radio] + label::after {
+    border: 10px solid;
+    width: 0;
+    height: 0;
+    top: 27px;
+    left: 24px;
+
+  }
+
+  .panel .notice .icon {
+    top:0;
+    margin-top: -3px;
+  }
+
+}
+
+

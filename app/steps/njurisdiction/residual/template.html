@@ -1,0 +1,52 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.heading | safe }}
+{% endblock %}
+
+{% block form %}
+  {%- if session.marriageIsSameSexCouple === 'Yes' %}
+    <p class="text">
+      {{ content.residualTextSame1 | safe }}
+    </p>
+    <p class="text">
+      {{ content.residualTextSame2 | safe }}
+    </p>
+    <p class="text">
+      {{ content.residualTextSame3 | safe }}
+    </p>
+    <p class="text">
+      {{ content.residualTextSameConHead | safe }}
+    </p>
+    <ul class="list list-bullet">
+      <li>{{ content.residualTextSameCon1 | safe }}</li>
+      <li>{{ content.residualTextSameCon2 | safe }}</li>
+      <li>{{ content.residualTextSameCon3 | safe }}</li>
+    </ul>
+
+  {% else %}
+
+    <p class="text">
+      {{ content.residualTextOposite1 | safe }}
+    </p>
+    <p class="text">
+      {{ content.residualTextOposite2 | safe }}
+    </p>
+    <p class="text">
+      {{ content.residualTextOposite3 | safe }}
+    </p>
+
+  {% endif -%}
+
+    <h2 class="heading-medium">{{ content.question | safe }}</h2>
+
+    {{ yesNoRadioHeading(
+        legend = content.question,
+        name = 'residualJurisdictionEligible',
+        field = fields.residualJurisdictionEligible,
+        yes = content.yes,
+        no = content.no
+    ) }}
+
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends "layout.html" %}
+{% from "common/errors.html" import errorsFor %}
+
+{% block page_title %}
+  {{ common.serviceName }} - GOV.UK
+{% endblock %}
+
+{% block extra_scripts %}
+  <script type="text/javascript">
+    (function(){
+      var documentUpload = new DIVORCE.documentUpload();
+      documentUpload.init({
+        uploadingHint: '{{ content.uploading }}',
+        pendingUploadHint: '{{ content.pendingUpload }}',
+        hideErrorFileLink: '{{ content.hide }}',
+        removeFileLink: '{{ content.remove }}',
+        errors: {
+          errorMaximumFilesExceeded: '{{ content.errorMaximumFilesExceeded }}',
+          errorUnknown: '{{ content.errorUnknown }}',
+          errorFileSizeTooLarge: '{{ content.errorFileSizeTooLarge }}',
+          errorFileTypeInvalid: '{{ content.errorFileTypeInvalid }}',
+          errorVirusFoundInFile: '{{ content.errorVirusFoundInFile }}'
+        }
+      });
+    })();
+  </script>
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+  {% include "includes/phase_banner.html" %}
+    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+          {% if errors.length > 0 %}
+              <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
+
+                  <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+                      {{ common.errorSummaryHeading | safe }}
+                  </h1>
+
+                  <ul class="error-summary-list">
+                      {% for error in errors %}
+                          <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+                      {% endfor %}
+                  </ul>
+
+              </div>
+          {% endif %}
+
+          <h1 class="heading-large">
+              {{ content.question | safe }}
+          </h1>
+
+          <div class="text">
+            <p>{{ content.uploadDigitalPhoto }}</p>
+            <ul class="list list-bullet">
+              <li>{{ content.marriageCertificateContent | safe }}</li>
+              {%- if (session.certifiedTranslation == 'Yes' ) %}
+                <li>{{ content.translationContent | safe }}</li>
+              {% endif -%}
+              {%- if (session.petitionerNameChangedHow and (session.petitionerNameChangedHow.indexOf('deedPoll') > -1 or session.petitionerNameChangedHow.indexOf('other') > -1) ) -%}
+                <li>{{ content.nameChangeContent | safe }}</li>
+              {%- endif -%}
+            </ul>
+            <p>{{ content.otherDocuments }}</p>
+
+            <details>
+              <summary>
+                <span class="summary">{{ content.howToTake }}</span>
+              </summary>
+              <div class="panel panel-border-narrow font-small">
+                <ul class="list list-number">
+                  <li>{{ content.howToTakeInfo1 }}</li>
+                  <li>{{ content.howToTakeInfo2 }}</li>
+                  <li>{{ content.howToTakeInfo3 }}</li>
+                  <li>{{ content.howToTakeInfo4 }}</li>
+                </ul>
+              </div>
+            </details>
+
+            <p>{{ content.limitations }}</p>
+
+            <div class="document-upload" tabindex="0">
+              <div class="fallback">
+                <form method="POST" accept-charset="utf-8" class="form" id="form"
+                  enctype="multipart/form-data"
+                  autocomplete="off">
+                  <label for="marriageCertificateFiles" class="file-select-button">
+                    {{ content.selectFiles }}
+                  </label>
+                  <input id="marriageCertificateFiles" type="file" name="file" class="file-upload-input" accept="image/x-png,image/png,image/jpeg,image/jpg,.pdf,.bmp,.tiff,.tif" required />
+                  <input type="submit" class="file-upload-button" name="upload" value="{{ content.upload }}" />
+                </form>
+              </div>
+              <div class="dropzone-container hidden">
+                <div class="dz-default dz-message grid-row">
+                  <div class="column-one-third">
+                    <span class="arrow-icon"></span>
+                  </div>
+                  <div class="column-two-thirds">
+                    <p class="dz-message-copy">
+                      {{ content.dragAndDrop }}<br>
+                      <strong>{{ content.or }}</strong><br>
+                      <a href="#" class="faux-link" tabindex="-1">{{ content.clickToChooseFile }}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="uploaded-files-wrapper {{ 'hidden' if not fields.marriageCertificateFiles.value.length }}"
+              <br />
+
+              <h2 class="heading-small" style="margin-bottom: 0;">{{ content.uploadedFiles }}</h2>
+              <table>
+                <colgroup>
+                   <col span="1" style="width: 85%;">
+                   <col span="1" style="width: 15%;">
+                </colgroup>
+                <tbody>
+                  {%- if fields.marriageCertificateFiles.value.length -%}
+                    {%- for file in fields.marriageCertificateFiles.value -%}
+                      <tr class="file">
+                        <td>{{ file.fileName | safe }}</td>
+                        <td><a class="link remove-file" data-fileUrl="{{ file.fileUrl | safe }}" href="?fileUrl={{ file.fileUrl | urlencode }}&noJsDelete=true">{{ content.remove }}</a></td>
+                      </tr>
+                    {%- endfor -%}
+                  {%- else -%}
+                    <tr class='no-files'>
+                      <td>{{ content.noFiles }}</td>
+                      <td>&nbsp;</td>
+                    </tr>
+                  {%- endif -%}
+                </tbody>
+              </table>
+            </div>
+
+            <details>
+              <summary>
+                <span class="summary">{{ content.cantUpload | safe }}</span>
+              </summary>
+              <div class="panel panel-border-narrow font-small">
+                <p class="bold-small">{{ content.howTo }}</p>
+                  <ol class="list list-number">
+                    <li>{{ content.howToContinue | safe }}</li>
+                    <li>{{ content.howToWrite | safe }}</li>
+                    <li>{{ content.howToPost | safe }}</li>
+                  </ol>
+                <p>{{ content.keptAndReturned | safe}}</p>
+              </div>
+            </details>
+          </div>
+
+          <form method="POST" accept-charset="utf-8" class="form" id="form"
+                enctype="application/x-www-form-urlencoded"
+                autocomplete="off">
+              <div class="form-group">
+                  <input name="submit" type="submit" class="button" value="{{common.continue}}">
+              </div>
+              {% include "includes/save_and_close.html" %}
+          </form>
+
+
+          {% block help %}{% endblock %}
+
+        </div>
+        <div class="column-one-third">
+            <!-- side nav -->
+        </div>
+    </div>
+
+    {% include "includes/problem_with_this_page.html" %}
+
+    {% block script %}{% endblock %}
+
+</main>
+{% endblock %}
+{% macro checked(isChecked, answer) %}
+  {%if isChecked == answer %}
+    checked
+  {% endif %}
+{% endmacro %}
+
+
+{% macro inputTextLabel(id, name, content, field) %}
+    <label class="form-label-bold" for="{{id}}">{{content | safe}}</label>
+    {{ errorsFor(field) }}
+    <input class="form-control" role="textbox" id="{{id}}" name="{{name}}" type="text" value="{{field.value}}">
+{% endmacro %}
+
+
+{% macro inputRadioLabel(id, name, content, field, value, target) %}
+  <div class="form-group" {% if target %} data-target="{{target}}"{% endif %}>
+      <input id="{{id}}" name="{{name}}" value="{{value}}" type="radio" {{checked(field.value, value)}}>
+      <label for="{{id}}">
+        {{content | safe}}
+      </label>
+  </div>
+{% endmacro %}

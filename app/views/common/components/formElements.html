@@ -1,0 +1,174 @@
+{% macro textArea(name, field, label, hint = '') %}
+    <div class="form-group {{ 'form-group-error' if field.error }}">
+        <label class="form-label-bold" for="{{ name }}">{{ label | safe }}</label>
+
+        {% if hint %}
+            <span class="form-hint">{{ hint | safe }}</span>
+        {% endif %}
+
+        {{ errorsFor(field) }}
+        <textarea class="form-control {{ 'form-control-error' if field.error }}"
+                  id="{{ name }}"
+                  rows="7"
+                  name="{{ name }}"
+                  type="text">{{ field.value }}</textarea>
+    </div>
+{% endmacro %}
+
+{% macro textField(name, field, label, hint = '', boldLabel = false) %}
+    <div class="form-group {{ 'form-group-error' if field.error }}">
+      <label class="form-label{{ '-bold' if boldLabel }} text" for="{{ name }}">{{ label | safe }}</label>
+
+        {% if hint %}
+            <span class="form-hint text">{{ hint | safe }}</span>
+        {% endif %}
+
+        {{ errorsFor(field) }}
+        <input class="form-control {{ 'form-control-error' if field.error }}"
+               id="{{ name }}"
+               name="{{ name }}"
+               type="text"
+               value="{{ field.value }}">
+    </div>
+{% endmacro %}
+
+{% macro date(dayField, dayName = 'day', monthField, monthName = 'month',yearField, yearName = 'year',dateField,label = '',hint = '', legend = '',hiddenLegend  = '', id, additionalErrors = [], index = 1) %}
+
+    {% set hasError = dateField.error or dayField.error or monthField.error or yearField.error %}
+
+    {% for i in range(0, additionalErrors.length) -%}
+      {% set hasError = hasError or additionalErrors[i].error %}
+    {%- endfor %}
+
+    <fieldset class="form-group form-date {{ 'form-group-error' if hasError }}" id="{{ id }}">
+        {% if legend %}
+            <legend class="form-label-bold">{{ legend | safe }}</legend>
+        {% endif %}
+
+        {% if hiddenLegend %}
+            <legend class="visually-hidden">{{ hiddenLegend | safe }}</legend>
+        {% endif %}
+
+        {% if label %}
+            <span class="form-label">{{ label | safe }}</span>
+        {% endif %}
+
+        {% if hint %}
+            <span class="form-hint">{{ hint | safe }}</span>
+        {% endif %}
+
+        {{ errorsFor(dateField) }}
+        {{ errorsFor(dayField) }}
+        {{ errorsFor(monthField) }}
+        {{ errorsFor(yearField) }}
+
+        {% for i in range(0, additionalErrors.length) -%}
+          {{ errorsFor(additionalErrors[i]) }}
+        {%- endfor %}
+
+        <div class="form-group form-group-day ">
+            <label for="{{ dayName }}">Day</label>
+            <input class="form-control {{ 'form-control-error' if dayField.error}}" id="{{ dayName }}"
+                   name="{{ dayName }}" value="{{ dayField.value }}">
+        </div>
+        <div class="form-group form-group-month ">
+            <label for="{{ monthName }}">Month</label>
+            <input class="form-control {{ 'form-control-error' if monthField.error }}" id="{{ monthName }}"
+                   name="{{ monthName }}" value="{{ monthField.value }}">
+        </div>
+        <div class="form-group form-group-year ">
+            <label for="{{ yearName }}">Year</label>
+            <input class="form-control {{ 'form-control-error' if yearField.error}}" id="{{ yearName }}"
+                   name="{{ yearName }}" value="{{ yearField.value }}">
+        </div>
+    </fieldset>
+{% endmacro %}
+
+{% macro yesNoRadio(label = '', hint, name, field, yes, no) %}
+    <div id="{{ name }}" class="form-group {{ 'form-group-error' if field.error }}">
+        <fieldset class="inline">
+            <legend class="form-label text">{{ label | safe }}</legend>
+            <p class="form-hint text">{{ hint | safe }}</p>
+            {{ errorsFor(field) }}
+            {{ radioButton('Yes', yes, name, field) }}
+            {{ radioButton('No', no, name, field) }}
+        </fieldset>
+    </div>
+{% endmacro %}
+
+{% macro yesNoRadioHeading(legend, name, field, yes, no, hint = '', targetYes = '', targetNo = '') %}
+    <div id="{{ name }}" class="form-group {{ 'form-group-error' if field.error }}">
+        <fieldset class="inline">
+            <legend class="visually-hidden">{{ legend | safe }}</legend>
+
+            {% if hint %}
+                <p class="text form-hint">{{ hint | safe }}</p>
+            {% endif %}
+
+            {{ errorsFor(field) }}
+
+            {{ radioButton('Yes', yes, name, field, targetYes) }}
+            {{ radioButton('No', no, name, field, targetNo) }}
+
+       </fieldset>
+    </div>
+{% endmacro %}
+
+{% macro radioButton(value, label, name, field, dataTarget = '') %}
+   <div class="multiple-choice" data-target="{{ dataTarget }}">
+      <input id="{{ name }}_{{ value }}" type="radio" name="{{ name }}"
+               value="{{ value }}" {{ 'checked=checked ' if field.value === value }}>
+      <label for="{{ name }}_{{ value }}" >
+        {{ label | safe }}
+      </label>
+    </div>
+{% endmacro %}
+
+{% macro checkBox(id, name, label, field) %}
+    <div class="multiple-choice">
+      <input type="hidden" name="hidden-{{ name }}" value="No">
+      <input id="{{ id }}"
+               name="{{ name }}"
+               type="checkbox"
+               value="Yes"
+            {{ 'checked=checked '  if field.value == 'Yes' }}>
+      <label for="{{ id }}">
+        {{ label | safe }}
+      </label>
+    </div>
+{% endmacro %}
+
+{% macro checkBoxCustom(id, name, field, value, label, title, dataTarget = '', arialabelledBy) %}
+
+    <div class="multiple-choice" data-target="{{ dataTarget }}">
+      <input id="{{ id }}"
+             type="checkbox"
+             name="{{ name }}"
+             value="{{ value }}"
+             {% if arialabelledBy %}
+             aria-labelledby="{{arialabelledBy}}"
+             {% endif %}
+             {% for item in field.value %}
+                  {{ ' checked=checked ' if item === value }}
+             {%endfor%}
+      >
+      <label class="form-label-bold" for="{{ id }}">
+        <span class="font-small">
+        {{ label | safe }}
+    </span>
+
+      </label>
+
+    {% if title %}{{ title | safe }}<br> {% endif %}
+
+    </div>
+
+{% endmacro %}
+
+{% macro errorsFor(field) -%}
+    {% if field.error %}
+      <span class="error-message">
+        {{ field.errorMessage | safe}}
+      </span>
+    {% endif %}
+{%- endmacro %}

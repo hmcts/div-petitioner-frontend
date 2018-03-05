@@ -1,0 +1,44 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Is your name now different to your name on your marriage certificate?",
+                    "weddingDayName": "The name on your certificate will be the name you used on your wedding day, eg a maiden name.",
+                    "howChangeName": "How did you change your name?",
+                    "marriageCertificate": "Marriage Certificate",
+                    "deedPoll": "Deed poll or statutory declaration",
+                    "postACopy": "You'll need to send a copy to the court. You can upload a digital photo or scan at the end of this application or you can send it by post.",
+                    "other": "Other",
+                    "detailsTitle": "Provide details of how you changed your name",
+                    "detailsDocuments": "You'll need to send the document proving you changed your name to the court. You can upload a digital photo or scan at the end of this application or you can send it by post. If you don't have any documents showing how you changed your name, explain why here.",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "checkYourAnswersContent": {
+                    "nameChangeProof": "Proof of your name change",
+                    "howChangeName": "How you changed your name"
+                },
+
+                "errors": {
+                    "petitionerNameDifferentToMarriageCertificate": {
+                      "required" : "Select yes if you have changed your name",
+                      "invalid" : "Select yes if you have changed your name"
+                    },
+
+                    "petitionerNameChangedHow": {
+                      "required" : "Select how you changed your name",
+                      "invalid" : "Select how you changed your name"
+                    },
+
+                    "petitionerNameChangedHowOtherDetails": {
+                      "invalid" : "The details can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    }
+                }
+            }
+        }
+    }
+}

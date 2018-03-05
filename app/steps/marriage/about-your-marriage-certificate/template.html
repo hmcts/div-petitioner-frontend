@@ -1,0 +1,44 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+    <details>
+        <summary>
+            <span class="summary">{{content.help | safe }}</span>
+        </summary>
+        <div class="panel panel-border-narrow">
+            <p class="text">{{content.helpText1 | safe }}</p>
+            <p class="text">{{content.helpText2 | safe }}</p>
+        </div>
+    </details>
+
+        <fieldset id="certificate-in-english" class="form-group">
+            <legend class="visually-hidden">{{ content.question | safe }}f</legend>
+            {{ yesNoRadioHeading(
+            legend = content.question,
+            name ='certificateInEnglish',
+            field = fields.certificateInEnglish,
+            yes = content.yes,
+            no = content.no,
+            targetYes = '',
+            targetNo = 'certified-translation'
+            ) }}
+        </fieldset>
+
+        <fieldset id="certified-translation" class="form-group js-hidden">
+            <legend class="form-label-bold">{{ content.certifiedTranslation | safe }}</legend>
+            <p>{{ content.certifiedDescription | safe }}</p>
+            {{ yesNoRadioHeading(
+            legend = content.certifiedTranslation,
+            name ='certifiedTranslation',
+            field = fields.certifiedTranslation,
+            yes = content.yes,
+            no = content.no
+            ) }}
+        </fieldset>
+
+
+{% endblock %}

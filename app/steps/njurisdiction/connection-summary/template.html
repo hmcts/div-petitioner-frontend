@@ -1,0 +1,50 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% from "common/components/helpConnections.html" import helpConnections %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.heading | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <div class="text">
+        <p>
+            {{content.description}}
+        </p>
+        <ul class="list list-bullet">
+            {% for connectionType in session.jurisdictionConnection %}
+                <li class="list list-bullet">
+                    {{content['reason-'+connectionType]}}
+                </li>
+            {% endfor %}
+        </ul>
+        {{ helpConnections(common) }}
+        <fieldset id="connectionSummary" class="form-group {{ 'form-group-error' if fields.connectionSummary.error }}">
+            <legend class="heading-medium">{{ content.question | safe }}</legend>
+            <p>{{ content.clarification | safe }}</p>
+
+            {{ errorsFor(fields.connectionSummary) }}
+            {{ radioButton(
+            value = 'Yes',
+            label = content.confident,
+            name = 'connectionSummary',
+            field = fields.connectionSummary
+            ) }}
+            {{ radioButton(
+            value = 'No',
+            label = content.needInfo,
+            name = 'connectionSummary',
+            field = fields.connectionSummary
+            ) }}
+            {{ radioButton(
+            value = 'Manual',
+            label = content.showAll,
+            name = 'connectionSummary',
+            field = fields.connectionSummary
+            ) }}
+
+        </fieldset>
+
+    </div>
+{% endblock %}

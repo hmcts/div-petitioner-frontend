@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner.html" %}
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <div class="govuk-box-highlight">
+        <h1 class="bold-large">{{content.title | safe}}</h1>
+        <p class="no-bottom-margin">
+          {{ content.paymentReceived | safe if fields.paymentCompleted.value }} {{ content.subTitle | safe if session.caseId }}
+          {%- if session.caseId -%}
+          <br>
+            <strong class="text-reference-number">
+              {{ session.caseId | insertHyphens }}
+            </strong>
+          {%- endif -%}
+        </p>
+      </div>
+
+      {# Email notification copy will be added only when notifications is implemented #}
+
+      {% if (session.marriageCertificateFiles | length === 0) %}
+        <h2 class="heading-medium">{{content.whatToDoNow | safe}}</h2>
+        <h3 class="heading-small">{{content.whatToDoNowReferenceNumber | safe}}</h3>
+        {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}
+          <p class="text">{{content.whatToDoNowOrigCertOnly | safe}}</p>
+        {% endif %}
+        {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
+          <p class="text">{{content.whatToDoNowRefNumText | safe}}</p>
+          <ul class="list list-bullet">
+            <li>{{content.whatToDoNowOrigCert | safe}}</li>
+        {% endif %}
+        {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
+          <li>{{content.whatToDoNowNameChange | safe}}</li>
+        {% endif %}
+        {% if session.certifiedTranslation === 'Yes' %}
+          <li>{{content.whatToDoNowCertTrans | safe}}</li>
+        {% endif %}
+        </ul>
+        {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
+          <p class="text">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
+        {% endif %}
+        <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h2>
+        <p class="text">{{content.whatToDoNowPostText | safe}}</p>
+        <p class="text">{{content.whatToDoNowPostText2 | safe}}</p>
+          <address class="bold-small">
+            {%- if ( session.courts == 'eastMidlands') %}
+              {{ content.sendAddresseastMidlands | safe}}
+            {%- endif -%}
+            {%- if ( session.courts == 'westMidlands') %}
+              {{ content.sendAddresswestMidlands | safe}}
+            {%- endif -%}
+            {%- if ( session.courts == 'southWest') %}
+              {{ content.sendAddresssouthWest | safe}}
+            {%- endif -%}
+            {%- if ( session.courts == 'northWest') %}
+              {{ content.sendAddressnorthWest | safe}}
+            {%- endif -%}
+          </address>
+      {% endif %}
+
+
+      <h2 class="heading-medium">{{content.whatHappensNext | safe}}</h2>
+      <p class="text">{{content.courtWillCheck | safe}}</p>
+      <p class="text">{{content.youCanFindMore | safe}}</p>
+      <p class="text">{{content.contactTheCourt | safe}}</p>
+
+      <h2 class="heading-medium">{{content.helpImproveService | safe}}</h2>
+      <p class="text">
+        {{content.improveServiceContent | safe}}
+      </p>
+
+      <h2 class="heading-medium">{{content.getHelp | safe}}</h2>
+      <p class="text">
+        {{content.getHelpDescription | safe}}
+      </p>
+      <p class="text">
+        {{ content.eastMidlandsEmail | safe if session.courts === 'eastMidlands' }}
+        {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
+        {{ content.southWestEmail | safe if session.courts === 'southWest' }}
+        {{ content.northWestEmail | safe if session.courts === 'northWest' }}
+      </p>
+      <p class="text">
+        {{ content.eastMidlandsPhoneNumber | safe if session.courts === 'eastMidlands' }}
+        {{ content.westMidlandsPhoneNumber | safe if session.courts === 'westMidlands' }}
+        {{ content.southWestPhoneNumber | safe if session.courts === 'southWest' }}
+        {{ content.northWestPhoneNumber | safe if session.courts === 'northWest' }}
+      </p>
+      <p class="text">
+        {{ content.eastMidlandsOpeningHours | safe if session.courts === 'eastMidlands' }}
+        {{ content.westMidlandsOpeningHours | safe if session.courts === 'westMidlands' }}
+        {{ content.southWestOpeningHours | safe if session.courts === 'southWest' }}
+        {{ content.northWestOpeningHours | safe if session.courts === 'northWest' }}
+      </p>
+
+      {% if session.helpWithFeesReferenceNumber %}
+        <h2 class="heading-medium">{{content.helpWithFees | safe}}</h2>
+        <p class="text">
+          {{content.courtCheckApp | safe}}
+        </p>
+        <p class="text">
+          {{content.youWillBeContacted | safe}}
+        </p>
+      {% endif %}
+
+      <h2 class="heading-medium">{{content.dividingMoney | safe}}</h2>
+      {% if session.financialOrder === 'Yes' %}
+        <p class="text">
+          {{content.startFinancialProceedings1 | safe}}
+        </p>
+        <p class="text">
+          {{content.startFinancialProceedings2 | safe}}
+        </p>
+      {% else %}
+        <p class="text">
+          {{content.consentOrder | safe}}
+        </p>
+        <p class="text">
+          {{content.settle | safe}}
+        </p>
+      {% endif %}
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

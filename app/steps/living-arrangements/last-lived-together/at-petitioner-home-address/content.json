@@ -1,0 +1,23 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Did you last live together at this address?",
+                    "yes": "Yes, at this address",
+                    "no": "No, at another address",
+                    "never": "No, we&#39;ve never lived together"
+                },
+
+                "errors": {
+                    "livingArrangementsLastLivedTogether": {
+                        "required": "Select yes if you last lived together at this address"
+                    }
+                }
+
+            }
+        }
+    }
+}

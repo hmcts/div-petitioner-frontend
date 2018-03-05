@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "reasonForDivorceAdulteryWishToName",
+  "type": "object",
+  "properties": {
+    "reasonForDivorceAdulteryWishToName": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "reasonForDivorceAdulteryWishToName"
+  ]
+}

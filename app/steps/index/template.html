@@ -1,0 +1,214 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+{{ common.serviceName }} - GOV.UK
+{% endblock %}
+
+{% block proposition_header %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block cookie_message %}
+<p>
+    {{content.cookie | safe}}
+    <a href="/cookie" target="_blank">{{content.cookieLink | safe }}</a>
+</p>
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% include "includes/phase_banner.html" %}
+<div class="breadcrumbs">
+    <ol>
+        <li><a href="http://www.gov.uk">{{content.home | safe}}</a></li>
+        <li>
+            <a href="https://www.gov.uk/browse/births-deaths-marriages" class="skipAccessTest">
+                {{content.birthsMarriagesDeaths | safe}}
+            </a>
+        </li>
+        <li>
+            <a href="https://www.gov.uk/browse/births-deaths-marriages/marriage-divorce" class="skipAccessTest">
+                {{content.marriageDivorce | safe}}
+            </a>
+        </li>
+    </ol>
+</div>
+
+<div class="grid-row">
+    <div class="column-two-thirds">
+
+        <h1 class="heading-xlarge">
+            {{content.title | safe}}
+        </h1>
+
+        <p class="text">
+            {{content.useThisService | safe}}
+        </p>
+
+        <div class="panel panel-border-wide">
+            <p class="text">{{ content.applyScotland | safe }}</p>
+        </div>
+
+        <p class="text">
+            {{content.divorceTime | safe}}
+        </p>
+
+        {% if features.onlineSubmission === false -%}
+
+        <h2 class="heading-medium">{{content.fillInOnline | safe}}</h2>
+
+        <p class="text">
+            {{content.thisService | safe}}
+        </p>
+
+        <p class="text">
+            {{content.onlySave | safe}}
+        </p>
+        {%- endif %}
+
+        <h2 class="heading-medium">
+        {% if features.onlineSubmission %}
+
+          {{content.checkIfApplyOnline | safe}}
+
+        {% else %}
+
+          {{content.checkIf | safe}}
+
+        {% endif %}
+        </h2>
+
+        <p class="text">
+            {{content.marriedOneYear | safe}}
+        </p>
+
+        <p class="text">
+            {%- if features.onlineSubmission %}
+
+              {{content.youCanUseApplyOnline | safe}}
+
+            {% else %}
+
+              {{content.youCanUse | safe}}
+
+            {% endif -%}
+        </p>
+
+        <ul class="list list-bullet">
+
+        {%- if features.onlineSubmission === false -%}
+
+          <li>{{content.havePrinter | safe}}</li>
+        {%- endif -%}
+
+        {% if not features.foreignMarriageCerts %}
+
+            <li>{{content.marriedInEngland | safe}}</li>
+        {% endif %}
+            <li>{{content.originalMarriageCertificate | safe}}</li>
+        {% if features.foreignMarriageCerts %}
+            <li>{{content.englishTranslation | safe}}</li>
+        {% endif %}
+            <li>{{content.respondentAddress | safe}}</li>
+            <li>{{content.nameChange | safe}}</li>
+            <li>{{content.onlyOneGround | safe}}</li>
+        </ul>
+
+
+        {%- if features.onlineSubmission === false -%}
+             <p class="text">
+                 {{content.alsoApply | safe}}
+             </p>
+             <p class="text">
+                 {{content.needToSend | safe}}
+             </p>
+         {%- endif -%}
+
+
+        {%- if features.onlineSubmission -%}
+            <p class="text">
+                {{content.needToSendApplyOnline | safe}}
+            </p>
+            <p class="text">
+                {{content.alsoApplyApplyOnline | safe}}
+            </p>
+        {%- endif -%}
+
+        <h2 class="heading-medium">{{content.fees | safe}}</h2>
+
+        <p class="text">
+            {{content.costs | safe}} {% if features.onlineSubmission %} {{content.needToPayOnline | safe}}{% endif %}
+        </p>
+
+        {%- if not features.onlineSubmission -%}
+            <p class="text">
+                {{ content.youCan | safe }}
+            </p>
+
+            <ul class="list list-bullet text">
+                <li>{{content.creditCard | safe}}</li>
+                <li>{{content.cheque | safe}}</li>
+            </ul>
+        {%- endif -%}
+
+        <h3 class="heading-small">{{content.payLess | safe}}</h3>
+
+         <ul class="list list-bullet text">
+            <li>{{content.getHelp | safe}}</li>
+            <li>{{content.theyPay | safe }}</li>
+        </ul>
+
+        <h3 class="heading-small">{{content.extra | safe}}</h3>
+
+        <ul class="list list-bullet text">
+            <li>{{content.respondentDefends | safe }}</li>
+            <li>{{content.deliverPapers | safe }}</li>
+            <li>{{content.changeApplication | safe}}</li>
+        </ul>
+
+        <p class="text">
+            <a class="button button-start skipAccessTest" href="/start" role="button">{{content.startNow | safe}}</a>
+        </p>
+    </div>
+    <div class="column-third">
+
+        <aside class="govuk-related-items" role="complementary">
+            <h2 class="heading-medium" id="subsection-title">
+                {{content.marriageDivorce | safe}}
+            </h2>
+            <nav role="navigation" aria-labelledby="subsection-title">
+                <ul class="font-xsmall">
+                    <li>
+                        {{content.legalSeparation | safe}}
+                    </li>
+                    <li>
+                        {{content.annulMarriage | safe}}
+                    </li>
+                    <li>
+                        {{content.children | safe}}
+                    </li>
+                    <li>
+                        {{content.money | safe}}
+                    </li>
+                    <li class="related-topic bold-xsmall">
+                        {{content.more | safe}}
+                        <span class="visuallyhidden">
+                            {{content.moreIn | safe}}
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</div>
+
+{% include "includes/problem_with_this_page.html" %}
+
+</main>
+
+{% endblock %}

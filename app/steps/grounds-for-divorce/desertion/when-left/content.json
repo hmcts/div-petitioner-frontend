@@ -1,0 +1,43 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "When did your {{ divorceWho }} leave?",
+                    "dateHint": "For example, 31 3 2006",
+                    "day": "Day",
+                    "month": "Month",
+                    "year": "Year"
+                },
+                "checkYourAnswersContent": {
+                    "question": "Date your {{ divorceWho }} deserted you"
+                },
+                "errors": {
+                    "reasonForDivorceDesertionDay": {
+                        "required": "Please enter day",
+                        "invalid": "Please enter day"
+                    },
+                    "reasonForDivorceDesertionMonth": {
+                        "required": "Please enter month",
+                        "invalid": "Please enter month"
+                    },
+                    "reasonForDivorceDesertionYear": {
+                        "required": "Please enter year",
+                        "invalid": "Please enter year"
+                    },
+                    "reasonForDivorceDesertionBeforeMarriage": {
+                        "invalid": "Date your {{ divorceWho }} left cannot be before you got married"
+                    },
+                    "reasonForDivorceDesertionDateInFuture": {
+                        "invalid": "Enter a desertion date that is in the past"
+                    },
+                    "reasonForDivorceDesertionDate": {
+                        "required": "Enter the date when your {{ divorceWho }} left",
+                        "invalid": "Enter a valid date"
+                    }
+                }
+            }
+        }
+    }
+}

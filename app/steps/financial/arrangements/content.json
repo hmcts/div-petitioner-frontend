@@ -1,0 +1,51 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Dividing your money and property",
+                    "disagreeWithPartener": "If you disagree with your {{ divorceWho }} about how your property, money, pensions and other assets will be split, then you can ask the court to decide for you. This includes maintenance payments.",
+                    "financialOrders": "These decisions are called &#39;financial orders&#39;. You can apply for orders for yourself, and/or, if appropriate, for your children.",
+                    "info": "If you both agree on how to split your money and property and want to make it legally binding, you can apply for a 'consent order'.",
+                    "helpLink": "Find out more about financial orders",
+                    "helpBothAgreeTitle": "If you both agree on how to divide your money and property",
+                    "helpBothAgreeContent": "You can ask the court to make a 'consent order' if you agree on how to divide your money and property. You should get a solicitor to draft the consent order, and then send it to the court with the £50 fee.",
+                    "helpApplyingTitle": "Applying for financial orders",
+                    "helpApplyingContent1": "To formally start legal proceedings, you'll also need to complete another form (known as Form A) and pay a fee of £{{ financialOrderApplicationFee }}.",
+                    "helpApplyingContent2": "This means that if you select yes to the following question:",
+                    "helpDontProceed": "you don't have to proceed with the application for a financial order",
+                    "helpProceedAlive": "you can proceed with the application for a financial order at any time in the future while your {{ divorceWho }} is alive",
+                    "helpApplyingContent3": "If you select no, you can still apply for a financial order in future, but you’ll be more limited in that you can only do so until you remarry or form a civil partnership. This rule doesn’t apply to pension sharing or pension compensation sharing orders which can be applied for anytime.",
+                    "helpApplyingContent4": "You should get legal advice if you're not sure what to do.",
+                    "helpChildMaintenanceTitle": "Child maintenance",
+                    "helpChildMaintenanceContent": "The court can only make financial orders for children under certain circumstances. You'll usually either need to come to an agreement with your {{ divorceWho }} (which you can then make legally binding with a consent order) or use the Child Maintenance Service.",
+                    "question": "Do you want to apply for a financial order?",
+                    "yes": "Yes",
+                    "no": "No",
+                    "whoItsFor": "Who is the financial order for?",
+                    "selectAll": "Select all that apply",
+                    "petitioner": "You",
+                    "children": "Your children"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Applying for a financial order?"
+                },
+
+                "errors": {
+                    "financialOrder": {
+                        "required": "Select yes if you want to apply for a financial order",
+                        "invalid": "Select yes if you want to apply for a financial order"
+                    },
+                    "financialOrderFor": {
+                        "required": "Select who the financial order is for",
+                        "invalid": "Select who the financial order is for"
+                    }
+                }
+
+            }
+        }
+    }
+}

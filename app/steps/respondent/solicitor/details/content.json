@@ -1,0 +1,25 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Enter the details of your {{ divorceWho }}'s solicitor",
+          "name": "Solicitor's name",
+          "company": "Solicitor's Company/Organisation"
+        },
+        "checkYourAnswersContent": {
+            "question": "Your {{ divorceWho }}'s solicitor's details"
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Enter the name of your {{ divorceWho }}'s solicitor"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Enter the company/organisation of your {{ divorceWho }}'s solicitor"
+          }
+        }
+      }
+    }
+  }
+}

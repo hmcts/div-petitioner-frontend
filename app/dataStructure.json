@@ -1,0 +1,50 @@
+{
+    "screening-questions": { // details
+        "marriagetype": ["marriage", "same-sex-marriage"],
+        "divorceWho": ["husband", "wife", "former-partner"],
+        "day": 1,
+        "month": 1,
+        "year": 2014,
+        "marriageDate": "1/1/2014",
+        "canDivorce": ["Yes", "No"],
+        "fullFacts": ["Yes", "No"],
+        "fullFactsWarning": ["Yes", "No"],
+        "hasMarriageCert": ["Yes", "No"],
+        "whereMarried": ["england", "wales", "elsewhere"],
+        "inChurch": ["Yes", "No"]
+    },
+    "petitioner": {
+
+    },
+    "respondent": {
+
+    },
+    "jurisdiction": {
+
+    },
+    "help-with-fees": {
+
+    },
+    "about-your-marriage": {
+
+    },
+    "reason": { // facts
+
+    },
+    "statement-of-case": {
+
+    },
+    "claim-costs": {
+
+    },
+    "financial-arrangements": {
+
+    },
+    "pay": {
+
+    },
+    "check-your-answers": {
+
+    }
+
+}

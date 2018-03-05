@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "claim",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "claimsCosts": {
+          "type": "string",
+          "enum": [
+            "No"
+          ]
+        }
+      },
+      "required": [
+        "claimsCosts"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "claimsCosts": {
+          "type": "string",
+          "enum": ["Yes"]
+        },
+        "reasonForDivorceAdulteryIsNamed": {
+          "type": "string",
+          "enum": ["No"]
+        },
+        "claimsCostsFrom": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "respondent",
+              "correspondent"
+            ]
+          }
+        }
+      },
+      "required": [
+        "claimsCosts"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "claimsCosts": {
+          "type": "string",
+          "enum": ["Yes"]
+        },
+        "reasonForDivorceAdulteryIsNamed": {
+          "type": "string",
+          "enum": ["Yes"]
+        },
+        "claimsCostsFrom": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "respondent",
+              "correspondent"
+            ]
+          }
+        }
+      },
+      "required": [
+        "claimsCosts"
+      ]
+    }
+  ]
+}

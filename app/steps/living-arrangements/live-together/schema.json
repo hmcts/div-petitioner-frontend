@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "live-together",
+  "type": "object",
+  "properties": {
+    "livingArrangementsLiveTogether": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "livingArrangementsLiveTogether"
+  ]
+}

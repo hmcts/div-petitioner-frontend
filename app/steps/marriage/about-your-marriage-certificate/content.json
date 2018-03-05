@@ -1,0 +1,32 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+
+            "translation": {
+
+                "content": {
+
+                    "question": "Is your marriage certificate in English? ",
+                    "help": "Help with foreign marriage certificates",
+                    "helpText1": "If your certificate contains an English version as part of the original certificate, select 'yes'.",
+                    "helpText2": "If you have an English translation as a different document, select 'no'.",
+                    "yes": "Yes",
+                    "no": "No",
+                    "certifiedTranslation": "Do you have a certified translation of your marriage certificate?",
+                    "cyaCertifiedTranslation": "Do you have a translation of your marriage certificate?",
+
+                    "certifiedDescription": "Translations must be certified as a true and accurate translation by the translator or by a notary public."
+                },
+                "errors": {
+                    "certificateInEnglish": {
+                        "required": "Select yes if your marriage certificate is in English"
+                    },
+                    "certifiedTranslation": {
+                        "required": "Select yes if you have a certified translation of your marriage certificate"
+                    }
+                }
+            }
+        }
+    }
+}

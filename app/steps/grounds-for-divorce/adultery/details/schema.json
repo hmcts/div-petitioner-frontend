@@ -1,0 +1,108 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "reasonForDivorceAdulteryDetails",
+    "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "reasonForDivorceAdulteryDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryKnowWhen": {
+                "type": "string",
+                "enum": ["No"]
+            },
+            "reasonForDivorceAdulteryKnowWhere": {
+                "type": "string",
+                "enum": ["No"]
+            }
+          },
+          "required": [
+            "reasonForDivorceAdulteryDetails"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "reasonForDivorceAdulteryDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryWhenDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryKnowWhen": {
+                "type": "string",
+                "enum": ["Yes"]
+            },
+            "reasonForDivorceAdulteryKnowWhere": {
+                "type": "string",
+                "enum": ["No"]
+            }
+          },
+          "required": [
+            "reasonForDivorceAdulteryDetails",
+            "reasonForDivorceAdulteryWhenDetails"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "reasonForDivorceAdulteryDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryWhereDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryKnowWhen": {
+                "type": "string",
+                "enum": ["No"]
+            },
+            "reasonForDivorceAdulteryKnowWhere": {
+                "type": "string",
+                "enum": ["Yes"]
+            }
+          },
+          "required": [
+            "reasonForDivorceAdulteryDetails",
+            "reasonForDivorceAdulteryWhereDetails"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "reasonForDivorceAdulteryDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryWhereDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryWhenDetails": {
+              "type": "string",
+               "minLength": 1
+            },
+            "reasonForDivorceAdulteryKnowWhen": {
+                "type": "string",
+                "enum": ["Yes"]
+            },
+            "reasonForDivorceAdulteryKnowWhere": {
+                "type": "string",
+                "enum": ["Yes"]
+            }
+          },
+          "required": [
+            "reasonForDivorceAdulteryDetails",
+            "reasonForDivorceAdulteryWhereDetails",
+            "reasonForDivorceAdulteryWhenDetails"
+          ]
+        }
+    ]
+}
+
+

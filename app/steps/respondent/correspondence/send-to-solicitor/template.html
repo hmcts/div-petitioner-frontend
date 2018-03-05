@@ -1,0 +1,28 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+
+    <fieldset id="respondentCorrespondenceSendToSolicitor" class="form-group {{ 'form-group-error' if fields.respondentCorrespondenceSendToSolicitor.error }}">
+        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+        {{ errorsFor(fields.respondentCorrespondenceSendToSolicitor) }}
+        {{ radioButton(
+            value = 'Yes',
+            label = content['solicitor-' + session.divorceWho],
+            name = 'respondentCorrespondenceSendToSolicitor',
+            field = fields.respondentCorrespondenceSendToSolicitor
+        ) }}
+        {{ radioButton(
+            value = 'No',
+            label = content.correspondence,
+            name = 'respondentCorrespondenceSendToSolicitor',
+            field = fields.respondentCorrespondenceSendToSolicitor
+        ) }}
+
+    </fieldset>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you have a Help with Fees reference number?",
+                    "yes": "Yes",
+                    "no": "No",
+                    "reference": "Enter your reference number:"
+                },
+
+                "errors": {
+
+                    "helpWithFeesAppliedForFees": {
+                        "required": "Select yes if you have a help with fees reference number",
+                        "invalid": "Please select an answer"
+                    },
+                    "helpWithFeesReferenceNumber": {
+                        "required": "Enter your help with fees reference number",
+                        "invalid": "Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
+                    }
+
+                }
+
+            }
+        }
+    }
+}

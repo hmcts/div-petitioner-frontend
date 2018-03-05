@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "payHow",
+  "type": "object",
+  "properties": {
+    "paymentMethod": {
+        "type": "string",
+        "enum": ["cheque", "card-phone-court"]
+    }
+  },
+  "required": [
+    "paymentMethod"
+  ]
+}

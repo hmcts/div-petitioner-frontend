@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "aboutYourMarriageCertificate",
+  "type": "object",
+  "properties": {
+    "certificateInEnglish": {
+      "enum": [
+        "Yes", "No"
+      ]
+    },
+    "certifiedTranslation": {
+      "enum": [
+        "Yes", "No"
+      ]
+    }
+  },
+  "switch": [
+    {
+      "if": {
+        "properties": {
+          "certificateInEnglish": {
+            "not": {
+              "type": "string",
+              "enum": [
+                "Yes",
+                "No"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "certificateInEnglish"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "certificateInEnglish": {
+            "enum": [
+              "No"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "certificateInEnglish": {
+            "enum": [
+              "No"
+            ]
+          },
+          "certifiedTranslation": {
+            "enum": [
+              "Yes",
+              "No"
+            ]
+          }
+        },
+        "required": [
+          "certificateInEnglish",
+          "certifiedTranslation"
+        ]
+      }
+    }
+  ]
+}

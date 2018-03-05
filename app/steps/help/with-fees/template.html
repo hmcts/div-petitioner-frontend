@@ -1,0 +1,42 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
+{% from "common/components/formElements.html" import textField %}
+
+{% block question %}
+{{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+<fieldset id="helpWithFeesAppliedForFees" class="form-group inline {{ 'form-group-error' if fields.helpWithFeesAppliedForFees.error }}">
+    <legend class="visually-hidden">{{ content.question | safe }}</legend>
+
+    {{ errorsFor(fields.helpWithFeesAppliedForFees) }}
+    {{ radioButton(
+    value = 'Yes',
+    label = content.yes,
+    name = 'helpWithFeesAppliedForFees',
+    field = fields.helpWithFeesAppliedForFees,
+    dataTarget = 'help-yes'
+    ) }}
+    {{ radioButton(
+    value = 'No',
+    label = content.no,
+    name = 'helpWithFeesAppliedForFees',
+    field = fields.helpWithFeesAppliedForFees
+    ) }}
+</fieldset>
+
+<div id="help-yes"
+     class="panel form-help-with-fees-reference {{ 'js-hidden' if fields.helpWithFeesAppliedForFees.value !== 'Yes' }}">
+
+    {{ textField(
+    name = 'helpWithFeesReferenceNumber',
+    field = fields.helpWithFeesReferenceNumber,
+    label = content.reference
+    ) }}
+
+</div>
+
+{% endblock %}
+

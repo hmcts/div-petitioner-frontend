@@ -1,0 +1,68 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jquery": true,
+        "mocha": true
+    },
+    "extends": "@hmcts",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": ["mocha"],
+    "rules": {
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error", "never"
+        ],
+        "eqeqeq": "error",
+        "require-yield": "off",
+        "indent": ["error", 2],
+        "mocha/no-exclusive-tests": "error",
+        "max-len": [
+            "error", 
+            { 
+                "code": 80,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreComments": true,
+                "ignoreTrailingComments": true,
+                "ignoreRegExpLiterals": true,
+                "ignorePattern": ".*exports.*=.*class.*|.*if \\(.*\\)|.*\\?.*\\:.*|.*\\|\\|.*|.*\\&\\&.*"
+            }
+        ],
+        "arrow-body-style": ["error", "always"],
+        "no-process-env": "off",
+        "no-magic-numbers": [
+            "error", 
+            { 
+                "ignoreArrayIndexes": true,
+                "enforceConst" : true,
+                "ignore": [
+                    -1, 0, 1
+                ]
+            }
+        ],
+        "max-nested-callbacks": [
+            "error", 4
+        ],
+        "max-depth": [
+            "error", 4
+        ],
+        "new-cap": "off",
+        "no-sync": "off",
+        "max-lines": "off"
+    }
+}

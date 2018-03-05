@@ -1,0 +1,56 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Other court cases related to your marriage, property or children",
+                    "courtNeedsToKnow": "The court needs to know if there are, or have ever been, any other legal proceedings related to your marriage, property or children.",
+                    "onGoingProceedings": "This includes any proceedings that are still ongoing, have finished or which have been abandoned.",
+                    "includeProceedings": "Include proceedings that are between you and your {{ divorceWho }}, and between yourselves and third parties.",
+                    "question": "Have you ever been involved in any court cases relating to your marriage, property or children?",
+                    "yes": "Yes",
+                    "no": "No",
+                    "furtherDetails": "Provide further details",
+                    "youShouldInclude": "You should try to include:",
+                    "caseNumbers": "case numbers",
+                    "stillOngoing": "if they're still ongoing or if they've finished",
+                    "proceedingAreAbout": "what they're about",
+                    "namesInvolved": "names of those involved",
+                    "courtNames": "name of the court and the country it's in",
+                    "datesBegan": "dates that the proceedings began and of any future hearings",
+                    "orderDetails": "details of any orders that were made",
+                    "proceedingsRelated": "The proceedings are related to our:",
+                    "marriage": "marriage",
+                    "children": "children",
+                    "property": "property",
+                    "caseDetailsInputTitle": "Enter details"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Other court cases?",
+                    "proceedingsRelated": "There have been other court cases related to our ",
+                    "no": "None"
+                },
+
+                "errors": {
+                    "legalProceedings": {
+                        "required": "Select yes if there are other legal proceedings",
+                        "invalid": "Select yes if there are other legal proceedings"
+                    },
+                    "legalProceedingsRelated": {
+                        "required": "Select what the proceedings relate to, e.g. the marriage",
+                        "invalid": "Select what the proceedings relate to, e.g. the marriage"
+                    },
+                    "legalProceedingsDetails": {
+                        "required": "Enter the details of the proceedings",
+                        "invalid": "Enter the details of the proceedings"
+                    }
+
+                }
+
+            }
+        }
+    }
+}

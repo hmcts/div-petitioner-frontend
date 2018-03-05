@@ -1,0 +1,19 @@
+{% if fields.reasonForDivorceAdulteryWhenDetails.value %}
+  <tr>
+    <th>{{ content.whenDidAdulteryHappen | safe }}</th>
+    <td>{{ fields.reasonForDivorceAdulteryWhenDetails.value }}</td>
+    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  </tr>
+{% endif %}
+{% if fields.reasonForDivorceAdulteryWhereDetails.value %}
+  <tr>
+    <th>{{ content.whereDidAdulteryHappen | safe }}</th>
+    <td>{{ fields.reasonForDivorceAdulteryWhereDetails.value }}</td>
+    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  </tr>
+{% endif %}
+<tr>
+  <th>{{ content.whatDoYouKnow | safe }}</th>
+  <td>{{ fields.reasonForDivorceAdulteryDetails.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

@@ -1,0 +1,21 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Applying for a financial order",
+                    "formallyStartFinancialProceedings": "To formally start financial proceedings, you&#39;ll also need to complete another form (known as Form A) and pay another fee.",
+                    "sendFormA": "You can send Form A at the same time as you apply for your divorce, or at any time after that. However, the court won&#39;t start processing your request for a financial order until you submit Form A and pay the fee.",
+                    "linkToMoreGuidance": "You&#39;ll be given a link to more guidance on financial orders and Form A when you finish your divorce application."
+                },
+
+                "checkYourAnswersContent": {
+                    "title": "Applying for a financial order?"
+                }
+
+            }
+        }
+    }
+}

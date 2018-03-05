@@ -1,0 +1,36 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Enter the names from your marriage certificate",
+                    "copy": "These will be the names you both used before you were married, such as maiden names.",
+                    "hint": "Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+                    "marriagePetitionerName": "Provide your full name on the certificate",
+                    "marriageRespondentName": "Provide your {{ divorceWho }}&#39;s full name on the certificate",
+                    "marriageNameHint": "Include all the text related to the name"
+                },
+
+                "checkYourAnswersContent": {
+                    "marriageRespondentName": "Your {{ divorceWho }}&#39;s name on the marriage certificate",
+                    "marriagePetitionerName": "Your name on the marriage certificate"
+                },
+
+                "errors": {
+                    "marriagePetitionerName": {
+                      "required" : "Enter your full name as it appears on your marriage certificate",
+                      "invalid" : "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    },
+
+                    "marriageRespondentName": {
+                      "required" : "Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
+                      "invalid" : "Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    }
+
+                }
+            }
+        }
+    }
+}

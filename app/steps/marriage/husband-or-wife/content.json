@@ -1,0 +1,30 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Who are you divorcing?",
+                    "husband": "Your husband",
+                    "wife": "Your wife",
+                    "marriageIsSameSexCouple": "Select the following if it applies to you:",
+                    "marriageIsSameSexCoupleText": "We were a same-sex couple when we got married."
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Who you're divorcing",
+                    "marriageIsSameSexCoupleText": "Type of relationship",
+                    "Yes": "Same sex",
+                    "No": "Opposite sex"
+                },
+
+                "errors": {
+                    "divorceWho": {
+                        "required": "Select who you are divorcing"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>
+    {%- if fields.reasonForDivorce.value === 'unreasonable-behaviour' -%}
+      {{ content.unreasonableBehaviourHeading | safe }}
+    {%- elseif fields.reasonForDivorce.value === 'adultery' -%}
+      {{ content.adulteryHeading | safe }}
+    {%- elseif fields.reasonForDivorce.value === 'separation-2-years' -%}
+      {{ content.2YearsSeparationHeading | safe }}
+    {%- elseif fields.reasonForDivorce.value === 'separation-5-years' -%}
+      {{ content.5YearsSeparationHeading | safe }}
+    {%- elseif fields.reasonForDivorce.value === 'desertion' -%}
+      {{ content.desertionHeading | safe }}
+    {%- endif -%}
+  </td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

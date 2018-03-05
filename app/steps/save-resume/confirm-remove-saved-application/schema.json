@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "delete-application",
+  "type": "object",
+  "properties": {
+    "deleteApplication": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "deleteApplication"
+  ]
+}

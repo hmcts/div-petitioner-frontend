@@ -1,0 +1,50 @@
+{% macro genderComponent(gender, identifyAs, whoIdentifyAs) %}
+
+  <div class="form-group">
+    <fieldset id="gender">
+      <span class="form-label">Gender (optional)</span>
+      <span class="form-hint">This is used for National Statistics</span>
+      <legend class="visually-hidden">Gender</legend>
+      <div class="multiple-choice">
+        <input id="female"
+                name="gender"
+                value="female"
+                type="radio"
+                {{"checked" if gender == 'female'}}>
+        <label for="female">
+          Female
+        </label>
+      </div>
+      <div class="multiple-choice">
+        <input id="male"
+                name="gender"
+                value="male"
+                type="radio"
+                {{ "checked" if gender == 'male' }}>
+        <label for="male">
+          Male
+        </label>
+      </div>
+      <div class="multiple-choice" data-target="identify-as">
+        <input id="other"
+                 name="gender"
+                 value="other"
+                 type="radio"
+                 {{ "checked" if gender == 'other' }}>
+        <label for="other" >
+          Other gender identity
+        </label>
+      </div>
+      <div class="panel panel-border-narrow js-hidden {{ "error" if identifyAs.error }}" id="identify-as">
+        <label class="form-label" for="identity">{{whoIdentifyAs}} identify as:</label>
+          <input
+            class="form-control"
+            id="identity"
+            name="identifyAs"
+            type="text"
+            value={{identifyAs.value}}>
+      </div>
+    </fieldset>
+  </div>
+
+{% endmacro %}

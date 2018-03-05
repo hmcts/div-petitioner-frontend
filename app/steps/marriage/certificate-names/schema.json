@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "certificate-name",
+  "type": "object",
+  "properties": {
+    "marriagePetitionerName" : {
+      "type" : "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    },
+    "marriageRespondentName" : {
+      "type" : "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    }
+  },
+  "required" : [
+    "marriagePetitionerName",
+    "marriageRespondentName"
+  ]
+}

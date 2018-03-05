@@ -1,0 +1,98 @@
+{% from "common/components/formElements.html" import radioButton, textArea, checkBox %}
+
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.title | safe }}
+{% endblock %}
+
+{% block form %}
+    <p class="text">{{ content.courtNeedsToKnow | safe }}</p>
+    <p class="text">{{ content.onGoingProceedings | safe }}</p>
+    <p class="text">{{ content.includeProceedings | safe }}</p>
+
+    <div id="legalProceedings" class="form-group {{ 'form-group-error' if fields.legalProceedings.error }}">
+        <fieldset class="inline">
+            <legend class="form-label-bold text">{{ content.question | safe }}</legend>
+            {{ errorsFor(fields.legalProceedings) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.yes,
+                name = 'legalProceedings',
+                field = fields.legalProceedings,
+                dataTarget='further-details'
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.no,
+                name = 'legalProceedings',
+                field = fields.legalProceedings
+            ) }}
+        </fieldset>
+    </div>
+
+    <div class="panel panel-border-narrow {{ 'js-hidden' if fields.legalProceedings.value != 'Yes' }}" id="further-details">
+        <fieldset class="form-group inline">
+            <legend class="form-label-bold text">{{ content.furtherDetails | safe }}</legend>
+            <p class="form-hint text">{{ content.youShouldInclude | safe }}</p>
+            <ul class="list-bullet list">
+                <li>{{ content.caseNumbers | safe }}</li>
+                <li>{{ content.stillOngoing | safe}}</li>
+                <li>{{ content.proceedingAreAbout | safe}}</li>
+                <li>{{ content.namesInvolved | safe}}</li>
+                <li>{{ content.courtNames | safe}}</li>
+                <li>{{ content.datesBegan | safe}}</li>
+                <li>{{ content.orderDetails | safe}}</li>
+            </ul>
+
+            <fieldset class="form-group inline {{ 'form-group-error' if fields.legalProceedingsRelated.error }}" >
+                <legend class="form-label-bold text">{{ content.proceedingsRelated | safe }}</legend>
+                {{ errorsFor(fields.legalProceedingsRelated) }}
+                <div class="multiple-choice">
+                    <input id="{{content.marriage}}"
+                            name="legalProceedingsRelated[]"
+                            type="checkbox"
+                            value="{{content.marriage}}"
+                            {% for related in  fields.legalProceedingsRelated.value %}
+                              {{ 'checked' if related === content.marriage }}
+                            {% endfor %}/>
+                    <label for="{{content.marriage}}">
+                      {{ content.marriage }}
+                    </label>
+                </div>
+                <div class="multiple-choice">
+                    <input id="{{content.children}}"
+                            name="legalProceedingsRelated[]"
+                            type="checkbox"
+                            value="{{content.children}}"
+                            {% for related in  fields.legalProceedingsRelated.value %}
+                              {{ 'checked' if related === content.children }}
+                            {% endfor %}/>
+                    <label for="{{content.children}}">
+                      {{ content.children }}
+                    </label>
+                </div>
+                <div class="multiple-choice">
+                    <input id="{{content.property}}"
+                            name="legalProceedingsRelated[]"
+                            type="checkbox"
+                            value="{{content.property}}"
+                            {% for related in  fields.legalProceedingsRelated.value %}
+                              {{ 'checked' if related === content.property }}
+                            {% endfor %}/>
+                    <label for="{{content.property}}">
+                      {{ content.property }}
+                    </label>
+                </div>
+
+            </fieldset>
+
+            {{ textArea(
+                name='legalProceedingsDetails',
+                field=fields.legalProceedingsDetails,
+                label=content.caseDetailsInputTitle
+            ) }}
+
+        </fieldset>
+    </div>
+{% endblock %}

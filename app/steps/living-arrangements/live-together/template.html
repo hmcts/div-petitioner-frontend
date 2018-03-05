@@ -1,0 +1,23 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    {% if session.petitionerHomeAddress %}
+        <p>
+            {{ session.petitionerHomeAddress.address | join("<br/>") | safe }}
+        </p>
+    {% endif %}
+
+    {{ yesNoRadioHeading(
+        legend = content.question,
+        name = 'livingArrangementsLiveTogether',
+        field = fields.livingArrangementsLiveTogether,
+        yes = content.yes,
+        no = content.no
+    ) }}
+
+{% endblock %}

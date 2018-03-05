@@ -1,0 +1,46 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Enter your current names",
+                    "yourName": "Provide your full name",
+                    "firstName": "First name(s)",
+                    "lastName": "Last name(s)",
+                    "middleNames": "Include all middle names here",
+                    "respondentName": "Provide {{ divorceWho }}&#39;s full name",
+                    "respondentFirstName": "{{ divorceWho }}&#39;s first name(s)",
+                    "respondentLastName": "{{ divorceWho }}&#39;s last name(s)"
+                },
+
+                "checkYourAnswersContent": {
+                    "respondentName": "Your {{ divorceWho }}&#39;s current name",
+                    "yourName": "Your current name"
+                },
+
+                "errors": {
+                    "petitionerFirstName": {
+                      "required" : "Enter your first name(s)",
+                      "invalid" : "Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    },
+
+                    "petitionerLastName": {
+                      "required" : "Enter your last name(s)",
+                      "invalid" : "Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    },
+
+                    "respondentFirstName" : {
+                      "required" : "Enter your {{ divorceWho }}&#39;s first name(s)",
+                      "invalid" : "Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    },
+                    "respondentLastName" : {
+                      "required" : "Enter your {{ divorceWho }}&#39;s last name(s)",
+                      "invalid" : "Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    }
+                }
+            }
+        }
+    }
+}

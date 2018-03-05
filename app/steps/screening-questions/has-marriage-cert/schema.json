@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "has-marriage-cert",
+  "type": "object",
+  "properties": {
+    "screenHasMarriageCert": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "screenHasMarriageCert"
+  ]
+}

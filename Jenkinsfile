@@ -64,3 +64,4 @@ buildNode {
 if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'master') {
   deploy app: 'frontend', version: env.DEPLOYED_VERSION, sha: env.DEPLOYED_SHA
 }
+

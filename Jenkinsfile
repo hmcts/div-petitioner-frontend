@@ -1,7 +1,7 @@
 #!groovy
 
 properties(
-  [[$class: 'GithubProjectProperty', projectUrlStr: 'https://git.reform.hmcts.net/divorce/frontend/'],
+  [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/div-petitioner-frontend/'],
    pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 

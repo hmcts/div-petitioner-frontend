@@ -1,8 +1,17 @@
-exports.withSession = (done, agent, data) => {
+const Tokens = require('csrf');
 
-  agent.post('/session')
-    .send(data)
+exports.withSession = (done, agent, data = {}) => {
+
+  agent.get('/session')
     .expect(200)
-    .end(done);
+    .then(function (res) {
 
+      const tokens = new Tokens();
+      data['_csrf'] = tokens.create(res.body.csrfSecret);
+
+      agent.post('/session')
+        .send(data)
+        .expect(200)
+        .end(done);
+    });
 };

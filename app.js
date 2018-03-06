@@ -16,6 +16,7 @@ const siteGraph = require('app/core/siteGraph');
 const errorHandler = require('app/core/errorHandler');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
+const csurf = require('csurf');
 const { fetchToggles } = require('@hmcts/div-feature-toggle-client')({
   env: process.env.NODE_ENV,
   featureToggleApiUrl: process.env.FEATURE_TOGGLE_API_URL || CONF.services.featureToggleApiUrl
@@ -124,6 +125,24 @@ exports.init = () => {
   }
 
   app.use(middleware.locals);
+
+  app.use((req, res, next) => {
+    next();
+  });
+
+  app.use(csurf(), (req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+  });
+
+  app.use((error, req, res, next) => {
+    if (error.code === 'EBADCSRFTOKEN') {
+      res.status(statusCode.FORBIDDEN);
+      res.send('Invalid CSRF token');
+    } else {
+      next();
+    }
+  });
 
   const feature = name => {
     const hasConfigFlag = typeof CONF.features[name] === 'undefined' ? 'other' : 'default config';

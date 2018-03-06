@@ -2,6 +2,8 @@
 
 (function (global) {
 
+  var csrfToken = $('input[name="_csrf"]').attr('value');
+
   var documentUpload = function() {
 
     return {
@@ -102,7 +104,7 @@
           createImageThumbnails: false,
           paramName: 'file',
           parallelUploads: 1,
-          url: document.URL + '?js=true',
+          url: document.URL + '?js=true&_csrf=' + csrfToken,
           maxFilesize: 10,
           timeout: 5 * (60 * 1000), //  5 minutes
           acceptedFiles: 'image/x-png,image/png,image/jpeg,image/jpg,application/pdf,image/tiff,image/tif,image/bmp',
@@ -147,7 +149,7 @@
           var $file = $(this).parents('.file');
           var fileUrl = $(this).data('fileurl');
           $.ajax({
-            url: window.location + '?js=true&fileUrl=' + encodeURI(fileUrl),
+            url: window.location + '?js=true&fileUrl=' + encodeURI(fileUrl) + '&_csrf=' + csrfToken,
             type: 'DELETE',
             success: function() {
               self.removeFileFromList($file);

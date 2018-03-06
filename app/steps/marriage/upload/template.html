@@ -87,7 +87,8 @@
               <div class="fallback">
                 <form method="POST" accept-charset="utf-8" class="form" id="form"
                   enctype="multipart/form-data"
-                  autocomplete="off">
+                  autocomplete="off"
+                  action="?_csrf={{csrfToken}}">
                   <label for="marriageCertificateFiles" class="file-select-button">
                     {{ content.selectFiles }}
                   </label>
@@ -157,6 +158,7 @@
           <form method="POST" accept-charset="utf-8" class="form" id="form"
                 enctype="application/x-www-form-urlencoded"
                 autocomplete="off">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
               <div class="form-group">
                   <input name="submit" type="submit" class="button" value="{{common.continue}}">
               </div>

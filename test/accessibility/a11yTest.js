@@ -4,7 +4,13 @@ const a11y = require('test/util/a11y');
 const { expect } = require('test/util/chai');
 const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
 let healthCheckStub = (req, res, next) => { next(); };
-const server = proxyquire('app', { 'app/services/healthcheck': healthCheckStub });
+let csurfStub = () => {
+  return (req, res, next) => {
+    req.csrfToken = () => { return 'stubToken'; };
+    next();
+  };
+};
+const server = proxyquire('app', { 'app/services/healthcheck': healthCheckStub, 'csurf': csurfStub });
 const idamMock = require('test/mocks/idam');
 const ValidationStep = require('app/core/ValidationStep');
 

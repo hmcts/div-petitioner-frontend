@@ -7,6 +7,7 @@ const nunjucks = require('nunjucks');
 const co = require('co');
 const cheerio = require('cheerio');
 const flatten = require('flat');
+const Tokens = require('csrf');
 
 const Interpolator = require('node_modules/i18next/dist/commonjs/Interpolator').default;
 
@@ -14,9 +15,16 @@ nunjucks.configure({ autoescape: false });
 const interpolator = new Interpolator();
 
 const createSession = (agent) => {
-  return agent.post('/session')
-    .send({ expires: Date.now() + 10000 })
-    .expect(200);
+  return getSession(agent)
+    .then((res) => {
+      const tokens = new Tokens();
+      
+      agent.csrfToken = tokens.create(res.body.csrfSecret);
+
+      return agent.post('/session')
+        .send({ expires: Date.now() + 10000, _csrf: agent.csrfToken })
+        .expect(200);
+    });
 };
 
 const getSession = (agent) => {
@@ -25,6 +33,9 @@ const getSession = (agent) => {
 };
 
 const postToUrl = (agent, url, data) => {
+  
+  data['_csrf'] = agent.csrfToken;
+
   return agent.post(url)
     .type('form')
     .send(data);
@@ -366,7 +377,13 @@ exports.testNonExistence = (done, agent, underTest, text, data, selector) => {
 
 exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
   const checkHttpStatus = () => {
-    return agent[method](underTest.url)
+    let request = agent[method](underTest.url);
+
+    if (method !== 'get') {
+      request.send({'_csrf': agent.csrfToken});
+    }
+    
+    return request
       .expect(status);
   };
 
@@ -378,6 +395,10 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
 exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get') => {
   const runCallback = () => {
     let request = agent[method](underTest.url);
+    
+    if (method !== 'get') {
+      request.send({'_csrf': agent.csrfToken});
+    }
 
     if (cookies.length) {
       request = request.set('Cookie', [request.cookies, ...cookies]);

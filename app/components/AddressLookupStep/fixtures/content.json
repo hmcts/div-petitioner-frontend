@@ -1,0 +1,13 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "What is your home address?"
+                }
+            }
+        }
+    }
+}

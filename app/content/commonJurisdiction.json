@@ -1,0 +1,29 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "findOutMore": "Read more about your connections",
+                "habitualresidenttitle":"Habitual residence",
+                "helpText1": "If your lives are mainly based in England or Wales then you’re what is legally known as ‘habitually resident’ ",
+                "helpText2": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
+                "helpText3": "The examples above aren’t a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
+                "domicilehelptitle": "Domicile",
+                "helpText4": "Your domicile is usually the place in which you were born, regard as your permanent home and to which you have the closest ties.",
+                "helpText5": "However, domicile can be more complex, for example, if you or your parents have moved countries in the past.",
+                "domicileBulletHeading": "When you’re born, you acquire a 'domicile of origin'. This is usually:",
+                "bullet1": "the country your father was domiciled in if your parents were married",
+                "bullet2": "the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born",
+                "textbelowbullet": "If you leave your domicile of origin and settle in another country as an adult, the new country may become your 'domicile of choice'.",
+                "textbellowbullet1":"If you're not sure about your domicile, you should get legal advice.",
+                "residualjurisdiction":"Residual Jurisdiction",
+                "textbelowresidualjurisdiction1":"Usually, to be eligible for residual jurisdiction, you or your husband/wife must be domiciled in England or Wales, and neither of you must be nationals of, or habitually resident in, another country in the EU (except Denmark).",
+                "textbelowresidualjurisdiction2":"In addition, if you’re married to a member of the same sex, you may be eligible for residual jurisdiction if all the following apply:",
+                "bulletRJ1":"you married each other in England or Wales",
+                "bulletRJ2":"neither of you are nationals of, or habitually resident in, another country in the EU (except Denmark)",
+                "bulletRJ3":"it would be in the interests of justice for the court to consider the application (this may apply if, for example, your home country doesn’t allow divorce between same-sex couples)",
+                "lastparaRJ":"However, residual jurisdiction can be more complex. If you’re not sure if this might apply to you, you should get legal advice."
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Where should your {{divorceWho}}'s divorce papers be sent?"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+
+{% extends "question.html" %}
+{% block question %}
+{{ content.question }}
+{% endblock %}
+{% block form %}
+    <p class="text">
+        {{ content.questionHint | safe }}
+    </p>
+    {{ yesNoRadioHeading(
+        legend = content.question,
+        name = 'reasonForDivorceDesertionAgreed',
+        field = fields.reasonForDivorceDesertionAgreed,
+        yes = content.yes,
+        no = content.no
+    ) }}
+
+{% endblock %}

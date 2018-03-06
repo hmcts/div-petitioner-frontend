@@ -1,0 +1,27 @@
+<tr>
+  <th>{{ content['how-your-connected'] | safe }}</th>
+  <td>
+    <ul class="list list-bullet" id="jurisdiction-connections">
+      {%- for connectionType, connectionText in session.connections -%}
+        <li>{{content['connection' + connectionType] | safe}}</li>
+      {%- endfor -%}
+    </ul>
+    <details>
+      <summary>
+        <span class="summary">{{ content['see-you-legal-connections'] | safe }}</span>
+      </summary>
+      <div>
+        <ul class="list list-bullet" id="jurisdiction-legal-connections">
+          {%- for connectionType, connectionText in session.connections -%}
+            <li>{{content['legal' + connectionType] | safe}}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </details>
+  </td>
+  <td>
+    {%- if fields.changeLink.value  === true -%}
+      <a class="link" href="{{ content.url | safe }}">{{ content.change }}</a>
+    {%- endif -%}
+  </td>
+</tr>

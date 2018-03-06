@@ -1,0 +1,23 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you know when the adultery took place?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+                    "reasonForDivorceAdulteryKnowWhen": {
+                        "required": "Select yes if you know when the adultery happened",
+                        "invalid": "Select yes if you know when the adultery happened"
+                    }
+                }
+
+            }
+        }
+    }
+}

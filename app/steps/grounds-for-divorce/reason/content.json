@@ -1,0 +1,58 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "woman": "woman",
+                    "man" : "man",
+                    "question": "Choose a reason for your divorce",
+                    "explanation": "You must choose one of the following reasons (legally known as the &#39;facts&#39;) for your divorce.",
+                    "hasNoMarriageDate": "No marriage date",
+                    "separatedDetails": "What if we lived together after we separated?",
+                    "sameResidenceHeading": "Living in the same residence while separated",
+                    "sameResidenceSummary": "You can still live in the same residence while separated, as long you&#39;re not living together as a couple, for example, you don&#39;t eat, sleep or cook together.",
+                    "asACoupleHeading": "Living together as a couple after separating",
+                    "asACoupleSummary1": "If you have lived together as a couple after separating, you can&#39;t use the",
+                    "asACoupleSummary2": "facts if it was for more than 6 months, during or after the separation period. This can have been either in a single period or over several periods.",
+                    "asACoupleSummary3": "Any time you spent living as a couple doesn&#39;t count towards the separation period, and you&#39;ll need to make up any time you were together before you apply for a divorce.",
+                    "2Years": "Living together as a couple after separating",
+                    "5Years": "2 years separation with consent, 5 years separation and desertion",
+                    "chooseAReason": "Choose one of the following reasons:",
+                    "unreasonableBehaviourHeading": "Behaviour",
+                    "unreasonableBehaviourSummary": "Your {{ divorceWho }} has behaved in such a way that you can&#39;t reasonably be expected to live with them any more",
+                    "unreasonableBehaviourWarning": "You&#39;ll be asked to provide examples of the behaviour. If you have lived together as a couple for a period or periods totalling more than 6 months since the most recent incident you rely on, the court may take that into account in its decision on whether to grant you a divorce.",
+                    "adulteryHeading": "Adultery",
+                    "adulterySummary1": "Your {{ divorceWho }} has committed adultery with a",
+                    "adulterySummary2": "and you find it intolerable (unbearable) to live with them. Adultery can only be used if it was with a member of the opposite sex",
+                    "adulteryWarning": "You can still use this reason if you continued to live together as a married couple afterwards; eg you still ate, slept, and cooked together. However, this can only have been for up to 6 months after you found out about the adultery - you&#39;ll have to choose another reason if it&#39;s more.",
+                    "2YearsSeparationHeading": "Separated for 2 years with consent",
+                    "2YearsSeparationSummary": " Your {{ divorceWho }} agrees to a divorce and you&#39;ve been separated for 2 years or more",
+                    "2YearsSeparationWarning": "The court will ask your {{ divorceWho }} if they agree to a divorce. If they don&#39;t agree, your application will be rejected and you&#39;ll need to choose another reason.",
+                    "2YearsSeparationExclusion": "You can use this reason if you have been separated for at least 2 years since you married, and only if your {{ divorceWho }} agrees",
+                    "5YearsSeparationHeading": "Separated for 5 years",
+                    "5YearsSeparationSummary": "You&#39;ve been separated from your {{ divorceWho }} for 5 years or more",
+                    "5YearsSeparationExclusion": "You can use this reason if you have been separated from your {{divorceWho}} for 5 years or more. The earliest you can use this reason is ",
+                    "desertionHeading": "Desertion",
+                    "desertionSummary": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
+                    "desertionExclusion": "You can use this reason if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
+                    "unableToChoose1" : "Based on the date of your marriage, some reasons aren&#39;t available for you to use until",
+                    "unableToChoose2" : "at the earliest",
+                    "noneApply" : "If you can&#39;t use any of these reasons, you may be able to get a <a href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+                    "warning": "Warning"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Reason for divorce"
+                },
+
+                "errors": {
+                    "reasonForDivorce": {
+                        "required": "Select a reason",
+                        "invalid": "Select a reason"
+                    }
+                }
+            }
+        }
+    }
+}

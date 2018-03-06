@@ -1,0 +1,58 @@
+{% from "common/components/formElements.html" import radioButton, textField %}
+{% extends "question.html" %}
+{% block question %}
+{{ content.question | safe}}
+{% endblock %}
+{% block form %}
+
+<fieldset class="form-group">
+  <legend class="form-label-bold">{{ content.yourName | safe }}</legend>
+
+    {{ textField(
+      name = 'petitionerFirstName',
+      field = fields.petitionerFirstName,
+      label = content.firstName,
+      hint = content.middleNames
+    ) }}
+    {{ textField(
+      name = 'petitionerLastName',
+      field = fields.petitionerLastName,
+      label = content.lastName
+    ) }}
+</fieldset>
+
+<fieldset class="form-group">
+  <legend class="form-label-bold">{{ content.respondentName | safe }}</legend>
+
+    {{ textField(
+      name = 'respondentFirstName',
+      field = fields.respondentFirstName,
+      label = content.respondentFirstName | capitalize,
+      hint = content.middleNames
+    ) }}
+    {{ textField(
+      name = 'respondentLastName',
+      field = fields.respondentLastName,
+      label = content.respondentLastName | capitalize
+    ) }}
+</fieldset>
+
+{% endblock %}
+{% block extra_scripts %}
+  <script>
+    var showHideContent = new GOVUK.ShowHideContent()
+    showHideContent.init()
+  </script>
+{% endblock %}
+{% macro hiddenTextField(name, field, label) %}
+    <div id="{{ name }}" class="form-group {{ 'error' if field.error }} panel panel-narrow js-hidden">
+        <label class="form-label-bold text" for="input_{{ name }}">{{ label | safe }}</label>
+
+        {{ errorsFor(field) }}
+        <input class="form-control"
+               id="input_{{ name }}"
+               name="{{ name }}"
+               type="text"
+               value="{{ field.value }}">
+    </div>
+{% endmacro %}

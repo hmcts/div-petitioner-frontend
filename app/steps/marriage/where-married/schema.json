@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "marriage-in-the-uk",
+  "type": "object",
+  "properties": {
+    "marriageWhereMarried": {
+        "type": "string",
+        "enum": ["england", "wales", "elsewhere"]
+    }
+  },
+  "required": [
+    "marriageWhereMarried"
+  ]
+}

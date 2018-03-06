@@ -1,0 +1,87 @@
+{% macro findAddressComponent(addresses) %}
+
+<fieldset class="form-group">
+  <legend class="visually-hidden">Address</legend>
+  {% if label %} <p class="text" for="postcode">{{ label }}</p> {% endif %}
+  <label class="form-label" for="postcode">Enter a UK postcode</label>
+  <input class="form-control postcode" id="postcode" name="postcodeFinder" type="text" value="{{ postcode }}">
+  <a class="secondary-button" onclick="showAddressSelect()">Find address</a>
+
+
+  <div id="select-address" class="form-group js-hidden">
+    <label class="form-label">
+      Pick an address
+    </label>
+    <select class="form-control" name="addressSelect" onchange="updateAddress(this.value)" title="Pick an address">
+      <option value="">{% if selectLabel %} {{selectLabel}} {% else %}Select an address {% endif %}</option>
+      {% for selectAddress in addresses %}
+      <option value={{selectAddress.id}}>{{selectAddress.address.display}}</option>
+      {% endfor %}
+    </select>
+
+    <div id="enter-manually">
+      <a class="link" href="enter-manually">Enter address manually</a>
+    </div>
+  </div>
+
+  <div id=address-fields {% if not postcode %} class="js-hidden" {% endif %}>
+
+    <div class="form-group">
+      <label class="form-label" for="street-1">Street</label>
+      <input class="form-control" id="street-1" name="street1" type="text" value="{{ address.street1 }}">
+      <input class="form-control second-text-input" id="street-2" name="street2" type="text"
+             value="{{ address.street2 }}" title="Street line 2">
+      <input class="form-control second-text-input" id="street-3" name="street3" type="text"
+             value="{{ address.street3 }}" title="Street line 3">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="town">Town or city</label>
+      <input class="form-control" id="town" name="town" type="text" value="{{ address.town }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="county">County</label>
+      <input class="form-control" id="county" name="county" type="text" value="{{ address.county }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="postcode-full">Postcode</label>
+      <input class="form-control" id="postcode-full" name="postcode" type="text" value="{{ address.postcode }}">
+    </div>
+
+  </div>
+
+  {% if outsideUKText %}
+  <p><a class="link" href="abroad">
+    {{ outsideUKText}}
+  </a></p>
+  {% else %}
+  <p><a class="link" href="abroad">
+    Addresses outside the UK
+  </a></p>
+  {% endif %}
+
+</fieldset>
+
+{% block extra_scripts %}
+
+<script>
+  function showAddressSelect() {
+    $('#select-address').removeClass('js-hidden');
+  }
+
+  function updateAddress(address) {
+    var addresses = $('select option[value=' + address + ']').text().split(',');
+    $("#street-1").val(addresses[0]);
+    $("#street-2").val(addresses[1]);
+    $("#town").val(addresses[2]);
+    $("#postcode-full").val($("#postcode").val());
+    $('#address-fields').removeClass('js-hidden');
+    $('#enter-manually').addClass('js-hidden');
+  }
+</script>
+{% endblock %}
+
+{% endmacro %}
+

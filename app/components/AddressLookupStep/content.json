@@ -1,0 +1,91 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "enterPostcodeLink": "Enter postcode to select address",
+                    "enterManualLink": "I can’t enter a UK postcode",
+                    "findAddress": "Find address",
+                    "enterPostcode": "Enter a UK postcode",
+                    "address": "Address",
+                    "selectAnAddress": "Select an address",
+                    "selectAddress": "Select address",
+                    "pickAddress": "Pick an address",
+                    "buildingAndStreet": "Building and Street",
+                    "streetLine2": "Street line 2",
+                    "townOrCity": "Town or city",
+                    "county": "County",
+                    "optional": "optional",
+                    "postcode": "Postcode",
+                    "fullAddress": "Enter full address",
+                    "adressesFound": "addresses found",
+                    "updateAddress": "Update address"
+                },
+                "errors": {
+
+                    "addressType": {
+                        "required": "",
+                        "invalid": ""
+                    },
+
+                    "postcode": {
+                        "required": "Enter a postcode",
+                        "invalid": "Please enter a valid postcode"
+                    },
+
+                    "postcodeError": {
+                        "required": "Sorry, the postcode look-up service is not working. Please enter the address manually",
+                        "invalid": "Sorry, the postcode look-up service is not working. Please enter the address manually"
+                    },
+
+                    "postcodeManual": {
+                        "required": "Please enter a postcode",
+                        "invalid": "Please enter a valid postcode"
+                    },
+
+                    "street1": {
+                        "required": "Enter the first line of your address",
+                        "invalid": "Please enter a building number"
+                    },
+
+                    "street2": {
+                        "required": "Please enter a street",
+                        "invalid": "Please enter a street"
+                    },
+
+                    "town": {
+                        "required": "Enter a town or city",
+                        "invalid": "Please enter a town"
+                    },
+
+
+                    "county": {
+                        "invalid": "Please enter a county"
+                    },
+
+                    "address": {
+                        "required": "No addresses found. Enter a postcode to search again",
+                        "invalid": "Please enter a valid address"
+                    },
+
+                    "addressManual": {
+                        "required": "Please enter an address",
+                        "invalid": "Please enter a valid address"
+                    },
+
+                    "selectAddressIndex": {
+                        "invalid": "Please select an address",
+                        "required": "Please enter an address"
+                    },
+
+                    "addressConfirmed": {
+                        "required": "Please enter an address",
+                        "invalid": "Please enter a valid address"
+                    }
+
+                }
+            }
+        }
+    }
+}

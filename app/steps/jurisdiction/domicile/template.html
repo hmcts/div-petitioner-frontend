@@ -1,0 +1,63 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <div class="text">
+        <p>{{ content.usually | safe }}</p>
+
+        <p>{{ content.however | safe }}</p>
+
+        <details>
+            <summary>
+                {{ content.domiciledWhatIs| safe }}
+            </summary>
+            <div class="panel panel-border-narrow font-small">
+                <p>{{ content.domiciledExplained | safe }}</p>
+                <ul class="list-bullet list">
+                    <li>{{ content.fatherDomicile | safe }}</li>
+                    <li>{{ content.motherDomicile | safe }}</li>
+                </ul>
+                <p>{{ content.domicileOfChoice | safe }}</p>
+                <p>{{ content.selectYes | safe }}</p>
+                <p>{{ content.legalAdvice | safe }}</p>
+            </div>
+        </details>
+
+        <fieldset id="jurisdictionDomicile" class="form-group {{ 'form-group-error' if fields.jurisdictionDomicile.error }}">
+            <legend class="form-label-bold">{{ content.instruction | safe }}</legend>
+            <br>
+
+            {{ errorsFor(fields.jurisdictionDomicile) }}
+            {{ radioButton(
+                value = 'both',
+                label = content.both,
+                name = 'jurisdictionDomicile',
+                field = fields.jurisdictionDomicile
+            ) }}
+            {{ radioButton(
+                value = 'petitioner',
+                label = content.petitioner,
+                name = 'jurisdictionDomicile',
+                field = fields.jurisdictionDomicile
+            ) }}
+            {{ radioButton(
+                value = 'respondent',
+                label = content.respondent,
+                name = 'jurisdictionDomicile',
+                field = fields.jurisdictionDomicile
+            ) }}
+            {{ radioButton(
+                value = 'neither',
+                label = content.neither,
+                name = 'jurisdictionDomicile',
+                field = fields.jurisdictionDomicile
+            ) }}
+
+        </fieldset>
+    </div>
+{% endblock %}

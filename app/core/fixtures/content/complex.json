@@ -1,0 +1,32 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "What do you want to do?",
+                    "apply": "Apply for a divorce from my:",
+                    "marriage": "Marriage",
+                    "sameSexMarriage": "Same sex marriage",
+                    "husband": "My husband",
+                    "wife": "My wife",
+                    "formerPartner": "My former partner"
+                },
+
+                "errors": {
+
+                    "marriageType": {
+                        "required": "Please answer this question",
+                        "invalid": "Please select type of divorce"
+                    },
+
+                    "divorceWho": {
+                        "required": "Please answer this question",
+                        "invalid": "Please select who to divorce"
+                    }
+                }
+            }
+        }
+    }
+}

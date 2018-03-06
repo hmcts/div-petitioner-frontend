@@ -1,0 +1,44 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "How are you connected to England and Wales?",
+                    "explanation": "You must be legally connected to England or Wales for the court to be able to grant you a divorce here.",
+                    "basedOn": "These legal connections are based on whether you and your wife are 'habitually resident' and 'domiciled' in England or Wales. You should get legal advice if you're not sure about either.",
+                    "habitualTitle": "Find out what 'habitual residence' is",
+                    "indicates": "If your life is mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
+                    "explained": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
+                    "notCompleteList": "The examples above aren't a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident.",
+                    "domiciledTitle": "Find out what 'domicile' is",
+                    "usually": "Your domicile is usually the place in which you were born, regard as your permanent home and to which you have the closest ties. However, it can be more complex, for example if you or your parents have moved countries in the past.",
+                    "domiciledExplained": "When you're born, you acquire a 'domicile of origin'. This is usually:",
+                    "fatherDomicile": "your father's country of domicile if your parents were married",
+                    "motherDomicile": "your mother's country of domicile if your parents were unmarried, or your father had died before you were born",
+                    "domicileOfChoice": "If you leave your domicile of origin, settle in another country as an adult and regard it as your permanent home, the new country usually becomes your 'domicile of choice'.",
+                    "selectYes": "Either type of domicile can be used as part of your legal connection to England or Wales.",
+                    "select": "Select all of the following which apply to you",
+                    "bothResident": "My {{ divorceWho }} and I are both habitually resident in England and Wales",
+                    "oneOfResident": "My {{ divorceWho }} and I were last habitually resident in England and Wales and one of us still lives here",
+                    "respondentResident": "My {{ divorceWho }} is habitually resident in England and Wales",
+                    "petitionerResident": "I am habitually resident in England and Wales and have lived here for at least a year",
+                    "petitionerResidentAndDomiciled": "I am domiciled and habitually resident in England and Wales and have lived here for at least six months",
+                    "bothDomiciled": "My {{ divorceWho }} and I are both domiciled in England and Wales"
+
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "How you're connected to England and Wales"
+                },
+
+                "errors": {
+                    "jurisdictionLastResort": {
+
+                        "invalid": "Invalid answer"
+                    }
+                }
+            }
+        }
+    }
+}

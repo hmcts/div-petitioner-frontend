@@ -1,0 +1,31 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Does your {{ divorceWho }} want the divorce papers sent to this address?",
+                    "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
+                    "yes": "Yes, use this address",
+                    "no": "No, send them to a different address",
+                    "solicitor-wife": "No, send them to her solicitor&#39;s address",
+                    "solicitor-husband": "No, send them to his solicitor&#39;s address"
+                },
+
+                "checkYourAnswersContent": {
+                    "yes": "Yes"
+                },
+
+                "errors": {
+                    "respondentCorrespondenceUseHomeAddress": {
+                        "required": "Select whether you want your {{ divorceWho }}&#39;s divorce papers sent to this address"
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,53 @@
+{% from "common/components/formElements.html" import date %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.question }}
+{% endblock %}
+
+{% block form %}
+
+    {{ date(
+        dayField = fields.marriageDateDay,
+        dayName = 'marriageDateDay',
+        monthField = fields.marriageDateMonth,
+        monthName = 'marriageDateMonth',
+        yearField = fields.marriageDateYear,
+        yearName = 'marriageDateYear',
+        dateField = fields.marriageDate,
+        label= content.useTheDate,
+        hint = content.exampleDate,
+        id = 'marriageDate',
+        hiddenLegend = content.question
+    ) }}
+
+    <details>
+        <summary>
+            <span class="summary">{{ content.duration | safe }}</span>
+        </summary>
+        <div class="panel panel-border-narrow">
+            <p class="text">
+                {{ content.facts | safe }}
+            </p>
+            <p class="text">
+                {{ content.options | safe }}
+            </p>
+            <p class="text">
+                <span class="bold-small">{{ content.separated2YearsTitle | safe }}</span>
+                - {{ content.separated2YearsDescription | safe }}
+            </p>
+            <p class="text">
+                <span class="bold-small">{{ content.separated5YearsTitle | safe }}</span>
+                - {{ content.separated5YearsDescription | safe }}
+            </p>
+            <p class="text">
+                <span class="bold-small">{{ content.desertionTitle | safe }}</span>
+                - {{ content.desertionDescription | safe }}
+            </p>
+           <p class="text">
+            {{ content.stillCanUse | safe }}
+           </p>
+        </div>
+    </details>
+
+{% endblock %}

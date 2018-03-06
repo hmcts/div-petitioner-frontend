@@ -1,0 +1,25 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <p class="text"> {{content.originalCertificate | safe }}</p>
+
+    {% if features.foreignMarriageCerts %}
+    <p class="text"> {{content.certificateTranslation | safe }}</p>
+    {% endif %}
+
+    <p class="text">{{ content.court | safe }}</p>
+
+    {{ yesNoRadioHeading(
+        legend = content.question,
+        name = 'screenHasMarriageCert',
+        field = fields.screenHasMarriageCert,
+        yes = content.yes,
+        no = content.no
+    ) }}
+
+{% endblock %}

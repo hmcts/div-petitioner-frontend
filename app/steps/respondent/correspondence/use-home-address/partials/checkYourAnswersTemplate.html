@@ -1,0 +1,18 @@
+<tr>
+  <th>
+    {{ content.question | safe }}
+    {% if fields.respondentCorrespondenceDisplayAddress.value %}
+      <span class="address">{{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}</span>
+    {% endif %}
+  </th>
+  <td>
+    {% if fields.respondentCorrespondenceUseHomeAddress.value === 'Yes' %}
+      {{ content.yes | safe }}
+    {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'No' %}
+      {{ content.no | safe }}
+    {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'Solicitor' %}
+      {{ content['solicitor-' + session.divorceWho] | safe }}
+    {% endif %}
+  </td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

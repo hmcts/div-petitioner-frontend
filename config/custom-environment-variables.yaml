@@ -1,0 +1,106 @@
+appName: PACKAGES_NAME
+project: PACKAGES_PROJECT
+environment: PACKAGES_ENVIRONMENT
+version: PACKAGES_VERSION
+deployment_env: DEPLOYMENT_ENV
+
+service:
+  name: SERVICE_NAME
+
+services:
+  redis:
+    host: REDISCLOUD_URL
+  postcode:
+    token: POST_CODE_ACCESS_TOKEN
+    url: POST_CODE_URL
+  idamAuthentication:
+    health: IDAM_AUTHENTICATION_HEALHCHECK_URL
+  idamApp:
+    health: IDAM_APP_HEALHCHECK_URL
+
+  featureToggleApi:
+    health: FEATURE_TOGGLE_API_HEALHCHECK_URL
+  payment:
+    baseUrl: PAYMENT_SERVICE_URL
+    health: PAYMENT_SERVICE_HEALTHCHECK_URL
+    serviceIdentification: 'PAYMENT_REFERENCE_SERVICE_IDENTIFICATION'
+  transformation:
+    baseUrl: TRANSFORMATION_SERVICE_URL
+    draftBaseUrl: TRANSFORMATION_SERVICE_DRAFT_URL
+    health: TRANSFORMATION_SERVICE_HEALTHCHECK_URL
+  serviceAuthProvider:
+    baseUrl: SERVICE_AUTH_PROVIDER_URL
+    health: SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL
+    microserviceName: MICROSERVICE_NAME
+    microserviceKey: MICROSERVICE_KEY
+
+secret: SECRET
+sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET
+
+evidenceManagmentClient:
+  health: EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL
+  url: EVIDENCE_MANAGEMENT_CLIENT_API_URL
+  uploadEndpoint: EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT
+
+commonProps:
+  court:
+    eastMidlands:
+      phone: COURT_EASTMIDLANDS_PHONE
+      divorceCentre: COURT_EASTMIDLANDS_NAME
+      courtCity: COURT_EASTMIDLANDS_CITY
+      poBox: COURT_EASTMIDLANDS_POBOX
+      postCode: COURT_EASTMIDLANDS_POSTCODE
+      openingHours: COURT_EASTMIDLANDS_OPENINGHOURS
+      email: COURT_EASTMIDLANDS_EMAIL
+      phoneNumber: COURT_EASTMIDLANDS_PHONENUMBER
+      siteId: COURT_EASTMIDLANDS_SITEID
+      weight: COURT_EASTMIDLANDS_WEIGHT
+    westMidlands:
+      divorceCentre: COURT_WESTMIDLANDS_NAME
+      courtCity: COURT_WESTMIDLANDS_CITY
+      poBox: COURT_WESTMIDLANDS_POBOX
+      postCode: COURT_WESTMIDLANDS_POSTCODE
+      openingHours: COURT_WESTMIDLANDS_OPENINGHOURS
+      email: COURT_WESTMIDLANDS_EMAIL
+      phoneNumber: COURT_WESTMIDLANDS_PHONENUMBER
+      siteId: COURT_WESTMIDLANDS_SITEID
+      weight: COURT_WESTMIDLANDS_WEIGHT
+    southWest:
+      divorceCentre: COURT_SOUTHWEST_NAME
+      courtCity: COURT_SOUTHWEST_CITY
+      poBox: COURT_SOUTHWEST_POBOX
+      postCode: COURT_SOUTHWEST_POSTCODE
+      openingHours: COURT_SOUTHWEST_OPENINGHOURS
+      email: COURT_SOUTHWEST_EMAIL
+      phoneNumber: COURT_SOUTHWEST_PHONENUMBER
+      siteId: COURT_SOUTHWEST_SITEID
+      weight: COURT_SOUTHWEST_WEIGHT
+    northWest:
+      divorceCentre: COURT_NORTHWEST_NAME
+      divorceCentreAddressName: COURT_NORTHWEST_ADDRESSNAME
+      courtCity: COURT_NORTHWEST_CITY
+      street: COURT_NORTHWEST_STREET
+      postCode: COURT_NORTHWEST_POSTCODE
+      openingHours: COURT_NORTHWEST_OPENINGHOURS
+      email: COURT_NORTHWEST_EMAIL
+      phoneNumber: COURT_NORTHWEST_PHONENUMBER
+      siteId: COURT_NORTHWEST_SITEID
+      weight: COURT_NORTHWEST_WEIGHT
+  smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
+  smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
+  courtPhoneNumber: COURT_PHONENUMBER
+  courtOpeningHour: COURT_OPENINGHOURS
+  courtEmail: COURT_EMAIL
+
+ssl:
+  hpkp:
+    maxAge: HPKP_MAX_AGE
+    sha256s: HPKP_SHAS
+
+google_analytics:
+  propertyId: GOOGLE_ANALYTICS_ID
+  eventTrackingUrl: GOOGLE_ANALYTICS_TRACKING_URL
+
+rateLimiter:
+  total: RATE_LIMITER_TOTAL
+  expire: RATE_LIMITER_EXPIRE

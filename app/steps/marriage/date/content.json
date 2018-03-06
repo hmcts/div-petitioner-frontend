@@ -1,0 +1,59 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "When did you get married?",
+                    "useTheDate": "Use the date on your marriage certificate",
+                    "exampleDate": "For example, 31 3 2002",
+                    "day": "Day",
+                    "month": "Month",
+                    "year": "Year",
+                    "duration": "Married for less than 2 years?",
+                    "facts": "Later in this application, you’ll be asked to choose a reason for the breakdown of your marriage from a list of 5 options.",
+                    "options": "You won’t be shown the following options if you haven't been married for long enough to use them.",
+                    "separated2YearsTitle": "Separated for 2 years with consent",
+                    "separated2YearsDescription": "Your {{ divorceWho }} agrees to a divorce and you&#39;ve been separated for 2 years or more",
+                    "separated5YearsTitle": "Separated for 5 years",
+                    "separated5YearsDescription": "You&#39;ve been separated from your {{ divorceWho }} for 5 years or more",
+                    "desertionTitle": "Desertion",
+                    "desertionDescription": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
+                    "stillCanUse": "You'll be able to select <strong>behaviour</strong> and <strong>adultery</strong>, as long as you've been married for more than a year."
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Date of marriage"
+                },
+
+                "errors": {
+
+                    "marriageDateDay": {
+                        "required": "Enter the day for your marriage date",
+                        "invalid": "Enter a valid day for your marriage date"
+                    },
+                    "marriageDateMonth": {
+                        "required": "Enter the month for your marriage date",
+                        "invalid": "Enter a valid month for your marriage date"
+                    },
+                    "marriageDateYear": {
+                        "required": "Enter the year for your marriage date",
+                        "invalid": "Enter a valid year for your marriage date"
+                    },
+                    "marriageDate": {
+                        "required": "Enter your marriage date",
+                        "invalid": "Enter a valid date"
+                    },
+                    "marriageDateIsFuture": {
+                        "invalid": "Enter a marriage date that is in the past"
+                    },
+                    "marriageDateMoreThan100": {
+                        "invalid": "Enter a marriage date that is less than a 100 years ago"
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -1,0 +1,242 @@
+// Import GOV.UK elements, this will import the frontend toolkit and some base styles.
+// Take a look in _govuk-elements.scss to see which files are imported.
+
+//  we need this function to stop the gov.uk toolkit using it's
+//  own $path variable that we have no control over
+//  as if this function does not exits the path is reset
+//  apparently this function is available if we are running Rails
+@function image-url($file){
+  @return url('../images/' + $file);
+}
+
+@import 'govuk-elements';
+
+@import 'file-upload';
+@import 'jurisdiction-concepts';
+@import 'details';
+@import 'notice';
+@import 'phase-banner';
+@import 'patterns/facts';
+@import 'check-your-answers';
+@import 'reason-for-divorce';
+@import 'dropzone';
+
+// If you need to create a page as part of your journey, but without GOV.UK branding
+// See localhost:3000/examples/unbranded/
+.unbranded {
+  background: $white;
+  // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
+  * {
+    font-family: Arial !important;
+  }
+  // Remove GOV.UK footer styles
+  #footer {
+    border: 0;
+    background: $white;
+  }
+}
+
+// Related items
+// (These styles will be moved to GOV.UK elements, duplicating here for now.)
+.govuk-related-items {
+  margin-top: $gutter;
+  border-top: 10px solid $govuk-blue;
+  padding-top: 5px;
+
+  .heading-medium {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em
+  }
+
+  li {
+    margin-bottom: 10px;
+    list-style-type: none;
+  }
+}
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.second-text-input {
+  margin-top: 15px;
+}
+
+.link-back {
+  margin-bottom: 0;
+  margin-top: $gutter;
+}
+
+.heading-large {
+  margin-top: $gutter;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.panel {
+  .icon {
+    margin-top: -17px; // Half the height of the important icon
+  }
+}
+
+.certificate-details-confirm {
+  display: inline-block;
+  max-width: 825px;
+  margin-bottom: 60px;
+  width: 100%;
+
+  p {
+    @include bold-19();
+    background: white;
+    border: 2px solid black;
+    padding: (18px $gutter $gutter-half $gutter*1.8);
+  }
+
+  span {
+    border-bottom: thin dotted black;
+    display: inline-block;
+    width: 210px;
+    text-align: center;
+    @include core-19;
+  }
+
+  a {
+    @include button ($grey-2);
+    @include box-sizing (border-box);
+    padding: em(10) em(15) em(5) em(15);
+    vertical-align: top;
+
+    @include media (mobile) {
+      width: 100%;
+    }
+
+    float: right;
+    border: 1px solid darken(white, 15%);
+  }
+
+}
+
+.certificate-details-confirm-solemnised {
+  width: 50% !important;
+}
+
+.form-group {
+  textarea {
+    width: 100%;
+  }
+}
+
+.secondary-button {
+  @include button ($grey-2);
+  @include box-sizing (border-box);
+  padding: em(10) em(15) em(5) em(15);
+  vertical-align: top;
+  @include media (mobile) {
+    width: 100%;
+  }
+}
+
+// Fix unwanted button padding in Firefox
+.secondary-button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.secondary-button:focus {
+  outline: 3px solid $focus-colour;
+}
+
+.image-cert-example {
+  width: 100%;
+}
+
+.postcode {
+  width: 8.5em;
+  @include media(mobile) {
+    width: 100%;
+  }
+}
+
+#enter-manually {
+  margin-top: 20px;
+}
+
+.financial-orders {
+  @include media(tablet) {
+    width: 80%;
+  }
+}
+
+.displayInlineBlock {
+  display: inline-block;
+}
+
+strong {
+  font-weight: bold;
+}
+
+table {
+    margin-bottom: 1em;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+.add-example-link {
+  margin: 0 0 30px 0;
+}
+
+@media (min-width: 641px) {
+  .jurisdiction > .multiple-choice,
+  #reason > .multiple-choice {
+    min-width: 85%;
+    .font-small {
+      min-height: 50px;
+      padding-left: 22px;
+      display: block;
+
+    }
+  }
+
+  .jurisdiction {
+    .heading-medium {
+      margin-top: 25px;
+    }
+  }
+
+  .check-your-answers {
+    form {
+      .text {
+          max-width: 100%;
+      }
+      .heading-medium {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+// update for the latest radio buttons and checkboxes
+.form-label-bold {
+  padding-bottom: 9px;
+}
+
+address {
+  font-style: normal;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+
+.text-reference-number {
+  letter-spacing: 2px;
+  font-size: 24px;
+}
+
+input.link{
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

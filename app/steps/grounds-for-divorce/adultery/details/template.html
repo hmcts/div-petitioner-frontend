@@ -1,0 +1,54 @@
+{% from "common/components/formElements.html" import textArea %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <p class="text">{{ content.description | safe }}</p>
+
+    <div class="panel panel-border-wide">
+        <p class="text">{{ content.remember | safe }}</p>
+    </div>
+
+    {% if (fields.reasonForDivorceAdulteryKnowWhen.value === "Yes") %}
+        <div id="reasonForDivorceAdulteryWhenDetails">
+        {{ textArea(
+            name='reasonForDivorceAdulteryWhenDetails',
+            field=fields.reasonForDivorceAdulteryWhenDetails,
+            label=content.whenDidAdulteryHappen
+        ) }}
+        </div>
+
+    {% endif %}
+
+    {% if (fields.reasonForDivorceAdulteryKnowWhere.value === "Yes") %}
+        <div id="reasonForDivorceAdulteryWhereDetails">
+        {{ textArea(
+            name='reasonForDivorceAdulteryWhereDetails',
+            field=fields.reasonForDivorceAdulteryWhereDetails,
+            label=content.whereDidAdulteryHappen
+        ) }}
+        </div>
+    {% endif %}
+
+    {% if (fields.reasonForDivorceAdulteryKnowWhen.value === "No" and fields.reasonForDivorceAdulteryKnowWhere.value === "No") %}
+
+        {{ textArea(
+            name='reasonForDivorceAdulteryDetails',
+            field=fields.reasonForDivorceAdulteryDetails,
+            label=content.whatDoYouKnow
+        ) }}
+
+    {% else %}
+
+        {{ textArea(
+            name='reasonForDivorceAdulteryDetails',
+            field=fields.reasonForDivorceAdulteryDetails,
+            label=content.whatElseDoYouKnow
+        ) }}
+
+    {% endif %}
+
+{% endblock %}

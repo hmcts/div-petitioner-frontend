@@ -1,0 +1,28 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you have your marriage certificate?",
+                    "originalCertificate": "This must be your original marriage certificate or a <a href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
+                    "certificateTranslation": "If your certificate isn't in English, you'll also need to provide a certified English translation.",
+                    "court": "You'll need to send your marriage certificate and other documents to the court, either by uploading a digital photo or scan, or by post.",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+
+                    "screenHasMarriageCert": {
+                        "required": "Select yes if you have your marriage certificate",
+                        "invalid": "Select yes if you have your marriage certificate"
+                    }
+
+                }
+
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<tr>
+  <th>
+    {{ content.question | safe }}
+    {% if session.petitionerHomeAddress %}
+      <span class="address">{{ session.petitionerHomeAddress.address.join('<br/>') | safe }}</span>
+    {% endif %}
+  </th>
+  <td>{{ fields.petitionerCorrespondenceUseHomeAddress.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

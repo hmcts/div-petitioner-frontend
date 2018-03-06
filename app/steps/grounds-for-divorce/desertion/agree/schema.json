@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "desertion-agree",
+  "type": "object",
+  "properties": {
+    "reasonForDivorceDesertionAgreed": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "reasonForDivorceDesertionAgreed"
+  ]
+}

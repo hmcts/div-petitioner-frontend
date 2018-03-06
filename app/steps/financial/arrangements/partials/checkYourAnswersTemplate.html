@@ -1,0 +1,16 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>{{ fields.financialOrder.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{%- if fields.financialOrder.value === "Yes" -%}
+  <tr>
+    <th>{{ content.whoItsFor | safe }}</th>
+    <td>
+      {%- for financialOrderFor in fields.financialOrderFor.value -%}
+        {{ content[financialOrderFor] | safe }}<br/>
+      {%- endfor -%}
+    </td>
+    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  </tr>
+{%- endif -%}

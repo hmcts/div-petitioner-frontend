@@ -1,0 +1,18 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "You may not be able to get a divorce in England or Wales",
+                    "reason": "Your answers indicate that the courts of England and Wales do not have the jurisdiction to grant you a divorce.",
+                    "advice": "You can now do one of the following:",
+                    "option1": "check how you're legally connected again",
+                    "option2": "show all the possible connections and choose yourself",
+                    "option3": "exit the divorce service and get legal advice"
+                }
+            }
+        }
+    }
+}

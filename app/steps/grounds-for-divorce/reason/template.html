@@ -1,0 +1,238 @@
+{% extends "question.html" %}
+{% set reasonForDivorceShowTwoYearsSeparation = fields.reasonForDivorceShowTwoYearsSeparation.value %}
+{% set reasonForDivorceShowFiveYearsSeparation = fields.reasonForDivorceShowFiveYearsSeparation.value %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+<p class="text">{{ content.explanation | safe }} </p>
+
+    <div class="text">
+
+        {% if reasonForDivorceShowTwoYearsSeparation or reasonForDivorceShowFiveYearsSeparation %}
+            <details>
+                <summary>
+                    <span class="summary">{{ content.separatedDetails | safe }}</span>
+                </summary>
+
+                <div class="panel panel-border-narrow">
+
+                    <h4 class="heading-small">
+                        {{ content.sameResidenceHeading | safe }}
+                    </h4>
+
+                    <p>{{ content.sameResidenceSummary | safe }}</p>
+
+                    <h4 class="heading-small">
+                        {{ content.asACoupleHeading | safe }}
+                    </h4>
+
+                    <p class="text">
+                        {{ content.asACoupleSummary1 | safe }}
+                        {% if reasonForDivorceShowFiveYearsSeparation %}
+                            {{ content.5Years | safe }}
+                            {% elseif reasonForDivorceShowTwoYearsSeparation %}
+                            {{ content.2Years | safe }}
+                        {% endif %}
+                        {{ content.asACoupleSummary2 }}
+                    </p>
+                    <p class="text">
+                        {{ content.asACoupleSummary3 | safe }}
+                    </p>
+                </div>
+
+            </details>
+        {% endif %}
+
+        <div id="reasonForDivorce">
+        <fieldset class="form-group {{ 'form-group-error' if fields.reasonForDivorce.error }}">
+            <legend class="form-label-bold">{{ content.chooseAReason | safe }}</legend>
+
+            {{ errorsFor(fields.reasonForDivorce) }}
+
+            {% if fields.reasonForDivorceShowUnreasonableBehaviour.value %}
+
+
+            <div class="multiple-choice" data-target="unreasonable-behaviour-warning">
+                <input id="unreasonable-behaviour"
+                       type="radio"
+                       name="reasonForDivorce"
+                       value="unreasonable-behaviour" {{ 'checked' if fields.reasonForDivorce.value == 'unreasonable-behaviour' }}>
+
+
+                <label class="form-label-bold"
+                   for="unreasonable-behaviour" data-target="unreasonable-behaviour-warning">
+                
+                    {{ content.unreasonableBehaviourHeading | safe }}<br>
+                  <span class="font-small">
+                    {{ content.unreasonableBehaviourSummary | safe }}
+                  </span>
+                </label>
+            </div>   
+
+            <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorce.value != 'unreasonable-behaviour' }}" id="unreasonable-behaviour-warning">
+                <div class="notice">
+                    <em class="icon icon-important">
+                        <span class="visuallyhidden">{{ content.warning | safe }}</span>
+                    </em>
+                    <p class="normal-small">
+                        {{ content.unreasonableBehaviourWarning | safe }}
+                    </p>
+                </div>
+            </div>
+
+            {% endif %}
+
+            {% if fields.reasonForDivorceShowAdultery.value %}
+
+            <div class="multiple-choice" data-target="adultery-warning">
+              <input id="adultery"
+                       type="radio"
+                       name="reasonForDivorce"
+                       value="adultery" {{ 'checked' if fields.reasonForDivorce.value == 'adultery' }} {{ 'disabled' if not fields.reasonForDivorceEnableAdultery.value}}>
+                <label class="form-label-bold" for="adultery" >
+                    {{ content.adulteryHeading | safe }}<br>
+
+                <span class="font-small">
+                    {{ content.adulterySummary1 | safe }} {% if husbandOrWife() == 'wife' %} {{content.man}} {% else %} {{content.woman}} {% endif %} {{ content.adulterySummary2 | safe }}
+                </span>
+            </label>
+
+            </div>
+
+            <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorce.value != 'adultery' }}" id="adultery-warning">
+                <div class="notice">
+                    <em class="icon icon-important">
+                        <span class="visuallyhidden">{{ content.warning }}</span>
+                    </em>
+                    <p class="normal-small">
+                        {{ content.adulteryWarning | safe }}
+                    </p>
+                </div>
+            </div>
+
+            {% endif %}
+
+            {% if fields.reasonForDivorceShowTwoYearsSeparation.value %}
+                <div class="multiple-choice" data-target="separation-2-years-warning">
+                    <input id="separation-2-years"
+                               type="radio"
+                               name="reasonForDivorce"
+                               value="separation-2-years" {{ 'checked' if fields.reasonForDivorce.value == 'separation-2-years' }}>
+                    <label class="form-label-bold" for="separation-2-years" >
+                        
+                    {{ content.2YearsSeparationHeading | safe }}<br>
+                    <span class="font-small">
+                          {{ content.2YearsSeparationSummary | safe }}
+                    </span>
+                    </label>
+                </div>
+
+                <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorce.value != 'separation-2-years' }}" id="separation-2-years-warning">
+                    <div class="notice">
+                        <em class="icon icon-important">
+                            <span class="visuallyhidden">{{ content.warning }}</span>
+                        </em>
+                        <p class="normal-small">
+                            {{ content.2YearsSeparationWarning | safe }}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if fields.reasonForDivorceShowFiveYearsSeparation.value %}
+                <div class="multiple-choice">
+                    <input id="separation-5-years"
+                           type="radio"
+                           name="reasonForDivorce"
+                           value="separation-5-years" {{ 'checked' if fields.reasonForDivorce.value == 'separation-5-years' }}>
+
+                    <label class="form-label-bold" for="separation-5-years">
+                    
+                         {{ content.5YearsSeparationHeading | safe }}<br>
+                        <span class="font-small">
+                         {{ content.5YearsSeparationSummary | safe }}
+                        </span>
+                    </label>
+                </div>
+            {% endif %}
+
+            {% if fields.reasonForDivorceShowDesertion.value %}
+                <div class="multiple-choice">
+                 <input id="desertion"
+                           type="radio"
+                           name="reasonForDivorce"
+                           value="desertion" {{ 'checked' if fields.reasonForDivorce.value == 'desertion' }}>
+
+                <label class="form-label-bold"
+                       for="desertion">
+                   
+                    {{ content.desertionHeading | safe }}<br>
+                    <span class="font-small">
+                        {{ content.desertionSummary | safe }}
+                    </span>
+                </label>
+                </div>
+            {% endif %}
+        </fieldset>
+        </div>
+
+        {% if fields.reasonForDivorceLimitReasons.value %}
+
+        <details>
+            <summary>
+                <span class="summary">
+                    {{content.unableToChoose1 | safe}}
+                    {% if fields.reasonForDivorceTimeUntilReason2Years.value %} {{fields.reasonForDivorceTimeUntilReason2Years.value}} {% else %} {{fields.reasonForDivorceTimeUntilReason5Years.value}} {% endif %}
+                    {{content.unableToChoose2 | safe}}
+                </span>
+            </summary>
+
+            <div class="panel panel-border-narrow">
+            {% if not fields.reasonForDivorceShowTwoYearsSeparation.value %}
+
+                {{ reasonInfo(
+                content.2YearsSeparationHeading,
+                content.2YearsSeparationExclusion
+                ) }}
+            {% endif %}
+
+            {% if not fields.reasonForDivorceShowDesertion.value %}
+                {{ reasonInfo(
+                content.desertionHeading,
+                content.desertionExclusion
+                ) }}
+            {% endif %}
+
+            {% if not fields.reasonForDivorceShowFiveYearsSeparation.value %}
+                {{ reasonInfo(
+                content.5YearsSeparationHeading,
+                content.5YearsSeparationExclusion,
+                fields.reasonForDivorceTimeUntilReason5Years
+                ) }}
+            {% endif %}
+            </div>
+        </details>
+
+        {% endif %}
+
+
+    </div>
+
+        <p class="text">
+            <span>{{ content.noneApply | safe }}</span>
+        </p>
+
+{% endblock %}
+{% block extra_scripts %}
+  <script type="text/javascript">
+    DIVORCE.SwitchReasonColor();
+  </script>
+{% endblock %}
+{% macro reasonInfo(heading, summary, date) %}
+    <p class="text">
+        <span class="bold-small">{{heading | safe}}</span> - {{summary | safe}}{% if date %} {{date.value}}{% endif %}.
+    </p>
+{% endmacro %}

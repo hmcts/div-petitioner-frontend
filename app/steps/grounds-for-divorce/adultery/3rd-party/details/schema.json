@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "adultery-3rd-party-details",
+  "type": "object",
+  "properties": {
+    "reasonForDivorceAdultery3rdPartyFirstName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    },
+    "reasonForDivorceAdultery3rdPartyLastName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    }
+  },
+  "required": [
+    "reasonForDivorceAdultery3rdPartyFirstName",
+    "reasonForDivorceAdultery3rdPartyLastName"
+  ]
+}

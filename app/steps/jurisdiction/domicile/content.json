@@ -1,0 +1,37 @@
+{
+    "lng": "en",
+    "resources": {
+
+        "en": {
+
+            "translation": {
+
+                "content": {
+
+                    "question": "Are you and your {{ divorceWho }} domiciled in England or Wales?",
+                    "usually": "Your domicile is usually the place in which you were born, regard as your permanent home and to which you have the closest ties.",
+                    "however": "However, domicile can be more complex, for example if you or your parents have moved countries in the past.",
+                    "domiciledWhatIs": "Find out your domicile",
+                    "domiciledExplained": "When you're born, you acquire a 'domicile of origin'. This is usually:",
+                    "fatherDomicile": "your father's country of domicile if your parents were married",
+                    "motherDomicile": "your mother's country of domicile if your parents were unmarried, or your father had died before you were born",
+                    "domicileOfChoice": "If you leave your domicile of origin, settle in another country as an adult and regard it as your permanent home, the new country usually becomes your 'domicile of choice'.",
+                    "selectYes": "You should select yes if you have either type of domicile in England or Wales.",
+                    "legalAdvice": "If you're not sure about your domicile you should get legal advice.",
+                    "instruction": "Select the statement which applies to you:",
+                    "both": "Yes, we are both domiciled",
+                    "petitioner": "Only I am domiciled, my {{ divorceWho }} isn't",
+                    "respondent": "Only my {{ divorceWho }} is domiciled, I'm not",
+                    "neither": "No, neither of us are domiciled"
+                },
+                "errors": {
+
+                    "jurisdictionDomicile": {
+
+                        "required": "Select an answer to continue"
+                    }
+                }
+            }
+        }
+    }
+}

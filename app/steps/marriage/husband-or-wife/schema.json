@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "marriage-husband-or-wife",
+    "type": "object",
+    "properties": {
+        "divorceWho": {
+            "enum": [
+                "husband",
+                "wife"
+            ]
+        },
+        "marriageIsSameSexCouple": {
+            "type": "string",
+            "enum": ["Yes", "No"]
+        }
+    },
+    "required": [
+        "divorceWho"
+    ]
+}

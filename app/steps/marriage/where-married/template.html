@@ -1,0 +1,32 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <fieldset id="marriageWhereMarried" class="form-group {{ 'form-group-error' if fields.marriageWhereMarried.error }}">
+        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+        {{ errorsFor(fields.marriageWhereMarried) }}
+        {{ radioButton(
+            value = 'england',
+            label = content.england,
+            name = 'marriageWhereMarried',
+            field = fields.marriageWhereMarried
+        ) }}
+        {{ radioButton(
+            value = 'wales',
+            label = content.wales,
+            name = 'marriageWhereMarried',
+            field = fields.marriageWhereMarried
+        ) }}
+        {{ radioButton(
+            value = 'elsewhere',
+            label = content.elsewhere,
+            name = 'marriageWhereMarried',
+            field = fields.marriageWhereMarried
+        ) }}
+    </fieldset>
+
+{% endblock %}

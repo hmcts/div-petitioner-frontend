@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "separation-date",
+    "type": "object",
+    "properties": {
+        "reasonForDivorceSeperationDay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+        },
+        "reasonForDivorceSeperationMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "reasonForDivorceSeperationYear": {
+            "type": "integer"
+        },
+        "reasonForDivorceSeperationDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": {
+            "type": "boolean"
+        },
+        "reasonForDivorceSeperationDateInFuture": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceSeperationDateBeforeMarriageDate": {
+            "type": "boolean",
+            "enum": [false]
+        }
+    },
+    "required": [
+        "reasonForDivorceSeperationDay",
+        "reasonForDivorceSeperationMonth",
+        "reasonForDivorceSeperationYear",
+        "reasonForDivorceSeperationDate",
+        "reasonForDivorceSeperationDateIsSameOrAfterLimitDate",
+        "reasonForDivorceSeperationDateInFuture",
+        "reasonForDivorceSeperationDateBeforeMarriageDate"
+    ]
+}

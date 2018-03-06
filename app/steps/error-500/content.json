@@ -1,0 +1,13 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "Sorry, we're having technical problems",
+                    "info": "Please try again in a few minutes"
+                }
+            }
+        }
+    }
+}

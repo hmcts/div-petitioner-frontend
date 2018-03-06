@@ -1,0 +1,30 @@
+{% from "common/components/formElements.html" import textField %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+ <p class="text">{{ content.description | safe }}</p>
+
+
+    <fieldset>
+
+        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+
+        {{ textField(
+            name = 'reasonForDivorceAdultery3rdPartyFirstName',
+            field = fields.reasonForDivorceAdultery3rdPartyFirstName,
+            label = content.reasonForDivorceAdultery3rdPartyFirstName,
+            hint = content.middleNames
+        ) }}
+        {{ textField(
+            name = 'reasonForDivorceAdultery3rdPartyLastName',
+            field = fields.reasonForDivorceAdultery3rdPartyLastName,
+            label = content.reasonForDivorceAdultery3rdPartyLastName
+        ) }}
+
+    </fieldset>
+
+{% endblock %}

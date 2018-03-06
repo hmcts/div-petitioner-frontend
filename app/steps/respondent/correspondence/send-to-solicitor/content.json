@@ -1,0 +1,23 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
+                    "correspondence": "To a different address",
+                    "solicitor-wife": "To her solicitor's address",
+                    "solicitor-husband": "To his solicitor's address"
+                },
+
+                "errors": {
+                    "respondentCorrespondenceSendToSolicitor": {
+                        "required": "Select where your {{ divorceWho }}'s divorce papers should be sent"
+                    }
+                }
+
+            }
+        }
+    }
+}

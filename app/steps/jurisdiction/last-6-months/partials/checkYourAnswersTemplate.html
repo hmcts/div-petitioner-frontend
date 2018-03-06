@@ -1,0 +1,8 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>{{ fields.jurisdictionLast6Months.value | safe }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{%- if session.jurisdictionPath and session.jurisdictionPath | last === 'JurisdictionLast6Months' -%}
+  {% include "app/services/oJurisdiction/legalCheckYourAnswersTemplate.html" %}
+{%- endif -%}

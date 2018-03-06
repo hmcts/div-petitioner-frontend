@@ -1,0 +1,33 @@
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>
+    {%- if fields.legalProceedings.value === "Yes" -%}
+
+      {{ content.proceedingsRelated | safe }}
+
+      {%- for legalProceedingRelated in fields.legalProceedingsRelated.value -%}
+
+        {%- if fields.legalProceedingsRelated.value.length > 1 -%}
+          {%- if loop.last -%}
+            &nbsp;and&nbsp;
+          {%- elseif not loop.first -%}
+            ,&nbsp;
+          {%- endif -%}
+        {%- endif -%}
+
+        {{ content[legalProceedingRelated] | safe }}
+
+      {%- endfor -%}.
+
+      {%- if fields.legalProceedingsDetails.value -%}
+        <br><br>{{ fields.legalProceedingsDetails.value }}
+      {%- endif -%}
+
+    {%- else -%}
+
+      {{ content.no | safe }}
+
+    {%- endif -%}
+  </td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "financial-arrangements",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "financialOrder": {
+          "type": "string",
+          "enum": ["No"]
+        }
+      },
+      "required": [
+        "financialOrder"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "financialOrder": {
+          "type": "string",
+          "enum": ["Yes"]
+        },
+        "financialOrderFor": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "petitioner",
+              "children"
+            ]
+          }
+        }
+      },
+      "required": [
+        "financialOrder"
+      ]
+    }
+  ]
+}

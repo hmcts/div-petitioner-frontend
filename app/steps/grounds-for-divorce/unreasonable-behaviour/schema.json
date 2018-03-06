@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "unreasonable-behaviour",
+    "type": "object",
+    "properties": {
+        "reasonForDivorceBehaviourDetails": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        }
+    }
+}

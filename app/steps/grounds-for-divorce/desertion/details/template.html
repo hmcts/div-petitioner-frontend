@@ -1,0 +1,16 @@
+{% from "common/components/formElements.html" import textArea %}
+
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    {{ textArea(
+        name = 'reasonForDivorceDesertionDetails',
+        field = fields.reasonForDivorceDesertionDetails,
+        label = content.describe
+    )}}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "What is their name?",
+          "description": "Enter the full name of the person you believe your {{ divorceWho }} committed adultery with (legally known as the 'co-respondent').",
+          "reasonForDivorceAdultery3rdPartyFirstName": "First names",
+          "middleNames": "Include all middle names here",
+          "reasonForDivorceAdultery3rdPartyLastName": "Last names"
+        },
+
+        "checkYourAnswersContent": {
+            "question": "Name of the person with whom the adultery was committed"
+        },
+
+        "errors": {
+          "reasonForDivorceAdultery3rdPartyFirstName": {
+            "required": "Enter the co-respondent's first names",
+            "invalid": "First name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "reasonForDivorceAdultery3rdPartyLastName": {
+            "required": "Enter the co-respondent's last names",
+            "invalid": "Last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
+        }
+      }
+    }
+  }
+}

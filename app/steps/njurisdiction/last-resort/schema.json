@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "jurisdiction-last-resort",
+    "type": "object",
+    "properties": {
+        "jurisdictionLastResortConnections": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "A",
+                    "B",
+                    "C",
+                    "D",
+                    "E",
+                    "F",
+                    "G"
+                ]
+            }
+        }
+    }
+}

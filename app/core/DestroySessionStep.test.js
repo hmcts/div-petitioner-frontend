@@ -1,0 +1,47 @@
+const { expect, sinon } = require('test/util/chai');
+
+const modulePath = 'app/core/DestroySessionStep';
+const UnderTest = require(modulePath);
+
+describe(modulePath, () => {
+  const session = {};
+  const ctx = {};
+  let step = {};
+
+  beforeEach(() => {
+    session.destroy = sinon.stub().callsArgWith(0, null);
+    step = new UnderTest();
+  });
+
+  it('returns null on next step', () => {
+    expect(step.next()).to.equal(null);
+  });
+
+  it('destroys session in its interceptor', () => {
+    // Act.
+    step.interceptor(ctx, session).next();
+    // Assert.
+    expect(session.destroy.called).to.equal(true);
+  });
+
+  it('resolves if session is destroyed without errors', done => {
+    // Act.
+    const output = step.interceptor(ctx, session).next();
+    // Assert.
+    expect(output.value)
+      .to.be.fulfilled
+      .and.notify(done);
+  });
+
+  it('rejects if session destroy returns an error', done => {
+    // Arrange.
+    const destroyError = new Error('some error');
+    session.destroy.callsArgWith(0, destroyError);
+    // Act.
+    const output = step.interceptor(ctx, session).next();
+    // Assert.
+    expect(output.value)
+      .to.be.rejectedWith(destroyError)
+      .and.notify(done);
+  });
+});

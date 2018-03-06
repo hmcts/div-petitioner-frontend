@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "with-fees",
+    "properties": {
+        "helpWithFeesAppliedForFees": {
+            "type": "string",
+            "enum": [
+                "Yes",
+                "No"
+            ]
+        },
+        "helpWithFeesReferenceNumber": {
+            "type": "string",
+            "pattern": "(H|h){1}(W|w){1}(F|f){1}-?[0-9a-zA-Z]{3}-?[0-9a-zA-Z]{3}$"
+        }
+    },
+    "switch": [
+        {
+            "if": {
+                "properties": {
+                    "helpWithFeesAppliedForFees": {
+                        "not": {
+                            "type": "string",
+                            "enum": ["Yes"]
+                        }
+
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "helpWithFeesAppliedForFees"
+                ]
+            }
+        },
+        {
+            "then": {
+                "required": [
+                    "helpWithFeesReferenceNumber"
+                ]
+            }
+        }
+    ]
+}

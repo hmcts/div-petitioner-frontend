@@ -1,0 +1,23 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+
+        "content": {
+
+          "question": "Have you been living in England or Wales for the last 6 months?",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "errors": {
+
+          "jurisdictionLastSixMonths": {
+
+            "required": "Select yes if you have been living in England or Wales for the last 6 months"
+          }
+        }
+      }
+    }
+  }
+}

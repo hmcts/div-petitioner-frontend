@@ -1,0 +1,47 @@
+{% from "common/components/formElements.html" import textField %}
+
+{% extends "question.html" %}
+
+{% block question %}
+{{ content.question | safe}}
+{% endblock %}
+
+{% block form %}
+
+<p class="text">
+  {{content.copy|safe}}
+</p>
+
+<div class="notice">
+  <em class="icon icon-important">
+    <span class="visuallyhidden">{{ content.warning }}</span>
+  </em>
+  <p class="bold-small">
+    {{ content.hint | safe }}
+  </p>
+</div>
+
+
+<fieldset class="form-group">
+  <legend class="visually-hidden">{{ content.question | safe }}</legend>
+
+  {{ textField(
+  name = 'marriagePetitionerName',
+  field = fields.marriagePetitionerName,
+  label = content.marriagePetitionerName,
+  boldLabel = true,
+  hint = content.marriageNameHint
+  ) }}
+
+  {{ textField(
+  name = 'marriageRespondentName',
+  field = fields.marriageRespondentName,
+  label = content.marriageRespondentName,
+  boldLabel = true,
+  hint = content.marriageNameHint
+  ) }}
+
+</fieldset>
+
+{% endblock %}
+

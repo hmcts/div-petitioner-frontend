@@ -1,0 +1,71 @@
+{% from "common/components/formElements.html" import textArea %}
+{% extends "question.html" %}
+{% block question %}
+{{ content.question | safe }}
+{% endblock %}
+{% set maxExamples = 6 %}
+{% set visibleExamples = 3 %}
+
+{% block form %}
+
+<p class="text">
+    {{ content.explanation | safe }}
+</p>
+
+<p class="text">
+    {{ content.overTime | safe }}
+</p>
+
+<div class="panel panel-border-wide">
+    <p class="text">
+        {{ content.warning | safe }}
+    </p>
+
+</div>
+
+<p class="text">
+    {{ content.examples | safe }}
+</p>
+
+{% for example in range(0, maxExamples) %}
+
+{{ behaviourExample(
+    name='reasonForDivorceBehaviourDetails' + ('-'+loop.index if loop.index > 1),
+    field=fields.reasonForDivorceBehaviourDetails,
+    label=content.describe + ' ' + loop.index,
+    id=example
+) }}
+
+{% endfor%}
+
+<div id="add-example" style="display: none;">
+    <a href="javaScript:void(0);" class="secondary-button add-example-link" onclick=" DIVORCE.addAttributeWhenVisible();DIVORCE.showAnotherExample();">
+        {{ content.addAnother}}
+    </a>
+</div>
+
+{% endblock %}
+{% block extra_scripts %}
+<script>
+    DIVORCE.showAddExampleButton();
+</script>
+{% endblock %}
+
+{% macro behaviourExample(name, field, label, id='') %}
+<div class="form-group {{ 'form-group-error' if field.error and id == 0}}
+{{' js-hidden ' if id > visibleExamples-1 and fields.reasonForDivorceBehaviourDetails.value[id] == null }}"
+     id="how-behaved-example-{{ id }}">
+
+    <label class="form-label-bold" for="{{ name }}">{{ label | safe }}</label>
+
+    {{ errorsFor(field) if id == 0 }}
+        <textarea class="form-control {{ 'form-control-error' if field.error and id == 0}}"
+                  id="{{ name }}"
+                  rows="5"
+                  name="reasonForDivorceBehaviourDetails[]"
+                {% if id < visibleExamples  %}
+                  onfocus="this.value=this.value.replace(/\.\.\.$/, '')"
+                {% endif %}
+                  type="text">{% if fields.reasonForDivorceBehaviourDetails.value[id] %}{{ fields.reasonForDivorceBehaviourDetails.value[id] }}{% else %}{{ content.my }}{% endif %}</textarea>
+</div>
+{% endmacro %}

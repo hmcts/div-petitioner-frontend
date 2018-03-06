@@ -1,0 +1,58 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.heading | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <div class="text jurisdiction">
+        <p>{{ content.connection | safe }}</p>
+        <p>{{ content.task | safe }}</p>
+
+        <fieldset id="jurisdictionPetitionerResidence" class="form-group inline {{ 'form-group-error' if fields.jurisdictionPetitionerResidence.error }}">
+            <legend class="heading-medium">{{ content.petitioner | safe }}</legend>
+            <p>{{ content.info | safe }}</p>
+
+            {{ errorsFor(fields.jurisdictionPetitionerResidence) }}
+            {{ radioButton(
+            value = 'Yes',
+            label = content.yes,
+            name = 'jurisdictionPetitionerResidence',
+            field = fields.jurisdictionPetitionerResidence,
+            dataTarget = 'jurisdictionRespondentResidence'
+            ) }}
+            {{ radioButton(
+            value = 'No',
+            label = content.no,
+            name = 'jurisdictionPetitionerResidence',
+            field = fields.jurisdictionPetitionerResidence,
+            dataTarget = 'jurisdictionRespondentResidence'
+            ) }}
+
+        </fieldset>
+
+        <fieldset id="jurisdictionRespondentResidence" class="form-group inline {{ 'js-hidden' if fields.jurisdictionPetitionerResidence.value === undefined }} {{ 'form-group-error' if fields.jurisdictionRespondentResidence.error }}">
+            <legend class="heading-medium">{{ content.respondent | safe }}</legend>
+            <p>{{ content.info | safe }}</p>
+
+            {{ errorsFor(fields.jurisdictionRespondentResidence) }}
+            {{ radioButton(
+            value = 'Yes',
+            label = content.yes,
+            name = 'jurisdictionRespondentResidence',
+            field = fields.jurisdictionRespondentResidence
+            ) }}
+            {{ radioButton(
+            value = 'No',
+            label = content.no,
+            name = 'jurisdictionRespondentResidence',
+            field = fields.jurisdictionRespondentResidence
+            ) }}
+
+        </fieldset>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Describe your {{ divorceWho }}'s behaviour",
+                    "explanation": "You should include examples of your {{ divorceWho }}'s behaviour which affect you the most, and the most recent incidents.",
+                    "overTime": "You can describe how they've behaved over a period of time or use particular incidents. Try to include dates if you remember them.",
+                    "examples": "Use as many examples as you want to, as long as it's enough to satisfy the court that you can't reasonably be expected to live with them.",
+                    "warning": " Your {{ divorceWho }} will be sent a copy of your divorce application, so you may want to avoid language that will cause conflict between you.",
+                    "describe": "Example",
+                    "my":"My {{ divorceWho }} ...",
+                    "addAnother": "+ Add another example"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Examples of your {{ divorceWho }}'s behaviour"
+                },
+
+                "errors": {
+                    "reasonForDivorceBehaviourDetails": {
+                        "invalid": "Provide at least 1 example of your {{ divorceWho }}'s behaviour"
+                    }
+                }
+            }
+        }
+    }
+}

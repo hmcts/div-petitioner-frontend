@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "respondent-solicitor-details",
+    "type": "object",
+    "properties": {
+        "respondentSolicitorName": {
+            "type": "string"
+        },
+        "respondentSolicitorCompany": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "respondentSolicitorName",
+        "respondentSolicitorCompany"
+    ]
+}

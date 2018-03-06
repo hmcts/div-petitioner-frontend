@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "no-message",
+  "type": "object",
+  "properties": {
+    "noMessage": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "noMessage"
+  ]
+}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner.html" %}
+  <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+        <h1 class="heading-large">{{content.title | safe}}</h1>
+        <p class="text">
+            {{ content.formallyStartFinancialProceedings | safe }}
+        </p>
+        <p class="text">
+            {{ content.sendFormA | safe }}
+        </p>
+        <p class="text">
+            {{ content.linkToMoreGuidance | safe }}
+        </p>
+
+        <a class="button" href="{{fields.nextStepUrl.value}}" role="button">{{common.continue}}</a>
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "complex",
+  "type": "object",
+
+  "oneOf": [
+    {
+      "properties": {
+        "marriageType": {
+            "type": "string",
+            "enum": ["marriage"]
+        },
+        "divorceWho": {
+            "type": "string",
+            "enum": ["husband", "wife"]
+        }
+      },
+      "required": [
+        "marriageType",
+        "divorceWho"
+      ]
+    },
+    {
+      "properties": {
+        "marriageType": {
+            "type": "string",
+            "enum": ["same-sex-marriage"]
+        },
+        "divorceWho": {
+            "type": "string",
+            "enum": ["former-partner", "husband", "wife"]
+        }
+      },
+      "required": [
+        "marriageType",
+        "divorceWho"
+      ]
+    }
+  ]
+}

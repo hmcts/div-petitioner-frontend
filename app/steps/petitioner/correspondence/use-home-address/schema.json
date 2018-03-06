@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "use-address",
+  "type": "object",
+  "properties": {
+    "petitionerCorrespondenceUseHomeAddress": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    },
+    "petitionerCorrespondenceAddress": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "petitionerCorrespondenceUseHomeAddress"
+  ]
+}

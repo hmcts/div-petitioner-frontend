@@ -1,0 +1,44 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": [
+        "mocha"
+    ],
+    "rules": {
+        "mocha/no-exclusive-tests": "error",
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error", "never"
+        ],
+        "eqeqeq": "error",
+        "indent": ["error", 2]
+    },
+    "globals": {
+        "actor": true,
+        "Feature": true,
+        "Scenario": true,
+        "xScenario": true,
+        "Before": true,
+        "BeforeSuite": true,
+        "AfterSuite": true,
+        "codecept_helper": true
+    }
+}

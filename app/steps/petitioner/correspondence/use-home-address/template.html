@@ -1,0 +1,35 @@
+{% from "common/components/formElements.html" import radioButton %}
+
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    {% if session.petitionerHomeAddress %}
+        <p>
+            {{ session.petitionerHomeAddress.address | join("<br/>") | safe }}
+        </p>
+    {% endif %}
+
+    <div id="petitionerCorrespondenceUseHomeAddress" class="form-group {{ 'form-group-error' if fields.petitionerCorrespondenceUseHomeAddress.error }}">
+        <fieldset>
+            <legend class="visually-hidden">{{ content.question }}</legend>
+            {{ errorsFor(fields.petitionerCorrespondenceUseHomeAddress) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.yes,
+                name = 'petitionerCorrespondenceUseHomeAddress',
+                field = fields.petitionerCorrespondenceUseHomeAddress
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.no,
+                name = 'petitionerCorrespondenceUseHomeAddress',
+                field = fields.petitionerCorrespondenceUseHomeAddress
+            ) }}
+        </fieldset>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "How are you legally connected to England and Wales?",
+                    "explanation": "You must have at least one of the following connections for your divorce to fall within the jurisdiction of a court in England and Wales.",
+                    "basedOn": "If you're not sure how you're legally connected, you should get legal advice.",
+                    "habitualExplained": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
+                    "select": "Select all of the following which apply to you",
+                    "residualJurisdiction": "The courts of England and Wales have jurisdiction on a residual basis"
+                },
+                "errors": {
+                    "jurisdictionLastResortConnections": {
+
+                        "invalid": "Invalid answer"
+                    }
+                }
+            }
+        }
+    }
+}

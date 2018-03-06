@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "jurisdictionLastSixMonths",
+  "type": "object",
+  "properties": {
+    "jurisdictionLastSixMonths": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "jurisdictionLastSixMonths"
+  ]
+}

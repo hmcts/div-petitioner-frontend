@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "legal-proceedings",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "legalProceedings": {
+          "type": "string",
+          "enum": ["No"]
+        }
+      },
+      "required": [
+        "legalProceedings"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "legalProceedings": {
+          "type": "string",
+          "enum": ["Yes"]
+        },
+        "legalProceedingsRelated": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+                "marriage",
+                "children",
+                "property"
+            ]
+          },
+          "minItems": 1
+        },
+        "legalProceedingsDetails": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "legalProceedings",
+        "legalProceedingsRelated",
+        "legalProceedingsDetails"
+      ]
+    }
+  ]
+}

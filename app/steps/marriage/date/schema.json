@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "marriage-date",
+    "type": "object",
+    "properties": {
+        "marriageDateDay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+        },
+        "marriageDateMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "marriageDateYear": {
+            "type": "integer"
+        },
+        "marriageDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "marriageCanDivorce": {
+            "type": "boolean"
+        },
+        "marriageDateIsFuture": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "marriageDateMoreThan100": {
+            "type": "boolean",
+            "enum": [false]
+        }
+    },
+    "required": [
+        "marriageDateDay",
+        "marriageDateMonth",
+        "marriageDateYear",
+        "marriageDate",
+        "marriageCanDivorce",
+        "marriageDateIsFuture",
+        "marriageDateMoreThan100"
+    ]
+}

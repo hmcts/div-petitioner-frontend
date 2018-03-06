@@ -1,0 +1,37 @@
+version: '3.0'
+services:
+  codeceptjs:
+    container_name: codecept
+    image: reform/codeceptjs:8
+    command: bash -c "sleep 30 & Xvfb :0 -screen 0 1280x720x16  & NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. codeceptjs run -c test/end-to-end/ --steps --grep @overnight --invert"
+    environment:
+      - http_proxy=http://zap:8090
+      - https_proxy=http://zap:8090
+      - no_proxy=
+      - DISPLAY=:0
+    depends_on:
+      - zap
+    volumes:
+      - "../.:/tests"
+  zap:
+    image: owasp/zap2docker-weekly:latest
+    container_name: zap
+    command: bash -c "zap-x.sh -daemon -port 8090 -host 0.0.0.0 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config scanner.attackOnStart=true -config view.mode=attack -config api.disablekey=true -config database.recoverylog=false -config connection.timeoutInSecs=120 -addoninstall ascanrulesBeta & sleep infinity"
+    volumes:
+          - "../test/security/run-security.sh:/zap/run-security.sh"
+          - "../security-reports:/zap/security-reports"
+    ports:
+      - '8090:8090'
+    healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8090"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+
+  wait_for_zap:
+    image: dadarek/wait-for-dependencies
+    environment:
+      - SLEEP_LENGTH=3.0
+    depends_on:
+      - zap
+    command: zap:8090

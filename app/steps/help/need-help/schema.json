@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "need-help",
+  "type": "object",
+  "properties": {
+    "helpWithFeesNeedHelp": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "helpWithFeesNeedHelp"
+  ]
+}

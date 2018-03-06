@@ -1,0 +1,26 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Are you sure you want to delete your application?",
+                    "deleted": "All information you have provided will be deleted. If you apply again in future, you will have to pay the full fee for a new application.",
+                    "userAccount": "Your user account (which includes your email address and your password) will not be deleted. If you want your account to be deleted please contact the Divorce Centre.",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+
+                    "deleteApplication": {
+                        "required": "Select yes if you want to delete your application"
+                    }
+
+                }
+
+            }
+        }
+    }
+}

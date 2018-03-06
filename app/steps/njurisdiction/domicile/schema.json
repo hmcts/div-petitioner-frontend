@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "newDomicile",
+  "type": "object",
+  "properties": {
+    "jurisdictionPetitionerDomicile": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "jurisdictionRespondentDomicile": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    }
+  },
+  "switch": [
+    {
+      "if": {
+        "properties": {
+          "jurisdictionPetitionerDomicile": {
+            "not": {
+              "type": "string",
+              "enum": ["Yes", "No"]
+            }
+
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "jurisdictionPetitionerDomicile"
+        ]
+      }
+    },
+    {
+      "then": {
+        "required": [
+          "jurisdictionRespondentDomicile"
+        ]
+      }
+    }
+  ]
+}

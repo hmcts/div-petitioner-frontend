@@ -1,0 +1,149 @@
+.document-upload .fallback{
+  margin-bottom: 20px;
+}
+
+.document-upload.dz-browser-not-supported .dropzone-container{
+  display: none;
+}
+
+.document-upload .dropzone-container {
+  border: 2px dashed #6f777b;
+  padding: 30px;
+  margin-bottom: 20px;
+  clear: both;
+}
+
+.document-upload.dz-drag-hover .dropzone-container {
+  border-color: #ffbf47;
+}
+
+.document-upload .dropzone-container .column-one-third{
+  text-align: center;
+}
+
+.document-upload .dropzone-container .arrow-icon {
+  background: url("../images/drag-drop-upload-ico.svg") center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 90px;
+  width: 90px;
+}
+
+.document-upload.dz-drag-hover .dropzone-container .arrow-icon {
+  background-image: url("../images/drag-drop-upload-hover-ico.svg");
+}
+
+.dropzone-container .button-secondary {
+  margin: 0;
+}
+
+.dropzone-container .file-info {
+  font-size: 12px;
+  color: #6f777b;
+}
+
+.dropzone-container .dz-message .dz-message-copy {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dropzone-container .dz-message .dz-message-copy .faux-link {
+  color: #005ea5;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.dz-preview {
+  .dz-image, .dz-progress, .dz-success-mark, .dz-success-mark, .dz-error-mark, .dz-remove, .dz-details{
+    display: none;
+  }
+}
+.dz-preview:nth-child(n+3) {
+  display: none;
+}
+
+.dz-error-message {
+  margin-right: 15px;
+
+  // Error messages should be red and bold
+  span {
+    color: $error-colour;
+    font-weight: bold;
+  }
+}
+
+.dropzone-container:focus {
+  outline: 3px solid #ffbf47;
+}
+
+.uploaded-files-wrapper {
+
+  .file {
+    .remove-file{
+      white-space: nowrap;
+      display: block;
+    }
+    &.uploading{
+      .remove-file{
+        display: none;
+      }
+      .form-hint, .progress{
+        display: inline-block;
+      }
+    }
+    &.error{
+      .error-message{
+        word-break: normal;
+      }
+      .remove-file{
+        display: none;
+      }
+      .hide-file{
+        display: block;
+      }
+    }
+
+    .hide-file{
+      display: none;
+    }
+
+    .form-group-error{
+      padding-left: 20px;
+    }
+
+    .form-hint{
+      display: none;
+    }
+
+    td{
+      word-break: break-all;
+      position: relative;
+
+      a{
+        word-break: keep-all;
+      }
+
+      .progress{
+        display: none;
+        width: 0%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.18);
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-transition: opacity 2s;
+        transition: opacity 2s;
+
+        &.progress-hidden{
+          opacity: 0;
+        }
+      }
+
+    }
+  }
+
+}
+
+

@@ -1,0 +1,12 @@
+<tr>
+  <th>{{ content.email | safe }}</th>
+  <td>{{ fields.petitionerEmail.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{% if fields.petitionerPhoneNumber.value %}
+  <tr>
+    <th>{{ content.petitionerPhoneNumber | safe }}</th>
+    <td>{{ fields.petitionerPhoneNumber.value }}</td>
+    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  </tr>
+{% endif %}

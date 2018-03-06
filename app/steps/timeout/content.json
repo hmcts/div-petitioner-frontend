@@ -1,0 +1,15 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "Your session timed out",
+                    "timeout": "You didn't do anything onscreen for 60 minutes so we closed your session.",
+                    "info": "The information you entered has been deleted to protect your privacy.",
+                    "startAgain": "You'll need to <a href=\"/index\">start a new application</a>."
+                }
+            }
+        }
+    }
+}

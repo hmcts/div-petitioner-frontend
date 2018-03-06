@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "check-your-answers",
+  "type": "object",
+  "properties": {
+      "confirmPrayer": {
+          "type": "string",
+          "enum": ["Yes"]
+      }
+  },
+  "required": [
+      "confirmPrayer"
+  ]
+}

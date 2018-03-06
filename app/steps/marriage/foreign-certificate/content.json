@@ -1,0 +1,34 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+
+        "content": {
+          "question": "Where you got married",
+          "countryOfMarriage": "In which country did you get married?",
+          "countryName": "Enter the country name",
+          "placeOfMarriageTranslation": "How is the place of marriage displayed on the translation of your marriage certificate?",
+          "placeOfMarriage": "How is the place of marriage displayed on your marriage certificate?",
+          "wordsOfTranslation": "Copy the words on the translation of your marriage certificate exactly"
+        },
+
+        "checkYourAnswersContent": {
+          "countryName": "Country in which you got married",
+          "placeOfMarriageFromCertificate": "Place of marriage as it's displayed on your marriage certificate",
+          "placeOfMarriageFromTranslation": "Place of marriage as it's displayed on the translation"
+        },
+
+        "errors": {
+          "countryName": {
+            "required" : "Enter the country in which you got married"
+          },
+
+          "placeOfMarriage": {
+            "required" : "Enter the place you got married as it is displayed on your marriage certificate"
+          }
+        }
+      }
+    }
+  }
+}

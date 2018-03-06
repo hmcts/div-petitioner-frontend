@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "simple",
+  "type": "object",
+  "properties": {
+    "hasMarriageCert": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "hasMarriageCert"
+  ]
+}

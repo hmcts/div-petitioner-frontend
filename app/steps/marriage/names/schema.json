@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "marriage-where",
+  "type": "object",
+  "properties": {
+    "petitionerFirstName" : {
+      "type" : "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    },
+    "petitionerLastName" : {
+      "type" : "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    },
+    "respondentFirstName" : {
+      "type" : "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    },
+    "respondentLastName" : {
+      "type" : "string",
+      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+    }
+  },
+  "required" : [
+      "petitionerFirstName",
+      "petitionerLastName",
+      "respondentFirstName",
+      "respondentLastName"
+    ]
+}

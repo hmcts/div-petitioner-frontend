@@ -1,0 +1,17 @@
+{% extends "question.html" %}
+
+{% block question %}
+{{ content.question }}
+{% endblock %}
+
+{% block form %}
+
+<p class="text">
+  {{ content.applicationFee | safe }}
+</p>
+
+<p class="text">
+  {{ content.claimingCosts | safe }}
+</p>
+
+{% endblock %}

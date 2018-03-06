@@ -1,0 +1,23 @@
+{% from "common/components/formElements.html" import date, radioButton %}
+
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+        {{ date(
+            dayField = fields.reasonForDivorceSeperationDay,
+            dayName = 'reasonForDivorceSeperationDay',
+            monthField = fields.reasonForDivorceSeperationMonth,
+            monthName = 'reasonForDivorceSeperationMonth',
+            yearField = fields.reasonForDivorceSeperationYear,
+            yearName = 'reasonForDivorceSeperationYear',
+            dateField = fields.reasonForDivorceSeperationDate,
+            hint = content.dateHint,
+            id = 'reasonForDivorceSeperationDate',
+            hiddenLegend = content.question
+        ) }}
+
+{% endblock %}

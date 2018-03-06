@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner.html" %}
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-large">{{content.title | safe}}</h1>
+      <p class="text">{{content.info | safe}}</p>
+
+      <a class="button" href="{{fields.nextStepUrl.value}}" role="button">{{common.continue}}</a>
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

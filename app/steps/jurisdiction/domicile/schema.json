@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "domicile",
+    "type": "object",
+    "properties": {
+        "jurisdictionDomicile": {
+
+            "type": "string",
+            "enum": [
+                "both",
+                "petitioner",
+                "respondent",
+                "neither"
+            ]
+        }
+    },
+    "required": [
+        "jurisdictionDomicile"
+    ]
+}

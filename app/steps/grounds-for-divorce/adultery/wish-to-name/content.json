@@ -1,0 +1,26 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Do you want to name the person you believe your {{ divorceWho }} committed adultery with?",
+                    "noBenefit": "You don't have to name this person, and naming them usually doesn't benefit an application for divorce.",
+                    "provideAddress": "If you do name them you must provide their full name and address so that they can respond.",
+                    "delayed": "Your divorce will take longer and could cost more if they don't respond.",
+                    "costs": "You can ask the court to order them to pay some or all of your divorce costs.",
+                    "mustProvideAddress": "You must provide their full name and address so the court can send them a copy of your divorce application.",
+                    "warning": "Warning",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "errors": {
+                    "reasonForDivorceAdulteryWishToName": {
+                        "required": "Select yes if you wish to name the person you believe your {{ divorceWho }} committed adultery with",
+                        "invalid": "Select yes if you wish to name the person you believe your {{ divorceWho }} committed adultery with"
+                    }
+                }
+            }
+        }
+    }
+}

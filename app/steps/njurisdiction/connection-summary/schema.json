@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "connectionsummary",
+    "type": "object",
+    "properties": {
+        "connectionSummary": {
+            "type": "string",
+            "enum": [
+                "Yes",
+                "No",
+                "Manual"
+            ]
+        }
+    },
+    "required": [
+        "connectionSummary"
+    ]
+}

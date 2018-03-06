@@ -1,0 +1,73 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.heading | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <div class="text">
+        <p>{{ content[fields.jurisdictionConnectionFirst.value].summary | safe }}</p>
+
+
+{%- if fields.jurisdictionConnectionFirst.value  -%}
+
+    <details>
+
+        <summary >
+            <span class="summary">{{ content[fields.jurisdictionConnectionFirst.value].help | safe }}</span>
+        </summary>
+        
+        <div class="panel panel-border-narrow font-small">
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText1 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText2 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText3 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText4 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText5 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText6 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText7 | safe }}
+            </p>
+            <p>
+                {{ content[fields.jurisdictionConnectionFirst.value].helpText8 | safe }}
+            </p>
+        </div>
+    </details>
+
+{%- endif -%}
+
+        <fieldset id="jurisdictionConfidentLegal" class="form-group {{ 'form-group-error' if fields.jurisdictionConfidentLegal.error }}">
+            <legend class="heading-medium">{{ content.question | safe }}</legend>
+            <p>{{ content[fields.jurisdictionConnectionFirst.value].clarification | safe }}</p>
+
+            {{ errorsFor(fields.jurisdictionConfidentLegal) }}
+            {{ radioButton(
+            value = 'Yes',
+            label = content.confident,
+            name = 'jurisdictionConfidentLegal',
+            field = fields.jurisdictionConfidentLegal
+            ) }}
+            {{ radioButton(
+            value = 'No',
+            label = content.needInfo,
+            name = 'jurisdictionConfidentLegal',
+            field = fields.jurisdictionConfidentLegal
+            ) }}
+
+        </fieldset>
+
+    </div>
+{% endblock %}

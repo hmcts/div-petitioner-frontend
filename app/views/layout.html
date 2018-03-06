@@ -1,0 +1,48 @@
+{% extends "govuk_template.html" %}
+
+{% block page_title %}
+  {{ common.serviceName }}
+{% endblock %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+  <!--[if lt IE 9]>
+    <style>
+      div .multiple-choice input {
+        filter: none;
+      }
+      body.js-enabled .js-hidden {
+        display: block;
+        visibility: visible;
+      }
+    </style>
+  <![endif]-->
+{% endblock %}
+
+{% block cookie_message %}
+  <p>{{cookieText | safe }}</p>
+{% endblock %}
+
+{% block proposition_header %}
+  {% include "includes/propositional_navigation.html" %}
+{% endblock %}
+
+{% block header_class %}
+  with-proposition
+{% endblock %}
+
+{% block footer_support_links %}
+<ul>
+  <li><a href="/cookie">Cookies</a></li>
+  <li><a href="/terms-and-conditions">Terms and conditions</a></li>
+</ul>
+{% endblock %}
+
+{% block licence_message %}
+    <p>{{common.ogl | safe}}</p>
+{% endblock %}
+
+{% block body_end %}
+  {% include "includes/scripts.html" %}
+  {% block extra_scripts %}{% endblock %}
+{% endblock %}

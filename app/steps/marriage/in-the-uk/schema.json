@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "married-in-uk",
+  "type": "object",
+  "properties": {
+    "marriedInUk": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "marriedInUk"
+  ]
+}

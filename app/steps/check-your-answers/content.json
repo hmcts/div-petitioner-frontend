@@ -1,0 +1,46 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Check your answers",
+                    "titleSoFar": "Check your answers so far",
+                    "change": "Change",
+                    "about-your-marriage": "",
+                    "jurisdiction": "Your connections to England and Wales",
+                    "njurisdiction": "Your connections to England and Wales",
+                    "petitioner-respondent": "About you and your {{ divorceWho }}",
+                    "about-divorce": "About your divorce",
+                    "pay": "Payment",
+                    "continueApplication": "Continue Application",
+                    "confirmHeading": "Confirm the following",
+                    "confirmWarning": "You could be fined or imprisoned for contempt of court if you deliberately submit false information.",
+                    "confirmApply": "I confirm that:",
+                    "confirmDissolve": "I'm applying to the court for my marriage to be dissolved.",
+                    "confirmDissolvePayRespondent": "I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} to pay some or all of the divorce costs.",
+                    "confirmDissolvePayCoRespondent": "I'm applying to the court for my marriage to be dissolved, and to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
+                    "confirmDissolvePayBoth": "I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
+                    "confirmDissolveFinancial": "I'm applying to the court for my marriage to be dissolved, and to make financial orders to decide how our money and property will be split.",
+                    "confirmDissolvePayRespondentFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+                    "confirmDissolvePayCoRespondentFinancial": "I'm applying to the court for my marriage to be dissolved, to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+                    "confirmDissolvePayBothFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+                    "confirmBelieve": "I believe that the facts stated in this application are true.",
+                    "confirmApplication": "The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
+                    "submit": "Continue",
+                    "submitOnline": "Submit",
+                    "dontNavigateAway": "Don’t close the browser, navigate away from this service or refresh the page until you’re told that your application is complete.",
+                    "dontNavigateAwayNotAppliedForFees": "You now need to pay the fee.",
+                    "deleteApplciation": "Delete application"
+                },
+                "errors": {
+                    "confirmPrayer": {
+                        "required": "Confirm that you’re making an application to the court, and that the information you’ve given is true",
+                        "invalid": "Confirm that you’re making an application to the court, and that the information you’ve given is true"
+                    }
+                }
+            }
+        }
+    }
+}

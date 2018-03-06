@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "respondent-knows-home-address",
+  "type": "object",
+  "properties": {
+    "respondentKnowsHomeAddress": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "respondentKnowsHomeAddress"
+  ]
+}

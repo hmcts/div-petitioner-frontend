@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "share-contact-details",
+  "type": "object",
+  "properties": {
+    "petitionerContactDetailsConfidential": {
+        "type": "string",
+        "enum": ["keep", "share"]
+    }
+  },
+  "required": [
+    "petitionerContactDetailsConfidential"
+  ]
+}

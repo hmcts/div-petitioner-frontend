@@ -1,0 +1,43 @@
+{% from "common/components/formElements.html" import textField, radioButton, checkBox %}
+{% import "common/components/genderComponent.html" as gender %}
+{% extends "question.html" %}
+
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+  <p>{{ content.communicate | safe }}</p>
+
+  <fieldset class="form-group">
+    <legend class="visually-hidden">{{ content.question | safe }}</legend>
+
+    {{ textField(
+      name = 'petitionerEmail',
+      field = fields.petitionerEmail,
+      label = content.email
+    ) }}
+
+    {{ textField(
+      name = 'petitionerPhoneNumber',
+      field = fields.petitionerPhoneNumber,
+      label = content.petitionerPhoneNumber
+    ) }}
+
+  </fieldset>
+
+  <fieldset class="form-group {{ ' form-group-error' if fields.petitionerConsent.error }}">
+    <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>
+    {{ errorsFor(fields.petitionerConsent) }}
+
+    {{ checkBox(
+      id = 'petitionerConsent',
+      name = 'petitionerConsent',
+      field = fields.petitionerConsent,
+      label = content.petitionerConsent
+    ) }}
+
+  </fieldset>
+
+{% endblock %}

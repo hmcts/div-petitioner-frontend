@@ -1,0 +1,17 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    {{ yesNoRadioHeading(
+        legend = content.question,
+        name = 'reasonForDivorceAdulteryKnowWhere',
+        field = fields.reasonForDivorceAdulteryKnowWhere,
+        yes = content.yes,
+        no = content.no
+    ) }}
+
+{% endblock %}

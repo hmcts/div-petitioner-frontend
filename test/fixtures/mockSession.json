@@ -1,0 +1,216 @@
+{
+  "screenHasMarriageBroken": "Yes",
+  "screenHasRespondentAddress": "Yes",
+  "screenHasMarriageCert": "Yes",
+  "screenHasPrinter": "Yes",
+  "divorceWho": "husband",
+  "marriageIsSameSexCouple": "No",
+  "marriageDateDay": 2,
+  "marriageDateMonth": 2,
+  "marriageDateYear": 2001,
+  "marriageCanDivorce": true,
+  "marriageDateIsFuture": false,
+  "marriageDateMoreThan100": false,
+  "marriageDate": "2001-02-02T00:00:00.000Z",
+  "marriageWhereMarried": "england",
+  "marriageSolemnized": "Wendover",
+  "marriageInThe1": "Parish",
+  "marriageParishOf": "Aylesbury",
+  "marriageInThe2": "County",
+  "marriageCountyOf": "Buckinghamshire",
+  "marriagePetitionerName": "John Doe",
+  "marriageRespondentName": "Jenny Benny",
+  "marriedInUk": "Yes",
+  "petitionerNameDifferentToMarriageCertificate": "No",
+  "petitionerEmail": "simulate-delivered-john@notifications.service.gov.uk",
+  "petitionerPhoneNumber": "0123456789",
+  "petitionerConsent": "Yes",
+  "petitionerFirstName": "Jerry",
+  "petitionerLastName": "Dammers",
+  "petitionerContactDetailsConfidential": "share",
+  "petitionerHomeAddress": {
+    "address": [
+      "80 Landor Road",
+      "London",
+      "SW9 9PE"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "petitionerCorrespondenceUseHomeAddress": "Yes",
+  "petitionerCorrespondenceAddress": {
+    "address": [
+      "82 Landor Road",
+      "London",
+      "SW9 9PE"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "respondentFirstName": "Billy",
+  "respondentLastName": "William",
+  "respondentHomeAddress": {
+    "address": [
+      "82",
+      "Landor Road",
+      "London",
+      "SW9 9PE"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "respondentCorrespondenceAddress": {
+    "address": [
+      "82",
+      "Landor Road",
+      "London",
+      "SW9 9PE"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "respondentSolicitorName": "solicitor's name",
+  "respondentSolicitorCompany": "solicitor's Company/Organisat",
+  "respondentCorrespondenceSendToSolicitor": "Yes",
+  "respondentSolicitorAddress": {
+    "address": [
+      "82",
+      "Landor Road",
+      "London",
+      "SW9 9PE"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "respondentCorrespondenceUseHomeAddress": "No",
+  "respondentKnowsHomeAddress": "Yes",
+  "respondentLivesAtLastAddress": "Yes",
+  "livingArrangementsLastLivedTogether": "No",
+  "livingArrangementsLiveTogether": "Yes",
+  "livingArrangementsLastLivedTogetherAddress": {
+    "address": [
+      "82",
+      "Landor Road",
+      "London",
+      "W6 0AT"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "legalProceedings": "Yes",
+  "legalProceedingsRelated": [
+    "children",
+    "property",
+    "marriage"
+  ],
+  "legalProceedingsDetails": "The legal proceeding details",
+  "reasonForDivorce": "unreasonable-behaviour",
+  "reasonForDivorceBehaviourDetails": [
+    "My wife is having an affair this week."
+  ],
+  "reasonForDivorceDesertionDay": 10,
+  "reasonForDivorceDesertionMonth": 10,
+  "reasonForDivorceDesertionYear": 2010,
+  "reasonForDivorceDesertionDate": "2010-10-09T00:00:00.000Z",
+  "reasonForDivorceDesertionAlright": true,
+  "reasonForDivorceDesertionAgreed": "Yes",
+  "reasonForDivorceDesertionDetails": "I was deserted",
+  "reasonForDivorceSeperationDay": 10,
+  "reasonForDivorceSeperationMonth": 10,
+  "reasonForDivorceSeperationYear": 2010,
+  "reasonForDivorceSeperationDate": "2014-02-11T00:00:00.000Z",
+  "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": false,
+  "reasonForDivorceAdultery3rdPartyFirstName": "John",
+  "reasonForDivorceAdultery3rdPartyLastName": "Smith",
+  "reasonForDivorceAdulteryDetails": "Here are some adultery details",
+  "reasonForDivorceAdulteryKnowWhen": "Yes",
+  "reasonForDivorceAdulteryWishToName": "Yes",
+  "reasonForDivorceAdulteryKnowWhere": "Yes",
+  "reasonForDivorceAdulteryWhereDetails": "Where the adultery happened",
+  "reasonForDivorceAdulteryWhenDetails": "When the adultery happened",
+  "reasonForDivorceAdulteryIsNamed": "Yes",
+  "reasonForDivorceAdultery3rdAddress": {
+    "address": [
+      "82",
+      "Landor Road",
+      "London",
+      "W6 0AT"
+    ],
+    "postcode": "W6 0AT",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
+  "financialOrder": "Yes",
+  "financialOrderFor": [
+    "petitioner",
+    "children"
+  ],
+  "helpWithFeesNeedHelp": "Yes",
+  "helpWithFeesAppliedForFees": "Yes",
+  "helpWithFeesReferenceNumber": "HWF-123-456",
+  "paymentMethod": "card-phone-court",
+  "paymentTimeToCall": "morning",
+  "paymentPhoneNumber": "1234567332",
+  "divorceCostsClaim": "Yes",
+  "divorceIsNamed": "Yes",
+  "divorceClaimFrom": [
+    "respondent",
+    "correspondent"
+  ],
+  "jurisdictionIsConnected": true,
+  "jurisdictionResidence": "petitioner",
+  "jurisdictionDomicile": "petitioner",
+  "jurisdictionWhereTo": "PetitionerDetails",
+  "jurisdictionLast12Months": "Yes",
+  "jurisdictionLast6Months": "Yes",
+  "jurisdictionPath": [
+    "JurisdictionResidence",
+    "JurisdictionHabitualResidence",
+    "JurisdictionInterstitial",
+    "JurisdictionDomicile",
+    "JurisdictionLast12Months",
+    "JurisdictionLast6Months",
+    "LastResort"
+  ],
+  "jurisdictionLastResort": [
+    "bothResident",
+    "oneOfResident",
+    "respondentResident",
+    "petitionerResident",
+    "petitionerResidentAndDomiciled",
+    "bothDomiciled"
+  ],
+  "jurisdictionConfidentLegal": "Yes",
+  "connections": {
+    "B": "The Petitioner and Respondent were last habitually resident in England and Wales and one of them still resides there.",
+    "A": "The Petitioner and the Respondent are habitually resident in England and Wales.",
+    "D": "The Petitioner is habitually resident in England and Wales and has resided there for at least a year immediately prior to the presentation of the petition.",
+    "E": "The Petitioner is domiciled and habitually resident in England and Wales and has resided there for at least six months immediately prior to the petition."
+  },
+  "jurisdictionLastTwelveMonths": "Yes",
+  "jurisdictionPetitionerDomicile": "Yes",
+  "jurisdictionPetitionerResidence": "Yes",
+  "jurisdictionRespondentDomicile": "Yes",
+  "jurisdictionRespondentResidence": "Yes",
+  "jurisdictionLastSixMonths": "Yes",
+  "jurisdictionLastHabitualResident": "Yes",
+  "claimsCosts": "Yes",
+  "claimsCostsFrom": [
+    "respondent",
+    "correspondent"
+  ],
+  "courts": "westMidlands"
+}

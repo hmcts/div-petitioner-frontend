@@ -1,0 +1,14 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "Your application has been removed",
+                    "futureApply": "You will need to enter all your information again and pay the full fee if you apply again in future.",
+                    "newApplication":  "Start a new application"
+                }
+            }
+        }
+    }
+}

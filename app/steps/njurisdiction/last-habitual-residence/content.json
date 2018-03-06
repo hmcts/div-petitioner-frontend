@@ -1,0 +1,30 @@
+{
+    "lng": "en",
+    "resources": {
+
+        "en": {
+
+            "translation": {
+
+                "content": {
+
+                    "heading": "Were you both last habitually resident in England or Wales and does one of you still live here?",
+                    "description": "For this to apply to you, England or Wales must be where you were both last habitually resident at the same time (but not necessarily as a couple) and one of you must still live here.",
+                    "connection": "Read more about habitual residence",
+                    "connectionText1":"If your life is mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
+                    "connectionText2":"This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
+                    "connectionText3":"These examples aren't a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "errors": {
+
+                    "jurisdictionLastHabitualResident": {
+
+                        "required": "Select yes if you were both last habitually resident in England or Wales and one of you still lives here"
+                    }
+                }
+            }
+        }
+    }
+}

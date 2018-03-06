@@ -1,0 +1,151 @@
+{%- extends "layout.html" -%}
+{%- from "common/errors.html" import errorsFor -%}
+
+{%- block page_title -%}
+{{ common.serviceName }} - GOV.UK
+{%- endblock -%}
+
+{%- block proposition_header -%}
+<!-- blank to remove the proposition header -->
+{%- endblock -%}
+
+{%- block header_class -%}
+<!-- blank to remove the proposition header -->
+{%- endblock -%}
+
+{%- block content -%}
+
+<main id="content" class="check-your-answers" role="main">
+
+    {% include "includes/phase_banner.html" %}
+
+    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
+
+    <h1 class="heading-large">
+        {%- if fields.nextStepUrl.value -%}
+          {{ content.titleSoFar }}
+        {%- else -%}
+          {{ content.title }}
+        {%- endif -%}
+    </h1>
+
+    {%- if errors.length > 0 and not fields.nextStepUrl.value -%}
+        <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
+
+            <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+                {{ common.errorSummaryHeading | safe }}
+            </h1>
+
+            <ul class="error-summary-list">
+                {%- for error in errors -%}
+                    <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+                {%- endfor -%}
+            </ul>
+
+        </div>
+    {%- endif -%}
+
+    {%- for group, templates in fields.stepTemplates.value -%}
+      {%- if templates and templates.length -%}
+      <h2 class="heading-medium">{{ content[group] | safe }}</h2>
+      <table>
+          <colgroup>
+             <col span="1" style="width: 45%;">
+             <col span="1" style="width: 40%;">
+             <col span="1" style="width: 15%;">
+          </colgroup>
+          <tbody>
+              {%- for template in templates -%}
+                  {{ template.html | safe }}
+              {%- endfor -%}
+          </tbody>
+      </table>
+      <br>
+      {%- endif -%}
+    {%- endfor -%}
+
+    <br>
+
+    {%- if fields.nextStepUrl.value -%}
+
+      <a class="button" href="{{ fields.nextStepUrl.value }}">{{ content.continueApplication }}</a>
+
+    {%- else -%}
+
+      <form method="POST" accept-charset="utf-8" class="form" id="form"
+          enctype="{%- block encoding -%}application/x-www-form-urlencoded{%- endblock -%}"
+          autocomplete="off">
+
+          <h2 class="heading-medium">{{ content.confirmHeading | safe }}</h2>
+          <p class="text">{{ content.confirmWarning | safe }}</p>
+
+          <div class="form-group confirmation-container {{ 'form-group-error' if fields.confirmPrayer.error }}">
+              {{ errorsFor(fields.confirmPrayer) }}
+              <div class="multiple-choice" data-target-toggle-enabled="confirmCheckYourAnswers">
+                  <input id="confirmPrayer" name="confirmPrayer" type="checkbox" value="Yes" {{ 'checked="checked"' if fields.confirmPrayer.value == 'Yes' }}>
+                  <label for="confirmPrayer">{{ content.confirmApply | safe }}</label>
+              </div>
+              <ul class="list list-bullet">
+                 {%- if fields.claimsCosts.value == 'Yes' and fields.financialOrder.value == 'Yes' -%}
+                     {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
+                         <li>{{ content.confirmDissolvePayBothFinancial | safe }}</li>
+                     {%- elseif fields.claimsCostsFrom.value.indexOf('respondent') > -1 -%}
+                         <li>{{ content.confirmDissolvePayRespondentFinancial | safe }}</li>
+                     {%- elseif fields.claimsCostsFrom.value.indexOf('correspondent') > -1 -%}
+                         <li>{{ content.confirmDissolvePayCoRespondentFinancial | safe }}</li>
+                     {%- endif -%}
+                 {%- elseif fields.claimsCosts.value == 'Yes' -%}
+                     {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
+                         <li>{{ content.confirmDissolvePayBoth | safe }}</li>
+                     {%- elseif fields.claimsCostsFrom.value.indexOf('respondent') > -1 -%}
+                         <li>{{ content.confirmDissolvePayRespondent | safe }}</li>
+                     {%- elseif fields.claimsCostsFrom.value.indexOf('correspondent') > -1 -%}
+                         <li>{{ content.confirmDissolvePayCoRespondent | safe }}</li>
+                     {%- endif -%}
+                 {%- elseif fields.financialOrder.value == 'Yes' -%}
+                 <li>{{ content.confirmDissolveFinancial | safe }}</li>
+                 {%- else -%}
+                 <li>{{ content.confirmDissolve | safe }}</li>
+                 {%- endif -%}
+                 <li> {{ content.confirmBelieve | safe }}</li>
+             </ul>
+             <p class="text">{{ content.confirmApplication | safe }}</p>
+          </div>
+          <br>
+          <div class="form-group">
+              <p class="text bold-small">
+              {%- if fields.helpWithFeesReferenceNumber.value -%}
+                {{ content.dontNavigateAway | safe}}
+              {%- else -%}
+                {{ content.dontNavigateAwayNotAppliedForFees | safe }} {{ content.dontNavigateAway | safe}}
+              {%- endif -%}
+            </p>
+              <input id="confirmCheckYourAnswers" type="submit" class="button" value="
+             {%- if features.onlineSubmission -%}
+               {{ content.submitOnline }}
+             {%- else -%}
+               {{ content.submit }}
+             {%- endif -%}
+              ">
+          </div>
+      </form>
+
+    {%- endif -%}
+
+    <br/><br/>
+
+    <form method="POST" accept-charset="utf-8" class="form" id="form"
+          enctype="application/x-www-form-urlencoded"
+          autocomplete="off">
+      {% include "includes/save_and_close.html" %}
+    </form>
+
+    <a href="/save-return/delete-application">{{ content.deleteApplciation }}</a>
+
+    <br/><br/>
+
+    {% include "includes/problem_with_this_page.html" %}
+
+</main>
+
+{%- endblock -%}

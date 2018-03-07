@@ -28,6 +28,9 @@ module.exports = {
   },
   protect: () => {
     return idamExpressMiddleware.protect(idamArgs);
+  },
+  logout: () => {
+    return idamExpressMiddleware.logout(idamArgs);
   }
 
 };

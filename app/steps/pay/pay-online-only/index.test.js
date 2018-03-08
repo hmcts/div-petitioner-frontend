@@ -57,7 +57,8 @@ describe(modulePath, () => {
 
   describe('#middleware', () => {
     it('returns updateApplicationFeeMiddleware in middleware', () => {
-      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
         .to.eql(true);
     });
   });

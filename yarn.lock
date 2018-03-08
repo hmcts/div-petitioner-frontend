@@ -10,8 +10,8 @@
     request "^2.81.0"
     request-promise-native "^1.0.4"
 
-"@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#3.0.4":
-  version "3.0.4"
+"@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#4.0.0":
+  version "4.0.0"
   resolved "https://github.com/hmcts/div-idam-express-middleware#22c5c3a144038eceafe5562b53a24e5655575432"
   dependencies:
     "@hmcts/nodejs-logging" "^2.2.0"
@@ -23,7 +23,7 @@
   version "1.0.12"
   resolved "https://github.com/hmcts/div-idam-test-harness#f8fd469199db63b42a59055e0c2b885dc5e49b5d"
   dependencies:
-    "@hmcts/div-idam-express-middleware" "https://github.com/hmcts/div-idam-express-middleware#3.0.4"
+    "@hmcts/div-idam-express-middleware" "https://github.com/hmcts/div-idam-express-middleware#4.0.0"
     request "^2.81.0"
     request-promise-native "^1.0.4"
 

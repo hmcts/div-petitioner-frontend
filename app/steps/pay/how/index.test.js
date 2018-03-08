@@ -10,6 +10,7 @@ const modulePath = 'app/steps/pay/how';
 const { removeStaleData } = require('app/core/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
+const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
 
 const content = require(`${modulePath}/content`);
 
@@ -31,6 +32,13 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
+
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
+  });
 
   describe('success', () => {
     it('renders the content from the content file', done => {

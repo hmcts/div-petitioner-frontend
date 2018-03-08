@@ -33,6 +33,9 @@ services:
     health: SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL
     microserviceName: MICROSERVICE_NAME
     microserviceKey: MICROSERVICE_KEY
+  feeRegister:
+    baseUrl: FEE_REGISTER_URL
+    health: FEE_REGISTER_HEALTHCHECK_URL
 
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET

@@ -30,7 +30,7 @@
                     "needToSend": "You'll need to send your marriage certificate and any translations or proof of name changes to the court with your application. The court won't return your marriage certificate.",
                     "alsoApply": "If you can&#39;t use this service, you can apply by filling in the <a href=\"https://www.gov.uk/divorce/file-for-divorce\" target=\"_blank\">paper D8 form</a>.",
                     "fees": "Fees",
-                    "costs": "The court fee for all divorces in England and Wales is £550.",
+                    "costs": "The court fee for all divorces in England and Wales is £{{ applicationFee.fee_amount }}.",
                     "needToPayOnline": "You need to pay online by debit or credit card to use this service.",
                     "youCan": "You can pay by: ",
                     "creditCard": "credit or debit card over the phone",

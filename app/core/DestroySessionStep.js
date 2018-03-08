@@ -14,4 +14,8 @@ module.exports = class DestroySessionStep extends Step {
   get nextStep() {
     return null;
   }
+
+  get middleware() {
+    return [];
+  }
 };

@@ -3,6 +3,8 @@ const { testContent, testExistence, testNonExistence } = require('test/util/asse
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const CONF = require('config');
+const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
+const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/done';
 
@@ -31,6 +33,12 @@ describe(modulePath, () => {
     featureTogglesMock.restore();
   });
 
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
+  });
 
   describe('when name is on certificate', () => {
     let session = {};

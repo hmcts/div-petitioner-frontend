@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
 const submission = require('app/services/submission');
+const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
 
 const modulePath = 'app/steps/pay/by-card';
 
@@ -65,6 +66,13 @@ describe(modulePath, () => {
     submission.setup.restore();
     payment.setup.restore();
     serviceToken.setup.restore();
+  });
+
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
   });
 
   describe('handler', () => {

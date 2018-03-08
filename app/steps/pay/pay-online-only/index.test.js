@@ -3,6 +3,8 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 const { testContent, testRedirect } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
+const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
+const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/pay/pay-online-only';
 
@@ -28,6 +30,13 @@ describe(modulePath, () => {
     featureTogglesMock.restore();
   });
 
+
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
+  });
 
   describe('success', () => {
     it('renders the content from the content file', done => {

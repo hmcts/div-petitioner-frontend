@@ -1,5 +1,6 @@
 const DestroySessionStep = require('app/core/DestroySessionStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
+const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class Done extends DestroySessionStep {
   handler(req, res) {
@@ -8,6 +9,10 @@ module.exports = class Done extends DestroySessionStep {
 
   get url() {
     return '/done';
+  }
+
+  get middleware() {
+    return [...super.middleware, updateApplicationFeeMiddleware];
   }
 
   * interceptor(ctx, session) {

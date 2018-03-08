@@ -5,6 +5,8 @@ const {
 } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
+const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
+const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/help/need-help';
 
@@ -28,6 +30,12 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
+  });
 
   describe('success', () => {
     it('renders the content from the content file', done => {

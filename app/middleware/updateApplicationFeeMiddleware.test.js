@@ -32,7 +32,7 @@ describe(modulePath, () => {
     });
     it('gets application fee redis if available', done => {
       ioRedisClient.get = sinon.stub()
-        .resolves(mockFeeReigsterService.mockFeeResponse);
+        .resolves(JSON.stringify(mockFeeReigsterService.mockFeeResponse));
       underTest.updateApplicationFeeMiddleware(req, res, () => {
         expect(ioRedisClient.get.calledOnce).to.eql(true);
         expect(ioRedisClient.set.calledOnce).to.eql(false);

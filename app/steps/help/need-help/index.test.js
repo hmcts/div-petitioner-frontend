@@ -5,8 +5,8 @@ const {
 } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
-const { expect } = require('test/util/chai');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const { expect, sinon } = require('test/util/chai');
 
 const modulePath = 'app/steps/help/need-help';
 
@@ -15,9 +15,12 @@ const content = require(`${modulePath}/content`);
 let s = {};
 let agent = {};
 let underTest = {};
+const two = 2;
 
 describe(modulePath, () => {
   beforeEach(() => {
+    sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
+      .callsArgWith(two);
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -28,11 +31,13 @@ describe(modulePath, () => {
   afterEach(() => {
     s.http.close();
     idamMock.restore();
+    applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
   });
 
   describe('#middleware', () => {
     it('returns updateApplicationFeeMiddleware in middleware', () => {
-      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
         .to.eql(true);
     });
   });

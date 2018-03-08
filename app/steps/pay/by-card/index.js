@@ -11,7 +11,7 @@ const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 const getBaseUrl = require('app/core/utils/baseUrl');
-const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class PayByCard extends Step {
   get middleware() {
@@ -19,7 +19,10 @@ module.exports = class PayByCard extends Step {
       return features.idam ? protect()(req, res, next) : next();
     };
 
-    return [idamProtect, updateApplicationFeeMiddleware];
+    return [
+      idamProtect,
+      applicationFeeMiddleware.updateApplicationFeeMiddleware
+    ];
   }
 
   handler(req, res) {

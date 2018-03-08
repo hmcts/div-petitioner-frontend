@@ -3,8 +3,8 @@ const { testContent, testExistence, testNonExistence } = require('test/util/asse
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const CONF = require('config');
-const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 const modulePath = 'app/steps/done';
 
@@ -18,9 +18,12 @@ const featureTogglesMock = require('test/mocks/featureToggles');
 let s = {};
 let agent = {};
 let underTest = {};
+const two = 2;
 
 describe(modulePath, () => {
   beforeEach(() => {
+    sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
+      .callsArgWith(two);
     featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -31,11 +34,13 @@ describe(modulePath, () => {
   afterEach(() => {
     s.http.close();
     featureTogglesMock.restore();
+    applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
   });
 
   describe('#middleware', () => {
     it('returns updateApplicationFeeMiddleware in middleware', () => {
-      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
         .to.eql(true);
     });
   });

@@ -3,8 +3,8 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 const { testContent, testRedirect } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
-const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
-const { expect } = require('test/util/chai');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const { expect, sinon } = require('test/util/chai');
 
 const modulePath = 'app/steps/pay/pay-online-only';
 
@@ -13,9 +13,12 @@ const content = require(`${modulePath}/content`);
 let s = {};
 let agent = {};
 let underTest = {};
+const two = 2;
 
 describe(modulePath, () => {
   beforeEach(() => {
+    sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
+      .callsArgWith(two);
     featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
@@ -28,12 +31,14 @@ describe(modulePath, () => {
     s.http.close();
     idamMock.restore();
     featureTogglesMock.restore();
+    applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
   });
 
 
   describe('#middleware', () => {
     it('returns updateApplicationFeeMiddleware in middleware', () => {
-      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
         .to.eql(true);
     });
   });

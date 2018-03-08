@@ -1,6 +1,6 @@
 const OptionStep = require('app/core/OptionStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
-const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class NeedHelpWithFees extends OptionStep {
   get url() {
@@ -16,7 +16,10 @@ module.exports = class NeedHelpWithFees extends OptionStep {
   }
 
   get middleware() {
-    return [...super.middleware, updateApplicationFeeMiddleware];
+    return [
+      ...super.middleware,
+      applicationFeeMiddleware.updateApplicationFeeMiddleware
+    ];
   }
 
   handler(req, res) {

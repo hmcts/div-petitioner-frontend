@@ -5,8 +5,12 @@ const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const ioRedis = require('ioredis');
 
 const redisHost = CONF.services.redis.host;
+
 // redisClient is a let so it can be rewired in tests
 let redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const
+redisClient.on('error', error => {
+  logger.error(error);
+});
 
 const applicationFeeQueryParams = 'service=devorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
 

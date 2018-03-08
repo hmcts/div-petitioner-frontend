@@ -15,6 +15,9 @@ const client = ioRedis.createClient(
   config.services.redis.host,
   { enableOfflineQueue: false }
 );
+client.on('error', error => {
+  logger.error(error);
+});
 
 router.get('/healthcheck', healthcheck.configure({
   checks: {

@@ -1,7 +1,7 @@
 const OptionStep = require('app/core/OptionStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
 const { watch } = require('app/core/staleDataManager');
-const { updateApplicationFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class PayHow extends OptionStep {
   get enabledAfterSubmission() {
@@ -13,7 +13,10 @@ module.exports = class PayHow extends OptionStep {
   }
 
   get middleware() {
-    return [...super.middleware, updateApplicationFeeMiddleware];
+    return [
+      ...super.middleware,
+      applicationFeeMiddleware.updateApplicationFeeMiddleware
+    ];
   }
 
   get nextStep() {

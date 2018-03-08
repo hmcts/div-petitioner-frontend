@@ -55,6 +55,13 @@ describe(modulePath, () => {
     });
   });
 
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware.includes(updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
+  });
+
   describe('success', () => {
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content);

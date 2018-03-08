@@ -39,6 +39,10 @@ module.exports = class PayOnline extends Step {
     ];
   }
 
+  get middleware() {
+    return [updateApplicationFeeMiddleware];
+  }
+
   handler(req, res) {
     const { method, cookies, body } = req;
 

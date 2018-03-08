@@ -72,7 +72,6 @@ commonProps:
     version: 1
     fee_amount: 550.00
   financialOrderApplicationFee: 255
-  applicationFeeCode: 'X0165'
   court:
     eastMidlands:
       phone: '0000 111 2220'

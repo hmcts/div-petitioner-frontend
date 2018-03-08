@@ -70,6 +70,12 @@ router.get('/healthcheck', healthcheck.configure({
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }),
+    feeRegister: healthcheck.web(config.services.feeRegister.health, {
+      callback: (error, res) => { // eslint-disable-line id-blacklist
+        logger.error(`Health check failed on fee register: ${error}`);
+        return !error && res.status === OK ? outputs.up() : outputs.down(error);
+      }
+    }),
     features: healthcheck.raw(req => {
       return healthcheck.status(Object.keys(req.features) != 0, req.features); // eslint-disable-line eqeqeq
     })

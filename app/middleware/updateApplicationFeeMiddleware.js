@@ -3,11 +3,19 @@ const feeRegisterService = require('app/services/feeRegisterService');
 const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const ioRedis = require('ioredis');
+const ioRedisMock = require('app/services/mocks/ioRedis');
 
 const redisHost = CONF.services.redis.host;
 
 // redisClient is a let so it can be rewired in tests
-let redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const
+let redisClient = {};
+
+if (process.env.NODE_ENV === 'testing') {
+  redisClient = ioRedisMock();
+} else {
+  redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const
+}
+
 redisClient.on('error', error => {
   logger.error(error);
 });

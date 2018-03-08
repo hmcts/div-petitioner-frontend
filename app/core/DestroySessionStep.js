@@ -1,4 +1,5 @@
 const Step = require('./Step');
+const idam = require('app/services/idam');
 
 module.exports = class DestroySessionStep extends Step {
   * interceptor(ctx, session) {
@@ -9,6 +10,10 @@ module.exports = class DestroySessionStep extends Step {
     });
 
     return ctx;
+  }
+
+  get middleware() {
+    return [idam.logout()];
   }
 
   get nextStep() {

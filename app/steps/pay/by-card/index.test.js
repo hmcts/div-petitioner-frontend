@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
 const submission = require('app/services/submission');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 const modulePath = 'app/steps/pay/by-card';
 
@@ -19,6 +20,7 @@ let s = {};
 let agent = {};
 let underTest = {};
 let cookies = [];
+const two = 2;
 
 describe(modulePath, () => {
   let getToken = null;
@@ -48,6 +50,8 @@ describe(modulePath, () => {
     sinon.stub(payment, 'setup').returns({ create });
     sinon.stub(submission, 'setup').returns({ update });
     sinon.stub(jwt, 'decode').returns({ id: 1 });
+    sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
+      .callsArgWith(two);
 
     idamMock.stub();
     featureTogglesMock.stub();
@@ -57,6 +61,7 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
+    applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
     s.http.close();
     featureTogglesMock.restore();
     idamMock.restore();
@@ -65,6 +70,14 @@ describe(modulePath, () => {
     submission.setup.restore();
     payment.setup.restore();
     serviceToken.setup.restore();
+  });
+
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
   });
 
   describe('handler', () => {

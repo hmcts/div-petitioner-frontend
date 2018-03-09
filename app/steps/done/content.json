@@ -20,7 +20,7 @@
                     "proofOfName": "proof of your name change, for example a <a href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\">deed poll</a>. Include proof of each change if you&#39;ve done it more than once since you got married",
                     "certified": "your original marriage certificate or a <a href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">certified copy</a>",
                     "englishTranslation": "a <a href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\">certified English translation</a> of your marriage certificate",
-                    "cheque": "a cheque for £{{ applicationFee }} made out to HM Courts and Tribunals Service",
+                    "cheque": "a cheque for £{{ applicationFee.fee_amount }} made out to HM Courts and Tribunals Service",
                     "courtWillKeep": "The court will keep your marriage certificate.",
                     "postApplication": "3. Post your application to the court",
                     "postDescription": "Post the entire printed application pack",

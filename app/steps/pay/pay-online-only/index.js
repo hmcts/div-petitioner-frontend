@@ -1,6 +1,7 @@
 const Step = require('app/core/Step');
 const runStepHandler = require('app/core/handler/runStepHandler');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class PayOnline extends Step {
   get url() {
@@ -9,6 +10,10 @@ module.exports = class PayOnline extends Step {
 
   get nextStep() {
     return features.onlineSubmission ? this.steps.PayByCard : this.steps.PayHow;
+  }
+
+  get middleware() {
+    return [applicationFeeMiddleware.updateApplicationFeeMiddleware];
   }
 
   handler(req, res) {

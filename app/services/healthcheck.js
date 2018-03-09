@@ -15,6 +15,9 @@ const client = ioRedis.createClient(
   config.services.redis.host,
   { enableOfflineQueue: false }
 );
+client.on('error', error => {
+  logger.error(error);
+});
 
 router.get('/healthcheck', healthcheck.configure({
   checks: {
@@ -67,6 +70,12 @@ router.get('/healthcheck', healthcheck.configure({
     'payment-api': healthcheck.web(config.services.payment.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         logger.error(`Health check failed on payment-api: ${error}`);
+        return !error && res.status === OK ? outputs.up() : outputs.down(error);
+      }
+    }),
+    feeRegister: healthcheck.web(config.services.feeRegister.health, {
+      callback: (error, res) => { // eslint-disable-line id-blacklist
+        logger.error(`Health check failed on fee register: ${error}`);
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }),

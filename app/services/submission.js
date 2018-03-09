@@ -54,7 +54,7 @@ const generatePaymentEventData = (session, response) => {
       PaymentDate: formatDate(dateCreated),
       PaymentAmount: amount,
       PaymentStatus: paymentStatus,
-      PaymentFeeId: CONF.commonProps.applicationFeeCode,
+      PaymentFeeId: CONF.commonProps.applicationFee.code,
       PaymentSiteId: siteId
     }
   };

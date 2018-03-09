@@ -35,4 +35,7 @@ module.exports = class OptionStep extends ValidationStep {
 
     return val;
   }
+  get middleware() {
+    return super.middleware;
+  }
 };

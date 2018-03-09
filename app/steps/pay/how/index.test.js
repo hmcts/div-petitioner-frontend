@@ -8,17 +8,21 @@ const {
 
 const modulePath = 'app/steps/pay/how';
 const { removeStaleData } = require('app/core/staleDataManager');
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
 const { clone } = require('lodash');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 const content = require(`${modulePath}/content`);
 
 let s = {};
 let agent = {};
 let underTest = {};
+const two = 2;
 
 describe(modulePath, () => {
   beforeEach(() => {
+    sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
+      .callsArgWith(two);
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -27,10 +31,19 @@ describe(modulePath, () => {
 
 
   afterEach(() => {
+    applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
     s.http.close();
     idamMock.restore();
   });
 
+
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
+  });
 
   describe('success', () => {
     it('renders the content from the content file', done => {

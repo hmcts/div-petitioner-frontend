@@ -5,7 +5,7 @@
             "translation": {
                 "content": {
                     "question": "How do you want to pay your application fee?",
-                    "applicationFee": "The application fee is £{{ applicationFee }}.",
+                    "applicationFee": "The application fee is £{{ applicationFee.fee_amount }}.",
                     "byCheque": "By cheque",
                     "byCardOverPhoneCourt": "By debit or credit card (the court will call to take payment)"
                 },

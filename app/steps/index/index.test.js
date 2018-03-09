@@ -1,6 +1,8 @@
 const request = require('supertest');
 const { testContent, testRedirect, testNonExistence } = require('test/util/assertions');
 const server = require('app');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const { expect, sinon } = require('test/util/chai');
 
 const modulePath = 'app/steps/index';
 const content = require(`${modulePath}/content`);
@@ -14,9 +16,12 @@ const { features } = require('@hmcts/div-feature-toggle-client')().featureToggle
 let s = {};
 let agent = {};
 let underTest = {};
+const two = 2;
 
 describe(modulePath, () => {
   beforeEach(() => {
+    sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
+      .callsArgWith(two);
     featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -27,6 +32,15 @@ describe(modulePath, () => {
   afterEach(() => {
     s.http.close();
     featureTogglesMock.restore();
+    applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
+  });
+
+  describe('#middleware', () => {
+    it('returns updateApplicationFeeMiddleware in middleware', () => {
+      expect(underTest.middleware
+        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
+        .to.eql(true);
+    });
   });
 
   describe('success', () => {

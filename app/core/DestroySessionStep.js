@@ -12,7 +12,7 @@ module.exports = class DestroySessionStep extends Step {
     return ctx;
   }
 
-  get middleware() {
+  get middleware() { // eslint-disable-line complexity
     return [idam.logout()];
   }
 

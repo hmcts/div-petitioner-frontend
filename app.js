@@ -133,8 +133,7 @@ exports.init = () => {
 
   app.use((error, req, res, next) => {
     if (error.code === 'EBADCSRFTOKEN') {
-      res.status(statusCode.FORBIDDEN);
-      res.send('Invalid CSRF token');
+      res.redirect('/generic-error');
     } else {
       next();
     }

@@ -134,6 +134,10 @@ module.exports = {
       errorList = filter(errorList, error => {
         return error.param === 'address';
       });
+    } else if (ctx.address && !ctx.addressLine0 && ctx.address[0] === '') {
+      errorList = filter(errorList, error => {
+        return error.param === 'addressLine0';
+      });
     } else if (ctx.validPostcode && ctx.addresses && ctx.selectAddressIndex === '-1') {
       errorList = filter(errorList, error => {
         return error.param === 'selectAddressIndex';

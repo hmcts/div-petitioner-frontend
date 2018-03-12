@@ -40,6 +40,8 @@ const nunjucksFilters = require('app/filters/nunjucks');
 
 const PORT = process.env.HTTP_PORT || CONF.http.port;
 
+const logger = logging.getLogger(__filename);
+
 exports.init = () => {
   const app = express();
 
@@ -133,6 +135,8 @@ exports.init = () => {
 
   app.use((error, req, res, next) => {
     if (error.code === 'EBADCSRFTOKEN') {
+      logger.error('csrf error has occurred');
+      logger.debug(error);
       res.redirect('/generic-error');
     } else {
       next();

@@ -1,4 +1,5 @@
 const { expect, sinon } = require('test/util/chai');
+const idam = require('app/services/idam');
 
 const modulePath = 'app/core/DestroySessionStep';
 const UnderTest = require(modulePath);
@@ -31,6 +32,18 @@ describe(modulePath, () => {
     expect(output.value)
       .to.be.fulfilled
       .and.notify(done);
+  });
+
+  it('returns logout middleware', () => {
+    const logoutStub = sinon.stub();
+    sinon.stub(idam, 'logout').returns(logoutStub);
+
+    // Act.
+    const output = step.middleware;
+    // Assert.
+    expect(output).to.eql([logoutStub]);
+
+    idam.logout.restore();
   });
 
   it('rejects if session destroy returns an error', done => {

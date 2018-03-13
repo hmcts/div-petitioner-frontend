@@ -25,6 +25,10 @@ module.exports = class AddressLookupStep extends ValidationStep {
       set(session, `${this.schemaScope}.selectAddressIndex`, ctx.selectAddressIndex);
     }
 
+    if (ctx.searchPostcode && ctx.searchPostcode !== 'false') {
+      unset(session, `${this.schemaScope}`);
+    }
+
     // save address type directly to session
 
     if (ctx.addressType) {

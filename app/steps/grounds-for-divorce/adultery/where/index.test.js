@@ -2,7 +2,8 @@
 const request = require('supertest');
 const {
   testContent, testErrors, testRedirect,
-  testCYATemplate, testExistenceCYA
+  testDisabledCYATemplate,
+  postData, expectSessionValue
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
@@ -52,16 +53,49 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required');
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page when user knows where', done => {
       const context = { reasonForDivorceAdulteryKnowWhere: 'Yes' };
 
       testRedirect(done, agent, underTest, context, s.steps.AdulteryWhen);
     });
 
-    it('redirects to the exit page', done => {
+    it('redirects to the next page when user does not know where', done => {
       const context = { reasonForDivorceAdulteryKnowWhere: 'No' };
 
       testRedirect(done, agent, underTest, context, s.steps.AdulteryWhen);
+    });
+  });
+
+  describe('setting details on session', () => {
+    beforeEach(done => {
+      const session = { divorceWho: 'wife', reasonForDivorceAdulteryWhereDetails: 'placeholder' };
+      withSession(done, agent, session);
+    });
+
+    it('does not modify where details when user knows where', done => {
+      const context = { reasonForDivorceAdulteryKnowWhere: 'Yes' };
+
+      postData(agent, underTest.url, context).then(
+        expectSessionValue(
+          'reasonForDivorceAdulteryWhereDetails',
+          'placeholder',
+          agent,
+          done
+        )
+      );
+    });
+
+    it('sets the know where details when user does not know where', done => {
+      const context = { reasonForDivorceAdulteryKnowWhere: 'No' };
+
+      postData(agent, underTest.url, context).then(
+        expectSessionValue(
+          'reasonForDivorceAdulteryWhereDetails',
+          'The applicant does not know where the adultery took place',
+          agent,
+          done
+        )
+      );
     });
   });
 
@@ -79,6 +113,8 @@ describe(modulePath, () => {
       expect(newSession.reasonForDivorceAdulteryWishToName).to.equal('No');
       expect(typeof newSession.reasonForDivorceAdulteryKnowWhere)
         .to.equal('undefined');
+      expect(typeof newSession.reasonForDivorceAdulteryWhereDetails)
+        .to.equal('undefined');
     });
 
     it('removes reasonForDivorceAdulteryKnowWhere if reasonForDivorceAdulteryWishToName is not defined', () => {
@@ -95,6 +131,8 @@ describe(modulePath, () => {
         .to.equal('undefined');
       expect(typeof newSession.reasonForDivorceAdulteryKnowWhere)
         .to.equal('undefined');
+      expect(typeof newSession.reasonForDivorceAdulteryWhereDetails)
+        .to.equal('undefined');
     });
 
     it('it does not remove reasonForDivorceAdulteryKnowWhere if reasonForDivorceAdulteryWishToName is set to Yes', () => {
@@ -110,23 +148,14 @@ describe(modulePath, () => {
       expect(newSession.reasonForDivorceAdulteryWishToName).to.equal('Yes');
       expect(newSession.reasonForDivorceAdulteryKnowWhere)
         .to.equal(previousSession.reasonForDivorceAdulteryKnowWhere);
+      expect(newSession.reasonForDivorceAdulteryWhereDetails)
+        .to.equal(previousSession.reasonForDivorceAdulteryWhereDetails);
     });
   });
 
   describe('Check Your Answers', () => {
-    it('renders the cya template', done => {
-      testCYATemplate(done, underTest);
-    });
-
-    it('renders adultery where details', done => {
-      const contentToExist = [ 'question' ];
-
-      const valuesToExist = ['reasonForDivorceAdulteryKnowWhere'];
-
-      const context = { reasonForDivorceAdulteryKnowWhere: 'Yes' };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
+    it('does not render the cya template', done => {
+      testDisabledCYATemplate(done, underTest);
     });
   });
 });

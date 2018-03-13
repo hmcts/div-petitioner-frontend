@@ -252,66 +252,6 @@ describe(modulePath, () => {
       expect(newSession.reasonForDivorceAdulteryWhereDetails)
         .to.equal(previousSession.reasonForDivorceAdulteryWhereDetails);
     });
-
-    it('removes reasonForDivorceAdulteryWhereDetails if reasonForDivorceAdulteryKnowWhere is set to no', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhere: 'Yes',
-        reasonForDivorceAdulteryWhereDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhere = 'No';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhere).to.equal('No');
-      expect(typeof newSession.reasonForDivorceAdulteryWhereDetails)
-        .to.equal('undefined');
-    });
-
-    it('does not remove reasonForDivorceAdulteryWhereDetails if reasonForDivorceAdulteryKnowWhere is set to yes', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhere: 'No',
-        reasonForDivorceAdulteryWhereDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhere = 'Yes';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhere).to.equal('Yes');
-      expect(newSession.reasonForDivorceAdulteryWhereDetails)
-        .to.equal(previousSession.reasonForDivorceAdulteryWhereDetails);
-    });
-
-    it('removes reasonForDivorceAdulteryWhenDetails if reasonForDivorceAdulteryKnowWhen is set to no', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhen: 'Yes',
-        reasonForDivorceAdulteryWhenDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhen = 'No';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhen).to.equal('No');
-      expect(typeof newSession.reasonForDivorceAdulteryWhenDetails)
-        .to.equal('undefined');
-    });
-
-    it('does not remove reasonForDivorceAdulteryWhenDetails if reasonForDivorceAdulteryKnowWhen is set to yes', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhen: 'No',
-        reasonForDivorceAdulteryWhenDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhen = 'Yes';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhen).to.equal('Yes');
-      expect(newSession.reasonForDivorceAdulteryWhenDetails)
-        .to.equal(previousSession.reasonForDivorceAdulteryWhenDetails);
-    });
   });
 
   describe('Check Your Answers', () => {

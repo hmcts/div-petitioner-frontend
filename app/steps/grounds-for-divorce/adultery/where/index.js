@@ -23,5 +23,24 @@ module.exports = class AdulteryWhere extends ValidationStep {
         remove('reasonForDivorceAdulteryKnowWhere');
       }
     });
+
+    watch('reasonForDivorceAdulteryKnowWhere', (previousSession, session, remove) => {
+      if (previousSession.reasonForDivorceAdulteryKnowWhere === 'No') {
+        remove('reasonForDivorceAdulteryWhereDetails');
+      }
+    });
+  }
+
+  action(ctx, session) {
+    if (ctx.reasonForDivorceAdulteryKnowWhere === 'No') {
+      session.reasonForDivorceAdulteryWhereDetails = 'The applicant does not know where the adultery took place';
+    }
+
+    return [ctx, session];
+  }
+
+  // disable check your answers
+  get checkYourAnswersTemplate() {
+    return false;
   }
 };

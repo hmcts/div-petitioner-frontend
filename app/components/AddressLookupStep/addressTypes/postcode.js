@@ -134,7 +134,7 @@ module.exports = {
       errorList = filter(errorList, error => {
         return error.param === 'address';
       });
-    } else if (ctx.address && !ctx.addressLine0 && ctx.address[0] === '') {
+    } else if (ctx.address && ctx.address[0] === '') {
       errorList = filter(errorList, error => {
         return error.param === 'addressLine0';
       });

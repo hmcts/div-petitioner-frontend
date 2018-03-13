@@ -2,7 +2,7 @@
 const request = require('supertest');
 const {
   testContent, testErrors, testRedirect,
-  testDisabledCYATemplate,
+  testCYATemplate, testExistenceCYA,
   postData, expectSessionValue
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
@@ -182,8 +182,19 @@ describe(modulePath, () => {
   });
 
   describe('Check Your Answers', () => {
-    it('does not renders the cya template', done => {
-      testDisabledCYATemplate(done, underTest);
+    it('renders the cya template', done => {
+      testCYATemplate(done, underTest);
+    });
+
+    it('renders adultery when details', done => {
+      const contentToExist = [ 'question' ];
+
+      const valuesToExist = ['reasonForDivorceAdulteryKnowWhen'];
+
+      const context = { reasonForDivorceAdulteryKnowWhen: 'Yes' };
+
+      testExistenceCYA(done, underTest, content,
+        contentToExist, valuesToExist, context);
     });
   });
 });

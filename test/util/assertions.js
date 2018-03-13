@@ -142,11 +142,6 @@ exports.testNoCYATemplate = (done, underTest) => {
   done();
 };
 
-exports.testDisabledCYATemplate = (done, underTest) => {
-  expect(underTest.checkYourAnswersTemplate).to.equal(false);
-  done();
-};
-
 exports.testExistenceCYA = (done, underTest, content, contentToExist = [], valuesToExist = [], data = {}, session = {}) => {
 
   const checkContentExists = html => {

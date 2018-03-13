@@ -273,6 +273,8 @@ describe(modulePath, () => {
       ];
 
       const context = {
+        reasonForDivorceAdulteryKnowWhen: 'Yes',
+        reasonForDivorceAdulteryKnowWhere: 'Yes',
         reasonForDivorceAdulteryWhereDetails: 'details where',
         reasonForDivorceAdulteryWhenDetails: 'details when',
         reasonForDivorceAdulteryDetails: 'details plain'
@@ -287,7 +289,10 @@ describe(modulePath, () => {
 
       const valuesToExist = ['reasonForDivorceAdulteryWhenDetails'];
 
-      const context = { reasonForDivorceAdulteryWhenDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryWhenDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhen: 'Yes'
+      };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);
@@ -298,7 +303,10 @@ describe(modulePath, () => {
 
       const valuesToExist = ['reasonForDivorceAdulteryWhereDetails'];
 
-      const context = { reasonForDivorceAdulteryWhereDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryWhereDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhere: 'Yes'
+      };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);
@@ -320,7 +328,11 @@ describe(modulePath, () => {
 
       const valuesToNotExist = ['reasonForDivorceAdulteryWhereDetails'];
 
-      const context = { reasonForDivorceAdulteryDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryDetails: 'details...',
+        reasonForDivorceAdulteryWhereDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhere: 'No'
+      };
 
       testNoneExistenceCYA(done, underTest, content,
         contentToNotExist, valuesToNotExist, context);
@@ -331,7 +343,11 @@ describe(modulePath, () => {
 
       const valuesToNotExist = ['reasonForDivorceAdulteryWhenDetails'];
 
-      const context = { reasonForDivorceAdulteryDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryDetails: 'details...',
+        reasonForDivorceAdulteryWhenDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhen: 'No'
+      };
 
       testNoneExistenceCYA(done, underTest, content,
         contentToNotExist, valuesToNotExist, context);

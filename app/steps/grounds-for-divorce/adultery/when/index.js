@@ -36,9 +36,4 @@ module.exports = class AdulteryWhen extends ValidationStep {
 
     return [ctx, session];
   }
-
-  // disable check your answers
-  get checkYourAnswersTemplate() {
-    return false;
-  }
 };

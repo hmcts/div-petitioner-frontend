@@ -36,13 +36,13 @@
     request "^2.81.0"
     request-promise-native "^1.0.4"
 
-"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#4.0.4":
-  version "4.0.4"
-  resolved "https://github.com/hmcts/div-pay-client#be1555624bea9d40fd993811d774b9f39d25b7f0"
+"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#5.0.0":
+  version "5.0.0"
+  resolved "https://github.com/hmcts/div-pay-client#dc10801e411cbce41e39beb099a0dde6386f8e4b"
   dependencies:
+    "@hmcts/nodejs-logging" "^1.4.2"
     request "^2.81.0"
     request-promise-native "^1.0.5"
-    uuid "^3.1.0"
 
 "@hmcts/div-service-auth-provider-client@https://github.com/hmcts/div-service-auth-provider-client#2.1.4":
   version "2.1.4"

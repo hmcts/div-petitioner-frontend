@@ -206,10 +206,23 @@ describe(modulePath, () => {
         it('redirects to the gov.uk payment page', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
+            .when('onlineSubmission', true, testCustom, agent, underTest, [], response => {
               // Assert.
               expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
               expect(response.header.location).to.equal('https://pay.the.gov/here');
+            }, 'post');
+          featureMock(done);
+        });
+      });
+
+      context('Case Id is missing', () => {
+        it('redirects to the generic error page', done => {
+          // Act.
+          const featureMock = featureTogglesMock
+            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
+              // Assert.
+              expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+              expect(response.header.location).to.equal('/generic-error');
             }, 'post');
           featureMock(done);
         });

@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
 const submission = require('app/services/submission');
+const CONF = require('config');
 
 const modulePath = 'app/steps/pay/pay-online-only';
 
@@ -22,6 +23,11 @@ let agent = {};
 let underTest = {};
 const two = 2;
 let cookies = [];
+const PENCE_PER_POUND = 100;
+const code = CONF.commonProps.applicationFee.code;
+const amount = parseInt(
+  CONF.commonProps.applicationFee.fee_amount
+) * PENCE_PER_POUND;
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -144,7 +150,9 @@ describe(modulePath, () => {
           const featureMock = featureTogglesMock
             .when('onlineSubmission', true, testCustom, agent, underTest, [], () => {
               // Assert.
-              expect(create.calledWith({}, 'token', session.caseId, siteId)).to.equal(true);
+              expect(code).to.not.eql(null);
+              expect(amount).to.not.eql(null);
+              expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
             }, 'post');
           featureMock(done);
         });

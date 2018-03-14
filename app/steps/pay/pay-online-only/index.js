@@ -66,11 +66,13 @@ module.exports = class PayOnline extends Step {
 
     // Fee properties below are hardcoded and obtained from config.
     // Eventually these values will be obtained from the fees-register.
-    const feeCode = CONF.commonProps.applicationFeeCode;
+    const feeCode = CONF.commonProps.applicationFee.code;
     const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
     // Amount is specified in pence.
     const PENCE_PER_POUND = 100;
-    const amount = parseInt(CONF.commonProps.applicationFee) * PENCE_PER_POUND;
+    const amount = parseInt(
+      CONF.commonProps.applicationFee.fee_amount
+    ) * PENCE_PER_POUND;
     const returnUrl = `${getBaseUrl()}${this.steps.CardPaymentStatus.url}`;
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);

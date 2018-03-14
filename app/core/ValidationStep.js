@@ -1,28 +1,24 @@
 const { filter, isEqual, map, mapValues, reduce, uniqWith } = require('lodash');
 const Ajv = require('ajv');
 const Step = require('./Step');
-const { protect } = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const fs = require('fs');
 
 const ajv = new Ajv({ allErrors: true, v5: true });
 
 module.exports = class ValidationStep extends Step {
   get middleware() {
-    const protectCall = protect();
-    const idamProtect = (req, res, next) => {
-      return features.idam ? protectCall(req, res, next) : next();
-    };
-
     return [
       idamProtect,
       initSession,
       sessionTimeout,
       restoreFromDraftStore,
+      setIdamUserDetails,
       hasSubmitted
     ];
   }

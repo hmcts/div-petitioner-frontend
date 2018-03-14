@@ -6,6 +6,11 @@ const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 const getBaseUrl = require('app/core/utils/baseUrl');
+const initSession = require('app/middleware/initSession');
+const sessionTimeout = require('app/middleware/sessionTimeout');
+const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 
 const jwt = require('jsonwebtoken');
 const statusCodes = require('http-status-codes');
@@ -24,7 +29,14 @@ module.exports = class PayOnline extends Step {
   }
 
   get middleware() {
-    return [applicationFeeMiddleware.updateApplicationFeeMiddleware];
+    return [
+      idamProtect,
+      initSession,
+      sessionTimeout,
+      restoreFromDraftStore,
+      setIdamUserDetails,
+      applicationFeeMiddleware.updateApplicationFeeMiddleware
+    ];
   }
 
   handler(req, res) {
@@ -45,11 +57,6 @@ module.exports = class PayOnline extends Step {
       return res.status(statusCodes.NOT_FOUND).send('Not Found');
     }
 
-    // Fail early if the request is not in the right format.
-    if (!cookies || !cookies['connect.sid']) {
-      return res.status(statusCodes.BAD_REQUEST).send('Bad request');
-    }
-
     req.session = req.session || {};
 
     // Some prerequisites. @todo extract these elsewhere?
@@ -57,7 +64,7 @@ module.exports = class PayOnline extends Step {
     let user = {};
 
     if (features.idam) {
-      authToken = req.cookies['__auth-token'];
+      authToken = cookies['__auth-token'];
       user = {
         id: jwt.decode(authToken).id,
         bearerToken: authToken

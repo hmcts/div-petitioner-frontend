@@ -177,6 +177,22 @@ describe(modulePath, () => {
       });
 
       context('payment creation was successful', () => {
+        let session = {}, siteId = '';
+
+        beforeEach(done => {
+          siteId = 'some-code';
+          session = {
+            caseId: 'some-case-id',
+            court: {
+              someCourt: { siteId },
+              someOtherCourt: { siteId: 'some-other-code' }
+            },
+            courts: 'someCourt'
+          };
+
+          withSession(done, agent, session);
+        });
+
         it('updates CCD with payment data', done => {
           // Act.
           const featureMock = featureTogglesMock

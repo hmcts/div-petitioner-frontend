@@ -76,6 +76,7 @@ module.exports = class PayOnline extends Step {
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
     if (!caseId) {
+      // console.log('Case Reference is missing');
       logger.error('Case Reference is missing');
       res.redirect('/generic-error');
     }

@@ -15,9 +15,10 @@ module.exports = class UploadMarriageCertificate extends ValidationStep {
   }
 
   get middleware() {
-    const middleware = super.middleware;
-    middleware.push(evidenceManagmentMiddleware.createHandler('marriageCertificateFiles'));
-    return middleware;
+    return [
+      ...super.middleware,
+      evidenceManagmentMiddleware.createHandler('marriageCertificateFiles')
+    ];
   }
 
   handler(req, res) {

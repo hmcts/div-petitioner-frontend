@@ -2,20 +2,26 @@ const jwt = require('jsonwebtoken');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const statusCodes = require('http-status-codes');
+const initSession = require('app/middleware/initSession');
+const sessionTimeout = require('app/middleware/sessionTimeout');
+const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 
 const Step = require('app/core/Step');
-const { protect } = require('app/services/idam');
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 
 module.exports = class CardPaymentStatus extends Step {
   get middleware() {
-    const idamProtect = (req, res, next) => {
-      return features.idam ? protect()(req, res, next) : next();
-    };
-
-    return [idamProtect];
+    return [
+      idamProtect,
+      initSession,
+      sessionTimeout,
+      restoreFromDraftStore,
+      setIdamUserDetails
+    ];
   }
 
   handler(req, res) {

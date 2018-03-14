@@ -380,7 +380,7 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
     let request = agent[method](underTest.url);
 
     if (cookies.length) {
-      request = request.set('Cookie', cookies);
+      request = request.set('Cookie', [request.cookies, ...cookies]);
     }
 
     return request

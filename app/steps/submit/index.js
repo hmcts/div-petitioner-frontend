@@ -1,18 +1,23 @@
 const statusCodes = require('http-status-codes');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
-
+const initSession = require('app/middleware/initSession');
+const sessionTimeout = require('app/middleware/sessionTimeout');
+const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const Step = require('app/core/Step');
-const { protect } = require('app/services/idam');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const submissionService = require('app/services/submission');
 
 module.exports = class Submit extends Step {
   get middleware() {
-    const idamProtect = (req, res, next) => {
-      return features.idam ? protect()(req, res, next) : next();
-    };
-
-    return [idamProtect];
+    return [
+      idamProtect,
+      initSession,
+      sessionTimeout,
+      restoreFromDraftStore,
+      setIdamUserDetails
+    ];
   }
 
   handler(req, res) {

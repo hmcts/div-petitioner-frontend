@@ -108,16 +108,6 @@ describe(modulePath, () => {
     });
 
     context('Online submission is turned ON', () => {
-      it('returns bad request on incorrect request format', done => {
-        // Act.
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testCustom, agent, underTest, ['empty'], response => {
-            // Assert.
-            expect(response.status).to.equal(statusCodes.BAD_REQUEST);
-          }, 'post');
-        featureMock(done);
-      });
-
       it('gets a service token before calling the payment service', done => {
         // Act.
         const featureMock = featureTogglesMock

@@ -107,11 +107,55 @@ describe(modulePath, () => {
       });
     });
 
+    context('Case Id is missing', () => {
+      let session = {}, siteId = '';
+
+      beforeEach(done => {
+        siteId = 'some-code';
+        session = {
+          court: {
+            someCourt: { siteId },
+            someOtherCourt: { siteId: 'some-other-code' }
+          },
+          courts: 'someCourt'
+        };
+
+        withSession(done, agent, session);
+      });
+      it('redirects to the generic error page', done => {
+        // Act.
+        const featureMock = featureTogglesMock
+          .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('/generic-error');
+            expect(serviceToken.setup.called).to.eql(false);
+          }, 'post');
+        featureMock(done);
+      });
+    });
+
     context('Online submission is turned ON', () => {
+      let session = {}, siteId = '';
+
+      beforeEach(done => {
+        siteId = 'some-code';
+        session = {
+          caseId: 'some-case-id',
+          court: {
+            someCourt: { siteId },
+            someOtherCourt: { siteId: 'some-other-code' }
+          },
+          courts: 'someCourt'
+        };
+
+        withSession(done, agent, session);
+      });
+
       it('gets a service token before calling the payment service', done => {
         // Act.
         const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testCustom, agent, underTest, [], () => {
+          .when('onlineSubmission', true, testCustom, agent, underTest, cookies, () => {
             // Assert.
             expect(getToken.calledBefore(create)).to.equal(true);
           }, 'post');
@@ -119,22 +163,6 @@ describe(modulePath, () => {
       });
 
       context('Court is selected', () => {
-        let session = {}, siteId = '';
-
-        beforeEach(done => {
-          siteId = 'some-code';
-          session = {
-            caseId: 'some-case-id',
-            court: {
-              someCourt: { siteId },
-              someOtherCourt: { siteId: 'some-other-code' }
-            },
-            courts: 'someCourt'
-          };
-
-          withSession(done, agent, session);
-        });
-
         it('creates payment with the site ID of the court', done => {
           // Act.
           const featureMock = featureTogglesMock

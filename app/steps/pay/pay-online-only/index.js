@@ -84,6 +84,11 @@ module.exports = class PayOnline extends Step {
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
+    if (!caseId) {
+      logger.error('Case ID is missing');
+      return res.redirect('/generic-error');
+    }
+
     // Initialise services.
     const serviceToken = serviceTokenService.setup();
     const payment = paymentService.setup();

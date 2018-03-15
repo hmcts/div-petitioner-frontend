@@ -8,7 +8,7 @@ function setIdamUserDetails(req, res, next) {
 
   const shouldUpdateEmail = !req.session.petitionerEmail && req.idam.userDetails.email;
   if (shouldUpdateEmail) {
-    req.session.petitionerEmail = req.idam.email;
+    req.session.petitionerEmail = req.idam.userDetails.email;
   }
 
   return next();

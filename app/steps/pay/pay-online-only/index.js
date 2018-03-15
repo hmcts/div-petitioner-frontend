@@ -86,7 +86,7 @@ module.exports = class PayOnline extends Step {
 
     if (!caseId) {
       logger.error('Case ID is missing');
-      res.redirect('/generic-error');
+      return res.redirect('/generic-error');
     }
 
     // Initialise services.

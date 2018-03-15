@@ -194,7 +194,7 @@ describe(modulePath, () => {
         it('updates CCD with payment data', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, () => {
+            .when('onlineSubmission', true, testCustom, agent, underTest, [], () => {
               // Assert.
               expect(update.calledOnce).to.equal(true);
             }, 'post');

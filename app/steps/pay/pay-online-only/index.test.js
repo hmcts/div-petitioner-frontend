@@ -194,7 +194,7 @@ describe(modulePath, () => {
         it('updates CCD with payment data', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, [], () => {
+            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, () => {
               // Assert.
               expect(update.calledOnce).to.equal(true);
             }, 'post');
@@ -204,7 +204,7 @@ describe(modulePath, () => {
         it('redirects to the gov.uk payment page', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, [], response => {
+            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
               // Assert.
               expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
               expect(response.header.location).to.equal('https://pay.the.gov/here');

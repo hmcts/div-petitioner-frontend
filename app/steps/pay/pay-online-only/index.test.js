@@ -129,6 +129,7 @@ describe(modulePath, () => {
             // Assert.
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
             expect(response.header.location).to.equal('/generic-error');
+            expect(serviceToken.setup.called).to.eql(false);
           }, 'post');
         featureMock(done);
       });

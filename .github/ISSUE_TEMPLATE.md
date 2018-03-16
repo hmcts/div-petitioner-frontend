@@ -1,6 +1,6 @@
 ## Bug reports and feature suggestions
 
-- [ ] I've read the guidelines for [Contributing to div-evidence-management-client-api](https://github.com/hmcts/div-evidence-management-client-api/.github/CONTRIBUTING.md)
+- [ ] I've read the guidelines for [Contributing](CONTRIBUTING.md)
 - [ ] This is not a personal support request
 
 ---

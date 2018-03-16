@@ -1,9 +1,37 @@
 const OptionStep = require('app/core/OptionStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
 const { watch } = require('app/core/staleDataManager');
-const { setConnections } = require('app/services/oJurisdiction/connections');
+const { applyConnections, clearProceedingSteps } = require('app/services/jurisdiction/connections');
+const { isEmpty, merge } = require('lodash');
 
-module.exports = class LastResort extends OptionStep {
+const cyaContent = require('app/services/jurisdiction/content.json');
+
+module.exports = class JurisdictionLastResort extends OptionStep {
+  constructor(...args) {
+    super(...args);
+
+    watch([
+      'jurisdictionPetitionerDomicile', 'jurisdictionRespondentDomicile',
+      'jurisdictionPetitionerResidence', 'jurisdictionRespondentResidence',
+      'jurisdictionLast6Months', 'jurisdictionLastHabitualResident',
+      'jurisdictionLastSixMonths', 'jurisdictionLastTwelveMonths'
+    ], (previousSession, session, remove) => {
+      remove('jurisdictionLastResortConnections');
+    });
+
+    watch([
+      'jurisdictionLast6Months',
+      'jurisdictionLast12Months',
+      'jurisdictionResidence',
+      'jurisdictionDomicile'
+    ], (previousSession, session, remove) => {
+      remove('jurisdictionLastResort');
+    });
+
+    // extend this pages content with the CYA content
+    merge(this.content, cyaContent);
+  }
+
   get url() {
     return '/jurisdiction/last-resort';
   }
@@ -18,20 +46,14 @@ module.exports = class LastResort extends OptionStep {
     };
   }
 
-  next(ctx) {
-    const lastResort = ctx.jurisdictionLastResort;
-    const hasLastResort = lastResort && lastResort.length > 0;
-    const nextStepLogicHelper = { isConnected: hasLastResort };
+  next(ctx, session) {
+    const nextStepLogicHelper = {
+      isConnected: !isEmpty(
+        session.jurisdictionConnection
+      )
+    };
 
     return super.next(nextStepLogicHelper);
-  }
-
-  constructor(...args) {
-    super(...args);
-
-    watch(['jurisdictionDomicile', 'jurisdictionResidence', 'jurisdictionLast6Months', 'jurisdictionLast12Months'], (previousSession, session, remove) => {
-      remove('jurisdictionLastResort');
-    });
   }
 
   handler(req, res) {
@@ -39,13 +61,15 @@ module.exports = class LastResort extends OptionStep {
   }
 
   action(ctx, session) {
-    if (!session.jurisdictionPath) {
-      session.jurisdictionPath = [];
-    }
+    clearProceedingSteps(session, this);
 
-    session.jurisdictionPath.push(this.name);
-    setConnections(ctx, session, this);
+    applyConnections(this.name, ctx, session);
 
     return [ctx, session];
+  }
+
+  checkYourAnswersInterceptor(ctx/* , session*/) {
+    ctx.changeLink = true;
+    return ctx;
   }
 };

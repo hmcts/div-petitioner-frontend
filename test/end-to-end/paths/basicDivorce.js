@@ -23,18 +23,8 @@ Scenario('Get a divorce', function*(I) {
 
   (foreignMarriageCerts) ? I.selectMarriedInUk(): I.selectCountryWhereMarried();
 
-  const jurisdiction = yield I.getFeatureEnabled('jurisdiction');
-  const newJurisdiction = yield I.getFeatureEnabled('newJurisdiction');
-  if (jurisdiction) {
-    I.chooseJurisdictionResidence();
-    I.chooseJurisdictionDomicile();
-    I.chooseJurisdictionLast12Months();
-    I.chooseJurisdictionLast6Months();
-    I.chooseJurisdictionLastResort(true);
-  } else if (newJurisdiction) {
-    I.chooseBothHabituallyResident();
-    I.chooseJurisdictionInterstitialContinue();
-  }
+  I.chooseBothHabituallyResident();
+  I.chooseJurisdictionInterstitialContinue();
 
   I.enterPeConfidentialContactDetails();
   I.enterPetitionerAndRespondentNames();

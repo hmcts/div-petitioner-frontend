@@ -1,8 +1,10 @@
 <tr>
-  <th>{{ content.question | safe }}</th>
-  <td>{{ content[fields.jurisdictionDomicile.value] | safe }}</td>
+  <th>{{ content.petitioner | safe }}</th>
+  <td>{{ fields.jurisdictionPetitionerDomicile.value }}</td>
   <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
-{%- if session.jurisdictionPath and session.jurisdictionPath | last === 'JurisdictionDomicile' -%}
-  {% include "app/services/oJurisdiction/legalCheckYourAnswersTemplate.html" %}
-{%- endif -%}
+<tr>
+  <th>{{ content.respondent | safe }}</th>
+  <td>{{ fields.jurisdictionRespondentDomicile.value }}</td>
+  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

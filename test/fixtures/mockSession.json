@@ -181,9 +181,9 @@
     "JurisdictionHabitualResidence",
     "JurisdictionInterstitial",
     "JurisdictionDomicile",
-    "JurisdictionLast12Months",
-    "JurisdictionLast6Months",
-    "LastResort"
+    "JurisdictionLastTwelveMonths",
+    "JurisdictionLastSixMonths",
+    "JurisdictionLastResort"
   ],
   "jurisdictionLastResort": [
     "bothResident",

@@ -19,7 +19,7 @@ client.on('error', error => {
   logger.error(error);
 });
 
-router.get('/healthcheck', healthcheck.configure({
+router.get('/health', healthcheck.configure({
   checks: {
     redis: healthcheck.raw(() => {
       return client.ping().then(_ => {

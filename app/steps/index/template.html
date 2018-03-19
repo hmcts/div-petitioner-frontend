@@ -100,20 +100,11 @@
         </p>
 
         <ul class="list list-bullet">
-
-        {%- if features.onlineSubmission === false -%}
-
-          <li>{{content.havePrinter | safe}}</li>
-        {%- endif -%}
-
-        {% if not features.foreignMarriageCerts %}
-
-            <li>{{content.marriedInEngland | safe}}</li>
-        {% endif %}
+            {%- if features.onlineSubmission === false -%}
+                <li>{{content.havePrinter | safe}}</li>
+            {%- endif -%}
             <li>{{content.originalMarriageCertificate | safe}}</li>
-        {% if features.foreignMarriageCerts %}
             <li>{{content.englishTranslation | safe}}</li>
-        {% endif %}
             <li>{{content.respondentAddress | safe}}</li>
             <li>{{content.nameChange | safe}}</li>
             <li>{{content.onlyOneGround | safe}}</li>

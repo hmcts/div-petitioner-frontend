@@ -114,9 +114,7 @@ Scenario('Deserted without agreement', function*(I) {
   I.selectDivorceType();
   I.enterMarriageDate();
 
-  const foreignMarriageCerts = yield I.getFeatureEnabled('foreignMarriageCerts');
-
-  (foreignMarriageCerts) ? I.selectMarriedInUk(): I.selectCountryWhereMarried();
+  I.selectMarriedInUk();
 
   I.chooseBothHabituallyResident();
   I.chooseJurisdictionInterstitialContinue();

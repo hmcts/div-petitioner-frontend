@@ -133,32 +133,14 @@ describe(modulePath, () => {
         s.steps.ExitMarriageDate);
     });
 
-    it('redirects to the next page for foreignMarriageCerts enabled', done => {
+    it('redirects to the next page', done => {
       const context = {
         marriageDateDay: '01',
         marriageDateMonth: '01',
         marriageDateYear: '2000'
       };
 
-      const nextStep = s.steps.MarriedInUk;
-
-      const featureMock = featureTogglesMock.when('foreignMarriageCerts', true, testRedirect, agent, stepUnderTest, context, nextStep);
-
-      featureMock(done);
-    });
-
-    it('redirects to the next page for foreignMarriageCerts disabled', done => {
-      const context = {
-        marriageDateDay: '01',
-        marriageDateMonth: '01',
-        marriageDateYear: '2000'
-      };
-
-      const nextStep = s.steps.WhereMarried;
-
-      const featureMock = featureTogglesMock.when('foreignMarriageCerts', false, testRedirect, agent, stepUnderTest, context, nextStep);
-
-      featureMock(done);
+      testRedirect(done, agent, stepUnderTest, context, s.steps.MarriedInUk);
     });
   });
 

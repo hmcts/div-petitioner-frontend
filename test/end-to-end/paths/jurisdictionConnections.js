@@ -1,5 +1,3 @@
-const co = require('co');
-
 Feature('New Jurisdiction Journeys');
 
 Before((I) => {
@@ -21,12 +19,7 @@ Before((I) => {
     I.selectHelpWithFees(false);
     I.selectDivorceType();
     I.enterMarriageDate();
-  });
-
-  co(function* generator() {
-    const foreignMarriageCerts = yield I.getFeatureEnabled('foreignMarriageCerts');
-
-    (foreignMarriageCerts) ? I.selectMarriedInUk(): I.selectCountryWhereMarried();
+    I.selectMarriedInUk();
   });
 });
 

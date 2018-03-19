@@ -18,17 +18,12 @@ describe(modulePath, () => {
     });
 
     it('should return success', done => {
-      //  note that the features (idam, foreignMarriageCerts, onlineSubmission) are hardcoded into the app.js
+      //  note that the features (idam, onlineSubmission) are hardcoded into the app.js
 
       const defaultToggles = {
         idam: {
           feature: 'idam',
           defaultState: CONF.features.idam,
-          origin: 'default config'
-        },
-        foreignMarriageCerts: {
-          feature: 'foreignMarriageCerts',
-          defaultState: CONF.features.foreignMarriageCerts,
           origin: 'default config'
         },
         onlineSubmission: {
@@ -67,11 +62,6 @@ describe(modulePath, () => {
           feature: 'idam',
           origin: 'process env'
         },
-        foreignMarriageCerts: {
-          defaultState: CONF.features.foreignMarriageCerts,
-          feature: 'foreignMarriageCerts',
-          origin: 'default config'
-        },
         onlineSubmission: {
           feature: 'onlineSubmission',
           defaultState: true,
@@ -107,11 +97,6 @@ describe(modulePath, () => {
           feature: 'idam',
           defaultState: false,
           origin: 'other'
-        },
-        foreignMarriageCerts: {
-          feature: 'foreignMarriageCerts',
-          defaultState: CONF.features.foreignMarriageCerts,
-          origin: 'default config'
         },
         onlineSubmission: {
           defaultState: true,

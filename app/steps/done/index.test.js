@@ -65,67 +65,35 @@ describe(modulePath, () => {
 
       const dataContent = { numberOfCopies: '4' };
 
-
-      if (features.foreignMarriageCerts) {
-        excludeKeys = [
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'westmidlandsEmail',
-          'westmidlandsPhone',
-          'westaddress1',
-          'westaddress2',
-          'westaddress3',
-          'westaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'proofOfName',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      } else {
-        excludeKeys = [
-          'englishTranslation',
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'westmidlandsEmail',
-          'westmidlandsPhone',
-          'westaddress1',
-          'westaddress2',
-          'westaddress3',
-          'westaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'proofOfName',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      }
+      excludeKeys = [
+        'englishTranslation',
+        'southwestPhone',
+        'southwestEmail',
+        'northwestPhone',
+        'northwestEmail',
+        'southwestaddress1',
+        'southwestaddress2',
+        'southwestaddress3',
+        'southwestaddress4',
+        'westmidlandsEmail',
+        'westmidlandsPhone',
+        'westaddress1',
+        'westaddress2',
+        'westaddress3',
+        'westaddress4',
+        'northaddress1',
+        'northaddress2',
+        'northaddress3',
+        'northaddress4',
+        'northaddress5',
+        'proofOfName',
+        'cheque',
+        'postDescriptionCheque',
+        'creditCard',
+        'courtCheckApp',
+        'startFinancialProceedings1',
+        'startFinancialProceedings2'
+      ];
 
       if (features.onlineSubmission) {
         excludeKeys.push(
@@ -179,64 +147,33 @@ describe(modulePath, () => {
       let excludeKeys = [];
       const dataContent = { numberOfCopies: '4' };
 
-      if (features.foreignMarriageCerts) {
-        excludeKeys = [
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      } else {
-        excludeKeys = [
-          'englishTranslation',
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      }
+      excludeKeys = [
+        'southwestPhone',
+        'southwestEmail',
+        'northwestPhone',
+        'northwestEmail',
+        'southwestaddress1',
+        'southwestaddress2',
+        'southwestaddress3',
+        'southwestaddress4',
+        'eastmidlandsPhone',
+        'eastmidlandsEmail',
+        'eastaddress1',
+        'eastaddress2',
+        'eastaddress3',
+        'eastaddress4',
+        'northaddress1',
+        'northaddress2',
+        'northaddress3',
+        'northaddress4',
+        'northaddress5',
+        'cheque',
+        'postDescriptionCheque',
+        'creditCard',
+        'courtCheckApp',
+        'startFinancialProceedings1',
+        'startFinancialProceedings2'
+      ];
 
       if (features.onlineSubmission) {
         excludeKeys.push(
@@ -291,62 +228,32 @@ describe(modulePath, () => {
 
       const dataContent = { numberOfCopies: '4' };
 
-      if (features.foreignMarriageCerts) {
-        excludeKeys = [
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      } else {
-        excludeKeys = [
-          'englishTranslation',
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      }
+      excludeKeys = [
+        'southwestPhone',
+        'southwestEmail',
+        'northwestPhone',
+        'northwestEmail',
+        'southwestaddress1',
+        'southwestaddress2',
+        'southwestaddress3',
+        'southwestaddress4',
+        'eastmidlandsPhone',
+        'eastmidlandsEmail',
+        'eastaddress1',
+        'eastaddress2',
+        'eastaddress3',
+        'eastaddress4',
+        'northaddress1',
+        'northaddress2',
+        'northaddress3',
+        'northaddress4',
+        'northaddress5',
+        'cheque',
+        'postDescriptionCheque',
+        'courtCheckApp',
+        'startFinancialProceedings1',
+        'startFinancialProceedings2'
+      ];
 
       if (features.onlineSubmission) {
         excludeKeys.push(
@@ -401,62 +308,32 @@ describe(modulePath, () => {
 
       const dataContent = { numberOfCopies: '4' };
 
-      if (features.foreignMarriageCerts) {
-        excludeKeys = [
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'creditCard',
-          'postDescriptionNoCheque',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      } else {
-        excludeKeys = [
-          'englishTranslation',
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'creditCard',
-          'postDescriptionNoCheque',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      }
+      excludeKeys = [
+        'southwestPhone',
+        'southwestEmail',
+        'northwestPhone',
+        'northwestEmail',
+        'southwestaddress1',
+        'southwestaddress2',
+        'southwestaddress3',
+        'southwestaddress4',
+        'eastmidlandsPhone',
+        'eastmidlandsEmail',
+        'eastaddress1',
+        'eastaddress2',
+        'eastaddress3',
+        'eastaddress4',
+        'northaddress1',
+        'northaddress2',
+        'northaddress3',
+        'northaddress4',
+        'northaddress5',
+        'creditCard',
+        'postDescriptionNoCheque',
+        'courtCheckApp',
+        'startFinancialProceedings1',
+        'startFinancialProceedings2'
+      ];
 
       if (features.onlineSubmission) {
         excludeKeys.push(
@@ -511,64 +388,33 @@ describe(modulePath, () => {
 
       const dataContent = { numberOfCopies: '4' };
 
-      if (features.foreignMarriageCerts) {
-        excludeKeys = [
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'consentOrder',
-          'settle'
-        ];
-      } else {
-        excludeKeys = [
-          'englishTranslation',
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'consentOrder',
-          'settle'
-        ];
-      }
+      excludeKeys = [
+        'southwestPhone',
+        'southwestEmail',
+        'northwestPhone',
+        'northwestEmail',
+        'southwestaddress1',
+        'southwestaddress2',
+        'southwestaddress3',
+        'southwestaddress4',
+        'eastmidlandsPhone',
+        'eastmidlandsEmail',
+        'eastaddress1',
+        'eastaddress2',
+        'eastaddress3',
+        'eastaddress4',
+        'northaddress1',
+        'northaddress2',
+        'northaddress3',
+        'northaddress4',
+        'northaddress5',
+        'cheque',
+        'postDescriptionCheque',
+        'creditCard',
+        'courtCheckApp',
+        'consentOrder',
+        'settle'
+      ];
 
       if (features.onlineSubmission) {
         excludeKeys.push(
@@ -623,64 +469,33 @@ describe(modulePath, () => {
 
       const dataContent = { numberOfCopies: '4' };
 
-      if (features.foreignMarriageCerts) {
-        excludeKeys = [
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      } else {
-        excludeKeys = [
-          'englishTranslation',
-          'southwestPhone',
-          'southwestEmail',
-          'northwestPhone',
-          'northwestEmail',
-          'southwestaddress1',
-          'southwestaddress2',
-          'southwestaddress3',
-          'southwestaddress4',
-          'eastmidlandsPhone',
-          'eastmidlandsEmail',
-          'eastaddress1',
-          'eastaddress2',
-          'eastaddress3',
-          'eastaddress4',
-          'northaddress1',
-          'northaddress2',
-          'northaddress3',
-          'northaddress4',
-          'northaddress5',
-          'cheque',
-          'postDescriptionCheque',
-          'creditCard',
-          'courtCheckApp',
-          'startFinancialProceedings1',
-          'startFinancialProceedings2'
-        ];
-      }
+      excludeKeys = [
+        'southwestPhone',
+        'southwestEmail',
+        'northwestPhone',
+        'northwestEmail',
+        'southwestaddress1',
+        'southwestaddress2',
+        'southwestaddress3',
+        'southwestaddress4',
+        'eastmidlandsPhone',
+        'eastmidlandsEmail',
+        'eastaddress1',
+        'eastaddress2',
+        'eastaddress3',
+        'eastaddress4',
+        'northaddress1',
+        'northaddress2',
+        'northaddress3',
+        'northaddress4',
+        'northaddress5',
+        'cheque',
+        'postDescriptionCheque',
+        'creditCard',
+        'courtCheckApp',
+        'startFinancialProceedings1',
+        'startFinancialProceedings2'
+      ];
 
       if (features.onlineSubmission) {
         excludeKeys.push(

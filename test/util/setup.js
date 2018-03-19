@@ -7,9 +7,10 @@ exports.withSession = (done, agent, data = {}) => {
     .then(function (res) {
 
       const tokens = new Tokens();
-      data['_csrf'] = tokens.create(res.body.csrfSecret);
+      const csrfToken = tokens.create(res.body.csrfSecret);
 
       agent.post('/session')
+        .set('X-CSRF-token', csrfToken)
         .send(data)
         .expect(200)
         .end(done);

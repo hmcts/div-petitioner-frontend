@@ -22,7 +22,8 @@ const createSession = (agent) => {
       agent.csrfToken = tokens.create(res.body.csrfSecret);
 
       return agent.post('/session')
-        .send({ expires: Date.now() + 10000, _csrf: agent.csrfToken })
+        .set('X-CSRF-token', agent.csrfToken)
+        .send({ expires: Date.now() + 10000 })
         .expect(200);
     });
 };
@@ -33,10 +34,9 @@ const getSession = (agent) => {
 };
 
 const postToUrl = (agent, url, data) => {
-  
-  data['_csrf'] = agent.csrfToken;
 
   return agent.post(url)
+    .set('X-CSRF-token', agent.csrfToken)
     .type('form')
     .send(data);
 };
@@ -380,7 +380,7 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
     let request = agent[method](underTest.url);
 
     if (method !== 'get') {
-      request.send({'_csrf': agent.csrfToken});
+      request.set('X-CSRF-token', agent.csrfToken);
     }
     
     return request
@@ -397,7 +397,7 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
     let request = agent[method](underTest.url);
     
     if (method !== 'get') {
-      request.send({'_csrf': agent.csrfToken});
+      request.set('X-CSRF-token', agent.csrfToken);
     }
 
     if (cookies.length) {

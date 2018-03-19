@@ -3,7 +3,6 @@ const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const evidenceManagmentService = require('app/services/evidenceManagmentService');
 const { map } = require('lodash');
 const fileManagment = require('app/services/fileManagement');
-const antiVirus = require('app/services/antiVirus');
 const errors = require('app/resources/errors');
 
 const getLatestSession = req => {
@@ -120,7 +119,6 @@ const createHandler = nameSpace => {
     case 'post':
       return validatePostRequest(req, nameSpace)
         .then(fileManagment.saveFileFromRequest)
-        .then(antiVirus.scan)
         .then(file => {
           return evidenceManagmentService.sendFile(file, { token });
         })

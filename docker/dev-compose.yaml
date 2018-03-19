@@ -45,21 +45,3 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
-
-  clamav-server:
-    image: mkodockx/docker-clamav
-    ports:
-      - "3310:3310"
-    expose:
-      - "3310"
-
-  clamav-rest:
-    image: lokori/clamav-rest
-    links:
-      - clamav-server
-    environment:
-      CLAMD_HOST: clamav-server
-    ports:
-      - "7310:8080"
-    expose:
-      - "7310"

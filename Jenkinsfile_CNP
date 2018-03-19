@@ -2,8 +2,8 @@
 
 @Library("Infrastructure")
 
-String product = "divorce"
-String component = "petitioner-frontend"
+String product = "div"
+String component = "frontend"
 
 List<LinkedHashMap<String, Object>> secrets = [
   secret('AatTestUserUsername', 'SMOKE_TEST_CITIZEN_USERNAME'),

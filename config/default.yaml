@@ -122,8 +122,6 @@ commonProps:
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:
-  jurisdiction: false
-  newJurisdiction: true
   idam: false
   foreignMarriageCerts: true
   onlineSubmission: true

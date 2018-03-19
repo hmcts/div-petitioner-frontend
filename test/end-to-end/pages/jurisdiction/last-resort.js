@@ -1,19 +1,16 @@
-function chooseJurisdictionLastResort(tick) {
+function chooseMyLastResortConnections(...connections) {
 
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/last-resort');
-  if (tick) {
 
-    I.checkOption('#oneOfResident');
-    I.checkOption('#petitionerResident');
-    I.checkOption('#petitionerResidentAndDomiciled');
-  }
+  connections.forEach((connection) => {
+    I.checkOption('#' + connection.toUpperCase());
+  });
+
   I.click('Continue');
-
-  if (!tick) {
-
-    I.seeCurrentUrlEquals('/exit/jurisdiction/last-resort');
-  }
 }
-module.exports = { chooseJurisdictionLastResort };
+
+module.exports = {
+  chooseMyLastResortConnections
+};

@@ -21,7 +21,7 @@ Scenario('Certificate in English ', function*(I) {
     I.selectMarriedElsewhere();
     I.selectMarriageCertificateInEnglish();
     I.enterCountryAndPlaceOfMarriage();
-    I.seeCurrentUrlEquals('/njurisdiction/habitual-residence');
+    I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
   } else {
     I.say('Feature disabled - skipping');
   }
@@ -48,7 +48,7 @@ Scenario('Certificate not English but with translation', function*(I) {
     I.selectMarriedElsewhere();
     I.selectMarriageCertificateNotEnglishWithTranslation();
     I.enterCountryAndPlaceOfMarriage();
-    I.seeCurrentUrlEquals('/njurisdiction/habitual-residence');
+    I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
   } else {
     I.say('Feature disabled - skipping');
   }

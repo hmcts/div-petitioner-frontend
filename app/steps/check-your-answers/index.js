@@ -52,7 +52,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     return [
       'about-your-marriage',
       'jurisdiction',
-      'njurisdiction',
       'petitioner-respondent',
       'about-divorce',
       'pay'

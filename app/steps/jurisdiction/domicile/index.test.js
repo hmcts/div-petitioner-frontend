@@ -1,11 +1,9 @@
 const request = require('supertest');
-const {
-  testContent, testCYATemplate, testExistenceCYA,
-  testErrors, testRedirect
-} = require('test/util/assertions');
+const { testContent, testErrors, postData, getSession, testCYATemplate, testExistenceCYA } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
+const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/jurisdiction/domicile';
 
@@ -34,11 +32,7 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = {
-        divorceWho: 'wife',
-        jurisdictionResidence: 'both',
-        jurisdictionDomicile: 'both'
-      };
+      session = { divorceWho: 'wife' };
       withSession(done, agent, session);
     });
 
@@ -51,182 +45,294 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = {
-        divorceWho: 'wife',
-        jurisdictionResidence: 'both'
-      };
+      session = { divorceWho: 'wife' };
       withSession(done, agent, session);
     });
 
-    it('renders errors for missing required context', done => {
+    it('renders errors for missing jurisdictionPetitionerDomicile context', done => {
       const context = {};
 
-      testErrors(done, agent, underTest, context, content, 'required');
+      testErrors(done, agent, underTest, context,
+        content, 'jurisdictionPetitionerDomicile.required', 'divorceWho');
+    });
+
+    it('renders errors for missing jurisdictionRespondentDomicile context', done => {
+      const context = { jurisdictionPetitionerDomicile: 'Yes' };
+
+      testErrors(done, agent, underTest, context,
+        content, 'jurisdictionRespondentDomicile.required', 'divorceWho');
     });
   });
 
-  describe('Domicile routing for habitual residence: both', () => {
+
+  describe('Given we have been to this page before and we previously obtained this connection', () => {
     let session = {};
 
     beforeEach(done => {
       session = {
         divorceWho: 'wife',
-        jurisdictionResidence: 'both',
-        jurisdictionPath: ['JurisdictionResidence']
+        jurisdictionConnection: ['F'],
+        jurisdictionPath: ['JurisdictionHabitualResidence', 'JurisdictionLastTwelveMonths']
       };
       withSession(done, agent, session);
     });
 
-
-    it('redirects to the next page for both domicile', done => {
-      const context = { jurisdictionDomicile: 'both' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
-    });
-
-    it('redirects to the next page for petitioner domicile', done => {
-      const context = { jurisdictionDomicile: 'petitioner' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
-    });
-
-    it('redirects to the next page for respondent domicile', done => {
-      const context = { jurisdictionDomicile: 'respondent' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
-    });
-
-    it('redirects to the next page for neither domicile', done => {
-      const context = { jurisdictionDomicile: 'neither' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
+    it('when both are Domiciled then we redirect to the interstitial page and we have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'Yes'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionInterstitial.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.include('F');
+        })
+        .then(done, done);
     });
   });
 
-  describe('Domicile routing for habitual residence: petitioner', () => {
+  describe('Given no prior connections', () => {
     let session = {};
 
     beforeEach(done => {
       session = {
         divorceWho: 'wife',
-        jurisdictionResidence: 'petitioner',
-        jurisdictionPath: ['JurisdictionResidence']
+        jurisdictionConnection: [],
+        jurisdictionPath: ['JurisdictionHabitualResidence'],
+        jurisdictionPetitionerResidence: 'No',
+        jurisdictionRespondentResidence: 'No'
       };
       withSession(done, agent, session);
     });
 
-
-    it('redirects to the next page for both domicile', done => {
-      const context = { jurisdictionDomicile: 'both' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
+    it('when both are Domiciled then we redirect to the interstitial page and we have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'Yes'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionInterstitial.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.include('F');
+        })
+        .then(done, done);
     });
 
-    it('redirects to the next page for petitioner domicile', done => {
-      const context = { jurisdictionDomicile: 'petitioner' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
+    it('when petitioner only is Domiciled then we redirect to the JurisdictionLastHabitualResidence page and we do not have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'No'
+      })
+        .then(location => {
+          expect(location)
+            .to.equal(s.steps.JurisdictionLastHabitualResidence.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.not.include('F');
+        })
+        .then(done, done);
     });
 
-    it('redirects to the next page for respondent domicile', done => {
-      const context = { jurisdictionDomicile: 'respondent' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
+    it('when respondent only is Domiciled then we redirect to the JurisdictionLastHabitualResidence page and we do not have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'No',
+        jurisdictionRespondentDomicile: 'Yes'
+      })
+        .then(location => {
+          expect(location)
+            .to.equal(s.steps.JurisdictionLastHabitualResidence.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.not.include('F');
+        })
+        .then(done, done);
     });
 
-    it('redirects to the next page for neither domicile', done => {
-      const context = { jurisdictionDomicile: 'neither' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.JurisdictionLast12Months);
+    it('when neither is Domiciled then we redirect to the JurisdictionLastHabitualResidence page and we do not have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'No',
+        jurisdictionRespondentDomicile: 'No'
+      })
+        .then(location => {
+          expect(location)
+            .to.equal(s.steps.JurisdictionLastHabitualResidence.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.not.include('F');
+        })
+        .then(done, done);
     });
   });
 
-  describe('Domicile routing for habitual residence: respondent', () => {
+  describe('Given a prior connection (respondent only is habitually resident) and petitioner is not habitually resident', () => {
     let session = {};
 
     beforeEach(done => {
       session = {
         divorceWho: 'wife',
-        jurisdictionResidence: 'respondent',
-        jurisdictionPath: ['JurisdictionResidence']
+        jurisdictionPetitionerResidence: 'No',
+        jurisdictionRespondentResidence: 'Yes',
+        jurisdictionConnection: ['C'],
+        jurisdictionPath: ['JurisdictionHabitualResidence']
       };
       withSession(done, agent, session);
     });
 
-
-    it('redirects to the next page for both domicile', done => {
-      const context = { jurisdictionDomicile: 'both' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerConfidential);
-    });
-
-    it('redirects to the next page for petitioner domicile', done => {
-      const context = { jurisdictionDomicile: 'petitioner' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerConfidential);
-    });
-
-    it('redirects to the next page for respondent domicile', done => {
-      const context = { jurisdictionDomicile: 'respondent' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerConfidential);
-    });
-
-    it('redirects to the next page for neither domicile', done => {
-      const context = { jurisdictionDomicile: 'neither' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerConfidential);
+    it('when both are Domiciled then we redirect to the JurisdictionLastHabitualResidence page and we have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'Yes'
+      })
+        .then(location => {
+          expect(location)
+            .to.equal(s.steps.JurisdictionLastHabitualResidence.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.include('F');
+        })
+        .then(done, done);
     });
   });
 
-  describe('Domicile routing for habitual residence: neither', () => {
+  describe('Given a prior connection (both habitually resident) and Petitioner has been habitually resident for less than 12 Months', () => {
     let session = {};
 
     beforeEach(done => {
       session = {
         divorceWho: 'wife',
-        jurisdictionResidence: 'neither',
-        jurisdictionPath: ['JurisdictionResidence']
+        jurisdictionPetitionerResidence: 'Yes',
+        jurisdictionRespondentResidence: 'Yes',
+        jurisdictionLastTwelveMonths: 'No',
+        jurisdictionConnection: ['A'],
+        jurisdictionPath: ['JurisdictionHabitualResidence', 'JurisdictionLastTwelveMonths']
       };
       withSession(done, agent, session);
     });
 
-
-    it('redirects to the next page for both domicile', done => {
-      const context = { jurisdictionDomicile: 'both' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerConfidential);
+    it('when both are Domiciled then we redirect to the 6 months habitually resident page and we have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'Yes'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionLastSixMonths.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.include('F');
+        })
+        .then(done, done);
     });
 
-    it('redirects to the next page for petitioner domicile', done => {
-      const context = { jurisdictionDomicile: 'petitioner' };
-
-      testRedirect(done, agent, underTest, context, s.steps.LastResort);
+    it('when petitioner only is Domiciled then we redirect to the 6 months habitually resident page and we do not have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'No'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionLastSixMonths.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.not.include('F');
+        })
+        .then(done, done);
     });
 
-    it('redirects to the next page for respondent domicile', done => {
-      const context = { jurisdictionDomicile: 'respondent' };
-
-      testRedirect(done, agent, underTest, context, s.steps.LastResort);
+    it('when respondent only is Domiciled then we redirect to the JurisdictionConnectionSummary page and we do not have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'No',
+        jurisdictionRespondentDomicile: 'Yes'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.not.include('F');
+        })
+        .then(done, done);
     });
 
-    it('redirects to the next page for neither domicile', done => {
-      const context = { jurisdictionDomicile: 'neither' };
+    it('when neither is Domiciled then we redirect to the JurisdictionConnectionSummary page and we do not have connection F', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerDomicile: 'No',
+        jurisdictionRespondentDomicile: 'No'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.not.include('F');
+        })
+        .then(done, done);
+    });
+  });
 
-      testRedirect(done, agent, underTest, context, s.steps.LastResort);
+  describe('Given a prior connection (both habitually resident) and Petitioner has been habitually resident for more than 12 Months', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        jurisdictionPetitionerResidence: 'Yes',
+        jurisdictionRespondentResidence: 'Yes',
+        jurisdictionLastTwelveMonths: 'Yes'
+      };
+      withSession(done, agent, session);
+    });
+
+    it('when both HR, >12 months, both Domicile', done => {
+      postData(agent, underTest.url, {
+        jurisdictionPetitionerResidence: 'Yes',
+        jurisdictionRespondentResidence: 'Yes',
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'Yes',
+        JurisdictionLastTwelveMonths: 'Yes'
+      })
+        .then(location => {
+          expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
+        })
+        .then(() => {
+          return getSession(agent);
+        })
+        .then(responseSession => {
+          expect(responseSession.jurisdictionConnection).to.include('A');
+          expect(responseSession.jurisdictionConnection).to.include('C');
+          expect(responseSession.jurisdictionConnection).to.include('D');
+          expect(responseSession.jurisdictionConnection).to.include('E');
+          expect(responseSession.jurisdictionConnection).to.include('F');
+        })
+        .then(done, done);
     });
   });
 
@@ -235,72 +341,26 @@ describe(modulePath, () => {
       testCYATemplate(done, underTest);
     });
 
-    it('renders jurisdiction domicile both', done => {
+    it('renders jurisdictionPetitionerDomicile and jurisdictionRespondentDomicile', done => {
       const contentToExist = [
-        'question',
-        'both'
-      ];
-
-      const valuesToExist = [];
-
-      const context = {
-        jurisdictionDomicile: 'both',
-        divorceWho: 'wife'
-      };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
-    });
-
-    it('renders jurisdiction domicile petitioner', done => {
-      const contentToExist = [
-        'question',
-        'petitioner'
-      ];
-
-      const valuesToExist = [];
-
-      const context = {
-        jurisdictionDomicile: 'petitioner',
-        divorceWho: 'wife'
-      };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
-    });
-
-    it('renders jurisdiction domicile respondent', done => {
-      const contentToExist = [
-        'question',
+        'petitioner',
         'respondent'
       ];
 
-      const valuesToExist = [];
-
-      const context = {
-        jurisdictionDomicile: 'respondent',
-        divorceWho: 'wife'
-      };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
-    });
-
-    it('renders jurisdiction domicile neither', done => {
-      const contentToExist = [
-        'question',
-        'neither'
+      const valuesToExist = [
+        'jurisdictionPetitionerDomicile',
+        'jurisdictionRespondentDomicile'
       ];
 
-      const valuesToExist = [];
-
       const context = {
-        jurisdictionDomicile: 'neither',
-        divorceWho: 'wife'
+        jurisdictionPetitionerDomicile: 'Yes',
+        jurisdictionRespondentDomicile: 'Yes'
       };
 
+      const session = { divorceWho: 'wife' };
+
       testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
+        contentToExist, valuesToExist, context, session);
     });
   });
 });

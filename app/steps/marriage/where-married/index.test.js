@@ -49,60 +49,18 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', [], session);
     });
 
-    it('redirects to the next page if england for old jurisdiction enabled', done => {
-      const context = { marriageWhereMarried: 'england' };
-
-      const nextStep = s.steps.JurisdictionResidence;
-
-      const featureMock = featureTogglesMock.when('jurisdiction', true, testRedirect, agent, underTest, context, nextStep);
-
-      featureMock(done);
-    });
-
     it('redirects to the next page if england for new jurisdiction enabled', done => {
       const context = { marriageWhereMarried: 'england' };
 
-      const nextStep = s.steps.JurisdictionHabitualResidence;
-
-      const featureMock = featureTogglesMock.when('newJurisdiction', true, testRedirect, agent, underTest, context, nextStep);
-
-      featureMock(done);
-    });
-
-    it('redirects to the next page if england for no jurisdiction toggles enabled', done => {
-      const context = { marriageWhereMarried: 'england' };
-
-      const nextStep = s.steps.PetitionerConfidential;
-
-      testRedirect(done, agent, underTest, context, nextStep);
-    });
-
-    it('redirects to the next page if wales for old jurisdiction enabled', done => {
-      const context = { marriageWhereMarried: 'wales' };
-
-      const nextStep = s.steps.JurisdictionResidence;
-
-      const featureMock = featureTogglesMock.when('jurisdiction', true, testRedirect, agent, underTest, context, nextStep);
-
-      featureMock(done);
+      testRedirect(done, agent, underTest, context,
+        s.steps.JurisdictionHabitualResidence);
     });
 
     it('redirects to the next page if wales for new jurisdiction enabled', done => {
       const context = { marriageWhereMarried: 'wales' };
 
-      const nextStep = s.steps.JurisdictionHabitualResidence;
-
-      const featureMock = featureTogglesMock.when('newJurisdiction', true, testRedirect, agent, underTest, context, nextStep);
-
-      featureMock(done);
-    });
-
-    it('redirects to the next page if wales for no jurisdiction toggles enabled', done => {
-      const context = { marriageWhereMarried: 'wales' };
-
-      const nextStep = s.steps.PetitionerConfidential;
-
-      testRedirect(done, agent, underTest, context, nextStep);
+      testRedirect(done, agent, underTest, context,
+        s.steps.JurisdictionHabitualResidence);
     });
 
     it('redirects to the exit page', done => {

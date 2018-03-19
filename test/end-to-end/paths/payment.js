@@ -47,19 +47,8 @@ Scenario('Cheque payment', function* (I) {
     I.enterMarriageDate();
     I.selectMarriedInUk();
 
-    const jurisdiction = yield I.getFeatureEnabled('jurisdiction');
-    const newJurisdiction = yield I.getFeatureEnabled('newJurisdiction');
-    if (jurisdiction) {
-      I.chooseJurisdictionResidence();
-      I.chooseJurisdictionDomicile();
-      I.chooseJurisdictionLast12Months();
-      I.chooseJurisdictionLast6Months();
-      I.chooseJurisdictionLastResort(true);
-    }
-    else if (newJurisdiction) {
-      I.chooseBothHabituallyResident();
-      I.chooseJurisdictionInterstitialContinue();
-    }
+    I.chooseBothHabituallyResident();
+    I.chooseJurisdictionInterstitialContinue();
 
     I.enterPeConfidentialContactDetails();
     I.enterPetitionerAndRespondentNames();
@@ -102,19 +91,8 @@ Scenario('Card payment online', function* (I) {
     I.enterMarriageDate();
     I.selectMarriedInUk();
 
-    const jurisdiction = yield I.getFeatureEnabled('jurisdiction');
-    const newJurisdiction = yield I.getFeatureEnabled('newJurisdiction');
-    if (jurisdiction) {
-      I.chooseJurisdictionResidence();
-      I.chooseJurisdictionDomicile();
-      I.chooseJurisdictionLast12Months();
-      I.chooseJurisdictionLast6Months();
-      I.chooseJurisdictionLastResort(true);
-    }
-    else if (newJurisdiction) {
-      I.chooseBothHabituallyResident();
-      I.chooseJurisdictionInterstitialContinue();
-    }
+    I.chooseBothHabituallyResident();
+    I.chooseJurisdictionInterstitialContinue();
 
     I.enterPeConfidentialContactDetails();
     I.enterPetitionerAndRespondentNames();
@@ -162,19 +140,8 @@ Scenario('Card payment online failure', function* (I) {
     I.enterMarriageDate();
     I.selectMarriedInUk();
 
-    const jurisdiction = yield I.getFeatureEnabled('jurisdiction');
-    const newJurisdiction = yield I.getFeatureEnabled('newJurisdiction');
-    if (jurisdiction) {
-      I.chooseJurisdictionResidence();
-      I.chooseJurisdictionDomicile();
-      I.chooseJurisdictionLast12Months();
-      I.chooseJurisdictionLast6Months();
-      I.chooseJurisdictionLastResort(true);
-    }
-    else if (newJurisdiction) {
-      I.chooseBothHabituallyResident();
-      I.chooseJurisdictionInterstitialContinue();
-    }
+    I.chooseBothHabituallyResident();
+    I.chooseJurisdictionInterstitialContinue();
 
     I.enterPeConfidentialContactDetails();
     I.enterPetitionerAndRespondentNames();
@@ -229,19 +196,8 @@ Scenario('Card payment online cancellation with retry', function* (I) {
     I.enterMarriageDate();
     I.selectMarriedInUk();
 
-    const jurisdiction = yield I.getFeatureEnabled('jurisdiction');
-    const newJurisdiction = yield I.getFeatureEnabled('newJurisdiction');
-    if (jurisdiction) {
-      I.chooseJurisdictionResidence();
-      I.chooseJurisdictionDomicile();
-      I.chooseJurisdictionLast12Months();
-      I.chooseJurisdictionLast6Months();
-      I.chooseJurisdictionLastResort(true);
-    }
-    else if (newJurisdiction) {
-      I.chooseBothHabituallyResident();
-      I.chooseJurisdictionInterstitialContinue();
-    }
+    I.chooseBothHabituallyResident();
+    I.chooseJurisdictionInterstitialContinue();
 
     I.enterPeConfidentialContactDetails();
     I.enterPetitionerAndRespondentNames();

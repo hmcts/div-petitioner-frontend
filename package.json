@@ -72,7 +72,6 @@
     "grunt-eslint": "^19.0.0",
     "grunt-nodemon": "0.4.2",
     "grunt-nsp": "^2.3.1",
-    "grunt-sass": "^1.1.0",
     "grunt-sync": "^0.6.2",
     "grunt-webpack": "^2.0.1",
     "helmet": "^3.6.0",

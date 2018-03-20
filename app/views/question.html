@@ -36,6 +36,7 @@
             <form method="POST" accept-charset="utf-8" class="form" id="form"
                   enctype="{% block encoding %}application/x-www-form-urlencoded{% endblock %}"
                   autocomplete="off">
+                  <input type="hidden" name="_csrf" value="{{csrfToken}}">
                 {% block form %}{% endblock %}
                 {% block submitbutton %}
                 <div class="form-group">

@@ -27,18 +27,6 @@ module.exports = class AdulteryDetails extends ValidationStep {
         );
       }
     });
-
-    watch('reasonForDivorceAdulteryKnowWhen', (previousSession, session, remove) => {
-      if (session.reasonForDivorceAdulteryKnowWhen !== 'Yes') {
-        remove('reasonForDivorceAdulteryWhenDetails');
-      }
-    });
-
-    watch('reasonForDivorceAdulteryKnowWhere', (previousSession, session, remove) => {
-      if (session.reasonForDivorceAdulteryKnowWhere !== 'Yes') {
-        remove('reasonForDivorceAdulteryWhereDetails');
-      }
-    });
   }
 
   * validate(ctx, session) {

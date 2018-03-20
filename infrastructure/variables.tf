@@ -1,7 +1,7 @@
 // Infrastructural variables
 
 variable "product" {
-  default = "divorce"
+  default = "div"
 }
 
 variable "microservice" {

@@ -13,7 +13,7 @@ variable "location" {
 }
 
 variable "env" {
-  default = "test"
+  default = "sandbox"
 }
 
 variable "ilbIp" { }

@@ -24,7 +24,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 
-withParameterizedPipeline('nodejs', 'divorce', 'petitioner-frontend', params.ENVIRONMENT, 'sandbox') {
+withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
   after('build') {
     sh 'yarn setup'
   }

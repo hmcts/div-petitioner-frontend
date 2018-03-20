@@ -3,7 +3,7 @@ const runStepHandler = require('app/core/handler/runStepHandler');
 
 module.exports = class SubmittedError extends Page {
   get url() {
-    return '/error-application-submitted';
+    return '/application-submitted';
   }
 
   get nextStep() {

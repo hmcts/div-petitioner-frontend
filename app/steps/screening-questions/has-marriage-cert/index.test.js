@@ -6,7 +6,6 @@ const featureTogglesMock = require('test/mocks/featureToggles');
 
 const modulePath = 'app/steps/screening-questions/has-marriage-cert';
 const content = require(`${modulePath}/content`);
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const { withSession } = require('test/util/setup');
 
 let s = {};
@@ -34,12 +33,7 @@ describe(modulePath, () => {
     it('renders the content from the content file', done => {
       withSession(() => {}, agent); // eslint-disable-line no-empty-function
 
-      if (features.foreignMarriageCerts) {
-        testContent(done, agent, underTest, content);
-      } else {
-        testContent(done, agent, underTest, content,
-          {}, ['certificateTranslation']);
-      }
+      testContent(done, agent, underTest, content);
     });
 
     it('renders errors for missing required context', done => {

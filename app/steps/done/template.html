@@ -42,9 +42,7 @@
       </p>
       <ul class="list list-bullet">
         <li>{{content.certified | safe}}</li>
-        {% if features.foreignMarriageCerts %}
         <li>{{content.englishTranslation | safe}}</li>
-        {% endif %}
         {% if (session.petitionerNameChangedHow and (session.petitionerNameChangedHow.indexOf('deedPoll') > -1 or session.petitionerNameChangedHow.indexOf('other') > -1) ) %}
           <li>{{content.proofOfName | safe}}</li>
         {% endif %}

@@ -139,7 +139,6 @@ exports.init = () => {
   app.use(fetchToggles({
     features: [
       feature('idam'),
-      feature('foreignMarriageCerts'),
       feature('onlineSubmission')
     ]
   }));

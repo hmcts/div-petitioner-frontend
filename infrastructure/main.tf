@@ -47,7 +47,7 @@ module "petitioner-frontend" {
     // Node specific vars
     NODE_ENV = "${var.node_env}"
     UV_THREADPOOL_SIZE = "64"
-    NODE_CONFIG_DIR = "${var.node_config_directory}"
+    NODE_CONFIG_DIR = "${var.node_config_dir}"
 	
 	  // Logging vars
     REFORM_TEAM = "${var.product}"
@@ -78,13 +78,13 @@ module "petitioner-frontend" {
 	  IDAM_APP_HEALHCHECK_URL ="${var.idam_api_url}${var.status_health_endpoint}"
     IDAM_LOGIN_URL = "${var.idam_authentication_web_url}${var.idam_authentication_login_endpoint}"
     IDAM_AUTHENTICATION_HEALHCHECK_URL = "${var.idam_authentication_web_url}${var.health_endpoint}"
-    IDAM_SECRET = "${data.vault_generic_secret.idam_secret["value"]}"
+    IDAM_SECRET = "${data.vault_generic_secret.idam_secret.data["value"]}"
 	
 	  // Service Auth
     SERVICE_AUTH_PROVIDER_URL = "${var.service_auth_provider_url}"
-    SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${var.service_auth_provider_healthcheck_url}${var.health_endpoint}"
+    SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${var.service_auth_provider_url}${var.health_endpoint}"
     MICROSERVICE_NAME = "${var.s2s_microservice_name}"
-    MICROSERVICE_KEY = "${data.vault_generic_secret.frontend_secret["value"]}"
+    MICROSERVICE_KEY = "${data.vault_generic_secret.frontend_secret.data["value"]}"
 
     // Payments API
     PAYMENT_SERVICE_URL = "${var.payments_api_url}"
@@ -106,15 +106,15 @@ module "petitioner-frontend" {
 
     // Post code Lookup
     POST_CODE_URL ="${var.post_code_url}"
-    //POST_CODE_ACCESS_TOKEN = "${data.vault_generic_secret.post_code_token["value"]}"
+    POST_CODE_ACCESS_TOKEN = "${data.vault_generic_secret.post_code_token.data["value"]}"
 
     // Redis Cloud
     REDISCLOUD_URL = "${var.divorce_redis_url}"
     USE_AUTH = "${var.use_auth}"
 
     // Encryption secrets
-    SECRET ="${data.vault_generic_secret.session_secret["value"]}"
-    SESSION_ENCRYPTION_SECRET = "${data.vault_generic_secret.redis_secret["value"]}"
+    SECRET ="${data.vault_generic_secret.session_secret.data["value"]}"
+    SESSION_ENCRYPTION_SECRET = "${data.vault_generic_secret.redis_secret.data["value"]}"
 	
     // Evidence Management Client API
     EVIDENCE_MANAGEMENT_CLIENT_API_URL="${var.evidence_management_client_api_url}"

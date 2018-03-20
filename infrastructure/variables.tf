@@ -1,7 +1,7 @@
 // Infrastructural variables
 
 variable "product" {
-  default = "divorce"
+  default = "div"
 }
 
 variable "microservice" {
@@ -13,7 +13,7 @@ variable "location" {
 }
 
 variable "env" {
-  default = "test"
+  default = "sandbox"
 }
 
 variable "ilbIp" { }

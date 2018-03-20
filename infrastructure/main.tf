@@ -32,7 +32,7 @@ locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 }
 
-module "petitioner-frontend" {
+module "frontend" {
   source = "git@github.com:contino/moj-module-webapp.git"
   product = "${var.product}-${var.microservice}"
   location = "${var.location}"
@@ -201,6 +201,6 @@ module "petitioner-frontend-vault" {
   env                 = "${var.env}"
   tenant_id           = "${var.tenant_id}"
   object_id           = "${var.jenkins_AAD_objectId}"
-  resource_group_name = "${module.petitioner-frontend.resource_group_name}"
+  resource_group_name = "${module.frontend.resource_group_name}"
   product_group_object_id = "68839600-92da-4862-bb24-1259814d1384"
 }

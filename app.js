@@ -154,12 +154,7 @@ exports.init = () => {
     };
   };
 
-  app.use(fetchToggles({
-    features: [
-      feature('idam'),
-      feature('onlineSubmission')
-    ]
-  }));
+  app.use(fetchToggles({ features: [ feature('idam') ] }));
 
   app.use(healthcheck);
   app.use(featureToggleList);

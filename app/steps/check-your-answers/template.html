@@ -121,13 +121,7 @@
                 {{ content.dontNavigateAwayNotAppliedForFees | safe }} {{ content.dontNavigateAway | safe}}
               {%- endif -%}
             </p>
-              <input id="confirmCheckYourAnswers" type="submit" class="button" value="
-             {%- if features.onlineSubmission -%}
-               {{ content.submitOnline }}
-             {%- else -%}
-               {{ content.submit }}
-             {%- endif -%}
-              ">
+              <input id="confirmCheckYourAnswers" type="submit" class="button" value="{{ content.submitOnline }}">
           </div>
       </form>
 

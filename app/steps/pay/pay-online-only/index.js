@@ -13,7 +13,6 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 
 const jwt = require('jsonwebtoken');
-const statusCodes = require('http-status-codes');
 const CONF = require('config');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const get = require('lodash/get');
@@ -54,11 +53,6 @@ module.exports = class PayOnline extends Step {
 
     if (isGetRequest || hasBeenPostedWithoutSubmitButton) {
       return runStepHandler(this, req, res);
-    }
-
-    // This step does not exist if online submission is not enabled.
-    if (!features.onlineSubmission) {
-      return res.status(statusCodes.NOT_FOUND).send('Not Found');
     }
 
     req.session = req.session || {};

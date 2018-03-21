@@ -2,7 +2,6 @@ const { cloneDeep, get, reduce, groupBy } = require('lodash');
 const ValidationStep = require('app/core/ValidationStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
 const nunjucks = require('nunjucks');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const CONF = require('config');
 
@@ -18,7 +17,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   get nextStep() {
-    return features.onlineSubmission ? this.steps.Submit : this.steps.Done;
+    return this.steps.Submit;
   }
 
   * interceptor(ctx, session) {

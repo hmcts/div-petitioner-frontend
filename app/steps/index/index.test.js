@@ -10,8 +10,6 @@ const content = require(`${modulePath}/content`);
 const featureTogglesMock = require('test/mocks/featureToggles');
 const { withSession } = require('test/util/setup');
 
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
-
 let s = {};
 let agent = {};
 let underTest = {};
@@ -48,34 +46,7 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['marriedInEngland'];
-
-      if (features.onlineSubmission) {
-        excludeKeys.push(
-          'needToSend',
-          'fillInOnline',
-          'thisService',
-          'onlySave',
-          'checkIf',
-          'youCanUse',
-          'havePrinter',
-          'alsoApply',
-          'youCan',
-          'creditCard',
-          'cheque'
-        );
-      } else {
-        excludeKeys.push(
-          'checkIfApplyOnline',
-          'youCanUseApplyOnline',
-          'needToSendApplyOnline',
-          'alsoApplyApplyOnline',
-          'chequeOnline',
-          'needToPayOnline'
-        );
-      }
-
-      testContent(done, agent, underTest, content, {}, excludeKeys);
+      testContent(done, agent, underTest, content);
     });
 
     it('redirects to the next page', done => {

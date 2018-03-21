@@ -123,7 +123,6 @@ commonProps:
 
 features:
   idam: false
-  onlineSubmission: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

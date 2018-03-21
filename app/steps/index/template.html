@@ -58,29 +58,8 @@
             {{content.divorceTime | safe}}
         </p>
 
-        {% if features.onlineSubmission === false -%}
-
-        <h2 class="heading-medium">{{content.fillInOnline | safe}}</h2>
-
-        <p class="text">
-            {{content.thisService | safe}}
-        </p>
-
-        <p class="text">
-            {{content.onlySave | safe}}
-        </p>
-        {%- endif %}
-
         <h2 class="heading-medium">
-        {% if features.onlineSubmission %}
-
           {{content.checkIfApplyOnline | safe}}
-
-        {% else %}
-
-          {{content.checkIf | safe}}
-
-        {% endif %}
         </h2>
 
         <p class="text">
@@ -88,21 +67,10 @@
         </p>
 
         <p class="text">
-            {%- if features.onlineSubmission %}
-
-              {{content.youCanUseApplyOnline | safe}}
-
-            {% else %}
-
-              {{content.youCanUse | safe}}
-
-            {% endif -%}
+            {{content.youCanUseApplyOnline | safe}}
         </p>
 
         <ul class="list list-bullet">
-            {%- if features.onlineSubmission === false -%}
-                <li>{{content.havePrinter | safe}}</li>
-            {%- endif -%}
             <li>{{content.originalMarriageCertificate | safe}}</li>
             <li>{{content.englishTranslation | safe}}</li>
             <li>{{content.respondentAddress | safe}}</li>
@@ -110,42 +78,18 @@
             <li>{{content.onlyOneGround | safe}}</li>
         </ul>
 
-
-        {%- if features.onlineSubmission === false -%}
-             <p class="text">
-                 {{content.alsoApply | safe}}
-             </p>
-             <p class="text">
-                 {{content.needToSend | safe}}
-             </p>
-         {%- endif -%}
-
-
-        {%- if features.onlineSubmission -%}
-            <p class="text">
-                {{content.needToSendApplyOnline | safe}}
-            </p>
-            <p class="text">
-                {{content.alsoApplyApplyOnline | safe}}
-            </p>
-        {%- endif -%}
+        <p class="text">
+            {{content.needToSendApplyOnline | safe}}
+        </p>
+        <p class="text">
+            {{content.alsoApplyApplyOnline | safe}}
+        </p>
 
         <h2 class="heading-medium">{{content.fees | safe}}</h2>
 
         <p class="text">
-            {{content.costs | safe}} {% if features.onlineSubmission %} {{content.needToPayOnline | safe}}{% endif %}
+            {{content.costs | safe}} {{content.needToPayOnline | safe}}
         </p>
-
-        {%- if not features.onlineSubmission -%}
-            <p class="text">
-                {{ content.youCan | safe }}
-            </p>
-
-            <ul class="list list-bullet text">
-                <li>{{content.creditCard | safe}}</li>
-                <li>{{content.cheque | safe}}</li>
-            </ul>
-        {%- endif -%}
 
         <h3 class="heading-small">{{content.payLess | safe}}</h3>
 

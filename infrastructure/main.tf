@@ -46,6 +46,8 @@ module "frontend" {
 
     // Node specific vars
     NODE_ENV = "${var.node_env}"
+    NODE_PATH = "${var.node_path}"
+
     UV_THREADPOOL_SIZE = "64"
     NODE_CONFIG_DIR = "${var.node_config_dir}"
 	
@@ -75,7 +77,7 @@ module "frontend" {
 
     // IDAM
     IDAM_API_URL = "${var.idam_api_url}"
-	  IDAM_APP_HEALHCHECK_URL ="${var.idam_api_url}${var.status_health_endpoint}"
+	  IDAM_APP_HEALHCHECK_URL ="${var.idam_api_url}${var.health_endpoint}"
     IDAM_LOGIN_URL = "${var.idam_authentication_web_url}${var.idam_authentication_login_endpoint}"
     IDAM_AUTHENTICATION_HEALHCHECK_URL = "${var.idam_authentication_web_url}${var.health_endpoint}"
     IDAM_SECRET = "${data.vault_generic_secret.idam_secret.data["value"]}"

@@ -18,17 +18,12 @@ describe(modulePath, () => {
     });
 
     it('should return success', done => {
-      //  note that the features (idam, onlineSubmission) are hardcoded into the app.js
+      //  note that the features (idam) are hardcoded into the app.js
 
       const defaultToggles = {
         idam: {
           feature: 'idam',
           defaultState: CONF.features.idam,
-          origin: 'default config'
-        },
-        onlineSubmission: {
-          feature: 'onlineSubmission',
-          defaultState: CONF.features.onlineSubmission,
           origin: 'default config'
         }
       };
@@ -61,11 +56,6 @@ describe(modulePath, () => {
           defaultState: process.env.idam,
           feature: 'idam',
           origin: 'process env'
-        },
-        onlineSubmission: {
-          feature: 'onlineSubmission',
-          defaultState: true,
-          origin: 'default config'
         }
       };
 
@@ -97,11 +87,6 @@ describe(modulePath, () => {
           feature: 'idam',
           defaultState: false,
           origin: 'other'
-        },
-        onlineSubmission: {
-          defaultState: true,
-          feature: 'onlineSubmission',
-          origin: 'default config'
         }
       };
 

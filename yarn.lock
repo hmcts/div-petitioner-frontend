@@ -28,6 +28,15 @@
     request-promise-native "^1.0.5"
     uuid "^3.1.0"
 
+"@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#5.0.0":
+  version "5.0.0"
+  resolved "https://github.com/hmcts/div-idam-express-middleware#4c6503902be1c7fe7bfdb81317175105c0733785"
+  dependencies:
+    "@hmcts/nodejs-logging" "^2.2.0"
+    request "^2.83.0"
+    request-promise-native "^1.0.5"
+    uuid "^3.1.0"
+
 "@hmcts/div-idam-test-harness@https://github.com/hmcts/div-idam-test-harness#1.0.12":
   version "1.0.12"
   resolved "https://github.com/hmcts/div-idam-test-harness#f8fd469199db63b42a59055e0c2b885dc5e49b5d"

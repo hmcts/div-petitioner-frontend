@@ -17,16 +17,4 @@ module.exports = class Done extends DestroySessionStep {
       applicationFeeMiddleware.updateApplicationFeeMiddleware
     ];
   }
-
-  * interceptor(ctx, session) {
-    ctx.numberOfCopies = '3';
-    const adultery = session.reasonForDivorce === 'adultery';
-    if (adultery && session.reasonForDivorceAdulteryWishToName === 'Yes') {
-      ctx.numberOfCopies = '4';
-    }
-
-    yield super.interceptor(ctx, session);
-
-    return ctx;
-  }
 };

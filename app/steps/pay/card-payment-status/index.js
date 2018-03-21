@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
-const statusCodes = require('http-status-codes');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
@@ -25,12 +24,6 @@ module.exports = class CardPaymentStatus extends Step {
   }
 
   handler(req, res) {
-    // This step does not exist if online submission is not enabled.
-    if (!features.onlineSubmission) {
-      res.status(statusCodes.NOT_FOUND).send('Not Found');
-      return;
-    }
-
     // @todo Fail early if paymentId cannot be found in the session.
     // @todo Fail early if request is not in the right format.
 

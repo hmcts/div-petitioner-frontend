@@ -4,8 +4,9 @@
         "en": {
             "translation": {
                 "content": {
-                    "title": "Application already submitted",
-                    "info": "You have already submitted your application. To finalize your application complete payment."
+                    "title": "You can’t return to your application",
+                    "info": "Your application has been submitted and you can’t return to it now. To make any changes you’ll need to contact the court on 0300 303 0642 (from 8.30am to 5pm, Monday to Friday).",
+                    "pay": "Save and close this page if you can’t pay the fee now. Your application won’t be processed until you have paid the fee."
                 }
             }
         }

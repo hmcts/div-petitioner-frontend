@@ -55,14 +55,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('#middleware', () => {
-    it('returns updateApplicationFeeMiddleware in middleware', () => {
-      expect(underTest.middleware
-        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
-        .to.eql(true);
-    });
-  });
-
   describe('success', () => {
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content);
@@ -106,42 +98,6 @@ describe(modulePath, () => {
       serviceToken.setup.restore();
     });
 
-    it('gets a service token before calling the payment service', done => {
-      // Act.
-      testCustom(done, agent, underTest, [], () => {
-        // Assert.
-        expect(getToken.calledBefore(create)).to.equal(true);
-      }, 'post');
-    });
-
-    context('Court is selected', () => {
-      let session = {}, siteId = '';
-
-      beforeEach(done => {
-        siteId = 'some-code';
-        session = {
-          caseId: 'some-case-id',
-          court: {
-            someCourt: { siteId },
-            someOtherCourt: { siteId: 'some-other-code' }
-          },
-          courts: 'someCourt'
-        };
-
-        withSession(done, agent, session);
-      });
-
-      it('creates payment with the site ID of the court', done => {
-        // Act.
-        testCustom(done, agent, underTest, [], () => {
-          // Assert.
-          expect(code).to.not.eql(null);
-          expect(amount).to.not.eql(null);
-          expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
-        }, 'post');
-      });
-    });
-
     context('Case Id is missing', () => {
       let session = {}, siteId = '';
 
@@ -159,18 +115,16 @@ describe(modulePath, () => {
       });
       it('redirects to the generic error page', done => {
         // Act.
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
-            // Assert.
-            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-            expect(response.header.location).to.equal('/generic-error');
-            expect(serviceToken.setup.called).to.eql(false);
-          }, 'post');
-        featureMock(done);
+        testCustom(done, agent, underTest, cookies, response => {
+          // Assert.
+          expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+          expect(response.header.location).to.equal('/generic-error');
+          expect(serviceToken.setup.called).to.eql(false);
+        }, 'post');
       });
     });
 
-    context('Online submission is turned ON', () => {
+    context('success', () => {
       let session = {}, siteId = '';
 
       beforeEach(done => {
@@ -189,27 +143,21 @@ describe(modulePath, () => {
 
       it('gets a service token before calling the payment service', done => {
         // Act.
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testCustom, agent, underTest, cookies, () => {
-            // Assert.
-            expect(create.calledOnce).to.equal(true);
-            expect(create.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
-          }, 'post');
-        featureMock(done);
+        testCustom(done, agent, underTest, cookies, () => {
+          // Assert.
+          expect(getToken.calledBefore(create)).to.equal(true);
+        }, 'post');
       });
-    });
 
       context('Court is selected', () => {
         it('creates payment with the site ID of the court', done => {
           // Act.
-          const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, [], () => {
-              // Assert.
-              expect(code).to.not.eql(null);
-              expect(amount).to.not.eql(null);
-              expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
-            }, 'post');
-          featureMock(done);
+          testCustom(done, agent, underTest, [], () => {
+            // Assert.
+            expect(code).to.not.eql(null);
+            expect(amount).to.not.eql(null);
+            expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
+          }, 'post');
         });
       });
 
@@ -217,7 +165,7 @@ describe(modulePath, () => {
         it('uses the token of the logged in user', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when(['idam', 'onlineSubmission'], [true, true], testCustom, agent, underTest, cookies, () => {
+            .when('idam', true, testCustom, agent, underTest, cookies, () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
               expect(create.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
@@ -225,54 +173,67 @@ describe(modulePath, () => {
           featureMock(done);
         });
       });
-    });
 
-    context('payment creation was successful', () => {
-      it('updates CCD with payment data', done => {
-        // Act.
-        testCustom(done, agent, underTest, cookies, () => {
-          // Assert.
-          expect(update.calledOnce).to.equal(true);
-        }, 'post');
-      });
-
-      it('redirects to the gov.uk payment page', done => {
-        // Act.
-        testCustom(done, agent, underTest, cookies, response => {
-          // Assert.
-          expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-          expect(response.header.location).to.equal('https://pay.the.gov/here');
-        }, 'post');
-      });
-    });
-
-    context('payment creation was not successful', () => {
-      it('redirects to Pay how page', done => {
-        // Arrange.
-        create.rejects();
-        // Act.
-        testCustom(done, agent, underTest, cookies, response => {
-          // Assert.
-          expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-          expect(response.header.location).to.equal('/generic-error');
-        }, 'post');
-      });
-    });
-
-    context('submission update was not successful', () => {
-      it('redirects to the generic error page', done => {
-        // Arrange.
-        update.resolves({
-          caseId: 0,
-          error: 'some error with a wrapped java exception',
-          status: 'error'
+      context('Idam is turned OFF', () => {
+        it('uses a fake user for the mocks', done => {
+          // Act.
+          const featureMock = featureTogglesMock
+            .when('idam', false, testCustom, agent, underTest, [], () => {
+              // Assert.
+              expect(create.calledOnce).to.equal(true);
+              expect(create.args[0][0]).to.eql({});
+            }, 'post');
+          featureMock(done);
         });
-        // Act.
-        testCustom(done, agent, underTest, cookies, response => {
-          // Assert.
-          expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-          expect(response.header.location).to.equal('/generic-error');
-        }, 'post');
+      });
+
+      context('payment creation was successful', () => {
+        it('updates CCD with payment data', done => {
+          // Act.
+          testCustom(done, agent, underTest, cookies, () => {
+            // Assert.
+            expect(update.calledOnce).to.equal(true);
+          }, 'post');
+        });
+
+        it('redirects to the gov.uk payment page', done => {
+          // Act.
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('https://pay.the.gov/here');
+          }, 'post');
+        });
+      });
+
+      context('payment creation was not successful', () => {
+        it('redirects to Pay how page', done => {
+          // Arrange.
+          create.rejects();
+          // Act.
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('/generic-error');
+          }, 'post');
+        });
+      });
+
+      context('submission update was not successful', () => {
+        it('redirects to the generic error page', done => {
+          // Arrange.
+          update.resolves({
+            caseId: 0,
+            error: 'some error with a wrapped java exception',
+            status: 'error'
+          });
+          // Act.
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('/generic-error');
+          }, 'post');
+        });
       });
     });
   });

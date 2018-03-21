@@ -2,239 +2,146 @@ const content = require('app/steps/grounds-for-divorce/reason/content.json').res
 
 Feature('Payment method');
 
-Scenario('Card payment over phone (court calls petitioner)', function* (I) {
-
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (!onlineSubmission) {
-    I.amOnPage('/index');
-    I.startApplication();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    if (!onlineSubmission) {
-      I.havePrinter();
-    }
-    I.selectHelpWithFees(false);
-    I.selectDivorceType();
-    I.amOnPage('/about-divorce/claim-costs');
-    I.enterClaimCosts();
-    if (onlineSubmission) {
-      const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-      I.uploadMarriageCertificateFile(isDragAndDropSupported);
-    }
-    I.selectPaymentType('byCardOverPhoneCourt');
-    I.enterPaymentContactDetails();
-  }
-  else {
-    I.say('Online submission is enabled - skipping');
-  }
-});
-
-Scenario('Cheque payment', function* (I) {
-
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-
-  if (!onlineSubmission) {
-
-    I.amOnPage('/index');
-    I.startApplication();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    I.havePrinter();
-    I.selectHelpWithFees(false);
-    I.selectDivorceType();
-    I.enterMarriageDate();
-    I.selectMarriedInUk();
-
-    I.chooseBothHabituallyResident();
-    I.chooseJurisdictionInterstitialContinue();
-
-    I.enterPeConfidentialContactDetails();
-    I.enterPetitionerAndRespondentNames();
-    I.enterMarriageCertificateDetails();
-    I.enterPetitionerChangedName();
-    I.enterPetitionerContactDetails();
-
-    I.enterAddressUsingPostcode('/petitioner-respondent/address');
-    I.enterCorrespondence();
-    I.selectLivingTogetherInSameProperty();
-
-    I.chooseRespondentServiceAddress();
-    I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-    I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
-    I.enterUnreasonableBehaviourExample();
-
-    I.enterLegalProceedings();
-    I.selectFinancialArrangements();
-    I.enterFinancialAdvice();
-
-    I.enterClaimCosts();
-    I.selectPaymentType('byCheque');
-    I.checkMyAnswers(onlineSubmission);
-  }
-  else {
-    I.say('Online submission is enabled - skipping');
-  }
-});
-
 Scenario('Card payment online', function* (I) {
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (onlineSubmission) {
-    I.amOnPage('/index');
-    I.startApplication();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    I.selectHelpWithFees(false);
-    I.selectDivorceType();
-    I.enterMarriageDate();
-    I.selectMarriedInUk();
+  I.amOnPage('/index');
+  I.startApplication();
+  I.haveBrokenMarriage();
+  I.haveRespondentAddress();
+  I.haveMarriageCert();
+  I.selectHelpWithFees(false);
+  I.selectDivorceType();
+  I.enterMarriageDate();
+  I.selectMarriedInUk();
 
-    I.chooseBothHabituallyResident();
-    I.chooseJurisdictionInterstitialContinue();
+  I.chooseBothHabituallyResident();
+  I.chooseJurisdictionInterstitialContinue();
 
-    I.enterPeConfidentialContactDetails();
-    I.enterPetitionerAndRespondentNames();
-    I.enterMarriageCertificateDetails();
-    I.enterPetitionerChangedName();
-    I.enterPetitionerContactDetails();
+  I.enterPeConfidentialContactDetails();
+  I.enterPetitionerAndRespondentNames();
+  I.enterMarriageCertificateDetails();
+  I.enterPetitionerChangedName();
+  I.enterPetitionerContactDetails();
 
-    I.enterAddressUsingPostcode('/petitioner-respondent/address');
-    I.enterCorrespondence();
-    I.selectLivingTogetherInSameProperty();
+  I.enterAddressUsingPostcode('/petitioner-respondent/address');
+  I.enterCorrespondence();
+  I.selectLivingTogetherInSameProperty();
 
-    I.chooseRespondentServiceAddress();
-    I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-    I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
-    I.enterUnreasonableBehaviourExample();
+  I.chooseRespondentServiceAddress();
+  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
+  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.enterUnreasonableBehaviourExample();
 
-    I.enterLegalProceedings();
-    I.selectFinancialArrangements();
-    I.enterFinancialAdvice();
+  I.enterLegalProceedings();
+  I.selectFinancialArrangements();
+  I.enterFinancialAdvice();
 
-    I.enterClaimCosts();
-    const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-    I.checkMyAnswers(onlineSubmission);
-    I.confirmIWillPayOnline();
-    const isPaymentOnStub = yield I.getPaymentIsOnStub();
-    I.payOnPaymentPage(isPaymentOnStub);
-    I.amDoneAndSubmitted();
-  } else {
-    I.say('Online submission is disabled - skipping');
-  }
+  I.enterClaimCosts();
+  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  I.uploadMarriageCertificateFile(isDragAndDropSupported);
+  I.checkMyAnswers();
+  I.confirmIWillPayOnline();
+  const isPaymentOnStub = yield I.getPaymentIsOnStub();
+  I.payOnPaymentPage(isPaymentOnStub);
+  I.amDoneAndSubmitted();
 });
 
 
 Scenario('Card payment online failure', function* (I) {
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (onlineSubmission) {
-    I.amOnPage('/index');
-    I.startApplication();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    I.selectHelpWithFees(false);
-    I.selectDivorceType();
-    I.enterMarriageDate();
-    I.selectMarriedInUk();
+  I.amOnPage('/index');
+  I.startApplication();
+  I.haveBrokenMarriage();
+  I.haveRespondentAddress();
+  I.haveMarriageCert();
+  I.selectHelpWithFees(false);
+  I.selectDivorceType();
+  I.enterMarriageDate();
+  I.selectMarriedInUk();
 
-    I.chooseBothHabituallyResident();
-    I.chooseJurisdictionInterstitialContinue();
+  I.chooseBothHabituallyResident();
+  I.chooseJurisdictionInterstitialContinue();
 
-    I.enterPeConfidentialContactDetails();
-    I.enterPetitionerAndRespondentNames();
-    I.enterMarriageCertificateDetails();
-    I.enterPetitionerChangedName();
-    I.enterPetitionerContactDetails();
+  I.enterPeConfidentialContactDetails();
+  I.enterPetitionerAndRespondentNames();
+  I.enterMarriageCertificateDetails();
+  I.enterPetitionerChangedName();
+  I.enterPetitionerContactDetails();
 
-    I.enterAddressUsingPostcode('/petitioner-respondent/address');
-    I.enterCorrespondence();
-    I.selectLivingTogetherInSameProperty();
+  I.enterAddressUsingPostcode('/petitioner-respondent/address');
+  I.enterCorrespondence();
+  I.selectLivingTogetherInSameProperty();
 
-    I.chooseRespondentServiceAddress();
-    I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-    I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
-    I.enterUnreasonableBehaviourExample();
+  I.chooseRespondentServiceAddress();
+  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
+  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.enterUnreasonableBehaviourExample();
 
-    I.enterLegalProceedings();
-    I.selectFinancialArrangements();
-    I.enterFinancialAdvice();
+  I.enterLegalProceedings();
+  I.selectFinancialArrangements();
+  I.enterFinancialAdvice();
 
-    I.enterClaimCosts();
-    const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-    I.checkMyAnswers(onlineSubmission);
+  I.enterClaimCosts();
+  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  I.uploadMarriageCertificateFile(isDragAndDropSupported);
+  I.checkMyAnswers();
 
-    // Failure
-    I.confirmIWillPayOnline();
-    const isPaymentOnStub = yield I.getPaymentIsOnStub();
-    I.payFailureOnPaymentPage(isPaymentOnStub);
-    I.seeCurrentUrlEquals('/pay/online');
+  // Failure
+  I.confirmIWillPayOnline();
+  const isPaymentOnStub = yield I.getPaymentIsOnStub();
+  I.payFailureOnPaymentPage(isPaymentOnStub);
+  I.seeCurrentUrlEquals('/pay/online');
 
-    // Retry
-    I.confirmIWillPayOnline();
-    I.payOnPaymentPage(isPaymentOnStub);
-    I.amDoneAndSubmitted();
-
-  } else {
-    I.say('Online submission is disabled - skipping');
-  }
+  // Retry
+  I.confirmIWillPayOnline();
+  I.payOnPaymentPage(isPaymentOnStub);
+  I.amDoneAndSubmitted();
 });
 
 Scenario('Card payment online cancellation with retry', function* (I) {
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (onlineSubmission) {
-    I.amOnPage('/index');
-    I.startApplication();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    I.selectHelpWithFees(false);
-    I.selectDivorceType();
-    I.enterMarriageDate();
-    I.selectMarriedInUk();
+  I.amOnPage('/index');
+  I.startApplication();
+  I.haveBrokenMarriage();
+  I.haveRespondentAddress();
+  I.haveMarriageCert();
+  I.selectHelpWithFees(false);
+  I.selectDivorceType();
+  I.enterMarriageDate();
+  I.selectMarriedInUk();
 
-    I.chooseBothHabituallyResident();
-    I.chooseJurisdictionInterstitialContinue();
+  I.chooseBothHabituallyResident();
+  I.chooseJurisdictionInterstitialContinue();
 
-    I.enterPeConfidentialContactDetails();
-    I.enterPetitionerAndRespondentNames();
-    I.enterMarriageCertificateDetails();
-    I.enterPetitionerChangedName();
-    I.enterPetitionerContactDetails();
+  I.enterPeConfidentialContactDetails();
+  I.enterPetitionerAndRespondentNames();
+  I.enterMarriageCertificateDetails();
+  I.enterPetitionerChangedName();
+  I.enterPetitionerContactDetails();
 
-    I.enterAddressUsingPostcode('/petitioner-respondent/address');
-    I.enterCorrespondence();
-    I.selectLivingTogetherInSameProperty();
+  I.enterAddressUsingPostcode('/petitioner-respondent/address');
+  I.enterCorrespondence();
+  I.selectLivingTogetherInSameProperty();
 
-    I.chooseRespondentServiceAddress();
-    I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-    I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
-    I.enterUnreasonableBehaviourExample();
+  I.chooseRespondentServiceAddress();
+  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
+  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.enterUnreasonableBehaviourExample();
 
-    I.enterLegalProceedings();
-    I.selectFinancialArrangements();
-    I.enterFinancialAdvice();
+  I.enterLegalProceedings();
+  I.selectFinancialArrangements();
+  I.enterFinancialAdvice();
 
-    I.enterClaimCosts();
-    const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-    I.checkMyAnswers(onlineSubmission);
+  I.enterClaimCosts();
+  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  I.uploadMarriageCertificateFile(isDragAndDropSupported);
+  I.checkMyAnswers();
 
-    // Cancellation
-    I.confirmIWillPayOnline();
-    const isPaymentOnStub = yield I.getPaymentIsOnStub();
-    I.cancelOnPaymentPage(isPaymentOnStub);
-    I.seeCurrentUrlEquals('/pay/online');
+  // Cancellation
+  I.confirmIWillPayOnline();
+  const isPaymentOnStub = yield I.getPaymentIsOnStub();
+  I.cancelOnPaymentPage(isPaymentOnStub);
+  I.seeCurrentUrlEquals('/pay/online');
 
-    // Retry
-    I.confirmIWillPayOnline();
-    I.payOnPaymentPage(isPaymentOnStub);
-    I.amDoneAndSubmitted();
-
-  } else {
-    I.say('Online submission is disabled - skipping');
-  }
+  // Retry
+  I.confirmIWillPayOnline();
+  I.payOnPaymentPage(isPaymentOnStub);
+  I.amDoneAndSubmitted();
 });

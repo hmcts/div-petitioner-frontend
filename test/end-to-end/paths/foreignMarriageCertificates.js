@@ -1,15 +1,12 @@
 Feature('Foreign Marriage Certificates');
 
-Scenario('Certificate in English ', function*(I) {
+Scenario('Certificate in English ', function(I) {
   I.amOnPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (!onlineSubmission) {
-    I.havePrinter();
-  }
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
@@ -21,16 +18,13 @@ Scenario('Certificate in English ', function*(I) {
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
 
-Scenario('Certificate not English but with translation', function*(I) {
+Scenario('Certificate not English but with translation', function(I) {
   I.amOnPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (!onlineSubmission) {
-    I.havePrinter();
-  }
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
@@ -42,16 +36,13 @@ Scenario('Certificate not English but with translation', function*(I) {
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
 
-Scenario('Certificate not English with no translation - exit page', function*(I) {
+Scenario('Certificate not English with no translation - exit page', function(I) {
   I.amOnPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (!onlineSubmission) {
-    I.havePrinter();
-  }
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();

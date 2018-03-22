@@ -2,6 +2,7 @@ const payClient = require('@hmcts/div-pay-client');
 const get = require('lodash/get');
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
+const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 
 let client = {};
 
@@ -12,20 +13,25 @@ const service = {
    * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  create: (...args) => {
-    return client.create(...args)
+  create: (user, serviceToken, caseReference, siteId, feeCode,
+    feeVersion, amountInput, description, returnUrl) => {
+    return client.create(user, serviceToken, caseReference, siteId, feeCode,
+      feeVersion, amountInput, description, returnUrl)
       .then(response => {
-        const { id, amount, state, reference, date_created } = response; // eslint-disable-line camelcase
+        const { id, amount, status, reference, date_created } = response; // eslint-disable-line camelcase
         const nextUrl = get(response, '_links.next_url.href');
 
         return {
           id,
           amount,
           reference,
-          state,
+          status,
           dateCreated: date_created,
           nextUrl
         };
+      })
+      .catch(error => {
+        logger.error(`Error creating payment with ccd case number ${caseReference}: ${error}`);
       });
   },
 
@@ -35,18 +41,24 @@ const service = {
    * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  query: (...args) => {
-    return client.query(...args)
+  query: (user, serviceToken, referenceInput) => {
+    return client.query(user, serviceToken, referenceInput)
       .then(response => {
-        const { id, amount, state, reference, date_created } = response; // eslint-disable-line camelcase
+        const {
+          external_reference, amount, state, reference,
+          date_created
+        } = response; // eslint-disable-line camelcase
 
         return {
-          id,
+          external_reference,
           amount,
           reference,
           state,
           dateCreated: date_created
         };
+      })
+      .catch(error => {
+        logger.error(`Error getting payment details for payment reference caseId ${referenceInput}: ${error}`);
       });
   }
 };
@@ -65,10 +77,10 @@ module.exports = {
   },
 
   getCurrentPaymentStatus: session => {
-    return get(session.payments, `${session.currentPaymentId}.state`);
+    return get(session.payments, `${session.currentPaymentId}.status`);
   },
 
   isPaymentSuccessful: response => {
-    return get(response, 'state.finished') === true && get(response, 'state.status') === 'success';
+    return get(response, 'status') === 'success';
   }
 };

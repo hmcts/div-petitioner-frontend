@@ -66,7 +66,7 @@ module.exports = class CardPaymentStatus extends Step {
     serviceToken.getToken()
       // Query payment status.
       .then(token => {
-        return payment.query(user, token, req.session.currentPaymentId,
+        return payment.query(user, token, req.session.currentPaymentReference,
           req.session.mockedPaymentOutcome);
       })
 
@@ -100,7 +100,7 @@ module.exports = class CardPaymentStatus extends Step {
         }
 
         const id = req.session.currentPaymentId;
-        const paymentState = req.session.payments[id].state;
+        const paymentState = req.session.payments[id].status;
         res.redirect(this.next(paymentState).url);
       })
 

@@ -140,7 +140,8 @@ exports.init = () => {
     features: [
       feature('idam'),
       feature('foreignMarriageCerts'),
-      feature('onlineSubmission')
+      feature('onlineSubmission'),
+      feature('fullPaymentEventDataSubmission')
     ]
   }));
 

@@ -104,7 +104,8 @@ describe(modulePath, () => {
     });
 
     it('collects update event data for the payload', () => {
-      const output = underTest.generatePaymentEventData(session, response);
+      const output = underTest.generatePaymentEventData(session,
+        response, true);
       expect(output.payment).to.have.property('PaymentChannel', 'card');
       expect(output.payment).to.have.property('PaymentTransactionId', '123');
       expect(output.payment).to.have.property('PaymentReference', 'some-reference');

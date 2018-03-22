@@ -125,6 +125,7 @@ features:
   idam: false
   foreignMarriageCerts: true
   onlineSubmission: true
+  fullPaymentEventDataSubmission: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

@@ -35,6 +35,11 @@ describe(modulePath, () => {
           feature: 'onlineSubmission',
           defaultState: CONF.features.onlineSubmission,
           origin: 'default config'
+        },
+        fullPaymentEventDataSubmission: {
+          defaultState: true,
+          feature: 'fullPaymentEventDataSubmission',
+          origin: 'default config'
         }
       };
 
@@ -76,6 +81,11 @@ describe(modulePath, () => {
           feature: 'onlineSubmission',
           defaultState: true,
           origin: 'default config'
+        },
+        fullPaymentEventDataSubmission: {
+          defaultState: true,
+          feature: 'fullPaymentEventDataSubmission',
+          origin: 'default config'
         }
       };
 
@@ -116,6 +126,11 @@ describe(modulePath, () => {
         onlineSubmission: {
           defaultState: true,
           feature: 'onlineSubmission',
+          origin: 'default config'
+        },
+        fullPaymentEventDataSubmission: {
+          defaultState: true,
+          feature: 'fullPaymentEventDataSubmission',
           origin: 'default config'
         }
       };

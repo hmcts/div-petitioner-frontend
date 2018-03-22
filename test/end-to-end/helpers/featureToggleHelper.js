@@ -10,10 +10,10 @@ let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 
 class FeatureToggleHelper extends Helper {
 
-  _init() {
+  _beforeSuite() {
     const toggle = 'idam';
 
-    this.getFeatureEnabled(toggle).then((res) => {
+    return this.getFeatureEnabled(toggle).then((res) => {
       console.log(`Feature idam is ${res ? 'enabled' : 'disabled'}`); // eslint-disable-line
       toggleStore.setToggle(toggle, res);
     });

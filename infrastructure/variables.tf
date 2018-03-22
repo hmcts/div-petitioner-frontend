@@ -59,6 +59,10 @@ variable "node_env" {
   default = "production"
 }
 
+variable "node_path" {
+  default = "."
+}
+
 variable "external_host_name" {
   default = "divorce.sandbox.platform.hmcts.net"
 }

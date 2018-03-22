@@ -7,7 +7,8 @@
     "node": ">=8.9.4"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production NODE_PATH=. node server",
+    "start": "node server.js",
+    "start-backup": "NODE_ENV=production NODE_PATH=. node server",
     "start-dev": "NODE_ENV=development NODE_PATH=. grunt start-dev",
     "start-debug": "NODE_ENV=development NODE_PATH=. node --inspect=0.0.0.0:9229 server.js",
     "start-debug-ide": "NODE_ENV=development NODE_PATH=. node $NODE_DEBUG_OPTION server.js",
@@ -49,7 +50,6 @@
     "connect-redis": "3.1.0",
     "cookie-parser": "^1.4.3",
     "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^5.1.4",
     "css-loader": "^0.27.2",
     "csurf": "^1.9.0",
     "dotenv": "^5.0.0",

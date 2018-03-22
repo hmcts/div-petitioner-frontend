@@ -46,6 +46,8 @@ module "frontend" {
 
     // Node specific vars
     NODE_ENV = "${var.node_env}"
+    NODE_PATH = "${var.node_path"}
+
     UV_THREADPOOL_SIZE = "64"
     NODE_CONFIG_DIR = "${var.node_config_dir}"
 	

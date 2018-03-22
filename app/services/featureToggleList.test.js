@@ -18,27 +18,12 @@ describe(modulePath, () => {
     });
 
     it('should return success', done => {
-      //  note that the features (idam, foreignMarriageCerts, onlineSubmission) are hardcoded into the app.js
+      //  note that the features (idam) are hardcoded into the app.js
 
       const defaultToggles = {
         idam: {
           feature: 'idam',
           defaultState: CONF.features.idam,
-          origin: 'default config'
-        },
-        foreignMarriageCerts: {
-          feature: 'foreignMarriageCerts',
-          defaultState: CONF.features.foreignMarriageCerts,
-          origin: 'default config'
-        },
-        onlineSubmission: {
-          feature: 'onlineSubmission',
-          defaultState: CONF.features.onlineSubmission,
-          origin: 'default config'
-        },
-        fullPaymentEventDataSubmission: {
-          defaultState: true,
-          feature: 'fullPaymentEventDataSubmission',
           origin: 'default config'
         }
       };
@@ -71,21 +56,6 @@ describe(modulePath, () => {
           defaultState: process.env.idam,
           feature: 'idam',
           origin: 'process env'
-        },
-        foreignMarriageCerts: {
-          defaultState: CONF.features.foreignMarriageCerts,
-          feature: 'foreignMarriageCerts',
-          origin: 'default config'
-        },
-        onlineSubmission: {
-          feature: 'onlineSubmission',
-          defaultState: true,
-          origin: 'default config'
-        },
-        fullPaymentEventDataSubmission: {
-          defaultState: true,
-          feature: 'fullPaymentEventDataSubmission',
-          origin: 'default config'
         }
       };
 
@@ -117,21 +87,6 @@ describe(modulePath, () => {
           feature: 'idam',
           defaultState: false,
           origin: 'other'
-        },
-        foreignMarriageCerts: {
-          feature: 'foreignMarriageCerts',
-          defaultState: CONF.features.foreignMarriageCerts,
-          origin: 'default config'
-        },
-        onlineSubmission: {
-          defaultState: true,
-          feature: 'onlineSubmission',
-          origin: 'default config'
-        },
-        fullPaymentEventDataSubmission: {
-          defaultState: true,
-          feature: 'fullPaymentEventDataSubmission',
-          origin: 'default config'
         }
       };
 

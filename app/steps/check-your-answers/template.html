@@ -75,6 +75,7 @@
       <form method="POST" accept-charset="utf-8" class="form" id="form"
           enctype="{%- block encoding -%}application/x-www-form-urlencoded{%- endblock -%}"
           autocomplete="off">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
           <h2 class="heading-medium">{{ content.confirmHeading | safe }}</h2>
           <p class="text">{{ content.confirmWarning | safe }}</p>
@@ -120,13 +121,7 @@
                 {{ content.dontNavigateAwayNotAppliedForFees | safe }} {{ content.dontNavigateAway | safe}}
               {%- endif -%}
             </p>
-              <input id="confirmCheckYourAnswers" type="submit" class="button" value="
-             {%- if features.onlineSubmission -%}
-               {{ content.submitOnline }}
-             {%- else -%}
-               {{ content.submit }}
-             {%- endif -%}
-              ">
+              <input id="confirmCheckYourAnswers" type="submit" class="button" value="{{ content.submitOnline }}">
           </div>
       </form>
 
@@ -137,6 +132,7 @@
     <form method="POST" accept-charset="utf-8" class="form" id="form"
           enctype="application/x-www-form-urlencoded"
           autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
       {% include "includes/save_and_close.html" %}
     </form>
 

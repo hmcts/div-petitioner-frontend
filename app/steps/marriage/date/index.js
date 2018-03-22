@@ -4,7 +4,6 @@ const OptionStep = require('app/core/OptionStep');
 const { filter, some, isEmpty, map } = require('lodash');
 const utils = require('app/services/utils');
 const runStepHandler = require('app/core/handler/runStepHandler');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 
 const DATE_FORMAT = CONF.dateFormat;
 
@@ -17,7 +16,7 @@ module.exports = class MarriageDate extends OptionStep {
   get nextStep() {
     return {
       marriageCanDivorce: {
-        true: (features.foreignMarriageCerts) ? this.steps.MarriedInUk : this.steps.WhereMarried,
+        true: this.steps.MarriedInUk,
         false: this.steps.ExitMarriageDate
       }
     };

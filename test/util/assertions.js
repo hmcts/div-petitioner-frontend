@@ -7,6 +7,7 @@ const nunjucks = require('nunjucks');
 const co = require('co');
 const cheerio = require('cheerio');
 const flatten = require('flat');
+const Tokens = require('csrf');
 
 const Interpolator = require('node_modules/i18next/dist/commonjs/Interpolator').default;
 
@@ -14,9 +15,17 @@ nunjucks.configure({ autoescape: false });
 const interpolator = new Interpolator();
 
 const createSession = (agent) => {
-  return agent.post('/session')
-    .send({ expires: Date.now() + 10000 })
-    .expect(200);
+  return getSession(agent)
+    .then((res) => {
+      const tokens = new Tokens();
+      
+      agent.csrfToken = tokens.create(res.body.csrfSecret);
+
+      return agent.post('/session')
+        .set('X-CSRF-token', agent.csrfToken)
+        .send({ expires: Date.now() + 10000 })
+        .expect(200);
+    });
 };
 
 const getSession = (agent) => {
@@ -25,7 +34,9 @@ const getSession = (agent) => {
 };
 
 const postToUrl = (agent, url, data) => {
+
   return agent.post(url)
+    .set('X-CSRF-token', agent.csrfToken)
     .type('form')
     .send(data);
 };
@@ -67,13 +78,18 @@ exports.testContent = (done, agent, underTest, content, session = {}, excludeKey
   const checkContent = (res) => {
     const pageContent = Object.assign({}, session, CONF.commonProps, dataContent);
     const text = res.text.toLowerCase();
+    const missingContent = [];
 
     walkMap(content.resources.en.translation.content, (path, content) => {
       if (!excludeKeys.includes(path)) {
         content = interpolator.interpolate(content, pageContent).toLowerCase();
-        expect(text).to.contain(content);
+        if (text.indexOf(content) === -1) {
+          missingContent.push(path);
+        }
       }
     });
+
+    expect(missingContent, 'The following content was not found in template').to.eql([]);
   };
 
   return createSession(agent)
@@ -366,7 +382,13 @@ exports.testNonExistence = (done, agent, underTest, text, data, selector) => {
 
 exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
   const checkHttpStatus = () => {
-    return agent[method](underTest.url)
+    let request = agent[method](underTest.url);
+
+    if (method !== 'get') {
+      request.set('X-CSRF-token', agent.csrfToken);
+    }
+    
+    return request
       .expect(status);
   };
 
@@ -378,6 +400,10 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
 exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get') => {
   const runCallback = () => {
     let request = agent[method](underTest.url);
+    
+    if (method !== 'get') {
+      request.set('X-CSRF-token', agent.csrfToken);
+    }
 
     if (cookies.length) {
       request = request.set('Cookie', [request.cookies, ...cookies]);

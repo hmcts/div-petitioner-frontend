@@ -1,28 +1,36 @@
-<!--- Provide a human readable summary of the change in the Title above -->
+# Description
 
-<!-- Provide a link to the story/task in JIRA -->
-<!-- Links in markdown are [description](https://url) -->
+Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
-#### What this change does?
+Fixes # (issue)
 
-<!-- Describe what the change does -->
+## Type of change
 
-<!-- Focus on the end result of the change, e.g. -->
-<!-- -  How does it effect the user? -->
-<!-- -  How does it effect the code base? -->
-<!-- -  How does it effect Ops? -->
+Please delete options that are not relevant.
 
-#### Why make this change?
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
 
-<!-- Describe why we are making this change -->
+# How Has This Been Tested?
 
-<!-- Focus on the user need or technical requirement -->
+Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
 
-#### How is the change implemented?
 
-<!-- Describe the changes themselves -->
+**Test Configuration**:
 
-<!-- Focus on giving a short description of each main change -->
-<!-- Point out areas you want special attention given to -->
-<!-- Consider linking to the major changes if they need special attention -->
-<!-- If you are adding any new libraries, include links to their docs -->
+* Hardware:
+* O/S and version:
+* JDK:
+
+# Checklist:
+
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] Any dependent changes have been merged and published in downstream modules

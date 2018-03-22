@@ -41,6 +41,7 @@
 
       <form method="POST" accept-charset="utf-8" class="form" id="address-manual"
             enctype="application/x-www-form-urlencoded" autocomplete="off">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
           <div class="form-group">
             <label for="addressManual">{{content.fullAddress}}</label>
@@ -66,6 +67,7 @@
 
       <form method="POST" accept-charset="utf-8" class="form" id="postcode-lookup"
             enctype="application/x-www-form-urlencoded" autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
         <div class="form-group">
           <legend class="visually-hidden">{{content.address}}</legend>
@@ -96,6 +98,7 @@
 
       <form method="POST" accept-charset="utf-8" class="form" id="address-selector"
             enctype="application/x-www-form-urlencoded" autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
         <div class="form-group">
           <label class="form-label" for="selectAddressIndex">{{content.pickAddress}}</label>
@@ -130,6 +133,7 @@
 
       <form method="POST" accept-charset="utf-8" class="form" id="address-postcode"
             enctype="application/x-www-form-urlencoded" autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
         {% for line in fields.address.value %}
           <div class="form-group">

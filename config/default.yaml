@@ -123,8 +123,6 @@ commonProps:
 
 features:
   idam: false
-  foreignMarriageCerts: true
-  onlineSubmission: true
   fullPaymentEventDataSubmission: true
 
 idamArgs:

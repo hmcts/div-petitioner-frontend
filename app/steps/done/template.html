@@ -42,9 +42,7 @@
       </p>
       <ul class="list list-bullet">
         <li>{{content.certified | safe}}</li>
-        {% if features.foreignMarriageCerts %}
         <li>{{content.englishTranslation | safe}}</li>
-        {% endif %}
         {% if (session.petitionerNameChangedHow and (session.petitionerNameChangedHow.indexOf('deedPoll') > -1 or session.petitionerNameChangedHow.indexOf('other') > -1) ) %}
           <li>{{content.proofOfName | safe}}</li>
         {% endif %}
@@ -55,41 +53,6 @@
       <p class="text">
         {{content.courtWillKeep | safe}}
       </p>
-
-      {% if not features.onlineSubmission %}
-        <h2 class="heading-medium">{{content.postApplication | safe}}</h2>
-        <p class="text">
-          {{content.postDescription | safe}}{% if session.paymentMethod === 'cheque' %}{{content.postDescriptionCheque | safe}}
-          {% else %}{{content.postDescriptionNoCheque | safe}}{% endif %}
-        </p>
-        <ul class="list bold-small">
-          {% if session.courts === 'eastMidlands' %}
-            <li>{{content.eastaddress1 | safe}}</li>
-            <li>{{content.eastaddress2 | safe}}</li>
-            <li>{{content.eastaddress3 | safe}}</li>
-            <li>{{content.eastaddress4 | safe}}</li>
-          {% endif %}
-          {% if session.courts === 'westMidlands' %}
-            <li>{{content.westaddress1 | safe}}</li>
-            <li>{{content.westaddress2 | safe}}</li>
-            <li>{{content.westaddress3 | safe}}</li>
-            <li>{{content.westaddress4 | safe}}</li>
-          {% endif %}
-          {% if session.courts === 'southWest' %}
-            <li>{{content.southwestaddress1 | safe}}</li>
-            <li>{{content.southwestaddress2 | safe}}</li>
-            <li>{{content.southwestaddress3 | safe}}</li>
-            <li>{{content.southwestaddress4 | safe}}</li>
-          {% endif %}
-          {% if session.courts === 'northWest' %}
-            <li>{{content.northaddress1 | safe}}</li>
-            <li>{{content.northaddress2 | safe}}</li>
-            <li>{{content.northaddress3 | safe}}</li>
-            <li>{{content.northaddress4 | safe}}</li>
-            <li>{{content.northaddress5 | safe}}</li>
-          {% endif %}
-        </ul>
-      {% endif %}
 
       <h2 class="heading-medium">{{content.helpImproveService | safe}}</h2>
       <p class="text">
@@ -128,8 +91,6 @@
          {{content.northwestPhone | safe}}
         {% endif %}
       </p>
-
-
 
       <h2 class="heading-medium">{{content.ifMistake | safe}}</h2>
       <p class="text">

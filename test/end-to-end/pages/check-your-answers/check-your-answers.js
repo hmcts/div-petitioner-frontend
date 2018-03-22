@@ -31,7 +31,7 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
   return;
 }
 
-function checkMyAnswers(onlineSubmission) {
+function checkMyAnswers() {
 
   const I = this;
 
@@ -40,11 +40,7 @@ function checkMyAnswers(onlineSubmission) {
 
   I.checkOption(content.confirmApply);
 
-  if (onlineSubmission) {
-    I.click('Submit');
-  } else {
-    I.click('Continue');
-  }
+  I.click(content.submitOnline);
 }
 
 function checkMyAnswersRestoredSession() {

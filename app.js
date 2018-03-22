@@ -16,6 +16,7 @@ const siteGraph = require('app/core/siteGraph');
 const errorHandler = require('app/core/errorHandler');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
+const csurf = require('csurf');
 const { fetchToggles } = require('@hmcts/div-feature-toggle-client')({
   env: process.env.NODE_ENV,
   featureToggleApiUrl: process.env.FEATURE_TOGGLE_API_URL || CONF.services.featureToggleApiUrl
@@ -38,6 +39,8 @@ const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
 const PORT = process.env.HTTP_PORT || CONF.http.port;
+
+const logger = logging.getLogger(__filename);
 
 exports.init = () => {
   const app = express();
@@ -125,6 +128,21 @@ exports.init = () => {
 
   app.use(middleware.locals);
 
+  app.use(csurf(), (req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+  });
+
+  app.use((error, req, res, next) => {
+    if (error.code === 'EBADCSRFTOKEN') {
+      logger.error('csrf error has occurred');
+      logger.debug(error);
+      res.redirect('/generic-error');
+    } else {
+      next();
+    }
+  });
+
   const feature = name => {
     const hasConfigFlag = typeof CONF.features[name] === 'undefined' ? 'other' : 'default config';
     const origin = process.env[name] ? 'process env' : hasConfigFlag;
@@ -135,16 +153,12 @@ exports.init = () => {
       origin
     };
   };
-
   app.use(fetchToggles({
     features: [
       feature('idam'),
-      feature('foreignMarriageCerts'),
-      feature('onlineSubmission'),
       feature('fullPaymentEventDataSubmission')
     ]
   }));
-
   app.use(healthcheck);
   app.use(featureToggleList);
 

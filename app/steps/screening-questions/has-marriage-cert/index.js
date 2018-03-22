@@ -1,6 +1,5 @@
 const OptionStep = require('app/core/OptionStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 
 module.exports = class ScreeningQuestionsMarriageCertificate extends OptionStep {
   get url() {
@@ -10,7 +9,7 @@ module.exports = class ScreeningQuestionsMarriageCertificate extends OptionStep 
   get nextStep() {
     return {
       screenHasMarriageCert: {
-        Yes: features.onlineSubmission ? this.steps.NeedHelpWithFees : this.steps.ScreeningQuestionsPrinter,
+        Yes: this.steps.NeedHelpWithFees,
         No: this.steps.ExitMarriageCertificate
       }
     };

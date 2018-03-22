@@ -1,33 +1,16 @@
-const co = require('co');
-
 Feature('New Jurisdiction Journeys');
 
 Before((I) => {
+  I.amOnPage('/index');
+  I.startApplication();
+  I.haveBrokenMarriage();
+  I.haveRespondentAddress();
+  I.haveMarriageCert();
 
-  Promise.all([
-    I.getFeatureEnabled('onlineSubmission')
-  ]).then((resolvedValues) => {
-
-    const [onlineSubmission] = resolvedValues;
-
-    I.amOnPage('/index');
-    I.startApplication();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    if (!onlineSubmission) {
-      I.havePrinter();
-    }
-    I.selectHelpWithFees(false);
-    I.selectDivorceType();
-    I.enterMarriageDate();
-  });
-
-  co(function* generator() {
-    const foreignMarriageCerts = yield I.getFeatureEnabled('foreignMarriageCerts');
-
-    (foreignMarriageCerts) ? I.selectMarriedInUk(): I.selectCountryWhereMarried();
-  });
+  I.selectHelpWithFees(false);
+  I.selectDivorceType();
+  I.enterMarriageDate();
+  I.selectMarriedInUk();
 });
 
 Scenario('Set A & C: Both Habitually Resident', function(I) {

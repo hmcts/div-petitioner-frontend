@@ -1,5 +1,41 @@
-### What would you like to change?
+## Bug reports and feature suggestions
 
-### How do you think that would improve the project?
+- [ ] I've read the guidelines for [Contributing](CONTRIBUTING.md)
+- [ ] This is not a personal support request
 
-### If this entry is related to a bug, please provide the steps to reproduce it
+---
+
+**What is the current behavior?**
+
+
+
+**What is the expected or desired behavior?**
+
+
+
+---
+
+## Bug report
+
+(delete this section if not applicable)
+
+**Please provide steps to reproduce (include full log output if available):**
+
+
+**Please describe your local environment:**
+
+
+---
+
+## Feature Suggestion
+
+(delete this section if not applicable)
+
+**Please provide use cases for changing the current behavior:**
+
+
+**Please explain how this change will improve the project:**
+
+
+**Other relevant information:**
+

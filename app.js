@@ -38,7 +38,7 @@ const healthcheck = require('app/services/healthcheck');
 const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
-const PORT = process.env.HTTP_PORT || CONF.http.port;
+const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
 const logger = logging.getLogger(__filename);
 

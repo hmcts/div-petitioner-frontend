@@ -1,7 +1,7 @@
 const express = require('express');
 
-const httpPort = '3001';
-const PORT = process.env.HTTP_PORT || httpPort;
+const httpPort = '3000';
+const PORT = process.env.PORT || httpPort;
 
 exports.init = () => {
   const app = express();

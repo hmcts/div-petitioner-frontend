@@ -1,17 +1,24 @@
 const express = require('express');
 
-const PORT = process.env.HTTP_PORT || CONF.http.port;
+const httpPort = '3001';
+const PORT = process.env.HTTP_PORT || httpPort;
 
 exports.init = () => {
   const app = express();
 
-  app.get('/', (req, res) => res.send('Hello World!'))
+  app.get('/', (req, res) => {
+    return res.send('Hello World!');
+  });
 
-  app.get('/health', (req, res) => res.send('UP'))
+  app.get('/health', (req, res) => {
+    return res.send('UP');
+  });
 
-  app.get('/healthcheck', (req, res) => res.send('UP'))
+  app.get('/healthcheck', (req, res) => {
+    return res.send('UP');
+  });
 
-  let http = app.listen(PORT);
+  const http = app.listen(PORT);
 
   process.emit('application-log', {
     level: 'INFO',
@@ -19,5 +26,5 @@ exports.init = () => {
     fields: { host: `https://localhost:${PORT}` }
   });
 
-  return { app, http, steps };
-}
+  return { app, http };
+};

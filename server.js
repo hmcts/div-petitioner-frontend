@@ -1,4 +1,4 @@
-const app = require('./app');
+const app = require('./testapp');
 
 const { http } = app.init();
 

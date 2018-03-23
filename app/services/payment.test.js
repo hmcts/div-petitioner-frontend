@@ -9,7 +9,7 @@ describe(modulePath, () => {
   const createSuccess = {
     id: '1',
     amount: 123,
-    state: { status: 'created', finished: false },
+    status: 'created',
     reference: 'some-reference',
     date_created: 1511481600000,
     _links: { next_url: { href: 'https://next-url' } }
@@ -17,11 +17,8 @@ describe(modulePath, () => {
   const querySuccess = {
     id: '1',
     amount: 55000,
-    state: {
-      status: 'success',
-      finished: true
-    },
-    reference: 'REF1$$$56600a65-f836-4f61-a628-727199ef6c20$$$ABCD$$$A0123',
+    status: 'success',
+    external_reference: 'a65-f836-4f61-a628-727199ef6c20',
     date_created: 1505459675824,
     _links: {}
   };
@@ -85,7 +82,7 @@ describe(modulePath, () => {
   describe('#isPaymentSuccessful', () => {
     it('returns true when response is success', () => {
       // Arrange.
-      const input = { state: { finished: true, status: 'success' } };
+      const input = { status: 'success' };
       // Act.
       const output = underTest.isPaymentSuccessful(input);
       // Assert.
@@ -129,13 +126,14 @@ describe(modulePath, () => {
 
     it('resolves sending required data of the response', done => {
       // Arrange.
-      const { id, amount, state, reference, date_created } = createSuccess; // eslint-disable-line camelcase
+      const
+        { id, status, amount, reference, date_created } = createSuccess; // eslint-disable-line camelcase
       const expectedResponse = {
         id,
         amount,
+        status,
         reference,
-        state,
-        dateCreated: date_created,
+        date_created,
         nextUrl: createSuccess._links.next_url.href
       };
       // Act.
@@ -195,13 +193,14 @@ describe(modulePath, () => {
 
     it('resolves sending required data of the response', done => {
       // Arrange.
-      const { id, amount, state, reference, date_created } = querySuccess; // eslint-disable-line camelcase
+      const
+        { id, amount, status, external_reference, date_created } = querySuccess; // eslint-disable-line camelcase
       const expectedResponse = {
         id,
         amount,
-        reference,
-        state,
-        dateCreated: date_created
+        external_reference,
+        status,
+        date_created
       };
       // Act.
       client.query()

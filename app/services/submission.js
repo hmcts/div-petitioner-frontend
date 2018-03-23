@@ -27,6 +27,7 @@ const service = {
       })
       .catch(error => {
         logger.error(`Error submitting caseId ${args.caseId} to ccd: ${error}`);
+        throw error;
       });
   },
 
@@ -37,6 +38,7 @@ const service = {
       })
       .catch(error => {
         logger.error(`Error updating ccd with caseId ${args.caseId}: ${error}`);
+        throw error;
       });
   }
 };
@@ -50,7 +52,7 @@ const service = {
  */
 const generatePaymentEventData = (session, response) => {
   const
-    { external_reference, amount, reference, status, dateCreated } = response;
+    { external_reference, amount, reference, status, date_created } = response;
   // Provide status when finished, empty string otherwise.
   const siteId = get(session, `court.${session.courts}.siteId`);
   let eventData = null;
@@ -61,7 +63,7 @@ const generatePaymentEventData = (session, response) => {
         PaymentChannel: 'online',
         PaymentTransactionId: external_reference,
         PaymentReference: reference,
-        PaymentDate: formatDate(dateCreated),
+        PaymentDate: formatDate(date_created),
         PaymentAmount: amount,
         PaymentStatus: status,
         PaymentFeeId: CONF.commonProps.applicationFee.code,

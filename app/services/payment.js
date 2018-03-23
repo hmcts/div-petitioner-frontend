@@ -26,12 +26,13 @@ const service = {
           amount,
           reference,
           status,
-          dateCreated: date_created,
+          date_created,
           nextUrl
         };
       })
       .catch(error => {
         logger.error(`Error creating payment with ccd case number ${caseReference}: ${error}`);
+        throw error;
       });
   },
 
@@ -45,20 +46,21 @@ const service = {
     return client.query(user, serviceToken, referenceInput)
       .then(response => {
         const {
-          external_reference, amount, state, reference,
+          id, amount, status, external_reference,
           date_created
         } = response; // eslint-disable-line camelcase
 
         return {
-          external_reference,
+          id,
           amount,
-          reference,
-          state,
-          dateCreated: date_created
+          external_reference,
+          status,
+          date_created
         };
       })
       .catch(error => {
         logger.error(`Error getting payment details for payment reference caseId ${referenceInput}: ${error}`);
+        throw error;
       });
   }
 };

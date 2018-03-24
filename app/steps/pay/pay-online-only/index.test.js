@@ -158,7 +158,7 @@ describe(modulePath, () => {
             expect(code).to.not.eql(null);
             expect(version).to.not.eql(null);
             expect(amount).to.not.eql(null);
-            expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
+            expect(create.calledWith({}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
           }, 'post');
         });
       });

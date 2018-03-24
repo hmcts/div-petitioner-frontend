@@ -55,39 +55,39 @@ describe(modulePath, () => {
   describe('handler', () => {
     let session = {};
 
-      beforeEach(done => {
-        session = { currentPaymentReference: 90, currentPaymentId: 99 };
-        withSession(done, agent, session);
-      });
+    beforeEach(done => {
+      session = { currentPaymentReference: 90, currentPaymentId: 99 };
+      withSession(done, agent, session);
+    });
 
-      it('gets a service token before calling the payment service', done => {
+    it('gets a service token before calling the payment service', done => {
+      testCustom(done, agent, underTest, [], () => {
+        // Assert.
+        expect(getToken.calledBefore(query)).to.equal(true);
+      });
+    });
+
+    it('takes payment id from session', done => {
+      testCustom(done, agent, underTest, [], () => {
+        // Assert.
+        expect(query.args[0][2]).to.equal(session.currentPaymentReference);
+      });
+    });
+
+    it('returns early with payment status if already found in session', done => {
+      const test = () => {
         testCustom(done, agent, underTest, [], () => {
           // Assert.
-          expect(getToken.calledBefore(query)).to.equal(true);
+          expect(getToken.notCalled).to.equal(true);
+          expect(query.notCalled).to.equal(true);
         });
+      };
+      // Arrange.
+      withSession(test, agent, {
+        currentPaymentId: 99,
+        payments: { 99: { status: 'failed' } }
       });
-
-      it('takes payment id from session', done => {
-        testCustom(done, agent, underTest, [], () => {
-          // Assert.
-          expect(query.args[0][2]).to.equal(session.currentPaymentReference);
-        });
-      });
-
-      it('returns early with payment status if already found in session', done => {
-        const test = () => {
-          testCustom(done, agent, underTest, [], () => {
-            // Assert.
-            expect(getToken.notCalled).to.equal(true);
-            expect(query.notCalled).to.equal(true);
-          });
-        };
-        // Arrange.
-        withSession(test, agent, {
-          currentPaymentId: 99,
-          payments: { 99: { status: 'failed' } }
-        });
-      });
+    });
 
     it('redirects to error page when payment state cannot be determined', done => {
       // Arrange.
@@ -139,23 +139,23 @@ describe(modulePath, () => {
       });
     });
 
-      context('payment was successful', () => {
-        it('redirects to Done page', done => {
-          // Arrange.
-          query.resolves({ status: 'success' });
-          // Act & Assert.
-          testRedirect(done, agent, underTest, {}, s.steps.DoneAndSubmitted);
-        });
+    context('payment was successful', () => {
+      it('redirects to Done page', done => {
+        // Arrange.
+        query.resolves({ status: 'success' });
+        // Act & Assert.
+        testRedirect(done, agent, underTest, {}, s.steps.DoneAndSubmitted);
+      });
 
-        it('updates CCD with payment status', done => {
-          // Arrange.
-          query.resolves({ status: 'success' });
-          // Act.
-          testCustom(done, agent, underTest, [], () => {
-            // Assert.
-            expect(update.calledOnce).to.equal(true);
-          });
+      it('updates CCD with payment status', done => {
+        // Arrange.
+        query.resolves({ status: 'success' });
+        // Act.
+        testCustom(done, agent, underTest, [], () => {
+          // Assert.
+          expect(update.calledOnce).to.equal(true);
         });
+      });
 
       context('submission update was not successful', () => {
         it('redirects to the generic error page', done => {

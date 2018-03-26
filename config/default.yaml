@@ -55,7 +55,7 @@ services:
   feeRegister:
     baseUrl: 'http://localhost:4421'
     health: 'http://localhost:4421/health'
-    TTL: 15 # time to save fee register records in seconds ( 3 days = 259200 )
+    TTL: 259200 # time to save fee register records in seconds ( 3 days = 259200 )
 
 defaultEnvironmentNodeEnv: 'development'
 

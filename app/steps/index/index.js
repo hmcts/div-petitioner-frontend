@@ -1,7 +1,7 @@
 const Step = require('app/core/Step');
 const runStepHandler = require('app/core/handler/runStepHandler');
 const initSession = require('app/middleware/initSession');
-// const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class Index extends Step {
   get url() {
@@ -13,8 +13,8 @@ module.exports = class Index extends Step {
 
   get middleware() {
     return [
-      initSession
-      // applicationFeeMiddleware.updateApplicationFeeMiddleware
+      initSession,
+      applicationFeeMiddleware.updateApplicationFeeMiddleware
     ];
   }
 

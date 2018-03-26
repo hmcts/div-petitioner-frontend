@@ -43,7 +43,7 @@ module "frontend" {
   additional_host_name = "${var.external_host_name}"
 
   app_settings = {
-
+    
     // Node specific vars
     NODE_ENV = "${var.node_env}"
     NODE_PATH = "${var.node_path}"

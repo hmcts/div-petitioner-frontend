@@ -37,7 +37,7 @@ variable "node_config_dir" {
 variable "subscription" {}
 
 variable "vault_section" {
-  default = "test"
+  default = "dev"
 }
 
 // CNP settings
@@ -63,9 +63,9 @@ variable "node_path" {
   default = "."
 }
 
-variable "external_host_name" {
-  default = "divorce.sandbox.platform.hmcts.net"
-}
+// variable "external_host_name" {
+//   default = "divorce.sandbox.platform.hmcts.net"
+// }
 
 // Package details
 variable "packages_name" {

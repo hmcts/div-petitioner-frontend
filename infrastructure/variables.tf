@@ -19,7 +19,7 @@ variable "env" {
 variable "ilbIp" { }
 
 variable "deployment_env" {
-  default = "test"
+  default = "dev"
 }
 
 variable "deployment_path" {
@@ -77,7 +77,7 @@ variable "packages_project" {
 }
 
 variable "packages_environment" {
-  default = "test"
+  default = "dev"
 }
 
 variable "packages_version" {
@@ -97,7 +97,7 @@ variable "divorce_frontend_protocol" {
 }
 
 variable "divorce_frontend_hostname" {
-  default = "www-test.divorce.reform.hmcts.net"
+  default = "div-frontend-sandbox.service.core-compute-sandbox.internal"
 }
 
 variable "divorce_frontend_public_port" {
@@ -127,7 +127,7 @@ variable "ga_tracking_url" {
 }
 
 variable "divorce_redis_url" {
-  default = "betaDevBdivorceCache01.reform.hmcts.net:6379"
+  default = "betaDevAdivorceCache01.reform.hmcts.net:6379"
 }
 
 variable "use_auth" {
@@ -167,7 +167,7 @@ variable "s2s_microservice_name" {
 }
 
 variable "case_progression_service_url" {
-  default = "http://betaDevBdivorceAppLB.reform.hmcts.net:4013"
+  default = "http://betaDevAdivorceAppLB.reform.hmcts.net:4003"
 }
 
 variable "transformation_service_base_path" {
@@ -179,7 +179,7 @@ variable "draft_store_api_base_path" {
 }
 
 variable "evidence_management_client_api_url" {
-  default = "http://betaDevBdivorceAppLB.reform.hmcts.net:4016"
+  default = "http://betaDevAdivorceAppLB.reform.hmcts.net:4006"
 }
 
 variable "evidence_management_client_api_upload_endpoint" {
@@ -187,7 +187,7 @@ variable "evidence_management_client_api_upload_endpoint" {
 }
 
 variable "feature_toggle_api_url" {
-  default = "http://betaDevBdivorceAppLB.reform.hmcts.net:4012"
+  default = "http://betaDevAdivorceAppLB.reform.hmcts.net:4002"
 }
 
 variable "feature_toggle_api_base_path" {
@@ -236,11 +236,11 @@ variable "feature_new_jurisdiction" {
 }
 
 variable "feature_idam" {
-  default = "false"
+  default = "true"
 }
 
 variable "feature_foreign_marriage_certs" {
-  default = "false"
+  default = "true"
 }
 
 variable "feature_court_southamption" {

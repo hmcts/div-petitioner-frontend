@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'testing') {
   redisClient = ioRedisMock();
 } else {
   redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const
-  redisClient = ioRedisMock();
 }
 
 redisClient.on('error', error => {

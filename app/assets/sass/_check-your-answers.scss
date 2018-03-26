@@ -15,6 +15,10 @@
     border: none;
   }
 
+  td.no-word-break {
+    word-break: normal;
+  }
+
   span.address {
     margin-top: 10px;
     line-height: 1.1;
@@ -39,7 +43,6 @@
       margin-left: 50px;
     }
   }
-
 }
 
 @media (min-width: 641px) {

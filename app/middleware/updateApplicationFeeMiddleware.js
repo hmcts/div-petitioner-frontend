@@ -20,10 +20,10 @@ redisClient.on('error', error => {
   logger.error(error);
 });
 
-const applicationFeeQueryParams = 'service=devorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
+const applicationFeeQueryParams = 'service=divorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
 
 const getFeeFromService = () => {
-  const service = CONF.deployment_env === 'dev' ? mockFeeReigsterService : feeRegisterService;
+  const service = CONF.deployment_env === 'local' ? mockFeeReigsterService : feeRegisterService;
   const options = { queryParameters: applicationFeeQueryParams };
 
   return service.get(options)

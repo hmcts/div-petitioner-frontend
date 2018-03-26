@@ -5,11 +5,15 @@
             "translation": {
 
                 "content": {
-                    "question": "Enter the names from your marriage certificate",
+                    "question": "How are your names displayed on the marriage certificate?",
+                    "questionTrans": "How are your names displayed on the marriage certificate translation?",
                     "copy": "These will be the names you both used before you were married, such as maiden names.",
                     "hint": "Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+                    "hintTrans": "Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
                     "marriagePetitionerName": "Provide your full name on the certificate",
+                    "marriagePetitionerNameTrans": "Provide your full name on the translation",
                     "marriageRespondentName": "Provide your {{ divorceWho }}&#39;s full name on the certificate",
+                    "marriageRespondentNameTrans": "Provide your {{ divorceWho }}&#39;s full name on the translation",
                     "marriageNameHint": "Include all the text related to the name"
                 },
 

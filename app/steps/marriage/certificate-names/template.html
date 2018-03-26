@@ -3,7 +3,11 @@
 {% extends "question.html" %}
 
 {% block question %}
-{{ content.question | safe}}
+  {%- if session.certificateInEnglish == 'No' -%}
+    {{ content.questionTrans | safe}}
+  {%- else -%}
+    {{ content.question | safe}}
+  {%- endif -%}
 {% endblock %}
 
 {% block form %}
@@ -17,14 +21,43 @@
     <span class="visuallyhidden">{{ content.warning }}</span>
   </em>
   <p class="bold-small">
-    {{ content.hint | safe }}
+    {%- if session.certificateInEnglish == 'No' -%}
+      {{ content.hintTrans | safe}}
+    {%- else -%}
+      {{ content.hint | safe}}
+    {%- endif -%}
   </p>
 </div>
 
-
 <fieldset class="form-group">
-  <legend class="visually-hidden">{{ content.question | safe }}</legend>
+  <legend class="visually-hidden">
+  {%- if session.certificateInEnglish == 'No' -%}
+    {{ content.questionTrans | safe}}
+  {%- else -%}
+    {{ content.question | safe}}
+  {%- endif -%}
+</legend>
 
+
+{%- if session.certificateInEnglish == 'No' -%}
+
+  {{ textField(
+  name = 'marriagePetitionerName',
+  field = fields.marriagePetitionerName,
+  label = content.marriagePetitionerNameTrans,
+  boldLabel = true,
+  hint = content.marriageNameHint
+  ) }}
+
+  {{ textField(
+  name = 'marriageRespondentName',
+  field = fields.marriageRespondentName,
+  label = content.marriageRespondentNameTrans,
+  boldLabel = true,
+  hint = content.marriageNameHint
+  ) }}
+
+{%- else -%}
   {{ textField(
   name = 'marriagePetitionerName',
   field = fields.marriagePetitionerName,
@@ -40,7 +73,7 @@
   boldLabel = true,
   hint = content.marriageNameHint
   ) }}
-
+{%- endif -%}
 </fieldset>
 
 {% endblock %}

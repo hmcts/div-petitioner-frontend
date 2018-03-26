@@ -42,8 +42,9 @@ const service = {
    * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  query: (user, serviceToken, referenceInput) => {
-    return client.query(user, serviceToken, referenceInput)
+  query: (user, serviceToken, referenceInput, mockedPaymentOutcome) => {
+    return client.query(user, serviceToken, referenceInput,
+      mockedPaymentOutcome)
       .then(response => {
         const {
           id, amount, status, external_reference,

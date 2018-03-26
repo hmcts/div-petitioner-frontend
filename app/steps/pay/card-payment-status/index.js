@@ -32,7 +32,7 @@ module.exports = class CardPaymentStatus extends Step {
 
     // Return early when the status of the currently stored payment is already retrieved.
     const resultInSession = paymentService.getCurrentPaymentStatus(req.session);
-    if (resultInSession) {
+    if (resultInSession === 'success' || resultInSession === 'failed') {
       res.redirect(this.next(resultInSession).url);
       return;
     }

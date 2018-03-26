@@ -97,7 +97,7 @@ variable "divorce_frontend_protocol" {
 }
 
 variable "divorce_frontend_hostname" {
-  default = "www-test.divorce.reform.hmcts.net"
+  default = "div-frontend-sandbox.service.core-compute-sandbox.internal"
 }
 
 variable "divorce_frontend_public_port" {
@@ -236,11 +236,11 @@ variable "feature_new_jurisdiction" {
 }
 
 variable "feature_idam" {
-  default = "false"
+  default = "true"
 }
 
 variable "feature_foreign_marriage_certs" {
-  default = "false"
+  default = "true"
 }
 
 variable "feature_court_southamption" {

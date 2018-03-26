@@ -1,6 +1,23 @@
-const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const indexContent = require('app/steps/index/content.json').resources.en.translation.content;
+const indexFeeContent = indexContent.costs.replace('{{ applicationFee.fee_amount }}', '550');
+const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
+const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ applicationFee.fee_amount }}</strong>', '£550');
+const reasonContent = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+
 
 Feature('Payment method');
+
+Scenario('Fee displays on /index page', function (I) {
+  I.amOnPage('/index');
+  I.see(indexFeeContent);
+});
+
+Scenario('Fee displays on /pay/help/need-help page', function (I) {
+  I.amOnPage('/index');
+  I.startApplication();
+  I.amOnPage('/pay/help/need-help');
+  I.see(payHelpFeeContent);
+});
 
 Scenario('Card payment online', function* (I) {
   I.amOnPage('/index');
@@ -28,7 +45,7 @@ Scenario('Card payment online', function* (I) {
 
   I.chooseRespondentServiceAddress();
   I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.selectReasonForDivorce(reasonContent.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample();
 
   I.enterLegalProceedings();
@@ -72,7 +89,7 @@ Scenario('Card payment online failure', function* (I) {
 
   I.chooseRespondentServiceAddress();
   I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.selectReasonForDivorce(reasonContent.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample();
 
   I.enterLegalProceedings();
@@ -122,7 +139,7 @@ Scenario('Card payment online cancellation with retry', function* (I) {
 
   I.chooseRespondentServiceAddress();
   I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.selectReasonForDivorce(reasonContent.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample();
 
   I.enterLegalProceedings();

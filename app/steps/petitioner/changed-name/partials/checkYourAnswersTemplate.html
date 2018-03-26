@@ -1,7 +1,7 @@
 <tr>
   <th>{{ content.question | safe }}</th>
   <td>{{ fields.petitionerNameDifferentToMarriageCertificate.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="no-word-break"><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.petitionerNameDifferentToMarriageCertificate.value === 'Yes' %}
   <tr>

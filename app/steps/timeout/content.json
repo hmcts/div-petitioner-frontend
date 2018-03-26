@@ -4,10 +4,9 @@
         "en": {
             "translation": {
                 "content": {
-                    "title": "Your session timed out",
-                    "timeout": "You didn't do anything onscreen for 60 minutes so we closed your session.",
-                    "info": "The information you entered has been deleted to protect your privacy.",
-                    "startAgain": "You'll need to <a href=\"/index\">start a new application</a>."
+                    "title": "You’ve been signed out to protect your privacy",
+                    "timeout": "Your application was saved and closed because it was inactive for more than 60 minutes.",
+                    "signIn": "<a href=\"/index\">Sign in</a> to return to your application."
                 }
             }
         }

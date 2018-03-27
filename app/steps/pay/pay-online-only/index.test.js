@@ -25,6 +25,7 @@ const two = 2;
 let cookies = [];
 const PENCE_PER_POUND = 100;
 const code = CONF.commonProps.applicationFee.code;
+const version = CONF.commonProps.applicationFee.version;
 const amount = parseInt(
   CONF.commonProps.applicationFee.fee_amount
 ) * PENCE_PER_POUND;
@@ -76,7 +77,7 @@ describe(modulePath, () => {
       create = sinon.stub().resolves({
         id: '42',
         reference: 'some-payment-reference',
-        state: { status: 'created', finished: false },
+        status: 'created',
         nextUrl: 'https://pay.the.gov/here'
       });
       // Submission update stub
@@ -155,8 +156,9 @@ describe(modulePath, () => {
           testCustom(done, agent, underTest, [], () => {
             // Assert.
             expect(code).to.not.eql(null);
+            expect(version).to.not.eql(null);
             expect(amount).to.not.eql(null);
-            expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
+            expect(create.calledWith({}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
           }, 'post');
         });
       });

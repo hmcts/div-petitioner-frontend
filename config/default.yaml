@@ -123,6 +123,7 @@ commonProps:
 
 features:
   idam: false
+  fullPaymentEventDataSubmission: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

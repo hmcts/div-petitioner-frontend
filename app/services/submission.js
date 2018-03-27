@@ -3,6 +3,8 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const CONF = require('config');
 const get = require('lodash/get');
 const moment = require('moment');
+const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 
 let client = {};
 
@@ -22,6 +24,10 @@ const service = {
     return client.submit(...args)
       .then(response => {
         return response;
+      })
+      .catch(error => {
+        logger.error(`Error submitting caseId ${args.caseId} to ccd: ${error}`);
+        throw error;
       });
   },
 
@@ -29,6 +35,10 @@ const service = {
     return client.update(...args)
       .then(response => {
         return response;
+      })
+      .catch(error => {
+        logger.error(`Error updating ccd with caseId ${args.caseId}: ${error}`);
+        throw error;
       });
   }
 };
@@ -41,23 +51,32 @@ const service = {
  * @returns {{payment: {PaymentChannel: string, PaymentTransactionId: *, PaymentReference: *, PaymentDate: string, PaymentAmount: *, PaymentStatus: *, PaymentFeeId: string, PaymentSiteId: *}}}
  */
 const generatePaymentEventData = (session, response) => {
-  const { id, amount, reference, state, dateCreated } = response;
+  const
+    { external_reference, amount, reference, status, date_created } = response;
   // Provide status when finished, empty string otherwise.
-  const paymentStatus = get(state, 'status');
   const siteId = get(session, `court.${session.courts}.siteId`);
+  let eventData = null;
 
-  return {
-    payment: {
-      PaymentChannel: 'card',
-      PaymentTransactionId: id,
-      PaymentReference: reference,
-      PaymentDate: formatDate(dateCreated),
-      PaymentAmount: amount,
-      PaymentStatus: paymentStatus,
-      PaymentFeeId: CONF.commonProps.applicationFee.code,
-      PaymentSiteId: siteId
-    }
-  };
+  if (features.fullPaymentEventDataSubmission) {
+    eventData = {
+      payment: {
+        PaymentChannel: 'online',
+        PaymentTransactionId: external_reference,
+        PaymentReference: reference,
+        PaymentDate: formatDate(date_created),
+        PaymentAmount: amount,
+        PaymentStatus: status,
+        PaymentFeeId: CONF.commonProps.applicationFee.code,
+        PaymentSiteId: siteId
+      }
+    };
+  } else {
+    eventData = {
+      payment:
+        { PaymentReference: reference }
+    };
+  }
+  return eventData;
 };
 
 const setup = () => {

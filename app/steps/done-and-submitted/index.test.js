@@ -52,7 +52,7 @@ describe(modulePath, () => {
           divorceWho: 'wife',
           paymentMethod: 'card-online',
           currentPaymentId: '1',
-          payments: { 1: { state: { status: 'success', finished: true } } },
+          payments: { 1: { status: 'success' } },
           courts: 'westMidlands'
         };
         withSession(done, agent, session);

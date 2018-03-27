@@ -5,6 +5,9 @@ const CONF = require('config');
 const modulePath = 'app/services/submission';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/transformationServiceClient');
+const featureTogglesMock = require('test/mocks/featureToggles');
+const mockedPaymentClient = require('app/services/mocks/payment');
+
 
 describe(modulePath, () => {
   const submitSuccess = {
@@ -81,38 +84,82 @@ describe(modulePath, () => {
   });
 
   describe('generatePaymentEventData', () => {
-    let session = {}, response = {}, originalCommonProps = '';
+    let session = {}, originalCommonProps = '';
 
     beforeEach(() => {
-      response = {
-        id: '123',
-        amount: 1,
-        reference: 'some-reference',
-        state: { status: 'created', finished: false },
-        dateCreated: '1511481600000'
-      };
       session = {
         courts: 'someCourt',
         court: { someCourt: { siteId: 'XX00' } }
       };
       originalCommonProps = CONF.commonProps;
-      CONF.commonProps = { applicationFee: { code: 'some-code' } };
+      CONF.commonProps = { applicationFee: { code: 'some-code', feeVersion: '1' } };
+      featureTogglesMock.stub();
     });
 
     afterEach(() => {
       CONF.commonProps = originalCommonProps;
+      featureTogglesMock.restore();
     });
+    context('feature is set to false', () => {
+      it('returns only payment reference from event data', done => {
+        const generatePaymentEventData = (resolved, callback) => { // eslint-disable-line id-blacklist
+          mockedPaymentClient.create()
+            .then(responsePayment => {
+              callback(responsePayment);
+              resolved();
+            })
+            .catch(error => {
+              resolved(error);
+            });
+        };
 
-    it('collects update event data for the payload', () => {
-      const output = underTest.generatePaymentEventData(session, response);
-      expect(output.payment).to.have.property('PaymentChannel', 'card');
-      expect(output.payment).to.have.property('PaymentTransactionId', '123');
-      expect(output.payment).to.have.property('PaymentReference', 'some-reference');
-      expect(output.payment).to.have.property('PaymentDate', '24112017');
-      expect(output.payment).to.have.property('PaymentAmount', 1);
-      expect(output.payment).to.have.property('PaymentStatus', 'created');
-      expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
-      expect(output.payment).to.have.property('PaymentSiteId', 'XX00');
+        const featureMock = featureTogglesMock
+          .when('fullPaymentEventDataSubmission', false, generatePaymentEventData, responsePayment => {
+            // Assert.
+            const output = underTest
+              .generatePaymentEventData(session, responsePayment);
+            expect(output.payment.PaymentChannel).to.be.an('undefined');
+            expect(output.payment.PaymentTransactionId).to.be.an('undefined');
+            expect(output.payment).to.have.property('PaymentReference', 'a65-f836-4f61-a628-727199ef6c20');
+            expect(output.payment.PaymentDate).to.be.an('undefined');
+            expect(output.payment.PaymentAmount).to.be.an('undefined');
+            expect(output.payment.PaymentStatus).to.be.an('undefined');
+            expect(output.payment.PaymentFeeId).to.be.an('undefined');
+            expect(output.payment.PaymentSiteId).to.be.an('undefined');
+          });
+        featureMock(done);
+      });
+    });
+    context('feature is set to true', () => {
+      it('returns the full body of the event data', done => {
+        const generatePaymentEventData = (resolved, callback) => { // eslint-disable-line id-blacklist
+          mockedPaymentClient.create()
+            .then(responsePayment => {
+              callback(responsePayment);
+              resolved();
+            })
+            .catch(error => {
+              resolved(error);
+            });
+        };
+
+        const featureMock = featureTogglesMock
+          .when('fullPaymentEventDataSubmission', true, generatePaymentEventData, responsePayment => {
+            // Assert.
+            const ammountFromMock = 55000;
+            const output = underTest
+              .generatePaymentEventData(session, responsePayment);
+            expect(output.payment).to.have.property('PaymentChannel', 'online');
+            expect(output.payment).to.have.property('PaymentTransactionId', '123');
+            expect(output.payment).to.have.property('PaymentReference', 'a65-f836-4f61-a628-727199ef6c20');
+            expect(output.payment).to.have.property('PaymentDate', '20022018');
+            expect(output.payment).to.have.property('PaymentAmount', ammountFromMock);
+            expect(output.payment).to.have.property('PaymentStatus', 'created');
+            expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
+            expect(output.payment).to.have.property('PaymentSiteId', 'XX00');
+          });
+        featureMock(done);
+      });
     });
   });
 

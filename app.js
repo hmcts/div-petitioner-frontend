@@ -153,9 +153,12 @@ exports.init = () => {
       origin
     };
   };
-
-  app.use(fetchToggles({ features: [ feature('idam') ] }));
-
+  app.use(fetchToggles({
+    features: [
+      feature('idam'),
+      feature('fullPaymentEventDataSubmission')
+    ]
+  }));
   app.use(healthcheck);
   app.use(featureToggleList);
 

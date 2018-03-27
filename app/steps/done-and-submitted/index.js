@@ -14,7 +14,7 @@ module.exports = class DoneAndSubmitted extends DestroySessionStep {
   interceptor(ctx, session) {
     const paymentResult = paymentService.getCurrentPaymentStatus(session);
     if (session.paymentMethod === 'card-online') {
-      ctx.paymentCompleted = paymentResult && paymentResult.finished;
+      ctx.paymentCompleted = paymentResult && paymentResult === 'success';
     }
 
     return super.interceptor(ctx, session);

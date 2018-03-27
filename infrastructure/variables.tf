@@ -97,7 +97,7 @@ variable "divorce_frontend_protocol" {
 }
 
 variable "divorce_frontend_hostname" {
-  default = "div-frontend-sandbox.service.core-compute-sandbox.internal"
+  default = "div-frontend-sandbox.service.sandbox.platform.hmcts.net"
 }
 
 variable "divorce_frontend_public_port" {

@@ -236,11 +236,11 @@ variable "feature_new_jurisdiction" {
 }
 
 variable "feature_idam" {
-  default = "true"
+  default = "false"
 }
 
 variable "feature_foreign_marriage_certs" {
-  default = "true"
+  default = "false"
 }
 
 variable "feature_court_southamption" {

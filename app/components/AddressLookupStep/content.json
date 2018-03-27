@@ -82,6 +82,10 @@
                     "addressConfirmed": {
                         "required": "Please enter an address",
                         "invalid": "Please enter a valid address"
+                    },
+
+                    "addressLine0": {
+                        "required": "Please enter the first line of your address"
                     }
 
                 }

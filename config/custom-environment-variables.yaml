@@ -10,7 +10,7 @@ service:
 services:
   redis:
     host: REDISCLOUD_URL
-  postcode:
+  postcodeInfo:
     token: POST_CODE_ACCESS_TOKEN
     url: POST_CODE_URL
   idamAuthentication:
@@ -33,6 +33,10 @@ services:
     health: SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL
     microserviceName: MICROSERVICE_NAME
     microserviceKey: MICROSERVICE_KEY
+  feeRegister:
+    baseUrl: FEE_REGISTER_URL
+    health: FEE_REGISTER_HEALTHCHECK_URL
+    TTL: FEE_REGISTER_TTL
 
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET

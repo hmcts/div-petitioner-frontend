@@ -1,31 +1,26 @@
 const statusCodes = require('http-status-codes');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
-
+const initSession = require('app/middleware/initSession');
+const sessionTimeout = require('app/middleware/sessionTimeout');
+const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const Step = require('app/core/Step');
-const { protect } = require('app/services/idam');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const submissionService = require('app/services/submission');
 
 module.exports = class Submit extends Step {
   get middleware() {
-    const idamProtect = (req, res, next) => {
-      return features.idam ? protect()(req, res, next) : next();
-    };
-
-    return [idamProtect];
+    return [
+      idamProtect,
+      initSession,
+      sessionTimeout,
+      restoreFromDraftStore,
+      setIdamUserDetails
+    ];
   }
 
   handler(req, res) {
-    // This step does not exist if online submission is not enabled.
-    if (!features.onlineSubmission) {
-      logger.error('Tried to access Submit step when online submission is turned off');
-      const step = this.steps.Error404;
-      const content = step.generateContent();
-      res.status(statusCodes.NOT_FOUND)
-        .render(step.template, { content });
-      return;
-    }
-
     if (req.session.submissionStarted) {
       res.redirect(this.steps.SubmittedError.url);
       return;

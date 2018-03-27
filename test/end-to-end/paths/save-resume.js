@@ -28,7 +28,7 @@ Scenario('See the check your answers page if session restored from draft petitio
 
   I.checkMyAnswersRestoredSession();
 
-  I.seeCurrentUrlEquals('/njurisdiction/habitual-residence');
+  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
 
 Scenario('Save and close', function (I) {

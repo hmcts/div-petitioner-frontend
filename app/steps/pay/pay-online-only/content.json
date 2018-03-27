@@ -5,7 +5,7 @@
             "translation": {
                 "content": {
                     "question": "Payment",
-                    "applicationFee": "The application fee is £{{ applicationFee }}. The payment can be made by anyone with a valid debit or credit card.",
+                    "applicationFee": "The application fee is £{{ applicationFee.fee_amount }}. The payment can be made by anyone with a valid debit or credit card.",
                     "claimingCosts": "If you're claiming the divorce costs from your {{ divorceWho }}, this fee can be included in any costs order the court makes."
                 }
             }

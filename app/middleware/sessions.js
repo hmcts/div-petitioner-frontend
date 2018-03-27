@@ -22,6 +22,9 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
   },
   redis: () => {
     const client = ioRedis.createClient(redisHost);
+    client.on('error', error => {
+      logger.error(error);
+    });
 
     client.on('connect', () => {
       logger.info({ message: 'Connected to Redis' });

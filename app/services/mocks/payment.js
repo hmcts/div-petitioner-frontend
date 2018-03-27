@@ -9,8 +9,9 @@ module.exports = {
       resolve({
         id: '1',
         amount: 55000,
-        state: { status: 'created', finished: false },
-        reference: 'REF1$$$56600a65-f836-4f61-a628-727199ef6c20$$$ABCD$$$A0123',
+        status: 'created',
+        external_reference: '123',
+        reference: 'a65-f836-4f61-a628-727199ef6c20',
         date_created: 1519116121848,
         _links: { next_url: { href: '/pay/gov-pay-stub' } }
       });
@@ -32,11 +33,8 @@ module.exports = {
       resolve({
         id: '1',
         amount: 55000,
-        state: {
-          status: outcome === true ? 'success' : 'failed',
-          finished: true
-        },
-        reference: 'REF1$$$56600a65-f836-4f61-a628-727199ef6c20$$$ABCD$$$A0123',
+        status: outcome === true ? 'success' : 'failed',
+        reference: 'a65-f836-4f61-a628-727199ef6c20',
         date_created: 1519116121853,
         _links: {}
       });

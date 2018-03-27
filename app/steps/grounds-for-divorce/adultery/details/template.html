@@ -13,24 +13,20 @@
     </div>
 
     {% if (fields.reasonForDivorceAdulteryKnowWhen.value === "Yes") %}
-        <div id="reasonForDivorceAdulteryWhenDetails">
         {{ textArea(
             name='reasonForDivorceAdulteryWhenDetails',
             field=fields.reasonForDivorceAdulteryWhenDetails,
             label=content.whenDidAdulteryHappen
         ) }}
-        </div>
 
     {% endif %}
 
     {% if (fields.reasonForDivorceAdulteryKnowWhere.value === "Yes") %}
-        <div id="reasonForDivorceAdulteryWhereDetails">
         {{ textArea(
             name='reasonForDivorceAdulteryWhereDetails',
             field=fields.reasonForDivorceAdulteryWhereDetails,
             label=content.whereDidAdulteryHappen
         ) }}
-        </div>
     {% endif %}
 
     {% if (fields.reasonForDivorceAdulteryKnowWhen.value === "No" and fields.reasonForDivorceAdulteryKnowWhere.value === "No") %}

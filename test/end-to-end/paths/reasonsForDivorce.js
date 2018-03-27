@@ -105,30 +105,16 @@ Scenario('Deserted without agreement', function*(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (!onlineSubmission) {
-    I.havePrinter();
-  }
+
   I.selectHelpWithFees(false);
 
   I.selectDivorceType();
   I.enterMarriageDate();
 
-  const foreignMarriageCerts = yield I.getFeatureEnabled('foreignMarriageCerts');
+  I.selectMarriedInUk();
 
-  (foreignMarriageCerts) ? I.selectMarriedInUk(): I.selectCountryWhereMarried();
-  const jurisdiction = yield I.getFeatureEnabled('jurisdiction');
-  const newJurisdiction = yield I.getFeatureEnabled('newJurisdiction');
-  if (jurisdiction) {
-    I.chooseJurisdictionResidence();
-    I.chooseJurisdictionDomicile();
-    I.chooseJurisdictionLast12Months();
-    I.chooseJurisdictionLast6Months();
-    I.chooseJurisdictionLastResort(true);
-  } else if (newJurisdiction) {
-    I.chooseBothHabituallyResident();
-    I.chooseJurisdictionInterstitialContinue();
-  }
+  I.chooseBothHabituallyResident();
+  I.chooseJurisdictionInterstitialContinue();
 
   I.enterPeConfidentialContactDetails();
   I.enterPetitionerAndRespondentNames();
@@ -153,15 +139,9 @@ Scenario('Deserted without agreement', function*(I) {
   I.enterFinancialAdvice();
   I.enterClaimCosts();
 
-  if (onlineSubmission) {
-    const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-    I.checkDesertionDateOnCYAPage();
-    I.checkMyAnswers(onlineSubmission);
-    I.confirmIWillPayOnline();
-  } else {
-    I.selectPaymentType('byCheque');
-    I.checkDesertionDateOnCYAPage();
-    I.checkMyAnswers(onlineSubmission);
-  }
+  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  I.uploadMarriageCertificateFile(isDragAndDropSupported);
+  I.checkDesertionDateOnCYAPage();
+  I.checkMyAnswers();
+  I.confirmIWillPayOnline();
 });

@@ -39,9 +39,7 @@ describe(modulePath, () => {
     });
 
     it('shows reference number', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testExistence, agent, underTest, contentStrings.subTitle);
-      featureMock(done);
+      testExistence(done, agent, underTest, contentStrings.subTitle);
     });
   });
 
@@ -54,16 +52,14 @@ describe(modulePath, () => {
           divorceWho: 'wife',
           paymentMethod: 'card-online',
           currentPaymentId: '1',
-          payments: { 1: { state: { status: 'success', finished: true } } },
+          payments: { 1: { status: 'success' } },
           courts: 'westMidlands'
         };
         withSession(done, agent, session);
       });
 
       it('shows complete status of payment', done => {
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testExistence, agent, underTest, contentStrings.paymentReceived);
-        featureMock(done);
+        testExistence(done, agent, underTest, contentStrings.paymentReceived);
       });
     });
 
@@ -78,9 +74,8 @@ describe(modulePath, () => {
       });
 
       it('does not show payment received', done => {
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testNonExistence, agent, underTest, contentStrings.paymentReceived);
-        featureMock(done);
+        testNonExistence(done, agent, underTest,
+          contentStrings.paymentReceived);
       });
     });
   });
@@ -256,34 +251,28 @@ describe(modulePath, () => {
 
     westMidlandsDetails.forEach(courtDetail => {
       it(`contains westMidlands contact detail: ${courtDetail}`, done => {
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testExistence, agent, underTest, courtDetail);
-        featureMock(done);
+        testExistence(done, agent, underTest, courtDetail);
       });
     });
 
     it(`contains westMidlands contact detail: ${CONF.commonProps.court.westMidlands.openingHours}`, done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testExistence, agent, underTest, CONF.commonProps.court.westMidlands.openingHours);
-      featureMock(done);
+      testExistence(done, agent, underTest,
+        CONF.commonProps.court.westMidlands.openingHours);
     });
 
     it('does not contain eastMidlands contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.eastMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.eastMidlands.email);
     });
 
     it('does not contain southWest contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.southWest.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.southWest.email);
     });
 
     it('does not contain northWest contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.northWest.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.northWest.email);
     });
   });
 
@@ -305,34 +294,28 @@ describe(modulePath, () => {
 
     eastMidlandsDetails.forEach(courtDetail => {
       it(`contains eastMidlands contact detail: ${courtDetail}`, done => {
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testExistence, agent, underTest, courtDetail);
-        featureMock(done);
+        testExistence(done, agent, underTest, courtDetail);
       });
     });
 
     it(`contains eastMidlands contact detail: ${CONF.commonProps.court.eastMidlands.openingHours}`, done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testExistence, agent, underTest, CONF.commonProps.court.eastMidlands.openingHours);
-      featureMock(done);
+      testExistence(done, agent, underTest,
+        CONF.commonProps.court.eastMidlands.openingHours);
     });
 
     it('does not contain westMidlands contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.westMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.westMidlands.email);
     });
 
     it('does not contain southWest contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.southWest.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.southWest.email);
     });
 
     it('does not contain northWest contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.northWest.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.northWest.email);
     });
   });
 
@@ -354,34 +337,28 @@ describe(modulePath, () => {
 
     southWestDetails.forEach(courtDetail => {
       it(`contains southWest contact detail: ${courtDetail}`, done => {
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testExistence, agent, underTest, courtDetail);
-        featureMock(done);
+        testExistence(done, agent, underTest, courtDetail);
       });
     });
 
     it(`contains southWest contact detail: ${CONF.commonProps.court.southWest.openingHours}`, done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testExistence, agent, underTest, CONF.commonProps.court.southWest.openingHours);
-      featureMock(done);
+      testExistence(done, agent, underTest,
+        CONF.commonProps.court.southWest.openingHours);
     });
 
     it('does not contain westMidlands contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.westMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.westMidlands.email);
     });
 
     it('does not contain eastMidlands contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.eastMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.eastMidlands.email);
     });
 
     it('does not contain northWest contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.northWest.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.northWest.email);
     });
   });
 
@@ -403,34 +380,28 @@ describe(modulePath, () => {
 
     northWestDetails.forEach(courtDetail => {
       it(`contains northWest contact detail: ${courtDetail}`, done => {
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testExistence, agent, underTest, courtDetail);
-        featureMock(done);
+        testExistence(done, agent, underTest, courtDetail);
       });
     });
 
     it(`contains northWest contact detail: ${CONF.commonProps.court.northWest.openingHours}`, done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testExistence, agent, underTest, CONF.commonProps.court.northWest.openingHours);
-      featureMock(done);
+      testExistence(done, agent, underTest,
+        CONF.commonProps.court.northWest.openingHours);
     });
 
     it('does not contain westMidlands contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.westMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.westMidlands.email);
     });
 
     it('does not contain eastMidlands contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.eastMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.eastMidlands.email);
     });
 
     it('does not contain southWest contact email', done => {
-      const featureMock = featureTogglesMock
-        .when('onlineSubmission', true, testNonExistence, agent, underTest, CONF.commonProps.court.westMidlands.email);
-      featureMock(done);
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.westMidlands.email);
     });
   });
 

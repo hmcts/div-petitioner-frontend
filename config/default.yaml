@@ -2,7 +2,7 @@ appName: 'frontend'
 project: 'divorce'
 environment: 'laptop'
 version: 'x.x-laptop'
-deployment_env: dev
+deployment_env: 'local'
 
 log:
   ERROR: 1
@@ -52,6 +52,10 @@ services:
     baseUrl: 'http://localhost:4003/transformationapi/version/1'
     draftBaseUrl: 'http://localhost:4003/draftsapi/version/1'
     health: 'http://localhost:4003/status/health'
+  feeRegister:
+    baseUrl: 'http://localhost:4421'
+    health: 'http://localhost:4421/health'
+    TTL: 43200 # time to save fee register records in seconds ( 12 hours = 43200 )
 
 defaultEnvironmentNodeEnv: 'development'
 
@@ -62,9 +66,12 @@ dateFormat: 'DD/MM/YYYY'
 paymentDateFormat: 'DDMMYYYY'
 
 commonProps:
-  applicationFee: 550
+  applicationFee: 
+    code: 'X0165'
+    description: 'Divorce fee'
+    version: 1
+    fee_amount: 550.00
   financialOrderApplicationFee: 255
-  applicationFeeCode: 'X0165'
   court:
     eastMidlands:
       phone: '0000 111 2220'
@@ -115,11 +122,8 @@ commonProps:
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:
-  jurisdiction: false
-  newJurisdiction: true
   idam: false
-  foreignMarriageCerts: true
-  onlineSubmission: true
+  fullPaymentEventDataSubmission: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

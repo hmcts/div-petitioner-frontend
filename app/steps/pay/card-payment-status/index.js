@@ -1,30 +1,29 @@
 const jwt = require('jsonwebtoken');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
-const statusCodes = require('http-status-codes');
+const initSession = require('app/middleware/initSession');
+const sessionTimeout = require('app/middleware/sessionTimeout');
+const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 
 const Step = require('app/core/Step');
-const { protect } = require('app/services/idam');
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 
 module.exports = class CardPaymentStatus extends Step {
   get middleware() {
-    const idamProtect = (req, res, next) => {
-      return features.idam ? protect()(req, res, next) : next();
-    };
-
-    return [idamProtect];
+    return [
+      idamProtect,
+      initSession,
+      sessionTimeout,
+      restoreFromDraftStore,
+      setIdamUserDetails
+    ];
   }
 
   handler(req, res) {
-    // This step does not exist if online submission is not enabled.
-    if (!features.onlineSubmission) {
-      res.status(statusCodes.NOT_FOUND).send('Not Found');
-      return;
-    }
-
     // @todo Fail early if paymentId cannot be found in the session.
     // @todo Fail early if request is not in the right format.
 
@@ -33,7 +32,7 @@ module.exports = class CardPaymentStatus extends Step {
 
     // Return early when the status of the currently stored payment is already retrieved.
     const resultInSession = paymentService.getCurrentPaymentStatus(req.session);
-    if (resultInSession && resultInSession.finished) {
+    if (resultInSession === 'success' || resultInSession === 'failed') {
       res.redirect(this.next(resultInSession).url);
       return;
     }
@@ -60,7 +59,7 @@ module.exports = class CardPaymentStatus extends Step {
     serviceToken.getToken()
       // Query payment status.
       .then(token => {
-        return payment.query(user, token, req.session.currentPaymentId,
+        return payment.query(user, token, req.session.currentPaymentReference,
           req.session.mockedPaymentOutcome);
       })
 
@@ -94,8 +93,8 @@ module.exports = class CardPaymentStatus extends Step {
         }
 
         const id = req.session.currentPaymentId;
-        const paymentState = req.session.payments[id].state;
-        res.redirect(this.next(paymentState).url);
+        const paymentStatus = req.session.payments[id].status;
+        res.redirect(this.next(paymentStatus).url);
       })
 
       // Log any errors occurred and end up on the error page.
@@ -111,6 +110,6 @@ module.exports = class CardPaymentStatus extends Step {
   }
 
   next(result) {
-    return (result.status === 'success' && result.finished === true) ? this.steps.DoneAndSubmitted : this.steps.PayOnline;
+    return (result === 'success') ? this.steps.DoneAndSubmitted : this.steps.PayOnline;
   }
 };

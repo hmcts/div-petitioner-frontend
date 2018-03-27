@@ -10,7 +10,7 @@ const isHabitualResident = (who, step, ctx, session) => {
 };
 
 const isDomiciled = (who, step, ctx, session) => {
-  const stepData = (step === 'JurisdictionNDomicile') ? ctx : session;
+  const stepData = (step === 'JurisdictionDomicile') ? ctx : session;
   return stepData[`jurisdiction${who.charAt(0).toUpperCase()}${who.slice(1)}Domicile`] === 'Yes';
 };
 

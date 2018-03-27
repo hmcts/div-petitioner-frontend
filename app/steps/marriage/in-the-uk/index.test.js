@@ -49,32 +49,11 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', [], session);
     });
 
-    it('redirects to the next page if married in UK for oldJurisdiction', done => {
+    it('redirects to the next page if married in UK', done => {
       const context = { marriedInUk: 'Yes' };
 
-      const nextStep = s.steps.JurisdictionResidence;
-
-      const featureMock = featureTogglesMock.when('jurisdiction', true, testRedirect, agent, underTest, context, nextStep);
-
-      featureMock(done);
-    });
-
-    it('redirects to the next page if married in UK for newJurisdiction', done => {
-      const context = { marriedInUk: 'Yes' };
-
-      const nextStep = s.steps.JurisdictionHabitualResidence;
-
-      const featureMock = featureTogglesMock.when('newJurisdiction', true, testRedirect, agent, underTest, context, nextStep);
-
-      featureMock(done);
-    });
-
-    it('redirects to the next page if married in UK for noJurisdiction', done => {
-      const context = { marriedInUk: 'Yes' };
-
-      const nextStep = s.steps.PetitionerConfidential;
-
-      testRedirect(done, agent, underTest, context, nextStep);
+      testRedirect(done, agent, underTest, context,
+        s.steps.JurisdictionHabitualResidence);
     });
 
     it('redirects to next page if not married in UK', done => {

@@ -21,5 +21,19 @@ module.exports = class AdulteryWhen extends ValidationStep {
         remove('reasonForDivorceAdulteryKnowWhen');
       }
     });
+
+    watch('reasonForDivorceAdulteryKnowWhen', (previousSession, session, remove) => {
+      if (previousSession.reasonForDivorceAdulteryKnowWhen === 'No') {
+        remove('reasonForDivorceAdulteryWhenDetails');
+      }
+    });
+  }
+
+  action(ctx, session) {
+    if (ctx.reasonForDivorceAdulteryKnowWhen === 'No') {
+      session.reasonForDivorceAdulteryWhenDetails = 'The applicant does not know when the adultery took place';
+    }
+
+    return [ctx, session];
   }
 };

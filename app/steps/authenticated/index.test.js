@@ -13,12 +13,11 @@ let s = {};
 let agent = {};
 let underTest = {};
 let landingPageStub = {};
-const idamUserDetails = { email: 'simulate-delivered@notifications.service.gov.uk' };
 const two = 2;
 
 describe(modulePath, () => {
   beforeEach(() => {
-    landingPageStub = sinon.stub().callsArgWith(two, idamUserDetails);
+    landingPageStub = sinon.stub().callsArgWith(two);
     sinon.stub(idam, 'landingPage').returns(landingPageStub);
     idamMock.stub();
     s = server.init();
@@ -46,7 +45,7 @@ describe(modulePath, () => {
   });
 
   describe('idam on', () => {
-    it('sets the email address returned from the idam user', done => {
+    it('redirects to the landing page', done => {
       const context = {};
 
       const featureMock = featureTogglesMock
@@ -54,8 +53,7 @@ describe(modulePath, () => {
 
       featureMock(() => {
         getSession(agent)
-          .then(session => {
-            expect(session.petitionerEmail).to.eql(idamUserDetails.email);
+          .then(() => {
             expect(landingPageStub.calledOnce).to.eql(true);
           })
           .then(done, done);

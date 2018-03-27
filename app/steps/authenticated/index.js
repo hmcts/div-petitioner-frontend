@@ -7,11 +7,7 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const idamLandingPage = (req, res, next) => {
   if (features.idam) {
     const landing = idam.landingPage();
-    return landing(req, res, userDetails => {
-      // save the user email to the session if its not already set
-      if (!req.session.petitionerEmail) {
-        req.session.petitionerEmail = userDetails.email;
-      }
+    return landing(req, res, () => {
       next();
     });
   }

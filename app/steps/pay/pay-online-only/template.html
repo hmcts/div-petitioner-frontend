@@ -14,4 +14,14 @@
   {{ content.claimingCosts | safe }}
 </p>
 
+<div class="notice">
+  <em class="icon icon-important">
+    <span class="visuallyhidden">{{ content.warning }}</span>
+  </em>
+  <p class="bold-small">
+      {{ content.warning | safe}}
+  </p>
+</div>
+
+
 {% endblock %}

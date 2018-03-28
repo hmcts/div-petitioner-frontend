@@ -2,7 +2,7 @@ const request = require('supertest');
 const { testContent, testRedirect } = require('test/util/assertions');
 const server = require('app');
 
-const modulePath = 'app/steps/error-submitted';
+const modulePath = 'app/steps/application-submitted';
 
 const content = require(`${modulePath}/content`);
 
@@ -14,7 +14,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.SubmittedError;
+    underTest = s.steps.ApplicationSubmitted;
   });
 
 

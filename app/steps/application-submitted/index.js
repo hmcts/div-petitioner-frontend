@@ -1,7 +1,7 @@
 const Page = require('app/core/steps/Page');
 const runStepHandler = require('app/core/handler/runStepHandler');
 
-module.exports = class SubmittedError extends Page {
+module.exports = class ApplicationSubmitted extends Page {
   get url() {
     return '/application-submitted';
   }

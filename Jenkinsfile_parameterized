@@ -22,9 +22,10 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
-
 withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
   after('build') {
+    sh 'echo HelloWorld'
+    sh 'curl https://postcodeinfo.service.justice.gov.uk'
     sh 'yarn setup'
   }
 

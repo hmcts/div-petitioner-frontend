@@ -6,7 +6,8 @@
                 "content": {
                     "question": "Payment",
                     "applicationFee": "The application fee is £{{ applicationFee.fee_amount }}. The payment can be made by anyone with a valid debit or credit card.",
-                    "claimingCosts": "If you're claiming the divorce costs from your {{ divorceWho }}, this fee can be included in any costs order the court makes."
+                    "claimingCosts": "If you're claiming the divorce costs from your {{ divorceWho }}, this fee can be included in any costs order the court makes.",
+                    "warning": "You must complete payment within 60 minutes. If you don't, you'll be signed out and will need to contact the court to make payment."
                 }
             }
         }

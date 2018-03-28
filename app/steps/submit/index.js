@@ -21,16 +21,6 @@ module.exports = class Submit extends Step {
   }
 
   handler(req, res) {
-    // This step does not exist if online submission is not enabled.
-    if (!features.onlineSubmission) {
-      logger.error('Tried to access Submit step when online submission is turned off');
-      const step = this.steps.Error404;
-      const content = step.generateContent();
-      res.status(statusCodes.NOT_FOUND)
-        .render(step.template, { content });
-      return;
-    }
-
     if (req.session.submissionStarted) {
       res.redirect(this.steps.ApplicationSubmitted.url);
       return;

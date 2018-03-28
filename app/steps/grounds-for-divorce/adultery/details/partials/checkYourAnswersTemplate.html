@@ -1,11 +1,11 @@
-{% if fields.reasonForDivorceAdulteryWhenDetails.value %}
+{% if fields.reasonForDivorceAdulteryKnowWhen.value == 'Yes' %}
   <tr>
     <th>{{ content.whenDidAdulteryHappen | safe }}</th>
     <td>{{ fields.reasonForDivorceAdulteryWhenDetails.value }}</td>
     <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}
-{% if fields.reasonForDivorceAdulteryWhereDetails.value %}
+{% if fields.reasonForDivorceAdulteryKnowWhere.value == 'Yes' %}
   <tr>
     <th>{{ content.whereDidAdulteryHappen | safe }}</th>
     <td>{{ fields.reasonForDivorceAdulteryWhereDetails.value }}</td>

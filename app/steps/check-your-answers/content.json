@@ -27,7 +27,6 @@
                     "confirmDissolvePayBothFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
                     "confirmBelieve": "I believe that the facts stated in this application are true.",
                     "confirmApplication": "The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
-                    "submit": "Continue",
                     "submitOnline": "Submit",
                     "dontNavigateAway": "Don’t close the browser, navigate away from this service or refresh the page until you’re told that your application is complete.",
                     "dontNavigateAwayNotAppliedForFees": "You now need to pay the fee.",

@@ -2,7 +2,7 @@ appName: 'frontend'
 project: 'divorce'
 environment: 'laptop'
 version: 'x.x-laptop'
-deployment_env: dev
+deployment_env: 'local'
 
 log:
   ERROR: 1
@@ -55,7 +55,7 @@ services:
   feeRegister:
     baseUrl: 'http://localhost:4421'
     health: 'http://localhost:4421/health'
-    TTL: 259200 # time to save fee register records in seconds ( 3 days = 259200 )
+    TTL: 43200 # time to save fee register records in seconds ( 12 hours = 43200 )
 
 defaultEnvironmentNodeEnv: 'development'
 
@@ -123,7 +123,7 @@ commonProps:
 
 features:
   idam: false
-  onlineSubmission: true
+  fullPaymentEventDataSubmission: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

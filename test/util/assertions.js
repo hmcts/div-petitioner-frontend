@@ -78,13 +78,18 @@ exports.testContent = (done, agent, underTest, content, session = {}, excludeKey
   const checkContent = (res) => {
     const pageContent = Object.assign({}, session, CONF.commonProps, dataContent);
     const text = res.text.toLowerCase();
+    const missingContent = [];
 
     walkMap(content.resources.en.translation.content, (path, content) => {
       if (!excludeKeys.includes(path)) {
         content = interpolator.interpolate(content, pageContent).toLowerCase();
-        expect(text).to.contain(content);
+        if (text.indexOf(content) === -1) {
+          missingContent.push(path);
+        }
       }
     });
+
+    expect(missingContent, 'The following content was not found in template').to.eql([]);
   };
 
   return createSession(agent)

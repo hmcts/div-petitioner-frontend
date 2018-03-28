@@ -35,7 +35,7 @@
   "dependencies": {
     "@hmcts/div-feature-toggle-client": "https://github.com/hmcts/div-feature-toggle-client#1.0.7",
     "@hmcts/div-idam-express-middleware": "https://github.com/hmcts/div-idam-express-middleware#5.0.0",
-    "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#5.0.0",
+    "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.0.0",
     "@hmcts/div-service-auth-provider-client": "https://github.com/hmcts/div-service-auth-provider-client#2.1.4",
     "@hmcts/nodejs-healthcheck": "^1.2.0",
     "@hmcts/nodejs-logging": "^1.4.2",

@@ -314,22 +314,9 @@ describe(modulePath, () => {
       featureTogglesMock.restore();
     });
 
-    context('online submission is turned ON', () => {
-      it('redirects to submit step', done => {
-        const context = { confirmPrayer: 'Yes' };
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testRedirect, agent, underTest, context, s.steps.Submit);
-        featureMock(done);
-      });
-    });
-
-    context('online submission is turned OFF', () => {
-      it('redirects to the done page', done => {
-        const context = { confirmPrayer: 'Yes' };
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', false, testRedirect, agent, underTest, context, s.steps.Done);
-        featureMock(done);
-      });
+    it('redirects to submit step', done => {
+      const context = { confirmPrayer: 'Yes' };
+      testRedirect(done, agent, underTest, context, s.steps.Submit);
     });
   });
 

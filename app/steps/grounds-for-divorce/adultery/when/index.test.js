@@ -2,7 +2,8 @@
 const request = require('supertest');
 const {
   testContent, testErrors, testRedirect,
-  testCYATemplate, testExistenceCYA
+  testCYATemplate, testExistenceCYA,
+  postData, expectSessionValue
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
@@ -52,21 +53,54 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required');
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page when the user knows when', done => {
       const context = { reasonForDivorceAdulteryKnowWhen: 'Yes' };
 
       testRedirect(done, agent, underTest, context, s.steps.AdulteryDetails);
     });
 
-    it('redirects to the exit page', done => {
+    it('redirects to the next page when user does not know when', done => {
       const context = { reasonForDivorceAdulteryKnowWhen: 'No' };
 
       testRedirect(done, agent, underTest, context, s.steps.AdulteryDetails);
     });
   });
 
+  describe('setting details on session', () => {
+    beforeEach(done => {
+      const session = { divorceWho: 'wife', reasonForDivorceAdulteryWhenDetails: 'placeholder' };
+      withSession(done, agent, session);
+    });
+
+    it('does not modify when details when user knows when', done => {
+      const context = { reasonForDivorceAdulteryKnowWhen: 'Yes' };
+
+      postData(agent, underTest.url, context).then(
+        expectSessionValue(
+          'reasonForDivorceAdulteryWhenDetails',
+          'placeholder',
+          agent,
+          done
+        )
+      );
+    });
+
+    it('sets the know when details when user does not know when', done => {
+      const context = { reasonForDivorceAdulteryKnowWhen: 'No' };
+
+      postData(agent, underTest.url, context).then(
+        expectSessionValue(
+          'reasonForDivorceAdulteryWhenDetails',
+          'The applicant does not know when the adultery took place',
+          agent,
+          done
+        )
+      );
+    });
+  });
+
   describe('Watched session values', () => {
-    it('removes reasonForDivorceAdulteryKnowWhere if reasonForDivorceAdulteryWishToName is set to No', () => {
+    it('removes reasonForDivorceAdulteryKnowWhen if reasonForDivorceAdulteryWishToName is set to No', () => {
       const previousSession = {
         reasonForDivorceAdulteryWishToName: 'Yes',
         reasonForDivorceAdulteryKnowWhen: 'Yes'
@@ -78,6 +112,8 @@ describe(modulePath, () => {
       const newSession = removeStaleData(previousSession, session);
       expect(newSession.reasonForDivorceAdulteryWishToName).to.equal('No');
       expect(typeof newSession.reasonForDivorceAdulteryKnowWhen)
+        .to.equal('undefined');
+      expect(typeof newSession.reasonForDivorceAdulteryWhenDetails)
         .to.equal('undefined');
     });
 
@@ -95,6 +131,8 @@ describe(modulePath, () => {
         .to.equal('undefined');
       expect(typeof newSession.reasonForDivorceAdulteryKnowWhen)
         .to.equal('undefined');
+      expect(typeof newSession.reasonForDivorceAdulteryWhenDetails)
+        .to.equal('undefined');
     });
 
     it('it does not remove reasonForDivorceAdulteryKnowWhen if reasonForDivorceAdulteryWishToName is set to Yes', () => {
@@ -110,6 +148,36 @@ describe(modulePath, () => {
       expect(newSession.reasonForDivorceAdulteryWishToName).to.equal('Yes');
       expect(newSession.reasonForDivorceAdulteryKnowWhen)
         .to.equal(previousSession.reasonForDivorceAdulteryKnowWhen);
+      expect(newSession.reasonForDivorceAdulteryWhenDetails)
+        .to.equal(previousSession.reasonForDivorceAdulteryWhenDetails);
+    });
+
+    it('it does not remove reasonForDivorceAdulteryWhenDetails if reasonForDivorceAdulteryKnowWhen is not changed from No', () => {
+      const previousSession = {
+        reasonForDivorceAdulteryKnowWhen: 'Yes',
+        reasonForDivorceAdulteryWhenDetails: 'placeholder'
+      };
+
+      const session = clone(previousSession);
+      session.reasonForDivorceAdulteryKnowWhen = 'No';
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(newSession.reasonForDivorceAdulteryWhenDetails)
+        .to.equal(previousSession.reasonForDivorceAdulteryWhenDetails);
+    });
+
+    it('it does remove reasonForDivorceAdulteryWhenDetails if reasonForDivorceAdulteryKnowWhen is changed from No', () => {
+      const previousSession = {
+        reasonForDivorceAdulteryKnowWhen: 'No',
+        reasonForDivorceAdulteryWhenDetails: 'placeholder'
+      };
+
+      const session = clone(previousSession);
+      session.reasonForDivorceAdulteryKnowWhen = 'Yes';
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(typeof newSession.reasonForDivorceAdulteryWhenDetails)
+        .to.equal('undefined');
     });
   });
 

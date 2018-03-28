@@ -29,17 +29,45 @@ describe(modulePath, () => {
   });
 
 
-  describe('content', () => {
+  describe('content when certificate is in English', () => {
     let session = {};
 
     beforeEach(done => {
       session = { divorceWho: 'wife' };
+      withSession(done, agent, session);
+    });
+
+    it('renders the content from the content file', done => {
+      const ignoreContent = [
+        'questionTrans',
+        'hintTrans',
+        'marriagePetitionerNameTrans',
+        'marriageRespondentNameTrans'
+      ];
+      testContent(done, agent, underTest, content, session, ignoreContent);
+    });
+  });
+
+  describe('content when certificate is not in English', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        certificateInEnglish: 'No'
+      };
 
       withSession(done, agent, session);
     });
 
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content, session);
+      const ignoreContent = [
+        'question',
+        'hint',
+        'marriagePetitionerName',
+        'marriageRespondentName'
+      ];
+      testContent(done, agent, underTest, content, session, ignoreContent);
     });
   });
 

@@ -252,66 +252,6 @@ describe(modulePath, () => {
       expect(newSession.reasonForDivorceAdulteryWhereDetails)
         .to.equal(previousSession.reasonForDivorceAdulteryWhereDetails);
     });
-
-    it('removes reasonForDivorceAdulteryWhereDetails if reasonForDivorceAdulteryKnowWhere is set to no', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhere: 'Yes',
-        reasonForDivorceAdulteryWhereDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhere = 'No';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhere).to.equal('No');
-      expect(typeof newSession.reasonForDivorceAdulteryWhereDetails)
-        .to.equal('undefined');
-    });
-
-    it('does not remove reasonForDivorceAdulteryWhereDetails if reasonForDivorceAdulteryKnowWhere is set to yes', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhere: 'No',
-        reasonForDivorceAdulteryWhereDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhere = 'Yes';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhere).to.equal('Yes');
-      expect(newSession.reasonForDivorceAdulteryWhereDetails)
-        .to.equal(previousSession.reasonForDivorceAdulteryWhereDetails);
-    });
-
-    it('removes reasonForDivorceAdulteryWhenDetails if reasonForDivorceAdulteryKnowWhen is set to no', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhen: 'Yes',
-        reasonForDivorceAdulteryWhenDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhen = 'No';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhen).to.equal('No');
-      expect(typeof newSession.reasonForDivorceAdulteryWhenDetails)
-        .to.equal('undefined');
-    });
-
-    it('does not remove reasonForDivorceAdulteryWhenDetails if reasonForDivorceAdulteryKnowWhen is set to yes', () => {
-      const previousSession = {
-        reasonForDivorceAdulteryKnowWhen: 'No',
-        reasonForDivorceAdulteryWhenDetails: 'Details...'
-      };
-
-      const session = clone(previousSession);
-      session.reasonForDivorceAdulteryKnowWhen = 'Yes';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulteryKnowWhen).to.equal('Yes');
-      expect(newSession.reasonForDivorceAdulteryWhenDetails)
-        .to.equal(previousSession.reasonForDivorceAdulteryWhenDetails);
-    });
   });
 
   describe('Check Your Answers', () => {
@@ -333,6 +273,8 @@ describe(modulePath, () => {
       ];
 
       const context = {
+        reasonForDivorceAdulteryKnowWhen: 'Yes',
+        reasonForDivorceAdulteryKnowWhere: 'Yes',
         reasonForDivorceAdulteryWhereDetails: 'details where',
         reasonForDivorceAdulteryWhenDetails: 'details when',
         reasonForDivorceAdulteryDetails: 'details plain'
@@ -347,7 +289,10 @@ describe(modulePath, () => {
 
       const valuesToExist = ['reasonForDivorceAdulteryWhenDetails'];
 
-      const context = { reasonForDivorceAdulteryWhenDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryWhenDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhen: 'Yes'
+      };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);
@@ -358,7 +303,10 @@ describe(modulePath, () => {
 
       const valuesToExist = ['reasonForDivorceAdulteryWhereDetails'];
 
-      const context = { reasonForDivorceAdulteryWhereDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryWhereDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhere: 'Yes'
+      };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);
@@ -380,7 +328,11 @@ describe(modulePath, () => {
 
       const valuesToNotExist = ['reasonForDivorceAdulteryWhereDetails'];
 
-      const context = { reasonForDivorceAdulteryDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryDetails: 'details...',
+        reasonForDivorceAdulteryWhereDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhere: 'No'
+      };
 
       testNoneExistenceCYA(done, underTest, content,
         contentToNotExist, valuesToNotExist, context);
@@ -391,7 +343,11 @@ describe(modulePath, () => {
 
       const valuesToNotExist = ['reasonForDivorceAdulteryWhenDetails'];
 
-      const context = { reasonForDivorceAdulteryDetails: 'details...' };
+      const context = {
+        reasonForDivorceAdulteryDetails: 'details...',
+        reasonForDivorceAdulteryWhenDetails: 'details...',
+        reasonForDivorceAdulteryKnowWhen: 'No'
+      };
 
       testNoneExistenceCYA(done, underTest, content,
         contentToNotExist, valuesToNotExist, context);

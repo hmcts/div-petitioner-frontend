@@ -2,7 +2,7 @@
 const request = require('supertest');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { testContent, testHttpStatus, testCustom } = require('test/util/assertions');
+const { testContent, testCustom } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const { expect, sinon } = require('test/util/chai');
@@ -25,6 +25,7 @@ const two = 2;
 let cookies = [];
 const PENCE_PER_POUND = 100;
 const code = CONF.commonProps.applicationFee.code;
+const version = CONF.commonProps.applicationFee.version;
 const amount = parseInt(
   CONF.commonProps.applicationFee.fee_amount
 ) * PENCE_PER_POUND;
@@ -76,7 +77,7 @@ describe(modulePath, () => {
       create = sinon.stub().resolves({
         id: '42',
         reference: 'some-payment-reference',
-        state: { status: 'created', finished: false },
+        status: 'created',
         nextUrl: 'https://pay.the.gov/here'
       });
       // Submission update stub
@@ -98,15 +99,6 @@ describe(modulePath, () => {
       serviceToken.setup.restore();
     });
 
-    context('Online submission is turned OFF', () => {
-      it('returns not found', done => {
-        // Act & Assert.
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', false, testHttpStatus, agent, underTest, statusCodes.NOT_FOUND, 'post');
-        featureMock(done);
-      });
-    });
-
     context('Case Id is missing', () => {
       let session = {}, siteId = '';
 
@@ -124,18 +116,16 @@ describe(modulePath, () => {
       });
       it('redirects to the generic error page', done => {
         // Act.
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
-            // Assert.
-            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-            expect(response.header.location).to.equal('/generic-error');
-            expect(serviceToken.setup.called).to.eql(false);
-          }, 'post');
-        featureMock(done);
+        testCustom(done, agent, underTest, cookies, response => {
+          // Assert.
+          expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+          expect(response.header.location).to.equal('/generic-error');
+          expect(serviceToken.setup.called).to.eql(false);
+        }, 'post');
       });
     });
 
-    context('Online submission is turned ON', () => {
+    context('success', () => {
       let session = {}, siteId = '';
 
       beforeEach(done => {
@@ -154,25 +144,22 @@ describe(modulePath, () => {
 
       it('gets a service token before calling the payment service', done => {
         // Act.
-        const featureMock = featureTogglesMock
-          .when('onlineSubmission', true, testCustom, agent, underTest, cookies, () => {
-            // Assert.
-            expect(getToken.calledBefore(create)).to.equal(true);
-          }, 'post');
-        featureMock(done);
+        testCustom(done, agent, underTest, cookies, () => {
+          // Assert.
+          expect(getToken.calledBefore(create)).to.equal(true);
+        }, 'post');
       });
 
       context('Court is selected', () => {
         it('creates payment with the site ID of the court', done => {
           // Act.
-          const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, [], () => {
-              // Assert.
-              expect(code).to.not.eql(null);
-              expect(amount).to.not.eql(null);
-              expect(create.calledWith({}, 'token', session.caseId, siteId, code, amount)).to.equal(true);
-            }, 'post');
-          featureMock(done);
+          testCustom(done, agent, underTest, [], () => {
+            // Assert.
+            expect(code).to.not.eql(null);
+            expect(version).to.not.eql(null);
+            expect(amount).to.not.eql(null);
+            expect(create.calledWith({}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
+          }, 'post');
         });
       });
 
@@ -180,7 +167,7 @@ describe(modulePath, () => {
         it('uses the token of the logged in user', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when(['idam', 'onlineSubmission'], [true, true], testCustom, agent, underTest, cookies, () => {
+            .when('idam', true, testCustom, agent, underTest, cookies, () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
               expect(create.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
@@ -193,7 +180,7 @@ describe(modulePath, () => {
         it('uses a fake user for the mocks', done => {
           // Act.
           const featureMock = featureTogglesMock
-            .when(['idam', 'onlineSubmission'], [false, true], testCustom, agent, underTest, [], () => {
+            .when('idam', false, testCustom, agent, underTest, [], () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
               expect(create.args[0][0]).to.eql({});
@@ -205,23 +192,19 @@ describe(modulePath, () => {
       context('payment creation was successful', () => {
         it('updates CCD with payment data', done => {
           // Act.
-          const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, () => {
-              // Assert.
-              expect(update.calledOnce).to.equal(true);
-            }, 'post');
-          featureMock(done);
+          testCustom(done, agent, underTest, cookies, () => {
+            // Assert.
+            expect(update.calledOnce).to.equal(true);
+          }, 'post');
         });
 
         it('redirects to the gov.uk payment page', done => {
           // Act.
-          const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
-              // Assert.
-              expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-              expect(response.header.location).to.equal('https://pay.the.gov/here');
-            }, 'post');
-          featureMock(done);
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('https://pay.the.gov/here');
+          }, 'post');
         });
       });
 
@@ -230,13 +213,11 @@ describe(modulePath, () => {
           // Arrange.
           create.rejects();
           // Act.
-          const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
-              // Assert.
-              expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-              expect(response.header.location).to.equal('/generic-error');
-            }, 'post');
-          featureMock(done);
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('/generic-error');
+          }, 'post');
         });
       });
 
@@ -249,13 +230,11 @@ describe(modulePath, () => {
             status: 'error'
           });
           // Act.
-          const featureMock = featureTogglesMock
-            .when('onlineSubmission', true, testCustom, agent, underTest, cookies, response => {
-              // Assert.
-              expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-              expect(response.header.location).to.equal('/generic-error');
-            }, 'post');
-          featureMock(done);
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('/generic-error');
+          }, 'post');
         });
       });
     });

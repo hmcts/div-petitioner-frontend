@@ -9,10 +9,6 @@ Scenario('Get a divorce', function*(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-  const onlineSubmission = yield I.getFeatureEnabled('onlineSubmission');
-  if (!onlineSubmission) {
-    I.havePrinter();
-  }
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();
@@ -43,17 +39,12 @@ Scenario('Get a divorce', function*(I) {
   I.selectFinancialArrangements();
   I.enterFinancialAdvice();
   I.enterClaimCosts();
-  if (onlineSubmission) {
-    const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-  }
 
-  I.checkMyAnswers(onlineSubmission);
+  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  I.uploadMarriageCertificateFile(isDragAndDropSupported);
 
-  if (onlineSubmission) {
-    I.amDoneAndSubmitted();
-  } else {
-    I.amOnPage('/done');
-    I.amDone();
-  }
+  I.checkMyAnswers();
+
+  I.amDoneAndSubmitted();
+
 });

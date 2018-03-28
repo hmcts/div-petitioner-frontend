@@ -13,7 +13,6 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 
 const jwt = require('jsonwebtoken');
-const statusCodes = require('http-status-codes');
 const CONF = require('config');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const get = require('lodash/get');
@@ -52,11 +51,6 @@ module.exports = class PayOnline extends Step {
       return runStepHandler(this, req, res);
     }
 
-    // This step does not exist if online submission is not enabled.
-    if (!features.onlineSubmission) {
-      return res.status(statusCodes.NOT_FOUND).send('Not Found');
-    }
-
     req.session = req.session || {};
 
     // Some prerequisites. @todo extract these elsewhere?
@@ -74,6 +68,7 @@ module.exports = class PayOnline extends Step {
     // Fee properties below are hardcoded and obtained from config.
     // Eventually these values will be obtained from the fees-register.
     const feeCode = CONF.commonProps.applicationFee.code;
+    const feeVersion = CONF.commonProps.applicationFee.version;
     const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
     // Amount is specified in pence.
     const PENCE_PER_POUND = 100;
@@ -98,16 +93,17 @@ module.exports = class PayOnline extends Step {
     return serviceToken.getToken()
       // Create payment.
       .then(token => {
-        return payment.create(user, token, caseId, siteId, feeCode, amount,
-          feeDescription, returnUrl);
+        return payment.create(user, token, caseId, siteId, feeCode,
+          feeVersion, amount, feeDescription, returnUrl);
       })
 
       // Store payment info in session and update the submitted application.
       .then(response => {
-        const { id, state, reference, nextUrl } = response;
+        const { id, status, reference, nextUrl } = response;
         req.session.currentPaymentId = id;
+        req.session.currentPaymentReference = reference;
         req.session.payments = Object.assign({}, req.session.payments,
-          { [id]: { state, reference, nextUrl } });
+          { [id]: { status, reference, nextUrl } });
 
         const eventData = submissionService
           .generatePaymentEventData(req.session, response);

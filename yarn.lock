@@ -36,9 +36,9 @@
     request "^2.81.0"
     request-promise-native "^1.0.4"
 
-"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#5.0.0":
-  version "5.0.0"
-  resolved "https://github.com/hmcts/div-pay-client#dc10801e411cbce41e39beb099a0dde6386f8e4b"
+"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#6.0.0":
+  version "6.0.0"
+  resolved "https://github.com/hmcts/div-pay-client#c1bf58157034af367e0ec87ea3205d7a21764e63"
   dependencies:
     "@hmcts/nodejs-logging" "^1.4.2"
     request "^2.81.0"

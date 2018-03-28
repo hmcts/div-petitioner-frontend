@@ -32,7 +32,7 @@ module.exports = class Submit extends Step {
     }
 
     if (req.session.submissionStarted) {
-      res.redirect(this.steps.SubmittedError.url);
+      res.redirect(this.steps.ApplicationSubmitted.url);
       return;
     }
 

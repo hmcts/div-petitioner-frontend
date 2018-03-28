@@ -15,10 +15,6 @@
     border: none;
   }
 
-  td.no-word-break {
-    word-break: normal;
-  }
-
   span.address {
     margin-top: 10px;
     line-height: 1.1;
@@ -54,5 +50,9 @@
 @media (max-width: 640px) {
   .check-your-answers #form ul.list-bullet {
     margin-top: 30px;
+  }
+
+  .check-your-answers td:nth-of-type(2) {
+    word-break: keep-all;
   }
 }

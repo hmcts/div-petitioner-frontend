@@ -69,7 +69,7 @@ module "frontend" {
     PUBLIC_PROTOCOL ="${var.divorce_frontend_protocol}"
   	PUBLIC_PORT = "${var.divorce_frontend_public_port}"
   	HTTP_PORT = "${var.divorce_frontend_port}"
-  	DIVORCE_HTTP_PROXY = "${var.outbound_proxy}"
+  	//DIVORCE_HTTP_PROXY = "${var.outbound_proxy}"
   	no_proxy = "${var.no_proxy}"
 
     // Service name

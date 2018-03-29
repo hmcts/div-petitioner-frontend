@@ -110,6 +110,6 @@ module.exports = class CardPaymentStatus extends Step {
   }
 
   next(result) {
-    return (result === 'success') ? this.steps.DoneAndSubmitted : this.steps.PayOnline;
+    return (result.toLowerCase() === 'success') ? this.steps.DoneAndSubmitted : this.steps.PayOnline;
   }
 };

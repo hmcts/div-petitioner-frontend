@@ -70,12 +70,11 @@ module.exports = class PayOnline extends Step {
     const feeCode = CONF.commonProps.applicationFee.code;
     const feeVersion = CONF.commonProps.applicationFee.version;
     const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
-    // Amount is specified in pence.
-    const PENCE_PER_POUND = 100;
+    // Amount is specified in pound sterling.
     const amount = parseInt(
       CONF.commonProps.applicationFee.fee_amount
-    ) * PENCE_PER_POUND;
-    const returnUrl = `${getBaseUrl()}${this.steps.CardPaymentStatus.url}`;
+    );
+    const returnUrl = `${getBaseUrl()}${this.steps.DoneAndSubmitted.url}`;
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 

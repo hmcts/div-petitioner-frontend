@@ -23,12 +23,11 @@ let agent = {};
 let underTest = {};
 const two = 2;
 let cookies = [];
-const PENCE_PER_POUND = 100;
 const code = CONF.commonProps.applicationFee.code;
 const version = CONF.commonProps.applicationFee.version;
 const amount = parseInt(
   CONF.commonProps.applicationFee.fee_amount
-) * PENCE_PER_POUND;
+);
 
 describe(modulePath, () => {
   beforeEach(() => {

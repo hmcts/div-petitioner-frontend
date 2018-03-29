@@ -24,7 +24,19 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
   after('build') {
-    sh 'yarn setup'
+    if (params.ENVIRONMENT == 'sandbox') {
+      sh 'yarn setup'
+      sh 'yarn test-unit'
+      // run e2e against already deployed sandbox as a test
+      def endtest = sh 'yarn test-e2e'
+      echo "${endtest}"
+      //sh 'yarn test'
+      //sh 'yarn test:functional'
+    }
+  }
+
+  after('Smoke Test - sandbox (production slot)') {
+    sh 'yarn test-e2e'
   }
 
   loadVaultSecrets(secrets)

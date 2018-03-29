@@ -21,6 +21,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
+    sh 'yarn test'
   }
 
   loadVaultSecrets(secrets)

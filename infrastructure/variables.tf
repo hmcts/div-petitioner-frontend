@@ -283,3 +283,11 @@ variable "court_southwest_court_weight" {
 variable "court_northwest_court_weight" {
   default = "0.26"
 }
+
+variable "e2e_wait_for_timeout" {
+  default = "60000"
+}
+
+variable "e2e_wait_for_action" {
+  default = "3000"
+}

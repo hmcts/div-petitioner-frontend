@@ -33,7 +33,7 @@ locals {
 }
 
 module "frontend" {
-  source = "git@github.com:contino/moj-module-webapp.git"
+  source = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
   product = "${var.product}-${var.microservice}"
   location = "${var.location}"
   env = "${var.env}"
@@ -67,9 +67,9 @@ module "frontend" {
 	  // Frontend web details
     PUBLIC_HOSTNAME ="${var.divorce_frontend_hostname}"
     PUBLIC_PROTOCOL ="${var.divorce_frontend_protocol}"
-  	PUBLIC_PORT = "${var.divorce_frontend_public_port}"
+    PUBLIC_PORT = "${var.divorce_frontend_public_port}"
   	HTTP_PORT = "${var.divorce_frontend_port}"
-  	//DIVORCE_HTTP_PROXY = "${var.outbound_proxy}"
+  	DIVORCE_HTTP_PROXY = "${var.outbound_proxy}"
   	no_proxy = "${var.no_proxy}"
 
     // Service name
@@ -193,6 +193,11 @@ module "frontend" {
     EASTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
     EASTMIDLANDS_COURTWEIGHT = "${var.court_southwest_court_weight}"
     EASTMIDLANDS_COURTWEIGHT = "${var.court_northwest_court_weight}"
+
+    // Functional tests
+    E2E_FRONTEND_URL = "${var.divorce_frontend_protocol}://${var.divorce_frontend_hostname}"
+    E2E_WAIT_FOR_TIMEOUT_VALUE = "${var.e2e_wait_for_timeout}"
+    E2E_WAIT_FOR_ACTION_VALUE = "${var.e2e_wait_for_action}"
   }
 }
 

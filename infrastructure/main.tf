@@ -67,6 +67,7 @@ module "frontend" {
 	  // Frontend web details
     PUBLIC_HOSTNAME ="${var.divorce_frontend_hostname}"
     PUBLIC_PROTOCOL ="${var.divorce_frontend_protocol}"
+    E2E_FRONTEND_URL = "${var.divorce_frontend_protocol}://${var.divorce_frontend_hostname}"
   	PUBLIC_PORT = "${var.divorce_frontend_public_port}"
   	HTTP_PORT = "${var.divorce_frontend_port}"
   	//DIVORCE_HTTP_PROXY = "${var.outbound_proxy}"

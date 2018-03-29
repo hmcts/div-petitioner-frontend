@@ -24,8 +24,11 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
   after('build') {
-    sh 'yarn setup'
-    sh 'yarn test'
+    if (param.ENVIRONMENT === 'sandbox') {
+      sh 'yarn setup'
+      sh 'yarn test'
+      sh 'yarn test:functional'
+    }
   }
 
   loadVaultSecrets(secrets)

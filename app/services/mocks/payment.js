@@ -8,7 +8,7 @@ module.exports = {
     return new Promise(resolve => {
       resolve({
         id: '1',
-        amount: 55000,
+        amount: 550,
         status: 'created',
         external_reference: '123',
         reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -32,7 +32,7 @@ module.exports = {
     return new Promise(resolve => {
       resolve({
         id: '1',
-        amount: 55000,
+        amount: 550,
         status: outcome === true ? 'success' : 'failed',
         reference: 'a65-f836-4f61-a628-727199ef6c20',
         date_created: 1519116121853,

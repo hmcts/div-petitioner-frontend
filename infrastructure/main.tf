@@ -16,9 +16,9 @@ data "vault_generic_secret" "idam_secret" {
   path = "secret/${var.vault_section}/ccidam/idam-api/oauth2/client-secrets/divorce"
 }
 
-//data "vault_generic_secret" "post_code_token" {
-//  path = "secret/${var.vault_section}/divorce/postcode/token"
-//}
+data "vault_generic_secret" "post_code_token" {
+  path = "secret/${var.vault_section}/divorce/postcode/token"
+}
 
 data "vault_generic_secret" "session_secret" {
   path = "secret/${var.vault_section}/divorce/session/secret"

@@ -30,12 +30,12 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
     }
   }
 
-  before('Smoke Test', 'sandbox (staging slot)') {
+  before('Smoke Test - sandbox (staging slot)') {
     env.E2E_FRONTEND_URL = 'https://div-frontend-sandbox-staging.service.core-compute-sandbox.internal'
     sh 'yarn test:smoke'
   }
 
-  after('Smoke Test', 'sandbox (staging slot)') {
+  after('Smoke Test - sandbox (staging slot)') {
     env.E2E_FRONTEND_URL = 'https://div-frontend-sandbox-staging.service.core-compute-sandbox.internal'
     sh 'yarn test-e2e'
   }

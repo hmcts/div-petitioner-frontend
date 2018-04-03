@@ -47,13 +47,14 @@ const service = {
       mockedPaymentOutcome)
       .then(response => {
         const {
-          id, amount, status, external_reference,
+          id, amount, status, reference, external_reference,
           date_created
         } = response; // eslint-disable-line camelcase
 
         return {
           id,
           amount,
+          reference,
           external_reference,
           status,
           date_created

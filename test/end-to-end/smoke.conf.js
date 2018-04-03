@@ -4,8 +4,8 @@ const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 1000;
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  'tests': './paths/**/*.js',
-  'output': './output',
+  'tests': './paths/smoke/*.js',
+  'output': '../../smoke-output',
   'timeout': 1000,
   'helpers': {
     'Nightmare': {
@@ -18,18 +18,9 @@ exports.config = {
         'ignore-certificate-errors': true
       }
     },
-    'FeatureToggleHelper': {
-      'require': './helpers/featureToggleHelper.js'
-    },
-    'ElementExist': {
-      'require': './helpers/ElementExist.js'
-    },
     'NightmareExtras': {
       'require': './helpers/NightmareExtras.js',
       'waitForTimeout': waitForTimeout
-    },
-    'IdamHelper': {
-      'require': './helpers/idamHelper.js'
     }
   },
   'include': {
@@ -44,14 +35,14 @@ exports.config = {
         }
       },
       'mochawesome': {
-        'stdout': './output/console.log',
+        'stdout': '../../smoke-output/console.log',
         'options': {
-          'reportDir': process.env.E2E_OUTPUT_DIR || './output',
+          'reportDir': process.env.SMOKE_OUTPUT_DIR || '../../smoke-output',
           'reportName': 'index',
           'inlineAssets': true
         }
       }
     }
   },
-  'name': 'frontEnd Tests'
+  'name': 'frontEnd Smoke Tests'
 };

@@ -24,18 +24,16 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
   after('build') {
+    echo "About to build"
     if (params.ENVIRONMENT == 'sandbox') {
       sh 'yarn setup'
-      sh 'yarn test-unit'
-      // run e2e against already deployed sandbox as a test
-      def endtest = sh 'yarn test-e2e'
-      echo "${endtest}"
-      //sh 'yarn test'
-      //sh 'yarn test:functional'
+      // Running e2e tests early
+      sh 'yarn test-e2e --debug'
+      sh 'yarn test'
     }
   }
 
-  after('Smoke Test - sandbox (production slot)') {
+  after('smoketest:sandbox') {
     sh 'yarn test-e2e'
   }
 

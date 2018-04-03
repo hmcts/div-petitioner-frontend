@@ -83,7 +83,7 @@ describe(modulePath, () => {
   describe('#isPaymentSuccessful', () => {
     it('returns true when response is success', () => {
       // Arrange.
-      const input = { status: 'success' };
+      const input = { status: 'Success' };
       // Act.
       const output = underTest.isPaymentSuccessful(input);
       // Assert.
@@ -195,10 +195,14 @@ describe(modulePath, () => {
     it('resolves sending required data of the response', done => {
       // Arrange.
       const
-        { id, amount, status, external_reference, date_created } = querySuccess; // eslint-disable-line camelcase
+        {
+          id, amount, status, reference,
+          external_reference, date_created
+        } = querySuccess; // eslint-disable-line camelcase
       const expectedResponse = {
         id,
         amount,
+        reference,
         external_reference,
         status,
         date_created

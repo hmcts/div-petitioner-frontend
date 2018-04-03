@@ -4,12 +4,10 @@
   "type": "object",
   "properties": {
     "marriagePetitionerName" : {
-      "type" : "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type" : "string"
     },
     "marriageRespondentName" : {
-      "type" : "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type" : "string"
     }
   },
   "required" : [

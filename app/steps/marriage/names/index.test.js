@@ -64,28 +64,6 @@ describe(modulePath, () => {
 
       testErrors(done, agent, underTest, context, content, 'required', onlyKeys, session);
     });
-
-    it('renders errors for invalid petitioner first and last name', done => {
-      const context = {
-        petitionerFirstName: '£ee',
-        petitionerLastName: '$mith'
-      };
-
-      const onlyKeys = ['petitionerFirstName', 'petitionerLastName'];
-
-      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys, session);
-    });
-
-    it('renders errors for invalid respondent first and last name', done => {
-      const context = {
-        respondentFirstName: '£ee',
-        respondentLastName: '$mith'
-      };
-
-      const onlyKeys = ['respondentFirstName', 'respondentLastName'];
-
-      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys, session);
-    });
   });
 
   describe('success', () => {

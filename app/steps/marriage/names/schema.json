@@ -4,20 +4,16 @@
   "type": "object",
   "properties": {
     "petitionerFirstName" : {
-      "type" : "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type" : "string"
     },
     "petitionerLastName" : {
-      "type" : "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type" : "string"
     },
     "respondentFirstName" : {
-      "type" : "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type" : "string"
     },
     "respondentLastName" : {
-      "type" : "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type" : "string"
     }
   },
   "required" : [

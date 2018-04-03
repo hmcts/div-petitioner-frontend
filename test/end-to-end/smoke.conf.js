@@ -9,7 +9,7 @@ exports.config = {
   'timeout': 1000,
   'helpers': {
     'Nightmare': {
-      'url': process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
+      'url': process.env.TEST_URL || process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       'waitForTimeout': waitForTimeout,
       'typeInterval': 20,
       'waitForAction': waitForAction,

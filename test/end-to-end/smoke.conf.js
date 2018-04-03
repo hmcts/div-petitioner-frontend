@@ -5,7 +5,7 @@ console.log('waitForAction value set to', waitForAction); // eslint-disable-line
 
 exports.config = {
   'tests': './paths/smoke/*.js',
-  'output': './smoke-output',
+  'output': '../../smoke-output',
   'timeout': 1000,
   'helpers': {
     'Nightmare': {
@@ -35,9 +35,9 @@ exports.config = {
         }
       },
       'mochawesome': {
-        'stdout': './smoke-output/console.log',
+        'stdout': '../../smoke-output/console.log',
         'options': {
-          'reportDir': process.env.SMOKE_OUTPUT_DIR || './smoke-output',
+          'reportDir': process.env.SMOKE_OUTPUT_DIR || '../../smoke-output',
           'reportName': 'index',
           'inlineAssets': true
         }

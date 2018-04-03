@@ -27,7 +27,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     getToken = sinon.stub().resolves('token');
-    query = sinon.stub().resolves({ state: { status: 'success', finished: true } });
+    query = sinon.stub().resolves({ status: 'Success' });
     update = sinon.stub().resolves({ caseId: '1509031793780148', error: null, status: 'success' });
     sinon.stub(serviceToken, 'setup').returns({ getToken });
     sinon.stub(payment, 'setup').returns({ query });
@@ -56,7 +56,7 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = { currentPaymentId: 99 };
+      session = { currentPaymentReference: 90, currentPaymentId: 99 };
       withSession(done, agent, session);
     });
 
@@ -70,7 +70,7 @@ describe(modulePath, () => {
     it('takes payment id from session', done => {
       testCustom(done, agent, underTest, [], () => {
         // Assert.
-        expect(query.args[0][2]).to.equal(session.currentPaymentId);
+        expect(query.args[0][2]).to.equal(session.currentPaymentReference);
       });
     });
 
@@ -85,7 +85,7 @@ describe(modulePath, () => {
       // Arrange.
       withSession(test, agent, {
         currentPaymentId: 99,
-        payments: { 99: { state: { status: 'failed', finished: true } } }
+        payments: { 99: { status: 'failed' } }
       });
     });
 
@@ -142,14 +142,14 @@ describe(modulePath, () => {
     context('payment was successful', () => {
       it('redirects to Done page', done => {
         // Arrange.
-        query.resolves({ state: { status: 'success', finished: true } });
+        query.resolves({ status: 'Success' });
         // Act & Assert.
         testRedirect(done, agent, underTest, {}, s.steps.DoneAndSubmitted);
       });
 
       it('updates CCD with payment status', done => {
         // Arrange.
-        query.resolves({ state: { status: 'success', finished: true } });
+        query.resolves({ status: 'Success' });
         // Act.
         testCustom(done, agent, underTest, [], () => {
           // Assert.
@@ -177,7 +177,7 @@ describe(modulePath, () => {
 
     context('payment was not successful', () => {
       beforeEach(() => {
-        query.resolves({ state: { status: 'failed', finished: true } });
+        query.resolves({ status: 'failed' });
       });
 
       it('does not update CCD with payment status', done => {

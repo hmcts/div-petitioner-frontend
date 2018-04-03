@@ -25,6 +25,11 @@ describe(modulePath, () => {
           feature: 'idam',
           defaultState: CONF.features.idam,
           origin: 'default config'
+        },
+        fullPaymentEventDataSubmission: {
+          feature: 'fullPaymentEventDataSubmission',
+          defaultState: true,
+          origin: 'default config'
         }
       };
 
@@ -56,6 +61,11 @@ describe(modulePath, () => {
           defaultState: process.env.idam,
           feature: 'idam',
           origin: 'process env'
+        },
+        fullPaymentEventDataSubmission: {
+          defaultState: true,
+          feature: 'fullPaymentEventDataSubmission',
+          origin: 'default config'
         }
       };
 
@@ -87,6 +97,11 @@ describe(modulePath, () => {
           feature: 'idam',
           defaultState: false,
           origin: 'other'
+        },
+        fullPaymentEventDataSubmission: {
+          feature: 'fullPaymentEventDataSubmission',
+          defaultState: true,
+          origin: 'default config'
         }
       };
 

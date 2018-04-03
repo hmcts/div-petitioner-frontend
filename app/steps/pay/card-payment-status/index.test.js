@@ -27,7 +27,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     getToken = sinon.stub().resolves('token');
-    query = sinon.stub().resolves({ status: 'success' });
+    query = sinon.stub().resolves({ status: 'Success' });
     update = sinon.stub().resolves({ caseId: '1509031793780148', error: null, status: 'success' });
     sinon.stub(serviceToken, 'setup').returns({ getToken });
     sinon.stub(payment, 'setup').returns({ query });
@@ -142,14 +142,14 @@ describe(modulePath, () => {
     context('payment was successful', () => {
       it('redirects to Done page', done => {
         // Arrange.
-        query.resolves({ status: 'success' });
+        query.resolves({ status: 'Success' });
         // Act & Assert.
         testRedirect(done, agent, underTest, {}, s.steps.DoneAndSubmitted);
       });
 
       it('updates CCD with payment status', done => {
         // Arrange.
-        query.resolves({ status: 'success' });
+        query.resolves({ status: 'Success' });
         // Act.
         testCustom(done, agent, underTest, [], () => {
           // Assert.

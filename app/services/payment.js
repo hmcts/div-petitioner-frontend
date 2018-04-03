@@ -85,6 +85,6 @@ module.exports = {
   },
 
   isPaymentSuccessful: response => {
-    return get(response, 'status') === 'success';
+    return get(response, 'status') === 'Success';
   }
 };

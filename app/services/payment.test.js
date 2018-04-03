@@ -83,7 +83,7 @@ describe(modulePath, () => {
   describe('#isPaymentSuccessful', () => {
     it('returns true when response is success', () => {
       // Arrange.
-      const input = { status: 'success' };
+      const input = { status: 'Success' };
       // Act.
       const output = underTest.isPaymentSuccessful(input);
       // Assert.

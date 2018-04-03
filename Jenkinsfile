@@ -31,11 +31,11 @@ buildNode {
     }
 
     make 'jenkins eslint', name: 'Lint'
-    make 'jenkins test-nsp', name: 'Security'
+    make 'jenkins test:nsp', name: 'Security'
 
     stage('Unit Test and Coverage') {
       sh 'yarn setup'
-      sh 'yarn test-coverage'
+      sh 'yarn test:coverage'
 
       onPR {
         sh "yarn sonar-scanner -Dsonar.analysis.mode=preview -Dsonar.host.url=${env.SONARQUBE_URL}"
@@ -47,7 +47,7 @@ buildNode {
 
     }
     stage('A11y Test') {
-      sh 'yarn test-a11y'
+      sh 'yarn test:a11y'
     }
     make 'jenkins test-e2e', name: 'End to End Test'
 

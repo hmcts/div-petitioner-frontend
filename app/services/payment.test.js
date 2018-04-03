@@ -17,7 +17,7 @@ describe(modulePath, () => {
   const querySuccess = {
     id: '1',
     amount: 55000,
-    status: 'success',
+    status: 'Success',
     reference: 'some-reference',
     external_reference: 'a65-f836-4f61-a628-727199ef6c20',
     date_created: 1505459675824,

@@ -26,7 +26,8 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
   after('build') {
     if (params.ENVIRONMENT == 'sandbox') {
       sh 'yarn setup'
-      sh 'yarn test-unit'
+      def endtest = sh 'yarn test-unit'
+      echo '${endtest}'
       // run e2e against already deployed sandbox as a test
       sh 'yarn test-e2e'
       //sh 'yarn test'

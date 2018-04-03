@@ -6,6 +6,8 @@ const moment = require('moment');
 const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 
+const PENCE_PER_POUND = 100;
+
 let client = {};
 
 /**
@@ -14,11 +16,6 @@ let client = {};
  * @param {number|string} timestamp
  * @returns {string}
  */
-const formatDate = timestamp => {
-  return moment(parseInt(timestamp))
-    .format(CONF.paymentDateFormat);
-};
-
 const service = {
   submit: (...args) => {
     return client.submit(...args)
@@ -63,8 +60,8 @@ const generatePaymentEventData = (session, response) => {
         PaymentChannel: 'online',
         PaymentTransactionId: external_reference,
         PaymentReference: reference,
-        PaymentDate: formatDate(date_created),
-        PaymentAmount: amount,
+        PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
+        PaymentAmount: amount * PENCE_PER_POUND,
         PaymentStatus: status,
         PaymentFeeId: CONF.commonProps.applicationFee.code,
         PaymentSiteId: siteId

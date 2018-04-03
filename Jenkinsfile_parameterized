@@ -30,12 +30,12 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
     }
   }
 
-  before('smokeTest') {
+  before('smoketest:prod') {
     env.E2E_FRONTEND_URL = ${TEST_URL}
     echo ${TEST_URL}
   }
 
-  after('smokeTest') {
+  after('smoketest:prod') {
     sh 'yarn test-e2e'
   }
 

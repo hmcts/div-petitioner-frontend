@@ -18,6 +18,7 @@ describe(modulePath, () => {
     id: '1',
     amount: 55000,
     status: 'Success',
+    reference: 'some-reference',
     external_reference: 'a65-f836-4f61-a628-727199ef6c20',
     date_created: 1505459675824,
     _links: {}
@@ -82,7 +83,7 @@ describe(modulePath, () => {
   describe('#isPaymentSuccessful', () => {
     it('returns true when response is success', () => {
       // Arrange.
-      const input = { status: 'Success' };
+      const input = { status: 'success' };
       // Act.
       const output = underTest.isPaymentSuccessful(input);
       // Assert.

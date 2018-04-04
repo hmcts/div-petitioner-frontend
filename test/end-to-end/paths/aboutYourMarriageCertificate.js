@@ -2,6 +2,12 @@ const content = require('app/steps/marriage/about-your-marriage-certificate/cont
 
 Feature('Foreign Marriage Certificates - Certificate Language');
 
+console.log("HELLO");
+
+Scenario('something', function() {
+  console.log("SOMETHING");
+});
+
 Scenario('Marriage certificate in English, answered Yes', (I) => {
   console.log("HELLO WORLD");
   I.amOnPage('/index');

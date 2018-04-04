@@ -70,6 +70,24 @@ describe(modulePath, () => {
     });
   });
 
+  describe('content headers', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = clone(mockSession);
+      withSession(done, agent, session);
+    });
+
+    it('does not show missing header', done => {
+      testNonExistence(done, agent, underTest,
+        '<h2 class="heading-medium"></h2>', session);
+    });
+    it('should show header', done => {
+      testExistence(done, agent, underTest,
+        content.resources.en.translation.content.jurisdiction, session);
+    });
+  });
+
   describe('content', () => {
     let session = {};
 
@@ -479,6 +497,7 @@ describe(modulePath, () => {
       expect(newObjectKeys[4]).to.equal('5');
     });
   });
+
 
   describe('getNextTemplates', () => {
     let session = {}, ctx = {}, step1 = {}, step2 = {}, fields = {};

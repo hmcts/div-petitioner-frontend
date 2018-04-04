@@ -24,17 +24,14 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
   after('build') {
-    echo "About to build"
     if (params.ENVIRONMENT == 'sandbox') {
       sh 'yarn setup'
-      // Running e2e tests early
-      sh 'yarn test-e2e --debug'
       sh 'yarn test'
     }
   }
 
   after('smoketest:sandbox') {
-    sh 'yarn test-e2e'
+    sh 'docker-compose -f docker/test-compose.yaml run e2e-tests'
   }
 
   loadVaultSecrets(secrets)

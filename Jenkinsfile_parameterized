@@ -26,14 +26,12 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
   after('build') {
     if (params.ENVIRONMENT == 'sandbox') {
       sh 'yarn setup'
-      // Running e2e tests early for testing
-      sh 'docker-compose -f docker/e2e-compose.yaml up'
       sh 'yarn test'
     }
   }
 
   after('smoketest:sandbox') {
-    sh 'docker-compose -f docker/e2e-compose.yaml up'
+    sh 'docker-compose -f docker/test-compose.yaml run e2e-tests'
   }
 
   loadVaultSecrets(secrets)

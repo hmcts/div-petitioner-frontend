@@ -1,1 +1,0 @@
-make install test-e2e clean

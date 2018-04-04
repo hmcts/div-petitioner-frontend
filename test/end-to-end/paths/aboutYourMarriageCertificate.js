@@ -2,14 +2,23 @@ const content = require('app/steps/marriage/about-your-marriage-certificate/cont
 
 Feature('Foreign Marriage Certificates - Certificate Language');
 
-console.log("HELLO");
+Scenario('Something without promises', function() {
+  console.log("SOMETHING");
+});
 
-Scenario('something', function() {
+Scenario('Something with arrow', () => {
+  console.log("SOMETHING");
+});
+
+Scenario('Something with promises', function(I) {
+  console.log("SOMETHING");
+});
+
+Scenario('Something with arrow', () => {
   console.log("SOMETHING");
 });
 
 Scenario('Marriage certificate in English, answered Yes', (I) => {
-  console.log("HELLO WORLD");
   I.amOnPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
@@ -17,7 +26,6 @@ Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.checkOption(content.yes);
   I.click('Continue');
   I.seeCurrentUrlEquals('/about-your-marriage/foreign-certificate');
-  console.log("PROMISE IS EXITING TOO FAST");
 });
 
 Scenario('Marriage certificate not in English, certified translation', (I) => {

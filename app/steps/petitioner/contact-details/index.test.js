@@ -1,10 +1,13 @@
 const request = require('supertest');
 const {
   testContent, testCYATemplate, testExistenceCYA,
-  testErrors, testRedirect
+  testErrors, testRedirect, testExistence, testNonExistence
 } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
+const { mockSession } = require('test/fixtures');
+const clone = require('lodash').cloneDeep;
+const { withSession } = require('test/util/setup');
 
 const modulePath = 'app/steps/petitioner/contact-details';
 
@@ -27,6 +30,34 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
+  describe('Confidential Contact Details not selected', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.petitionerContactDetailsConfidential = 'share';
+      withSession(done, agent, session);
+    });
+    it('should not show confidential message', done => {
+      testNonExistence(done, agent, underTest,
+        content.resources.en.translation.content.confidentialContactDetails,
+        session);
+    });
+  });
+  describe('Confidential Contact Details selected', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.petitionerContactDetailsConfidential = 'private';
+      withSession(done, agent, session);
+    });
+    it('should show confidential message', done => {
+      testExistence(done, agent, underTest,
+        content.resources.en.translation.content.confidentialContactDetails,
+        session);
+    });
+  });
 
   describe('content', () => {
     it('renders the content from the content file', done => {

@@ -16,9 +16,7 @@
     </h1>
 
     {% if session.petitionerContactDetailsConfidential != 'share' %}
-      <p class="panel panel-border-wide">
-        {{content.confidentialAddressMessage | safe}} {{session.divorceWho | safe}}.
-      </p>
+      <p class="panel panel-border-wide">{{content.confidentialAddressMessage | safe}}</p>
     {% endif %}
 
     {% if errors.length > 0 %}

@@ -11,7 +11,7 @@
   <p>{{ content.communicate | safe }}</p>
 
   {% if session.petitionerContactDetailsConfidential != 'share' %}
-    <p class="panel panel-border-wide"> {{ content.confidentialContactDetails | safe }} {{ session.divorceWho }}.</p>
+    <p class="panel panel-border-wide">{{ content.confidentialContactDetails | safe }}</p>
   {% endif %}
 
   <fieldset class="form-group">

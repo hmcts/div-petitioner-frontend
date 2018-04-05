@@ -6,7 +6,7 @@
 
                 "content": {
                     "question": "What is your home address?",
-                    "confidentialAddressMessage": "Your home address will be kept confidential from your "
+                    "confidentialAddressMessage": "Your home address will be kept confidential from your {{ session.divorceWho }}."
                 },
 
                 "checkYourAnswersContent": {

@@ -1,7 +1,10 @@
 const request = require('supertest');
-const { testContent, testRedirect } = require('test/util/assertions');
+const { testContent, testRedirect, testExistence, testNonExistence } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
+const { mockSession } = require('test/fixtures');
+const clone = require('lodash').cloneDeep;
+const { withSession } = require('test/util/setup');
 
 const modulePath = 'app/steps/petitioner/home/address';
 
@@ -24,6 +27,34 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
+  describe('Confidential Home Address not selected', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.petitionerContactDetailsConfidential = 'share';
+      withSession(done, agent, session);
+    });
+    it('should not show confidential message', done => {
+      testNonExistence(done, agent, underTest,
+        content.resources.en.translation.content.confidentialAddressMessage,
+        session);
+    });
+  });
+  describe('Confidential Home Address selected', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.petitionerContactDetailsConfidential = 'private';
+      withSession(done, agent, session);
+    });
+    it('should show confidential message', done => {
+      testExistence(done, agent, underTest,
+        content.resources.en.translation.content.confidentialAddressMessage,
+        session);
+    });
+  });
 
   describe('success', () => {
     const session = {};

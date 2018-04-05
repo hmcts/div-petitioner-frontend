@@ -13,5 +13,3 @@ do
 done
 
 ./xvfb-run.sh yarn test-e2e
-
-docker-compose -f docker/test-compose.yaml down

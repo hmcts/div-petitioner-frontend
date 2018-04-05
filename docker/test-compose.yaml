@@ -54,7 +54,7 @@ services:
       - "9229:9229"
     volumes:
       - "../.:/opt/app"
-    command: bash -c "yarn setup-assets && yarn start-debug"
+    command: bash -c "yarn install && yarn setup && yarn start-debug"
     depends_on:
       redis:
         condition: service_healthy

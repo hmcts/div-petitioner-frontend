@@ -172,6 +172,8 @@
           if([13, 32].includes(e.keyCode)) { // pressed RETURN or SPACE
             e.preventDefault();
             self.$zone.trigger('click');
+            e.preventDefault();
+            return false;
           }
         });
       },

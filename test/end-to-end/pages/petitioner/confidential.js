@@ -5,7 +5,7 @@ function enterPeConfidentialContactDetails() {
   const I = this;
 
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.checkOption(content.keep);
+  I.checkOption(content.share);
   I.click('Continue');
 }
 

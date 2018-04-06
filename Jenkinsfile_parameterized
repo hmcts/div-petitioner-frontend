@@ -30,9 +30,5 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
     }
   }
 
-  after('smoketest:sandbox') {
-    sh 'docker-compose -f docker/test-compose.yaml run e2e-tests'
-  }
-
   loadVaultSecrets(secrets)
 }

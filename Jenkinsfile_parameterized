@@ -32,3 +32,4 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
 
   loadVaultSecrets(secrets)
 }
+

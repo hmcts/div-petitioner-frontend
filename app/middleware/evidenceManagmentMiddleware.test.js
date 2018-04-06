@@ -4,7 +4,6 @@ const sinonStubPromise = require('sinon-stub-promise');
 const evidenceManagmentService = require('app/services/evidenceManagmentService');
 const httpStatus = require('http-status-codes');
 const fileManagement = require('app/services/fileManagement');
-const antiVirus = require('app/services/antiVirus');
 
 sinonStubPromise(sinon);
 
@@ -43,13 +42,11 @@ describe(modulePath, () => {
       expressHandler = evidenceManagmentMiddleware.createHandler(nameSpace);
 
       sinon.stub(fileManagement, 'saveFileFromRequest').resolves({});
-      sinon.stub(antiVirus, 'scan').resolves({});
       sinon.stub(evidenceManagmentService, 'sendFile').resolves([{ fileUrl: 'file' }]);
     });
 
     afterEach(() => {
       fileManagement.saveFileFromRequest.restore();
-      antiVirus.scan.restore();
       evidenceManagmentService.sendFile.restore();
     });
 
@@ -85,8 +82,6 @@ describe(modulePath, () => {
         expressHandler(req, res, next)
           .then(() => {
             expect(evidenceManagmentService.sendFile.calledOnce)
-              .to.eql(true);
-            expect(antiVirus.scan.calledOnce)
               .to.eql(true);
             expect(fileManagement.saveFileFromRequest.calledOnce)
               .to.eql(true);

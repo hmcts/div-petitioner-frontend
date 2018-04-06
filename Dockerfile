@@ -1,4 +1,4 @@
-FROM divorce/yarn:8
+FROM node:latest
 
 WORKDIR /opt/app
 

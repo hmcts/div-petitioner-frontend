@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const requireDir = require('require-directory');
 const cookieParser = require('cookie-parser');
 const sessions = require('app/middleware/sessions');
-const rateLimiter = require('app/services/rateLimiter');
+// const rateLimiter = require('app/services/rateLimiter');
 const initSteps = require('app/core/initSteps');
 const siteGraph = require('app/core/siteGraph');
 const errorHandler = require('app/core/errorHandler');
@@ -38,7 +38,7 @@ const healthcheck = require('app/services/healthcheck');
 const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
-const PORT = process.env.HTTP_PORT || CONF.http.port;
+const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
 const logger = logging.getLogger(__filename);
 
@@ -122,9 +122,11 @@ exports.init = () => {
 
   app.set('trust proxy', 1);
   app.use(sessions.prod());
-  if (process.env.NODE_ENV === 'production') {
-    app.use(rateLimiter(app));
-  }
+  // disabling rateLimiter which can prevent deployment on CNP
+  // due to failing the healthcheck from rate limit exceeded
+  // if (process.env.NODE_ENV === 'production') {
+  //   app.use(rateLimiter(app));
+  // }
 
   app.use(middleware.locals);
 

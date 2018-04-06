@@ -1,0 +1,38 @@
+#!groovy
+//noinspection GroovyUnusedAssignment
+@Library("Infrastructure") _
+
+//noinspection GroovyAssignabilityCheck
+properties([
+		parameters([
+			choice(name: 'ENVIRONMENT', choices: 'sandbox\nnonprod\nprod', description: 'Environment where code should be build and deployed')
+		])
+])
+
+List<LinkedHashMap<String, Object>> secrets = [
+
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
+withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
+  after('build') {
+    if (params.ENVIRONMENT == 'sandbox') {
+      sh 'yarn setup'
+      sh 'yarn test'
+    }
+  }
+
+  after('smoketest:sandbox') {
+    sh 'docker-compose -f docker/test-compose.yaml run e2e-tests'
+  }
+
+  loadVaultSecrets(secrets)
+}

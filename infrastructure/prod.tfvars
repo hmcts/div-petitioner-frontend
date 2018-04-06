@@ -1,3 +1,4 @@
+env = "prod"
 vault_section = "prod"
 idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
 service_auth_provider_url = "https://prod-s2s-api.reform.hmcts.net:3511"

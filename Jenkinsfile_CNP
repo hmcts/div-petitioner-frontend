@@ -26,3 +26,4 @@ withPipeline("nodejs", product, component) {
   loadVaultSecrets(secrets)
   enableSlackNotifications('#div-dev')
 }
+

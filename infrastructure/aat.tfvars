@@ -1,6 +1,5 @@
 env = "aat"
 deployment_env = "test"
-subscription = "nonprod"
 
 vault_env = "test"
 vault_section = "test"

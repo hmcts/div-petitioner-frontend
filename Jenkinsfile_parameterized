@@ -26,7 +26,6 @@ withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sand
   after('build') {
     if (params.ENVIRONMENT == 'sandbox') {
       sh 'yarn setup'
-      sh 'yarn test'
     }
   }
 

@@ -57,7 +57,7 @@ router.get('/health', healthcheck.configure({
     }),
     'case-progression': healthcheck.web(config.services.transformation.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
-        logger.error(`Health check failed on transformation-api: ${error}`);
+        logger.error(`Health check failed on case-progression: ${error}`);
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }),

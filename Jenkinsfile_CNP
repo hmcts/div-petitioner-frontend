@@ -22,6 +22,10 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
+  
+  after('functionalTest:aat') {
+    error('Halting pipeline before prod stages')
+  }
 
   loadVaultSecrets(secrets)
   enableSlackNotifications('#div-dev')

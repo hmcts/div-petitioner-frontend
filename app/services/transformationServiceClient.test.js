@@ -93,12 +93,13 @@ describe(modulePath, () => {
         foo: 'bar',
         petitionerEmail: 'test@test.com'
       };
+      const petitionerEmail = encodeURIComponent(body.petitionerEmail);
       // Act.
       const sendEmail = true;
       client.saveToDraftStore(userToken, body, sendEmail);
       // Assert.
       expect(request.put.args[0][0]).to.eql({
-        uri: `${options.draftBaseUrl}?notificationEmail=${body.petitionerEmail}`,
+        uri: `${options.draftBaseUrl}?notificationEmail=${petitionerEmail}`,
         body,
         headers: { Authorization: `Bearer ${userToken}` },
         json: true

@@ -46,7 +46,7 @@ describe(modulePath, () => {
 
     beforeEach(done => {
       session = clone(mockSession);
-      session.petitionerContactDetailsConfidential = 'private';
+      session.petitionerContactDetailsConfidential = 'keep';
       withSession(done, agent, session);
     });
     it('should show confidential message', done => {

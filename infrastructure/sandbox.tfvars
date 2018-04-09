@@ -1,5 +1,4 @@
 env = "sandbox"
-subscription = "sandbox"
 vault_env = "test"
 
 deployment_env = "test"

@@ -15,9 +15,7 @@
         {{content.question | safe}}
     </h1>
 
-    {% if session.petitionerContactDetailsConfidential != 'share' %}
-      <p class="panel panel-border-wide">{{content.confidentialAddressMessage | safe}}</p>
-    {% endif %}
+    {% block warning %}{% endblock %}
 
     {% if errors.length > 0 %}
       <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">

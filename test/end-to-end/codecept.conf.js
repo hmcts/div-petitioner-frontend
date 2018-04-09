@@ -44,7 +44,7 @@ exports.config = {
         }
       },
       'mochawesome': {
-        'stdout': './output/console.log',
+        'stdout': '../../functional-output/console.log',
         'options': {
           'reportDir': process.env.E2E_OUTPUT_DIR || './output',
           'reportName': 'index',

@@ -7,5 +7,5 @@
       {%- endfor -%}
     </ul>
   </td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

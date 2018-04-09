@@ -1,10 +1,10 @@
 <tr>
   <th>{{ content.yourName | safe }}</th>
   <td>{{ fields.petitionerFirstName.value }} {{ fields.petitionerLastName.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.yourName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 <tr>
   <th>{{ content.respondentName | safe }}</th>
   <td>{{ fields.respondentFirstName.value }} {{ fields.respondentLastName.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.respondentName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

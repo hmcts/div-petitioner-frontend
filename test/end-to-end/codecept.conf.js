@@ -5,7 +5,7 @@ console.log('waitForAction value set to', waitForAction); // eslint-disable-line
 
 exports.config = {
   'tests': './paths/**/*.js',
-  'output': './output',
+  'output': '../../functional-output',
   'timeout': 1000,
   'helpers': {
     'Nightmare': {

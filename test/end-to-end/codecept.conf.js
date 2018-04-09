@@ -5,7 +5,7 @@ console.log('waitForAction value set to', waitForAction); // eslint-disable-line
 
 exports.config = {
   'tests': './paths/**/*.js',
-  'output': './output',
+  'output': '../../functional-output',
   'timeout': 1000,
   'helpers': {
     'Nightmare': {
@@ -44,7 +44,7 @@ exports.config = {
         }
       },
       'mochawesome': {
-        'stdout': './output/console.log',
+        'stdout': '../../functional-output/console.log',
         'options': {
           'reportDir': process.env.E2E_OUTPUT_DIR || './output',
           'reportName': 'index',

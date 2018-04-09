@@ -19,6 +19,10 @@ client.on('error', error => {
   logger.error(error);
 });
 
+const changeHttpsToHttp = url => {
+  return url.replace('https://', 'http://');
+};
+
 router.get('/health', healthcheck.configure({
   checks: {
     redis: healthcheck.raw(() => {
@@ -49,18 +53,18 @@ router.get('/health', healthcheck.configure({
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }),
-    'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health, {
+    'evidence-management-client-api': healthcheck.web(changeHttpsToHttp(config.evidenceManagmentClient.health), {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         logger.error(`Health check failed on evidence-management-client-api: ${error}`);
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }),
-    // 'transformation-api': healthcheck.web(config.services.transformation.health, {
-    //   callback: (error, res) => { // eslint-disable-line id-blacklist
-    //     logger.error(`Health check failed on transformation-api: ${error}`);
-    //     return !error && res.status === OK ? outputs.up() : outputs.down(error);
-    //   }
-    // }),
+    'case-progression': healthcheck.web(changeHttpsToHttp(config.services.transformation.health), {
+      callback: (error, res) => { // eslint-disable-line id-blacklist
+        logger.error(`Health check failed on case-progression: ${error}`);
+        return !error && res.status === OK ? outputs.up() : outputs.down(error);
+      }
+    }),
     'service-auth-provider-api': healthcheck.web(config.services.serviceAuthProvider.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         logger.error(`Health check failed on service-auth-provider-api: ${error}`);

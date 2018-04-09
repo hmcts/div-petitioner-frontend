@@ -6,6 +6,7 @@
                 "content": {
                     "question": "Enter your contact details",
                     "communicate": "You need to agree to receive notifications about your divorce and court documents by email.",
+                    "confidentialContactDetails": "Your email address and phone number will be kept confidential from your {{ session.divorceWho }}.",
                     "email": "Your email address",
                     "petitionerPhoneNumber": "Your phone number",
                     "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email."

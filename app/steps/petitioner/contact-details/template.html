@@ -10,6 +10,10 @@
 
   <p>{{ content.communicate | safe }}</p>
 
+  {% if session.petitionerContactDetailsConfidential != 'share' %}
+    <p class="panel panel-border-wide">{{ content.confidentialContactDetails | safe }}</p>
+  {% endif %}
+
   <fieldset class="form-group">
     <legend class="visually-hidden">{{ content.question | safe }}</legend>
 

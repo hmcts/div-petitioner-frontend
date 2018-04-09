@@ -66,7 +66,6 @@
                     "whenADivorceIsFinalised": "When a divorce is finalised the case is stored for 18 years. After this time, some data (from the decree nisi and the decree absolute) is deleted.",
                     "theRemainder": "The remainder of the case information is stored for an additional 82 years. After a total of 100 years this data will be deleted.",
                     "thePersonal": "The personal data we need",
-                    "theirName": "their name",
                     "storingYourData": "Storing your data"
                  }
             }

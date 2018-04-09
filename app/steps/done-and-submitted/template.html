@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<main id="content" role="main">
+<main id="content" role="main" tabindex="-1">
   {% include "includes/phase_banner.html" %}
   <div class="grid-row">
     <div class="column-two-thirds">
@@ -10,15 +10,17 @@
       <div class="govuk-box-highlight">
         <h1 class="bold-large">{{content.title | safe}}</h1>
         <p class="no-bottom-margin">
-          {{ content.paymentReceived | safe if fields.paymentCompleted.value }} {{ content.subTitle | safe if session.caseId }}
-          {%- if session.caseId -%}
+          {{ content.caseReferenceNumber | safe }}
           <br>
-            <strong class="text-reference-number">
-              {{ session.caseId | insertHyphens }}
-            </strong>
-          {%- endif -%}
+          <strong class="text-reference-number">
+            {{ session.caseId | insertHyphens }}
+          </strong>
         </p>
       </div>
+
+      {% if fields.paymentCompleted.value %}
+        <p class="text">{{ content.paymentSuccessful | safe }}</p>
+      {% endif %}
 
       {# Email notification copy will be added only when notifications is implemented #}
 

@@ -21,7 +21,7 @@
 
 {% block content %}
 
-<main id="content" role="main">
+<main id="content" role="main" tabindex="-1">
 {% include "includes/phase_banner.html" %}
 <div class="breadcrumbs">
     <ol>
@@ -75,7 +75,6 @@
             <li>{{content.englishTranslation | safe}}</li>
             <li>{{content.respondentAddress | safe}}</li>
             <li>{{content.nameChange | safe}}</li>
-            <li>{{content.onlyOneGround | safe}}</li>
         </ul>
 
         <p class="text">

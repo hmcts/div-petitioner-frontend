@@ -21,7 +21,7 @@ services:
     volumes:
       - "../.:/tests"
 
-  functional-tests:
+  stubbed-functional-tests:
     image: reform/codeceptjs:latest
     command: bash -c "./docker/scripts/run-functional-tests.sh"
     environment:

@@ -1,10 +1,10 @@
 <tr>
   <th>{{ content.marriagePetitionerName | safe }}</th>
   <td>{{ fields.marriagePetitionerName.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.marriagePetitionerName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 <tr>
   <th>{{ content.marriageRespondentName | safe }}</th>
   <td>{{ fields.marriageRespondentName.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.marriageRespondentName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

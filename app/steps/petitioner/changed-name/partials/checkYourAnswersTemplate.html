@@ -1,7 +1,7 @@
 <tr>
   <th>{{ content.question | safe }}</th>
   <td>{{ fields.petitionerNameDifferentToMarriageCertificate.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.petitionerNameDifferentToMarriageCertificate.value === 'Yes' %}
   <tr>
@@ -11,13 +11,13 @@
         {{ content[how] | safe }} <br/>
       {%- endfor -%}
     </td>
-    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td><a class="link" aria-label="{{ content.change }} {{ content.nameChangeProof | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
   {% if fields.petitionerNameChangedHowOtherDetails.value !== '' and fields.petitionerNameChangedHowOtherDetails.value.length > 0 %}
     <tr>
       <th>{{ content.howChangeName | safe}}</th>
       <td>{{ fields.petitionerNameChangedHowOtherDetails.value }}</td>
-      <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+      <td><a class="link" aria-label="{{ content.change }} {{ content.howChangeName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
     </tr>
   {% endif %}
 {% endif %}

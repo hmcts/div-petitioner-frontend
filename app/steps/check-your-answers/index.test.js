@@ -1,7 +1,7 @@
 const co = require('co');
 const request = require('supertest');
 const server = require('app');
-const { testContent, testExistence, testRedirect, testNonExistence } = require('test/util/assertions');
+const { testContent, testExistence, testRedirect, testNonExistence, testCustom } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const clone = require('lodash').cloneDeep;
@@ -107,9 +107,24 @@ describe(modulePath, () => {
         expect(session.hasOwnProperty('saveAndResumeUrl')).to.eql(false);
       }).then(done, done);
     });
+
+    it('each "Change" link has a aria-label attached to it with some content', done => {
+      testCustom(done, agent, underTest, [], response => {
+        // Assert.
+        const text = response.text;
+        const found = text.match(/<a[^>]*>([^<]+)<\/a>/g);
+        const testForLabel = link => {
+          const isChangeLink = link.indexOf(`>${contentStrings.change}<`) !== -1;
+          if (isChangeLink) {
+            expect(link.indexOf('aria-label') !== -1, `${link} is missing an aria label`).to.eql(true);
+          }
+        };
+        found.forEach(testForLabel);
+      });
+    });
   });
 
-  describe('help with fees refference number exists', () => {
+  describe('help with fees reference number exists', () => {
     let session = {};
     beforeEach(done => {
       session = clone(mockSession);

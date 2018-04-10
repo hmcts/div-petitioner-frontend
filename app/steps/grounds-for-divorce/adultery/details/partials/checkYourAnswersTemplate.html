@@ -2,18 +2,18 @@
   <tr>
     <th>{{ content.whenDidAdulteryHappen | safe }}</th>
     <td>{{ fields.reasonForDivorceAdulteryWhenDetails.value }}</td>
-    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td><a class="link" aria-label="{{ content.change }} {{ content.whenDidAdulteryHappen | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}
 {% if fields.reasonForDivorceAdulteryKnowWhere.value == 'Yes' %}
   <tr>
     <th>{{ content.whereDidAdulteryHappen | safe }}</th>
     <td>{{ fields.reasonForDivorceAdulteryWhereDetails.value }}</td>
-    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td><a class="link" aria-label="{{ content.change }} {{ content.whereDidAdulteryHappen | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}
 <tr>
   <th>{{ content.whatDoYouKnow | safe }}</th>
   <td>{{ fields.reasonForDivorceAdulteryDetails.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.whatDoYouKnow | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

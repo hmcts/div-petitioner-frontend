@@ -1,6 +1,7 @@
 const requireDirectory = require('require-directory');
 const { get, set, merge, unset, forEach } = require('lodash');
 const ValidationStep = require('app/core/ValidationStep');
+const fs = require('fs');
 
 const addressContent = require('./content');
 const schema = require('./schema');
@@ -11,7 +12,12 @@ const addressTypes = requireDirectory(module, 'addressTypes', { exclude: /.test.
 module.exports = class AddressLookupStep extends ValidationStep {
   constructor(steps, section, templatePath, content) {
     const mergedContent = merge({}, addressContent, content);
-    const addressTemplatePath = 'AddressLookupStep';
+    let addressTemplatePath = 'AddressLookupStep';
+
+    const path = `app/steps/${templatePath}/template.html`;
+    if (fs.existsSync(path)) {
+      addressTemplatePath = templatePath;
+    }
 
     super(steps, section, addressTemplatePath, mergedContent, schema);
   }

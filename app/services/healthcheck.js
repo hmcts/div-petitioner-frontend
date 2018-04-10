@@ -20,7 +20,7 @@ client.on('error', error => {
 });
 
 const changeHttpsToHttp = url => {
-  url.replace('https://', 'http://');
+  return url.replace('https://', 'http://');
 };
 
 router.get('/health', healthcheck.configure({

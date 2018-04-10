@@ -5,7 +5,8 @@
             "translation": {
 
                 "content": {
-                    "question": "Where do you want your divorce papers sent?"
+                    "question": "Where do you want your divorce papers sent?",
+                    "confidentialAddressMessage": "Your correspondence address will be kept confidential from your {{ session.divorceWho }}."
                 }
             }
         }

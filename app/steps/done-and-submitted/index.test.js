@@ -30,16 +30,28 @@ describe(modulePath, () => {
     featureTogglesMock.restore();
   });
 
-  describe('Reference number', () => {
+  describe('Help with fees', () => {
     let session = {};
 
     beforeEach(done => {
-      session = { caseId: 'ABC' };
+      session = {
+        paymentMethod: 'hwf',
+        caseId: 'ABC'
+      };
       withSession(done, agent, session);
     });
 
-    it('shows reference number', done => {
-      testExistence(done, agent, underTest, contentStrings.subTitle);
+    it('does not show successful text', done => {
+      testNonExistence(done, agent, underTest,
+        contentStrings.paymentSuccessful);
+    });
+
+    it('shows case reference text', done => {
+      testExistence(done, agent, underTest, contentStrings.caseReferenceNumber);
+    });
+
+    it('shows case reference number', done => {
+      testExistence(done, agent, underTest, session.caseId);
     });
   });
 
@@ -53,29 +65,23 @@ describe(modulePath, () => {
           paymentMethod: 'card-online',
           currentPaymentId: '1',
           payments: { 1: { status: 'success' } },
-          courts: 'westMidlands'
+          courts: 'westMidlands',
+          caseId: 'ABC'
         };
         withSession(done, agent, session);
       });
 
-      it('shows complete status of payment', done => {
-        testExistence(done, agent, underTest, contentStrings.paymentReceived);
-      });
-    });
-
-    context('when payment is not yet completed (i.e cheque)', () => {
-      beforeEach(done => {
-        session = {
-          divorceWho: 'wife',
-          paymentMethod: 'cheque',
-          courts: 'westMidlands'
-        };
-        withSession(done, agent, session);
+      it('shows successful text', done => {
+        testExistence(done, agent, underTest, contentStrings.paymentSuccessful);
       });
 
-      it('does not show payment received', done => {
-        testNonExistence(done, agent, underTest,
-          contentStrings.paymentReceived);
+      it('shows case reference text', done => {
+        testExistence(done, agent, underTest,
+          contentStrings.caseReferenceNumber);
+      });
+
+      it('shows case reference number', done => {
+        testExistence(done, agent, underTest, session.caseId);
       });
     });
   });
@@ -86,23 +92,8 @@ describe(modulePath, () => {
 
     beforeEach(() => {
       excludeKeys = [
-        'paymentReceived',
+        'paymentSuccessful',
         'emailConfirmation',
-        'eastMidlandsEmail',
-        'eastMidlandsPhoneNumber',
-        'eastMidlandsOpeningHours',
-        'southWestEmail',
-        'southWestPhoneNumber',
-        'southWestOpeningHours',
-        'northWestEmail',
-        'northWestPhoneNumber',
-        'northWestOpeningHours',
-        'courtCheckApp',
-        'consentOrder',
-        'settle',
-        'helpWithFees',
-        'courtCheckApp',
-        'youWillBeContacted',
         'whatToDoNow',
         'whatToDoNowReferenceNumber',
         'whatToDoNowRefNumText',
@@ -118,7 +109,15 @@ describe(modulePath, () => {
         'sendAddresssouthWest',
         'sendAddressnorthWest',
         'whatToDoNowOrigCertOnly',
-        'stoke-on-trent'
+        'eastMidlandsEmail',
+        'eastMidlandsPhoneNumber',
+        'southWestEmail',
+        'southWestPhoneNumber',
+        'northWestEmail',
+        'northWestPhoneNumber',
+        'helpWithFees',
+        'courtCheckApp',
+        'youWillBeContacted'
       ];
     });
 
@@ -411,8 +410,7 @@ describe(modulePath, () => {
 
     beforeEach(() => {
       excludeKeys = [
-        'paymentReceived',
-        'subTitle',
+        'paymentSuccessful',
         'emailConfirmation',
         'eastMidlandsEmail',
         'eastMidlandsPhoneNumber',
@@ -426,13 +424,9 @@ describe(modulePath, () => {
         'northWestEmail',
         'northWestPhoneNumber',
         'northWestOpeningHours',
-        'courtCheckApp',
-        'consentOrder',
-        'settle',
         'helpWithFees',
         'courtCheckApp',
         'youWillBeContacted',
-        'stoke-on-trent',
         'startFinancialProceedings1',
         'startFinancialProceedings2'
       ];

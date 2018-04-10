@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+    {% include "includes/phase_banner.html" %}
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+            <h1 class="heading-large">{{ content.title }}</h1>
+            <p class="text">{{ content.info }}</p>
+
+            <h2 class="heading-small">{{ content.whoManages }}</h2>
+            <p class="text">{{ content.managedBy | safe }}</p>
+            <p class="text">{{ content.moj | safe }}</p>
+            <p class="text">{{ content.responsibleRorDeciding | safe }}</p>
+            <p class="text">{{ content.moreInformation | safe }}</p>
+
+            <h3 class="heading-small">{{ content.thePersonal | safe }}</h3>
+            <p class="text">{{ content.whenYouUseDivorceService | safe }}</p>
+            <ul class="list list-bullet">
+                <li>{{ content.yourCurrentName | safe }}</li>
+                <li>{{ content.yourNameMarriageCert | safe }}</li>
+                <li>{{ content.aCopyMarriageCert | safe }}</li>
+                <li>{{ content.dateOfMarriage | safe }}</li>
+                <li>{{ content.countryInMarried | safe }}</li>
+                <li>{{ content.informationAboutWhereYouveLived | safe }}</li>
+                <li>{{ content.yourHabitualResidence | safe }}</li>
+                <li>{{ content.yourDomicile | safe }}</li>
+                <li>{{ content.yourEmailOrMobile | safe }}</li>
+                <li>{{ content.yourAddress | safe }}</li>
+                <li>{{ content.reasonsForDivorce | safe }}</li>
+                <li>{{ content.otherCourtCases | safe }}</li>
+                <li>{{ content.yourHusbandOrWifesNames | safe }}</li>
+                <li>{{ content.theirNameMarriageCert | safe }}</li>
+                <li>{{ content.adulteryNames | safe }}</li>
+                <li>{{ content.yourSolicitorsNameAddress | safe }}</li>
+            </ul>
+            <h3 class="heading-small">{{ content.receivingNotifications | safe }}</h3>
+            <p class="text">{{ content.youNeedSignUp | safe }}</p>
+            
+            <h3 class="heading-small">{{ content.storingYourData | safe }}</h3>
+            <p class="text">{{ content.askedForEmailAddress | safe }}</p>
+            <p class="text">{{ content.holdYourData | safe }}</p>
+            <p class="text">{{ content.whenADivorceIsFinalised | safe }}</p>
+            <p class="text">{{ content.theRemainder | safe }}</p>
+
+            <h2 class="heading-small">{{ content.whyWeCollect | safe }}</h2>
+            <p class="text">{{ content.personalData | safe }}</p>
+            <ul class="list list-bullet">
+                <li>{{ content.processClaim | safe }}</li>
+                <li>{{ content.legalRequirements | safe }}</li>
+                <li>{{ content.improveService | safe }}</li>
+            </ul>
+            <p class="text">{{ content.claimOrApplication | safe }}</p>
+
+            <h2 id="usingYourData" class="heading-small">{{ content.usingYourData | safe }}</h2>
+            <p class="text">{{ content.asPart | safe }}</p>
+            <p class="text">{{ content.weMayAskForPermission | safe }}</p>
+            <p class="text">{{ content.weUseCookies | safe }}</p>
+            <ul class="list list-bullet">
+                <li>{{ content.ifYouOpenEmail | safe }}</li>
+                <li>{{ content.yourComputer | safe }}</li>
+                <li>{{ content.theRegion | safe }}</li>
+                <li>{{ content.theWeb | safe }}</li>
+            </ul>
+
+            <h2 id="sharingYourData" class="heading-small">{{ content.sharingYour | safe }}</h2>
+            <p class="text">{{ content.ifAnother | safe }}</p>
+            <p class="text">{{ content.ifYouContactUs | safe }}</p>
+            <p class="text">{{ content.weUse | safe }}</p>
+            
+            <h3 class="heading-small">{{ content.yourRights | safe }}</h3>
+            <p class="text">{{ content.youCanAsk | safe }}</p>
+            <ul class="list list-bullet">
+                <li>{{ content.toSeePersonal | safe }}</li>
+                <li>{{ content.toHavePersonal | safe }}</li>
+                <li>{{ content.toHaveDataRemoved | safe }}</li>
+                <li>{{ content.thatAccessIsRestricted | safe }}</li>
+            </ul>
+            <p class="text">{{ content.ifYouWantToSeePersonal | safe }}</p>
+
+            <h2 class="heading-small">{{ content.howToComplain | safe }}</h2>
+            <p class="text">{{ content.seeOurComplaints | safe }}</p>
+            <p class="text">{{ content.youCanAlsoComplain | safe }}</p>
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}

@@ -171,7 +171,9 @@
         $(document).on('keydown', 'a.faux-link, .dz-clickable', function(e) {
           if([13, 32].includes(e.keyCode)) { // pressed RETURN or SPACE
             e.preventDefault();
+            e.stopPropagation();
             self.$zone.trigger('click');
+            return false;
           }
         });
       },

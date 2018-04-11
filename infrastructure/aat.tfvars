@@ -20,8 +20,8 @@ idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net"
 service_auth_provider_url = "http://betaDevBccidamS2SLB.reform.hmcts.net"
 
 feature_toggle_api_url = "http://betaDevBdivorceAppLB.reform.hmcts.net:4012"
-case_progression_service_url = "https://div-case-progression-aat.service.core-compute-aat.internal"
-evidence_management_client_api_url = "https://div-em-client-api-aat.service.core-compute-aat.internal"
+case_progression_service_url = "http://betaDevBdivorceAppLB.reform.hmcts.net:4013"
+evidence_management_client_api_url = "http://betaDevBdivorceAppLB.reform.hmcts.net:4016"
 
 payments_api_url = "https://test.payments.reform.hmcts.net:4421"
 fee_register_url = "https://test.fees-register.reform.hmcts.net:4431"

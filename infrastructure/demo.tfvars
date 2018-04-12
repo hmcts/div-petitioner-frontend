@@ -1,7 +1,6 @@
 env = "demo"
 deployment_env = "preprod"
 
-vault_env = "preprod"
 vault_section = "preprod"
 
 packages_environment = "preprod"

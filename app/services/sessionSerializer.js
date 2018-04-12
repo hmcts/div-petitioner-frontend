@@ -1,6 +1,6 @@
 const CONF = require('config');
 const crypto = require('crypto');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const jwt = require('jsonwebtoken');
 
 const sessionEncryptionSecret = CONF.sessionEncryptionSecret;

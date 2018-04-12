@@ -1,7 +1,7 @@
 const co = require('co');
 const { curry, get, reduce, cloneDeep } = require('lodash');
 const { removeStaleData } = require('app/core/staleDataManager');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const statusCode = require('app/core/utils/statusCode');
 const transformationServiceClient = require('app/services/transformationServiceClient');
 const mockedClient = require('app/services/mocks/transformationServiceClient');

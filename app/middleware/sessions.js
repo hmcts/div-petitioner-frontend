@@ -2,7 +2,7 @@ const CONF = require('config');
 const session = require('express-session');
 const Redis = require('connect-redis')(session);
 const sessionSerializer = require('app/services/sessionSerializer');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const ioRedis = require('ioredis');
 
 const secret = CONF.secret;

@@ -1,5 +1,5 @@
 const httpStatus = require('http-status-codes');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const evidenceManagmentService = require('app/services/evidenceManagmentService');
 const { map } = require('lodash');
 const fileManagment = require('app/services/fileManagement');

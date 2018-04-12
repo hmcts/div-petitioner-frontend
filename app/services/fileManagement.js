@@ -1,7 +1,7 @@
 const tmp = require('tmp');
 const fs = require('fs');
 const util = require('util');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const formidable = require('formidable');
 
 const saveFileFromRequest = req => {

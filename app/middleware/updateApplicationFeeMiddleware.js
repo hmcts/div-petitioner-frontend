@@ -1,7 +1,7 @@
 const CONF = require('config');
 const feeRegisterService = require('app/services/feeRegisterService');
 const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const ioRedis = require('ioredis');
 const ioRedisMock = require('app/services/mocks/ioRedis');
 

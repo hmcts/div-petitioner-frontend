@@ -1,5 +1,5 @@
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const transformationServiceClient = require('app/services/transformationServiceClient');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const httpStatus = require('http-status-codes');

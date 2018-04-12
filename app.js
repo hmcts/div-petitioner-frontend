@@ -40,21 +40,14 @@ const nunjucksFilters = require('app/filters/nunjucks');
 
 const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
-const logger = logging.getLogger(__filename);
+const logger = logging.Logger.getLogger(__filename);
 
 exports.init = () => {
   const app = express();
 
-  app.use(logging.Express.accessLogger());
-
   app.use(helmet());
 
-  logging.config({
-    microservice: CONF.appName,
-    team: CONF.project,
-    environment: CONF.environment
-  });
-  app.use(logging.express.accessLogger());
+  app.use(logging.Express.accessLogger());
 
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({

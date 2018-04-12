@@ -14,7 +14,7 @@ const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMi
 
 const jwt = require('jsonwebtoken');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const get = require('lodash/get');
 
 module.exports = class PayOnline extends Step {

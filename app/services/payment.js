@@ -2,7 +2,7 @@ const payClient = require('@hmcts/div-pay-client');
 const get = require('lodash/get');
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 let client = {};
 

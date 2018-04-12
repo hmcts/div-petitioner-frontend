@@ -1,5 +1,4 @@
 env = "sandbox"
-vault_env = "test"
 
 deployment_env = "test"
 vault_section = "test"

@@ -44,7 +44,8 @@
     "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.0.0",
     "@hmcts/div-service-auth-provider-client": "https://github.com/hmcts/div-service-auth-provider-client#2.1.4",
     "@hmcts/nodejs-healthcheck": "^1.2.0",
-    "@hmcts/nodejs-logging": "^1.4.2",
+    "@hmcts/nodejs-logging": "^3.0.0",
+    "add": "^2.0.6",
     "ajv": "^4.10.0",
     "body-parser": "^1.14.1",
     "co": "^4.6.0",
@@ -98,7 +99,8 @@
     "webpack": "2.2.1",
     "webpack-archive-plugin": "^3.0.0",
     "weighted": "0.3.0",
-    "xss-filters": "^1.2.7"
+    "xss-filters": "^1.2.7",
+    "yarn": "^1.5.1"
   },
   "devDependencies": {
     "@hmcts/div-idam-test-harness": "https://github.com/hmcts/div-idam-test-harness#1.0.12",

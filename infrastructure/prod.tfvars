@@ -1,7 +1,6 @@
 env = "prod"
 deployment_env = "prod"
 
-vault_env = "prod"
 vault_section = "prod"
 
 packages_environment = "prod"

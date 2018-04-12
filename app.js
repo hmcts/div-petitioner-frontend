@@ -45,6 +45,8 @@ const logger = logging.getLogger(__filename);
 exports.init = () => {
   const app = express();
 
+  app.use(logging.Express.accessLogger());
+
   app.use(helmet());
 
   logging.config({

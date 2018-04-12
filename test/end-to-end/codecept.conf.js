@@ -15,7 +15,8 @@ exports.config = {
       'waitForAction': waitForAction,
       'show': false,
       'switches': {
-        'ignore-certificate-errors': true
+        'ignore-certificate-errors': true,
+        'proxy-server': process.env.E2E_PROXY_SERVER || ''
       }
     },
     'FeatureToggleHelper': {

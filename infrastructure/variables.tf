@@ -13,13 +13,13 @@ variable "location" {
 }
 
 variable "env" {
-  default = "sandbox"
+  type = "string"
 }
 
 variable "ilbIp" { }
 
 variable "deployment_env" {
-  default = "test"
+  type = "string"
 }
 
 variable "deployment_path" {
@@ -37,7 +37,7 @@ variable "node_config_dir" {
 variable "subscription" {}
 
 variable "vault_section" {
-  default = "test"
+  type = "string"
 }
 
 // CNP settings
@@ -64,7 +64,7 @@ variable "node_path" {
 }
 
 variable "external_host_name" {
-  default = "divorce.sandbox.platform.hmcts.net"
+  type = "string"
 }
 
 // Package details
@@ -77,7 +77,7 @@ variable "packages_project" {
 }
 
 variable "packages_environment" {
-  default = "test"
+  type = "string"
 }
 
 variable "packages_version" {
@@ -97,7 +97,7 @@ variable "divorce_frontend_protocol" {
 }
 
 variable "divorce_frontend_hostname" {
-  default = "div-frontend-sandbox.service.core-compute-sandbox.internal"
+  type = "string"
 }
 
 variable "divorce_frontend_public_port" {
@@ -118,7 +118,6 @@ variable "no_proxy" {
 
 variable "ga_tracking_id" {
   description = "Google Analytics tracking ID"
-  default = "UA-93824767-2"
 }
 
 variable "ga_tracking_url" {
@@ -127,7 +126,7 @@ variable "ga_tracking_url" {
 }
 
 variable "divorce_redis_url" {
-  default = "betaDevBdivorceCache01.reform.hmcts.net:6379"
+  type = "string"
 }
 
 variable "use_auth" {
@@ -138,12 +137,8 @@ variable "health_endpoint" {
   default = "/health"
 }
 
-variable "status_health_endpoint" {
-  default = "/status/health"
-}
-
 variable "idam_authentication_web_url" {
-  default = "https://idam-test.dev.ccidam.reform.hmcts.net"
+  type = "string"
 }
 
 variable "idam_authentication_login_endpoint" {
@@ -151,11 +146,11 @@ variable "idam_authentication_login_endpoint" {
 }
 
 variable "idam_api_url" {
-  default = "http://betaDevBccidamAppLB.reform.hmcts.net"
+  type = "string"
 }
 
 variable "service_auth_provider_url" {
-  default = "http://betaDevBccidamS2SLB.reform.hmcts.net"
+  type = "string"
 }
 
 variable "frontend_service_name" {
@@ -167,7 +162,7 @@ variable "s2s_microservice_name" {
 }
 
 variable "case_progression_service_url" {
-  default = "http://betaDevBdivorceAppLB.reform.hmcts.net:4013"
+  type = "string"
 }
 
 variable "transformation_service_base_path" {
@@ -179,7 +174,7 @@ variable "draft_store_api_base_path" {
 }
 
 variable "evidence_management_client_api_url" {
-  default = "http://betaDevBdivorceAppLB.reform.hmcts.net:4016"
+  type = "string"
 }
 
 variable "evidence_management_client_api_upload_endpoint" {
@@ -187,7 +182,7 @@ variable "evidence_management_client_api_upload_endpoint" {
 }
 
 variable "feature_toggle_api_url" {
-  default = "http://betaDevBdivorceAppLB.reform.hmcts.net:4012"
+  type = "string"
 }
 
 variable "feature_toggle_api_base_path" {
@@ -195,7 +190,7 @@ variable "feature_toggle_api_base_path" {
 }
 
 variable "payments_api_url" {
-  default = "https://test.payments.reform.hmcts.net:4421"
+  type = "string"
 }
 
 variable "payment_reference_service_id" {
@@ -203,7 +198,7 @@ variable "payment_reference_service_id" {
 }
 
 variable "fee_register_url" {
-  default = "https://test.fees-register.reform.hmcts.net:4431"
+  type = "string"
 }
 
 variable "post_code_url" {

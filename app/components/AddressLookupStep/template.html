@@ -8,12 +8,14 @@
 {% endblock %}
 
 {% block content %}
-<main id="content" role="main">
+<main id="content" role="main" tabindex="-1">
   {% include "includes/phase_banner.html" %}
     <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
     <h1 class="heading-large">
         {{content.question | safe}}
     </h1>
+
+    {% block warning %}{% endblock %}
 
     {% if errors.length > 0 %}
       <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">

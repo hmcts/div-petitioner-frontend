@@ -21,7 +21,7 @@
   </td>
   <td>
     {%- if fields.changeLink.value  === true -%}
-      <a class="link" href="{{ content.url | safe }}">{{ content.change }}</a>
+      <a class="link" aria-label="{{ content.change }} {{ content['how-your-connected'] | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a>
     {%- endif -%}
   </td>
 </tr>

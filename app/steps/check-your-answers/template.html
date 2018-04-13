@@ -15,7 +15,7 @@
 
 {%- block content -%}
 
-<main id="content" class="check-your-answers" role="main">
+<main id="content" role="main" tabindex="-1" class="check-your-answers">
 
     {% include "includes/phase_banner.html" %}
 
@@ -47,7 +47,9 @@
 
     {%- for group, templates in fields.stepTemplates.value -%}
       {%- if templates and templates.length -%}
-      <h2 class="heading-medium">{{ content[group] | safe }}</h2>
+        {%- if content[group] != '' -%}
+          <h2 class="heading-medium">{{ content[group] | safe }}</h2>
+        {%- endif -%}
       <table>
           <colgroup>
              <col span="1" style="width: 45%;">

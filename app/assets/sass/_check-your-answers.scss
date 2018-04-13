@@ -39,7 +39,6 @@
       margin-left: 50px;
     }
   }
-
 }
 
 @media (min-width: 641px) {
@@ -51,5 +50,9 @@
 @media (max-width: 640px) {
   .check-your-answers #form ul.list-bullet {
     margin-top: 30px;
+  }
+
+  .check-your-answers td:nth-of-type(2) {
+    word-break: keep-all;
   }
 }

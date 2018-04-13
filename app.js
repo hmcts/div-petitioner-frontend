@@ -122,7 +122,7 @@ exports.init = () => {
 
   app.set('trust proxy', 1);
   app.use(sessions.prod());
-  if (process.env.NODE_ENV === 'production') {
+  if (CONF.rateLimiter.enabled) {
     app.use(rateLimiter(app));
   }
 

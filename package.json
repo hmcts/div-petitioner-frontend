@@ -1,7 +1,7 @@
 {
   "name": "divorce-frontend",
   "description": "Apply for a divorce",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "private": true,
   "engines": {
     "node": ">=6.0"

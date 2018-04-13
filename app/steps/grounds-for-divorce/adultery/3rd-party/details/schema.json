@@ -4,12 +4,10 @@
   "type": "object",
   "properties": {
     "reasonForDivorceAdultery3rdPartyFirstName": {
-      "type": "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type": "string"
     },
     "reasonForDivorceAdultery3rdPartyLastName": {
-      "type": "string",
-      "pattern": "^[a-zA-Z\u00C0-\u017F '-]+$"
+      "type": "string"
     }
   },
   "required": [

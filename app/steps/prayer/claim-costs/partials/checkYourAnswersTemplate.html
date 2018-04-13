@@ -1,7 +1,7 @@
 <tr>
   <th>{{ content.question | safe }}</th>
   <td>{{ fields.claimsCosts.value }}</td>
-  <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.claimsCostsFrom.value %}
   <tr>
@@ -15,6 +15,6 @@
         {% endif %}
       {%- endfor -%}
     </td>
-    <td><a class="link" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td><a class="link" aria-label="{{ content.change }} {{ content.whoCosts | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}

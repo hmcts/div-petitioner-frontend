@@ -85,22 +85,6 @@ describe(modulePath, () => {
 
       testErrors(done, agent, underTest, context, content, 'required', [], session);
     });
-
-    it('renders errors for invalid petitioner name', done => {
-      const context = { marriagePetitionerName: '£ee' };
-
-      const onlyKeys = ['marriagePetitionerName'];
-
-      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys, session);
-    });
-
-    it('renders errors for invalid respondent name', done => {
-      const context = { marriageRespondentName: '£ee' };
-
-      const onlyKeys = ['marriageRespondentName'];
-
-      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys, session);
-    });
   });
 
   describe('success', () => {

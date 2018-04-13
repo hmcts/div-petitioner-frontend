@@ -54,7 +54,8 @@ const saveToDraftStore = (options = {}, userToken = '', body = {}, sendEmail = f
   let uri = `${options.draftBaseUrl}`;
 
   if (sendEmail && body.petitionerEmail) {
-    uri += `?notificationEmail=${body.petitionerEmail}`;
+    const petitionerEmail = encodeURIComponent(body.petitionerEmail);
+    uri += `?notificationEmail=${petitionerEmail}`;
   }
 
   const headers = { Authorization: `Bearer ${userToken}` };

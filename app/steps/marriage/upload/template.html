@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block content %}
-<main id="content" role="main">
+<main id="content" role="main" tabindex="-1">
   {% include "includes/phase_banner.html" %}
     <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
 
@@ -83,7 +83,7 @@
 
             <p>{{ content.limitations }}</p>
 
-            <div class="document-upload" tabindex="0">
+            <div class="document-upload">
               <div class="fallback">
                 <form method="POST" accept-charset="utf-8" class="form" id="form"
                   enctype="multipart/form-data"
@@ -105,7 +105,7 @@
                     <p class="dz-message-copy">
                       {{ content.dragAndDrop }}<br>
                       <strong>{{ content.or }}</strong><br>
-                      <a href="#" class="faux-link" tabindex="-1">{{ content.clickToChooseFile }}</a>
+                      <a href="#" class="faux-link">{{ content.clickToChooseFile }}</a>
                     </p>
                   </div>
                 </div>

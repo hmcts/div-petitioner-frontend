@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const requireDir = require('require-directory');
 const cookieParser = require('cookie-parser');
 const sessions = require('app/middleware/sessions');
-// const rateLimiter = require('app/services/rateLimiter');
+const rateLimiter = require('app/services/rateLimiter');
 const initSteps = require('app/core/initSteps');
 const siteGraph = require('app/core/siteGraph');
 const errorHandler = require('app/core/errorHandler');
@@ -118,11 +118,9 @@ exports.init = () => {
   app.set('trust proxy', 1);
   app.use(sessions.prod());
 
-  // disabling rateLimiter which can prevent deployment on CNP
-  // due to failing the healthcheck from rate limit exceeded
-  // if (process.env.NODE_ENV === 'production') {
-  //   app.use(rateLimiter(app));
-  // }
+  if (process.env.NODE_ENV === 'production') {
+    app.use(rateLimiter(app));
+  }
 
   app.use(middleware.locals);
 

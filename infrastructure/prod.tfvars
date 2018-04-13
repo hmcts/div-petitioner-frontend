@@ -4,8 +4,7 @@ deployment_env = "prod"
 vault_section = "prod"
 
 packages_environment = "prod"
-packages_version = "2.2.0"
-version = "2.2.0"
+packages_version = "3.0.0"
 
 divorce_frontend_hostname = "divorce.platform.hmcts.net"
 outbound_proxy = ""

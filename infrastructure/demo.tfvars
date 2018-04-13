@@ -5,7 +5,6 @@ vault_section = "preprod"
 
 packages_environment = "preprod"
 packages_version = "2.2.0"
-version = "2.2.0"
 
 divorce_frontend_hostname = "div-frontend-demo.service.core-compute-demo.internal"
 external_host_name = "divorce.demo.platform.hmcts.net"

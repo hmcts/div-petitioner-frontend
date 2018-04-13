@@ -117,7 +117,7 @@ exports.init = () => {
 
   app.set('trust proxy', 1);
   app.use(sessions.prod());
-  
+
   // disabling rateLimiter which can prevent deployment on CNP
   // due to failing the healthcheck from rate limit exceeded
   // if (process.env.NODE_ENV === 'production') {

@@ -25,3 +25,4 @@ package-lock.json
 .sonar/
 .env
 smoke-output/*
+functional-output/*

@@ -4,7 +4,7 @@ deployment_env = "test"
 vault_section = "test"
 
 packages_environment = "test"
-packages_version = "2.2.0"
+packages_version = "3.0.0"
 
 divorce_frontend_hostname = "div-frontend-sandbox.service.core-compute-sandbox.internal"
 external_host_name = "divorce.sandbox.platform.hmcts.net"

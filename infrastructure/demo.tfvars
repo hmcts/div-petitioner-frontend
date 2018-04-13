@@ -8,6 +8,7 @@ packages_version = "2.2.0"
 version = "2.2.0"
 
 divorce_frontend_hostname = "div-frontend-demo.service.core-compute-demo.internal"
+external_host_name = "divorce.demo.platform.hmcts.net"
 outbound_proxy = ""
 
 ga_tracking_id = "UA-93824767-1"

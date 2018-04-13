@@ -8,6 +8,7 @@ packages_version = "2.2.0"
 version = "2.2.0"
 
 divorce_frontend_hostname = "div-frontend-aat.service.core-compute-aat.internal"
+external_host_name = "divorce.nonprod.platform.hmcts.net"
 outbound_proxy = ""
 
 ga_tracking_id = "UA-93824767-3"

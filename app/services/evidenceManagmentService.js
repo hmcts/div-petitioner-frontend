@@ -43,7 +43,7 @@ const sendFile = (file, options = { token: 'token' }) => {
     }
     return superagent
       .post(evidenceManagmentClientUploadUrl)
-      .set({ AuthorizationToken: options.token })
+      .set({ Authorization: options.token })
       .set('enctype', 'multipart/form-data')
       .attach('file', file.path, file.name)
       .end((error, response = { statusCode: null }) => {

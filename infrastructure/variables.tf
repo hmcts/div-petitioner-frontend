@@ -178,7 +178,7 @@ variable "evidence_management_client_api_url" {
 }
 
 variable "evidence_management_client_api_upload_endpoint" {
-  default = "/emclientapi/version/1/uploadFiles"
+  default = "/emclientapi/version/1/upload"
 }
 
 variable "feature_toggle_api_url" {

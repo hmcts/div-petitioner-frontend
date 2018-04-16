@@ -1,26 +1,24 @@
-const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
-const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 1000;
-
-console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
-
 exports.config = {
   'tests': './paths/smoke/*.js',
   'output': '../../smoke-output',
-  'timeout': 1000,
+  'timeout': 5000,
   'helpers': {
-    'Nightmare': {
+    'WebDriverIO' : {
       'url': process.env.TEST_URL || process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
-      'waitForTimeout': waitForTimeout,
-      'typeInterval': 20,
-      'waitForAction': waitForAction,
-      'show': false,
-      'switches': {
-        'ignore-certificate-errors': true
+      'browser': 'chrome',
+      'cssSelectorsEnabled': 'true',
+      'waitforTimeout': 20000,
+      'smartWait': 5000,
+      'timeouts': {
+        'script': 20000,
+        'page load': 20000,
+        'implicit': 5000
+      },
+      'desiredCapabilities': {
+        'chromeOptions': {
+          'args': [ '--headless', '--disable-gpu', '--window-size=800,600', '--ignore-certificate-errors' ]
+        }
       }
-    },
-    'NightmareExtras': {
-      'require': './helpers/NightmareExtras.js',
-      'waitForTimeout': waitForTimeout
     }
   },
   'include': {
@@ -44,5 +42,5 @@ exports.config = {
       }
     }
   },
-  'name': 'frontEnd Smoke Tests'
+  'name': 'frontend Smoke Tests'
 };

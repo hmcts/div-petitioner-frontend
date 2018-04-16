@@ -47,6 +47,7 @@
     "@hmcts/nodejs-logging": "^3.0.0",
     "add": "^2.0.6",
     "ajv": "^4.10.0",
+    "applicationinsights": "^1.0.2",
     "body-parser": "^1.14.1",
     "co": "^4.6.0",
     "config": "^1.21.0",

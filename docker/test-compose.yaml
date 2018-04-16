@@ -1,70 +1,18 @@
 version: '2.1'
 
 services:
-  e2e-tests:
-    image: reform/codeceptjs:latest
-    command: bash -c "./xvfb-run.sh yarn test-e2e"
-    environment:
-      E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
-      E2E_FRONTEND_NODE_ENV: ${E2E_FRONTEND_NODE_ENV:-production}
-      FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://betaDevAdivorceAppLB.reform.hmcts.net:4002}
-      IDAM: ${idam:-true}
-      IDAM_API_URL: ${IDAM_API_URL:-http://betaDevBccidamAppLB.reform.hmcts.net:80}
-    volumes:
-      - "../.:/tests"
-
   smoke-tests:
-    image: reform/codeceptjs:latest
-    command: bash -c "./xvfb-run.sh NODE_ENV=testing NODE_PATH=. codeceptjs run -c test/end-to-end/smoke.conf.js"
+    image: codeception/codeceptjs:1.1.7
+    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c smoke.conf.js'
     environment:
       E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
     volumes:
       - "../.:/tests"
 
-  stubbed-functional-tests:
-    image: reform/codeceptjs:latest
-    command: bash -c "./docker/scripts/run-functional-tests.sh"
+  functional-tests:
+    image: codeception/codeceptjs:1.1.7
+    command: bash -c 'yarn test-e2e'
     environment:
-      E2E_FRONTEND_URL: ${E2E_FRONTEND_URL:-https://localhost:8080}
-      E2E_WAIT_FOR_TIMEOUT_VALUE: ${E2E_WAIT_FOR_TIMEOUT_VALUE:-60000}
-      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-3000}
-    network_mode: 'service:frontend'
+      E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
     volumes:
       - "../.:/tests"
-
-  frontend:
-    build:
-      context: ../.
-      args:
-        - NODE_ENV=development
-        - http_proxy
-        - https_proxy
-        - no_proxy
-        - GIT_REVISION
-        - PUBLIC_HOSTNAME
-    environment:
-      NODE_ENV: development
-      REDISCLOUD_URL: 'redis://redis:6379'
-    restart: always
-    image: divorce/frontend:${FRONTEND_TAG:-master}
-    links:
-      - redis
-    ports:
-      - "8080:8080"
-      - "9229:9229"
-    volumes:
-      - "../.:/opt/app"
-    command: bash -c "yarn install && yarn setup && yarn start-debug"
-    depends_on:
-      redis:
-        condition: service_healthy
-
-  redis:
-    image: redis
-    expose:
-      - "6379"
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping"]
-      interval: 10s
-      timeout: 10s
-      retries: 3

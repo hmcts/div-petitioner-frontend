@@ -8268,7 +8268,7 @@ wdio-dot-reporter@~0.0.8:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/wdio-dot-reporter/-/wdio-dot-reporter-0.0.9.tgz#929b2adafd49d6b0534fda068e87319b47e38fe5"
 
-webdriverio@^4.7.1:
+webdriverio@^4.12.0:
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-4.12.0.tgz#e340def272183c8168a4dd0b382322f9d7bee10d"
   dependencies:

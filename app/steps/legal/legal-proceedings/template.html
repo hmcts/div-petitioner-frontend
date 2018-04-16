@@ -20,13 +20,15 @@
                 label = content.yes,
                 name = 'legalProceedings',
                 field = fields.legalProceedings,
-                dataTarget='further-details'
+                dataTarget='further-details',
+                screenReader = content.question
             ) }}
             {{ radioButton(
                 value = 'No',
                 label = content.no,
                 name = 'legalProceedings',
-                field = fields.legalProceedings
+                field = fields.legalProceedings,
+                screenReader = content.question
             ) }}
         </fieldset>
     </div>

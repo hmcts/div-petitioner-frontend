@@ -18,9 +18,15 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
-withPipeline("nodejs", product, component) {
+withPipeline("nodejs", product, component) {  
   after('build') {
     sh 'yarn setup'
+  }
+
+  before('smokeTest:aat') {
+    sh 'sudo pip install --upgrade pip'
+    sh 'sudo pip uninstall docker -y'
+    sh 'sudo pip install docker==3.0.0'
   }
   
   after('functionalTest:aat') {

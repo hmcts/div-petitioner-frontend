@@ -23,6 +23,13 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
+  before('build') {
+    sh 'sudo pip install --upgrade pip'
+    sh 'sudo pip uninstall docker -y'
+    sh 'sudo pip install docker==3.0.0'
+    sh 'yarn test:smoke'
+  }
+  
   after('build') {
     sh 'yarn setup'
   }

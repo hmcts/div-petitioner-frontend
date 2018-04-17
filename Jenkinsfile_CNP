@@ -26,7 +26,8 @@ withPipeline("nodejs", product, component) {
   before('smokeTest:aat') {
     sh 'sudo pip install --upgrade pip'
     sh 'sudo pip uninstall docker -y'
-    sh 'sudo pip install docker==3.0.0'
+    sh 'sudo pip uninstall docker-py --no-cache-dir'
+    sh 'sudo pip install docker==3.1.4'
   }
   
   after('functionalTest:aat') {

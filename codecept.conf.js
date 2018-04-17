@@ -6,6 +6,7 @@ console.log('waitForAction value set to', waitForAction); // eslint-disable-line
 
 exports.config = {
   tests: './test/end-to-end/paths/**/*.js',
+  output: './functional-output',
   timeout: 1000,
   helpers: {
     Nightmare: {
@@ -28,5 +29,21 @@ exports.config = {
     IdamHelper: { require: './test/end-to-end/helpers/idamHelper.js' }
   },
   include: { I: './test/end-to-end/pages/steps.js' },
+  mocha: {
+    reporterOptions: {
+      'codeceptjs-cli-reporter': {
+        stdout: '-',
+        options: { steps: true }
+      },
+      mochawesome: {
+        stdout: './functional-output/console.log',
+        options: {
+          reportDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+          reportName: 'index',
+          inlineAssets: true
+        }
+      }
+    }
+  },
   name: 'frontend Tests'
 };

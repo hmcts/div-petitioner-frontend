@@ -25,7 +25,7 @@ const strykerConfiguration = config => {
     files: [ '**/*' ],
     maxConcurrentTestRunners: 2,
     symlinkNodeModules: false,
-    htmlReporter: { baseDir: 'stryker-reports/html' },
+    htmlReporter: { baseDir: 'functional-output/mutation-1' },
     mochaOptions: {
       files:
         [

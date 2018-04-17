@@ -22,7 +22,11 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
-  
+
+  after('test') {
+    sh 'yarn test:mutation'
+  }
+
   after('functionalTest:aat') {
     error('Halting pipeline before prod stages')
   }

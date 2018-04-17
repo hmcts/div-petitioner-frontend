@@ -22,7 +22,8 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
     sh './node_modules/.bin/selenium-standalone install'
-    sh './node_modules/.bin/selenium-standalone start'
+    sh './node_modules/.bin/selenium-standalone start &'
+    sh 'sleep 10'
     sh 'yarn test:smoke'
   }
   

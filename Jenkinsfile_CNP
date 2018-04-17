@@ -21,6 +21,9 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
+    sh './node_modules/.bin/selenium-standalone install'
+    sh './node_modules/.bin/selenium-standalone start'
+    sh 'yarn test:smoke'
   }
   
   after('functionalTest:aat') {

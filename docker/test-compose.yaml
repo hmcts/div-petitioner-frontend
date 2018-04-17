@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+  smoke-tests:
+    image: codeception/codeceptjs:1.1.7
+    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c smoke.conf.js'
+    environment:
+      E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
+    volumes:
+      - "../.:/tests"
+
+  functional-tests:
+    image: codeception/codeceptjs:1.1.7
+    command: bash -c 'yarn test-e2e'
+    environment:
+      E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
+      FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://localhost:4002}
+      IDAM_API_URL: ${IDAM_API_URL:-http://localhost:4501}
+    volumes:
+      - "../.:/tests"

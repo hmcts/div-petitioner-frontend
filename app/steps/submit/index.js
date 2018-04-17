@@ -72,7 +72,7 @@ module.exports = class Submit extends Step {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${error}`);
+        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
         res.redirect('/generic-error');
       });
   }

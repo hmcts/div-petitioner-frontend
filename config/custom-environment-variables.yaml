@@ -109,6 +109,7 @@ google_analytics:
 rateLimiter:
   total: RATE_LIMITER_TOTAL
   expire: RATE_LIMITER_EXPIRE
+  enabled: RATE_LIMITER_ENABLED
 
 applicationInsights:
   instrumentationKey: APPINSIGHTS_INSTRUMENTATIONKEY

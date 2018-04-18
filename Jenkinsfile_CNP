@@ -22,13 +22,6 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
-
-  before('smokeTest:aat') {
-    sh 'sudo pip install --upgrade pip'
-    sh 'sudo pip uninstall docker -y'
-    sh 'sudo pip uninstall docker-py -y --no-cache-dir'
-    sh 'sudo pip install docker==3.1.4'
-  }
   
   after('functionalTest:aat') {
     error('Halting pipeline before prod stages')

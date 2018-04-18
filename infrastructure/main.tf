@@ -148,6 +148,7 @@ module "frontend" {
     // Rate Limiter
     RATE_LIMITER_TOTAL = "${var.rate_limiter_total}"
     RATE_LIMITER_EXPIRE = "${var.rate_limiter_expire}"	
+    RATE_LIMITER_ENABLED = "$var.rate_limiter_enabled}"
 	
     // Specific Court Content - Not in current use, comes from default config
     // COURT_EASTMIDLANDS_PHONE = "${}"

@@ -19,15 +19,9 @@ idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
 service_auth_provider_url = "http://betaDevBccidamS2SLB.reform.hmcts.net:80"
 
 feature_toggle_api_url = "http://betaDevAdivorceAppLB.reform.hmcts.net:4002"
-case_progression_service_url = "http://betaDevAdivorceAppLB.reform.hmcts.net:4003"
-evidence_management_client_api_url = "http://betaDevAdivorceAppLB.reform.hmcts.net:4006"
+case_progression_service_url = "http://div-case-progression-sandbox.service.core-compute-sandbox.internal"
+evidence_management_client_api_url = "http://div-em-client-api-sandbox.service.core-compute-sandbox.internal"
 
 payments_api_url = "https://test.payments.reform.hmcts.net:4421"
 fee_register_url = "https://test.fees-register.reform.hmcts.net:4431"
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
-
-feature_jurisdiction = "false"
-feature_new_jurisdiction = "true"
-feature_idam = "false"
-feature_foreign_marriage_certs = "true"
-feature_court_southamption = "true"

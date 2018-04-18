@@ -197,8 +197,8 @@ describe(modulePath, () => {
       const
         {
           id, amount, status, reference,
-          external_reference, date_created // eslint-disable-line camelcase
-        } = querySuccess;
+          external_reference, date_created
+        } = querySuccess; // eslint-disable-line camelcase
       const expectedResponse = {
         id,
         amount,

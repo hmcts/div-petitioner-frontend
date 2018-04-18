@@ -166,7 +166,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     let templates = [];
 
     // Do not render the same template more than once
-    // if the application is attempting to render question more than once
+    // if the application is attempting to render question more than once 
     // we know user has not completed the questions and can show answered
     // questions up to this point
     if (previousQuestionsRendered.includes(step.url)) {

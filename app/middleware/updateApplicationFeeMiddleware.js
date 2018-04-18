@@ -1,7 +1,7 @@
 const CONF = require('config');
 const feeRegisterService = require('app/services/feeRegisterService');
 const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');
 const ioRedisMock = require('app/services/mocks/ioRedis');
 
@@ -50,7 +50,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(`Error retrieving fee from Fee registry: ${error}`);
+      logger.error(`Error retrieving fee from Fee registry: ${error}`, req);
       res.redirect('/generic-error');
     });
 };

@@ -1,7 +1,7 @@
 const { cloneDeep, get, reduce, groupBy } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
 
 const maximumNumberOfSteps = 500;

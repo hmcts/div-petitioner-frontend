@@ -25,9 +25,3 @@ evidence_management_client_api_url = "http://div-em-client-api-aat.service.core-
 payments_api_url = "https://preprod.payments.reform.hmcts.net:4401"
 fee_register_url = "https://preprod.fees-register.reform.hmcts.net:4411"
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
-
-feature_jurisdiction = "false"
-feature_new_jurisdiction = "true"
-feature_idam = "true"
-feature_foreign_marriage_certs = "true"
-feature_court_southamption = "true"

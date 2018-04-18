@@ -129,7 +129,7 @@ variable "divorce_redis_url" {
 }
 
 variable "use_auth" {
-  default = "false"
+  default = false
 }
 
 variable "health_endpoint" {
@@ -221,28 +221,28 @@ variable "rate_limiter_expire" {
 }
 
 variable "rate_limiter_enabled" {
-  default = "false"
+  default = false
 }
 
 // Feature toggles
 variable "feature_jurisdiction" {
-  default = "false"
+  default = false
 }
 
 variable "feature_new_jurisdiction" {
-  default = "true"
+  default = true
 }
 
 variable "feature_idam" {
-  default = "false"
+  default = false
 }
 
 variable "feature_foreign_marriage_certs" {
-  default = "false"
+  default = false
 }
 
 variable "feature_court_southamption" {
-  default = "false"
+  default = false
 }
 
 // Dynamic content

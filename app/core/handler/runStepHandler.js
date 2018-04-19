@@ -6,6 +6,7 @@ const statusCode = require('app/core/utils/statusCode');
 const transformationServiceClient = require('app/services/transformationServiceClient');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const CONF = require('config');
+const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
 
 const authTokenString = '__auth-token';
 
@@ -14,20 +15,13 @@ const options = {
   baseUrl: CONF.services.transformation.baseUrl
 };
 
-// Properties that should be removed from the session before saving to draft store
-const blacklistedProperties = [
-  'expires',
-  'cookie',
-  'sessionKey',
-  'saveAndResumeUrl'
-];
-
 const saveSessionToDraftPetitionStore = (req, session,
   saveAndResumeUrl, sendEmail) => {
   const production = process.env.NODE_ENV === 'production';
   const client = production ? transformationServiceClient.init(options) : mockedClient;
 
-  const sessionToSaveToDraftStore = blacklistedProperties
+  // Properties that should be removed from the session before saving to draft store
+  const sessionToSaveToDraftStore = sessionBlacklistedAttributes
     .reduce((acc, item) => {
       delete acc[item];
       return acc;

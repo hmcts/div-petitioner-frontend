@@ -202,7 +202,10 @@ describe(modulePath, () => {
           testCustom(done, agent, underTest, cookies, response => {
             // Assert.
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-            expect(response.header.location).to.equal('https://pay.the.gov/here');
+            agent.get('/session').then(res => {
+              expect(res.body.paymentMethod).to.equal('card-online');
+              expect(response.header.location).to.equal('https://pay.the.gov/here');
+            });
           }, 'post');
         });
       });

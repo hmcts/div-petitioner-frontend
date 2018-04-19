@@ -10,4 +10,4 @@ export COURT_PHONENUMBER="0300 303 0642"
 export COURT_OPENINGHOURS="Monday to Friday, 8.30am to 5pm"
 export COURT_EMAIL="Divorce_Reform_Pro@Justice.gov.uk"
 
-docker-compose -f docker/test-compose.yaml run --user $(id -u) functional-tests
+docker-compose -f docker/test-compose.yaml run functional-tests

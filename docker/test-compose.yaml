@@ -14,7 +14,11 @@ services:
     command: bash -c 'yarn test-e2e'
     environment:
       E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
-      FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://localhost:4002}
+      FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://localhost:4002/api/v1/feature-toggle}
       IDAM_API_URL: ${IDAM_API_URL:-http://localhost:4501}
+      CASE_PROGRESSION_SERVICE_DRAFT_URL: ${CASE_PROGRESSION_SERVICE_DRAFT_URL:-http://localhost:4003/draftsapi/version/1}
+      COURT_PHONENUMBER: ${COURT_PHONENUMBER:-"0000 111 2220"}
+      COURT_OPENINGHOURS: ${COURT_OPENINGHOURS:-"Monday to Friday, 8.30am to 5pm"}
+      COURT_EMAIL: ${COURT_EMAIL:-"simulate-delivered@notifications.service.gov.uk"}
     volumes:
       - "../.:/tests"

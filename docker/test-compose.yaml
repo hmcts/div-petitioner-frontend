@@ -13,6 +13,7 @@ services:
     image: codeception/codeceptjs:1.1.7
     command: bash -c 'yarn test-e2e'
     environment:
+      NODE_ENV: ${NODE_ENV:-testing}
       E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
       FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://localhost:4002/api/v1/feature-toggle}
       IDAM_API_URL: ${IDAM_API_URL:-http://localhost:4501}

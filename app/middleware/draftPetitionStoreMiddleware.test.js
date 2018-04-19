@@ -3,7 +3,6 @@ const { expect, sinon } = require('test/util/chai');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const server = require('app');
-const httpStatus = require('http-status-codes');
 
 const modulePath = 'app/middleware/draftPetitionStoreMiddleware';
 

@@ -1,4 +1,3 @@
-env = "preview"
 deployment_env = "preprod"
 
 vault_section = "preprod"
@@ -6,7 +5,6 @@ vault_section = "preprod"
 packages_environment = "preprod"
 packages_version = "3.0.0"
 
-divorce_frontend_hostname = "div-frontend-preview.service.core-compute-preview.internal"
 external_host_name = "divorce.nonprod.platform.hmcts.net"
 outbound_proxy = ""
 

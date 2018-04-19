@@ -25,4 +25,6 @@ package-lock.json
 .sonar/
 .env
 smoke-output/*
+!smoke-output/.gitkeep
 functional-output/*
+!functional-output/.gitkeep

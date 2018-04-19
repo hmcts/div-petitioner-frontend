@@ -12,9 +12,7 @@ variable "location" {
   default = "UK South"
 }
 
-variable "env" {
-  type = "string"
-}
+variable "env" { }
 
 variable "ilbIp" { }
 
@@ -34,7 +32,7 @@ variable "node_config_dir" {
   default = "D:\\home\\site\\wwwroot\\config"
 }
 
-variable "subscription" {}
+variable "subscription" { }
 
 variable "vault_section" {
   type = "string"
@@ -93,10 +91,6 @@ variable "divorce_frontend_service_name" {
 
 variable "divorce_frontend_protocol" {
   default = "https"
-}
-
-variable "divorce_frontend_hostname" {
-  type = "string"
 }
 
 variable "divorce_frontend_public_port" {
@@ -280,16 +274,4 @@ variable "court_southwest_court_weight" {
 
 variable "court_northwest_court_weight" {
   default = "0.26"
-}
-
-variable "e2e_frontend_node_env" {
-  default = "production"
-}
-
-variable "e2e_wait_for_timeout" {
-  default = "60000"
-}
-
-variable "e2e_wait_for_action" {
-  default = "3000"
 }

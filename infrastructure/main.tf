@@ -30,6 +30,7 @@ data "vault_generic_secret" "redis_secret" {
 
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
+  divorce_frontend_hostname = "div-frontend-${var.env}.service.${local.aseName}.internal"
 }
 
 module "frontend" {
@@ -65,7 +66,7 @@ module "frontend" {
     DEPLOYMENT_ENV="${var.deployment_env}"
 
 	  // Frontend web details
-    PUBLIC_HOSTNAME ="${var.divorce_frontend_hostname}"
+    PUBLIC_HOSTNAME ="${local.divorce_frontend_hostname}"
     PUBLIC_PROTOCOL ="${var.divorce_frontend_protocol}"
     PUBLIC_PORT = "${var.divorce_frontend_public_port}"
   	HTTP_PORT = "${var.divorce_frontend_port}"
@@ -195,12 +196,6 @@ module "frontend" {
     EASTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
     EASTMIDLANDS_COURTWEIGHT = "${var.court_southwest_court_weight}"
     EASTMIDLANDS_COURTWEIGHT = "${var.court_northwest_court_weight}"
-
-    // Functional tests
-    E2E_FRONTEND_NODE_ENV = "${var.e2e_frontend_node_env}"
-    E2E_FRONTEND_URL = "${var.divorce_frontend_protocol}://${var.divorce_frontend_hostname}"
-    E2E_WAIT_FOR_TIMEOUT_VALUE = "${var.e2e_wait_for_timeout}"
-    E2E_WAIT_FOR_ACTION_VALUE = "${var.e2e_wait_for_action}"
   }
 }
 

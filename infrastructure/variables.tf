@@ -282,6 +282,10 @@ variable "court_northwest_court_weight" {
   default = "0.26"
 }
 
+variable "e2e_frontend_node_env" {
+  default = "production"
+}
+
 variable "e2e_wait_for_timeout" {
   default = "60000"
 }

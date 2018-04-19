@@ -197,6 +197,7 @@ module "frontend" {
     EASTMIDLANDS_COURTWEIGHT = "${var.court_northwest_court_weight}"
 
     // Functional tests
+    E2E_FRONTEND_NODE_ENV = "${var.e2e_frontend_node_env}"
     E2E_FRONTEND_URL = "${var.divorce_frontend_protocol}://${var.divorce_frontend_hostname}"
     E2E_WAIT_FOR_TIMEOUT_VALUE = "${var.e2e_wait_for_timeout}"
     E2E_WAIT_FOR_ACTION_VALUE = "${var.e2e_wait_for_action}"

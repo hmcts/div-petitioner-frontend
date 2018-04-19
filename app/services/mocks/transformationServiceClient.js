@@ -24,7 +24,8 @@ const mockSession = {
   helpWithFeesNeedHelp: 'Yes',
   helpWithFeesAppliedForFees: 'Yes',
   helpWithFeesReferenceNumber: 'HWF-123-456',
-  marriedInUk: 'Yes'
+  marriedInUk: 'Yes',
+  fetchedDraft: true
 };
 
 const mockedService = {

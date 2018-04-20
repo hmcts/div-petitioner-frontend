@@ -13,6 +13,7 @@ exports.config = {
     Nightmare: {
       url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       waitForTimeout,
+      loadTimeout: waitForTimeout,
       typeInterval: 100,
       waitForAction,
       show: false,

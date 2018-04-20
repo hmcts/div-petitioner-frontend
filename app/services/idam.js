@@ -23,8 +23,6 @@ module.exports = {
   authenticate: newRedirectUri => {
     if (newRedirectUri) {
       idamArgs.redirectUri = newRedirectUri;
-      console.log("NewRedirectUri is");
-      console.log(idamArgs.redirectUri);
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },

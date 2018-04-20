@@ -12,5 +12,17 @@ exports.config = {
       }
     }
   },
+  mocha: {
+    reporterOptions: {
+      'codeceptjs-cli-reporter': {
+        stdout: '-',
+        options: { steps: true }
+      },
+      'mocha-junit-reporter': {
+        stdout: '-',
+        options: { mochaFile: './smoke-output/result.xml' }
+      }
+    }
+  },
   name: 'frontend Smoke Tests'
 };

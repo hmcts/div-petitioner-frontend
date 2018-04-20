@@ -2,6 +2,7 @@
 set -ex
 
 # Setup required environment variables. TEST_URL should be set by CNP
+export E2E_FRONTEND_URL=$(echo ${TEST_URL} | sed -e "s/-staging//" -e "s/https/http/")
 export E2E_FRONTEND_NODE_ENV="production"
 export IDAM_API_URL=https://preprod-idamapi.reform.hmcts.net:3511
 export FEATURE_TOGGLE_API_URL=http://betaPreProddivorceAppLB.reform.hmcts.net:4002/api/v1/feature-toggle

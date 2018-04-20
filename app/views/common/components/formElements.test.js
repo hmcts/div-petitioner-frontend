@@ -106,7 +106,7 @@ describe(`Text areas should render as expected`, () => {
   });
 });
 
-describe.only(`Text fields should render as expected`, () => {
+describe(`Text fields should render as expected`, () => {
   it('name, field and label are rendered correctly', () => {
     const input = {
       name: 'testName',

@@ -20,7 +20,10 @@ const idamArgs = {
 
 module.exports = {
 
-  authenticate: () => {
+  authenticate: newRedirectUri => {
+    if (newRedirectUri) {
+      idamArgs.redirectUri = newRedirectUri;
+    }
     return idamExpressMiddleware.authenticate(idamArgs);
   },
   landingPage: () => {

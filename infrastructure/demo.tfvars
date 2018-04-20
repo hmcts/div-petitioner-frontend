@@ -7,7 +7,7 @@ packages_environment = "preprod"
 packages_version = "3.0.0"
 
 divorce_frontend_hostname = "div-frontend-demo.service.core-compute-demo.internal"
-external_host_name = "divorce.demo.platform.hmcts.net"
+external_host_name = "demo.divorce.reform.hmcts.net"
 outbound_proxy = ""
 
 ga_tracking_id = "UA-93824767-1"

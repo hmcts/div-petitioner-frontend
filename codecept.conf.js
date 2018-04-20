@@ -2,17 +2,18 @@
 const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
 const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 1000;
 
+console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-line no-console
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
   tests: './test/end-to-end/paths/**/*.js',
   output: './functional-output',
-  timeout: 1000,
+  timeout: waitForTimeout,
   helpers: {
     Nightmare: {
       url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       waitForTimeout,
-      typeInterval: 20,
+      typeInterval: 100,
       waitForAction,
       show: false,
       switches: {

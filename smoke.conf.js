@@ -12,5 +12,6 @@ exports.config = {
       }
     }
   },
+  mocha: { reporterOptions: { mochaFile: './smoke-output/result.xml' } },
   name: 'frontend Smoke Tests'
 };

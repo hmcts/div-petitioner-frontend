@@ -32,14 +32,17 @@ const restoreFromDraftStore = (req, res, next) => {
     authToken = req.cookies[authTokenString];
   }
 
-  // test if session is already populated by looking for first answer to application
-  const oldSession = req.session.hasOwnProperty('screenHasMarriageBroken');
+  // test to see if we have already restored draft store
+  const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
   const mockResponse = req.cookies.mockRestoreSession === 'true';
-  const restoreSession = !oldSession && (mockResponse || authToken);
+  const restoreSession = !hadFetchedFromDraftStore && (mockResponse || authToken);
 
   if (!restoreSession) {
     return next();
   }
+
+  // set flag so we do not attempt to restore from draft store again
+  req.session.fetchedDraft = true;
 
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)

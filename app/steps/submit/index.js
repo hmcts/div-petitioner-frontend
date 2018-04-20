@@ -8,6 +8,7 @@ const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMi
 const Step = require('app/core/Step');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const submissionService = require('app/services/submission');
+const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
 
 module.exports = class Submit extends Step {
   get middleware() {
@@ -48,15 +49,7 @@ module.exports = class Submit extends Step {
 
     // We blacklist a few session keys which are internal to the application and
     // are not needed for the submission.
-    const blacklistedProperties = [
-      'cookie',
-      'expires',
-      'stepTemplates',
-      'currentPaymentId',
-      'payments',
-      'caseId'
-    ];
-    const payload = blacklistedProperties.reduce((acc, item) => {
+    const payload = sessionBlacklistedAttributes.reduce((acc, item) => {
       delete acc[item];
       return acc;
     }, Object.assign({}, req.session));

@@ -14,7 +14,7 @@ services:
     command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c codecept.conf.js'
     environment:
       E2E_FRONTEND_NODE_ENV: ${E2E_FRONTEND_NODE_ENV:-testing}
-      E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
+      E2E_FRONTEND_URL: ${E2E_FRONTEND_URL:-https://localhost:8080}
       IDAM_API_URL: ${IDAM_API_URL:-http://localhost:4501}
       FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://localhost:4002/api/v1/feature-toggle}
       CASE_PROGRESSION_SERVICE_DRAFT_URL: ${CASE_PROGRESSION_SERVICE_DRAFT_URL:-http://localhost:4003/draftsapi/version/1}

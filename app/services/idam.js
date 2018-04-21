@@ -9,6 +9,8 @@ const redirectUri = `${PUBLIC_PROTOCOL}://${PUBLIC_HOSTNAME}/authenticated`;
 
 const landingPageUrl = PUBLIC_HOSTNAME ? redirectUri : confIdam.redirectUri;
 
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
 const idamArgs = {
   redirectUri: landingPageUrl,
   indexUrl: confIdam.indexUrl,
@@ -23,8 +25,8 @@ module.exports = {
   authenticate: newRedirectUri => {
     if (newRedirectUri) {
       idamArgs.redirectUri = newRedirectUri;
-      console.log('NewRedirectUri is'); // eslint-disable-line no-console
-      console.log(idamArgs.redirectUri); // eslint-disable-line no-console
+      logger.info('NewRedirectUri is');
+      logger.info(idamArgs.redirectUri);
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },

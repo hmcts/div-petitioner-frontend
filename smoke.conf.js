@@ -1,6 +1,7 @@
 exports.config = {
   tests: './test/end-to-end/smoke/*.js',
-  timeout: 1000,
+  output: './smoke-output',
+  timeout: 5000,
   helpers: {
     Nightmare: {
       url: process.env.TEST_URL || process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
@@ -8,6 +9,18 @@ exports.config = {
       switches: {
         'ignore-certificate-errors': true,
         'proxy-server': process.env.E2E_PROXY_SERVER || ''
+      }
+    }
+  },
+  mocha: {
+    reporterOptions: {
+      'codeceptjs-cli-reporter': {
+        stdout: '-',
+        options: { steps: true }
+      },
+      'mocha-junit-reporter': {
+        stdout: '-',
+        options: { mochaFile: './smoke-output/result.xml' }
       }
     }
   },

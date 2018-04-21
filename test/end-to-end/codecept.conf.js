@@ -6,7 +6,7 @@ console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-li
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: './test/end-to-end/paths/**/basicDivorce.js',
+  tests: './paths/**/basicDivorce.js',
   output: './functional-output',
   timeout: waitForTimeout,
   helpers: {
@@ -23,15 +23,15 @@ exports.config = {
         'proxy-bypass-list': process.env.E2E_PROXY_BYPASS || ''
       }
     },
-    FeatureToggleHelper: { require: './test/end-to-end/helpers/featureToggleHelper.js' },
-    ElementExist: { require: './test/end-to-end/helpers/ElementExist.js' },
+    FeatureToggleHelper: { require: './helpers/featureToggleHelper.js' },
+    ElementExist: { require: './helpers/ElementExist.js' },
     NightmareExtras: {
-      require: './test/end-to-end/helpers/NightmareExtras.js',
+      require: './helpers/NightmareExtras.js',
       waitForTimeout
     },
-    IdamHelper: { require: './test/end-to-end/helpers/idamHelper.js' }
+    IdamHelper: { require: './helpers/idamHelper.js' }
   },
-  include: { I: './test/end-to-end/pages/steps.js' },
+  include: { I: './pages/steps.js' },
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {

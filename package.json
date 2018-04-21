@@ -108,7 +108,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "cheerio": "^1.0.0-rc.2",
-    "codeceptjs": "1.1.7",
+    "codeceptjs": "^1.1.8",
     "csrf": "^3.0.6",
     "eslint": "^4.7.1",
     "eslint-plugin-mocha": "^4.5.1",

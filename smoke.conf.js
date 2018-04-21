@@ -20,9 +20,7 @@ exports.config = {
       },
       'mocha-junit-reporter': {
         stdout: '-',
-        options: {
-          mochaFile: './smoke-output/result.xml',
-        }
+        options: { mochaFile: './smoke-output/result.xml' }
       }
     }
   },

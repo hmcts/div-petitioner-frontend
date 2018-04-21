@@ -39,9 +39,7 @@ exports.config = {
       },
       'mocha-junit-reporter': {
         stdout: '-',
-        options: {
-          mochaFile: './functional-output/result.xml',
-        }
+        options: { mochaFile: './functional-output/result.xml' }
       },
       mochawesome: {
         stdout: './functional-output/console.log',

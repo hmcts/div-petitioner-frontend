@@ -20,5 +20,5 @@ export COURT_PHONENUMBER="0300 303 0642"
 export COURT_OPENINGHOURS="Monday to Friday, 8.30am to 5pm"
 export COURT_EMAIL="Divorce_Reform_Pro@Justice.gov.uk"
 
-docker-compose -f ${COMPOSE_FILE} run functional-tests
+docker-compose -f ${COMPOSE_FILE} run -u $(id -u) functional-tests
 shutdownDocker

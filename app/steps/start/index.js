@@ -14,8 +14,9 @@ module.exports = class Start extends Step {
 
   get middleware() {
     const idamAuthenticate = (req, res, next) => {
-      console.log(req); // eslint-disable-line no-console
-      console.log(res); // eslint-disable-line no-console
+      console.log(req.protocol); // eslint-disable-line no-console
+      console.log(req.headers); // eslint-disable-line no-console
+      console.log(req.get('host')); // eslint-disable-line no-console
       const auth = authenticate(req.protocol.concat('://', req.get('host'), '/authenticated'));
       return features.idam ? auth(req, res, next) : next();
     };

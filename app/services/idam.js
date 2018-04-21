@@ -23,8 +23,8 @@ module.exports = {
   authenticate: newRedirectUri => {
     if (newRedirectUri) {
       idamArgs.redirectUri = newRedirectUri;
-      console.log("NewRedirectUri is");
-      console.log(idamArgs.redirectUri);
+      console.log('NewRedirectUri is'); // eslint-disable-line no-console
+      console.log(idamArgs.redirectUri); // eslint-disable-line no-console
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },

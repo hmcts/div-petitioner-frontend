@@ -13,7 +13,7 @@ services:
 
   functional-tests:
     image: codeception/codeceptjs:1.1.7
-    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c codecept.conf.js --reporter mocha-multi'
+    command: bash -c 'curl -k https://idam.preprod.ccidam.reform.hmcts.net && NODE_ENV=testing NODE_PATH=. codeceptjs run -c codecept.conf.js --reporter mocha-multi'
     environment:
       http_proxy: "http://proxyout.reform.hmcts.net:8080"
       https_proxy: "http://proxyout.reform.hmcts.net:8080"

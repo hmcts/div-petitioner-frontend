@@ -10,10 +10,6 @@ function shutdownDocker() {
 
 trap shutdownDocker INT TERM QUIT EXIT
 
-# Set system default proxies
-export http_proxy="http://proxyout.reform.hmcts.net:8080"
-export https_proxy="http://proxyout.reform.hmcts.net:8080"
-
 # Setup required environment variables. TEST_URL should be set by CNP
 export E2E_FRONTEND_URL=${TEST_URL}
 export E2E_PROXY_SERVER="http://proxyout.reform.hmcts.net:8080"

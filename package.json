@@ -22,7 +22,7 @@
     "test:nsp": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. grunt nsp-test",
     "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
     "test:smoke": "docker-compose -f docker/test-compose.yaml run smoke-tests",
-    "test:functional": "echo 'please pass eventually",
+    "test:functional": "echo 'please pass eventually'",
     "test-unit": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha './app/**/*.test.js' --reporter spec --recursive -t 3000",
     "test-unit-ide": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha $NODE_DEBUG_OPTION './app/**/*.test.js' --reporter spec --recursive",
     "test-validation": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/validation/ --reporter spec --recursive --timeout 15000",

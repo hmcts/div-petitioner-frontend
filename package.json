@@ -21,7 +21,7 @@
     "test:a11y": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/accessibility/ --reporter spec --recursive --timeout 15000",
     "test:nsp": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. grunt nsp-test",
     "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
-    "test:smoke": "docker-compose -f docker/test-compose.yaml run -u $(id -u) smoke-tests",
+    "test:smoke": "docker-compose -f docker/test-compose.yaml run smoke-tests",
     "test:functional": "./bin/run-functional-tests.sh",
     "test-unit": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha './app/**/*.test.js' --reporter spec --recursive -t 3000",
     "test-unit-ide": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha $NODE_DEBUG_OPTION './app/**/*.test.js' --reporter spec --recursive",

@@ -1,11 +1,11 @@
 'use strict';
 
-const CONF = require('config');
+// const CONF = require('config');
 let Helper = codecept_helper;
-const { get, features } = require('@hmcts/div-feature-toggle-client')({
-  env: process.env.E2E_FRONTEND_NODE_ENV || process.env.NODE_ENV,
-  featureToggleApiUrl: process.env.FEATURE_TOGGLE_API_URL || CONF.services.featureToggleApiUrl
-}).featureToggles;
+// const { get, features } = require('@hmcts/div-feature-toggle-client')({
+//   env: process.env.E2E_FRONTEND_NODE_ENV || process.env.NODE_ENV,
+//   featureToggleApiUrl: process.env.FEATURE_TOGGLE_API_URL || CONF.services.featureToggleApiUrl
+// }).featureToggles;
 let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 
 class FeatureToggleHelper extends Helper {
@@ -19,14 +19,20 @@ class FeatureToggleHelper extends Helper {
     });
   }
 
-  getFeatureEnabled(feature, defaultValue, origin = 'other') {
+  getFeatureEnabled(feature) {
 
-    return get(feature, defaultValue || CONF.features[feature], origin, {
-      node_env: process.env.E2E_FRONTEND_NODE_ENV || CONF.defaultEnvironmentNodeEnv
-    })
-      .then(() => {
-        return features[feature];
-      });
+    // return get(feature, defaultValue || CONF.features[feature], origin, {
+    //   node_env: process.env.E2E_FRONTEND_NODE_ENV || CONF.defaultEnvironmentNodeEnv
+    // })
+    //   .then(() => {
+    //     return features[feature];
+    //   });
+
+    console.log(`Feature is ${feature}`); // eslint-disable-line
+
+    return new Promise(resolve => {
+      resolve(true);
+    });
 
   }
 

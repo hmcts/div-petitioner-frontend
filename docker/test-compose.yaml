@@ -17,6 +17,7 @@ services:
     environment:
       E2E_FRONTEND_NODE_ENV: ${E2E_FRONTEND_NODE_ENV:-testing}
       E2E_PROXY_SERVER: ${E2E_PROXY_SERVER}
+      E2E_PROXY_BYPASS: ${E2E_PROXY_BYPASS}
       E2E_FRONTEND_URL: ${E2E_FRONTEND_URL:-https://localhost:8080}
       IDAM_API_URL: ${IDAM_API_URL:-http://localhost:4501}
       FEATURE_TOGGLE_API_URL: ${FEATURE_TOGGLE_API_URL:-http://localhost:4002/api/v1/feature-toggle}

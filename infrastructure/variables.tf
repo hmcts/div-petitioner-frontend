@@ -214,10 +214,6 @@ variable "rate_limiter_expire" {
   default = "3600000"
 }
 
-variable "rate_limiter_enabled" {
-  default = false
-}
-
 // Feature toggles
 variable "feature_jurisdiction" {
   default = false

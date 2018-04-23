@@ -131,7 +131,7 @@
     "mocha-junit-reporter": "^1.17.0",
     "mocha-multi": "^1.0.1",
     "mochawesome": "^3.0.2",
-    "nightmare": "^2.3.0",
+    "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
     "node-sass": "^4.0.0",
     "pa11y": "^4.0.1",

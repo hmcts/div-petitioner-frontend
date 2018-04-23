@@ -74,7 +74,8 @@ module.exports = class PayOnline extends Step {
     const amount = parseInt(
       CONF.commonProps.applicationFee.fee_amount
     );
-    const returnUrl = `${getBaseUrl()}${this.steps.CardPaymentStatus.url}`;
+    const hostNameParts = req.get('host').split(':');
+    const returnUrl = `${getBaseUrl(req.protocol, hostNameParts[0], hostNameParts[1])}${this.steps.CardPaymentStatus.url}`;
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 

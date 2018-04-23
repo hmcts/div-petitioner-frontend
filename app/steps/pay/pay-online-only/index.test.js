@@ -149,6 +149,22 @@ describe(modulePath, () => {
         }, 'post');
       });
 
+      it('sets the returnUrl dynamically', done => {
+        // Act.
+        testCustom(done, agent, underTest, cookies, response => {
+          // Assert.
+          const returnUrl = response.request.protocol.concat(
+            '//', response.request.host, '/pay/card-payment-status'
+          );
+          const DEFAULT_FEE_AMOUNT = 550;
+          expect(create.calledWith(
+            {}, 'token', 'some-case-id', 'some-code', 'X0165', 1, DEFAULT_FEE_AMOUNT,
+            'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+            returnUrl
+          )).to.equal(true);
+        }, 'post');
+      });
+
       context('Court is selected', () => {
         it('creates payment with the site ID of the court', done => {
           // Act.

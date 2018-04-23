@@ -68,7 +68,7 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
         cookie: {
           secure: cookieSecure,
           httpOnly: true,
-          hostName: req.get('host')
+          domain: req.get('host')
         }
       })(req, res, sessionHandled);
     };

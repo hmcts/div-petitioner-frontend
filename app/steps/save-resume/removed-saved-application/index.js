@@ -7,6 +7,7 @@ module.exports = class ExitRemovedSavedApplication extends DestroySessionStep {
     return [draftPetitionStoreMiddleware.removeFromDraftStore];
   }
   handler(req, res) {
+    res.clearCookie('connect.sid');
     return runStepHandler(this, req, res);
   }
   get url() {

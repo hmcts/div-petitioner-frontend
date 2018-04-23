@@ -11,6 +11,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     res.redirect = sinon.spy();
+    res.clearCookie = sinon.spy();
     step = new UnderTest();
   });
 
@@ -20,5 +21,12 @@ describe(modulePath, () => {
     // Assert.
     expect(res.redirect.calledOnce).to.equal(true);
     expect(res.redirect.calledWith(statusCodes.MOVED_PERMANENTLY, '/index')).to.equal(true);
+  });
+
+  it('clears the connect.sid cookie', () => {
+    // Act.
+    step.handler(req, res);
+    // Assert.
+    expect(res.clearCookie.calledWith('connect.sid'));
   });
 });

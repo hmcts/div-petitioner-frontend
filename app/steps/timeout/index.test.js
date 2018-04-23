@@ -3,7 +3,7 @@ const { expect, sinon } = require('test/util/chai');
 const { testContent } = require('test/util/assertions');
 const server = require('app');
 
-const modulePath = 'app/steps/exit/about-your-marriage/no-certificate-translated';
+const modulePath = 'app/steps/timeout';
 
 const content = require(`${modulePath}/content`);
 const Step = require(modulePath);
@@ -20,7 +20,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.ExitNoCertificateTranslated;
+    underTest = s.steps.Timeout;
     step = new Step();
     res.clearCookie = sinon.spy();
   });

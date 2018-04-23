@@ -26,6 +26,6 @@ services:
       COURT_OPENINGHOURS: ${COURT_OPENINGHOURS:-"Monday to Friday, 8.30am to 5pm"}
       COURT_EMAIL: ${COURT_EMAIL:-"simulate-delivered@notifications.service.gov.uk"}
       E2E_WAIT_FOR_TIMEOUT_VALUE: ${E2E_WAIT_FOR_TIMEOUT_VALUE:-10000}
-      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-3000}
+      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-2000}
     volumes:
       - "../.:/tests"

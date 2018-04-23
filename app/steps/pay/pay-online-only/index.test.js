@@ -61,6 +61,10 @@ describe(modulePath, () => {
     });
   });
 
+  // describe('#handler dynamic return url functionality', () => {
+
+  // });
+
   describe('#handler', () => {
     let getToken = null;
     let create = null;

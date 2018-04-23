@@ -43,6 +43,7 @@ describe(modulePath, () => {
         const redirectUri = response.request.protocol.concat('//', response.request.host, '/authenticated');
         const confIdam = CONF.idamArgs;
         const idamArgs = {
+          hostName: redirectUri,
           indexUrl: confIdam.indexUrl,
           idamApiUrl: process.env.IDAM_API_URL || confIdam.idamApiUrl,
           idamLoginUrl: process.env.IDAM_LOGIN_URL || confIdam.idamLoginUrl,

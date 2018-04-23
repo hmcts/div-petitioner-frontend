@@ -28,23 +28,23 @@ Scenario('Test ability validate document type', function* (I) {
 
   if(isDragAndDropSupported){
     // Test can upload .pdf
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.pdf');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/image.pdf');
     I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
 
     // Test can upload .png
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.png');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/image.png');
     I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
 
     // Test can upload .bmp
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.bmp');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/image.bmp');
     I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
 
     // Test can upload .tiff
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.tiff');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/image.tiff');
     I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
 
     // Test can NOT upload .zip
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.zip');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/image.zip');
     I.see('The file must be in jpg, bmp, tiff, png or PDF format.');
   } else {
     I.say('JS upload disabled - skipping');

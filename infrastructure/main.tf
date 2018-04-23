@@ -160,7 +160,7 @@ module "frontend" {
 
 module "petitioner-frontend-vault" {
   source              = "git@github.com:contino/moj-module-key-vault?ref=master"
-  name                = "div-pfe-${var.env}"
+  name                = "div-frontend-${var.env}"
   product             = "${var.product}"
   env                 = "${var.env}"
   tenant_id           = "${var.tenant_id}"

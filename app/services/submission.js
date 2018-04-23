@@ -3,7 +3,7 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const CONF = require('config');
 const get = require('lodash/get');
 const moment = require('moment');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 
 const PENCE_PER_POUND = 100;
@@ -49,7 +49,7 @@ const service = {
  */
 const generatePaymentEventData = (session, response) => {
   const
-    { external_reference, amount, reference, status, date_created } = response;
+    { external_reference, amount, reference, status, date_created } = response; // eslint-disable-line camelcase
   // Provide status when finished, empty string otherwise.
   const siteId = get(session, `court.${session.courts}.siteId`);
   let eventData = null;

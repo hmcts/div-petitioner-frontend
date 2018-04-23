@@ -1,8 +1,9 @@
 const request = require('supertest');
-const { testRedirect } = require('test/util/assertions');
+const { testRedirect, testCustom } = require('test/util/assertions');
 const server = require('app');
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const sinon = require('sinon');
+const CONF = require('config');
 
 const modulePath = 'app/steps/start';
 
@@ -35,6 +36,25 @@ describe(modulePath, () => {
 
       testRedirect(done, agent, underTest, context,
         s.steps.ScreeningQuestionsMarriageBroken);
+    });
+
+    it('should set up the current host as the redirect uri for idam', done => {
+      testCustom(done, agent, underTest, [], response => {
+        const hostName = response.request.host;
+        const redirectUri = response.request.protocol.concat('//', hostName, '/authenticated');
+        const confIdam = CONF.idamArgs;
+        const idamArgs = {
+          hostName,
+          indexUrl: confIdam.indexUrl,
+          idamApiUrl: process.env.IDAM_API_URL || confIdam.idamApiUrl,
+          idamLoginUrl: process.env.IDAM_LOGIN_URL || confIdam.idamLoginUrl,
+          idamSecret: process.env.IDAM_SECRET || confIdam.idamSecret,
+          idamClientID: process.env.IDAM_CLIENT_ID || confIdam.idamClientID,
+          redirectUri
+        };
+
+        sinon.assert.calledWith(idamExpressMiddleware.authenticate, idamArgs);
+      });
     });
   });
 });

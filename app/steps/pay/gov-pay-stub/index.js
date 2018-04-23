@@ -1,7 +1,7 @@
 const statusCodes = require('http-status-codes');
 const OptionStep = require('app/core/OptionStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 module.exports = class GovPayStub extends OptionStep {
   get enabledAfterSubmission() {

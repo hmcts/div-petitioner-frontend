@@ -2,7 +2,7 @@ const payClient = require('@hmcts/div-pay-client');
 const get = require('lodash/get');
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 let client = {};
 
@@ -47,9 +47,9 @@ const service = {
       mockedPaymentOutcome)
       .then(response => {
         const {
-          id, amount, status, reference, external_reference,
-          date_created
-        } = response; // eslint-disable-line camelcase
+          id, amount, status, reference,
+          external_reference, date_created // eslint-disable-line camelcase
+        } = response;
 
         return {
           id,

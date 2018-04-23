@@ -1,4 +1,5 @@
 require('dotenv').config();
+const appInsights = require('applicationinsights');
 const CONF = require('config');
 const path = require('path');
 const https = require('https');
@@ -38,21 +39,20 @@ const healthcheck = require('app/services/healthcheck');
 const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
-const PORT = process.env.HTTP_PORT || CONF.http.port;
+const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
-const logger = logging.getLogger(__filename);
+const logger = logging.Logger.getLogger(__filename);
 
 exports.init = () => {
+  if (process.env.NODE_ENV === 'production') {
+    appInsights.setup(CONF.applicationInsights.instrumentationKey).start();
+  }
+
   const app = express();
 
   app.use(helmet());
 
-  logging.config({
-    microservice: CONF.appName,
-    team: CONF.project,
-    environment: CONF.environment
-  });
-  app.use(logging.express.accessLogger());
+  app.use(logging.Express.accessLogger());
 
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
@@ -122,6 +122,7 @@ exports.init = () => {
 
   app.set('trust proxy', 1);
   app.use(sessions.prod());
+
   if (CONF.rateLimiter.enabled) {
     app.use(rateLimiter(app));
   }

@@ -14,7 +14,7 @@ module.exports = class Start extends Step {
 
   get middleware() {
     const idamAuthenticate = (req, res, next) => {
-      const auth = authenticate(req.protocol.concat('://', req.get('host'), '/authenticated'));
+      const auth = authenticate(req.protocol, req.get('host'), '/authenticated');
       return features.idam ? auth(req, res, next) : next();
     };
     return [checkCookiesAllowed, idamAuthenticate];

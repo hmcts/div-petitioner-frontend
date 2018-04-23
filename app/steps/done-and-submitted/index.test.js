@@ -1,4 +1,5 @@
 const request = require('supertest');
+const { expect, sinon } = require('test/util/chai');
 const { testContent, testExistence, testNonExistence } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
@@ -7,6 +8,7 @@ const CONF = require('config');
 const modulePath = 'app/steps/done-and-submitted';
 
 const content = require(`${modulePath}/content`);
+const Step = require(modulePath);
 
 const contentStrings = content.resources.en.translation.content;
 const featureTogglesMock = require('test/mocks/featureToggles');
@@ -17,13 +19,25 @@ let agent = {};
 let underTest = {};
 
 describe(modulePath, () => {
+  const req = {};
+  const res = {};
+  let step = {};
+
   beforeEach(() => {
     featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.DoneAndSubmitted;
+    step = new Step();
+    res.clearCookie = sinon.spy();
   });
 
+  it('clears the connect.sid cookie', () => {
+    // Act.
+    step.handler(req, res);
+    // Assert.
+    expect(res.clearCookie.calledWith('connect.sid'));
+  });
 
   afterEach(() => {
     s.http.close();

@@ -4,6 +4,7 @@ const paymentService = require('app/services/payment');
 
 module.exports = class DoneAndSubmitted extends DestroySessionStep {
   handler(req, res) {
+    res.clearCookie('connect.sid');
     return runStepHandler(this, req, res);
   }
 

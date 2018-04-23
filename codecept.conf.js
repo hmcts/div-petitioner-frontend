@@ -19,7 +19,9 @@ exports.config = {
       show: false,
       switches: {
         'ignore-certificate-errors': true,
-        'proxy-server': process.env.E2E_PROXY_SERVER || ''
+        'proxy-server': process.env.E2E_PROXY_SERVER || '',
+        'enable-logging': true,
+        v: 5
       }
     },
     FeatureToggleHelper: { require: './test/end-to-end/helpers/featureToggleHelper.js' },

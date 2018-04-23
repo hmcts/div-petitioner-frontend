@@ -8,7 +8,7 @@ packages_version = "3.0.0"
 external_host_name = "divorce.nonprod.platform.hmcts.net"
 outbound_proxy = ""
 
-ga_tracking_id = "UA-93824767-3"
+ga_tracking_id = "TBD"
 
 divorce_redis_url = "betaPreProddivorceCache01.reform.hmcts.net:6379"
 
@@ -17,7 +17,7 @@ idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 service_auth_provider_url = "https://preprod-s2s-api.reform.hmcts.net:3511"
 
 feature_toggle_api_url = "http://betaPreProddivorceAppLB.reform.hmcts.net:4002"
-case_progression_service_url = "http://div-case-progression-aat.service.core-compute-aat.internal"
+case_progression_service_url = "http://div-cps-aat.service.core-compute-aat.internal"
 evidence_management_client_api_url = "http://div-emca-aat.service.core-compute-aat.internal"
 
 payments_api_url = "https://preprod.payments.reform.hmcts.net:4401"

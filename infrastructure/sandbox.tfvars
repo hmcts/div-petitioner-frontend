@@ -17,7 +17,7 @@ idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
 service_auth_provider_url = "http://betaDevBccidamS2SLB.reform.hmcts.net:80"
 
 feature_toggle_api_url = "http://betaDevAdivorceAppLB.reform.hmcts.net:4002"
-case_progression_service_url = "http://div-case-progression-sandbox.service.core-compute-sandbox.internal"
+case_progression_service_url = "http://div-cps-sandbox.service.core-compute-sandbox.internal"
 evidence_management_client_api_url = "http://div-emca-sandbox.service.core-compute-sandbox.internal"
 
 payments_api_url = "https://test.payments.reform.hmcts.net:4421"

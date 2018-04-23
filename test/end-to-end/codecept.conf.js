@@ -7,7 +7,7 @@ console.log('waitForAction value set to', waitForAction); // eslint-disable-line
 
 exports.config = {
   tests: './paths/**/basicDivorce.js',
-  output: './functional-output',
+  output: '../../functional-output',
   timeout: waitForTimeout,
   helpers: {
     Nightmare: {

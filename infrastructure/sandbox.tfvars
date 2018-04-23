@@ -8,7 +8,7 @@ packages_version = "3.0.0"
 external_host_name = "divorce.sandbox.platform.hmcts.net"
 outbound_proxy = ""
 
-ga_tracking_id = "UA-93824767-3"
+ga_tracking_id = "UA-93824767-2"
 
 divorce_redis_url = "betaDevBdivorceCache01.reform.hmcts.net:6379"
 

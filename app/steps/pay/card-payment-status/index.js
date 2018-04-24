@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');

@@ -5,6 +5,7 @@ const idamMock = require('test/mocks/idam');
 const { testContent, testCustom } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const getBaseUrl = require('app/core/utils/baseUrl');
 const { expect, sinon } = require('test/util/chai');
 const statusCodes = require('http-status-codes');
 const { withSession } = require('test/util/setup');
@@ -33,6 +34,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
+    sinon.spy(getBaseUrl);
     featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
@@ -146,6 +148,22 @@ describe(modulePath, () => {
         testCustom(done, agent, underTest, cookies, () => {
           // Assert.
           expect(getToken.calledBefore(create)).to.equal(true);
+        }, 'post');
+      });
+
+      it('sets the returnUrl dynamically', done => {
+        // Act.
+        testCustom(done, agent, underTest, cookies, response => {
+          // Assert.
+          const returnUrl = response.request.protocol.concat(
+            '//', response.request.host, '/pay/card-payment-status'
+          );
+          const DEFAULT_FEE_AMOUNT = 550;
+          expect(create.calledWith(
+            {}, 'token', 'some-case-id', 'some-code', 'X0165', 1, DEFAULT_FEE_AMOUNT,
+            'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+            returnUrl
+          )).to.equal(true);
         }, 'post');
       });
 

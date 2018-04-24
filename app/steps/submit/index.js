@@ -1,5 +1,5 @@
 const statusCodes = require('http-status-codes');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
@@ -72,7 +72,7 @@ module.exports = class Submit extends Step {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${error}`);
+        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
         res.redirect('/generic-error');
       });
   }

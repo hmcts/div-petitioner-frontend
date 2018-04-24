@@ -1,5 +1,5 @@
 const { curry, forEach } = require('lodash');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 const steps = {};
 

@@ -2,7 +2,7 @@ const { cloneDeep, get, reduce, groupBy } = require('lodash');
 const ValidationStep = require('app/core/ValidationStep');
 const runStepHandler = require('app/core/handler/runStepHandler');
 const nunjucks = require('nunjucks');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const CONF = require('config');
 
 const maximumNumberOfSteps = 500;
@@ -166,7 +166,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     let templates = [];
 
     // Do not render the same template more than once
-    // if the application is attempting to render question more than once 
+    // if the application is attempting to render question more than once
     // we know user has not completed the questions and can show answered
     // questions up to this point
     if (previousQuestionsRendered.includes(step.url)) {

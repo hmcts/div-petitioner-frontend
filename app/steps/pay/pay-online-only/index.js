@@ -14,7 +14,7 @@ const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMi
 
 const jwt = require('jsonwebtoken');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const get = require('lodash/get');
 
 module.exports = class PayOnline extends Step {
@@ -74,7 +74,13 @@ module.exports = class PayOnline extends Step {
     const amount = parseInt(
       CONF.commonProps.applicationFee.fee_amount
     );
-    const returnUrl = `${getBaseUrl()}${this.steps.CardPaymentStatus.url}`;
+    const hostParts = req.get('host').split(':');
+    // if hostParts is a length of 2, it is a valid hostname:port url
+    const port = hostParts.length === 2 ? hostParts[1] : ''; // eslint-disable-line no-magic-numbers
+    const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
+    const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
+    const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
+
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 

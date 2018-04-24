@@ -82,8 +82,8 @@ module "frontend" {
     IDAM_SECRET = "${data.vault_generic_secret.idam_secret.data["value"]}"
 
     // Service Auth
-    SERVICE_AUTH_PROVIDER_URL = "${var.service_auth_provider_url}"
-    SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${var.service_auth_provider_url}${var.health_endpoint}"
+    SERVICE_AUTH_PROVIDER_URL = "${local.service_auth_provider_url}"
+    SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${local.service_auth_provider_url}${var.health_endpoint}"
     MICROSERVICE_NAME = "${var.s2s_microservice_name}"
     MICROSERVICE_KEY = "${data.vault_generic_secret.frontend_secret.data["value"]}"
 

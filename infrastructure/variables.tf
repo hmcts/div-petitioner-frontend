@@ -85,10 +85,6 @@ variable "packages_version" {
   default = "-1"
 }
 
-variable "version" {
-  default = "-1"
-}
-
 variable "divorce_frontend_service_name" {
   default = "divorce-frontend"
 }

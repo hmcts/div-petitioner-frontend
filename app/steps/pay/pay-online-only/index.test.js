@@ -5,6 +5,7 @@ const idamMock = require('test/mocks/idam');
 const { testContent, testCustom } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const getBaseUrl = require('app/core/utils/baseUrl');
 const { expect, sinon } = require('test/util/chai');
 const statusCodes = require('http-status-codes');
 const { withSession } = require('test/util/setup');
@@ -33,6 +34,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
+    sinon.spy(getBaseUrl);
     featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
@@ -60,10 +62,6 @@ describe(modulePath, () => {
       testContent(done, agent, underTest, content);
     });
   });
-
-  // describe('#handler dynamic return url functionality', () => {
-
-  // });
 
   describe('#handler', () => {
     let getToken = null;

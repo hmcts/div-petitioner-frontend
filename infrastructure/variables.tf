@@ -138,10 +138,6 @@ variable "idam_api_url" {
   type = "string"
 }
 
-variable "service_auth_provider_url" {
-  type = "string"
-}
-
 variable "frontend_service_name" {
   default = "divorce-frontend"
 }
@@ -150,20 +146,12 @@ variable "s2s_microservice_name" {
   default = "divorce_frontend"
 }
 
-variable "case_progression_service_url" {
-  type = "string"
-}
-
 variable "transformation_service_base_path" {
   default = "/transformationapi/version/1"
 }
 
 variable "draft_store_api_base_path" {
   default = "/draftsapi/version/1"
-}
-
-variable "evidence_management_client_api_url" {
-  type = "string"
 }
 
 variable "evidence_management_client_api_upload_endpoint" {

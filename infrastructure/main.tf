@@ -166,7 +166,7 @@ module "frontend" {
 
 module "key-vault" {
   source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
-  name                = "${local.vaultName}"
+  name                = "${local.vault_name}"
   product             = "${var.product}"
   env                 = "${var.env}"
   tenant_id           = "${var.tenant_id}"

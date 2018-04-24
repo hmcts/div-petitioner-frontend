@@ -4,7 +4,7 @@ const CONF = require('config');
 const buildnoml = require('app/steps/sitemap/buildnoml');
 const runStepHandler = require('app/core/handler/runStepHandler');
 
-const PORT = process.env.HTTP_PORT || CONF.http.port;
+const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
 const url = `https://localhost:${PORT}/graph`;
 

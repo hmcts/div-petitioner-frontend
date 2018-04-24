@@ -52,6 +52,10 @@ variable "client_id" {
   description = "(Required) The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. This is usually sourced from environment variables and not normally required to be specified."
 }
 
+variable "uv_threadpool_size" {
+  default = "64"
+}
+
 variable "node_env" {
   default = "production"
 }
@@ -60,7 +64,7 @@ variable "node_path" {
   default = "."
 }
 
-variable "external_host_name" {
+variable "additional_host_name" {
   type = "string"
 }
 
@@ -89,19 +93,11 @@ variable "divorce_frontend_service_name" {
   default = "divorce-frontend"
 }
 
-variable "divorce_frontend_protocol" {
+variable "public_protocol" {
   default = "https"
 }
 
-variable "divorce_frontend_public_port" {
-  default = "443"
-}
-
-variable "divorce_frontend_port" {
-  default = "3001"
-}
-
-variable "outbound_proxy" {
+variable "http_proxy" {
   default = "http://proxyout.reform.hmcts.net:8080/"
 }
 
@@ -118,7 +114,7 @@ variable "ga_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
-variable "divorce_redis_url" {
+variable "rediscloud_url" {
   type = "string"
 }
 
@@ -182,7 +178,7 @@ variable "feature_toggle_api_base_path" {
   default = "/api/v1/feature-toggle"
 }
 
-variable "payments_api_url" {
+variable "payment_service_url" {
   type = "string"
 }
 

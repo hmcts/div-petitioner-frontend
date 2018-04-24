@@ -1,10 +1,4 @@
 provider "vault" {
-  //  # It is strongly recommended to configure this provider through the
-  //  # environment variables described above, so that each user can have
-  //  # separate credentials set in the environment.
-  //  #
-  //  # This will default to using $VAULT_ADDR
-  //  # But can be set explicitly
   address = "https://vault.reform.hmcts.net:6200"
 }
 
@@ -30,7 +24,13 @@ data "vault_generic_secret" "redis_secret" {
 
 locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
-  divorce_frontend_hostname = "div-frontend-${var.env}.service.${local.aseName}.internal"
+  public_hostname = "div-frontend-${var.env}.service.${local.aseName}.internal"
+
+  local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
+
+  service_auth_provider_url = "http://rpe-service-auth-provider-${local.local_env}.service.core-compute-${local.local_env}.internal"
+  case_progression_service_url = "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal"
+  evidence_management_client_api_url = "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal"
 }
 
 module "frontend" {
@@ -41,7 +41,7 @@ module "frontend" {
   ilbIp = "${var.ilbIp}"
   is_frontend  = true
   subscription = "${var.subscription}"
-  additional_host_name = "${var.external_host_name}"
+  additional_host_name = "${var.additional_host_name}"
 
   app_settings = {
         
@@ -49,7 +49,7 @@ module "frontend" {
     NODE_ENV = "${var.node_env}"
     NODE_PATH = "${var.node_path}"
 
-    UV_THREADPOOL_SIZE = "64"
+    UV_THREADPOOL_SIZE = "${var.uv_threadpool_size}"
     NODE_CONFIG_DIR = "${var.node_config_dir}"
 
     // Logging vars
@@ -66,11 +66,9 @@ module "frontend" {
     DEPLOYMENT_ENV="${var.deployment_env}"
 
     // Frontend web details
-    PUBLIC_HOSTNAME ="${local.divorce_frontend_hostname}"
-    PUBLIC_PROTOCOL ="${var.divorce_frontend_protocol}"
-    PUBLIC_PORT = "${var.divorce_frontend_public_port}"
-    HTTP_PORT = "${var.divorce_frontend_port}"
-    DIVORCE_HTTP_PROXY = "${var.outbound_proxy}"
+    PUBLIC_HOSTNAME ="${local.public_hostname}"
+    PUBLIC_PROTOCOL ="${var.public_protocol}"
+    DIVORCE_HTTP_PROXY = "${var.http_proxy}"
     no_proxy = "${var.no_proxy}"
 
     // Service name
@@ -90,8 +88,8 @@ module "frontend" {
     MICROSERVICE_KEY = "${data.vault_generic_secret.frontend_secret.data["value"]}"
 
     // Payments API
-    PAYMENT_SERVICE_URL = "${var.payments_api_url}"
-    PAYMENT_SERVICE_HEALTHCHECK_URL = "${var.payments_api_url}${var.health_endpoint}"
+    PAYMENT_SERVICE_URL = "${var.payment_service_url}"
+    PAYMENT_SERVICE_HEALTHCHECK_URL = "${var.payment_service_url}${var.health_endpoint}"
     PAYMENT_REFERENCE_SERVICE_IDENTIFICATION = "${var.payment_reference_service_id}"
 
     // Feature Toggle API
@@ -112,7 +110,7 @@ module "frontend" {
     POST_CODE_ACCESS_TOKEN = "${data.vault_generic_secret.post_code_token.data["value"]}"
 
     // Redis Cloud
-    REDISCLOUD_URL = "${var.divorce_redis_url}"
+    REDISCLOUD_URL = "${var.rediscloud_url}"
     USE_AUTH = "${var.use_auth}"
 
     // Encryption secrets
@@ -120,16 +118,16 @@ module "frontend" {
     SESSION_ENCRYPTION_SECRET = "${data.vault_generic_secret.redis_secret.data["value"]}"
 
     // Evidence Management Client API
-    EVIDENCE_MANAGEMENT_CLIENT_API_URL="${var.evidence_management_client_api_url}"
-    EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL= "${var.evidence_management_client_api_url}${var.health_endpoint}"
-    EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT= "${var.evidence_management_client_api_upload_endpoint}"
+    EVIDENCE_MANAGEMENT_CLIENT_API_URL="${local.evidence_management_client_api_url}"
+    EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL= "${local.evidence_management_client_api_url}${var.health_endpoint}"
+    EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT= "${local.evidence_management_client_api_upload_endpoint}"
 
     // Case Progrssion Service
-    CASE_PROGRESSION_SERVICE_URL = "${var.case_progression_service_url}${var.transformation_service_base_path}"
-    CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${var.case_progression_service_url}${var.health_endpoint}"
+    CASE_PROGRESSION_SERVICE_URL = "${local.case_progression_service_url}${var.transformation_service_base_path}"
+    CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${local.case_progression_service_url}${var.health_endpoint}"
 
     // Draft Store API
-    CASE_PROGRESSION_SERVICE_DRAFT_URL = "${var.case_progression_service_url}${var.draft_store_api_base_path}"
+    CASE_PROGRESSION_SERVICE_DRAFT_URL = "${local.case_progression_service_url}${var.draft_store_api_base_path}"
 
     // Common Court Content
     SMARTSURVEY_FEEDBACK_URL = "${var.survey_feedback_url}"
@@ -152,9 +150,9 @@ module "frontend" {
 
     // Backwards compatibility envs, to be removed
     EASTMIDLANDS_COURTWEIGHT = "${var.court_eastmidlands_court_weight}"
-    EASTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
-    EASTMIDLANDS_COURTWEIGHT = "${var.court_southwest_court_weight}"
-    EASTMIDLANDS_COURTWEIGHT = "${var.court_northwest_court_weight}"
+    WESTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
+    SOUTHWEST_COURTWEIGHT = "${var.court_southwest_court_weight}"
+    NORTHWEST_COURTWEIGHT = "${var.court_northwest_court_weight}"
   }
 }
 

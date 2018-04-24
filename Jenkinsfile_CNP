@@ -22,11 +22,7 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
-  
-  before('deploy:prod') {
-    error('Halting pipeline before prod stages')
-  }
 
   loadVaultSecrets(secrets)
-  //enableSlackNotifications('#div-dev')
+  enableSlackNotifications('#div-dev')
 }

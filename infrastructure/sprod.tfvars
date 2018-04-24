@@ -14,6 +14,7 @@ rediscloud_url = "betaDevBdivorceCache01.reform.hmcts.net:6379"
 
 idam_authentication_web_url = "https://idam-test.dev.ccidam.reform.hmcts.net"
 idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
+service_auth_provider_url = "http://betaDevBccidamS2SLB.reform.hmcts.net:80"
 
 feature_toggle_api_url = "http://betaDevAdivorceAppLB.reform.hmcts.net:4002"
 

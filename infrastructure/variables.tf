@@ -131,6 +131,10 @@ variable "idam_api_url" {
   type = "string"
 }
 
+variable "service_auth_provider_url" {
+  type = "string"
+}
+
 variable "frontend_service_name" {
   default = "divorce-frontend"
 }

@@ -75,8 +75,12 @@ module.exports = class PayOnline extends Step {
       CONF.commonProps.applicationFee.fee_amount
     );
     const hostParts = req.get('host').split(':');
+    // if hostParts is a length of 2, it is a valid hostname:port url
     const port = hostParts.length === 2 ? hostParts[1] : ''; // eslint-disable-line no-magic-numbers
-    const returnUrl = `${getBaseUrl(req.protocol, req.hostname, port)}${this.steps.CardPaymentStatus.url}`;
+    const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
+    const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
+    const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
+
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 

@@ -8,7 +8,7 @@ packages_version = "3.0.0"
 additional_host_name = "divorce.platform.hmcts.net"
 http_proxy = ""
 
-ga_tracking_id = "UA-93824767-3"
+google_analytics_tracking_id = "UA-93824767-3"
 
 rediscloud_url = "betaProddivorceCache01.reform.hmcts.net:6379"
 

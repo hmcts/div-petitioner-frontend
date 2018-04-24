@@ -101,12 +101,9 @@ variable "no_proxy" {
   default = "localhost,127.0.0.0/8,127.0.0.1,127.0.0.1*,local.home,reform.hmcts.net,*.reform.hmcts.net,betaDevBdivorceAppLB.reform.hmcts.net,betaDevBccidamAppLB.reform.hmcts.net,*.internal,*.platform.hmcts.net"
 }
 
-variable "ga_tracking_id" {
-  description = "Google Analytics tracking ID"
-}
+variable "google_analytics_tracking_id" {}
 
-variable "ga_tracking_url" {
-  description = "Google Analytics tracking URL"
+variable "google_analytics_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
@@ -182,7 +179,7 @@ variable "hpkp_max_age" {
   default = "86400"
 }
 
-variable "hpkp_sha256s" {
+variable "hpkp_shas" {
   default = "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
 }
 
@@ -194,7 +191,6 @@ variable "rate_limiter_expire" {
   default = "3600000"
 }
 
-// Feature toggles
 variable "feature_jurisdiction" {
   default = false
 }
@@ -215,7 +211,6 @@ variable "feature_court_southamption" {
   default = false
 }
 
-// Dynamic content
 variable "survey_feedback_url" {
   default = "http://www.smartsurvey.co.uk/s/0QIL4"
 }

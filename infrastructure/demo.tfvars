@@ -8,7 +8,7 @@ packages_version = "3.0.0"
 additional_host_name = "demo.divorce.reform.hmcts.net"
 http_proxy = ""
 
-ga_tracking_id = "TBD"
+google_analytics_tracking_id = "TBD"
 
 rediscloud_url = "betaPreProddivorceCache01.reform.hmcts.net:6379"
 

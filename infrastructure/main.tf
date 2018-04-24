@@ -138,11 +138,11 @@ module "frontend" {
 
     // HPKP
     HPKP_MAX_AGE = "${var.hpkp_max_age}"
-    HPKP_SHAS = "${var.hpkp_sha256s}"
+    HPKP_SHAS = "${var.hpkp_shas}"
 
     // Google Anayltics
-    GOOGLE_ANALYTICS_ID= "${var.ga_tracking_id}"
-    GOOGLE_ANALYTICS_TRACKING_URL= "${var.ga_tracking_url}"
+    GOOGLE_ANALYTICS_ID= "${var.google_analytics_tracking_id}"
+    GOOGLE_ANALYTICS_TRACKING_URL= "${var.google_analytics_tracking_url}"
 
     // Rate Limiter
     RATE_LIMITER_TOTAL = "${var.rate_limiter_total}"

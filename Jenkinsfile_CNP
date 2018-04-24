@@ -3,7 +3,7 @@
 @Library("Infrastructure")
 
 String product = "div"
-String component = "frontend"
+String component = "pfe"
 
 withPipeline("nodejs", product, component) {  
   after('build') {

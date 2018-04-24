@@ -9,7 +9,7 @@ properties([
 		])
 ])
 
-withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
+withParameterizedPipeline('nodejs', 'div', 'pfe', params.ENVIRONMENT, 'sandbox') {
   after('build') {
     sh 'yarn setup'
   }

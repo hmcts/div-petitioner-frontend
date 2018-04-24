@@ -120,7 +120,7 @@ module "frontend" {
     // Evidence Management Client API
     EVIDENCE_MANAGEMENT_CLIENT_API_URL="${local.evidence_management_client_api_url}"
     EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL= "${local.evidence_management_client_api_url}${var.health_endpoint}"
-    EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT= "${local.evidence_management_client_api_upload_endpoint}"
+    EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT= "${var.evidence_management_client_api_upload_endpoint}"
 
     // Case Progrssion Service
     CASE_PROGRESSION_SERVICE_URL = "${local.case_progression_service_url}${var.transformation_service_base_path}"

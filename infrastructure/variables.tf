@@ -5,7 +5,7 @@ variable "product" {
 }
 
 variable "microservice" {
-  default = "frontend"
+  default = "pfe"
 }
 
 variable "location" {

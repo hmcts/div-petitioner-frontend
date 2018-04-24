@@ -31,11 +31,19 @@ locals {
   service_auth_provider_url = "http://rpe-service-auth-provider-${local.local_env}.service.core-compute-${local.local_env}.internal"
   case_progression_service_url = "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal"
   evidence_management_client_api_url = "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal"
+
+  previewVaultName = "${var.product}-${var.reform_service_name}"
+  nonPreviewVaultName = "${var.reform_team}-${var.reform_service_name}-${var.env}"
+  vaultName = "${var.env == "preview" ? local.previewVaultName : local.nonPreviewVaultName}"
+
+  nonPreviewVaultUri = "${module.key-vault.key_vault_uri}"
+  previewVaultUri = "https://div-${var.reform_service_name}-aat.vault.azure.net/"
+  vaultUri = "${var.env == "preview"? local.previewVaultUri : local.nonPreviewVaultUri}"
 }
 
 module "frontend" {
   source = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
-  product = "${var.product}-${var.microservice}"
+  product = "${var.product}-${var.reform_service_name}"
   location = "${var.location}"
   env = "${var.env}"
   ilbIp = "${var.ilbIp}"
@@ -53,8 +61,8 @@ module "frontend" {
     NODE_CONFIG_DIR = "${var.node_config_dir}"
 
     // Logging vars
-    REFORM_TEAM = "${var.product}"
-    REFORM_SERVICE_NAME = "${var.microservice}"
+    REFORM_TEAM = "${var.reform_team}"
+    REFORM_SERVICE_NAME = "${var.reform_service_name}"
     REFORM_ENVIRONMENT = "${var.env}"
 
     // Packages
@@ -156,9 +164,9 @@ module "frontend" {
   }
 }
 
-module "petitioner-frontend-vault" {
+module "key-vault" {
   source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
-  name                = "div-pfe-${var.env}"
+  name                = "${local.vaultName}"
   product             = "${var.product}"
   env                 = "${var.env}"
   tenant_id           = "${var.tenant_id}"

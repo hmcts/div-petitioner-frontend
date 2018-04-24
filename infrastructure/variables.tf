@@ -1,11 +1,15 @@
 // Infrastructural variables
 
-variable "product" {
+variable "reform_team" {
   default = "div"
 }
 
-variable "microservice" {
+variable "reform_service_name" {
   default = "pfe"
+}
+
+variable "product" {
+  type = "string"
 }
 
 variable "location" {
@@ -83,10 +87,6 @@ variable "packages_environment" {
 
 variable "packages_version" {
   default = "-1"
-}
-
-variable "divorce_frontend_service_name" {
-  default = "divorce-frontend"
 }
 
 variable "public_protocol" {

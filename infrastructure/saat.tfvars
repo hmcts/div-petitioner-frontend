@@ -5,7 +5,7 @@ vault_section = "test"
 packages_environment = "test"
 packages_version = "3.0.0"
 
-additional_host_name = "divorce.sandbox.platform.hmcts.net"
+additional_host_name = "divorce.saat.platform.hmcts.net"
 http_proxy = ""
 
 google_analytics_tracking_id = "TBD"

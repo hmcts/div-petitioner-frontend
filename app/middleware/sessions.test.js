@@ -15,7 +15,8 @@ describe(modulePath, () => {
     delete process.env.NODE_ENV;
     req = {
       originalUrl: '/',
-      headers: { }
+      headers: { },
+      get: sinon.stub()
     };
     res = { redirect: sinon.stub() };
     sinon.stub(sessionSerializer, 'createSerializer').returns(serializer);

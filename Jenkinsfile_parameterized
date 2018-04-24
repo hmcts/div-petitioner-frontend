@@ -9,23 +9,8 @@ properties([
 		])
 ])
 
-List<LinkedHashMap<String, Object>> secrets = [
-
-]
-
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [ $class: 'AzureKeyVaultSecret',
-    secretType: 'Secret',
-    name: secretName,
-    version: '',
-    envVariable: envVar
-  ]
-}
-
-withParameterizedPipeline('nodejs', 'div', 'frontend', params.ENVIRONMENT, 'sandbox') {
+withParameterizedPipeline('nodejs', 'div', 'pfe', params.ENVIRONMENT, 'sandbox') {
   after('build') {
     sh 'yarn setup'
   }
-
-  loadVaultSecrets(secrets)
 }

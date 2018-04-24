@@ -3,30 +3,12 @@
 @Library("Infrastructure")
 
 String product = "div"
-String component = "frontend"
-
-List<LinkedHashMap<String, Object>> secrets = [
-
-]
-
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [ $class: 'AzureKeyVaultSecret',
-    secretType: 'Secret',
-    name: secretName,
-    version: '',
-    envVariable: envVar
-  ]
-}
+String component = "pfe"
 
 withPipeline("nodejs", product, component) {  
   after('build') {
     sh 'yarn setup'
   }
   
-  before('deploy:prod') {
-    error('Halting pipeline before prod stages')
-  }
-
-  loadVaultSecrets(secrets)
-  //enableSlackNotifications('#div-dev')
+  enableSlackNotifications('#div-dev')
 }

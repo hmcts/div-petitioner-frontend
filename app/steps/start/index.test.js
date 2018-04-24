@@ -40,9 +40,11 @@ describe(modulePath, () => {
 
     it('should set up the current host as the redirect uri for idam', done => {
       testCustom(done, agent, underTest, [], response => {
-        const redirectUri = response.request.protocol.concat('//', response.request.host, '/authenticated');
+        const hostName = response.request.host;
+        const redirectUri = response.request.protocol.concat('//', hostName, '/authenticated');
         const confIdam = CONF.idamArgs;
         const idamArgs = {
+          hostName,
           indexUrl: confIdam.indexUrl,
           idamApiUrl: process.env.IDAM_API_URL || confIdam.idamApiUrl,
           idamLoginUrl: process.env.IDAM_LOGIN_URL || confIdam.idamLoginUrl,

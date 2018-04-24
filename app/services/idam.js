@@ -3,13 +3,11 @@ const CONF = require('config');
 
 const confIdam = CONF.idamArgs;
 
-const PUBLIC_HOSTNAME = process.env.CURRENT_PUBLIC_HOSTNAME || process.env.PUBLIC_HOSTNAME;
+const PUBLIC_HOSTNAME = process.env.PUBLIC_HOSTNAME;
 const PUBLIC_PROTOCOL = process.env.PUBLIC_PROTOCOL || 'https';
 const redirectUri = `${PUBLIC_PROTOCOL}://${PUBLIC_HOSTNAME}/authenticated`;
 
 const landingPageUrl = PUBLIC_HOSTNAME ? redirectUri : confIdam.redirectUri;
-
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 const idamArgs = {
   redirectUri: landingPageUrl,
@@ -22,11 +20,10 @@ const idamArgs = {
 
 module.exports = {
 
-  authenticate: newRedirectUri => {
-    if (newRedirectUri) {
-      idamArgs.redirectUri = newRedirectUri;
-      logger.info('NewRedirectUri is');
-      logger.info(idamArgs.redirectUri);
+  authenticate: (protocol, hostName, path) => {
+    if (hostName) {
+      idamArgs.hostName = hostName;
+      idamArgs.redirectUri = protocol.concat('://', hostName, path);
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },

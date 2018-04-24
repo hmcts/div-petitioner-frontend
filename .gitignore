@@ -24,7 +24,3 @@ package-lock.json
 .vscode/launch.json
 .sonar/
 .env
-smoke-output/*
-!smoke-output/.gitkeep
-functional-output/*
-!functional-output/.gitkeep

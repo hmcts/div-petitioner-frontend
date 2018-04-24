@@ -97,13 +97,6 @@ exports.init = () => {
     filters: nunjucksFilters
   });
 
-  // Set a dynamic PUBLIC_HOSTNAME url for use by IDAM
-  app.use((req, res, next) => {
-    process.env.CURRENT_PUBLIC_HOSTNAME = req.get('host');
-    logger.debug('Current host name is', process.env.CURRENT_PUBLIC_HOSTNAME);
-    next();
-  });
-
   // Disallow search index idexing
   app.use((req, res, next) => {
     // Setting headers stops pages being indexed even if indexed pages link to them.

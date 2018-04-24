@@ -11,7 +11,6 @@ function startApplication(ignoreIdamToggle = false) {
   I.click(content.startNow);
 
   if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
-    I.wait(10);
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());

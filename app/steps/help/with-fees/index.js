@@ -37,6 +37,9 @@ module.exports = class WithFees extends OptionStep {
   }
 
   * validate(ctx, session) {
+    if (ctx.helpWithFeesAppliedForFees === 'No') {
+      delete ctx.helpWithFeesReferenceNumber;
+    }
     const [isValid, errors] = yield super.validate(ctx, session);
 
     if (isValid) {

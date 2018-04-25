@@ -7,7 +7,7 @@ The Apply for Divorce frontend.
 ### Setup
 
 Configure your local docker daemon with the settings documented in
-[reform/docker][reform-docker].
+[https://git.reform.hmcts.net/reform/docker][reform-docker].
 
 ### Build the container
 

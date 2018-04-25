@@ -236,17 +236,17 @@ variable "court_email" {
 }
 
 variable "court_eastmidlands_court_weight" {
-  default = "0.18"
+  default = "0.32"
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.20"
+  default = "0.23"
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.36"
+  default = "0.18"
 }
 
 variable "court_northwest_court_weight" {
-  default = "0.26"
+  default = "0.27"
 }

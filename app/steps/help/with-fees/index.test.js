@@ -67,6 +67,16 @@ describe(modulePath, () => {
         s.steps.ExitNoHelpWithFees);
     });
 
+    it('redirects to the next page when No selected and HWF number uncorrect', done => {
+      const context = {
+        helpWithFeesAppliedForFees: 'No',
+        helpWithFeesReferenceNumber: 'HWF'
+      };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.ExitNoHelpWithFees);
+    });
+
     it('redirects to the next page when Yes selected and HWF number correct', done => {
       const context = {
         helpWithFeesAppliedForFees: 'Yes',

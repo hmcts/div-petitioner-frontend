@@ -5,7 +5,7 @@ vault_section = "preprod"
 packages_environment = "preprod"
 packages_version = "3.0.0"
 
-additional_host_name = "apply-divorce.demo.platform.hmcts.net"
+additional_host_name = "www.apply-divorce.demo.platform.hmcts.net"
 http_proxy = ""
 
 google_analytics_tracking_id = "TBD"

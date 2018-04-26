@@ -124,7 +124,7 @@ module "frontend" {
     EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT= "${var.evidence_management_client_api_upload_endpoint}"
 
     // Case Progrssion Service
-    CASE_PROGRESSION_SERVICE_URL = "${local.case_progression_service_url}${var.transformation_service_base_path}"
+    CASE_PROGRESSION_SERVICE_URL = "${local.case_progression_service_url}${var.case_progression_base_path}"
     CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${local.case_progression_service_url}${var.health_endpoint}"
 
     // Draft Store API

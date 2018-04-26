@@ -31,14 +31,6 @@ locals {
   service_auth_provider_url = "http://rpe-service-auth-provider-${local.local_env}.service.core-compute-${local.local_env}.internal"
   case_progression_service_url = "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal"
   evidence_management_client_api_url = "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal"
-
-  previewVaultName = "${var.product}-${var.reform_service_name}"
-  nonPreviewVaultName = "${var.reform_team}-${var.reform_service_name}-${var.env}"
-  vaultName = "${var.env == "preview" ? local.previewVaultName : local.nonPreviewVaultName}"
-
-  nonPreviewVaultUri = "${module.key-vault.key_vault_uri}"
-  previewVaultUri = "https://div-${var.reform_service_name}-aat.vault.azure.net/"
-  vaultUri = "${var.env == "preview"? local.previewVaultUri : local.nonPreviewVaultUri}"
 }
 
 module "frontend" {
@@ -163,15 +155,4 @@ module "frontend" {
     SOUTHWEST_COURTWEIGHT = "${var.court_southwest_court_weight}"
     NORTHWEST_COURTWEIGHT = "${var.court_northwest_court_weight}"
   }
-}
-
-module "key-vault" {
-  source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
-  name                = "${local.vaultName}"
-  product             = "${var.product}"
-  env                 = "${var.env}"
-  tenant_id           = "${var.tenant_id}"
-  object_id           = "${var.jenkins_AAD_objectId}"
-  resource_group_name = "${module.frontend.resource_group_name}"
-  product_group_object_id = "68839600-92da-4862-bb24-1259814d1384"
 }

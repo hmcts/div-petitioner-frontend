@@ -6,15 +6,14 @@ console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-li
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: './test/end-to-end/paths/**/basicDivorce.js',
-  output: './functional-output',
+  tests: './paths/**/*.js',
+  output: '../../functional-output',
   timeout: waitForTimeout,
   helpers: {
     Nightmare: {
       url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       waitForTimeout,
-      loadTimeout: waitForTimeout,
-      typeInterval: 100,
+      typeInterval: 20,
       waitForAction,
       show: false,
       switches: {
@@ -23,15 +22,15 @@ exports.config = {
         'proxy-bypass-list': process.env.E2E_PROXY_BYPASS || ''
       }
     },
-    FeatureToggleHelper: { require: './test/end-to-end/helpers/featureToggleHelper.js' },
-    ElementExist: { require: './test/end-to-end/helpers/ElementExist.js' },
+    FeatureToggleHelper: { require: './helpers/featureToggleHelper.js' },
+    ElementExist: { require: './helpers/ElementExist.js' },
     NightmareExtras: {
-      require: './test/end-to-end/helpers/NightmareExtras.js',
+      require: './helpers/NightmareExtras.js',
       waitForTimeout
     },
-    IdamHelper: { require: './test/end-to-end/helpers/idamHelper.js' }
+    IdamHelper: { require: './helpers/idamHelper.js' }
   },
-  include: { I: './test/end-to-end/pages/steps.js' },
+  include: { I: './pages/steps.js' },
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
@@ -43,7 +42,7 @@ exports.config = {
         options: { mochaFile: './functional-output/result.xml' }
       },
       mochawesome: {
-        stdout: './functional-output/console.log',
+        stdout: './functional-output/mochawesome.log.',
         options: {
           reportDir: process.env.E2E_OUTPUT_DIR || './functional-output',
           reportName: 'index',

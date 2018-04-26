@@ -3,17 +3,17 @@ version: '2.1'
 services:
   smoke-tests:
     image: codeception/codeceptjs:1.1.7
-    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c smoke.conf.js --reporter mocha-multi'
+    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c test/end-to-end/smoke.conf.js --reporter mocha-multi'
     environment:
       E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
       E2E_WAIT_FOR_TIMEOUT_VALUE: ${E2E_WAIT_FOR_TIMEOUT_VALUE:-10000}
-      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-3000}
+      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-2000}
     volumes:
       - "../.:/tests"
 
   functional-tests:
     image: codeception/codeceptjs:1.1.7
-    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c codecept.conf.js --reporter mocha-multi'
+    command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c test/end-to-end/codecept.conf.js --reporter mocha-multi'
     environment:
       E2E_FRONTEND_NODE_ENV: ${E2E_FRONTEND_NODE_ENV:-testing}
       E2E_PROXY_SERVER: ${E2E_PROXY_SERVER}
@@ -25,7 +25,7 @@ services:
       COURT_PHONENUMBER: ${COURT_PHONENUMBER:-"0000 111 2220"}
       COURT_OPENINGHOURS: ${COURT_OPENINGHOURS:-"Monday to Friday, 8.30am to 5pm"}
       COURT_EMAIL: ${COURT_EMAIL:-"simulate-delivered@notifications.service.gov.uk"}
-      E2E_WAIT_FOR_TIMEOUT_VALUE: ${E2E_WAIT_FOR_TIMEOUT_VALUE:-30000}
-      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-3000}
+      E2E_WAIT_FOR_TIMEOUT_VALUE: ${E2E_WAIT_FOR_TIMEOUT_VALUE:-20000}
+      E2E_WAIT_FOR_ACTION_VALUE: ${E2E_WAIT_FOR_ACTION_VALUE:-2000}
     volumes:
       - "../.:/tests"

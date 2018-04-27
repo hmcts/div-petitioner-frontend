@@ -83,11 +83,10 @@ describe(modulePath, () => {
     });
 
     it('does not remove respondentHomeAddress if respondentKnowsHomeAddress is removed but are still living together', () => {
-
       const respondentHomeAddress = ['Address 1', 'Address 2', 'Address 3'];
       const previousSession = {
         respondentKnowsHomeAddress: 'Yes',
-        respondentHomeAddress: respondentHomeAddress,
+        respondentHomeAddress,
         livingArrangementsLiveTogether: 'Yes'
       };
 

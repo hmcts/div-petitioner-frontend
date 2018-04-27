@@ -42,7 +42,6 @@ describe(modulePath, () => {
     const output = step.middleware;
     // Assert.
     expect(output).to.eql([logoutStub]);
-
     idam.logout.restore();
   });
 

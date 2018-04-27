@@ -57,7 +57,8 @@ describe(modulePath, () => {
     it('removes respondentHomeAddress if respondentKnowsHomeAddress is changed and respondentKnowsHomeAddress is no', () => {
       const previousSession = {
         respondentKnowsHomeAddress: 'Yes',
-        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3']
+        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3'],
+        livingArrangementsLiveTogether: 'No'
       };
 
       const session = clone(previousSession);
@@ -67,10 +68,11 @@ describe(modulePath, () => {
       expect(typeof newSession.respondentHomeAddress).to.equal('undefined');
     });
 
-    it('remove respondentHomeAddress if respondentKnowsHomeAddress is changed', () => {
+    it('remove respondentHomeAddress if respondentKnowsHomeAddress is removed and not living together', () => {
       const previousSession = {
         respondentKnowsHomeAddress: 'Yes',
-        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3']
+        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3'],
+        livingArrangementsLiveTogether: 'No'
       };
 
       const session = clone(previousSession);
@@ -78,6 +80,22 @@ describe(modulePath, () => {
 
       const newSession = removeStaleData(previousSession, session);
       expect(typeof newSession.respondentHomeAddress).to.equal('undefined');
+    });
+
+    it('does not remove respondentHomeAddress if respondentKnowsHomeAddress is removed but are still living together', () => {
+
+      const respondentHomeAddress = ['Address 1', 'Address 2', 'Address 3'];
+      const previousSession = {
+        respondentKnowsHomeAddress: 'Yes',
+        respondentHomeAddress: respondentHomeAddress,
+        livingArrangementsLiveTogether: 'Yes'
+      };
+
+      const session = clone(previousSession);
+      delete session.respondentKnowsHomeAddress;
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(newSession.respondentHomeAddress).to.equal(respondentHomeAddress);
     });
   });
 });

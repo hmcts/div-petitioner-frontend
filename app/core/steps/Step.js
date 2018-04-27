@@ -11,6 +11,7 @@ const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const throwNotImplemented = func => {
   throw new ReferenceError(`Steps must override #${func}`);
 };
+const defualtNext = () => {};
 
 // used to stop the middleware chain,
 // otherwise it will continue and trigger a 404 page not found
@@ -176,7 +177,7 @@ module.exports = class Step {
     }
   }
 
-  handler(req, res, next) {
+  handler(req, res, next = defualtNext) {
     const method = req.method.toLowerCase();
     const throwError = error => {
       logger.error(`Error handeling request: ${error}`);

@@ -12,7 +12,8 @@ module.exports = class RespondentHomeAddress extends AddressLookupStep {
     this.schemaScope = 'respondentHomeAddress';
 
     watch('respondentKnowsHomeAddress', (previousSession, session, remove) => {
-      if (session.respondentKnowsHomeAddress !== 'Yes') {
+      if ((!session.respondentKnowsHomeAddress || session.respondentKnowsHomeAddress == 'No')
+                && session.livingArrangementsLiveTogether == 'No') {
         remove('respondentHomeAddress');
       }
     });

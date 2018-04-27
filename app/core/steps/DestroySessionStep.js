@@ -1,6 +1,5 @@
 const Step = require('./Step');
 const idam = require('app/services/idam');
-const initSession = require('app/middleware/initSession');
 
 
 module.exports = class DestroySessionStep extends Step {
@@ -15,6 +14,6 @@ module.exports = class DestroySessionStep extends Step {
   }
 
   get middleware() {
-    return [idam.logout(), initSession];
+    return [idam.logout()];
   }
 };

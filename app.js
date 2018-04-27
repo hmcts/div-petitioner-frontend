@@ -13,8 +13,7 @@ const cookieParser = require('cookie-parser');
 const sessions = require('app/middleware/sessions');
 const rateLimiter = require('app/services/rateLimiter');
 const initSteps = require('app/core/initSteps');
-const siteGraph = require('app/core/siteGraph');
-const errorHandler = require('app/core/errorHandler');
+const siteGraph = require('app/core/helpers/siteGraph');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
 const csurf = require('csurf');
@@ -203,7 +202,11 @@ exports.init = () => {
   }));
 
   if (process.env.NODE_ENV !== 'testing') {
-    app.use(errorHandler(steps));
+    // redirect user if page not found
+    app.use((req, res) => {
+      logger.error(`User attempted to view a page that was not found: ${req.originalUrl}`);
+      res.redirect(steps.Error404.url);
+    });
   }
 
   let http = {};

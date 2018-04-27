@@ -12,7 +12,7 @@ const modulePath = 'app/steps/marriage/foreign-certificate';
 const content = require(`${modulePath}/content`);
 
 const { clone } = require('lodash');
-const { removeStaleData } = require('app/core/staleDataManager');
+const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 
 let s = {};

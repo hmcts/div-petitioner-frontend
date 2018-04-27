@@ -1,6 +1,4 @@
 /* eslint-disable max-nested-callbacks */
-
-const statusCodes = require('http-status-codes');
 const { expect, sinon } = require('test/util/chai');
 const GovPayStub = require('app/steps/pay/gov-pay-stub');
 
@@ -53,23 +51,28 @@ describe(modulePath, () => {
   it('handler returns 404 in production', () => {
     // Arrange.
     process.env.NODE_ENV = 'production';
-    const res = { send: sinon.spy() };
+    const res = {
+      send: sinon.spy(),
+      redirect: sinon.stub()
+    };
     res.status = sinon.stub().returns(res);
     // Act.
     underTest.handler({}, res);
     // Assert.
-    expect(res.status.calledWith(statusCodes.NOT_FOUND)).to.equal(true);
+    expect(res.redirect.calledWith('/errors/404')).to.equal(true);
   });
 
   it('does not return 404 in non-production environments', () => {
     // Arrange.
+    const req = { method: 'get' };
+    const next = sinon.stub();
     const res = {
       send: sinon.spy(),
       redirect: sinon.spy()
     };
     res.status = sinon.stub().returns(res);
     // Act.
-    underTest.handler({}, res);
+    underTest.handler(req, res, next);
     // Assert.
     expect(res.status.called).to.equal(false);
   });

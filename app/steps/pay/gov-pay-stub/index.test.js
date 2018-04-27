@@ -56,10 +56,11 @@ describe(modulePath, () => {
       redirect: sinon.stub()
     };
     res.status = sinon.stub().returns(res);
+    underTest.steps = { Error404: { handler: sinon.stub() } };
     // Act.
     underTest.handler({}, res);
     // Assert.
-    expect(res.redirect.calledWith('/errors/404')).to.equal(true);
+    expect(underTest.steps.Error404.handler.calledOnce).to.equal(true);
   });
 
   it('does not return 404 in non-production environments', () => {

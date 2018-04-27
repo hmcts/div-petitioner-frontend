@@ -22,7 +22,7 @@ module.exports = class GovPayStub extends ValidationStep {
   handler(req, res, next) {
     if (process.env.NODE_ENV === 'production') {
       logger.error('Payment stub page requested in production mode');
-      return res.redirect('/errors/404');
+      return this.steps.Error404.handler(req, res, next);
     }
 
     return super.handler(req, res, next);

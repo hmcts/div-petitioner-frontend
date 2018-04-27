@@ -205,7 +205,7 @@ exports.init = () => {
     // redirect user if page not found
     app.use((req, res) => {
       logger.error(`User attempted to view a page that was not found: ${req.originalUrl}`);
-      res.redirect(steps.Error404.url);
+      steps.Error404.handler(req, res);
     });
   }
 

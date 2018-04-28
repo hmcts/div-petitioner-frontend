@@ -1,5 +1,5 @@
+// Test
 require('dotenv').config();
-const appInsights = require('applicationinsights');
 const CONF = require('config');
 const path = require('path');
 const https = require('https');
@@ -44,10 +44,6 @@ const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 const logger = logging.Logger.getLogger(__filename);
 
 exports.init = () => {
-  if (process.env.NODE_ENV === 'production') {
-    appInsights.setup(CONF.applicationInsights.instrumentationKey).start();
-  }
-
   const app = express();
 
   app.use(helmet());

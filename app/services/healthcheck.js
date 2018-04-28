@@ -19,12 +19,12 @@ client.on('error', error => {
   logger.error(error);
 });
 
-router.get('/health', healthcheck.configure({
-  const options = {
-    timeout: config.health.timeout,
-    deadline: config.health.deadline
-  }
+const options = {
+  timeout: config.health.timeout,
+  deadline: config.health.deadline
+};
 
+router.get('/health', healthcheck.configure({
   checks: {
     redis: healthcheck.raw(() => {
       return client.ping().then(_ => {

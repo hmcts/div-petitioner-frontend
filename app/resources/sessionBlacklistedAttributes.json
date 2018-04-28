@@ -1,0 +1,11 @@
+[
+  "cookie",
+  "expires",
+  "stepTemplates",
+  "currentPaymentId",
+  "payments",
+  "csrfSecret",
+  "sessionKey",
+  "saveAndResumeUrl",
+  "fetchedDraft"
+]

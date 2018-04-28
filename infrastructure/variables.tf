@@ -1,20 +1,22 @@
 // Infrastructural variables
 
-variable "product" {
+variable "reform_team" {
   default = "div"
 }
 
-variable "microservice" {
-  default = "frontend"
+variable "reform_service_name" {
+  default = "pfe"
+}
+
+variable "product" {
+  type = "string"
 }
 
 variable "location" {
   default = "UK South"
 }
 
-variable "env" {
-  type = "string"
-}
+variable "env" { }
 
 variable "ilbIp" { }
 
@@ -34,7 +36,7 @@ variable "node_config_dir" {
   default = "D:\\home\\site\\wwwroot\\config"
 }
 
-variable "subscription" {}
+variable "subscription" { }
 
 variable "vault_section" {
   type = "string"
@@ -54,6 +56,10 @@ variable "client_id" {
   description = "(Required) The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. This is usually sourced from environment variables and not normally required to be specified."
 }
 
+variable "uv_threadpool_size" {
+  default = "64"
+}
+
 variable "node_env" {
   default = "production"
 }
@@ -62,7 +68,7 @@ variable "node_path" {
   default = "."
 }
 
-variable "external_host_name" {
+variable "additional_host_name" {
   type = "string"
 }
 
@@ -83,31 +89,11 @@ variable "packages_version" {
   default = "-1"
 }
 
-variable "version" {
-  default = "-1"
-}
-
-variable "divorce_frontend_service_name" {
-  default = "divorce-frontend"
-}
-
-variable "divorce_frontend_protocol" {
+variable "public_protocol" {
   default = "https"
 }
 
-variable "divorce_frontend_hostname" {
-  type = "string"
-}
-
-variable "divorce_frontend_public_port" {
-  default = "443"
-}
-
-variable "divorce_frontend_port" {
-  default = "3001"
-}
-
-variable "outbound_proxy" {
+variable "http_proxy" {
   default = "http://proxyout.reform.hmcts.net:8080/"
 }
 
@@ -115,16 +101,13 @@ variable "no_proxy" {
   default = "localhost,127.0.0.0/8,127.0.0.1,127.0.0.1*,local.home,reform.hmcts.net,*.reform.hmcts.net,betaDevBdivorceAppLB.reform.hmcts.net,betaDevBccidamAppLB.reform.hmcts.net,*.internal,*.platform.hmcts.net"
 }
 
-variable "ga_tracking_id" {
-  description = "Google Analytics tracking ID"
-}
+variable "google_analytics_tracking_id" {}
 
-variable "ga_tracking_url" {
-  description = "Google Analytics tracking URL"
+variable "google_analytics_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
-variable "divorce_redis_url" {
+variable "rediscloud_url" {
   type = "string"
 }
 
@@ -160,20 +143,12 @@ variable "s2s_microservice_name" {
   default = "divorce_frontend"
 }
 
-variable "case_progression_service_url" {
-  type = "string"
-}
-
 variable "transformation_service_base_path" {
   default = "/transformationapi/version/1"
 }
 
 variable "draft_store_api_base_path" {
   default = "/draftsapi/version/1"
-}
-
-variable "evidence_management_client_api_url" {
-  type = "string"
 }
 
 variable "evidence_management_client_api_upload_endpoint" {
@@ -188,7 +163,7 @@ variable "feature_toggle_api_base_path" {
   default = "/api/v1/feature-toggle"
 }
 
-variable "payments_api_url" {
+variable "payment_service_url" {
   type = "string"
 }
 
@@ -208,7 +183,7 @@ variable "hpkp_max_age" {
   default = "86400"
 }
 
-variable "hpkp_sha256s" {
+variable "hpkp_shas" {
   default = "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
 }
 
@@ -220,11 +195,6 @@ variable "rate_limiter_expire" {
   default = "3600000"
 }
 
-variable "rate_limiter_enabled" {
-  default = false
-}
-
-// Feature toggles
 variable "feature_jurisdiction" {
   default = false
 }
@@ -245,7 +215,6 @@ variable "feature_court_southamption" {
   default = false
 }
 
-// Dynamic content
 variable "survey_feedback_url" {
   default = "http://www.smartsurvey.co.uk/s/0QIL4"
 }
@@ -267,25 +236,17 @@ variable "court_email" {
 }
 
 variable "court_eastmidlands_court_weight" {
-  default = "0.18"
+  default = "0.32"
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.20"
+  default = "0.23"
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.36"
+  default = "0.18"
 }
 
 variable "court_northwest_court_weight" {
-  default = "0.26"
-}
-
-variable "e2e_wait_for_timeout" {
-  default = "60000"
-}
-
-variable "e2e_wait_for_action" {
-  default = "3000"
+  default = "0.27"
 }

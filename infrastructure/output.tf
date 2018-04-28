@@ -1,7 +1,11 @@
-output "vaultUri" {
-  value = "${module.petitioner-frontend-vault.key_vault_uri}"
+output "vaultName" {
+  value = "${local.vaultName}"
 }
 
-output "vaultName" {
-  value = "${module.petitioner-frontend-vault.key_vault_name}"
+output "vaultUri" {
+  value = "${local.vaultUri}"
+}
+
+output "idam_api_url" {
+  value = "${var.idam_api_url}"
 }

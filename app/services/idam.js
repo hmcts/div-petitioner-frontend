@@ -20,7 +20,11 @@ const idamArgs = {
 
 module.exports = {
 
-  authenticate: () => {
+  authenticate: (protocol, hostName, path) => {
+    if (hostName) {
+      idamArgs.hostName = hostName;
+      idamArgs.redirectUri = protocol.concat('://', hostName, path);
+    }
     return idamExpressMiddleware.authenticate(idamArgs);
   },
   landingPage: () => {

@@ -2,22 +2,25 @@
 const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
 const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 1000;
 
+console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-line no-console
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: './test/end-to-end/paths/**/*.js',
+  tests: './test/end-to-end/paths/**/basicDivorce.js',
   output: './functional-output',
-  timeout: 1000,
+  timeout: waitForTimeout,
   helpers: {
     Nightmare: {
-      url: process.env.TEST_URL || process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
+      url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       waitForTimeout,
-      typeInterval: 20,
+      loadTimeout: waitForTimeout,
+      typeInterval: 100,
       waitForAction,
       show: false,
       switches: {
         'ignore-certificate-errors': true,
-        'proxy-server': process.env.E2E_PROXY_SERVER || ''
+        'proxy-server': process.env.E2E_PROXY_SERVER || '',
+        'proxy-bypass-list': process.env.E2E_PROXY_BYPASS || ''
       }
     },
     FeatureToggleHelper: { require: './test/end-to-end/helpers/featureToggleHelper.js' },
@@ -34,6 +37,10 @@ exports.config = {
       'codeceptjs-cli-reporter': {
         stdout: '-',
         options: { steps: true }
+      },
+      'mocha-junit-reporter': {
+        stdout: '-',
+        options: { mochaFile: './functional-output/result.xml' }
       },
       mochawesome: {
         stdout: './functional-output/console.log',

@@ -3,7 +3,6 @@ const { expect, sinon } = require('test/util/chai');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const server = require('app');
-const httpStatus = require('http-status-codes');
 
 const modulePath = 'app/middleware/draftPetitionStoreMiddleware';
 
@@ -85,8 +84,8 @@ describe(modulePath, () => {
         const featureMock = featureTogglesMock.when('idam', true, test);
         featureMock(done);
       });
-      it('does not attempt to restore session if session populated', done => {
-        req.session = { screenHasMarriageBroken: true };
+      it('does not attempt to restore if we have already fetched from Draft store', done => {
+        req.session = { screenHasMarriageBroken: true, fetchedDraft: true };
         const test = cleanUp => {
           draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
           // wait for promise to resolve
@@ -107,25 +106,6 @@ describe(modulePath, () => {
           setTimeout(() => {
             expect(mockedClient.restoreFromDraftStore.called).to.equal(false);
             expect(next.calledOnce).to.eql(true);
-            cleanUp();
-          }, 1);
-        };
-        const featureMock = featureTogglesMock.when('idam', true, test);
-        featureMock(done);
-      });
-    });
-
-    context('session not restored', () => {
-      it('if no session found run next()', done => {
-        mockedClient.restoreFromDraftStore
-          .rejects({ statusCode: httpStatus.NOT_FOUND });
-        const test = cleanUp => {
-          draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
-          // wait for promise to resolve
-          setTimeout(() => {
-            expect(mockedClient.restoreFromDraftStore.called).to.equal(true);
-            expect(next.calledOnce).to.eql(true);
-            expect(req.session).to.eql({});
             cleanUp();
           }, 1);
         };

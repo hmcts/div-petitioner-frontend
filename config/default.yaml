@@ -122,15 +122,15 @@ commonProps:
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:
-  idam: false
+  idam: true
   fullPaymentEventDataSubmission: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'
   indexUrl: '/index'
-  idamApiUrl: 'http://localhost:8001'
-  idamLoginUrl: 'https://localhost:8000/login'
-  idamSecret: '123456'
+  idamApiUrl: 'http://betaDevBccidamAppLB.reform.hmcts.net:80'
+  idamLoginUrl: 'https://idam-test.dev.ccidam.reform.hmcts.net/login'
+  idamSecret: 'NeSwukuV8jepreQa3u36nafaCREcUsp5'
   idamClientID: 'divorce'
 
 evidenceManagmentClient:

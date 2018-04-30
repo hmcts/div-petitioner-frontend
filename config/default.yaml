@@ -145,6 +145,10 @@ logging:
     - application
     - D8
 
+health:
+  timeout: 5000
+  deadline: 15000
+
 ssl:
   hpkp:
     maxAge: 86400

@@ -8,7 +8,7 @@
 
 {% block form %}
 
-<main id="content" role="main" tabindex="-1" class="contact-details">
+<main role="main" tabindex="-1" class="contact-details">
 
   <p>{{ content.communicateParagraph1 | safe }}</p>
 
@@ -17,7 +17,7 @@
   {% endif %}
 
   <p>{{ content.communicateParagraph2 | safe }}</p>
-  <p><strong>{{ fields.petitionerEmail.value | safe }}</strong></p>
+  <p class="email-font">{{ fields.petitionerEmail.value | safe }}</p>
 
   <fieldset class="form-group confirmation-container {{ ' form-group-error' if fields.petitionerConsent.error }}">
     <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>

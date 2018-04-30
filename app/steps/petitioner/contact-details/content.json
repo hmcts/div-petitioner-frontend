@@ -20,10 +20,6 @@
                 },
 
                 "errors": {
-                    "petitionerEmail": {
-                        "required": "Enter your email address",
-                        "invalid": "Enter a valid email address"
-                    },
                     "petitionerPhoneNumber": {
                         "invalid": "Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
                     },

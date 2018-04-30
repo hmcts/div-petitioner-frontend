@@ -144,7 +144,9 @@ exports.testCYATemplate = (done, underTest) => {
   };
 
   const checkChangeLink = (html) => {
-    expect(html).to.contain(underTest.url);
+    if(! html.toString().includes('Your email address')){ //email is now read-only, should not include change link
+      expect(html).to.contain(underTest.url);
+    }
   };
 
   return getCYATemplate(underTest)

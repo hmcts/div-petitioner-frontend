@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   smoke-tests:
-    image: codeception/codeceptjs:1.1.7
+    image: codeception/codeceptjs:1.1.8
     command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c smoke.conf.js --reporter mocha-multi'
     environment:
       E2E_FRONTEND_URL: ${TEST_URL:-https://localhost:8080}
@@ -12,7 +12,7 @@ services:
       - "../.:/tests"
 
   functional-tests:
-    image: codeception/codeceptjs:1.1.7
+    image: codeception/codeceptjs:1.1.8
     command: bash -c 'NODE_ENV=testing NODE_PATH=. codeceptjs run -c test/end-to-end/codecept.conf.js --reporter mocha-multi'
     environment:
       E2E_FRONTEND_NODE_ENV: ${E2E_FRONTEND_NODE_ENV:-testing}

@@ -19,6 +19,11 @@ client.on('error', error => {
   logger.error(error);
 });
 
+const options = {
+  timeout: config.health.timeout,
+  deadline: config.health.deadline
+};
+
 router.get('/health', healthcheck.configure({
   checks: {
     redis: healthcheck.raw(() => {
@@ -36,7 +41,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     'idam-app': healthcheck.web(config.services.idamApp.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -44,7 +49,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     'feature-toggle-api': healthcheck.web(config.services.featureToggleApi.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -52,7 +57,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -60,7 +65,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     'case-progression': healthcheck.web(config.services.transformation.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -68,7 +73,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     'service-auth-provider-api': healthcheck.web(config.services.serviceAuthProvider.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -76,7 +81,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     'payment-api': healthcheck.web(config.services.payment.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -84,7 +89,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     feeRegister: healthcheck.web(config.services.feeRegister.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -92,7 +97,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }),
+    }, options),
     features: healthcheck.raw(req => {
       return healthcheck.status(Object.keys(req.features) != 0, req.features); // eslint-disable-line eqeqeq
     })

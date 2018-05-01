@@ -5,7 +5,7 @@ vault_section = "prod"
 packages_environment = "prod"
 packages_version = "3.0.0"
 
-additional_host_name = "www.apply-divorce.platform.hmcts.net"
+additional_host_name = "www.apply-divorce.service.gov.uk"
 http_proxy = ""
 
 google_analytics_tracking_id = "UA-93824767-3"

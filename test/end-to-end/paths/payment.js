@@ -1,16 +1,9 @@
-const indexContent = require('app/steps/index/content.json').resources.en.translation.content;
-const indexFeeContent = indexContent.costs.replace('{{ applicationFee.fee_amount }}', '550');
 const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
 const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ applicationFee.fee_amount }}</strong>', '£550');
 const reasonContent = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 
 
 Feature('Payment method');
-
-Scenario('Fee displays on /index page', function (I) {
-  I.amOnPage('/index');
-  I.see(indexFeeContent);
-});
 
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnPage('/index');

@@ -157,7 +157,7 @@ module "frontend" {
     RATE_LIMITER_TOTAL = "${var.rate_limiter_total}"
     RATE_LIMITER_EXPIRE = "${var.rate_limiter_expire}"
 
-    // Specific Court Content - Not in current use, comes from default config
+    // Specific Court Content
     COURT_EASTMIDLANDS_NAME = "${var.court_eastmidlands_name}"
     COURT_EASTMIDLANDS_CITY = "${var.court_eastmidlands_city}"
     COURT_EASTMIDLANDS_POBOX = "${var.court_eastmidlands_pobox}"

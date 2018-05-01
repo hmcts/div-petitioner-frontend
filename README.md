@@ -1,6 +1,5 @@
 # Divorce Frontend
 
-
 The Apply for Divorce frontend.
 
 ## Development

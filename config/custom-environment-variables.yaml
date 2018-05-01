@@ -50,7 +50,6 @@ evidenceManagmentClient:
 commonProps:
   court:
     eastMidlands:
-      phone: COURT_EASTMIDLANDS_PHONE
       divorceCentre: COURT_EASTMIDLANDS_NAME
       courtCity: COURT_EASTMIDLANDS_CITY
       poBox: COURT_EASTMIDLANDS_POBOX

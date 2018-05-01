@@ -39,9 +39,9 @@ module "frontend" {
   location = "${var.location}"
   env = "${var.env}"
   ilbIp = "${var.ilbIp}"
-  is_frontend  = true
+  is_frontend  = "${var.env != "preview" ? true : false}"
   subscription = "${var.subscription}"
-  additional_host_name = "${var.additional_host_name}"
+  additional_host_name = "${var.env != "preview" ? ${var.additional_host_name} : null}"
   https_only = "true"
 
   app_settings = {

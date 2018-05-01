@@ -70,16 +70,6 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, {}, content, 'required');
     });
 
-    it('renders errors for invalid email', done => {
-      const context = {
-        petitionerEmail: 'firstnamelatsname.com',
-        petitionerConsent: 'Yes'
-      };
-
-      const onlyKeys = ['email'];
-
-      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys);
-    });
 
     it('renders errors for invalid phone', done => {
       const context = {

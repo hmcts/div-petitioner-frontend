@@ -170,7 +170,7 @@ module "frontend" {
     COURT_WESTMIDLANDS_NAME = "${var.court_westmidlands_name}"
     COURT_WESTMIDLANDS_CITY = "${var.court_westmidlands_city}"
     COURT_WESTMIDLANDS_POBOX = "${var.court_westmidlands_pobox}"
-    COURT_WESTMIDLANDS_POSTCODE = "${var.court_westmidlands_midlandspostcode}"
+    COURT_WESTMIDLANDS_POSTCODE = "${var.court_westmidlands_postcode}"
     COURT_WESTMIDLANDS_OPENINGHOURS = "${var.court_westmidlands_openinghours}"
     COURT_WESTMIDLANDS_EMAIL = "${var.court_westmidlands_email}"
     COURT_WESTMIDLANDS_PHONENUMBER = "${var.court_westmidlands_phonenumber}"

@@ -17,7 +17,7 @@
   {% endif %}
 
   <p>{{ content.communicateParagraph2 | safe }}</p>
-  <p class="bold-medium">{{ fields.petitionerEmail.value | safe }}</p>
+  <p class="bold-medium">{{ session.petitionerEmail }}</p>
 
   <fieldset class="form-group confirmation-container {{ ' form-group-error' if fields.petitionerConsent.error }}">
     <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>

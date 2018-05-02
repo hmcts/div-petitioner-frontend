@@ -73,7 +73,6 @@ describe(modulePath, () => {
 
     it('renders errors for invalid phone', done => {
       const context = {
-        petitionerEmail: 'firstname@latsname.com',
         petitionerPhoneNumber: 'asdfqwer',
         petitionerConsent: 'Yes'
       };
@@ -84,10 +83,7 @@ describe(modulePath, () => {
     });
 
     it('renders errors for missing consent', done => {
-      const context = {
-        petitionerEmail: 'firstname@latsname.com',
-        petitionerPhoneNumber: '292834726'
-      };
+      const context = { petitionerPhoneNumber: '292834726' };
 
       const onlyKeys = ['petitionerConsent'];
 
@@ -97,10 +93,7 @@ describe(modulePath, () => {
 
   describe('success', () => {
     it('redirects to the next page when valid email is entered and consent is given', done => {
-      const context = {
-        petitionerEmail: 'firstname@latsname.com',
-        petitionerConsent: 'Yes'
-      };
+      const context = { petitionerConsent: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.PetitionerHomeAddress);
@@ -108,7 +101,6 @@ describe(modulePath, () => {
 
     it('redirects to the next page when valid phone is entered and consent is given', done => {
       const context = {
-        petitionerEmail: 'firstname@latsname.com',
         petitionerPhoneNumber: '292834726',
         petitionerConsent: 'Yes'
       };
@@ -120,21 +112,26 @@ describe(modulePath, () => {
 
   describe('Check Your Answers', () => {
     it('renders the cya template', done => {
-      testCYATemplate(done, underTest);
+      const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
+      const session = { petitionerEmail: 'test@test.com' };
+      testCYATemplate(done, underTest, dataPhoneNumber, session);
     });
 
     it('renders when petitionerEmail is entered', done => {
+      const dataEmpty = { };
+      const session = { petitionerEmail: 'simulate-delivered@notifications.service.gov.uk' };
+
       const contentToExist = ['email'];
 
       const valuesToExist = ['petitionerEmail'];
 
-      const context = { petitionerEmail: 'simulate-delivered@notifications.service.gov.uk' };
-
       testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
+        contentToExist, valuesToExist, dataEmpty, session);
     });
 
     it('renders when petitionerEmail and number is entered', done => {
+      const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
+
       const contentToExist = [
         'email',
         'petitionerPhoneNumber'
@@ -145,13 +142,13 @@ describe(modulePath, () => {
         'petitionerPhoneNumber'
       ];
 
-      const context = {
+      const session = {
         petitionerEmail: 'simulate-delivered@notifications.service.gov.uk',
         petitionerPhoneNumber: '0123456789'
       };
 
       testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
+        contentToExist, valuesToExist, dataPhoneNumber, session);
     });
   });
 });

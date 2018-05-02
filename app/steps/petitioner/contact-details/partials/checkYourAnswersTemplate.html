@@ -1,6 +1,7 @@
 <tr>
   <th>{{ content.email | safe }}</th>
-  <td>{{ fields.petitionerEmail.value }}</td>
+  <td>{{ session.petitionerEmail }}</td>
+  <td>&nbsp;</td>
 </tr>
 {% if fields.petitionerPhoneNumber.value %}
   <tr>

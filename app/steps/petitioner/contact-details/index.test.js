@@ -36,11 +36,17 @@ describe(modulePath, () => {
     beforeEach(done => {
       session = clone(mockSession);
       session.petitionerContactDetailsConfidential = 'share';
+      session.petitionerEmail = 'test@test.com';
       withSession(done, agent, session);
     });
     it('should not show confidential message', done => {
       testNonExistence(done, agent, underTest,
         content.resources.en.translation.content.confidentialContactDetails,
+        session);
+    });
+    it('should show email address', done => {
+      testExistence(done, agent, underTest,
+        'test@test.com',
         session);
     });
   });
@@ -50,11 +56,17 @@ describe(modulePath, () => {
     beforeEach(done => {
       session = clone(mockSession);
       session.petitionerContactDetailsConfidential = 'private';
+      session.petitionerEmail = 'test@test.com';
       withSession(done, agent, session);
     });
     it('should show confidential message', done => {
       testExistence(done, agent, underTest,
         content.resources.en.translation.content.confidentialContactDetails,
+        session);
+    });
+    it('should show email address', done => {
+      testExistence(done, agent, underTest,
+        'test@test.com',
         session);
     });
   });
@@ -92,7 +104,7 @@ describe(modulePath, () => {
   });
 
   describe('success', () => {
-    it('redirects to the next page when valid email is entered and consent is given', done => {
+    it('redirects to the next page when consent is given', done => {
       const context = { petitionerConsent: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
@@ -117,7 +129,7 @@ describe(modulePath, () => {
       testCYATemplate(done, underTest, dataPhoneNumber, session);
     });
 
-    it('renders when petitionerEmail is entered', done => {
+    it('renders when petitionerEmail is in the session', done => {
       const dataEmpty = { };
       const session = { petitionerEmail: 'simulate-delivered@notifications.service.gov.uk' };
 
@@ -129,7 +141,7 @@ describe(modulePath, () => {
         contentToExist, valuesToExist, dataEmpty, session);
     });
 
-    it('renders when petitionerEmail and number is entered', done => {
+    it('renders when petitionerEmail is present and number is entered', done => {
       const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
 
       const contentToExist = [

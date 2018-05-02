@@ -42,7 +42,7 @@ exports.config = {
         options: { mochaFile: './functional-output/result.xml' }
       },
       mochawesome: {
-        stdout: './functional-output/mochawesome.log.',
+        stdout: './functional-output/mochawesome.log',
         options: {
           reportDir: process.env.E2E_OUTPUT_DIR || './functional-output',
           reportName: 'index',

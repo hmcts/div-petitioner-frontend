@@ -121,7 +121,7 @@ commonProps:
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:
-  idam: true
+  idam: false
   fullPaymentEventDataSubmission: true
 
 idamArgs:

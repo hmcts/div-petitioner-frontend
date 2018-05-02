@@ -36,7 +36,6 @@ describe(modulePath, () => {
     beforeEach(done => {
       session = clone(mockSession);
       session.petitionerContactDetailsConfidential = 'share';
-      session.petitionerEmail = 'test@test.com';
       withSession(done, agent, session);
     });
     it('should not show confidential message', done => {
@@ -46,7 +45,7 @@ describe(modulePath, () => {
     });
     it('should show email address', done => {
       testExistence(done, agent, underTest,
-        'test@test.com',
+        session.petitionerEmail,
         session);
     });
   });
@@ -56,7 +55,6 @@ describe(modulePath, () => {
     beforeEach(done => {
       session = clone(mockSession);
       session.petitionerContactDetailsConfidential = 'private';
-      session.petitionerEmail = 'test@test.com';
       withSession(done, agent, session);
     });
     it('should show confidential message', done => {
@@ -66,7 +64,7 @@ describe(modulePath, () => {
     });
     it('should show email address', done => {
       testExistence(done, agent, underTest,
-        'test@test.com',
+        session.petitionerEmail,
         session);
     });
   });

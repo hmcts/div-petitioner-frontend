@@ -22,7 +22,7 @@ export COURT_PHONENUMBER="0300 303 0642"
 export COURT_OPENINGHOURS="Monday to Friday, 8.30am to 5pm"
 export COURT_EMAIL="Divorce_Reform_Pro@Justice.gov.uk"
 export E2E_WAIT_FOR_TIMEOUT_VALUE=10000
-export E2E_WAIT_FOR_ACTION_VALUE=250
+export E2E_WAIT_FOR_ACTION_VALUE=350
 
 docker-compose -f ${COMPOSE_FILE} run functional-tests
 shutdownDocker

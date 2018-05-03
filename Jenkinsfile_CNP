@@ -6,13 +6,10 @@ String product = "div"
 String component = "pfe"
 
 withPipeline("nodejs", product, component) {  
-  before('build') {
-    env.TEST_URL = "https://div-pfe-demo.service.core-compute-demo.internal"
-    sh './bin/run-functional-tests.sh'
-  }
-
   after('build') {
     sh 'yarn setup'
+    env.TEST_URL = "https://div-pfe-demo.service.core-compute-demo.internal"
+    sh './bin/run-functional-tests.sh'
   }
   
   enableSlackNotifications('#div-dev')

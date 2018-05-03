@@ -125,6 +125,7 @@ module.exports = class PayOnline extends Step {
 
         const id = req.session.currentPaymentId;
         const nextUrl = req.session.payments[id].nextUrl;
+        req.session.paymentMethod = 'card-online';
         res.redirect(nextUrl);
       })
 
@@ -138,10 +139,5 @@ module.exports = class PayOnline extends Step {
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
-  }
-
-  action(ctx, session) {
-    session.paymentMethod = 'card-online';
-    return [ctx, session];
   }
 };

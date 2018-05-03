@@ -9,7 +9,11 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
     env.TEST_URL = "https://div-pfe-demo.service.core-compute-demo.internal"
-    sh './bin/run-functional-tests.sh'
+    try {    
+      sh './bin/run-functional-tests.sh'
+    } finally {
+      steps.archiveArtifacts allowEmptyArtifacts: true, artifacts: 'functional-output/*'
+    }
   }
   
   enableSlackNotifications('#div-dev')

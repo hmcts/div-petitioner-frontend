@@ -6,7 +6,7 @@ console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-li
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: './paths/**/*.js',
+  tests: './paths/**/upload*.js',
   output: '../../functional-output',
   helpers: {
     Puppeteer: {

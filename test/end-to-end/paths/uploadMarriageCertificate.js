@@ -45,7 +45,7 @@ Scenario('Test ability validate document type', function* (I) {
 
     // Test can NOT upload .zip
     I.testUploadResponse(isDragAndDropSupported, '/assets/image.zip');
-    I.see('The file must be in jpg, bmp, tiff, png or PDF format.');
+    I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
   } else {
     I.say('JS upload disabled - skipping');
   }

@@ -5,17 +5,15 @@ const sessionSerializer = require('app/services/sessionSerializer');
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const ioRedis = require('ioredis');
 
-
 const secret = CONF.secret;
 const redisHost = CONF.services.redis.host;
 const ttl = CONF.session.ttl;
 const cookieSecure = process.env.PUBLIC_PROTOCOL === 'https';
-const environment = CONF.environment;
 
 const sessions = module.exports = { // eslint-disable-line no-multi-assign
 
   prod: (req, res, next) => {
-    if (environment === 'testing') {
+    if (CONF.environment === 'testing') {
       return sessions.inmemory();
     }
 

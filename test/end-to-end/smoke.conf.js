@@ -1,6 +1,6 @@
 exports.config = {
-  tests: './test/end-to-end/smoke/*.js',
-  output: './smoke-output',
+  tests: './smoke/*.js',
+  output: '../../smoke-output',
   timeout: 5000,
   helpers: {
     Nightmare: {

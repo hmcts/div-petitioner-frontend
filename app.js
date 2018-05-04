@@ -20,7 +20,7 @@ const helmet = require('helmet');
 const csurf = require('csurf');
 const { fetchToggles } = require('@hmcts/div-feature-toggle-client')({
   env: process.env.NODE_ENV,
-  featureToggleApiUrl: process.env.FEATURE_TOGGLE_API_URL || CONF.services.featureToggleApiUrl
+  featureToggleApiUrl: CONF.services.featureToggleApiUrl
 });
 const i18nTemplate = require('app/core/utils/i18nTemplate')({
   viewDirectory: './app/views/',
@@ -39,7 +39,7 @@ const healthcheck = require('app/services/healthcheck');
 const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
-const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
+const PORT = CONF.http.port || CONF.http.porttactical;
 
 const logger = logging.Logger.getLogger(__filename);
 

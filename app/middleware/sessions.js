@@ -6,7 +6,7 @@ const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const ioRedis = require('ioredis');
 
 const secret = CONF.secret;
-const redisHost = process.env.REDISCLOUD_URL || CONF.services.redis.host;
+const redisHost = CONF.services.redis.host;
 const ttl = CONF.session.ttl;
 const cookieSecure = process.env.PUBLIC_PROTOCOL === 'https';
 

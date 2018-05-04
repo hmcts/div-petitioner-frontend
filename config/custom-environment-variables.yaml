@@ -1,6 +1,6 @@
 appName: PACKAGES_NAME
 project: PACKAGES_PROJECT
-environment: PACKAGES_ENVIRONMENT
+environment: NODE_ENV
 version: PACKAGES_VERSION
 deployment_env: DEPLOYMENT_ENV
 

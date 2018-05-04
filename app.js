@@ -18,8 +18,9 @@ const errorHandler = require('app/core/errorHandler');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
 const csurf = require('csurf');
+const environment = CONF.environment;
 const { fetchToggles } = require('@hmcts/div-feature-toggle-client')({
-  env: process.env.NODE_ENV,
+  env: environment,
   featureToggleApiUrl: CONF.services.featureToggleApiUrl
 });
 const i18nTemplate = require('app/core/utils/i18nTemplate')({
@@ -44,7 +45,7 @@ const PORT = CONF.http.port || CONF.http.porttactical;
 const logger = logging.Logger.getLogger(__filename);
 
 exports.init = () => {
-  if (process.env.NODE_ENV === 'production') {
+  if (environment === 'production') {
     appInsights.setup(CONF.applicationInsights.instrumentationKey).start();
   }
 
@@ -173,7 +174,7 @@ exports.init = () => {
   //  register steps with the express app
   const steps = initSteps(app, stepDefinitions);
 
-  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing') {
+  if (environment === 'development' || environment === 'testing') {
     //  site graph
     app.get('/graph', (req, res) => {
       const graph = siteGraph(steps);
@@ -202,12 +203,12 @@ exports.init = () => {
     res.render(view, {});
   }));
 
-  if (process.env.NODE_ENV !== 'testing') {
+  if (environment !== 'testing') {
     app.use(errorHandler(steps));
   }
 
   let http = {};
-  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing') {
+  if (environment === 'development' || environment === 'testing') {
     const sslDirectory = path.join(__dirname, 'app', 'resources', 'localhost-ssl');
 
     const sslOptions = {

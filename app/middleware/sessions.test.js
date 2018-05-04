@@ -26,7 +26,7 @@ describe(modulePath, () => {
     sessionSerializer.createSerializer.restore();
   });
 
-  describe('#prod', () => {
+  describe.only('#prod', () => {
     it('should use memory if NODE_ENV is testing', done => {
       process.env.NODE_ENV = 'testing';
       const session = sessions.prod();

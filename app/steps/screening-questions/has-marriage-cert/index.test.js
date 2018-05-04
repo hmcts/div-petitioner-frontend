@@ -5,7 +5,6 @@ const idamMock = require('test/mocks/idam');
 
 const modulePath = 'app/steps/screening-questions/has-marriage-cert';
 const content = require(`${modulePath}/content`);
-const { withSession } = require('test/util/setup');
 
 let s = {};
 let agent = {};
@@ -28,8 +27,6 @@ describe(modulePath, () => {
 
   describe('success', () => {
     it('renders the content from the content file', done => {
-      withSession(() => {}, agent); // eslint-disable-line no-empty-function
-
       testContent(done, agent, underTest, content);
     });
 

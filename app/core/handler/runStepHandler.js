@@ -7,7 +7,6 @@ const transformationServiceClient = require('app/services/transformationServiceC
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const CONF = require('config');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
-const environment = CONF.environment;
 
 const authTokenString = '__auth-token';
 
@@ -18,7 +17,7 @@ const options = {
 
 const saveSessionToDraftPetitionStore = (req, session,
   saveAndResumeUrl, sendEmail) => {
-  const production = environment === 'production';
+  const production = CONF.environment === 'production';
   const client = production ? transformationServiceClient.init(options) : mockedClient;
 
   // Properties that should be removed from the session before saving to draft store
@@ -138,7 +137,7 @@ module.exports = curry((step, req, res) => {
           } catch (error) {
             res.sendStatus(statusCode.INTERNAL_SERVER_ERROR);
           }
-        } else if (environment === 'testing') {
+        } else if (CONF.environment === 'testing') {
           // if running unit tests
           //  fetch all the content from the content files
           const content = yield step.generateContent(ctx, session);

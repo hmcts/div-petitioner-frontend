@@ -5312,9 +5312,9 @@ nodesecurity-npm-utils@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/nodesecurity-npm-utils/-/nodesecurity-npm-utils-5.0.0.tgz#05aa30de30ca8c845c4048e94fd78e5e08b55ed9"
 
-nomnoml@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/nomnoml/-/nomnoml-0.0.4.tgz#f7cf7988934983fbd40b485aedc0100aea2f556e"
+nomnoml@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nomnoml/-/nomnoml-0.2.0.tgz#0b4e34b5bc76f30214fd0ed97ac6fc0c66181ffc"
   dependencies:
     dagre "0.4.x"
     lodash "~3.7.0"

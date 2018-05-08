@@ -82,7 +82,7 @@
     "lodash": "^4.16.4",
     "moment": "^2.19.3",
     "negotiator": "^0.6.1",
-    "nomnoml": "0.0.4",
+    "nomnoml": "0.2.0",
     "nunjucks": "2.5.2",
     "redis-server": "^1.2.0",
     "request": "^2.83.0",

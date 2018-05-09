@@ -1,3 +1,5 @@
+const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
+
 Feature('Upload Marriage Certificate');
 
 Scenario('Test upload', function* (I) {
@@ -28,24 +30,28 @@ Scenario('Test ability validate document type', function* (I) {
 
   if(isDragAndDropSupported){
     // Test can upload .pdf
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.pdf');
-    I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/test_pdf.pdf');
+    I.dontSee(content.errorUnknown);
+    I.dontSee(content.errorFileTypeInvalid);
 
     // Test can upload .png
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.png');
-    I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/test_png.png');
+    I.dontSee(content.errorUnknown);
+    I.dontSee(content.errorFileTypeInvalid);
 
     // Test can upload .bmp
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.bmp');
-    I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/test_bmp.bmp');
+    I.dontSee(content.errorUnknown);
+    I.dontSee(content.errorFileTypeInvalid);
 
     // Test can upload .tiff
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.tiff');
-    I.dontSee('The file must be in jpg, bmp, tiff, png or PDF format.');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/test_tif.tif');
+    I.dontSee(content.errorUnknown);
+    I.dontSee(content.errorFileTypeInvalid);
 
     // Test can NOT upload .zip
-    I.testUploadResponse(isDragAndDropSupported, '/test/end-to-end/assets/image.zip');
-    I.see('The file must be in jpg, bmp, tiff, png or PDF format.');
+    I.testUploadResponse(isDragAndDropSupported, '/assets/image.zip');
+    I.see(content.errorFileTypeInvalid);
   } else {
     I.say('JS upload disabled - skipping');
   }

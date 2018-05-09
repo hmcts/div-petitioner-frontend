@@ -17,7 +17,7 @@ const options = {
 
 const saveSessionToDraftPetitionStore = (req, session,
   saveAndResumeUrl, sendEmail) => {
-  const production = process.env.NODE_ENV === 'production';
+  const production = CONF.environment === 'production';
   const client = production ? transformationServiceClient.init(options) : mockedClient;
 
   // Properties that should be removed from the session before saving to draft store
@@ -137,7 +137,7 @@ module.exports = curry((step, req, res) => {
           } catch (error) {
             res.sendStatus(statusCode.INTERNAL_SERVER_ERROR);
           }
-        } else if (process.env.NODE_ENV === 'testing') {
+        } else if (CONF.environment === 'testing') {
           // if running unit tests
           //  fetch all the content from the content files
           const content = yield step.generateContent(ctx, session);

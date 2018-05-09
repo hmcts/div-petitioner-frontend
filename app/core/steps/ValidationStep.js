@@ -48,7 +48,7 @@ module.exports = class ValidationStep extends Step {
     this.properties = this.uniqueProperties(this.schema);
   }
 
-  next(pathData) {
+  next(pathData, session) { // eslint-disable-line no-unused-vars
     if (this.nextStep instanceof Step) {
       return super.next(pathData);
     }

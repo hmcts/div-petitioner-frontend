@@ -130,4 +130,18 @@ idamArgs:
   idamTestLevelOfAccess: IDAM_TEST_LEVEL_OF_ACCESS
   idamTestSupportCreateAccountEndpoint: IDAM_TEST_SUPPORT_CREATE_ACCOUNT_ENDPOINT
 
-defaultEnvironmentNodeEnv: E2E_FRONTEND_NODE_ENV
+e2e:
+  frontendUrl: E2E_FRONTEND_URL
+  proxyServer: E2E_PROXY_SERVER
+  proxyBypassList: E2E_PROXY_BYPASS
+  outputDirectory: E2E_OUTPUT_DIR
+  defaultEnvironmentNodeEnv: E2E_FRONTEND_NODE_ENV
+  waitForTimeoutValue: E2E_WAIT_FOR_TIMEOUT_VALUE
+  waitForActionValue: E2E_WAIT_FOR_ACTION_VALUE
+
+testUrl: TEST_URL
+divorceHttpProxy: DIVORCE_HTTP_PROXY
+
+public:
+  protocol: PUBLIC_PROTOCOL
+  hostname: PUBLIC_HOSTNAME

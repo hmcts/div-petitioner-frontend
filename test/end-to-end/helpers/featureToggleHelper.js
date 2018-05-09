@@ -22,7 +22,7 @@ class FeatureToggleHelper extends Helper {
   getFeatureEnabled(feature, defaultValue, origin = 'other') {
 
     return get(feature, defaultValue || CONF.features[feature], origin, {
-      node_env: CONF.defaultEnvironmentNodeEnv
+      node_env: CONF.e2e.defaultEnvironmentNodeEnv
     })
       .then(() => {
         return features[feature];

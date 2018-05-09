@@ -57,8 +57,6 @@ services:
     health: 'http://localhost:4421/health'
     TTL: 43200 # time to save fee register records in seconds ( 12 hours = 43200 )
 
-defaultEnvironmentNodeEnv: 'development'
-
 secret: setasecretyoufool
 sessionEncryptionSecret: myVeryTopSecretK
 
@@ -163,3 +161,15 @@ rateLimiter:
 
 applicationInsights:
   instrumentationKey: 'dummy-key'
+
+e2e:
+  frontendUrl: 'https://localhost:8080'
+  proxyServer: ''
+  proxyBypassList: ''
+  outputDirectory: './functional-output'
+  defaultEnvironmentNodeEnv: 'development'
+  waitForTimeoutValue: 10000
+  waitForActionValue: 1000
+
+public:
+  protocol: 'https'

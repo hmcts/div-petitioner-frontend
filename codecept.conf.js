@@ -1,6 +1,8 @@
 /* eslint-disable no-magic-numbers */
-const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
-const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 1000;
+const CONF = require('config');
+
+const waitForTimeout = parseInt(CONF.e2e.waitForTimeoutValue);
+const waitForAction = parseInt(CONF.e2e.waitForActionValue);
 
 console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-line no-console
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
@@ -11,7 +13,7 @@ exports.config = {
   timeout: waitForTimeout,
   helpers: {
     Nightmare: {
-      url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
+      url: CONF.e2e.frontendUrl,
       waitForTimeout,
       loadTimeout: waitForTimeout,
       typeInterval: 100,
@@ -19,8 +21,8 @@ exports.config = {
       show: false,
       switches: {
         'ignore-certificate-errors': true,
-        'proxy-server': process.env.E2E_PROXY_SERVER || '',
-        'proxy-bypass-list': process.env.E2E_PROXY_BYPASS || ''
+        'proxy-server': CONF.e2e.proxyServer,
+        'proxy-bypass-list': CONF.e2e.proxyBypassList
       }
     },
     FeatureToggleHelper: { require: './test/end-to-end/helpers/featureToggleHelper.js' },
@@ -45,7 +47,7 @@ exports.config = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+          reportDir: CONF.e2e.outputDirectory,
           reportName: 'index',
           inlineAssets: true
         }

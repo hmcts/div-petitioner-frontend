@@ -146,11 +146,11 @@ exports.init = () => {
 
   const feature = name => {
     const hasConfigFlag = typeof CONF.features[name] === 'undefined' ? 'other' : 'default config';
-    const origin = process.env[name] ? 'process env' : hasConfigFlag;
+    const origin = CONF[name] ? 'process env' : hasConfigFlag;
 
     return {
       feature: name,
-      defaultState: process.env[name] || CONF.features[name],
+      defaultState: CONF[name] || CONF.features[name],
       origin
     };
   };

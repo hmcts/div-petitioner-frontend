@@ -6,7 +6,7 @@ function confirmIWillPayOnline() {
   const I = this;
 
   I.seeCurrentUrlEquals('/pay/online');
-  I.see(feeContent);
+  I.waitForText(feeContent);
   I.click('Continue');
 }
 

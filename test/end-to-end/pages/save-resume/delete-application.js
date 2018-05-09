@@ -5,7 +5,7 @@ function confirmRemoveApplication() {
 
   I.seeCurrentUrlEquals('/save-return/delete-application');
   I.see(content.question);
-  I.click(content.yes);
+  I.navByClick(content.yes);
 
   I.navByClick('Continue');
 }
@@ -15,7 +15,7 @@ function declineRemoveApplicaiton() {
 
   I.seeCurrentUrlEquals('/save-return/delete-application');
   I.see(content.question);
-  I.click(content.no);
+  I.navByClick(content.no);
 
   I.navByClick('Continue');
 }

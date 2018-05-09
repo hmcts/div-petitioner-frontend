@@ -19,6 +19,6 @@ Scenario('Logount on Save and close', function (I) {
     I.see(idamConfigHelper.getTestEmail());
   }
 
-  I.click('Back');
+  I.navByClick('Back');
   I.startApplication();
 });

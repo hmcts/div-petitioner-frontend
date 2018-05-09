@@ -6,7 +6,7 @@ function enterHelpWithFees(appliedForFees = content.yes) {
   const I = this;
 
   I.seeCurrentUrlEquals('/pay/help/with-fees');
-  I.click('#helpWithFeesAppliedForFees_' + appliedForFees);
+  I.navByClick('#helpWithFeesAppliedForFees_' + appliedForFees);
   if (appliedForFees) {
     I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
   }

@@ -6,7 +6,7 @@ function enterAddressUsingPostcode(stepUrl, testAddressIndex) {
   }
   I.seeCurrentUrlEquals(stepUrl);
   I.fillField('postcode', 'SW9 9PE');
-  I.click('Find address');
+  I.navByClick('Find address');
   I.waitForVisible('#selectAddressIndex');
   I.selectOption('#selectAddressIndex', testAddressIndex);
   I.wait(3);

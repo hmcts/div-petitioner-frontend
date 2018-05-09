@@ -91,7 +91,7 @@ Scenario('Exit if 5 years separation chosen but actual separation date is less',
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.seeCurrentUrlEquals('/exit/separation');
-  I.click('choose another reason');
+  I.navByClick('choose another reason');
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
 });
 

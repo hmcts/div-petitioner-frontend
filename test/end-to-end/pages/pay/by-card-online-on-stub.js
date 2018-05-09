@@ -6,7 +6,7 @@ function payOnStubPages(success = true) {
 
   I.seeCurrentUrlEquals('/pay/gov-pay-stub');
   I.checkOption(success ? content.success : content.failure);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { payOnStubPages };

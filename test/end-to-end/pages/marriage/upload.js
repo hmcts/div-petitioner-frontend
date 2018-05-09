@@ -19,7 +19,7 @@ function uploadMarriageCertificateFile(isDragAndDropSupported) {
   I.waitForVisible('.file', 30);
   I.waitForText('Remove', 30);
   I.waitForVisible('input[value="Continue"]:not([disabled])');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function testUploadResponse(isDragAndDropSupported, assetPath) {
@@ -40,7 +40,7 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   I.click('Remove');
   I.waitForInvisible('.file');
   I.dontSee('Remove');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = {

@@ -6,7 +6,7 @@ function selectDivorceType() {
 
   I.seeCurrentUrlEquals('/about-your-marriage/details');
   I.checkOption(content.husband);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { selectDivorceType };

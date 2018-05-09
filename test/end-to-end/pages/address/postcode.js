@@ -11,7 +11,7 @@ function enterAddressUsingPostcode(stepUrl, testAddressIndex) {
   I.selectOption('#selectAddressIndex', testAddressIndex);
   I.wait(3);
   I.waitForElement('#addressLine0');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterAddressUsingPostcode };

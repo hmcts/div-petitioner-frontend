@@ -6,7 +6,7 @@ function chooseJurisdictionInterstitialContinue() {
 
   I.seeCurrentUrlEquals('/jurisdiction/interstitial');
   I.checkOption(content.confident);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseJurisdictionInterstitialNeedInfo() {
@@ -15,7 +15,7 @@ function chooseJurisdictionInterstitialNeedInfo() {
 
   I.seeCurrentUrlEquals('/jurisdiction/interstitial');
   I.checkOption(content.needInfo);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { chooseJurisdictionInterstitialContinue, chooseJurisdictionInterstitialNeedInfo };

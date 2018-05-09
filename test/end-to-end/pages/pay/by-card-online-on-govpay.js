@@ -16,7 +16,7 @@ function payOnGovPay() {
   I.fillField('addressCity', 'London');
   I.fillField('addressPostcode', 'SW9 9PE');
   I.fillField('email', 'simulate-delivered+divorce@notifications.service.gov.uk');
-  I.click('Continue');
+  I.navByClick('Continue');
   I.waitInUrl('/confirm');
   I.click('Confirm payment');
   I.wait(10);
@@ -36,7 +36,7 @@ function payOnGovPayFailure() {
   I.fillField('addressCity', 'London');
   I.fillField('addressPostcode', 'SW9 9PE');
   I.fillField('email', 'simulate-delivered+divorce@notifications.service.gov.uk');
-  I.click('Continue');
+  I.navByClick('Continue');
   I.waitForText('Your payment has been declined');
   I.click('Go back to try the payment again');
 }

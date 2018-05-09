@@ -8,7 +8,7 @@ function selectFinancialArrangements() {
   I.checkOption(content.yes);
   I.checkOption(content.petitioner);
   I.checkOption(content.children);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { selectFinancialArrangements };

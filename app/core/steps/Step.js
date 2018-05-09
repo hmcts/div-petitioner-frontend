@@ -89,7 +89,7 @@ module.exports = class Step {
     return ctx;
   }
 
-  interceptor(ctx/* , session*/) {
+  interceptor(ctx, session) { // eslint-disable-line no-unused-vars
     return ctx;
   }
 
@@ -111,7 +111,7 @@ module.exports = class Step {
     });
   }
 
-  generateFields(ctx/* , session*/) {
+  generateFields(ctx, session) { // eslint-disable-line no-unused-vars
     return mapValues(ctx, v => {
       return { value: v, error: false };
     });
@@ -174,6 +174,8 @@ module.exports = class Step {
   * postRequest(req, res) {
     if (!res.headersSent) {
       res.sendStatus(statusCodes.METHOD_NOT_ALLOWED);
+      // add yield to satisfy sonarqube
+      yield Promise.resolve();
     }
   }
 

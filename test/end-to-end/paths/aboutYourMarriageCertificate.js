@@ -17,8 +17,8 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.startApplication();
   I.haveBrokenMarriage();
   I.amOnPage('/about-your-marriage/about-your-marriage-certificate');
-  I.navByClick('#certificateInEnglish_No');
-  I.navByClick('#certifiedTranslation_Yes');
+  I.click('#certificateInEnglish_No');
+  I.click('#certifiedTranslation_Yes');
   I.navByClick('Continue');
   I.seeCurrentUrlEquals('/about-your-marriage/foreign-certificate');
 });
@@ -29,8 +29,8 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.startApplication();
   I.haveBrokenMarriage();
   I.amOnPage('/about-your-marriage/about-your-marriage-certificate');
-  I.navByClick('#certificateInEnglish_No');
-  I.navByClick('#certifiedTranslation_No');
+  I.click('#certificateInEnglish_No');
+  I.click('#certifiedTranslation_No');
   I.navByClick('Continue');
   I.seeCurrentUrlEquals('/exit/about-your-marriage/no-certificate-translated');
 });

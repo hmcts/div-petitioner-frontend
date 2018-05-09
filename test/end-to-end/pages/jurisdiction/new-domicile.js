@@ -4,8 +4,8 @@ function chooseBothDomiciled() {
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
 
-  I.navByClick('[for~="jurisdictionPetitionerDomicile_Yes"]');
-  I.navByClick('[for~="jurisdictionRespondentDomicile_Yes"]');
+  I.click('[for~="jurisdictionPetitionerDomicile_Yes"]');
+  I.click('[for~="jurisdictionRespondentDomicile_Yes"]');
   I.navByClick('Continue');
 }
 
@@ -15,8 +15,8 @@ function chooseNeitherDomiciled() {
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
 
-  I.navByClick('[for~="jurisdictionPetitionerDomicile_No"]');
-  I.navByClick('[for~="jurisdictionRespondentDomicile_No"]');
+  I.click('[for~="jurisdictionPetitionerDomicile_No"]');
+  I.click('[for~="jurisdictionRespondentDomicile_No"]');
   I.navByClick('Continue');
 }
 
@@ -26,8 +26,8 @@ function choosePetitionerDomiciled() {
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
 
-  I.navByClick('[for~="jurisdictionPetitionerDomicile_Yes"]');
-  I.navByClick('[for~="jurisdictionRespondentDomicile_No"]');
+  I.click('[for~="jurisdictionPetitionerDomicile_Yes"]');
+  I.click('[for~="jurisdictionRespondentDomicile_No"]');
   I.navByClick('Continue');
 }
 
@@ -37,8 +37,8 @@ function chooseRespondentDomiciled() {
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
 
-  I.navByClick('[for~="jurisdictionPetitionerDomicile_No"]');
-  I.navByClick('[for~="jurisdictionRespondentDomicile_Yes"]');
+  I.click('[for~="jurisdictionPetitionerDomicile_No"]');
+  I.click('[for~="jurisdictionRespondentDomicile_Yes"]');
   I.navByClick('Continue');
 }
 module.exports = {

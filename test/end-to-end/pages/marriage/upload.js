@@ -7,7 +7,7 @@ function upload(file, isDragAndDropSupported) {
   else {
     I.waitForVisible('.file-upload-input');
     I.attachFile('.file-upload-input', file);
-    I.navByClick('Upload');
+    I.click('Upload');
   }
 }
 
@@ -37,7 +37,7 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForVisible('.file', 30);
   I.waitForText('Remove', 30);
-  I.navByClick('Remove');
+  I.click('Remove');
   I.waitForInvisible('.file');
   I.dontSee('Remove');
   I.navByClick('Continue');

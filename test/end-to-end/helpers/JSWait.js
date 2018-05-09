@@ -11,10 +11,9 @@ class JSWait extends codecept_helper {
   };
 
   async navByClick (text, locator) {
-    await this.helpers['Puppeteer'].click(text, locator);
+    this.helpers['Puppeteer'].click(text, locator);
 
-    const page = this.helpers['Puppeteer'].page;
-    await Promise.race([page.waitForNavigation({waitUntil: 'networkidle0'}), this.helpers['Puppeteer'].wait(5)]);
+    await this.helpers['Puppeteer'].page.waitForNavigation({waitUntil: 'networkidle0'});
   };
 }
 

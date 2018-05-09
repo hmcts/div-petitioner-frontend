@@ -25,7 +25,7 @@ function enterUnreasonableBehaviourAddMoreExamples() {
   I.dontSeeElement('#how-behaved-example-3');
   I.dontSeeElement('#how-behaved-example-4');
   I.dontSeeElement('#how-behaved-example-5');
-  I.navByClick('.add-example-link');
+  I.click('.add-example-link');
   I.seeElement('.add-example-link');
   I.seeElement('#how-behaved-example-0');
   I.seeElement('#how-behaved-example-1');
@@ -33,7 +33,7 @@ function enterUnreasonableBehaviourAddMoreExamples() {
   I.seeElement('#how-behaved-example-3');
   I.dontSeeElement('#how-behaved-example-4');
   I.dontSeeElement('#how-behaved-example-5');
-  I.navByClick('.add-example-link');
+  I.click('.add-example-link');
   I.seeElement('.add-example-link');
   I.seeElement('#how-behaved-example-0');
   I.seeElement('#how-behaved-example-1');
@@ -41,7 +41,7 @@ function enterUnreasonableBehaviourAddMoreExamples() {
   I.seeElement('#how-behaved-example-3');
   I.seeElement('#how-behaved-example-4');
   I.dontSeeElement('#how-behaved-example-5');
-  I.navByClick('.add-example-link');
+  I.click('.add-example-link');
   I.dontSeeElement('.add-example-link');
   I.seeElement('#how-behaved-example-0');
   I.seeElement('#how-behaved-example-1');

@@ -33,12 +33,12 @@ function selectMarriageCertificateNotEnglishNoTranslation() {
 
 
 function clickCertificateInEnglish(I, value) {
-  I.navByClick(`#certificateInEnglish_${value}`);
+  I.click(`#certificateInEnglish_${value}`);
 
 }
 
 function clickCertifiedTranslation(I, value) {
-  I.navByClick(`#certifiedTranslation_${value}`);
+  I.click(`#certifiedTranslation_${value}`);
 
 }
 

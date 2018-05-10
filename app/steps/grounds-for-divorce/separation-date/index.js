@@ -1,17 +1,16 @@
 const CONF = require('config');
 const moment = require('moment');
-const OptionStep = require('app/core/OptionStep');
+const ValidationStep = require('app/core/steps/ValidationStep');
 const utils = require('app/services/utils');
 const { filter, some, isEmpty, map } = require('lodash');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const { watch } = require('app/core/helpers/staleDataManager');
 
 const DATE_FORMAT = CONF.dateFormat;
 
 const TWO_YEARS = 2;
 const FIVE_YEARS = 5;
 
-module.exports = class SeparationDate extends OptionStep {
+module.exports = class SeparationDate extends ValidationStep {
   get url() {
     return '/about-divorce/reason-for-divorce/separated';
   }
@@ -22,10 +21,6 @@ module.exports = class SeparationDate extends OptionStep {
         false: this.steps.LegalProceedings
       }
     };
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   constructor(...args) {
@@ -94,8 +89,8 @@ module.exports = class SeparationDate extends OptionStep {
     return ctx;
   }
 
-  * validate(ctx, session) {
-    let [isValid, errors] = yield super.validate(ctx, session); // eslint-disable-line prefer-const
+  validate(ctx, session) {
+    let [isValid, errors] = super.validate(ctx, session); // eslint-disable-line prefer-const
 
     if (!isEmpty(errors)) {
       if (some(errors, error => {

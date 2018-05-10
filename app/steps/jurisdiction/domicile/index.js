@@ -1,6 +1,5 @@
 const { last, clone } = require('lodash');
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/steps/ValidationStep');
 const {
   applyConnections,
   areBothDomiciled,
@@ -14,11 +13,7 @@ const {
 
 const TWELVE_MONTHS = 12;
 
-module.exports = class JurisdictionDomicile extends OptionStep {
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
-
+module.exports = class JurisdictionDomicile extends ValidationStep {
   get url() {
     return '/jurisdiction/domicile';
   }

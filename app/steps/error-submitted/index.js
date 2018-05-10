@@ -1,17 +1,12 @@
-const Page = require('app/core/steps/Page');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const Step = require('app/core/steps/Step');
 
-module.exports = class SubmittedError extends Page {
+module.exports = class SubmittedError extends Step {
   get url() {
     return '/error-application-submitted';
   }
 
   get nextStep() {
     return this.steps.PayOnline;
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   interceptor(ctx) {

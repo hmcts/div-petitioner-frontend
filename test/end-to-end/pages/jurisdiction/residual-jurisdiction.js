@@ -6,7 +6,7 @@ function chooseYesForResidualJurisdiction() {
 
   I.seeCurrentUrlEquals('/jurisdiction/residual');
   I.checkOption(residualJurisdiction.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseNoForResidualJurisdiction() {
@@ -15,7 +15,7 @@ function chooseNoForResidualJurisdiction() {
 
   I.seeCurrentUrlEquals('/jurisdiction/residual');
   I.checkOption(residualJurisdiction.no);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = {

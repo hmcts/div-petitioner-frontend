@@ -11,7 +11,7 @@ function chooseNoJurisdictionLastSixMonths() {
 function completeLastSixMonthsPage(I, chosenOption) {
   I.seeCurrentUrlEquals('/jurisdiction/last-six-months');
   I.checkOption(chosenOption);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 

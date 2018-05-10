@@ -4,7 +4,7 @@ function enterMarriageCertificateDetails() {
   I.seeCurrentUrlEquals('/petitioner-respondent/names-on-certificate');
   I.fillField('marriagePetitionerName', 'John Doe');
   I.fillField('marriageRespondentName', 'Jenny Benny');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterMarriageCertificateDetails };

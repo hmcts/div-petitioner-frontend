@@ -20,7 +20,7 @@ function completeLastLivedTogetherPage(I, address, chosenOption) {
     I.see(prettifyAddress(address));
   }
   I.checkOption(chosenOption);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 

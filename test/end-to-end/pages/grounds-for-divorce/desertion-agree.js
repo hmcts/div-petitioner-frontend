@@ -6,7 +6,7 @@ function enterDesertionAgreement() {
 
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/desertion/agree');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterDesertionAgreement };

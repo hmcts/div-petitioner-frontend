@@ -1,7 +1,7 @@
 const { expect, sinon } = require('test/util/chai');
 const idam = require('app/services/idam');
 
-const modulePath = 'app/core/steps/DestroySessionStep';
+const modulePath = 'app/core/DestroySessionStep';
 const UnderTest = require(modulePath);
 
 describe(modulePath, () => {
@@ -12,6 +12,10 @@ describe(modulePath, () => {
   beforeEach(() => {
     session.destroy = sinon.stub().callsArgWith(0, null);
     step = new UnderTest();
+  });
+
+  it('returns null on next step', () => {
+    expect(step.next()).to.equal(null);
   });
 
   it('destroys session in its interceptor', () => {

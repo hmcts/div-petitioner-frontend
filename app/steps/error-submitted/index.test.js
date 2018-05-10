@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testContent, testExistence } = require('test/util/assertions');
+const { testContent, testRedirect } = require('test/util/assertions');
 const server = require('app');
 
 const modulePath = 'app/steps/error-submitted';
@@ -29,7 +29,8 @@ describe(modulePath, () => {
     });
 
     it('redirects to the next page', done => {
-      testExistence(done, agent, underTest, s.steps.PayOnline.url);
+      testRedirect(done, agent, underTest, {},
+        s.steps.PayOnline);
     });
   });
 });

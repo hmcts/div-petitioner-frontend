@@ -1,11 +1,12 @@
 const moment = require('moment');
 const { isUndefined } = require('lodash');
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
 const datePeriod = require('app/core/utils/datePeriod');
 
-module.exports = class ReasonForDivorce extends ValidationStep {
+module.exports = class ReasonForDivorce extends OptionStep {
   get url() {
     return '/about-divorce/reason-for-divorce/reason';
   }
@@ -52,6 +53,9 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     });
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   interceptor(ctx, session) {
     //  no marriage date - display nothing

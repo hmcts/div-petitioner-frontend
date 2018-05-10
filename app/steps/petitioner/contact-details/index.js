@@ -1,4 +1,5 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const ValidationStep = require('app/core/ValidationStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 
 module.exports = class PetitionerContactDetails extends ValidationStep {
   get url() {
@@ -8,13 +9,17 @@ module.exports = class PetitionerContactDetails extends ValidationStep {
     return this.steps.PetitionerHomeAddress;
   }
 
-  validate(ctx, session) {
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
+
+  * validate(ctx, session) {
     if (session.req && !session.req.body.petitionerConsent) {
       delete session.petitionerConsent;
       delete ctx.petitionerConsent;
     }
 
-    const [isValid, errors] = super.validate(ctx, session);
+    const [isValid, errors] = yield super.validate(ctx, session);
     return [isValid, errors];
   }
 };

@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testContent, testExistence } = require('test/util/assertions');
+const { testContent, testRedirect } = require('test/util/assertions');
 const server = require('app');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const { expect, sinon } = require('test/util/chai');
@@ -50,7 +50,8 @@ describe(modulePath, () => {
     });
 
     it('redirects to the next page', done => {
-      testExistence(done, agent, underTest, '/start');
+      testRedirect(done, agent, underTest, {},
+        s.steps.ScreeningQuestionsMarriageBroken);
     });
   });
 });

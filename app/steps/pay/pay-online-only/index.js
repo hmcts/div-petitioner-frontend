@@ -1,4 +1,5 @@
-const Step = require('app/core/steps/Step');
+const Step = require('app/core/Step');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -37,7 +38,7 @@ module.exports = class PayOnline extends Step {
     ];
   }
 
-  handler(req, res, next) {
+  handler(req, res) {
     const { method, cookies, body } = req;
 
     const isGetRequest = method.toLowerCase() === 'get';
@@ -47,7 +48,7 @@ module.exports = class PayOnline extends Step {
     const hasBeenPostedWithoutSubmitButton = body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
 
     if (isGetRequest || hasBeenPostedWithoutSubmitButton) {
-      return super.handler(req, res, next);
+      return runStepHandler(this, req, res);
     }
 
     req.session = req.session || {};
@@ -125,7 +126,6 @@ module.exports = class PayOnline extends Step {
         const id = req.session.currentPaymentId;
         const nextUrl = req.session.payments[id].nextUrl;
         res.redirect(nextUrl);
-        next();
       })
 
       // Log any errors occurred and end up on the error page.

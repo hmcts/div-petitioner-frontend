@@ -1,6 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 
-const modulePath = 'app/core/helpers/staleDataManager';
+const modulePath = 'app/core/staleDataManager';
 
 const staleDataManager = require(modulePath);
 

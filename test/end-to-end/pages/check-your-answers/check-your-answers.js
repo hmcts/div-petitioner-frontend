@@ -40,7 +40,7 @@ function checkMyAnswers() {
 
   I.checkOption(content.confirmApply);
 
-  I.click(content.submitOnline);
+  I.navByClick(content.submitOnline);
 }
 
 function checkMyAnswersRestoredSession() {
@@ -50,7 +50,7 @@ function checkMyAnswersRestoredSession() {
   I.see(content.titleSoFar);
   I.see(content.continueApplication);
 
-  I.click(content.continueApplication);
+  I.navByClick(content.continueApplication);
 }
 
 function checkMyAnswersRemoveApplication() {
@@ -60,7 +60,7 @@ function checkMyAnswersRemoveApplication() {
   I.see(content.titleSoFar);
   I.see(content.deleteApplciation);
 
-  I.click(content.deleteApplciation);
+  I.navByClick(content.deleteApplciation);
 }
 
 module.exports = {

@@ -6,7 +6,7 @@ function haveMarriageCert() {
 
   I.seeCurrentUrlEquals('/screening-questions/marriage-certificate');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { haveMarriageCert };

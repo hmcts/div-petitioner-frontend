@@ -187,7 +187,7 @@ describe(modulePath, () => {
 
     beforeEach(() => {
       req = {
-        session: {},
+        session: { helpWithFeesNeedHelp: 'No' },
         method: 'get',
         cookies: { 'connect.sid': 'exists' }
       };

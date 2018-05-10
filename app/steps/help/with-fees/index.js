@@ -61,6 +61,6 @@ module.exports = class WithFees extends OptionStep {
   }
 
   checkYourAnswersInterceptor(ctx) {
-    return { helpWithFeesReferenceNumber: ctx.helpWithFeesReferenceNumber };
+    return { helpWithFeesReferenceNumber: ctx.helpWithFeesReferenceNumber || 'No' };
   }
 };

@@ -1,13 +1,7 @@
-const statusCodes = require('http-status-codes');
-const Step = require('app/core/steps/Step');
+const Page = require('app/core/steps/Page');
 
-module.exports = class Error400 extends Step {
+module.exports = class Error400 extends Page {
   get url() {
     return '/errors/400';
-  }
-
-  * getRequest(req, res) {
-    res.status(statusCodes.BAD_REQUEST);
-    yield super.getRequest(req, res);
   }
 };

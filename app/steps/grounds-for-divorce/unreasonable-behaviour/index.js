@@ -1,6 +1,7 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const ValidationStep = require('app/core/ValidationStep');
 const { isEmpty } = require('lodash');
-const { watch } = require('app/core/helpers/staleDataManager');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
 module.exports = class UnreasonableBehaviour extends ValidationStep {
   get url() {
@@ -9,6 +10,10 @@ module.exports = class UnreasonableBehaviour extends ValidationStep {
 
   get nextStep() {
     return this.steps.LegalProceedings;
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   interceptor(ctx) {

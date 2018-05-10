@@ -1,7 +1,8 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
-module.exports = class LiveTogether extends ValidationStep {
+module.exports = class LiveTogether extends OptionStep {
   get url() {
     return '/petitioner-respondent/live-together';
   }
@@ -22,6 +23,10 @@ module.exports = class LiveTogether extends ValidationStep {
         remove('respondentHomeAddress', 'livingArrangementsLiveTogether');
       }
     });
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   action(ctx, session) {

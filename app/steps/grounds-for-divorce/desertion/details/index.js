@@ -1,5 +1,6 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const ValidationStep = require('app/core/ValidationStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
 module.exports = class DesertionDetails extends ValidationStep {
   get url() {
@@ -10,6 +11,10 @@ module.exports = class DesertionDetails extends ValidationStep {
     return this.steps.LegalProceedings;
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
+
   constructor(...args) {
     super(...args);
 
@@ -18,8 +23,8 @@ module.exports = class DesertionDetails extends ValidationStep {
     });
   }
 
-  validate(ctx, session) {
-    let [isValid, errors] = super.validate(ctx, session); // eslint-disable-line prefer-const
+  * validate(ctx, session) {
+    let [isValid, errors] = yield super.validate(ctx, session); // eslint-disable-line prefer-const
 
     if (!isValid) {
       if (!ctx.reasonForDivorceDesertionDetails) {

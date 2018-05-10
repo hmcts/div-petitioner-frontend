@@ -1,6 +1,6 @@
 const { isEmpty, cloneDeep } = require('lodash');
 const getJurisdictionContent = require('app/services/jurisdiction/jurisdictionContent');
-const { removeStaleData } = require('app/core/helpers/staleDataManager');
+const { removeStaleData } = require('app/core/staleDataManager');
 
 const datePeriod = require('app/core/utils/datePeriod');
 

@@ -1,10 +1,11 @@
+const statusCodes = require('http-status-codes');
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
-const Step = require('app/core/steps/Step');
+const Step = require('app/core/Step');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
@@ -20,10 +21,9 @@ module.exports = class Submit extends Step {
     ];
   }
 
-  handler(req, res, next) {
+  handler(req, res) {
     if (req.session.submissionStarted) {
       res.redirect(this.steps.SubmittedError.url);
-      next();
       return;
     }
 
@@ -32,8 +32,10 @@ module.exports = class Submit extends Step {
 
     if (method.toLowerCase() !== 'get' || !cookies || !cookies['connect.sid']) {
       logger.error('Malformed request to Submit step');
-      res.redirect(this.steps.Error404.url);
-      next();
+      const step = this.steps.Error400;
+      const content = step.generateContent();
+      res.status(statusCodes.BAD_REQUEST)
+        .render(step.template, { content });
       return;
     }
 
@@ -67,7 +69,6 @@ module.exports = class Submit extends Step {
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
         res.redirect(this.next(null, req.session).url);
-        next();
       })
       .catch(error => {
         delete req.session.submissionStarted;

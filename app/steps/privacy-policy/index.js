@@ -1,6 +1,6 @@
-const Step = require('app/core/steps/Step');
+const Page = require('app/core/steps/Page');
 
-module.exports = class PrivacyPolicy extends Step {
+module.exports = class PrivacyPolicy extends Page {
   get url() {
     return '/privacy-policy';
   }

@@ -12,7 +12,7 @@ let csurfStub = () => {
 };
 const server = proxyquire('app', { 'app/services/healthcheck': healthCheckStub, 'csurf': csurfStub });
 const idamMock = require('test/mocks/idam');
-const ValidationStep = require('app/core/steps/ValidationStep');
+const ValidationStep = require('app/core/ValidationStep');
 
 idamMock.stub();
 let s = server.init();

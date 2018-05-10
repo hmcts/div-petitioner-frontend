@@ -1,5 +1,6 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const ValidationStep = require('app/core/ValidationStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
 module.exports = class AdulteryWhere extends ValidationStep {
   get url() {
@@ -8,6 +9,10 @@ module.exports = class AdulteryWhere extends ValidationStep {
 
   get nextStep() {
     return this.steps.AdulteryWhen;
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   constructor(...args) {

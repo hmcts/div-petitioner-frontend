@@ -1,4 +1,5 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 
 const { first, clone, merge } = require('lodash');
 const { hasLivedMonths, isHabitualResident, clearProceedingSteps, applyConnections } = require('app/services/jurisdiction/connections');
@@ -7,7 +8,7 @@ const cyaContent = require('app/services/jurisdiction/content.json');
 
 const TWELVE_MONTHS = 12;
 
-module.exports = class JurisdictionInterstitial extends ValidationStep {
+module.exports = class JurisdictionInterstitial extends OptionStep {
   constructor(...args) {
     super(...args);
     // extend this pages content with the CYA content
@@ -70,6 +71,9 @@ module.exports = class JurisdictionInterstitial extends ValidationStep {
     return super.next(nextStepLogicHelper);
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   interceptor(ctx, session) {
     if (session.jurisdictionConnection) {

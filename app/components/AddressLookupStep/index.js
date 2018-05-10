@@ -1,8 +1,7 @@
 const requireDirectory = require('require-directory');
-const { get, set, merge, unset, forEach, cloneDeep } = require('lodash');
-const ValidationStep = require('app/core/steps/ValidationStep');
+const { get, set, merge, unset, forEach } = require('lodash');
+const ValidationStep = require('app/core/ValidationStep');
 const fs = require('fs');
-const requestHandler = require('app/core/helpers/parseRequest');
 
 const addressContent = require('./content');
 const schema = require('./schema');
@@ -23,29 +22,8 @@ module.exports = class AddressLookupStep extends ValidationStep {
     super(steps, section, addressTemplatePath, mergedContent, schema);
   }
 
-  populateWithPreExistingData(session) {
-    return cloneDeep(get(session, this.schemaScope, {}));
-  }
-
-  applyCtxToSession(ctx, session) {
-    session[this.schemaScope] = ctx;
-    return session;
-  }
-
   get urlToBind() {
     return `${this.url}/:addressType*?`;
-  }
-
-  * getRequest(req, res) {
-    const { session } = req;
-
-    // get params from url i.e. what addressType
-    const postedData = requestHandler.parse(this, req);
-    if (postedData && postedData.addressType) {
-      set(session, `${this.schemaScope}.addressType`, postedData.addressType);
-    }
-
-    return yield super.getRequest(req, res);
   }
 
   * interceptor(ctx, session) {
@@ -58,6 +36,7 @@ module.exports = class AddressLookupStep extends ValidationStep {
     }
 
     // save address type directly to session
+
     if (ctx.addressType) {
       set(session, `${this.schemaScope}.addressType`, ctx.addressType);
     } else {
@@ -65,6 +44,7 @@ module.exports = class AddressLookupStep extends ValidationStep {
     }
 
     // remove old address type data
+
     if (ctx.addressType !== 'postcode') {
       session.postcodeLookup = {};
       unset(session, `${this.schemaScope}.postcode`);
@@ -92,12 +72,12 @@ module.exports = class AddressLookupStep extends ValidationStep {
   }
 
 
-  validate(ctx) {
-    let [isValid, errors] = super.validate(ctx); // eslint-disable-line prefer-const
+  * validate(ctx) {
+    let [isValid, errors] = yield super.validate(ctx); // eslint-disable-line prefer-const
 
     if (!isValid) {
       try {
-        errors = addressTypes[ctx.addressType].prepareErrors(ctx, errors);
+        errors = yield addressTypes[ctx.addressType].prepareErrors(ctx, errors);
       } catch (error) {
         throw error;
       }
@@ -107,10 +87,10 @@ module.exports = class AddressLookupStep extends ValidationStep {
   }
 
 
-  action(ctx, session) {
+  * action(ctx, session) {
     let newCtx = ctx;
     try {
-      newCtx = addressTypes[ctx.addressType].action(ctx, session);
+      newCtx = yield addressTypes[ctx.addressType].action(ctx, session);
     } catch (error) {
       throw error;
     }
@@ -121,6 +101,6 @@ module.exports = class AddressLookupStep extends ValidationStep {
   checkYourAnswersInterceptor(ctx) {
     ctx.address = ctx.address || [];
 
-    return { address: ctx.address.join('<br>') };
+    return { address: ctx.address.join('<br/>') };
   }
 };

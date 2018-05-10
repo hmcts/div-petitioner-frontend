@@ -7,7 +7,7 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 
 const modulePath = 'app/steps/petitioner/changed-name';
-const { removeStaleData } = require('app/core/helpers/staleDataManager');
+const { removeStaleData } = require('app/core/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
 

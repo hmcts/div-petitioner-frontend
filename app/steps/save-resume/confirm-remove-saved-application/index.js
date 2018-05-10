@@ -1,6 +1,7 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 
-module.exports = class DeleteApplication extends ValidationStep {
+module.exports = class DeleteApplication extends OptionStep {
   get url() {
     return '/save-return/delete-application';
   }
@@ -26,5 +27,9 @@ module.exports = class DeleteApplication extends ValidationStep {
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 };

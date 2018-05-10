@@ -8,7 +8,7 @@ const moment = require('moment');
 const server = require('app');
 const { clone } = require('lodash');
 const idamMock = require('test/mocks/idam');
-const { removeStaleData } = require('app/core/helpers/staleDataManager');
+const { removeStaleData } = require('app/core/staleDataManager');
 const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/grounds-for-divorce/reason';

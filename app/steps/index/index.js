@@ -1,4 +1,5 @@
-const Step = require('app/core/steps/Step');
+const Step = require('app/core/Step');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const initSession = require('app/middleware/initSession');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
@@ -6,7 +7,6 @@ module.exports = class Index extends Step {
   get url() {
     return '/index';
   }
-
   get nextStep() {
     return this.steps.ScreeningQuestionsMarriageBroken;
   }
@@ -16,6 +16,10 @@ module.exports = class Index extends Step {
       initSession,
       applicationFeeMiddleware.updateApplicationFeeMiddleware
     ];
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   get ignorePa11yWarnings() {

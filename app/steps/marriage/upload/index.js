@@ -1,4 +1,5 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/ValidationStep');
 const evidenceManagmentMiddleware = require('app/middleware/evidenceManagmentMiddleware');
 const courtsAllocation = require('app/services/courtsAllocation');
 const CONF = require('config');
@@ -18,6 +19,10 @@ module.exports = class UploadMarriageCertificate extends ValidationStep {
       ...super.middleware,
       evidenceManagmentMiddleware.createHandler('marriageCertificateFiles')
     ];
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   interceptor(ctx, session) {

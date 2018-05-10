@@ -1,7 +1,8 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const { applyConnections, clearProceedingSteps } = require('app/services/jurisdiction/connections');
 
-module.exports = class JurisdictionResidual extends ValidationStep {
+module.exports = class JurisdictionResidual extends OptionStep {
   get url() {
     return '/jurisdiction/residual';
   }
@@ -12,6 +13,10 @@ module.exports = class JurisdictionResidual extends ValidationStep {
         No: this.steps.ExitNoConnections
       }
     };
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   action(ctx, session) {

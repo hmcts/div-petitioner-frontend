@@ -1,13 +1,7 @@
-const statusCodes = require('http-status-codes');
-const Step = require('app/core/steps/Step');
+const Page = require('app/core/steps/Page');
 
-module.exports = class Error500 extends Step {
+module.exports = class Error500 extends Page {
   get url() {
     return '/errors/500';
-  }
-
-  * getRequest(req, res) {
-    res.status(statusCodes.INTERNAL_SERVER_ERROR);
-    yield super.getRequest(req, res);
   }
 };

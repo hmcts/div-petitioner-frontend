@@ -1,11 +1,12 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 const { applyConnections, clearProceedingSteps } = require('app/services/jurisdiction/connections');
 const { isEmpty, merge } = require('lodash');
 
 const cyaContent = require('app/services/jurisdiction/content.json');
 
-module.exports = class JurisdictionLastResort extends ValidationStep {
+module.exports = class JurisdictionLastResort extends OptionStep {
   constructor(...args) {
     super(...args);
 
@@ -55,6 +56,9 @@ module.exports = class JurisdictionLastResort extends ValidationStep {
     return super.next(nextStepLogicHelper);
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   action(ctx, session) {
     clearProceedingSteps(session, this);

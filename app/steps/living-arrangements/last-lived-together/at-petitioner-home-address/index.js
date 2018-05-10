@@ -1,7 +1,8 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
-module.exports = class LastLivedTogether extends ValidationStep {
+module.exports = class LastLivedTogether extends OptionStep {
   get url() {
     return '/petitioner-respondent/last-lived-together';
   }
@@ -27,6 +28,9 @@ module.exports = class LastLivedTogether extends ValidationStep {
     });
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   action(ctx, session) {
     if (ctx.livingArrangementsLastLivedTogether === 'Yes') {

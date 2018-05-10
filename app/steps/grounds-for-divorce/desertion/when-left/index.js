@@ -1,14 +1,16 @@
 const CONF = require('config');
 const moment = require('moment');
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
 const { filter, some, map } = require('lodash');
 const utils = require('app/services/utils');
-const { watch } = require('app/core/helpers/staleDataManager');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
 const DATE_FORMAT = CONF.dateFormat;
+
 const TWO_YEARS = 2;
 
-module.exports = class DesertionDate extends ValidationStep {
+module.exports = class DesertionDate extends OptionStep {
   get url() {
     return '/about-divorce/reason-for-divorce/desertion/when';
   }
@@ -39,6 +41,9 @@ module.exports = class DesertionDate extends ValidationStep {
     });
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   interceptor(ctx, session) {
     if (utils.dateEmpty(ctx.reasonForDivorceDesertionDay, ctx.reasonForDivorceDesertionMonth, ctx.reasonForDivorceDesertionYear)) {
@@ -70,8 +75,8 @@ module.exports = class DesertionDate extends ValidationStep {
     return ctx;
   }
 
-  validate(ctx, session) {
-    let [isValid, errors] = super.validate(ctx, session); // eslint-disable-line prefer-const
+  * validate(ctx, session) {
+    let [isValid, errors] = yield super.validate(ctx, session); // eslint-disable-line prefer-const
 
     if (!isValid) {
       if (some(errors, error => {

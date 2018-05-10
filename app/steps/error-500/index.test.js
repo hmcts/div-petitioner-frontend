@@ -1,7 +1,6 @@
 const request = require('supertest');
-const { testContent, testHttpStatus } = require('test/util/assertions');
+const { testContent } = require('test/util/assertions');
 const server = require('app');
-const statusCodes = require('http-status-codes');
 
 const modulePath = 'app/steps/error-500';
 
@@ -29,10 +28,6 @@ describe(modulePath, () => {
 
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content, session);
-    });
-
-    it('checks correct http status is used', done => {
-      testHttpStatus(done, agent, underTest, statusCodes.INTERNAL_SERVER_ERROR);
     });
   });
 });

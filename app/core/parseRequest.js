@@ -1,7 +1,7 @@
 const { reduce, isArray } = require('lodash');
 const xssFilters = require('xss-filters');
 
-const parse = (step, req) => {
+module.exports = function parseRequest(step, req) {
   const { body, params, query } = req;
 
   return reduce((step && step.properties) || {}, (acc, v, k) => { // eslint-disable-line complexity
@@ -57,5 +57,3 @@ const parse = (step, req) => {
     return acc;
   }, {});
 };
-
-module.exports = { parse };

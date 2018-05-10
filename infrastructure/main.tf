@@ -45,7 +45,7 @@ module "frontend" {
   https_only = "true"
 
   app_settings = {
-
+        
     // Node specific vars
     NODE_ENV = "${var.node_env}"
     NODE_PATH = "${var.node_path}"

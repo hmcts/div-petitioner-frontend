@@ -1,10 +1,11 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const { merge } = require('lodash');
 const { applyConnections, clearProceedingSteps } = require('app/services/jurisdiction/connections');
 
 const cyaContent = require('app/services/jurisdiction/content.json');
 
-module.exports = class JurisdictionConnectionSummary extends ValidationStep {
+module.exports = class JurisdictionConnectionSummary extends OptionStep {
   constructor(...args) {
     super(...args);
     // extend this pages content with the CYA content
@@ -40,6 +41,9 @@ module.exports = class JurisdictionConnectionSummary extends ValidationStep {
     return super.next(nextStepLogicHelper);
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   action(ctx, session) {
     clearProceedingSteps(session, this);

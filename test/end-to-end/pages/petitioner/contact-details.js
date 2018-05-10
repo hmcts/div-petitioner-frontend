@@ -7,7 +7,7 @@ function enterPetitionerContactDetails() {
   I.fillField('petitionerEmail', 'example@example.com');
   I.fillField('petitionerPhoneNumber', '01234567890');
   I.checkOption(content.petitionerConsent);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterPetitionerContactDetails };

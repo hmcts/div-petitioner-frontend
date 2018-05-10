@@ -10,7 +10,7 @@ function enterMarriageDate(day = mockSession.marriageDateDay.toString(),
   I.fillField('marriageDateDay', day);
   I.fillField('marriageDateMonth', month);
   I.fillField('marriageDateYear', year);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterMarriageDate };

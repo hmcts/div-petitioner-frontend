@@ -9,7 +9,7 @@ function enterLegalProceedings() {
   I.click('#legalProceedings_' + content.yes);
   I.checkOption(mockSession.legalProceedingsRelated[0]);
   I.fillField('legalProceedingsDetails', mockSession.legalProceedingsDetails);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterLegalProceedings };

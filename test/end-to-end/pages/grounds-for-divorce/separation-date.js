@@ -6,6 +6,6 @@ function enterSeparationDate(day = '1', month = '1', year = '2015') {
   I.fillField('reasonForDivorceSeperationDay', day);
   I.fillField('reasonForDivorceSeperationMonth', month);
   I.fillField('reasonForDivorceSeperationYear', year);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 module.exports = { enterSeparationDate };

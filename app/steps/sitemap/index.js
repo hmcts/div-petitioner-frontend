@@ -19,14 +19,15 @@ module.exports = class Graph extends Step {
     return Object.assign(
       {},
       ctx,
-      graphData,
-      graph,
+      { graphData },
+      { graph },
     );
   }
 
   getRequest(req, res) {
     if (config.showSitemap) {
-      return super.getRequest(req, res);
+      return super
+        .getRequest(req, res);
     }
 
     return res.redirect(this.steps.Error404.url);

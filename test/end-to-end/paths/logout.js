@@ -4,7 +4,7 @@ const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 Feature('Logout Session');
 
 Scenario('Logount on Save and close', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
 
   I.startApplication();
 

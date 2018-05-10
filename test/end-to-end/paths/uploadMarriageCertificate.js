@@ -3,28 +3,28 @@ const content = require('app/steps/marriage/upload/content.json').resources.en.t
 Feature('Upload Marriage Certificate');
 
 Scenario('Test upload', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/petitioner-respondent/marriage-certificate-upload');
+  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
   I.uploadMarriageCertificateFile(isDragAndDropSupported);
 });
 
 Scenario('Test remove marriage Certificate', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/petitioner-respondent/marriage-certificate-upload');
+  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
   I.deleteAMarriageCertificateFile(isDragAndDropSupported);
 });
 
 Scenario('Test ability validate document type', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/petitioner-respondent/marriage-certificate-upload');
+  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
 
   const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
 

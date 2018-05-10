@@ -38,7 +38,7 @@ function followCookieBannerLink(cookiePageLink) {
   let I = this;
   const cookieTitle = '#content h1';
 
-  I.amOnPage(cookiePageLink);
+  I.amOnLoadedPage(cookiePageLink);
   I.see('Cookies', cookieTitle);
 }
 

@@ -6,16 +6,16 @@ const reasonContent = require('app/steps/grounds-for-divorce/reason/content.json
 Feature('Payment method');
 
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
-  I.amOnPage('/pay/help/need-help');
+  I.amOnLoadedPage('/pay/help/need-help');
   I.waitForText(payHelpContent.question);
   I.see(payHelpFeeContent);
 });
 
 Scenario('Card payment online', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -59,7 +59,7 @@ Scenario('Card payment online', function* (I) {
 
 
 Scenario('Card payment online failure', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -109,7 +109,7 @@ Scenario('Card payment online failure', function* (I) {
 });
 
 Scenario('Card payment online cancellation with retry', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();

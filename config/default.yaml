@@ -169,7 +169,7 @@ e2e:
   outputDirectory: './functional-output'
   defaultEnvironmentNodeEnv: 'development'
   waitForTimeoutValue: 10000
-  waitForActionValue: 1000
+  waitForActionValue: 100
 
 public:
   protocol: 'https'

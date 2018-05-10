@@ -5,6 +5,6 @@ function enterAddressManually(stepUrl) {
   I.seeCurrentUrlEquals(stepUrl);
   I.click('#enter-manual');
   I.fillField('addressManual', 'some address entered manually');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 module.exports = { enterAddressManually };

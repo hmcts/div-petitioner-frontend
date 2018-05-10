@@ -6,7 +6,7 @@ function selectMarriedInUk() {
 
   I.seeCurrentUrlEquals('/about-your-marriage/in-the-uk');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function selectMarriedElsewhere() {
@@ -15,7 +15,7 @@ function selectMarriedElsewhere() {
 
   I.seeCurrentUrlEquals('/about-your-marriage/in-the-uk');
   I.checkOption(content.no);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { selectMarriedInUk, selectMarriedElsewhere };

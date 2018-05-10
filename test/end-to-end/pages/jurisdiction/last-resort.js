@@ -8,7 +8,7 @@ function chooseMyLastResortConnections(...connections) {
     I.checkOption('#' + connection.toUpperCase());
   });
 
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = {

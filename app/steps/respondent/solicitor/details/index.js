@@ -1,6 +1,5 @@
-const ValidationStep = require('app/core/ValidationStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
 module.exports = class RespondentSolicitorDetails extends ValidationStep {
   get url() {
@@ -19,9 +18,5 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
         remove('respondentSolicitorName', 'respondentSolicitorCompany', 'respondentSolicitorAddress');
       }
     });
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 };

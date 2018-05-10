@@ -7,7 +7,7 @@ const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
 const { clone } = require('lodash');
-const { removeStaleData } = require('app/core/staleDataManager');
+const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/grounds-for-divorce/unreasonable-behaviour';

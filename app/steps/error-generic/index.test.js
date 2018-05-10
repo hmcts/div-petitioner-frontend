@@ -3,7 +3,7 @@ const { testContent, testHttpStatus } = require('test/util/assertions');
 const server = require('app');
 const statusCodes = require('http-status-codes');
 
-const modulePath = 'app/steps/error-500';
+const modulePath = 'app/steps/error-generic';
 
 const content = require(`${modulePath}/content`);
 
@@ -15,7 +15,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.Error500;
+    underTest = s.steps.GenericError;
   });
 
 

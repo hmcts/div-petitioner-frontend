@@ -1,5 +1,6 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const ValidationStep = require('app/core/ValidationStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
 module.exports = class AdulteryDetails extends ValidationStep {
   get url() {
@@ -8,6 +9,10 @@ module.exports = class AdulteryDetails extends ValidationStep {
 
   get nextStep() {
     return this.steps.LegalProceedings;
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   constructor(...args) {
@@ -24,8 +29,8 @@ module.exports = class AdulteryDetails extends ValidationStep {
     });
   }
 
-  validate(ctx, session) {
-    const [isValid, errors] = super.validate(ctx, session);
+  * validate(ctx, session) {
+    const [isValid, errors] = yield super.validate(ctx, session);
 
     const sortErrors = unsortedErrors => {
       // ensure the errors are ordered correctly on the screen
@@ -58,11 +63,9 @@ module.exports = class AdulteryDetails extends ValidationStep {
     };
 
     if (!isValid) {
-      const errorsList = removeUnWantedErrors(errors);
-      const sortedErrorsList = sortErrors(errorsList);
       return [
-        isValid,
-        sortedErrorsList
+        isValid, yield Promise.resolve(errors).then(removeUnWantedErrors)
+          .then(sortErrors)
       ];
     }
 

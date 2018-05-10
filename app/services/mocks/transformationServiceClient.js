@@ -41,7 +41,7 @@ const mockedService = {
     });
   },
 
-  saveToDraftStore: (options, userToken, body, sendEmail, outcome = true) => {
+  saveToDraftStore: (_, _a, outcome = true) => {
     return new Promise((resolve, reject) => {
       if (outcome) {
         resolve();

@@ -1,21 +1,14 @@
 /* eslint-disable getter-return, no-empty-function */
-const { forEach, mapValues, get, reduce } = require('lodash');
+const { forEach, mapValues } = require('lodash');
 const i18next = require('i18next');
 const CONF = require('config');
 const { Router } = require('express');
 const walkMap = require('app/core/utils/treeWalker');
-const statusCodes = require('http-status-codes');
-const co = require('co');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const parseRequest = require('app/core/parseRequest');
 
 const throwNotImplemented = func => {
   throw new ReferenceError(`Steps must override #${func}`);
 };
-const defualtNext = () => {};
-
-// used to stop the middleware chain,
-// otherwise it will continue and trigger a 404 page not found
-const killMiddlewareChain = () => {};
 
 module.exports = class Step {
   get ignorePa11yErrors() {
@@ -27,15 +20,21 @@ module.exports = class Step {
   get urlToBind() {
     return this.url;
   }
+
   get url() {
     throwNotImplemented('url');
   }
+  get nextStep() {
+    throwNotImplemented('nextStep');
+  }
+
   get name() {
     return this.constructor.name;
   }
   get commonProps() {
     return CONF.commonProps;
   }
+
   get template() {
     if (!this.templatePath) {
       throw new TypeError(`Step ${this.name} has no template file in it's resource folder`);
@@ -43,15 +42,9 @@ module.exports = class Step {
 
     return `${this.templatePath}/template`;
   }
+
   get fields() {
     return [];
-  }
-  get nextStep() {
-    return throwNotImplemented('nextStep');
-  }
-
-  next() {
-    return this.nextStep;
   }
 
   constructor(steps, section = null, templatePath, content = {}) {
@@ -74,22 +67,15 @@ module.exports = class Step {
     });
   }
 
-
-  applyCtxToSession(ctx, session) {
-    Object.assign(session, ctx);
-    return session;
+  parseRequest(req) {
+    return parseRequest(this, req);
   }
 
-  populateWithPreExistingData(session = {}) {
-    const stepProperties = this.properties ? Object.keys(this.properties) : {};
-    const ctx = reduce(stepProperties, (context, key) => {
-      context[key] = get(session, key);
-      return context;
-    }, {});
-    return ctx;
+  next(/* ctx, session*/) {
+    return this.nextStep;
   }
 
-  interceptor(ctx, session) { // eslint-disable-line no-unused-vars
+  interceptor(ctx/* , session*/) {
     return ctx;
   }
 
@@ -111,7 +97,23 @@ module.exports = class Step {
     });
   }
 
-  generateFields(ctx, session) { // eslint-disable-line no-unused-vars
+  generateCheckYourAnswersContent(ctx, session, lang = 'en') {
+    if (!this.content) {
+      throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
+    }
+
+    const contentCtx = Object.assign({}, session, ctx, this.commonProps);
+
+    this.i18next.changeLanguage(lang);
+
+    const translatedContent = this.content.resources.en.translation;
+
+    return walkMap(translatedContent.checkYourAnswersContent, path => {
+      return this.i18next.t(`checkYourAnswersContent.${path}`, contentCtx);
+    });
+  }
+
+  generateFields(ctx/* , session*/) {
     return mapValues(ctx, v => {
       return { value: v, error: false };
     });
@@ -140,69 +142,7 @@ module.exports = class Step {
   get middleware() {
     return [];
   }
-
-  get postMiddleware() {
-    return [];
-  }
-
-  * getRequest(req, res) {
-    const { session } = req;
-
-    //  extract data from the request
-    let ctx = this.populateWithPreExistingData(session);
-
-    //  intercept the request and process any incoming data
-    //  here we can set data on the context before we validate
-    //  eg, turn individual date fields (day, month, year) into a date
-    ctx = yield this.interceptor(ctx, session);
-
-    // let errors = null;
-    // let fields = null;
-    //  fetch all the content from the content files
-    res.locals.content = this.generateContent(ctx, session);
-
-    if (!res.locals.fields) {
-      //  map the context into data fields for use in templates and macros
-      res.locals.fields = this.generateFields(ctx);
-    }
-
-    res.locals.session = session;
-
-    res.render(this.template);
-  }
-
-  * postRequest(req, res) {
-    if (!res.headersSent) {
-      res.sendStatus(statusCodes.METHOD_NOT_ALLOWED);
-      // add yield to satisfy sonarqube
-      yield Promise.resolve();
-    }
-  }
-
-  handler(req, res, next = defualtNext) {
-    const method = req.method.toLowerCase();
-    const throwError = error => {
-      logger.error(`Error handeling request: ${error}`);
-      if (error && error.stack) {
-        logger.error(error.stack);
-      }
-      res.status(statusCodes.INTERNAL_SERVER_ERROR);
-      res.redirect('/generic-error');
-    };
-
-    switch (method) {
-    case 'post':
-      co(this.postRequest(req, res))
-        .then(next)
-        .catch(throwError);
-      break;
-    case 'get':
-    default:
-      co(this.getRequest(req, res))
-        .then(next)
-        .catch(throwError);
-    }
-  }
+  handler(/* req, res*/) { }
 
   get router() {
     if (this._router) return this._router;
@@ -212,10 +152,6 @@ module.exports = class Step {
       this._router.use(this.urlToBind, middleware.bind(this));
     });
     this._router.use(this.urlToBind, this.handler.bind(this));
-    this.postMiddleware.forEach(middleware => {
-      this._router.use(this.urlToBind, middleware.bind(this));
-    });
-    this._router.use(this.urlToBind, killMiddlewareChain);
     return this._router;
   }
 };

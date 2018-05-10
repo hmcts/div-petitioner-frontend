@@ -1,4 +1,5 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const {
   applyConnections,
   isHabitualResident,
@@ -7,11 +8,12 @@ const {
   hasOnlyConnection,
   clearProceedingSteps
 } = require('app/services/jurisdiction/connections');
+
 const { isEmpty } = require('lodash');
 
 const SIX_MONTHS = 6;
 
-module.exports = class JurisdictionLastSixMonths extends ValidationStep {
+module.exports = class JurisdictionLastSixMonths extends OptionStep {
   get url() {
     return '/jurisdiction/last-six-months';
   }
@@ -47,6 +49,9 @@ module.exports = class JurisdictionLastSixMonths extends ValidationStep {
     return super.next(nextStepLogicHelper);
   }
 
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
 
   action(ctx, session) {
     clearProceedingSteps(session, this);

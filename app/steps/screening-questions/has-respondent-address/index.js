@@ -1,6 +1,7 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 
-module.exports = class ScreeningQuestionsRespondentAddress extends ValidationStep {
+module.exports = class ScreeningQuestionsRespondentAddress extends OptionStep {
   get url() {
     return '/screening-questions/respondent-address';
   }
@@ -16,5 +17,9 @@ module.exports = class ScreeningQuestionsRespondentAddress extends ValidationSte
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 };

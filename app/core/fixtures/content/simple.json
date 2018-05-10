@@ -10,10 +10,6 @@
                     "court": "You'll need to post this to the court with your printed application."
                 },
 
-                "checkYourAnswersContent": {
-                    "question": "Do you have your marriage certificate?"
-                },
-
                 "errors": {
 
                     "hasMarriageCert": {

@@ -1,8 +1,8 @@
 /* eslint id-blacklist: ["error", "data", "err", "cb", "callback"] */
 const { expect } = require('test/util/chai');
 
-const modulePath = 'app/core/helpers/parseRequest';
-const underTest = require(modulePath).parse;
+const modulePath = 'app/core/parseRequest';
+const underTest = require(modulePath);
 
 let step = {};
 

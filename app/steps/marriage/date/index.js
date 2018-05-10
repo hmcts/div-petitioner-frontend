@@ -1,14 +1,15 @@
 const CONF = require('config');
 const moment = require('moment');
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
 const { filter, some, isEmpty, map } = require('lodash');
 const utils = require('app/services/utils');
+const runStepHandler = require('app/core/handler/runStepHandler');
 
 const DATE_FORMAT = CONF.dateFormat;
 
 const ONE_HUNDRED_YEARS = 100;
 
-module.exports = class MarriageDate extends ValidationStep {
+module.exports = class MarriageDate extends OptionStep {
   get url() {
     return '/about-your-marriage/date-of-marriage-certificate';
   }
@@ -19,6 +20,10 @@ module.exports = class MarriageDate extends ValidationStep {
         false: this.steps.ExitMarriageDate
       }
     };
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   interceptor(ctx) {
@@ -44,8 +49,8 @@ module.exports = class MarriageDate extends ValidationStep {
     return ctx;
   }
 
-  validate(ctx) {
-    let [isValid, errors] = super.validate(ctx); // eslint-disable-line prefer-const
+  * validate(ctx) {
+    let [isValid, errors] = yield super.validate(ctx); // eslint-disable-line prefer-const
 
     if (!isEmpty(errors)) {
       if (some(errors, error => {

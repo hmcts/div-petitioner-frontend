@@ -33,7 +33,7 @@ function chooseJurisdictionConnectionSummaryContinue() {
 
   I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
   I.checkOption(connectionSummary.confident);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseJurisdictionConnectionSummaryNeedInfo() {
@@ -42,7 +42,7 @@ function chooseJurisdictionConnectionSummaryNeedInfo() {
 
   I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
   I.checkOption(connectionSummary.needInfo);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseJurisdictionConnectionSummaryShowAll() {
@@ -51,7 +51,7 @@ function chooseJurisdictionConnectionSummaryShowAll() {
 
   I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
   I.checkOption(connectionSummary.showAll);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = {

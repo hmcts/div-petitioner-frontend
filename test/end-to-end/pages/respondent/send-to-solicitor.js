@@ -13,7 +13,7 @@ function chooseSendPapersToADifferentAddress() {
 function completeSendToSolicitorPage(I, chosenOption) {
   I.seeCurrentUrlEquals('/petitioner-respondent/correspondence/send-to-solicitor');
   I.checkOption(chosenOption);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 

@@ -9,13 +9,13 @@ function startApplication(ignoreIdamToggle = false) {
 
   I.seeCurrentUrlEquals('/index');
   I.see(common.continue);
-  I.click(common.continue);
+  I.navByClick(common.continue);
 
   if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
-    I.click('Sign in');
+    I.navByClick('Sign in');
   }
 }
 
@@ -38,7 +38,7 @@ function followCookieBannerLink(cookiePageLink) {
   let I = this;
   const cookieTitle = '#content h1';
 
-  I.amOnPage(cookiePageLink);
+  I.amOnLoadedPage(cookiePageLink);
   I.see('Cookies', cookieTitle);
 }
 

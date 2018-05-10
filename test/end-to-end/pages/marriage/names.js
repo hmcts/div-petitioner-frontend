@@ -6,7 +6,7 @@ function enterPetitionerAndRespondentNames() {
   I.fillField('petitionerLastName', 'Smith');
   I.fillField('respondentFirstName', 'Jane');
   I.fillField('respondentLastName', 'Jamed');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterPetitionerAndRespondentNames };

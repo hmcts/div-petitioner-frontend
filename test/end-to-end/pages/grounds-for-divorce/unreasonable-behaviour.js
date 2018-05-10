@@ -7,7 +7,7 @@ function enterUnreasonableBehaviourExample() {
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function enterUnreasonableBehaviourAddMoreExamples() {
@@ -50,7 +50,7 @@ function enterUnreasonableBehaviourAddMoreExamples() {
   I.seeElement('#how-behaved-example-4');
   I.seeElement('#how-behaved-example-5');
 
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterUnreasonableBehaviourExample, enterUnreasonableBehaviourAddMoreExamples };

@@ -1,7 +1,8 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
-const { watch } = require('app/core/helpers/staleDataManager');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
+const { watch } = require('app/core/staleDataManager');
 
-module.exports = class AdulteryWishToName extends ValidationStep {
+module.exports = class AdulteryWishToName extends OptionStep {
   get url() {
     return '/about-divorce/reason-for-divorce/adultery/wish-to-name';
   }
@@ -12,6 +13,9 @@ module.exports = class AdulteryWishToName extends ValidationStep {
         No: this.steps.AdulteryWhere
       }
     };
+  }
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 
   constructor(...args) {

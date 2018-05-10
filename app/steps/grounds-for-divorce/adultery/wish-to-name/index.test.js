@@ -6,7 +6,7 @@ const {
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const idamMock = require('test/mocks/idam');
-const { removeStaleData } = require('app/core/helpers/staleDataManager');
+const { removeStaleData } = require('app/core/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
 

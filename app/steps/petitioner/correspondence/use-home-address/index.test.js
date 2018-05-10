@@ -5,7 +5,7 @@ const { clone } = require('lodash');
 const { mockSession } = require('test/fixtures');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { removeStaleData } = require('app/core/helpers/staleDataManager');
+const { removeStaleData } = require('app/core/staleDataManager');
 const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/petitioner/correspondence/use-home-address';

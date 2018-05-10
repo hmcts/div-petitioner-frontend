@@ -1,5 +1,6 @@
 const { cloneDeep, get, reduce, groupBy } = require('lodash');
-const ValidationStep = require('app/core/steps/ValidationStep');
+const ValidationStep = require('app/core/ValidationStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const nunjucks = require('nunjucks');
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const CONF = require('config');
@@ -7,6 +8,10 @@ const CONF = require('config');
 const maximumNumberOfSteps = 500;
 
 module.exports = class CheckYourAnswers extends ValidationStep {
+  handler(req, res) {
+    return runStepHandler(this, req, res);
+  }
+
   get url() {
     return '/check-your-answers';
   }
@@ -89,26 +94,26 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
   * getStepCheckYourAnswersTemplate(step, session) {
     // generate the context for the step
-    let stepCtx = this.getStepCtx(step, session);
+    let stepCtx = yield this.getStepCtx(step, session);
 
     // run the step interceptor
     stepCtx = yield step.interceptor(stepCtx, session);
 
     // ensure step is valid
-    const [isValid] = step.validate(stepCtx, session);
+    const [isValid] = yield step.validate(stepCtx, session);
     if (!isValid) {
       return;
     }
 
-    stepCtx = step.checkYourAnswersInterceptor(stepCtx, session);
+    stepCtx = yield step.checkYourAnswersInterceptor(stepCtx, session);
 
-    const checkYourAnswersContent = this.generateContent(
+    const checkYourAnswersContent = yield this.generateContent(
       stepCtx, session
     );
 
     // generate content
-    const content = step.generateContent(stepCtx, session);
-    const checkYourAnswersSpecificContent = step.generateCheckYourAnswersContent( // eslint-disable-line max-len
+    const content = yield step.generateContent(stepCtx, session);
+    const checkYourAnswersSpecificContent = yield step.generateCheckYourAnswersContent( // eslint-disable-line max-len
       stepCtx, session
     );
     Object.assign(
@@ -119,7 +124,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     );
 
     // generate fields
-    const fields = step.generateFields(stepCtx, session);
+    const fields = yield step.generateFields(stepCtx, session);
 
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
@@ -195,7 +200,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // Put catch here because 'next' function throws
     // error if step doesn't have valid next step
     try {
-      let nextStepCtx = this.getStepCtx(step, session);
+      let nextStepCtx = yield this.getStepCtx(step, session);
       // run the step interceptor - some next step logic is created in the interceptor
       // eslint-disable-next-line no-warning-comments
       // TODO: this can be removed when all nextStep logic is moved to next function

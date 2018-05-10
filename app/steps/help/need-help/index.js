@@ -1,7 +1,8 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const OptionStep = require('app/core/OptionStep');
+const runStepHandler = require('app/core/handler/runStepHandler');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
-module.exports = class NeedHelpWithFees extends ValidationStep {
+module.exports = class NeedHelpWithFees extends OptionStep {
   get url() {
     return '/pay/help/need-help';
   }
@@ -19,5 +20,9 @@ module.exports = class NeedHelpWithFees extends ValidationStep {
       ...super.middleware,
       applicationFeeMiddleware.updateApplicationFeeMiddleware
     ];
+  }
+
+  handler(req, res) {
+    return runStepHandler(this, req, res);
   }
 };

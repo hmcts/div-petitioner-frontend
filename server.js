@@ -1,3 +1,12 @@
+const appInsights = require('applicationinsights');
+const CONF = require('config');
+
+if (CONF.environment === 'production') {
+  appInsights.setup(CONF.applicationInsights.instrumentationKey)
+    .setAutoCollectConsole(true, true)
+    .start();
+}
+
 const app = require('./app');
 
 const { http } = app.init();

@@ -5,7 +5,7 @@
 //noinspection GroovyAssignabilityCheck
 properties([
 		parameters([
-			choice(name: 'ENVIRONMENT', choices: 'sandbox\nnonprod\nprod', description: 'Environment where code should be build and deployed')
+			choice(name: 'ENVIRONMENT', choices: 'sandbox\nsaat\nsprod', description: 'Environment where code should be build and deployed')
 		])
 ])
 

@@ -25,7 +25,17 @@ const textArea = `
 
 const textField = `
 {% from "app/views/common/components/formElements.html" import textField %}
-{{ textField(name, field, label, hint) }}
+{{
+  textField
+  (
+    name = name,
+    field = field,
+    label = label,
+    hint = hint,
+    boldLabel = boldLabel,
+    labelClass = labelClass
+  )
+}}
 `;
 
 const yesNoRadioButton = `
@@ -111,6 +121,30 @@ describe(`Text fields should render as expected`, () => {
     expect(res).to.contain('name="testName"');
     expect(res).to.contain(input.field.value);
     expect(res).to.not.contain('<span class="form-hint">');
+  });
+
+  it('label class is bold if requested', () => {
+    const input = {
+      name: 'testName',
+      field: { value: 'some text' },
+      label: 'testLabel',
+      boldLabel: true
+    };
+
+    const res = nunjucks.renderString(textField, input);
+    expect(res).to.contain('<label class="form-label-bold text" for="testName">testLabel</label>');
+  });
+
+  it('label class is applied if provided', () => {
+    const input = {
+      name: 'testName',
+      field: { value: 'some text' },
+      label: 'testLabel',
+      labelClass: 'hidden'
+    };
+
+    const res = nunjucks.renderString(textField, input);
+    expect(res).to.contain('<label class="hidden" for="testName">testLabel</label>');
   });
 
   it('errors are shown if present', () => {

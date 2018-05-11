@@ -74,7 +74,7 @@
 
     {%- else -%}
 
-      <form method="POST" accept-charset="utf-8" class="form" id="form"
+      <form method="POST" accept-charset="utf-8" class="form"
           enctype="{%- block encoding -%}application/x-www-form-urlencoded{%- endblock -%}"
           autocomplete="off">
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
@@ -131,7 +131,7 @@
 
     <br/><br/>
 
-    <form method="POST" accept-charset="utf-8" class="form" id="form"
+    <form method="POST" accept-charset="utf-8" class="form"
           enctype="application/x-www-form-urlencoded"
           autocomplete="off">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">

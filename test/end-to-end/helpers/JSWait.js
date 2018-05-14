@@ -4,6 +4,8 @@ class JSWait extends codecept_helper {
 
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
 
+    helper.page.on('error', error => console.log(error)); // eslint-disable-line no-console
+
     // Wait for content to load before checking URL
     if (step.name === 'seeCurrentUrlEquals') {
       return helper.waitForElement('#content', 10);

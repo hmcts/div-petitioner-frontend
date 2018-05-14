@@ -116,14 +116,29 @@
           </div>
           <br>
           <div class="form-group">
+{%- if not fields.helpWithFeesReferenceNumber.value -%}
+
               <p class="text bold-small">
-              {%- if fields.helpWithFeesReferenceNumber.value -%}
-                {{ content.dontNavigateAway | safe}}
-              {%- else -%}
-                {{ content.dontNavigateAwayNotAppliedForFees | safe }} {{ content.dontNavigateAway | safe}}
-              {%- endif -%}
+              
+              <em class="icon icon-important">
+                        <span class="visuallyhidden">Warning</span>
+                    </em> 
+
+           <span class="check-your-answers-warning">    {{ content.submitPayWarning | safe}} </span>
+              
             </p>
-              <input id="confirmCheckYourAnswers" type="submit" class="button" value="{{ content.submitOnline }}">
+
+{%- endif -%}
+
+
+
+              <input id="confirmCheckYourAnswers" type="submit" class="button" value="
+                {%- if fields.helpWithFeesReferenceNumber.value -%}
+                 {{ content.submitOnline | safe}}
+                {%- else -%}
+                 {{ content.submitAndPay | safe }}
+                {%- endif -%}
+              ">
           </div>
       </form>
 

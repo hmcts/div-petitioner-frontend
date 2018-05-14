@@ -130,7 +130,7 @@ module.exports = class PayOnline extends Step {
 
       // Log any errors occurred and end up on the error page.
       .catch(error => {
-        logger.error(`Error during payment initialisation: ${error}`);
+        logger.error(error);
         res.redirect('/generic-error');
       });
   }

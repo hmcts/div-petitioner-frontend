@@ -98,12 +98,18 @@ module.exports = class PayOnline extends Step {
     return serviceToken.getToken()
       // Create payment.
       .then(token => {
+        logger.error('Created token');
+        logger.error(token);
+        logger.error('-------');
         return payment.create(user, token, caseId, siteId, feeCode,
           feeVersion, amount, feeDescription, returnUrl);
       })
 
       // Store payment info in session and update the submitted application.
       .then(response => {
+        logger.error('Created payment reference');
+        logger.error(response);
+        logger.error('-------');
         const { id, status, reference, nextUrl } = response;
         req.session.currentPaymentId = id;
         req.session.currentPaymentReference = reference;
@@ -118,6 +124,9 @@ module.exports = class PayOnline extends Step {
 
       // If all is well, redirect to payment page.
       .then(response => {
+        logger.error('Updated CCD');
+        logger.error(response);
+        logger.error('-------');
         if (!response || response.status !== 'success') {
           // Fail immediately if the application could not be updated in CCD.
           throw response;
@@ -130,7 +139,9 @@ module.exports = class PayOnline extends Step {
 
       // Log any errors occurred and end up on the error page.
       .catch(error => {
+        logger.error('error');
         logger.error(error);
+        logger.error('-------');
         res.redirect('/generic-error');
       });
   }

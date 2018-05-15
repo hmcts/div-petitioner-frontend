@@ -10,6 +10,8 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
+const { saveSessionToDraftStoreAndClose } = require('app/middleware/draftPetitionStoreMiddleware');
+const requestHandler = require('app/core/helpers/parseRequest');
 
 const jwt = require('jsonwebtoken');
 const CONF = require('config');
@@ -33,7 +35,8 @@ module.exports = class PayOnline extends Step {
       sessionTimeout,
       restoreFromDraftStore,
       setIdamUserDetails,
-      applicationFeeMiddleware.updateApplicationFeeMiddleware
+      applicationFeeMiddleware.updateApplicationFeeMiddleware,
+      saveSessionToDraftStoreAndClose
     ];
   }
 
@@ -138,6 +141,10 @@ module.exports = class PayOnline extends Step {
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
+  }
+
+  parseRequest(req) {
+    return requestHandler.parse(this, req);
   }
 
   action(ctx, session) {

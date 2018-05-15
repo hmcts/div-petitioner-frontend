@@ -1,4 +1,4 @@
-Feature('Simulated invalid CSRF token');
+Feature('Simulated invalid CSRF token', { retries: 1 });
 
 Scenario('Should continue if there is a csrf token set', function* (I) {
 

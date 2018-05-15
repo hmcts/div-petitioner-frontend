@@ -15,7 +15,7 @@ const fiveYearsAgoFormatted = {
 };
 
 
-Feature('Reasons for divorce');
+Feature('Reasons for divorce', { retries: 1 });
 
 Scenario('Unreasonable behaviour - with added examples', (I) => {
 

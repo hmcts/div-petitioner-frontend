@@ -65,7 +65,7 @@ const restoreFromDraftStore = (req, res, next) => {
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(`Error when attempting to restore session from draft store ${error}`, req);
+        logger.error(error);
       }
       next();
     });
@@ -81,7 +81,7 @@ const removeFromDraftStore = (req, res, next) => {
     .then(next)
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(`Error when attempting to restore session from draft store ${error}`, req);
+        logger.error(error);
         return res.redirect('/generic-error');
       }
       return next();
@@ -121,7 +121,7 @@ const saveSessionToDraftStore = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(`Unable to save to draft store ${error}`);
+      logger.error(error);
       next();
     });
 };
@@ -151,7 +151,7 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
         res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
       })
       .catch(error => {
-        logger.error(`Unable to save to draft store ${error}`);
+        logger.error(error);
         res.redirect('/generic-error');
       });
   } else {

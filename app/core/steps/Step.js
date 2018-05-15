@@ -182,10 +182,7 @@ module.exports = class Step {
   handler(req, res, next = defualtNext) {
     const method = req.method.toLowerCase();
     const throwError = error => {
-      logger.error(`Error handeling request: ${error}`);
-      if (error && error.stack) {
-        logger.error(error.stack);
-      }
+      logger.error(error);
       res.status(statusCodes.INTERNAL_SERVER_ERROR);
       res.redirect('/generic-error');
     };

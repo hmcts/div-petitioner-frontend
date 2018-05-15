@@ -6,8 +6,6 @@ class JSWait extends codecept_helper {
     helper.page.on('error', error => console.log(error)); // eslint-disable-line no-console
     helper.page.on('pageerror', error => console.log(error)); // eslint-disable-line no-console
     helper.page.on('requestfailed', error => console.log(error)); // eslint-disable-line no-console
-    helper.page.on('requestfinished', error => console.log(error)); // eslint-disable-line no-console
-    helper.page.on('response', error => console.log(error)); // eslint-disable-line no-console
   }
 
   _beforeStep(step) {

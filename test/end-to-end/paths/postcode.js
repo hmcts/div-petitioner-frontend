@@ -1,4 +1,4 @@
-Feature('Entering address');
+Feature('Entering address', { retries: 1 });
 
 Scenario('Enter address using postcode', (I) => {
   I.amOnLoadedPage('/index');

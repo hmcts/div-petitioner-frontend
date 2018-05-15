@@ -1,6 +1,6 @@
 class JSWait extends codecept_helper {
 
-  _beforeSuite() {
+  _before() {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
 
     helper.page.on('error', error => console.log(error)); // eslint-disable-line no-console

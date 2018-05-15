@@ -16,6 +16,7 @@ function startApplication(ignoreIdamToggle = false) {
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.navByClick('Sign in');
+    I.wait(2);
   }
 }
 

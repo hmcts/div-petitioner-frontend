@@ -11,20 +11,31 @@ class JSWait extends codecept_helper {
   };
 
   async navByClick (text, locator) {
-    this.helpers['Puppeteer'].click(text, locator);
+    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helperIsPuppeteer = this.helpers['Puppeteer'];
 
-    await this.helpers['Puppeteer'].page.waitForNavigation({waitUntil: 'networkidle0'});
+    helper.click(text, locator);
+
+    if (helperIsPuppeteer) {
+      await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
+    }
   };
 
   async amOnLoadedPage (url) {
+    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helperIsPuppeteer = this.helpers['Puppeteer'];
 
-    if (url.indexOf('http') !== 0) {
-      url = this.helpers['Puppeteer'].options.url + url;
+    if (helperIsPuppeteer) {
+      if (url.indexOf('http') !== 0) {
+        url = helper.options.url + url;
+      }
+
+      helper.page.goto(url);
+      await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
+
+    } else {
+      helper.amOnPage(url);
     }
-    
-    this.helpers['Puppeteer'].page.goto(url);
-
-    await this.helpers['Puppeteer'].page.waitForNavigation({waitUntil: 'networkidle0'});
   };
 }
 

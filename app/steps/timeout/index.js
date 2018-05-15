@@ -6,6 +6,7 @@ module.exports = class Timeout extends DestroySessionStep {
     return '/timeout';
   }
   handler(req, res) {
+    res.clearCookie('connect.sid');
     return runStepHandler(this, req, res);
   }
 };

@@ -58,7 +58,7 @@ Scenario('Card payment online', function* (I) {
 });
 
 
-Scenario('@overnight: Card payment online failure', function* (I) {
+Scenario('Card payment online failure', function* (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
@@ -108,7 +108,7 @@ Scenario('@overnight: Card payment online failure', function* (I) {
   I.amDoneAndSubmitted();
 });
 
-Scenario('@overnight: Card payment online cancellation with retry', function* (I) {
+Scenario('Card payment online cancellation with retry', function* (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
@@ -153,61 +153,6 @@ Scenario('@overnight: Card payment online cancellation with retry', function* (I
   I.waitInUrl('/pay/online');
 
   // Retry
-  I.confirmIWillPayOnline();
-  I.payOnPaymentPage(isPaymentOnStub);
-  I.amDoneAndSubmitted();
-});
-
-Scenario('Card payment online combined cancellation, failure and success', function* (I) {
-  I.amOnPage('/index');
-  I.startApplication();
-  I.haveBrokenMarriage();
-  I.haveRespondentAddress();
-  I.haveMarriageCert();
-  I.selectHelpWithFees(false);
-  I.selectDivorceType();
-  I.enterMarriageDate();
-  I.selectMarriedInUk();
-
-  I.chooseBothHabituallyResident();
-  I.chooseJurisdictionInterstitialContinue();
-
-  I.enterPeConfidentialContactDetails();
-  I.enterPetitionerAndRespondentNames();
-  I.enterMarriageCertificateDetails();
-  I.enterPetitionerChangedName();
-  I.enterPetitionerContactDetails();
-
-  I.enterAddressUsingPostcode('/petitioner-respondent/address');
-  I.enterCorrespondence();
-  I.selectLivingTogetherInSameProperty();
-
-  I.chooseRespondentServiceAddress();
-  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(reasonContent.unreasonableBehaviourHeading);
-  I.enterUnreasonableBehaviourExample();
-
-  I.enterLegalProceedings();
-  I.selectFinancialArrangements();
-  I.enterFinancialAdvice();
-
-  I.enterClaimCosts();
-  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
-  I.uploadMarriageCertificateFile(isDragAndDropSupported);
-  I.checkMyAnswers();
-
-  // Cancellation
-  I.confirmIWillPayOnline();
-  const isPaymentOnStub = yield I.getPaymentIsOnStub();
-  I.cancelOnPaymentPage(isPaymentOnStub);
-  I.seeCurrentUrlEquals('/pay/online');
-
-  // Failure
-  I.confirmIWillPayOnline();
-  I.payFailureOnPaymentPage(isPaymentOnStub);
-  I.seeCurrentUrlEquals('/pay/online');
-
-  // Success
   I.confirmIWillPayOnline();
   I.payOnPaymentPage(isPaymentOnStub);
   I.amDoneAndSubmitted();

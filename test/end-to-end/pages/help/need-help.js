@@ -6,7 +6,7 @@ function selectHelpWithFees(needHelp = true) {
 
   I.seeCurrentUrlEquals('/pay/help/need-help');
   I.checkOption(needHelp ? content.yes : content.no);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { selectHelpWithFees };

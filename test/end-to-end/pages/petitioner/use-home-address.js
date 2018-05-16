@@ -10,7 +10,7 @@ function enterCorrespondence(addressObj) {
     I.see(prettifyAddress(addressObj));
   }
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterCorrespondence };

@@ -9,7 +9,7 @@ const idamMock = require('test/mocks/idam');
 const { expect, sinon } = require('test/util/chai');
 const server = require('app');
 const featureTogglesMock = require('test/mocks/featureToggles');
-const { testHttpStatus, testCustom } = require('test/util/assertions');
+const { testRedirect, testCustom } = require('test/util/assertions');
 const submission = require('app/services/submission');
 
 const modulePath = 'app/steps/submit';
@@ -48,7 +48,8 @@ describe(modulePath, () => {
   describe('handler', () => {
     context('get request', () => {
       it('error if is a GET request', done => {
-        testHttpStatus(done, agent, underTest, statusCodes.BAD_REQUEST, 'post');
+        testRedirect(done, agent, underTest, context,
+          s.steps.Error404);
       });
     });
 

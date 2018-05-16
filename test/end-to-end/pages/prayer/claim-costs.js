@@ -6,7 +6,7 @@ function enterClaimCosts() {
 
   I.seeCurrentUrlEquals('/about-divorce/claim-costs');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterClaimCosts };

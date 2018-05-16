@@ -6,7 +6,7 @@ function enterPetitionerChangedName() {
   I.seeCurrentUrlEquals('/petitioner-respondent/changed-name');
   I.checkOption(content.yes);
   I.checkOption(content.marriageCertificate);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterPetitionerChangedName };

@@ -1,10 +1,10 @@
 const toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
-Feature('Logout Session');
+Feature('Logout Session', { retries: 1 });
 
 Scenario('Logount on Save and close', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
 
   I.startApplication();
 
@@ -19,6 +19,6 @@ Scenario('Logount on Save and close', function (I) {
     I.see(idamConfigHelper.getTestEmail());
   }
 
-  I.click('Back');
+  I.navByClick('Back');
   I.startApplication();
 });

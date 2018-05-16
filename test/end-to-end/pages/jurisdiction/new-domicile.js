@@ -6,7 +6,7 @@ function chooseBothDomiciled() {
 
   I.click('[for~="jurisdictionPetitionerDomicile_Yes"]');
   I.click('[for~="jurisdictionRespondentDomicile_Yes"]');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseNeitherDomiciled() {
@@ -17,7 +17,7 @@ function chooseNeitherDomiciled() {
 
   I.click('[for~="jurisdictionPetitionerDomicile_No"]');
   I.click('[for~="jurisdictionRespondentDomicile_No"]');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function choosePetitionerDomiciled() {
@@ -28,7 +28,7 @@ function choosePetitionerDomiciled() {
 
   I.click('[for~="jurisdictionPetitionerDomicile_Yes"]');
   I.click('[for~="jurisdictionRespondentDomicile_No"]');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseRespondentDomiciled() {
@@ -39,7 +39,7 @@ function chooseRespondentDomiciled() {
 
   I.click('[for~="jurisdictionPetitionerDomicile_No"]');
   I.click('[for~="jurisdictionRespondentDomicile_Yes"]');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 module.exports = {
   chooseBothDomiciled,

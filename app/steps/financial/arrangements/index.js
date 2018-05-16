@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class FinancialArrangements extends OptionStep {
+module.exports = class FinancialArrangements extends ValidationStep {
   get url() {
     return '/about-divorce/financial/arrangements';
   }
@@ -15,10 +14,6 @@ module.exports = class FinancialArrangements extends OptionStep {
     };
   }
 
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
-
   constructor(...args) {
     super(...args);
 
@@ -29,8 +24,8 @@ module.exports = class FinancialArrangements extends OptionStep {
     });
   }
 
-  * validate(ctx, session) {
-    const [isValid, errors] = yield super.validate(ctx, session);
+  validate(ctx, session) {
+    const [isValid, errors] = super.validate(ctx, session);
 
     const removeUnWantedErrors = error => {
       return error.param === 'financialOrderFor';

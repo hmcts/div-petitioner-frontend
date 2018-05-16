@@ -9,26 +9,26 @@ const respondentAddress = {
   postcodeError: 'false'
 };
 
-Feature('Living Together');
+Feature('Living Together', { retries: 1 });
 
 Scenario('Petitioner accepts their home address for paper contact', (I) => {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
-  I.amOnPage('/petitioner-respondent/address');
+  I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
   I.enterCorrespondence(petitionerAddress);
 });
 
 Scenario('Petitioner and Respondent last lived together at a different address', (I) => {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
-  I.amOnPage('/petitioner-respondent/address');
+  I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
   I.enterCorrespondence();
   I.selectDoNotLiveTogetherInSameProperty();
@@ -38,12 +38,12 @@ Scenario('Petitioner and Respondent last lived together at a different address',
 });
 
 Scenario('Petitioner and Respondent never lived together', (I) => {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
-  I.amOnPage('/petitioner-respondent/address');
+  I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
   I.enterCorrespondence();
   I.selectDoNotLiveTogetherInSameProperty();
@@ -53,12 +53,12 @@ Scenario('Petitioner and Respondent never lived together', (I) => {
 
 
 Scenario('Journey: Couple never lived together, and Respondents address not known so papers to be sent to their solicitor', (I) => {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
-  I.amOnPage('/petitioner-respondent/address');
+  I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
   I.enterCorrespondence();
   I.selectDoNotLiveTogetherInSameProperty();

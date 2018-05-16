@@ -6,7 +6,7 @@ function enterAdulteryDetails() {
 
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/details');
   I.fillField('reasonForDivorceAdulteryDetails', mockSession.reasonForDivorceAdulteryDetails);
-  I.click('Continue');
+  I.navByClick('Continue');
   I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
 }
 

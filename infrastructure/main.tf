@@ -31,14 +31,6 @@ locals {
   service_auth_provider_url = "http://rpe-service-auth-provider-${local.local_env}.service.core-compute-${local.local_env}.internal"
   case_progression_service_url = "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal"
   evidence_management_client_api_url = "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal"
-
-  previewVaultName = "${var.product}-${var.reform_service_name}"
-  nonPreviewVaultName = "${var.reform_team}-${var.reform_service_name}-${var.env}"
-  vaultName = "${var.env == "preview" ? local.previewVaultName : local.nonPreviewVaultName}"
-
-  nonPreviewVaultUri = "${module.key-vault.key_vault_uri}"
-  previewVaultUri = "https://div-${var.reform_service_name}-aat.vault.azure.net/"
-  vaultUri = "${var.env == "preview"? local.previewVaultUri : local.nonPreviewVaultUri}"
 }
 
 module "frontend" {
@@ -47,13 +39,13 @@ module "frontend" {
   location = "${var.location}"
   env = "${var.env}"
   ilbIp = "${var.ilbIp}"
-  is_frontend  = true
+  is_frontend = "${var.env != "preview" ? 1: 0}"
   subscription = "${var.subscription}"
-  additional_host_name = "${var.additional_host_name}"
-  https_only = "true"
+  additional_host_name = "${var.env != "preview" ? var.additional_host_name : "null"}"
+  https_only = "false"
 
   app_settings = {
-        
+
     // Node specific vars
     NODE_ENV = "${var.node_env}"
     NODE_PATH = "${var.node_path}"
@@ -157,21 +149,49 @@ module "frontend" {
     RATE_LIMITER_TOTAL = "${var.rate_limiter_total}"
     RATE_LIMITER_EXPIRE = "${var.rate_limiter_expire}"
 
+    // Specific Court Content
+    COURT_EASTMIDLANDS_NAME = "${var.court_eastmidlands_name}"
+    COURT_EASTMIDLANDS_CITY = "${var.court_eastmidlands_city}"
+    COURT_EASTMIDLANDS_POBOX = "${var.court_eastmidlands_pobox}"
+    COURT_EASTMIDLANDS_POSTCODE = "${var.court_eastmidlands_postcode}"
+    COURT_EASTMIDLANDS_OPENINGHOURS = "${var.court_eastmidlands_openinghours}"
+    COURT_EASTMIDLANDS_EMAIL = "${var.court_eastmidlands_email}"
+    COURT_EASTMIDLANDS_PHONENUMBER = "${var.court_eastmidlands_phonenumber}"
+    COURT_EASTMIDLANDS_SITEID = "${var.court_eastmidlands_siteid}"
+    COURT_EASTMIDLANDS_WEIGHT = "${var.court_eastmidlands_weight}"
+    COURT_WESTMIDLANDS_NAME = "${var.court_westmidlands_name}"
+    COURT_WESTMIDLANDS_CITY = "${var.court_westmidlands_city}"
+    COURT_WESTMIDLANDS_POBOX = "${var.court_westmidlands_pobox}"
+    COURT_WESTMIDLANDS_POSTCODE = "${var.court_westmidlands_postcode}"
+    COURT_WESTMIDLANDS_OPENINGHOURS = "${var.court_westmidlands_openinghours}"
+    COURT_WESTMIDLANDS_EMAIL = "${var.court_westmidlands_email}"
+    COURT_WESTMIDLANDS_PHONENUMBER = "${var.court_westmidlands_phonenumber}"
+    COURT_WESTMIDLANDS_SITEID = "${var.court_westmidlands_siteid}"
+    COURT_WESTMIDLANDS_WEIGHT = "${var.court_westmidlands_weight}"
+    COURT_SOUTHWEST_NAME = "${var.court_southwest_name}"
+    COURT_SOUTHWEST_CITY = "${var.court_southwest_city}"
+    COURT_SOUTHWEST_POBOX = "${var.court_southwest_pobox}"
+    COURT_SOUTHWEST_POSTCODE = "${var.court_southwest_postcode}"
+    COURT_SOUTHWEST_OPENINGHOURS = "${var.court_southwest_openinghours}"
+    COURT_SOUTHWEST_EMAIL = "${var.court_southwest_email}"
+    COURT_SOUTHWEST_PHONENUMBER = "${var.court_southwest_phonenumber}"
+    COURT_SOUTHWEST_SITEID = "${var.court_southwest_siteid}"
+    COURT_SOUTHWEST_WEIGHT = "${var.court_southwest_weight}"
+    COURT_NORTHWEST_NAME = "${var.court_northwest_name}"
+    COURT_NORTHWEST_ADDRESSNAME = "${var.court_northwest_addressname}"
+    COURT_NORTHWEST_CITY = "${var.court_northwest_city}"
+    COURT_NORTHWEST_STREET = "${var.court_northwest_street}"
+    COURT_NORTHWEST_POSTCODE = "${var.court_northwest_postcode}"
+    COURT_NORTHWEST_OPENINGHOURS = "${var.court_northwest_openinghours}"
+    COURT_NORTHWEST_EMAIL = "${var.court_northwest_email}"
+    COURT_NORTHWEST_PHONENUMBER = "${var.court_northwest_phonenumber}"
+    COURT_NORTHWEST_SITEID = "${var.court_northwest_siteid}"
+    COURT_NORTHWEST_WEIGHT = "${var.court_northwest_weight}"
+
     // Backwards compatibility envs, to be removed
     EASTMIDLANDS_COURTWEIGHT = "${var.court_eastmidlands_court_weight}"
     WESTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
     SOUTHWEST_COURTWEIGHT = "${var.court_southwest_court_weight}"
     NORTHWEST_COURTWEIGHT = "${var.court_northwest_court_weight}"
   }
-}
-
-module "key-vault" {
-  source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
-  name                = "${local.vaultName}"
-  product             = "${var.product}"
-  env                 = "${var.env}"
-  tenant_id           = "${var.tenant_id}"
-  object_id           = "${var.jenkins_AAD_objectId}"
-  resource_group_name = "${module.frontend.resource_group_name}"
-  product_group_object_id = "68839600-92da-4862-bb24-1259814d1384"
 }

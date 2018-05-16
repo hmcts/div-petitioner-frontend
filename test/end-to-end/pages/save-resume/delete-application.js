@@ -7,7 +7,7 @@ function confirmRemoveApplication() {
   I.see(content.question);
   I.click(content.yes);
 
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function declineRemoveApplicaiton() {
@@ -17,7 +17,7 @@ function declineRemoveApplicaiton() {
   I.see(content.question);
   I.click(content.no);
 
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = {

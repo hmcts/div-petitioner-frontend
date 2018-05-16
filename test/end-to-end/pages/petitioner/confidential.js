@@ -6,7 +6,7 @@ function enterPeConfidentialContactDetails() {
 
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
   I.checkOption(content.share);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterPeConfidentialContactDetails };

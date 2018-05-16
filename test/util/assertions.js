@@ -18,7 +18,6 @@ const createSession = (agent) => {
   return getSession(agent)
     .then((res) => {
       const tokens = new Tokens();
-
       agent.csrfToken = tokens.create(res.body.csrfSecret);
 
       return agent.post('/session')
@@ -256,7 +255,10 @@ exports.testNoneExistenceCYA = (done, underTest, content, contentToNotExist = []
 
 exports.testErrors = (done, agent, underTest, data, content, type, onlyKeys = [], session = {}) => {
   const triggerErrors = () => {
-    return postToUrl(agent, underTest.url, data).expect('Content-type', /html/);
+    return postToUrl(agent, underTest.url, data).expect(302);
+  };
+  const handleRedirect = () => {
+    return getUrl(agent, underTest.url);
   };
 
   const checkErrors = (res) => {
@@ -278,13 +280,17 @@ exports.testErrors = (done, agent, underTest, data, content, type, onlyKeys = []
 
   return createSession(agent)
     .then(triggerErrors)
+    .then(handleRedirect)
     .then(checkErrors)
     .then(done, done);
 };
 
 exports.testValidation = (done, agent, underTest, data, content, expectedErrors = [], selector = 'ul.error-summary-list li a') => {
   const triggerErrors = () => {
-    return postToUrl(agent, underTest.url, data).expect('Content-type', /html/);
+    return postToUrl(agent, underTest.url, data).expect(302);
+  };
+  const handleRedirect = () => {
+    return getUrl(agent, underTest.url);
   };
 
   const checkErrors = (res) => {
@@ -325,6 +331,7 @@ exports.testValidation = (done, agent, underTest, data, content, expectedErrors 
 
   return createSession(agent)
     .then(triggerErrors)
+    .then(handleRedirect)
     .then(checkErrors)
     .then(done, done);
 };

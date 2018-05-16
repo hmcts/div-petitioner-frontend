@@ -6,7 +6,7 @@ function selectAdulteryWhen() {
 
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/when');
   I.checkOption(content.no);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { selectAdulteryWhen };

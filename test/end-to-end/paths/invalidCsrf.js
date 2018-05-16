@@ -1,8 +1,8 @@
-Feature('Simulated invalid CSRF token');
+Feature('Simulated invalid CSRF token', { retries: 1 });
 
 Scenario('Should continue if there is a csrf token set', function* (I) {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   let csrfToken = yield I.grabValueFrom('input[name=_csrf]');
@@ -14,7 +14,7 @@ Scenario('Should continue if there is a csrf token set', function* (I) {
 
 Scenario('Redirects to error when csrf gets modified', (I) => {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.fillField('input[name=_csrf]', 'modifedCsrfToken');

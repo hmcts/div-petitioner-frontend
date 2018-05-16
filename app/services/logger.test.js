@@ -34,10 +34,10 @@ describe(modulePath, () => {
         idam
       };
       res = { statusCode: 200 };
-      sinon.stub(logging.express, 'accessLogger').returnsArg(0);
+      sinon.stub(logging.Express, 'accessLogger').returnsArg(0);
     });
     afterEach(() => {
-      logging.express.accessLogger.restore();
+      logging.Express.accessLogger.restore();
     });
     it('creates a message with the idam user id', () => {
       const accessLogger = logger.accessLogger();
@@ -61,17 +61,17 @@ describe(modulePath, () => {
         error: sinon.stub()
       };
       req = { idam };
-      sinon.stub(logging, 'getLogger').returns(loggerStub);
+      sinon.stub(logging.Logger, 'getLogger').returns(loggerStub);
       loggerInstance = logger.logger('name');
     });
 
     afterEach(() => {
-      logging.getLogger.restore();
+      logging.Logger.getLogger.restore();
     });
 
     it('creates logging instance with given name', () => {
-      expect(logging.getLogger.calledWith('name')).to.eql(true);
-      expect(logging.getLogger.calledOnce).to.eql(true);
+      expect(logging.Logger.getLogger.calledWith('name')).to.eql(true);
+      expect(logging.Logger.getLogger.calledOnce).to.eql(true);
     });
 
     it('calls logger log with arguments', () => {

@@ -1,4 +1,3 @@
-const statusCodes = require('http-status-codes');
 const logger = require('app/services/logger').logger(__filename);
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');

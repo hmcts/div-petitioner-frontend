@@ -1,12 +1,5 @@
 const logging = require('@hmcts/nodejs-logging');
 const idam = require('app/services/idam');
-const CONF = require('config');
-
-logging.config({
-  microservice: CONF.appName,
-  team: CONF.project,
-  environment: CONF.environment
-});
 
 const idamUserIdFromReq = args => {
   let idamUserId = 'unknown';

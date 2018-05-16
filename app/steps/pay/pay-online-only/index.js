@@ -143,7 +143,6 @@ module.exports = class PayOnline extends Step {
   get checkYourAnswersTemplate() {
     return false;
   }
-  
   parseRequest(req) {
     return requestHandler.parse(this, req);
   }

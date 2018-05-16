@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class RespondentCorrespondenceSendToSolicitor extends OptionStep {
+module.exports = class RespondentCorrespondenceSendToSolicitor extends ValidationStep {
   get url() {
     return '/petitioner-respondent/correspondence/send-to-solicitor';
   }
@@ -23,9 +22,5 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends OptionSte
         remove('respondentCorrespondenceSendToSolicitor');
       }
     });
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 };

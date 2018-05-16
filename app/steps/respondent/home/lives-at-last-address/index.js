@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class RespondentLivesAtLastAddress extends OptionStep {
+module.exports = class RespondentLivesAtLastAddress extends ValidationStep {
   get url() {
     return '/petitioner-respondent/lives-at-this-address';
   }
@@ -22,10 +21,6 @@ module.exports = class RespondentLivesAtLastAddress extends OptionStep {
     watch('livingArrangementsLastLivedTogetherAddress', (previousSession, session, remove) => {
       remove('respondentLivesAtLastAddress');
     });
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   action(ctx, session) {

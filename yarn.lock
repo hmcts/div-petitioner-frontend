@@ -19,9 +19,9 @@
     request-promise-native "^1.0.5"
     uuid "^3.1.0"
 
-"@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#5.0.0":
-  version "5.0.0"
-  resolved "https://github.com/hmcts/div-idam-express-middleware#4c6503902be1c7fe7bfdb81317175105c0733785"
+"@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#6.0.0":
+  version "6.0.0"
+  resolved "https://github.com/hmcts/div-idam-express-middleware#3b2466873627729a157b5c831217ff9610ed969d"
   dependencies:
     "@hmcts/nodejs-logging" "^2.2.0"
     request "^2.83.0"

@@ -29,8 +29,6 @@
                     "confirmApplication": "The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
                     "submitOnline": "Submit",
                     "submitAndPay": "Submit and pay",
-                    "dontNavigateAway": "Don’t close the browser, navigate away from this service or refresh the page until you’re told that your application is complete.",
-                    "dontNavigateAwayNotAppliedForFees": "You now need to pay the fee.",
                     "submitPayWarning": "Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
                     "deleteApplciation": "Delete application"
                 },

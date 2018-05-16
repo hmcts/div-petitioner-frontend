@@ -52,7 +52,8 @@ describe(modulePath, () => {
         'confirmDissolvePayRespondentFinancial',
         'confirmDissolvePayCoRespondentFinancial',
         'confirmDissolvePayBothFinancial',
-        'dontNavigateAwayNotAppliedForFees',
+        'submitPayWarning',
+        'submitAndPay',
         'titleSoFar'
       ];
 
@@ -133,12 +134,26 @@ describe(modulePath, () => {
       withSession(done, agent, session);
     });
     it('renders the correct dynamic text', done => {
-      testNonExistence(done, agent, underTest,
-        contentStrings.dontNavigateAwayNotAppliedForFees, session);
+      testExistence(done, agent, underTest,
+        contentStrings.submitOnline, session);
     });
   });
 
-  describe('help with fees refference number exists', () => {
+  describe('help with fees reference number exists', () => {
+    let session = {};
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.helpWithFeesReferenceNumber = 'HWF-A1B-23C';
+      session.helpWithFeesNeedHelp = 'Yes';
+      withSession(done, agent, session);
+    });
+    it('renders the correct dynamic text', done => {
+      testNonExistence(done, agent, underTest,
+        contentStrings.submitPayWarning, session);
+    });
+  });
+
+  describe('help with fees refference number does not exists warning', () => {
     let session = {};
     beforeEach(done => {
       session = clone(mockSession);
@@ -149,7 +164,22 @@ describe(modulePath, () => {
     });
     it('renders the correct dynamic text', done => {
       testExistence(done, agent, underTest,
-        contentStrings.dontNavigateAwayNotAppliedForFees, session);
+        contentStrings.submitPayWarning, session);
+    });
+  });
+
+  describe('help with fees refference number does not exists payment', () => {
+    let session = {};
+    beforeEach(done => {
+      session = clone(mockSession);
+      delete session.helpWithFeesReferenceNumber;
+      session.helpWithFeesNeedHelp = 'No';
+      delete session.helpWithFeesAppliedForFees;
+      withSession(done, agent, session);
+    });
+    it('renders the correct dynamic text', done => {
+      testExistence(done, agent, underTest,
+        contentStrings.submitAndPay, session);
     });
   });
 

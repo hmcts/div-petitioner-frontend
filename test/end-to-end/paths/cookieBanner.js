@@ -1,4 +1,4 @@
-Feature('Cookie Banner');
+Feature('Cookie Banner', { retries: 1 });
 
 Scenario('The cookie banner displays when page is first hit', function*(I) {
 

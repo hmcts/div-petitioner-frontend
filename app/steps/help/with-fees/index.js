@@ -32,14 +32,11 @@ module.exports = class WithFees extends ValidationStep {
   }
 
   validate(ctx, session) {
-    if (ctx.helpWithFeesAppliedForFees === 'No') {
-      delete ctx.helpWithFeesReferenceNumber;
-    }
-    const [isValid, errors] = super.validate(ctx, session);
 
     if (ctx.helpWithFeesAppliedForFees === 'No') {
       delete ctx.helpWithFeesReferenceNumber;
     }
+    const [isValid, errors] = super.validate(ctx, session);
 
     if (isValid) {
       // format reference number so it includes hyphens and HWF

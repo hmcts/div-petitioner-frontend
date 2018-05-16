@@ -1,5 +1,4 @@
-const Step = require('app/core/Step');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const Step = require('app/core/steps/Step');
 
 module.exports = class FinancialAdvice extends Step {
   get url() {
@@ -7,10 +6,6 @@ module.exports = class FinancialAdvice extends Step {
   }
   get nextStep() {
     return this.steps.ClaimCosts;
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   interceptor(ctx) {

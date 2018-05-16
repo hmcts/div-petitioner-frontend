@@ -1,5 +1,5 @@
 const { forEach, isEqual, uniqWith } = require('lodash');
-const Step = require('./Step');
+const Step = require('app/core/steps/Step');
 
 module.exports = steps => {
   const nodes = [];

@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class DesertionAgree extends OptionStep {
+module.exports = class DesertionAgree extends ValidationStep {
   get url() {
     return '/about-divorce/reason-for-divorce/desertion/agree';
   }
@@ -13,9 +12,6 @@ module.exports = class DesertionAgree extends OptionStep {
         No: this.steps.ExitDesertionAgree
       }
     };
-  }
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   constructor(...args) {

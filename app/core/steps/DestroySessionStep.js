@@ -15,8 +15,4 @@ module.exports = class DestroySessionStep extends Step {
   get middleware() {
     return [idam.logout()];
   }
-
-  get nextStep() {
-    return null;
-  }
 };

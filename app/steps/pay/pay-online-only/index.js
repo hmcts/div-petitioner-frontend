@@ -1,5 +1,4 @@
-const Step = require('app/core/Step');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const Step = require('app/core/steps/Step');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -11,6 +10,8 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
+const { saveSessionToDraftStoreAndClose } = require('app/middleware/draftPetitionStoreMiddleware');
+const requestHandler = require('app/core/helpers/parseRequest');
 
 const jwt = require('jsonwebtoken');
 const CONF = require('config');
@@ -34,11 +35,12 @@ module.exports = class PayOnline extends Step {
       sessionTimeout,
       restoreFromDraftStore,
       setIdamUserDetails,
-      applicationFeeMiddleware.updateApplicationFeeMiddleware
+      applicationFeeMiddleware.updateApplicationFeeMiddleware,
+      saveSessionToDraftStoreAndClose
     ];
   }
 
-  handler(req, res) {
+  handler(req, res, next) {
     const { method, cookies, body } = req;
 
     const isGetRequest = method.toLowerCase() === 'get';
@@ -48,7 +50,7 @@ module.exports = class PayOnline extends Step {
     const hasBeenPostedWithoutSubmitButton = body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
 
     if (isGetRequest || hasBeenPostedWithoutSubmitButton) {
-      return runStepHandler(this, req, res);
+      return super.handler(req, res, next);
     }
 
     req.session = req.session || {};
@@ -126,6 +128,7 @@ module.exports = class PayOnline extends Step {
         const id = req.session.currentPaymentId;
         const nextUrl = req.session.payments[id].nextUrl;
         res.redirect(nextUrl);
+        next();
       })
 
       // Log any errors occurred and end up on the error page.
@@ -138,6 +141,10 @@ module.exports = class PayOnline extends Step {
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
+  }
+
+  parseRequest(req) {
+    return requestHandler.parse(this, req);
   }
 
   action(ctx, session) {

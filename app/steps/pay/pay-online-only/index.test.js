@@ -160,7 +160,7 @@ describe(modulePath, () => {
           );
           const DEFAULT_FEE_AMOUNT = 550;
           expect(create.calledWith(
-            {}, 'token', 'some-case-id', 'some-code', 'X0165', 1, DEFAULT_FEE_AMOUNT,
+            {}, 'token', 'some-case-id', 'some-code', 'FEE0002', 4, DEFAULT_FEE_AMOUNT,
             'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
             returnUrl
           )).to.equal(true);

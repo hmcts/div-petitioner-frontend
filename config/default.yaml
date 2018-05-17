@@ -70,7 +70,7 @@ commonProps:
     code: 'X0165'
     description: 'Divorce fee'
     version: 1
-    fee_amount: 550.00
+    fee_amount: 123.00
   financialOrderApplicationFee: 255
   court:
     eastMidlands:

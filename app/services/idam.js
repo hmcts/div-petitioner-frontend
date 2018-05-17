@@ -20,11 +20,10 @@ const idamArgs = {
 
 module.exports = {
 
-  authenticate: (protocol, host, path) => {
-    if (host) {
-      // get the hostname part of the host string
-      idamArgs.hostName = host.split(':')[0];
-      idamArgs.redirectUri = protocol.concat('://', host, path);
+  authenticate: (protocol, hostName, path) => {
+    if (hostName) {
+      idamArgs.hostName = hostName;
+      idamArgs.redirectUri = protocol.concat('://', hostName, path);
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },

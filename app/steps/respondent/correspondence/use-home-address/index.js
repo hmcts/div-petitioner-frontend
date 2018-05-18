@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class RespondentCorrespondenceUseHomeAddress extends OptionStep {
+module.exports = class RespondentCorrespondenceUseHomeAddress extends ValidationStep {
   get url() {
     return '/petitioner-respondent/respondent-correspondence/use-home-address';
   }
@@ -30,10 +29,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends OptionStep
         remove('respondentCorrespondenceAddress', 'respondentCorrespondenceUseHomeAddress');
       }
     });
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   setRespondentCorrespondenceDisplayAddress(ctx, session) {

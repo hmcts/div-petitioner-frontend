@@ -70,7 +70,7 @@ module.exports = function(grunt) {
       dev: {
         script: 'server.js',
         options: {
-          nodeArgs: ['--trace-warnings'],
+          nodeArgs: ['--trace-warnings', '--inspect'],
           ext: 'js, json, yaml',
           ignore: ['node_modules/**', 'app/assets/**', 'public/**'],
           args: grunt.option.flags()

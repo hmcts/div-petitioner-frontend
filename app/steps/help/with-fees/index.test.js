@@ -67,6 +67,16 @@ describe(modulePath, () => {
         s.steps.ExitNoHelpWithFees);
     });
 
+    it('redirects to the next page when No selected and HWF number not correct', done => {
+      const context = {
+        helpWithFeesAppliedForFees: 'No',
+        helpWithFeesReferenceNumber: 'WrongHWF'
+      };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.ExitNoHelpWithFees);
+    });
+
     it('redirects to the next page when Yes selected and HWF number correct', done => {
       const context = {
         helpWithFeesAppliedForFees: 'Yes',
@@ -98,16 +108,6 @@ describe(modulePath, () => {
 
       testErrors(done, agent, underTest, context,
         content, 'invalid', ['helpWithFeesReferenceNumber']);
-    });
-
-    it('redirects to the next page when No selected and HWF number uncorrect', done => {
-      const context = {
-        helpWithFeesAppliedForFees: 'No',
-        helpWithFeesReferenceNumber: 'HWF'
-      };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.ExitNoHelpWithFees);
     });
 
     it('renders errors for providing too short reference number', done => {

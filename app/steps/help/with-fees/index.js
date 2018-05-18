@@ -32,7 +32,6 @@ module.exports = class WithFees extends ValidationStep {
   }
 
   validate(ctx, session) {
-
     if (ctx.helpWithFeesAppliedForFees === 'No') {
       delete ctx.helpWithFeesReferenceNumber;
     }

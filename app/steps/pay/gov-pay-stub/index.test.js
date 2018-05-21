@@ -1,6 +1,5 @@
 /* eslint-disable max-nested-callbacks */
 const CONF = require('config');
-const statusCodes = require('http-status-codes');
 const { expect, sinon } = require('test/util/chai');
 const GovPayStub = require('app/steps/pay/gov-pay-stub');
 

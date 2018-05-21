@@ -77,10 +77,8 @@
       <span class="form-hint text">{{content.detailsDocuments | safe}}</span>
       <textarea class="form-control"
         rows="3"
-        label="{{content.detailsTitle | safe}}"
         name="petitionerNameChangedHowOtherDetails"
-        id="petitionerNameChangedHowOtherDetails"
-        type="text">{% if fields.petitionerNameChangedHowOtherDetails.value %}{{ fields.petitionerNameChangedHowOtherDetails.value }}{% endif %}</textarea>
+        id="petitionerNameChangedHowOtherDetails">{% if fields.petitionerNameChangedHowOtherDetails.value %}{{ fields.petitionerNameChangedHowOtherDetails.value }}{% endif %}</textarea>
     </div>
 
   </fieldset>

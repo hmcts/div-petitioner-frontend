@@ -10,7 +10,7 @@ const idamMock = require('test/mocks/idam');
 const { mockSession } = require('test/fixtures');
 
 const modulePath = 'app/steps/prayer/claim-costs';
-const { removeStaleData } = require('app/core/staleDataManager');
+const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 
 const content = require(`${modulePath}/content`);

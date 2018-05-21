@@ -158,9 +158,8 @@ describe(modulePath, () => {
           const returnUrl = response.request.protocol.concat(
             '//', response.request.host, '/pay/card-payment-status'
           );
-          const DEFAULT_FEE_AMOUNT = 550;
           expect(create.calledWith(
-            {}, 'token', 'some-case-id', 'some-code', 'X0165', 1, DEFAULT_FEE_AMOUNT,
+            {}, 'token', 'some-case-id', 'some-code', code, version, amount,
             'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
             returnUrl
           )).to.equal(true);

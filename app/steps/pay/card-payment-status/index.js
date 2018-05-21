@@ -5,7 +5,7 @@ const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 
-const Step = require('app/core/Step');
+const Step = require('app/core/steps/Step');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -23,7 +23,7 @@ module.exports = class CardPaymentStatus extends Step {
     ];
   }
 
-  handler(req, res) {
+  handler(req, res, next) {
     // @todo Fail early if paymentId cannot be found in the session.
     // @todo Fail early if request is not in the right format.
 
@@ -34,6 +34,7 @@ module.exports = class CardPaymentStatus extends Step {
     const resultInSession = paymentService.getCurrentPaymentStatus(req.session);
     if (resultInSession === 'success' || resultInSession === 'failed') {
       res.redirect(this.next(resultInSession).url);
+      next();
       return;
     }
 
@@ -95,6 +96,7 @@ module.exports = class CardPaymentStatus extends Step {
         const id = req.session.currentPaymentId;
         const paymentStatus = req.session.payments[id].status;
         res.redirect(this.next(paymentStatus).url);
+        next();
       })
 
       // Log any errors occurred and end up on the error page.

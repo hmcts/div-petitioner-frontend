@@ -1,12 +1,7 @@
 const AddressLookupStep = require('app/components/AddressLookupStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const { watch } = require('app/core/helpers/staleDataManager');
 
 module.exports = class Adultery3rdPartyAddress extends AddressLookupStep {
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
-
   constructor(steps, section, templatePath, content, schema) {
     super(steps, section, templatePath, content, schema);
     this.schemaScope = 'reasonForDivorceAdultery3rdAddress';

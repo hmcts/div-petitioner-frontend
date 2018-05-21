@@ -34,18 +34,19 @@
           <p class="text">{{content.whatToDoNowRefNumText | safe}}</p>
           <ul class="list list-bullet">
             <li>{{content.whatToDoNowOrigCert | safe}}</li>
+        
+          {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
+            <li>{{content.whatToDoNowNameChange | safe}}</li>
+          {% endif %}
+          {% if session.certifiedTranslation === 'Yes' %}
+            <li>{{content.whatToDoNowCertTrans | safe}}</li>
+          {% endif %}
+          </ul>
         {% endif %}
-        {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
-          <li>{{content.whatToDoNowNameChange | safe}}</li>
-        {% endif %}
-        {% if session.certifiedTranslation === 'Yes' %}
-          <li>{{content.whatToDoNowCertTrans | safe}}</li>
-        {% endif %}
-        </ul>
         {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
           <p class="text">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
         {% endif %}
-        <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h2>
+        <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h3>
         <p class="text">{{content.whatToDoNowPostText | safe}}</p>
         <p class="text">{{content.whatToDoNowPostText2 | safe}}</p>
           <address class="bold-small">

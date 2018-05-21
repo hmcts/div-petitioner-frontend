@@ -55,6 +55,9 @@ module.exports = class PayOnline extends Step {
 
     req.session = req.session || {};
 
+    // Set court details to latest from config
+    req.session.court = CONF.commonProps.court;
+
     // Some prerequisites. @todo extract these elsewhere?
     let authToken = '';
     let user = {};

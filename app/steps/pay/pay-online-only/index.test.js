@@ -130,14 +130,10 @@ describe(modulePath, () => {
       let session = {}, siteId = '';
 
       beforeEach(done => {
-        siteId = 'some-code';
+        siteId = '1';
         session = {
           caseId: 'some-case-id',
-          court: {
-            someCourt: { siteId },
-            someOtherCourt: { siteId: 'some-other-code' }
-          },
-          courts: 'someCourt'
+          courts: 'eastMidlands'
         };
 
         withSession(done, agent, session);
@@ -159,7 +155,7 @@ describe(modulePath, () => {
             '//', response.request.host, '/pay/card-payment-status'
           );
           expect(create.calledWith(
-            {}, 'token', 'some-case-id', 'some-code', code, version, amount,
+            {}, 'token', 'some-case-id', '1', code, version, amount,
             'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
             returnUrl
           )).to.equal(true);

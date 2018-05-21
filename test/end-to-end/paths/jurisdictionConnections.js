@@ -1,4 +1,4 @@
-Feature('New Jurisdiction Journeys');
+Feature('New Jurisdiction Journeys', { retries: 1 });
 
 Before((I) => {
   I.amOnLoadedPage('/index');
@@ -48,7 +48,7 @@ Scenario('Set D: Petitioner Habitually Resident 12 months', function(I) {
   I.checkMyConnectionsAre('D');
 });
 
-Scenario('Set E: Petitioner Habitually Resident less than 12 months, but Domiciled for at least six months', function(I) {
+Scenario('@overnight: Set E: Petitioner Habitually Resident less than 12 months, but Domiciled for at least six months', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();
@@ -59,7 +59,7 @@ Scenario('Set E: Petitioner Habitually Resident less than 12 months, but Domicil
   I.checkMyConnectionsAre('E');
 });
 
-Scenario('Set F: Petitioner Habitually Resident less than 12 months, but Both Domiciled', function(I) {
+Scenario('@overnight: Set F: Petitioner Habitually Resident less than 12 months, but Both Domiciled', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.chooseBothDomiciled();
@@ -69,7 +69,7 @@ Scenario('Set F: Petitioner Habitually Resident less than 12 months, but Both Do
   I.checkMyConnectionsAre('F');
 });
 
-Scenario('Set G: Petitioner has Residual Jurisdiction (long)', function(I) {
+Scenario('@overnight: Set G: Petitioner has Residual Jurisdiction (long)', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();
@@ -86,7 +86,7 @@ Scenario('Set G: Petitioner has Residual Jurisdiction (long)', function(I) {
 
 // COLLECTING MORE CONNECTIONS //
 
-Scenario('Set B & E: Petitioner Habitually Resident and Domiciled for at least 6 months & Last Habitually Resident', function(I) {
+Scenario('@overnight: Set B & E: Petitioner Habitually Resident and Domiciled for at least 6 months & Last Habitually Resident', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();

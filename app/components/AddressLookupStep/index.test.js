@@ -2,8 +2,9 @@ const { merge } = require('lodash');
 const request = require('supertest');
 const { testContent, testCYATemplate, testExistenceCYA, testErrors } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
-const runStepHandler = require('app/core/handler/runStepHandler');
 const server = require('app');
+const { expect, sinon } = require('test/util/chai');
+const co = require('co');
 
 const modulePath = 'app/components/AddressLookupStep';
 const addressContent = require(`${modulePath}/content`);
@@ -21,14 +22,13 @@ describe(modulePath, () => {
   beforeEach(() => {
     s = server.init();
     underTest = new UnderTest({}, 'test.section', 'AddressLookupStep', underTestContent);
-    s.app.use(underTest.urlToBind, runStepHandler(underTest));
+    s.app.use(underTest.router);
     agent = request.agent(s.app);
   });
 
   afterEach(() => {
     s.http.close();
   });
-
 
   describe('selecting an address via the postcode service', () => {
     let session = {};
@@ -49,7 +49,6 @@ describe(modulePath, () => {
 
         testContent(done, agent, underTest, content, session, excludeKeys);
       });
-
 
       it('renders errors for missing required context', done => {
         const context = {};
@@ -131,6 +130,30 @@ describe(modulePath, () => {
       const onlyKeys = ['addressManual'];
 
       testErrors(done, agent, underTest, context, content, 'required', onlyKeys);
+    });
+  });
+
+  describe('#getRequest', () => {
+    let req = {};
+    let res = {};
+    beforeEach(() => {
+      req = {
+        session: {},
+        body: {},
+        method: 'GET'
+      };
+      res = {
+        locals: {},
+        render: sinon.stub()
+      };
+    });
+    it('renders the template successfully', done => {
+      req.query = { addressType: 'manual' };
+      co(function* generator() {
+        yield underTest.getRequest(req, res);
+        expect(req.session.hasOwnProperty('testAddress')).to.eql(true);
+        expect(req.session.testAddress).to.eql({ addressType: 'manual' });
+      }).then(done, done);
     });
   });
 

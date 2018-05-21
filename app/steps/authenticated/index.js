@@ -1,4 +1,4 @@
-const Step = require('app/core/Step');
+const Step = require('app/core/steps/Step');
 const idam = require('app/services/idam');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const initSession = require('app/middleware/initSession');
@@ -32,7 +32,8 @@ module.exports = class Authenticated extends Step {
     ];
   }
 
-  handler(req, res) {
+  handler(req, res, next) {
     res.redirect(this.next().url);
+    next();
   }
 };

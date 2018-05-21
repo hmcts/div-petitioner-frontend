@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class AboutYourMarriageCertificate extends OptionStep {
+module.exports = class AboutYourMarriageCertificate extends ValidationStep {
   get url() {
     return '/about-your-marriage/about-your-marriage-certificate';
   }
@@ -19,10 +18,6 @@ module.exports = class AboutYourMarriageCertificate extends OptionStep {
         }
       }
     };
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   constructor(steps, section, templatePath, content, schema) {

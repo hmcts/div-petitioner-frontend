@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/about-your-marriage-certificate/content.json').resources.en.translation.content;
 
-Feature('Foreign Marriage Certificates - Certificate Language');
+Feature('Foreign Marriage Certificates - Certificate Language', { retries: 1 });
 
 Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.amOnLoadedPage('/index');
@@ -35,7 +35,7 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.seeCurrentUrlEquals('/exit/about-your-marriage/no-certificate-translated');
 });
 
-Scenario('Married in UK, not answered', (I) => {
+Scenario('@overnight: Married in UK, not answered', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();

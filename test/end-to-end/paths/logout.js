@@ -1,7 +1,7 @@
 const toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
-Feature('Logout Session');
+Feature('Logout Session', { retries: 1 });
 
 Scenario('Logount on Save and close', function (I) {
   I.amOnLoadedPage('/index');

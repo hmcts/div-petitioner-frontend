@@ -1,15 +1,10 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/steps/ValidationStep');
 const { applyConnections, hasLivedMonths, hasOnlyConnection, clearProceedingSteps } = require('app/services/jurisdiction/connections');
 const { isEmpty } = require('lodash');
 
 const TWELVE_MONTHS = 12;
 
-module.exports = class JurisdictionLastTwelveMonths extends OptionStep {
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
-
+module.exports = class JurisdictionLastTwelveMonths extends ValidationStep {
   get url() {
     return '/jurisdiction/last-twelve-months';
   }

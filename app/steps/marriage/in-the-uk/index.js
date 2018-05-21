@@ -1,7 +1,6 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/steps/ValidationStep');
 
-module.exports = class MarriedInUk extends OptionStep {
+module.exports = class MarriedInUk extends ValidationStep {
   get url() {
     return '/about-your-marriage/in-the-uk';
   }
@@ -13,9 +12,5 @@ module.exports = class MarriedInUk extends OptionStep {
         No: this.steps.AboutYourMarriageCertificate
       }
     };
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 };

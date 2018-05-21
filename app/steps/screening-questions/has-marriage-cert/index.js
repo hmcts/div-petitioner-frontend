@@ -1,7 +1,6 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/steps/ValidationStep');
 
-module.exports = class ScreeningQuestionsMarriageCertificate extends OptionStep {
+module.exports = class ScreeningQuestionsMarriageCertificate extends ValidationStep {
   get url() {
     return '/screening-questions/marriage-certificate';
   }
@@ -18,9 +17,5 @@ module.exports = class ScreeningQuestionsMarriageCertificate extends OptionStep 
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 };

@@ -17,21 +17,10 @@
             {{ content.help | safe }}
         </summary>
         <div class="panel panel-border-narrow font-small">
-            
-            <p>
-                {{ content.helpText1 | safe }}
-            </p>
-
-            <p>
-                {{ content.helpText2 | safe }}
-            </p>
-            <p>
-                {{ content.helpText3 | safe }}
-            </p>
-
-            <p>
-                {{ content.helpText4 | safe }}
-            </p>
+            <p>{{ content.helpText1 | safe }}</p>
+            <div>{{ content.helpText2 | safe }}</div>
+            <p>{{ content.helpText3 | safe }}</p>
+            <p>{{ content.helpText4 | safe }}</p>
         </div>
     </details>
 

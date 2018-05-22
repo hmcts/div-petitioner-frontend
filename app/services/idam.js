@@ -35,6 +35,16 @@ module.exports = {
   },
   logout: () => {
     return idamExpressMiddleware.logout(idamArgs);
+  },
+  userDetails: () => {
+    return idamExpressMiddleware.userDetails(idamArgs);
+  },
+  userId: req => {
+    const hasIdamUserDetails = req && req.hasOwnProperty('idam') && req.idam.hasOwnProperty('userDetails');
+    if (hasIdamUserDetails && req.idam.userDetails.id) {
+      return req.idam.userDetails.id;
+    }
+    return undefined; // eslint-disable-line no-undefined
   }
 
 };

@@ -12,8 +12,7 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const { saveSessionToDraftStoreAndClose } = require('app/middleware/draftPetitionStoreMiddleware');
 const requestHandler = require('app/core/helpers/parseRequest');
-
-const jwt = require('jsonwebtoken');
+const idam = require('app/services/idam');
 const CONF = require('config');
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const get = require('lodash/get');
@@ -64,8 +63,15 @@ module.exports = class PayOnline extends Step {
 
     if (features.idam) {
       authToken = cookies['__auth-token'];
+
+      const idamUserId = idam.userId(req);
+      if (!idamUserId) {
+        logger.error('User does not have any idam userDetails');
+        return res.redirect('/generic-error');
+      }
+
       user = {
-        id: jwt.decode(authToken).id,
+        id: idamUserId,
         bearerToken: authToken
       };
     }

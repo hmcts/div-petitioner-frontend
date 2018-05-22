@@ -1,7 +1,7 @@
 const CONF = require('config');
 const superagent = require('superagent');
 const httpStatus = require('http-status-codes');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const errors = require('app/resources/errors');
 const fileManagment = require('app/services/fileManagement');
 
@@ -43,7 +43,7 @@ const sendFile = (file, options = { token: 'token' }) => {
     }
     return superagent
       .post(evidenceManagmentClientUploadUrl)
-      .set({ AuthorizationToken: options.token })
+      .set({ Authorization: options.token })
       .set('enctype', 'multipart/form-data')
       .attach('file', file.path, file.name)
       .end((error, response = { statusCode: null }) => {

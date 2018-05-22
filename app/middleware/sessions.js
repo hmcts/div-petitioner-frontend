@@ -2,14 +2,13 @@ const CONF = require('config');
 const session = require('express-session');
 const Redis = require('connect-redis')(session);
 const sessionSerializer = require('app/services/sessionSerializer');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const ioRedis = require('ioredis');
 
 const secret = CONF.secret;
 const redisHost = process.env.REDISCLOUD_URL || CONF.services.redis.host;
 const ttl = CONF.session.ttl;
 const cookieSecure = process.env.PUBLIC_PROTOCOL === 'https';
-const hostName = process.env.PUBLIC_HOSTNAME;
 
 const sessions = module.exports = { // eslint-disable-line no-multi-assign
 
@@ -69,7 +68,7 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
         cookie: {
           secure: cookieSecure,
           httpOnly: true,
-          domain: hostName
+          domain: req.get('host')
         }
       })(req, res, sessionHandled);
     };

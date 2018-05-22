@@ -1,4 +1,5 @@
 require('dotenv').config();
+const appInsights = require('applicationinsights');
 const CONF = require('config');
 const path = require('path');
 const https = require('https');
@@ -12,8 +13,7 @@ const cookieParser = require('cookie-parser');
 const sessions = require('app/middleware/sessions');
 const rateLimiter = require('app/services/rateLimiter');
 const initSteps = require('app/core/initSteps');
-const siteGraph = require('app/core/siteGraph');
-const errorHandler = require('app/core/errorHandler');
+const siteGraph = require('app/core/helpers/siteGraph');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
 const csurf = require('csurf');
@@ -28,6 +28,7 @@ const i18nTemplate = require('app/core/utils/i18nTemplate')({
 const statusCode = require('app/core/utils/statusCode');
 const logging = require('@hmcts/nodejs-logging');
 const events = require('events');
+const idam = require('app/services/idam');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -38,21 +39,20 @@ const healthcheck = require('app/services/healthcheck');
 const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
-const PORT = process.env.HTTP_PORT || CONF.http.port;
+const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
-const logger = logging.getLogger(__filename);
+const logger = logging.Logger.getLogger(__filename);
 
 exports.init = () => {
+  if (process.env.NODE_ENV === 'production') {
+    appInsights.setup(CONF.applicationInsights.instrumentationKey).start();
+  }
+
   const app = express();
 
   app.use(helmet());
 
-  logging.config({
-    microservice: CONF.appName,
-    team: CONF.project,
-    environment: CONF.environment
-  });
-  app.use(logging.express.accessLogger());
+  app.use(logging.Express.accessLogger());
 
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
@@ -120,8 +120,12 @@ exports.init = () => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
+  // Get user details from idam, sets req.idam.userDetails
+  app.use(idam.userDetails());
+
   app.set('trust proxy', 1);
   app.use(sessions.prod());
+
   if (CONF.rateLimiter.enabled) {
     app.use(rateLimiter(app));
   }
@@ -202,7 +206,11 @@ exports.init = () => {
   }));
 
   if (process.env.NODE_ENV !== 'testing') {
-    app.use(errorHandler(steps));
+    // redirect user if page not found
+    app.use((req, res) => {
+      logger.error(`User attempted to view a page that was not found: ${req.originalUrl}`);
+      steps.Error404.handler(req, res);
+    });
   }
 
   let http = {};

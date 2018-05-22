@@ -1,10 +1,10 @@
 const toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
-Feature('Draft petition store');
+Feature('Draft petition store', { retries: 1 });
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
 
   I.setCookie({name: 'mockRestoreSession', value: 'true'});
   I.seeCookie('mockRestoreSession');
@@ -21,7 +21,7 @@ Scenario('See the check your answers page if session restored from draft petitio
     I.selectMarriedInUk();
     
     I.clearCookie();
-    I.amOnPage('/index');
+    I.amOnLoadedPage('/index');
   }
 
   I.startApplication();
@@ -32,7 +32,7 @@ Scenario('See the check your answers page if session restored from draft petitio
 });
 
 Scenario('Save and close', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
 
   I.startApplication();
 
@@ -49,7 +49,7 @@ Scenario('Save and close', function (I) {
 });
 
 Scenario('Delete application from draft petition store', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
 
   I.setCookie({name: 'mockRestoreSession', value: 'true'});
   I.seeCookie('mockRestoreSession');
@@ -59,7 +59,7 @@ Scenario('Delete application from draft petition store', function (I) {
     I.haveBrokenMarriage();
     
     I.clearCookie();
-    I.amOnPage('/index');
+    I.amOnLoadedPage('/index');
   }
 
   I.startApplication();
@@ -71,7 +71,7 @@ Scenario('Delete application from draft petition store', function (I) {
 });
 
 Scenario('Decline to delete application from draft petition store', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
 
   I.setCookie({name: 'mockRestoreSession', value: 'true'});
   I.seeCookie('mockRestoreSession');
@@ -81,7 +81,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
     I.haveBrokenMarriage();
     
     I.clearCookie();
-    I.amOnPage('/index');
+    I.amOnLoadedPage('/index');
   }
 
   I.startApplication();

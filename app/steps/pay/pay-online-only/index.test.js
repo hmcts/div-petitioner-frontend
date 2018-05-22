@@ -5,14 +5,15 @@ const idamMock = require('test/mocks/idam');
 const { testContent, testCustom } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const getBaseUrl = require('app/core/utils/baseUrl');
 const { expect, sinon } = require('test/util/chai');
 const statusCodes = require('http-status-codes');
 const { withSession } = require('test/util/setup');
-const jwt = require('jsonwebtoken');
 const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
 const submission = require('app/services/submission');
 const CONF = require('config');
+const idam = require('app/services/idam');
 
 const modulePath = 'app/steps/pay/pay-online-only';
 
@@ -28,11 +29,21 @@ const version = CONF.commonProps.applicationFee.version;
 const amount = parseInt(
   CONF.commonProps.applicationFee.fee_amount
 );
+const userDetails = {
+  id: 1,
+  email: 'email@email.com'
+};
+const idamUserDetailsMiddlewareMock = (req, res, next) => {
+  req.idam = { userDetails };
+  next();
+};
 
 describe(modulePath, () => {
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
+    sinon.spy(getBaseUrl);
+    sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
     featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
@@ -45,6 +56,7 @@ describe(modulePath, () => {
     idamMock.restore();
     featureTogglesMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
+    idam.userDetails.restore();
   });
 
   describe('#middleware', () => {
@@ -88,11 +100,9 @@ describe(modulePath, () => {
       sinon.stub(serviceToken, 'setup').returns({ getToken });
       sinon.stub(payment, 'setup').returns({ create });
       sinon.stub(submission, 'setup').returns({ update });
-      sinon.stub(jwt, 'decode').returns({ id: 1 });
     });
 
     afterEach(() => {
-      jwt.decode.restore();
       submission.setup.restore();
       payment.setup.restore();
       serviceToken.setup.restore();
@@ -146,6 +156,21 @@ describe(modulePath, () => {
         testCustom(done, agent, underTest, cookies, () => {
           // Assert.
           expect(getToken.calledBefore(create)).to.equal(true);
+        }, 'post');
+      });
+
+      it('sets the returnUrl dynamically', done => {
+        // Act.
+        testCustom(done, agent, underTest, cookies, response => {
+          // Assert.
+          const returnUrl = response.request.protocol.concat(
+            '//', response.request.host, '/pay/card-payment-status'
+          );
+          expect(create.calledWith(
+            {}, 'token', 'some-case-id', 'some-code', code, version, amount,
+            'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+            returnUrl
+          )).to.equal(true);
         }, 'post');
       });
 

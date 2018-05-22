@@ -1,7 +1,7 @@
-Feature('New Jurisdiction Journeys');
+Feature('New Jurisdiction Journeys', { retries: 1 });
 
 Before((I) => {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -17,7 +17,7 @@ Scenario('Set A & C: Both Habitually Resident', function(I) {
   I.chooseBothHabituallyResident();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'C');
 });
 
@@ -27,7 +27,7 @@ Scenario('Set B: Both Last Habitually Resident', function(I) {
   I.chooseYesLastHabitualResidence();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('B');
 });
 
@@ -35,7 +35,7 @@ Scenario('Set C: Respondent Habitually Resident', function(I) {
   I.chooseRespondentHabituallyResident();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('C');
 });
 
@@ -44,32 +44,32 @@ Scenario('Set D: Petitioner Habitually Resident 12 months', function(I) {
   I.chooseYesJurisdictionLastTwelveMonths();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('D');
 });
 
-Scenario('Set E: Petitioner Habitually Resident less than 12 months, but Domiciled for at least six months', function(I) {
+Scenario('@overnight: Set E: Petitioner Habitually Resident less than 12 months, but Domiciled for at least six months', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();
   I.chooseYesJurisdictionLastSixMonths();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('E');
 });
 
-Scenario('Set F: Petitioner Habitually Resident less than 12 months, but Both Domiciled', function(I) {
+Scenario('@overnight: Set F: Petitioner Habitually Resident less than 12 months, but Both Domiciled', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.chooseBothDomiciled();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('F');
 });
 
-Scenario('Set G: Petitioner has Residual Jurisdiction (long)', function(I) {
+Scenario('@overnight: Set G: Petitioner has Residual Jurisdiction (long)', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();
@@ -79,14 +79,14 @@ Scenario('Set G: Petitioner has Residual Jurisdiction (long)', function(I) {
   I.checkMyConnectionSummaryIs('G');
   I.chooseJurisdictionConnectionSummaryContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('G');
 });
 
 
 // COLLECTING MORE CONNECTIONS //
 
-Scenario('Set B & E: Petitioner Habitually Resident and Domiciled for at least 6 months & Last Habitually Resident', function(I) {
+Scenario('@overnight: Set B & E: Petitioner Habitually Resident and Domiciled for at least 6 months & Last Habitually Resident', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();
@@ -96,7 +96,7 @@ Scenario('Set B & E: Petitioner Habitually Resident and Domiciled for at least 6
   I.checkMyConnectionSummaryIs('B', 'E');
   I.chooseJurisdictionConnectionSummaryContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('B', 'E');
 });
 
@@ -108,7 +108,7 @@ Scenario('Set A & C & D & E & F: Both Habitually Resident less than 12 months, a
   I.checkMyConnectionSummaryIs('A', 'C', 'D', 'E', 'F');
   I.chooseJurisdictionConnectionSummaryContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'C', 'D', 'E', 'F');
 });
 
@@ -121,7 +121,7 @@ Scenario('Set A & D & E & F & G: Selected via Last Resort page', function(I) {
   I.chooseJurisdictionConnectionSummaryShowAll();
   I.chooseMyLastResortConnections('A', 'D', 'E', 'F', 'G');
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'D', 'E', 'F', 'G');
 });
 
@@ -140,7 +140,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
   I.checkMyConnectionSummaryIs('G');
   I.chooseJurisdictionConnectionSummaryContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('G');
 });
 

@@ -30,25 +30,25 @@ describe(modulePath, () => {
     idam.protect.restore();
   });
 
-  it('with idam disabled it should not attempt to get user details from idam', done => {
+  it('with idam disabled it should call next', done => {
     const test = complete => {
       underTest.idamProtect(req, res, next);
       expect(next.calledOnce).to.eql(true);
       expect(next.calledWith()).to.eql(true);
-      expect(req.hasOwnProperty('idam')).to.eql(false);
+      expect(idam.protect.calledOnce).to.eql(false);
+      expect(idam.protect.calledWith()).to.eql(false);
       complete();
     };
     const featureMock = featureTogglesMock.when('idam', false, test);
     featureMock(done);
   });
 
-  it('with idam enabled it should save the idam userdetails to the req object', done => {
+  it('with idam enabled it should call idam.protect', done => {
     const test = complete => {
       underTest.idamProtect(req, res, next);
       expect(next.calledOnce).to.eql(true);
       expect(next.calledWith()).to.eql(true);
-      expect(req.hasOwnProperty('idam')).to.eql(true);
-      expect(req.idam).to.eql({ userDetails });
+      expect(idam.protect.calledOnce).to.eql(true);
       complete();
     };
     const featureMock = featureTogglesMock.when('idam', true, test);

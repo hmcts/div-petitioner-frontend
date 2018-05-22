@@ -1,9 +1,7 @@
-const statusCodes = require('http-status-codes');
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const ValidationStep = require('app/core/steps/ValidationStep');
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-module.exports = class GovPayStub extends OptionStep {
+module.exports = class GovPayStub extends ValidationStep {
   get enabledAfterSubmission() {
     return true;
   }
@@ -21,14 +19,13 @@ module.exports = class GovPayStub extends OptionStep {
     return false;
   }
 
-  handler(req, res) {
+  handler(req, res, next) {
     if (process.env.NODE_ENV === 'production') {
-      // Fail early.
-      logger.error(new Error('Payment stub page requested in production mode'));
-      return res.status(statusCodes.NOT_FOUND).send('Not found');
+      logger.error('Payment stub page requested in production mode');
+      return this.steps.Error404.handler(req, res, next);
     }
 
-    return runStepHandler(this, req, res);
+    return super.handler(req, res, next);
   }
 
   action(ctx, session) {

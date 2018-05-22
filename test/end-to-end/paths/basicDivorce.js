@@ -4,7 +4,7 @@ Feature('Basic divorce path', { retries: 1 });
 
 Scenario('Get a divorce', function*(I) {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();

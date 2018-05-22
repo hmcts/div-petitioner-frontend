@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
-const logger = require('@hmcts/nodejs-logging').getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
+const idam = require('app/services/idam');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 
-const Step = require('app/core/Step');
+const Step = require('app/core/steps/Step');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -23,7 +23,7 @@ module.exports = class CardPaymentStatus extends Step {
     ];
   }
 
-  handler(req, res) {
+  handler(req, res, next) {
     // @todo Fail early if paymentId cannot be found in the session.
     // @todo Fail early if request is not in the right format.
 
@@ -34,6 +34,7 @@ module.exports = class CardPaymentStatus extends Step {
     const resultInSession = paymentService.getCurrentPaymentStatus(req.session);
     if (resultInSession === 'success' || resultInSession === 'failed') {
       res.redirect(this.next(resultInSession).url);
+      next();
       return;
     }
 
@@ -43,11 +44,20 @@ module.exports = class CardPaymentStatus extends Step {
 
     if (features.idam) {
       authToken = req.cookies['__auth-token'];
+
+      const idamUserId = idam.userId(req);
+      if (!idamUserId) {
+        logger.error('User does not have any idam userDetails');
+        res.redirect('/generic-error');
+        return;
+      }
+
       user = {
-        id: jwt.decode(authToken).id,
+        id: idamUserId,
         bearerToken: authToken
       };
     }
+
     const caseId = req.session.caseId;
 
     // Initialise services.
@@ -95,6 +105,7 @@ module.exports = class CardPaymentStatus extends Step {
         const id = req.session.currentPaymentId;
         const paymentStatus = req.session.payments[id].status;
         res.redirect(this.next(paymentStatus).url);
+        next();
       })
 
       // Log any errors occurred and end up on the error page.

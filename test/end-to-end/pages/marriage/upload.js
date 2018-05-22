@@ -14,12 +14,13 @@ function upload(file, isDragAndDropSupported) {
 function uploadMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
+  I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
   upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForVisible('.file', 30);
   I.waitForText('Remove', 30);
   I.waitForVisible('input[value="Continue"]:not([disabled])');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function testUploadResponse(isDragAndDropSupported, assetPath) {
@@ -33,6 +34,7 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {
 function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
+  I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
   upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForVisible('.file', 30);
@@ -40,7 +42,7 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   I.click('Remove');
   I.waitForInvisible('.file');
   I.dontSee('Remove');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = {

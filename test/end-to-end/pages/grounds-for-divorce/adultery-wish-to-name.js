@@ -6,7 +6,7 @@ function selectWishToName() {
 
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/wish-to-name');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { selectWishToName };

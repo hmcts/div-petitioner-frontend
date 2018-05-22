@@ -1,7 +1,7 @@
-Feature('Foreign Marriage Certificates');
+Feature('Foreign Marriage Certificates', { retries: 1 });
 
 Scenario('Certificate in English ', function(I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -19,7 +19,7 @@ Scenario('Certificate in English ', function(I) {
 });
 
 Scenario('Certificate not English but with translation', function(I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -37,7 +37,7 @@ Scenario('Certificate not English but with translation', function(I) {
 });
 
 Scenario('Certificate not English with no translation - exit page', function(I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();

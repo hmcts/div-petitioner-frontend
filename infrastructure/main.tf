@@ -30,7 +30,7 @@ locals {
 
   service_auth_provider_url = "http://rpe-service-auth-provider-${local.local_env}.service.core-compute-${local.local_env}.internal"
   case_progression_service_url = "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal"
-  evidence_management_client_api_url = "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal"
+  evidence_management_client_api_url = "http://pr-46-div-emca-preview.service.core-compute-preview.internal"
 }
 
 module "frontend" {

@@ -1,11 +1,10 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/steps/ValidationStep');
 const {
   applyConnections, isHabitualResident, areBothHabituallyResident,
   clearJurisdictionSections, clearProceedingSteps
 } = require('app/services/jurisdiction/connections');
 
-module.exports = class JurisdictionHabitualResidence extends OptionStep {
+module.exports = class JurisdictionHabitualResidence extends ValidationStep {
   get url() {
     return '/jurisdiction/habitual-residence';
   }
@@ -36,9 +35,6 @@ module.exports = class JurisdictionHabitualResidence extends OptionStep {
     return super.next(nextStepLogicHelper);
   }
 
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
 
   action(ctx, session) {
     clearJurisdictionSections(session);

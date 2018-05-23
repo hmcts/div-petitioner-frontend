@@ -13,7 +13,7 @@ services:
 
   functional-tests:
     image: codeception/codeceptjs:1.1.8
-    command: bash -c 'NODE_ENV=testing NODE_PATH=. .node_modules/.bin/codeceptjs run -c test/end-to-end/codecept.conf.js --reporter mocha-multi ${CODECEPT_PARAMS}'
+    command: bash -c 'NODE_ENV=testing NODE_PATH=. ./node_modules/.bin/codeceptjs run -c test/end-to-end/codecept.conf.js --reporter mocha-multi ${CODECEPT_PARAMS}'
     environment:
       E2E_FRONTEND_NODE_ENV: ${E2E_FRONTEND_NODE_ENV:-testing}
       E2E_PROXY_SERVER: ${E2E_PROXY_SERVER}

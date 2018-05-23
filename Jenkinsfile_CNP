@@ -9,8 +9,13 @@ withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
+  
   after('test') {
     sh 'yarn test-validation'
+  }
+
+  before('functionalTest:preview') {
+    env.CODECEPT_PARAMS = "--override '{ \"tests\": \"./paths/**/basicDivorce.js\"}'";
   }
   
   enableSlackNotifications('#div-dev')

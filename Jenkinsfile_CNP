@@ -15,7 +15,7 @@ withPipeline("nodejs", product, component) {
   }
 
   before('functionalTest:preview') {
-    env.CODECEPT_PARAMS = "--override '{ \"tests\": \"./paths/**/basicDivorce.js\"}'";
+    env.CODECEPT_PARAMS = '--grep "Get a divorce"';
   }
   
   enableSlackNotifications('#div-dev')

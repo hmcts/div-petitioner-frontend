@@ -20,7 +20,7 @@ class JSWait extends codecept_helper {
     if (helperIsPuppeteer) {
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
     } else {
-      await helper.waitUntil(() => window.location.href !== originalUrl)
+      await helper.waitUntil(() => window.location.href !== originalUrl, 5)
     }
   };
 

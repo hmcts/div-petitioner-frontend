@@ -24,7 +24,12 @@ const addUserIdToMessage = args => {
     args[0] = `${idamUserIdString} - ${args[0]}`;
   }
 
-  return args;
+  // remove the request object
+  const argsWithoutReqObject = args.filter(arg => {
+    return !arg.hasOwnProperty('method');
+  });
+
+  return argsWithoutReqObject;
 };
 
 const logger = name => {

@@ -1,12 +1,7 @@
 const AddressLookupStep = require('app/components/AddressLookupStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const { watch } = require('app/core/helpers/staleDataManager');
 
 module.exports = class PetitionerCorrespondenceAddress extends AddressLookupStep {
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
-
   get url() {
     return '/petitioner-respondent/petitioner-correspondence-address';
   }

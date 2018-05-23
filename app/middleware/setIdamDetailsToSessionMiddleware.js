@@ -1,8 +1,9 @@
+const idam = require('app/services/idam');
+
 function setIdamUserDetails(req, res, next) {
   const hasValidSession = req.session && req.session.hasOwnProperty('expires');
-  const hasIdamUserDetails = req.idam && req.idam.hasOwnProperty('userDetails');
 
-  if (!hasIdamUserDetails || !hasValidSession) {
+  if (!idam.userId(req) || !hasValidSession) {
     return next();
   }
 

@@ -264,7 +264,7 @@ variable "court_eastmidlands_siteid" {
 }
 
 variable "court_eastmidlands_weight" {
-  default = "0.32"
+  default = "0.25"
 }
 
 variable "court_westmidlands_name" {
@@ -300,7 +300,7 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = "0.23"
+  default = "0.25"
 }
 
 variable "court_southwest_name" {
@@ -336,7 +336,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = "0.18"
+  default = "0.25"
 }
 
 variable "court_northwest_name" {
@@ -376,7 +376,7 @@ variable "court_northwest_siteid" {
 }
 
 variable "court_northwest_weight" {
-  default = "0.27"
+  default = "0.25"
 }
 
 variable "court_phone_number" {
@@ -392,17 +392,17 @@ variable "court_email" {
 }
 
 variable "court_eastmidlands_court_weight" {
-  default = "0.32"
+  default = "0.25"
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.23"
+  default = "0.25"
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.18"
+  default = "0.25"
 }
 
 variable "court_northwest_court_weight" {
-  default = "0.27"
+  default = "0.25"
 }

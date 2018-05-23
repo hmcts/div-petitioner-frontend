@@ -5,6 +5,15 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
 
+// Properties that should be removed from the session before saving to draft store
+const blacklistedProperties = [
+  'expires',
+  'cookie',
+  'sessionKey',
+  'saveAndResumeUrl',
+  'csrfSecret'
+];
+
 const options = {
   draftBaseUrl: CONF.services.transformation.draftBaseUrl,
   baseUrl: CONF.services.transformation.baseUrl
@@ -79,8 +88,81 @@ const removeFromDraftStore = (req, res, next) => {
     });
 };
 
+const removeBlackListedPropertiesFromSession = session => {
+  return blacklistedProperties
+    .reduce((acc, item) => {
+      delete acc[item];
+      return acc;
+    }, Object.assign({}, session));
+};
+
+
+const saveSessionToDraftStore = (req, res, next) => {
+  const { session, method } = req;
+
+  const hasErrors = session.flash && session.flash.errors;
+  const isPost = method.toLowerCase() === 'post';
+
+  if (hasErrors || !isPost) {
+    return next();
+  }
+
+  const sessionToSave = removeBlackListedPropertiesFromSession(session);
+
+  // Get user token.
+  let authToken = '';
+  if (req.cookies && req.cookies[authTokenString]) {
+    authToken = req.cookies[authTokenString];
+  }
+
+  // attempt to save the current session to the draft store
+  return client.saveToDraftStore(authToken, sessionToSave)
+    .then(() => {
+      next();
+    })
+    .catch(error => {
+      logger.error(`Unable to save to draft store ${error}`);
+      next();
+    });
+};
+
+// use `function` instead of `arrow function (=>)` to preserve scope set in step.js #router
+// this. refers to Step class or inheritance of (app/core/steps/Step)
+const saveSessionToDraftStoreAndClose = function(req, res, next) {
+  const { method, body } = req;
+
+  const isPost = method.toLowerCase() === 'post';
+  const hasSaveAndCloseBody = body && body.saveAndClose;
+
+  if (isPost && hasSaveAndCloseBody) {
+    const ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
+    const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
+    const sessionToSave = removeBlackListedPropertiesFromSession(session);
+
+    // Get user token.
+    let authToken = '';
+    if (req.cookies && req.cookies[authTokenString]) {
+      authToken = req.cookies[authTokenString];
+    }
+
+    const sendEmail = true;
+    client.saveToDraftStore(authToken, sessionToSave, sendEmail)
+      .then(() => {
+        res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+      })
+      .catch(error => {
+        logger.error(`Unable to save to draft store ${error}`);
+        res.redirect('/generic-error');
+      });
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   restoreFromDraftStore,
   removeFromDraftStore,
-  redirectToCheckYourAnswers
+  redirectToCheckYourAnswers,
+  saveSessionToDraftStoreAndClose,
+  saveSessionToDraftStore
 };

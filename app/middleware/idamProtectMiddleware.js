@@ -6,12 +6,7 @@ function idamProtect(req, res, next) {
     return next();
   }
 
-  const middlewareNext = (userDetails = {}) => {
-    req.idam = { userDetails };
-    next();
-  };
-
-  return idam.protect()(req, res, middlewareNext);
+  return idam.protect()(req, res, next);
 }
 
 module.exports = { idamProtect };

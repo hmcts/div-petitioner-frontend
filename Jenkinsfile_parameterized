@@ -15,6 +15,6 @@ withParameterizedPipeline('nodejs', 'div', 'pfe', params.ENVIRONMENT, 'sandbox')
   }
 
   before('functionalTest:saat') {
-    env.E2E_PROXY_SERVER = ''
+    env.E2E_PROXY_SERVER = " "
   }
 }

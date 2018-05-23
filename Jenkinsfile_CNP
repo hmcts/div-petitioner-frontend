@@ -13,10 +13,6 @@ withPipeline("nodejs", product, component) {
   after('test') {
     sh 'yarn test-validation'
   }
-
-  before('functionalTest:preview') {
-    env.CODECEPT_PARAMS = '--grep "Get a divorce"';
-  }
   
   enableSlackNotifications('#div-dev')
 }

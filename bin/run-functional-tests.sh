@@ -1,19 +1,19 @@
 #!/bin/bash
 set -ex
 
-COMPOSE_FILE="docker/test-compose.yaml"
+#COMPOSE_FILE="docker/test-compose.yaml"
 
 # Trap errors or exits and close everything
-function shutdownDocker() {
- docker-compose -f ${COMPOSE_FILE} down
-}
+#function shutdownDocker() {
+# docker-compose -f ${COMPOSE_FILE} down
+#}
 
 if [ "$RUN_OVERNIGHT_TESTS" == true ]; then
     # Stops default CODECEPT_PARAMS being set later, which wouldn't run @overnight tagged tests
     CODECEPT_PARAMS="${CODECEPT_PARAMS};"
 fi
 
-trap shutdownDocker INT TERM QUIT EXIT
+#trap shutdownDocker INT TERM QUIT EXIT
 
 # Setup required environment variables. TEST_URL should be set by CNP
 export E2E_FRONTEND_URL=${TEST_URL}
@@ -30,5 +30,5 @@ export E2E_WAIT_FOR_TIMEOUT_VALUE=${E2E_WAIT_FOR_TIMEOUT_VALUE:-15000}
 export E2E_WAIT_FOR_ACTION_VALUE=${E2E_WAIT_FOR_ACTION_VALUE:-250}
 export CODECEPT_PARAMS=${CODECEPT_PARAMS:-"--grep @overnight --invert"}
 
-docker-compose -f ${COMPOSE_FILE} run functional-tests
-shutdownDocker
+yarn test-e2e --reporter mocha-multi ${CODECEPT_PARAMS}
+#shutdownDocker

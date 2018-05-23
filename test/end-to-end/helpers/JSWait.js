@@ -1,7 +1,14 @@
 class JSWait extends codecept_helper {
 
-  _beforeStep(step) {
+  _before() {
+    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
 
+    helper.page.on('error', error => console.log(error)); // eslint-disable-line no-console
+    helper.page.on('pageerror', error => console.log(error)); // eslint-disable-line no-console
+    helper.page.on('requestfailed', error => console.log(error)); // eslint-disable-line no-console
+  }
+
+  _beforeStep(step) {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
 
     // Wait for content to load before checking URL

@@ -26,7 +26,7 @@ const addUserIdToMessage = args => {
 
   // remove the request object
   const argsWithoutReqObject = args.filter(arg => {
-    return !arg.hasOwnProperty('method');
+    return arg && !arg.hasOwnProperty('method');
   });
 
   return argsWithoutReqObject;

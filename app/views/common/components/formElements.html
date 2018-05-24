@@ -95,7 +95,7 @@
     </div>
 {% endmacro %}
 
-{% macro yesNoRadioHeading(legend, name, field, yes, no, hint = '', targetYes = '', targetNo = '') %}
+{% macro yesNoRadioHeading(legend, name, field, yes, no, hint = '', targetYes = '', targetNo = '', screenReader = '') %}
     <div id="{{ name }}" class="form-group {{ 'form-group-error' if field.error }}">
         <fieldset class="inline">
             <legend class="visually-hidden">{{ legend | safe }}</legend>
@@ -106,18 +106,21 @@
 
             {{ errorsFor(field) }}
 
-            {{ radioButton('Yes', yes, name, field, targetYes) }}
-            {{ radioButton('No', no, name, field, targetNo) }}
+            {{ radioButton('Yes', yes, name, field, targetYes, screenReader) }}
+            {{ radioButton('No', no, name, field, targetNo, screenReader) }}
 
        </fieldset>
     </div>
 {% endmacro %}
 
-{% macro radioButton(value, label, name, field, dataTarget = '') %}
+{% macro radioButton(value, label, name, field, dataTarget = '', screenReader = '') %}
    <div class="multiple-choice" data-target="{{ dataTarget }}">
       <input id="{{ name }}_{{ value }}" type="radio" name="{{ name }}"
-               value="{{ value }}" {{ 'checked=checked ' if field.value === value }}>
+               value="{{ value }}" {{ 'checked=checked ' if field.value === value }} >
       <label for="{{ name }}_{{ value }}" >
+        {%- if screenReader -%}
+        <span class="visually-hidden">{{ screenReader | safe }}</span>
+        {%- endif -%}
         {{ label | safe }}
       </label>
     </div>

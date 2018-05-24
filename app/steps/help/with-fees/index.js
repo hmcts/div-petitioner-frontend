@@ -32,9 +32,6 @@ module.exports = class WithFees extends ValidationStep {
   }
 
   validate(ctx, session) {
-    if (ctx.helpWithFeesAppliedForFees === 'No') {
-      delete ctx.helpWithFeesReferenceNumber;
-    }
     const [isValid, errors] = super.validate(ctx, session);
 
     if (isValid) {
@@ -60,5 +57,12 @@ module.exports = class WithFees extends ValidationStep {
 
   checkYourAnswersInterceptor(ctx) {
     return { helpWithFeesReferenceNumber: ctx.helpWithFeesReferenceNumber };
+  }
+
+  interceptor(ctx) {
+    if (ctx.helpWithFeesAppliedForFees === 'No') {
+      delete ctx.helpWithFeesReferenceNumber;
+    }
+    return ctx;
   }
 };

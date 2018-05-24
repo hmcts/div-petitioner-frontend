@@ -20,6 +20,11 @@ variable "env" { }
 
 variable "ilbIp" { }
 
+variable "appinsights_instrumentation_key" {
+    description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+    default = ""
+}
+
 variable "deployment_env" {
   type = "string"
 }
@@ -31,7 +36,7 @@ variable "deployment_path" {
 variable "node_config_dir" {
   // for Unix
   // default = "/opt/divorce/frontend/config"
-  
+
   // for Windows
   default = "D:\\home\\site\\wwwroot\\config"
 }

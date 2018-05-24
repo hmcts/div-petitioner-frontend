@@ -15,33 +15,33 @@ const fiveYearsAgoFormatted = {
 };
 
 
-Feature('Reasons for divorce');
+Feature('Reasons for divorce', { retries: 1 });
 
 Scenario('Unreasonable behaviour - with added examples', (I) => {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
   I.enterMarriageDate();
-  I.amOnPage('/about-divorce/reason-for-divorce/reason');
+  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourAddMoreExamples();
   I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
-  I.amOnPage('/check-your-answers');
+  I.amOnLoadedPage('/check-your-answers');
 
 });
 
 Scenario('Adultery, with details', (I) => {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
   I.enterMarriageDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.amOnPage('/about-divorce/reason-for-divorce/reason');
+  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['adulteryHeading']);
   I.selectWishToName();
   I.enter3rdPartyDetails();
@@ -53,13 +53,13 @@ Scenario('Adultery, with details', (I) => {
 
 Scenario('2 years separation', (I) => {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
   I.enterMarriageDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.amOnPage('/about-divorce/reason-for-divorce/reason');
+  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
   I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.enterLegalProceedings();
@@ -67,13 +67,13 @@ Scenario('2 years separation', (I) => {
 
 Scenario('5 years separation', (I) => {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
   I.enterMarriageDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
-  I.amOnPage('/about-divorce/reason-for-divorce/reason');
+  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
   I.enterLegalProceedings();
@@ -81,17 +81,17 @@ Scenario('5 years separation', (I) => {
 
 Scenario('Exit if 5 years separation chosen but actual separation date is less', (I) => {
 
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  I.amOnPage('/about-your-marriage/details');
+  I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
   I.enterMarriageDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
-  I.amOnPage('/about-divorce/reason-for-divorce/reason');
+  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.seeCurrentUrlEquals('/exit/separation');
-  I.click('choose another reason');
+  I.navByClick('choose another reason');
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
 });
 
@@ -100,7 +100,7 @@ Scenario('Deserted without agreement', function*(I) {
 
   // Fill out all of the application
   // to test CYA content the application must be complete and valid
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();

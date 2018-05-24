@@ -1,4 +1,5 @@
 const content = require('app/steps/index/content.json').resources.en.translation.content;
+const common = require('app/content/common.json').resources.en.translation;
 let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
@@ -7,14 +8,15 @@ function startApplication(ignoreIdamToggle = false) {
   let I = this;
 
   I.seeCurrentUrlEquals('/index');
-  I.see(content.startNow);
-  I.click(content.startNow);
+  I.see(common.continue);
+  I.navByClick(common.continue);
 
   if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
-    I.click('Sign in');
+    I.navByClick('Sign in');
+    I.wait(2);
   }
 }
 
@@ -37,7 +39,7 @@ function followCookieBannerLink(cookiePageLink) {
   let I = this;
   const cookieTitle = '#content h1';
 
-  I.amOnPage(cookiePageLink);
+  I.amOnLoadedPage(cookiePageLink);
   I.see('Cookies', cookieTitle);
 }
 

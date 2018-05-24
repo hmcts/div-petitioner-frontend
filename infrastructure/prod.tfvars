@@ -5,14 +5,14 @@ vault_section = "prod"
 packages_environment = "prod"
 packages_version = "3.0.0"
 
-additional_host_name = "www.apply-divorce.platform.hmcts.net"
+additional_host_name = "www.apply-divorce.service.gov.uk"
 http_proxy = ""
 
 google_analytics_tracking_id = "UA-93824767-3"
 
 rediscloud_url = "betaProddivorceCache01.reform.hmcts.net:6379"
 
-idam_authentication_web_url = "https://www.idam.reform.hmcts.net"
+idam_authentication_web_url = "https://hmcts-access.service.gov.uk"
 idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
 service_auth_provider_url = "https://prod-s2s-api.reform.hmcts.net:3511"
 

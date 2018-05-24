@@ -23,121 +23,26 @@
 
 <main id="content" role="main" tabindex="-1">
 {% include "includes/phase_banner.html" %}
-<div class="breadcrumbs">
-    <ol>
-        <li><a href="http://www.gov.uk">{{content.home | safe}}</a></li>
-        <li>
-            <a href="https://www.gov.uk/browse/births-deaths-marriages" class="skipAccessTest">
-                {{content.birthsMarriagesDeaths | safe}}
-            </a>
-        </li>
-        <li>
-            <a href="https://www.gov.uk/browse/births-deaths-marriages/marriage-divorce" class="skipAccessTest">
-                {{content.marriageDivorce | safe}}
-            </a>
-        </li>
-    </ol>
-</div>
-
 <div class="grid-row">
     <div class="column-two-thirds">
-
-        <h1 class="heading-xlarge">
+        <h1 class="heading-large">
             {{content.title | safe}}
         </h1>
-
         <p class="text">
-            {{content.useThisService | safe}}
-        </p>
-
-        <div class="panel panel-border-wide">
-            <p class="text">{{ content.applyScotland | safe }}</p>
-        </div>
-
-        <p class="text">
-            {{content.divorceTime | safe}}
-        </p>
-
-        <h2 class="heading-medium">
-          {{content.checkIfApplyOnline | safe}}
-        </h2>
-
-        <p class="text">
-            {{content.marriedOneYear | safe}}
-        </p>
-
-        <p class="text">
-            {{content.youCanUseApplyOnline | safe}}
-        </p>
-
-        <ul class="list list-bullet">
-            <li>{{content.originalMarriageCertificate | safe}}</li>
-            <li>{{content.englishTranslation | safe}}</li>
-            <li>{{content.respondentAddress | safe}}</li>
-            <li>{{content.nameChange | safe}}</li>
-        </ul>
-
-        <p class="text">
-            {{content.needToSendApplyOnline | safe}}
+            {{content.applicationOnline | safe}}
         </p>
         <p class="text">
-            {{content.alsoApplyApplyOnline | safe}}
+            {{content.bringRestOnline | safe}}
         </p>
-
-        <h2 class="heading-medium">{{content.fees | safe}}</h2>
-
         <p class="text">
-            {{content.costs | safe}} {{content.needToPayOnline | safe}}
+            {{content.provideFeedback | safe}}
         </p>
-
-        <h3 class="heading-small">{{content.payLess | safe}}</h3>
-
-         <ul class="list list-bullet text">
-            <li>{{content.getHelp | safe}}</li>
-            <li>{{content.theyPay | safe }}</li>
-        </ul>
-
-        <h3 class="heading-small">{{content.extra | safe}}</h3>
-
-        <ul class="list list-bullet text">
-            <li>{{content.respondentDefends | safe }}</li>
-            <li>{{content.deliverPapers | safe }}</li>
-            <li>{{content.changeApplication | safe}}</li>
-        </ul>
-
         <p class="text">
-            <a class="button button-start skipAccessTest" href="/start" role="button">{{content.startNow | safe}}</a>
+            <a class="button skipAccessTest" href="/start" role="button">{{common.continue | safe}}</a>
         </p>
     </div>
-    <div class="column-third">
-
-        <aside class="govuk-related-items" role="complementary">
-            <h2 class="heading-medium" id="subsection-title">
-                {{content.marriageDivorce | safe}}
-            </h2>
-            <nav role="navigation" aria-labelledby="subsection-title">
-                <ul class="font-xsmall">
-                    <li>
-                        {{content.legalSeparation | safe}}
-                    </li>
-                    <li>
-                        {{content.annulMarriage | safe}}
-                    </li>
-                    <li>
-                        {{content.children | safe}}
-                    </li>
-                    <li>
-                        {{content.money | safe}}
-                    </li>
-                    <li class="related-topic bold-xsmall">
-                        {{content.more | safe}}
-                        <span class="visuallyhidden">
-                            {{content.moreIn | safe}}
-                        </span>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+    <div class="column-one-third">
+        <!-- side nav -->
     </div>
 </div>
 

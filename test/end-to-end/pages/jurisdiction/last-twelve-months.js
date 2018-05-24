@@ -6,7 +6,7 @@ function chooseYesJurisdictionLastTwelveMonths() {
 
   I.seeCurrentUrlEquals('/jurisdiction/last-twelve-months');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function chooseNoJurisdictionLastTwelveMonths() {
@@ -15,7 +15,7 @@ function chooseNoJurisdictionLastTwelveMonths() {
 
   I.seeCurrentUrlEquals('/jurisdiction/last-twelve-months');
   I.checkOption(content.no);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { chooseYesJurisdictionLastTwelveMonths, chooseNoJurisdictionLastTwelveMonths };

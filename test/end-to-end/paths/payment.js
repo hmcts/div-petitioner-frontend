@@ -1,26 +1,21 @@
-const indexContent = require('app/steps/index/content.json').resources.en.translation.content;
-const indexFeeContent = indexContent.costs.replace('{{ applicationFee.fee_amount }}', '550');
 const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
 const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ applicationFee.fee_amount }}</strong>', '£550');
 const reasonContent = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 
 
-Feature('Payment method');
-
-Scenario('Fee displays on /index page', function (I) {
-  I.amOnPage('/index');
-  I.see(indexFeeContent);
-});
+Feature('Payment method', { retries: 1 });
 
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
-  I.amOnPage('/pay/help/need-help');
+  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+  I.amOnLoadedPage('/pay/help/need-help');
+  I.waitForText(payHelpContent.question);
   I.see(payHelpFeeContent);
 });
 
 Scenario('Card payment online', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -64,7 +59,7 @@ Scenario('Card payment online', function* (I) {
 
 
 Scenario('Card payment online failure', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -105,7 +100,7 @@ Scenario('Card payment online failure', function* (I) {
   I.confirmIWillPayOnline();
   const isPaymentOnStub = yield I.getPaymentIsOnStub();
   I.payFailureOnPaymentPage(isPaymentOnStub);
-  I.seeCurrentUrlEquals('/pay/online');
+  I.waitInUrl('/pay/online');
 
   // Retry
   I.confirmIWillPayOnline();
@@ -114,7 +109,7 @@ Scenario('Card payment online failure', function* (I) {
 });
 
 Scenario('Card payment online cancellation with retry', function* (I) {
-  I.amOnPage('/index');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
@@ -155,7 +150,7 @@ Scenario('Card payment online cancellation with retry', function* (I) {
   I.confirmIWillPayOnline();
   const isPaymentOnStub = yield I.getPaymentIsOnStub();
   I.cancelOnPaymentPage(isPaymentOnStub);
-  I.seeCurrentUrlEquals('/pay/online');
+  I.waitInUrl('/pay/online');
 
   // Retry
   I.confirmIWillPayOnline();

@@ -6,7 +6,7 @@ function chooseRespondentServiceAddress(option) {
 
   I.seeCurrentUrlEquals('/petitioner-respondent/respondent-correspondence/use-home-address');
   I.checkOption(option || content.no);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { chooseRespondentServiceAddress };

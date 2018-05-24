@@ -13,7 +13,7 @@ function chooseNoLastHabitualResidence() {
 function completeLastHabitualResidence(I, chosenOption) {
   I.seeCurrentUrlEquals('/jurisdiction/last-habitual-residence');
   I.checkOption(chosenOption);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 

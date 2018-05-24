@@ -7,7 +7,7 @@ function enterRespondentSolicitorDetails() {
   I.seeCurrentUrlEquals('/petitioner-respondent/solicitor/details');
   I.fillField(content.name, 'Mrs. Smith');
   I.fillField(content.company, 'MoJ Solicitors');
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 module.exports = { enterRespondentSolicitorDetails };

@@ -12,7 +12,7 @@ function enterDesertionDate() {
   I.fillField('reasonForDivorceDesertionDay', mockSession.reasonForDivorceDesertionDay.toString());
   I.fillField('reasonForDivorceDesertionMonth', mockSession.reasonForDivorceDesertionMonth.toString());
   I.fillField('reasonForDivorceDesertionYear', mockSession.reasonForDivorceDesertionYear.toString());
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 
 function checkDesertionDateOnCYAPage() {

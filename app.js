@@ -25,7 +25,7 @@ const i18nTemplate = require('app/core/utils/i18nTemplate')({
   fileExtension: 'html'
 });
 const statusCode = require('app/core/utils/statusCode');
-const logging = require('@hmcts/nodejs-logging');
+const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
 
@@ -40,14 +40,14 @@ const nunjucksFilters = require('app/filters/nunjucks');
 
 const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
-const logger = logging.Logger.getLogger(__filename);
+const logger = logging.logger(__filename);
 
 exports.init = () => {
   const app = express();
 
   app.use(helmet());
 
-  app.use(logging.Express.accessLogger());
+  app.use(logging.accessLogger());
 
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
@@ -134,8 +134,8 @@ exports.init = () => {
 
   app.use((error, req, res, next) => {
     if (error.code === 'EBADCSRFTOKEN') {
-      logger.error('csrf error has occurred');
-      logger.debug(error);
+      logger.error('csrf error has occurred', req);
+      logger.info(error);
       res.redirect('/generic-error');
     } else {
       next();

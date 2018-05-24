@@ -6,7 +6,7 @@ const { Router } = require('express');
 const walkMap = require('app/core/utils/treeWalker');
 const statusCodes = require('http-status-codes');
 const co = require('co');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 
 const throwNotImplemented = func => {
   throw new ReferenceError(`Steps must override #${func}`);

@@ -1,4 +1,4 @@
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
@@ -34,7 +34,7 @@ module.exports = class Submit extends Step {
     const { method, cookies } = req;
 
     if (method.toLowerCase() !== 'get' || !cookies || !cookies['connect.sid']) {
-      logger.error('Malformed request to Submit step');
+      logger.error('Malformed request to Submit step', req);
       res.redirect(this.steps.Error404.url);
       next();
       return;
@@ -79,7 +79,7 @@ module.exports = class Submit extends Step {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
+        logger.error(`Error during submission step: ${error}`, req);
         res.redirect('/generic-error');
       });
   }

@@ -13,4 +13,8 @@ withParameterizedPipeline('nodejs', 'div', 'pfe', params.ENVIRONMENT, 'sandbox')
   after('build') {
     sh 'yarn setup'
   }
+
+  before('functionalTest:saat') {
+    env.E2E_PROXY_SERVER = ' '
+  }
 }

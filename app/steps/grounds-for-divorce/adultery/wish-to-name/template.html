@@ -30,13 +30,15 @@
             label = content.yes,
             name = 'reasonForDivorceAdulteryWishToName',
             field = fields.reasonForDivorceAdulteryWishToName,
-            dataTarget = 'wish-to-name-warning'
+            dataTarget = 'wish-to-name-warning',
+            screenReader = content.question
         ) }}
         {{ radioButton(
             value = 'No',
             label = content.no,
             name = 'reasonForDivorceAdulteryWishToName',
-            field = fields.reasonForDivorceAdulteryWishToName
+            field = fields.reasonForDivorceAdulteryWishToName,
+            screenReader = content.question
         ) }}
     </fieldset>
 

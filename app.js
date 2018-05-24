@@ -28,6 +28,7 @@ const i18nTemplate = require('app/core/utils/i18nTemplate')({
 const statusCode = require('app/core/utils/statusCode');
 const logging = require('@hmcts/nodejs-logging');
 const events = require('events');
+const idam = require('app/services/idam');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -118,6 +119,9 @@ exports.init = () => {
   // Support for parsing data in POSTs
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  // Get user details from idam, sets req.idam.userDetails
+  app.use(idam.userDetails());
 
   app.set('trust proxy', 1);
   app.use(sessions.prod());

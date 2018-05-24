@@ -66,6 +66,6 @@
                 {% if id < visibleExamples  %}
                   onfocus="this.value=this.value.replace(/\.\.\.$/, '')"
                 {% endif %}
-                  type="text">{% if fields.reasonForDivorceBehaviourDetails.value[id] %}{{ fields.reasonForDivorceBehaviourDetails.value[id] }}{% else %}{{ content.my }}{% endif %}</textarea>
+                  >{% if fields.reasonForDivorceBehaviourDetails.value[id] %}{{ fields.reasonForDivorceBehaviourDetails.value[id] }}{% else %}{{ content.my }}{% endif %}</textarea>
 </div>
 {% endmacro %}

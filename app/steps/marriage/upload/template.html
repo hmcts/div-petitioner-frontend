@@ -112,7 +112,7 @@
               </div>
             </div>
 
-            <div class="uploaded-files-wrapper {{ 'hidden' if not fields.marriageCertificateFiles.value.length }}"
+            <div class="uploaded-files-wrapper {{ 'hidden' if not fields.marriageCertificateFiles.value.length }}">
               <br />
 
               <h2 class="heading-small" style="margin-bottom: 0;">{{ content.uploadedFiles }}</h2>
@@ -155,7 +155,7 @@
             </details>
           </div>
 
-          <form method="POST" accept-charset="utf-8" class="form" id="form"
+          <form method="POST" accept-charset="utf-8" class="form"
                 enctype="application/x-www-form-urlencoded"
                 autocomplete="off">
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">

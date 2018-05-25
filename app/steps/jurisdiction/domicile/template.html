@@ -33,14 +33,16 @@
         label = content.yes,
         name = 'jurisdictionPetitionerDomicile',
         field = fields.jurisdictionPetitionerDomicile,
-        dataTarget = 'jurisdictionRespondentDomicile'
+        dataTarget = 'jurisdictionRespondentDomicile',
+        screenReader = content.petitioner
         ) }}
         {{ radioButton(
         value = 'No',
         label = content.no,
         name = 'jurisdictionPetitionerDomicile',
         field = fields.jurisdictionPetitionerDomicile,
-        dataTarget = 'jurisdictionRespondentDomicile'
+        dataTarget = 'jurisdictionRespondentDomicile',
+        screenReader = content.petitioner
         ) }}
 
     </fieldset>
@@ -53,13 +55,15 @@
         value = 'Yes',
         label = content.yes,
         name = 'jurisdictionRespondentDomicile',
-        field = fields.jurisdictionRespondentDomicile
+        field = fields.jurisdictionRespondentDomicile,
+        screenReader = content.respondent
         ) }}
         {{ radioButton(
         value = 'No',
         label = content.no,
         name = 'jurisdictionRespondentDomicile',
-        field = fields.jurisdictionRespondentDomicile
+        field = fields.jurisdictionRespondentDomicile,
+        screenReader = content.respondent
         ) }}
 
     </fieldset>

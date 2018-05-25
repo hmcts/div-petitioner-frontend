@@ -41,6 +41,7 @@ module "frontend" {
   ilbIp = "${var.ilbIp}"
   is_frontend = "${var.env != "preview" ? 1: 0}"
   subscription = "${var.subscription}"
+  appinsights_instrumentation_key = "${var.appinsights_instrumentation_key}"
   additional_host_name = "${var.env != "preview" ? var.additional_host_name : "null"}"
   https_only = "false"
 

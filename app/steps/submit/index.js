@@ -1,4 +1,4 @@
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
@@ -8,6 +8,9 @@ const Step = require('app/core/steps/Step');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 module.exports = class Submit extends Step {
   get middleware() {
@@ -31,13 +34,18 @@ module.exports = class Submit extends Step {
     const { method, cookies } = req;
 
     if (method.toLowerCase() !== 'get' || !cookies || !cookies['connect.sid']) {
-      logger.error('Malformed request to Submit step');
+      logger.error('Malformed request to Submit step', req);
       res.redirect(this.steps.Error404.url);
       next();
       return;
     }
 
     req.session = req.session || {};
+
+    // Load courts data into session and select court automatically.
+    req.session.court = CONF.commonProps.court;
+    req.session.courts = courtsAllocation.allocateCourt();
+    ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
 
     // Get user token.
     let authToken = '';
@@ -71,7 +79,7 @@ module.exports = class Submit extends Step {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
+        logger.error(`Error during submission step: ${error}`, req);
         res.redirect('/generic-error');
       });
   }

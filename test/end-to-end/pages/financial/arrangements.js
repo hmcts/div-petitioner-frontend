@@ -4,7 +4,7 @@ function selectFinancialArrangements() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/financial/arrangements');
+  I.waitUrlEquals('/about-divorce/financial/arrangements');
   I.checkOption(content.yes);
   I.checkOption(content.petitioner);
   I.checkOption(content.children);

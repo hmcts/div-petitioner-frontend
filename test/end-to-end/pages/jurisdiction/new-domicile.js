@@ -2,7 +2,7 @@ function chooseBothDomiciled() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/domicile');
+  I.waitUrlEquals('/jurisdiction/domicile');
 
   I.click('[for~="jurisdictionPetitionerDomicile_Yes"]');
   I.click('[for~="jurisdictionRespondentDomicile_Yes"]');
@@ -13,7 +13,7 @@ function chooseNeitherDomiciled() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/domicile');
+  I.waitUrlEquals('/jurisdiction/domicile');
 
   I.click('[for~="jurisdictionPetitionerDomicile_No"]');
   I.click('[for~="jurisdictionRespondentDomicile_No"]');
@@ -24,7 +24,7 @@ function choosePetitionerDomiciled() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/domicile');
+  I.waitUrlEquals('/jurisdiction/domicile');
 
   I.click('[for~="jurisdictionPetitionerDomicile_Yes"]');
   I.click('[for~="jurisdictionRespondentDomicile_No"]');
@@ -35,7 +35,7 @@ function chooseRespondentDomiciled() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/domicile');
+  I.waitUrlEquals('/jurisdiction/domicile');
 
   I.click('[for~="jurisdictionPetitionerDomicile_No"]');
   I.click('[for~="jurisdictionRespondentDomicile_Yes"]');

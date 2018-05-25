@@ -4,7 +4,7 @@ function selectMarriageCertificateInEnglish() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
+  I.waitUrlEquals('/about-your-marriage/about-your-marriage-certificate');
   clickCertificateInEnglish(I, 'Yes');
   I.navByClick('Continue');
 }
@@ -13,7 +13,7 @@ function selectMarriageCertificateNotEnglishWithTranslation() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
+  I.waitUrlEquals('/about-your-marriage/about-your-marriage-certificate');
   I.checkOption(content.yes);
   clickCertificateInEnglish(I, 'No');
   clickCertifiedTranslation(I, 'Yes');
@@ -24,7 +24,7 @@ function selectMarriageCertificateNotEnglishNoTranslation() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
+  I.waitUrlEquals('/about-your-marriage/about-your-marriage-certificate');
   I.checkOption(content.yes);
   clickCertificateInEnglish(I, 'No');
   clickCertifiedTranslation(I, 'No');

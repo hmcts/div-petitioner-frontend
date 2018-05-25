@@ -4,7 +4,7 @@ function enterUnreasonableBehaviourExample() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
+  I.waitUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 
   I.navByClick('Continue');
@@ -14,7 +14,7 @@ function enterUnreasonableBehaviourAddMoreExamples() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
+  I.waitUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
   //  enter data to pass validation
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 

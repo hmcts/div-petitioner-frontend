@@ -6,7 +6,7 @@ function enterMarriageDate(day = mockSession.marriageDateDay.toString(),
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/date-of-marriage-certificate');
+  I.waitUrlEquals('/about-your-marriage/date-of-marriage-certificate');
   I.fillField('marriageDateDay', day);
   I.fillField('marriageDateMonth', month);
   I.fillField('marriageDateYear', year);

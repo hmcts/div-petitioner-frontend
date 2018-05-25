@@ -28,7 +28,7 @@ Scenario('See the check your answers page if session restored from draft petitio
 
   I.checkMyAnswersRestoredSession();
 
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  I.waitUrlEquals('/jurisdiction/habitual-residence');
 });
 
 Scenario('Save and close', function (I) {
@@ -41,7 +41,7 @@ Scenario('Save and close', function (I) {
   I.haveMarriageCert();
 
   I.clickSaveAndCLose();
-  I.seeCurrentUrlEquals('/exit/application-saved');
+  I.waitUrlEquals('/exit/application-saved');
 
   if (toggleStore.getToggle('idam')) {
     I.see(idamConfigHelper.getTestEmail());
@@ -67,7 +67,7 @@ Scenario('Delete application from draft petition store', function (I) {
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
 
-  I.seeCurrentUrlEquals('/exit/removed-saved-application');
+  I.waitUrlEquals('/exit/removed-saved-application');
 });
 
 Scenario('Decline to delete application from draft petition store', function (I) {
@@ -89,5 +89,5 @@ Scenario('Decline to delete application from draft petition store', function (I)
   I.checkMyAnswersRemoveApplication();
   I.declineRemoveApplicaiton();
   
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.waitUrlEquals('/check-your-answers');
 });

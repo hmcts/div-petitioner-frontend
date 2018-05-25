@@ -5,7 +5,7 @@ function enterCorrespondence(addressObj) {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/petitioner-respondent/petitioner-correspondence/use-home-address');
+  I.waitUrlEquals('/petitioner-respondent/petitioner-correspondence/use-home-address');
   if (addressObj) {
     I.see(prettifyAddress(addressObj));
   }

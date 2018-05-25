@@ -2,7 +2,7 @@ function chooseMyLastResortConnections(...connections) {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/last-resort');
+  I.waitUrlEquals('/jurisdiction/last-resort');
 
   connections.forEach((connection) => {
     I.checkOption('#' + connection.toUpperCase());

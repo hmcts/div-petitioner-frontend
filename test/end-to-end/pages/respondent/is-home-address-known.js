@@ -10,7 +10,7 @@ function chooseNoRespondentHomeAddressIsNotKnown() {
 }
 
 function completeRespondentHomeAddressIsKnownPage(I, chosenOption) {
-  I.seeCurrentUrlEquals('/petitioner-respondent/is-home-address-known');
+  I.waitUrlEquals('/petitioner-respondent/is-home-address-known');
   I.checkOption(chosenOption);
   I.navByClick('Continue');
 }

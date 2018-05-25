@@ -4,7 +4,7 @@ function enterClaimCosts() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/claim-costs');
+  I.waitUrlEquals('/about-divorce/claim-costs');
   I.checkOption(content.yes);
   I.navByClick('Continue');
 }

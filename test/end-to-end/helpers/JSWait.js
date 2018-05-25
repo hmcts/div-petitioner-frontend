@@ -6,6 +6,7 @@ class JSWait extends codecept_helper {
 
     // Wait for content to load after checking URL
     if (step.name === 'waitUrlEquals' || step.name === 'waitInUrl') {
+      console.log("About to wait for #content");
       return helper.waitForElement('#content', 10);
     }
   };
@@ -34,6 +35,7 @@ class JSWait extends codecept_helper {
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
 
     } else {
+      console.log("About to go to URL: ", url);
       helper.amOnPage(url);
     }
   };

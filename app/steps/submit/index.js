@@ -8,6 +8,9 @@ const Step = require('app/core/steps/Step');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 module.exports = class Submit extends Step {
   get middleware() {
@@ -38,6 +41,11 @@ module.exports = class Submit extends Step {
     }
 
     req.session = req.session || {};
+
+    // Load courts data into session and select court automatically.
+    req.session.court = CONF.commonProps.court;
+    req.session.courts = courtsAllocation.allocateCourt();
+    ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
 
     // Get user token.
     let authToken = '';

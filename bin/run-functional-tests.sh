@@ -17,8 +17,8 @@ fi
 
 # Setup required environment variables. TEST_URL should be set by CNP
 export E2E_FRONTEND_URL=${TEST_URL}
-export E2E_PROXY_SERVER=${E2E_PROXY_SERVER:-"proxyout.reform.hmcts.net:8080"}
-export E2E_PROXY_BYPASS=${E2E_PROXY_BYPASS:-"*beta*LB.reform.hmcts.net"}
+export E2E_PROXY_SERVER=""
+export E2E_PROXY_BYPASS=""
 export E2E_FRONTEND_NODE_ENV=${E2E_FRONTEND_NODE_ENV:-"production"}
 export IDAM_API_URL=${IDAM_API_URL:-"https://preprod-idamapi.reform.hmcts.net:3511"}
 export FEATURE_TOGGLE_API_URL=${FEATURE_TOGGLE_API_URL:-"http://betaPreProddivorceAppLB.reform.hmcts.net:4002/api/v1/feature-toggle"}

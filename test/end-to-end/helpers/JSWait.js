@@ -15,7 +15,6 @@ class JSWait extends codecept_helper {
   async navByClick (text, locator) {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
     const helperIsPuppeteer = this.helpers['Puppeteer'];
-    const originalUrl = helper.grabCurrentUrl();
 
     helper.click(text, locator);
 

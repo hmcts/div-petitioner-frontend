@@ -6,7 +6,7 @@ class JSWait extends codecept_helper {
 
     // Wait for content to load before checking URL
     if (step.name === 'seeCurrentUrlEquals') {
-      return helper.waitForElement('#content', 10);
+      return helper.waitForElement('#content', 30);
     }
   };
 

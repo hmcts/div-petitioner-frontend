@@ -3,10 +3,12 @@ class JSWait extends codecept_helper {
   _beforeStep(step) {
 
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helperIsPuppeteer = this.helpers['Puppeteer'];
 
     // Wait for content to load before checking URL
-    if (step.name === 'seeCurrentUrlEquals') {
-      return helper.waitForElement('#content', 30);
+    if (step.name === 'seeCurrentUrlEquals' || step.name === 'seeInCurrentUrl') {
+      const suitableTimeout = helperIsPuppeteer ? 10 : 30;
+      return helper.waitForElement('#content', suitableTimeout);
     }
   };
 

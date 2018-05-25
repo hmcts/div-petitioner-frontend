@@ -37,6 +37,7 @@ class JSWait extends codecept_helper {
     } else {
       console.log("About to go to URL: ", url);
       helper.amOnPage(url);
+      helper.wait(3)
     }
   };
 }

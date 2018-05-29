@@ -1,7 +1,7 @@
 const tmp = require('tmp');
 const fs = require('fs');
 const util = require('util');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const formidable = require('formidable');
 
 const saveFileFromRequest = req => {
@@ -9,7 +9,7 @@ const saveFileFromRequest = req => {
     const form = new formidable.IncomingForm();
     form.parse(req, (error, fields, files) => {
       if (error) {
-        logger.error(`Unable to parse request ${error}`);
+        logger.error(`Unable to parse request ${error}`, req);
         return reject(error);
       }
       return resolve(files.file);

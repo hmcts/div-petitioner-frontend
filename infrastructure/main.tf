@@ -28,9 +28,9 @@ locals {
 
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
-  service_auth_provider_url = "http://rpe-service-auth-provider-${local.local_env}.service.core-compute-${local.local_env}.internal"
   case_progression_service_url = "http://pr-43-div-cps-preview-staging.service.core-compute-preview.internal"
-  evidence_management_client_api_url = "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal"
+  evidence_management_client_api_url = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
+  status_health_endpoint = "/status/health"
 }
 
 module "frontend" {
@@ -41,6 +41,7 @@ module "frontend" {
   ilbIp = "${var.ilbIp}"
   is_frontend = "${var.env != "preview" ? 1: 0}"
   subscription = "${var.subscription}"
+  appinsights_instrumentation_key = "${var.appinsights_instrumentation_key}"
   additional_host_name = "${var.env != "preview" ? var.additional_host_name : "null"}"
   https_only = "false"
 
@@ -120,12 +121,12 @@ module "frontend" {
 
     // Evidence Management Client API
     EVIDENCE_MANAGEMENT_CLIENT_API_URL="${local.evidence_management_client_api_url}"
-    EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL= "${local.evidence_management_client_api_url}${var.health_endpoint}"
+    EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL= "${local.evidence_management_client_api_url}${var.evidence_management_client_api_url == "" ? var.health_endpoint : local.status_health_endpoint}"
     EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT= "${var.evidence_management_client_api_upload_endpoint}"
 
     // Case Progrssion Service
-    CASE_PROGRESSION_SERVICE_URL = "${local.case_progression_service_url}${var.transformation_service_base_path}"
-    CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${local.case_progression_service_url}${var.health_endpoint}"
+    CASE_PROGRESSION_SERVICE_URL = "${local.case_progression_service_url}${var.case_progression_base_path}"
+    CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${local.case_progression_service_url}${var.case_progression_service_url == "" ? var.health_endpoint : local.status_health_endpoint}"
 
     // Draft Store API
     CASE_PROGRESSION_SERVICE_DRAFT_URL = "${local.case_progression_service_url}${var.draft_store_api_base_path}"

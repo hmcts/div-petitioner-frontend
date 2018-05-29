@@ -40,7 +40,7 @@
                    value="Yes"
                    {{ checked(fields.claimsCosts.value, 'Yes') }}>
       <label for="yes" class="block-label">
-          {{content.yes | safe}}
+         <span class="visually-hidden">{{ content.question | safe }}</span> {{content.yes | safe}}
       </label>
     </div>
     <div class="multiple-choice">
@@ -50,7 +50,7 @@
                    value="No"
                    {{ checked(fields.claimsCosts.value, 'No') }}>
       <label for="no" class="block-label">
-          {{content.no | safe}}
+         <span class="visually-hidden">{{ content.question | safe }}</span> {{content.no | safe}}
       </label>
     </div>
 </fieldset>

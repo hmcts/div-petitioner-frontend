@@ -171,12 +171,12 @@ module.exports = class Step {
     res.render(this.template);
   }
 
-  * postRequest(req, res) {
-    if (!res.headersSent) {
+  postRequest(req, res) {
+    if (!res.headersSent && !req.headers['x-save-draft-session-only']) {
       res.sendStatus(statusCodes.METHOD_NOT_ALLOWED);
-      // add yield to satisfy sonarqube
-      yield Promise.resolve();
     }
+
+    return Promise.resolve();
   }
 
   handler(req, res, next = defualtNext) {

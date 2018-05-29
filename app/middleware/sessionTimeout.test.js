@@ -1,92 +1,114 @@
 const { expect, sinon } = require('test/util/chai');
+const draftPetitionStoreMiddleware = require('./draftPetitionStoreMiddleware');
+const { noop } = require('lodash');
+const config = require('config');
 
 const modulePath = 'app/middleware/sessionTimeout';
-const underTest = require(modulePath);
-
-
-let req = {};
-let res = {};
-let next = {};
-let time = {};
+const sessionTimeout = require(modulePath);
 
 const ONE_SECOND = 1000;
-const HALF_SECOND = 500;
+const HALF_A_SECOND = 500;
 
 describe(modulePath, () => {
-  beforeEach(() => {
-    req = {
-      session: { expires: Date.now() - ONE_SECOND },
-      originalUrl: '/page'
+  it('allows save only session calls after session expiry', () => {
+    const sandbox = sinon.sandbox.create();
+    sandbox.useFakeTimers(ONE_SECOND);
+    sandbox.stub(draftPetitionStoreMiddleware, 'saveSessionToDraftStoreAndReply');
+
+    const req = {
+      session: { expires: HALF_A_SECOND },
+      originalUrl: '/',
+      headers: { 'x-save-draft-session-only': true }
     };
+    const res = {};
+    const next = sandbox.stub();
 
-    res = { redirect: sinon.stub() };
+    sessionTimeout(req, res, next);
 
-    next = sinon.stub();
+    expect(draftPetitionStoreMiddleware.saveSessionToDraftStoreAndReply.args)
+      .to.deep.equal([[ req, res, next ]]);
+
+    expect(next.callCount)
+      .to.equal(0);
+
+    sandbox.restore();
   });
 
-  describe('success', () => {
-    describe('an expired session', () => {
-      beforeEach(() => {
-        time = req.session.expires;
+  it('saves session and redirects to /timeout when session is expired', () => {
+    const sandbox = sinon.sandbox.create();
+    sandbox.useFakeTimers(ONE_SECOND);
+    sandbox.stub(draftPetitionStoreMiddleware, 'saveSessionToDraftStore');
 
-        underTest(req, res, next);
-      });
+    const req = {
+      session: { expires: HALF_A_SECOND },
+      originalUrl: '/',
+      headers: {},
+      method: 'get',
+      body: { foo: 'value' }
+    };
+    const res = { redirect: sandbox.stub() };
+    const next = sandbox.stub();
+    const step = { properties: { foo: '' } };
 
-      it('ignores the expires property', () => {
-        expect(req.session.expires).to.equal(time);
-      });
+    const expectedRequestSesssion = Object.assign({}, req.session, req.body);
 
-      it('redirects to the timeout page', () => {
-        expect(res.redirect.calledWith('/timeout')).to.equal(true);
-      });
+    sessionTimeout.call(step, req, res, next);
 
-      it('does not call next()', () => {
-        expect(next.callCount).to.equal(0);
-      });
-    });
+    expect(draftPetitionStoreMiddleware.saveSessionToDraftStore.args)
+      .to.deep.equal([[ req, res, noop ]]);
 
-    describe('an active session', () => {
-      beforeEach(() => {
-        time = Date.now() + HALF_SECOND;
+    expect(req.session)
+      .to.deep.equal(expectedRequestSesssion);
 
-        req.session.expires = time;
+    expect(next.callCount)
+      .to.equal(0);
 
-        underTest(req, res, next);
-      });
+    sandbox.restore();
+  });
 
-      it('resets the expires property', () => {
-        expect(req.session.expires).to.be.greaterThan(time);
-      });
+  it('updates active sessions', () => {
+    const sandbox = sinon.sandbox.create();
+    sandbox.useFakeTimers(HALF_A_SECOND);
 
-      it('does not redirect', () => {
-        expect(res.redirect.callCount).to.equal(0);
-      });
+    const req = {
+      session: { expires: ONE_SECOND },
+      originalUrl: '/'
+    };
+    const res = {};
+    const next = sandbox.stub();
 
-      it('calls next()', () => {
-        expect(next.callCount).to.equal(1);
-      });
-    });
+    const expectedNewSessionExpiry = HALF_A_SECOND + config.session.expires;
 
-    describe('if the page is already timeout', () => {
-      beforeEach(() => {
-        req.originalUrl = '/timeout';
+    sessionTimeout(req, res, next);
 
-        time = req.session.expires;
+    expect(req.session.expires)
+      .to.equal(expectedNewSessionExpiry);
 
-        underTest(req, res, next);
-      });
+    expect(next.callCount)
+      .to.equal(1);
 
-      it('ignores the expires property', () => {
-        expect(req.session.expires).to.equal(time);
-      });
+    sandbox.restore();
+  });
 
-      it('does not redirect', () => {
-        expect(res.redirect.callCount).to.equal(0);
-      });
+  it('does not update session for restricted paths', () => {
+    const sandbox = sinon.sandbox.create();
+    sandbox.useFakeTimers(HALF_A_SECOND);
 
-      it('calls next()', () => {
-        expect(next.callCount).to.equal(1);
-      });
-    });
+    const req = {
+      session: { expires: ONE_SECOND },
+      originalUrl: '/timeout'
+    };
+    const res = {};
+    const next = sandbox.stub();
+
+    sessionTimeout(req, res, next);
+
+    expect(req.session.expires)
+      .to.equal(ONE_SECOND);
+
+    expect(next.callCount)
+      .to.equal(1);
+
+    sandbox.restore();
   });
 });

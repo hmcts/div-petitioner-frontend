@@ -17,21 +17,10 @@
             {{ content.help | safe }}
         </summary>
         <div class="panel panel-border-narrow font-small">
-            
-            <p>
-                {{ content.helpText1 | safe }}
-            </p>
-
-            <p>
-                {{ content.helpText2 | safe }}
-            </p>
-            <p>
-                {{ content.helpText3 | safe }}
-            </p>
-
-            <p>
-                {{ content.helpText4 | safe }}
-            </p>
+            <p>{{ content.helpText1 | safe }}</p>
+            <div>{{ content.helpText2 | safe }}</div>
+            <p>{{ content.helpText3 | safe }}</p>
+            <p>{{ content.helpText4 | safe }}</p>
         </div>
     </details>
 
@@ -44,14 +33,16 @@
         label = content.yes,
         name = 'jurisdictionPetitionerDomicile',
         field = fields.jurisdictionPetitionerDomicile,
-        dataTarget = 'jurisdictionRespondentDomicile'
+        dataTarget = 'jurisdictionRespondentDomicile',
+        screenReader = content.petitioner
         ) }}
         {{ radioButton(
         value = 'No',
         label = content.no,
         name = 'jurisdictionPetitionerDomicile',
         field = fields.jurisdictionPetitionerDomicile,
-        dataTarget = 'jurisdictionRespondentDomicile'
+        dataTarget = 'jurisdictionRespondentDomicile',
+        screenReader = content.petitioner
         ) }}
 
     </fieldset>
@@ -64,13 +55,15 @@
         value = 'Yes',
         label = content.yes,
         name = 'jurisdictionRespondentDomicile',
-        field = fields.jurisdictionRespondentDomicile
+        field = fields.jurisdictionRespondentDomicile,
+        screenReader = content.respondent
         ) }}
         {{ radioButton(
         value = 'No',
         label = content.no,
         name = 'jurisdictionRespondentDomicile',
-        field = fields.jurisdictionRespondentDomicile
+        field = fields.jurisdictionRespondentDomicile,
+        screenReader = content.respondent
         ) }}
 
     </fieldset>

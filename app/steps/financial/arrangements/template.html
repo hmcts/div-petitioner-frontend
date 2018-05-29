@@ -58,13 +58,15 @@
                 label = content.yes,
                 name = 'financialOrder',
                 field = fields.financialOrder,
-                dataTarget='financialOrderFor'
+                dataTarget='financialOrderFor',
+                screenReader = content.question
             ) }}
             {{ radioButton(
                 value = 'No',
                 label = content.no,
                 name = 'financialOrder',
-                field = fields.financialOrder
+                field = fields.financialOrder,
+                screenReader = content.question
             ) }}
         </fieldset>
     </div>

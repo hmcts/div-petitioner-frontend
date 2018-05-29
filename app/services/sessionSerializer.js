@@ -1,7 +1,7 @@
 const CONF = require('config');
 const crypto = require('crypto');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
-const jwt = require('jsonwebtoken');
+const logger = require('app/services/logger').logger(__filename);
+const idam = require('app/services/idam');
 
 const sessionEncryptionSecret = CONF.sessionEncryptionSecret;
 const algorithm = 'AES-256-CBC';
@@ -51,20 +51,11 @@ const decryptData = (encryptedData, passwordHash) => {
   }
 };
 
-const createSerializer = (req, res) => {
-  const authToken = req.cookies && req.cookies['__auth-token'] ? req.cookies['__auth-token'] : false;
+const createSerializer = req => {
   let passwordHash = false;
 
-  // Create password using application secret and idamUserId
-  if (authToken) {
-    let idamUserId = null;
-    try {
-      idamUserId = jwt.decode(authToken).id;
-    } catch (error) {
-      res.clearCookie('__auth-token');
-      throw error;
-    }
-
+  const idamUserId = idam.userId(req);
+  if (idamUserId) {
     passwordHash = crypto.createHash('md5')
       .update(sessionEncryptionSecret + idamUserId, 'utf-8')
       .digest('hex')

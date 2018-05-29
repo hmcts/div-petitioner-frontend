@@ -30,9 +30,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       this.checkYourAnswersSectionOrder, templates
     );
 
-    const hasNextStep = this.nextStepUrl !== this.url || session.saveAndResumeUrl;
+    const hasNextStep = clonedCtx.nextStepUrl !== this.url || session.saveAndResumeUrl;
     // set url to `continue application` button
-    clonedCtx.nextStepUrl = hasNextStep ? session.saveAndResumeUrl || this.nextStepUrl : undefined; // eslint-disable-line no-undefined
+    clonedCtx.nextStepUrl = hasNextStep ? session.saveAndResumeUrl || clonedCtx.nextStepUrl : undefined; // eslint-disable-line no-undefined
 
     if (session.saveAndResumeUrl) {
       delete session.saveAndResumeUrl;
@@ -175,7 +175,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     previousQuestionsRendered.push(step.url);
 
     // save the next steps url for use with the `continue application` button
-    this.nextStepUrl = step.url;
+    session.nextStepUrl = step.url;
 
     // ensure step has a template to render i.e. screening questions dont have CYA templates
     if (step.checkYourAnswersTemplate) {
@@ -207,7 +207,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     if (nextStep === this) {
-      delete this.nextStepUrl;
+      delete session.nextStepUrl;
     }
 
     // if next step and next step is not check your answers

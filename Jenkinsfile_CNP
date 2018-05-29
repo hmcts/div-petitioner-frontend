@@ -12,6 +12,10 @@ withPipeline("nodejs", product, component) {
   after('test') {
     sh 'yarn test-validation'
   }
-  
+
+  after('test:functional') {
+    sh './bin/collect-test-reports.sh'
+  }
+
   enableSlackNotifications('#div-dev')
 }

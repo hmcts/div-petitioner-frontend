@@ -28,7 +28,7 @@ export COURT_OPENINGHOURS=${COURT_OPENINGHOURS:-"Monday to Friday, 8.30am to 5pm
 export COURT_EMAIL=${COURT_EMAIL:-"Divorce_Reform_Pro@Justice.gov.uk"}
 export E2E_WAIT_FOR_TIMEOUT_VALUE=${E2E_WAIT_FOR_TIMEOUT_VALUE:-15000}
 export E2E_WAIT_FOR_ACTION_VALUE=${E2E_WAIT_FOR_ACTION_VALUE:-250}
-export CODECEPT_PARAMS=${CODECEPT_PARAMS:-"--grep @overnight --invert"}
+export CODECEPT_PARAMS=${CODECEPT_PARAMS:-""}
 
 docker-compose -f ${COMPOSE_FILE} run functional-tests
 shutdownDocker

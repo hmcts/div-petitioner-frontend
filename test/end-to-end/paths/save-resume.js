@@ -3,91 +3,95 @@ const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
 Feature('Draft petition store', { retries: 1 });
 
-Scenario('See the check your answers page if session restored from draft petition store', function (I) {
-  I.amOnLoadedPage('/index');
+try {
+  Scenario('See the check your answers page if session restored from draft petition store', function (I) {
+    I.amOnLoadedPage('/index');
 
-  I.setCookie({name: 'mockRestoreSession', value: 'true'});
-  I.seeCookie('mockRestoreSession');
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
 
-  if (toggleStore.getToggle('idam')) {
+    if (toggleStore.getToggle('idam')) {
+      I.startApplication();
+      I.haveBrokenMarriage();
+      I.haveRespondentAddress();
+      I.haveMarriageCert();
+      I.selectHelpWithFees();
+      I.enterHelpWithFees();
+      I.selectDivorceType();
+      I.enterMarriageDate();
+      I.selectMarriedInUk();
+      
+      I.clearCookie();
+      I.amOnLoadedPage('/index');
+    }
+
     I.startApplication();
+
+    I.checkMyAnswersRestoredSession();
+
+    I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  });
+
+  Scenario('Save and close', function (I) {
+    I.amOnLoadedPage('/index');
+
+    I.startApplication();
+
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();
-    I.selectHelpWithFees();
-    I.enterHelpWithFees();
-    I.selectDivorceType();
-    I.enterMarriageDate();
-    I.selectMarriedInUk();
-    
-    I.clearCookie();
+
+    I.clickSaveAndCLose();
+    I.seeCurrentUrlEquals('/exit/application-saved');
+
+    if (toggleStore.getToggle('idam')) {
+      I.see(idamConfigHelper.getTestEmail());
+    }
+  });
+
+  Scenario('Delete application from draft petition store', function (I) {
     I.amOnLoadedPage('/index');
-  }
 
-  I.startApplication();
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
 
-  I.checkMyAnswersRestoredSession();
+    if (toggleStore.getToggle('idam')) {
+      I.startApplication();
+      I.haveBrokenMarriage();
+      
+      I.clearCookie();
+      I.amOnLoadedPage('/index');
+    }
 
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
-});
-
-Scenario('Save and close', function (I) {
-  I.amOnLoadedPage('/index');
-
-  I.startApplication();
-
-  I.haveBrokenMarriage();
-  I.haveRespondentAddress();
-  I.haveMarriageCert();
-
-  I.clickSaveAndCLose();
-  I.seeCurrentUrlEquals('/exit/application-saved');
-
-  if (toggleStore.getToggle('idam')) {
-    I.see(idamConfigHelper.getTestEmail());
-  }
-});
-
-Scenario('Delete application from draft petition store', function (I) {
-  I.amOnLoadedPage('/index');
-
-  I.setCookie({name: 'mockRestoreSession', value: 'true'});
-  I.seeCookie('mockRestoreSession');
-
-  if (toggleStore.getToggle('idam')) {
     I.startApplication();
-    I.haveBrokenMarriage();
-    
-    I.clearCookie();
+
+    I.checkMyAnswersRemoveApplication();
+    I.confirmRemoveApplication();
+
+    I.seeCurrentUrlEquals('/exit/removed-saved-application');
+  });
+
+  Scenario('Decline to delete application from draft petition store', function (I) {
     I.amOnLoadedPage('/index');
-  }
 
-  I.startApplication();
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
 
-  I.checkMyAnswersRemoveApplication();
-  I.confirmRemoveApplication();
+    if (toggleStore.getToggle('idam')) {
+      I.startApplication();
+      I.haveBrokenMarriage();
+      
+      I.clearCookie();
+      I.amOnLoadedPage('/index');
+    }
 
-  I.seeCurrentUrlEquals('/exit/removed-saved-application');
-});
-
-Scenario('Decline to delete application from draft petition store', function (I) {
-  I.amOnLoadedPage('/index');
-
-  I.setCookie({name: 'mockRestoreSession', value: 'true'});
-  I.seeCookie('mockRestoreSession');
-
-  if (toggleStore.getToggle('idam')) {
     I.startApplication();
-    I.haveBrokenMarriage();
+
+    I.checkMyAnswersRemoveApplication();
+    I.declineRemoveApplicaiton();
     
-    I.clearCookie();
-    I.amOnLoadedPage('/index');
-  }
-
-  I.startApplication();
-
-  I.checkMyAnswersRemoveApplication();
-  I.declineRemoveApplicaiton();
-  
-  I.seeCurrentUrlEquals('/check-your-answers');
-});
+    I.seeCurrentUrlEquals('/check-your-answers');
+  });
+} catch(exception) {
+  console.log(exception); //eslint-disable-line no-console
+}

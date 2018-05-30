@@ -1,5 +1,13 @@
 class JSWait extends codecept_helper {
 
+  _before() {
+    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+ 
+    helper.page.on('error', error => { console.log('error'); console.log(error); }); // eslint-disable-line no-console
+    helper.page.on('pageerror', error => { console.log('pageerror'); console.log(error); }); // eslint-disable-line no-console
+    helper.page.on('requestfailed', error => { console.log('requestfailed'); console.log(error); }); // eslint-disable-line no-console
+  };
+
   _beforeStep(step) {
 
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];

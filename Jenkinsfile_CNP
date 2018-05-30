@@ -13,17 +13,5 @@ withPipeline("nodejs", product, component) {
     sh 'yarn test-validation'
   }
 
-  after('functionalTest:saat') {
-    steps.archiveArtifacts "tests/functional-output/**/*.*"
-  }
-
-  after('functionalTest:preview') {
-    steps.archiveArtifacts "tests/functional-output/**/*.*"
-  }
-
-  after('functionalTest:aat') {
-    steps.archiveArtifacts "tests/functional-output/**/*.*"
-  }
-
   enableSlackNotifications('#div-dev')
 }

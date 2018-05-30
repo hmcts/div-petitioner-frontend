@@ -54,10 +54,10 @@ exports.config = {
       chunks: (files) => {
         let configuredChunks = constructChunksWithFullFilePaths([
           [ 'jurisdictionConnections.js', 'cookieBanner.js', 'logout.js' ],
-          [ 'payment.js', 'errorPaths.js', 'postcode.js', 'uploadMarriageCertificate.js' ],
+          [ 'payment.js', 'errorPaths.js', 'postcode.js' ],
           [ 'reasonsForDivorce.js', 'invalidCsrf.js', 'reportAProblemPath.js' ],
           [ 'livingTogether.js', 'save-resume.js', 'aboutYourMarriageCertificate.js', 'staticPages.js' ],
-          [ 'foreignMarriageCertificates.js', 'basicDivorce.js', 'startSession.js' ]
+          [ 'foreignMarriageCertificates.js', 'basicDivorce.js', 'startSession.js', 'uploadMarriageCertificate.js' ]
         ], files[0]);
 
         const leftoverTestFiles = getUndefinedTestFiles(configuredChunks, files[0]);

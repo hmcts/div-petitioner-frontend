@@ -13,7 +13,7 @@ withPipeline("nodejs", product, component) {
     sh 'yarn test-validation'
   }
 
-  after('test:functional') {
+  after('functionalTest') {
     steps.archiveArtifacts "tests/functional-output/**/*.*"
   }
 

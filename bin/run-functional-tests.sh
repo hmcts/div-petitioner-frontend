@@ -32,3 +32,12 @@ export CODECEPT_PARAMS=${CODECEPT_PARAMS:-""}
 
 docker-compose -f ${COMPOSE_FILE} run functional-tests
 shutdownDocker
+
+# Relocate and rename reports for Jenkins to see
+reports=`ls ./functional-output | grep "parallel"`
+reportsArray=(${reports//$"\s"/ })
+for i in "${reportsArray[@]}"
+do
+    cp ./functional-output/${i}/mochawesome.html ./functional-output/${i}.html
+    cp ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
+done

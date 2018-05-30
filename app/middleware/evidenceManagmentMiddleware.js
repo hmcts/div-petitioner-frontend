@@ -92,7 +92,7 @@ const createHandler = nameSpace => {
       return next();
     }
 
-    const bearerToken = `Bearer ${req.cookies['__auth-token']}`;
+    const token = req.cookies['__auth-token'];
 
     // delete file from get link query param `noJsDelete=filename.jpg`
     const method = req.query.noJsDelete ? 'delete' : req.method.toLowerCase();
@@ -120,7 +120,7 @@ const createHandler = nameSpace => {
       return validatePostRequest(req, nameSpace)
         .then(fileManagment.saveFileFromRequest)
         .then(file => {
-          return evidenceManagmentService.sendFile(file, { bearerToken });
+          return evidenceManagmentService.sendFile(file, { token });
         })
         .then(files => {
           return handleResponseFromFileStore(req, res, files, nameSpace);

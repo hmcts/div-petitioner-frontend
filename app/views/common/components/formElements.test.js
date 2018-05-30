@@ -41,7 +41,7 @@ const yesNoRadioHeading = `
 {% from "app/views/common/components/formElements.html" import yesNoRadioHeading %}
 
 {{
-yesNoRadioHeading(legend = legend, hint = hint, name = name, field = field, yes = yes, no = no, targetYes = targetYes, targetNo = targetNo)
+yesNoRadioHeading(legend = legend, hint = hint, name = name, field = field, yes = yes, no = no, targetYes = targetYes, targetNo = targetNo, screenReader = screenReader)
 }}
 `;
 
@@ -246,7 +246,7 @@ describe(`Yes no radio buttons should render as expected`, () => {
     expect(res).to.contain('id="testName_No');
     expect(res).to.contain('id="testName_Yes');
     expect(res).to.contain('value="Yes" checked=checked');
-    expect(res).to.contain('value="No" >');
+    expect(res).to.contain('value="No"');
   });
 
   it('errors are shown if present', () => {
@@ -292,7 +292,8 @@ describe(`Yes no radio button headings should render as expected`, () => {
       field: { value: 'Yes' },
       legend: 'testLabel',
       yes: 'Yes',
-      no: 'No'
+      no: 'No',
+      screenReader: 'screenReader'
     };
 
     const res = nunjucks.renderString(yesNoRadioHeading, input);
@@ -301,10 +302,11 @@ describe(`Yes no radio button headings should render as expected`, () => {
     expect(res).to.contain('id="testName_No');
     expect(res).to.contain('id="testName_Yes');
     expect(res).to.contain('value="Yes" checked=checked');
-    expect(res).to.contain('value="No" >');
+    expect(res).to.contain('value="No"');
     expect(res).to.contain('for="testName_Yes"');
     expect(res).to.contain('for="testName_No"');
     expect(res).to.contain('data-target=');
+    expect(res).to.contain('<span class="visually-hidden">screenReader</span>');
   });
 
   it('targets are rendered if present', () => {
@@ -324,7 +326,7 @@ describe(`Yes no radio button headings should render as expected`, () => {
     expect(res).to.contain('id="testName_No');
     expect(res).to.contain('id="testName_Yes');
     expect(res).to.contain('value="Yes" checked=checked');
-    expect(res).to.contain('value="No" >');
+    expect(res).to.contain('value="No"');
     expect(res).to.contain('for="testName_Yes" ');
     expect(res).to.contain('for="testName_No" ');
     expect(res).to.contain('data-target="targetYes"');

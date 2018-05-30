@@ -1,5 +1,5 @@
 const httpStatus = require('http-status-codes');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const evidenceManagmentService = require('app/services/evidenceManagmentService');
 const { map } = require('lodash');
 const fileManagment = require('app/services/fileManagement');
@@ -68,7 +68,7 @@ const errorHandler = (error = errors.unknown, req, res, next) => {
     errorToReturn = errors.unknown;
   }
 
-  logger.error(`Error when uploading to Evidence Management: ${JSON.stringify(errorToReturn)}; Original error: ${error}`);
+  logger.error(`Error when uploading to Evidence Management: ${JSON.stringify(errorToReturn)}; Original error: ${error}`, req);
 
   const isJsRequest = req.query && req.query.js;
 

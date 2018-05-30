@@ -14,7 +14,7 @@ withPipeline("nodejs", product, component) {
   }
 
   after('test:functional') {
-    steps.archiveArtifacts "functional-output/**/*.*"
+    steps.archiveArtifacts "tests/functional-output/**/*.*"
   }
 
   enableSlackNotifications('#div-dev')

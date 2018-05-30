@@ -572,7 +572,7 @@ describe(modulePath, () => {
     it('sets the next step url', done => {
       co(function* generator() {
         yield underTest.getNextTemplates(step1, session);
-        expect(underTest.nextStepUrl).to.equal('/step2');
+        expect(session.nextStepUrl).to.equal('/step2');
         done();
       });
     });
@@ -608,7 +608,7 @@ describe(modulePath, () => {
         );
 
         yield underTest.getNextTemplates(step1, session);
-        expect(underTest.nextStepUrl).to.equal('/step1');
+        expect(session.nextStepUrl).to.equal('/step1');
         done();
       });
     });

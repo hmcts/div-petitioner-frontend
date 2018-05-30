@@ -8,15 +8,11 @@ const {
   testRedirect,
   testExistenceCYA
 } = require('test/util/assertions');
-const co = require('co');
-const { expect } = require('test/util/chai');
-const CONF = require('config');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
 const clone = require('lodash').cloneDeep;
 const { mockSession } = require('test/fixtures');
-const ga = require('app/services/ga');
 
 const modulePath = 'app/steps/marriage/upload';
 const { sinon } = require('test/util/chai');
@@ -255,46 +251,6 @@ describe(modulePath, () => {
     it('redirects to the check your answers page when need help with fees', done => {
       testRedirect(done, agent, underTest,
         { submit: true }, s.steps.CheckYourAnswers);
-    });
-  });
-
-  describe('Court allocation', () => {
-    beforeEach(() => {
-      sinon.stub(ga, 'trackEvent');
-    });
-
-    afterEach(() => {
-      ga.trackEvent.restore();
-    });
-
-    it('loads court data from config and selects one automatically', done => {
-      // Arrange.
-      const courts = Object.keys(CONF.commonProps.court);
-      co(function* generator() {
-        session = {};
-        // Act.
-        yield underTest.interceptor({}, session);
-        // Assert.
-        courts.forEach(courtName => {
-          expect(session.court[courtName]).to
-            .eql(CONF.commonProps.court[courtName]);
-        });
-        expect(session.courts).to.be.oneOf(courts);
-      }).then(done, done);
-    });
-
-    it('tracks court selection event', done => {
-      // Arrange.
-      co(function* generator() {
-        session = {};
-        // Act.
-        yield underTest.interceptor({}, session);
-        // Assert.
-        // const selectedCourt = session.courts;
-        expect(ga.trackEvent.calledOnce).to.equal(true);
-        expect(ga.trackEvent.args[0][2]).to.equal(session.courts);
-        expect(ga.trackEvent.args[0][3]).to.equal(1);
-      }).then(done, done);
     });
   });
 });

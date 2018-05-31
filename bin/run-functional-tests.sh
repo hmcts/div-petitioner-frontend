@@ -50,5 +50,7 @@ do
     mv -f ./functional-output/${i}/mochawesome.html ./functional-output/${i}.html
     mv -f ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
     mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}_chrome_report.xml
-    mv -f ./functional-output/${i}/*.png ./functional-output 2> /dev/null
 done
+
+# Relocate any .png screenshots for Jenkins, or ignore if none found
+find ./test/end-to-end/functional-output -mindepth 2 -type f -print -exec mv {} ./functional-output \; 2> /dev/null || true

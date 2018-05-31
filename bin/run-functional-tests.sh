@@ -14,11 +14,6 @@ mkdir ./functional-output/parallel:chunk2__browser_chrome__2
 mkdir ./functional-output/parallel:chunk3__browser_chrome__3
 mkdir ./functional-output/parallel:chunk4__browser_chrome__4
 mkdir ./functional-output/parallel:chunk5__browser_chrome__5
-mkdir -p ./test/end-to-end/functional-output/parallel:chunk1__browser_chrome__1
-mkdir -p ./test/end-to-end/functional-output/parallel:chunk2__browser_chrome__2
-mkdir -p ./test/end-to-end/functional-output/parallel:chunk3__browser_chrome__3
-mkdir -p ./test/end-to-end/functional-output/parallel:chunk4__browser_chrome__4
-mkdir -p ./test/end-to-end/functional-output/parallel:chunk5__browser_chrome__5
 
 if [ "$RUN_OVERNIGHT_TESTS" == true ]; then
     # Stops default CODECEPT_PARAMS being set later, which wouldn't run @overnight tagged tests
@@ -56,4 +51,4 @@ do
 done
 
 # Relocate any .png screenshots for Jenkins, or ignore if none found
-find ./test/end-to-end/functional-output -mindepth 2 -type f -print -exec mv {} ./functional-output \; 2> /dev/null || true
+find ./functional-output -mindepth 2 -type f -print -exec mv {} ./functional-output \; 2> /dev/null || true

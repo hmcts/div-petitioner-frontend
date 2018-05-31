@@ -38,6 +38,10 @@ reports=`ls ./functional-output | grep "parallel"`
 reportsArray=(${reports//$"\s"/ })
 for i in "${reportsArray[@]}"
 do
-    cp ./functional-output/${i}/mochawesome.html ./functional-output/${i}.html
-    cp ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
+    mv -f ./functional-output/${i}/mochawesome.html ./functional-output/${i}.html
+    mv -f ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
+    mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}.xml
+    mv -f ./functional-output/${i}/*.png ./functional-output
+    # Remove empty report folder from CNP
+    rm -r ./functional-output/${i}
 done

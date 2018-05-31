@@ -49,6 +49,6 @@ for i in "${reportsArray[@]}"
 do
     mv -f ./functional-output/${i}/mochawesome.html ./functional-output/${i}.html
     mv -f ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
-    mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}.xml
-    mv -f ./functional-output/${i}/*.png ./functional-output
+    mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}_chrome_report.xml
+    mv -f ./functional-output/${i}/*.png ./functional-output 2> /dev/null
 done

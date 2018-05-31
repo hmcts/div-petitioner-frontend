@@ -1,7 +1,7 @@
 const CONF = require('config');
 const ioRedis = require('ioredis');
 const expressLimiter = require('express-limiter');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 
 const redisHost = process.env.REDISCLOUD_URL || CONF.services.redis.host;
 

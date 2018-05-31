@@ -1,6 +1,6 @@
 const CONF = require('config');
 const crypto = require('crypto');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const idam = require('app/services/idam');
 
 const sessionEncryptionSecret = CONF.sessionEncryptionSecret;

@@ -8,6 +8,15 @@ function shutdownDocker() {
  docker-compose -f ${COMPOSE_FILE} down
 }
 
+# Create report folders for mochawesome to use (temporary solution for Docker use)
+mkdir ./functional-output/parallel:chunk1__browser_chrome__1
+mkdir ./functional-output/parallel:chunk2__browser_chrome__2
+mkdir ./functional-output/parallel:chunk3__browser_chrome__3
+mkdir ./functional-output/parallel:chunk4__browser_chrome__4
+mkdir ./functional-output/parallel:chunk5__browser_chrome__5
+mkdir ./functional-output/parallel:chunk6__browser_chrome__6
+mkdir ./functional-output/parallel:chunk7__browser_chrome__7
+
 if [ "$RUN_OVERNIGHT_TESTS" == true ]; then
     # Stops default CODECEPT_PARAMS being set later, which wouldn't run @overnight tagged tests
     CODECEPT_PARAMS="${CODECEPT_PARAMS};"
@@ -42,6 +51,4 @@ do
     mv -f ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
     mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}.xml
     mv -f ./functional-output/${i}/*.png ./functional-output
-    # Remove empty report folder from CNP
-    rmdir -p ./functional-output/${i}
 done

@@ -43,5 +43,5 @@ do
     mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}.xml
     mv -f ./functional-output/${i}/*.png ./functional-output
     # Remove empty report folder from CNP
-    rm -r ./functional-output/${i}
+    rmdir -p ./functional-output/${i}
 done

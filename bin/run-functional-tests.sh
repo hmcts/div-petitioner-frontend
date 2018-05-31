@@ -14,6 +14,11 @@ mkdir ./functional-output/parallel:chunk2__browser_chrome__2
 mkdir ./functional-output/parallel:chunk3__browser_chrome__3
 mkdir ./functional-output/parallel:chunk4__browser_chrome__4
 mkdir ./functional-output/parallel:chunk5__browser_chrome__5
+mkdir ./test/end-to-end/functional-output/parallel:chunk1__browser_chrome__1
+mkdir ./test/end-to-end/functional-output/parallel:chunk2__browser_chrome__2
+mkdir ./test/end-to-end/functional-output/parallel:chunk3__browser_chrome__3
+mkdir ./test/end-to-end/functional-output/parallel:chunk4__browser_chrome__4
+mkdir ./test/end-to-end/functional-output/parallel:chunk5__browser_chrome__5
 
 if [ "$RUN_OVERNIGHT_TESTS" == true ]; then
     # Stops default CODECEPT_PARAMS being set later, which wouldn't run @overnight tagged tests

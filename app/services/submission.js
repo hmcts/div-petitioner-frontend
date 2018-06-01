@@ -23,7 +23,10 @@ const service = {
         return response;
       })
       .catch(error => {
-        logger.error(`Error submitting caseId ${args.caseId} to ccd: ${error}`);
+        logger.error({
+          message: `Error submitting caseId ${args.caseId} to ccd:`,
+          error
+        });
         throw error;
       });
   },
@@ -34,7 +37,10 @@ const service = {
         return response;
       })
       .catch(error => {
-        logger.error(`Error updating ccd with caseId ${args.caseId}: ${error}`);
+        logger.error({
+          message: `Error updating ccd with caseId ${args.caseId}:`,
+          error
+        });
         throw error;
       });
   }

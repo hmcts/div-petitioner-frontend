@@ -21,9 +21,6 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
   },
   redis: () => {
     const client = ioRedis.createClient(redisHost);
-    client.on('error', error => {
-      logger.error(error);
-    });
 
     client.on('connect', () => {
       logger.info({ message: 'Connected to Redis' });
@@ -32,7 +29,7 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
     client.on('error', error => {
       logger.error({
         message: 'Failed to connect to Redis',
-        error: error.message
+        error
       });
     });
 
@@ -44,7 +41,7 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
       try {
         serializer = sessionSerializer.createSerializer(req, res);
       } catch (error) {
-        logger.error(`Unable to create serializer ${error}`);
+        logger.error(error);
         return res.redirect('/generic-error');
       }
 

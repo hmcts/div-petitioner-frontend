@@ -16,9 +16,7 @@ if (process.env.NODE_ENV === 'testing') {
   redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const
 }
 
-redisClient.on('error', error => {
-  logger.error(error);
-});
+redisClient.on('error', logger.error);
 
 const applicationFeeQueryParams = 'service=divorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
 
@@ -50,7 +48,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(`Error retrieving fee from Fee registry: ${error}`, req);
+      logger.error(error);
       res.redirect('/generic-error');
     });
 };

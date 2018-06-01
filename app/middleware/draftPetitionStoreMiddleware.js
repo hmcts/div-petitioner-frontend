@@ -2,6 +2,7 @@ const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const transformationServiceClient = require('app/services/transformationServiceClient');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
+const parseRequest = require('app/core/helpers/parseRequest');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
 
@@ -96,14 +97,12 @@ const removeBlackListedPropertiesFromSession = session => {
     }, Object.assign({}, session));
 };
 
-
 const saveSessionToDraftStore = (req, res, next) => {
   const { session, method } = req;
-
   const hasErrors = session.flash && session.flash.errors;
   const isPost = method.toLowerCase() === 'post';
 
-  if (hasErrors || !isPost) {
+  if (hasErrors || !isPost || req.headers['x-save-draft-session-only']) {
     return next();
   }
 
@@ -115,7 +114,6 @@ const saveSessionToDraftStore = (req, res, next) => {
     authToken = req.cookies[authTokenString];
   }
 
-  // attempt to save the current session to the draft store
   return client.saveToDraftStore(authToken, sessionToSave)
     .then(() => {
       next();
@@ -124,6 +122,32 @@ const saveSessionToDraftStore = (req, res, next) => {
       logger.error(`Unable to save to draft store ${error}`);
       next();
     });
+};
+
+const saveSessionToDraftStoreAndReply = function(req, res, next) {
+  if (req.headers['x-save-draft-session-only']) {
+    const authToken = req.cookies[authTokenString] || '';
+    // eslint-disable-next-line no-invalid-this
+    Object.assign(req.session, parseRequest.parse(this, req));
+    const session = removeBlackListedPropertiesFromSession(req.session);
+
+    return client
+      .saveToDraftStore(authToken, session)
+      .then(() => {
+        const successStatusCode = 200;
+        res
+          .status(successStatusCode)
+          .json({ message: 'ok' });
+      })
+      .catch(() => {
+        const failureStatusCode = 500;
+        res
+          .status(failureStatusCode)
+          .json({ message: 'Error saving session to draft store' });
+      });
+  }
+
+  return next();
 };
 
 // use `function` instead of `arrow function (=>)` to preserve scope set in step.js #router
@@ -164,5 +188,6 @@ module.exports = {
   removeFromDraftStore,
   redirectToCheckYourAnswers,
   saveSessionToDraftStoreAndClose,
-  saveSessionToDraftStore
+  saveSessionToDraftStore,
+  saveSessionToDraftStoreAndReply
 };

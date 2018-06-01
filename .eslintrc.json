@@ -8,10 +8,16 @@
     },
     "extends": "@hmcts",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 2017
     },
     "plugins": ["mocha"],
     "rules": {
+        "space-before-function-paren": ["error", {
+          "anonymous": "never",
+          "named": "never",
+          "asyncArrow": "always"
+        }],
         "linebreak-style": [
             "error",
             "unix"
@@ -32,8 +38,8 @@
         "indent": ["error", 2],
         "mocha/no-exclusive-tests": "error",
         "max-len": [
-            "error", 
-            { 
+            "error",
+            {
                 "code": 80,
                 "ignoreStrings": true,
                 "ignoreTemplateLiterals": true,
@@ -46,8 +52,8 @@
         "arrow-body-style": ["error", "always"],
         "no-process-env": "off",
         "no-magic-numbers": [
-            "error", 
-            { 
+            "error",
+            {
                 "ignoreArrayIndexes": true,
                 "enforceConst" : true,
                 "ignore": [

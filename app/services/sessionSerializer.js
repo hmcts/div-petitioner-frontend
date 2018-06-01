@@ -25,7 +25,10 @@ const encryptData = (string = defaultStringifiedJson, passwordHash) => {
       iv: iv.toString('hex')
     };
   } catch (error) {
-    logger.error(`Error encrypting session for Redis: ${error}`);
+    logger.error({
+      message: 'Error encrypting session for Redis:',
+      error
+    });
     throw error;
   }
 };
@@ -46,7 +49,10 @@ const decryptData = (encryptedData, passwordHash) => {
 
     return decryptedString;
   } catch (error) {
-    logger.error(`Error decrypting session from Redis: ${error}`);
+    logger.error({
+      message: 'Error decrypting session from Redis:',
+      error
+    });
     throw error;
   }
 };

@@ -5,6 +5,8 @@ vault_section = "prod"
 packages_environment = "prod"
 packages_version = "3.0.0"
 
+capacity = "2"
+
 additional_host_name = "www.apply-divorce.service.gov.uk"
 http_proxy = ""
 

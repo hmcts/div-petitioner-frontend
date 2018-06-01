@@ -242,7 +242,7 @@ describe(modulePath, () => {
 
   describe('#postRequest', () => {
     let stepInstance = {};
-    const req = {};
+    const req = { headers: {} };
     let res = {};
     beforeEach(done => {
       withStep(NoImplementationErrorsStep, step => {

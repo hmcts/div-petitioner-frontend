@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars  */
 /* eslint-disable no-undef  */
+const saveProgress = require('./save-progress');
+
 (function (global) {
   'use strict';
   var DIVORCE = {
@@ -10,7 +12,8 @@
           $multipleChoice.removeClass('selected-reason-state');
           $(this).parent().addClass('selected-reason-state');
       });
-    }
+    },
+    saveProgress
   } ;
   global.DIVORCE = DIVORCE;
 })(window);

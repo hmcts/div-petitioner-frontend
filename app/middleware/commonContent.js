@@ -11,7 +11,7 @@ i18next.init(content, error => {
   if (error) {
     logger.error({
       message: 'Failed to initialise i18next',
-      error: error.message
+      error
     });
   }
 });

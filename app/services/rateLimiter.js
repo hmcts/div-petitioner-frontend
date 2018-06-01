@@ -7,9 +7,7 @@ const redisHost = process.env.REDISCLOUD_URL || CONF.services.redis.host;
 
 module.exports = app => {
   const client = ioRedis.createClient(redisHost);
-  client.on('error', error => {
-    logger.error(error);
-  });
+  client.on('error', logger.error);
   const limiter = expressLimiter(app, client);
 
   return limiter({

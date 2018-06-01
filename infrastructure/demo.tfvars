@@ -5,6 +5,8 @@ vault_section = "preprod"
 packages_environment = "preprod"
 packages_version = "3.0.0"
 
+capacity = "2"
+
 additional_host_name = "www.apply-divorce.demo.platform.hmcts.net"
 http_proxy = ""
 

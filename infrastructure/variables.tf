@@ -77,6 +77,10 @@ variable "additional_host_name" {
   type = "string"
 }
 
+variable "capacity" {
+  default = "1"
+}
+
 // Package details
 variable "packages_name" {
   default = "frontend"

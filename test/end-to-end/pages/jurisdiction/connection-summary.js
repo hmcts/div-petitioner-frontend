@@ -6,7 +6,7 @@ function* checkMyConnectionSummaryIs(...connections) { // eslint-disable-line re
   const I = this;
   const connectionSummaryList = 'form .text ul.list-bullet';
 
-  I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
+  I.waitUrlEquals('/jurisdiction/connection-summary');
   I.waitForElement('#connectionSummary');
 
   connections.forEach((connection) => {
@@ -31,7 +31,7 @@ function chooseJurisdictionConnectionSummaryContinue() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
+  I.waitUrlEquals('/jurisdiction/connection-summary');
   I.checkOption(connectionSummary.confident);
   I.navByClick('Continue');
 }
@@ -40,7 +40,7 @@ function chooseJurisdictionConnectionSummaryNeedInfo() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
+  I.waitUrlEquals('/jurisdiction/connection-summary');
   I.checkOption(connectionSummary.needInfo);
   I.navByClick('Continue');
 }
@@ -49,7 +49,7 @@ function chooseJurisdictionConnectionSummaryShowAll() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/connection-summary');
+  I.waitUrlEquals('/jurisdiction/connection-summary');
   I.checkOption(connectionSummary.showAll);
   I.navByClick('Continue');
 }

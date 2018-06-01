@@ -13,7 +13,7 @@ Scenario('Logount on Save and close', function (I) {
   I.haveMarriageCert();
 
   I.clickSaveAndCLose();
-  I.seeCurrentUrlEquals('/exit/application-saved');
+  I.waitUrlEquals('/exit/application-saved');
 
   if (toggleStore.getToggle('idam')) {
     I.see(idamConfigHelper.getTestEmail());

@@ -4,7 +4,7 @@ function haveRespondentAddress() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/respondent-address');
+  I.waitUrlEquals('/screening-questions/respondent-address');
   I.checkOption(content.yes);
   I.navByClick('Continue');
 }

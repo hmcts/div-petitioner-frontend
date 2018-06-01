@@ -4,7 +4,7 @@ function selectMarriedInUk() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/in-the-uk');
+  I.waitUrlEquals('/about-your-marriage/in-the-uk');
   I.checkOption(content.yes);
   I.navByClick('Continue');
 }
@@ -13,7 +13,7 @@ function selectMarriedElsewhere() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/in-the-uk');
+  I.waitUrlEquals('/about-your-marriage/in-the-uk');
   I.checkOption(content.no);
   I.navByClick('Continue');
 }

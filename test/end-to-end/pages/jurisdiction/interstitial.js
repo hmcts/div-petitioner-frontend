@@ -4,7 +4,7 @@ function chooseJurisdictionInterstitialContinue() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/interstitial');
+  I.waitUrlEquals('/jurisdiction/interstitial');
   I.checkOption(content.confident);
   I.navByClick('Continue');
 }
@@ -13,7 +13,7 @@ function chooseJurisdictionInterstitialNeedInfo() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/jurisdiction/interstitial');
+  I.waitUrlEquals('/jurisdiction/interstitial');
   I.checkOption(content.needInfo);
   I.navByClick('Continue');
 }

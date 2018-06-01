@@ -6,12 +6,11 @@ const tunnelName = process.env.TUNNEL_IDENTIFIER || '';
 const setupConfig = {
   'tests': './paths/**/basicDivorce.js',
   'output': './output',
-  'timeout': 20000,
   'helpers': {
     WebDriverIO: {
       url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       browser: supportedBrowsers[browser].browserName,
-      waitforTimeout: 60000,
+      waitforTimeout: 30000,
       smartWait: 5000,
       cssSelectorsEnabled: 'true',
       windowSize: '1600x900',

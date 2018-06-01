@@ -4,7 +4,7 @@ function selectAdulteryWhere() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/where');
+  I.waitUrlEquals('/about-divorce/reason-for-divorce/adultery/where');
   I.checkOption(content.no);
   I.navByClick('Continue');
 }

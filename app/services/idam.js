@@ -20,10 +20,11 @@ const idamArgs = {
 
 module.exports = {
 
-  authenticate: (protocol, hostName, path) => {
-    if (hostName) {
-      idamArgs.hostName = hostName;
-      idamArgs.redirectUri = protocol.concat('://', hostName, path);
+  authenticate: (protocol, host, path) => {
+    if (host) {
+      // get the hostname part of the host string
+      idamArgs.hostName = host.split(':')[0];
+      idamArgs.redirectUri = protocol.concat('://', host, path);
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },
@@ -35,6 +36,16 @@ module.exports = {
   },
   logout: () => {
     return idamExpressMiddleware.logout(idamArgs);
+  },
+  userDetails: () => {
+    return idamExpressMiddleware.userDetails(idamArgs);
+  },
+  userId: req => {
+    const hasIdamUserDetails = req && req.hasOwnProperty('idam') && req.idam.hasOwnProperty('userDetails');
+    if (hasIdamUserDetails && req.idam.userDetails.id) {
+      return req.idam.userDetails.id;
+    }
+    return undefined; // eslint-disable-line no-undefined
   }
 
 };

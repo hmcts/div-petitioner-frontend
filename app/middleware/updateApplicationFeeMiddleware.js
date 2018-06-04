@@ -1,7 +1,7 @@
 const CONF = require('config');
 const feeRegisterService = require('app/services/feeRegisterService');
 const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');
 const ioRedisMock = require('app/services/mocks/ioRedis');
 
@@ -16,9 +16,7 @@ if (CONF.environment === 'testing') {
   redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const
 }
 
-redisClient.on('error', error => {
-  logger.error(error);
-});
+redisClient.on('error', logger.error);
 
 const applicationFeeQueryParams = 'service=divorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
 
@@ -50,7 +48,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(`Error retrieving fee from Fee registry: ${error}`);
+      logger.error(error);
       res.redirect('/generic-error');
     });
 };

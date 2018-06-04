@@ -1,5 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
 
 module.exports = class GovPayStub extends ValidationStep {
@@ -22,7 +22,7 @@ module.exports = class GovPayStub extends ValidationStep {
 
   handler(req, res, next) {
     if (CONF.environment === 'production') {
-      logger.error('Payment stub page requested in production mode');
+      logger.error('Payment stub page requested in production mode', req);
       return this.steps.Error404.handler(req, res, next);
     }
 

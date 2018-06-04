@@ -2,7 +2,7 @@ const payClient = require('@hmcts/div-pay-client');
 const get = require('lodash/get');
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 
 let client = {};
 
@@ -31,7 +31,10 @@ const service = {
         };
       })
       .catch(error => {
-        logger.error(`Error creating payment with ccd case number ${caseReference}: ${error}`);
+        logger.error({
+          message: `Error creating payment with ccd case number ${caseReference}:`,
+          error
+        });
         throw error;
       });
   },
@@ -61,7 +64,10 @@ const service = {
         };
       })
       .catch(error => {
-        logger.error(`Error getting payment details for payment reference caseId ${referenceInput}: ${error}`);
+        logger.error({
+          message: `Error getting payment details for payment reference caseId ${referenceInput}:`,
+          error
+        });
         throw error;
       });
   }

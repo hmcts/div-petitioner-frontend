@@ -1,7 +1,7 @@
 const CONF = require('config');
 const superagent = require('superagent');
 const httpStatus = require('http-status-codes');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const errors = require('app/resources/errors');
 const fileManagment = require('app/services/fileManagement');
 
@@ -20,17 +20,26 @@ const mockFileResponse = (file = { name: 'image.jpg' }) => {
 
 const handleResponse = (body, resolve, reject) => {
   if (body.error && body.error.length) {
-    logger.error(`Error when uploading to Evidence Management: ${JSON.stringify(body)}`);
+    logger.error({
+      message: 'Error when uploading to Evidence Management:',
+      body
+    });
     return reject(body);
   }
 
   const dataIsNotValid = !Array.isArray(body) || !body[0].status || body[0].status !== 'OK';
   if (dataIsNotValid) {
-    logger.error(`Error when uploading to Evidence Management: ${JSON.stringify(body)}`);
+    logger.error({
+      message: 'Error when uploading to Evidence Management:',
+      body
+    });
     return reject();
   }
 
-  logger.info(`Uploaded files to Evidence Management Client, response: ${JSON.stringify(body)}`);
+  logger.info({
+    message: 'Uploaded files to Evidence Management Client',
+    body
+  });
 
   return resolve(body);
 };
@@ -52,7 +61,10 @@ const sendFile = (file, options = { token: 'token' }) => {
           const errorToReturn = new Error(error || response.body || defaultEMCErrorMessage);
           errorToReturn.status = response.statusCode;
 
-          logger.error(`Error when uploading to Evidence Management: ${JSON.stringify(errorToReturn)}`);
+          logger.error({
+            message: 'Error when uploading to Evidence Management:',
+            error: errorToReturn
+          });
 
           if (response && response.errorCode === 'invalidFileType') {
             return reject(errors.fileTypeInvalid);

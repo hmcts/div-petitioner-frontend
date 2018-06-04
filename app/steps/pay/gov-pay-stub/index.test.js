@@ -1,11 +1,12 @@
 /* eslint-disable max-nested-callbacks */
+const CONF = require('config');
 const { expect, sinon } = require('test/util/chai');
 const GovPayStub = require('app/steps/pay/gov-pay-stub');
 
 const modulePath = 'app/steps/pay/gov-pay-stub';
 
 describe(modulePath, () => {
-  const currentEnv = process.env.NODE_ENV;
+  const currentEnv = CONF.environment;
   const fakeSteps = { CardPaymentStatus: {} };
   class baseStub {
     constructor() {
@@ -24,7 +25,7 @@ describe(modulePath, () => {
 
   afterEach(() => {
     Object.setPrototypeOf(GovPayStub, previousPrototype);
-    process.env.NODE_ENV = currentEnv;
+    CONF.environment = currentEnv;
   });
 
   it('next step is always the card payment query step', () => {
@@ -50,7 +51,7 @@ describe(modulePath, () => {
 
   it('handler returns 404 in production', () => {
     // Arrange.
-    process.env.NODE_ENV = 'production';
+    CONF.environment = 'production';
     const res = {
       send: sinon.spy(),
       redirect: sinon.stub()

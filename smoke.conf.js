@@ -1,15 +1,17 @@
+const CONF = require('config');
+
 exports.config = {
   tests: './test/end-to-end/smoke/*.js',
   output: './smoke-output',
   timeout: 5000,
   helpers: {
     Nightmare: {
-      url: process.env.TEST_URL || process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
+      url: CONF.testUrl || CONF.e2e.frontendUrl,
       show: false,
       switches: {
         'ignore-certificate-errors': true,
-        'proxy-server': process.env.E2E_PROXY_SERVER || '',
-        'proxy-bypass-list': process.env.E2E_PROXY_BYPASS || ''
+        'proxy-server': CONF.e2e.proxyServer,
+        'proxy-bypass-list': CONF.e2e.proxyBypassList
       }
     }
   },

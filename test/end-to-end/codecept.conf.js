@@ -1,6 +1,8 @@
 /* eslint-disable no-magic-numbers */
-const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
-const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 100;
+const CONF = require('config');
+
+const waitForTimeout = parseInt(CONF.e2e.waitForTimeoutValue);
+const waitForAction = parseInt(CONF.e2e.waitForActionValue);
 
 console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-line no-console
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
@@ -10,7 +12,7 @@ exports.config = {
   output: process.cwd() + '/functional-output',
   helpers: {
     Puppeteer: {
-      url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
+      url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
       show: false,
@@ -42,7 +44,7 @@ exports.config = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+          reportDir: CONF.e2e.outputDirectory,
           reportName: 'index',
           inlineAssets: true
         }

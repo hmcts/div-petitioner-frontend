@@ -3,7 +3,7 @@ const Step = require('app/core/steps/Step');
 const CONF = require('config');
 const buildnoml = require('app/steps/sitemap/buildnoml');
 
-const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
+const PORT = CONF.http.port || CONF.http.porttactical;
 
 const url = `https://localhost:${PORT}/graph`;
 

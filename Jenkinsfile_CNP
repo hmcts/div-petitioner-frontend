@@ -8,6 +8,8 @@ String component = "pfe"
 withPipeline("nodejs", product, component) {  
   after('build') {
     sh 'yarn setup'
+    env.TEST_URL = 'https://div-pfe-aat.service.core-compute-aat.internal'
+    sh 'yarn test:functional'
   }
   after('test') {
     sh 'yarn test-validation'

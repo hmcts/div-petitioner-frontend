@@ -1,7 +1,7 @@
 const CONF = require('config');
 const crypto = require('crypto');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
-const jwt = require('jsonwebtoken');
+const logger = require('app/services/logger').logger(__filename);
+const idam = require('app/services/idam');
 
 const sessionEncryptionSecret = CONF.sessionEncryptionSecret;
 const algorithm = 'AES-256-CBC';
@@ -25,7 +25,10 @@ const encryptData = (string = defaultStringifiedJson, passwordHash) => {
       iv: iv.toString('hex')
     };
   } catch (error) {
-    logger.error(`Error encrypting session for Redis: ${error}`);
+    logger.error({
+      message: 'Error encrypting session for Redis:',
+      error
+    });
     throw error;
   }
 };
@@ -46,25 +49,19 @@ const decryptData = (encryptedData, passwordHash) => {
 
     return decryptedString;
   } catch (error) {
-    logger.error(`Error decrypting session from Redis: ${error}`);
+    logger.error({
+      message: 'Error decrypting session from Redis:',
+      error
+    });
     throw error;
   }
 };
 
-const createSerializer = (req, res) => {
-  const authToken = req.cookies && req.cookies['__auth-token'] ? req.cookies['__auth-token'] : false;
+const createSerializer = req => {
   let passwordHash = false;
 
-  // Create password using application secret and idamUserId
-  if (authToken) {
-    let idamUserId = null;
-    try {
-      idamUserId = jwt.decode(authToken).id;
-    } catch (error) {
-      res.clearCookie('__auth-token');
-      throw error;
-    }
-
+  const idamUserId = idam.userId(req);
+  if (idamUserId) {
     passwordHash = crypto.createHash('md5')
       .update(sessionEncryptionSecret + idamUserId, 'utf-8')
       .digest('hex')

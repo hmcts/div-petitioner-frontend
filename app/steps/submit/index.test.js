@@ -11,6 +11,8 @@ const server = require('app');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const { testRedirect, testCustom } = require('test/util/assertions');
 const submission = require('app/services/submission');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 const modulePath = 'app/steps/submit';
 
@@ -170,6 +172,51 @@ describe(modulePath, () => {
             .to.equal(s.steps.SubmittedError.url);
         });
       });
+    });
+  });
+
+  context('Court allocation', () => {
+    let req = {};
+    let res = {};
+
+    beforeEach(() => {
+      req = {
+        session: {},
+        method: 'get',
+        cookies: { 'connect.sid': 'exists' }
+      };
+      res = { redirect: sinon.stub() };
+      sinon.stub(ga, 'trackEvent');
+    });
+
+    afterEach(() => {
+      ga.trackEvent.restore();
+    });
+
+    it('loads court data from config and selects one automatically', done => {
+      // Arrange.
+      const courts = Object.keys(CONF.commonProps.court);
+
+      // Assert.
+      const assertionCallback = () => {
+        try {
+          courts.forEach(courtName => {
+            expect(req.session.court[courtName]).to
+              .eql(CONF.commonProps.court[courtName]);
+          });
+          expect(req.session.courts).to.be.oneOf(courts);
+
+          expect(ga.trackEvent.calledOnce).to.equal(true);
+          expect(ga.trackEvent.args[0][2]).to.equal(req.session.courts);
+          expect(ga.trackEvent.args[0][3]).to.equal(1);
+          done();
+        } catch (exception) {
+          done(new Error(exception));
+        }
+      };
+
+      // Act.
+      underTest.handler(req, res, assertionCallback);
     });
   });
 });

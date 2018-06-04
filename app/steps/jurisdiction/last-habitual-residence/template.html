@@ -8,7 +8,7 @@
 {% block form %}
 
     <div class="text jurisdiction">
-        <legend >{{ content.description | safe }}</legend><br>
+        <p>{{ content.description | safe }}</p>
 
         <details>
             <summary>
@@ -28,7 +28,8 @@
                 name = 'jurisdictionLastHabitualResident',
                 field = fields.jurisdictionLastHabitualResident,
                 yes = content.yes,
-                no = content.no
+                no = content.no,
+                screenReader = content.heading
             ) }}
 
     </div>

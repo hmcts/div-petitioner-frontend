@@ -18,6 +18,7 @@ const createSession = (agent) => {
   return getSession(agent)
     .then((res) => {
       const tokens = new Tokens();
+
       agent.csrfToken = tokens.create(res.body.csrfSecret);
 
       return agent.post('/session')

@@ -19,19 +19,22 @@
             value = 'Yes',
             label = content.yes,
             name = 'respondentLivesAtLastAddress',
-            field = fields.respondentLivesAtLastAddress
+            field = fields.respondentLivesAtLastAddress,
+            screenReader = content.question
         ) }}
         {{ radioButton(
             value = 'No',
             label = content['no-' + session.divorceWho],
             name = 'respondentLivesAtLastAddress',
-            field = fields.respondentLivesAtLastAddress
+            field = fields.respondentLivesAtLastAddress,
+            screenReader = content.question
         ) }}
         {{ radioButton(
             value = 'Unknown',
             label = content['unknown-' + session.divorceWho],
             name = 'respondentLivesAtLastAddress',
-            field = fields.respondentLivesAtLastAddress
+            field = fields.respondentLivesAtLastAddress,
+            screenReader = content.question
         ) }}
     </fieldset>
 

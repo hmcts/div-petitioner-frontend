@@ -1,7 +1,7 @@
 const request = require('supertest');
 const {
   testContent, testErrors, testRedirect,
-  testCYATemplate, testExistenceCYA, testValidation
+  testCYATemplate, testExistenceCYA
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');

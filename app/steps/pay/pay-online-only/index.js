@@ -12,10 +12,9 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const { saveSessionToDraftStoreAndClose } = require('app/middleware/draftPetitionStoreMiddleware');
 const requestHandler = require('app/core/helpers/parseRequest');
-
-const jwt = require('jsonwebtoken');
+const idam = require('app/services/idam');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 
 module.exports = class PayOnline extends Step {
@@ -55,14 +54,24 @@ module.exports = class PayOnline extends Step {
 
     req.session = req.session || {};
 
+    // Set court details to latest from config
+    req.session.court = CONF.commonProps.court;
+
     // Some prerequisites. @todo extract these elsewhere?
     let authToken = '';
     let user = {};
 
     if (features.idam) {
       authToken = cookies['__auth-token'];
+
+      const idamUserId = idam.userId(req);
+      if (!idamUserId) {
+        logger.error('User does not have any idam userDetails', req);
+        return res.redirect('/generic-error');
+      }
+
       user = {
-        id: jwt.decode(authToken).id,
+        id: idamUserId,
         bearerToken: authToken
       };
     }
@@ -87,7 +96,7 @@ module.exports = class PayOnline extends Step {
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
     if (!caseId) {
-      logger.error('Case ID is missing');
+      logger.error('Case ID is missing', req);
       return res.redirect('/generic-error');
     }
 
@@ -131,10 +140,8 @@ module.exports = class PayOnline extends Step {
         res.redirect(nextUrl);
         next();
       })
-
-      // Log any errors occurred and end up on the error page.
       .catch(error => {
-        logger.error(`Error during payment initialisation: ${error}`);
+        logger.error(error);
         res.redirect('/generic-error');
       });
   }

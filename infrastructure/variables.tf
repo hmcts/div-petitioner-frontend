@@ -4,6 +4,10 @@ variable "reform_team" {
   default = "div"
 }
 
+variable "capacity" {
+  default = "1"
+}
+
 variable "reform_service_name" {
   default = "pfe"
 }
@@ -20,6 +24,11 @@ variable "env" { }
 
 variable "ilbIp" { }
 
+variable "appinsights_instrumentation_key" {
+    description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+    default = ""
+}
+
 variable "deployment_env" {
   type = "string"
 }
@@ -31,7 +40,7 @@ variable "deployment_path" {
 variable "node_config_dir" {
   // for Unix
   // default = "/opt/divorce/frontend/config"
-  
+
   // for Windows
   default = "D:\\home\\site\\wwwroot\\config"
 }
@@ -143,12 +152,20 @@ variable "s2s_microservice_name" {
   default = "divorce_frontend"
 }
 
-variable "transformation_service_base_path" {
+variable "case_progression_service_url" {
+  default = ""
+}
+
+variable "case_progression_base_path" {
   default = "/transformationapi/version/1"
 }
 
 variable "draft_store_api_base_path" {
   default = "/draftsapi/version/1"
+}
+
+variable "evidence_management_client_api_url" {
+  default = ""
 }
 
 variable "evidence_management_client_api_upload_endpoint" {
@@ -256,7 +273,7 @@ variable "court_eastmidlands_siteid" {
 }
 
 variable "court_eastmidlands_weight" {
-  default = "0.32"
+  default = "0.25"
 }
 
 variable "court_westmidlands_name" {
@@ -292,7 +309,7 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = "0.23"
+  default = "0.25"
 }
 
 variable "court_southwest_name" {
@@ -328,7 +345,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = "0.18"
+  default = "0.25"
 }
 
 variable "court_northwest_name" {
@@ -368,7 +385,7 @@ variable "court_northwest_siteid" {
 }
 
 variable "court_northwest_weight" {
-  default = "0.27"
+  default = "0.25"
 }
 
 variable "court_phone_number" {
@@ -384,17 +401,17 @@ variable "court_email" {
 }
 
 variable "court_eastmidlands_court_weight" {
-  default = "0.32"
+  default = "0.25"
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.23"
+  default = "0.25"
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.18"
+  default = "0.25"
 }
 
 variable "court_northwest_court_weight" {
-  default = "0.27"
+  default = "0.25"
 }

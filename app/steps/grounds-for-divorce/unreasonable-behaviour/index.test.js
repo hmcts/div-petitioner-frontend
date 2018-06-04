@@ -1,7 +1,7 @@
 const request = require('supertest');
 const {
   testContent, testErrors, testRedirect,
-  testCYATemplate, testExistenceCYA
+  testCYATemplate, testExistenceCYA, testValidation
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
@@ -51,8 +51,38 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required');
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page with valid behaviour', done => {
       const context = { reasonForDivorceBehaviourDetails: ['The soup was too salty'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('redirects to the next page when behaviour = "My wife"', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('redirects to the next page when behaviour = "My wife .."', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife .'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('redirects to the next page when behaviour = "My wife .."', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife ..'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('renders errors when behaviour = "My wife ..."', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife ...'] };
+
+      testErrors(done, agent, underTest, context, content, 'required');
+    });
+
+    it('redirects to the next page when behaviour = "My wife ...!"', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife ...!'] };
 
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
     });

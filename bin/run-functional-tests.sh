@@ -16,16 +16,3 @@ export E2E_WAIT_FOR_ACTION_VALUE=${E2E_WAIT_FOR_ACTION_VALUE:-250}
 export CODECEPT_PARAMS=${CODECEPT_PARAMS:-""}
 
 yarn test-e2e ${CODECEPT_PARAMS}
-
-# Relocate and rename reports for Jenkins to see
-reports=`ls ./functional-output | grep "parallel"`
-reportsArray=(${reports//$"\s"/ })
-for i in "${reportsArray[@]}"
-do
-    mv -f ./functional-output/${i}/mochawesome.html ./functional-output/${i}.html
-    mv -f ./functional-output/${i}/mochawesome.json ./functional-output/${i}.json
-    mv -f ./functional-output/${i}/chrome_report.xml ./functional-output/${i}_chrome_report.xml
-done
-
-# Relocate any .png screenshots for Jenkins, or ignore if none found
-find ./functional-output -mindepth 2 -type f -print -exec mv {} ./functional-output \; 2> /dev/null || true

@@ -5,7 +5,12 @@ const { expect, sinon } = require('test/util/chai');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { hasSubmitted } = require('app/middleware/submissionMiddleware');
-const { restoreFromDraftStore, saveSessionToDraftStoreAndClose, saveSessionToDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
+const {
+  restoreFromDraftStore,
+  saveSessionToDraftStoreAndClose,
+  saveSessionToDraftStore,
+  saveSessionToDraftStoreAndReply
+} = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const Step = require('app/core/steps/Step');
@@ -40,7 +45,10 @@ describe(modulePath, () => {
   describe('#postMiddleware', () => {
     it('returns postMiddleware for validation step', () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
-      const middleware = [ saveSessionToDraftStore ];
+      const middleware = [
+        saveSessionToDraftStore,
+        saveSessionToDraftStoreAndReply
+      ];
       expect(underTest.postMiddleware).to.eql(middleware);
     });
   });
@@ -308,7 +316,10 @@ describe(modulePath, () => {
     beforeEach(done => {
       underTest = new TestClass({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
 
-      req = { session: exsistingData };
+      req = {
+        session: exsistingData,
+        headers: {}
+      };
       res = {
         redirect: sinon.stub(),
         headersSent: true

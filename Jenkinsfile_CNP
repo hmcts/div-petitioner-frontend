@@ -14,6 +14,6 @@ withPipeline("nodejs", product, component) {
     sh 'yarn test-validation'
     sh 'yarn test:mutation'
   }
-  
+
   enableSlackNotifications('#div-dev')
 }

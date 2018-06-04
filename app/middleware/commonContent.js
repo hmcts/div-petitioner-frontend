@@ -2,7 +2,7 @@ const i18next = require('i18next').createInstance();
 const common = require('app/content/common');
 const commonJurisdiction = require('app/content/commonJurisdiction');
 const { merge } = require('lodash');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
 
 const content = merge(common, commonJurisdiction);
@@ -11,7 +11,7 @@ i18next.init(content, error => {
   if (error) {
     logger.error({
       message: 'Failed to initialise i18next',
-      error: error.message
+      error
     });
   }
 });

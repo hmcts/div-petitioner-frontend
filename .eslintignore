@@ -3,6 +3,7 @@ docs/*
 govuk_modules/*
 public/*
 app/assets/javascripts/*
+!app/assets/javascripts/save-progress.js
 app/steps/sitemap/*
 lib/*
 coverage/*

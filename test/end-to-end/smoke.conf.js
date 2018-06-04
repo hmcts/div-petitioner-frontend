@@ -9,7 +9,7 @@ exports.config = {
       url: process.env.TEST_URL || process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
       waitForTimeout,
       waitForAction,
-      show: true,
+      show: false,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [

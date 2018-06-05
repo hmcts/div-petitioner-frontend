@@ -30,6 +30,7 @@ const keysToIgnore = [
   'ScreeningQuestionsRespondentAddress',
   'AdulteryWhere',
   'AdulteryWishToName',
+  'PetitionerContactDetails',
   'DesertionAgree',
   'DesertionDetails',
   'DesertionDate',

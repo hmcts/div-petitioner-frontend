@@ -17,13 +17,16 @@
     label = content.yes,
     name = 'helpWithFeesAppliedForFees',
     field = fields.helpWithFeesAppliedForFees,
-    dataTarget = 'help-yes'
+    dataTarget = 'help-yes',
+    screenReader = content.question
     ) }}
     {{ radioButton(
     value = 'No',
     label = content.no,
     name = 'helpWithFeesAppliedForFees',
-    field = fields.helpWithFeesAppliedForFees
+    field = fields.helpWithFeesAppliedForFees,
+    dataTarget = '',
+    screenReader = content.question
     ) }}
 </fieldset>
 

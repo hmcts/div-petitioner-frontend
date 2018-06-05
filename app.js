@@ -1,5 +1,4 @@
 require('dotenv').config();
-const appInsights = require('applicationinsights');
 const CONF = require('config');
 const path = require('path');
 const https = require('https');
@@ -26,8 +25,9 @@ const i18nTemplate = require('app/core/utils/i18nTemplate')({
   fileExtension: 'html'
 });
 const statusCode = require('app/core/utils/statusCode');
-const logging = require('@hmcts/nodejs-logging');
+const logging = require('app/services/logger');
 const events = require('events');
+const idam = require('app/services/idam');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -40,18 +40,14 @@ const nunjucksFilters = require('app/filters/nunjucks');
 
 const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
-const logger = logging.Logger.getLogger(__filename);
+const logger = logging.logger(__filename);
 
 exports.init = () => {
-  if (process.env.NODE_ENV === 'production') {
-    appInsights.setup(CONF.applicationInsights.instrumentationKey).start();
-  }
-
   const app = express();
 
   app.use(helmet());
 
-  app.use(logging.Express.accessLogger());
+  app.use(logging.accessLogger());
 
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
@@ -119,6 +115,9 @@ exports.init = () => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
+  // Get user details from idam, sets req.idam.userDetails
+  app.use(idam.userDetails());
+
   app.set('trust proxy', 1);
   app.use(sessions.prod());
 
@@ -135,8 +134,8 @@ exports.init = () => {
 
   app.use((error, req, res, next) => {
     if (error.code === 'EBADCSRFTOKEN') {
-      logger.error('csrf error has occurred');
-      logger.debug(error);
+      logger.error('csrf error has occurred', req);
+      logger.info(error);
       res.redirect('/generic-error');
     } else {
       next();

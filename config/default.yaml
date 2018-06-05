@@ -66,10 +66,10 @@ dateFormat: 'DD/MM/YYYY'
 paymentDateFormat: 'DDMMYYYY'
 
 commonProps:
-  applicationFee: 
-    code: 'X0165'
-    description: 'Divorce fee'
-    version: 1
+  applicationFee:
+    code: 'FEE0002'
+    description: 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.'
+    version: 4
     fee_amount: 550.00
   financialOrderApplicationFee: 255
   court:
@@ -82,7 +82,7 @@ commonProps:
       email: 'simulate-delivered-eastmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
       siteId: '1'
-      weight: 0.20
+      weight: 0.25
     westMidlands:
       divorceCentre: 'West Midlands'
       courtCity: 'City-in-West-Midlands'
@@ -92,7 +92,7 @@ commonProps:
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
       siteId: '2'
-      weight: 0.20
+      weight: 0.25
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -102,7 +102,7 @@ commonProps:
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
       siteId: '3'
-      weight: 0.36
+      weight: 0.25
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'
@@ -113,7 +113,7 @@ commonProps:
       email: 'simulate-delivered-northwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2224'
       siteId: '4'
-      weight: 0.26
+      weight: 0.25
   smartSurveyFeedbackUrl: 'http://www.example.com/'
   smartSurveyFeedbackDonePageUrl: 'http://www.example.com/'
   courtPhoneNumber: '0000 111 2220'

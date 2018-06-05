@@ -137,11 +137,20 @@ variable "idam_authentication_login_endpoint" {
 }
 
 variable "idam_api_url" {
-  type = "string"
+  default = ""
+}
+
+
+variable "idam_api_url_prefix" {
+    default = "idam-api-idam"
 }
 
 variable "service_auth_provider_url" {
-  type = "string"
+  default = ""
+}
+
+variable "idam_s2s_url_prefix" {
+    default = "rpe-service-auth-provider"
 }
 
 variable "frontend_service_name" {

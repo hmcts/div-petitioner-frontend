@@ -6,9 +6,16 @@ function nomlStatement(link) {
 
 module.exports = ({ links, nodes }) => {
   function selectNodes(link) {
+    const source = nodes.find(({ id }) => {
+      return id === link.source;
+    });
+    const target = nodes.find(({ id }) => {
+      return id === link.target;
+    });
+
     return Object.assign({}, {
-      source: nodes.find(n => n.id === link.source),
-      target: nodes.find(n => n.id === link.target)
+      source,
+      target
     });
   }
 

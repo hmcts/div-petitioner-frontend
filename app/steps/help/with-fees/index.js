@@ -58,4 +58,11 @@ module.exports = class WithFees extends ValidationStep {
   checkYourAnswersInterceptor(ctx) {
     return { helpWithFeesReferenceNumber: ctx.helpWithFeesReferenceNumber || 'No' };
   }
+
+  interceptor(ctx) {
+    if (ctx.helpWithFeesAppliedForFees === 'No') {
+      delete ctx.helpWithFeesReferenceNumber;
+    }
+    return ctx;
+  }
 };

@@ -16,7 +16,7 @@ exports.client = (
   return {
 
     lookupPostcode(postcode) {
-      const proxy = process.env.DIVORCE_HTTP_PROXY;
+      const proxy = CONF.divorceHttpProxy;
 
       return co(function* generator() {
         try {

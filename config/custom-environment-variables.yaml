@@ -1,6 +1,6 @@
 appName: PACKAGES_NAME
 project: PACKAGES_PROJECT
-environment: PACKAGES_ENVIRONMENT
+environment: NODE_ENV
 version: PACKAGES_VERSION
 deployment_env: DEPLOYMENT_ENV
 
@@ -20,6 +20,8 @@ services:
 
   featureToggleApi:
     health: FEATURE_TOGGLE_API_HEALHCHECK_URL
+
+  featureToggleApiUrl: FEATURE_TOGGLE_API_URL
 
   payment:
     baseUrl: PAYMENT_SERVICE_URL
@@ -112,3 +114,34 @@ rateLimiter:
 
 applicationInsights:
   instrumentationKey: APPINSIGHTS_INSTRUMENTATIONKEY
+
+http:
+  port: PORT
+  porttactical: HTTP_PORT
+
+idamArgs:
+  idamApiUrl: IDAM_API_URL
+  idamLoginUrl: IDAM_LOGIN_URL
+  idamSecret: IDAM_SECRET
+  idamClientID: IDAM_CLIENT_ID
+  idamTestForename: IDAM_TEST_FORENAME
+  idamTestSurname: IDAM_TEST_SURNAME
+  idamTestUserGroup: IDAM_TEST_USER_GROUP
+  idamTestLevelOfAccess: IDAM_TEST_LEVEL_OF_ACCESS
+  idamTestSupportCreateAccountEndpoint: IDAM_TEST_SUPPORT_CREATE_ACCOUNT_ENDPOINT
+
+e2e:
+  frontendUrl: E2E_FRONTEND_URL
+  proxyServer: E2E_PROXY_SERVER
+  proxyBypassList: E2E_PROXY_BYPASS
+  outputDirectory: E2E_OUTPUT_DIR
+  defaultEnvironmentNodeEnv: E2E_FRONTEND_NODE_ENV
+  waitForTimeoutValue: E2E_WAIT_FOR_TIMEOUT_VALUE
+  waitForActionValue: E2E_WAIT_FOR_ACTION_VALUE
+
+testUrl: TEST_URL
+divorceHttpProxy: DIVORCE_HTTP_PROXY
+
+public:
+  protocol: PUBLIC_PROTOCOL
+  hostname: PUBLIC_HOSTNAME

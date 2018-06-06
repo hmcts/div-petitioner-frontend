@@ -6,7 +6,10 @@ const underTest = require(modulePath);
 let req = {};
 let res = {};
 let next = {};
-const userDetails = { email: 'email@email.com' };
+const userDetails = {
+  email: 'email@email.com',
+  id: 'user.id'
+};
 const validSession = { expires: 1111 };
 
 describe(modulePath, () => {

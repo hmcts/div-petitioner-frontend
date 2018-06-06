@@ -12,11 +12,15 @@ const passwordHash = crypto.createHash('md5')
   .update('top-secret', 'utf-8')
   .digest('hex')
   .toUpperCase();
+const userDetails = { id: 'user.id' };
 
 describe(modulePath, () => {
   beforeEach(() => {
     res = { clearCookie: sinon.stub() };
-    req = { cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' } };
+    req = {
+      cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' },
+      idam: { userDetails }
+    };
   });
 
   describe('#createSerializer', () => {
@@ -26,11 +30,27 @@ describe(modulePath, () => {
       expect(serializer.hasOwnProperty('stringify')).to.eql(true);
     });
 
-    it('should throw an error if unable to create password hash', () => {
-      req = { cookies: { '__auth-token': 'bad.token' } };
-      expect(() => {
-        return sessionSerializer.createSerializer(req, res);
-      }).to.throw('Cannot read property \'id\' of null');
+    it('should not create hash', () => {
+      sinon.stub(crypto, 'createHash');
+      delete req.idam;
+
+      sessionSerializer.createSerializer(req);
+      expect(crypto.createHash.called).to.eql(false);
+
+      crypto.createHash.restore();
+    });
+
+    it('should create hash', () => {
+      const cryptoStub = {};
+      cryptoStub.update = sinon.stub().returns(cryptoStub);
+      cryptoStub.digest = sinon.stub().returns(cryptoStub);
+      cryptoStub.toUpperCase = sinon.stub().returns(passwordHash);
+      sinon.stub(crypto, 'createHash').returns(cryptoStub);
+
+      sessionSerializer.createSerializer(req);
+      expect(crypto.createHash.called).to.eql(true);
+
+      crypto.createHash.restore();
     });
 
     describe('#stringify', () => {

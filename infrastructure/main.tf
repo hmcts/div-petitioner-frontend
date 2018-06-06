@@ -28,8 +28,6 @@ locals {
 
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
-  idam_api_url = "${var.idam_api_url == "" ? "http://${var.idam_api_url_prefix}-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.idam_api_url}"
-
   service_auth_provider_url = "${var.service_auth_provider_url == "" ? "http://${var.idam_s2s_url_prefix}-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.service_auth_provider_url}"
 
   case_progression_service_url = "${var.case_progression_service_url == "" ? "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_progression_service_url}"
@@ -82,8 +80,8 @@ module "frontend" {
     SERVICE_NAME="${var.frontend_service_name}"
 
     // IDAM
-    IDAM_API_URL = "${local.idam_api_url}"
-    IDAM_APP_HEALHCHECK_URL ="${local.idam_api_url}${var.health_endpoint}"
+    IDAM_API_URL = "${var.idam_api_url}"
+    IDAM_APP_HEALHCHECK_URL ="${var.idam_api_url}${var.health_endpoint}"
     IDAM_LOGIN_URL = "${var.idam_authentication_web_url}${var.idam_authentication_login_endpoint}"
     IDAM_AUTHENTICATION_HEALHCHECK_URL = "${var.idam_authentication_web_url}${var.health_endpoint}"
     IDAM_SECRET = "${data.vault_generic_secret.idam_secret.data["value"]}"

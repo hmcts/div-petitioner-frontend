@@ -116,9 +116,9 @@ module.exports = {
         ctx.address = isEqual(address, ctx.address) ? ctx.address : address;
 
         const selectedAddress = ctx.addresses[ctx.selectAddressIndex];
-        let line1 = '${selectedAddress.organisation_name} ${selectedAddress.department_name} ${selectedAddress.po_box_number}';
-        let line2 = '${selectedAddress.building_number} ${selectedAddress.building_name} ${selectedAddress.sub_building_name} ${selectedAddress.thoroughfare_name}';
-        let line3 = '${selectedAddress.dependent_locality} ${selectedAddress.double_dependent_locality}';
+        let line1 = `${selectedAddress.organisation_name} ${selectedAddress.department_name} ${selectedAddress.po_box_number}`;
+        let line2 = `${selectedAddress.building_number} ${selectedAddress.building_name} ${selectedAddress.sub_building_name} ${selectedAddress.thoroughfare_name}`;
+        let line3 = `${selectedAddress.dependent_locality} ${selectedAddress.double_dependent_locality}`;
 
         if (line1.trim().length === 0) {
           line1 = line2;

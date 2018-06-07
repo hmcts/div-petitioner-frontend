@@ -2,6 +2,7 @@ const { expect, sinon } = require('test/util/chai');
 const co = require('co');
 const sinonStubPromise = require('sinon-stub-promise');
 const statusCode = require('http-status-codes');
+const CONF = require('config');
 
 sinonStubPromise(sinon);
 
@@ -43,14 +44,14 @@ describe(modulePath, () => {
   });
 
   context('proxy is set', () => {
-    const originalValue = process.env.DIVORCE_HTTP_PROXY;
+    const originalValue = CONF.divorceHttpProxy;
 
     before(() => {
-      process.env.DIVORCE_HTTP_PROXY = 'http://some-proxy-url:123';
+      CONF.divorceHttpProxy = 'http://some-proxy-url:123';
     });
 
     after(() => {
-      process.env.DIVORCE_HTTP_PROXY = originalValue;
+      CONF.divorceHttpProxy = originalValue;
     });
 
     it('returns address for given postcode', done => {
@@ -65,7 +66,7 @@ describe(modulePath, () => {
         resp = yield client.lookupPostcode(mockPostcode);
       }).then(() => {
         expect(superagentStub.timeout.thenable.proxy)
-          .to.have.been.calledWith(process.env.DIVORCE_HTTP_PROXY);
+          .to.have.been.calledWith(CONF.divorceHttpProxy);
         expect(resp.valid).to.eql(true);
         done();
       });

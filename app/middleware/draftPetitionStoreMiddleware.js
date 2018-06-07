@@ -19,7 +19,8 @@ const options = {
   draftBaseUrl: CONF.services.transformation.draftBaseUrl,
   baseUrl: CONF.services.transformation.baseUrl
 };
-const production = process.env.NODE_ENV === 'production';
+
+const production = CONF.environment === 'production';
 const client = production ? transformationServiceClient.init(options) : mockedClient;
 
 const checkYourAnswers = '/check-your-answers';

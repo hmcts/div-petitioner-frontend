@@ -7,7 +7,7 @@ exports.config = {
   output: process.cwd() + '/smoke-output',
   helpers: {
     Puppeteer: {
-      url: CONF.CONF.testUrl || CONF.e2e.frontendUrl,
+      url: CONF.testUrl || CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
       show: false,

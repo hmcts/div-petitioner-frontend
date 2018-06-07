@@ -15,7 +15,7 @@ module.exports = class UnreasonableBehaviour extends ValidationStep {
     if (ctx.reasonForDivorceBehaviourDetails) {
       ctx.reasonForDivorceBehaviourDetails = ctx.reasonForDivorceBehaviourDetails.filter( // eslint-disable-line max-len
         item => {
-          return !isEmpty(item) && !item.match(/^(?=My (husband|wife|\.\.\.|)( | \.\.\.|)$)/);
+          return !isEmpty(item) && !item.match(/^(?=My (husband|wife) \.\.\.$)/);
         }
       );
     } else {

@@ -9,16 +9,24 @@ const { expect, sinon } = require('test/util/chai');
 const server = require('app');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const { testRedirect, testCustom } = require('test/util/assertions');
-const jwt = require('jsonwebtoken');
 const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
 const submission = require('app/services/submission');
+const idam = require('app/services/idam');
 
 const modulePath = 'app/steps/pay/card-payment-status';
 
 let s = {};
 let agent = {};
 let underTest = {};
+const userDetails = {
+  id: 1,
+  email: 'email@email.com'
+};
+const idamUserDetailsMiddlewareMock = (req, res, next) => {
+  req.idam = { userDetails };
+  next();
+};
 
 describe(modulePath, () => {
   let getToken = null;
@@ -32,7 +40,7 @@ describe(modulePath, () => {
     sinon.stub(serviceToken, 'setup').returns({ getToken });
     sinon.stub(payment, 'setup').returns({ query });
     sinon.stub(submission, 'setup').returns({ update });
-    sinon.stub(jwt, 'decode').returns({ id: 1 });
+    sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
 
     idamMock.stub();
     featureTogglesMock.stub();
@@ -44,8 +52,8 @@ describe(modulePath, () => {
   afterEach(() => {
     payment.setup.restore();
     submission.setup.restore();
-    jwt.decode.restore();
     serviceToken.setup.restore();
+    idam.userDetails.restore();
 
     s.http.close();
     featureTogglesMock.restore();

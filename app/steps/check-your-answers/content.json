@@ -28,8 +28,8 @@
                     "confirmBelieve": "I believe that the facts stated in this application are true.",
                     "confirmApplication": "The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
                     "submitOnline": "Submit",
-                    "dontNavigateAway": "Don’t close the browser, navigate away from this service or refresh the page until you’re told that your application is complete.",
-                    "dontNavigateAwayNotAppliedForFees": "You now need to pay the fee.",
+                    "submitAndPay": "Submit and pay",
+                    "submitPayWarning": "Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
                     "deleteApplciation": "Delete application"
                 },
                 "errors": {

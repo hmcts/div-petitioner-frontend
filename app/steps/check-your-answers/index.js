@@ -1,7 +1,7 @@
 const { cloneDeep, get, reduce, groupBy } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
 
 const maximumNumberOfSteps = 500;
@@ -30,9 +30,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       this.checkYourAnswersSectionOrder, templates
     );
 
-    const hasNextStep = this.nextStepUrl !== this.url || session.saveAndResumeUrl;
+    const hasNextStep = clonedCtx.nextStepUrl !== this.url || session.saveAndResumeUrl;
     // set url to `continue application` button
-    clonedCtx.nextStepUrl = hasNextStep ? session.saveAndResumeUrl || this.nextStepUrl : undefined; // eslint-disable-line no-undefined
+    clonedCtx.nextStepUrl = hasNextStep ? session.saveAndResumeUrl || clonedCtx.nextStepUrl : undefined; // eslint-disable-line no-undefined
 
     if (session.saveAndResumeUrl) {
       delete session.saveAndResumeUrl;
@@ -167,7 +167,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     if (previousQuestionsRendered.includes(step.url)) {
       logger.warn('Application is attempting to render the same template more than once');
       if (CONF.deployment_env !== 'prod') {
-        logger.warn(`Session when application attempted to render same template more than once ${JSON.stringify(session)}`);
+        logger.warn({
+          message: 'Session when application attempted to render same template more than once',
+          session
+        });
       }
       return templates;
     }
@@ -175,7 +178,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     previousQuestionsRendered.push(step.url);
 
     // save the next steps url for use with the `continue application` button
-    this.nextStepUrl = step.url;
+    session.nextStepUrl = step.url;
 
     // ensure step has a template to render i.e. screening questions dont have CYA templates
     if (step.checkYourAnswersTemplate) {
@@ -207,7 +210,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     if (nextStep === this) {
-      delete this.nextStepUrl;
+      delete session.nextStepUrl;
     }
 
     // if next step and next step is not check your answers
@@ -215,7 +218,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.error('Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         if (CONF.deployment_env !== 'prod') {
-          logger.error(`Session when stopped never ending loop ${JSON.stringify(session)}`);
+          logger.error({
+            message: 'Session when stopped never ending loop',
+            session
+          });
         }
         return templates;
       }

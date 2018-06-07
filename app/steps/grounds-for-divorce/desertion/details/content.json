@@ -15,7 +15,7 @@
                 "errors": {
                     "reasonForDivorceDesertionDetails": {
                         "required": "Enter a description of how your {{ divorceWho }} deserted you",
-                        "invalid": "Enter a valid description of how your {{ divorceWho }} deserted you"
+                        "invalid": "Enter a valid description of how your {{ divorceWho }} deserted you. Maximum 20000 characters"
                     }
                 }
             }

@@ -191,6 +191,25 @@ describe(modulePath, () => {
       }).then(done, done);
     });
 
+    it('should set the ctx.addressBaseUK property based upon the value of ctx.selectAddressIndex', done => {
+      co(function* generator() {
+        const { addresses } = yield mockPostcodeClient.lookupPostcode();
+        const expectedAddressBasedUK5 = {
+          addressLine1: '90 LANDOR ROAD',
+          addressLine2: '',
+          addressLine3: '',
+          postCode: 'SW9 9PE',
+          postTown: 'LONDON',
+          county: '',
+          country: 'UK'
+        };
+
+        let ctx = { addressType: 'postcode', selectAddressIndex: '5', addresses, selectAddress: true };
+        ctx = yield underTest.interceptor(ctx, {});
+        expect(ctx.addressBaseUK).to.deep.equal(expectedAddressBasedUK5);
+      }).then(done, done);
+    });
+
     it('should update the ctx.address property if the ctx.addressConfirmed === true and the form has been edited', done => {
       co(function* generator() {
         const { addresses } = yield mockPostcodeClient.lookupPostcode();

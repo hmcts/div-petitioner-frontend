@@ -54,7 +54,7 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content, session, ['placeOfMarriage']);
+      testContent(done, agent, underTest, content, session, ['placeOfMarriage', 'copyPlaceOfMarriage']);
     });
   });
 

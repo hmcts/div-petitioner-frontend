@@ -15,9 +15,8 @@
     "start-prod": "NODE_PATH=. grunt start-prod",
     "setup-assets": "NODE_PATH=. grunt setup-assets",
     "setup": "NODE_PATH=. grunt setup-prod",
-    "test": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha './app/**/*.test.js' --reporter spec --recursive -t 3000",
-    "test:coverage": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. istanbul cover _mocha './app/**/*.test.js' -- --recursive --timeout 10000",
-    "posttest:coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
+    "test": "NODE_PATH=. NODE_ENV=testing nyc mocha 'app/**/*.test.js' -t 10000",
+    "test:coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
     "test:a11y": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/accessibility/ --reporter spec --recursive --timeout 15000",
     "test:nsp": "nsp check --preprocessor yarn",
     "test:mutation": "./bin/run-mutation-tests.sh",
@@ -130,7 +129,6 @@
     "grunt-sass": "^1.1.0",
     "grunt-sync": "^0.6.2",
     "grunt-webpack": "^2.0.1",
-    "istanbul": "^0.4.5",
     "jsdom": "^11.2.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^3.0.0",
@@ -139,6 +137,7 @@
     "mochawesome": "^3.0.2",
     "nock": "9.2.6",
     "node-sass": "^4.0.0",
+    "nyc": "12.0.2",
     "pa11y": "^4.0.1",
     "pre-commit": "^1.1.3",
     "proxyquire": "^1.8.0",
@@ -157,5 +156,13 @@
     "supertest": "^2.0.0",
     "w3c-validate": "0.0.2",
     "webdriverio": "^4.12.0"
+  },
+  "nyc": {
+    "report-dir": "coverage",
+    "temp-directory": "./coverage/.nyc_output",
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   }
 }

@@ -28,6 +28,8 @@ locals {
 
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
+  service_auth_provider_url = "${var.service_auth_provider_url == "" ? "http://${var.idam_s2s_url_prefix}-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.service_auth_provider_url}"
+
   case_progression_service_url = "${var.case_progression_service_url == "" ? "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_progression_service_url}"
   evidence_management_client_api_url = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
   status_health_endpoint = "/status/health"
@@ -85,8 +87,8 @@ module "frontend" {
     IDAM_SECRET = "${data.vault_generic_secret.idam_secret.data["value"]}"
 
     // Service Auth
-    SERVICE_AUTH_PROVIDER_URL = "${var.service_auth_provider_url}"
-    SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${var.service_auth_provider_url}${var.health_endpoint}"
+    SERVICE_AUTH_PROVIDER_URL = "${local.service_auth_provider_url}"
+    SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${local.service_auth_provider_url}${var.health_endpoint}"
     MICROSERVICE_NAME = "${var.s2s_microservice_name}"
     MICROSERVICE_KEY = "${data.vault_generic_secret.frontend_secret.data["value"]}"
 

@@ -166,10 +166,10 @@ describe(modulePath, () => {
         };
         withSession(done, agent, session);
       });
-      it('redirects to SubmittedError if submission submitted twice', done => {
+      it('redirects to ApplicationSubmitted if submission submitted twice', done => {
         testCustom(done, agent, underTest, [], response => {
           expect(response.res.headers.location)
-            .to.equal(s.steps.SubmittedError.url);
+            .to.equal(s.steps.ApplicationSubmitted.url);
         });
       });
     });

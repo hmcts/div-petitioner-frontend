@@ -3,7 +3,7 @@
 const CONF = require('config');
 let Helper = codecept_helper;
 const { get, features } = require('@hmcts/div-feature-toggle-client')({
-  env: process.env.E2E_FRONTEND_NODE_ENV || CONF.environment,
+  env: CONF.defaultEnvironmentNodeEnv || CONF.environment,
   featureToggleApiUrl: CONF.services.featureToggleApiUrl
 }).featureToggles;
 let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');

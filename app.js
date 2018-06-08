@@ -171,13 +171,15 @@ exports.init = () => {
   //  register steps with the express app
   const steps = initSteps(app, stepDefinitions);
 
-  if (CONF.environment === 'development' || CONF.environment === 'testing') {
+  if (CONF.deployment_env === 'development' || CONF.deployment_env === 'testing') {
     //  site graph
     app.get('/graph', (req, res) => {
       const graph = siteGraph(steps);
       res.json(graph);
     });
+  }
 
+  if (CONF.environment === 'development' || CONF.environment === 'testing') {
     //  quick way to update a session.
     //  useful to set the app into an
     //  initial state for testing

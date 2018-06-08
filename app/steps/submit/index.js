@@ -25,8 +25,7 @@ module.exports = class Submit extends Step {
 
   handler(req, res, next) {
     if (req.session.submissionStarted) {
-      res.redirect(this.steps.SubmittedError.url);
-      next();
+      res.redirect(this.steps.ApplicationSubmitted.url);
       return;
     }
 

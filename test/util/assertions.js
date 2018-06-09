@@ -136,7 +136,7 @@ const getCYATemplate = (underTest, data = {}, session = {}) => {
 
 };
 
-exports.testCYATemplate = (done, underTest) => {
+exports.testCYATemplate = (done, underTest, data, session) => {
 
   const checkTemplate = (html) => {
     expect(html.length).to.not.equal(0);
@@ -147,7 +147,7 @@ exports.testCYATemplate = (done, underTest) => {
     expect(html).to.contain(underTest.url);
   };
 
-  return getCYATemplate(underTest)
+  return getCYATemplate(underTest, data, session)
     .then(checkTemplate)
     .then(checkChangeLink)
     .then(done, done);

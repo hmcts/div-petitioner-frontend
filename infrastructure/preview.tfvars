@@ -14,7 +14,6 @@ rediscloud_url = "betaPreProddivorceCache01.reform.hmcts.net:6379"
 
 idam_authentication_web_url = "https://idam.preprod.ccidam.reform.hmcts.net"
 idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
-service_auth_provider_url = "https://preprod-s2s-api.reform.hmcts.net:3511"
 
 feature_toggle_api_url = "http://betaPreProddivorceAppLB.reform.hmcts.net:4002"
 

@@ -171,7 +171,7 @@ exports.init = () => {
   //  register steps with the express app
   const steps = initSteps(app, stepDefinitions);
 
-  if (CONF.deployment_env === 'development' || CONF.deployment_env === 'testing') {
+  if (CONF.deployment_env !== 'prod') {
     //  site graph
     app.get('/graph', (req, res) => {
       const graph = siteGraph(steps);

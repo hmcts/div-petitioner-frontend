@@ -124,9 +124,9 @@
     request "^2.81.0"
     request-promise-native "^1.0.5"
 
-"@hmcts/div-service-auth-provider-client@https://github.com/hmcts/div-service-auth-provider-client#2.1.4":
-  version "2.1.4"
-  resolved "https://github.com/hmcts/div-service-auth-provider-client#b01b4bca71756638a867689a906ed7483d8c8b39"
+"@hmcts/div-service-auth-provider-client@https://github.com/hmcts/div-service-auth-provider-client#3.0.0":
+  version "3.0.0"
+  resolved "https://github.com/hmcts/div-service-auth-provider-client#82ac790f04376ed26691eb012ca72a092e5bd00d"
   dependencies:
     jsonwebtoken "^8.0.1"
     otp "^0.1.3"

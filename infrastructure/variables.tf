@@ -4,6 +4,10 @@ variable "reform_team" {
   default = "div"
 }
 
+variable "capacity" {
+  default = "1"
+}
+
 variable "reform_service_name" {
   default = "pfe"
 }
@@ -137,7 +141,11 @@ variable "idam_api_url" {
 }
 
 variable "service_auth_provider_url" {
-  type = "string"
+  default = ""
+}
+
+variable "idam_s2s_url_prefix" {
+  default = "rpe-service-auth-provider"
 }
 
 variable "frontend_service_name" {

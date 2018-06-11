@@ -167,7 +167,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     if (previousQuestionsRendered.includes(step.url)) {
       logger.warn('Application is attempting to render the same template more than once');
       if (CONF.deployment_env !== 'prod') {
-        logger.warn(`Session when application attempted to render same template more than once ${JSON.stringify(session)}`);
+        logger.warn({
+          message: 'Session when application attempted to render same template more than once',
+          session
+        });
       }
       return templates;
     }
@@ -215,7 +218,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.error('Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         if (CONF.deployment_env !== 'prod') {
-          logger.error(`Session when stopped never ending loop ${JSON.stringify(session)}`);
+          logger.error({
+            message: 'Session when stopped never ending loop',
+            session
+          });
         }
         return templates;
       }

@@ -10,18 +10,21 @@
   {{ content.applicationFee | safe }}
 </p>
 
+<div class="notice">
+  <em class="icon icon-important">
+    <span class="visuallyhidden">{{ content.noRefund }}</span>
+  </em>
+  <p class="bold-small">
+      {{ content.noRefund | safe}}
+  </p>
+</div>
+
 <p class="text">
   {{ content.claimingCosts | safe }}
 </p>
 
-<div class="notice">
-  <em class="icon icon-important">
-    <span class="visuallyhidden">{{ content.warning }}</span>
-  </em>
-  <p class="bold-small">
-      {{ content.warning | safe}}
-  </p>
-</div>
-
+<p class="text">
+  {{ content.save | safe }}
+</p>
 
 {% endblock %}

@@ -4,6 +4,10 @@ variable "reform_team" {
   default = "div"
 }
 
+variable "capacity" {
+  default = "1"
+}
+
 variable "reform_service_name" {
   default = "pfe"
 }
@@ -20,6 +24,11 @@ variable "env" { }
 
 variable "ilbIp" { }
 
+variable "appinsights_instrumentation_key" {
+    description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+    default = ""
+}
+
 variable "deployment_env" {
   type = "string"
 }
@@ -31,7 +40,7 @@ variable "deployment_path" {
 variable "node_config_dir" {
   // for Unix
   // default = "/opt/divorce/frontend/config"
-  
+
   // for Windows
   default = "D:\\home\\site\\wwwroot\\config"
 }
@@ -132,7 +141,11 @@ variable "idam_api_url" {
 }
 
 variable "service_auth_provider_url" {
-  type = "string"
+  default = ""
+}
+
+variable "idam_s2s_url_prefix" {
+  default = "rpe-service-auth-provider"
 }
 
 variable "frontend_service_name" {
@@ -143,12 +156,20 @@ variable "s2s_microservice_name" {
   default = "divorce_frontend"
 }
 
-variable "transformation_service_base_path" {
+variable "case_progression_service_url" {
+  default = ""
+}
+
+variable "case_progression_base_path" {
   default = "/transformationapi/version/1"
 }
 
 variable "draft_store_api_base_path" {
   default = "/draftsapi/version/1"
+}
+
+variable "evidence_management_client_api_url" {
+  default = ""
 }
 
 variable "evidence_management_client_api_upload_endpoint" {

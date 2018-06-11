@@ -20,14 +20,16 @@
       label = content.yes,
       name = 'petitionerNameDifferentToMarriageCertificate',
       field = fields.petitionerNameDifferentToMarriageCertificate,
-      dataTarget = 'petitionerNameChangedHow'
+      dataTarget = 'petitionerNameChangedHow',
+      screenReader = content.question
     ) }}
 
     {{ radioButton(
       value = 'No',
       label = content.no,
       name = 'petitionerNameDifferentToMarriageCertificate',
-      field = fields.petitionerNameDifferentToMarriageCertificate
+      field = fields.petitionerNameDifferentToMarriageCertificate,
+      screenReader = content.question
     ) }}
   </fieldset>
 

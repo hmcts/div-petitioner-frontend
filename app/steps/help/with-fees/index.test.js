@@ -25,9 +25,7 @@ describe(modulePath, () => {
     underTest = s.steps.WithFees;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

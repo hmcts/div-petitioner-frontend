@@ -26,10 +26,6 @@ describe(modulePath, () => {
     agent = request.agent(s.app);
   });
 
-  afterEach(() => {
-    s.http.close();
-  });
-
   describe('selecting an address via the postcode service', () => {
     let session = {};
 

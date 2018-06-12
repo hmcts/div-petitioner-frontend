@@ -21,12 +21,9 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionLastSixMonths;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('Six months content step content', () => {
     let session = {};

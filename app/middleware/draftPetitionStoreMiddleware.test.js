@@ -23,10 +23,6 @@ describe(modulePath, () => {
     checkYourAnswersUrl = s.steps.CheckYourAnswers.url;
   });
 
-  after(() => {
-    s.http.close();
-  });
-
   beforeEach(() => {
     featureTogglesMock.stub();
   });

@@ -18,12 +18,6 @@ describe(modulePath, () => {
     underTest = s.steps.ExitRespondentAddress;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     let session = {};
 

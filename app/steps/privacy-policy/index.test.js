@@ -17,12 +17,6 @@ describe(modulePath, () => {
     underTest = s.steps.PrivacyPolicy;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     const session = {};
 

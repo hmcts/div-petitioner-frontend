@@ -6,6 +6,6 @@ function haveRespondentAddress() {
 
   I.seeCurrentUrlEquals('/screening-questions/respondent-address');
   I.checkOption(content.yes);
-  I.click('Continue');
+  I.navByClick('Continue');
 }
 module.exports = { haveRespondentAddress };

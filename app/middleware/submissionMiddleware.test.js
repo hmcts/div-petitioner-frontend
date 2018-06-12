@@ -16,11 +16,11 @@ describe(modulePath, () => {
       res = { redirect: sinon.stub() };
       next = sinon.stub();
     });
-    it('redirects to /error-application-submitted if application has been submitted', () => {
+    it('redirects to /application-submitted if application has been submitted', () => {
       req.session.caseId = 'someid';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
-      expect(res.redirect.calledWith('/error-application-submitted')).to.eql(true);
+      expect(res.redirect.calledWith('/application-submitted')).to.eql(true);
     });
     it('calls next if application has not been submitted', () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);

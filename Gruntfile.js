@@ -70,7 +70,7 @@ module.exports = function(grunt) {
       dev: {
         script: 'server.js',
         options: {
-          nodeArgs: ['--trace-warnings'],
+          nodeArgs: ['--trace-warnings', '--inspect'],
           ext: 'js, json, yaml',
           ignore: ['node_modules/**', 'app/assets/**', 'public/**'],
           args: grunt.option.flags()
@@ -84,8 +84,6 @@ module.exports = function(grunt) {
         options: { logConcurrentOutput: true }
       }
     },
-
-    nsp: { package: grunt.file.readJSON('package.json') }
   });
 
   [
@@ -94,8 +92,7 @@ module.exports = function(grunt) {
     'grunt-contrib-watch',
     'grunt-nodemon',
     'grunt-concurrent',
-    'grunt-webpack',
-    'grunt-nsp'
+    'grunt-webpack'
   ].forEach(task => {
     grunt.loadNpmTasks(task);
   });
@@ -114,6 +111,4 @@ module.exports = function(grunt) {
     'clean',
     'concurrent:dev'
   ]);
-
-  grunt.registerTask('nsp-test', ['nsp']);
 };

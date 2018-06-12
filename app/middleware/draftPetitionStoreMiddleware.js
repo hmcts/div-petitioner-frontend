@@ -1,9 +1,19 @@
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const transformationServiceClient = require('app/services/transformationServiceClient');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
+const parseRequest = require('app/core/helpers/parseRequest');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
+
+// Properties that should be removed from the session before saving to draft store
+const blacklistedProperties = [
+  'expires',
+  'cookie',
+  'sessionKey',
+  'saveAndResumeUrl',
+  'csrfSecret'
+];
 
 const options = {
   draftBaseUrl: CONF.services.transformation.draftBaseUrl,
@@ -56,7 +66,7 @@ const restoreFromDraftStore = (req, res, next) => {
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(`Error when attempting to restore session from draft store ${error}`);
+        logger.error(error);
       }
       next();
     });
@@ -72,15 +82,112 @@ const removeFromDraftStore = (req, res, next) => {
     .then(next)
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(`Error when attempting to restore session from draft store ${error}`);
+        logger.error(error);
         return res.redirect('/generic-error');
       }
       return next();
     });
 };
 
+const removeBlackListedPropertiesFromSession = session => {
+  return blacklistedProperties
+    .reduce((acc, item) => {
+      delete acc[item];
+      return acc;
+    }, Object.assign({}, session));
+};
+
+const saveSessionToDraftStore = (req, res, next) => {
+  const { session, method } = req;
+  const hasErrors = session.flash && session.flash.errors;
+  const isPost = method.toLowerCase() === 'post';
+
+  if (hasErrors || !isPost || req.headers['x-save-draft-session-only']) {
+    return next();
+  }
+
+  const sessionToSave = removeBlackListedPropertiesFromSession(session);
+
+  // Get user token.
+  let authToken = '';
+  if (req.cookies && req.cookies[authTokenString]) {
+    authToken = req.cookies[authTokenString];
+  }
+
+  return client.saveToDraftStore(authToken, sessionToSave)
+    .then(() => {
+      next();
+    })
+    .catch(error => {
+      logger.error(error);
+      next();
+    });
+};
+
+const saveSessionToDraftStoreAndReply = function(req, res, next) {
+  if (req.headers['x-save-draft-session-only']) {
+    const authToken = req.cookies[authTokenString] || '';
+    // eslint-disable-next-line no-invalid-this
+    Object.assign(req.session, parseRequest.parse(this, req));
+    const session = removeBlackListedPropertiesFromSession(req.session);
+
+    return client
+      .saveToDraftStore(authToken, session)
+      .then(() => {
+        const successStatusCode = 200;
+        res
+          .status(successStatusCode)
+          .json({ message: 'ok' });
+      })
+      .catch(() => {
+        const failureStatusCode = 500;
+        res
+          .status(failureStatusCode)
+          .json({ message: 'Error saving session to draft store' });
+      });
+  }
+
+  return next();
+};
+
+// use `function` instead of `arrow function (=>)` to preserve scope set in step.js #router
+// this. refers to Step class or inheritance of (app/core/steps/Step)
+const saveSessionToDraftStoreAndClose = function(req, res, next) {
+  const { method, body } = req;
+
+  const isPost = method.toLowerCase() === 'post';
+  const hasSaveAndCloseBody = body && body.saveAndClose;
+
+  if (isPost && hasSaveAndCloseBody) {
+    const ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
+    const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
+    const sessionToSave = removeBlackListedPropertiesFromSession(session);
+
+    // Get user token.
+    let authToken = '';
+    if (req.cookies && req.cookies[authTokenString]) {
+      authToken = req.cookies[authTokenString];
+    }
+
+    const sendEmail = true;
+    client.saveToDraftStore(authToken, sessionToSave, sendEmail)
+      .then(() => {
+        res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+      })
+      .catch(error => {
+        logger.error(error);
+        res.redirect('/generic-error');
+      });
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   restoreFromDraftStore,
   removeFromDraftStore,
-  redirectToCheckYourAnswers
+  redirectToCheckYourAnswers,
+  saveSessionToDraftStoreAndClose,
+  saveSessionToDraftStore,
+  saveSessionToDraftStoreAndReply
 };

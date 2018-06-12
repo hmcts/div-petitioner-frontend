@@ -1,17 +1,12 @@
 const { cloneDeep, get, reduce, groupBy } = require('lodash');
-const ValidationStep = require('app/core/ValidationStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
 
 const maximumNumberOfSteps = 500;
 
 module.exports = class CheckYourAnswers extends ValidationStep {
-  handler(req, res) {
-    return runStepHandler(this, req, res);
-  }
-
   get url() {
     return '/check-your-answers';
   }
@@ -35,9 +30,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       this.checkYourAnswersSectionOrder, templates
     );
 
-    const hasNextStep = this.nextStepUrl !== this.url || session.saveAndResumeUrl;
+    const hasNextStep = clonedCtx.nextStepUrl !== this.url || session.saveAndResumeUrl;
     // set url to `continue application` button
-    clonedCtx.nextStepUrl = hasNextStep ? session.saveAndResumeUrl || this.nextStepUrl : undefined; // eslint-disable-line no-undefined
+    clonedCtx.nextStepUrl = hasNextStep ? session.saveAndResumeUrl || clonedCtx.nextStepUrl : undefined; // eslint-disable-line no-undefined
 
     if (session.saveAndResumeUrl) {
       delete session.saveAndResumeUrl;
@@ -94,26 +89,26 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
   * getStepCheckYourAnswersTemplate(step, session) {
     // generate the context for the step
-    let stepCtx = yield this.getStepCtx(step, session);
+    let stepCtx = this.getStepCtx(step, session);
 
     // run the step interceptor
     stepCtx = yield step.interceptor(stepCtx, session);
 
     // ensure step is valid
-    const [isValid] = yield step.validate(stepCtx, session);
+    const [isValid] = step.validate(stepCtx, session);
     if (!isValid) {
       return;
     }
 
-    stepCtx = yield step.checkYourAnswersInterceptor(stepCtx, session);
+    stepCtx = step.checkYourAnswersInterceptor(stepCtx, session);
 
-    const checkYourAnswersContent = yield this.generateContent(
+    const checkYourAnswersContent = this.generateContent(
       stepCtx, session
     );
 
     // generate content
-    const content = yield step.generateContent(stepCtx, session);
-    const checkYourAnswersSpecificContent = yield step.generateCheckYourAnswersContent( // eslint-disable-line max-len
+    const content = step.generateContent(stepCtx, session);
+    const checkYourAnswersSpecificContent = step.generateCheckYourAnswersContent( // eslint-disable-line max-len
       stepCtx, session
     );
     Object.assign(
@@ -124,7 +119,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     );
 
     // generate fields
-    const fields = yield step.generateFields(stepCtx, session);
+    const fields = step.generateFields(stepCtx, session);
 
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
@@ -172,7 +167,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     if (previousQuestionsRendered.includes(step.url)) {
       logger.warn('Application is attempting to render the same template more than once');
       if (CONF.deployment_env !== 'prod') {
-        logger.warn(`Session when application attempted to render same template more than once ${JSON.stringify(session)}`);
+        logger.warn({
+          message: 'Session when application attempted to render same template more than once',
+          session
+        });
       }
       return templates;
     }
@@ -180,7 +178,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     previousQuestionsRendered.push(step.url);
 
     // save the next steps url for use with the `continue application` button
-    this.nextStepUrl = step.url;
+    session.nextStepUrl = step.url;
 
     // ensure step has a template to render i.e. screening questions dont have CYA templates
     if (step.checkYourAnswersTemplate) {
@@ -200,7 +198,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // Put catch here because 'next' function throws
     // error if step doesn't have valid next step
     try {
-      let nextStepCtx = yield this.getStepCtx(step, session);
+      let nextStepCtx = this.getStepCtx(step, session);
       // run the step interceptor - some next step logic is created in the interceptor
       // eslint-disable-next-line no-warning-comments
       // TODO: this can be removed when all nextStep logic is moved to next function
@@ -212,7 +210,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     if (nextStep === this) {
-      delete this.nextStepUrl;
+      delete session.nextStepUrl;
     }
 
     // if next step and next step is not check your answers
@@ -220,7 +218,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.error('Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         if (CONF.deployment_env !== 'prod') {
-          logger.error(`Session when stopped never ending loop ${JSON.stringify(session)}`);
+          logger.error({
+            message: 'Session when stopped never ending loop',
+            session
+          });
         }
         return templates;
       }

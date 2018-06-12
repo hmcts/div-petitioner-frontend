@@ -6,7 +6,7 @@ const {
 const { clone } = require('lodash');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { removeStaleData } = require('app/core/staleDataManager');
+const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 
 const modulePath = 'app/steps/help/with-fees';
@@ -62,6 +62,16 @@ describe(modulePath, () => {
 
     it('redirects to the next page when No selected', done => {
       const context = { helpWithFeesAppliedForFees: 'No' };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.ExitNoHelpWithFees);
+    });
+
+    it('redirects to the next page when No selected and HWF number not correct', done => {
+      const context = {
+        helpWithFeesAppliedForFees: 'No',
+        helpWithFeesReferenceNumber: 'WrongHWF'
+      };
 
       testRedirect(done, agent, underTest, context,
         s.steps.ExitNoHelpWithFees);

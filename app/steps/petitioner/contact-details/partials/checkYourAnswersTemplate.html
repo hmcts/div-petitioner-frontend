@@ -1,7 +1,7 @@
 <tr>
   <th>{{ content.email | safe }}</th>
-  <td>{{ fields.petitionerEmail.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.email | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td>{{ session.petitionerEmail }}</td>
+  <td>&nbsp;</td>
 </tr>
 {% if fields.petitionerPhoneNumber.value %}
   <tr>

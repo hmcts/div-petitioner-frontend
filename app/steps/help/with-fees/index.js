@@ -1,8 +1,7 @@
-const OptionStep = require('app/core/OptionStep');
-const runStepHandler = require('app/core/handler/runStepHandler');
-const { watch } = require('app/core/staleDataManager');
+const ValidationStep = require('app/core/steps/ValidationStep');
+const { watch } = require('app/core/helpers/staleDataManager');
 
-module.exports = class WithFees extends OptionStep {
+module.exports = class WithFees extends ValidationStep {
   get url() {
     return '/pay/help/with-fees';
   }
@@ -14,10 +13,6 @@ module.exports = class WithFees extends OptionStep {
         No: this.steps.ExitNoHelpWithFees
       }
     };
-  }
-
-  handler(req, res) {
-    return runStepHandler(this, req, res);
   }
 
   constructor(...args) {
@@ -36,8 +31,8 @@ module.exports = class WithFees extends OptionStep {
     });
   }
 
-  * validate(ctx, session) {
-    const [isValid, errors] = yield super.validate(ctx, session);
+  validate(ctx, session) {
+    const [isValid, errors] = super.validate(ctx, session);
 
     if (isValid) {
       // format reference number so it includes hyphens and HWF
@@ -62,5 +57,12 @@ module.exports = class WithFees extends OptionStep {
 
   checkYourAnswersInterceptor(ctx) {
     return { helpWithFeesReferenceNumber: ctx.helpWithFeesReferenceNumber };
+  }
+
+  interceptor(ctx) {
+    if (ctx.helpWithFeesAppliedForFees === 'No') {
+      delete ctx.helpWithFeesReferenceNumber;
+    }
+    return ctx;
   }
 };

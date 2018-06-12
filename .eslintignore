@@ -3,9 +3,11 @@ docs/*
 govuk_modules/*
 public/*
 app/assets/javascripts/*
+!app/assets/javascripts/save-progress.js
 app/steps/sitemap/*
 lib/*
 coverage/*
 test/crossbrowser/reports/*
 webpack.config.js
 Gruntfile.js
+test/end-to-end/helpers/JSWait.js

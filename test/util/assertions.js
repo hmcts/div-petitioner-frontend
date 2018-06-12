@@ -1,4 +1,3 @@
-/*eslint no-console: "off"*/
 const CONF = require('config');
 const { forEach, get, isArray, isObject, clone } = require('lodash');
 const { expect } = require('test/util/chai');
@@ -18,7 +17,7 @@ const createSession = (agent) => {
   return getSession(agent)
     .then((res) => {
       const tokens = new Tokens();
-      
+
       agent.csrfToken = tokens.create(res.body.csrfSecret);
 
       return agent.post('/session')
@@ -136,7 +135,7 @@ const getCYATemplate = (underTest, data = {}, session = {}) => {
 
 };
 
-exports.testCYATemplate = (done, underTest) => {
+exports.testCYATemplate = (done, underTest, data, session) => {
 
   const checkTemplate = (html) => {
     expect(html.length).to.not.equal(0);
@@ -147,7 +146,7 @@ exports.testCYATemplate = (done, underTest) => {
     expect(html).to.contain(underTest.url);
   };
 
-  return getCYATemplate(underTest)
+  return getCYATemplate(underTest, data, session)
     .then(checkTemplate)
     .then(checkChangeLink)
     .then(done, done);
@@ -256,7 +255,10 @@ exports.testNoneExistenceCYA = (done, underTest, content, contentToNotExist = []
 
 exports.testErrors = (done, agent, underTest, data, content, type, onlyKeys = [], session = {}) => {
   const triggerErrors = () => {
-    return postToUrl(agent, underTest.url, data).expect('Content-type', /html/);
+    return postToUrl(agent, underTest.url, data).expect(302);
+  };
+  const handleRedirect = () => {
+    return getUrl(agent, underTest.url);
   };
 
   const checkErrors = (res) => {
@@ -278,13 +280,17 @@ exports.testErrors = (done, agent, underTest, data, content, type, onlyKeys = []
 
   return createSession(agent)
     .then(triggerErrors)
+    .then(handleRedirect)
     .then(checkErrors)
     .then(done, done);
 };
 
 exports.testValidation = (done, agent, underTest, data, content, expectedErrors = [], selector = 'ul.error-summary-list li a') => {
   const triggerErrors = () => {
-    return postToUrl(agent, underTest.url, data).expect('Content-type', /html/);
+    return postToUrl(agent, underTest.url, data).expect(302);
+  };
+  const handleRedirect = () => {
+    return getUrl(agent, underTest.url);
   };
 
   const checkErrors = (res) => {
@@ -325,6 +331,7 @@ exports.testValidation = (done, agent, underTest, data, content, expectedErrors 
 
   return createSession(agent)
     .then(triggerErrors)
+    .then(handleRedirect)
     .then(checkErrors)
     .then(done, done);
 };
@@ -387,7 +394,7 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
     if (method !== 'get') {
       request.set('X-CSRF-token', agent.csrfToken);
     }
-    
+
     return request
       .expect(status);
   };
@@ -397,10 +404,10 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
     .then(() => done(), done);
 };
 
-exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get') => {
+exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get', createsNewSession = true) => {
   const runCallback = () => {
     let request = agent[method](underTest.url);
-    
+
     if (method !== 'get') {
       request.set('X-CSRF-token', agent.csrfToken);
     }
@@ -413,7 +420,12 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
       .expect(callback);
   };
 
-  return createSession(agent)
-    .then(runCallback)
-    .then(() => done(), done);
+  if (createsNewSession) {
+    return createSession(agent)
+      .then(runCallback)
+      .then(() => done(), done);
+  } else {
+    return runCallback()
+      .then(() => done(), done);
+  }
 };

@@ -1,5 +1,4 @@
-const Step = require('app/core/Step');
-const runStepHandler = require('app/core/handler/runStepHandler');
+const Step = require('app/core/steps/Step');
 const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -11,10 +10,11 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
-
-const jwt = require('jsonwebtoken');
+const { saveSessionToDraftStoreAndClose } = require('app/middleware/draftPetitionStoreMiddleware');
+const requestHandler = require('app/core/helpers/parseRequest');
+const idam = require('app/services/idam');
 const CONF = require('config');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 
 module.exports = class PayOnline extends Step {
@@ -34,11 +34,12 @@ module.exports = class PayOnline extends Step {
       sessionTimeout,
       restoreFromDraftStore,
       setIdamUserDetails,
-      applicationFeeMiddleware.updateApplicationFeeMiddleware
+      applicationFeeMiddleware.updateApplicationFeeMiddleware,
+      saveSessionToDraftStoreAndClose
     ];
   }
 
-  handler(req, res) {
+  handler(req, res, next) {
     const { method, cookies, body } = req;
 
     const isGetRequest = method.toLowerCase() === 'get';
@@ -48,10 +49,13 @@ module.exports = class PayOnline extends Step {
     const hasBeenPostedWithoutSubmitButton = body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
 
     if (isGetRequest || hasBeenPostedWithoutSubmitButton) {
-      return runStepHandler(this, req, res);
+      return super.handler(req, res, next);
     }
 
     req.session = req.session || {};
+
+    // Set court details to latest from config
+    req.session.court = CONF.commonProps.court;
 
     // Some prerequisites. @todo extract these elsewhere?
     let authToken = '';
@@ -59,8 +63,15 @@ module.exports = class PayOnline extends Step {
 
     if (features.idam) {
       authToken = cookies['__auth-token'];
+
+      const idamUserId = idam.userId(req);
+      if (!idamUserId) {
+        logger.error('User does not have any idam userDetails', req);
+        return res.redirect('/generic-error');
+      }
+
       user = {
-        id: jwt.decode(authToken).id,
+        id: idamUserId,
         bearerToken: authToken
       };
     }
@@ -85,7 +96,7 @@ module.exports = class PayOnline extends Step {
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
     if (!caseId) {
-      logger.error('Case ID is missing');
+      logger.error('Case ID is missing', req);
       return res.redirect('/generic-error');
     }
 
@@ -125,12 +136,12 @@ module.exports = class PayOnline extends Step {
 
         const id = req.session.currentPaymentId;
         const nextUrl = req.session.payments[id].nextUrl;
+        req.session.paymentMethod = 'card-online';
         res.redirect(nextUrl);
+        next();
       })
-
-      // Log any errors occurred and end up on the error page.
       .catch(error => {
-        logger.error(`Error during payment initialisation: ${error}`);
+        logger.error(error);
         res.redirect('/generic-error');
       });
   }
@@ -139,9 +150,7 @@ module.exports = class PayOnline extends Step {
   get checkYourAnswersTemplate() {
     return false;
   }
-
-  action(ctx, session) {
-    session.paymentMethod = 'card-online';
-    return [ctx, session];
+  parseRequest(req) {
+    return requestHandler.parse(this, req);
   }
 };

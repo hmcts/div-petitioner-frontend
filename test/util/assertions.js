@@ -1,4 +1,3 @@
-/*eslint no-console: "off"*/
 const CONF = require('config');
 const { forEach, get, isArray, isObject, clone } = require('lodash');
 const { expect } = require('test/util/chai');
@@ -405,7 +404,7 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
     .then(() => done(), done);
 };
 
-exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get') => {
+exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get', createsNewSession = true) => {
   const runCallback = () => {
     let request = agent[method](underTest.url);
 
@@ -421,7 +420,12 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
       .expect(callback);
   };
 
-  return createSession(agent)
-    .then(runCallback)
-    .then(() => done(), done);
+  if (createsNewSession) {
+    return createSession(agent)
+      .then(runCallback)
+      .then(() => done(), done);
+  } else {
+    return runCallback()
+      .then(() => done(), done);
+  }
 };

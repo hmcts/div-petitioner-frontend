@@ -44,7 +44,7 @@ const handleResponse = (body, resolve, reject) => {
   return resolve(body);
 };
 
-const sendFile = (file, options = { token: 'token' }) => {
+const sendFile = (file, options) => {
   return new Promise((resolve, reject) => {
     // return mock if no client API available
     if (!process.env.EVIDENCE_MANAGEMENT_CLIENT_API_URL) {
@@ -52,7 +52,7 @@ const sendFile = (file, options = { token: 'token' }) => {
     }
     return superagent
       .post(evidenceManagmentClientUploadUrl)
-      .set({ Authorization: options.token })
+      .set({ Authorization: `Bearer ${options.token}` })
       .set('enctype', 'multipart/form-data')
       .attach('file', file.path, file.name)
       .end((error, response = { statusCode: null }) => {

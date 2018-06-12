@@ -27,7 +27,7 @@ const formatPostcode = function(postcode = '') {
 const buildAddressBaseUk = function(ctx) {
   const selectedAddress = ctx.addresses[ctx.selectAddressIndex];
   let line1 = `${selectedAddress.organisation_name} ${selectedAddress.department_name} ${selectedAddress.po_box_number}`;
-  let line2 = `${selectedAddress.building_number} ${selectedAddress.building_name} ${selectedAddress.sub_building_name} ${selectedAddress.thoroughfare_name}`;
+  let line2 = `${selectedAddress.building_name} ${selectedAddress.sub_building_name} ${selectedAddress.building_number} ${selectedAddress.thoroughfare_name}`;
   let line3 = `${selectedAddress.dependent_locality} ${selectedAddress.double_dependent_locality}`;
 
   if (line1.trim().length === 0) {

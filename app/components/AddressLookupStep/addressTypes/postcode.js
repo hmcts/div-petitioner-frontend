@@ -140,7 +140,9 @@ module.exports = {
 
       if (address.length) {
         ctx.address = isEqual(address, ctx.address) ? ctx.address : address;
-        ctx.addressBaseUK = buildAddressBaseUk(ctx);
+        if (ctx.selectAddressIndex !== '-1' && ctx.addresses) {
+          ctx.addressBaseUK = buildAddressBaseUk(ctx);
+        }
       }
     }
     return ctx;

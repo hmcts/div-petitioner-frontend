@@ -6,7 +6,7 @@
         "content": {
           "title": "Application complete",
           "paymentSuccessful": "Payment has been taken. Your payment reference and receipt have been emailed to you.",
-          "caseReferenceNumber": "Your case reference number is:",
+          "caseReferenceNumber": "Your reference number is:",
           "emailConfirmation": "Email confirmation has been sent to {{email}}",
           "whatToDoNow": "What to do now",
           "whatToDoNowReferenceNumber": "1. Write your reference number on each document",

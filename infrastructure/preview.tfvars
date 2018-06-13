@@ -12,8 +12,8 @@ google_analytics_tracking_id = "TBD"
 
 rediscloud_url = "betaPreProddivorceCache01.reform.hmcts.net:6379"
 
-idam_authentication_web_url = "https://idam.preprod.ccidam.reform.hmcts.net"
-idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
+idam_authentication_web_url = "https://idam-web-public-idam-aat.service.core-compute-idam-aat.internal"
+idam_api_url = "https://idam-api-idam-aat.service.core-compute-idam-aat.internal"
 
 feature_toggle_api_url = "http://betaPreProddivorceAppLB.reform.hmcts.net:4002"
 

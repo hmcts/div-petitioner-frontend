@@ -141,7 +141,11 @@ variable "idam_api_url" {
 }
 
 variable "service_auth_provider_url" {
-  type = "string"
+  default = ""
+}
+
+variable "idam_s2s_url_prefix" {
+  default = "rpe-service-auth-provider"
 }
 
 variable "frontend_service_name" {
@@ -309,7 +313,7 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = "0.25"
+  default = "0.15"
 }
 
 variable "court_southwest_name" {
@@ -345,7 +349,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = "0.25"
+  default = "0.35"
 }
 
 variable "court_northwest_name" {
@@ -405,11 +409,11 @@ variable "court_eastmidlands_court_weight" {
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.25"
+  default = "0.15"
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.25"
+  default = "0.35"
 }
 
 variable "court_northwest_court_weight" {

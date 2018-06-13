@@ -30,7 +30,7 @@ describe(modulePath, () => {
 
   it('next step is always the card payment query step', () => {
     // Act.
-    const output = underTest.next();
+    const output = underTest.nextStep;
     // Assert.
     expect(output).to.equal(fakeSteps.CardPaymentStatus);
   });

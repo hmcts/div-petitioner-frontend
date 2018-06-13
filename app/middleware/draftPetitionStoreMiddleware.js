@@ -5,6 +5,7 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const parseRequest = require('app/core/helpers/parseRequest');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
+const statusCode = require('app/core/utils/statusCode');
 
 // Properties that should be removed from the session before saving to draft store
 const blacklistedProperties = [
@@ -135,15 +136,13 @@ const saveSessionToDraftStoreAndReply = function(req, res, next) {
     return client
       .saveToDraftStore(authToken, session)
       .then(() => {
-        const successStatusCode = 200;
         res
-          .status(successStatusCode)
+          .status(statusCode.OK)
           .json({ message: 'ok' });
       })
       .catch(() => {
-        const failureStatusCode = 500;
         res
-          .status(failureStatusCode)
+          .status(statusCode.INTERNAL_SERVER_ERROR)
           .json({ message: 'Error saving session to draft store' });
       });
   }

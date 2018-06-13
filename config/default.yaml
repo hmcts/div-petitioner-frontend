@@ -3,6 +3,7 @@ project: 'divorce'
 environment: 'laptop'
 version: 'x.x-laptop'
 deployment_env: 'local'
+showSitemap: false
 
 log:
   ERROR: 1
@@ -94,7 +95,7 @@ commonProps:
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
       siteId: '2'
-      weight: 0.25
+      weight: 0.15
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -104,7 +105,7 @@ commonProps:
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
       siteId: '3'
-      weight: 0.25
+      weight: 0.35
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'

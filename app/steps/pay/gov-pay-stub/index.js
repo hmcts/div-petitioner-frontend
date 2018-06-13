@@ -11,7 +11,7 @@ module.exports = class GovPayStub extends ValidationStep {
     return '/pay/gov-pay-stub';
   }
 
-  next() {
+  get nextStep() {
     return this.steps.CardPaymentStatus;
   }
 

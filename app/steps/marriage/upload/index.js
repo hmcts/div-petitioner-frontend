@@ -6,7 +6,7 @@ module.exports = class UploadMarriageCertificate extends ValidationStep {
     return '/petitioner-respondent/marriage-certificate-upload';
   }
 
-  next() {
+  get nextStep() {
     return this.steps.CheckYourAnswers;
   }
 

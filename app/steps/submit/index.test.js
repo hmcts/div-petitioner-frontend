@@ -125,6 +125,12 @@ describe(modulePath, () => {
       });
 
       context('petitioner did not apply for help with fees', () => {
+        beforeEach(done => {
+          const newSession = cloneDeep(session);
+          newSession.helpWithFeesNeedHelp = 'No';
+
+          withSession(done, agent, newSession);
+        });
         it('redirects to Pay Online page', done => {
           // Act.
           testCustom(done, agent, underTest, [], response => {
@@ -181,7 +187,7 @@ describe(modulePath, () => {
 
     beforeEach(() => {
       req = {
-        session: {},
+        session: { helpWithFeesNeedHelp: 'No' },
         method: 'get',
         cookies: { 'connect.sid': 'exists' }
       };

@@ -8,9 +8,6 @@ const statusCodes = require('http-status-codes');
 const co = require('co');
 const logger = require('app/services/logger').logger(__filename);
 
-const throwNotImplemented = func => {
-  throw new ReferenceError(`Steps must override #${func}`);
-};
 const defualtNext = () => {};
 
 // used to stop the middleware chain,
@@ -28,7 +25,7 @@ module.exports = class Step {
     return this.url;
   }
   get url() {
-    throwNotImplemented('url');
+    return null;
   }
   get name() {
     return this.constructor.name;
@@ -37,17 +34,13 @@ module.exports = class Step {
     return CONF.commonProps;
   }
   get template() {
-    if (!this.templatePath) {
-      throw new TypeError(`Step ${this.name} has no template file in it's resource folder`);
-    }
-
-    return `${this.templatePath}/template`;
+    return this.templatePath ? `${this.templatePath}/template` : null;
   }
   get fields() {
     return [];
   }
   get nextStep() {
-    return throwNotImplemented('nextStep');
+    return null;
   }
 
   next() {
@@ -171,21 +164,18 @@ module.exports = class Step {
     res.render(this.template);
   }
 
-  * postRequest(req, res) {
-    if (!res.headersSent) {
+  postRequest(req, res) {
+    if (!res.headersSent && !req.headers['x-save-draft-session-only']) {
       res.sendStatus(statusCodes.METHOD_NOT_ALLOWED);
-      // add yield to satisfy sonarqube
-      yield Promise.resolve();
     }
+
+    return Promise.resolve();
   }
 
   handler(req, res, next = defualtNext) {
     const method = req.method.toLowerCase();
     const throwError = error => {
-      logger.error(`Error handeling request: ${error}`);
-      if (error && error.stack) {
-        logger.error(error.stack);
-      }
+      logger.error(error);
       res.status(statusCodes.INTERNAL_SERVER_ERROR);
       res.redirect('/generic-error');
     };
@@ -205,17 +195,18 @@ module.exports = class Step {
   }
 
   get router() {
-    if (this._router) return this._router;
+    if (!this._router && this.urlToBind) {
+      this._router = Router();
+      this.middleware.forEach(middleware => {
+        this._router.use(this.urlToBind, middleware.bind(this));
+      });
+      this._router.use(this.urlToBind, this.handler.bind(this));
+      this.postMiddleware.forEach(middleware => {
+        this._router.use(this.urlToBind, middleware.bind(this));
+      });
+      this._router.use(this.urlToBind, killMiddlewareChain);
+    }
 
-    this._router = Router();
-    this.middleware.forEach(middleware => {
-      this._router.use(this.urlToBind, middleware.bind(this));
-    });
-    this._router.use(this.urlToBind, this.handler.bind(this));
-    this.postMiddleware.forEach(middleware => {
-      this._router.use(this.urlToBind, middleware.bind(this));
-    });
-    this._router.use(this.urlToBind, killMiddlewareChain);
-    return this._router;
+    return this._router || null;
   }
 };

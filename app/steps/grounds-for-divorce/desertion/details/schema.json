@@ -5,6 +5,7 @@
     "properties": {
         "reasonForDivorceDesertionDetails": {
             "type": "string",
+            "maxLength": 20000,
             "minLength": 1
         }
     },

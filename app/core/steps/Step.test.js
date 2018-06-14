@@ -17,37 +17,27 @@ class True extends Step {
   }
 }
 
-class NoImplementationErrorsStep extends Step {}
-
 const withStep = (StepClass, test) => {
   const otherSteps = { True: new True() };
   const step = new StepClass(otherSteps, null, null, {});
   return test(step);
 };
 
-const mustImplementError = func => {
-  return `Steps must override #${func}`;
-};
-
 describe(modulePath, () => {
-  withStep(NoImplementationErrorsStep, step => {
-    it('#url throws an error if not implemented', () => {
-      expect(() => {
-        return step.url;
-      }).to.throw(mustImplementError('url'));
+  withStep(Step, step => {
+    it('#url is null if not implemented', () => {
+      expect(step.url)
+        .to.equal(null);
     });
 
-    it('#nextStep throws an error if not implmented', () => {
-      expect(() => {
-        return step.nextStep;
-      }).to.throw(mustImplementError('nextStep'));
+    it('#nextStep returns null if not implmented', () => {
+      expect(step.nextStep)
+        .to.equal(null);
     });
 
-    it('#template throws an error if #templatePath is not implemented', () => {
-      const noTemplateError = `Step ${step.name} has no template file in it's resource folder`;
-      expect(() => {
-        return step.template;
-      }).to.throw(noTemplateError);
+    it('#template returns null if #templatePath is not implemented', () => {
+      expect(step.template)
+        .to.equal(null);
     });
 
     it('#template returns string if templatePath defined', () => {
@@ -70,9 +60,8 @@ describe(modulePath, () => {
     });
 
     it('#next returns value of #nextStep', () => {
-      expect(() => {
-        return step.next();
-      }).to.throw(mustImplementError('nextStep'));
+      expect(step.nextStep)
+        .to.equal(null);
     });
 
     it('#applyCtxToSession assigns content of first argument to the second argument', () => {
@@ -192,7 +181,7 @@ describe(modulePath, () => {
         locals: {},
         render: sinon.stub()
       };
-      withStep(NoImplementationErrorsStep, step => {
+      withStep(Step, step => {
         stepInstance = step;
         stepInstance.templatePath = templatePath;
         stepInstance.content = content;
@@ -242,10 +231,10 @@ describe(modulePath, () => {
 
   describe('#postRequest', () => {
     let stepInstance = {};
-    const req = {};
+    const req = { headers: {} };
     let res = {};
     beforeEach(done => {
-      withStep(NoImplementationErrorsStep, step => {
+      withStep(Step, step => {
         stepInstance = step;
         res = { sendStatus: sinon.stub() };
         done();
@@ -277,7 +266,7 @@ describe(modulePath, () => {
     let getRequestStub = {};
     let next = {};
     beforeEach(done => {
-      withStep(NoImplementationErrorsStep, step => {
+      withStep(Step, step => {
         stepInstance = step;
         res = {
           redirect: sinon.stub(),
@@ -373,11 +362,11 @@ describe(modulePath, () => {
     it('memoises the router', () => {
       expect(step.router).to.eql(step.router);
     });
-    it('throws an error if url is not implemented', () => {
+    it('returns null if url is not implemented', () => {
       const newStep = new Step();
-      expect(() => {
-        return newStep.router;
-      }).to.throw(mustImplementError('url'));
+
+      expect(newStep.router)
+        .to.equal(null);
     });
     it('binds the handler function to the current url', done => {
       const newStep = new class extends Step {

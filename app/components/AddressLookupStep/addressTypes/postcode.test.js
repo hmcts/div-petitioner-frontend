@@ -195,16 +195,16 @@ describe(modulePath, () => {
       co(function* generator() {
         const { addresses } = yield mockPostcodeClient.lookupPostcode();
         const expectedAddressBasedUK5 = {
-          addressLine1: '90 LANDOR ROAD',
-          addressLine2: '',
-          addressLine3: '',
+          addressLine1: 'Divorced Org Unfun Department Box 99',
+          addressLine2: 'The Splited Builind Aka Sad House 94 LANDOR ROAD',
+          addressLine3: 'Small Local Dependent Place',
           postCode: 'SW9 9PE',
           postTown: 'LONDON',
           county: '',
           country: 'UK'
         };
 
-        let ctx = { addressType: 'postcode', selectAddressIndex: '5', addresses, selectAddress: true };
+        let ctx = { addressType: 'postcode', selectAddressIndex: '7', addresses, selectAddress: true };
         ctx = yield underTest.interceptor(ctx, {});
         expect(ctx.addressBaseUK).to.deep.equal(expectedAddressBasedUK5);
       }).then(done, done);

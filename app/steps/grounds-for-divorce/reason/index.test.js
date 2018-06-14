@@ -33,12 +33,9 @@ describe(modulePath, () => {
     underTest = s.steps.ReasonForDivorce;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('error messages', () => {
     let session = {};

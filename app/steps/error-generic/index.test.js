@@ -18,12 +18,6 @@ describe(modulePath, () => {
     underTest = s.steps.GenericError;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     const session = {};
 

@@ -23,12 +23,9 @@ describe(modulePath, () => {
     underTest = s.steps.PetitionerConfidential;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     beforeEach(done => {

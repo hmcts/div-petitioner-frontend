@@ -13,10 +13,6 @@ describe(modulePath, () => {
       s = server.init();
     });
 
-    afterEach(() => {
-      s.http.close();
-    });
-
     it('should return success', done => {
       //  note that the features (idam) are hardcoded into the app.js
 
@@ -51,7 +47,6 @@ describe(modulePath, () => {
     });
 
     afterEach(() => {
-      s.http.close();
       if (!idam) delete process.env.idam;
     });
 
@@ -88,7 +83,6 @@ describe(modulePath, () => {
 
     afterEach(() => {
       CONF.features = features;
-      s.http.close();
     });
 
     it('should return success', done => {

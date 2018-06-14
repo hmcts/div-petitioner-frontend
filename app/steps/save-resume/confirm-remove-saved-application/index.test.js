@@ -19,12 +19,6 @@ describe(modulePath, () => {
     underTest = s.steps.DeleteApplication;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content);

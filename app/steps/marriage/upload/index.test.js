@@ -36,7 +36,6 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

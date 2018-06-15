@@ -56,12 +56,22 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: 2,
+      chunks: configureChunks(),
       browsers: ['chrome']
     }
   },
   name: 'frontend Tests'
 };
+
+// Reduce chunks on Preview env
+function configureChunks() {
+  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
+  if (CONF.preview_env === 'true') {
+    return 2;
+  } else {
+    return 5;
+  }
+}
 
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
 // E2E tests must be run manually against Preview in the meantime.

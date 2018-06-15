@@ -17,7 +17,7 @@ class JSWait extends codecept_helper {
     helper.click(text, locator);
 
     if (helperIsPuppeteer) {
-      await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
+      await helper.page.waitForNavigation({waitUntil: 'networkidle2'});
     }
   };
 
@@ -31,7 +31,7 @@ class JSWait extends codecept_helper {
       }
 
       helper.page.goto(url);
-      await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
+      await helper.page.waitForNavigation({waitUntil: 'networkidle2'});
 
     } else {
       helper.amOnPage(url);

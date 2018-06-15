@@ -66,10 +66,10 @@ exports.config = {
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
-  console.log('### CONF.env =', CONF.env);  // eslint-disable-line no-console
-  if (CONF.env !== 'preview') {
-    return './paths/**/*.js';
-  } else {
+  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
+  if (CONF.preview_env === 'true') {
     return './smoke/*.js';
+  } else {
+    return './paths/**/*.js';
   }
 }

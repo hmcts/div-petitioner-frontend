@@ -20,7 +20,8 @@ withPipeline("nodejs", product, component) {
 
   before('functionalTest:preview') {
     env.PREVIEW_ENV = 'true'
-    E2E_WAIT_FOR_ACTION_VALUE = '750'
+    env.E2E_WAIT_FOR_TIMEOUT_VALUE = '40000'
+    env.E2E_WAIT_FOR_ACTION_VALUE = '750'
   }
 
   after('functionalTest:preview') {

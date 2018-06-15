@@ -38,19 +38,19 @@ const getFeeFromService = () => {
     });
 };
 
-const applicationFeeAndPaymentsQueryParams = '/fees-and-payments/version/1/petition-issue-fee'
+const applicationFeeAndPaymentsQueryParams = '/fees-and-payments/version/1/petition-issue-fee';
 const getFeeCodeFromFeesAndPayments = () => {
-  const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsService;
+  const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsRegisterService;
   const options = { queryParameters: applicationFeeAndPaymentsQueryParams };
 
   return service.get(options)
     .then(response => {
       // set fee returned from fee register to global CONF
-      CONF.commonProps.code = JSON.parse(response)["feeCode"];
-      CONF.commonProps.version = JSON.parse(response)["version"];
+      CONF.commonProps.code = JSON.parse(response).feeCode;
+      CONF.commonProps.version = JSON.parse(response).version;
       return true;
     });
-}
+};
 
 
 const updateApplicationFeeMiddleware = (req, res, next) => {
@@ -70,7 +70,6 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       logger.error(error);
       res.redirect('/generic-error');
     });
-
 };
 
 module.exports = { updateApplicationFeeMiddleware };

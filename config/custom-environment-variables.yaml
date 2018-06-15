@@ -3,6 +3,7 @@ project: PACKAGES_PROJECT
 environment: PACKAGES_ENVIRONMENT
 version: PACKAGES_VERSION
 deployment_env: DEPLOYMENT_ENV
+env: ENV
 
 service:
   name: SERVICE_NAME

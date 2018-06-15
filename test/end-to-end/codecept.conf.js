@@ -1,4 +1,6 @@
 /* eslint-disable no-magic-numbers */
+const CONF = require('config');
+
 const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
 const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 100;
 
@@ -6,7 +8,7 @@ console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-li
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: './paths/**/*.js',
+  tests: getTests(),
   output: process.cwd() + '/functional-output',
   helpers: {
     Puppeteer: {
@@ -60,3 +62,14 @@ exports.config = {
   },
   name: 'frontend Tests'
 };
+
+// Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
+// E2E tests must be run manually against Preview in the meantime.
+function getTests() {
+  console.log('### CONF.env =', CONF.env);  // eslint-disable-line no-console
+  if (CONF.env !== 'preview') {
+    return './paths/**/*.js';
+  } else {
+    return './smoke/*.js';
+  }
+}

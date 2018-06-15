@@ -1,6 +1,9 @@
 const CONF = require('config');
 const feeRegisterService = require('app/services/feeRegisterService');
 const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
+const feesAndPaymentsRegisterService = require('app/services/feesAndPaymentsService');
+const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService');
+
 const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');
 const ioRedisMock = require('app/services/mocks/ioRedis');
@@ -35,6 +38,21 @@ const getFeeFromService = () => {
     });
 };
 
+const applicationFeeAndPaymentsQueryParams = '/fees-and-payments/version/1/petition-issue-fee'
+const getFeeCodeFromFeesAndPayments = () => {
+  const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsService;
+  const options = { queryParameters: applicationFeeAndPaymentsQueryParams };
+
+  return service.get(options)
+    .then(response => {
+      // set fee returned from fee register to global CONF
+      CONF.commonProps.code = JSON.parse(response)["feeCode"];
+      CONF.commonProps.version = JSON.parse(response)["version"];
+      return true;
+    });
+}
+
+
 const updateApplicationFeeMiddleware = (req, res, next) => {
   redisClient.get('commonProps.applicationFee')
     .then(response => {
@@ -42,6 +60,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
         CONF.commonProps.applicationFee = JSON.parse(response);
         return true;
       }
+      getFeeCodeFromFeesAndPayments();
       return getFeeFromService();
     })
     .then(() => {
@@ -51,6 +70,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       logger.error(error);
       res.redirect('/generic-error');
     });
+
 };
 
 module.exports = { updateApplicationFeeMiddleware };

@@ -20,13 +20,13 @@ variable "location" {
   default = "UK South"
 }
 
-variable "env" { }
+variable "env" {}
 
-variable "ilbIp" { }
+variable "ilbIp" {}
 
 variable "appinsights_instrumentation_key" {
-    description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
-    default = ""
+  description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+  default     = ""
 }
 
 variable "deployment_env" {
@@ -38,14 +38,13 @@ variable "deployment_path" {
 }
 
 variable "node_config_dir" {
-  // for Unix
-  // default = "/opt/divorce/frontend/config"
+  // for Unix  // default = "/opt/divorce/frontend/config"
 
   // for Windows
   default = "D:\\home\\site\\wwwroot\\config"
 }
 
-variable "subscription" { }
+variable "subscription" {}
 
 variable "vault_section" {
   type = "string"
@@ -53,8 +52,8 @@ variable "vault_section" {
 
 // CNP settings
 variable "jenkins_AAD_objectId" {
-  type                        = "string"
-  description                 = "(Required) The Azure AD object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies."
+  type        = "string"
+  description = "(Required) The Azure AD object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies."
 }
 
 variable "tenant_id" {
@@ -193,6 +192,10 @@ variable "payment_reference_service_id" {
 }
 
 variable "fee_register_url" {
+  type = "string"
+}
+
+variable "fees_and_payments_url" {
   type = "string"
 }
 

@@ -21,12 +21,9 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionDomicile;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('Domicile step content', () => {
     let session = {};

@@ -4,7 +4,7 @@ govuk_modules/*
 public/*
 app/assets/javascripts/*
 !app/assets/javascripts/save-progress.js
-app/steps/sitemap/*
+app/steps/sitemap/client.js
 lib/*
 coverage/*
 test/crossbrowser/reports/*

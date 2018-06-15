@@ -24,12 +24,9 @@ describe(modulePath, () => {
     underTest = s.steps.PetitionerCorrespondence;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     beforeEach(done => {

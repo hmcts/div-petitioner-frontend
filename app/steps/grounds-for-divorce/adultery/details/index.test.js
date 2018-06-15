@@ -26,12 +26,9 @@ describe(modulePath, () => {
     underTest = s.steps.AdulteryDetails;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success if petitioner does not know when or where', () => {
     let session = {};

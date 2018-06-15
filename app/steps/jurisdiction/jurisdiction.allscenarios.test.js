@@ -283,7 +283,6 @@ describe.skip(`${modulePath} - Test every possible scenario`, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

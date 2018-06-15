@@ -404,7 +404,7 @@ variable "court_opening_hours" {
 }
 
 variable "court_email" {
-  default = "Divorce_Reform_Pro@Justice.gov.uk"
+  default = "divorce@justice.gov.uk"
 }
 
 variable "court_eastmidlands_court_weight" {

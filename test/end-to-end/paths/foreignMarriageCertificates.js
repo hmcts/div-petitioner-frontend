@@ -15,7 +15,7 @@ Scenario('Certificate in English ', function(I) {
   I.selectMarriedElsewhere();
   I.selectMarriageCertificateInEnglish();
   I.enterCountryAndPlaceOfMarriage();
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  I.waitUrlEquals('/jurisdiction/habitual-residence');
 });
 
 Scenario('Certificate not English but with translation', function(I) {
@@ -33,7 +33,7 @@ Scenario('Certificate not English but with translation', function(I) {
   I.selectMarriedElsewhere();
   I.selectMarriageCertificateNotEnglishWithTranslation();
   I.enterCountryAndPlaceOfMarriage();
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  I.waitUrlEquals('/jurisdiction/habitual-residence');
 });
 
 Scenario('Certificate not English with no translation - exit page', function(I) {
@@ -50,5 +50,5 @@ Scenario('Certificate not English with no translation - exit page', function(I) 
 
   I.selectMarriedElsewhere();
   I.selectMarriageCertificateNotEnglishNoTranslation();
-  I.seeCurrentUrlEquals('/exit/about-your-marriage/no-certificate-translated');
+  I.waitUrlEquals('/exit/about-your-marriage/no-certificate-translated');
 });

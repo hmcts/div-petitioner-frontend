@@ -18,5 +18,5 @@ Scenario('Redirects to cookie error page if start application with no cookies', 
   I.clearCookie();
   //  checkCookies middleware runs before idamAuth
   I.startApplication(ignoreIdamToggle);
-  I.seeCurrentUrlEquals('/cookie-error');
+  I.waitUrlEquals('/cookie-error');
 });

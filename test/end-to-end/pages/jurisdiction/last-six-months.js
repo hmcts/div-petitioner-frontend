@@ -9,7 +9,7 @@ function chooseNoJurisdictionLastSixMonths() {
 }
 
 function completeLastSixMonthsPage(I, chosenOption) {
-  I.seeCurrentUrlEquals('/jurisdiction/last-six-months');
+  I.waitUrlEquals('/jurisdiction/last-six-months');
   I.checkOption(chosenOption);
   I.navByClick('Continue');
 }

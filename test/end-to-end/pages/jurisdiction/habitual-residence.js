@@ -30,7 +30,7 @@ function chooseRespondentHabituallyResident() {
 }
 
 function setHabitualResidence(I, residenceFor) {
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  I.waitUrlEquals('/jurisdiction/habitual-residence');
   I.click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
   I.click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
   I.navByClick('Continue');

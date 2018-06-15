@@ -4,7 +4,7 @@ function selectDivorceType() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/details');
+  I.waitUrlEquals('/about-your-marriage/details');
   I.checkOption(content.husband);
   I.navByClick('Continue');
 }

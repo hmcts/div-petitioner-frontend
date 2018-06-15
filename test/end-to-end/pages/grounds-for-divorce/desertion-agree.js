@@ -4,7 +4,7 @@ function enterDesertionAgreement() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/desertion/agree');
+  I.waitUrlEquals('/about-divorce/reason-for-divorce/desertion/agree');
   I.checkOption(content.yes);
   I.navByClick('Continue');
 }

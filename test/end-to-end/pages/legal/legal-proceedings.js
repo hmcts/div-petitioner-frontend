@@ -5,7 +5,7 @@ function enterLegalProceedings() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
+  I.waitUrlEquals('/about-divorce/legal-proceedings');
   I.click('#legalProceedings_' + content.yes);
   I.checkOption(mockSession.legalProceedingsRelated[0]);
   I.fillField('legalProceedingsDetails', mockSession.legalProceedingsDetails);

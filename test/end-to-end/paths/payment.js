@@ -8,7 +8,7 @@ Feature('Payment method').retry(3);
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+  I.waitUrlEquals('/screening-questions/has-marriage-broken');
   I.amOnLoadedPage('/pay/help/need-help');
   I.waitForText(payHelpContent.question);
   I.see(payHelpFeeContent);

@@ -7,12 +7,13 @@ function startApplication(ignoreIdamToggle = false) {
 
   let I = this;
 
-  I.seeCurrentUrlEquals('/index');
+  I.waitUrlEquals('/index');
   I.see(common.continue);
   I.navByClick(common.continue);
 
   if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
-    I.seeInCurrentUrl('/login?');
+    I.waitInUrl('/login?');
+    I.waitForVisible('#username');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.navByClick('Sign in');

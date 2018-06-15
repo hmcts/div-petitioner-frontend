@@ -23,12 +23,9 @@ describe(modulePath, () => {
     underTest = s.steps.Start;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamExpressMiddleware.authenticate.restore();
   });
-
 
   describe('success', () => {
     it('should immediately redirect to the has marriage broken step page if authenticated', done => {

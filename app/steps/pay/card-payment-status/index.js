@@ -128,6 +128,15 @@ module.exports = class CardPaymentStatus extends Step {
     return '/pay/card-payment-status';
   }
 
+  get nextStep() {
+    return {
+      nextStep: {
+        DoneAndSubmitted: this.steps.DoneAndSubmitted,
+        PayOnline: this.steps.PayOnline
+      }
+    };
+  }
+
   next(result) {
     return (result.toLowerCase() === 'success') ? this.steps.DoneAndSubmitted : this.steps.PayOnline;
   }

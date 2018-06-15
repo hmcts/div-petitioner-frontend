@@ -26,10 +26,8 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('content', () => {
     it('renders the content from the content file', done => {

@@ -35,9 +35,7 @@ describe(modulePath, () => {
     agent = request.agent(s.app);
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

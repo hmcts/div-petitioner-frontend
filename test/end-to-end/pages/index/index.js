@@ -25,8 +25,8 @@ function* seeCookieBanner() {
   let I = this;
 
   yield I.waitForVisible('#global-cookie-message');
-  I.see(content.cookie);
-  I.see(content.cookieLink);
+  I.waitForText(content.cookie);
+  I.waitForText(content.cookieLink);
 }
 
 function* seeCookieFooter() {

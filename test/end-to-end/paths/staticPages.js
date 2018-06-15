@@ -11,15 +11,15 @@ Scenario('View the cookies page', (I) => {
 Scenario('View the terms and conditions page', (I) => {
 
   I.amOnLoadedPage('/terms-and-conditions');
-  I.see(termsAndConditionsContent.whoWeAre);
-  I.see(termsAndConditionsContent.managedBy);
-  I.see(termsAndConditionsContent.update);
+  I.waitForText(termsAndConditionsContent.whoWeAre);
+  I.waitForText(termsAndConditionsContent.managedBy);
+  I.waitForText(termsAndConditionsContent.update);
 });
 
 Scenario('View the privacy policy page', (I) => {
 
   I.amOnLoadedPage('/privacy-policy');
-  I.see(privacyPolicyContent.whoManages);
-  I.see(privacyPolicyContent.managedBy);
-  I.see(privacyPolicyContent.info);
+  I.waitForText(privacyPolicyContent.whoManages);
+  I.waitForText(privacyPolicyContent.managedBy);
+  I.waitForText(privacyPolicyContent.info);
 });

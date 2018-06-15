@@ -23,7 +23,7 @@ function checkDesertionDateOnCYAPage() {
 
   const seperationDate = `${mockSession.reasonForDivorceDesertionDay}/${mockSession.reasonForDivorceDesertionMonth}/${mockSession.reasonForDivorceDesertionYear}`;
   const seperationDateFormatted = moment(seperationDate, DATE_FORMAT).format('Do MMMM YYYY');
-  I.see(seperationDateFormatted);
+  I.waitForText(seperationDateFormatted);
 
 }
 

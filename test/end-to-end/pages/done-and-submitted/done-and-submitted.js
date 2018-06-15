@@ -5,6 +5,6 @@ function amDoneAndSubmitted() {
   const I = this;
 
   I.waitUrlEquals('/done-and-submitted');
-  I.see(content.title);
+  I.waitForText(content.title);
 }
 module.exports = { amDoneAndSubmitted };

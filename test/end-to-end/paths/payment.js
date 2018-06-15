@@ -11,7 +11,7 @@ Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.waitUrlEquals('/screening-questions/has-marriage-broken');
   I.amOnLoadedPage('/pay/help/need-help');
   I.waitForText(payHelpContent.question);
-  I.see(payHelpFeeContent);
+  I.waitForText(payHelpFeeContent);
 });
 
 Scenario('Card payment online', function* (I) {

@@ -4,7 +4,7 @@ function confirmRemoveApplication() {
   const I = this;
 
   I.waitUrlEquals('/save-return/delete-application');
-  I.see(content.question);
+  I.waitForText(content.question);
   I.click(content.yes);
 
   I.navByClick('Continue');
@@ -14,7 +14,7 @@ function declineRemoveApplicaiton() {
   const I = this;
 
   I.waitUrlEquals('/save-return/delete-application');
-  I.see(content.question);
+  I.waitForText(content.question);
   I.click(content.no);
 
   I.navByClick('Continue');

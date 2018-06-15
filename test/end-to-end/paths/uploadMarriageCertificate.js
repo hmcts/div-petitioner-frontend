@@ -51,7 +51,7 @@ Scenario('Test ability validate document type', function* (I) {
 
     // Test can NOT upload .zip
     I.testUploadResponse(isDragAndDropSupported, '/assets/image.zip');
-    I.see(content.errorFileTypeInvalid);
+    I.waitForText(content.errorFileTypeInvalid);
   } else {
     I.say('JS upload disabled - skipping');
   }

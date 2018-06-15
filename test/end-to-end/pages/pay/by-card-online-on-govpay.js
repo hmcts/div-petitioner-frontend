@@ -48,7 +48,7 @@ function cancelOnGovPay() {
   onGovPay(this);
   I.navByClick('Cancel payment');
   I.waitInUrl('/cancel');
-  I.see('Your payment has been cancelled');
+  I.waitForText('Your payment has been cancelled');
   I.navByClick('Go back to the service');
 }
 
@@ -56,7 +56,7 @@ function onGovPay(I) {
   I.wait(3);
   I.waitForText('Enter card details', 20);
   I.waitInUrl('www.payments.service.gov.uk/card_details');
-  I.see('£550.00');
+  I.waitForText('£550.00');
 }
 
 module.exports = { payOnGovPay, payOnGovPayFailure, cancelOnGovPay };

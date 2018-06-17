@@ -4,7 +4,7 @@ function enterPeConfidentialContactDetails() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
+  I.waitUrlEquals('/petitioner-respondent/confidential');
   I.checkOption(content.share);
   I.navByClick('Continue');
 }

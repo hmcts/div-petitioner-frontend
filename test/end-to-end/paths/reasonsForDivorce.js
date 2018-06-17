@@ -15,7 +15,7 @@ const fiveYearsAgoFormatted = {
 };
 
 
-Feature('Reasons for divorce', { retries: 1 });
+Feature('Reasons for divorce').retry(3);
 
 Scenario('Unreasonable behaviour - with added examples', (I) => {
 
@@ -28,7 +28,7 @@ Scenario('Unreasonable behaviour - with added examples', (I) => {
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourAddMoreExamples();
-  I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
+  I.waitUrlEquals('/about-divorce/legal-proceedings');
   I.amOnLoadedPage('/check-your-answers');
 
 });
@@ -90,9 +90,9 @@ Scenario('Exit if 5 years separation chosen but actual separation date is less',
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.seeCurrentUrlEquals('/exit/separation');
+  I.waitUrlEquals('/exit/separation');
   I.navByClick('choose another reason');
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
+  I.waitUrlEquals('/about-divorce/reason-for-divorce/reason');
 });
 
 

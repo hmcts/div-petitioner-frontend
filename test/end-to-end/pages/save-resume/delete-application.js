@@ -3,8 +3,8 @@ const content = require('app/steps/save-resume/confirm-remove-saved-application/
 function confirmRemoveApplication() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/save-return/delete-application');
-  I.see(content.question);
+  I.waitUrlEquals('/save-return/delete-application');
+  I.waitForText(content.question);
   I.click(content.yes);
 
   I.navByClick('Continue');
@@ -13,8 +13,8 @@ function confirmRemoveApplication() {
 function declineRemoveApplicaiton() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/save-return/delete-application');
-  I.see(content.question);
+  I.waitUrlEquals('/save-return/delete-application');
+  I.waitForText(content.question);
   I.click(content.no);
 
   I.navByClick('Continue');

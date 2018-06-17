@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
 
-Feature('Upload Marriage Certificate', { retries: 1 });
+Feature('Upload Marriage Certificate').retry(3);
 
 Scenario('Test upload', function* (I) {
   I.amOnLoadedPage('/index');
@@ -51,7 +51,7 @@ Scenario('Test ability validate document type', function* (I) {
 
     // Test can NOT upload .zip
     I.testUploadResponse(isDragAndDropSupported, '/assets/image.zip');
-    I.see(content.errorFileTypeInvalid);
+    I.waitForText(content.errorFileTypeInvalid);
   } else {
     I.say('JS upload disabled - skipping');
   }

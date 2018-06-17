@@ -17,9 +17,9 @@ function chooseDontKnowRespondentAddress(address, respondent) {
 }
 
 function completeLivesAtLastAddressPage(I, address, chosenOption) {
-  I.seeCurrentUrlEquals('/petitioner-respondent/lives-at-this-address');
+  I.waitUrlEquals('/petitioner-respondent/lives-at-this-address');
   if (address) {
-    I.see(prettifyAddress(address));
+    I.waitForText(prettifyAddress(address));
   }
   I.checkOption(chosenOption);
   I.navByClick('Continue');

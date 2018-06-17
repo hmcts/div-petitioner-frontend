@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/about-your-marriage-certificate/content.json').resources.en.translation.content;
 
-Feature('Foreign Marriage Certificates - Certificate Language', { retries: 1 });
+Feature('Foreign Marriage Certificates - Certificate Language').retry(3);
 
 Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.amOnLoadedPage('/index');
@@ -9,7 +9,7 @@ Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.checkOption(content.yes);
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-your-marriage/foreign-certificate');
+  I.waitUrlEquals('/about-your-marriage/foreign-certificate');
 });
 
 Scenario('Marriage certificate not in English, certified translation', (I) => {
@@ -20,7 +20,7 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.click('#certificateInEnglish_No');
   I.click('#certifiedTranslation_Yes');
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-your-marriage/foreign-certificate');
+  I.waitUrlEquals('/about-your-marriage/foreign-certificate');
 });
 
 
@@ -32,7 +32,7 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.click('#certificateInEnglish_No');
   I.click('#certifiedTranslation_No');
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/exit/about-your-marriage/no-certificate-translated');
+  I.waitUrlEquals('/exit/about-your-marriage/no-certificate-translated');
 });
 
 Scenario('@overnight: Married in UK, not answered', (I) => {
@@ -41,5 +41,5 @@ Scenario('@overnight: Married in UK, not answered', (I) => {
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
+  I.waitUrlEquals('/about-your-marriage/about-your-marriage-certificate');
 });

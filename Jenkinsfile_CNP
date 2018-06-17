@@ -18,6 +18,12 @@ withPipeline("nodejs", product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 
+  before('functionalTest:preview') {
+    env.PREVIEW_ENV = 'true'
+    env.E2E_WAIT_FOR_TIMEOUT_VALUE = '40000'
+    env.E2E_WAIT_FOR_ACTION_VALUE = '750'
+  }
+
   after('functionalTest:preview') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

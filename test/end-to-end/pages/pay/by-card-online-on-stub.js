@@ -4,7 +4,7 @@ function payOnStubPages(success = true) {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/pay/gov-pay-stub');
+  I.waitUrlEquals('/pay/gov-pay-stub');
   I.checkOption(success ? content.success : content.failure);
   I.navByClick('Continue');
 }

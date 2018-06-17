@@ -4,7 +4,7 @@ function haveMarriageCert() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/marriage-certificate');
+  I.waitUrlEquals('/screening-questions/marriage-certificate');
   I.checkOption(content.yes);
   I.navByClick('Continue');
 }

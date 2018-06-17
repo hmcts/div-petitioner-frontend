@@ -11,7 +11,7 @@ function chooseSendPapersToADifferentAddress() {
 }
 
 function completeSendToSolicitorPage(I, chosenOption) {
-  I.seeCurrentUrlEquals('/petitioner-respondent/correspondence/send-to-solicitor');
+  I.waitUrlEquals('/petitioner-respondent/correspondence/send-to-solicitor');
   I.checkOption(chosenOption);
   I.navByClick('Continue');
 }

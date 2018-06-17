@@ -7,12 +7,13 @@ function startApplication(ignoreIdamToggle = false) {
 
   let I = this;
 
-  I.seeCurrentUrlEquals('/index');
-  I.see(common.continue);
+  I.waitUrlEquals('/index');
+  I.waitForVisible('a.button');
   I.navByClick(common.continue);
 
   if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
-    I.seeInCurrentUrl('/login?');
+    I.waitInUrl('/login?');
+    I.waitForVisible('#username');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.navByClick('Sign in');
@@ -24,8 +25,8 @@ function* seeCookieBanner() {
   let I = this;
 
   yield I.waitForVisible('#global-cookie-message');
-  I.see(content.cookie);
-  I.see(content.cookieLink);
+  I.waitForText(content.cookie);
+  I.waitForText(content.cookieLink);
 }
 
 function* seeCookieFooter() {

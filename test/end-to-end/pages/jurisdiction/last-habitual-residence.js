@@ -11,7 +11,7 @@ function chooseNoLastHabitualResidence() {
 }
 
 function completeLastHabitualResidence(I, chosenOption) {
-  I.seeCurrentUrlEquals('/jurisdiction/last-habitual-residence');
+  I.waitUrlEquals('/jurisdiction/last-habitual-residence');
   I.checkOption(chosenOption);
   I.navByClick('Continue');
 }

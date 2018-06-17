@@ -1,4 +1,4 @@
-Feature('Simulated invalid CSRF token', { retries: 1 });
+Feature('Simulated invalid CSRF token').retry(3);
 
 Scenario('Should continue if there is a csrf token set', function* (I) {
 
@@ -9,7 +9,7 @@ Scenario('Should continue if there is a csrf token set', function* (I) {
   if (!csrfToken) {
     throw new Error('Missing csrfToken');
   }
-  I.seeCurrentUrlEquals('/screening-questions/respondent-address');
+  I.waitUrlEquals('/screening-questions/respondent-address');
 });
 
 Scenario('Redirects to error when csrf gets modified', (I) => {

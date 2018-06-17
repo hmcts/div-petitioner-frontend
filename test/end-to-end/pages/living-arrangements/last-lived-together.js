@@ -15,9 +15,9 @@ function selectNoNeverLivedTogether(address) {
 }
 
 function completeLastLivedTogetherPage(I, address, chosenOption) {
-  I.seeCurrentUrlEquals('/petitioner-respondent/last-lived-together');
+  I.waitUrlEquals('/petitioner-respondent/last-lived-together');
   if (address) {
-    I.see(prettifyAddress(address));
+    I.waitForText(prettifyAddress(address));
   }
   I.checkOption(chosenOption);
   I.navByClick('Continue');

@@ -5,7 +5,7 @@ function enterPetitionerContactDetails() {
   const I = this;
 
   I.waitUrlEquals('/petitioner-respondent/contact-details');
-  I.see(idamConfigHelper.getTestEmail());
+  I.waitForText(idamConfigHelper.getTestEmail());
   I.fillField('petitionerPhoneNumber', '01234567890');
   I.checkOption(content.petitionerConsent);
   I.navByClick('Continue');

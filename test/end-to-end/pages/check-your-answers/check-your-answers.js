@@ -36,7 +36,7 @@ function checkMyAnswers() {
   const I = this;
 
   I.waitUrlEquals('/check-your-answers');
-  I.see(content.title);
+  I.waitForText(content.title);
 
   I.checkOption(content.confirmApply);
 
@@ -47,8 +47,8 @@ function checkMyAnswersRestoredSession() {
   const I = this;
 
   I.waitUrlEquals('/check-your-answers');
-  I.see(content.titleSoFar);
-  I.see(content.continueApplication);
+  I.waitForText(content.titleSoFar);
+  I.waitForText(content.continueApplication);
 
   I.navByClick(content.continueApplication);
 }
@@ -57,8 +57,8 @@ function checkMyAnswersRemoveApplication() {
   const I = this;
 
   I.waitUrlEquals('/check-your-answers');
-  I.see(content.titleSoFar);
-  I.see(content.deleteApplciation);
+  I.waitForText(content.titleSoFar);
+  I.waitForText(content.deleteApplciation);
 
   I.navByClick(content.deleteApplciation);
 }

@@ -44,7 +44,7 @@ Scenario('Save and close', function (I) {
   I.waitUrlEquals('/exit/application-saved');
 
   if (toggleStore.getToggle('idam')) {
-    I.see(idamConfigHelper.getTestEmail());
+    I.waitForText(idamConfigHelper.getTestEmail());
   }
 });
 

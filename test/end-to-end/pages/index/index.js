@@ -8,7 +8,7 @@ function startApplication(ignoreIdamToggle = false) {
   let I = this;
 
   I.waitUrlEquals('/index');
-  I.see(common.continue);
+  I.waitForVisible('a.button');
   I.navByClick(common.continue);
 
   if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {

@@ -17,12 +17,6 @@ describe(modulePath, () => {
     underTest = s.steps.ExitNoConnections;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     const session = {};
 

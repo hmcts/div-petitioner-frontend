@@ -5,7 +5,7 @@ const statusCode = require('app/core/utils/statusCode');
 
 describe(__filename, () => {
   it('renders sitemap when config.showSitemap is true', async () => {
-    const { app, http } = server.init();
+    const { app } = server.init();
     const showSitemap = config.showSitemap;
 
     config.showSitemap = true;
@@ -15,11 +15,10 @@ describe(__filename, () => {
       .expect(statusCode.OK);
 
     config.showSitemap = showSitemap;
-    return http.close();
   });
 
   it('redirects to 404 when config.showSitemap is false', async () => {
-    const { app, http } = server.init();
+    const { app } = server.init();
     const showSitemap = config.showSitemap;
     config.showSitemap = false;
 
@@ -29,6 +28,5 @@ describe(__filename, () => {
       .expect('Location', '/errors/404');
 
     config.showSitemap = showSitemap;
-    return http.close();
   });
 });

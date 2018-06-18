@@ -196,7 +196,7 @@ describe(modulePath, () => {
         const { addresses } = yield mockPostcodeClient.lookupPostcode();
         const expectedAddressBasedUK5 = {
           addressLine1: 'Divorced Org Unfun Department Box 99',
-          addressLine2: 'The Splited Builind Aka Sad House 94 LANDOR ROAD',
+          addressLine2: 'The Splited Builing Aka Sad House 94 LANDOR ROAD',
           addressLine3: 'Small Local Dependent Place',
           postCode: 'SW9 9PE',
           postTown: 'LONDON',

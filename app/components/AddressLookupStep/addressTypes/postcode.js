@@ -24,8 +24,7 @@ const formatPostcode = function(postcode = '') {
   return formattedPostcode;
 };
 
-const buildAddressBaseUk = function(ctx) {
-  const selectedAddress = ctx.addresses[ctx.selectAddressIndex];
+const buildAddressBaseUk = function(selectedAddress) {
   let line1 = `${selectedAddress.organisation_name} ${selectedAddress.department_name} ${selectedAddress.po_box_number}`;
   let line2 = `${selectedAddress.building_name} ${selectedAddress.sub_building_name} ${selectedAddress.building_number} ${selectedAddress.thoroughfare_name}`;
   let line3 = `${selectedAddress.dependent_locality} ${selectedAddress.double_dependent_locality}`;
@@ -37,9 +36,15 @@ const buildAddressBaseUk = function(ctx) {
   }
 
   const addressBaseUK = {
-    addressLine1: line1.replace(/ +/g, ' ').trim(),
-    addressLine2: line2.replace(/ +/g, ' ').trim(),
-    addressLine3: line3.replace(/ +/g, ' ').trim(),
+    addressLine1: line1.replace(' null', ' ').replace('null ', ' ')
+      .replace(/ +/g, ' ')
+      .trim(),
+    addressLine2: line2.replace(' null', ' ').replace('null ', ' ')
+      .replace(/ +/g, ' ')
+      .trim(),
+    addressLine3: line3.replace(' null', ' ').replace('null ', ' ')
+      .replace(/ +/g, ' ')
+      .trim(),
     postCode: selectedAddress.postcode,
     postTown: selectedAddress.post_town,
     county: '',
@@ -116,7 +121,8 @@ module.exports = {
         const address = ctx.addresses[ctx.selectAddressIndex];
         if (address && address.formatted_address) {
           ctx.address = address.formatted_address.split('\n');
-          ctx.addressBaseUK = buildAddressBaseUk(ctx);
+          ctx.addressBaseUK = buildAddressBaseUk(
+            ctx.addresses[ctx.selectAddressIndex]);
         } else {
           delete ctx.address;
         }
@@ -141,7 +147,8 @@ module.exports = {
       if (address.length) {
         ctx.address = isEqual(address, ctx.address) ? ctx.address : address;
         if (ctx.selectAddressIndex !== '-1' && ctx.addresses) {
-          ctx.addressBaseUK = buildAddressBaseUk(ctx);
+          ctx.addressBaseUK = buildAddressBaseUk(
+            ctx.addresses[ctx.selectAddressIndex]);
         }
       }
     }

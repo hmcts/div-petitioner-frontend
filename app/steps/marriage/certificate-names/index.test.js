@@ -24,10 +24,8 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('content when certificate is in English', () => {
     let session = {};

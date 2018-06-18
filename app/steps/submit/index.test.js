@@ -41,8 +41,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     submission.setup.restore();
-
-    s.http.close();
     featureTogglesMock.restore();
     idamMock.restore();
   });

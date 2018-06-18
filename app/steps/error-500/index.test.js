@@ -18,12 +18,6 @@ describe(modulePath, () => {
     underTest = s.steps.Error500;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     const session = {};
 

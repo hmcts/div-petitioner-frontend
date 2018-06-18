@@ -25,12 +25,9 @@ describe(modulePath, () => {
     underTest = s.steps.AboutYourMarriageCertificate;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('About your marriage certificate step content', () => {
     const session = {};

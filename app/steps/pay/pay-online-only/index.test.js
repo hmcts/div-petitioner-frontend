@@ -2,7 +2,7 @@
 const request = require('supertest');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { testContent, testCustom } = require('test/util/assertions');
+const { testContent, testCustom, getSession } = require('test/util/assertions');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const getBaseUrl = require('app/core/utils/baseUrl');
@@ -52,7 +52,6 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
     featureTogglesMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
@@ -219,8 +218,14 @@ describe(modulePath, () => {
         });
 
         it('redirects to the gov.uk payment page', done => {
+          const testSession = () => {
+            getSession(agent).then(currentSession => {
+              expect(currentSession.paymentMethod).to.equal('card-online');
+              done();
+            });
+          };
           // Act.
-          testCustom(done, agent, underTest, cookies, response => {
+          testCustom(testSession, agent, underTest, cookies, response => {
             // Assert.
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
             expect(response.header.location).to.equal('https://pay.the.gov/here');

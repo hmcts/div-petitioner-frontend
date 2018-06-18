@@ -27,12 +27,9 @@ describe(modulePath, () => {
     underTest = s.steps.SeparationDate;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};

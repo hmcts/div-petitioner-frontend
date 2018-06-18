@@ -13,6 +13,9 @@ exports.withSession = (done, agent, data = {}) => {
         .set('X-CSRF-token', csrfToken)
         .send(data)
         .expect(200)
-        .end(done);
+        .end(() => {
+          agent.csrfToken = csrfToken;
+          done();
+        });
     });
 };

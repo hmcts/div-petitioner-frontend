@@ -5,10 +5,6 @@
   "id": "petitioner-contact-details",
   "type": "object",
   "properties": {
-    "petitionerEmail": {
-      "type": "string",
-      "format": "email"
-    },
     "petitionerPhoneNumber": {
       "type": "string",
       "minLength": 9,
@@ -19,7 +15,6 @@
     }
   },
   "required": [
-    "petitionerEmail",
     "petitionerConsent"
   ]
 

@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
 
-Feature('Upload Marriage Certificate', { retries: 1 });
+Feature('Upload Marriage Certificate').retry(3);
 
 Scenario('Test upload', function* (I) {
   I.amOnLoadedPage('/index');

@@ -42,7 +42,7 @@ const PORT = process.env.PORT || process.env.HTTP_PORT || CONF.http.port;
 
 const logger = logging.logger(__filename);
 
-exports.init = () => {
+exports.init = listenForConnections => {
   const app = express();
 
   app.use(helmet());
@@ -209,19 +209,20 @@ exports.init = () => {
   }
 
   let http = {};
-  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing') {
-    const sslDirectory = path.join(__dirname, 'app', 'resources', 'localhost-ssl');
+  if (listenForConnections) {
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing') {
+      const sslDirectory = path.join(__dirname, 'app', 'resources', 'localhost-ssl');
+      const sslOptions = {
+        key: fs.readFileSync(path.join(sslDirectory, 'localhost.key')),
+        cert: fs.readFileSync(path.join(sslDirectory, 'localhost.crt'))
+      };
 
-    const sslOptions = {
-      key: fs.readFileSync(path.join(sslDirectory, 'localhost.key')),
-      cert: fs.readFileSync(path.join(sslDirectory, 'localhost.crt'))
-    };
+      const server = https.createServer(sslOptions, app);
 
-    const server = https.createServer(sslOptions, app);
-
-    http = server.listen(PORT);
-  } else {
-    http = app.listen(PORT);
+      http = server.listen(PORT);
+    } else {
+      http = app.listen(PORT);
+    }
   }
 
   process.emit('application-log', {

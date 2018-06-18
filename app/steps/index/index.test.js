@@ -25,9 +25,7 @@ describe(modulePath, () => {
     underTest = s.steps.Index;
   });
 
-
   afterEach(() => {
-    s.http.close();
     featureTogglesMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
   });

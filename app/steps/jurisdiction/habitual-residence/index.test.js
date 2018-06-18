@@ -23,12 +23,9 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionHabitualResidence;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('Habitual residence step content', () => {
     let session = {};

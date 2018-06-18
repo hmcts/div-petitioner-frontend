@@ -19,12 +19,6 @@ describe(modulePath, () => {
     underTest = s.steps.ExitSeparation;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     let session = {};
 

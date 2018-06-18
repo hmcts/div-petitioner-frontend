@@ -68,6 +68,12 @@ for (let stepKey in s.steps) {
 
       it('should not have any html errors', (done) => {
 
+        if (res.statusCode === 302) {
+          // do not validate redirects
+          done();
+          return;
+        }
+
         w3cjs.validate({
 
           input: res.text,
@@ -90,6 +96,12 @@ for (let stepKey in s.steps) {
       });
 
       it('should not have any html warnings', (done) => {
+
+        if (res.statusCode === 302) {
+          // do not validate redirects
+          done();
+          return;
+        }
 
         w3cjs.validate({
 

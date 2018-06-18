@@ -1,5 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const idam = require('app/services/idam');
+const initSession = require('app/middleware/initSession');
 
 const modulePath = 'app/core/steps/DestroySessionStep';
 const UnderTest = require(modulePath);
@@ -37,7 +38,7 @@ describe(modulePath, () => {
     // Act.
     const output = step.middleware;
     // Assert.
-    expect(output).to.eql([logoutStub]);
+    expect(output).to.eql([logoutStub, initSession]);
 
     idam.logout.restore();
   });

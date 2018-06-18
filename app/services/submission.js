@@ -85,7 +85,7 @@ const generatePaymentEventData = (session, response) => {
 const setup = () => {
   const options = { baseUrl: CONF.services.transformation.baseUrl };
   // If the microservice key is not set we fall back to mocks.
-  const secret = process.env.MICROSERVICE_KEY;
+  const secret = CONF.services.serviceAuthProvider.microserviceKey;
   client = secret ? transformationServiceClient.init(options) : mockedClient;
 
   return service;

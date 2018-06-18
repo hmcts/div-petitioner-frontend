@@ -59,10 +59,7 @@ const restoreFromDraftStore = (req, res, next) => {
   return client.restoreFromDraftStore(authToken, mockResponse)
     .then(restoredSession => {
       if (restoredSession && !isEmpty(restoredSession)) {
-        logger.error('Restored session');
-        logger.error(JSON.stringify(restoredSession));
         Object.assign(req.session, restoredSession);
-
         redirectToCheckYourAnswers(req, res, next);
       } else {
         next();

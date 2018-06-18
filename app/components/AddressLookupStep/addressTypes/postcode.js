@@ -155,7 +155,6 @@ module.exports = {
     return ctx;
   },
 
-
   prepareErrors(ctx, errors) {
     let errorList = errors;
     if (ctx.postcodeError === 'true') {
@@ -181,6 +180,9 @@ module.exports = {
     return errorList;
   },
 
+  newAddressBaseUk(selectedAddress) {
+    return buildAddressBaseUk(selectedAddress);
+  },
 
   action(ctx, session) {
     delete session.postcodeLookup;

@@ -10,37 +10,6 @@ const schema = require('./schema');
 
 const addressTypes = requireDirectory(module, 'addressTypes', { exclude: /.test.js/ });
 
-
-const buildAddressBaseUk = function(selectedAddress) {
-  let line1 = `${selectedAddress.organisation_name} ${selectedAddress.department_name} ${selectedAddress.po_box_number}`;
-  let line2 = `${selectedAddress.building_name} ${selectedAddress.sub_building_name} ${selectedAddress.building_number} ${selectedAddress.thoroughfare_name}`;
-  let line3 = `${selectedAddress.dependent_locality} ${selectedAddress.double_dependent_locality}`;
-
-  if (line1.trim().length === 0) {
-    line1 = line2;
-    line2 = line3;
-    line3 = '';
-  }
-
-  const addressBaseUK = {
-    addressLine1: line1.replace(' null', ' ').replace('null ', ' ')
-      .replace(/ +/g, ' ')
-      .trim(),
-    addressLine2: line2.replace(' null', ' ').replace('null ', ' ')
-      .replace(/ +/g, ' ')
-      .trim(),
-    addressLine3: line3.replace(' null', ' ').replace('null ', ' ')
-      .replace(/ +/g, ' ')
-      .trim(),
-    postCode: selectedAddress.postcode,
-    postTown: selectedAddress.post_town,
-    county: '',
-    country: 'UK'
-  };
-
-  return addressBaseUK;
-};
-
 module.exports = class AddressLookupStep extends ValidationStep {
   constructor(steps, section, templatePath, content) {
     const mergedContent = merge({}, addressContent, content);
@@ -60,7 +29,8 @@ module.exports = class AddressLookupStep extends ValidationStep {
 
   applyCtxToSession(ctx, session) {
     if (session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex) {
-      ctx.addressBaseUK = buildAddressBaseUk(session.postcodeLookup);
+      ctx.addressBaseUK = addressTypes.postcode
+        .newAddressBaseUk(session.postcodeLookup);
     }
     session[this.schemaScope] = ctx;
     return session;

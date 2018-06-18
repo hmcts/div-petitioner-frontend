@@ -3,6 +3,7 @@ project: PACKAGES_PROJECT
 environment: NODE_ENV
 version: PACKAGES_VERSION
 deployment_env: DEPLOYMENT_ENV
+preview_env: PREVIEW_ENV
 
 service:
   name: SERVICE_NAME

@@ -1,7 +1,7 @@
 const toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
-Feature('Draft petition store', { retries: 1 });
+Feature('Draft petition store').retry(3);
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
   I.amOnLoadedPage('/index');

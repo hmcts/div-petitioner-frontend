@@ -24,8 +24,7 @@ redisClient.on('error', logger.error);
 const applicationFeeQueryParams = 'service=divorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
 
 const getFeeFromService = () => {
-  const service = 
-  CONF.deployment_env === 'local' ? mockFeeReigsterService : feeRegisterService;
+  const service = CONF.deployment_env === 'local' ? mockFeeReigsterService : feeRegisterService;
   const options = { queryParameters: applicationFeeQueryParams };
 
   return service.get(options)
@@ -40,36 +39,32 @@ const getFeeFromService = () => {
 };
 
 const getFeeCodeFromFeesAndPayments = () => {
-  //const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsRegisterService;
-  const service = CONF.deployment_env === 'local' ? feesAndPaymentsRegisterService : feesAndPaymentsRegisterService;
-  
+  const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsRegisterService;
 
   return service.get()
     .then(response => {
       // set fee returned from fee register to global CONF
-      logger.info(" Fee code set to ", response.feeCode);
+      logger.info(' Fee code set to ', response.feeCode);
       CONF.commonProps.code = response.feeCode;
-      logger.info(" Fee code set to ", response.version);
+      logger.info(' Fee code set to ', response.version);
       CONF.commonProps.version = response.version;
       return true;
-    }).catch(error => {
+    })
+    .catch(error => {
       logger.error(error);
     });
 };
 
-
 const updateApplicationFeeMiddleware = (req, res, next) => {
   redisClient.get('commonProps.applicationFee')
-    .then(response => { 
+    .then(response => {
       if (response) {
         CONF.commonProps.applicationFee = JSON.parse(response);
-        
         return true;
       }
       return getFeeFromService();
     })
-    .then(()=> {
-      
+    .then(() => {
       getFeeCodeFromFeesAndPayments();
       return true;
     })
@@ -80,7 +75,6 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       logger.error(error);
       res.redirect('/generic-error');
     });
-   
 };
 
 module.exports = { updateApplicationFeeMiddleware };

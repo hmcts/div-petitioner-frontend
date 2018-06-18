@@ -4,7 +4,7 @@ const phone = config.get('commonProps.courtPhoneNumber');
 const hours = config.get('commonProps.courtOpeningHour');
 const email = config.get('commonProps.courtEmail');
 
-Feature('Report A Problem Handling', { retries: 1 });
+Feature('Report A Problem Handling').retry(3);
 
 Scenario('I see link to go the ’Report a problem’ page', (I) => {
 

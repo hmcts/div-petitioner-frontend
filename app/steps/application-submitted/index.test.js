@@ -2,7 +2,7 @@ const request = require('supertest');
 const { testContent, testExistence } = require('test/util/assertions');
 const server = require('app');
 
-const modulePath = 'app/steps/error-submitted';
+const modulePath = 'app/steps/application-submitted';
 
 const content = require(`${modulePath}/content`);
 
@@ -14,14 +14,8 @@ describe(modulePath, () => {
   beforeEach(() => {
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.SubmittedError;
+    underTest = s.steps.ApplicationSubmitted;
   });
-
-
-  afterEach(() => {
-    s.http.close();
-  });
-
 
   describe('success', () => {
     it('renders the content from the content file', done => {

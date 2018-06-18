@@ -2,11 +2,14 @@
 const { expect, sinon } = require('test/util/chai');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
+const parseRequest = require('app/core/helpers/parseRequest');
 const server = require('app');
 
 const modulePath = 'app/middleware/draftPetitionStoreMiddleware';
 
 const draftPetitionStoreMiddleware = require(modulePath);
+
+const { saveSessionToDraftStoreAndReply } = draftPetitionStoreMiddleware;
 
 let s = {};
 let req = {};
@@ -18,10 +21,6 @@ describe(modulePath, () => {
   before(() => {
     s = server.init();
     checkYourAnswersUrl = s.steps.CheckYourAnswers.url;
-  });
-
-  after(() => {
-    s.http.close();
   });
 
   beforeEach(() => {
@@ -127,6 +126,76 @@ describe(modulePath, () => {
         expect(req.session).to.eql(mockedClient.mockSession);
         done();
       }, 1);
+    });
+
+    it('ssaveSessionToDraftStoreAndReply() with save only header', async () => {
+      const sandbox = sinon.sandbox.create();
+      const parsedRequestBody = { bar: 1 };
+      const json = sinon.stub();
+      const request = {
+        headers: { 'x-save-draft-session-only': true },
+        cookies: { '__auth-token': '1234' },
+        session: { foo: 1 }
+      };
+      const response = { status: sandbox.stub().returns({ json }) };
+
+      sandbox
+        .stub(parseRequest, 'parse')
+        .returns(parsedRequestBody);
+      sandbox
+        .stub(mockedClient, 'saveToDraftStore')
+        .resolves();
+
+      await saveSessionToDraftStoreAndReply(request, response);
+
+      expect(mockedClient.saveToDraftStore.args)
+        .to.deep.equal([
+          [
+            '1234',
+            { foo: 1, bar: 1 }
+          ]
+        ]);
+
+      expect(json.args)
+        .to.deep.equal([[{ message: 'ok' }]]);
+
+      sandbox.restore();
+    });
+
+    it('saveSessionToDraftStoreAndReply() catches error', async () => {
+      const sandbox = sinon.sandbox.create();
+      const request = {
+        headers: { 'x-save-draft-session-only': true },
+        cookies: {},
+        session: {}
+      };
+      const json = sinon.stub();
+      const response = { status: sandbox.stub().returns({ json }) };
+
+      sandbox
+        .stub(parseRequest, 'parse')
+        .returns({});
+      sandbox
+        .stub(mockedClient, 'saveToDraftStore')
+        .rejects({});
+
+      await saveSessionToDraftStoreAndReply(request, response);
+
+      expect(json.args)
+        .to.deep.equal([[{ message: 'Error saving session to draft store' }]]);
+
+      sandbox.restore();
+    });
+
+    it('saveSessionToDraftStoreAndReply() no save only header', () => {
+      const nextFunc = sinon.stub();
+      const request = { headers: {} };
+      const response = {};
+
+      saveSessionToDraftStoreAndReply(request, response, nextFunc);
+
+      expect(nextFunc.callCount)
+        .to.equal(1);
     });
   });
 });

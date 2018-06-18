@@ -28,13 +28,11 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 
   describe('content', () => {
     let session = {};
-
 
     describe('when Help with fees refference number exists', () => {
       beforeEach(done => {

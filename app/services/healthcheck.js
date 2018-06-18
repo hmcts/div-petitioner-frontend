@@ -31,13 +31,19 @@ router.get('/health', healthcheck.configure({
         return healthcheck.status(_ === 'PONG');
       })
         .catch(error => {
-          logger.error(`Health check failed on redis: ${error}`);
+          logger.error({
+            message: 'Health check failed on redis:',
+            error
+          });
         });
     }),
     'idam-authentication': healthcheck.web(config.services.idamAuthentication.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on idam-authentication: ${error}`);
+          logger.error({
+            message: 'Health check failed on idam-authentication:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -45,7 +51,10 @@ router.get('/health', healthcheck.configure({
     'idam-app': healthcheck.web(config.services.idamApp.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on idam-app: ${error}`);
+          logger.error({
+            message: 'Health check failed on idam-app:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -53,7 +62,10 @@ router.get('/health', healthcheck.configure({
     'feature-toggle-api': healthcheck.web(config.services.featureToggleApi.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on feature-toggle-api: ${error}`);
+          logger.error({
+            message: 'Health check failed on feature-toggle-api:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -61,7 +73,10 @@ router.get('/health', healthcheck.configure({
     'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on evidence-management-client-api: ${error}`);
+          logger.error({
+            message: 'Health check failed on evidence-management-client-api:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -69,7 +84,10 @@ router.get('/health', healthcheck.configure({
     'case-progression': healthcheck.web(config.services.transformation.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on case-progression: ${error}`);
+          logger.error({
+            message: 'Health check failed on case-progression:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -77,7 +95,10 @@ router.get('/health', healthcheck.configure({
     'service-auth-provider-api': healthcheck.web(config.services.serviceAuthProvider.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on service-auth-provider-api: ${error}`);
+          logger.error({
+            message: 'Health check failed on service-auth-provider-api:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -85,7 +106,10 @@ router.get('/health', healthcheck.configure({
     'payment-api': healthcheck.web(config.services.payment.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on payment-api: ${error}`);
+          logger.error({
+            message: 'Health check failed on payment-api:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
@@ -93,7 +117,10 @@ router.get('/health', healthcheck.configure({
     feeRegister: healthcheck.web(config.services.feeRegister.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
-          logger.error(`Health check failed on fee register: ${error}`);
+          logger.error({
+            message: 'Health check failed on fee register:',
+            error
+          });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }

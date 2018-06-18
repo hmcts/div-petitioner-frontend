@@ -24,9 +24,7 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionLastResort;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

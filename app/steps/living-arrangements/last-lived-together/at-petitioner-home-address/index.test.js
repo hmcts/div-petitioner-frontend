@@ -26,9 +26,7 @@ describe(modulePath, () => {
     underTest = s.steps.LastLivedTogether;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

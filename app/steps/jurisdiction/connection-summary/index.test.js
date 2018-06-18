@@ -26,12 +26,9 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionConnectionSummary;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('JurisdictionConnectionSummary step content for connection A', () => {
     let session = {};

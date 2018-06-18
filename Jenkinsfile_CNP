@@ -12,6 +12,20 @@ withPipeline("nodejs", product, component) {
   after('test') {
     sh 'yarn test-validation'
   }
-  
+
+  after('functionalTest:aat') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+
+  before('functionalTest:preview') {
+    env.PREVIEW_ENV = 'true'
+  }
+
+  after('functionalTest:preview') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+
   enableSlackNotifications('#div-dev')
 }

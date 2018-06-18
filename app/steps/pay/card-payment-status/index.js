@@ -75,7 +75,11 @@ module.exports = class CardPaymentStatus extends Step {
 
       // Store status in session then update CCD with payment status.
       .then(response => {
-        logger.info(`Payment status query response: ${JSON.stringify(response)}`, req);
+        logger.info({
+          message: 'Payment status query response:',
+          response
+        });
+
         const id = req.session.currentPaymentId;
         req.session.payments[id] = Object.assign({}, req.session.payments[id],
           response);
@@ -95,7 +99,11 @@ module.exports = class CardPaymentStatus extends Step {
       // Check CCD update response then redirect to a step based on payment status.
       .then(response => {
         if (response !== true) {
-          logger.info(`Transformation service update response: ${JSON.stringify(response)}`, req);
+          logger.info({
+            message: 'Transformation service update response:',
+            response
+          });
+
           if (!response || response.status !== 'success') {
             // Fail immediately if the application could not be updated in CCD.
             throw response;
@@ -118,6 +126,15 @@ module.exports = class CardPaymentStatus extends Step {
 
   get url() {
     return '/pay/card-payment-status';
+  }
+
+  get nextStep() {
+    return {
+      nextStep: {
+        DoneAndSubmitted: this.steps.DoneAndSubmitted,
+        PayOnline: this.steps.PayOnline
+      }
+    };
   }
 
   next(result) {

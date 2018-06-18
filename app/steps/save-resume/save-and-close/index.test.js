@@ -17,12 +17,6 @@ describe(modulePath, () => {
     underTest = s.steps.ExitApplicationSaved;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     const session = {};
 

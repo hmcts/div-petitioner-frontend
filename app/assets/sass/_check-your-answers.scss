@@ -21,7 +21,7 @@
     display: block
   }
 
-  #form span.error-message {
+  form span.error-message {
       margin-bottom: 7px;
   }
 
@@ -39,16 +39,23 @@
       margin-left: 50px;
     }
   }
+
+  .check-your-answers-warning {
+    position: relative;
+    bottom: 10px;
+    padding-left: 10px;
+    line-height: 38px;
+  }
 }
 
 @media (min-width: 641px) {
-  .check-your-answers #form ul.list-bullet {
+  .check-your-answers form ul.list-bullet {
     margin-top: 70px;
   }
 }
 
 @media (max-width: 640px) {
-  .check-your-answers #form ul.list-bullet {
+  .check-your-answers form ul.list-bullet {
     margin-top: 30px;
   }
 

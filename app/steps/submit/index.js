@@ -25,8 +25,7 @@ module.exports = class Submit extends Step {
 
   handler(req, res, next) {
     if (req.session.submissionStarted) {
-      res.redirect(this.steps.SubmittedError.url);
-      next();
+      res.redirect(this.steps.ApplicationSubmitted.url);
       return;
     }
 
@@ -79,16 +78,25 @@ module.exports = class Submit extends Step {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${error}`, req);
+        logger.error({
+          message: 'Error during submission step:',
+          error
+        });
         res.redirect('/generic-error');
       });
   }
 
+  get nextStep() {
+    return {
+      helpWithFeesNeedHelp: {
+        Yes: this.steps.DoneAndSubmitted,
+        No: this.steps.PayOnline
+      }
+    };
+  }
+
   next(ctx, session) {
-    if (session.helpWithFeesNeedHelp === 'Yes') {
-      return this.steps.DoneAndSubmitted;
-    }
-    return this.steps.PayOnline;
+    return this.nextStep.helpWithFeesNeedHelp[session.helpWithFeesNeedHelp];
   }
 
   get url() {

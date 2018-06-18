@@ -30,13 +30,10 @@ describe(modulePath, () => {
     stepUnderTest = s.steps.MarriageDate;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
     featureTogglesMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};

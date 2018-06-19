@@ -9,6 +9,7 @@ const schema = require('./schema');
 
 
 const addressTypes = requireDirectory(module, 'addressTypes', { exclude: /.test.js/ });
+const addressHelpers = require('./helpers/addressHelpers');
 
 module.exports = class AddressLookupStep extends ValidationStep {
   constructor(steps, section, templatePath, content) {
@@ -29,8 +30,8 @@ module.exports = class AddressLookupStep extends ValidationStep {
 
   applyCtxToSession(ctx, session) {
     if (session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex) {
-      ctx.addressBaseUK = addressTypes.postcode
-        .newAddressBaseUk(session.postcodeLookup);
+      ctx.addressBaseUK = addressHelpers
+        .buildAddressBaseUk(session.postcodeLookup);
     }
     session[this.schemaScope] = ctx;
     return session;

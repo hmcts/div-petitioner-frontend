@@ -181,7 +181,6 @@ describe(modulePath, () => {
   });
 
   describe('help with fees reference number does not exist', () => {
-    let session = {};
     beforeEach(done => {
       session = clone(mockSession);
       session.helpWithFeesReferenceNumber = '';

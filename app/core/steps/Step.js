@@ -138,7 +138,7 @@ module.exports = class Step {
     return [];
   }
 
-  * preResponse(req, res) { // eslint-disable-line no-unused-vars
+  preResponse(req, res) { // eslint-disable-line no-unused-vars
     return Promise.resolve();
   }
 

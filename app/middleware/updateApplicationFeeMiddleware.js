@@ -10,7 +10,7 @@ const redisHost = CONF.services.redis.host;
 // redisClient is a let so it can be rewired in tests
 let redisClient = {};
 
-if (process.env.NODE_ENV === 'testing') {
+if (CONF.environment === 'testing') {
   redisClient = ioRedisMock();
 } else {
   redisClient = new ioRedis(redisHost); // eslint-disable-line prefer-const

@@ -6,14 +6,14 @@ const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');
 
 const secret = CONF.secret;
-const redisHost = process.env.REDISCLOUD_URL || CONF.services.redis.host;
+const redisHost = CONF.services.redis.host;
 const ttl = CONF.session.ttl;
-const cookieSecure = process.env.PUBLIC_PROTOCOL === 'https';
+const cookieSecure = CONF.public.protocol === 'https';
 
 const sessions = module.exports = { // eslint-disable-line no-multi-assign
 
   prod: (req, res, next) => {
-    if (process.env.NODE_ENV === 'testing') {
+    if (CONF.environment === 'testing') {
       return sessions.inmemory();
     }
 

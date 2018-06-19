@@ -29,7 +29,6 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 
@@ -180,6 +179,19 @@ describe(modulePath, () => {
     it('renders the correct dynamic text', done => {
       testExistence(done, agent, underTest,
         contentStrings.submitAndPay, session);
+    });
+  });
+
+  describe('help with fees reference number does not exist', () => {
+    let session = {};
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.helpWithFeesReferenceNumber = '';
+      session.helpWithFeesNeedHelp = 'Yes';
+      withSession(done, agent, session);
+    });
+    it('renders the correct dynamic text', done => {
+      testExistence(done, agent, underTest, 'No', session);
     });
   });
 

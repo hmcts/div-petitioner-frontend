@@ -18,12 +18,6 @@ describe(modulePath, () => {
     underTest = s.steps.ExitDesertionDate;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     let session = {};
 

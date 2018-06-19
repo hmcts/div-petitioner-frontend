@@ -86,11 +86,17 @@ module.exports = class Submit extends Step {
       });
   }
 
+  get nextStep() {
+    return {
+      helpWithFeesNeedHelp: {
+        Yes: this.steps.DoneAndSubmitted,
+        No: this.steps.PayOnline
+      }
+    };
+  }
+
   next(ctx, session) {
-    if (session.helpWithFeesNeedHelp === 'Yes') {
-      return this.steps.DoneAndSubmitted;
-    }
-    return this.steps.PayOnline;
+    return this.nextStep.helpWithFeesNeedHelp[session.helpWithFeesNeedHelp];
   }
 
   get url() {

@@ -1,5 +1,6 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const logger = require('app/services/logger').logger(__filename);
+const CONF = require('config');
 
 module.exports = class GovPayStub extends ValidationStep {
   get enabledAfterSubmission() {
@@ -10,7 +11,7 @@ module.exports = class GovPayStub extends ValidationStep {
     return '/pay/gov-pay-stub';
   }
 
-  next() {
+  get nextStep() {
     return this.steps.CardPaymentStatus;
   }
 
@@ -20,7 +21,7 @@ module.exports = class GovPayStub extends ValidationStep {
   }
 
   handler(req, res, next) {
-    if (process.env.NODE_ENV === 'production') {
+    if (CONF.environment === 'production') {
       logger.error('Payment stub page requested in production mode', req);
       return this.steps.Error404.handler(req, res, next);
     }

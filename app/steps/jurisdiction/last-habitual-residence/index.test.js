@@ -22,12 +22,9 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionLastHabitualResidence;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('Last Habitual residence step content', () => {
     let session = {};

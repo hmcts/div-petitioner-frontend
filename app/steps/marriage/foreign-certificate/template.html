@@ -10,7 +10,9 @@
     {{ textField(
       name = 'countryName',
       field = fields.countryName,
-      hint = content.countryName
+      hint = content.countryName,
+      label = content.countryName,
+      labelClass = 'visually-hidden'
     ) }}
 </fieldset>
 
@@ -21,13 +23,17 @@
         {{ textField(
           name = 'placeOfMarriage',
           field = fields.placeOfMarriage,
-          hint = content.wordsOfTranslation
+          hint = content.wordsOfTranslation,
+          label = content.wordsOfTranslation,
+          labelClass = 'visually-hidden'
         )}}
       {% else %}
         <legend class="form-label-bold">{{ content.placeOfMarriage | safe }}</legend>
         {{ textField(
           name = 'placeOfMarriage',
-          field = fields.placeOfMarriage
+          field = fields.placeOfMarriage,
+          label = content.copyPlaceOfMarriage,
+          labelClass = 'visually-hidden'
         )}}
 
       {% endif %}

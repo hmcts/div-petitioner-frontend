@@ -3,6 +3,7 @@ project: 'divorce'
 environment: 'laptop'
 version: 'x.x-laptop'
 deployment_env: 'local'
+showSitemap: false
 
 log:
   ERROR: 1
@@ -65,6 +66,8 @@ sessionEncryptionSecret: myVeryTopSecretK
 dateFormat: 'DD/MM/YYYY'
 paymentDateFormat: 'DDMMYYYY'
 
+testUrl: 'https://localhost:8080'
+
 commonProps:
   applicationFee:
     code: 'FEE0002'
@@ -92,7 +95,7 @@ commonProps:
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
       siteId: '2'
-      weight: 0.25
+      weight: 0.15
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -102,7 +105,7 @@ commonProps:
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
       siteId: '3'
-      weight: 0.25
+      weight: 0.35
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'
@@ -163,3 +166,15 @@ rateLimiter:
 
 applicationInsights:
   instrumentationKey: 'dummy-key'
+
+e2e:
+  frontendUrl: 'https://localhost:8080'
+  proxyServer: ''
+  proxyBypassList: ''
+  outputDirectory: './functional-output'
+  defaultEnvironmentNodeEnv: 'development'
+  waitForTimeoutValue: 10000
+  waitForActionValue: 100
+
+public:
+  protocol: 'https'

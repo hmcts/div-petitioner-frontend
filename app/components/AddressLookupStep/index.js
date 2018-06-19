@@ -31,7 +31,10 @@ module.exports = class AddressLookupStep extends ValidationStep {
   applyCtxToSession(ctx, session) {
     if (session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex) {
       ctx.addressBaseUK = addressHelpers
-        .buildAddressBaseUk(session.postcodeLookup);
+        .buildAddressBaseUk(
+          session.postcodeLookup.addresses[session
+            .postcodeLookup.selectAddressIndex]
+        );
     }
     session[this.schemaScope] = ctx;
     return session;

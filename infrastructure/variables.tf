@@ -196,7 +196,7 @@ variable "fee_register_url" {
 }
 
 variable "fees_and_payments_url" {
-  type = "string"
+  default = ""
 }
 
 variable "post_code_url" {

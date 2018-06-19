@@ -24,8 +24,6 @@ payment_service_url = "https://payments.reform.hmcts.net:4401"
 
 fee_register_url = "https://fees-register.reform.hmcts.net:4411"
 
-fees_and_payments_url = "http://div-fps-prod.service.core-compute-prod.internal"
-
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 capacity = "2"

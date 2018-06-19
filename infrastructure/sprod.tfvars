@@ -30,6 +30,4 @@ payment_service_url = "https://test.payments.reform.hmcts.net:4421"
 
 fee_register_url = "https://test.fees-register.reform.hmcts.net:4431"
 
-fees_and_payments_url = "http://div-fps-sprod.service.core-compute-sprod.internal"
-
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

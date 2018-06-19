@@ -32,6 +32,7 @@ locals {
 
   case_progression_service_url       = "${var.case_progression_service_url == "" ? "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_progression_service_url}"
   evidence_management_client_api_url = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
+  fees_and_payments_url = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
   status_health_endpoint             = "/status/health"
 }
 
@@ -109,8 +110,8 @@ module "frontend" {
     FEE_REGISTER_URL             = "${var.fee_register_url}"
     FEE_REGISTER_HEALTHCHECK_URL = "${var.fee_register_url}${var.health_endpoint}"
 
-    FEES_AND_PAYMENTS_URL             = "${var.fees_and_payments_url}"
-    FEES_AND_PAYMENTS_HEALTHCHECK_URL = "${var.fees_and_payments_url}${var.health_endpoint}"
+    FEES_AND_PAYMENTS_URL             = "${local.fees_and_payments_url}"
+    FEES_AND_PAYMENTS_HEALTHCHECK_URL = "${local.fees_and_payments_url}${var.health_endpoint}"
 
     // Post code Lookup
     POST_CODE_URL          = "${var.post_code_url}"

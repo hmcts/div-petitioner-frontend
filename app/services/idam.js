@@ -3,8 +3,8 @@ const CONF = require('config');
 
 const confIdam = CONF.idamArgs;
 
-const PUBLIC_HOSTNAME = process.env.PUBLIC_HOSTNAME;
-const PUBLIC_PROTOCOL = process.env.PUBLIC_PROTOCOL || 'https';
+const PUBLIC_HOSTNAME = CONF.public.hostname;
+const PUBLIC_PROTOCOL = CONF.public.protocol;
 const redirectUri = `${PUBLIC_PROTOCOL}://${PUBLIC_HOSTNAME}/authenticated`;
 
 const landingPageUrl = PUBLIC_HOSTNAME ? redirectUri : confIdam.redirectUri;
@@ -12,10 +12,10 @@ const landingPageUrl = PUBLIC_HOSTNAME ? redirectUri : confIdam.redirectUri;
 const idamArgs = {
   redirectUri: landingPageUrl,
   indexUrl: confIdam.indexUrl,
-  idamApiUrl: process.env.IDAM_API_URL || confIdam.idamApiUrl,
-  idamLoginUrl: process.env.IDAM_LOGIN_URL || confIdam.idamLoginUrl,
-  idamSecret: process.env.IDAM_SECRET || confIdam.idamSecret,
-  idamClientID: process.env.IDAM_CLIENT_ID || confIdam.idamClientID
+  idamApiUrl: confIdam.idamApiUrl,
+  idamLoginUrl: confIdam.idamLoginUrl,
+  idamSecret: confIdam.idamSecret,
+  idamClientID: confIdam.idamClientID
 };
 
 module.exports = {

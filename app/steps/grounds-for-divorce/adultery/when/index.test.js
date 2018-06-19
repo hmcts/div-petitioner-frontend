@@ -28,12 +28,9 @@ describe(modulePath, () => {
     underTest = s.steps.AdulteryWhen;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};

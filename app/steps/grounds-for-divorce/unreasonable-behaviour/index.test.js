@@ -26,12 +26,9 @@ describe(modulePath, () => {
     underTest = s.steps.UnreasonableBehaviour;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};
@@ -51,8 +48,38 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required');
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page with valid behaviour', done => {
       const context = { reasonForDivorceBehaviourDetails: ['The soup was too salty'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('redirects to the next page when behaviour = "My wife"', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('redirects to the next page when behaviour = "My wife .."', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife .'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('redirects to the next page when behaviour = "My wife .."', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife ..'] };
+
+      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+
+    it('renders errors when behaviour = "My wife ..."', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife ...'] };
+
+      testErrors(done, agent, underTest, context, content, 'required');
+    });
+
+    it('redirects to the next page when behaviour = "My wife ...!"', done => {
+      const context = { reasonForDivorceBehaviourDetails: ['My wife ...!'] };
 
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
     });

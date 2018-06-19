@@ -3,7 +3,7 @@ const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ appli
 const reasonContent = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 
 
-Feature('Payment method', { retries: 1 });
+Feature('Payment method').retry(3);
 
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnLoadedPage('/index');

@@ -47,7 +47,7 @@ const handleResponse = (body, resolve, reject) => {
 const sendFile = (file, options) => {
   return new Promise((resolve, reject) => {
     // return mock if no client API available
-    if (!process.env.EVIDENCE_MANAGEMENT_CLIENT_API_URL) {
+    if (!CONF.evidenceManagmentClient.url) {
       return handleResponse(mockFileResponse(file), resolve, reject);
     }
     return superagent

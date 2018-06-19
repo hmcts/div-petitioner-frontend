@@ -24,9 +24,7 @@ describe(modulePath, () => {
     underTest = s.steps.DoneAndSubmitted;
   });
 
-
   afterEach(() => {
-    s.http.close();
     featureTogglesMock.restore();
   });
 

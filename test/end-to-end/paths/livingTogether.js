@@ -9,7 +9,7 @@ const respondentAddress = {
   postcodeError: 'false'
 };
 
-Feature('Living Together', { retries: 1 });
+Feature('Living Together').retry(3);
 
 Scenario('Petitioner accepts their home address for paper contact', (I) => {
   I.amOnLoadedPage('/index');

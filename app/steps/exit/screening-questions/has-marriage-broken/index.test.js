@@ -17,12 +17,6 @@ describe(modulePath, () => {
     underTest = s.steps.ExitMarriageBroken;
   });
 
-
-  afterEach(() => {
-    s.http.close();
-  });
-
-
   describe('success', () => {
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content);

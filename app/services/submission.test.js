@@ -34,7 +34,7 @@ describe(modulePath, () => {
       let submitStub = null;
 
       beforeEach(() => {
-        process.env.MICROSERVICE_KEY = 'some-key';
+        CONF.services.serviceAuthProvider.microserviceKey = 'some-key';
         submitStub = sinon.stub().resolves(submitSuccess);
         sinon.stub(transformationServiceClient, 'init').returns({ submit: submitStub });
       });
@@ -60,7 +60,7 @@ describe(modulePath, () => {
 
     context('microservice key is not set', () => {
       beforeEach(() => {
-        delete process.env.MICROSERVICE_KEY;
+        delete CONF.services.serviceAuthProvider.microserviceKey;
         sinon.spy(mockedClient, 'submit');
       });
 

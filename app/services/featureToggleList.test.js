@@ -13,10 +13,6 @@ describe(modulePath, () => {
       s = server.init();
     });
 
-    afterEach(() => {
-      s.http.close();
-    });
-
     it('should return success', done => {
       //  note that the features (idam) are hardcoded into the app.js
 
@@ -40,42 +36,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('displays the correct data based on idam being process variables', () => {
-    let s = {};
-    let idam = null;
-
-    beforeEach(() => {
-      idam = process.env.idam;
-      process.env.idam = false;
-      s = server.init();
-    });
-
-    afterEach(() => {
-      s.http.close();
-      if (!idam) delete process.env.idam;
-    });
-
-    it('should return success', done => {
-      const featureToggles = {
-        idam: {
-          defaultState: process.env.idam,
-          feature: 'idam',
-          origin: 'process env'
-        },
-        fullPaymentEventDataSubmission: {
-          defaultState: true,
-          feature: 'fullPaymentEventDataSubmission',
-          origin: 'default config'
-        }
-      };
-
-      supertest(s.app).get('/status/feature-toggles')
-        .expect('Content-Type', /json/)
-        .expect(statusCode.OK)
-        .expect(featureToggles, done);
-    });
-  });
-
   describe('displays the correct data based on idam not being set', () => {
     let s = {};
     let features = null;
@@ -88,7 +48,6 @@ describe(modulePath, () => {
 
     afterEach(() => {
       CONF.features = features;
-      s.http.close();
     });
 
     it('should return success', done => {

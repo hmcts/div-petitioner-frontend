@@ -27,9 +27,7 @@ describe(modulePath, () => {
     underTest = s.steps.NeedHelpWithFees;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
   });

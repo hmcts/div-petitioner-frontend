@@ -22,12 +22,9 @@ describe(modulePath, () => {
     underTest = s.steps.MarriageHusbandOrWife;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     it('renders the content from the content file', done => {

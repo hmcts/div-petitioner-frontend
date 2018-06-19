@@ -54,8 +54,6 @@ describe(modulePath, () => {
     submission.setup.restore();
     serviceToken.setup.restore();
     idam.userDetails.restore();
-
-    s.http.close();
     featureTogglesMock.restore();
     idamMock.restore();
   });

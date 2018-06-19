@@ -22,9 +22,7 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionResidual;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 

@@ -3,6 +3,10 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
+const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
+const statusCodes = require('http-status-codes');
+const submissionService = require('app/services/submission');
+const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
 
 const maximumNumberOfSteps = 500;
 
@@ -11,8 +15,35 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     return '/check-your-answers';
   }
 
-  get nextStep() {
-    return this.steps.Submit;
+  next(ctx, session) {
+    if (session.helpWithFeesNeedHelp === 'Yes') {
+      return this.steps.DoneAndSubmitted;
+    }
+    return this.steps.PayOnline;
+  }
+
+  * postRequest(req, res) {
+    // test to see if user has clicked submit button. The form could have been submitted
+    // by clicking on save and close button
+    const { body } = req;
+    const hasBeenPostedWithoutSubmitButton = body && !body.hasOwnProperty('submit');
+
+    if (hasBeenPostedWithoutSubmitButton) {
+      return yield super.postRequest(req, res);
+    }
+
+    const { session } = req;
+    const ctx = yield this.parseCtx(req);
+
+    //  then test whether the request is valid
+    const [isValid] = this.validate(ctx, session);
+
+    if (isValid) {
+      // if application is valid submit it
+      return this.submitApplication(req, res);
+    }
+
+    return yield super.postRequest(req, res);
   }
 
   * interceptor(ctx, session) {
@@ -235,5 +266,62 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     return templates;
+  }
+
+  submitApplication(req, res) {
+    if (req.session.submissionStarted) {
+      res.redirect(this.steps.ApplicationSubmitted.url);
+      return;
+    }
+
+    // Fail early if the request is not in the right format.
+    const { cookies } = req;
+
+    if (!cookies || !cookies['connect.sid']) {
+      logger.error('Malformed request to Submit step');
+      const step = this.steps.Error400;
+      const content = step.generateContent();
+      res.status(statusCodes.BAD_REQUEST);
+      res.render(step.template, { content });
+      return;
+    }
+
+    req.session = req.session || {};
+
+    // Get user token.
+    let authToken = '';
+    if (features.idam) {
+      authToken = req.cookies['__auth-token'];
+    }
+
+    // We blacklist a few session keys which are internal to the application and
+    // are not needed for the submission.
+    const payload = sessionBlacklistedAttributes.reduce((acc, item) => {
+      delete acc[item];
+      return acc;
+    }, Object.assign({}, req.session));
+    const submission = submissionService.setup();
+
+    req.session.submissionStarted = true;
+
+    submission.submit(authToken, payload)
+      .then(response => {
+        // Check for errors.
+        if (response && response.error) {
+          throw Object.assign({}, { message: `Error in transformation response, ${JSON.stringify(response)}` });
+        }
+        if (response && !response.caseId) {
+          throw Object.assign({}, { message: `Case ID missing in transformation response, ${JSON.stringify(response)}` });
+        }
+        delete req.session.submissionStarted;
+        // Store the resulting case identifier in session for later use.
+        req.session.caseId = response.caseId;
+        res.redirect(this.next(null, req.session).url);
+      })
+      .catch(error => {
+        delete req.session.submissionStarted;
+        logger.error(`Error during submission step: ${error}`);
+        res.redirect('/generic-error');
+      });
   }
 };

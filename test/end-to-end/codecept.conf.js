@@ -1,19 +1,24 @@
 /* eslint-disable no-magic-numbers */
-const waitForTimeout = parseInt(process.env.E2E_WAIT_FOR_TIMEOUT_VALUE) || 10000;
-const waitForAction = parseInt(process.env.E2E_WAIT_FOR_ACTION_VALUE) || 100;
+const CONF = require('config');
+
+const waitForTimeout = parseInt(CONF.e2e.waitForTimeoutValue);
+const waitForAction = parseInt(CONF.e2e.waitForActionValue);
 
 console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-line no-console
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: './paths/**/*.js',
+  tests: getTests(),
   output: process.cwd() + '/functional-output',
   helpers: {
     Puppeteer: {
-      url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
+      url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
       show: false,
+      restart: false,
+      keepCookies: false,
+      keepBrowserState: false,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
@@ -42,7 +47,7 @@ exports.config = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: process.env.E2E_OUTPUT_DIR || './functional-output',
+          reportDir: CONF.e2e.outputDirectory,
           reportName: 'index',
           inlineAssets: true
         }
@@ -51,55 +56,30 @@ exports.config = {
   },
   multiple: {
     parallel: {
-      chunks: (files) => {
-        let configuredChunks = constructChunksWithFullFilePaths([
-          [ 'jurisdictionConnections.js', 'cookieBanner.js', 'logout.js' ],
-          [ 'payment.js', 'errorPaths.js', 'postcode.js' ],
-          [ 'reasonsForDivorce.js', 'invalidCsrf.js', 'reportAProblemPath.js' ],
-          [ 'livingTogether.js', 'save-resume.js', 'aboutYourMarriageCertificate.js', 'staticPages.js' ],
-          [ 'foreignMarriageCertificates.js', 'basicDivorce.js', 'startSession.js', 'uploadMarriageCertificate.js' ]
-        ], files[0]);
-
-        const leftoverTestFiles = getUndefinedTestFiles(configuredChunks, files[0]);
-        if (leftoverTestFiles.length > 0) {
-          configuredChunks.push([ leftoverTestFiles ]); // add any undefined test files
-        }
-        return configuredChunks;
-      },
+      chunks: configureChunks(),
       browsers: ['chrome']
     }
   },
   name: 'frontend Tests'
 };
 
-function getUndefinedTestFiles(chunks, allFiles) {
-  chunks.forEach((chunk)=> {
-    chunk.forEach((testFile) => {
-      const index = allFiles.indexOf(testFile);
-      if(index > -1) { allFiles.splice(index, 1); }
-    });
-  });
-
-  console.log('Undefined Test Files =', allFiles); // eslint-disable-line no-console
-  return allFiles;
+// Reduce chunks on Preview env
+function configureChunks() {
+  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
+  if (CONF.preview_env === 'true') {
+    return 2;
+  } else {
+    return 5;
+  }
 }
 
-function constructChunksWithFullFilePaths(chunks, files) {
-  let finalChunks = [];
-
-  chunks.forEach((chunk) => {
-    let individualChunk = [];
-
-    chunk.forEach((testFile) => {
-
-      const result = files.find((fullFileName) => {
-        return (fullFileName.indexOf(testFile) > -1);
-      });
-      individualChunk.push(result);
-    });
-    finalChunks.push(individualChunk);
-  });
-
-  console.log('All Chunks Configured =', finalChunks); // eslint-disable-line no-console
-  return finalChunks;
+// Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
+// E2E tests must be run manually against Preview in the meantime.
+function getTests() {
+  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
+  if (CONF.preview_env === 'true') {
+    return './paths/**/basicDivorce.js';
+  } else {
+    return './paths/**/*.js';
+  }
 }

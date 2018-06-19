@@ -4,6 +4,7 @@ const payClient = require('@hmcts/div-pay-client');
 const modulePath = 'app/services/payment';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/payment');
+const CONF = require('config');
 
 describe(modulePath, () => {
   const createSuccess = {
@@ -29,7 +30,7 @@ describe(modulePath, () => {
       let createStub = null;
 
       beforeEach(() => {
-        process.env.MICROSERVICE_KEY = 'some-key';
+        CONF.services.serviceAuthProvider.microserviceKey = 'some-key';
         createStub = sinon.stub().resolves(createSuccess);
         sinon.stub(payClient, 'init').returns({ create: createStub });
       });
@@ -55,7 +56,7 @@ describe(modulePath, () => {
 
     context('microservice key is not set', () => {
       beforeEach(() => {
-        delete process.env.MICROSERVICE_KEY;
+        delete CONF.services.serviceAuthProvider.microserviceKey;
         sinon.spy(mockedClient, 'create');
         sinon.spy(mockedClient, 'query');
       });

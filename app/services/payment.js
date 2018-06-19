@@ -80,7 +80,7 @@ module.exports = {
       serviceIdentification: CONF.services.payment.serviceIdentification
     };
     // Use the mock client if the microservice key is not set.
-    const secret = process.env.MICROSERVICE_KEY;
+    const secret = CONF.services.serviceAuthProvider.microserviceKey;
     client = secret ? payClient.init(options) : mockedClient;
 
     return service;

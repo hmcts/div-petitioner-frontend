@@ -95,7 +95,7 @@ describe(modulePath, () => {
       };
       const petitionerEmail = encodeURIComponent(body.petitionerEmail);
       // Act.
-      const sendEmail = true;
+      const sendEmail = 'test@test.com';
       client.saveToDraftStore(userToken, body, sendEmail);
       // Assert.
       expect(request.put.args[0][0]).to.eql({

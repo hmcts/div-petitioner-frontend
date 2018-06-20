@@ -53,8 +53,8 @@ const removeFromDraftStore = (options = {}, userToken = '') => {
 const saveToDraftStore = (options = {}, userToken = '', body = {}, sendEmail = false) => {
   let uri = `${options.draftBaseUrl}`;
 
-  if (sendEmail && body.petitionerEmail) {
-    const petitionerEmail = encodeURIComponent(body.petitionerEmail);
+  if (sendEmail) {
+    const petitionerEmail = encodeURIComponent(sendEmail);
     uri += `?notificationEmail=${petitionerEmail}`;
   }
 

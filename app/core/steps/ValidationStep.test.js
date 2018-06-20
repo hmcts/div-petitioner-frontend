@@ -12,7 +12,6 @@ const {
   saveSessionToDraftStoreAndReply
 } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
-const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const Step = require('app/core/steps/Step');
 const requestHandler = require('app/core/helpers/parseRequest');
 const staleDataManager = require('app/core/helpers/staleDataManager');
@@ -34,7 +33,6 @@ describe(modulePath, () => {
         initSession,
         sessionTimeout,
         restoreFromDraftStore,
-        setIdamUserDetails,
         hasSubmitted,
         saveSessionToDraftStoreAndClose
       ];

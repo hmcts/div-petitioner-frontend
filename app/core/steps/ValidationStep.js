@@ -12,7 +12,6 @@ const {
   saveSessionToDraftStoreAndReply
 } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
-const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const fs = require('fs');
 const requestHandler = require('app/core/helpers/parseRequest');
 const walkMap = require('app/core/utils/treeWalker');
@@ -27,7 +26,6 @@ module.exports = class ValidationStep extends Step {
       initSession,
       sessionTimeout,
       restoreFromDraftStore,
-      setIdamUserDetails,
       hasSubmitted,
       saveSessionToDraftStoreAndClose
     ];

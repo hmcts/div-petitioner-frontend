@@ -7,7 +7,6 @@ const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMidd
 
 const Step = require('app/core/steps/Step');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
-const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
@@ -18,8 +17,7 @@ module.exports = class CardPaymentStatus extends Step {
       idamProtect,
       initSession,
       sessionTimeout,
-      restoreFromDraftStore,
-      setIdamUserDetails
+      restoreFromDraftStore
     ];
   }
 

@@ -1,14 +1,6 @@
-const {sinon} = require('test/util/chai');
-const featureToggles = require('@hmcts/div-feature-toggle-client')().featureToggles;
-
-const stub = () => {
-  sinon.stub(featureToggles, 'get');
-  featureToggles.get.resolves({});
-};
-
-const restore = () => {
-  featureToggles.get.restore();
-};
+const CONF = require('config');
+const { cloneDeep } = require('lodash');
+const originalConfig = cloneDeep(CONF);
 
 /**
  * Run a test with one or more features set.
@@ -29,18 +21,15 @@ function when(features, enabled, test, ...testParameters) {
   return (done) => {
     const cleanup = (err) => {
       featureList.forEach(value => {
-        featureToggles.unset(value);
+        CONF.features[value] = originalConfig.features[value];
       });
       done(err);
     };
     featureList.forEach((value, index) => {
-      featureToggles.set(value, valueList[index]);
+      CONF.feature[value] = valueList[index];
     });
     test(cleanup, ...testParameters);
   };
 }
 
-module.exports = { when, stub, restore,
-  unset: featureToggles.unset,
-  set: featureToggles.set
-};
+module.exports = { when };

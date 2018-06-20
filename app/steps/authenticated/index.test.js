@@ -24,7 +24,6 @@ describe(modulePath, () => {
     sinon.stub(idam, 'landingPage').returns(landingPageStub);
     idamMock.stub();
     s = server.init();
-    featureTogglesMock.stub();
     agent = request.agent(s.app);
     underTest = s.steps.Authenticated;
   });
@@ -32,7 +31,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-    featureTogglesMock.restore();
     idam.landingPage.restore();
   });
 

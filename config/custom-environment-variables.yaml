@@ -19,11 +19,6 @@ services:
   idamApp:
     health: IDAM_APP_HEALHCHECK_URL
 
-  featureToggleApi:
-    health: FEATURE_TOGGLE_API_HEALHCHECK_URL
-
-  featureToggleApiUrl: FEATURE_TOGGLE_API_URL
-
   payment:
     baseUrl: PAYMENT_SERVICE_URL
     health: PAYMENT_SERVICE_HEALTHCHECK_URL

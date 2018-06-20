@@ -31,7 +31,6 @@ let fields = {};
 
 describe(modulePath, () => {
   beforeEach(() => {
-    featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -40,7 +39,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-    featureTogglesMock.restore();
   });
 
   describe('content', () => {

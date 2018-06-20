@@ -43,7 +43,6 @@ describe(modulePath, () => {
     sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
 
     idamMock.stub();
-    featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.CardPaymentStatus;
@@ -54,7 +53,6 @@ describe(modulePath, () => {
     submission.setup.restore();
     serviceToken.setup.restore();
     idam.userDetails.restore();
-    featureTogglesMock.restore();
     idamMock.restore();
   });
 

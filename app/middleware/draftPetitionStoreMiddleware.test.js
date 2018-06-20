@@ -23,14 +23,6 @@ describe(modulePath, () => {
     checkYourAnswersUrl = s.steps.CheckYourAnswers.url;
   });
 
-  beforeEach(() => {
-    featureTogglesMock.stub();
-  });
-
-  afterEach(() => {
-    featureTogglesMock.restore();
-  });
-
   describe('#redirectToCheckYourAnswers', () => {
     beforeEach(() => {
       res = { redirect: sinon.stub() };

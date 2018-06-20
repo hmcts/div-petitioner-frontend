@@ -93,12 +93,10 @@ describe(modulePath, () => {
       };
       originalCommonProps = CONF.commonProps;
       CONF.commonProps = { applicationFee: { code: 'some-code', feeVersion: '1' } };
-      featureTogglesMock.stub();
     });
 
     afterEach(() => {
       CONF.commonProps = originalCommonProps;
-      featureTogglesMock.restore();
     });
     context('feature is set to false', () => {
       it('returns only payment reference from event data', done => {

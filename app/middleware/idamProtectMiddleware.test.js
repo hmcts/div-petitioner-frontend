@@ -15,7 +15,6 @@ const two = 2;
 describe(modulePath, () => {
   beforeEach(() => {
     idamMock.stub();
-    featureTogglesMock.stub();
     req = {};
     res = {};
     next = sinon.stub();
@@ -26,7 +25,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-    featureTogglesMock.restore();
     idam.protect.restore();
   });
 

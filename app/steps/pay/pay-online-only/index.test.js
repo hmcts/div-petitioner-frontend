@@ -44,7 +44,6 @@ describe(modulePath, () => {
       .callsArgWith(two);
     sinon.spy(getBaseUrl);
     sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
-    featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -53,7 +52,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-    featureTogglesMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
     idam.userDetails.restore();
   });

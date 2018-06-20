@@ -1,5 +1,4 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
-const CONF = require('config');
 
 Feature('Upload Marriage Certificate').retry(3);
 
@@ -29,7 +28,7 @@ Scenario('Test ability validate document type', function* (I) {
 
   const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
 
-  if(isDragAndDropSupported && CONF.deployment_env !== 'local') {
+  if(isDragAndDropSupported) {
     // Test can upload .pdf
     I.testUploadResponse(isDragAndDropSupported, '/assets/test_pdf.pdf');
     I.dontSee(content.errorUnknown);

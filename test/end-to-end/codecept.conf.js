@@ -22,9 +22,7 @@ exports.config = {
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
-          '--no-sandbox',
-          `--proxy-server=${process.env.E2E_PROXY_SERVER}`,
-          `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS}`
+          '--no-sandbox'
         ]
       }
     },

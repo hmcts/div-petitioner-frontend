@@ -10,8 +10,6 @@ http_proxy = ""
 
 google_analytics_tracking_id = "UA-93824767-3"
 
-rediscloud_url = "betaProddivorceCache01.reform.hmcts.net:6379"
-
 idam_authentication_web_url = "https://hmcts-access.service.gov.uk"
 idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
 

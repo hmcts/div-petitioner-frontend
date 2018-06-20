@@ -16,8 +16,6 @@ idam_authentication_web_url = "https://hmcts-access.service.gov.uk"
 
 idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
 
-feature_toggle_api_url = "http://betaProddivorceAppLB.reform.hmcts.net:4002"
-
 payment_service_url = "https://payments.reform.hmcts.net:4401"
 
 fee_register_url = "https://fees-register.reform.hmcts.net:4411"

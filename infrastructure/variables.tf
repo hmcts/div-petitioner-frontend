@@ -171,14 +171,6 @@ variable "evidence_management_client_api_upload_endpoint" {
   default = "/emclientapi/version/1/upload"
 }
 
-variable "feature_toggle_api_url" {
-  type = "string"
-}
-
-variable "feature_toggle_api_base_path" {
-  default = "/api/v1/feature-toggle"
-}
-
 variable "payment_service_url" {
   type = "string"
 }

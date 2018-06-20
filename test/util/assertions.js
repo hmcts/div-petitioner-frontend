@@ -404,7 +404,7 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
     .then(() => done(), done);
 };
 
-exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get', createsNewSession = true) => {
+exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get', createsNewSession = true, data) => {
   const runCallback = () => {
     let request = agent[method](underTest.url);
 
@@ -414,6 +414,12 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
 
     if (cookies.length) {
       request = request.set('Cookie', [request.cookies, ...cookies]);
+    }
+
+    if (data){
+      request
+        .type('form')
+        .send(data);
     }
 
     return request

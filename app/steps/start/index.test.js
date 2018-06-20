@@ -43,10 +43,10 @@ describe(modulePath, () => {
         const idamArgs = {
           hostName,
           indexUrl: confIdam.indexUrl,
-          idamApiUrl: process.env.IDAM_API_URL || confIdam.idamApiUrl,
-          idamLoginUrl: process.env.IDAM_LOGIN_URL || confIdam.idamLoginUrl,
-          idamSecret: process.env.IDAM_SECRET || confIdam.idamSecret,
-          idamClientID: process.env.IDAM_CLIENT_ID || confIdam.idamClientID,
+          idamApiUrl: confIdam.idamApiUrl,
+          idamLoginUrl: confIdam.idamLoginUrl,
+          idamSecret: confIdam.idamSecret,
+          idamClientID: confIdam.idamClientID,
           redirectUri
         };
 

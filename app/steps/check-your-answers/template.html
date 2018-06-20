@@ -121,12 +121,12 @@
             <p class="text bold-small">
               <em class="icon icon-important">
                 <span class="visuallyhidden">Warning</span>
-              </em> 
+              </em>
                <span class="check-your-answers-warning">{{ content.submitPayWarning | safe}}</span>
             </p>
           {%- endif -%}
 
-            <input id="confirmCheckYourAnswers" type="submit" class="button" value="
+            <input id="confirmCheckYourAnswers" type="submit" name="submit" class="button" value="
               {%- if fields.helpWithFeesReferenceNumber.value -%}
                {{ content.submitOnline | safe }}
               {%- else -%}

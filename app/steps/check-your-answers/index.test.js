@@ -10,6 +10,7 @@ const idamMock = require('test/mocks/idam');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
+const courtsAllocation = require('app/services/courtsAllocation');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -721,6 +722,7 @@ describe(modulePath, () => {
   describe('#submitApplication', () => {
     let submit = {};
     let postBody = {};
+    let courtsAllocationSpy = {};
 
     beforeEach(done => {
       submit = sinon.stub().resolves({
@@ -729,6 +731,8 @@ describe(modulePath, () => {
         caseId: '1234567890'
       });
       sinon.stub(submission, 'setup').returns({ submit });
+
+      courtsAllocationSpy = sinon.spy(courtsAllocation, 'allocateCourt');
 
       postBody = {
         submit: true,
@@ -764,6 +768,15 @@ describe(modulePath, () => {
             .to.equal(s.steps.ApplicationSubmitted.url);
         }, 'post', true, postBody);
       });
+    });
+
+    it('allocates a court on submission', done => {
+      // Act.
+      testCustom(done, agent, underTest, [], () => {
+        // Assert.
+        expect(courtsAllocationSpy.calledOnce)
+          .to.equal(true);
+      }, 'post', true, postBody);
     });
 
     it('redirects to error page when submission request fails', done => {

@@ -11,6 +11,9 @@ module.exports = (req, res, next) => {
   res.locals.googleAnalyticsId = CONF.google_analytics.propertyId;
   res.locals.cookieText = CONF.cookieText;
   res.locals.releaseVersion = `v${packageJson.version}`;
+  if (req.idam) {
+    res.locals.idamEmail = req.idam.userDetails.email;
+  }
 
   //  update this to reflect new data structure
   //  even though locals is an appalling way of doing things

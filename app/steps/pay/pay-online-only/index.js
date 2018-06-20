@@ -9,7 +9,6 @@ const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
-const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const { saveSessionToDraftStoreAndClose } = require('app/middleware/draftPetitionStoreMiddleware');
 const requestHandler = require('app/core/helpers/parseRequest');
 const idam = require('app/services/idam');
@@ -33,7 +32,6 @@ module.exports = class PayOnline extends Step {
       initSession,
       sessionTimeout,
       restoreFromDraftStore,
-      setIdamUserDetails,
       applicationFeeMiddleware.updateApplicationFeeMiddleware,
       saveSessionToDraftStoreAndClose
     ];

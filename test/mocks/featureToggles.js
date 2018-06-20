@@ -26,7 +26,7 @@ function when(features, enabled, test, ...testParameters) {
       done(err);
     };
     featureList.forEach((value, index) => {
-      CONF.feature[value] = valueList[index];
+      CONF.features[value] = valueList[index];
     });
     test(cleanup, ...testParameters);
   };

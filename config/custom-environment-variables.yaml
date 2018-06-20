@@ -120,6 +120,7 @@ http:
 
 features:
   idam: FEATURE_IDAM
+  fullPaymentEventDataSubmission: FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

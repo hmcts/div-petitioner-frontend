@@ -208,5 +208,9 @@ module "frontend" {
     WESTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
     SOUTHWEST_COURTWEIGHT    = "${var.court_southwest_court_weight}"
     NORTHWEST_COURTWEIGHT    = "${var.court_northwest_court_weight}"
+
+    // Feature toggling through config
+    FEATURE_IDAM = "${var.feature_idam}"
+    FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
   }
 }

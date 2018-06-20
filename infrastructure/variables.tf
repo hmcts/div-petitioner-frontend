@@ -215,24 +215,12 @@ variable "rate_limiter_expire" {
   default = "3600000"
 }
 
-variable "feature_jurisdiction" {
-  default = false
-}
-
-variable "feature_new_jurisdiction" {
-  default = true
-}
-
 variable "feature_idam" {
   default = true
 }
 
-variable "feature_foreign_marriage_certs" {
-  default = false
-}
-
-variable "feature_court_southamption" {
-  default = false
+variable "feature_full_payment_event_data_submission" {
+  default = true
 }
 
 variable "survey_feedback_url" {

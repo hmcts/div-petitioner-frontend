@@ -57,7 +57,6 @@ services:
   feesAndPayments:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'
-    
 
 defaultEnvironmentNodeEnv: 'development'
 

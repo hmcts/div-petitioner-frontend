@@ -733,6 +733,7 @@ describe(modulePath, () => {
       });
       sinon.stub(submission, 'setup').returns({ submit });
       sinon.stub(ga, 'trackEvent');
+      sinon.spy(courtsAllocation, 'allocateCourt');
 
       postBody = {
         submit: true,
@@ -752,6 +753,7 @@ describe(modulePath, () => {
     afterEach(() => {
       ga.trackEvent.restore();
       submission.setup.restore();
+      courtsAllocation.allocateCourt.restore();
     });
 
     context('duplicate submission', () => {
@@ -771,36 +773,25 @@ describe(modulePath, () => {
       });
     });
 
-    context('Court allocation', () => {
-      beforeEach(() => {
-        sinon.spy(courtsAllocation, 'allocateCourt');
-      });
+    it('loads court data from config and selects one automatically', done => {
+      // Arrange.
+      const courts = Object.keys(CONF.commonProps.court);
 
-      afterEach(() => {
-        courtsAllocation.allocateCourt.restore();
-      });
+      const testSession = () => {
+        getSession(agent)
+          .then(sess => {
+            courts.forEach(courtName => {
+              expect(sess.court[courtName]).to
+                .eql(CONF.commonProps.court[courtName]);
+            });
+            expect(sess.courts).to.be.oneOf(courts);
+          })
+          .then(done, done);
+      };
 
-      it('loads court data from config and selects one automatically', done => {
-        // Arrange.
-        const courts = Object.keys(CONF.commonProps.court);
-
-        const testSession = sess => {
-          courts.forEach(courtName => {
-            expect(sess.court[courtName]).to
-              .eql(CONF.commonProps.court[courtName]);
-          });
-
-          expect(sess.courts).to.be.oneOf(courts);
-        };
-
-        testCustom(done, agent, underTest, [], () => {
-          expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
-
-          getSession(agent)
-            .then(testSession)
-            .then(done, done);
-        }, 'post', true, postBody);
-      });
+      testCustom(testSession, agent, underTest, [], () => {
+        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+      }, 'post', true, postBody);
     });
 
     it('google anayltics is called', done => {

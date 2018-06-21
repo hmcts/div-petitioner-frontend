@@ -27,7 +27,7 @@ let req = {};
 let res = {};
 let fields = {};
 
-describe(modulePath, () => {
+describe.only(modulePath, () => {
   beforeEach(() => {
     featureTogglesMock.stub();
     idamMock.stub();
@@ -750,6 +750,7 @@ describe(modulePath, () => {
     });
 
     afterEach(() => {
+      courtsAllocation.allocateCourt.restore();
       submission.setup.restore();
     });
 

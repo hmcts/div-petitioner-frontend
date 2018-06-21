@@ -13,6 +13,3 @@ output "feature_idam" {
 output "feature_full_payment_event_data_submission" {
   value = "${var.feature_full_payment_event_data_submission}"
 }
-output "feature_idam" {
-  value = "${var.feature_idam}"
-}

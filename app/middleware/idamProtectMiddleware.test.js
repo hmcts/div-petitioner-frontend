@@ -1,6 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const idamMock = require('test/mocks/idam');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const idam = require('app/services/idam');
 
 const modulePath = 'app/middleware/idamProtectMiddleware';
@@ -37,8 +37,8 @@ describe(modulePath, () => {
       expect(idam.protect.calledWith()).to.eql(false);
       complete();
     };
-    const featureMock = featureTogglesMock.when('idam', false, test);
-    featureMock(done);
+    const featureToggle = featureToggleConfig.when('idam', false, test);
+    featureToggle(done);
   });
 
   it('with idam enabled it should call idam.protect', done => {
@@ -49,7 +49,7 @@ describe(modulePath, () => {
       expect(idam.protect.calledOnce).to.eql(true);
       complete();
     };
-    const featureMock = featureTogglesMock.when('idam', true, test);
-    featureMock(done);
+    const featureToggle = featureToggleConfig.when('idam', true, test);
+    featureToggle(done);
   });
 });

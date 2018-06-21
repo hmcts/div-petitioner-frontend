@@ -5,7 +5,7 @@ const CONF = require('config');
 const modulePath = 'app/services/submission';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/transformationServiceClient');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const mockedPaymentClient = require('app/services/mocks/payment');
 
 
@@ -111,7 +111,7 @@ describe(modulePath, () => {
             });
         };
 
-        const featureMock = featureTogglesMock
+        const featureToggle = featureToggleConfig
           .when('fullPaymentEventDataSubmission', false, generatePaymentEventData, responsePayment => {
             // Assert.
             const output = underTest
@@ -125,7 +125,7 @@ describe(modulePath, () => {
             expect(output.payment.PaymentFeeId).to.be.an('undefined');
             expect(output.payment.PaymentSiteId).to.be.an('undefined');
           });
-        featureMock(done);
+        featureToggle(done);
       });
     });
     context('feature is set to true', () => {
@@ -141,7 +141,7 @@ describe(modulePath, () => {
             });
         };
 
-        const featureMock = featureTogglesMock
+        const featureToggle = featureToggleConfig
           .when('fullPaymentEventDataSubmission', true, generatePaymentEventData, responsePayment => {
             // Assert.
             const ammountFromMock = 55000;
@@ -156,7 +156,7 @@ describe(modulePath, () => {
             expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
             expect(output.payment).to.have.property('PaymentSiteId', 'XX00');
           });
-        featureMock(done);
+        featureToggle(done);
       });
     });
   });

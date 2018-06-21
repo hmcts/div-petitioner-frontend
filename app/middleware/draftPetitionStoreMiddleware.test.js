@@ -1,6 +1,6 @@
 /* eslint-disable max-nested-callbacks */
 const { expect, sinon } = require('test/util/chai');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const parseRequest = require('app/core/helpers/parseRequest');
 const server = require('app');
@@ -72,8 +72,8 @@ describe(modulePath, () => {
             cleanUp();
           }, 1);
         };
-        const featureMock = featureTogglesMock.when('idam', true, test);
-        featureMock(done);
+        const featureToggle = featureToggleConfig.when('idam', true, test);
+        featureToggle(done);
       });
       it('does not attempt to restore if we have already fetched from Draft store', done => {
         req.session = { screenHasMarriageBroken: true, fetchedDraft: true };
@@ -86,8 +86,8 @@ describe(modulePath, () => {
             cleanUp();
           }, 1);
         };
-        const featureMock = featureTogglesMock.when('idam', true, test);
-        featureMock(done);
+        const featureToggle = featureToggleConfig.when('idam', true, test);
+        featureToggle(done);
       });
       it('does not attempt to restore session if no auth token populated', done => {
         req.cookies = {};
@@ -100,8 +100,8 @@ describe(modulePath, () => {
             cleanUp();
           }, 1);
         };
-        const featureMock = featureTogglesMock.when('idam', true, test);
-        featureMock(done);
+        const featureToggle = featureToggleConfig.when('idam', true, test);
+        featureToggle(done);
       });
     });
 

@@ -3,7 +3,7 @@ const request = require('supertest');
 const { testRedirect, getSession, testCustom } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const idam = require('app/services/idam');
 const { expect, sinon } = require('test/util/chai');
 const { withSession } = require('test/util/setup');
@@ -48,10 +48,10 @@ describe(modulePath, () => {
     it('redirects to the landing page', done => {
       const context = {};
 
-      const featureMock = featureTogglesMock
+      const featureToggle = featureToggleConfig
         .when('idam', true, testRedirect, agent, underTest, context, s.steps.ScreeningQuestionsMarriageBroken);
 
-      featureMock(() => {
+      featureToggle(() => {
         getSession(agent)
           .then(() => {
             expect(landingPageStub.calledOnce).to.eql(true);
@@ -80,9 +80,9 @@ describe(modulePath, () => {
 
         const emptyCallback = () => {}; // eslint-disable-line
 
-        const featureMock = featureTogglesMock
+        const featureToggle = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, [], emptyCallback, 'post', false);
-        featureMock(testSession);
+        featureToggle(testSession);
       });
     });
 
@@ -107,9 +107,9 @@ describe(modulePath, () => {
 
         const emptyCallback = () => {}; // eslint-disable-line
 
-        const featureMock = featureTogglesMock
+        const featureToggle = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, [], emptyCallback, 'post', false);
-        featureMock(testSession);
+        featureToggle(testSession);
       });
     });
   });

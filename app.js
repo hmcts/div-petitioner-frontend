@@ -17,8 +17,8 @@ const manifest = require('manifest.json');
 const helmet = require('helmet');
 const csurf = require('csurf');
 const { fetchToggles } = require('@hmcts/div-feature-toggle-client')({
-  env: CONF.environment,
-  featureToggleApiUrl: CONF.services.featureToggleApiUrl
+  env: CONF.environment
+  // featureToggleApiUrl: CONF.services.featureToggleApiUrl
 });
 const i18nTemplate = require('app/core/utils/i18nTemplate')({
   viewDirectory: './app/views/',

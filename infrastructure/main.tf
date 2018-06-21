@@ -126,7 +126,7 @@ module "frontend" {
     POST_CODE_ACCESS_TOKEN = "${data.vault_generic_secret.post_code_token.data["value"]}"
 
     // Redis Cloud
-REDISCLOUD_URL = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
+    REDISCLOUD_URL = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     USE_AUTH       = "${var.use_auth}"
 
     // Encryption secrets

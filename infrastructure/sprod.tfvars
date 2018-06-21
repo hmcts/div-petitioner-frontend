@@ -12,8 +12,6 @@ http_proxy = ""
 
 google_analytics_tracking_id = "UA-93824767-2"
 
-rediscloud_url = "betaDevBdivorceCache01.reform.hmcts.net:6379"
-
 idam_authentication_web_url = "https://idam-test.dev.ccidam.reform.hmcts.net"
 
 idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"

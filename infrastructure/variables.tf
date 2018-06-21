@@ -115,10 +115,6 @@ variable "google_analytics_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
-variable "rediscloud_url" {
-  type = "string"
-}
-
 variable "use_auth" {
   default = false
 }

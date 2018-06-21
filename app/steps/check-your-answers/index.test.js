@@ -1,7 +1,7 @@
 const co = require('co');
 const request = require('supertest');
 const server = require('app');
-const { testContent, testExistence, testNonExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testNonExistence, testCustom, getSession } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const clone = require('lodash').cloneDeep;
@@ -10,6 +10,9 @@ const idamMock = require('test/mocks/idam');
 const featureTogglesMock = require('test/mocks/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -729,6 +732,8 @@ describe(modulePath, () => {
         caseId: '1234567890'
       });
       sinon.stub(submission, 'setup').returns({ submit });
+      sinon.stub(ga, 'trackEvent');
+      sinon.spy(courtsAllocation, 'allocateCourt');
 
       postBody = {
         submit: true,
@@ -746,7 +751,9 @@ describe(modulePath, () => {
     });
 
     afterEach(() => {
+      ga.trackEvent.restore();
       submission.setup.restore();
+      courtsAllocation.allocateCourt.restore();
     });
 
     context('duplicate submission', () => {
@@ -764,6 +771,36 @@ describe(modulePath, () => {
             .to.equal(s.steps.ApplicationSubmitted.url);
         }, 'post', true, postBody);
       });
+    });
+
+    it('loads court data from config and selects one automatically', done => {
+      // Arrange.
+      const courts = Object.keys(CONF.commonProps.court);
+
+      const testSession = () => {
+        getSession(agent)
+          .then(sess => {
+            courts.forEach(courtName => {
+              expect(sess.court[courtName]).to
+                .eql(CONF.commonProps.court[courtName]);
+            });
+            expect(sess.courts).to.be.oneOf(courts);
+          })
+          .then(done, done);
+      };
+
+      testCustom(testSession, agent, underTest, [], () => {
+        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+      }, 'post', true, postBody);
+    });
+
+    it('google anayltics is called', done => {
+      // Act.
+      testCustom(done, agent, underTest, [], () => {
+        // Assert.
+        expect(ga.trackEvent.calledOnce)
+          .to.equal(true);
+      }, 'post', true, postBody);
     });
 
     it('redirects to error page when submission request fails', done => {

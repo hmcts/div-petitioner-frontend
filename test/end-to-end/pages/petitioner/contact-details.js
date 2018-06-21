@@ -6,7 +6,7 @@ function enterPetitionerContactDetails() {
   const I = this;
 
   I.seeCurrentUrlEquals('/petitioner-respondent/contact-details');
-  if (CONF.idam) {
+  if (CONF.features.idam) {
     I.see(idamConfigHelper.getTestEmail());
   }
   I.fillField('petitionerPhoneNumber', '01234567890');

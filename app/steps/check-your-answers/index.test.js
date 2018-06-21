@@ -27,7 +27,7 @@ let req = {};
 let res = {};
 let fields = {};
 
-describe.only(modulePath, () => {
+describe(modulePath, () => {
   beforeEach(() => {
     featureTogglesMock.stub();
     idamMock.stub();

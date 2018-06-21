@@ -102,7 +102,7 @@ module "frontend" {
     FEATURE_TOGGLE_API_HEALHCHECK_URL = "${var.feature_toggle_api_url}${var.health_endpoint}"
     jurisdiction                      = "${var.feature_jurisdiction}"
     newJurisdiction                   = "${var.feature_new_jurisdiction}"
-    feature_idam                      = "${var.feature_idam}"
+    FEATURE_IDAM                      = "${var.feature_idam}"
     foreignMarriageCerts              = "${var.feature_foreign_marriage_certs}"
     courtSouthampton                  = "${var.feature_court_southamption}"
 

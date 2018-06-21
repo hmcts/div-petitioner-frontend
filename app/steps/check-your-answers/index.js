@@ -327,7 +327,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${error}`);
+        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
         res.redirect('/generic-error');
       });
   }

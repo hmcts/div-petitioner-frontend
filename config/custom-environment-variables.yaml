@@ -123,6 +123,9 @@ http:
   port: PORT
   porttactical: HTTP_PORT
 
+features:
+  idam: FEATURE_IDAM
+
 idamArgs:
   idamApiUrl: IDAM_API_URL
   idamLoginUrl: IDAM_LOGIN_URL

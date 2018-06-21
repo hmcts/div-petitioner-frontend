@@ -115,10 +115,6 @@ variable "google_analytics_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
-variable "rediscloud_url" {
-  type = "string"
-}
-
 variable "use_auth" {
   default = false
 }
@@ -228,7 +224,7 @@ variable "feature_new_jurisdiction" {
 }
 
 variable "feature_idam" {
-  default = false
+  default = true
 }
 
 variable "feature_foreign_marriage_certs" {

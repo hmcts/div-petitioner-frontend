@@ -111,7 +111,7 @@ describe(modulePath, () => {
             });
         };
 
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('fullPaymentEventDataSubmission', false, generatePaymentEventData, responsePayment => {
             // Assert.
             const output = underTest
@@ -125,7 +125,7 @@ describe(modulePath, () => {
             expect(output.payment.PaymentFeeId).to.be.an('undefined');
             expect(output.payment.PaymentSiteId).to.be.an('undefined');
           });
-        featureToggle(done);
+        featureTest(done);
       });
     });
     context('feature is set to true', () => {
@@ -141,7 +141,7 @@ describe(modulePath, () => {
             });
         };
 
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('fullPaymentEventDataSubmission', true, generatePaymentEventData, responsePayment => {
             // Assert.
             const ammountFromMock = 55000;
@@ -156,7 +156,7 @@ describe(modulePath, () => {
             expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
             expect(output.payment).to.have.property('PaymentSiteId', 'XX00');
           });
-        featureToggle(done);
+        featureTest(done);
       });
     });
   });

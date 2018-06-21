@@ -817,26 +817,26 @@ describe(modulePath, () => {
         // Arrange.
         const userCookie = ['__auth-token=auth.token', 'connect.sid=abc'];
         // Act.
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
             expect(submit.args[0][0]).to.eql('auth.token');
           }, 'post', true, postBody);
-        featureToggle(done);
+        featureTest(done);
       });
     });
 
     context('Idam is turned OFF', () => {
       it('uses an empty token for the mocks', done => {
         // Act.
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
             expect(submit.args[0][0]).to.eql('');
           }, 'post', true, postBody);
-        featureToggle(done);
+        featureTest(done);
       });
     });
 

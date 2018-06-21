@@ -72,8 +72,8 @@ describe(modulePath, () => {
             cleanUp();
           }, 1);
         };
-        const featureToggle = featureToggleConfig.when('idam', true, test);
-        featureToggle(done);
+        const featureTest = featureToggleConfig.when('idam', true, test);
+        featureTest(done);
       });
       it('does not attempt to restore if we have already fetched from Draft store', done => {
         req.session = { screenHasMarriageBroken: true, fetchedDraft: true };
@@ -86,8 +86,8 @@ describe(modulePath, () => {
             cleanUp();
           }, 1);
         };
-        const featureToggle = featureToggleConfig.when('idam', true, test);
-        featureToggle(done);
+        const featureTest = featureToggleConfig.when('idam', true, test);
+        featureTest(done);
       });
       it('does not attempt to restore session if no auth token populated', done => {
         req.cookies = {};
@@ -100,8 +100,8 @@ describe(modulePath, () => {
             cleanUp();
           }, 1);
         };
-        const featureToggle = featureToggleConfig.when('idam', true, test);
-        featureToggle(done);
+        const featureTest = featureToggleConfig.when('idam', true, test);
+        featureTest(done);
       });
     });
 

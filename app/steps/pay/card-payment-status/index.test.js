@@ -120,26 +120,26 @@ describe(modulePath, () => {
         // Arrange.
         const userCookie = ['__auth-token=auth.token'];
         // Act.
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(query.calledOnce).to.equal(true);
             expect(query.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
           });
-        featureToggle(done);
+        featureTest(done);
       });
     });
 
     context('Idam is turned OFF', () => {
       it('uses a fake user for the mocks', done => {
         // Act.
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(query.calledOnce).to.equal(true);
             expect(query.args[0][0]).to.eql({});
           });
-        featureToggle(done);
+        featureTest(done);
       });
     });
 

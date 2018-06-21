@@ -48,10 +48,10 @@ describe(modulePath, () => {
     it('redirects to the landing page', done => {
       const context = {};
 
-      const featureToggle = featureToggleConfig
+      const featureTest = featureToggleConfig
         .when('idam', true, testRedirect, agent, underTest, context, s.steps.ScreeningQuestionsMarriageBroken);
 
-      featureToggle(() => {
+      featureTest(() => {
         getSession(agent)
           .then(() => {
             expect(landingPageStub.calledOnce).to.eql(true);
@@ -80,9 +80,9 @@ describe(modulePath, () => {
 
         const emptyCallback = () => {}; // eslint-disable-line
 
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, [], emptyCallback, 'post', false);
-        featureToggle(testSession);
+        featureTest(testSession);
       });
     });
 
@@ -107,9 +107,9 @@ describe(modulePath, () => {
 
         const emptyCallback = () => {}; // eslint-disable-line
 
-        const featureToggle = featureToggleConfig
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, [], emptyCallback, 'post', false);
-        featureToggle(testSession);
+        featureTest(testSession);
       });
     });
   });

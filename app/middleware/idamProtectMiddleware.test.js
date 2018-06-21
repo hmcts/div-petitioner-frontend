@@ -37,8 +37,8 @@ describe(modulePath, () => {
       expect(idam.protect.calledWith()).to.eql(false);
       complete();
     };
-    const featureToggle = featureToggleConfig.when('idam', false, test);
-    featureToggle(done);
+    const featureTest = featureToggleConfig.when('idam', false, test);
+    featureTest(done);
   });
 
   it('with idam enabled it should call idam.protect', done => {
@@ -49,7 +49,7 @@ describe(modulePath, () => {
       expect(idam.protect.calledOnce).to.eql(true);
       complete();
     };
-    const featureToggle = featureToggleConfig.when('idam', true, test);
-    featureToggle(done);
+    const featureTest = featureToggleConfig.when('idam', true, test);
+    featureTest(done);
   });
 });

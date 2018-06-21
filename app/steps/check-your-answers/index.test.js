@@ -1,7 +1,7 @@
 const co = require('co');
 const request = require('supertest');
 const server = require('app');
-const { testContent, testExistence, testNonExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testNonExistence, testCustom, getSession } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const clone = require('lodash').cloneDeep;
@@ -11,6 +11,8 @@ const featureTogglesMock = require('test/mocks/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
 const courtsAllocation = require('app/services/courtsAllocation');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -722,7 +724,6 @@ describe(modulePath, () => {
   describe('#submitApplication', () => {
     let submit = {};
     let postBody = {};
-    let courtsAllocationSpy = {};
 
     beforeEach(done => {
       submit = sinon.stub().resolves({
@@ -731,8 +732,7 @@ describe(modulePath, () => {
         caseId: '1234567890'
       });
       sinon.stub(submission, 'setup').returns({ submit });
-
-      courtsAllocationSpy = sinon.spy(courtsAllocation, 'allocateCourt');
+      sinon.stub(ga, 'trackEvent');
 
       postBody = {
         submit: true,
@@ -750,7 +750,7 @@ describe(modulePath, () => {
     });
 
     afterEach(() => {
-      courtsAllocation.allocateCourt.restore();
+      ga.trackEvent.restore();
       submission.setup.restore();
     });
 
@@ -771,11 +771,43 @@ describe(modulePath, () => {
       });
     });
 
-    it('allocates a court on submission', done => {
+    context('Court allocation', () => {
+      beforeEach(() => {
+        sinon.spy(courtsAllocation, 'allocateCourt');
+      });
+
+      afterEach(() => {
+        courtsAllocation.allocateCourt.restore();
+      });
+
+      it('loads court data from config and selects one automatically', done => {
+        // Arrange.
+        const courts = Object.keys(CONF.commonProps.court);
+
+        const testSession = sess => {
+          courts.forEach(courtName => {
+            expect(sess.court[courtName]).to
+              .eql(CONF.commonProps.court[courtName]);
+          });
+
+          expect(sess.courts).to.be.oneOf(courts);
+        };
+
+        testCustom(done, agent, underTest, [], () => {
+          expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+
+          getSession(agent)
+            .then(testSession)
+            .then(done, done);
+        }, 'post', true, postBody);
+      });
+    });
+
+    it('google anayltics is called', done => {
       // Act.
       testCustom(done, agent, underTest, [], () => {
         // Assert.
-        expect(courtsAllocationSpy.calledOnce)
+        expect(ga.trackEvent.calledOnce)
           .to.equal(true);
       }, 'post', true, postBody);
     });

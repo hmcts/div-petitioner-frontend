@@ -28,7 +28,6 @@ exports.config = {
         ]
       }
     },
-    FeatureToggleHelper: { require: './helpers/featureToggleHelper.js' },
     ElementExist: { require: './helpers/ElementExist.js' },
     IdamHelper: { require: './helpers/idamHelper.js' },
     JSWait: { require: './helpers/JSWait.js' }

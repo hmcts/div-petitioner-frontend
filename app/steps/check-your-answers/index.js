@@ -3,10 +3,11 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const statusCodes = require('http-status-codes');
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const ga = require('app/services/ga');
 
 const maximumNumberOfSteps = 500;
 
@@ -288,9 +289,14 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     req.session = req.session || {};
 
+    // Load courts data into session and select court automatically.
+    req.session.court = CONF.commonProps.court;
+    req.session.courts = courtsAllocation.allocateCourt();
+    ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
+
     // Get user token.
     let authToken = '';
-    if (features.idam) {
+    if (CONF.features.idam) {
       authToken = req.cookies['__auth-token'];
     }
 
@@ -320,7 +326,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${error}`);
+        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
         res.redirect('/generic-error');
       });
   }

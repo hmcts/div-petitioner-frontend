@@ -1,6 +1,6 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 
-Feature('Basic divorce path', { retries: 1 });
+Feature('Basic divorce path').retry(3);
 
 Scenario('Get a divorce', function*(I) {
 

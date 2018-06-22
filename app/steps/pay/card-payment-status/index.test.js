@@ -7,7 +7,7 @@ const idamMock = require('test/mocks/idam');
 
 const { expect, sinon } = require('test/util/chai');
 const server = require('app');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const { testRedirect, testCustom } = require('test/util/assertions');
 const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
@@ -43,7 +43,6 @@ describe(modulePath, () => {
     sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
 
     idamMock.stub();
-    featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.CardPaymentStatus;
@@ -54,9 +53,6 @@ describe(modulePath, () => {
     submission.setup.restore();
     serviceToken.setup.restore();
     idam.userDetails.restore();
-
-    s.http.close();
-    featureTogglesMock.restore();
     idamMock.restore();
   });
 
@@ -124,26 +120,26 @@ describe(modulePath, () => {
         // Arrange.
         const userCookie = ['__auth-token=auth.token'];
         // Act.
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(query.calledOnce).to.equal(true);
             expect(query.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
           });
-        featureMock(done);
+        featureTest(done);
       });
     });
 
     context('Idam is turned OFF', () => {
       it('uses a fake user for the mocks', done => {
         // Act.
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(query.calledOnce).to.equal(true);
             expect(query.args[0][0]).to.eql({});
           });
-        featureMock(done);
+        featureTest(done);
       });
     });
 

@@ -1,7 +1,7 @@
-const toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
+const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
-Feature('Draft petition store', { retries: 1 });
+Feature('Draft petition store').retry(3);
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
@@ -9,7 +9,7 @@ Scenario('See the check your answers page if session restored from draft petitio
   I.setCookie({name: 'mockRestoreSession', value: 'true'});
   I.seeCookie('mockRestoreSession');
 
-  if (toggleStore.getToggle('idam')) {
+  if (CONF.features.idam) {
     I.startApplication();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
@@ -43,7 +43,7 @@ Scenario('Save and close', function (I) {
   I.clickSaveAndCLose();
   I.seeCurrentUrlEquals('/exit/application-saved');
 
-  if (toggleStore.getToggle('idam')) {
+  if (CONF.features.idam) {
     I.see(idamConfigHelper.getTestEmail());
   }
 });
@@ -54,7 +54,7 @@ Scenario('Delete application from draft petition store', function (I) {
   I.setCookie({name: 'mockRestoreSession', value: 'true'});
   I.seeCookie('mockRestoreSession');
 
-  if (toggleStore.getToggle('idam')) {
+  if (CONF.features.idam) {
     I.startApplication();
     I.haveBrokenMarriage();
     
@@ -76,7 +76,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
   I.setCookie({name: 'mockRestoreSession', value: 'true'});
   I.seeCookie('mockRestoreSession');
 
-  if (toggleStore.getToggle('idam')) {
+  if (CONF.features.idam) {
     I.startApplication();
     I.haveBrokenMarriage();
     

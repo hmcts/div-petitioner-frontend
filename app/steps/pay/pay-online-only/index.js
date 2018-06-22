@@ -1,5 +1,4 @@
 const Step = require('app/core/steps/Step');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
@@ -61,7 +60,7 @@ module.exports = class PayOnline extends Step {
     let authToken = '';
     let user = {};
 
-    if (features.idam) {
+    if (CONF.features.idam) {
       authToken = cookies['__auth-token'];
 
       const idamUserId = idam.userId(req);
@@ -136,6 +135,7 @@ module.exports = class PayOnline extends Step {
 
         const id = req.session.currentPaymentId;
         const nextUrl = req.session.payments[id].nextUrl;
+        req.session.paymentMethod = 'card-online';
         res.redirect(nextUrl);
         next();
       })
@@ -149,13 +149,7 @@ module.exports = class PayOnline extends Step {
   get checkYourAnswersTemplate() {
     return false;
   }
-
   parseRequest(req) {
     return requestHandler.parse(this, req);
-  }
-
-  action(ctx, session) {
-    session.paymentMethod = 'card-online';
-    return [ctx, session];
   }
 };

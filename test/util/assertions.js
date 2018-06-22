@@ -1,4 +1,3 @@
-/*eslint no-console: "off"*/
 const CONF = require('config');
 const { forEach, get, isArray, isObject, clone } = require('lodash');
 const { expect } = require('test/util/chai');
@@ -136,7 +135,7 @@ const getCYATemplate = (underTest, data = {}, session = {}) => {
 
 };
 
-exports.testCYATemplate = (done, underTest) => {
+exports.testCYATemplate = (done, underTest, data, session) => {
 
   const checkTemplate = (html) => {
     expect(html.length).to.not.equal(0);
@@ -147,7 +146,7 @@ exports.testCYATemplate = (done, underTest) => {
     expect(html).to.contain(underTest.url);
   };
 
-  return getCYATemplate(underTest)
+  return getCYATemplate(underTest, data, session)
     .then(checkTemplate)
     .then(checkChangeLink)
     .then(done, done);
@@ -405,7 +404,7 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
     .then(() => done(), done);
 };
 
-exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get') => {
+exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get', createsNewSession = true, data) => {
   const runCallback = () => {
     let request = agent[method](underTest.url);
 
@@ -417,11 +416,22 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
       request = request.set('Cookie', [request.cookies, ...cookies]);
     }
 
+    if (data){
+      request
+        .type('form')
+        .send(data);
+    }
+
     return request
       .expect(callback);
   };
 
-  return createSession(agent)
-    .then(runCallback)
-    .then(() => done(), done);
+  if (createsNewSession) {
+    return createSession(agent)
+      .then(runCallback)
+      .then(() => done(), done);
+  } else {
+    return runCallback()
+      .then(() => done(), done);
+  }
 };

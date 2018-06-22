@@ -26,12 +26,9 @@ describe(modulePath, () => {
     underTest = s.steps.RespondentCorrespondenceSendToSolicitor;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};

@@ -2,8 +2,8 @@
 const request = require('supertest');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { testContent, testCustom } = require('test/util/assertions');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const { testContent, testCustom, getSession } = require('test/util/assertions');
+const featureToggleConfig = require('test/util/featureToggles');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const getBaseUrl = require('app/core/utils/baseUrl');
 const { expect, sinon } = require('test/util/chai');
@@ -44,7 +44,6 @@ describe(modulePath, () => {
       .callsArgWith(two);
     sinon.spy(getBaseUrl);
     sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
-    featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -52,9 +51,7 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
-    featureTogglesMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
     idam.userDetails.restore();
   });
@@ -186,26 +183,26 @@ describe(modulePath, () => {
       context('Idam is turned ON', () => {
         it('uses the token of the logged in user', done => {
           // Act.
-          const featureMock = featureTogglesMock
+          const featureTest = featureToggleConfig
             .when('idam', true, testCustom, agent, underTest, cookies, () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
               expect(create.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
             }, 'post');
-          featureMock(done);
+          featureTest(done);
         });
       });
 
       context('Idam is turned OFF', () => {
         it('uses a fake user for the mocks', done => {
           // Act.
-          const featureMock = featureTogglesMock
+          const featureTest = featureToggleConfig
             .when('idam', false, testCustom, agent, underTest, [], () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
               expect(create.args[0][0]).to.eql({});
             }, 'post');
-          featureMock(done);
+          featureTest(done);
         });
       });
 
@@ -219,8 +216,14 @@ describe(modulePath, () => {
         });
 
         it('redirects to the gov.uk payment page', done => {
+          const testSession = () => {
+            getSession(agent).then(currentSession => {
+              expect(currentSession.paymentMethod).to.equal('card-online');
+              done();
+            });
+          };
           // Act.
-          testCustom(done, agent, underTest, cookies, response => {
+          testCustom(testSession, agent, underTest, cookies, response => {
             // Assert.
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
             expect(response.header.location).to.equal('https://pay.the.gov/here');

@@ -3,12 +3,12 @@
 const CONF = require('config');
 
 let args = {
-  idamApiUrl: process.env.IDAM_API_URL || CONF.idamArgs.idamApiUrl,
-  accountsEndpoint: process.env.IDAM_TEST_SUPPORT_CREATE_ACCOUNT_ENDPOINT || CONF.idamArgs.idamTestSupportCreateAccountEndpoint,
-  testForename: process.env.IDAM_TEST_FORENAME || CONF.idamArgs.idamTestForename,
-  testSurname: process.env.IDAM_TEST_SURNAME || CONF.idamArgs.idamTestSurname,
-  testUserGroup: process.env.IDAM_TEST_USER_GROUP || CONF.idamArgs.idamTestUserGroup,
-  testLevelOfAccess: process.env.IDAM_TEST_LEVEL_OF_ACCESS || CONF.idamArgs.idamTestLevelOfAccess
+  idamApiUrl: CONF.idamArgs.idamApiUrl,
+  accountsEndpoint: CONF.idamArgs.idamTestSupportCreateAccountEndpoint,
+  testForename: CONF.idamArgs.idamTestForename,
+  testSurname: CONF.idamArgs.idamTestSurname,
+  testUserGroup: CONF.idamArgs.idamTestUserGroup,
+  testLevelOfAccess: CONF.idamArgs.idamTestLevelOfAccess
 };
 
 let testEmail;

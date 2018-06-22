@@ -3,6 +3,7 @@ project: 'divorce'
 environment: 'laptop'
 version: 'x.x-laptop'
 deployment_env: 'local'
+showSitemap: false
 
 log:
   ERROR: 1
@@ -36,9 +37,6 @@ services:
     health: 'https://localhost:8000/health'
   idamApp:
     health: 'http://localhost:8001/health'
-  featureToggleApiUrl: 'http://localhost:4400/api/v1/feature-toggle'
-  featureToggleApi:
-    health: 'http://localhost:4400/health'
   serviceAuthProvider:
     baseUrl: 'http://localhost:4502'
     health: 'http://localhost:4502/health'
@@ -56,6 +54,9 @@ services:
     baseUrl: 'http://localhost:4421'
     health: 'http://localhost:4421/health'
     TTL: 43200 # time to save fee register records in seconds ( 12 hours = 43200 )
+  feesAndPayments:
+    baseUrl: 'http://localhost:4009'
+    health: 'http://localhost:4009/health'
 
 defaultEnvironmentNodeEnv: 'development'
 
@@ -64,6 +65,8 @@ sessionEncryptionSecret: myVeryTopSecretK
 
 dateFormat: 'DD/MM/YYYY'
 paymentDateFormat: 'DDMMYYYY'
+
+testUrl: 'https://localhost:8080'
 
 commonProps:
   applicationFee:
@@ -92,7 +95,7 @@ commonProps:
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
       siteId: '2'
-      weight: 0.25
+      weight: 0.15
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -102,7 +105,7 @@ commonProps:
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
       siteId: '3'
-      weight: 0.25
+      weight: 0.35
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'
@@ -163,3 +166,15 @@ rateLimiter:
 
 applicationInsights:
   instrumentationKey: 'dummy-key'
+
+e2e:
+  frontendUrl: 'https://localhost:8080'
+  proxyServer: ''
+  proxyBypassList: ''
+  outputDirectory: './functional-output'
+  defaultEnvironmentNodeEnv: 'development'
+  waitForTimeoutValue: 10000
+  waitForActionValue: 100
+
+public:
+  protocol: 'https'

@@ -23,12 +23,9 @@ describe(modulePath, () => {
     underTest = s.steps.JurisdictionInterstitial;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('JurisdictionInterstitial step content for connection A (both habitually resident)', () => {
     let session = {};

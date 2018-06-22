@@ -8,7 +8,6 @@ const { withSession } = require('test/util/setup');
 const moment = require('moment');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const featureTogglesMock = require('test/mocks/featureToggles');
 
 const modulePath = 'app/steps/marriage/date';
 
@@ -24,19 +23,14 @@ let stepUnderTest = {};
 describe(modulePath, () => {
   beforeEach(() => {
     idamMock.stub();
-    featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
     stepUnderTest = s.steps.MarriageDate;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
-    featureTogglesMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};

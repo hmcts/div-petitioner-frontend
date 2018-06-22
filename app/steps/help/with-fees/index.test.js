@@ -25,9 +25,7 @@ describe(modulePath, () => {
     underTest = s.steps.WithFees;
   });
 
-
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
 
@@ -260,6 +258,15 @@ describe(modulePath, () => {
       const valuesToExist = ['helpWithFeesReferenceNumber'];
 
       const context = { helpWithFeesReferenceNumber: 'HWF-A1B-23C' };
+
+      testExistenceCYA(done, underTest, content,
+        contentToExist, valuesToExist, context);
+    });
+
+    it('renders HWF number as No for when no HWF number is present', done => {
+      const contentToExist = ['question'];
+      const valuesToExist = ['helpWithFeesReferenceNumber'];
+      const context = { helpWithFeesReferenceNumber: 'No' };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);

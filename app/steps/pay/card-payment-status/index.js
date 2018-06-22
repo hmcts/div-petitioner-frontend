@@ -1,5 +1,5 @@
 const logger = require('app/services/logger').logger(__filename);
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
+const CONF = require('config');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const idam = require('app/services/idam');
@@ -42,7 +42,7 @@ module.exports = class CardPaymentStatus extends Step {
     let authToken = '';
     let user = {};
 
-    if (features.idam) {
+    if (CONF.features.idam) {
       authToken = req.cookies['__auth-token'];
 
       const idamUserId = idam.userId(req);
@@ -126,6 +126,15 @@ module.exports = class CardPaymentStatus extends Step {
 
   get url() {
     return '/pay/card-payment-status';
+  }
+
+  get nextStep() {
+    return {
+      nextStep: {
+        DoneAndSubmitted: this.steps.DoneAndSubmitted,
+        PayOnline: this.steps.PayOnline
+      }
+    };
   }
 
   next(result) {

@@ -7,7 +7,6 @@ const { expect, sinon } = require('test/util/chai');
 const modulePath = 'app/steps/index';
 const content = require(`${modulePath}/content`);
 
-const featureTogglesMock = require('test/mocks/featureToggles');
 const { withSession } = require('test/util/setup');
 
 let s = {};
@@ -19,16 +18,12 @@ describe(modulePath, () => {
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
-    featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.Index;
   });
 
-
   afterEach(() => {
-    s.http.close();
-    featureTogglesMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
   });
 

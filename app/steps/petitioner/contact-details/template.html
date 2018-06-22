@@ -8,20 +8,35 @@
 
 {% block form %}
 
-  <p>{{ content.communicate | safe }}</p>
+<div tabindex="-1" class="contact-details">
+
+  <p>{{ content.communicateParagraph1 | safe }}</p>
 
   {% if session.petitionerContactDetailsConfidential != 'share' %}
     <p class="panel panel-border-wide">{{ content.confidentialContactDetails | safe }}</p>
   {% endif %}
 
+  <p>{{ content.communicateParagraph2 | safe }}</p>
+  <p class="bold-medium">{{ session.petitionerEmail }}</p>
+
+  <fieldset class="form-group confirmation-container {{ ' form-group-error' if fields.petitionerConsent.error }}">
+    <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>
+    {{ errorsFor(fields.petitionerConsent) }}
+
+    {{ checkBox(
+    id = 'petitionerConsent',
+    name = 'petitionerConsent',
+    field = fields.petitionerConsent,
+    value = fields.petitionerConsent.value,
+    label = content.petitionerConsent
+    ) }}
+
+  </fieldset>
+
   <fieldset class="form-group">
     <legend class="visually-hidden">{{ content.question | safe }}</legend>
 
-    {{ textField(
-      name = 'petitionerEmail',
-      field = fields.petitionerEmail,
-      label = content.email
-    ) }}
+    <p>{{ content.communicateParagraph3 | safe }}</p>
 
     {{ textField(
       name = 'petitionerPhoneNumber',
@@ -31,17 +46,6 @@
 
   </fieldset>
 
-  <fieldset class="form-group {{ ' form-group-error' if fields.petitionerConsent.error }}">
-    <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>
-    {{ errorsFor(fields.petitionerConsent) }}
-
-    {{ checkBox(
-      id = 'petitionerConsent',
-      name = 'petitionerConsent',
-      field = fields.petitionerConsent,
-      label = content.petitionerConsent
-    ) }}
-
-  </fieldset>
+</div>
 
 {% endblock %}

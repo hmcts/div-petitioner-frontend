@@ -3,16 +3,17 @@ const sessionSerializer = require('app/services/sessionSerializer');
 
 const modulePath = 'app/middleware/sessions';
 const sessions = require(modulePath);
+const CONF = require('config');
 
 let req = {};
 let res = {};
 let next = {};
 const serializer = {};
-const prevNodeEnv = process.env.NODE_ENV;
+const prevNodeEnv = CONF.environment;
 
 describe(modulePath, () => {
   beforeEach(() => {
-    delete process.env.NODE_ENV;
+    delete CONF.environment;
     req = {
       originalUrl: '/',
       headers: { },
@@ -22,13 +23,13 @@ describe(modulePath, () => {
     sinon.stub(sessionSerializer, 'createSerializer').returns(serializer);
   });
   afterEach(() => {
-    process.env.NODE_ENV = prevNodeEnv;
+    CONF.environment = prevNodeEnv;
     sessionSerializer.createSerializer.restore();
   });
 
   describe('#prod', () => {
     it('should use memory if NODE_ENV is testing', done => {
-      process.env.NODE_ENV = 'testing';
+      CONF.environment = 'testing';
       const session = sessions.prod();
       next = () => {
         expect(req.sessionStore.constructor.name).to.eql('MemoryStore');

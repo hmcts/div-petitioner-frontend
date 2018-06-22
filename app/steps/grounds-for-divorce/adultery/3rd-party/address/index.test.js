@@ -24,10 +24,8 @@ describe(modulePath, () => {
   });
 
   afterEach(() => {
-    s.http.close();
     idamMock.restore();
   });
-
 
   describe('success', () => {
     let session = {};

@@ -9,8 +9,6 @@ const modulePath = 'app/steps/done-and-submitted';
 const content = require(`${modulePath}/content`);
 
 const contentStrings = content.resources.en.translation.content;
-const featureTogglesMock = require('test/mocks/featureToggles');
-
 
 let s = {};
 let agent = {};
@@ -18,16 +16,9 @@ let underTest = {};
 
 describe(modulePath, () => {
   beforeEach(() => {
-    featureTogglesMock.stub();
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.DoneAndSubmitted;
-  });
-
-
-  afterEach(() => {
-    s.http.close();
-    featureTogglesMock.restore();
   });
 
   describe('Help with fees', () => {

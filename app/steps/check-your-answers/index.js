@@ -3,7 +3,6 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const statusCodes = require('http-status-codes');
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
@@ -297,7 +296,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     // Get user token.
     let authToken = '';
-    if (features.idam) {
+    if (CONF.features.idam) {
       authToken = req.cookies['__auth-token'];
     }
 

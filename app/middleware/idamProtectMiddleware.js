@@ -1,8 +1,8 @@
 const idam = require('app/services/idam');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
+const CONF = require('config');
 
 function idamProtect(req, res, next) {
-  if (!features.idam) {
+  if (!CONF.features.idam) {
     return next();
   }
 

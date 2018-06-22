@@ -171,14 +171,6 @@ variable "evidence_management_client_api_upload_endpoint" {
   default = "/emclientapi/version/1/upload"
 }
 
-variable "feature_toggle_api_url" {
-  type = "string"
-}
-
-variable "feature_toggle_api_base_path" {
-  default = "/api/v1/feature-toggle"
-}
-
 variable "payment_service_url" {
   type = "string"
 }
@@ -215,24 +207,12 @@ variable "rate_limiter_expire" {
   default = "3600000"
 }
 
-variable "feature_jurisdiction" {
-  default = false
-}
-
-variable "feature_new_jurisdiction" {
-  default = true
-}
-
 variable "feature_idam" {
   default = true
 }
 
-variable "feature_foreign_marriage_certs" {
-  default = false
-}
-
-variable "feature_court_southamption" {
-  default = false
+variable "feature_full_payment_event_data_submission" {
+  default = true
 }
 
 variable "survey_feedback_url" {

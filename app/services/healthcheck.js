@@ -124,10 +124,7 @@ router.get('/health', healthcheck.configure({
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }, options),
-    features: healthcheck.raw(req => {
-      return healthcheck.status(Object.keys(req.features) != 0, req.features); // eslint-disable-line eqeqeq
-    })
+    }, options)
   },
   buildInfo: {
     name: config.service.name,

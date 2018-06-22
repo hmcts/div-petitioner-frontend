@@ -7,7 +7,7 @@ const { mockSession } = require('test/fixtures');
 const clone = require('lodash').cloneDeep;
 const { expect, sinon } = require('test/util/chai');
 const idamMock = require('test/mocks/idam');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
 const courtsAllocation = require('app/services/courtsAllocation');
@@ -31,7 +31,6 @@ let fields = {};
 
 describe(modulePath, () => {
   beforeEach(() => {
-    featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -40,7 +39,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-    featureTogglesMock.restore();
   });
 
   describe('content', () => {
@@ -819,26 +817,26 @@ describe(modulePath, () => {
         // Arrange.
         const userCookie = ['__auth-token=auth.token', 'connect.sid=abc'];
         // Act.
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
             expect(submit.args[0][0]).to.eql('auth.token');
           }, 'post', true, postBody);
-        featureMock(done);
+        featureTest(done);
       });
     });
 
     context('Idam is turned OFF', () => {
       it('uses an empty token for the mocks', done => {
         // Act.
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
             expect(submit.args[0][0]).to.eql('');
           }, 'post', true, postBody);
-        featureMock(done);
+        featureTest(done);
       });
     });
 

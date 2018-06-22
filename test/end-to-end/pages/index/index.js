@@ -1,6 +1,6 @@
 const content = require('app/steps/index/content.json').resources.en.translation.content;
 const common = require('app/content/common.json').resources.en.translation;
-let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
+const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
 function startApplication(ignoreIdamToggle = false) {
@@ -11,7 +11,7 @@ function startApplication(ignoreIdamToggle = false) {
   I.see(common.continue);
   I.navByClick(common.continue);
 
-  if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
+  if (CONF.features.idam && !ignoreIdamToggle) {
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());

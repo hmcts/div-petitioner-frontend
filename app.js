@@ -16,10 +16,6 @@ const siteGraph = require('app/core/helpers/siteGraph');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
 const csurf = require('csurf');
-const { fetchToggles } = require('@hmcts/div-feature-toggle-client')({
-  env: CONF.environment
-  // featureToggleApiUrl: CONF.services.featureToggleApiUrl
-});
 const i18nTemplate = require('app/core/utils/i18nTemplate')({
   viewDirectory: './app/views/',
   fileExtension: 'html'
@@ -35,7 +31,6 @@ events.EventEmitter.defaultMaxListeners = Infinity;
 const stepDefinitions = requireDir(module, `${__dirname}/app/steps`, { exclude: /\.test\.|client.js|_sections/ });
 const middleware = requireDir(module, `${__dirname}/app/middleware`, { exclude: /\.test\./ });
 const healthcheck = require('app/services/healthcheck');
-const featureToggleList = require('app/services/featureToggleList');
 const nunjucksFilters = require('app/filters/nunjucks');
 
 const PORT = CONF.http.port || CONF.http.porttactical;
@@ -142,24 +137,7 @@ exports.init = listenForConnections => {
     }
   });
 
-  const feature = name => {
-    const hasConfigFlag = typeof CONF.features[name] === 'undefined' ? 'other' : 'default config';
-    const origin = CONF[name] ? 'process env' : hasConfigFlag;
-
-    return {
-      feature: name,
-      defaultState: CONF[name] || CONF.features[name],
-      origin
-    };
-  };
-  app.use(fetchToggles({
-    features: [
-      feature('idam'),
-      feature('fullPaymentEventDataSubmission')
-    ]
-  }));
   app.use(healthcheck);
-  app.use(featureToggleList);
 
   app.use(middleware.commonContent);
 

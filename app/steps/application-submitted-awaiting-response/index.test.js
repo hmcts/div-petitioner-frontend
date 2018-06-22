@@ -14,7 +14,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.ApplicationSubmitted;
+    underTest = s.steps.ApplicationSubmittedAwaitingResponse;
   });
 
 

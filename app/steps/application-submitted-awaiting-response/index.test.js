@@ -1,7 +1,8 @@
 const request = require('supertest');
 const server = require('app');
+const { testContent } = require('test/util/assertions');
 
-const modulePath = 'app/steps/awaiting-response';
+const modulePath = 'app/steps/application-submitted-awaiting-response';
 
 const content = require(`${modulePath}/content`);
 

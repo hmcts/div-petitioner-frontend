@@ -12,13 +12,9 @@ http_proxy = ""
 
 google_analytics_tracking_id = "TBD"
 
-rediscloud_url = "betaPreProddivorceCache01.reform.hmcts.net:6379"
-
 idam_authentication_web_url = "https://idam.preprod.ccidam.reform.hmcts.net"
 
 idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
-
-feature_toggle_api_url = "http://betaPreProddivorceAppLB.reform.hmcts.net:4002"
 
 payment_service_url = "https://preprod.payments.reform.hmcts.net:4401"
 

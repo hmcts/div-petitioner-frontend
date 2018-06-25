@@ -36,6 +36,14 @@ locals {
   status_health_endpoint             = "/status/health"
 }
 
+module "redis-cache" {
+  source   = "git@github.com:hmcts/moj-module-redis?ref=master"
+  product  = "${var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.reform_service_name}-redis"}"
+  location = "${var.location}"
+  env      = "${var.env}"
+  subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+}
+
 module "frontend" {
   source                          = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
   product                         = "${var.product}-${var.reform_service_name}"
@@ -97,15 +105,6 @@ module "frontend" {
     PAYMENT_SERVICE_HEALTHCHECK_URL          = "${var.payment_service_url}${var.health_endpoint}"
     PAYMENT_REFERENCE_SERVICE_IDENTIFICATION = "${var.payment_reference_service_id}"
 
-    // Feature Toggle API
-    FEATURE_TOGGLE_API_URL            = "${var.feature_toggle_api_url}${var.feature_toggle_api_base_path}"
-    FEATURE_TOGGLE_API_HEALHCHECK_URL = "${var.feature_toggle_api_url}${var.health_endpoint}"
-    jurisdiction                      = "${var.feature_jurisdiction}"
-    newJurisdiction                   = "${var.feature_new_jurisdiction}"
-    idam                              = "${var.feature_idam}"
-    foreignMarriageCerts              = "${var.feature_foreign_marriage_certs}"
-    courtSouthampton                  = "${var.feature_court_southamption}"
-
     // Fees API
     FEE_REGISTER_URL             = "${var.fee_register_url}"
     FEE_REGISTER_HEALTHCHECK_URL = "${var.fee_register_url}${var.health_endpoint}"
@@ -118,7 +117,7 @@ module "frontend" {
     POST_CODE_ACCESS_TOKEN = "${data.vault_generic_secret.post_code_token.data["value"]}"
 
     // Redis Cloud
-    REDISCLOUD_URL = "${var.rediscloud_url}"
+    REDISCLOUD_URL = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     USE_AUTH       = "${var.use_auth}"
 
     // Encryption secrets
@@ -200,5 +199,9 @@ module "frontend" {
     WESTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
     SOUTHWEST_COURTWEIGHT    = "${var.court_southwest_court_weight}"
     NORTHWEST_COURTWEIGHT    = "${var.court_northwest_court_weight}"
+
+    // Feature toggling through config
+    FEATURE_IDAM = "${var.feature_idam}"
+    FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
   }
 }

@@ -1,10 +1,10 @@
 const Step = require('app/core/steps/Step');
 const idam = require('app/services/idam');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
+const CONF = require('config');
 const initSession = require('app/middleware/initSession');
 
 const idamLandingPage = (req, res, next) => {
-  if (features.idam) {
+  if (CONF.features.idam) {
     const landing = idam.landingPage();
     return landing(req, res, () => {
       const { session } = req;

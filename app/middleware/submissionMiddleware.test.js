@@ -16,23 +16,23 @@ describe(modulePath, () => {
       res = { redirect: sinon.stub() };
       next = sinon.stub();
     });
-    it('redirects to /application-submitted if application has been submitted and is in "Awaiting Payment"', () => {
+    it('redirects to /application-submitted if application has been submitted and is in "awaitingpayment"', () => {
       req.session.caseId = 'someid';
-      req.session.status = 'Awaiting Payment';
+      req.session.status = 'awaitingpayment';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith('/application-submitted')).to.eql(true);
     });
-    it('redirects to /application-submitted-awaiting-response if application has been submitted and is not "Awaiting Payment" or "Rejected"', () => {
+    it('redirects to /application-submitted-awaiting-response if application has been submitted and is not "awaitingpayment" or "rejected"', () => {
       req.session.caseId = 'someid';
-      req.session.status = 'Redundant Status';
+      req.session.status = 'redundantstatus';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
     });
-    it('calls next if application has been submitted and is "Rejected"', () => {
+    it('calls next if application has been submitted and is "rejected"', () => {
       req.session.caseId = 'someid';
-      req.session.status = 'Rejected';
+      req.session.status = 'rejected';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.called).to.eql(false);
       expect(next.calledOnce).to.eql(true);

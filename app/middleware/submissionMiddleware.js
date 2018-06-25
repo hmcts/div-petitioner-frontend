@@ -3,9 +3,9 @@ const hasSubmitted = function(req, res, next) {
 
   if (!this.enabledAfterSubmission && session.caseId) { // eslint-disable-line
     switch (session.status) {
-    case 'Awaiting Payment':
+    case 'awaitingpayment':
       return res.redirect('/application-submitted');
-    case 'Rejected':
+    case 'rejected':
       return next();
     default:
       return res.redirect('/application-submitted-awaiting-response');

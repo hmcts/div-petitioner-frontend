@@ -20,13 +20,13 @@ variable "location" {
   default = "UK South"
 }
 
-variable "env" { }
+variable "env" {}
 
-variable "ilbIp" { }
+variable "ilbIp" {}
 
 variable "appinsights_instrumentation_key" {
-    description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
-    default = ""
+  description = "Instrumentation key of the App Insights instance this webapp should use. Module will create own App Insights resource if this is not provided"
+  default     = ""
 }
 
 variable "deployment_env" {
@@ -38,14 +38,13 @@ variable "deployment_path" {
 }
 
 variable "node_config_dir" {
-  // for Unix
-  // default = "/opt/divorce/frontend/config"
+  // for Unix  // default = "/opt/divorce/frontend/config"
 
   // for Windows
   default = "D:\\home\\site\\wwwroot\\config"
 }
 
-variable "subscription" { }
+variable "subscription" {}
 
 variable "vault_section" {
   type = "string"
@@ -53,8 +52,8 @@ variable "vault_section" {
 
 // CNP settings
 variable "jenkins_AAD_objectId" {
-  type                        = "string"
-  description                 = "(Required) The Azure AD object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies."
+  type        = "string"
+  description = "(Required) The Azure AD object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies."
 }
 
 variable "tenant_id" {
@@ -116,10 +115,6 @@ variable "google_analytics_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
-variable "rediscloud_url" {
-  type = "string"
-}
-
 variable "use_auth" {
   default = false
 }
@@ -176,14 +171,6 @@ variable "evidence_management_client_api_upload_endpoint" {
   default = "/emclientapi/version/1/upload"
 }
 
-variable "feature_toggle_api_url" {
-  type = "string"
-}
-
-variable "feature_toggle_api_base_path" {
-  default = "/api/v1/feature-toggle"
-}
-
 variable "payment_service_url" {
   type = "string"
 }
@@ -194,6 +181,10 @@ variable "payment_reference_service_id" {
 
 variable "fee_register_url" {
   type = "string"
+}
+
+variable "fees_and_payments_url" {
+  default = ""
 }
 
 variable "post_code_url" {
@@ -216,24 +207,12 @@ variable "rate_limiter_expire" {
   default = "3600000"
 }
 
-variable "feature_jurisdiction" {
-  default = false
-}
-
-variable "feature_new_jurisdiction" {
+variable "feature_idam" {
   default = true
 }
 
-variable "feature_idam" {
-  default = false
-}
-
-variable "feature_foreign_marriage_certs" {
-  default = false
-}
-
-variable "feature_court_southamption" {
-  default = false
+variable "feature_full_payment_event_data_submission" {
+  default = true
 }
 
 variable "survey_feedback_url" {

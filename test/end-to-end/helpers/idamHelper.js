@@ -27,7 +27,7 @@ class IdamHelper extends Helper {
       idamConfigHelper.setTestEmail(testEmail);
       idamConfigHelper.setTestPassword(testPassword);
 
-      return idamExpressTestHarness.createUser(args)
+      return idamExpressTestHarness.createUser(args, process.env.E2E_PROXY_SERVER)
         .then(() => {
           logger.info('Created IDAM test user: ' + testEmail);
           return;
@@ -40,7 +40,7 @@ class IdamHelper extends Helper {
 
   _after() {
     if (CONF.features.idam) {
-      return idamExpressTestHarness.removeUser(args)
+      return idamExpressTestHarness.removeUser(args, process.env.E2E_PROXY_SERVER)
         .then(() => {
           logger.info('Removed IDAM test user: ' + args.testEmail);
           return;

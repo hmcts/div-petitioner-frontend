@@ -24,6 +24,8 @@ const formatPostcode = function(postcode = '') {
   return formattedPostcode;
 };
 
+const addressHelpers = require('../helpers/addressHelpers');
+
 module.exports = {
 
   * interceptor(ctx, session) {
@@ -91,6 +93,8 @@ module.exports = {
         const address = ctx.addresses[ctx.selectAddressIndex];
         if (address && address.formatted_address) {
           ctx.address = address.formatted_address.split('\n');
+          ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(
+            ctx.addresses[ctx.selectAddressIndex]);
         } else {
           delete ctx.address;
         }
@@ -114,11 +118,14 @@ module.exports = {
 
       if (address.length) {
         ctx.address = isEqual(address, ctx.address) ? ctx.address : address;
+        if (ctx.selectAddressIndex !== '-1' && ctx.addresses) {
+          ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(
+            ctx.addresses[ctx.selectAddressIndex]);
+        }
       }
     }
     return ctx;
   },
-
 
   prepareErrors(ctx, errors) {
     let errorList = errors;
@@ -145,7 +152,6 @@ module.exports = {
     return errorList;
   },
 
-
   action(ctx, session) {
     delete session.postcodeLookup;
 
@@ -170,4 +176,5 @@ module.exports = {
 
     return ctx;
   }
+
 };

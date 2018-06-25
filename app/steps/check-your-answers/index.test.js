@@ -1,15 +1,18 @@
 const co = require('co');
 const request = require('supertest');
 const server = require('app');
-const { testContent, testExistence, testNonExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testNonExistence, testCustom, getSession } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const clone = require('lodash').cloneDeep;
 const { expect, sinon } = require('test/util/chai');
 const idamMock = require('test/mocks/idam');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -28,7 +31,6 @@ let fields = {};
 
 describe(modulePath, () => {
   beforeEach(() => {
-    featureTogglesMock.stub();
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -37,7 +39,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-    featureTogglesMock.restore();
   });
 
   describe('content', () => {
@@ -729,6 +730,8 @@ describe(modulePath, () => {
         caseId: '1234567890'
       });
       sinon.stub(submission, 'setup').returns({ submit });
+      sinon.stub(ga, 'trackEvent');
+      sinon.spy(courtsAllocation, 'allocateCourt');
 
       postBody = {
         submit: true,
@@ -746,7 +749,9 @@ describe(modulePath, () => {
     });
 
     afterEach(() => {
+      ga.trackEvent.restore();
       submission.setup.restore();
+      courtsAllocation.allocateCourt.restore();
     });
 
     context('duplicate submission', () => {
@@ -766,6 +771,36 @@ describe(modulePath, () => {
       });
     });
 
+    it('loads court data from config and selects one automatically', done => {
+      // Arrange.
+      const courts = Object.keys(CONF.commonProps.court);
+
+      const testSession = () => {
+        getSession(agent)
+          .then(sess => {
+            courts.forEach(courtName => {
+              expect(sess.court[courtName]).to
+                .eql(CONF.commonProps.court[courtName]);
+            });
+            expect(sess.courts).to.be.oneOf(courts);
+          })
+          .then(done, done);
+      };
+
+      testCustom(testSession, agent, underTest, [], () => {
+        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+      }, 'post', true, postBody);
+    });
+
+    it('google anayltics is called', done => {
+      // Act.
+      testCustom(done, agent, underTest, [], () => {
+        // Assert.
+        expect(ga.trackEvent.calledOnce)
+          .to.equal(true);
+      }, 'post', true, postBody);
+    });
+
     it('redirects to error page when submission request fails', done => {
       // Arrange.
       submit.rejects();
@@ -782,26 +817,26 @@ describe(modulePath, () => {
         // Arrange.
         const userCookie = ['__auth-token=auth.token', 'connect.sid=abc'];
         // Act.
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
             expect(submit.args[0][0]).to.eql('auth.token');
           }, 'post', true, postBody);
-        featureMock(done);
+        featureTest(done);
       });
     });
 
     context('Idam is turned OFF', () => {
       it('uses an empty token for the mocks', done => {
         // Act.
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
             expect(submit.args[0][0]).to.eql('');
           }, 'post', true, postBody);
-        featureMock(done);
+        featureTest(done);
       });
     });
 

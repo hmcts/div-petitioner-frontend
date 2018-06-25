@@ -28,7 +28,7 @@ Scenario('Test ability validate document type', function* (I) {
 
   const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
 
-  if(isDragAndDropSupported){
+  if(isDragAndDropSupported) {
     // Test can upload .pdf
     I.testUploadResponse(isDragAndDropSupported, '/assets/test_pdf.pdf');
     I.dontSee(content.errorUnknown);

@@ -82,14 +82,6 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@hmcts/div-feature-toggle-client@https://github.com/hmcts/div-feature-toggle-client#1.0.7":
-  version "1.0.7"
-  resolved "https://github.com/hmcts/div-feature-toggle-client#f393a7822a9cd65157e4c759652c1f6a5a691716"
-  dependencies:
-    eslint "^4.17.0"
-    request "^2.81.0"
-    request-promise-native "^1.0.4"
-
 "@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#3.0.4":
   version "3.0.4"
   resolved "https://github.com/hmcts/div-idam-express-middleware#22c5c3a144038eceafe5562b53a24e5655575432"
@@ -2879,7 +2871,7 @@ eslint@^3.0.0:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@^4.17.0, eslint@^4.7.1:
+eslint@^4.7.1:
   version "4.19.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.19.1.tgz#32d1d653e1d90408854bfb296f076ec7e186a300"
   dependencies:

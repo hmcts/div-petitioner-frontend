@@ -2,7 +2,7 @@ const content = require('app/steps/marriage/upload/content.json').resources.en.t
 
 Feature('Upload Marriage Certificate').retry(3);
 
-Scenario('Test upload', function* (I) {
+Scenario('Test upload [@runDuringPreview]', function* (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
@@ -20,7 +20,7 @@ Scenario('Test remove marriage Certificate', function* (I) {
   I.deleteAMarriageCertificateFile(isDragAndDropSupported);
 });
 
-Scenario('Test ability validate document type', function* (I) {
+Scenario('Test ability validate document type [@runDuringPreview]', function* (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();

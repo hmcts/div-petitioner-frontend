@@ -2,7 +2,7 @@ const content = require('app/steps/grounds-for-divorce/reason/content.json').res
 
 Feature('Basic divorce path').retry(3);
 
-Scenario('Get a divorce', function*(I) {
+Scenario('Get a divorce [@runDuringPreview]', function*(I) {
 
   I.amOnLoadedPage('/index');
   I.startApplication();

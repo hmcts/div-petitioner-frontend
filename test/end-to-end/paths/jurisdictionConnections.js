@@ -13,7 +13,7 @@ Before((I) => {
   I.selectMarriedInUk();
 });
 
-Scenario('Set A & C: Both Habitually Resident', function(I) {
+Scenario('Set A & C: Both Habitually Resident [@runDuringPreview]', function(I) {
   I.chooseBothHabituallyResident();
   I.chooseJurisdictionInterstitialContinue();
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
@@ -112,7 +112,7 @@ Scenario('Set A & C & D & E & F: Both Habitually Resident less than 12 months, a
   I.checkMyConnectionsAre('A', 'C', 'D', 'E', 'F');
 });
 
-Scenario('Set A & D & E & F & G: Selected via Last Resort page', function(I) {
+Scenario('Set A & D & E & F & G: Selected via Last Resort page [@runDuringPreview]', function(I) {
   I.chooseRespondentHabituallyResident();
   I.chooseJurisdictionInterstitialNeedInfo();
   I.chooseBothDomiciled();
@@ -125,7 +125,7 @@ Scenario('Set A & D & E & F & G: Selected via Last Resort page', function(I) {
   I.checkMyConnectionsAre('A', 'D', 'E', 'F', 'G');
 });
 
-Scenario('Re-set connections: Not confident at Connection Summary 1st time', function(I) {
+Scenario('Re-set connections: Not confident at Connection Summary 1st time [@runDuringPreview]', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseYesJurisdictionLastTwelveMonths();
   I.chooseJurisdictionInterstitialNeedInfo();
@@ -144,7 +144,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
   I.checkMyConnectionsAre('G');
 });
 
-Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', function(I) {
+Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction. [@runDuringPreview]', function(I) {
   I.choosePetitionerHabituallyResident();
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();

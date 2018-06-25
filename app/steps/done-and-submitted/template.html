@@ -13,7 +13,7 @@
           {{ content.caseReferenceNumber | safe }}
           <br>
           <strong class="text-reference-number">
-            {{ session.caseId | insertHyphens }}
+            {{ session.caseId | insertHyphens | safe }}
           </strong>
         </p>
       </div>
@@ -34,7 +34,7 @@
           <p class="text">{{content.whatToDoNowRefNumText | safe}}</p>
           <ul class="list list-bullet">
             <li>{{content.whatToDoNowOrigCert | safe}}</li>
-        
+
           {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
             <li>{{content.whatToDoNowNameChange | safe}}</li>
           {% endif %}

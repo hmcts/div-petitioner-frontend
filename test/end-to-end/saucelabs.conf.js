@@ -26,9 +26,6 @@ const setupConfig = {
       'key': process.env.SAUCE_ACCESS_KEY,
       desiredCapabilities: getDesiredCapabilities()
     },
-    'FeatureToggleHelper': {
-      'require': './helpers/featureToggleHelper.js'
-    },
     'SauceLabsReportingHelper': {
       'require': './helpers/SauceLabsReportingHelper.js'
     },

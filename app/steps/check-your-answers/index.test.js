@@ -1,13 +1,18 @@
 const co = require('co');
 const request = require('supertest');
 const server = require('app');
-const { testContent, testExistence, testRedirect, testNonExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testNonExistence, testCustom, getSession } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const clone = require('lodash').cloneDeep;
 const { expect, sinon } = require('test/util/chai');
 const idamMock = require('test/mocks/idam');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
+const submission = require('app/services/submission');
+const statusCodes = require('http-status-codes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const CONF = require('config');
+const ga = require('app/services/ga');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -19,6 +24,10 @@ const contentStrings = content.resources.en.translation.content;
 let s = {};
 let agent = {};
 let underTest = {};
+let session = {};
+let req = {};
+let res = {};
+let fields = {};
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -33,8 +42,6 @@ describe(modulePath, () => {
   });
 
   describe('content', () => {
-    let session = {};
-
     beforeEach(done => {
       session = clone(mockSession);
       withSession(done, agent, session);
@@ -71,8 +78,6 @@ describe(modulePath, () => {
   });
 
   describe('content headers', () => {
-    let session = {};
-
     beforeEach(done => {
       session = clone(mockSession);
       withSession(done, agent, session);
@@ -89,8 +94,6 @@ describe(modulePath, () => {
   });
 
   describe('content', () => {
-    let session = {};
-
     beforeEach(done => {
       session = clone(mockSession);
       session.saveAndResumeUrl = '/some-next-step-url';
@@ -125,7 +128,6 @@ describe(modulePath, () => {
   });
 
   describe('help with fees reference number exists', () => {
-    let session = {};
     beforeEach(done => {
       session = clone(mockSession);
       session.helpWithFeesReferenceNumber = 'HWF-A1B-23C';
@@ -139,7 +141,6 @@ describe(modulePath, () => {
   });
 
   describe('help with fees reference number exists', () => {
-    let session = {};
     beforeEach(done => {
       session = clone(mockSession);
       session.helpWithFeesReferenceNumber = 'HWF-A1B-23C';
@@ -153,7 +154,6 @@ describe(modulePath, () => {
   });
 
   describe('help with fees refference number does not exists warning', () => {
-    let session = {};
     beforeEach(done => {
       session = clone(mockSession);
       delete session.helpWithFeesReferenceNumber;
@@ -168,7 +168,6 @@ describe(modulePath, () => {
   });
 
   describe('help with fees refference number does not exists payment', () => {
-    let session = {};
     beforeEach(done => {
       session = clone(mockSession);
       delete session.helpWithFeesReferenceNumber;
@@ -183,7 +182,6 @@ describe(modulePath, () => {
   });
 
   describe('help with fees reference number does not exist', () => {
-    let session = {};
     beforeEach(done => {
       session = clone(mockSession);
       session.helpWithFeesReferenceNumber = '';
@@ -197,13 +195,11 @@ describe(modulePath, () => {
 
   describe('prayer section', () => {
     beforeEach(done => {
-      const session = clone(mockSession);
+      session = clone(mockSession);
       withSession(done, agent, session);
     });
 
     describe('Check your answers confirm prayer dynamic text financial orders only', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes'
@@ -224,8 +220,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text for claiming from both parties only', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes' and claimCostsFrom is ["respondent", "correspondent"]
@@ -246,8 +240,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text for claiming from respondent only', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes' and claimCostsFrom is ["respondent", "correspondent"]
@@ -269,8 +261,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text for claiming from co-respondent only', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes' and claimCostsFrom is ["respondent", "correspondent"]
@@ -292,8 +282,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text for claiming from both parties with financial claim', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes' and claimCostsFrom is ["respondent", "correspondent"]
@@ -313,8 +301,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text for claiming from respondent with financial', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes' and claimCostsFrom is ["respondent", "correspondent"]
@@ -335,8 +321,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text for claiming from co-respondent with financial', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes' and claimCostsFrom is ["respondent", "correspondent"]
@@ -357,8 +341,6 @@ describe(modulePath, () => {
     });
 
     describe('Check your answers confirm prayer dynamic text neither claim costs nor financial order', () => {
-      let session = {};
-
       beforeEach(done => {
         session = clone(mockSession);
         //  default is claimCosts = 'Yes' and financialOrder = 'Yes'
@@ -380,21 +362,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('success', () => {
-    beforeEach(() => {
-      featureTogglesMock.stub();
-    });
-
-    afterEach(() => {
-      featureTogglesMock.restore();
-    });
-
-    it('redirects to submit step', done => {
-      const context = { confirmPrayer: 'Yes' };
-      testRedirect(done, agent, underTest, context, s.steps.Submit);
-    });
-  });
-
   describe('getStepCtx', () => {
     it('gets properties defined by step from the session', done => {
       co(function* generator() {
@@ -408,7 +375,7 @@ describe(modulePath, () => {
           }
         };
 
-        const session = {
+        session = {
           property1: 'value1',
           property2: 'value2',
           property3: 'value3'
@@ -425,7 +392,7 @@ describe(modulePath, () => {
   });
 
   describe('getStepCheckYourAnswersTemplate', () => {
-    let session = {}, ctx = {}, step = {}, fields = {};
+    let ctx = {}, step = {};
 
     beforeEach(() => {
       session = { chicken: 'gangnam style', initialised: true };
@@ -557,7 +524,7 @@ describe(modulePath, () => {
 
 
   describe('getNextTemplates', () => {
-    let session = {}, ctx = {}, step1 = {}, step2 = {}, fields = {};
+    let ctx = {}, step1 = {}, step2 = {};
 
     beforeEach(() => {
       session = { chicken: 'gangnam style', initialised: true };
@@ -602,7 +569,7 @@ describe(modulePath, () => {
       });
     });
 
-    it('renderes templates for all complete', done => {
+    it('renders templates for all complete', done => {
       co(function* generator() {
         const templates = yield underTest.getNextTemplates(step1, session);
         const TWO_TEMPLATES = 2;
@@ -695,6 +662,250 @@ describe(modulePath, () => {
         const templates = yield underTest.getNextTemplates(step1, session);
         expect(templates.length).to.equal(FIVE_HUNDRED_AND_ONE_TEMPLATES);
         done();
+      });
+    });
+  });
+
+  describe('#postRequest', () => {
+    beforeEach(() => {
+      req = { body: {}, method: 'POST', session: {}, headers: {} };
+      res = {
+        redirect: sinon.stub(),
+        sendStatus: sinon.stub()
+      };
+
+      sinon.stub(underTest, 'parseCtx').resolves();
+      sinon.stub(underTest, 'validate').returns([true]);
+      sinon.stub(underTest, 'submitApplication');
+    });
+
+    afterEach(() => {
+      underTest.submitApplication.restore();
+      underTest.parseCtx.restore();
+      underTest.validate.restore();
+    });
+
+    it('does not submit application if submit button not clicked', done => {
+      co(function* generator() {
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledOnce).to.equal(true);
+        expect(underTest.validate.calledOnce).to.equal(true);
+        expect(underTest.submitApplication.called).to.equal(false);
+        done();
+      });
+    });
+
+    it('runs submit application if submission is valid', done => {
+      co(function* generator() {
+        req.body.submit = true;
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledOnce).to.equal(true);
+        expect(underTest.validate.calledOnce).to.equal(true);
+        expect(underTest.submitApplication.calledOnce).to.equal(true);
+        done();
+      });
+    });
+
+    it('does not submit application if invalid', done => {
+      co(function* generator() {
+        req.body.submit = true;
+        underTest.validate.returns([false]);
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledTwice).to.equal(true);
+        expect(underTest.validate.calledTwice).to.equal(true);
+        expect(underTest.submitApplication.called).to.equal(false);
+        done();
+      });
+    });
+  });
+
+  describe('#submitApplication', () => {
+    let submit = {};
+    let postBody = {};
+
+    beforeEach(done => {
+      submit = sinon.stub().resolves({
+        error: null,
+        status: 'success',
+        caseId: '1234567890'
+      });
+      sinon.stub(submission, 'setup').returns({ submit });
+      sinon.stub(ga, 'trackEvent');
+      sinon.spy(courtsAllocation, 'allocateCourt');
+
+      postBody = {
+        submit: true,
+        confirmPrayer: 'Yes'
+      };
+
+      session = {
+        question1: 'Yes',
+        confirmPrayer: 'Yes',
+        submit: true,
+        cookie: {},
+        expires: Date.now()
+      };
+      withSession(done, agent, session);
+    });
+
+    afterEach(() => {
+      ga.trackEvent.restore();
+      submission.setup.restore();
+      courtsAllocation.allocateCourt.restore();
+    });
+
+    context('duplicate submission', () => {
+      beforeEach(done => {
+        session = {
+          submissionStarted: true,
+          cookie: {},
+          expires: Date.now()
+        };
+        withSession(done, agent, session);
+      });
+      it('redirects to ApplicationSubmitted if submission submitted twice', done => {
+        testCustom(done, agent, underTest, [], response => {
+          expect(response.res.headers.location)
+            .to.equal(s.steps.ApplicationSubmitted.url);
+        }, 'post', true, postBody);
+      });
+    });
+
+    it('loads court data from config and selects one automatically', done => {
+      // Arrange.
+      const courts = Object.keys(CONF.commonProps.court);
+
+      const testSession = () => {
+        getSession(agent)
+          .then(sess => {
+            courts.forEach(courtName => {
+              expect(sess.court[courtName]).to
+                .eql(CONF.commonProps.court[courtName]);
+            });
+            expect(sess.courts).to.be.oneOf(courts);
+          })
+          .then(done, done);
+      };
+
+      testCustom(testSession, agent, underTest, [], () => {
+        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+      }, 'post', true, postBody);
+    });
+
+    it('google anayltics is called', done => {
+      // Act.
+      testCustom(done, agent, underTest, [], () => {
+        // Assert.
+        expect(ga.trackEvent.calledOnce)
+          .to.equal(true);
+      }, 'post', true, postBody);
+    });
+
+    it('redirects to error page when submission request fails', done => {
+      // Arrange.
+      submit.rejects();
+      // Act.
+      testCustom(done, agent, underTest, [], response => {
+        // Assert.
+        expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+        expect(response.headers.location).to.equal('/generic-error');
+      }, 'post', true, postBody);
+    });
+
+    context('Idam is turned ON', () => {
+      it('uses the token of the logged in user', done => {
+        // Arrange.
+        const userCookie = ['__auth-token=auth.token', 'connect.sid=abc'];
+        // Act.
+        const featureTest = featureToggleConfig
+          .when('idam', true, testCustom, agent, underTest, userCookie, () => {
+            // Assert.
+            expect(submit.calledOnce).to.equal(true);
+            expect(submit.args[0][0]).to.eql('auth.token');
+          }, 'post', true, postBody);
+        featureTest(done);
+      });
+    });
+
+    context('Idam is turned OFF', () => {
+      it('uses an empty token for the mocks', done => {
+        // Act.
+        const featureTest = featureToggleConfig
+          .when('idam', false, testCustom, agent, underTest, [], () => {
+            // Assert.
+            expect(submit.calledOnce).to.equal(true);
+            expect(submit.args[0][0]).to.eql('');
+          }, 'post', true, postBody);
+        featureTest(done);
+      });
+    });
+
+    context('submission was successful and petitioner applied for help with fees', () => {
+      beforeEach(done => {
+        const newSession = clone(session);
+        newSession.helpWithFeesNeedHelp = 'Yes';
+
+        withSession(done, agent, newSession);
+      });
+
+      it('redirects to Pay How page', done => {
+        // Act.
+        testCustom(done, agent, underTest, [], response => {
+          // Assert.
+          expect(response.res.statusCode)
+            .to.equal(statusCodes.MOVED_TEMPORARILY);
+          expect(response.res.headers.location)
+            .to.equal(s.steps.DoneAndSubmitted.url);
+        }, 'post', true, postBody);
+      });
+    });
+
+    context('submission was successful and petitioner did not apply for help with fees', () => {
+      it('redirects to Pay Online page', done => {
+        // Act.
+        testCustom(done, agent, underTest, [], response => {
+          // Assert.
+          expect(response.res.statusCode)
+            .to.equal(statusCodes.MOVED_TEMPORARILY);
+          expect(response.res.headers.location)
+            .to.equal(s.steps.PayOnline.url);
+        }, 'post', true, postBody);
+      });
+    });
+
+    context('submission was not successful', () => {
+      it('redirects to the generic error page', done => {
+        // Arrange.
+        submit.resolves({
+          caseId: 0,
+          error: 'some error',
+          status: 'error'
+        });
+        // Act.
+        testCustom(done, agent, underTest, [], response => {
+          // Assert.
+          expect(response.res.statusCode)
+            .to.equal(statusCodes.MOVED_TEMPORARILY);
+          expect(response.res.headers.location)
+            .to.equal(s.steps.GenericError.url);
+        }, 'post', true, postBody);
+      });
+    });
+
+    context('duplicate submission', () => {
+      beforeEach(done => {
+        session = {
+          submissionStarted: true,
+          cookie: {},
+          expires: Date.now()
+        };
+        withSession(done, agent, session);
+      });
+      it('redirects to ApplicationSubmitted if submission submitted twice', done => {
+        testCustom(done, agent, underTest, [], response => {
+          expect(response.res.headers.location)
+            .to.equal(s.steps.ApplicationSubmitted.url);
+        }, 'post', true, postBody);
       });
     });
   });

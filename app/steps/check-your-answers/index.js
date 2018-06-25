@@ -86,7 +86,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
   parseRequest(req) {
     const ctx = super.parseRequest(req);
-
+    ctx.locals = req.locals;
     // if confirmPrayer has no value, set it to false
     ctx.confirmPrayer = ctx.confirmPrayer || false;
 
@@ -156,8 +156,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
       // render check your answers templates
+      const locals = stepCtx.locals;
       const html = nunjucks.render(
-        step.checkYourAnswersTemplate, { content, fields, session }
+        step.checkYourAnswersTemplate, { content, fields, session, locals }
       );
 
       // push template into array to render in cya template

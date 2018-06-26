@@ -11,6 +11,8 @@ const ga = require('app/services/ga');
 
 const maximumNumberOfSteps = 500;
 
+const idam = {};
+
 module.exports = class CheckYourAnswers extends ValidationStep {
   get url() {
     return '/check-your-answers';
@@ -21,6 +23,13 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       return this.steps.DoneAndSubmitted;
     }
     return this.steps.PayOnline;
+  }
+
+  * getRequest(req, res) {
+    if (req.idam) {
+      idam.email = req.idam.userDetails.email;
+    }
+    return yield super.getRequest(req, res);
   }
 
   * postRequest(req, res) {
@@ -156,9 +165,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
       // render check your answers templates
-      const locals = stepCtx.locals;
       const html = nunjucks.render(
-        step.checkYourAnswersTemplate, { content, fields, session, locals }
+        step.checkYourAnswersTemplate, { content, fields, session, idam }
       );
 
       // push template into array to render in cya template

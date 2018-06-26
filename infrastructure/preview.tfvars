@@ -12,7 +12,7 @@ http_proxy = ""
 
 google_analytics_tracking_id = "TBD"
 
-idam_authentication_web_url = "http://idam-web-public-idam-aat.service.core-compute-aat.internal"
+idam_authentication_web_url = "https://idam-web-public-idam-aat.service.core-compute-aat.internal"
 idam_api_url = "http://idam-api-idam-aat.service.core-compute-aat.internal"
 
 payment_service_url = "https://preprod.payments.reform.hmcts.net:4401"

@@ -26,7 +26,7 @@
           "whatHappensNext": "What happens next",
           "courtWillCheck": "Your application will be checked. If it's correct, you'll be sent a notice telling you that your application has been issued (sent out). You'll also get a case number and a copy of the application stamped by the divorce centre.",
           "youCanFindMore": "Your {{divorceWho}} will also receive a copy of the application and a form to return. If you have used adultery as your reason for divorce, and named the person that your {{divorceWho}} committed adultery with, they will also get a copy and a form to return.",
-          "contactTheCourt": "Contact the divorce centre if you don't hear anything back after 2 weeks.",
+          "contactTheCourt": "Contact the divorce centre if you don't hear anything back after 3 weeks.",
           "getHelp": "If you need help",
           "getHelpDescription": "You can contact the divorce centre if you need help with your application. Court staff can’t give you legal advice however, and you should speak to a <a href=\"https://www.gov.uk/find-a-legal-adviser\" target=\"_blank\">solicitor or legal adviser</a> if you need help with that.",
           "eastMidlandsEmail": "Email: {{court.eastMidlands.email}}",

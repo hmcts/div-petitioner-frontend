@@ -190,6 +190,7 @@ describe(modulePath, () => {
         sinon.spy(stepInstance, 'generateContent');
         sinon.spy(stepInstance, 'interceptor');
         sinon.spy(stepInstance, 'generateFields');
+        sinon.spy(stepInstance, 'preResponse');
         done();
       });
     });
@@ -198,6 +199,7 @@ describe(modulePath, () => {
       stepInstance.generateContent.restore();
       stepInstance.interceptor.restore();
       stepInstance.generateFields.restore();
+      stepInstance.preResponse.restore();
     });
     it('renders the template successfully', done => {
       co(function* generator() {
@@ -207,6 +209,7 @@ describe(modulePath, () => {
         expect(stepInstance.interceptor.calledOnce).to.eql(true);
         expect(stepInstance.generateContent.calledOnce).to.eql(true);
         expect(stepInstance.generateFields.calledOnce).to.eql(true);
+        expect(stepInstance.preResponse.calledOnce).to.eql(true);
         expect(res.render.calledOnce).to.eql(true);
         expect(res.render.calledWith(`${templatePath}/template`)).to.eql(true);
       }).then(done, done);

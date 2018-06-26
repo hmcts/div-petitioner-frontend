@@ -262,5 +262,14 @@ describe(modulePath, () => {
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);
     });
+
+    it('renders HWF number as No for when no HWF number is present', done => {
+      const contentToExist = ['question'];
+      const valuesToExist = ['helpWithFeesReferenceNumber'];
+      const context = { helpWithFeesReferenceNumber: 'No' };
+
+      testExistenceCYA(done, underTest, content,
+        contentToExist, valuesToExist, context);
+    });
   });
 });

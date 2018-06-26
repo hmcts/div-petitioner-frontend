@@ -10,7 +10,8 @@
           "countryName": "Enter the country name",
           "placeOfMarriageTranslation": "How is the place of marriage displayed on the translation of your marriage certificate?",
           "placeOfMarriage": "How is the place of marriage displayed on your marriage certificate?",
-          "wordsOfTranslation": "Copy the words on the translation of your marriage certificate exactly"
+          "wordsOfTranslation": "Copy the words on the translation of your marriage certificate exactly",
+          "copyPlaceOfMarriage": "Copy the place of marriage from your marriage certificate exactly"
         },
 
         "checkYourAnswersContent": {

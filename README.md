@@ -1,6 +1,6 @@
 # Divorce Frontend
 
-The Apply for Divorce frontend.
+The Apply for Divorce Petitioner Frontend.
 
 ## Development
 
@@ -14,7 +14,7 @@ Configure your local docker daemon with the settings documented in
 To build the docker containers afresh:
 
 ```
-> make build
+make build
 ```
 
 ### Install dependencies
@@ -22,7 +22,7 @@ To build the docker containers afresh:
 To install NPM dependencies:
 
 ```
-> make install
+make install
 ```
 
 This installs the dev dependencies to your local folder.
@@ -30,7 +30,7 @@ This installs the dev dependencies to your local folder.
 ### Start the app
 
 ```
-> make start-dev
+make start-dev
 ```
 
 ###  Run the tests
@@ -41,11 +41,10 @@ inside a docker container, ensuring a consistent dev environment.
 For example:
 
 ```
-> make test
-> make test-unit
-> make test-e2e
-> make lint
-> ...
+make test
+make test-unit
+make test-e2e
+make lint
 ```
 
 ### Running Locally Without Docker
@@ -53,8 +52,8 @@ If you have any problems configuring Docker locally, you can still run without u
 You need to have yarn and redis installed. This can be done with brew as follows:
 
 ```
-> brew install yarn
-> brew install redis
+brew install yarn
+brew install redis
 
 ```
 
@@ -62,9 +61,17 @@ To run the front end app, run the following from the front end project root fold
 
 
 ```
-> yarn install
-> redis-server &
-> yarn start-dev
+yarn install
+redis-server &
+yarn start-dev
+```
+
+To run the tests and lint, run the following:
+
+
+```
+yarn test
+yarn lint
 
 ```
 

@@ -138,6 +138,10 @@ module.exports = class Step {
     return [];
   }
 
+  preResponse(req, res) { // eslint-disable-line no-unused-vars
+    return Promise.resolve();
+  }
+
   * getRequest(req, res) {
     const { session } = req;
 
@@ -160,6 +164,8 @@ module.exports = class Step {
     }
 
     res.locals.session = session;
+
+    yield this.preResponse(req, res);
 
     res.render(this.template);
   }

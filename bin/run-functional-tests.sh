@@ -3,8 +3,6 @@ set -ex
 
 # Setup required environment variables. TEST_URL should be set by CNP
 export E2E_FRONTEND_URL=${TEST_URL}
-export E2E_PROXY_SERVER=${E2E_PROXY_SERVER:-"proxyout.reform.hmcts.net:8080"}
-export E2E_PROXY_BYPASS=${E2E_PROXY_BYPASS:-"*beta*LB.reform.hmcts.net"}
 export E2E_FRONTEND_NODE_ENV=${E2E_FRONTEND_NODE_ENV:-"production"}
 export IDAM_API_URL=${IDAM_API_URL:-"https://preprod-idamapi.reform.hmcts.net:3511"}
 export COURT_PHONENUMBER=${COURT_PHONENUMBER:-"0300 303 0642"}

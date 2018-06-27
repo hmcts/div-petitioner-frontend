@@ -30,7 +30,7 @@ locals {
 
   service_auth_provider_url = "${var.service_auth_provider_url == "" ? "http://${var.idam_s2s_url_prefix}-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.service_auth_provider_url}"
 
-  case_progression_service_url = "http://pr-75-div-cps-preview.service.core-compute-preview.internal"
+  case_progression_service_url = "http://pr-74-div-cps-preview.service.core-compute-preview.internal"
   evidence_management_client_api_url = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
   fees_and_payments_url = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
   status_health_endpoint             = "/status/health"

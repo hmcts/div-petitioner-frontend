@@ -2,7 +2,7 @@ const hasSubmitted = function(req, res, next) {
   const session = req.session;
 
   if (!this.enabledAfterSubmission && session.caseId) { // eslint-disable-line
-    switch (session.stateId) {
+    switch (session.case_state) {
     case 'AwaitingPayment':
       return res.redirect('/application-submitted');
     case 'Rejected':

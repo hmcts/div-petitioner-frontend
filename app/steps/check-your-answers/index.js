@@ -291,10 +291,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     req.session = req.session || {};
 
     // add all missing addressBaseUK fields
-    forEach(req.session, oneElement => {
-      if (oneElement && typeof oneElement === 'object' && oneElement.selectAddressIndex >= 0 && oneElement.addresses && oneElement.addresses.length > 0 && !oneElement.addressBaseUK) {
-        oneElement.addressBaseUK = addressHelpers
-          .buildAddressBaseUk(oneElement.addresses[oneElement
+    forEach(req.session, element => {
+      if (element && typeof element === 'object' && element.selectAddressIndex >= 0 && element.addresses && element.addresses.length > 0 && !element.addressBaseUK) {
+        element.addressBaseUK = addressHelpers
+          .buildAddressBaseUk(element.addresses[element
             .selectAddressIndex]);
       }
     }

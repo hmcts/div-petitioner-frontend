@@ -23,8 +23,8 @@ exports.config = {
         ignoreHTTPSErrors: true,
         args: [
           '--no-sandbox',
-          `--proxy-server=${process.env.E2E_PROXY_SERVER}`,
-          `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS}`
+          `--proxy-server=${process.env.E2E_PROXY_SERVER || ''}`,
+          `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS || ''}`
         ]
       }
     },
@@ -79,6 +79,6 @@ function getTests() {
   if (CONF.preview_env === 'true') {
     return './paths/**/basicDivorce.js';
   } else {
-    return './paths/**/*.js';
+    return './paths/**/logout.js';
   }
 }

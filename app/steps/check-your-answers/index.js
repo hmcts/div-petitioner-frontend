@@ -1,4 +1,4 @@
-const { cloneDeep, get, reduce, groupBy } = require('lodash');
+const { cloneDeep, get, reduce, groupBy, forEach } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
@@ -8,6 +8,7 @@ const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
 const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
+const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 
 const maximumNumberOfSteps = 500;
 
@@ -288,6 +289,16 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     req.session = req.session || {};
+
+    // add all missing addressBaseUK fields
+    forEach(req.session, oneElement => {
+      if (oneElement && typeof oneElement === 'object' && oneElement.selectAddressIndex && oneElement.addresses && oneElement.addresses.length > 0 && !oneElement.addressBaseUK) {
+        oneElement.addressBaseUK = addressHelpers
+          .buildAddressBaseUk(oneElement.addresses[oneElement
+            .selectAddressIndex]);
+      }
+    }
+    );
 
     // Load courts data into session and select court automatically.
     req.session.court = CONF.commonProps.court;

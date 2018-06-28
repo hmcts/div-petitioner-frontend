@@ -79,6 +79,6 @@ function getTests() {
   if (CONF.preview_env === 'true') {
     return './paths/**/basicDivorce.js';
   } else {
-    return './paths/**/logout.js';
+    return './paths/**/*.js';
   }
 }

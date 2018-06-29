@@ -95,10 +95,8 @@ module.exports = {
           ctx.address = address.formatted_address.split('\n');
           const addrss = addressHelpers
             .buildAddressBaseUk(
-              ctx.postcodeLookup.addresses[ctx
-                .postcodeLookup.selectAddressIndex]
-            );
-          if (addrss !== null) {
+              ctx.addresses[ctx.selectAddressIndex]);
+          if (!addrss) {
             ctx.addressBaseUK = addrss;
           }
         } else {
@@ -127,8 +125,7 @@ module.exports = {
         if (ctx.selectAddressIndex !== '-1' && ctx.addresses) {
           const addrss = addressHelpers
             .buildAddressBaseUk(
-              ctx.postcodeLookup.addresses[ctx
-                .postcodeLookup.selectAddressIndex]
+              ctx.addresses[ctx.selectAddressIndex]
             );
           if (addrss !== null) {
             ctx.addressBaseUK = addrss;

@@ -96,7 +96,7 @@ module.exports = {
           const addrss = addressHelpers
             .buildAddressBaseUk(
               ctx.addresses[ctx.selectAddressIndex]);
-          if (!addrss) {
+          if (addrss !== null) {
             ctx.addressBaseUK = addrss;
           }
         } else {

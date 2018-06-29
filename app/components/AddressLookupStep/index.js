@@ -35,7 +35,7 @@ module.exports = class AddressLookupStep extends ValidationStep {
           session.postcodeLookup.addresses[session
             .postcodeLookup.selectAddressIndex]
         );
-      if (!addrss) {
+      if (addrss !== null) {
         ctx.addressBaseUK = addrss;
       }
     }

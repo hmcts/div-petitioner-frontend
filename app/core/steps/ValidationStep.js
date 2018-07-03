@@ -120,11 +120,8 @@ module.exports = class ValidationStep extends Step {
     return requestHandler.parse(this, req);
   }
 
-  * postRequest(req, res) {
-    let { session } = req;
-
-    // clone session for applying stale data checks later
-    const previousSession = cloneDeep(session);
+  * parseCtx(req) {
+    const { session } = req;
 
     //  extract data from the request
     let ctx = this.populateWithPreExistingData(session);
@@ -140,6 +137,17 @@ module.exports = class ValidationStep extends Step {
     ctx = yield this.interceptor(ctx, session);
 
     ctx = removeEmptyValues(ctx);
+
+    return ctx;
+  }
+
+  * postRequest(req, res) {
+    let { session } = req;
+
+    // clone session for applying stale data checks later
+    const previousSession = cloneDeep(session);
+
+    let ctx = yield this.parseCtx(req);
 
     //  then test whether the request is valid
     const [isValid] = this.validate(ctx, session);

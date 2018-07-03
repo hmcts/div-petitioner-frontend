@@ -1,5 +1,4 @@
 const Step = require('app/core/steps/Step');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
@@ -61,7 +60,7 @@ module.exports = class PayOnline extends Step {
     let authToken = '';
     let user = {};
 
-    if (features.idam) {
+    if (CONF.features.idam) {
       authToken = cookies['__auth-token'];
 
       const idamUserId = idam.userId(req);

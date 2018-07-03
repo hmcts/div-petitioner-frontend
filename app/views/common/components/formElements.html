@@ -14,9 +14,18 @@
     </div>
 {% endmacro %}
 
-{% macro textField(name, field, label, hint = '', boldLabel = false) %}
+{% macro textField(name, field, label, hint = '', boldLabel = false, labelClass = '') %}
+
+    {% if labelClass %}
+        {% set actualLabelClass = labelClass %}
+    {% elif boldLabel %}
+        {% set actualLabelClass = "form-label-bold text" %}
+    {% else %}
+        {% set actualLabelClass = "form-label text" %}
+    {% endif %}
+
     <div class="form-group {{ 'form-group-error' if field.error }}">
-      <label class="form-label{{ '-bold' if boldLabel }} text" for="{{ name }}">{{ label | safe }}</label>
+        <label class="{{ actualLabelClass }}" for="{{ name }}">{{ label | safe }}</label>
 
         {% if hint %}
             <span class="form-hint text">{{ hint | safe }}</span>

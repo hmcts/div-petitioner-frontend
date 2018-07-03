@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   res.locals.asset_path = assetPath;
   res.locals.session = req.session;
   res.locals.serviceName = CONF.serviceName;
-  res.locals.googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
+  res.locals.googleAnalyticsId = CONF.google_analytics.propertyId;
   res.locals.cookieText = CONF.cookieText;
   res.locals.releaseVersion = `v${packageJson.version}`;
 

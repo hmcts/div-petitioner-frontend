@@ -169,7 +169,10 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
       authToken = req.cookies[authTokenString];
     }
 
-    const sendEmail = true;
+    let sendEmail = null;
+    if (req.idam) {
+      sendEmail = req.idam.userDetails.email;
+    }
     client.saveToDraftStore(authToken, sessionToSave, sendEmail)
       .then(() => {
         res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this

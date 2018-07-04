@@ -152,7 +152,6 @@ module.exports = class Step {
     //  here we can set data on the context before we validate
     //  eg, turn individual date fields (day, month, year) into a date
     ctx = yield this.interceptor(ctx, session);
-
     // let errors = null;
     // let fields = null;
     //  fetch all the content from the content files

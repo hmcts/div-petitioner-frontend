@@ -16,6 +16,7 @@ const content = require(`${modulePath}/content`);
 let s = {};
 let agent = {};
 let underTest = {};
+let userEmail = '';
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -23,6 +24,7 @@ describe(modulePath, () => {
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.PetitionerContactDetails;
+    userEmail = 'test@test.com';
   });
 
   afterEach(() => {
@@ -44,7 +46,7 @@ describe(modulePath, () => {
     });
     it('should show email address', done => {
       testExistence(done, agent, underTest,
-        session.petitionerEmail,
+        userEmail,
         session);
     });
   });
@@ -63,7 +65,7 @@ describe(modulePath, () => {
     });
     it('should show email address', done => {
       testExistence(done, agent, underTest,
-        session.petitionerEmail,
+        userEmail,
         session);
     });
   });
@@ -122,39 +124,17 @@ describe(modulePath, () => {
   describe('Check Your Answers', () => {
     it('renders the cya template', done => {
       const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
-      const session = { petitionerEmail: 'test@test.com' };
-      testCYATemplate(done, underTest, dataPhoneNumber, session);
+      testCYATemplate(done, underTest, dataPhoneNumber);
     });
 
-    it('renders when petitionerEmail is in the session', done => {
-      const dataEmpty = { };
-      const session = { petitionerEmail: 'simulate-delivered@notifications.service.gov.uk' };
-
-      const contentToExist = ['email'];
-
-      const valuesToExist = ['petitionerEmail'];
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, dataEmpty, session);
-    });
-
-    it('renders when petitionerEmail is present and number is entered', done => {
+    it('renders when petitioner Email is present and number is entered', done => {
       const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
 
-      const contentToExist = [
-        'email',
-        'petitionerPhoneNumber'
-      ];
+      const contentToExist = ['petitionerPhoneNumber'];
 
-      const valuesToExist = [
-        'petitionerEmail',
-        'petitionerPhoneNumber'
-      ];
+      const valuesToExist = ['petitionerPhoneNumber'];
 
-      const session = {
-        petitionerEmail: 'simulate-delivered@notifications.service.gov.uk',
-        petitionerPhoneNumber: '0123456789'
-      };
+      const session = { petitionerPhoneNumber: '0123456789' };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, dataPhoneNumber, session);

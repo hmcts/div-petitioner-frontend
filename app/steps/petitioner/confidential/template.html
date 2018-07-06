@@ -13,6 +13,13 @@
 {{ content.court | safe }}
 </p>
 
+<div class="panel panel-border-wide">
+    <p class="text">
+        {{ content.sameProperty | safe }}
+    </p>
+
+</div>
+
 <div id="petitionerContactDetailsConfidential" class="form-group {{ 'form-group-error' if fields.petitionerContactDetailsConfidential.error }}">
     <fieldset>
         <legend class="visually-hidden">{{ content.question }}</legend>

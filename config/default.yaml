@@ -176,5 +176,13 @@ e2e:
   waitForTimeoutValue: 10000
   waitForActionValue: 100
 
+saucelabs:
+  browser: 'chrome'
+  username: 'username'
+  key: 'privatekey'
+  tunnelId: ''
+  waitForTimeout: 30000
+  smartWait: 5000
+
 public:
   protocol: 'https'

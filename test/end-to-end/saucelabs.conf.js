@@ -1,63 +1,79 @@
+/* eslint-disable no-console */
+
 const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
+const CONF = require('config');
 
-const browser = process.env.SAUCELABS_BROWSER || 'chrome';
-const tunnelName = process.env.TUNNEL_IDENTIFIER || '';
+const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeoutValue);
+const smartWait = parseInt(CONF.saucelabs.smartWait);
+const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
+const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;
 
-const setupConfig = {
-  'tests': './paths/**/basicDivorce.js',
-  'output': './output',
-  'timeout': 20000,
-  'helpers': {
-    WebDriverIO: {
-      url: process.env.E2E_FRONTEND_URL || 'https://localhost:8080',
-      browser: supportedBrowsers[browser].browserName,
-      waitforTimeout: 60000,
-      smartWait: 5000,
-      cssSelectorsEnabled: 'true',
-      windowSize: '1600x900',
-      timeouts: {
-        script: 60000,
-        'page load': 60000,
-        implicit: 20000
-      },
-      'host': 'ondemand.saucelabs.com',
-      'port': 80,
-      'user': process.env.SAUCE_USERNAME,
-      'key': process.env.SAUCE_ACCESS_KEY,
-      desiredCapabilities: getDesiredCapabilities()
-    },
-    'SauceLabsReportingHelper': {
-      'require': './helpers/SauceLabsReportingHelper.js'
-    },
-    'JSWait': {
-      'require': './helpers/JSWait.js'
-    },
-    'ElementExist': {
-      'require': './helpers/ElementExist.js'
-    },
-    'IdamHelper': {
-      'require': './helpers/idamHelper.js'
+const getBrowserConfig = () => {
+  const browserConfig = [];
+  for (const candidateBrowser in supportedBrowsers) {
+    if (candidateBrowser) {
+      const desiredCapability = supportedBrowsers[candidateBrowser];
+      desiredCapability.tunnelIdentifier = tunnelName;
+      desiredCapability.tags = ['divorce'];
+      browserConfig.push({
+        browser: desiredCapability.browserName,
+        desiredCapabilities: desiredCapability
+      });
+    } else {
+      console.error('ERROR: supportedBrowsers.js is empty or incorrectly defined');
     }
-  },
-  'include': {
-    'I': './pages/steps.js'
-  },
-  'mocha': {
-    'reporterOptions': {
-      'reportDir': process.env.E2E_CROSSBROWSER_OUTPUT_DIR || './output',
-      'reportName': browser + '_report',
-      'reportTitle': 'Crossbrowser results for: ' + browser.toUpperCase(),
-      'inlineAssets': true
-    }
-  },
-  'name': 'frontEnd Tests'
+  }
+  return browserConfig;
 };
 
-function getDesiredCapabilities() {
-  let desiredCapability = supportedBrowsers[browser];
-  desiredCapability.tunnelIdentifier = tunnelName;
-  desiredCapability.tags = ['divorce'];
-  return desiredCapability;
-}
+const setupConfig = {
+  tests: './paths/**/basicDivorce.js',
+  output: process.cwd() + '/functional-output',
+  helpers: {
+    WebDriverIO: {
+      url: process.env.E2E_FRONTEND_URL || CONF.e2e.frontendUrl,
+      browser,
+      waitForTimeout,
+      smartWait,
+      cssSelectorsEnabled: 'true',
+      host: 'ondemand.saucelabs.com',
+      port: 80,
+      user: process.env.SAUCE_USERNAME || CONF.saucelabs.username,
+      key: process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key,
+      desiredCapabilities: {}
+    },
+    SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
+    JSWait: { require: './helpers/JSWait.js' },
+    ElementExist: { require: './helpers/ElementExist.js' },
+    IdamHelper: { require: './helpers/idamHelper.js' }
+  },
+  include: { I: './pages/steps.js' },
+  mocha: {
+    reporterOptions: {
+      'codeceptjs-cli-reporter': {
+        stdout: '-',
+        options: { steps: true }
+      },
+      'mocha-junit-reporter': {
+        stdout: '-',
+        options: { mochaFile: `${CONF.e2e.outputDir}/result.xml` }
+      },
+      mochawesome: {
+        stdout: `${CONF.e2e.outputDir}/console.log`,
+        options: {
+          reportDir: CONF.e2e.outputDir,
+          reportName: 'index',
+          inlineAssets: true
+        }
+      }
+    }
+  },
+  multiple: {
+    saucelabs: {
+      browsers: getBrowserConfig()
+    }
+  },
+  name: 'Frontend Tests'
+};
 
 exports.config = setupConfig;

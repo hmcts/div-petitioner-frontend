@@ -6,7 +6,7 @@ class JSWait extends codecept_helper {
 
     // Wait for content to load before checking URL
     if (step.name === 'seeCurrentUrlEquals') {
-      return helper.waitForElement('#content', 10);
+      return helper.waitForElement('#content', 30);
     }
   };
 
@@ -14,10 +14,12 @@ class JSWait extends codecept_helper {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
     const helperIsPuppeteer = this.helpers['Puppeteer'];
 
-    helper.click(text, locator);
+    await helper.click(text, locator);
 
     if (helperIsPuppeteer) {
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
+    } else {
+      await helper.waitForElement('#content', 30);
     }
   };
 
@@ -30,11 +32,13 @@ class JSWait extends codecept_helper {
         url = helper.options.url + url;
       }
 
-      helper.page.goto(url);
+      await helper.page.goto(url);
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
 
     } else {
-      helper.amOnPage(url);
+      await helper.amOnPage(url);
+      await helper.waitInUrl(url);
+      await helper.waitForElement('#content', 30);
     }
   };
 }

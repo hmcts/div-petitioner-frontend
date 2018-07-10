@@ -181,8 +181,8 @@ saucelabs:
   username: 'username'
   key: 'privatekey'
   tunnelId: ''
-  waitForTimeout: 30000
-  smartWait: 5000
+  waitForTimeout: 60000
+  smartWait: 45000
 
 public:
   protocol: 'https'

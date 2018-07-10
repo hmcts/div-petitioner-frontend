@@ -1,5 +1,18 @@
 #!/bin/bash
 
+
+echo
+echo "*****************************************"
+echo "*****    DEPRECATED TEST RUNNER!    *****"
+echo "*****************************************"
+echo
+echo "Please use ./bin/run-crossbrowser-tests-local.sh instead"
+echo
+echo "*****************************************"
+echo
+
+
+
 supportedBrowsers=`sed '/\/\//d' test/crossbrowser/supportedBrowsers.js | sed '/: {/!d' | sed "s/[\'\:\{ ]//g"`
 browsersArray=(${supportedBrowsers//$'\n'/ })
 finalExitStatus=0

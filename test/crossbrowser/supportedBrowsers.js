@@ -8,15 +8,15 @@ const supportedBrowsers = {
     ignoreProtectedModeSettings: true,
     version: '11'
   },
-  'ie11_win8.1': {
-    browserName: 'internet explorer',
-    name: 'IE11_Win8.1',
-    platform: 'Windows 8.1',
-    ignoreZoomSetting: true,
-    nativeEvents: false,
-    ignoreProtectedModeSettings: true,
-    version: '11'
-  },
+  // 'ie11_win8.1': {
+  //   browserName: 'internet explorer',
+  //   name: 'IE11_Win8.1',
+  //   platform: 'Windows 8.1',
+  //   ignoreZoomSetting: true,
+  //   nativeEvents: false,
+  //   ignoreProtectedModeSettings: true,
+  //   version: '11'
+  // },
   ie11_win10: {
     browserName: 'internet explorer',
     name: 'IE11_Win10',
@@ -68,26 +68,31 @@ const supportedBrowsers = {
     browserName: 'firefox',
     name: 'WIN_FIREFOX_LATEST',
     platform: 'Windows 10',
-    version: 'latest'
+    version: 'latest',
+    'moz:webdriverClick': false
   },
   firefox_win_previous: {
     browserName: 'firefox',
     name: 'WIN_FIREFOX_PREVIOUS',
     platform: 'Windows 8.1',
-    version: 'latest-1'
+    version: 'latest-1',
+    'moz:webdriverClick': false
   },
   firefox_mac_latest: {
     browserName: 'firefox',
     name: 'MAC_FIREFOX_LATEST',
     platform: 'OS X 10.12',
-    version: 'latest'
+    version: 'latest',
+    'moz:webdriverClick': false
   },
   firefox_mac_previous: {
     browserName: 'firefox',
     name: 'MAC_FIREFOX_PREVIOUS',
     platform: 'OS X 10.11',
-    version: 'latest-1'
+    version: 'latest-1',
+    'moz:webdriverClick': false
   },
+
   // safari10: {
   //   browserName: 'safari',
   //   name: 'SAFARI_10',
@@ -102,6 +107,7 @@ const supportedBrowsers = {
   //   version: '11.1',
   //   avoidProxy: true
   // }
+
   iPhone6s_iOS10: {
     browserName: 'safari',
     appiumVersion: '1.8.1',
@@ -111,15 +117,15 @@ const supportedBrowsers = {
     platformVersion: '10.3',
     platformName: 'iOS'
   },
-  iPhone8_iOS11: {
-    browserName: 'safari',
-    appiumVersion: '1.8.1',
-    deviceName: 'iPhone 8 Simulator',
-    deviceOrientation: 'portrait',
-    name: 'IPHONE8_IOS11',
-    platformVersion: '11.3',
-    platformName: 'iOS'
-  },
+  // iPhone8_iOS11: {
+  //   browserName: 'safari',
+  //   appiumVersion: '1.8.1',
+  //   deviceName: 'iPhone 8 Simulator',
+  //   deviceOrientation: 'portrait',
+  //   name: 'IPHONE8_IOS11',
+  //   platformVersion: '11.3',
+  //   platformName: 'iOS'
+  // },
   samsungS8_android7: {
     browserName: 'Chrome',
     appiumVersion: '1.8.1',
@@ -128,16 +134,16 @@ const supportedBrowsers = {
     name: 'SAMSUNGS8_ANDROID7',
     platformVersion: '7.1',
     platformName: 'Android'
-  },
-  nexus7C_android4: {
-    browserName: 'Browser',
-    appiumVersion: '1.8.1',
-    deviceName: 'Google Nexus 7C Emulator',
-    deviceOrientation: 'portrait',
-    name: 'NEXUS7C_ANDROID4',
-    platformVersion: '4.4',
-    platformName: 'Android'
   }
+  // nexus7C_android4: {
+  //   browserName: 'Browser',
+  //   appiumVersion: '1.8.1',
+  //   deviceName: 'Google Nexus 7C Emulator',
+  //   deviceOrientation: 'portrait',
+  //   name: 'NEXUS7C_ANDROID4',
+  //   platformVersion: '4.4',
+  //   platformName: 'Android'
+  // }
 };
 
 

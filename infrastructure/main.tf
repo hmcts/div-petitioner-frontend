@@ -42,6 +42,7 @@ module "redis-cache" {
   location = "${var.location}"
   env      = "${var.env}"
   subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  common_tags = "${var.common_tags}"
 }
 
 module "frontend" {
@@ -56,6 +57,7 @@ module "frontend" {
   additional_host_name            = "${var.env != "preview" ? var.additional_host_name : "null"}"
   https_only                      = "false"
   capacity                        = "${var.capacity}"
+  common_tags                     = "${var.common_tags}"
 
   app_settings = {
     // Node specific vars

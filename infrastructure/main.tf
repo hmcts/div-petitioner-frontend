@@ -42,6 +42,7 @@ module "redis-cache" {
   location = "${var.location}"
   env      = "${var.env}"
   subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  common_tags = "${var.common_tags}"
 }
 
 module "frontend" {

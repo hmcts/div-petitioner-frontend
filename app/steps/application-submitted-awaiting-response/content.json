@@ -5,7 +5,7 @@
             "translation": {
                 "content": {
                     "title": "Application submitted",
-                    "info": "Your application has been submitted.",
+                    "info": "Your application has now been submitted.",
                     "info2": "You can contact us if you need help with your divorce application.",
                     "contactTitle": "Contact Us",
                     "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",

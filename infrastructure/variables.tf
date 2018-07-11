@@ -398,3 +398,7 @@ variable "court_southwest_court_weight" {
 variable "court_northwest_court_weight" {
   default = "0.25"
 }
+
+variable "common_tags" {
+  type = "map"
+}

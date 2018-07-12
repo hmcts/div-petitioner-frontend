@@ -415,6 +415,7 @@ describe(modulePath, () => {
         generateFields: sinon.stub().returns(fields),
         mapErrorsToFields: sinon.stub().returns(fields),
         checkYourAnswersTemplate: `${__dirname}/../../views/common/components/defaultCheckYouAnswersTemplate.html`,
+        parseRequest: sinon.stub().returns(ctx),
         section: 'test',
         url: '/test',
         template: 'template',

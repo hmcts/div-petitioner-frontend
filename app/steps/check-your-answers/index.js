@@ -85,6 +85,24 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     ];
   }
 
+  parseRequest(req) {
+    const ctx = super.parseRequest(req);
+
+    // if confirmPrayer has no value, set it to false
+    ctx.confirmPrayer = ctx.confirmPrayer || false;
+
+    ctx.requestMethod = req.method.toLowerCase();
+
+    const isPost = ctx.requestMethod === 'post';
+
+    // always set confirmPrayer to false on entering the page
+    if (!isPost) {
+      ctx.confirmPrayer = false;
+    }
+
+    return ctx;
+  }
+
   getStepCtx(step, session = {}) {
     let ctx = {};
 

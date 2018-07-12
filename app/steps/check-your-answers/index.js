@@ -41,6 +41,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     const [isValid] = this.validate(ctx, session);
 
     if (isValid) {
+      // apply ctx to session (this adds confirmPrayer to session before submission)
+      req.session = this.applyCtxToSession(ctx, session);
       // if application is valid submit it
       return this.submitApplication(req, res);
     }
@@ -49,8 +51,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   * interceptor(ctx, session) {
-    //  confirmPrayer and requestMethod are set by parseRequest prior to this call
-    // const requestMethod = ctx.requestMethod;
     const confirmPrayer = ctx.confirmPrayer;
 
     //  set the ctx to the current session then update with the current ctx
@@ -83,24 +83,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       'about-divorce',
       'pay'
     ];
-  }
-
-  parseRequest(req) {
-    const ctx = super.parseRequest(req);
-
-    // if confirmPrayer has no value, set it to false
-    ctx.confirmPrayer = ctx.confirmPrayer || false;
-
-    ctx.requestMethod = req.method.toLowerCase();
-
-    const isPost = ctx.requestMethod === 'post';
-
-    // always set confirmPrayer to false on entering the page
-    if (!isPost) {
-      ctx.confirmPrayer = false;
-    }
-
-    return ctx;
   }
 
   getStepCtx(step, session = {}) {

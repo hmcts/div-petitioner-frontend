@@ -14,7 +14,7 @@ Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.see(payHelpFeeContent);
 });
 
-Scenario('Card payment online', function* (I) {
+Scenario('Card payment online [@runDuringPreview]', function* (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();

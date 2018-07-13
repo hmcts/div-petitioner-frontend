@@ -17,7 +17,7 @@ const fiveYearsAgoFormatted = {
 
 Feature('Reasons for divorce').retry(3);
 
-Scenario('Unreasonable behaviour - with added examples', (I) => {
+Scenario('Unreasonable behaviour - with added examples [@runDuringPreview]', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();

@@ -32,7 +32,6 @@ const stepDefinitions = requireDir(module, `${__dirname}/app/steps`, { exclude: 
 const middleware = requireDir(module, `${__dirname}/app/middleware`, { exclude: /\.test\./ });
 const healthcheck = require('app/services/healthcheck');
 const nunjucksFilters = require('app/filters/nunjucks');
-const draftPetitionStoreMiddleware = require('./app/middleware/draftPetitionStoreMiddleware');
 
 const PORT = CONF.http.port || CONF.http.porttactical;
 
@@ -117,43 +116,6 @@ exports.init = listenForConnections => {
   app.set('trust proxy', 1);
   app.use(sessions.prod());
 
-  //  register steps with the express app
-  const steps = initSteps(app, stepDefinitions);
-
-  if (CONF.deployment_env !== 'prod') {
-    //  site graph
-    app.get('/graph', (req, res) => {
-      const graph = siteGraph(steps);
-      res.json(graph);
-    });
-
-    //  quick way to update a session.
-    //  useful to set the app into an
-    //  initial state for testing
-    app.post('/test-reset', [
-      draftPetitionStoreMiddleware.removeFromDraftStore,
-      (req, res) => {
-        req.session.regenerate(() => {
-          Object.assign(req.session, req.body);
-
-          res.sendStatus(statusCode.OK);
-        });
-      }
-      // (req, res) => {
-      //   res.end(JSON.stringify(req.session));
-      // }
-    ]);
-    app.post('/session', (req, res) => {
-      Object.assign(req.session, req.body);
-
-      res.sendStatus(statusCode.OK);
-    });
-    app.get('/session', (req, res) => {
-      res.writeHead(statusCode.OK, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(req.session));
-    });
-  }
-
   if (CONF.rateLimiter.enabled) {
     app.use(rateLimiter(app));
   }
@@ -183,6 +145,30 @@ exports.init = listenForConnections => {
   app.get('/', (req, res) => {
     res.redirect('/index');
   });
+
+  //  register steps with the express app
+  const steps = initSteps(app, stepDefinitions);
+
+  if (CONF.deployment_env !== 'prod') {
+    //  site graph
+    app.get('/graph', (req, res) => {
+      const graph = siteGraph(steps);
+      res.json(graph);
+    });
+
+    //  quick way to update a session.
+    //  useful to set the app into an
+    //  initial state for testing
+    app.post('/session', (req, res) => {
+      Object.assign(req.session, req.body);
+
+      res.sendStatus(statusCode.OK);
+    });
+    app.get('/session', (req, res) => {
+      res.writeHead(statusCode.OK, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(req.session));
+    });
+  }
 
   app.get('/cookie', i18nTemplate('cookie', (view, req, res) => {
     res.render(view, {});

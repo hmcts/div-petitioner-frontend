@@ -2,7 +2,7 @@ const content = require('app/steps/check-your-answers/content.json').resources.e
 const jurisdictionContent = require('app/services/jurisdiction/content.json').resources.en.translation.content;
 const getOtherConnections = require('test/end-to-end/helpers/GeneralHelpers.js').getOtherJurisdictionConnections;
 
-function* checkMyConnectionsAre(...connections) { // eslint-disable-line require-yield 
+function* checkMyConnectionsAre(...connections) { // eslint-disable-line require-yield
 
   const I = this;
 
@@ -43,6 +43,19 @@ function checkMyAnswers() {
   I.navByClick(content.submitOnline);
 }
 
+function checkMyAnswersAndValidateSession() {
+
+  const I = this;
+
+  I.seeCurrentUrlEquals('/check-your-answers');
+  I.see(content.title);
+
+  // Verify static session data still valid
+  I.assertSessionEqualsTestData();
+
+  I.checkMyAnswers();
+}
+
 function checkMyAnswersRestoredSession() {
   const I = this;
 
@@ -65,6 +78,7 @@ function checkMyAnswersRemoveApplication() {
 
 module.exports = {
   checkMyAnswers,
+  checkMyAnswersAndValidateSession,
   checkMyConnectionsAre,
   checkMyAnswersRestoredSession,
   checkMyAnswersRemoveApplication

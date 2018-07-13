@@ -674,47 +674,67 @@ describe(modulePath, () => {
         sendStatus: sinon.stub()
       };
 
-      sinon.stub(underTest, 'parseCtx').resolves();
       sinon.stub(underTest, 'validate').returns([true]);
       sinon.stub(underTest, 'submitApplication');
     });
 
     afterEach(() => {
       underTest.submitApplication.restore();
-      underTest.parseCtx.restore();
       underTest.validate.restore();
     });
 
-    it('does not submit application if submit button not clicked', done => {
-      co(function* generator() {
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledOnce).to.equal(true);
-        expect(underTest.validate.calledOnce).to.equal(true);
-        expect(underTest.submitApplication.called).to.equal(false);
-        done();
+    context('submission test', () => {
+      beforeEach(() => {
+        sinon.stub(underTest, 'parseCtx').resolves();
+      });
+
+      afterEach(() => {
+        underTest.parseCtx.restore();
+      });
+
+      it('does not submit application if submit button not clicked', done => {
+        co(function* generator() {
+          yield underTest.postRequest(req, res);
+          expect(underTest.parseCtx.calledOnce).to.equal(true);
+          expect(underTest.validate.calledOnce).to.equal(true);
+          expect(underTest.submitApplication.called).to.equal(false);
+          done();
+        });
+      });
+
+      it('runs submit application if submission is valid', done => {
+        co(function* generator() {
+          req.body.submit = true;
+          yield underTest.postRequest(req, res);
+          expect(underTest.parseCtx.calledOnce).to.equal(true);
+          expect(underTest.validate.calledOnce).to.equal(true);
+          expect(underTest.submitApplication.calledOnce).to.equal(true);
+          done();
+        });
+      });
+
+      it('does not submit application if invalid', done => {
+        co(function* generator() {
+          req.body.submit = true;
+          underTest.validate.returns([false]);
+          yield underTest.postRequest(req, res);
+          expect(underTest.parseCtx.calledTwice).to.equal(true);
+          expect(underTest.validate.calledTwice).to.equal(true);
+          expect(underTest.submitApplication.called).to.equal(false);
+          done();
+        });
       });
     });
 
-    it('runs submit application if submission is valid', done => {
-      co(function* generator() {
-        req.body.submit = true;
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledOnce).to.equal(true);
-        expect(underTest.validate.calledOnce).to.equal(true);
-        expect(underTest.submitApplication.calledOnce).to.equal(true);
-        done();
-      });
-    });
-
-    it('does not submit application if invalid', done => {
-      co(function* generator() {
-        req.body.submit = true;
-        underTest.validate.returns([false]);
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledTwice).to.equal(true);
-        expect(underTest.validate.calledTwice).to.equal(true);
-        expect(underTest.submitApplication.called).to.equal(false);
-        done();
+    context('session test', () => {
+      it('sets confirmPrayer to Yes when set in the ctx', done => {
+        co(function* generator() {
+          req.body.submit = true;
+          req.body.confirmPrayer = 'Yes';
+          yield underTest.postRequest(req, res);
+          expect(req.session.confirmPrayer).to.equal('Yes');
+          done();
+        });
       });
     });
   });

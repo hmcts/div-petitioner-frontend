@@ -41,6 +41,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     const [isValid] = this.validate(ctx, session);
 
     if (isValid) {
+      // apply ctx to session (this adds confirmPrayer to session before submission)
+      req.session = this.applyCtxToSession(ctx, session);
       // if application is valid submit it
       return this.submitApplication(req, res);
     }
@@ -49,8 +51,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   * interceptor(ctx, session) {
-    //  confirmPrayer and requestMethod are set by parseRequest prior to this call
-    // const requestMethod = ctx.requestMethod;
     const confirmPrayer = ctx.confirmPrayer;
 
     //  set the ctx to the current session then update with the current ctx

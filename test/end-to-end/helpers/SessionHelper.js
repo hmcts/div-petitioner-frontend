@@ -5,7 +5,7 @@ const { assert } = require('chai');
 const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData.js');
 const Tokens = require('csrf');
 
-class JSWait extends codecept_helper {
+class SessionHelper extends codecept_helper {
 
   async getTheSession(cookie) {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
@@ -79,4 +79,4 @@ class JSWait extends codecept_helper {
 
 }
 
-module.exports = JSWait;
+module.exports = SessionHelper;

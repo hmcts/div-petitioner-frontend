@@ -15,7 +15,7 @@ class SessionHelper extends codecept_helper {
         .headers({'Cookie': `${cookie.name}=${cookie.value}`})
         .strictSSL(false)
         .end((response) => {
-          console.log(`### SESSION GET: ${response.body}`);
+          console.log('### SESSION GET:', response.body);
           resolve(response.body);
         });
     });

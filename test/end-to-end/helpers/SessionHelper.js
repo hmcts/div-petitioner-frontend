@@ -49,6 +49,7 @@ class SessionHelper extends codecept_helper {
   async assertSessionEqualsTestData() {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
     const connectSidCookie = await helper.grabCookie('connect.sid');
+    console.log('### connect.sid cookie =', connectSidCookie);
     const session = await this.getTheSession(connectSidCookie);
 
     let expectedSession = this.updateSessionWithGeneratedData(basicDivorceSessionData, session);

@@ -179,60 +179,62 @@
         </fieldset>
         </div>
 
-        {% if fields.reasonForDivorceLimitReasons.value %}
-
         <details>
             <summary>
-                <span class="summary">
-                    {{content.unableToChoose1 | safe}}
-                    {% if fields.reasonForDivorceTimeUntilReason2Years.value %} {{fields.reasonForDivorceTimeUntilReason2Years.value}} {% else %} {{fields.reasonForDivorceTimeUntilReason5Years.value}} {% endif %}
-                    {{content.unableToChoose2 | safe}}
-                </span>
+                <span class="summary">{{ content.noneApply | safe }}</span>
             </summary>
 
             <div class="panel panel-border-narrow">
-            {% if not fields.reasonForDivorceShowTwoYearsSeparation.value %}
+                <p class="text">
+                    <span>{{ content.finalPossibilities | safe }}</span>
+                </p>
 
-                {{ reasonInfo(
-                content.2YearsSeparationHeading,
-                content.2YearsSeparationExclusion
-                ) }}
-            {% endif %}
+                {% if fields.reasonForDivorceLimitReasons.value %}
+                    <p class="text">
+                        <span class="bold-small">{{ content.alternativelyInFuture | safe }}</span>
+                    </p>
 
-            {% if not fields.reasonForDivorceShowDesertion.value %}
-                {{ reasonInfo(
-                content.desertionHeading,
-                content.desertionExclusion
-                ) }}
-            {% endif %}
+                    {% if fields.reasonForDivorceTimeUntilReason2Years.value %}
+                        {{ fromInfo(fields.reasonForDivorceTimeUntilReason2Years) }}
 
-            {% if not fields.reasonForDivorceShowFiveYearsSeparation.value %}
-                {{ reasonInfo(
-                content.5YearsSeparationHeading,
-                content.5YearsSeparationExclusion,
-                fields.reasonForDivorceTimeUntilReason5Years
-                ) }}
-            {% endif %}
+                        <ul class="list list-bullet">
+                            {% if not fields.reasonForDivorceShowTwoYearsSeparation.value %}
+                                {{ reasonInfo(content.2YearsSeparationHeading, content.2YearsSeparationExclusion) }}
+                            {% endif %}
+
+                            {% if not fields.reasonForDivorceShowDesertion.value %}
+                                {{ reasonInfo(content.desertionHeading, content.desertionExclusion) }}
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+
+                    {% if not fields.reasonForDivorceShowFiveYearsSeparation.value %}
+                        {{ fromInfo(fields.reasonForDivorceTimeUntilReason5Years) }}
+
+                        <ul class="list list-bullet">
+                            {{ reasonInfo(content.5YearsSeparationHeading, content.5YearsSeparationExclusion) }}
+                        </ul>
+                    {% endif %}
+                {% endif %}
             </div>
         </details>
-
-        {% endif %}
-
-
     </div>
-
-        <p class="text">
-            <span>{{ content.noneApply | safe }}</span>
-        </p>
-
 {% endblock %}
+
 {% block extra_scripts %}
   <script type="text/javascript">
     DIVORCE.SwitchReasonColor();
   </script>
 {% endblock %}
-{% macro reasonInfo(heading, summary, date) %}
+
+{% macro fromInfo(date) %}
     <p class="text">
-        <span class="bold-small">{{heading | safe}}</span> - {{summary | safe}}{% if date %} {{date.value}}{% endif %}.
+        From {{ date.value }}:
+    </p>
+{% endmacro %}
+
+{% macro reasonInfo(heading, summary) %}
+    <p class="text">
+        <li>{{heading | safe}} - {{summary | safe}}</li>
     </p>
 {% endmacro %}

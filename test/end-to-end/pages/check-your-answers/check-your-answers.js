@@ -51,7 +51,7 @@ function checkMyAnswersAndValidateSession() {
   I.see(content.title);
 
   // Verify static session data still valid
-  I.assertSessionEqualsTestData();
+  I.assertSessionEqualsMockTestData();
 
   I.checkMyAnswers();
 }

@@ -157,7 +157,7 @@ exports.init = listenForConnections => {
     });
   }
 
-  if (CONF.environment === 'development' || CONF.environment === 'testing') {
+  if (CONF.environment === 'development' || CONF.environment === 'testing' || CONF.environment === 'preview') {
     //  quick way to update a session.
     //  useful to set the app into an
     //  initial state for testing

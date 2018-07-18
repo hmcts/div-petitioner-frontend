@@ -23,7 +23,6 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          // console.log('### SESSION GET:', response.body);
           resolve(response.body);
         });
     });
@@ -72,40 +71,35 @@ class SessionHelper extends codecept_helper {
     return assert.deepEqual(session, expectedSession);
   }
 
+  updateExpectedSessionWithActualSession(expectedSession, actualSession) {
+    const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:8080') > -1;
+
+    expectedSession.csrfSecret                                  = actualSession.csrfSecret;
+    expectedSession.expires                                     = actualSession.expires;
+    expectedSession.cookie.domain                               = actualSession.cookie.domain;
+    expectedSession.marriageCertificateFiles[0]                 = actualSession.marriageCertificateFiles[0];
+
+    if (!testingLocally) {
+      expectedSession.fetchedDraft                              = actualSession.fetchedDraft;
+      expectedSession.petitionerEmail                           = actualSession.petitionerEmail;
+      expectedSession.petitionerHomeAddress.addresses           = actualSession.petitionerHomeAddress.addresses;
+      expectedSession.petitionerCorrespondenceAddress.addresses = actualSession.petitionerCorrespondenceAddress.addresses;
+      expectedSession.respondentHomeAddress.addresses           = actualSession.respondentHomeAddress.addresses;
+      expectedSession.respondentCorrespondenceAddress.addresses = actualSession.respondentCorrespondenceAddress.addresses;
+    }
+
+    return expectedSession;
+  }
+
   async haveABasicSession() {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
     const connectSidCookie = await helper.grabCookie('connect.sid');
     const authTokenCookie = await helper.grabCookie('__auth-token');
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);
 
-    let basicSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
+    let basicSession = Object.assign(basicDivorceSessionData, session);
 
     await this.setTheSession(connectSidCookie, authTokenCookie, basicSession);
-  }
-
-  updateExpectedSessionWithActualSession(expectedSession, actualSession) {
-    const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:8080') > -1;
-
-    expectedSession.csrfSecret                                = actualSession.csrfSecret;
-    expectedSession.expires                                   = actualSession.expires;
-    expectedSession.cookie.domain                             = actualSession.cookie.domain;
-    expectedSession.petitionerHomeAddress.addresses           = actualSession.petitionerHomeAddress.addresses;
-    expectedSession.petitionerCorrespondenceAddress.addresses = actualSession.petitionerCorrespondenceAddress.addresses;
-    expectedSession.respondentHomeAddress.addresses           = actualSession.respondentHomeAddress.addresses;
-    expectedSession.respondentCorrespondenceAddress.addresses = actualSession.respondentCorrespondenceAddress.addresses;
-    expectedSession.marriageCertificateFiles[0].createdBy     = actualSession.marriageCertificateFiles[0].createdBy;
-    expectedSession.marriageCertificateFiles[0].createdOn     = actualSession.marriageCertificateFiles[0].createdOn;
-    expectedSession.marriageCertificateFiles[0].lastModifiedBy= actualSession.marriageCertificateFiles[0].lastModifiedBy;
-    expectedSession.marriageCertificateFiles[0].modifiedOn    = actualSession.marriageCertificateFiles[0].modifiedOn;
-    expectedSession.marriageCertificateFiles[0].fileUrl       = actualSession.marriageCertificateFiles[0].fileUrl;
-    expectedSession.marriageCertificateFiles[0].mimeType      = actualSession.marriageCertificateFiles[0].mimeType;
-
-    if (!testingLocally) {
-      expectedSession.fetchedDraft                            = actualSession.fetchedDraft;
-      expectedSession.petitionerEmail                         = actualSession.petitionerEmail;
-    }
-
-    return expectedSession;
   }
 
 }

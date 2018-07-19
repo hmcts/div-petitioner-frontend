@@ -59,9 +59,9 @@ const setupConfig = {
         options: { mochaFile: `${CONF.e2e.outputDir}/result.xml` }
       },
       mochawesome: {
-        stdout: `${CONF.e2e.outputDir}/console.log`,
+        stdout: './functional-output/console.log',
         options: {
-          reportDir: CONF.e2e.outputDir,
+          reportDir: CONF.e2e.outputDirectory,
           reportName: 'index',
           inlineAssets: true
         }

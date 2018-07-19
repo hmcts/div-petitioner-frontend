@@ -8,11 +8,11 @@ const smartWait = parseInt(CONF.saucelabs.smartWait);
 const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;
 
-const getBrowserConfig = () => {
+const getBrowserConfig = (browserGroup) => {
   const browserConfig = [];
-  for (const candidateBrowser in supportedBrowsers) {
+  for (const candidateBrowser in supportedBrowsers[browserGroup]) {
     if (candidateBrowser) {
-      const desiredCapability = supportedBrowsers[candidateBrowser];
+      const desiredCapability = supportedBrowsers[browserGroup][candidateBrowser];
       desiredCapability.tunnelIdentifier = tunnelName;
       desiredCapability.tags = ['divorce'];
       browserConfig.push({
@@ -69,8 +69,23 @@ const setupConfig = {
     }
   },
   multiple: {
-    saucelabs: {
-      browsers: getBrowserConfig()
+    microsoft: {
+      browsers: getBrowserConfig('microsoft')
+    },
+    chrome: {
+      browsers: getBrowserConfig('chrome')
+    },
+    firefox: {
+      browsers: getBrowserConfig('firefox')
+    },
+    // safari: {
+    //   browsers: getBrowserConfig('safari')
+    // },
+    ios: {
+      browsers: getBrowserConfig('ios')
+    },
+    android: {
+      browsers: getBrowserConfig('android')
     }
   },
   name: 'Frontend Tests'

@@ -1,0 +1,21 @@
+#!groovy
+
+properties([
+        pipelineTriggers([cron('13 20 * * *')]) // scheduling to trigger jenkins job
+//        pipelineTriggers([cron('H 23 * * *')])
+])
+
+@Library("Infrastructure")
+
+def product = "div"
+def component = "pfe"
+
+withNightlyPipeline("nodejs", product, component) {
+    env.TEST_URL = 'https://div-pfe-aat.service.core-compute-aat.internal/'
+    env.SAUCE_ACCESS_KEY='e0067992-049e-412c-9d15-2566a28cfb73'
+    env.SAUCE_USERNAME='divorce'
+
+    enableCrossBrowserTest()
+
+    enableSlackNotifications('#div-dev')
+}

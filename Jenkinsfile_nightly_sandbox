@@ -1,7 +1,7 @@
 #!groovy
 
 properties([
-        pipelineTriggers([cron('20 12 * * *')]) // scheduling to trigger jenkins job
+        pipelineTriggers([cron('20 13 * * *')]) // scheduling to trigger jenkins job
 //        pipelineTriggers([cron('H 23 * * *')])
 ])
 
@@ -16,6 +16,10 @@ withNightlyPipeline("nodejs", product, component) {
     env.SAUCE_USERNAME='divorce'
 
     enableCrossBrowserTest()
+
+    after('crossBrowserTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+    }
 
     enableSlackNotifications('#div-dev')
 }

@@ -1,5 +1,3 @@
-const config = require('config');
-
 const hasSubmitted = function(req, res, next) {
   const session = req.session;
 

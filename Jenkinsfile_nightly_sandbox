@@ -1,7 +1,7 @@
 #!groovy
 
 properties([
-        pipelineTriggers([cron('13 20 * * *')]) // scheduling to trigger jenkins job
+        pipelineTriggers([cron('20 12 * * *')]) // scheduling to trigger jenkins job
 //        pipelineTriggers([cron('H 23 * * *')])
 ])
 

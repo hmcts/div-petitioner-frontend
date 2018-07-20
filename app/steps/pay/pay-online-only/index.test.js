@@ -27,7 +27,7 @@ let cookies = [];
 const code = CONF.commonProps.applicationFee.code;
 const version = CONF.commonProps.applicationFee.version;
 const amount = parseInt(
-  CONF.commonProps.applicationFee.fee_amount
+  CONF.commonProps.applicationFee.amount
 );
 const userDetails = {
   id: 1,

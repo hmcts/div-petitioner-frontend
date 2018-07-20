@@ -26,7 +26,7 @@ const getFeeFromFeesAndPayments = () => {
     .then(response => {
       // set fee returned from fee register to global CONF
       logger.info(' Fee code set to ', response.feeCode);
-      CONF.commonProps.applicationFee.code = response.feeCode;
+      CONF.commonProps.applicationFee.feeCode = response.feeCode;
       logger.info(' Fee version set to ', response.version);
       CONF.commonProps.applicationFee.version = response.version;
       logger.info(' Fee amount set to ', response.amount);

@@ -23,8 +23,6 @@ describe(modulePath, () => {
     it('gets application fee from fee register', done => {
       underTest.updateApplicationFeeMiddleware(req, res, () => {
         expect(ioRedisClient.get.calledOnce).to.eql(true);
-        expect(ioRedisClient.set.calledOnce).to.eql(true);
-        expect(ioRedisClient.expire.calledOnce).to.eql(true);
         expect(CONF.commonProps.applicationFee)
           .to.eql(mockFeesAndPaymentsService.mockFeeResponse);
         done();

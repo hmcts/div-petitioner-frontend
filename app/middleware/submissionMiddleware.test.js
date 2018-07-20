@@ -57,19 +57,5 @@ describe(modulePath, () => {
       expect(res.redirect.called).to.eql(false);
       expect(next.calledOnce).to.eql(true);
     });
-    it('next is not called if env is prod', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingPayment';
-      config.deployment_env = 'prod';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(next.calledOnce).to.eql(false);
-    });
-    it('next is called if env is not prod', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingPayment';
-      config.deployment_env = 'no prod';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(next.calledOnce).to.eql(true);
-    });
   });
 });

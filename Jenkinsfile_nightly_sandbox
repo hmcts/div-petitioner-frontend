@@ -15,7 +15,14 @@ withNightlyPipeline("nodejs", product, component) {
     env.SAUCE_ACCESS_KEY='e0067992-049e-412c-9d15-2566a28cfb73'
     env.SAUCE_USERNAME='divorce'
 
-    enableCrossBrowserTest()
+//    enableCrossBrowserTest()
+    stage('Cross Browser tests') {
+        sauce() {
+            sauceconnect(options: "--proxy proxyout.reform.hmcts.net:8080 --proxy-tunnel --verbose", useGeneratedTunnelIdentifier: false, verboseLogging: true) {
+                sh "yarn test:crossbrowser"
+            }
+        }
+    }
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

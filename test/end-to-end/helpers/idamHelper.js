@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 'use strict';
 
-const logger = require('log4js').getLogger();
 const randomstring = require('randomstring');
 const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
 
@@ -29,10 +29,10 @@ class IdamHelper extends Helper {
 
       return idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
-          logger.info('Created IDAM test user: ' + testEmail);
+          console.log('Created IDAM test user: ' + testEmail);
           return;
         }).catch((err) => {
-          logger.warn('Unable to create IDAM test user: ' + err);
+          console.log('Unable to create IDAM test user: ' + err);
           return;
         });
     }
@@ -42,10 +42,10 @@ class IdamHelper extends Helper {
     if (CONF.features.idam) {
       return idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
-          logger.info('Removed IDAM test user: ' + args.testEmail);
+          console.log('Removed IDAM test user: ' + args.testEmail);
           return;
         }).catch((err) => {
-          logger.warn('Unable to remove IDAM test user: ' + err);
+          console.log('Unable to remove IDAM test user: ' + err);
           return;
         });
     }

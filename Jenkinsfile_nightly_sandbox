@@ -1,0 +1,32 @@
+#!groovy
+
+properties([
+        pipelineTriggers([cron('20 13 * * *')]) // scheduling to trigger jenkins job
+//        pipelineTriggers([cron('H 23 * * *')])
+])
+
+@Library("Infrastructure")
+
+def product = "div"
+def component = "pfe"
+
+withNightlyPipeline("nodejs", product, component) {
+    env.TEST_URL = 'https://div-pfe-aat.service.core-compute-aat.internal/'
+    env.SAUCE_ACCESS_KEY='e0067992-049e-412c-9d15-2566a28cfb73'
+    env.SAUCE_USERNAME='divorce'
+
+//    enableCrossBrowserTest()
+    stage('Cross Browser tests') {
+        sauce() {
+            sauceconnect(options: "--proxy proxyout.reform.hmcts.net:8080 --proxy-tunnel --verbose", useGeneratedTunnelIdentifier: false, verboseLogging: true) {
+                sh "yarn test:crossbrowser"
+            }
+        }
+    }
+
+    after('crossBrowserTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+    }
+
+    enableSlackNotifications('#div-dev')
+}

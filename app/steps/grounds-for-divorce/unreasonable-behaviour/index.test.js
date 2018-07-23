@@ -115,6 +115,26 @@ describe(modulePath, () => {
       expect(newSession.reasonForDivorceBehaviourDetails)
         .to.equal(previousSession.reasonForDivorceBehaviourDetails);
     });
+
+    it('removes reasonForDivorceBehaviourDetails default values if reasonForDivorceBehaviourDetails changes', () => {
+      const userEnteredData = ['details ...'];
+      const defaultEnteredData = ['My wife ...', 'My wife ...'];
+      const previousSession = { reasonForDivorceBehaviourDetails: userEnteredData }; // eslint-disable-line
+
+      const session = clone(previousSession);
+      session.reasonForDivorceBehaviourDetails = [
+        ...userEnteredData,
+        ...defaultEnteredData
+      ];
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(newSession.reasonForDivorceBehaviourDetails.length).to.equal(1);
+
+      const newSessionAsJson = JSON
+        .stringify(newSession.reasonForDivorceBehaviourDetails);
+      const userEnteredDataAsJson = JSON.stringify(userEnteredData);
+      expect(newSessionAsJson).to.equal(userEnteredDataAsJson);
+    });
   });
 
   describe('Check Your Answers', () => {

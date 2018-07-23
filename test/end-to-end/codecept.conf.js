@@ -23,14 +23,15 @@ exports.config = {
         ignoreHTTPSErrors: true,
         args: [
           '--no-sandbox',
-          `--proxy-server=${process.env.E2E_PROXY_SERVER}`,
-          `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS}`
+          `--proxy-server=${process.env.E2E_PROXY_SERVER || ''}`,
+          `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS || ''}`
         ]
       }
     },
     ElementExist: { require: './helpers/ElementExist.js' },
     IdamHelper: { require: './helpers/idamHelper.js' },
-    JSWait: { require: './helpers/JSWait.js' }
+    JSWait: { require: './helpers/JSWait.js' },
+    SessionHelper: { require: './helpers/SessionHelper.js' }
   },
   include: { I: './pages/steps.js' },
   mocha: {

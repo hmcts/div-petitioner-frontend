@@ -117,7 +117,7 @@ describe(modulePath, () => {
     });
 
     it('removes reasonForDivorceBehaviourDetails default values if reasonForDivorceBehaviourDetails changes', () => {
-      const userEnteredData = ['details ...'];
+      const userEnteredData = ['details ...', 'My wife ... details'];
       const defaultEnteredData = ['My wife ...', 'My wife ...'];
       const previousSession = { reasonForDivorceBehaviourDetails: userEnteredData }; // eslint-disable-line
 
@@ -128,7 +128,7 @@ describe(modulePath, () => {
       ];
 
       const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceBehaviourDetails.length).to.equal(1);
+      expect(newSession.reasonForDivorceBehaviourDetails.length).to.equal(2);
 
       const newSessionAsJson = JSON
         .stringify(newSession.reasonForDivorceBehaviourDetails);

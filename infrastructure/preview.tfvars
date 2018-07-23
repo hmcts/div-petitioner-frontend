@@ -16,6 +16,6 @@ idam_authentication_web_url = "https://idam.preprod.ccidam.reform.hmcts.net"
 
 idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 
-payment_service_url = "https://payment-api-aat.service.core-compute-aat.internal"
+payment_service_url = "https://preprod.payments.reform.hmcts.net:4401"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

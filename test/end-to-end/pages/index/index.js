@@ -1,6 +1,6 @@
 const content = require('app/steps/index/content.json').resources.en.translation.content;
 const common = require('app/content/common.json').resources.en.translation;
-let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
+const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 
 function startApplication(ignoreIdamToggle = false) {
@@ -11,13 +11,22 @@ function startApplication(ignoreIdamToggle = false) {
   I.see(common.continue);
   I.navByClick(common.continue);
 
-  if (toggleStore.getToggle('idam') && !ignoreIdamToggle) {
+  if (CONF.features.idam && !ignoreIdamToggle) {
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.navByClick('Sign in');
     I.wait(2);
   }
+}
+
+async function startApplicationWithAnExistingSession() {
+
+  let I = this;
+
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.haveABasicSession();
 }
 
 function* seeCookieBanner() {
@@ -50,4 +59,11 @@ function dontGetShownCookieBannerAgain() {
   I.dontSee(content.cookieLink);
 }
 
-module.exports = { startApplication, seeCookieBanner, seeCookieFooter, followCookieBannerLink, dontGetShownCookieBannerAgain };
+module.exports = {
+  startApplication,
+  startApplicationWithAnExistingSession,
+  seeCookieBanner,
+  seeCookieFooter,
+  followCookieBannerLink,
+  dontGetShownCookieBannerAgain
+};

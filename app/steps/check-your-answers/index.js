@@ -1,4 +1,4 @@
-const { cloneDeep, get, reduce, groupBy } = require('lodash');
+const { cloneDeep, get, reduce, groupBy, forEach } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
@@ -8,6 +8,7 @@ const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
 const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
+const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 
 const maximumNumberOfSteps = 500;
 
@@ -40,6 +41,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     const [isValid] = this.validate(ctx, session);
 
     if (isValid) {
+      // apply ctx to session (this adds confirmPrayer to session before submission)
+      req.session = this.applyCtxToSession(ctx, session);
       // if application is valid submit it
       return this.submitApplication(req, res);
     }
@@ -48,8 +51,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   * interceptor(ctx, session) {
-    //  confirmPrayer and requestMethod are set by parseRequest prior to this call
-    // const requestMethod = ctx.requestMethod;
     const confirmPrayer = ctx.confirmPrayer;
 
     //  set the ctx to the current session then update with the current ctx
@@ -288,6 +289,16 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     req.session = req.session || {};
+
+    // add all missing addressBaseUK fields
+    forEach(req.session, element => {
+      if (element && typeof element === 'object' && element.selectAddressIndex >= 0 && element.addresses && element.addresses.length > 0 && !element.addressBaseUK) {
+        element.addressBaseUK = addressHelpers
+          .buildAddressBaseUk(element.addresses[element
+            .selectAddressIndex]);
+      }
+    }
+    );
 
     // Load courts data into session and select court automatically.
     req.session.court = CONF.commonProps.court;

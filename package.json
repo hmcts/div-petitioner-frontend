@@ -146,6 +146,7 @@
     "sinon-stub-promise": "^4.0.0",
     "sonar-scanner": "^1.0.1",
     "supertest": "^2.0.0",
+    "unirest": "^0.5.1",
     "w3c-validate": "0.0.2",
     "webdriverio": "^4.13.1"
   },

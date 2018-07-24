@@ -117,7 +117,7 @@ describe(modulePath, () => {
     });
 
     it('removes reasonForDivorceBehaviourDetails default values if reasonForDivorceBehaviourDetails changes', () => {
-      const two = 0;
+      const two = 2;
       const userEnteredData = ['details ...', 'My wife ... details'];
       const defaultEnteredData = ['My wife ...', 'My wife ...'];
       const previousSession = { reasonForDivorceBehaviourDetails: userEnteredData }; // eslint-disable-line

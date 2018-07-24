@@ -14,8 +14,6 @@ def component = "pfe"
 
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
-    env.SAUCE_ACCESS_KEY='e0067992-049e-412c-9d15-2566a28cfb73'
-    env.SAUCE_USERNAME='divorce'
 
     enableCrossBrowserTest()
 

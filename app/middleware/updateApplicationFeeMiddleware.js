@@ -39,6 +39,7 @@ const getFeeFromFeesAndPayments = () => {
 };
 
 const updateApplicationFeeMiddleware = (req, res, next) => {
+// Specify fee for redis
   redisClient.get('commonProps.applicationFee.amount')
     .then(response => {
       if (response) {

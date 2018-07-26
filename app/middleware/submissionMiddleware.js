@@ -5,6 +5,48 @@ const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 
+const checkAndUpdatePaymentStatus = function(req, res, user, authToken, session) { // eslint-disable-line
+  // Initialise services.
+  const serviceToken = serviceTokenService.setup();
+  const payment = paymentService.setup();
+  const submission = submissionService.setup();
+
+  // Get service token.
+  return serviceToken.getToken()
+  // Query payment status.
+    .then(token => {
+      return payment.query(user, token, session.currentPaymentReference,
+        session.mockedPaymentOutcome);
+    })
+
+    // Store status in session then update CCD with payment status.
+    .then(response => {
+      logger.info({
+        message: 'Payment status query response:',
+        response
+      });
+
+      const paymentId = response.id;
+      session.payments = session.payments || {};
+      session.payments[paymentId] = Object.assign({},
+        session.payments[paymentId], response);
+      const paymentSuccess = paymentService.isPaymentSuccessful(response);
+      if (paymentSuccess) {
+        const eventData = submissionService
+          .generatePaymentEventData(session, response);
+        submission.update(authToken, session.caseId, eventData, 'paymentMade');
+      }
+      return '/application-submitted';
+    })
+
+    // Log any errors occurred and end up on the error page.
+    .catch(error => {
+      const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
+      logger.error(msg, req);
+      return '/generic-error';
+    });
+};
+
 const hasSubmitted = function(req, res, next) {
   let authToken = '';
   let user = {};
@@ -15,7 +57,7 @@ const hasSubmitted = function(req, res, next) {
     if (!idamUserId) {
       logger.error('User does not have any idam userDetails', req);
       res.redirect('/generic-error');
-      return;
+      return Promise.resolve();
     }
 
     user = {
@@ -32,48 +74,15 @@ const hasSubmitted = function(req, res, next) {
     switch (session.state) {
     case 'AwaitingPayment':
       if (session.currentPaymentReference) {
-        // Initialise services.
-        const serviceToken = serviceTokenService.setup();
-        const payment = paymentService.setup();
-        const submission = submissionService.setup();
-
-        // Get service token.
-        serviceToken.getToken()
-        // Query payment status.
-          .then(token => {
-            return payment.query(user, token, session.currentPaymentReference,
-              session.mockedPaymentOutcome);
-          })
-
-          // Store status in session then update CCD with payment status.
-          .then(response => {
-            logger.info({
-              message: 'Payment status query response:',
-              response
-            });
-
-            const paymentId = response.id;
-            req.session.payments = req.session.payments || {};
-            session.payments[paymentId] = Object.assign({},
-              session.payments[paymentId], response);
-            const paymentSuccess = paymentService.isPaymentSuccessful(response);
-            if (paymentSuccess) {
-              const eventData = submissionService
-                .generatePaymentEventData(session, response);
-              submission.update(authToken, session.caseId, eventData, 'paymentMade');
+        return checkAndUpdatePaymentStatus(req, res, user, authToken, session)
+          .then(
+            url => {
+              return res.redirect(url);
             }
-            return res.redirect('/application-submitted');
-          })
-
-          // Log any errors occurred and end up on the error page.
-          .catch(error => {
-            const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
-            logger.error(msg, req);
-            return res.redirect('/generic-error');
-          });
-      } else {
-        res.redirect('/application-submitted');
+          );
       }
+      res.redirect('/application-submitted');
+
       break;
     case 'Rejected':
       next();
@@ -85,6 +94,7 @@ const hasSubmitted = function(req, res, next) {
   } else {
     next();
   }
+  return Promise.resolve();
 };
 
 module.exports = { hasSubmitted };

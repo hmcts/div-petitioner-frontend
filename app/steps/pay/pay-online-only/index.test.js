@@ -24,10 +24,10 @@ let agent = {};
 let underTest = {};
 const two = 2;
 let cookies = [];
-const code = CONF.commonProps.applicationFee.feeCode;
+const code = CONF.commonProps.applicationFee.code;
 const version = CONF.commonProps.applicationFee.version;
 const amount = parseInt(
-  CONF.commonProps.applicationFee.amount
+  CONF.commonProps.applicationFee.fee_amount
 );
 const userDetails = {
   id: 1,

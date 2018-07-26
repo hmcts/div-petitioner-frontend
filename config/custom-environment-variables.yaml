@@ -32,6 +32,10 @@ services:
     health: SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL
     microserviceName: MICROSERVICE_NAME
     microserviceKey: MICROSERVICE_KEY
+  feeRegister:
+    baseUrl: FEE_REGISTER_URL
+    health: FEE_REGISTER_HEALTHCHECK_URL
+    TTL: FEE_REGISTER_TTL
   feesAndPayments:
     baseUrl: FEES_AND_PAYMENTS_URL
     health: FEES_AND_PAYMENTS_HEALTHCHECK_URL

@@ -50,6 +50,10 @@ services:
     baseUrl: 'http://localhost:4003/transformationapi/version/1'
     draftBaseUrl: 'http://localhost:4003/draftsapi/version/1'
     health: 'http://localhost:4003/status/health'
+  feeRegister:
+    baseUrl: 'http://localhost:4421'
+    health: 'http://localhost:4421/health'
+    TTL: 43200 # time to save fee register records in seconds ( 12 hours = 43200 )
   feesAndPayments:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'
@@ -66,9 +70,10 @@ testUrl: 'https://localhost:8080'
 
 commonProps:
   applicationFee:
-    feeCode: 'FEE0002'
+    code: 'FEE0002'
+    description: 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.'
     version: 4
-    amount: 550.00
+    fee_amount: 550.00
   financialOrderApplicationFee: 255
   court:
     eastMidlands:

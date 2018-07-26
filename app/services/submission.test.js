@@ -92,7 +92,7 @@ describe(modulePath, () => {
         court: { someCourt: { siteId: 'XX00' } }
       };
       originalCommonProps = CONF.commonProps;
-      CONF.commonProps = { applicationFee: { feeCode: 'some-code', feeVersion: '1' } };
+      CONF.commonProps = { applicationFee: { code: 'some-code', feeVersion: '1' } };
     });
 
     afterEach(() => {

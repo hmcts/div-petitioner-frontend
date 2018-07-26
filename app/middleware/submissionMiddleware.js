@@ -52,16 +52,15 @@ const hasSubmitted = function(req, res, next) {
               response
             });
 
-            const id = session.currentPaymentId;
-            session.payments[id] = Object.assign({}, session.payments[id],
-              response);
-
+            const paymentId = response.id;
+            req.session.payments = req.session.payments || {};
+            session.payments[paymentId] = Object.assign({},
+              session.payments[paymentId], response);
             const paymentSuccess = paymentService.isPaymentSuccessful(response);
-
             if (paymentSuccess) {
               const eventData = submissionService
                 .generatePaymentEventData(session, response);
-              return submission.update(authToken, session.caseId, eventData, 'paymentMade');
+              submission.update(authToken, session.caseId, eventData, 'paymentMade');
             }
             return res.redirect('/application-submitted');
           })

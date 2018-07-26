@@ -1,4 +1,6 @@
 const CONF = require('config');
+const feeRegisterService = require('app/services/feeRegisterService');
+const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
 const feesAndPaymentsRegisterService = require('app/services/feesAndPaymentsService');
 const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService');
 
@@ -19,18 +21,33 @@ if (CONF.environment === 'testing') {
 
 redisClient.on('error', logger.error);
 
-const getFeeFromFeesAndPayments = () => {
+const applicationFeeQueryParams = 'service=divorce&jurisdiction1=family&jurisdiction2=family%20court&channel=default&event=issue';
+
+const getFeeFromService = () => {
+  const service = CONF.deployment_env === 'local' ? mockFeeReigsterService : feeRegisterService;
+  const options = { queryParameters: applicationFeeQueryParams };
+
+  return service.get(options)
+    .then(response => {
+      // set fee returned from fee register to global CONF
+      CONF.commonProps.applicationFee = response;
+      return redisClient.set('commonProps.applicationFee', JSON.stringify(response));
+    })
+    .then(() => {
+      return redisClient.expire('commonProps.applicationFee', CONF.services.feeRegister.TTL);
+    });
+};
+
+const getFeeCodeFromFeesAndPayments = () => {
   const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsRegisterService;
 
   return service.get()
     .then(response => {
-      // set fee returned from Fees and payments service
+      // set fee returned from fee register to global CONF
       logger.info(' Fee code set to ', response.feeCode);
-      CONF.commonProps.applicationFee.feeCode = response.feeCode;
+      CONF.commonProps.code = response.feeCode;
       logger.info(' Fee version set to ', response.version);
-      CONF.commonProps.applicationFee.version = response.version;
-      logger.info(' Fee amount set to ', response.amount);
-      CONF.commonProps.applicationFee.amount = response.amount;
+      CONF.commonProps.version = response.version;
       return true;
     })
     .catch(error => {
@@ -45,7 +62,11 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
         CONF.commonProps.applicationFee = JSON.parse(response);
         return true;
       }
-      return getFeeFromFeesAndPayments();
+      return getFeeFromService();
+    })
+    .then(() => {
+      getFeeCodeFromFeesAndPayments();
+      return true;
     })
     .then(() => {
       next();

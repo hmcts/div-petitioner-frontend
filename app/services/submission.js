@@ -68,7 +68,7 @@ const generatePaymentEventData = (session, response) => {
         PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
         PaymentAmount: amount * PENCE_PER_POUND,
         PaymentStatus: status,
-        PaymentFeeId: CONF.commonProps.applicationFee.feeCode,
+        PaymentFeeId: CONF.commonProps.applicationFee.code,
         PaymentSiteId: siteId
       }
     };

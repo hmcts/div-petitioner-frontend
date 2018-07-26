@@ -26,6 +26,7 @@
 
       {% if (session.marriageCertificateFiles | length === 0) %}
         <h2 class="heading-medium">{{content.whatToDoNow | safe}}</h2>
+
         <h3 class="heading-small">{{content.whatToDoNowReferenceNumber | safe}}</h3>
         {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}
           <p class="text">{{content.whatToDoNowOrigCertOnly | safe}}</p>
@@ -48,7 +49,6 @@
         {% endif %}
         <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h3>
         <p class="text">{{content.whatToDoNowPostText | safe}}</p>
-        <p class="text">{{content.whatToDoNowPostText2 | safe}}</p>
           <address class="bold-small">
             {%- if ( session.courts == 'eastMidlands') %}
               {{ content.sendAddresseastMidlands | safe}}
@@ -63,6 +63,19 @@
               {{ content.sendAddressnorthWest | safe}}
             {%- endif -%}
           </address>
+
+          <p class="text">{{ content.certificateKept | safe }} </p>
+
+          <h3 class="heading-small">{{content.sendEmail | safe}}</h3>
+          <p class="text">{{ content.email | safe }} </p>
+          <p class="text">{{ content.emailTo | safe }} </p>
+
+          <span class="bold-small">
+            {{ content.eastMidlandsEmail | safe if session.courts === 'eastMidlands' }}
+            {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
+            {{ content.southWestEmail | safe if session.courts === 'southWest' }}
+            {{ content.northWestEmail | safe if session.courts === 'northWest' }}
+          </span>
       {% endif %}
 
 

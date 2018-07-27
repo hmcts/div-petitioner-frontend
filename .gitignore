@@ -24,3 +24,5 @@ package-lock.json
 .vscode/launch.json
 .sonar/
 .env
+functional-output
+.stryker-tmp

@@ -1,7 +1,7 @@
 const { expect, sinon } = require('test/util/chai');
 const rewire = require('rewire');
 const CONF = require('config');
-const mockFeeReigsterService = require('app/services/mocks/feeRegisterService');
+const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService.js');
 
 const modulePath = 'app/middleware/updateApplicationFeeMiddleware';
 const underTest = rewire(modulePath);
@@ -23,22 +23,20 @@ describe(modulePath, () => {
     it('gets application fee from fee register', done => {
       underTest.updateApplicationFeeMiddleware(req, res, () => {
         expect(ioRedisClient.get.calledOnce).to.eql(true);
-        expect(ioRedisClient.set.calledOnce).to.eql(true);
-        expect(ioRedisClient.expire.calledOnce).to.eql(true);
         expect(CONF.commonProps.applicationFee)
-          .to.eql(mockFeeReigsterService.mockFeeResponse);
+          .to.eql(mockFeesAndPaymentsService.mockFeeResponse);
         done();
       });
     });
     it('gets application fee redis if available', done => {
       ioRedisClient.get = sinon.stub()
-        .resolves(JSON.stringify(mockFeeReigsterService.mockFeeResponse));
+        .resolves(JSON.stringify(mockFeesAndPaymentsService.mockFeeResponse));
       underTest.updateApplicationFeeMiddleware(req, res, () => {
         expect(ioRedisClient.get.calledOnce).to.eql(true);
         expect(ioRedisClient.set.calledOnce).to.eql(false);
         expect(ioRedisClient.expire.calledOnce).to.eql(false);
         expect(CONF.commonProps.applicationFee)
-          .to.eql(mockFeeReigsterService.mockFeeResponse);
+          .to.eql(mockFeesAndPaymentsService.mockFeeResponse);
         done();
       });
     });

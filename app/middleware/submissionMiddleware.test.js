@@ -86,7 +86,7 @@ describe(modulePath, () => {
       query = sinon.stub().resolves({
         id: '1',
         amount: 55000,
-        status: 'Success',
+        status: 'SuccessZ',
         reference: 'some-reference',
         external_reference: 'a65-f836-4f61-a628-727199ef6c20',
         date_created: 1505459675824,
@@ -99,9 +99,7 @@ describe(modulePath, () => {
         status: 'success'
       });
       sinon.stub(serviceToken, 'setup').returns({ getToken });
-      sinon.stub(payment, 'setup').returns({ query });
       sinon.stub(submission, 'setup').returns({ update });
-      // serviceToken = sinon.stub(serviceToken, 'setup').returns({ update });
       ctx = { };
       req = { session: {} };
       res = { redirect: sinon.stub() };
@@ -115,15 +113,58 @@ describe(modulePath, () => {
       serviceToken.setup.restore();
     });
 
-    it('Check payment status and update ccd if application has been submitted and is in "AwaitingPayment"', async () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingPayment';
-      req.session.currentPaymentReference = 'somepaymentid';
-      config.deployment_env = 'prod';
-      await underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(getToken.calledOnce).to.equal(true);
-      expect(query.calledOnce).to.equal(true);
-      expect(update.calledOnce).to.equal(true);
+    context('Payment is successfull', () => {
+      beforeEach(() => {
+        query = sinon.stub().resolves({
+          id: '1',
+          amount: 55000,
+          status: 'Success',
+          reference: 'some-reference',
+          external_reference: 'a65-f836-4f61-a628-727199ef6c20',
+          date_created: 1505459675824,
+          _links: {}
+        });
+        sinon.stub(payment, 'setup').returns({ query });
+      });
+
+      it('Check payment status and update ccd if application has been submitted and is in "AwaitingPayment"', async () => {
+        req.session.caseId = 'someid';
+        req.session.state = 'AwaitingPayment';
+        req.session.currentPaymentReference = 'somepaymentid';
+        config.deployment_env = 'prod';
+        await underTest.hasSubmitted.apply(ctx, [req, res, next]);
+        expect(getToken.calledOnce).to.equal(true);
+        expect(query.calledOnce).to.equal(true);
+        expect(update.calledOnce).to.equal(true);
+        expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
+      });
+    });
+
+    context('Payment is not successfull', () => {
+      beforeEach(() => {
+        query = sinon.stub().resolves({
+          id: '1',
+          amount: 55000,
+          status: 'Failed',
+          reference: 'some-reference',
+          external_reference: 'a65-f836-4f61-a628-727199ef6c20',
+          date_created: 1505459675824,
+          _links: {}
+        });
+        sinon.stub(payment, 'setup').returns({ query });
+      });
+
+      it('Check payment status and not update ccd if application has been submitted and is in "AwaitingPayment"', async () => {
+        req.session.caseId = 'someid';
+        req.session.state = 'AwaitingPayment';
+        req.session.currentPaymentReference = 'somepaymentid';
+        config.deployment_env = 'prod';
+        await underTest.hasSubmitted.apply(ctx, [req, res, next]);
+        expect(getToken.calledOnce).to.equal(true);
+        expect(query.calledOnce).to.equal(true);
+        expect(update.calledOnce).to.equal(false);
+        expect(res.redirect.calledWith('/application-submitted')).to.eql(true);
+      });
     });
   });
 });

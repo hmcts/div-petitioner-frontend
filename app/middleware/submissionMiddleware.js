@@ -35,8 +35,9 @@ const checkAndUpdatePaymentStatus = function(req, res, user, authToken, session)
         const eventData = submissionService
           .generatePaymentEventData(session, response);
         submission.update(authToken, session.caseId, eventData, 'paymentMade');
+        return '/application-submitted-awaiting-response';
       }
-      return '/application-submitted-awaiting-response';
+      return '/application-submitted';
     })
 
     // Log any errors occurred and end up on the error page.

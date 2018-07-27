@@ -14,8 +14,6 @@ describe(modulePath, () => {
   describe('#updateApplicationFeeMiddleware', () => {
     beforeEach(() => {
       ioRedisClient.get = sinon.stub().resolves();
-      ioRedisClient.set = sinon.stub().resolves();
-      ioRedisClient.expire = sinon.stub().resolves();
       underTest.__set__('redisClient', ioRedisClient);
       req = { session: {} };
       res = { redirect: sinon.stub() };
@@ -32,9 +30,7 @@ describe(modulePath, () => {
       ioRedisClient.get = sinon.stub()
         .resolves(JSON.stringify(mockFeesAndPaymentsService.mockFeeResponse));
       underTest.updateApplicationFeeMiddleware(req, res, () => {
-        expect(ioRedisClient.get.calledOnce).to.eql(true);
-        expect(ioRedisClient.set.calledOnce).to.eql(false);
-        expect(ioRedisClient.expire.calledOnce).to.eql(false);
+        expect(ioRedisClient.get.calledWith('commonProps.applicationFee.amount')).to.eql(true);
         expect(CONF.commonProps.applicationFee)
           .to.eql(mockFeesAndPaymentsService.mockFeeResponse);
         done();

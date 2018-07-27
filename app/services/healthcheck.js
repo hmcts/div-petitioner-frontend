@@ -103,6 +103,17 @@ router.get('/health', healthcheck.configure({
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }, options),
+    feeRegister: healthcheck.web(config.services.feeRegister.health, {
+      callback: (error, res) => { // eslint-disable-line id-blacklist
+        if (error) {
+          logger.error({
+            message: 'Health check failed on fee register:',
+            error
+          });
+        }
+        return !error && res.status === OK ? outputs.up() : outputs.down(error);
+      }
+    }, options),
     feesAndPayments: healthcheck.web(config.services.feesAndPayments.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {

@@ -179,6 +179,10 @@ variable "payment_reference_service_id" {
   default = "DIV1"
 }
 
+variable "fee_register_url" {
+  type = "string"
+}
+
 variable "fees_and_payments_url" {
   default = ""
 }

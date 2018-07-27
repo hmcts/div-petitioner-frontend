@@ -24,4 +24,6 @@ evidence_management_client_api_url = "http://betaDevBdivorceAppLB.reform.hmcts.n
 
 payment_service_url = "https://test.payments.reform.hmcts.net:4421"
 
+fee_register_url = "https://test.fees-register.reform.hmcts.net:4431"
+
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

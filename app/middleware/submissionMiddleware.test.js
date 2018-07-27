@@ -101,7 +101,7 @@ describe(modulePath, () => {
       sinon.stub(serviceToken, 'setup').returns({ getToken });
       sinon.stub(payment, 'setup').returns({ query });
       sinon.stub(submission, 'setup').returns({ update });
-
+      // serviceToken = sinon.stub(serviceToken, 'setup').returns({ update });
       ctx = { };
       req = { session: {} };
       res = { redirect: sinon.stub() };
@@ -115,16 +115,15 @@ describe(modulePath, () => {
       serviceToken.setup.restore();
     });
 
-    it('Check payment status if application has been submitted and is in "AwaitingPayment"', done => {
+    it('Check payment status and update ccd if application has been submitted and is in "AwaitingPayment"', async () => {
       req.session.caseId = 'someid';
       req.session.state = 'AwaitingPayment';
       req.session.currentPaymentReference = 'somepaymentid';
       config.deployment_env = 'prod';
-      res.redirect = url => {
-        expect(url).to.eql('/application-submitted');
-        done();
-      };
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      await underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(getToken.calledOnce).to.equal(true);
+      expect(query.calledOnce).to.equal(true);
+      expect(update.calledOnce).to.equal(true);
     });
   });
 });

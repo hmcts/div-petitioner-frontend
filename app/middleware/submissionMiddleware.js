@@ -36,7 +36,7 @@ const checkAndUpdatePaymentStatus = function(req, res, user, authToken, session)
           .generatePaymentEventData(session, response);
         submission.update(authToken, session.caseId, eventData, 'paymentMade');
       }
-      return '/application-submitted';
+      return '/application-submitted-awaiting-response';
     })
 
     // Log any errors occurred and end up on the error page.
@@ -56,8 +56,7 @@ const hasSubmitted = function(req, res, next) {
     const idamUserId = idam.userId(req);
     if (!idamUserId) {
       logger.error('User does not have any idam userDetails', req);
-      res.redirect('/generic-error');
-      return Promise.resolve();
+      return res.redirect('/generic-error');
     }
 
     user = {
@@ -81,20 +80,14 @@ const hasSubmitted = function(req, res, next) {
             }
           );
       }
-      res.redirect('/application-submitted');
-
-      break;
+      return res.redirect('/application-submitted');
     case 'Rejected':
-      next();
-      break;
+      return next();
     default:
-      res.redirect('/application-submitted-awaiting-response');
-      break;
+      return res.redirect('/application-submitted-awaiting-response');
     }
-  } else {
-    next();
   }
-  return Promise.resolve();
+  return next();
 };
 
 module.exports = { hasSubmitted };

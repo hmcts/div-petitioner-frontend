@@ -6,14 +6,14 @@ const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
 
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper');
 let args = idamConfigHelper.getArgs();
-let toggleStore = require('test/end-to-end/helpers/featureToggleStore.js');
+const CONF = require('config');
 
 let Helper = codecept_helper;
 
 class IdamHelper extends Helper {
 
   _before() {
-    if (toggleStore.getToggle('idam')) {
+    if (CONF.features.idam) {
       const emailName = 'simulate-delivered-' + randomstring.generate({
         length: 16,
         charset: 'numeric'
@@ -27,7 +27,7 @@ class IdamHelper extends Helper {
       idamConfigHelper.setTestEmail(testEmail);
       idamConfigHelper.setTestPassword(testPassword);
 
-      return idamExpressTestHarness.createUser(args)
+      return idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           logger.info('Created IDAM test user: ' + testEmail);
           return;
@@ -39,8 +39,8 @@ class IdamHelper extends Helper {
   }
 
   _after() {
-    if (toggleStore.getToggle('idam')) {
-      return idamExpressTestHarness.removeUser(args)
+    if (CONF.features.idam) {
+      return idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           logger.info('Removed IDAM test user: ' + args.testEmail);
           return;

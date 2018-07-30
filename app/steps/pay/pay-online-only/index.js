@@ -1,5 +1,4 @@
 const Step = require('app/core/steps/Step');
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
@@ -61,7 +60,7 @@ module.exports = class PayOnline extends Step {
     let authToken = '';
     let user = {};
 
-    if (features.idam) {
+    if (CONF.features.idam) {
       authToken = cookies['__auth-token'];
 
       const idamUserId = idam.userId(req);
@@ -78,12 +77,12 @@ module.exports = class PayOnline extends Step {
 
     // Fee properties below are hardcoded and obtained from config.
     // Eventually these values will be obtained from the fees-register.
-    const feeCode = CONF.commonProps.applicationFee.code;
+    const feeCode = CONF.commonProps.applicationFee.feeCode;
     const feeVersion = CONF.commonProps.applicationFee.version;
     const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
     // Amount is specified in pound sterling.
     const amount = parseInt(
-      CONF.commonProps.applicationFee.fee_amount
+      CONF.commonProps.applicationFee.amount
     );
     const hostParts = req.get('host').split(':');
     // if hostParts is a length of 2, it is a valid hostname:port url

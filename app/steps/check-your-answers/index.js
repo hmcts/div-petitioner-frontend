@@ -1,8 +1,14 @@
-const { cloneDeep, get, reduce, groupBy } = require('lodash');
+const { cloneDeep, get, reduce, groupBy, forEach } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
+const statusCodes = require('http-status-codes');
+const submissionService = require('app/services/submission');
+const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
+const courtsAllocation = require('app/services/courtsAllocation');
+const ga = require('app/services/ga');
+const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 
 const maximumNumberOfSteps = 500;
 
@@ -11,13 +17,40 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     return '/check-your-answers';
   }
 
-  get nextStep() {
-    return this.steps.Submit;
+  next(ctx, session) {
+    if (session.helpWithFeesNeedHelp === 'Yes') {
+      return this.steps.DoneAndSubmitted;
+    }
+    return this.steps.PayOnline;
+  }
+
+  * postRequest(req, res) {
+    // test to see if user has clicked submit button. The form could have been submitted
+    // by clicking on save and close button
+    const { body } = req;
+    const hasBeenPostedWithoutSubmitButton = body && !body.hasOwnProperty('submit');
+
+    if (hasBeenPostedWithoutSubmitButton) {
+      return yield super.postRequest(req, res);
+    }
+
+    const { session } = req;
+    const ctx = yield this.parseCtx(req);
+
+    //  then test whether the request is valid
+    const [isValid] = this.validate(ctx, session);
+
+    if (isValid) {
+      // apply ctx to session (this adds confirmPrayer to session before submission)
+      req.session = this.applyCtxToSession(ctx, session);
+      // if application is valid submit it
+      return this.submitApplication(req, res);
+    }
+
+    return yield super.postRequest(req, res);
   }
 
   * interceptor(ctx, session) {
-    //  confirmPrayer and requestMethod are set by parseRequest prior to this call
-    // const requestMethod = ctx.requestMethod;
     const confirmPrayer = ctx.confirmPrayer;
 
     //  set the ctx to the current session then update with the current ctx
@@ -235,5 +268,77 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
 
     return templates;
+  }
+
+  submitApplication(req, res) {
+    if (req.session.submissionStarted) {
+      res.redirect(this.steps.ApplicationSubmitted.url);
+      return;
+    }
+
+    // Fail early if the request is not in the right format.
+    const { cookies } = req;
+
+    if (!cookies || !cookies['connect.sid']) {
+      logger.error('Malformed request to Submit step');
+      const step = this.steps.Error400;
+      const content = step.generateContent();
+      res.status(statusCodes.BAD_REQUEST);
+      res.render(step.template, { content });
+      return;
+    }
+
+    req.session = req.session || {};
+
+    // add all missing addressBaseUK fields
+    forEach(req.session, element => {
+      if (element && typeof element === 'object' && element.selectAddressIndex >= 0 && element.addresses && element.addresses.length > 0 && !element.addressBaseUK) {
+        element.addressBaseUK = addressHelpers
+          .buildAddressBaseUk(element.addresses[element
+            .selectAddressIndex]);
+      }
+    }
+    );
+
+    // Load courts data into session and select court automatically.
+    req.session.court = CONF.commonProps.court;
+    req.session.courts = courtsAllocation.allocateCourt();
+    ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
+
+    // Get user token.
+    let authToken = '';
+    if (CONF.features.idam) {
+      authToken = req.cookies['__auth-token'];
+    }
+
+    // We blacklist a few session keys which are internal to the application and
+    // are not needed for the submission.
+    const payload = sessionBlacklistedAttributes.reduce((acc, item) => {
+      delete acc[item];
+      return acc;
+    }, Object.assign({}, req.session));
+    const submission = submissionService.setup();
+
+    req.session.submissionStarted = true;
+
+    submission.submit(authToken, payload)
+      .then(response => {
+        // Check for errors.
+        if (response && response.error) {
+          throw Object.assign({}, { message: `Error in transformation response, ${JSON.stringify(response)}` });
+        }
+        if (response && !response.caseId) {
+          throw Object.assign({}, { message: `Case ID missing in transformation response, ${JSON.stringify(response)}` });
+        }
+        delete req.session.submissionStarted;
+        // Store the resulting case identifier in session for later use.
+        req.session.caseId = response.caseId;
+        res.redirect(this.next(null, req.session).url);
+      })
+      .catch(error => {
+        delete req.session.submissionStarted;
+        logger.error(`Error during submission step: ${JSON.stringify(error)}`);
+        res.redirect('/generic-error');
+      });
   }
 };

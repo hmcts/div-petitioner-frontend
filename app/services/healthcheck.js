@@ -59,17 +59,6 @@ router.get('/health', healthcheck.configure({
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }, options),
-    'feature-toggle-api': healthcheck.web(config.services.featureToggleApi.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on feature-toggle-api:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
     'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
@@ -114,20 +103,17 @@ router.get('/health', healthcheck.configure({
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }, options),
-    feeRegister: healthcheck.web(config.services.feeRegister.health, {
+    feesAndPayments: healthcheck.web(config.services.feesAndPayments.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
           logger.error({
-            message: 'Health check failed on fee register:',
+            message: 'Health check failed on fees and payments service:',
             error
           });
         }
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
-    }, options),
-    features: healthcheck.raw(req => {
-      return healthcheck.status(Object.keys(req.features) != 0, req.features); // eslint-disable-line eqeqeq
-    })
+    }, options)
   },
   buildInfo: {
     name: config.service.name,

@@ -5,7 +5,7 @@ const CONF = require('config');
 const modulePath = 'app/services/submission';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/transformationServiceClient');
-const featureTogglesMock = require('test/mocks/featureToggles');
+const featureToggleConfig = require('test/util/featureToggles');
 const mockedPaymentClient = require('app/services/mocks/payment');
 
 
@@ -34,7 +34,7 @@ describe(modulePath, () => {
       let submitStub = null;
 
       beforeEach(() => {
-        process.env.MICROSERVICE_KEY = 'some-key';
+        CONF.services.serviceAuthProvider.microserviceKey = 'some-key';
         submitStub = sinon.stub().resolves(submitSuccess);
         sinon.stub(transformationServiceClient, 'init').returns({ submit: submitStub });
       });
@@ -60,7 +60,7 @@ describe(modulePath, () => {
 
     context('microservice key is not set', () => {
       beforeEach(() => {
-        delete process.env.MICROSERVICE_KEY;
+        delete CONF.services.serviceAuthProvider.microserviceKey;
         sinon.spy(mockedClient, 'submit');
       });
 
@@ -92,13 +92,11 @@ describe(modulePath, () => {
         court: { someCourt: { siteId: 'XX00' } }
       };
       originalCommonProps = CONF.commonProps;
-      CONF.commonProps = { applicationFee: { code: 'some-code', feeVersion: '1' } };
-      featureTogglesMock.stub();
+      CONF.commonProps = { applicationFee: { feeCode: 'some-code', feeVersion: '1' } };
     });
 
     afterEach(() => {
       CONF.commonProps = originalCommonProps;
-      featureTogglesMock.restore();
     });
     context('feature is set to false', () => {
       it('returns only payment reference from event data', done => {
@@ -113,7 +111,7 @@ describe(modulePath, () => {
             });
         };
 
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('fullPaymentEventDataSubmission', false, generatePaymentEventData, responsePayment => {
             // Assert.
             const output = underTest
@@ -127,7 +125,7 @@ describe(modulePath, () => {
             expect(output.payment.PaymentFeeId).to.be.an('undefined');
             expect(output.payment.PaymentSiteId).to.be.an('undefined');
           });
-        featureMock(done);
+        featureTest(done);
       });
     });
     context('feature is set to true', () => {
@@ -143,7 +141,7 @@ describe(modulePath, () => {
             });
         };
 
-        const featureMock = featureTogglesMock
+        const featureTest = featureToggleConfig
           .when('fullPaymentEventDataSubmission', true, generatePaymentEventData, responsePayment => {
             // Assert.
             const ammountFromMock = 55000;
@@ -158,7 +156,7 @@ describe(modulePath, () => {
             expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
             expect(output.payment).to.have.property('PaymentSiteId', 'XX00');
           });
-        featureMock(done);
+        featureTest(done);
       });
     });
   });

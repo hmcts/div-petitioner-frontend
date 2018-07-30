@@ -15,7 +15,7 @@ module.exports = class UnreasonableBehaviour extends ValidationStep {
     if (ctx.reasonForDivorceBehaviourDetails) {
       ctx.reasonForDivorceBehaviourDetails = ctx.reasonForDivorceBehaviourDetails.filter( // eslint-disable-line max-len
         item => {
-          return !isEmpty(item) && !item.match(/^(?=My (husband|wife|\.\.\.|)( | \.\.\.|)$)/);
+          return !isEmpty(item) && !item.match(/^(?=My (husband|wife) \.\.\.$)/);
         }
       );
     } else {
@@ -31,6 +31,17 @@ module.exports = class UnreasonableBehaviour extends ValidationStep {
     watch('reasonForDivorce', (previousSession, session, remove) => {
       if (session.reasonForDivorce !== 'unreasonable-behaviour') {
         remove('reasonForDivorceBehaviourDetails');
+      }
+    });
+
+    // remove default values for behaviour details
+    watch('reasonForDivorceBehaviourDetails', (previousSession, session) => {
+      if (session.reasonForDivorceBehaviourDetails) {
+        session.reasonForDivorceBehaviourDetails = session.reasonForDivorceBehaviourDetails.filter( // eslint-disable-line max-len
+          item => {
+            return !isEmpty(item) && !item.match(/^(?=My (husband|wife) \.\.\.$)/);
+          }
+        );
       }
     });
   }

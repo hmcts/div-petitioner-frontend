@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
 
-Feature('Upload Marriage Certificate', { retries: 1 });
+Feature('Upload Marriage Certificate').retry(3);
 
 Scenario('Test upload', function* (I) {
   I.amOnLoadedPage('/index');
@@ -28,7 +28,7 @@ Scenario('Test ability validate document type', function* (I) {
 
   const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
 
-  if(isDragAndDropSupported){
+  if(isDragAndDropSupported) {
     // Test can upload .pdf
     I.testUploadResponse(isDragAndDropSupported, '/assets/test_pdf.pdf');
     I.dontSee(content.errorUnknown);

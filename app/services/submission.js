@@ -4,7 +4,6 @@ const CONF = require('config');
 const get = require('lodash/get');
 const moment = require('moment');
 const logger = require('app/services/logger').logger(__filename);
-const { features } = require('@hmcts/div-feature-toggle-client')().featureToggles;
 
 const PENCE_PER_POUND = 100;
 
@@ -60,7 +59,7 @@ const generatePaymentEventData = (session, response) => {
   const siteId = get(session, `court.${session.courts}.siteId`);
   let eventData = null;
 
-  if (features.fullPaymentEventDataSubmission) {
+  if (CONF.features.fullPaymentEventDataSubmission) {
     eventData = {
       payment: {
         PaymentChannel: 'online',
@@ -69,7 +68,7 @@ const generatePaymentEventData = (session, response) => {
         PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
         PaymentAmount: amount * PENCE_PER_POUND,
         PaymentStatus: status,
-        PaymentFeeId: CONF.commonProps.applicationFee.code,
+        PaymentFeeId: CONF.commonProps.applicationFee.feeCode,
         PaymentSiteId: siteId
       }
     };
@@ -85,7 +84,7 @@ const generatePaymentEventData = (session, response) => {
 const setup = () => {
   const options = { baseUrl: CONF.services.transformation.baseUrl };
   // If the microservice key is not set we fall back to mocks.
-  const secret = process.env.MICROSERVICE_KEY;
+  const secret = CONF.services.serviceAuthProvider.microserviceKey;
   client = secret ? transformationServiceClient.init(options) : mockedClient;
 
   return service;

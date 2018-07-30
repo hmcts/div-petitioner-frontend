@@ -4,6 +4,7 @@ const httpStatus = require('http-status-codes');
 const sinonStubPromise = require('sinon-stub-promise');
 const errors = require('app/resources/errors');
 const fileManagement = require('app/services/fileManagement');
+const CONF = require('config');
 
 sinonStubPromise(sinon);
 
@@ -72,11 +73,11 @@ describe(modulePath, () => {
       sinon.stub(superagent, 'post').returns(superagentStub);
       sinon.stub(fileManagement, 'removeFile');
 
-      process.env.EVIDENCE_MANAGEMENT_CLIENT_API_URL = 'test';
+      CONF.evidenceManagmentClient.url = 'test';
     });
 
     afterEach(() => {
-      delete process.env.EVIDENCE_MANAGEMENT_CLIENT_API_URL;
+      delete CONF.evidenceManagmentClient.url;
       superagent.post.restore();
       fileManagement.removeFile.restore();
     });
@@ -95,7 +96,7 @@ describe(modulePath, () => {
     });
 
     it('mocks the post if no env EVIDENCE_MANAGEMENT_CLIENT_API_URL set', done => {
-      delete process.env.EVIDENCE_MANAGEMENT_CLIENT_API_URL;
+      delete CONF.evidenceManagmentClient.url;
       evidenceManagmentService.sendFile(token, buf)
         .then(() => {
           expect(superagent.post.called).to.equal(false);

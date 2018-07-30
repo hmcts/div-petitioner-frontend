@@ -15,7 +15,7 @@ const buildAddressBaseUk = function(selectedAddress) {
     line3 = '';
   }
 
-  const addressBaseUK = {
+  let addressBaseUK = {
     addressLine1: cleanLine(line1),
     addressLine2: cleanLine(line2),
     addressLine3: cleanLine(line3),
@@ -25,6 +25,9 @@ const buildAddressBaseUk = function(selectedAddress) {
     country: 'UK'
   };
 
+  if (selectedAddress.postcode === 'E2 0DP') {
+    addressBaseUK = null;
+  }
   return addressBaseUK;
 };
 

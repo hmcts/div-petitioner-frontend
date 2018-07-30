@@ -93,8 +93,12 @@ module.exports = {
         const address = ctx.addresses[ctx.selectAddressIndex];
         if (address && address.formatted_address) {
           ctx.address = address.formatted_address.split('\n');
-          ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(
-            ctx.addresses[ctx.selectAddressIndex]);
+          const addrss = addressHelpers
+            .buildAddressBaseUk(
+              ctx.addresses[ctx.selectAddressIndex]);
+          if (addrss !== null) {
+            ctx.addressBaseUK = addrss;
+          }
         } else {
           delete ctx.address;
         }
@@ -119,8 +123,13 @@ module.exports = {
       if (address.length) {
         ctx.address = isEqual(address, ctx.address) ? ctx.address : address;
         if (ctx.selectAddressIndex !== '-1' && ctx.addresses) {
-          ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(
-            ctx.addresses[ctx.selectAddressIndex]);
+          const addrss = addressHelpers
+            .buildAddressBaseUk(
+              ctx.addresses[ctx.selectAddressIndex]
+            );
+          if (addrss !== null) {
+            ctx.addressBaseUK = addrss;
+          }
         }
       }
     }

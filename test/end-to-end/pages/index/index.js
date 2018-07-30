@@ -20,6 +20,15 @@ function startApplication(ignoreIdamToggle = false) {
   }
 }
 
+async function startApplicationWithAnExistingSession() {
+
+  let I = this;
+
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.haveABasicSession();
+}
+
 function* seeCookieBanner() {
   let I = this;
 
@@ -50,4 +59,11 @@ function dontGetShownCookieBannerAgain() {
   I.dontSee(content.cookieLink);
 }
 
-module.exports = { startApplication, seeCookieBanner, seeCookieFooter, followCookieBannerLink, dontGetShownCookieBannerAgain };
+module.exports = {
+  startApplication,
+  startApplicationWithAnExistingSession,
+  seeCookieBanner,
+  seeCookieFooter,
+  followCookieBannerLink,
+  dontGetShownCookieBannerAgain
+};

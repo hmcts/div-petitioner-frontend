@@ -24,6 +24,4 @@ evidence_management_client_api_url = "http://betaDevBdivorceAppLB.reform.hmcts.n
 
 payment_service_url = "http://payment-api-sprod.service.core-compute-sprod.internal"
 
-fee_register_url = "http://fees-register-api-sprod.service.core-compute-sprod.internal"
-
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

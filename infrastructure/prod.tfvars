@@ -18,8 +18,6 @@ idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
 
 payment_service_url = "https://payment.platform.hmcts.net"
 
-fee_register_url = "https://fees-register-api.platform.hmcts.net"
-
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 capacity = "2"

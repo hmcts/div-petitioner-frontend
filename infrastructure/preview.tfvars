@@ -18,6 +18,4 @@ idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 
 payment_service_url = "https://payment-api-aat.service.core-compute-aat.internal"
 
-fee_register_url = "https://fees-register-api-aat.service.core-compute-aat.internal"
-
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

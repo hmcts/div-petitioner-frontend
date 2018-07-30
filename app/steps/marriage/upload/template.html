@@ -65,8 +65,11 @@
                 <li>{{ content.nameChangeContent | safe }}</li>
               {%- endif -%}
             </ul>
-            <p>{{ content.otherDocuments }}</p>
 
+          <div class="panel panel-border-wide">
+            <p class="text">{{ content.camera | safe }}</p>
+          </div>
+         
             <details>
               <summary>
                 <span class="summary">{{ content.howToTake }}</span>
@@ -82,6 +85,7 @@
             </details>
 
             <p>{{ content.limitations }}</p>
+            <p>{{ content.otherDocuments }}</p>
 
             <div class="document-upload">
               <div class="fallback">
@@ -103,9 +107,9 @@
                   </div>
                   <div class="column-two-thirds">
                     <p class="dz-message-copy">
-                      {{ content.dragAndDrop }}<br>
+                      <a href="#" class="faux-link">{{ content.clickToChooseFile }}</a><br>
                       <strong>{{ content.or }}</strong><br>
-                      <a href="#" class="faux-link">{{ content.clickToChooseFile }}</a>
+                     {{ content.dragAndDrop }}
                     </p>
                   </div>
                 </div>
@@ -144,12 +148,12 @@
                 <span class="summary">{{ content.cantUpload | safe }}</span>
               </summary>
               <div class="panel panel-border-narrow font-small">
-                <p class="bold-small">{{ content.howTo }}</p>
-                  <ol class="list list-number">
-                    <li>{{ content.howToContinue | safe }}</li>
-                    <li>{{ content.howToWrite | safe }}</li>
-                    <li>{{ content.howToPost | safe }}</li>
-                  </ol>
+                
+               <p class="text">{{ content.continue | safe }}</p>
+              <p class="text">{{ content.emailOrPost | safe }}</p>
+
+
+                  
                 <p>{{ content.keptAndReturned | safe}}</p>
               </div>
             </details>

@@ -108,7 +108,11 @@ describe(modulePath, () => {
         'northWestPhoneNumber',
         'helpWithFees',
         'courtCheckApp',
-        'youWillBeContacted'
+        'youWillBeContacted',
+        'certificateKept',
+        'sendEmail',
+        'email',
+        'emailTo'
       ];
     });
 

@@ -33,5 +33,16 @@ module.exports = class UnreasonableBehaviour extends ValidationStep {
         remove('reasonForDivorceBehaviourDetails');
       }
     });
+
+    // remove default values for behaviour details
+    watch('reasonForDivorceBehaviourDetails', (previousSession, session) => {
+      if (session.reasonForDivorceBehaviourDetails) {
+        session.reasonForDivorceBehaviourDetails = session.reasonForDivorceBehaviourDetails.filter( // eslint-disable-line max-len
+          item => {
+            return !isEmpty(item) && !item.match(/^(?=My (husband|wife) \.\.\.$)/);
+          }
+        );
+      }
+    });
   }
 };

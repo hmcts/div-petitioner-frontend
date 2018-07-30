@@ -179,10 +179,6 @@ variable "payment_reference_service_id" {
   default = "DIV1"
 }
 
-variable "fee_register_url" {
-  type = "string"
-}
-
 variable "fees_and_payments_url" {
   default = ""
 }
@@ -397,4 +393,8 @@ variable "court_southwest_court_weight" {
 
 variable "court_northwest_court_weight" {
   default = "0.25"
+}
+
+variable "common_tags" {
+  type = "map"
 }

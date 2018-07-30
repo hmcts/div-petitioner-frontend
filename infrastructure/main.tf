@@ -42,6 +42,7 @@ module "redis-cache" {
   location = "${var.location}"
   env      = "${var.env}"
   subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  common_tags = "${var.common_tags}"
 }
 
 module "frontend" {
@@ -56,6 +57,7 @@ module "frontend" {
   additional_host_name            = "${var.env != "preview" ? var.additional_host_name : "null"}"
   https_only                      = "false"
   capacity                        = "${var.capacity}"
+  common_tags                     = "${var.common_tags}"
 
   app_settings = {
     // Node specific vars
@@ -106,9 +108,6 @@ module "frontend" {
     PAYMENT_REFERENCE_SERVICE_IDENTIFICATION = "${var.payment_reference_service_id}"
 
     // Fees API
-    FEE_REGISTER_URL             = "${var.fee_register_url}"
-    FEE_REGISTER_HEALTHCHECK_URL = "${var.fee_register_url}${var.health_endpoint}"
-
     FEES_AND_PAYMENTS_URL             = "${local.fees_and_payments_url}"
     FEES_AND_PAYMENTS_HEALTHCHECK_URL = "${local.fees_and_payments_url}${var.health_endpoint}"
 

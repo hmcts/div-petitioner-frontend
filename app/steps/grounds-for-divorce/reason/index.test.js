@@ -101,8 +101,6 @@ describe(modulePath, () => {
       it('renders the content from the content file', done => {
         const excludeKeys = [
           'woman',
-          'unableToChoose1',
-          'unableToChoose2',
           'hasNoMarriageDate',
           'separatedDetails',
           'sameResidenceHeading',
@@ -141,8 +139,6 @@ describe(modulePath, () => {
       it('renders the content from the content file', done => {
         const excludeKeys = [
           'woman',
-          'unableToChoose1',
-          'unableToChoose2',
           'hasNoMarriageDate',
           'separatedDetails',
           '2YearsSeparationExclusion',
@@ -172,8 +168,7 @@ describe(modulePath, () => {
       it('renders the content from the content file', done => {
         const excludeKeys = [
           'woman',
-          'unableToChoose1',
-          'unableToChoose2',
+          'alternativelyInFuture',
           'hasNoMarriageDate',
           '2YearsSeparationExclusion',
           '5YearsSeparationExclusion',

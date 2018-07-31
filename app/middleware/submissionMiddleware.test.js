@@ -117,7 +117,7 @@ describe(modulePath, () => {
         sinon.stub(payment, 'setup').returns({ query });
       });
 
-      it('Check payment status and update ccd if application has been submitted and is in "AwaitingPayment"', async () => {
+      it('Check payment status, if application is in "AwaitingPayment", payment successfull then update ccd to awaiting response', async () => {
         req.session.caseId = 'someid';
         req.session.state = 'AwaitingPayment';
         req.session.currentPaymentReference = 'somepaymentid';
@@ -144,7 +144,7 @@ describe(modulePath, () => {
         sinon.stub(payment, 'setup').returns({ query });
       });
 
-      it('Check payment status and not update ccd if application has been submitted and is in "AwaitingPayment"', async () => {
+      it('Check payment status, if application is in "AwaitingPayment" but payment has failed then do nothing"', async () => {
         req.session.caseId = 'someid';
         req.session.state = 'AwaitingPayment';
         req.session.currentPaymentReference = 'somepaymentid';

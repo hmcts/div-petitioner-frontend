@@ -82,16 +82,6 @@ describe(modulePath, () => {
     let update = null;
     beforeEach(() => {
       getToken = sinon.stub().resolves('token');
-      // Payment create stub
-      query = sinon.stub().resolves({
-        id: '1',
-        amount: 55000,
-        status: 'SuccessZ',
-        reference: 'some-reference',
-        external_reference: 'a65-f836-4f61-a628-727199ef6c20',
-        date_created: 1505459675824,
-        _links: {}
-      });
       // Submission update stub
       update = sinon.stub().resolves({
         caseId: '1509031793780148',

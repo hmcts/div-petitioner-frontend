@@ -5,10 +5,11 @@
 String product = "div"
 String component = "pfe"
 
-withPipeline("nodejs", product, component) {  
+withPipeline("nodejs", product, component) {
   after('build') {
     sh 'yarn setup'
   }
+
   after('test') {
     sh 'yarn test-validation'
   }

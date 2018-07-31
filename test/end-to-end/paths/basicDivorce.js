@@ -2,7 +2,7 @@ const content = require('app/steps/grounds-for-divorce/reason/content.json').res
 
 Feature('Basic divorce path').retry(3);
 
-Scenario('Get a divorce', function*(I) {
+Scenario('Get a divorce', async function(I) {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
@@ -40,10 +40,10 @@ Scenario('Get a divorce', function*(I) {
   I.enterFinancialAdvice();
   I.enterClaimCosts();
 
-  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
   I.uploadMarriageCertificateFile(isDragAndDropSupported);
 
-  I.checkMyAnswers();
+  await I.checkMyAnswersAndValidateSession();
 
   I.amDoneAndSubmitted();
 

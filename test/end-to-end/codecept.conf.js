@@ -31,7 +31,8 @@ exports.config = {
     ElementExist: { require: './helpers/ElementExist.js' },
     IdamHelper: { require: './helpers/idamHelper.js' },
     JSWait: { require: './helpers/JSWait.js' },
-    SessionHelper: { require: './helpers/SessionHelper.js' }
+    SessionHelper: { require: './helpers/SessionHelper.js' },
+    CcdCaseHelper: { require: './helpers/CcdCaseHelper.js' }
   },
   include: { I: './pages/steps.js' },
   mocha: {

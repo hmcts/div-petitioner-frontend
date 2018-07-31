@@ -23,7 +23,7 @@ data "azurerm_key_vault_secret" "post_code_token" {
 }
 
 data "azurerm_key_vault_secret" "session_secret" {
-  name      = "psession-secret"
+  name      = "session-secret"
   vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 

@@ -1,6 +1,5 @@
 const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
-const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ applicationFee.fee_amount }}</strong>', '£550');
-
+const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ applicationFee.amount }}</strong>', '£550');
 
 Feature('Payment method').retry(3);
 

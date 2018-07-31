@@ -108,9 +108,6 @@ module "frontend" {
     PAYMENT_REFERENCE_SERVICE_IDENTIFICATION = "${var.payment_reference_service_id}"
 
     // Fees API
-    FEE_REGISTER_URL             = "${var.fee_register_url}"
-    FEE_REGISTER_HEALTHCHECK_URL = "${var.fee_register_url}${var.health_endpoint}"
-
     FEES_AND_PAYMENTS_URL             = "${local.fees_and_payments_url}"
     FEES_AND_PAYMENTS_HEALTHCHECK_URL = "${local.fees_and_payments_url}${var.health_endpoint}"
 

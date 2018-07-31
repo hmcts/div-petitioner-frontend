@@ -18,6 +18,4 @@ idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 
 payment_service_url = "https://preprod.payments.reform.hmcts.net:4401"
 
-fee_register_url = "https://preprod.fees-register.reform.hmcts.net:4411"
-
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

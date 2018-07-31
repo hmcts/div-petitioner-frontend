@@ -39,8 +39,8 @@ locals {
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
   raw_product         = "${var.product}-${var.reform_service_name}"
-  previewVaultName    = "div-pfe-aat"
-  nonPreviewVaultName = "div-pfe-${var.env}"
+  previewVaultName    = "div-aat"
+  nonPreviewVaultName = "div-${var.env}"
   vaultName           = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 
   service_auth_provider_url = "${var.service_auth_provider_url == "" ? "http://${var.idam_s2s_url_prefix}-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.service_auth_provider_url}"

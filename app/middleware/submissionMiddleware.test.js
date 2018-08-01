@@ -30,9 +30,41 @@ describe(modulePath, () => {
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith('/application-submitted')).to.eql(true);
     });
-    it('redirects to /application-submitted-awaiting-response if application has been submitted and is not "AwaitingPayment" or "Rejected"', () => {
+    it('redirects to /application-submitted-awaiting-response if application has been submitted and is in "AwaitingDocuments" state', () => {
       req.session.caseId = 'someid';
-      req.session.state = 'randomstate';
+      req.session.state = 'AwaitingDocuments';
+      config.deployment_env = 'prod';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
+    });
+    it('redirects to /application-submitted-awaiting-response if application has been submitted and is in "AwaitingHWFDecision" state', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingHWFDecision';
+      config.deployment_env = 'prod';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
+    });
+    it('redirects to /application-submitted-awaiting-response if application has been submitted and is in "Issued" state', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'Issued';
+      config.deployment_env = 'prod';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
+    });
+    it('redirects to /application-submitted-awaiting-response if application has been submitted and is in "PendingRejection" state', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'PendingRejection';
+      config.deployment_env = 'prod';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
+    });
+    it('redirects to /application-submitted-awaiting-response if application has been submitted and is in "Submitted" state', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'Submitted';
       config.deployment_env = 'prod';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
@@ -41,6 +73,14 @@ describe(modulePath, () => {
     it('calls next if application has been submitted and is "Rejected"', () => {
       req.session.caseId = 'someid';
       req.session.state = 'Rejected';
+      config.deployment_env = 'prod';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.called).to.eql(false);
+      expect(next.calledOnce).to.eql(true);
+    });
+    it('redirects to /next if application has been submitted and is in a random state', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'randomState';
       config.deployment_env = 'prod';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.called).to.eql(false);
@@ -55,20 +95,6 @@ describe(modulePath, () => {
       ctx.enabledAfterSubmission = true;
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.called).to.eql(false);
-      expect(next.calledOnce).to.eql(true);
-    });
-    it('next is not called if env is prod', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingPayment';
-      config.deployment_env = 'prod';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(next.calledOnce).to.eql(false);
-    });
-    it('next is called if env is not prod', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingPayment';
-      config.deployment_env = 'no prod';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(next.calledOnce).to.eql(true);
     });
   });

@@ -2,24 +2,34 @@ provider "vault" {
   address = "https://vault.reform.hmcts.net:6200"
 }
 
-data "vault_generic_secret" "frontend_secret" {
-  path = "secret/${var.vault_section}/ccidam/service-auth-provider/api/microservice-keys/divorce-frontend"
+data "azurerm_key_vault" "div_key_vault" {
+  name                = "${local.vaultName}"
+  resource_group_name = "${local.vaultName}"
 }
 
-data "vault_generic_secret" "idam_secret" {
-  path = "secret/${var.vault_section}/ccidam/idam-api/oauth2/client-secrets/divorce"
+data "azurerm_key_vault_secret" "frontend_secret" {
+  name      = "frontend-secret"
+  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 
-data "vault_generic_secret" "post_code_token" {
-  path = "secret/${var.vault_section}/divorce/postcode/token"
+data "azurerm_key_vault_secret" "idam_secret" {
+  name      = "idam-secret"
+  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 
-data "vault_generic_secret" "session_secret" {
-  path = "secret/${var.vault_section}/divorce/session/secret"
+data "azurerm_key_vault_secret" "post_code_token" {
+  name      = "post-code-token"
+  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 
-data "vault_generic_secret" "redis_secret" {
-  path = "secret/${var.vault_section}/divorce/session/redis-secret"
+data "azurerm_key_vault_secret" "session_secret" {
+  name      = "session-secret"
+  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
+}
+
+data "azurerm_key_vault_secret" "redis_secret" {
+  name      = "redis-secret"
+  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 
 locals {
@@ -28,20 +38,25 @@ locals {
 
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
+  raw_product         = "${var.product}-${var.reform_service_name}"
+  previewVaultName    = "div-aat"
+  nonPreviewVaultName = "div-${var.env}"
+  vaultName           = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
+
   service_auth_provider_url = "${var.service_auth_provider_url == "" ? "http://${var.idam_s2s_url_prefix}-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.service_auth_provider_url}"
 
   case_progression_service_url       = "${var.case_progression_service_url == "" ? "http://div-cps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_progression_service_url}"
   evidence_management_client_api_url = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
-  fees_and_payments_url = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
+  fees_and_payments_url              = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
   status_health_endpoint             = "/status/health"
 }
 
 module "redis-cache" {
-  source   = "git@github.com:hmcts/moj-module-redis?ref=master"
-  product  = "${var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.reform_service_name}-redis"}"
-  location = "${var.location}"
-  env      = "${var.env}"
-  subnetid = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  source      = "git@github.com:hmcts/moj-module-redis?ref=master"
+  product     = "${var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.reform_service_name}-redis"}"
+  location    = "${var.location}"
+  env         = "${var.env}"
+  subnetid    = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
   common_tags = "${var.common_tags}"
 }
 
@@ -94,13 +109,13 @@ module "frontend" {
     IDAM_APP_HEALHCHECK_URL            = "${var.idam_api_url}${var.health_endpoint}"
     IDAM_LOGIN_URL                     = "${var.idam_authentication_web_url}${var.idam_authentication_login_endpoint}"
     IDAM_AUTHENTICATION_HEALHCHECK_URL = "${var.idam_authentication_web_url}${var.health_endpoint}"
-    IDAM_SECRET                        = "${data.vault_generic_secret.idam_secret.data["value"]}"
+    IDAM_SECRET                        = "${data.azurerm_key_vault_secret.idam_secret.value}"
 
     // Service Auth
     SERVICE_AUTH_PROVIDER_URL             = "${local.service_auth_provider_url}"
     SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL = "${local.service_auth_provider_url}${var.health_endpoint}"
     MICROSERVICE_NAME                     = "${var.s2s_microservice_name}"
-    MICROSERVICE_KEY                      = "${data.vault_generic_secret.frontend_secret.data["value"]}"
+    MICROSERVICE_KEY                      = "${data.azurerm_key_vault_secret.frontend_secret.value}"
 
     // Payments API
     PAYMENT_SERVICE_URL                      = "${var.payment_service_url}"
@@ -113,15 +128,15 @@ module "frontend" {
 
     // Post code Lookup
     POST_CODE_URL          = "${var.post_code_url}"
-    POST_CODE_ACCESS_TOKEN = "${data.vault_generic_secret.post_code_token.data["value"]}"
+    POST_CODE_ACCESS_TOKEN = "${data.azurerm_key_vault_secret.post_code_token.value}"
 
     // Redis Cloud
     REDISCLOUD_URL = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     USE_AUTH       = "${var.use_auth}"
 
     // Encryption secrets
-    SECRET                    = "${data.vault_generic_secret.session_secret.data["value"]}"
-    SESSION_ENCRYPTION_SECRET = "${data.vault_generic_secret.redis_secret.data["value"]}"
+    SECRET                    = "${data.azurerm_key_vault_secret.session_secret.value}"
+    SESSION_ENCRYPTION_SECRET = "${data.azurerm_key_vault_secret.redis_secret.value}"
 
     // Evidence Management Client API
     EVIDENCE_MANAGEMENT_CLIENT_API_URL             = "${local.evidence_management_client_api_url}"
@@ -200,7 +215,7 @@ module "frontend" {
     NORTHWEST_COURTWEIGHT    = "${var.court_northwest_court_weight}"
 
     // Feature toggling through config
-    FEATURE_IDAM = "${var.feature_idam}"
+    FEATURE_IDAM                               = "${var.feature_idam}"
     FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
   }
 }

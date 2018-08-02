@@ -22,8 +22,6 @@ case_progression_service_url = "http://betaDevBdivorceAppLB.reform.hmcts.net:401
 
 evidence_management_client_api_url = "http://betaDevBdivorceAppLB.reform.hmcts.net:4016"
 
-payment_service_url = "https://test.payments.reform.hmcts.net:4421"
-
-fee_register_url = "https://test.fees-register.reform.hmcts.net:4431"
+payment_service_url = "http://payment-api-saat.service.core-compute-saat.internal"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"

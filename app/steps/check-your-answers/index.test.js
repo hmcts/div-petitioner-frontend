@@ -674,47 +674,67 @@ describe(modulePath, () => {
         sendStatus: sinon.stub()
       };
 
-      sinon.stub(underTest, 'parseCtx').resolves();
       sinon.stub(underTest, 'validate').returns([true]);
       sinon.stub(underTest, 'submitApplication');
     });
 
     afterEach(() => {
       underTest.submitApplication.restore();
-      underTest.parseCtx.restore();
       underTest.validate.restore();
     });
 
-    it('does not submit application if submit button not clicked', done => {
-      co(function* generator() {
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledOnce).to.equal(true);
-        expect(underTest.validate.calledOnce).to.equal(true);
-        expect(underTest.submitApplication.called).to.equal(false);
-        done();
+    context('submission test', () => {
+      beforeEach(() => {
+        sinon.stub(underTest, 'parseCtx').resolves();
+      });
+
+      afterEach(() => {
+        underTest.parseCtx.restore();
+      });
+
+      it('does not submit application if submit button not clicked', done => {
+        co(function* generator() {
+          yield underTest.postRequest(req, res);
+          expect(underTest.parseCtx.calledOnce).to.equal(true);
+          expect(underTest.validate.calledOnce).to.equal(true);
+          expect(underTest.submitApplication.called).to.equal(false);
+          done();
+        });
+      });
+
+      it('runs submit application if submission is valid', done => {
+        co(function* generator() {
+          req.body.submit = true;
+          yield underTest.postRequest(req, res);
+          expect(underTest.parseCtx.calledOnce).to.equal(true);
+          expect(underTest.validate.calledOnce).to.equal(true);
+          expect(underTest.submitApplication.calledOnce).to.equal(true);
+          done();
+        });
+      });
+
+      it('does not submit application if invalid', done => {
+        co(function* generator() {
+          req.body.submit = true;
+          underTest.validate.returns([false]);
+          yield underTest.postRequest(req, res);
+          expect(underTest.parseCtx.calledTwice).to.equal(true);
+          expect(underTest.validate.calledTwice).to.equal(true);
+          expect(underTest.submitApplication.called).to.equal(false);
+          done();
+        });
       });
     });
 
-    it('runs submit application if submission is valid', done => {
-      co(function* generator() {
-        req.body.submit = true;
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledOnce).to.equal(true);
-        expect(underTest.validate.calledOnce).to.equal(true);
-        expect(underTest.submitApplication.calledOnce).to.equal(true);
-        done();
-      });
-    });
-
-    it('does not submit application if invalid', done => {
-      co(function* generator() {
-        req.body.submit = true;
-        underTest.validate.returns([false]);
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledTwice).to.equal(true);
-        expect(underTest.validate.calledTwice).to.equal(true);
-        expect(underTest.submitApplication.called).to.equal(false);
-        done();
+    context('session test', () => {
+      it('sets confirmPrayer to Yes when set in the ctx', done => {
+        co(function* generator() {
+          req.body.submit = true;
+          req.body.confirmPrayer = 'Yes';
+          yield underTest.postRequest(req, res);
+          expect(req.session.confirmPrayer).to.equal('Yes');
+          done();
+        });
       });
     });
   });
@@ -907,6 +927,97 @@ describe(modulePath, () => {
             .to.equal(s.steps.ApplicationSubmitted.url);
         }, 'post', true, postBody);
       });
+    });
+  });
+
+  describe('#update AddressBaseUK', () => {
+    let submit = {};
+    let postBody = {};
+
+    beforeEach(done => {
+      submit = sinon.stub().resolves({
+        error: null,
+        status: 'success',
+        caseId: '1234567890'
+      });
+      sinon.stub(submission, 'setup').returns({ submit });
+      sinon.stub(ga, 'trackEvent');
+
+      postBody = {
+        submit: true,
+        confirmPrayer: 'Yes'
+      };
+
+      session = {
+        question1: 'Yes',
+        confirmPrayer: 'Yes',
+        submit: true,
+        cookie: {},
+        expires: Date.now(),
+        petitionerHomeAddress: {
+          addressType: 'postcode',
+          selectAddressIndex: 0,
+          addresses: [
+            {
+              uprn: '100021861927',
+              organisation_name: '',
+              department_name: '',
+              po_box_number: '',
+              building_name: '',
+              sub_building_name: '',
+              building_number: 80,
+              thoroughfare_name: 'LANDOR ROAD',
+              dependent_thoroughfare_name: '',
+              dependent_locality: '',
+              double_dependent_locality: '',
+              post_town: 'LONDON',
+              postcode: 'SW9 9PE',
+              postcode_type: 'S',
+              formatted_address: '80 Landor Road\nLondon\nSW9 9PE'
+            }
+          ],
+          validPostcode: true,
+          postcodeError: false,
+          url: '/petitioner-respondent/address',
+          formattedAddress: {
+            whereabouts: ['80 Landor Road', 'London', 'SW9 9PE'],
+            postcode: 'SW9 9PE'
+          }
+        }
+      };
+      withSession(done, agent, session);
+    });
+
+    afterEach(() => {
+      ga.trackEvent.restore();
+      submission.setup.restore();
+    });
+
+    it('Missing addressBaseUK field is added if an address has been selected', done => {
+      const expectAddressBaseUK = {
+        addressLine1: '80 LANDOR ROAD',
+        addressLine2: '',
+        addressLine3: '',
+        postCode: 'SW9 9PE',
+        postTown: 'LONDON',
+        county: '',
+        country: 'UK'
+      };
+
+      const testSession = () => {
+        getSession(agent)
+          .then(sess => {
+            expect(sess.petitionerHomeAddress.addressBaseUK)
+              .to.eql(expectAddressBaseUK);
+          })
+          .then(done, done);
+      };
+
+      testCustom(testSession, agent, underTest, [], response => {
+        expect(response.res.headers.location)
+          .to.equal(s.steps.ApplicationSubmitted.url);
+      },
+      'post', true, postBody);
     });
   });
 });

@@ -155,9 +155,7 @@ exports.init = listenForConnections => {
       const graph = siteGraph(steps);
       res.json(graph);
     });
-  }
 
-  if (CONF.environment === 'development' || CONF.environment === 'testing') {
     //  quick way to update a session.
     //  useful to set the app into an
     //  initial state for testing

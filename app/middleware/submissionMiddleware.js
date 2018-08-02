@@ -1,52 +1,7 @@
 const logger = require('app/services/logger').logger(__filename);
 const config = require('config');
 const idam = require('app/services/idam');
-const serviceTokenService = require('app/services/serviceToken');
-const paymentService = require('app/services/payment');
-const submissionService = require('app/services/submission');
-
-const checkAndUpdatePaymentStatus = function(req, res, user, authToken, session) { // eslint-disable-line
-  // Initialise services.
-  const serviceToken = serviceTokenService.setup();
-  const payment = paymentService.setup();
-  const submission = submissionService.setup();
-
-  // Get service token.
-  return serviceToken.getToken()
-  // Query payment status.
-    .then(token => {
-      return payment.query(user, token, session.currentPaymentReference,
-        session.mockedPaymentOutcome);
-    })
-
-    // Store status in session then update CCD with payment status.
-    .then(response => {
-      logger.info({
-        message: 'Payment status query response:',
-        response
-      });
-
-      const paymentId = response.id;
-      session.payments = session.payments || {};
-      session.payments[paymentId] = Object.assign({},
-        session.payments[paymentId], response);
-      const paymentSuccess = paymentService.isPaymentSuccessful(response);
-      if (paymentSuccess) {
-        const eventData = submissionService
-          .generatePaymentEventData(session, response);
-        submission.update(authToken, session.caseId, eventData, 'paymentMade');
-        return '/application-submitted-awaiting-response';
-      }
-      return '/application-submitted';
-    })
-
-    // Log any errors occurred and end up on the error page.
-    .catch(error => {
-      const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
-      logger.error(msg, req);
-      return '/generic-error';
-    });
-};
+const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
 
 const hasSubmitted = function(req, res, next) {
   let authToken = '';
@@ -74,7 +29,18 @@ const hasSubmitted = function(req, res, next) {
     switch (session.state) {
     case 'AwaitingPayment':
       if (session.currentPaymentReference) {
-        return checkAndUpdatePaymentStatus(req, res, user, authToken, session)
+        return paymentStatusService
+          .checkAndUpdatePaymentStatus(res, user, authToken, session)
+          .then(response => {
+            if (response !== true) return '/application-submitted-awaiting-response';
+            return '/application-submitted';
+          })
+          // Log any errors occurred and end up on the error page.
+          .catch(error => {
+            const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
+            logger.error(msg, req);
+            return '/generic-error';
+          })
           .then(
             url => {
               return res.redirect(url);

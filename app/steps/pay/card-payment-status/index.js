@@ -8,9 +8,9 @@ const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMidd
 const Step = require('app/core/steps/Step');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
-const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
-const submissionService = require('app/services/submission');
+const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
+
 
 module.exports = class CardPaymentStatus extends Step {
   get middleware() {
@@ -57,45 +57,8 @@ module.exports = class CardPaymentStatus extends Step {
         bearerToken: authToken
       };
     }
-
-    const caseId = req.session.caseId;
-
-    // Initialise services.
-    const serviceToken = serviceTokenService.setup();
-    const payment = paymentService.setup();
-    const submission = submissionService.setup();
-
-    // Get service token.
-    serviceToken.getToken()
-      // Query payment status.
-      .then(token => {
-        return payment.query(user, token, req.session.currentPaymentReference,
-          req.session.mockedPaymentOutcome);
-      })
-
-      // Store status in session then update CCD with payment status.
-      .then(response => {
-        logger.info({
-          message: 'Payment status query response:',
-          response
-        });
-
-        const id = req.session.currentPaymentId;
-        req.session.payments[id] = Object.assign({}, req.session.payments[id],
-          response);
-
-        const paymentSuccess = paymentService.isPaymentSuccessful(response);
-
-        if (paymentSuccess) {
-          const eventData = submissionService
-            .generatePaymentEventData(req.session, response);
-
-          return submission.update(authToken, caseId, eventData, 'paymentMade');
-        }
-
-        return true;
-      })
-
+    paymentStatusService
+      .checkAndUpdatePaymentStatus(res, user, authToken, req.session)
       // Check CCD update response then redirect to a step based on payment status.
       .then(response => {
         if (response !== true) {

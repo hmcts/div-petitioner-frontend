@@ -122,7 +122,7 @@ describe(modulePath, () => {
         req.session.state = 'AwaitingPayment';
         req.session.currentPaymentReference = 'somepaymentid';
         config.deployment_env = 'prod';
-        await underTest.hasSubmitted.apply(ctx, [req, res, next]);
+        await underTest.hasSubmitted(req, res, next);
         expect(getToken.calledOnce).to.equal(true);
         expect(query.calledOnce).to.equal(true);
         expect(update.calledOnce).to.equal(true);

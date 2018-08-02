@@ -35,17 +35,17 @@ const hasSubmitted = function(req, res, next) {
             if (response !== true) return '/application-submitted-awaiting-response';
             return '/application-submitted';
           })
-          // Log any errors occurred and end up on the error page.
-          .catch(error => {
-            const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
-            logger.error(msg, req);
-            return '/generic-error';
-          })
           .then(
             url => {
               return res.redirect(url);
             }
-          );
+          )
+          // Log any errors occurred and end up on the error page.
+          .catch(error => {
+            const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
+            logger.error(msg, req);
+            return res.redirect('generic-error');
+          });
       }
       return res.redirect('/application-submitted');
     case 'Rejected':

@@ -11,3 +11,4 @@ test/crossbrowser/reports/*
 webpack.config.js
 Gruntfile.js
 test/end-to-end/helpers/JSWait.js
+functional-output/*

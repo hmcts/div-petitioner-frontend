@@ -61,18 +61,10 @@ module.exports = class CardPaymentStatus extends Step {
       .checkAndUpdatePaymentStatus(res, user, authToken, req.session)
       // Check CCD update response then redirect to a step based on payment status.
       .then(response => {
-        if (response !== true) {
-          logger.info({
-            message: 'Transformation service update response:',
-            response
-          });
-
-          if (!response || response.status !== 'success') {
-            // Fail immediately if the application could not be updated in CCD.
-            throw response;
-          }
-        }
-
+        logger.info({
+          message: 'update paymentStatus',
+          response
+        });
         const id = req.session.currentPaymentId;
         const paymentStatus = req.session.payments[id].status;
         res.redirect(this.next(paymentStatus).url);

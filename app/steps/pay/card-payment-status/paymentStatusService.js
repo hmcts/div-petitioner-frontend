@@ -40,6 +40,20 @@ const checkAndUpdatePaymentStatus = function(res, user, authToken, session) { //
       return new Promise(resolve => {
         resolve(true);
       });
+    })
+    .then(responseStatus => {
+      if (responseStatus !== true) {
+        logger.info({
+          message: 'Transformation service update response:',
+          responseStatus
+        });
+
+        if (!responseStatus || responseStatus.status !== 'success') {
+          // Fail immediately if the application could not be updated in CCD.
+          throw responseStatus;
+        }
+      }
+      return responseStatus;
     });
 };
 

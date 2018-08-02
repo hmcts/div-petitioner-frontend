@@ -44,7 +44,7 @@ const hasSubmitted = function(req, res, next) {
           .catch(error => {
             const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
             logger.error(msg, req);
-            return res.redirect('generic-error');
+            return res.redirect('/generic-error');
           });
       }
       return res.redirect('/application-submitted');

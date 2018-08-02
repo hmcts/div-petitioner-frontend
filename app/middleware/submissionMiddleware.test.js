@@ -82,14 +82,7 @@ describe(modulePath, () => {
     let update = null;
     beforeEach(() => {
       getToken = sinon.stub().resolves('token');
-      // Submission update stub
-      update = sinon.stub().resolves({
-        caseId: '1509031793780148',
-        error: null,
-        status: 'success'
-      });
       sinon.stub(serviceToken, 'setup').returns({ getToken });
-      sinon.stub(submission, 'setup').returns({ update });
       ctx = { };
       req = { session: {} };
       res = { redirect: sinon.stub() };
@@ -114,6 +107,12 @@ describe(modulePath, () => {
           date_created: 1505459675824,
           _links: {}
         });
+        update = sinon.stub().resolves({
+          caseId: '1509031793780148',
+          error: null,
+          status: 'success'
+        });
+        sinon.stub(submission, 'setup').returns({ update });
         sinon.stub(payment, 'setup').returns({ query });
       });
 
@@ -141,6 +140,12 @@ describe(modulePath, () => {
           date_created: 1505459675824,
           _links: {}
         });
+        update = sinon.stub().resolves({
+          caseId: '1509031793780148',
+          error: null,
+          status: 'success'
+        });
+        sinon.stub(submission, 'setup').returns({ update });
         sinon.stub(payment, 'setup').returns({ query });
       });
 
@@ -154,6 +159,36 @@ describe(modulePath, () => {
         expect(query.calledOnce).to.equal(true);
         expect(update.calledOnce).to.equal(false);
         expect(res.redirect.calledWith('/application-submitted')).to.eql(true);
+      });
+    });
+
+    context('Update error', () => {
+      beforeEach(() => {
+        query = sinon.stub().resolves({
+          id: '1',
+          amount: 55000,
+          status: 'Success',
+          reference: 'some-reference',
+          external_reference: 'a65-f836-4f61-a628-727199ef6c20',
+          date_created: 1505459675824,
+          _links: {}
+        });
+        sinon.stub(payment, 'setup').returns({ query });
+        update = sinon.stub().resolves({
+          caseId: 0,
+          error: 'some error with a wrapped java exception',
+          status: 'error'
+        });
+        sinon.stub(submission, 'setup').returns({ update });
+      });
+
+      it('submission update was not successful\'"', async () => {
+        req.session.caseId = 'someid';
+        req.session.state = 'AwaitingPayment';
+        req.session.currentPaymentReference = 'somepaymentid';
+        config.deployment_env = 'prod';
+        await underTest.hasSubmitted.apply(ctx, [req, res, next]);
+        expect(res.redirect.calledWith('/generic-error')).to.eql(true);
       });
     });
   });

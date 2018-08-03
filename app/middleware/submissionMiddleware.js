@@ -5,7 +5,7 @@ const paymentStatusService = require('app/steps/pay/card-payment-status/paymentS
 const hasSubmitted = function(req, res, next) {
   const { session } = req;
   const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
-  if (hasSubmittedEnabled && !this.enabledAfterSubmission && session.caseId) { // eslint-disable-line
+  if (hasSubmittedEnabled && !this.enabledAfterSubmission && session.caseId && session.state) { // eslint-disable-line
     switch (session.state) {
     case 'AwaitingPayment':
       if (session.currentPaymentReference) {

@@ -2,8 +2,34 @@ const logger = require('app/services/logger').logger(__filename);
 const serviceTokenService = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
+const CONF = require('config');
+const idam = require('app/services/idam');
 
-const checkAndUpdatePaymentStatus = function(res, user, authToken, session) { // eslint-disable-line
+const buildUser = function(req, res) {
+  let authToken = '';
+  let user = {};
+
+  if (CONF.features.idam) {
+    authToken = req.cookies['__auth-token'];
+
+    const idamUserId = idam.userId(req);
+    if (!idamUserId) {
+      logger.error('User does not have any idam userDetails', req);
+      res.redirect('/generic-error');
+      return user;
+    }
+
+    user = {
+      id: idamUserId,
+      bearerToken: authToken
+    };
+  }
+  return user;
+};
+
+const checkAndUpdatePaymentStatus = function(req, res) { // eslint-disable-line
+  const user = buildUser(req, res);
+  const session = req.session;
   // Initialise services.
   const serviceToken = serviceTokenService.setup();
   const payment = paymentService.setup();
@@ -34,7 +60,7 @@ const checkAndUpdatePaymentStatus = function(res, user, authToken, session) { //
         const eventData = submissionService
           .generatePaymentEventData(session, response);
 
-        return submission.update(authToken, session.caseId, eventData, 'paymentMade');
+        return submission.update(user.authToken, session.caseId, eventData, 'paymentMade');
       }
 
       return new Promise(resolve => {

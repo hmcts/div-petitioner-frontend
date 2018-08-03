@@ -1,8 +1,6 @@
 const logger = require('app/services/logger').logger(__filename);
-const CONF = require('config');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
-const idam = require('app/services/idam');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 
 const Step = require('app/core/steps/Step');
@@ -10,7 +8,6 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const paymentService = require('app/services/payment');
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
-
 
 module.exports = class CardPaymentStatus extends Step {
   get middleware() {
@@ -37,28 +34,8 @@ module.exports = class CardPaymentStatus extends Step {
       next();
       return;
     }
-
-    // User prerequisites. @todo extract these elsewhere?
-    let authToken = '';
-    let user = {};
-
-    if (CONF.features.idam) {
-      authToken = req.cookies['__auth-token'];
-
-      const idamUserId = idam.userId(req);
-      if (!idamUserId) {
-        logger.error('User does not have any idam userDetails', req);
-        res.redirect('/generic-error');
-        return;
-      }
-
-      user = {
-        id: idamUserId,
-        bearerToken: authToken
-      };
-    }
     paymentStatusService
-      .checkAndUpdatePaymentStatus(res, user, authToken, req.session)
+      .checkAndUpdatePaymentStatus(req, res)
       // Check CCD update response then redirect to a step based on payment status.
       .then(response => {
         logger.info({

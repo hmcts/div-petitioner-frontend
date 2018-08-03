@@ -5,7 +5,7 @@ const submissionService = require('app/services/submission');
 const CONF = require('config');
 const idam = require('app/services/idam');
 
-const buildUser = function(req, res) {
+const buildUser = function(req) {
   let authToken = '';
   let user = {};
 
@@ -14,9 +14,7 @@ const buildUser = function(req, res) {
 
     const idamUserId = idam.userId(req);
     if (!idamUserId) {
-      logger.error('User does not have any idam userDetails', req);
-      res.redirect('/generic-error');
-      return user;
+      throw new Error('User does not have any idam userDetails');
     }
 
     user = {
@@ -27,8 +25,8 @@ const buildUser = function(req, res) {
   return user;
 };
 
-const checkAndUpdatePaymentStatus = function(req, res) { // eslint-disable-line
-  const user = buildUser(req, res);
+const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
+  const user = buildUser(req);
   const session = req.session;
   // Initialise services.
   const serviceToken = serviceTokenService.setup();

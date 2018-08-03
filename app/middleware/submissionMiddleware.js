@@ -10,7 +10,7 @@ const hasSubmitted = function(req, res, next) {
     case 'AwaitingPayment':
       if (session.currentPaymentReference) {
         return paymentStatusService
-          .checkAndUpdatePaymentStatus(req, res)
+          .checkAndUpdatePaymentStatus(req)
           .then(response => {
             if (response !== true) return '/application-submitted-awaiting-response';
             return '/application-submitted';

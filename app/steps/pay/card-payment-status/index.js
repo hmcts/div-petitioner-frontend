@@ -35,7 +35,7 @@ module.exports = class CardPaymentStatus extends Step {
       return;
     }
     paymentStatusService
-      .checkAndUpdatePaymentStatus(req, res)
+      .checkAndUpdatePaymentStatus(req)
       // Check CCD update response then redirect to a step based on payment status.
       .then(response => {
         logger.info({

@@ -5,8 +5,8 @@
             "translation": {
 
                 "content": {
-                    "question": "Is your name now different to your name on your marriage certificate?",
-                    "weddingDayName": "The name on your certificate will be the name you used on your wedding day, eg a maiden name.",
+                    "question": "Have you changed your name since you got married?",
+                    "weddingDayName": "The court needs to know if you changed your name when you got married, or if you've changed it since.",
                     "howChangeName": "How did you change your name?",
                     "marriageCertificate": "Marriage Certificate",
                     "deedPoll": "Deed poll or statutory declaration",

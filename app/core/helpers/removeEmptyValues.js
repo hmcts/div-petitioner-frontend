@@ -5,8 +5,9 @@ const { reduce } = require('lodash');
 //  expect the field to be absent
 const removeEmptyValues = ctx => {
   return reduce(ctx, (acc, v, k) => {
-    if (v !== '') {
-      acc[k] = v;
+    const afterTrim = v.trim();
+    if (afterTrim !== '') {
+      acc[k] = afterTrim;
     }
     return acc;
   }, {});

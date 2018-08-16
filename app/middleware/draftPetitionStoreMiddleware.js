@@ -60,9 +60,7 @@ const restoreFromDraftStore = (req, res, next) => {
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
     .then(restoredSession => {
-      logger.info(`DIV-2815-LOG RESTORED SESSION >>>${JSON.stringify(restoredSession)}`);
       if (restoredSession && !isEmpty(restoredSession)) {
-        logger.info(`DIV-2815-LOG RESTORED SESSION STATE>>>${restoredSession.state}`);
         Object.assign(req.session, restoredSession);
         if (restoredSession.state === 'AwaitingPayment') {
           res.redirect(applicationSubmitted);

@@ -8,9 +8,9 @@
                     "question": "Does your {{ divorceWho }} still live at this address?",
                     "yes": "Yes",
                     "no-husband": "No, they live at another address",
-                    "unknown-husband": "No, and I don't know where they lives",
+                    "unknown-husband": "No, and I don't know where they live",
                     "no-wife": "No, they live at another address",
-                    "unknown-wife": "No, and I don't know where they lives"
+                    "unknown-wife": "No, and I don't know where they live"
                 },
 
                 "errors": {

@@ -135,6 +135,10 @@ variable "idam_api_url" {
   type = "string"
 }
 
+variable "idam_client_id" {
+  default = "divorce"
+}
+
 variable "service_auth_provider_url" {
   default = ""
 }

@@ -136,7 +136,6 @@ const applyConnections = (step, ctx, session) => {
   }
 
   Object.assign(session.jurisdictionConnection, petitionerConnections);
-  Array.from(new Set(session.jurisdictionConnection));
 
   applyConnectionsText(step, ctx, session);
 };

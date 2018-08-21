@@ -1,5 +1,3 @@
-/* eslint-disable */
-// remove above line - just to shut up eslint for dev
 const config = require('config');
 
 const hasSubmitted = function(req, res, next) {
@@ -14,7 +12,7 @@ const hasSubmitted = function(req, res, next) {
     case 'Rejected':
       return next();
     case 'MultipleRejectedCases':
-        return res.redirect('/contact-divorce-team');
+      return res.redirect('/contact-divorce-team');
     default:
       return res.redirect('/application-submitted-awaiting-response');
     }

@@ -8,9 +8,13 @@ ENV NODE_ENV=$NODE_ENV
 
 COPY . /opt/app
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+RUN apk update && \
+    apk add --no-cache bash make g++ git python2
 
-RUN yarn install && yarn setup && yarn cache clean
+RUN yarn install --production=false && yarn setup
+
+RUN rm -rf node_modules \
+    && yarn install \
+    && yarn cache clean
 
 CMD [ "yarn", "start" ]

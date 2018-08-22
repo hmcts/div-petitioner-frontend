@@ -1,9 +1,11 @@
-const config = require('config');
+/* eslint-disable spaced-comment */
+//const config = require('config');
 
 const hasSubmitted = function(req, res, next) {
   const session = req.session;
 
-  const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
+  const hasSubmittedEnabled = true;
+  //const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
 
   if (hasSubmittedEnabled && !this.enabledAfterSubmission && session.caseId && session.state) { // eslint-disable-line
     switch (session.state) {

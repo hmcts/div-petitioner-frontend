@@ -24,6 +24,13 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     return this.steps.PayOnline;
   }
 
+  * getRequest(req, res) {
+    if (CONF.features.redirectToApplicationSubmitted && req.session.caseSubmitted) {
+      return res.redirect(this.steps.ApplicationSubmitted.url);
+    }
+    return yield super.getRequest(req, res);
+  }
+
   * postRequest(req, res) {
     // test to see if user has clicked submit button. The form could have been submitted
     // by clicking on save and close button
@@ -333,6 +340,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         delete req.session.submissionStarted;
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
+        req.session.caseSubmitted = true;
         res.redirect(this.next(null, req.session).url);
       })
       .catch(error => {

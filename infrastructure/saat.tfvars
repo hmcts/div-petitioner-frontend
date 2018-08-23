@@ -25,3 +25,5 @@ evidence_management_client_api_url = "http://betaDevBdivorceAppLB.reform.hmcts.n
 payment_service_url = "http://payment-api-saat.service.core-compute-saat.internal"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+
+feature_redirect_to_application_submitted = "false"

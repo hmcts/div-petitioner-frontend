@@ -13,3 +13,7 @@ output "feature_idam" {
 output "feature_full_payment_event_data_submission" {
   value = "${var.feature_full_payment_event_data_submission}"
 }
+
+output "feature_redirect_to_application_submitted" {
+  value = "${var.feature_redirect_to_application_submitted}"
+}

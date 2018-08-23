@@ -20,4 +20,4 @@ payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
-feature_redirect_to_application_submitted = "true"
+feature_redirect_to_application_submitted = "false"

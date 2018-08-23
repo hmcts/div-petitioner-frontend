@@ -23,7 +23,6 @@ Scenario('Redirects to cookie error page if start application with no cookies', 
   I.seeCurrentUrlEquals('/cookie-error');
 });
 
-// This test will not run except for test scenarios as we will disable the flag except on prod
 Scenario('Redirects to application submitted page if case already submitted with feature flag', (I) => {
 
   if (CONF.features.redirectToApplicationSubmitted) {

@@ -28,6 +28,8 @@ Scenario('Redirects to application submitted page if case already submitted with
 
   if (CONF.features.redirectToApplicationSubmitted) {
     I.startApplicationWithAnExistingSession();
+    I.amOnLoadedPage('/pay/help/need-help');
+    I.selectHelpWithFees(false);
     I.amOnLoadedPage('/check-your-answers');
     I.checkMyAnswers();
     I.amOnPage('/check-your-answers');

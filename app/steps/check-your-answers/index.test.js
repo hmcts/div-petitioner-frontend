@@ -666,47 +666,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('#getRequest', () => {
-    const defaultRedirectFlag = CONF.features.redirectToApplicationSubmitted;
-    beforeEach(() => {
-      req = { body: {}, method: 'GET', session: {}, headers: {} };
-      res = { redirect: sinon.stub(), locals: {}, render: sinon.stub() };
-    });
-
-    afterEach(() => {
-      CONF.features.redirectToApplicationSubmitted = defaultRedirectFlag;
-    });
-
-    it('does not redirect when case has not been submitted with redirect flag set to true', done => {
-      co(function* generator() {
-        CONF.features.redirectToApplicationSubmitted = true;
-        yield underTest.getRequest(req, res);
-        expect(res.redirect.called).to.equal(false);
-        done();
-      });
-    });
-
-    it('does redirect when case has been submitted with redirect flag set to true', done => {
-      co(function* generator() {
-        CONF.features.redirectToApplicationSubmitted = true;
-        req.session.caseSubmitted = true;
-        yield underTest.getRequest(req, res);
-        expect(res.redirect.calledWith('/application-submitted')).to.equal(true);
-        done();
-      });
-    });
-
-    it('does not redirect when case has been submitted when redirect flag set to false', done => {
-      co(function* generator() {
-        CONF.features.redirectToApplicationSubmitted = false;
-        req.session.caseSubmitted = true;
-        yield underTest.getRequest(req, res);
-        expect(res.redirect.called).to.equal(false);
-        done();
-      });
-    });
-  });
-
   describe('#postRequest', () => {
     beforeEach(() => {
       req = { body: {}, method: 'POST', session: {}, headers: {} };

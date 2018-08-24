@@ -45,10 +45,6 @@ describe(modulePath, () => {
     expect(underTest.checkYourAnswersTemplate).to.equal(false);
   });
 
-  it('returns enabledAfterSubmission', () => {
-    expect(underTest.enabledAfterSubmission).to.equal(true);
-  });
-
   it('handler returns 404 in production', () => {
     // Arrange.
     CONF.environment = 'production';

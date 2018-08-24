@@ -3,10 +3,6 @@ const logger = require('app/services/logger').logger(__filename);
 const CONF = require('config');
 
 module.exports = class GovPayStub extends ValidationStep {
-  get enabledAfterSubmission() {
-    return true;
-  }
-
   get url() {
     return '/pay/gov-pay-stub';
   }

@@ -2,6 +2,7 @@ const config = require('config');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
+const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 
 const hasSubmitted = function(req, res, next) {
   const session = req.session;
@@ -16,7 +17,7 @@ const hasSubmitted = function(req, res, next) {
     case 'Rejected':
       return next();
     case 'MultipleRejectedCases':
-      return res.redirect('/contact-divorce-team');
+      return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
     default:
       return res.redirect(APPLICATION_AWAITING_RESPONSE_PATH);
     }

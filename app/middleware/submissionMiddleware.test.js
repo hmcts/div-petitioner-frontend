@@ -20,7 +20,7 @@ describe(modulePath, () => {
       req = { session: {} };
       res = { redirect: sinon.stub() };
       next = sinon.stub();
-      config.features.redirectToApplicationSubmitted = false;
+      features.redirectToApplicationSubmitted = false;
     });
     afterEach(() => {
       config.deployment_env = currentDeploymentEnv;
@@ -90,7 +90,7 @@ describe(modulePath, () => {
         expect(res.redirect.calledWith('/application-submitted')).to.eql(true);
       });
 
-      it('calls enxt when redirect feature is set to true but caseId is not in session', () => {
+      it('calls next when redirect feature is set to true but caseId is not in session', () => {
         features.redirectToApplicationSubmitted = true;
         underTest.hasSubmitted.apply(ctx, [req, res, next]);
         expect(res.redirect.called).to.eql(false);

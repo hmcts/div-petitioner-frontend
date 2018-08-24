@@ -1,3 +1,5 @@
+const CONF = require('config');
+
 Feature('Invalid Paths Handling').retry(3);
 
 Scenario('Incorrect URLs are served a 404 page', (I) => {
@@ -19,4 +21,17 @@ Scenario('Redirects to cookie error page if start application with no cookies', 
   //  checkCookies middleware runs before idamAuth
   I.startApplication(ignoreIdamToggle);
   I.seeCurrentUrlEquals('/cookie-error');
+});
+
+Scenario('Redirects to application submitted page if case already submitted with feature flag', (I) => {
+
+  if (CONF.features.redirectToApplicationSubmitted) {
+    I.startApplicationWithAnExistingSession();
+    I.amOnLoadedPage('/pay/help/need-help');
+    I.selectHelpWithFees(false);
+    I.amOnLoadedPage('/check-your-answers');
+    I.checkMyAnswers();
+    I.amOnPage('/check-your-answers');
+    I.waitInUrl('/application-submitted');
+  }
 });

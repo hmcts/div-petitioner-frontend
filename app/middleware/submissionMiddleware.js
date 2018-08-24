@@ -1,20 +1,30 @@
 const config = require('config');
 
+const APPLICATION_SUBMITTED_PATH = '/application-submitted';
+const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
+
 const hasSubmitted = function(req, res, next) {
   const session = req.session;
 
   const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
 
-  if (hasSubmittedEnabled && !this.enabledAfterSubmission && session.caseId && session.state) { // eslint-disable-line
+  // when an existing case is found and we have the state
+  if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line
     switch (session.state) {
     case 'AwaitingPayment':
-      return res.redirect('/application-submitted');
+      return res.redirect(APPLICATION_SUBMITTED_PATH);
     case 'Rejected':
       return next();
     default:
-      return res.redirect('/application-submitted-awaiting-response');
+      return res.redirect(APPLICATION_AWAITING_RESPONSE_PATH);
     }
   }
+
+  // when a new case has just been submitted for the session
+  if (config.features.redirectToApplicationSubmitted && session.caseId) {
+    return res.redirect(APPLICATION_SUBMITTED_PATH);
+  }
+
   return next();
 };
 

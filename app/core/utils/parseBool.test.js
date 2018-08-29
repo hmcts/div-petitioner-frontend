@@ -12,12 +12,20 @@ describe(modulePath, () => {
     expect(true, parseBool('true'));
   });
 
+  it('should return true when given integer 1', () => {
+    expect(true, parseBool(1));
+  });
+
   it('should return false when given boolean false', () => {
     expect(false, parseBool(false));
   });
 
   it('should return false when given string false', () => {
     expect(false, parseBool('false'));
+  });
+
+  it('should return false when given integer 0', () => {
+    expect(false, parseBool(0));
   });
 
   it('should return false when given a random string', () => {

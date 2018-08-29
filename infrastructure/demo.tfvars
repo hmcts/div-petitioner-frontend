@@ -21,3 +21,7 @@ payment_service_url = "http://payment-api-demo.service.core-compute-demo.interna
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 feature_redirect_to_application_submitted = "false"
+
+asp_name = "div-pfe-demo"
+
+asp_rg = "div-pfe-demo"

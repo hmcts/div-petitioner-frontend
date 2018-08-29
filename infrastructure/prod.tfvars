@@ -21,3 +21,7 @@ payment_service_url = "https://payment.platform.hmcts.net"
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 capacity = "2"
+
+asp_name = "div-pfe-prod"
+
+asp_rg = "div-pfe-prod"

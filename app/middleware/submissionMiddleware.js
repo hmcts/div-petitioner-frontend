@@ -2,6 +2,7 @@ const logger = require('app/services/logger').logger(__filename);
 const config = require('config');
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
 const parseBool = require('app/core/utils/parseBool');
+
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
 

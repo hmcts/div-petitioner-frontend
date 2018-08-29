@@ -1,10 +1,14 @@
 const logger = require('app/services/logger').logger(__filename);
 const config = require('config');
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
+const parseBool = require('app/core/utils/parseBool');
+const APPLICATION_SUBMITTED_PATH = '/application-submitted';
+const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
 
 const hasSubmitted = function(req, res, next) {
   const { session } = req;
   const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
+
   if (hasSubmittedEnabled && !this.enabledAfterSubmission && session.caseId && session.state) { // eslint-disable-line
     switch (session.state) {
     case 'AwaitingPayment':
@@ -12,8 +16,8 @@ const hasSubmitted = function(req, res, next) {
         return paymentStatusService
           .checkAndUpdatePaymentStatus(req)
           .then(response => {
-            if (response !== true) return '/application-submitted-awaiting-response';
-            return '/application-submitted';
+            if (response !== true) return APPLICATION_AWAITING_RESPONSE_PATH;
+            return APPLICATION_SUBMITTED_PATH;
           })
           .then(
             url => {
@@ -27,13 +31,19 @@ const hasSubmitted = function(req, res, next) {
             return res.redirect('/generic-error');
           });
       }
-      return res.redirect('/application-submitted');
+      return res.redirect(APPLICATION_SUBMITTED_PATH);
     case 'Rejected':
       return next();
     default:
-      return res.redirect('/application-submitted-awaiting-response');
+      return res.redirect(APPLICATION_AWAITING_RESPONSE_PATH);
     }
   }
+
+  // when a new case has just been submitted for the session
+  if (parseBool(config.features.redirectToApplicationSubmitted) && session.caseId) { // eslint-line-disable
+    return res.redirect(APPLICATION_SUBMITTED_PATH);
+  }
+
   return next();
 };
 

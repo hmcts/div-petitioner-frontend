@@ -212,7 +212,7 @@ variable "feature_full_payment_event_data_submission" {
 }
 
 variable "feature_redirect_to_application_submitted" {
-  default = true
+  default = "true"
 }
 
 variable "survey_feedback_url" {

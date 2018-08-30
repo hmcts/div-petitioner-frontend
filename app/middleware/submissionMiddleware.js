@@ -10,8 +10,8 @@ const hasSubmitted = function(req, res, next) {
   const session = req.session;
 
   const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
-  
-  logger.info("Begin Submission logging");
+
+  logger.info('Begin Submission logging');
   logger.info(hasSubmittedEnabled);
   logger.info(config.features.redirectToApplicationSubmitted);
   logger.info(session.caseId);

@@ -8,7 +8,7 @@ const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-resp
 
 const hasSubmitted = function(req, res, next) {
   const { session } = req;
-  const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
+  const hasSubmittedEnabled = true;
 
   logger.info(`DIV-2815-LOG SESSION >>>${JSON.stringify(session)}`);
   logger.info(`DIV-2815-LOG hasSubmittedEnabled >>> ${hasSubmittedEnabled}`);

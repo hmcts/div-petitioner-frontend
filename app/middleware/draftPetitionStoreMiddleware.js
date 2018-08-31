@@ -25,7 +25,6 @@ const production = CONF.environment === 'production';
 const client = production ? transformationServiceClient.init(options) : mockedClient;
 
 const checkYourAnswers = '/check-your-answers';
-const applicationSubmitted = '/application-submitted';
 const authTokenString = '__auth-token';
 
 const redirectToCheckYourAnswers = (req, res, next) => {
@@ -64,11 +63,7 @@ const restoreFromDraftStore = (req, res, next) => {
       if (restoredSession && !isEmpty(restoredSession)) {
         logger.info(`DIV-2815-LOG RESTORED SESSION STATE>>>${restoredSession.state}`);
         Object.assign(req.session, restoredSession);
-        if (restoredSession.state === 'AwaitingPayment') {
-          res.redirect(applicationSubmitted);
-        } else {
-          redirectToCheckYourAnswers(req, res, next);
-        }
+        redirectToCheckYourAnswers(req, res, next);
       } else {
         next();
       }

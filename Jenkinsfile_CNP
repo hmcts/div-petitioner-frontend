@@ -5,13 +5,36 @@
 String product = "div"
 String component = "pfe"
 
+List<LinkedHashMap<String, Object>> secrets = [
+  secret('frontend_secret', 'MICROSERVICE_KEY'),
+  secret('idam_secret', 'IDAM_SECRET'),
+  secret('session_secret', 'SECRET'),
+  secret('redis_secret', 'SESSION_ENCRYPTION_SECRET')
+  secret('post_code_token', 'POST_CODE_ACCESS_TOKEN'),
+
+]
+ 
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
 withPipeline("nodejs", product, component) {
 
   enableDockerBuild()
-  
+  enableDeployToAKS()
+  loadVaultSecrets(secrets)
+  setVaultName('div')
+
   after('build') {
     sh 'yarn setup'
   }
+
+  
 
   after('test') {
     sh 'yarn test-validation'

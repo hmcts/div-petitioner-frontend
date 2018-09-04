@@ -6,12 +6,11 @@ String product = "div"
 String component = "pfe"
 
 List<LinkedHashMap<String, Object>> secrets = [
-  secret('frontend_secret-MICROSERVICE_KEY', 'MICROSERVICE_KEY'),
-  secret('idam_secret-IDAM_SECRET', 'IDAM_SECRET'),
-  secret('session_secret-SECRET', 'SECRET'),
-  secret('redis_secret-SESSION_ENCRYPTION_SECRET', 'SESSION_ENCRYPTION_SECRET'),
-  secret('post_code_token-POST_CODE_ACCESS_TOKEN', 'POST_CODE_ACCESS_TOKEN'),
-
+  secret('frontend_secret', 'MICROSERVICE_KEY'),
+  secret('idam_secret-IDAM', 'IDAM_SECRET'),
+  secret('session_secret', 'SECRET'),
+  secret('redis_secret', 'SESSION_ENCRYPTION_SECRET'),
+  secret('post_code_token', 'POST_CODE_ACCESS_TOKEN')
 ]
  
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {

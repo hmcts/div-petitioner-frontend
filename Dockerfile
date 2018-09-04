@@ -1,12 +1,12 @@
 FROM node:8.9.4-alpine
 
-WORKDIR /opt/app
+WORKDIR /opt
 
 ARG NODE_ENV=production
 
 ENV NODE_ENV=$NODE_ENV
 
-COPY . /opt/app
+COPY . /opt
 
 RUN apk update && \
     apk add --no-cache bash make g++ git python2

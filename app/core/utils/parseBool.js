@@ -1,3 +1,3 @@
 module.exports = (bool = '') => {
-  return String(bool) === 'true';
+  return String(bool) === 'true' || bool === 1;
 };

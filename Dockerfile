@@ -5,6 +5,7 @@ WORKDIR /opt
 ARG NODE_ENV=production
 
 ENV NODE_ENV=$NODE_ENV
+ENV NODE_PATH=/opt
 
 COPY . /opt
 

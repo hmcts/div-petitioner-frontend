@@ -60,7 +60,7 @@ data:
   WEBSITE_SITE_NAME : "div-pfe-aat"
   COURT_WESTMIDLANDS_EMAIL : "westmidlandsdivorce@hmcts.gsi.gov.uk"
   FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED : "false"
-  HPKP_SHAS : "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids"
+  HPKP_SHAS : "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
   COURT_EASTMIDLANDS_CITY : "Nottingham"
   COURT_WESTMIDLANDS_POSTCODE : "ST4 9NH"
   COURT_WESTMIDLANDS_CITY : "Stoke-on-Trent"

@@ -140,7 +140,7 @@ module "frontend" {
 
     // Case Progrssion Service
     CASE_PROGRESSION_SERVICE_URL             = "${local.case_progression_service_url}${var.case_progression_base_path}"
-    CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${local.case_progression_service_url}${var.case_progression_service_url == "" ? var.health_endpoint : local.status_health_endpoint}"
+    CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL = "${local.case_progression_service_url}${var.health_endpoint}"
 
     // Draft Store API
     CASE_PROGRESSION_SERVICE_DRAFT_URL = "${local.case_progression_service_url}${var.draft_store_api_base_path}"

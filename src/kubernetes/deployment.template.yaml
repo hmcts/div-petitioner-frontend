@@ -43,15 +43,15 @@ spec:
         # These may be adjusted, but be mindful please
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "200m"
+            memory: "512Mi"
+            cpu: "1000m"
           limits:
-            memory: "256Mi"
-            cpu: "500m"
-
+            memory: "1024Mi"
+            cpu: "2500m"
+ 
         # This is the port your process is listening on in the container
         ports:
-        - containerPort: 1337
+        - containerPort: 8080
           name: http
         imagePullPolicy: Always
 
@@ -69,6 +69,6 @@ spec:
   ports:
   - port: 80
     # Make sure targetPort is the same as 'containerPort' above...
-    targetPort: 1337
+    targetPort: 8080
   selector:
     app: ${SERVICE_NAME}

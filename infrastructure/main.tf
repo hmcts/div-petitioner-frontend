@@ -212,5 +212,6 @@ module "frontend" {
     // Feature toggling through config
     FEATURE_IDAM                               = "${var.feature_idam}"
     FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
+    FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED  = "${var.feature_redirect_to_application_submitted}"
   }
 }

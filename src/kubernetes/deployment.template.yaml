@@ -27,34 +27,25 @@ spec:
       containers:
       - image: ${IMAGE_NAME}
         name: ${SERVICE_NAME}
-
-        # These are obtained from environment variables.  If it's
-        # an environment variable, it can be used here.  Projects
-        # would usually source custom values from:
-        #   - Jenkins Azure Keyvault plugin (e.g. secrets)
-        #   - Your project's Jenkinsfile
-        #   - hardcoded to AAT URLs
-        #   - a ConfigMap
-
         envFrom:
           - configMapRef:
               name: ${SERVICE_NAME}-config
-
+ 
         # These may be adjusted, but be mindful please
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "1000m"
+            memory: "64Mi"
+            cpu: "200m"
           limits:
-            memory: "1024Mi"
-            cpu: "2500m"
+            memory: "256Mi"
+            cpu: "500m"
  
         # This is the port your process is listening on in the container
         ports:
         - containerPort: 8080
           name: http
         imagePullPolicy: Always
-
+ 
 # Azure Internal Loadbalancer.
 ---
 apiVersion: v1

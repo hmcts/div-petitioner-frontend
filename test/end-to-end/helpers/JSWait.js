@@ -6,7 +6,7 @@ class JSWait extends codecept_helper {
 
     // Wait for content to load before checking URL
     if (step.name === 'seeCurrentUrlEquals' || step.name === 'seeInCurrentUrl') {
-      return helper.waitForElement('#content');
+      return helper.waitForElement('#content',2);
     }
   };
 
@@ -19,7 +19,7 @@ class JSWait extends codecept_helper {
     if (helperIsPuppeteer) {
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
     } else {
-      await helper.waitForElement('#content');
+      await helper.waitForElement('#content',2);
     }
   };
 

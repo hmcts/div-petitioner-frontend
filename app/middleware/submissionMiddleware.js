@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 const config = require('config');
 const parseBool = require('app/core/utils/parseBool');
 
@@ -8,7 +9,8 @@ const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 const hasSubmitted = function(req, res, next) {
   const session = req.session;
 
-  const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
+  const hasSubmittedEnabled = true;
+  //const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
 
   // when an existing case is found and we have the state
   if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line

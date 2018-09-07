@@ -45,7 +45,8 @@ const setupConfig = {
     SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
     JSWait: { require: './helpers/JSWait.js' },
     ElementExist: { require: './helpers/ElementExist.js' },
-    IdamHelper: { require: './helpers/idamHelper.js' }
+    IdamHelper: { require: './helpers/idamHelper.js' },
+    SessionHelper: { require: './helpers/SessionHelper.js' }
   },
   include: { I: './pages/steps.js' },
   mocha: {

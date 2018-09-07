@@ -1,4 +1,5 @@
 const config = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
@@ -24,7 +25,7 @@ const hasSubmitted = function(req, res, next) {
   }
 
   // when a new case has just been submitted for the session
-  if (config.features.redirectToApplicationSubmitted && session.caseId) {
+  if (parseBool(config.features.redirectToApplicationSubmitted) && session.caseId) { // eslint-line-disable
     return res.redirect(APPLICATION_SUBMITTED_PATH);
   }
 

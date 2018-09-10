@@ -55,28 +55,6 @@ const supportedBrowsers = {
       version: '11.1',
       avoidProxy: true
     }
-  },
-  ios: {
-    iPhone8_iOS11: {
-      browserName: 'safari',
-      appiumVersion: '1.8.1',
-      deviceName: 'iPhone 8 Simulator',
-      deviceOrientation: 'portrait',
-      name: 'DIV_IPHONE8_IOS11',
-      platformVersion: '11.3',
-      platformName: 'iOS'
-    }
-  },
-  android: {
-    samsungS8_android7: {
-      browserName: 'Chrome',
-      appiumVersion: '1.8.1',
-      deviceName: 'Samsung Galaxy S8 GoogleAPI Emulator',
-      deviceOrientation: 'portrait',
-      name: 'DIV_SAMSUNGS8_ANDROID7',
-      platformVersion: '7.1',
-      platformName: 'Android'
-    }
   }
 };
 

@@ -81,12 +81,6 @@ const setupConfig = {
     },
     safari: {
       browsers: getBrowserConfig('safari')
-    },
-    ios: {
-      browsers: getBrowserConfig('ios')
-    },
-    android: {
-      browsers: getBrowserConfig('android')
     }
   },
   name: 'Frontend Tests'

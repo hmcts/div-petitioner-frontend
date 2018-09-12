@@ -53,7 +53,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
         session.payments[paymentId], response);
 
       const paymentSuccess = paymentService.isPaymentSuccessful(response);
-
+      logger.info({ message: 'paymentSuccess:', paymentSuccess });
       if (paymentSuccess) {
         const eventData = submissionService
           .generatePaymentEventData(session, response);

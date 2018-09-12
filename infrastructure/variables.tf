@@ -402,3 +402,10 @@ variable "court_northwest_court_weight" {
 variable "common_tags" {
   type = "map"
 }
+
+variable "asp_name" {
+  type = "string"
+}
+variable "asp_rg" {
+  type = "string"
+}

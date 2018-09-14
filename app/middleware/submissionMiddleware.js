@@ -11,6 +11,7 @@ const hasSubmitted = function(req, res, next) {
   const hasSubmittedEnabled = true;
 
   logger.info(`DIV-2815-LOG SESSION hS>>>${JSON.stringify(session)}`);
+  logger.info(`DIV-2815-LOG payment_reference >>> ${session.payment_reference}`);
   logger.info(`DIV-2815-LOG hasSubmittedEnabled >>> ${hasSubmittedEnabled}`);
   logger.info(`DIV-2815-LOG currentPaymentReference >>> ${session.currentPaymentReference}`);
   if (session.payment_reference) session.currentPaymentReference = session.payment_reference;

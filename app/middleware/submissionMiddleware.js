@@ -14,6 +14,7 @@ const hasSubmitted = function(req, res, next) {
   logger.info(`DIV-2815-LOG hasSubmittedEnabled >>> ${hasSubmittedEnabled}`);
   logger.info(`DIV-2815-LOG currentPaymentReference >>> ${session.currentPaymentReference}`);
   if (session.payment_reference) session.currentPaymentReference = session.payment_reference;
+  logger.info(`DIV-2815-LOG currentPaymentReference v2 >>> ${session.currentPaymentReference}`);
   if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line
     switch (session.state) {
     case 'AwaitingPayment':

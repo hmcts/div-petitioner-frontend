@@ -1,11 +1,12 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 
-Feature('Basic divorce path').retry(3);
+Feature('Basic divorce path');
 
 Scenario('Get a divorce', async function(I) {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.wait(1);
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();

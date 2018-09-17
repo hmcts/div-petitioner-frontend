@@ -27,7 +27,6 @@ const buildUser = function(req) {
 
 const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
   logger.info(`DIV-2815-LOG cpstatus session  >>> ${req.session}`);
-  logger.info({ message: 'DIV-2815-LOG cpstatus 1' });
   const user = buildUser(req);
   const session = req.session;
   // Initialise services.
@@ -35,7 +34,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
   const payment = paymentService.setup();
   const submission = submissionService.setup();
 
-  logger.info({ message: 'DIV-2815-LOG cpstatus token' });
+  logger.info(`DIV-2815-LOG cpstatus token >>> ${req.session}`);
   // Get service token.
   return serviceToken.getToken()
   // Query payment status.
@@ -47,7 +46,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
 
     // Store status in session then update CCD with payment status.
     .then(response => {
-      logger.info(`DIV-2815-LOG cpstatus status responde  >>> ${response}`);
+      logger.info(`DIV-2815-LOG cpstatus status response  >>> ${response}`);
       logger.info({
         message: 'Payment status query response:',
         response

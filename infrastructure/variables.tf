@@ -179,10 +179,6 @@ variable "payment_reference_service_id" {
   default = "DIV1"
 }
 
-variable "fee_register_url" {
-  type = "string"
-}
-
 variable "fees_and_payments_url" {
   default = ""
 }
@@ -213,6 +209,10 @@ variable "feature_idam" {
 
 variable "feature_full_payment_event_data_submission" {
   default = true
+}
+
+variable "feature_redirect_to_application_submitted" {
+  default = "true"
 }
 
 variable "survey_feedback_url" {
@@ -256,7 +256,7 @@ variable "court_eastmidlands_siteid" {
 }
 
 variable "court_eastmidlands_weight" {
-  default = "0.25"
+  default = "0.20"
 }
 
 variable "court_westmidlands_name" {
@@ -292,7 +292,7 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = "0.15"
+  default = "0.35"
 }
 
 variable "court_southwest_name" {
@@ -328,7 +328,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = "0.35"
+  default = "0.20"
 }
 
 variable "court_northwest_name" {

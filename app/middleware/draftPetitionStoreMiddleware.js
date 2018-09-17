@@ -59,7 +59,6 @@ const restoreFromDraftStore = (req, res, next) => {
   // set flag so we do not attempt to restore from draft store again
   req.session.fetchedDraft = true;
   logger.info(`DIV-2815-LOG fetchedDraft >>>${req.session.fetchedDraft}`);
-
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
     .then(restoredSession => {

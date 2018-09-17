@@ -144,20 +144,28 @@ module.exports = class Step {
 
   * getRequest(req, res) {
     const { session } = req;
+    logger.info('Getting Request');
+    logger.info(session);
 
     //  extract data from the request
     let ctx = this.populateWithPreExistingData(session);
+
+    logger.info('Populating with Pre-existing data');
+    logger.info(ctx);
 
     //  intercept the request and process any incoming data
     //  here we can set data on the context before we validate
     //  eg, turn individual date fields (day, month, year) into a date
     ctx = yield this.interceptor(ctx, session);
 
+    logger.info('Yielding Interceptor');
+    logger.info(ctx);
     // let errors = null;
     // let fields = null;
     //  fetch all the content from the content files
     res.locals.content = this.generateContent(ctx, session);
 
+    logger.info('Content generated');
     if (!res.locals.fields) {
       //  map the context into data fields for use in templates and macros
       res.locals.fields = this.generateFields(ctx);
@@ -167,6 +175,7 @@ module.exports = class Step {
 
     yield this.preResponse(req, res);
 
+    logger.info('Going to render');
     res.render(this.template);
   }
 
@@ -183,6 +192,8 @@ module.exports = class Step {
     const throwError = error => {
       logger.error(error);
       res.status(statusCodes.INTERNAL_SERVER_ERROR);
+      logger.info('HANDLER ERROR');
+      logger.info(error);
       res.redirect('/generic-error');
     };
 

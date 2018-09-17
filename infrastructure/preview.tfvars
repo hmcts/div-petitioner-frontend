@@ -21,3 +21,4 @@ payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 feature_redirect_to_application_submitted = "false"
+case_progression_service_url = "http://pr-13-div-cos-preview.service.core-compute-preview.internal"

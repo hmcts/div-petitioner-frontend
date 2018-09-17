@@ -156,7 +156,7 @@ variable "case_progression_service_url" {
 }
 
 variable "case_progression_base_path" {
-  default = "/transformationapi/version/1"
+  default = ""
 }
 
 variable "draft_store_api_base_path" {

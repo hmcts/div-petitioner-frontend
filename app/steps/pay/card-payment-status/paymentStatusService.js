@@ -26,6 +26,7 @@ const buildUser = function(req) {
 };
 
 const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
+  logger.info(`DIV-2815-LOG cpstatus session  >>> ${req.session}`);
   logger.info({ message: 'DIV-2815-LOG cpstatus 1' });
   const user = buildUser(req);
   const session = req.session;

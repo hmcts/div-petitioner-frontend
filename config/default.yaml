@@ -121,6 +121,7 @@ commonProps:
 features:
   idam: false
   fullPaymentEventDataSubmission: true
+  redirectToApplicationSubmitted: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'
@@ -175,7 +176,7 @@ saucelabs:
   browser: 'chrome'
   username: 'username'
   key: 'privatekey'
-  tunnelId: 'reform_tunnel'
+  tunnelId: 'reformtunnel'
   waitForTimeout: 60000
   smartWait: 45000
 

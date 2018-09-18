@@ -47,10 +47,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
     // Store status in session then update CCD with payment status.
     .then(response => {
       logger.info(`DIV-2815-LOG cpstatus status response  >>> ${response}`);
-      logger.info({
-        message: 'Payment status query response:',
-        response
-      });
+      logger.info(`Payment status query response: ${response}`);
       const paymentId = session.currentPaymentId;
       session.payments = session.payments || {};
       session.payments[paymentId] = Object.assign({},
@@ -58,12 +55,12 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
 
       logger.info(`DIV-2815-LOG cpstatus payment set  >>> ${session.payments[paymentId]}`);
       const paymentSuccess = paymentService.isPaymentSuccessful(response);
-      logger.info({ message: 'paymentSuccess:', paymentSuccess });
+      logger.info(`paymentSuccess: ${paymentSuccess}`);
       if (paymentSuccess) {
-        logger.info({ message: 'DIV-2815-LOG cpstatus paymentSuccess' });
+        logger.info(`DIV-2815-LOG cpstatus paymentSuccess: ${paymentSuccess}`);
         const eventData = submissionService
           .generatePaymentEventData(session, response);
-        logger.info({ message: 'DIV-2815-LOG cpstatus event generated' });
+        logger.info(`DIV-2815-LOG cpstatus event generated: ${eventData}`);
         return submission.update(user.authToken, session.caseId, eventData, 'paymentMade');
       }
 
@@ -73,11 +70,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
     })
     .then(responseStatus => {
       if (responseStatus !== true) {
-        logger.info({
-          message: 'Transformation service update response:',
-          responseStatus
-        });
-
+        logger.info(`Transformation service update response: ${responseStatus}`);
         if (!responseStatus || responseStatus.status !== 'success') {
           // Fail immediately if the application could not be updated in CCD.
           throw responseStatus;

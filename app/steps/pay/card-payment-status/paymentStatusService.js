@@ -69,11 +69,15 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
       });
     })
     .then(responseStatus => {
+      logger.info(`DIV-2815-LOG cpstatus service update response: ${JSON.stringify(responseStatus)}`);
       if (responseStatus !== true) {
         logger.info(`Transformation service update response: ${responseStatus}`);
         if (!responseStatus || responseStatus.status !== 'success') {
+          logger.info(`DIV-2815-LOG cpstatus service update failed: ${responseStatus}`);
           // Fail immediately if the application could not be updated in CCD.
           throw responseStatus;
+        } else {
+          logger.info(`DIV-2815-LOG cpstatus service update Success: ${responseStatus}`);
         }
       }
       return responseStatus;

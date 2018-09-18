@@ -87,7 +87,7 @@
           {%- endif %} value="{{content.findAddress}}"/>
           </fieldset>
         </div>
-        {%- ifAsync not fields.postcode.value or (session.postcodeLookup.validPostcode == false and session.flash.errors == true) or not fields.addresses.value %}
+        {%- ifAsync not fields.postcode.value or (session.postcodeLookup.validPostcode == false and session.flash.errors == true) or (not fields.addresses.value and not fields.address.value) %}
           <p>
             <a id="enter-manual" class="link" href="{{fields.url.value}}/manual">{{content.enterManualLink}}</a>
           </p>
@@ -117,15 +117,15 @@
           <input type="hidden" name="addressConfirmed" value="false"/>
           <input type="hidden" name="postcode" value="{{ fields.postcode.value }}"/>
         <noscript>
-  <input type="submit"  style="margin: 4px 0 10px 0 ;" class="secondary-button" value="{{content.updateAddress}}"/>
-</noscript>
+          <input type="submit"  style="margin: 4px 0 10px 0 ;" class="secondary-button" value="{{content.updateAddress}}"/>
+          </noscript>
         </div>
 
-{%- ifAsync fields.selectAddressIndex.value == '-1' or not fields.selectAddressIndex -%}
-        <input type="submit" class="button" value="{{common.continue}}"/>
-        <br><br>
-        {% include "includes/save_and_close.html" %}
-{%- endif -%}
+        {%- ifAsync fields.selectAddressIndex.value == '-1' or not fields.selectAddressIndex -%}
+          <input type="submit" class="button" value="{{common.continue}}"/>
+          <br><br>
+          {% include "includes/save_and_close.html" %}
+        {%- endif -%}
 
       </form>
 

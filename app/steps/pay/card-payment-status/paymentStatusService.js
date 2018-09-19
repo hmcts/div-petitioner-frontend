@@ -60,7 +60,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
         logger.info(`DIV-2815-LOG cpstatus paymentSuccess: ${paymentSuccess}`);
         const eventData = submissionService
           .generatePaymentEventData(session, response);
-        logger.info(`DIV-2815-LOG cpstatus event generated: ${eventData}`);
+        logger.info(`DIV-2815-LOG cpstatus event generated: ${JSON.stringify(eventData)}`);
         return submission.update(user.authToken, session.caseId, eventData, 'paymentMade');
       }
 

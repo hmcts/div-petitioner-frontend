@@ -61,6 +61,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
         const eventData = submissionService
           .generatePaymentEventData(session, response);
         logger.info(`DIV-2815-LOG cpstatus event generated: ${JSON.stringify(eventData)}`);
+        logger.info(`DIV-2815-LOG cpstatus event user.authToken: ${user.authToken}`);
         return submission.update(user.authToken, session.caseId, eventData, 'paymentMade');
       }
 
@@ -70,6 +71,11 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
     })
     .then(responseStatus => {
       logger.info(`DIV-2815-LOG cpstatus service update response: ${JSON.stringify(responseStatus)}`);
+      if (responseStatus) {
+        logger.info(`DIV-2815-LOG cpstatus service update responseStatus status: ${responseStatus.status}`);
+      } else {
+        logger.info(`DIV-2815-LOG cpstatus service update response responseStatus is not: ${responseStatus}`);
+      }
       if (responseStatus !== true) {
         logger.info(`Transformation service update response: ${responseStatus}`);
         if (!responseStatus || responseStatus.status !== 'success') {

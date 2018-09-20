@@ -62,10 +62,10 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
         const eventData = submissionService
           .generatePaymentEventData(session, response);
         logger.info(`DIV-2815-LOG cpstatus event generated: ${JSON.stringify(eventData)}`);
-        logger.info(`DIV-2815-LOG cpstatus event user.authToken: ${user.authToken}`);
+        logger.info(`DIV-2815-LOG cpstatus event user.bearerToken: ${user.bearerToken}`);
         const idamAuthToken = req.cookies['__auth-token'];
         logger.info(`DIV-2815-LOG cpstatus event idamAuthToken: ${idamAuthToken}`);
-        return submission.update(idamAuthToken, session.caseId, eventData, 'paymentMade');
+        return submission.update(user.bearerToken, session.caseId, eventData, 'paymentMade');
       }
 
       return new Promise(resolve => {

@@ -46,7 +46,6 @@ locals {
   status_health_endpoint             = "/status/health"
 
   asp_name = "${var.env == "prod" ? "div-pfe-prod" : "${var.product}-${var.env}"}"
-
   asp_rg = "${var.env == "prod" ? "div-pfe-prod" : "${var.product}-shared-infrastructure-${var.env}"}"
 }
 

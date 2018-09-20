@@ -44,6 +44,9 @@ locals {
   evidence_management_client_api_url = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
   fees_and_payments_url              = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
   status_health_endpoint             = "/status/health"
+
+  asp_name = "${var.env == "prod" ? "div-pfe-prod" : "${var.product}-${var.env}"}"
+  asp_rg = "${var.env == "prod" ? "div-pfe-prod" : "${var.product}-shared-infrastructure-${var.env}"}"
 }
 
 module "redis-cache" {
@@ -68,6 +71,8 @@ module "frontend" {
   https_only                      = "false"
   capacity                        = "${var.capacity}"
   common_tags                     = "${var.common_tags}"
+  asp_name                        = "${local.asp_name}"
+  asp_rg                          = "${local.asp_rg}"
 
   app_settings = {
     // Node specific vars

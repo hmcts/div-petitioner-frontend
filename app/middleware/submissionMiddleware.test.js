@@ -103,7 +103,7 @@ describe(modulePath, () => {
       getToken = sinon.stub().resolves('token');
       sinon.stub(serviceToken, 'setup').returns({ getToken });
       ctx = { };
-      req = { session: {} };
+      req = { session: {}, cookies: ['__auth-token=auth.token', 'connect.sid=some-sid'] };
       res = { redirect: sinon.stub() };
       next = sinon.stub();
     });

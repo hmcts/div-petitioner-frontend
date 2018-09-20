@@ -26,8 +26,9 @@ const buildUser = function(req) {
 };
 
 const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
-  logger.info(`DIV-2815-LOG cpstatus session  >>> ${req.session}`);
+  logger.info(`DIV-2815-LOG cpstatus session  >>> ${JSON.stringify(req.session)}`);
   const user = buildUser(req);
+  logger.info(`DIV-2815-LOG cpstatus user  >>> ${JSON.stringify(user)}`);
   const session = req.session;
   // Initialise services.
   const serviceToken = serviceTokenService.setup();
@@ -62,7 +63,9 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
           .generatePaymentEventData(session, response);
         logger.info(`DIV-2815-LOG cpstatus event generated: ${JSON.stringify(eventData)}`);
         logger.info(`DIV-2815-LOG cpstatus event user.authToken: ${user.authToken}`);
-        return submission.update(user.authToken, session.caseId, eventData, 'paymentMade');
+        const idamAuthToken = req.cookies['__auth-token'];
+        logger.info(`DIV-2815-LOG cpstatus event idamAuthToken: ${idamAuthToken}`);
+        return submission.update(idamAuthToken, session.caseId, eventData, 'paymentMade');
       }
 
       return new Promise(resolve => {

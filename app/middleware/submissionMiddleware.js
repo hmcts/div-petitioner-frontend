@@ -10,7 +10,9 @@ const hasSubmitted = function(req, res, next) {
   const { session } = req;
   const hasSubmittedEnabled = true;
 
-  logger.info(`DIV-2815-LOG SESSION hS>>>${JSON.stringify(session)}`);
+  logger.info(`DIV-2815-LOG SESSION sm>>>${JSON.stringify(session)}`);
+  logger.info(`DIV-2815-LOG SESSION sm session.cookie>>>${JSON.stringify(session.cookie)}`);
+  logger.info(`DIV-2815-LOG SESSION sm req.cookies >>>${JSON.stringify(req.cookies)}`);
   logger.info(`DIV-2815-LOG payment_reference >>> ${session.payment_reference}`);
   logger.info(`DIV-2815-LOG hasSubmittedEnabled >>> ${hasSubmittedEnabled}`);
   logger.info(`DIV-2815-LOG currentPaymentReference >>> ${session.currentPaymentReference}`);

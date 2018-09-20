@@ -49,6 +49,7 @@ const restoreFromDraftStore = (req, res, next) => {
   const mockResponse = req.cookies.mockRestoreSession === 'true';
   const restoreSession = !hadFetchedFromDraftStore && (mockResponse || authToken);
   logger.info(`DIV-2815-LOG SESSION RFD >>>${JSON.stringify(req.session)}`);
+  logger.info(`DIV-2815-LOG SESSION RFD req.cookies >>>${JSON.stringify(req.cookies)}`);
   logger.info(`DIV-2815-LOG hadFetchedFromDraftStore >>>${hadFetchedFromDraftStore}`);
   logger.info(`DIV-2815-LOG restoreSession >>>${restoreSession}`);
 

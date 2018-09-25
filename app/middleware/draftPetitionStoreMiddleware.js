@@ -48,6 +48,10 @@ const restoreFromDraftStore = (req, res, next) => {
   const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
   const mockResponse = req.cookies.mockRestoreSession === 'true';
   const restoreSession = !hadFetchedFromDraftStore && (mockResponse || authToken);
+  logger.info(`DIV-2815-LOG SESSION RFD >>>${JSON.stringify(req.session)}`);
+  logger.info(`DIV-2815-LOG SESSION RFD req.cookies >>>${JSON.stringify(req.cookies)}`);
+  logger.info(`DIV-2815-LOG hadFetchedFromDraftStore >>>${hadFetchedFromDraftStore}`);
+  logger.info(`DIV-2815-LOG restoreSession >>>${restoreSession}`);
 
   if (!restoreSession) {
     return next();
@@ -55,11 +59,13 @@ const restoreFromDraftStore = (req, res, next) => {
 
   // set flag so we do not attempt to restore from draft store again
   req.session.fetchedDraft = true;
-
+  logger.info(`DIV-2815-LOG fetchedDraft >>>${req.session.fetchedDraft}`);
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
     .then(restoredSession => {
+      logger.info(`DIV-2815-LOG RESTORED SESSION >>>${JSON.stringify(restoredSession)}`);
       if (restoredSession && !isEmpty(restoredSession)) {
+        logger.info(`DIV-2815-LOG RESTORED SESSION STATE>>>${restoredSession.state}`);
         Object.assign(req.session, restoredSession);
         redirectToCheckYourAnswers(req, res, next);
       } else {

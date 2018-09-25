@@ -13,6 +13,7 @@ const blacklistedProperties = [
   'cookie',
   'sessionKey',
   'saveAndResumeUrl',
+  'submissionStarted',
   'csrfSecret'
 ];
 
@@ -35,6 +36,14 @@ const redirectToCheckYourAnswers = (req, res, next) => {
   } else {
     res.redirect(checkYourAnswers);
   }
+};
+
+const removeBlackListedPropertiesFromSession = session => {
+  return blacklistedProperties
+    .reduce((acc, item) => {
+      delete acc[item];
+      return acc;
+    }, Object.assign({}, session));
 };
 
 const restoreFromDraftStore = (req, res, next) => {
@@ -60,7 +69,8 @@ const restoreFromDraftStore = (req, res, next) => {
   return client.restoreFromDraftStore(authToken, mockResponse)
     .then(restoredSession => {
       if (restoredSession && !isEmpty(restoredSession)) {
-        Object.assign(req.session, restoredSession);
+        Object.assign(req.session,
+          removeBlackListedPropertiesFromSession(restoredSession));
         redirectToCheckYourAnswers(req, res, next);
       } else {
         next();
@@ -89,14 +99,6 @@ const removeFromDraftStore = (req, res, next) => {
       }
       return next();
     });
-};
-
-const removeBlackListedPropertiesFromSession = session => {
-  return blacklistedProperties
-    .reduce((acc, item) => {
-      delete acc[item];
-      return acc;
-    }, Object.assign({}, session));
 };
 
 const saveSessionToDraftStore = (req, res, next) => {

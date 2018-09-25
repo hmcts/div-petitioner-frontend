@@ -89,7 +89,7 @@ describe(modulePath, () => {
     });
     it('should only return no errors', () => {
       ctx.postcode = 'POSTCODE';
-      ctx.address = [];
+      ctx.address = ['some address'];
       ctx.validPostcode = true;
       ctx.selectAddressIndex = '1';
       const errorsReturned = underTest.prepareErrors(ctx, errorList);

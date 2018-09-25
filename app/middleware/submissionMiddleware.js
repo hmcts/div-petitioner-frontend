@@ -7,11 +7,11 @@ const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 
-const handleCcdCase = (req, res, currentPaymentReference, next) => {
+const handleCcdCase = (req, res, next) => {
   const session = req.session;
   switch (session.state) {
   case 'AwaitingPayment':
-    if (currentPaymentReference) {
+    if (session.currentPaymentReference) {
       return paymentStatusService
         .checkAndUpdatePaymentStatus(req)
         .then(response => {

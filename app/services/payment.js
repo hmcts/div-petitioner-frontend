@@ -31,6 +31,7 @@ const service = {
         };
       })
       .catch(error => {
+        logger.info(`DIV-2815-LOG Error creating payment with ccd case number: ${caseReference} ${error}`);
         logger.error({
           message: `Error creating payment with ccd case number ${caseReference}:`,
           error
@@ -64,6 +65,7 @@ const service = {
         };
       })
       .catch(error => {
+        logger.info(`DIV-2815-LOG Error getting payment details for payment reference caseId ${referenceInput} ${error}`);
         logger.error({
           message: `Error getting payment details for payment reference caseId ${referenceInput}:`,
           error
@@ -91,6 +93,7 @@ module.exports = {
   },
 
   isPaymentSuccessful: response => {
-    return get(response, 'status') === 'Success';
+    const respStatus = get(response, 'status');
+    return (typeof respStatus === 'string' ? respStatus : 'undefined').toUpperCase() === 'Success'.toUpperCase();
   }
 };

@@ -94,7 +94,8 @@
                     "enum": ["true"]
                 },
                 "addressManual": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 1
                 },
                 "address": {
                     "type": "array"

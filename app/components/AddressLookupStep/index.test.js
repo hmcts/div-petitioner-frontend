@@ -119,6 +119,17 @@ describe(modulePath, () => {
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
 
+    it('renders errors for missing required manual address', done => {
+      const context = {
+        address: [],
+        addressType: 'manual',
+        addressConfirmed: 'true',
+        addressManual: ''
+      };
+
+      const onlyKeys = ['addressManual'];
+      testErrors(done, agent, underTest, context, content, 'required', onlyKeys);
+    });
 
     it('renders errors for missing required context', done => {
       const context = {};

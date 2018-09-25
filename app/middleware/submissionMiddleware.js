@@ -7,11 +7,11 @@ const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 
-const handleCcdCase = (req, res, next) => {
+const handleCcdCase = (req, res, currentPaymentReference, next) => {
   const session = req.session;
   switch (session.state) {
   case 'AwaitingPayment':
-    if (session.currentPaymentReference) {
+    if (currentPaymentReference) {
       return paymentStatusService
         .checkAndUpdatePaymentStatus(req)
         .then(response => {
@@ -53,7 +53,7 @@ const hasSubmitted = function(req, res, next) {
   if (session.payment_reference) session.currentPaymentReference = session.payment_reference;
   logger.info(`DIV-2815-LOG currentPaymentReference v2 >>> ${session.currentPaymentReference}`);
   if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line
-    handleCcdCase(res, req, next);
+    handleCcdCase(req, res, next);
   }
   // when a new case has just been submitted for the session
   if (parseBool(config.features.redirectToApplicationSubmitted) && session.caseId) { // eslint-line-disable

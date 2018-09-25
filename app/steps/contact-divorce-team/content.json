@@ -1,0 +1,16 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "There is a problem with your application",
+                    "info": "You need to contact us about your divorce application.",
+                    "contactTitle": "Contact Us",
+                    "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+                    "contactEmail": "Email: {{courtEmail}}"
+                }
+            }
+        }
+    }
+}

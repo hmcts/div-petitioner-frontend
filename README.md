@@ -62,10 +62,7 @@ To run the front end app, run the following from the front end project root fold
 
 
 ```
-yarn install
-redis-server &
-yarn start-dev
-
+yarn add redis-server & yarn start-dev
 ```
 
 To run the tests and lint, run the following:

@@ -53,7 +53,7 @@ const hasSubmitted = function(req, res, next) {
   if (session.payment_reference) session.currentPaymentReference = session.payment_reference;
   logger.info(`DIV-2815-LOG currentPaymentReference v2 >>> ${session.currentPaymentReference}`);
   if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line
-    handleCcdCase(res, req, next);
+    return handleCcdCase(req, res, next);
   }
   // when a new case has just been submitted for the session
   if (parseBool(config.features.redirectToApplicationSubmitted) && session.caseId) { // eslint-line-disable

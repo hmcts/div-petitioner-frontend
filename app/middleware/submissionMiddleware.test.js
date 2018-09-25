@@ -5,8 +5,8 @@ const config = require('config');
 const modulePath = 'app/middleware/submissionMiddleware';
 const underTest = require(modulePath);
 const serviceToken = require('app/services/serviceToken');
-const payment = require('app/services/payment');
-const submission = require('app/services/submission');
+const paymentService = require('app/services/payment');
+const submissionService = require('app/services/submission');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
@@ -123,8 +123,8 @@ describe(modulePath, () => {
 
     afterEach(() => {
       config.deployment_env = currentDeploymentEnv;
-      submission.setup.restore();
-      payment.setup.restore();
+      submissionService.setup.restore();
+      paymentService.setup.restore();
       serviceToken.setup.restore();
     });
 
@@ -144,8 +144,8 @@ describe(modulePath, () => {
           error: null,
           status: 'success'
         });
-        sinon.stub(submission, 'setup').returns({ update });
-        sinon.stub(payment, 'setup').returns({ query });
+        sinon.stub(paymentService, 'setup').returns({ query });
+        sinon.stub(submissionService, 'setup').returns({ update });
       });
 
       it('Check payment status, if application is in "AwaitingPayment", payment successfull then update ccd to awaiting response', async () => {
@@ -177,8 +177,8 @@ describe(modulePath, () => {
           error: null,
           status: 'success'
         });
-        sinon.stub(submission, 'setup').returns({ update });
-        sinon.stub(payment, 'setup').returns({ query });
+        sinon.stub(submissionService, 'setup').returns({ update });
+        sinon.stub(paymentService, 'setup').returns({ query });
       });
 
       it('Check payment status, if application is in "AwaitingPayment" but payment has failed then do nothing"', async () => {
@@ -205,13 +205,13 @@ describe(modulePath, () => {
           date_created: 1505459675824,
           _links: {}
         });
-        sinon.stub(payment, 'setup').returns({ query });
+        sinon.stub(paymentService, 'setup').returns({ query });
         update = sinon.stub().resolves({
           caseId: 0,
           error: 'some error with a wrapped java exception',
           status: 'error'
         });
-        sinon.stub(submission, 'setup').returns({ update });
+        sinon.stub(submissionService, 'setup').returns({ update });
       });
 
       it('submission update was not successful\'"', async () => {

@@ -14,7 +14,7 @@ google_analytics_tracking_id = "UA-93824767-3"
 
 idam_authentication_web_url = "https://hmcts-access.service.gov.uk"
 
-idam_api_url = "https://prod-idamapi.reform.hmcts.net:3511"
+idam_api_url = "https://idam-api.platform.hmcts.net"
 
 payment_service_url = "https://payment.platform.hmcts.net"
 

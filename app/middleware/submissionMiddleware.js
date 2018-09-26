@@ -42,7 +42,7 @@ const handleCcdCase = (req, res, next) => {
 
 const hasSubmitted = function(req, res, next) {
   const { session } = req;
-  const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
+  const hasSubmittedEnabled = true;
 
   if (session.payment_reference) session.currentPaymentReference = session.payment_reference;
   if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line

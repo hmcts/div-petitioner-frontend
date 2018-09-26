@@ -181,18 +181,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('help with fees reference number does not exist', () => {
-    beforeEach(done => {
-      session = clone(mockSession);
-      session.helpWithFeesReferenceNumber = '';
-      session.helpWithFeesNeedHelp = 'Yes';
-      withSession(done, agent, session);
-    });
-    it('renders the correct dynamic text', done => {
-      testExistence(done, agent, underTest, 'No', session);
-    });
-  });
-
   describe('prayer section', () => {
     beforeEach(done => {
       session = clone(mockSession);

@@ -17,7 +17,6 @@ client.on('error', error => {
 });
 
 router.get('/health', healthcheck.configure({
-  checks: {},
   buildInfo: {
     name: config.service.name,
     host: os.hostname(),

@@ -14,4 +14,6 @@ RUN apk update && \
 
 RUN yarn install && npm rebuild node-sass && yarn setup
 
+EXPOSE 8080
+
 CMD [ "yarn", "start" ]

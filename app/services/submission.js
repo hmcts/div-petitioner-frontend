@@ -17,7 +17,6 @@ let client = {};
  */
 const service = {
   submit: (...args) => {
-    logger.info(`DIV-2815-LOG cpstatus client submit args: ${args}`);
     return client.submit(...args)
       .then(response => {
         return response;
@@ -32,7 +31,6 @@ const service = {
   },
 
   update: (...args) => {
-    logger.info(`DIV-2815-LOG cpstatus client submit updates args: ${args}`);
     return client.update(...args)
       .then(response => {
         return response;

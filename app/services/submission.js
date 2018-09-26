@@ -36,7 +36,10 @@ const service = {
         return response;
       })
       .catch(error => {
-        logger.error(`Error updating ccd with caseId: ${args.caseId}`);
+        logger.error({
+          message: `Error updating ccd with caseId ${args.caseId}:`,
+          error
+        });
         throw error;
       });
   }

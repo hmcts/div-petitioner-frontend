@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 const CONF = require('config');
-const { filter, forEach, isEqual } = require('lodash');
+const { filter, forEach, isEqual, isEmpty } = require('lodash');
 
 const postcodeInfo = require('app/services/postcodeInfo');
 
@@ -22,6 +22,12 @@ const formatPostcode = function(postcode = '') {
   formattedPostcode = `${formattedPostcode.slice(0, formattedPostcode.length - INWARD_CODE_LENGTH)} ${formattedPostcode.slice(formattedPostcode.length - INWARD_CODE_LENGTH, formattedPostcode.length)}`;
 
   return formattedPostcode;
+};
+
+const isEmptyAddress = function(address) {
+  return address && isEmpty(filter(address, addr => {
+    return !isEmpty(addr);
+  }));
 };
 
 const addressHelpers = require('../helpers/addressHelpers');
@@ -137,7 +143,7 @@ module.exports = {
       errorList = filter(errorList, error => {
         return error.param === 'postcode';
       });
-    } else if (!ctx.addresses && !ctx.address) {
+    } else if ((!ctx.addresses && !ctx.address) || isEmptyAddress(ctx.address)) {
       errorList = filter(errorList, error => {
         return error.param === 'address';
       });

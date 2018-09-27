@@ -180,4 +180,25 @@ describe(modulePath, () => {
         contentToExist, valuesToExist, context);
     });
   });
+
+  describe('address selected from address list but deleted after', () => {
+    beforeEach(done => {
+      const session = {};
+      withSession(done, agent, session);
+    });
+
+    it('renders errors for missing required context', done => {
+      const context = {
+        addressType: 'postcode',
+        addresses: ['some address'],
+        address: ['', '', ''],
+        postcode: 'SW1H 9AG',
+        addressSelect: 0
+      };
+
+      const onlyKeys = ['address'];
+
+      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys);
+    });
+  });
 });

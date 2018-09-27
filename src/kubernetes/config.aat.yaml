@@ -6,6 +6,11 @@ metadata:
 data:
   USE_AUTH : "0"
   COURT_EASTMIDLANDS_EMAIL : "eastmidlandsdivorce@hmcts.gsi.gov.uk"
+  POST_CODE_ACCESS_TOKEN : ${POST_CODE_ACCESS_TOKEN}
+  SESSION_ENCRYPTION_SECRET : ${SESSION_ENCRYPTION_SECRET}
+  SECRET: {SECRET}
+  IDAM_SECRET: ${IDAM_SECRET}
+  MICROSERVICE_KEY: ${MICROSERVICE_KEY}
   COURT_NORTHWEST_CITY : "Liverpool"
   IDAM_LOGIN_URL : "https://idam.preprod.ccidam.reform.hmcts.net/login"
   EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL : "http://div-emca-aat.service.core-compute-aat.internal/health"

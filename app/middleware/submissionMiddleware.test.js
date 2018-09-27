@@ -9,7 +9,7 @@ const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
-const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
+const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 
 let req = {};
@@ -74,13 +74,13 @@ describe(modulePath, () => {
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(APPLICATION_SUBMITTED_PATH)).to.eql(true);
     });
-    it('redirects to /application-submitted-awaiting-response if application has been submitted and is not "AwaitingPayment" or "Rejected"', () => {
+    it('redirects to /done-and-submitted if application has been submitted and is not "AwaitingPayment" or "Rejected"', () => {
       req.session.caseId = 'someid';
       req.session.state = 'randomstate';
       config.deployment_env = 'prod';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
-      expect(res.redirect.calledWith(APPLICATION_AWAITING_RESPONSE_PATH)).to.eql(true);
+      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
     });
     it('calls next if application has been submitted and is "Rejected"', () => {
       req.session.caseId = 'someid';
@@ -157,7 +157,7 @@ describe(modulePath, () => {
         expect(getToken.calledOnce).to.equal(true);
         expect(query.calledOnce).to.equal(true);
         expect(update.calledOnce).to.equal(true);
-        expect(res.redirect.calledWith('/application-submitted-awaiting-response')).to.eql(true);
+        expect(res.redirect.calledWith('/done-and-submitted')).to.eql(true);
       });
     });
 

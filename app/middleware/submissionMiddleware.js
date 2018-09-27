@@ -4,7 +4,7 @@ const paymentStatusService = require('app/steps/pay/card-payment-status/paymentS
 const parseBool = require('app/core/utils/parseBool');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
-const APPLICATION_AWAITING_RESPONSE_PATH = '/application-submitted-awaiting-response';
+const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 
 const handleCcdCase = (req, res, next) => {
@@ -15,7 +15,7 @@ const handleCcdCase = (req, res, next) => {
       return paymentStatusService
         .checkAndUpdatePaymentStatus(req)
         .then(response => {
-          if (response !== true) return APPLICATION_AWAITING_RESPONSE_PATH;
+          if (response !== true) return DONE_AND_SUBMITTED;
           return APPLICATION_SUBMITTED_PATH;
         })
         .then(
@@ -36,7 +36,7 @@ const handleCcdCase = (req, res, next) => {
   case 'MultipleRejectedCases':
     return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
   default:
-    return res.redirect(APPLICATION_AWAITING_RESPONSE_PATH);
+    return res.redirect(DONE_AND_SUBMITTED);
   }
 };
 

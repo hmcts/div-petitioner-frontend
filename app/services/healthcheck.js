@@ -70,11 +70,11 @@ router.get('/health', healthcheck.configure({
         return !error && res.status === OK ? outputs.up() : outputs.down(error);
       }
     }, options),
-    'case-progression': healthcheck.web(config.services.transformation.health, {
+    'case-orchestration': healthcheck.web(config.services.transformation.health, {
       callback: (error, res) => { // eslint-disable-line id-blacklist
         if (error) {
           logger.error({
-            message: 'Health check failed on case-progression:',
+            message: 'Health check failed on case-orchestration:',
             error
           });
         }

@@ -4,6 +4,7 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
 
 const datePeriod = require('app/core/utils/datePeriod');
+const logger = require('app/services/logger').logger(__filename);
 
 module.exports = class ReasonForDivorce extends ValidationStep {
   get url() {
@@ -70,7 +71,9 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     ctx.reasonForDivorceLimitReasons = true;
     ctx.reasonForDivorceEnableAdultery = true;
 
-    if (!isUndefined(marriageDate)) {
+    if (isUndefined(marriageDate)) {
+      logger.info('Marriage date is empty ', marriageDate);
+    } else {
       ctx.reasonForDivorceHasMarriageDate = true;
       ctx.reasonForDivorceShowAdultery = true;
       ctx.reasonForDivorceShowUnreasonableBehaviour = true;

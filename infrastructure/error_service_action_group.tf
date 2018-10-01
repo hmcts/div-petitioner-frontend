@@ -5,7 +5,7 @@ module "error-service-group" {
 
   resourcegroup_name     = "${local.vaultName}"
   action_group_name      = "user-with-empty-reason-list-${var.env}"
-  short_name             = "Empty_reason_list"
+  short_name             = "NoRsnAlert"
   email_receiver_name    = "Divorce team"
   email_receiver_address = "qiang.zhou@hmcts.net"
 }

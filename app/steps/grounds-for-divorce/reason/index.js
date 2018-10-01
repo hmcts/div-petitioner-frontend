@@ -2,7 +2,6 @@ const moment = require('moment');
 const { isUndefined } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
-const logger = require('app/services/logger').logger(__filename);
 
 const datePeriod = require('app/core/utils/datePeriod');
 
@@ -71,9 +70,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     ctx.reasonForDivorceLimitReasons = true;
     ctx.reasonForDivorceEnableAdultery = true;
 
-    if (isUndefined(marriageDate)) {
-      logger.info('Marriage is not defined ', marriageDate);
-    } else {
+    if (!isUndefined(marriageDate)) {
       ctx.reasonForDivorceHasMarriageDate = true;
       ctx.reasonForDivorceShowAdultery = true;
       ctx.reasonForDivorceShowUnreasonableBehaviour = true;

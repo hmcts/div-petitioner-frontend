@@ -19,5 +19,5 @@ EOF
   custom_email_subject       = "Send Letter is DOWN"
   trigger_threshold_operator = "GreaterThan"
   trigger_threshold          = 0
-  resourcegroup_name         = "{local.vaultName}"
+  resourcegroup_name         = "${local.vaultName}"
 }

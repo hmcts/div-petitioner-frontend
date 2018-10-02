@@ -91,6 +91,7 @@ module.exports = {
   },
 
   isPaymentSuccessful: response => {
-    return get(response, 'status') === 'Success';
+    const respStatus = get(response, 'status');
+    return (typeof respStatus === 'string' ? respStatus : 'undefined').toUpperCase() === 'Success'.toUpperCase();
   }
 };

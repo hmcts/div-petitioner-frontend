@@ -19,5 +19,5 @@ EOF
   custom_email_subject       = "User with empty reason list"
   trigger_threshold_operator = "GreaterThan"
   trigger_threshold          = 0
-  resourcegroup_name         = "${local.vaultName}"
+  resourcegroup_name         = "${var.product}-${var.reform_service_name}-${var.env}"
 }

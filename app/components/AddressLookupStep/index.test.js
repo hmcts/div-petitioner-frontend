@@ -119,6 +119,17 @@ describe(modulePath, () => {
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
 
+    it('renders errors for missing required manual address', done => {
+      const context = {
+        address: [],
+        addressType: 'manual',
+        addressConfirmed: 'true',
+        addressManual: ''
+      };
+
+      const onlyKeys = ['addressManual'];
+      testErrors(done, agent, underTest, context, content, 'required', onlyKeys);
+    });
 
     it('renders errors for missing required context', done => {
       const context = {};
@@ -167,6 +178,27 @@ describe(modulePath, () => {
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context);
+    });
+  });
+
+  describe('address selected from address list but deleted after', () => {
+    beforeEach(done => {
+      const session = {};
+      withSession(done, agent, session);
+    });
+
+    it('renders errors for missing required context', done => {
+      const context = {
+        addressType: 'postcode',
+        addresses: ['some address'],
+        address: ['', '', ''],
+        postcode: 'SW1H 9AG',
+        addressSelect: 0
+      };
+
+      const onlyKeys = ['address'];
+
+      testErrors(done, agent, underTest, context, content, 'invalid', onlyKeys);
     });
   });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const requireDirectory = require('require-directory');
 const { get, set, merge, unset, forEach, cloneDeep } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');

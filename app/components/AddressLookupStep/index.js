@@ -59,6 +59,9 @@ module.exports = class AddressLookupStep extends ValidationStep {
   * interceptor(ctx, session) {
     if (ctx.selectAddressIndex) {
       set(session, `${this.schemaScope}.selectAddressIndex`, ctx.selectAddressIndex);
+    } else if (ctx.addressType === 'postcode' && ctx.address) {
+      // Temporary: If it is postcode and there is an address but no selectIndex, set a default one
+      set(session, `${this.schemaScope}.selectAddressIndex`, 0);
     }
 
     if (ctx.searchPostcode && ctx.searchPostcode !== 'false') {

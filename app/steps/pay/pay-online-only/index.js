@@ -117,6 +117,7 @@ module.exports = class PayOnline extends Step {
         const { id, status, reference, nextUrl } = response;
         req.session.currentPaymentId = id;
         req.session.currentPaymentReference = reference;
+        req.session.payment_reference = reference;
         req.session.payments = Object.assign({}, req.session.payments,
           { [id]: { status, reference, nextUrl } });
 

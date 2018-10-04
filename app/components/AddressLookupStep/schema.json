@@ -21,7 +21,8 @@
                     "contains": {
                       "type": "string",
                       "minLength": 1
-					}
+
+                    }
                 },
                 "addressType": {
                     "type": "string",

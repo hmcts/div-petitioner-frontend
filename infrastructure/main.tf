@@ -45,13 +45,8 @@ locals {
   fees_and_payments_url               = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
   status_health_endpoint              = "/status/health"
 
-<<<<<<< HEAD
   asp_name = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
   asp_rg = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
-=======
-  asp_name                            = "${var.env == "prod" ? "div-pfe-prod" : "${var.product}-${var.env}"}"
-  asp_rg                              = "${var.env == "prod" ? "div-pfe-prod" : "${var.product}-${var.env}"}"
->>>>>>> Rename progression to orchestration
 }
 
 module "redis-cache" {

@@ -3,7 +3,7 @@ module "error-service-group" {
   location = "global"
   env      = "${var.env}"
 
-  resourcegroup_name     = "${var.product}-${var.reform_service_name}-${var.env}"
+  resourcegroup_name     = "${local.vaultName}"
   action_group_name      = "user-with-empty-reason-list-${var.env}"
   short_name             = "NoRsnAlert"
   email_receiver_name    = "Divorce team"

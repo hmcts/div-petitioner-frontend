@@ -4,6 +4,10 @@ variable "reform_team" {
   default = "div"
 }
 
+variable "raw_product" {
+  default = "div"
+}
+
 variable "capacity" {
   default = "1"
 }

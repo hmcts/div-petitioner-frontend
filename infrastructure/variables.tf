@@ -33,6 +33,12 @@ variable "appinsights_instrumentation_key" {
   default     = ""
 }
 
+variable "appinsights_location" {
+  type        = "string"
+  default     = "West Europe"
+  description = "Location for Application Insights"
+}
+
 variable "deployment_env" {
   type = "string"
 }

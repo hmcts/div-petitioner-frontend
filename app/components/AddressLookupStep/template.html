@@ -116,16 +116,16 @@
           <input type="hidden" name="searchPostcode" value="false"/>
           <input type="hidden" name="addressConfirmed" value="false"/>
           <input type="hidden" name="postcode" value="{{ fields.postcode.value }}"/>
-        <noscript>
-  <input type="submit"  style="margin: 4px 0 10px 0 ;" class="secondary-button" value="{{content.updateAddress}}"/>
-</noscript>
+          <noscript>
+            <input type="submit"  style="margin: 4px 0 10px 0 ;" class="secondary-button" value="{{content.updateAddress}}"/>
+          </noscript>
         </div>
 
-{%- ifAsync fields.selectAddressIndex.value == '-1' or not fields.selectAddressIndex -%}
+      {%- ifAsync not fields.address.value -%}
         <input type="submit" class="button" value="{{common.continue}}"/>
         <br><br>
         {% include "includes/save_and_close.html" %}
-{%- endif -%}
+      {%- endif -%}
 
       </form>
 

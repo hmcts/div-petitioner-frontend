@@ -75,6 +75,31 @@ describe(modulePath, () => {
         const featureTest = featureToggleConfig.when('idam', true, test);
         featureTest(done);
       });
+
+      it('restore session with blacklisted element, blacklisted elements are filtered', done => {
+        const mockSession = Object.assign({
+          expires: '',
+          cookie: '',
+          sessionKey: '',
+          saveAndResumeUrl: '',
+          submissionStarted: 'true',
+          csrfSecret: 'csrf'
+        }, mockedClient.mockSession);
+        mockedClient.restoreFromDraftStore.resolves(mockSession);
+        const test = cleanUp => {
+          draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
+          // wait for promise to resolve
+          setTimeout(() => {
+            expect(mockedClient.restoreFromDraftStore.called).to.equal(true);
+            expect(res.redirect.calledOnce).to.eql(true);
+            expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
+            expect(req.session).to.eql(mockedClient.mockSession);
+            cleanUp();
+          }, 1);
+        };
+        const featureTest = featureToggleConfig.when('idam', true, test);
+        featureTest(done);
+      });
       it('does not attempt to restore if we have already fetched from Draft store', done => {
         req.session = { screenHasMarriageBroken: true, fetchedDraft: true };
         const test = cleanUp => {
@@ -120,7 +145,7 @@ describe(modulePath, () => {
       }, 1);
     });
 
-    it('ssaveSessionToDraftStoreAndReply() with save only header', async () => {
+    it('saveSessionToDraftStoreAndReply() with save only header', async () => {
       const sandbox = sinon.sandbox.create();
       const parsedRequestBody = { bar: 1 };
       const json = sinon.stub();

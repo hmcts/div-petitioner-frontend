@@ -82,7 +82,8 @@
                 "postcode",
                 "address",
                 "addressConfirmed",
-                "addressType"
+                "addressType",
+                "postcodeError"
             ]
         },
         {

@@ -412,3 +412,8 @@ variable "court_northwest_court_weight" {
 variable "common_tags" {
   type = "map"
 }
+
+variable "dev_support_notification_email" {
+  default = "divorce@hmcts.net"
+}
+

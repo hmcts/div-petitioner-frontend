@@ -7,8 +7,7 @@ module "error-service-group" {
   action_group_name      = "user-with-empty-reason-list-${var.env}"
   short_name             = "NoRsnAlert"
   email_receiver_name    = "Divorce team"
-  email_receiver_address = "qiang.zhou@hmcts.net"
-}
+  email_receiver_address = "${var.dev_support_notification_email}"
 
 output "action_group_name" {
   value = "${module.error-service-group.action_group_name}"

@@ -9,7 +9,7 @@ module "send-alert-service-error" {
   app_insights_query = <<EOF
 traces
 | extend itemType = iif(itemType == 'trace',itemType,"")
-| where * has 'Marriage date is empty '
+| where (((* has 'Marriage' and * has 'date') and * has 'is') and * has 'empty.')
 EOF
 
   frequency_in_minutes       = 10

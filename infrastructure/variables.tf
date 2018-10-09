@@ -414,6 +414,6 @@ variable "common_tags" {
 }
 
 variable "dev_support_notification_email" {
-  default = "divorce@hmcts.net"
+  default = "divorcesupportgroup@hmcts.net"
 }
 

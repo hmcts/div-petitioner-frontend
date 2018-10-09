@@ -22,4 +22,4 @@ post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 feature_redirect_to_application_submitted = "false"
 
-dev_support_notification_email = "qiang.zhou@htmcts.net"
+dev_support_notification_email = "Nagesh.Singamsetty@HMCTS.NET"

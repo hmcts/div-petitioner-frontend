@@ -2,8 +2,6 @@ module "error-service-group" {
   source   = "git@github.com:hmcts/cnp-module-action-group"
   location = "global"
   env      = "${var.env}"
-  asp_name                        = "${local.asp_name}"
-  asp_rg                          = "${local.asp_rg}"
 
   resourcegroup_name     = "${var.product}-${var.reform_service_name}-${var.env}"
   action_group_name      = "user-with-empty-reason-list-${var.env}"

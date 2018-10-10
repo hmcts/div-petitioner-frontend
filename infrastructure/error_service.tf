@@ -5,8 +5,6 @@ module "send-alert-service-error" {
 
   alert_name = "User access with error"
   alert_desc = "User with empty reason divorce list."
-  asp_name   = "${local.asp_name}"
-  asp_rg     = "${local.asp_rg}"
 
   app_insights_query = <<EOF
 traces

@@ -53,13 +53,6 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     });
   }
 
-  logUserError(ctx, session) {
-    const attInfoToDisplay = ['marriageDateDay', 'marriageDateMonth', 'marriageDateYear', 'state'];
-    const displayObject = JSON.stringify(pick(session, attInfoToDisplay));
-    logger.info(`Marriage date is empty. ${displayObject}`, session.req);
-  }
-
-
   interceptor(ctx, session) {
     //  no marriage date - display nothing
     //  1 -2 years - adultery, unreasonable behaviour
@@ -78,7 +71,9 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     ctx.reasonForDivorceEnableAdultery = true;
 
     if (isUndefined(marriageDate)) {
-      this.logUserError(ctx, session);
+      const attInfoToDisplay = ['marriageDateDay', 'marriageDateMonth', 'marriageDateYear', 'state'];
+      const displayObject = pick(session, attInfoToDisplay);
+      logger.info('Marriage date is empty', session.req, displayObject);
     } else {
       ctx.reasonForDivorceHasMarriageDate = true;
       ctx.reasonForDivorceShowAdultery = true;

@@ -42,8 +42,6 @@ exports.init = listenForConnections => {
 
   app.use(helmet());
 
-  app.use(logging.accessLogger());
-
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
     directives: {
@@ -112,6 +110,7 @@ exports.init = listenForConnections => {
 
   // Get user details from idam, sets req.idam.userDetails
   app.use(idam.userDetails());
+  app.use(logging.accessLogger());
 
   app.set('trust proxy', 1);
   app.use(sessions.prod());

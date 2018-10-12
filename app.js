@@ -164,6 +164,8 @@ exports.init = listenForConnections => {
       res.sendStatus(statusCode.OK);
     });
     app.get('/session', (req, res) => {
+      logger.info('App with changes');
+
       res.writeHead(statusCode.OK, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(req.session));
     });

@@ -61,7 +61,7 @@ const accessLogger = () => {
       const url = req.originalUrl || req.url;
       const message = `"${req.method} ${url} HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${res.statusCode}`;
       const args = addUserIdToMessage([message, req]);
-      return args[0];
+      return `PathLogInfo - ${args[0]}`;
     }
   });
 };

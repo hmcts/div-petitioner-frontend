@@ -1,7 +1,7 @@
 module "send-alert-service-error" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
   location          = "${var.appinsights_location}"
-  app_insights_name = "${var.product}-${var.reform_service_name}-appinsights-${var.env}"
+  app_insights_name = "${local.appinsights_name}"
 
   alert_name = "User access with error"
   alert_desc = "User with empty reason divorce list."

@@ -47,6 +47,8 @@ locals {
 
   asp_name = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
   asp_rg = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
+
+  appinsights_name = "${var.env == "preview" ? "${var.product}-${var.reform_service_name}-appinsights-${var.env}" : "${var.product}-${var.env}"}"
 }
 
 module "redis-cache" {

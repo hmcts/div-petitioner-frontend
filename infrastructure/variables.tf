@@ -260,7 +260,7 @@ variable "court_eastmidlands_siteid" {
 }
 
 variable "court_eastmidlands_weight" {
-  default = "0.20"
+  default = 0.20
 }
 
 variable "court_eastmidlands_divorce_facts_ratio" {
@@ -300,7 +300,7 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = "0.35"
+  default = 0.35
 }
 
 variable "court_westmidlands_divorce_facts_ratio" {
@@ -340,7 +340,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = "0.20"
+  default = 0.20
 }
 
 variable "court_southwest_divorce_facts_ratio" {
@@ -384,7 +384,7 @@ variable "court_northwest_siteid" {
 }
 
 variable "court_northwest_weight" {
-  default = "0.25"
+  default = 0.25
 }
 
 variable "court_phone_number" {
@@ -400,19 +400,19 @@ variable "court_email" {
 }
 
 variable "court_eastmidlands_court_weight" {
-  default = "0.25"
+  default = 0.25
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.15"
+  default = 0.15
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.35"
+  default = 0.35
 }
 
 variable "court_northwest_court_weight" {
-  default = "0.25"
+  default = 0.25
 }
 
 variable "court_northwest_divorce_facts_ratio" {

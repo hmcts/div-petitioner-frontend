@@ -420,11 +420,14 @@ variable "court_northwest_divorce_facts_ratio" {
 }
 
 variable "divorce_facts_ratio" {
-  unreasonable-behaviour = 0.30
-  separation-2-years = 0.37
-  separation-5-years = 0.21
-  adultery = 0.11
-  desertion = 0.01
+  type = "map"
+  default = {
+    "unreasonable-behaviour" = 0.30
+    "separation-2-years" = 0.37
+    "separation-5-years" = 0.21
+    "adultery" = 0.11
+    "desertion" = 0.01
+  }
 }
 
 variable "common_tags" {

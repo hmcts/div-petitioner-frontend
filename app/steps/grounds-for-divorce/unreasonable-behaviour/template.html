@@ -12,6 +12,15 @@
     {{ content.explanation | safe }}
 </p>
 
+<div class="notice">
+  <em class="icon icon-important">
+    <span class="visuallyhidden">{{ content.warning }}</span>
+  </em>
+  <p class="bold-small">
+    {{ content.fault | safe }}
+  </p>
+</div>
+
 <p class="text">
     {{ content.overTime | safe }}
 </p>

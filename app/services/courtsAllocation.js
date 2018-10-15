@@ -17,7 +17,7 @@ const calculatePreAllocations = () => {
 
     Object.keys(courts).forEach(courtName => {
       if (typeof remainingWeightForCourt[courtName] === 'undefined') {
-        remainingWeightForCourt[courtName] = courts[courtName].weight;
+        remainingWeightForCourt[courtName] = parseFloat(courts[courtName].weight);
       }
 
       if (courts[courtName].divorceFactsRatio && typeof courts[courtName].divorceFactsRatio[fact] !== 'undefined') {
@@ -49,7 +49,7 @@ const allocateRemainders = () => {
           totalWeightPerFact[fact] = 0;
         }
 
-        totalWeightPerFact[fact] += courts[courtName].weight;
+        totalWeightPerFact[fact] += parseFloat(courts[courtName].weight);
       }
     });
   });

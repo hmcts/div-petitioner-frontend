@@ -263,6 +263,10 @@ variable "court_eastmidlands_weight" {
   default = "0.20"
 }
 
+variable "court_eastmidlands_divorce_facts_ratio" {
+
+}
+
 variable "court_westmidlands_name" {
   default = "West Midlands Regional Divorce Centre"
 }
@@ -299,6 +303,10 @@ variable "court_westmidlands_weight" {
   default = "0.35"
 }
 
+variable "court_westmidlands_divorce_facts_ratio" {
+
+}
+
 variable "court_southwest_name" {
   default = "South West Regional Divorce Centre"
 }
@@ -333,6 +341,10 @@ variable "court_southwest_siteid" {
 
 variable "court_southwest_weight" {
   default = "0.20"
+}
+
+variable "court_southwest_divorce_facts_ratio" {
+
 }
 
 variable "court_northwest_name" {
@@ -401,6 +413,20 @@ variable "court_southwest_court_weight" {
 
 variable "court_northwest_court_weight" {
   default = "0.25"
+}
+
+variable "court_northwest_divorce_facts_ratio" {
+
+}
+
+variable "divorce_facts_ratio" {
+  default = {
+    "unreasonable-behaviour": 0.30,
+    "separation-2-years": 0.37,
+    "separation-5-years": 0.21,
+    "adultery": 0.11,
+    "desertion": 0.01
+  }
 }
 
 variable "common_tags" {

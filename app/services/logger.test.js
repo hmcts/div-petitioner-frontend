@@ -42,13 +42,13 @@ describe(modulePath, () => {
     it('creates a message with the idam user id', () => {
       const accessLogger = logger.accessLogger();
       const message = accessLogger.formatter(req, res);
-      expect(message).to.eql(`IDAM UID:${idamUserId} - "GET url HTTP/1.1" 200`);
+      expect(message).to.eql(`PathLogInfo - IDAM UID:${idamUserId} - "GET url HTTP/1.1" 200`);
     });
     it('creates a message with the unkown if no idam', () => {
       delete req.idam;
       const accessLogger = logger.accessLogger();
       const message = accessLogger.formatter(req, res);
-      expect(message).to.eql('IDAM UID:unknown - "GET url HTTP/1.1" 200');
+      expect(message).to.eql('PathLogInfo - IDAM UID:unknown - "GET url HTTP/1.1" 200');
     });
   });
 

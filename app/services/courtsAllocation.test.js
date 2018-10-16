@@ -88,7 +88,7 @@ describe(modulePath, () => {
     delete require.cache[require.resolve(modulePath)];
   });
 
-  it('error when facts allocation > court allocation', () => {
+  it('error when total facts allocation > court allocation', () => {
     const localCourts = cloneDeep(courts);
 
     localCourts.CTSC.divorceFactsRatio['unreasonable-behaviour'] = 0.8;
@@ -100,8 +100,28 @@ describe(modulePath, () => {
 
     try {
       require(modulePath);
+      expect.fail(null, null, 'Should have thrown weightage exceeded error');
     } catch (error) {
       expect(error.message).to.eq('Total weightage exceeded for court CTSC');
+    }
+  });
+
+  it('error when facts allocation > 1', () => {
+    const localCourts = cloneDeep(courts);
+
+    localCourts.eastMidlands.divorceFactsRatio = { 'unreasonable-behaviour': 0.4 };
+
+    CONF.commonProps = {
+      divorceFactsRatio: caseDistribution,
+      court: localCourts
+    };
+
+    try {
+      require(modulePath);
+      expect.fail(null, null, 'Should have thrown weightage exceeded error');
+    } catch (error) {
+      expect(error.message)
+        .to.eq('Total weightage exceeded for fact unreasonable-behaviour');
     }
   });
 

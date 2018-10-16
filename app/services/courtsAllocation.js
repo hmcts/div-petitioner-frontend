@@ -11,7 +11,7 @@ const remainingWeightForCourt = {};
 
 const calculatePreAllocations = () => {
   Object.keys(caseDistribution).forEach(fact => {
-    if (!allocationPerFactLeft[fact]) {
+    if (typeof allocationPerFactLeft[fact] === 'undefined') {
       allocationPerFactLeft[fact] = 1;
     }
 
@@ -34,6 +34,10 @@ const calculatePreAllocations = () => {
         weightPerFactPerCourt[fact][courtName] = courts[courtName].divorceFactsRatio[fact];
 
         allocationPerFactLeft[fact] -= courts[courtName].divorceFactsRatio[fact];
+
+        if (allocationPerFactLeft[fact] < 0) {
+          throw new Error(`Total weightage exceeded for fact ${fact}`);
+        }
       }
     });
   });

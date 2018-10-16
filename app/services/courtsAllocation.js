@@ -9,41 +9,45 @@ const weightPerFactPerCourt = {};
 const allocationPerFactLeft = {};
 const remainingWeightForCourt = {};
 
-const calculatePreAllocations = () => {
-  Object.keys(caseDistribution).forEach(fact => {
-    if (typeof allocationPerFactLeft[fact] === 'undefined') {
-      allocationPerFactLeft[fact] = 1;
-    }
-
-    Object.keys(courts).forEach(courtName => {
-      if (typeof remainingWeightForCourt[courtName] === 'undefined') {
-        remainingWeightForCourt[courtName] = parseFloat(courts[courtName].weight);
-      }
-
-      if (courts[courtName].divorceFactsRatio && typeof courts[courtName].divorceFactsRatio[fact] !== 'undefined') {
-        if (!weightPerFactPerCourt[fact]) {
-          weightPerFactPerCourt[fact] = {};
-        }
-
-        remainingWeightForCourt[courtName] -= (courts[courtName].divorceFactsRatio[fact] * caseDistribution[fact]);
-
-        if (remainingWeightForCourt[courtName] < 0) {
-          throw new Error(`Total weightage exceeded for court ${courtName}`);
-        }
-
-        weightPerFactPerCourt[fact][courtName] = courts[courtName].divorceFactsRatio[fact];
-
-        allocationPerFactLeft[fact] -= courts[courtName].divorceFactsRatio[fact];
-
-        if (allocationPerFactLeft[fact] < 0) {
-          throw new Error(`Total weightage exceeded for fact ${fact}`);
-        }
-      }
-    });
-  });
+const initialiseAllocationRemainingForFact = fact => {
+  if (typeof allocationPerFactLeft[fact] === 'undefined') {
+    allocationPerFactLeft[fact] = 1;
+  }
 };
 
-const allocateRemainders = () => {
+const initialiseAllocationRemainingForCourt = courtName => {
+  if (typeof remainingWeightForCourt[courtName] === 'undefined') {
+    remainingWeightForCourt[courtName] = Number(courts[courtName].weight);
+  }
+};
+
+const initialiseWeightPerFactPerCourt = fact => {
+  if (!weightPerFactPerCourt[fact]) {
+    weightPerFactPerCourt[fact] = {};
+  }
+};
+
+const updateAllocationRemainingForCourt = (fact, courtName) => {
+  remainingWeightForCourt[courtName] -= (courts[courtName].divorceFactsRatio[fact] * caseDistribution[fact]);
+
+  if (remainingWeightForCourt[courtName] < 0) {
+    throw new Error(`Total weightage exceeded for court ${courtName}`);
+  }
+};
+
+const updateAllocationRemainingForFact = (fact, courtName) => {
+  allocationPerFactLeft[fact] -= courts[courtName].divorceFactsRatio[fact];
+
+  if (allocationPerFactLeft[fact] < 0) {
+    throw new Error(`Total weightage exceeded for fact ${fact}`);
+  }
+};
+
+const updateWeightPerFactPerCourt = (fact, courtName) => {
+  weightPerFactPerCourt[fact][courtName] = courts[courtName].divorceFactsRatio[fact];
+};
+
+const calculateTotalUnAllocatedWeightPerFact = () => {
   const totalWeightPerFact = {};
 
   Object.keys(caseDistribution).forEach(fact => {
@@ -53,25 +57,48 @@ const allocateRemainders = () => {
           totalWeightPerFact[fact] = 0;
         }
 
-        totalWeightPerFact[fact] += parseFloat(courts[courtName].weight);
+        totalWeightPerFact[fact] += Number(courts[courtName].weight);
       }
     });
   });
 
+  return totalWeightPerFact;
+};
+
+const distributeRemainingFactsAllocationToCourts = (fact, courtName, totalWeightPerFact) => {
+  if (typeof weightPerFactPerCourt[fact][courtName] === 'undefined') {
+    if (totalWeightPerFact[fact]) {
+      weightPerFactPerCourt[fact][courtName] = allocationPerFactLeft[fact] * remainingWeightForCourt[courtName] / totalWeightPerFact[fact];
+    } else {
+      weightPerFactPerCourt[fact][courtName] = 0;
+    }
+  }
+};
+
+const calculatePreAllocations = () => {
+  Object.keys(caseDistribution).forEach(fact => {
+    initialiseAllocationRemainingForFact(fact);
+
+    Object.keys(courts).forEach(courtName => {
+      initialiseAllocationRemainingForCourt(courtName);
+
+      if (courts[courtName].divorceFactsRatio && typeof courts[courtName].divorceFactsRatio[fact] !== 'undefined') {
+        initialiseWeightPerFactPerCourt(fact);
+        updateAllocationRemainingForCourt(fact, courtName);
+        updateWeightPerFactPerCourt(fact, courtName);
+        updateAllocationRemainingForFact(fact, courtName);
+      }
+    });
+  });
+};
+
+const allocateRemainders = () => {
+  const totalWeightPerFact = calculateTotalUnAllocatedWeightPerFact();
+
   Object.keys(caseDistribution).forEach(fact => {
     Object.keys(courts).forEach(courtName => {
-      if (!weightPerFactPerCourt[fact]) {
-        weightPerFactPerCourt[fact] = {};
-      }
-
-      if (typeof weightPerFactPerCourt[fact][courtName] === 'undefined') {
-        weightPerFactPerCourt[fact][courtName] = 0;
-        if (totalWeightPerFact[fact]) {
-          weightPerFactPerCourt[fact][courtName] = allocationPerFactLeft[fact] * remainingWeightForCourt[courtName] / totalWeightPerFact[fact];
-        } else {
-          weightPerFactPerCourt[fact][courtName] = 0;
-        }
-      }
+      initialiseWeightPerFactPerCourt(fact);
+      distributeRemainingFactsAllocationToCourts(fact, courtName, totalWeightPerFact);
     });
   });
 };

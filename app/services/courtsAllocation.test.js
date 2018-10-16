@@ -81,6 +81,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     tempConfig = cloneDeep(CONF.commonProps);
+    delete require.cache[require.resolve(modulePath)];
   });
 
   afterEach(() => {

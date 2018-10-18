@@ -38,12 +38,6 @@ variable "appinsights_location" {
   default     = "West Europe"
   description = "Location for Application Insights"
 }
-
-variable "appinsights_resource_group" {
-  type        = "string"
-  description = "Resource group for Application Insights"
-}
-
 variable "deployment_env" {
   type = "string"
 }

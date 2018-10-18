@@ -30,6 +30,8 @@ const initialiseWeightPerFactPerCourt = fact => {
 const updateAllocationRemainingForCourt = (fact, courtName) => {
   remainingWeightForCourt[courtName] -= (courts[courtName].divorceFactsRatio[fact] * caseDistribution[fact]);
 
+  // this will fail when the allocation configuration is not validation
+  // it should break the deployment and it is the expected behaviour
   if (remainingWeightForCourt[courtName] < 0) {
     throw new Error(`Total weightage exceeded for court ${courtName}`);
   }
@@ -38,6 +40,8 @@ const updateAllocationRemainingForCourt = (fact, courtName) => {
 const updateAllocationRemainingForFact = (fact, courtName) => {
   allocationPerFactLeft[fact] -= courts[courtName].divorceFactsRatio[fact];
 
+  // this will fail when the allocation configuration is not validation
+  // it should break the deployment and it is the expected behaviour
   if (allocationPerFactLeft[fact] < 0) {
     throw new Error(`Total weightage exceeded for fact ${fact}`);
   }

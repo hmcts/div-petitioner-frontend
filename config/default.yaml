@@ -70,7 +70,12 @@ commonProps:
     version: 4
     amount: 550.00
   financialOrderApplicationFee: 255
-  divorceFactsRatio: { "unreasonable-behaviour": 0.30, "separation-2-years": 0.37, "separation-5-years": 0.21, "adultery": 0.11, "desertion": 0.01}
+  divorceFactsRatio: 
+    adultery: 0.30
+    desertion: 0.37
+    separation-2-years: 0.21
+    separation-5-years: 0.11
+    unreasonable-behaviour: 0.01
   court:
     eastMidlands:
       divorceCentre: 'East Midlands'

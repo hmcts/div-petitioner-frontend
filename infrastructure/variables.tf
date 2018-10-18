@@ -33,6 +33,12 @@ variable "appinsights_instrumentation_key" {
   default     = ""
 }
 
+variable "appinsights_location" {
+  type        = "string"
+  default     = "West Europe"
+  description = "Location for Application Insights"
+}
+
 variable "deployment_env" {
   type = "string"
 }
@@ -406,3 +412,8 @@ variable "court_northwest_court_weight" {
 variable "common_tags" {
   type = "map"
 }
+
+variable "dev_support_notification_email" {
+  default = "divorcesupportgroup@hmcts.net"
+}
+

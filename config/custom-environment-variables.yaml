@@ -45,6 +45,7 @@ evidenceManagmentClient:
   uploadEndpoint: EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT
 
 commonProps:
+  divorceFactsRatio: DIVORCE_FACT_RATIO
   court:
     eastMidlands:
       divorceCentre: COURT_EASTMIDLANDS_NAME
@@ -56,6 +57,7 @@ commonProps:
       phoneNumber: COURT_EASTMIDLANDS_PHONENUMBER
       siteId: COURT_EASTMIDLANDS_SITEID
       weight: COURT_EASTMIDLANDS_WEIGHT
+      divorceFactsRatio: COURT_EASTMIDLANDS_DIVORCE_FACT_RATIO
     westMidlands:
       divorceCentre: COURT_WESTMIDLANDS_NAME
       courtCity: COURT_WESTMIDLANDS_CITY
@@ -66,6 +68,7 @@ commonProps:
       phoneNumber: COURT_WESTMIDLANDS_PHONENUMBER
       siteId: COURT_WESTMIDLANDS_SITEID
       weight: COURT_WESTMIDLANDS_WEIGHT
+      divorceFactsRatio: COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO
     southWest:
       divorceCentre: COURT_SOUTHWEST_NAME
       courtCity: COURT_SOUTHWEST_CITY
@@ -76,6 +79,7 @@ commonProps:
       phoneNumber: COURT_SOUTHWEST_PHONENUMBER
       siteId: COURT_SOUTHWEST_SITEID
       weight: COURT_SOUTHWEST_WEIGHT
+      divorceFactsRatio: COURT_SOUTHWEST_DIVORCE_FACT_RATIO
     northWest:
       divorceCentre: COURT_NORTHWEST_NAME
       divorceCentreAddressName: COURT_NORTHWEST_ADDRESSNAME
@@ -87,6 +91,7 @@ commonProps:
       phoneNumber: COURT_NORTHWEST_PHONENUMBER
       siteId: COURT_NORTHWEST_SITEID
       weight: COURT_NORTHWEST_WEIGHT
+      divorceFactsRatio:: COURT_NORTHWEST_DIVORCE_FACT_RATIO
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
   smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
   courtPhoneNumber: COURT_PHONENUMBER

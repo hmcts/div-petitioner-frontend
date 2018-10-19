@@ -70,6 +70,12 @@ commonProps:
     version: 4
     amount: 550.00
   financialOrderApplicationFee: 255
+  divorceFactsRatio: 
+    adultery: 0.30
+    desertion: 0.37
+    separation-2-years: 0.21
+    separation-5-years: 0.11
+    unreasonable-behaviour: 0.01
   court:
     eastMidlands:
       divorceCentre: 'East Midlands'
@@ -81,6 +87,7 @@ commonProps:
       phoneNumber: '0000 111 2221'
       siteId: '1'
       weight: 0.25
+      divorceFactsRatio:
     westMidlands:
       divorceCentre: 'West Midlands'
       courtCity: 'City-in-West-Midlands'
@@ -91,6 +98,7 @@ commonProps:
       phoneNumber: '0000 111 2222'
       siteId: '2'
       weight: 0.15
+      divorceFactsRatio:
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -101,6 +109,7 @@ commonProps:
       phoneNumber: '0000 111 2223'
       siteId: '3'
       weight: 0.35
+      divorceFactsRatio:
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'
@@ -112,6 +121,7 @@ commonProps:
       phoneNumber: '0000 111 2224'
       siteId: '4'
       weight: 0.25
+      divorceFactsRatio:
   smartSurveyFeedbackUrl: 'http://www.example.com/'
   smartSurveyFeedbackDonePageUrl: 'http://www.example.com/'
   courtPhoneNumber: '0000 111 2220'

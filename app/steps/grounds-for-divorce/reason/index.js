@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { isUndefined } = require('lodash');
+const { isUndefined, pick } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
 
@@ -53,7 +53,6 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     });
   }
 
-
   interceptor(ctx, session) {
     //  no marriage date - display nothing
     //  1 -2 years - adultery, unreasonable behaviour
@@ -72,7 +71,9 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     ctx.reasonForDivorceEnableAdultery = true;
 
     if (isUndefined(marriageDate)) {
-      logger.info('Marriage date is empty ', marriageDate);
+      const attInfoToDisplay = ['marriageDateDay', 'marriageDateMonth', 'marriageDateYear', 'state'];
+      const displayObject = pick(session, attInfoToDisplay);
+      logger.info('Marriage date is empty', session.req, displayObject);
     } else {
       ctx.reasonForDivorceHasMarriageDate = true;
       ctx.reasonForDivorceShowAdultery = true;

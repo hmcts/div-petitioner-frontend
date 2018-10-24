@@ -7,4 +7,4 @@ RUN yarn && yarn setup && yarn cache clean
 
 CMD [ "yarn", "start" ]
 
-EXPOSE 3000
+EXPOSE 8080

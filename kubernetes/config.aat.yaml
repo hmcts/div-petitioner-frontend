@@ -30,7 +30,7 @@ data:
   PAYMENT_REFERENCE_SERVICE_IDENTIFICATION: "DIV1"
   CASE_PROGRESSION_SERVICE_URL: "http://div-cps-aat.service.core-compute-aat.internal/transformationapi/version/1"
   CASE_PROGRESSION_SERVICE_DRAFT_URL: "http://div-cps-aat.service.core-compute-aat.internal/draftsapi/version/1"
-  CASE_PROGRESSION_SERVICdivorce_frontendE_HEALTHCHECK_URL: "http://div-cps-aat.service.core-compute-aat.internal/health"
+  CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL: "http://div-cps-aat.service.core-compute-aat.internal/health"
   SERVICE_AUTH_PROVIDER_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
   SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal/health"
   MICROSERVICE_NAME: "divorce_frontend"

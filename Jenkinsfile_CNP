@@ -45,6 +45,9 @@ withPipeline("nodejs", product, component) {
   }
 
   before('functionalTest:preview') {
+    env.FEATURE_IDAM = 'true'
+    env.IDAM_API_URL = 'https://preprod-idamapi.reform.hmcts.net:3511'
+    env.CASE_PROGRESSION_SERVICE_DRAFT_URL = 'http://div-cps-aat.service.core-compute-aat.internal/draftsapi/version/1'
     env.PREVIEW_ENV = 'true'
   }
 

@@ -56,10 +56,8 @@ const sendFile = (file, options = { token: 'token' }) => {
       .set('enctype', 'multipart/form-data')
       .attach('file', file.path, file.name)
       .end((error, response = { statusCode: null }) => {
-        logger.info('xxxx - about to remove file');
         fileManagment.removeFile(file);
         if (error || response.statusCode !== httpStatus.OK) {
-          logger.info('xxxx - error response');
           const errorToReturn = new Error(error || response.body || defaultEMCErrorMessage);
           errorToReturn.status = response.statusCode;
 

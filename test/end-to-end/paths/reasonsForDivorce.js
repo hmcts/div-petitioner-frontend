@@ -61,6 +61,7 @@ Scenario('2 years separation', (I) => {
   I.enterMarriageDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
+  I.selectRespondentConsentObtained();
   I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.enterLegalProceedings();
 });

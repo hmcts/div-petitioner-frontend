@@ -124,18 +124,23 @@ const createHandler = nameSpace => {
       return validatePostRequest(req, nameSpace)
         .then(fileManagment.saveFileFromRequest)
         .then(file => {
+          logger.info('xxxx - about to send file');
           return evidenceManagmentService.sendFile(file, { token });
         })
         .then(files => {
+          logger.info('xxxx - about to handleResponseFromFileStore');
           return handleResponseFromFileStore(req, res, files, nameSpace);
         })
         .then(files => {
+          logger.info('xxxx - before isJsRequest');
           if (isJsRequest) {
             return res.status(httpStatus.OK).send(files);
           }
           return res.redirect(redirectUrl);
         })
         .catch(error => {
+          logger.info(`xxxx - before isJsRequest: ${error}`);
+          logger.info(error);
           return errorHandler(error, req, res, next);
         });
     default:

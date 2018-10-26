@@ -51,6 +51,8 @@ locals {
   appinsights_name = "${var.env == "preview" ? "${var.product}-${var.reform_service_name}-appinsights-${var.env}" : "${var.product}-${var.env}"}"
 
   appinsights_resource_group = "${var.env == "preview" ? "${var.product}-${var.reform_service_name}-${var.env}" : "${var.product}-${var.env}"}"
+
+  decree_nisi_frontend_url = "${var.decree_nisi_frontend_url == "" ? "https://div-dn-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.decree_nisi_frontend_url}"
 }
 
 module "redis-cache" {
@@ -227,5 +229,7 @@ module "frontend" {
     FEATURE_IDAM                               = "${var.feature_idam}"
     FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
     FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED  = "${var.feature_redirect_to_application_submitted}"
+
+    DECREE_NISI_FRONTEND_URL = "${local.decree_nisi_frontend_url}"
   }
 }

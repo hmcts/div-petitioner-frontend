@@ -192,3 +192,9 @@ saucelabs:
 
 public:
   protocol: 'https'
+
+appRouter:
+  app:
+    dn:
+      url: 'https://localhost:3000'
+      entry: '/entry'

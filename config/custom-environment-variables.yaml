@@ -150,3 +150,8 @@ divorceHttpProxy: DIVORCE_HTTP_PROXY
 public:
   protocol: PUBLIC_PROTOCOL
   hostname: PUBLIC_HOSTNAME
+
+appRouter:
+  app:
+    dn:
+      url: DECREE_NISI_FRONTEND_URL

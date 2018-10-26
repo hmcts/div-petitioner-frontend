@@ -17,6 +17,7 @@ const Step = require('app/core/steps/Step');
 const requestHandler = require('app/core/helpers/parseRequest');
 const staleDataManager = require('app/core/helpers/staleDataManager');
 const fs = require('fs');
+const appRouter = require('@hmcts/div-app-router');
 
 const modulePath = 'app/core/steps/ValidationStep';
 const UnderTest = require(modulePath);
@@ -31,6 +32,7 @@ describe(modulePath, () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
       const middleware = [
         idamProtect,
+        appRouter.middleware,
         initSession,
         sessionTimeout,
         restoreFromDraftStore,

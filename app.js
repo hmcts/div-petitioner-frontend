@@ -25,6 +25,9 @@ const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
 
+// Setup Div App Router in cache
+require('@hmcts/div-app-router')(CONF.appRouter);
+
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
 

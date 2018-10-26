@@ -1,0 +1,137 @@
+# The following variables are derived as follows by the pipeline. DO NOT CHANGE:
+#
+#   - NAMESPACE:    product
+#   - SERVICE_NAME: product-component-branch
+#   - IMAGE_NAME:   registry-name/hmcts/product-component:branch
+#
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${NAMESPACE}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${SERVICE_NAME}
+  template:
+    metadata:
+      labels:
+        app: ${SERVICE_NAME}
+    spec:
+      dnsConfig:
+        options:
+        - name: single-request-reopen
+      containers:
+      - image: ${IMAGE_NAME}
+        name: ${SERVICE_NAME}
+        envFrom:
+        - configMapRef:
+            name: ${SERVICE_NAME}-config
+        # These may be adjusted, but be mindful please
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+
+        # This is the port your process is listening on in the container
+        ports:
+        - containerPort: 8080
+          name: http
+        imagePullPolicy: Always
+---
+#
+# Service
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+  labels:
+    app: ${SERVICE_NAME}
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: ${SERVICE_NAME}
+---
+#
+# Ingress
+#
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: ${SERVICE_FQDN}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ${SERVICE_NAME}
+          servicePort: 80
+
+#
+# Redis
+#
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ${SERVICE_NAME}-redis
+  namespace: ${NAMESPACE}
+  labels:
+    app: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: master
+        image: redis:5.0-alpine
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+#
+# Redis binding
+#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${SERVICE_NAME}-redis
+  namespace: ${NAMESPACE}
+  labels:
+    app: redis
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis

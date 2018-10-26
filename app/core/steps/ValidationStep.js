@@ -17,7 +17,7 @@ const fs = require('fs');
 const requestHandler = require('app/core/helpers/parseRequest');
 const walkMap = require('app/core/utils/treeWalker');
 const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
-const appRouter = require('@hmcts/div-app-router');
+const appRouter = require('@hmcts/div-app-router')();
 
 const ajv = new Ajv({ allErrors: true, v5: true });
 

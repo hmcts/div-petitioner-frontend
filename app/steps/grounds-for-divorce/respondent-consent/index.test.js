@@ -48,13 +48,13 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', 'divorceWho', session);
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page when answer is No', done => {
       const context = { reasonForDivorceRespondentConsent: 'No' };
 
       testRedirect(done, agent, underTest, context, s.steps.SeparationDate);
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page when answer is Yes', done => {
       const context = { reasonForDivorceRespondentConsent: 'Yes' };
 
       testRedirect(done, agent, underTest, context, s.steps.SeparationDate);

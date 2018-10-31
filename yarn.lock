@@ -89,6 +89,13 @@
     lodash "^4.17.11"
     pre-commit "^1.2.2"
 
+"@hmcts/div-app-router@https://github.com/hmcts/div-app-router#1.6.0":
+  version "1.6.0"
+  resolved "https://github.com/hmcts/div-app-router#2a85444ea8d8c38bac04d7b94389b44b7a401f94"
+  dependencies:
+    lodash "^4.17.11"
+    pre-commit "^1.2.2"
+
 "@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#3.0.4":
   version "3.0.4"
   resolved "https://github.com/hmcts/div-idam-express-middleware#22c5c3a144038eceafe5562b53a24e5655575432"

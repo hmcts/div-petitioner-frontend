@@ -194,6 +194,8 @@ public:
   protocol: 'https'
 
 appRouter:
+  appName: d8
+  stateVariable: 'session.state'
   app:
     dn:
       url: 'https://localhost:3000'

@@ -4,6 +4,7 @@ const server = require('app');
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const sinon = require('sinon');
 const CONF = require('config');
+const appRouter = require('app/middleware/appRouter');
 
 const modulePath = 'app/steps/start';
 
@@ -18,6 +19,11 @@ describe(modulePath, () => {
         next();
       };
     });
+    sinon.stub(appRouter, 'entryMiddleware').callsFake(() => {
+      return (req, res, next) => {
+        next();
+      };
+    });
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.Start;
@@ -25,6 +31,7 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamExpressMiddleware.authenticate.restore();
+    appRouter.entryMiddleware.restore();
   });
 
   describe('success', () => {

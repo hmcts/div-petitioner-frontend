@@ -19,10 +19,8 @@ describe(modulePath, () => {
         next();
       };
     });
-    sinon.stub(appRouter, 'entryMiddleware').callsFake(() => {
-      return (req, res, next) => {
-        next();
-      };
+    sinon.stub(appRouter, 'entryMiddleware').callsFake((req, res, next) => {
+      next();
     });
     s = server.init();
     agent = request.agent(s.app);

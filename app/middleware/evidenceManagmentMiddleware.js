@@ -136,6 +136,7 @@ const createHandler = nameSpace => {
           return res.redirect(redirectUrl);
         })
         .catch(error => {
+          logger.error(error);
           return errorHandler(error, req, res, next);
         });
     default:

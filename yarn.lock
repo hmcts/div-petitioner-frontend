@@ -82,16 +82,16 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@hmcts/div-app-router@https://github.com/hmcts/div-app-router#1.0.0":
-  version "0.2.0"
-  resolved "https://github.com/hmcts/div-app-router#bb0f0ede9130bf05aa87fa15593afc3d32a616fd"
+"@hmcts/div-app-router@https://github.com/hmcts/div-app-router#1.6.0":
+  version "1.6.0"
+  resolved "https://github.com/hmcts/div-app-router#2a85444ea8d8c38bac04d7b94389b44b7a401f94"
   dependencies:
     lodash "^4.17.11"
     pre-commit "^1.2.2"
 
-"@hmcts/div-app-router@https://github.com/hmcts/div-app-router#1.6.0":
-  version "1.6.0"
-  resolved "https://github.com/hmcts/div-app-router#2a85444ea8d8c38bac04d7b94389b44b7a401f94"
+"@hmcts/div-app-router@https://github.com/hmcts/div-app-router#1.6.1":
+  version "1.6.1"
+  resolved "https://github.com/hmcts/div-app-router#6ccdd3fc64980857b965fdf3f70d6a98fd46c92b"
   dependencies:
     lodash "^4.17.11"
     pre-commit "^1.2.2"

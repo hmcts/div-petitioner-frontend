@@ -9,9 +9,9 @@
     <p class="text">{{ content.info1 | safe}}</p>
     <p class="text">{{ content.info2 | safe}}</p>
 
-    <h3 class="heading-medium">
+    <h2 class="heading-medium">
         {{ content.question1.text | safe }}
-    </h3>
+    </h2>
 
     {{ date(
         dayField = fields.reasonForDivorceDecisionDay,
@@ -26,9 +26,9 @@
         hiddenLegend = content.question1.text
     ) }}
 
-    <h3 class="heading-medium">
+    <h2 class="heading-medium">
         {{ content.question2.text | safe }}
-    </h3>
+    </h2>
 
     <p class="text">{{ content.question2.info | safe}}</p>
 

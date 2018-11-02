@@ -50,85 +50,158 @@ describe(modulePath, () => {
     it('renders errors for missing required context', done => {
       const context = {};
 
-      const onlyKeys = ['reasonForDivorceSeperationDate'];
+      const onlyKeys = ['reasonForDivorceDecisionDate', 'reasonForDivorceLivingDate'];
 
       testErrors(done, agent, underTest, context,
         content, 'required', onlyKeys, session);
     });
 
-    it('renders error for missing day', done => {
+    it('renders error for missing day decision date', done => {
       const context = {
-        reasonForDivorceSeperationDay: '',
-        reasonForDivorceSeperationMonth: '2',
-        reasonForDivorceSeperationYear: '2000'
+        reasonForDivorceDecisionDay: '',
+        reasonForDivorceDecisionMonth: '2',
+        reasonForDivorceDecisionYear: '2000'
       };
 
       testErrors(done, agent, underTest, context, content, 'day.required');
     });
 
-    it('renders error for missing month', done => {
+    it('renders error for missing month decision date', done => {
       const context = {
-        reasonForDivorceSeperationDay: '1',
-        reasonForDivorceSeperationMonth: '',
-        reasonForDivorceSeperationYear: '2000'
+        reasonForDivorceDecisionDay: '1',
+        reasonForDivorceDecisionMonth: '',
+        reasonForDivorceDecisionYear: '2000'
       };
 
       testErrors(done, agent, underTest, context, content, 'month.required');
     });
 
-    it('renders error for missing year', done => {
+    it('renders error for missing year decision date', done => {
       const context = {
-        reasonForDivorceSeperationDay: '1',
-        reasonForDivorceSeperationMonth: '2',
-        reasonForDivorceSeperationYear: ''
+        reasonForDivorceDecisionDay: '1',
+        reasonForDivorceDecisionMonth: '2',
+        reasonForDivorceDecisionYear: ''
       };
 
       testErrors(done, agent, underTest, context, content, 'year.required');
     });
 
-    it('renders error for invalid date', done => {
+    it('renders error for invalid decision date', done => {
       const context = {
-        reasonForDivorceSeperationDay: '31',
-        reasonForDivorceSeperationMonth: '2',
-        reasonForDivorceSeperationYear: '2013'
+        reasonForDivorceDecisionDay: '31',
+        reasonForDivorceDecisionMonth: '2',
+        reasonForDivorceDecisionYear: '2013'
+      };
+
+      testErrors(done, agent, underTest, context, content, 'reasonForDivorceDecisionDate.invalid');
+    });
+
+    it('renders error for decision date in future', done => {
+      const reasonForDivorceDecisionDateInFuture = moment().add(1, 'years');
+
+      const context = {
+        reasonForDivorceDecisionDay:
+          reasonForDivorceDecisionDateInFuture.date(),
+        reasonForDivorceDecisionMonth:
+          reasonForDivorceDecisionDateInFuture.month() + 1,
+        reasonForDivorceDecisionYear:
+          reasonForDivorceDecisionDateInFuture.year()
       };
 
       testErrors(done, agent, underTest, context,
-        content, 'reasonForDivorceSeperationDate.invalid');
+        content, 'reasonForDivorceDecisionDateInFuture.invalid');
     });
 
-    it('renders error for future date', done => {
-      const reasonForDivorceSeperationDateInFuture = moment().add(1, 'years');
-
-      const context = {
-        reasonForDivorceSeperationDay:
-          reasonForDivorceSeperationDateInFuture.date(),
-        reasonForDivorceSeperationMonth:
-          reasonForDivorceSeperationDateInFuture.month() + 1,
-        reasonForDivorceSeperationYear:
-          reasonForDivorceSeperationDateInFuture.year()
-      };
-
-      testErrors(done, agent, underTest, context,
-        content, 'reasonForDivorceSeperationDateInFuture.invalid');
-    });
-
-    it('renders error for "before marriage date"', done => {
-      const reasonForDivorceSeperationDateBeforeMarriage = moment(
+    it('renders error for decision date "before marriage date"', done => {
+      const reasonForDivorceDecisionDateBeforeMarriage = moment(
         session.marriageDate
       ).subtract(1, 'years');
 
       const context = {
-        reasonForDivorceSeperationDay:
-          reasonForDivorceSeperationDateBeforeMarriage.date(),
-        reasonForDivorceSeperationMonth:
-          reasonForDivorceSeperationDateBeforeMarriage.month(),
-        reasonForDivorceSeperationYear:
-          reasonForDivorceSeperationDateBeforeMarriage.year()
+        reasonForDivorceDecisionDay:
+          reasonForDivorceDecisionDateBeforeMarriage.date(),
+        reasonForDivorceDecisionMonth:
+          reasonForDivorceDecisionDateBeforeMarriage.month(),
+        reasonForDivorceDecisionYear:
+          reasonForDivorceDecisionDateBeforeMarriage.year()
       };
 
       testErrors(done, agent, underTest, context,
-        content, 'reasonForDivorceSeperationDateBeforeMarriageDate.invalid');
+        content, 'reasonForDivorceDecisionDateBeforeMarriageDate.invalid');
+    });
+
+    it('renders error for missing day living apart date', done => {
+      const context = {
+        reasonForDivorceLivingApartDay: '',
+        reasonForDivorceLivingApartMonth: '2',
+        reasonForDivorceLivingApartYear: '2000'
+      };
+
+      testErrors(done, agent, underTest, context, content, 'day.required');
+    });
+
+    it('renders error for missing month living apart date', done => {
+      const context = {
+        reasonForDivorceLivingApartDay: '1',
+        reasonForDivorceLivingApartMonth: '',
+        reasonForDivorceLivingApartYear: '2000'
+      };
+
+      testErrors(done, agent, underTest, context, content, 'month.required');
+    });
+
+    it('renders error for missing year living apart date', done => {
+      const context = {
+        reasonForDivorceLivingApartDay: '1',
+        reasonForDivorceLivingApartMonth: '2',
+        reasonForDivorceLivingApartYear: ''
+      };
+
+      testErrors(done, agent, underTest, context, content, 'year.required');
+    });
+
+    it('renders error for invalid living apart date', done => {
+      const context = {
+        reasonForDivorceDecisionDay: '31',
+        reasonForDivorceDecisionMonth: '2',
+        reasonForDivorceDecisionYear: '2013'
+      };
+
+      testErrors(done, agent, underTest, context, content, 'reasonForDivorceLivingApartDate.invalid');
+    });
+
+    it('renders error for living apart date in future', done => {
+      const reasonForDivorceLivingApartDateInFuture = moment().add(1, 'years');
+
+      const context = {
+        reasonForDivorceLivingApartDay:
+          reasonForDivorceLivingApartDateInFuture.date(),
+        reasonForDivorceLivingApartMonth:
+          reasonForDivorceLivingApartDateInFuture.month() + 1,
+        reasonForDivorceLivingApartYear:
+          reasonForDivorceLivingApartDateInFuture.year()
+      };
+
+      testErrors(done, agent, underTest, context,
+        content, 'reasonForDivorceLivingApartDateInFuture.invalid');
+    });
+
+    it('renders error for living apart date "before marriage date"', done => {
+      const reasonForDivorceLivingApartDateBeforeMarriage = moment(
+        session.marriageDate
+      ).subtract(1, 'years');
+
+      const context = {
+        reasonForDivorceLivingApartDay:
+          reasonForDivorceLivingApartDateBeforeMarriage.date(),
+        reasonForDivorceLivingApartMonth:
+          reasonForDivorceLivingApartDateBeforeMarriage.month(),
+        reasonForDivorceLivingApartYear:
+          reasonForDivorceLivingApartDateBeforeMarriage.year()
+      };
+
+      testErrors(done, agent, underTest, context,
+        content, 'reasonForDivorceLivingApartDateBeforeMarriageDate.invalid');
     });
   });
 
@@ -145,29 +218,68 @@ describe(modulePath, () => {
       withSession(done, agent, session);
     });
 
-    it('redirects to the next page when separation date is before 2 years ago', done => {
+    it('redirects to the next page when decision and living apart dates are both before 2 years ago', done => {
       const context = {
-        reasonForDivorceSeperationDay: '01',
-        reasonForDivorceSeperationMonth: '01',
-        reasonForDivorceSeperationYear: '2015'
+        reasonForDivorceDecisionDay: '01',
+        reasonForDivorceDecisionMonth: '01',
+        reasonForDivorceDecisionYear: '2015',
+        reasonForDivorceLivingApartDay: '01',
+        reasonForDivorceLivingApartMonth: '01',
+        reasonForDivorceLivingApartYear: '2015'
       };
+
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
     });
 
-    it('redirects to the exit page when separation date is after 2 years ago', done => {
+    it('redirects to the next page when decision and living apart dates are both after 2 years ago', done => {
       const date1YearAgo = moment().subtract(1, 'years');
 
       const context = {
-        reasonForDivorceSeperationDay: date1YearAgo.date(),
-        reasonForDivorceSeperationMonth: date1YearAgo.month() + 1,
-        reasonForDivorceSeperationYear: date1YearAgo.year()
+        reasonForDivorceDecisionDay: date1YearAgo.date(),
+        reasonForDivorceDecisionMonth: date1YearAgo.month() + 1,
+        reasonForDivorceDecisionYear: date1YearAgo.year(),
+        reasonForDivorceLivingApartDay: date1YearAgo.date(),
+        reasonForDivorceLivingApartMonth: date1YearAgo.month() + 1,
+        reasonForDivorceLivingApartYear: date1YearAgo.year()
       };
+
+      testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
+    });
+
+    it('redirects to the next page when decision date is after 2 years ago', done => {
+      const date1YearAgo = moment().subtract(1, 'years');
+
+      const context = {
+        reasonForDivorceDecisionDay: date1YearAgo.date(),
+        reasonForDivorceDecisionMonth: date1YearAgo.month() + 1,
+        reasonForDivorceDecisionYear: date1YearAgo.year(),
+        reasonForDivorceLivingApartDay: '01',
+        reasonForDivorceLivingApartMonth: '01',
+        reasonForDivorceLivingApartYear: '2015'
+      };
+
+      testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
+    });
+
+    it('redirects to the next page when living apart date is after 2 years ago', done => {
+      const date1YearAgo = moment().subtract(1, 'years');
+
+      const context = {
+        reasonForDivorceDecisionDay: '01',
+        reasonForDivorceDecisionMonth: '01',
+        reasonForDivorceDecisionYear: '2015',
+        reasonForDivorceLivingApartDay: date1YearAgo.date(),
+        reasonForDivorceLivingApartMonth: date1YearAgo.month() + 1,
+        reasonForDivorceLivingApartYear: date1YearAgo.year()
+      };
+
       testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
     });
   });
 
   describe('success (separation-5-years)', () => {
     let session = {};
+    const FOUR_YEARS = 4;
 
     beforeEach(done => {
       session = {
@@ -178,165 +290,184 @@ describe(modulePath, () => {
       withSession(done, agent, session);
     });
 
-    it('redirects to the next page when separation date is before 5 years ago', done => {
+    it('redirects to the next page when decision and living apart dates are both before 5 years ago', done => {
       const context = {
-        reasonForDivorceSeperationDay: '01',
-        reasonForDivorceSeperationMonth: '01',
-        reasonForDivorceSeperationYear: '2010'
+        reasonForDivorceDecisionDay: '01',
+        reasonForDivorceDecisionMonth: '01',
+        reasonForDivorceDecisionYear: '2013',
+        reasonForDivorceLivingApartDay: '01',
+        reasonForDivorceLivingApartMonth: '01',
+        reasonForDivorceLivingApartYear: '2013'
       };
+
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
     });
 
-    it('redirects to the exit page when separation date is after 5 years ago', done => {
-      const FOUR_YEARS = 4;
-      const date1YearAgo = moment().subtract(FOUR_YEARS, 'years');
+    it('redirects to the next page when decision and living apart dates are both after 5 years ago', done => {
+      const date4YearAgo = moment().subtract(FOUR_YEARS, 'years');
 
       const context = {
-        reasonForDivorceSeperationDay: date1YearAgo.date(),
-        reasonForDivorceSeperationMonth: date1YearAgo.month() + 1,
-        reasonForDivorceSeperationYear: date1YearAgo.year()
+        reasonForDivorceDecisionDay: date4YearAgo.date(),
+        reasonForDivorceDecisionMonth: date4YearAgo.month() + 1,
+        reasonForDivorceDecisionYear: date4YearAgo.year(),
+        reasonForDivorceLivingApartDay: date4YearAgo.date(),
+        reasonForDivorceLivingApartMonth: date4YearAgo.month() + 1,
+        reasonForDivorceLivingApartYear: date4YearAgo.year()
       };
+
+      testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
+    });
+
+    it('redirects to the next page when decision date is after 5 years ago', done => {
+      const date4YearAgo = moment().subtract(FOUR_YEARS, 'years');
+
+      const context = {
+        reasonForDivorceDecisionDay: date4YearAgo.date(),
+        reasonForDivorceDecisionMonth: date4YearAgo.month() + 1,
+        reasonForDivorceDecisionYear: date4YearAgo.year(),
+        reasonForDivorceLivingApartDay: '01',
+        reasonForDivorceLivingApartMonth: '01',
+        reasonForDivorceLivingApartYear: '2015'
+      };
+
+      testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
+    });
+
+    it('redirects to the next page when living apart date is after 5 years ago', done => {
+      const date4YearAgo = moment().subtract(FOUR_YEARS, 'years');
+
+      const context = {
+        reasonForDivorceDecisionDay: '01',
+        reasonForDivorceDecisionMonth: '01',
+        reasonForDivorceDecisionYear: '2015',
+        reasonForDivorceLivingApartDay: date4YearAgo.date(),
+        reasonForDivorceLivingApartMonth: date4YearAgo.month() + 1,
+        reasonForDivorceLivingApartYear: date4YearAgo.year()
+      };
+
       testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
     });
   });
 
   describe('Watched session values', () => {
-    it('removes context if reasonForDivorce is not seperation-2-years', () => {
-      const previousSession = {
-        reasonForDivorce: 'seperation-2-years',
-        reasonForDivorceSeperationDay: '1',
-        reasonForDivorceSeperationMonth: '1',
-        reasonForDivorceSeperationYear: '2010',
-        reasonForDivorceSeperationDate: 'date',
-        reasonForDivorceSeperationDateIsSameOrAfterLimitDate: true,
-        reasonForDivorceSeperationDateInFuture: true,
-        reasonForDivorceSeperationDateBeforeMarriageDate: true
-      };
+    const expectSeparationDateFieldsToBeRemoved = newSession => {
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationDay');
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationMonth');
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationYear');
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationDate');
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationDateIsSameOrAfterLimitDate');
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationDateInFuture');
+      expect(newSession).not.to.have.property('reasonForDivorceSeperationDateBeforeMarriageDate');
+    };
+
+    const expectPropertyToExist = (newSession, shouldExists, propertyName) => {
+      if (shouldExists) {
+        expect(newSession)
+          .to.have.property(propertyName, newSession[propertyName]);
+      } else {
+        expect(newSession)
+          .not.to.have.property(propertyName);
+      }
+    };
+
+    const expectDecisionDateFieldsToBe = (newSession, removed) => {
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionDay');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionMonth');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionYear');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionDate');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionDateIsSameOrAfterLimitDate');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionDateInFuture');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceDecisionDateBeforeMarriageDate');
+    };
+
+    const expectLivingApartDateFieldsToBe = (newSession, removed) => {
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartDay');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartMonth');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartYear');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartDate');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartDateInFuture');
+      expectPropertyToExist(newSession, !removed, 'reasonForDivorceLivingApartDateBeforeMarriageDate');
+    };
+
+    const baseSession = {
+      reasonForDivorceSeperationDay: '1',
+      reasonForDivorceSeperationMonth: '1',
+      reasonForDivorceSeperationYear: '2010',
+      reasonForDivorceSeperationDate: 'date',
+      reasonForDivorceSeperationDateIsSameOrAfterLimitDate: true,
+      reasonForDivorceSeperationDateInFuture: true,
+      reasonForDivorceSeperationDateBeforeMarriageDate: true,
+      reasonForDivorceDecisionDay: '1',
+      reasonForDivorceDecisionMonth: '1',
+      reasonForDivorceDecisionYear: '2010',
+      reasonForDivorceDecisionDate: 'date',
+      reasonForDivorceDecisionDateIsSameOrAfterLimitDate: true,
+      reasonForDivorceDecisionDateInFuture: true,
+      reasonForDivorceDecisionDateBeforeMarriageDate: true,
+      reasonForDivorceLivingApartDay: '1',
+      reasonForDivorceLivingApartMonth: '1',
+      reasonForDivorceLivingApartYear: '2010',
+      reasonForDivorceLivingApartDate: 'date',
+      reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: true,
+      reasonForDivorceLivingApartDateInFuture: true,
+      reasonForDivorceLivingApartDateBeforeMarriageDate: true
+    };
+
+    it('removes context if reasonForDivorce is not separation-2-years', () => {
+      const previousSession = clone(baseSession);
+      previousSession.reasonForDivorce = 'separation-2-years';
 
       const session = clone(previousSession);
       session.reasonForDivorce = 'adultery';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.reasonForDivorceSeperationDay)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationMonth)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationYear)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDate)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDateIsSameOrAfterLimitDate) // eslint-disable-line max-len
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDateInFuture)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDateBeforeMarriageDate)
-        .to.equal('undefined');
+
+      expectSeparationDateFieldsToBeRemoved(newSession);
+      expectDecisionDateFieldsToBe(newSession, true);
+      expectLivingApartDateFieldsToBe(newSession, true);
     });
 
-    it('removes context if reasonForDivorce is not seperation-5-years', () => {
-      const previousSession = {
-        reasonForDivorce: 'seperation-5-years',
-        reasonForDivorceSeperationDay: '1',
-        reasonForDivorceSeperationMonth: '1',
-        reasonForDivorceSeperationYear: '2010',
-        reasonForDivorceSeperationDate: 'date',
-        reasonForDivorceSeperationDateIsSameOrAfterLimitDate: true,
-        reasonForDivorceSeperationDateInFuture: true,
-        reasonForDivorceSeperationDateBeforeMarriageDate: true
-      };
+    it('removes context if reasonForDivorce is not separation-5-years', () => {
+      const previousSession = clone(baseSession);
+      previousSession.reasonForDivorce = 'separation-5-years';
 
       const session = clone(previousSession);
       session.reasonForDivorce = 'adultery';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.reasonForDivorceSeperationDay)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationMonth)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationYear)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDate)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDateIsSameOrAfterLimitDate) // eslint-disable-line max-len
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDateInFuture)
-        .to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceSeperationDateBeforeMarriageDate)
-        .to.equal('undefined');
+
+      expectSeparationDateFieldsToBeRemoved(newSession);
+      expectDecisionDateFieldsToBe(newSession, true);
+      expectLivingApartDateFieldsToBe(newSession, true);
     });
 
-    it('does not remove context if reasonForDivorce is set to seperation-2-years', () => {
-      const previousSession = {
-        reasonForDivorce: 'seperation-5-years',
-        reasonForDivorceSeperationDay: '1',
-        reasonForDivorceSeperationMonth: '1',
-        reasonForDivorceSeperationYear: '2010',
-        reasonForDivorceSeperationDate: 'date',
-        reasonForDivorceSeperationDateIsSameOrAfterLimitDate: true,
-        reasonForDivorceSeperationDateInFuture: true,
-        reasonForDivorceSeperationDateBeforeMarriageDate: true
-      };
+    it('does not remove context if reasonForDivorce is set to separation-2-years', () => {
+      const previousSession = clone(baseSession);
+      previousSession.reasonForDivorce = 'separation-5-years';
 
       const session = clone(previousSession);
       session.reasonForDivorce = 'separation-2-years';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorce).to.equal('separation-2-years');
-      expect(newSession.reasonForDivorceSeperationDay)
-        .to.equal(previousSession.reasonForDivorceSeperationDay);
-      expect(newSession.reasonForDivorceSeperationMonth)
-        .to.equal(previousSession.reasonForDivorceSeperationMonth);
-      expect(newSession.reasonForDivorceSeperationYear)
-        .to.equal(previousSession.reasonForDivorceSeperationYear);
-      expect(newSession.reasonForDivorceSeperationDate)
-        .to.equal(previousSession.reasonForDivorceSeperationDate);
-      expect(newSession.reasonForDivorceSeperationDateIsSameOrAfterLimitDate)
-        .to.equal(
-          previousSession.reasonForDivorceSeperationDateIsSameOrAfterLimitDate
-        );
-      expect(newSession.reasonForDivorceSeperationDateInFuture)
-        .to.equal(previousSession.reasonForDivorceSeperationDateInFuture);
-      expect(newSession.reasonForDivorceSeperationDateBeforeMarriageDate)
-        .to.equal(
-          previousSession.reasonForDivorceSeperationDateBeforeMarriageDate
-        );
+
+      expectSeparationDateFieldsToBeRemoved(newSession);
+      expectDecisionDateFieldsToBe(newSession, false);
+      expectLivingApartDateFieldsToBe(newSession, false);
     });
 
-    it('does not remove context if reasonForDivorce is set to seperation-5-years', () => {
-      const previousSession = {
-        reasonForDivorce: 'seperation-2-years',
-        reasonForDivorceSeperationDay: '1',
-        reasonForDivorceSeperationMonth: '1',
-        reasonForDivorceSeperationYear: '2010',
-        reasonForDivorceSeperationDate: 'date',
-        reasonForDivorceSeperationDateIsSameOrAfterLimitDate: true,
-        reasonForDivorceSeperationDateInFuture: true,
-        reasonForDivorceSeperationDateBeforeMarriageDate: true
-      };
+    it('does not remove context if reasonForDivorce is set to separation-5-years', () => {
+      const previousSession = clone(baseSession);
+      previousSession.reasonForDivorce = 'separation-2-years';
 
       const session = clone(previousSession);
       session.reasonForDivorce = 'separation-5-years';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorce).to.equal('separation-5-years');
-      expect(newSession.reasonForDivorceSeperationDay)
-        .to.equal(previousSession.reasonForDivorceSeperationDay);
-      expect(newSession.reasonForDivorceSeperationMonth)
-        .to.equal(previousSession.reasonForDivorceSeperationMonth);
-      expect(newSession.reasonForDivorceSeperationYear)
-        .to.equal(previousSession.reasonForDivorceSeperationYear);
-      expect(newSession.reasonForDivorceSeperationDate)
-        .to.equal(previousSession.reasonForDivorceSeperationDate);
-      expect(newSession.reasonForDivorceSeperationDateIsSameOrAfterLimitDate)
-        .to.equal(
-          previousSession.reasonForDivorceSeperationDateIsSameOrAfterLimitDate
-        );
-      expect(newSession.reasonForDivorceSeperationDateInFuture)
-        .to.equal(previousSession.reasonForDivorceSeperationDateInFuture);
-      expect(newSession.reasonForDivorceSeperationDateBeforeMarriageDate)
-        .to.equal(
-          previousSession.reasonForDivorceSeperationDateBeforeMarriageDate
-        );
+
+      expectSeparationDateFieldsToBeRemoved(newSession);
+      expectDecisionDateFieldsToBe(newSession, false);
+      expectLivingApartDateFieldsToBe(newSession, false);
     });
   });
 
@@ -345,16 +476,20 @@ describe(modulePath, () => {
       testCYATemplate(done, underTest);
     });
 
-    it('renders reason for divorce seperation date', done => {
-      const contentToExist = ['question'];
+    it('renders reason for divorce separation dates', done => {
+      const contentToExist = ['question1.text', 'question2.text'];
 
-      const valuesToExist = ['reasonForDivorceSeperationDate'];
+      const valuesToExist = ['reasonForDivorceDecisionDate', 'reasonForDivorceLivingApartDate'];
 
       const context = {
-        reasonForDivorceSeperationDay: '10',
-        reasonForDivorceSeperationMonth: '10',
-        reasonForDivorceSeperationYear: '2010',
-        reasonForDivorceSeperationDate: '10th October 2010'
+        reasonForDivorceDecisionDay: '10',
+        reasonForDivorceDecisionMonth: '10',
+        reasonForDivorceDecisionYear: '2010',
+        reasonForDivorceDecisionDate: '10th October 2010',
+        reasonForDivorceLivingApartDay: '11',
+        reasonForDivorceLivingApartMonth: '11',
+        reasonForDivorceLivingApartYear: '2011',
+        reasonForDivorceLivingApartDate: '11th November 2011'
       };
 
       testExistenceCYA(done, underTest, content,

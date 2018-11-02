@@ -7,6 +7,7 @@ const { watch } = require('app/core/helpers/staleDataManager');
 
 const DATE_FORMAT = CONF.dateFormat;
 
+const ONE_DAY = 1;
 const TWO_YEARS = 2;
 const FIVE_YEARS = 5;
 
@@ -16,9 +17,14 @@ module.exports = class SeparationDate extends ValidationStep {
   }
   get nextStep() {
     return {
-      reasonForDivorceSeperationDateIsSameOrAfterLimitDate: {
+      reasonForDivorceDecisionDateIsSameOrAfterLimitDate: {
         true: this.steps.ExitSeparation,
-        false: this.steps.LegalProceedings
+        false: {
+          reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: {
+            true: this.steps.ExitSeparation,
+            false: this.steps.LegalProceedings
+          }
+        }
       }
     };
   }
@@ -27,66 +33,144 @@ module.exports = class SeparationDate extends ValidationStep {
     super(...args);
 
     watch('reasonForDivorce', (previousSession, session, remove) => {
+      remove(
+        'reasonForDivorceSeperationDay',
+        'reasonForDivorceSeperationMonth',
+        'reasonForDivorceSeperationYear',
+        'reasonForDivorceSeperationDate',
+        'reasonForDivorceSeperationDateIsSameOrAfterLimitDate',
+        'reasonForDivorceSeperationDateInFuture',
+        'reasonForDivorceSeperationDateBeforeMarriageDate'
+      );
+
       if (session.reasonForDivorce !== 'separation-2-years' && session.reasonForDivorce !== 'separation-5-years') {
         remove(
-          'reasonForDivorceSeperationDay',
-          'reasonForDivorceSeperationMonth',
-          'reasonForDivorceSeperationYear',
-          'reasonForDivorceSeperationDate',
-          'reasonForDivorceSeperationDateIsSameOrAfterLimitDate',
-          'reasonForDivorceSeperationDateInFuture',
-          'reasonForDivorceSeperationDateBeforeMarriageDate'
+          'reasonForDivorceDecisionDay',
+          'reasonForDivorceDecisionMonth',
+          'reasonForDivorceDecisionYear',
+          'reasonForDivorceDecisionDate',
+          'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
+          'reasonForDivorceDecisionDateInFuture',
+          'reasonForDivorceDecisionDateBeforeMarriageDate',
+          'reasonForDivorceLivingApartDay',
+          'reasonForDivorceLivingApartMonth',
+          'reasonForDivorceLivingApartYear',
+          'reasonForDivorceLivingApartDate',
+          'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate',
+          'reasonForDivorceLivingApartDateInFuture',
+          'reasonForDivorceLivingApartDateBeforeMarriageDate'
         );
       }
     });
   }
 
   interceptor(ctx, session) {
-    if (utils.dateEmpty(ctx.reasonForDivorceSeperationDay, ctx.reasonForDivorceSeperationMonth, ctx.reasonForDivorceSeperationYear)) {
-      delete ctx.reasonForDivorceSeperationDate;
-      ctx.reasonForDivorceSeperationDateIsSameOrAfterLimitDate = false;
-      ctx.reasonForDivorceSeperationDateInFuture = false;
-      ctx.reasonForDivorceSeperationDateBeforeMarriageDate = false;
-      return ctx;
+    this.validateDecisionDate(ctx, session);
+    this.validateLivingApartDate(ctx, session);
+    return ctx;
+  }
+
+  validateDecisionDate(ctx, session) {
+    if (utils.dateEmpty(ctx.reasonForDivorceDecisionDay, ctx.reasonForDivorceDecisionMonth, ctx.reasonForDivorceDecisionYear)) {
+      delete ctx.reasonForDivorceDecisionDate;
+      ctx.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = false;
+      ctx.reasonForDivorceDecisionDateInFuture = false;
+      ctx.reasonForDivorceDecisionDateBeforeMarriageDate = false;
+      return;
     }
 
-    if (utils.partialDate(ctx.reasonForDivorceSeperationDay, ctx.reasonForDivorceSeperationMonth, ctx.reasonForDivorceSeperationYear)) {
-      ctx.reasonForDivorceSeperationDate = moment().toISOString();
-      ctx.reasonForDivorceSeperationDateIsSameOrAfterLimitDate = false;
-      ctx.reasonForDivorceSeperationDateInFuture = false;
-      ctx.reasonForDivorceSeperationDateBeforeMarriageDate = false;
-      return ctx;
+    if (utils.partialDate(ctx.reasonForDivorceDecisionDay, ctx.reasonForDivorceDecisionMonth, ctx.reasonForDivorceDecisionYear)) {
+      ctx.reasonForDivorceDecisionDate = moment().toISOString();
+      ctx.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = false;
+      ctx.reasonForDivorceDecisionDateInFuture = false;
+      ctx.reasonForDivorceDecisionDateBeforeMarriageDate = false;
+      return;
     }
 
-    const separationDate = moment(`${ctx.reasonForDivorceSeperationDay}/${ctx.reasonForDivorceSeperationMonth}/${ctx.reasonForDivorceSeperationYear}`, DATE_FORMAT);
-    ctx.reasonForDivorceSeperationDate = separationDate.toISOString();
+    const separationDate = this.getDecisionDate(ctx);
+    ctx.reasonForDivorceDecisionDate = separationDate.toISOString();
 
-    const reasonForDivorce = session.reasonForDivorce;
-    if (reasonForDivorce === 'separation-2-years') {
-      ctx.reasonForDivorceSeperationDateIsSameOrAfterLimitDate = separationDate.isSameOrAfter( // eslint-disable-line max-len
-        moment().subtract(TWO_YEARS, 'years')
-          .subtract(1, 'days')
-      );
-    } else if (reasonForDivorce === 'separation-5-years') {
-      ctx.reasonForDivorceSeperationDateIsSameOrAfterLimitDate = separationDate.isSameOrAfter( // eslint-disable-line max-len
-        moment().subtract(FIVE_YEARS, 'years')
-          .subtract(1, 'days')
-      );
-    }
+    ctx.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = this.isSameOrAfterLimitDate( // eslint-disable-line max-len
+      separationDate,
+      session.reasonForDivorce
+    );
 
-    ctx.reasonForDivorceSeperationDateInFuture = separationDate.isAfter(
+    ctx.reasonForDivorceDecisionDateInFuture = separationDate.isAfter(
       moment()
     );
 
-    if (session.marriageDate) {
-      ctx.reasonForDivorceSeperationDateBeforeMarriageDate = separationDate.isBefore( // eslint-disable-line max-len
-        moment(session.marriageDate)
-      );
-    } else {
-      ctx.reasonForDivorceSeperationDateBeforeMarriageDate = false;
+    ctx.reasonForDivorceDecisionDateBeforeMarriageDate = this.isBeforeMarriageDate( // eslint-disable-line max-len
+      session.marriageDate,
+      separationDate
+    );
+  }
+
+  validateLivingApartDate(ctx, session) {
+    if (utils.dateEmpty(ctx.reasonForDivorceLivingApartDay,
+      ctx.reasonForDivorceLivingApartMonth,
+      ctx.reasonForDivorceLivingApartYear)) {
+      delete ctx.reasonForDivorceLivingApartDate;
+      ctx.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = false;
+      ctx.reasonForDivorceLivingApartDateInFuture = false;
+      ctx.reasonForDivorceLivingApartDateBeforeMarriageDate = false;
+      return;
     }
 
-    return ctx;
+    if (utils.partialDate(ctx.reasonForDivorceLivingApartDay, ctx.reasonForDivorceLivingApartMonth, ctx.reasonForDivorceLivingApartYear)) {
+      ctx.reasonForDivorceLivingApartDate = moment().toISOString();
+      ctx.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = false;
+      ctx.reasonForDivorceLivingApartDateInFuture = false;
+      ctx.reasonForDivorceLivingApartDateBeforeMarriageDate = false;
+      return;
+    }
+
+    const separationDate = this.getLivingApartDate(ctx);
+    ctx.reasonForDivorceLivingApartDate = separationDate.toISOString();
+
+    ctx.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = this.isSameOrAfterLimitDate( // eslint-disable-line max-len
+      separationDate,
+      session.reasonForDivorce
+    );
+
+    ctx.reasonForDivorceLivingApartDateInFuture = separationDate.isAfter(
+      moment()
+    );
+
+    ctx.reasonForDivorceLivingApartDateBeforeMarriageDate = this.isBeforeMarriageDate( // eslint-disable-line max-len
+      session.marriageDate,
+      separationDate
+    );
+  }
+
+  isSameOrAfterLimitDate(separationDate, reasonForDivorce) {
+    if (reasonForDivorce === 'separation-2-years') {
+      return separationDate.isSameOrAfter(
+        moment().subtract(TWO_YEARS, 'years')
+          .subtract(ONE_DAY, 'days')
+      );
+    } else if (reasonForDivorce === 'separation-5-years') {
+      return separationDate.isSameOrAfter(
+        moment().subtract(FIVE_YEARS, 'years')
+          .subtract(ONE_DAY, 'days')
+      );
+    }
+
+    return false;
+  }
+
+  isBeforeMarriageDate(marriageDate, separationDate) {
+    if (marriageDate) {
+      return separationDate.isBefore(moment(marriageDate));
+    }
+    return false;
+  }
+
+  getDecisionDate(ctx) {
+    return moment(`${ctx.reasonForDivorceDecisionDay}/${ctx.reasonForDivorceDecisionMonth}/${ctx.reasonForDivorceDecisionYear}`, DATE_FORMAT);
+  }
+
+  getLivingApartDate(ctx) {
+    return moment(`${ctx.reasonForDivorceLivingApartDay}/${ctx.reasonForDivorceLivingApartMonth}/${ctx.reasonForDivorceLivingApartYear}`, DATE_FORMAT);
   }
 
   validate(ctx, session) {
@@ -94,7 +178,7 @@ module.exports = class SeparationDate extends ValidationStep {
 
     if (!isEmpty(errors)) {
       if (some(errors, error => {
-        return error.param === 'reasonForDivorceSeperationDate';
+        return error.param === 'reasonForDivorceDecisionDate' || error.param === 'reasonForDivorceLivingApartDate';
       })) {
         errors = filter(errors, error => {
           return !(/^day|month|year/.test(error.param));
@@ -102,8 +186,11 @@ module.exports = class SeparationDate extends ValidationStep {
       }
 
       errors = map(errors, error => {
-        if (error.param === 'reasonForDivorceSeperationDateInFuture' || error.param === 'reasonForDivorceSeperationDateBeforeMarriageDate') {
-          error.param = 'reasonForDivorceSeperationDate';
+        if (error.param === 'reasonForDivorceDecisionDateInFuture' || error.param === 'reasonForDivorceDecisionDateBeforeMarriageDate') {
+          error.param = 'reasonForDivorceDecisionDate';
+        }
+        if (error.param === 'reasonForDivorceLivingApartDateInFuture' || error.param === 'reasonForDivorceLivingApartDateBeforeMarriageDate') {
+          error.param = 'reasonForDivorceLivingApartDate';
         }
         return error;
       });
@@ -113,23 +200,40 @@ module.exports = class SeparationDate extends ValidationStep {
   }
 
   action(ctx, session) {
-    if (ctx.reasonForDivorceSeperationDateIsSameOrAfterLimitDate) {
-      session.reasonForDivorceSeperationDay = '';
-      session.reasonForDivorceSeperationMonth = '';
-      session.reasonForDivorceSeperationYear = '';
-      session.reasonForDivorceSeperationDate = '';
-      ctx.reasonForDivorceSeperationDay = '';
-      ctx.reasonForDivorceSeperationMonth = '';
-      ctx.reasonForDivorceSeperationYear = '';
-      ctx.reasonForDivorceSeperationDate = '';
+    if (ctx.reasonForDivorceDecisionDateIsSameOrAfterLimitDate) {
+      session.reasonForDivorceDecisionDay = '';
+      session.reasonForDivorceDecisionMonth = '';
+      session.reasonForDivorceDecisionYear = '';
+      session.reasonForDivorceDecisionDate = '';
+      ctx.reasonForDivorceDecisionDay = '';
+      ctx.reasonForDivorceDecisionMonth = '';
+      ctx.reasonForDivorceDecisionYear = '';
+      ctx.reasonForDivorceDecisionDate = '';
+    }
+
+    if (ctx.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate) {
+      session.reasonForDivorceLivingApartDay = '';
+      session.reasonForDivorceLivingApartMonth = '';
+      session.reasonForDivorceLivingApartYear = '';
+      session.reasonForDivorceLivingApartDate = '';
+      ctx.reasonForDivorceLivingApartDay = '';
+      ctx.reasonForDivorceLivingApartMonth = '';
+      ctx.reasonForDivorceLivingApartYear = '';
+      ctx.reasonForDivorceLivingApartDate = '';
     }
 
     return [ctx, session];
   }
 
   checkYourAnswersInterceptor(ctx) {
-    const seperationDate = moment(`${ctx.reasonForDivorceSeperationDay}/${ctx.reasonForDivorceSeperationMonth}/${ctx.reasonForDivorceSeperationYear}`, DATE_FORMAT);
-    ctx.reasonForDivorceSeperationDate = seperationDate.format('Do MMMM YYYY');
+    const cyaDateFormat = 'Do MMMM YYYY';
+
+    const decisionDate = this.getDecisionDate(ctx);
+    ctx.reasonForDivorceDecisionDate = decisionDate.format(cyaDateFormat);
+
+    const livingApartDate = this.getLivingApartDate(ctx);
+    ctx.reasonForDivorceLivingApartDate = livingApartDate.format(cyaDateFormat);
+
     return ctx;
   }
 };

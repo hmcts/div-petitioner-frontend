@@ -3,42 +3,77 @@
     "id": "separation-date",
     "type": "object",
     "properties": {
-        "reasonForDivorceSeperationDay": {
+        "reasonForDivorceDecisionDay": {
             "type": "integer",
             "minimum": 1,
             "maximum": 31
         },
-        "reasonForDivorceSeperationMonth": {
+        "reasonForDivorceDecisionMonth": {
             "type": "integer",
             "minimum": 1,
             "maximum": 12
         },
-        "reasonForDivorceSeperationYear": {
+        "reasonForDivorceDecisionYear": {
             "type": "integer"
         },
-        "reasonForDivorceSeperationDate": {
+        "reasonForDivorceDecisionDate": {
             "type": "string",
             "format": "date-time"
         },
-        "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": {
+        "reasonForDivorceDecisionDateIsSameOrAfterLimitDate": {
             "type": "boolean"
         },
-        "reasonForDivorceSeperationDateInFuture": {
+        "reasonForDivorceDecisionDateInFuture": {
             "type": "boolean",
             "enum": [false]
         },
-        "reasonForDivorceSeperationDateBeforeMarriageDate": {
+        "reasonForDivorceDecisionDateBeforeMarriageDate": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceLivingApartDay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+        },
+        "reasonForDivorceLivingApartMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "reasonForDivorceLivingApartYear": {
+            "type": "integer"
+        },
+        "reasonForDivorceLivingApartDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate": {
+            "type": "boolean"
+        },
+        "reasonForDivorceLivingApartDateInFuture": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceLivingApartDateBeforeMarriageDate": {
             "type": "boolean",
             "enum": [false]
         }
     },
     "required": [
-        "reasonForDivorceSeperationDay",
-        "reasonForDivorceSeperationMonth",
-        "reasonForDivorceSeperationYear",
-        "reasonForDivorceSeperationDate",
-        "reasonForDivorceSeperationDateIsSameOrAfterLimitDate",
-        "reasonForDivorceSeperationDateInFuture",
-        "reasonForDivorceSeperationDateBeforeMarriageDate"
+        "reasonForDivorceDecisionDay",
+        "reasonForDivorceDecisionMonth",
+        "reasonForDivorceDecisionYear",
+        "reasonForDivorceDecisionDate",
+        "reasonForDivorceDecisionDateIsSameOrAfterLimitDate",
+        "reasonForDivorceDecisionDateInFuture",
+        "reasonForDivorceDecisionDateBeforeMarriageDate",
+        "reasonForDivorceLivingApartDay",
+        "reasonForDivorceLivingApartMonth",
+        "reasonForDivorceLivingApartYear",
+        "reasonForDivorceLivingApartDate",
+        "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate",
+        "reasonForDivorceLivingApartDateInFuture",
+        "reasonForDivorceLivingApartDateBeforeMarriageDate"
     ]
 }

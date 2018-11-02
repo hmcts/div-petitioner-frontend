@@ -43,7 +43,9 @@ locals {
   case_orchestration_service_url      = "${var.case_orchestration_service_url == "" ? "http://div-cos-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_orchestration_service_url}"
   evidence_management_client_api_url  = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
   fees_and_payments_url               = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
-  status_health_endpoint              = "/status/health"
+  decree_nisi_frontend_url           = "${var.decree_nisi_frontend_url == "" ? "https://div-dn-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.decree_nisi_frontend_url}"
+
+  status_health_endpoint             = "/status/health"
 
   asp_name = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
   asp_rg   = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
@@ -152,6 +154,9 @@ module "frontend" {
 
     // Draft Store API
     CASE_ORCHESTRATION_SERVICE_DRAFT_URL = "${local.case_orchestration_service_url}${var.draft_store_api_base_path}"
+
+    // Decree Nisi Frontend Url
+    DECREE_NISI_FRONTEND_URL = "${local.decree_nisi_frontend_url}"
 
     // Common Court Content
     SMARTSURVEY_FEEDBACK_URL      = "${var.survey_feedback_url}"

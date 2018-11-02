@@ -4,6 +4,7 @@ const Ajv = require('ajv');
 const Step = require('./Step');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
+const { redirectOnCondition } = require('app/middleware/redirectMiddleware');
 const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const {
   restoreFromDraftStore,
@@ -26,6 +27,7 @@ module.exports = class ValidationStep extends Step {
       idamProtect,
       initSession,
       sessionTimeout,
+      redirectOnCondition,
       restoreFromDraftStore,
       setIdamUserDetails,
       hasSubmitted,

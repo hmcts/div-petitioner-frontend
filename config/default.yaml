@@ -193,3 +193,11 @@ saucelabs:
 
 public:
   protocol: 'https'
+
+apps:
+  dn:
+    url: 'https://localhost:3000'
+
+ccd:
+  d8States:
+    - 'AwaitingPayment'

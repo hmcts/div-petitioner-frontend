@@ -446,3 +446,7 @@ variable "common_tags" {
 variable "dev_support_notification_email" {
   default = "divorcesupportgroup@hmcts.net"
 }
+
+variable "decree_nisi_frontend_url" {
+  default = ""
+} 

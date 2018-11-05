@@ -18,6 +18,10 @@ idam_api_url = "https://idam-api.platform.hmcts.net"
 
 payment_service_url = "https://payment.platform.hmcts.net"
 
+case_orchestration_service_url = "http://div-cps-prod.service.core-compute-prod.internal"
+
+case_orchestration_base_path = "/transformationapi/version/1"
+
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 capacity = "2"

@@ -82,21 +82,21 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@hmcts/div-idam-express-middleware@^6.3.3":
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.3.3.tgz#c75060ba4d66586d3972c2aab8decd37f390c8f9"
+  dependencies:
+    "@hmcts/nodejs-logging" "^2.2.0"
+    jwt-decode "^2.2.0"
+    request "^2.83.0"
+    request-promise-native "^1.0.5"
+    uuid "^3.1.0"
+
 "@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#3.0.4":
   version "3.0.4"
   resolved "https://github.com/hmcts/div-idam-express-middleware#22c5c3a144038eceafe5562b53a24e5655575432"
   dependencies:
     "@hmcts/nodejs-logging" "^2.2.0"
-    request "^2.83.0"
-    request-promise-native "^1.0.5"
-    uuid "^3.1.0"
-
-"@hmcts/div-idam-express-middleware@https://github.com/hmcts/div-idam-express-middleware#6.3.3":
-  version "6.3.3"
-  resolved "https://github.com/hmcts/div-idam-express-middleware#3fe24f4a0e2491c30a00c081cd21ae40185e72b7"
-  dependencies:
-    "@hmcts/nodejs-logging" "^2.2.0"
-    jwt-decode "^2.2.0"
     request "^2.83.0"
     request-promise-native "^1.0.5"
     uuid "^3.1.0"

@@ -5,12 +5,23 @@ const modulePath = 'app/middleware/redirectMiddleware';
 
 const redirectMiddleware = require(modulePath);
 
+const authTokenString = '__auth-token';
+const dnFrontend = CONF.apps.dn;
+const queryString = `?${authTokenString}=authToken`;
+const expectedUrl = `${dnFrontend.url}${dnFrontend.landing}${queryString}`;
+
 describe(modulePath, () => {
   let req = {}, res = {}, next = {};
 
   beforeEach(() => {
-    req = { session: {} };
-    res = { redirect: sinon.stub() };
+    req = {
+      session: {},
+      cookies: { '__auth-token': 'authToken' }
+    };
+    res = {
+      redirect: sinon.stub(),
+      set: sinon.stub()
+    };
     next = sinon.stub();
   });
 
@@ -42,6 +53,6 @@ describe(modulePath, () => {
     redirectMiddleware.redirectOnCondition(req, res, next);
 
     expect(next.calledOnce).to.eql(false);
-    expect(res.redirect.calledWith(CONF.apps.dn.url)).to.eql(true);
+    expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
   });
 });

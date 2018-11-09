@@ -197,6 +197,7 @@ public:
 apps:
   dn:
     url: 'https://localhost:3000'
+    landing: '/authenticated'
 
 ccd:
   d8States:

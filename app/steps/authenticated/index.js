@@ -1,6 +1,7 @@
 const Step = require('app/core/steps/Step');
 const idam = require('app/services/idam');
 const CONF = require('config');
+const initSession = require('app/middleware/initSession');
 
 const idamLandingPage = (req, res, next) => {
   if (CONF.features.idam) {
@@ -33,7 +34,10 @@ module.exports = class Authenticated extends Step {
   }
 
   get middleware() {
-    return [ idamLandingPage ];
+    return [
+      idamLandingPage,
+      initSession
+    ];
   }
 
   handler(req, res, next) {

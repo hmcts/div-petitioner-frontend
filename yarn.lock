@@ -82,11 +82,11 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@hmcts/div-idam-express-middleware@^6.3.3":
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.3.3.tgz#c75060ba4d66586d3972c2aab8decd37f390c8f9"
+"@hmcts/div-idam-express-middleware@^6.3.5":
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.3.5.tgz#32c76173e33213bd0be7439c97d639dda30b0870"
   dependencies:
-    "@hmcts/nodejs-logging" "^2.2.0"
+    "@hmcts/nodejs-logging" "^3.0.0"
     jwt-decode "^2.2.0"
     request "^2.83.0"
     request-promise-native "^1.0.5"

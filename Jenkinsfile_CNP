@@ -55,14 +55,6 @@ withPipeline("nodejs", product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
-
-  before('buildinfra:prod') {
-    error('Halting pipeline before prod stages')
-  }
   
-  before('deploy:prod') {
-    error('Halting pipeline before prod stages')
-  }
-
   enableSlackNotifications('#div-dev')
 }

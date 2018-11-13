@@ -72,11 +72,10 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context, s.steps.DesertionDate);
     });
 
-    it('redirects to the financial arrangements page when 2 year separation is selected', done => {
+    it('redirects to the respondent consent page when 2 year separation is selected', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
-      testRedirect(done, agent, underTest, context, s.steps.SeparationDate);
+      testRedirect(done, agent, underTest, context, s.steps.RespondentConsent);
     });
-
 
     it('redirects to the financial arrangements page when 5 year separation is selected', done => {
       const context = { reasonForDivorce: 'separation-5-years' };

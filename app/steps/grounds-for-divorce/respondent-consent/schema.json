@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "respondent-consent",
+  "type": "object",
+  "properties": {
+    "reasonForDivorceRespondentConsent": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "reasonForDivorceRespondentConsent"
+  ]
+}

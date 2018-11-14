@@ -232,5 +232,6 @@ module "frontend" {
     FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
     FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED  = "${var.feature_redirect_to_application_submitted}"
     FEATURE_RESPONDENT_CONSENT                 = "${var.feature_respondent_consent}"
+    FEATURE_REDIRECT_ON_STATE                  = "${var.feature_redirect_on_state}"
   }
 }

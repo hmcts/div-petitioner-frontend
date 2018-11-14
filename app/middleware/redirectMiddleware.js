@@ -1,14 +1,18 @@
 const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 const authTokenString = '__auth-token';
 
 const redirectOnCondition = (req, res, next) => {
-  // If state, there must be a CCD case
-  const hasCaseState = req.session && req.session.state;
-  if (hasCaseState && !CONF.ccd.d8States.includes(req.session.state)) {
-    const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
-    const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
-    return res.redirect(`${appLandingPage}${queryString}`);
+  // feature flag
+  if (parseBool(CONF.features.redirectOnState)) {
+    // If state, there must be a CCD case
+    const hasCaseState = req.session && req.session.state;
+    if (hasCaseState && !CONF.ccd.d8States.includes(req.session.state)) {
+      const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
+      const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
+      return res.redirect(`${appLandingPage}${queryString}`);
+    }
   }
 
   return next();

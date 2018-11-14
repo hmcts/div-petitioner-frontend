@@ -133,6 +133,7 @@ features:
   fullPaymentEventDataSubmission: true
   redirectToApplicationSubmitted: false
   respondentConsent: false
+  redirectOnState: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

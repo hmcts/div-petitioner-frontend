@@ -16,7 +16,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     req = {
-      session: {},
+      session: { courts: 'CTSC' },
       cookies: { '__auth-token': 'authToken' }
     };
     res = {
@@ -75,6 +75,21 @@ describe(modulePath, () => {
 
         expect(next.calledOnce).to.eql(false);
         expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+        cleanup();
+      };
+
+      const featureTest = featureToggleConfig.when('redirectOnState', true, test);
+      featureTest(done);
+    });
+
+    it('should call next when court is not CTSC', done => {
+      const test = cleanup => {
+        req.session.courts = 'eastMidlands';
+        req.session.state = 'AwaitingDecreeNisi';
+
+        redirectMiddleware.redirectOnCondition(req, res, next);
+
+        expect(next.calledOnce).to.eql(true);
         cleanup();
       };
 

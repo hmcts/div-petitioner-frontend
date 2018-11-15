@@ -203,3 +203,5 @@ apps:
 ccd:
   d8States:
     - 'AwaitingPayment'
+  courts:
+    - 'CTSC'

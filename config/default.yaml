@@ -47,9 +47,9 @@ services:
     health: 'http://localhost:4401/health'
     serviceIdentification: 'DIV1'
   transformation:
-    baseUrl: 'http://localhost:4003/transformationapi/version/1'
-    draftBaseUrl: 'http://localhost:4003/draftsapi/version/1'
-    health: 'http://localhost:4003/status/health'
+    baseUrl: 'http://localhost:4012'
+    draftBaseUrl: 'http://localhost:4012/draftsapi/version/1'
+    health: 'http://localhost:4012/health'
   feesAndPayments:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'

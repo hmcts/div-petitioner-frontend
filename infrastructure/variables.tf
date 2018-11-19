@@ -160,12 +160,12 @@ variable "s2s_microservice_name" {
   default = "divorce_frontend"
 }
 
-variable "case_progression_service_url" {
+variable "case_orchestration_service_url" {
   default = ""
 }
 
-variable "case_progression_base_path" {
-  default = "/transformationapi/version/1"
+variable "case_orchestration_base_path" {
+  default = ""
 }
 
 variable "draft_store_api_base_path" {

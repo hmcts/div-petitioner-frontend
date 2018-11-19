@@ -91,7 +91,9 @@ const removeFromDraftStore = (req, res, next) => {
   }
 
   return client.removeFromDraftStore(authToken)
-    .then(next)
+    .then(() => {
+      next();
+    })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
         logger.error(error);

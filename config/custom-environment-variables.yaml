@@ -123,6 +123,7 @@ features:
   idam: FEATURE_IDAM
   fullPaymentEventDataSubmission: FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION
   redirectToApplicationSubmitted: FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED
+  respondentConsent: FEATURE_RESPONDENT_CONSENT
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

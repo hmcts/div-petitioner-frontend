@@ -70,7 +70,7 @@ commonProps:
     version: 4
     amount: 550.00
   financialOrderApplicationFee: 255
-  divorceFactsRatio: 
+  divorceFactsRatio:
     adultery: 0.30
     desertion: 0.37
     separation-2-years: 0.21
@@ -132,6 +132,7 @@ features:
   idam: false
   fullPaymentEventDataSubmission: true
   redirectToApplicationSubmitted: false
+  respondentConsent: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

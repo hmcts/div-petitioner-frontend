@@ -2,6 +2,7 @@ const moment = require('moment');
 const { isUndefined, pick } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const config = require('config');
 
 const datePeriod = require('app/core/utils/datePeriod');
 const logger = require('app/services/logger').logger(__filename);
@@ -16,7 +17,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
       reasonForDivorce: {
         'unreasonable-behaviour': this.steps.UnreasonableBehaviour,
         adultery: this.steps.AdulteryWishToName,
-        'separation-2-years': this.steps.RespondentConsent,
+        'separation-2-years': config.features.respondentConsent ? this.steps.RespondentConsent : this.steps.SeparationDate,
         'separation-5-years': this.steps.SeparationDate,
         desertion: this.steps.DesertionDate
       }

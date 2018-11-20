@@ -216,6 +216,10 @@ variable "feature_idam" {
   default = true
 }
 
+variable "feature_respondent_consent" {
+  default = false
+}
+
 variable "feature_full_payment_event_data_submission" {
   default = true
 }
@@ -442,4 +446,3 @@ variable "common_tags" {
 variable "dev_support_notification_email" {
   default = "divorcesupportgroup@hmcts.net"
 }
-

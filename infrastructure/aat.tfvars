@@ -23,3 +23,5 @@ post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 capacity = "2"
 
 feature_redirect_to_application_submitted = "false"
+
+feature_respondent_consent = "true"

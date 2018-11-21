@@ -45,3 +45,4 @@ data:
   SESSION_ENCRYPTION_SECRET: "${SESSION_ENCRYPTION_SECRET}"
   FEATURE_IDAM: "true"
   DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
+  FEATURE_REDIRECT_ON_STATE: "false"

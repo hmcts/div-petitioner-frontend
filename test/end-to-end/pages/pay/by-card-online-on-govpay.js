@@ -49,7 +49,7 @@ function cancelOnGovPay() {
   I.navByClick('Cancel payment');
   I.waitInUrl('/cancel');
   I.see('Your payment has been cancelled');
-  I.navByClick('Go back to the service');
+  I.navByClick('Continue');
 }
 
 function onGovPay(I) {

@@ -69,7 +69,7 @@ function configureChunks() {
   if (CONF.preview_env === 'true') {
     return 2;
   } else {
-    return 4;
+    return 5;
   }
 }
 

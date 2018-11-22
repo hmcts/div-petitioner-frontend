@@ -434,7 +434,7 @@ variable "court_service_centre_phonenumber" {
 }
 
 variable "court_service_centre_siteid" {
-  default = "AA05"
+  default = "CTSC"
 }
 
 variable "court_service_centre_weight" {

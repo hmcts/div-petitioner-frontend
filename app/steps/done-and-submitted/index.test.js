@@ -99,6 +99,7 @@ describe(modulePath, () => {
         'sendAddresswestMidlands',
         'sendAddresssouthWest',
         'sendAddressnorthWest',
+        'sendAddressServiceCentre',
         'whatToDoNowOrigCertOnly',
         'eastMidlandsEmail',
         'eastMidlandsPhoneNumber',
@@ -106,6 +107,8 @@ describe(modulePath, () => {
         'southWestPhoneNumber',
         'northWestEmail',
         'northWestPhoneNumber',
+        'serviceCentreEmail',
+        'serviceCentrePhoneNumber',
         'helpWithFees',
         'courtCheckApp',
         'youWillBeContacted',
@@ -226,6 +229,10 @@ describe(modulePath, () => {
     CONF.commonProps.court.northWest.email,
     CONF.commonProps.court.northWest.phoneNumber
   ];
+  const serviceCentreDetails = [
+    CONF.commonProps.court.serviceCentre.email,
+    CONF.commonProps.court.serviceCentre.phoneNumber
+  ];
 
   describe('when selected court is westMidlands', () => {
     let session = {};
@@ -267,6 +274,11 @@ describe(modulePath, () => {
     it('does not contain northWest contact email', done => {
       testNonExistence(done, agent, underTest,
         CONF.commonProps.court.northWest.email);
+    });
+
+    it('does not contain serviceCentre contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.serviceCentre.email);
     });
   });
 
@@ -311,6 +323,11 @@ describe(modulePath, () => {
       testNonExistence(done, agent, underTest,
         CONF.commonProps.court.northWest.email);
     });
+
+    it('does not contain serviceCentre contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.serviceCentre.email);
+    });
   });
 
   describe('when selected court is southWest', () => {
@@ -353,6 +370,11 @@ describe(modulePath, () => {
     it('does not contain northWest contact email', done => {
       testNonExistence(done, agent, underTest,
         CONF.commonProps.court.northWest.email);
+    });
+
+    it('does not contain serviceCentre contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.serviceCentre.email);
     });
   });
 
@@ -397,6 +419,59 @@ describe(modulePath, () => {
       testNonExistence(done, agent, underTest,
         CONF.commonProps.court.westMidlands.email);
     });
+
+    it('does not contain serviceCentre contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.serviceCentre.email);
+    });
+  });
+
+  describe('when selected court is serviceCentre', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        reasonForDivorce: 'adultery',
+        petitionerNameDifferentToMarriageCertificate: 'No',
+        divorceWho: 'husband',
+        reasonForDivorceAdulteryWishToName: 'Yes',
+        financialOrder: 'No',
+        courts: 'serviceCentre'
+      };
+
+      withSession(done, agent, session);
+    });
+
+    serviceCentreDetails.forEach(courtDetail => {
+      it(`contains serviceCentre contact detail: ${courtDetail}`, done => {
+        testExistence(done, agent, underTest, courtDetail);
+      });
+    });
+
+    it(`contains serviceCentre contact detail: ${CONF.commonProps.court.serviceCentre.openingHours}`, done => {
+      testExistence(done, agent, underTest,
+        CONF.commonProps.court.serviceCentre.openingHours);
+    });
+
+    it('does not contain westMidlands contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.westMidlands.email);
+    });
+
+    it('does not contain southWest contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.southWest.email);
+    });
+
+    it('does not contain northWest contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.northWest.email);
+    });
+
+    it('does not contain eastMidlands contact email', done => {
+      testNonExistence(done, agent, underTest,
+        CONF.commonProps.court.eastMidlands.email);
+    });
   });
 
   describe('If user has NOT uploaded ANYTHING', () => {
@@ -419,6 +494,9 @@ describe(modulePath, () => {
         'northWestEmail',
         'northWestPhoneNumber',
         'northWestOpeningHours',
+        'serviceCentreEmail',
+        'serviceCentrePhoneNumber',
+        'serviceCentreOpeningHours',
         'helpWithFees',
         'courtCheckApp',
         'youWillBeContacted',
@@ -450,6 +528,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddresssouthWest');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -475,6 +554,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddresssouthWest');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -500,6 +580,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddresssouthWest');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -524,6 +605,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddresssouthWest');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -553,6 +635,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddresssouthWest');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -582,6 +665,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresseastMidlands');
         excludeKeys.push('sendAddresssouthWest');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -611,6 +695,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresseastMidlands');
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddressnorthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -640,6 +725,7 @@ describe(modulePath, () => {
         excludeKeys.push('sendAddresseastMidlands');
         excludeKeys.push('sendAddresswestMidlands');
         excludeKeys.push('sendAddresssouthWest');
+        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);

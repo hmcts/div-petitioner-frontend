@@ -400,6 +400,46 @@ variable "court_northwest_weight" {
   default = 0.25
 }
 
+variable "service_centre_name" {
+  default = "Courts and Tribunal Service Centre"
+}
+
+variable "court_service_centre_name" {
+  default = "East Midlands Regional Divorce Centre"
+}
+
+variable "court_service_centre_city" {
+  default = "Nottingham"
+}
+
+variable "court_service_centre_pobox" {
+  default = "PO Box 10447"
+}
+
+variable "court_service_centre_postcode" {
+  default = "NG2 9QN"
+}
+
+variable "court_service_centre_openinghours" {
+  default = "Telephone Enquiries from: 8.30am to 5pm"
+}
+
+variable "court_service_centre_email" {
+  default = "divorce@justice.gov.uk"
+}
+
+variable "court_service_centre_phonenumber" {
+  default = "0300 303 0642"
+}
+
+variable "court_service_centre_siteid" {
+  default = "AA05"
+}
+
+variable "court_service_centre_weight" {
+  default = 0
+}
+
 variable "court_phone_number" {
   default = "0300 303 0642"
 }
@@ -429,6 +469,10 @@ variable "court_northwest_court_weight" {
 }
 
 variable "court_northwest_divorce_facts_ratio" {
+  default = ""
+}
+
+variable "court_service_centre_divorce_facts_ratio" {
   default = ""
 }
 

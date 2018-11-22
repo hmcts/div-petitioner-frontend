@@ -215,17 +215,30 @@ module "frontend" {
     COURT_NORTHWEST_PHONENUMBER             = "${var.court_northwest_phonenumber}"
     COURT_NORTHWEST_SITEID                  = "${var.court_northwest_siteid}"
     COURT_NORTHWEST_WEIGHT                  = "${var.court_northwest_weight}"
+
+    SERVICE_CENTRE_NAME                     = "${var.service_centre_name}"
+    COURT_SERVICE_CENTRE_NAME               = "${var.court_service_centre_name}"
+    COURT_SERVICE_CENTRE_CITY               = "${var.court_service_centre_city}"
+    COURT_SERVICE_CENTRE_POBOX              = "${var.court_service_centre_pobox}"
+    COURT_SERVICE_CENTRE_POSTCODE           = "${var.court_service_centre_postcode}"
+    COURT_SERVICE_CENTRE_OPENINGHOURS       = "${var.court_service_centre_openinghours}"
+    COURT_SERVICE_CENTRE_EMAIL              = "${var.court_service_centre_email}"
+    COURT_SERVICE_CENTRE_PHONENUMBER        = "${var.court_service_centre_phonenumber}"
+    COURT_SERVICE_CENTRE_SITEID             = "${var.court_service_centre_siteid}"
+    COURT_SERVICE_CENTRE_WEIGHT             = "${var.court_service_centre_weight}"
+
     COURT_EASTMIDLANDS_DIVORCE_FACT_RATIO   = "${var.court_eastmidlands_divorce_facts_ratio}"
     COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO   = "${var.court_westmidlands_divorce_facts_ratio}"
     COURT_SOUTHWEST_DIVORCE_FACT_RATIO      = "${var.court_southwest_divorce_facts_ratio}"
-    COURT_SOUTHWEST_DIVORCE_FACT_RATIO      = "${var.court_northwest_divorce_facts_ratio}"
+    COURT_NORTHWEST_DIVORCE_FACT_RATIO      = "${var.court_northwest_divorce_facts_ratio}"
+    COURT_SERVICE_CENTRE_DIVORCE_FACT_RATIO = "${var.court_service_centre_divorce_facts_ratio}"
     DIVORCE_FACTS_RATIO                     = "${replace(jsonencode(var.divorce_facts_ratio), "/\"([0-9]*\\.?[0-9]*)\"/", "$1")}"
 
     // Backwards compatibility envs, to be removed
-    EASTMIDLANDS_COURTWEIGHT = "${var.court_eastmidlands_court_weight}"
-    WESTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
-    SOUTHWEST_COURTWEIGHT    = "${var.court_southwest_court_weight}"
-    NORTHWEST_COURTWEIGHT    = "${var.court_northwest_court_weight}"
+    EASTMIDLANDS_COURTWEIGHT      = "${var.court_eastmidlands_court_weight}"
+    WESTMIDLANDS_COURTWEIGHT      = "${var.court_westmidlands_court_weight}"
+    SOUTHWEST_COURTWEIGHT         = "${var.court_southwest_court_weight}"
+    NORTHWEST_COURTWEIGHT         = "${var.court_northwest_court_weight}"
 
     // Feature toggling through config
     FEATURE_IDAM                               = "${var.feature_idam}"

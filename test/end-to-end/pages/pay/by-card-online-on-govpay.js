@@ -38,7 +38,7 @@ function payOnGovPayFailure() {
   I.fillField('email', 'simulate-delivered+divorce@notifications.service.gov.uk');
   I.navByClick('Continue');
   I.waitForText('Your payment has been declined');
-  I.navByClick('Go back to try the payment again');
+  I.navByClick('Continue');
 }
 
 function cancelOnGovPay() {
@@ -49,7 +49,7 @@ function cancelOnGovPay() {
   I.navByClick('Cancel payment');
   I.waitInUrl('/cancel');
   I.see('Your payment has been cancelled');
-  I.navByClick('Go back to the service');
+  I.navByClick('Continue');
 }
 
 function onGovPay(I) {

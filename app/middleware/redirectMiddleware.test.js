@@ -16,7 +16,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     req = {
-      session: { courts: 'CTSC' },
+      session: { courts: 'serviceCentre' },
       cookies: { '__auth-token': 'authToken' }
     };
     res = {

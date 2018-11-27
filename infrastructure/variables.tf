@@ -401,7 +401,7 @@ variable "court_northwest_weight" {
 }
 
 variable "service_centre_name" {
-  default = "Courts and Tribunal Service Centre"
+  default = "Courts and Tribunals Service Centre"
 }
 
 variable "court_service_centre_name" {

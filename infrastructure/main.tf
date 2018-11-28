@@ -231,7 +231,7 @@ module "frontend" {
     COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO   = "${var.court_westmidlands_divorce_facts_ratio}"
     COURT_SOUTHWEST_DIVORCE_FACT_RATIO      = "${var.court_southwest_divorce_facts_ratio}"
     COURT_NORTHWEST_DIVORCE_FACT_RATIO      = "${var.court_northwest_divorce_facts_ratio}"
-    COURT_SERVICE_CENTRE_DIVORCE_FACT_RATIO = "${var.court_service_centre_divorce_facts_ratio}"
+    COURT_SERVICE_CENTRE_DIVORCE_FACT_RATIO = "${replace(jsonencode(var.court_service_centre_divorce_facts_ratio), "/\"([0-9]*\\.?[0-9]*)\"/", "$1")}"
     DIVORCE_FACTS_RATIO                     = "${replace(jsonencode(var.divorce_facts_ratio), "/\"([0-9]*\\.?[0-9]*)\"/", "$1")}"
 
     // Backwards compatibility envs, to be removed

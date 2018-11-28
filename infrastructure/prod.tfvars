@@ -25,3 +25,7 @@ decree_nisi_frontend_url = "https://dn.apply-divorce.service.gov.uk"
 capacity = "2"
 
 feature_redirect_on_state = "false"
+
+court_service_centre_divorce_facts_ratio = ""
+
+court_service_centre_weight = 0

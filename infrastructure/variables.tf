@@ -474,7 +474,14 @@ variable "court_northwest_divorce_facts_ratio" {
 }
 
 variable "court_service_centre_divorce_facts_ratio" {
-  default = ""
+  type = "map"
+  default = {
+    "unreasonable-behaviour" = 1
+    "separation-2-years" = 0
+    "separation-5-years" = 0
+    "adultery" = 0
+    "desertion" = 0
+  }
 }
 
 variable "divorce_facts_ratio" {

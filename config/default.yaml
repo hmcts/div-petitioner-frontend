@@ -133,6 +133,7 @@ features:
   fullPaymentEventDataSubmission: true
   redirectToApplicationSubmitted: false
   respondentConsent: false
+  redirectOnState: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'
@@ -193,3 +194,14 @@ saucelabs:
 
 public:
   protocol: 'https'
+
+apps:
+  dn:
+    url: 'https://localhost:3000'
+    landing: '/authenticated'
+
+ccd:
+  d8States:
+    - 'AwaitingPayment'
+  courts:
+    - 'serviceCentre'

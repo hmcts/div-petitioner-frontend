@@ -124,6 +124,7 @@ features:
   fullPaymentEventDataSubmission: FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION
   redirectToApplicationSubmitted: FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED
   respondentConsent: FEATURE_RESPONDENT_CONSENT
+  redirectOnState: FEATURE_REDIRECT_ON_STATE
 
 idamArgs:
   idamApiUrl: IDAM_API_URL
@@ -151,3 +152,7 @@ divorceHttpProxy: DIVORCE_HTTP_PROXY
 public:
   protocol: PUBLIC_PROTOCOL
   hostname: PUBLIC_HOSTNAME
+
+apps:
+  dn:
+    url: DECREE_NISI_FRONTEND_URL

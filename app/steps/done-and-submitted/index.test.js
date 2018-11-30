@@ -215,23 +215,28 @@ describe(modulePath, () => {
 
   const westMidlandsDetails = [
     CONF.commonProps.court.westMidlands.email,
-    CONF.commonProps.court.westMidlands.phoneNumber
+    CONF.commonProps.court.westMidlands.phoneNumber,
+    CONF.commonProps.court.westMidlands.openingHours
   ];
   const eastMidlandsDetails = [
     CONF.commonProps.court.eastMidlands.email,
-    CONF.commonProps.court.eastMidlands.phoneNumber
+    CONF.commonProps.court.eastMidlands.phoneNumber,
+    CONF.commonProps.court.eastMidlands.openingHours
   ];
   const southWestDetails = [
     CONF.commonProps.court.southWest.email,
-    CONF.commonProps.court.southWest.phoneNumber
+    CONF.commonProps.court.southWest.phoneNumber,
+    CONF.commonProps.court.southWest.openingHours
   ];
   const northWestDetails = [
     CONF.commonProps.court.northWest.email,
-    CONF.commonProps.court.northWest.phoneNumber
+    CONF.commonProps.court.northWest.phoneNumber,
+    CONF.commonProps.court.northWest.openingHours
   ];
   const serviceCentreDetails = [
     CONF.commonProps.court.serviceCentre.email,
-    CONF.commonProps.court.serviceCentre.phoneNumber
+    CONF.commonProps.court.serviceCentre.phoneNumber,
+    CONF.commonProps.court.serviceCentre.openingHours
   ];
 
   describe('when selected court is westMidlands', () => {
@@ -254,11 +259,6 @@ describe(modulePath, () => {
       it(`contains westMidlands contact detail: ${courtDetail}`, done => {
         testExistence(done, agent, underTest, courtDetail);
       });
-    });
-
-    it(`contains westMidlands contact detail: ${CONF.commonProps.court.westMidlands.openingHours}`, done => {
-      testExistence(done, agent, underTest,
-        CONF.commonProps.court.westMidlands.openingHours);
     });
 
     it('does not contain eastMidlands contact email', done => {
@@ -304,11 +304,6 @@ describe(modulePath, () => {
       });
     });
 
-    it(`contains eastMidlands contact detail: ${CONF.commonProps.court.eastMidlands.openingHours}`, done => {
-      testExistence(done, agent, underTest,
-        CONF.commonProps.court.eastMidlands.openingHours);
-    });
-
     it('does not contain westMidlands contact email', done => {
       testNonExistence(done, agent, underTest,
         CONF.commonProps.court.westMidlands.email);
@@ -350,11 +345,6 @@ describe(modulePath, () => {
       it(`contains southWest contact detail: ${courtDetail}`, done => {
         testExistence(done, agent, underTest, courtDetail);
       });
-    });
-
-    it(`contains southWest contact detail: ${CONF.commonProps.court.southWest.openingHours}`, done => {
-      testExistence(done, agent, underTest,
-        CONF.commonProps.court.southWest.openingHours);
     });
 
     it('does not contain westMidlands contact email', done => {
@@ -400,11 +390,6 @@ describe(modulePath, () => {
       });
     });
 
-    it(`contains northWest contact detail: ${CONF.commonProps.court.northWest.openingHours}`, done => {
-      testExistence(done, agent, underTest,
-        CONF.commonProps.court.northWest.openingHours);
-    });
-
     it('does not contain westMidlands contact email', done => {
       testNonExistence(done, agent, underTest,
         CONF.commonProps.court.westMidlands.email);
@@ -446,11 +431,6 @@ describe(modulePath, () => {
       it(`contains serviceCentre contact detail: ${courtDetail}`, done => {
         testExistence(done, agent, underTest, courtDetail);
       });
-    });
-
-    it(`contains serviceCentre contact detail: ${CONF.commonProps.court.serviceCentre.openingHours}`, done => {
-      testExistence(done, agent, underTest,
-        CONF.commonProps.court.serviceCentre.openingHours);
     });
 
     it('does not contain westMidlands contact email', done => {

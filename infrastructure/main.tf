@@ -43,7 +43,7 @@ locals {
   case_orchestration_service_url      = "${var.case_orchestration_service_url == "" ? "http://div-cos-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_orchestration_service_url}"
   evidence_management_client_api_url  = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
   fees_and_payments_url               = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
-  decree_nisi_frontend_url           = "${var.decree_nisi_frontend_url == "" ? "https://div-dn-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.decree_nisi_frontend_url}"
+  decree_nisi_frontend_url            = "${var.decree_nisi_frontend_url == "" ? "https://div-dn-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.decree_nisi_frontend_url}"
 
   status_health_endpoint             = "/status/health"
 

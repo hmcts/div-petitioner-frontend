@@ -436,10 +436,6 @@ variable "court_service_centre_siteid" {
   default = "CTSC"
 }
 
-variable "court_service_centre_weight" {
-  default = 0
-}
-
 variable "court_phone_number" {
   default = "0300 303 0642"
 }
@@ -452,20 +448,24 @@ variable "court_email" {
   default = "divorce@justice.gov.uk"
 }
 
-variable "court_eastmidlands_court_weight" {
-  default = 0.25
+variable "court_service_centre_weight" {
+  default = 30
 }
 
-variable "court_westmidlands_court_weight" {
+variable "court_eastmidlands_court_weight" {
   default = 0.15
 }
 
+variable "court_westmidlands_court_weight" {
+  default = 0.1
+}
+
 variable "court_southwest_court_weight" {
-  default = 0.35
+  default = 0.25
 }
 
 variable "court_northwest_court_weight" {
-  default = 0.25
+  default = 0.2
 }
 
 variable "court_northwest_divorce_facts_ratio" {

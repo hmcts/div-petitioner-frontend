@@ -19,7 +19,7 @@ make build
 
 ### Install dependencies
 
-To install NPM dependencies: 
+To install NPM dependencies:
 
 ```
 make install

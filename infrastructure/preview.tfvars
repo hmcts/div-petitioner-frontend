@@ -26,4 +26,7 @@ dev_support_notification_email = "divorce-team-a@hmcts.net"
 
 feature_redirect_on_state = "false"
 
-court_service_centre_divorce_facts_ratio = "${jsonencode('{}')}"
+court_service_centre_divorce_facts_ratio = {
+  type = "map"
+  default = {}
+}

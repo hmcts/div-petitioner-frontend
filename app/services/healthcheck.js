@@ -19,7 +19,7 @@ client.on('error', error => {
   logger.error(error);
 });
 
-const healthOptions = (message) => {
+const healthOptions = message => {
   return {
     callback: (error, res) => { // eslint-disable-line id-blacklist
       if (error) {
@@ -29,7 +29,7 @@ const healthOptions = (message) => {
     },
     timeout: config.health.timeout,
     deadline: config.health.deadline
-  }
+  };
 };
 
 router.get('/health', healthcheck.configure({

@@ -449,7 +449,7 @@ variable "court_email" {
 }
 
 variable "court_service_centre_weight" {
-  default = 30
+  default = 0.30
 }
 
 variable "court_eastmidlands_court_weight" {

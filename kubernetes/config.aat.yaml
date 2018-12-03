@@ -46,7 +46,6 @@ data:
   FEATURE_IDAM: "true"
   DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
   FEATURE_REDIRECT_ON_STATE: "false"
-
   SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"
   COURT_SERVICE_CENTRE_NAME: "East Midlands Regional Divorce Centre"
   COURT_SERVICE_CENTRE_CITY: "Nottingham"
@@ -56,4 +55,4 @@ data:
   COURT_SERVICE_CENTRE_EMAIL: "divorce@justice.gov.uk"
   COURT_SERVICE_CENTRE_PHONENUMBER: "0300 303 0642"
   COURT_SERVICE_CENTRE_SITEID: "CTSC"
-  COURT_SERVICE_CENTRE_WEIGHT: 0.30
+  COURT_SERVICE_CENTRE_WEIGHT: "0.30"

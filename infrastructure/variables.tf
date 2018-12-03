@@ -33,6 +33,11 @@ variable "appinsights_instrumentation_key" {
   default     = ""
 }
 
+variable "appinsights_location" {
+  type        = "string"
+  default     = "West Europe"
+  description = "Location for Application Insights"
+}
 variable "deployment_env" {
   type = "string"
 }
@@ -155,12 +160,12 @@ variable "s2s_microservice_name" {
   default = "divorce_frontend"
 }
 
-variable "case_progression_service_url" {
+variable "case_orchestration_service_url" {
   default = ""
 }
 
-variable "case_progression_base_path" {
-  default = "/transformationapi/version/1"
+variable "case_orchestration_base_path" {
+  default = ""
 }
 
 variable "draft_store_api_base_path" {
@@ -211,11 +216,19 @@ variable "feature_idam" {
   default = true
 }
 
+variable "feature_respondent_consent" {
+  default = false
+}
+
 variable "feature_full_payment_event_data_submission" {
   default = true
 }
 
 variable "feature_redirect_to_application_submitted" {
+  default = "true"
+}
+
+variable "feature_redirect_on_state" {
   default = "true"
 }
 
@@ -260,7 +273,11 @@ variable "court_eastmidlands_siteid" {
 }
 
 variable "court_eastmidlands_weight" {
-  default = "0.20"
+  default = 0.20
+}
+
+variable "court_eastmidlands_divorce_facts_ratio" {
+  default = ""
 }
 
 variable "court_westmidlands_name" {
@@ -296,7 +313,11 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = "0.35"
+  default = 0.35
+}
+
+variable "court_westmidlands_divorce_facts_ratio" {
+  default = ""
 }
 
 variable "court_southwest_name" {
@@ -332,7 +353,11 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = "0.20"
+  default = 0.20
+}
+
+variable "court_southwest_divorce_facts_ratio" {
+  default = ""
 }
 
 variable "court_northwest_name" {
@@ -372,7 +397,7 @@ variable "court_northwest_siteid" {
 }
 
 variable "court_northwest_weight" {
-  default = "0.25"
+  default = 0.25
 }
 
 variable "court_phone_number" {
@@ -388,21 +413,44 @@ variable "court_email" {
 }
 
 variable "court_eastmidlands_court_weight" {
-  default = "0.25"
+  default = 0.25
 }
 
 variable "court_westmidlands_court_weight" {
-  default = "0.15"
+  default = 0.15
 }
 
 variable "court_southwest_court_weight" {
-  default = "0.35"
+  default = 0.35
 }
 
 variable "court_northwest_court_weight" {
-  default = "0.25"
+  default = 0.25
+}
+
+variable "court_northwest_divorce_facts_ratio" {
+  default = ""
+}
+
+variable "divorce_facts_ratio" {
+  type = "map"
+  default = {
+    "unreasonable-behaviour" = 0.30
+    "separation-2-years" = 0.37
+    "separation-5-years" = 0.21
+    "adultery" = 0.11
+    "desertion" = 0.01
+  }
 }
 
 variable "common_tags" {
   type = "map"
 }
+
+variable "dev_support_notification_email" {
+  default = "divorcesupportgroup@hmcts.net"
+}
+
+variable "decree_nisi_frontend_url" {
+  default = ""
+} 

@@ -24,9 +24,9 @@ services:
     health: PAYMENT_SERVICE_HEALTHCHECK_URL
     serviceIdentification: 'PAYMENT_REFERENCE_SERVICE_IDENTIFICATION'
   transformation:
-    baseUrl: CASE_PROGRESSION_SERVICE_URL
-    draftBaseUrl: CASE_PROGRESSION_SERVICE_DRAFT_URL
-    health: CASE_PROGRESSION_SERVICE_HEALTHCHECK_URL
+    baseUrl: CASE_ORCHESTRATION_SERVICE_URL
+    draftBaseUrl: CASE_ORCHESTRATION_SERVICE_DRAFT_URL
+    health: CASE_ORCHESTRATION_SERVICE_HEALTHCHECK_URL
   serviceAuthProvider:
     baseUrl: SERVICE_AUTH_PROVIDER_URL
     health: SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL
@@ -45,6 +45,7 @@ evidenceManagmentClient:
   uploadEndpoint: EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT
 
 commonProps:
+  divorceFactsRatio: DIVORCE_FACT_RATIO
   court:
     eastMidlands:
       divorceCentre: COURT_EASTMIDLANDS_NAME
@@ -56,6 +57,7 @@ commonProps:
       phoneNumber: COURT_EASTMIDLANDS_PHONENUMBER
       siteId: COURT_EASTMIDLANDS_SITEID
       weight: COURT_EASTMIDLANDS_WEIGHT
+      divorceFactsRatio: COURT_EASTMIDLANDS_DIVORCE_FACT_RATIO
     westMidlands:
       divorceCentre: COURT_WESTMIDLANDS_NAME
       courtCity: COURT_WESTMIDLANDS_CITY
@@ -66,6 +68,7 @@ commonProps:
       phoneNumber: COURT_WESTMIDLANDS_PHONENUMBER
       siteId: COURT_WESTMIDLANDS_SITEID
       weight: COURT_WESTMIDLANDS_WEIGHT
+      divorceFactsRatio: COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO
     southWest:
       divorceCentre: COURT_SOUTHWEST_NAME
       courtCity: COURT_SOUTHWEST_CITY
@@ -76,6 +79,7 @@ commonProps:
       phoneNumber: COURT_SOUTHWEST_PHONENUMBER
       siteId: COURT_SOUTHWEST_SITEID
       weight: COURT_SOUTHWEST_WEIGHT
+      divorceFactsRatio: COURT_SOUTHWEST_DIVORCE_FACT_RATIO
     northWest:
       divorceCentre: COURT_NORTHWEST_NAME
       divorceCentreAddressName: COURT_NORTHWEST_ADDRESSNAME
@@ -87,6 +91,7 @@ commonProps:
       phoneNumber: COURT_NORTHWEST_PHONENUMBER
       siteId: COURT_NORTHWEST_SITEID
       weight: COURT_NORTHWEST_WEIGHT
+      divorceFactsRatio:: COURT_NORTHWEST_DIVORCE_FACT_RATIO
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
   smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
   courtPhoneNumber: COURT_PHONENUMBER
@@ -118,6 +123,8 @@ features:
   idam: FEATURE_IDAM
   fullPaymentEventDataSubmission: FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION
   redirectToApplicationSubmitted: FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED
+  respondentConsent: FEATURE_RESPONDENT_CONSENT
+  redirectOnState: FEATURE_REDIRECT_ON_STATE
 
 idamArgs:
   idamApiUrl: IDAM_API_URL
@@ -145,3 +152,7 @@ divorceHttpProxy: DIVORCE_HTTP_PROXY
 public:
   protocol: PUBLIC_PROTOCOL
   hostname: PUBLIC_HOSTNAME
+
+apps:
+  dn:
+    url: DECREE_NISI_FRONTEND_URL

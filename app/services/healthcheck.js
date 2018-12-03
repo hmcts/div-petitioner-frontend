@@ -19,9 +19,17 @@ client.on('error', error => {
   logger.error(error);
 });
 
-const options = {
-  timeout: config.health.timeout,
-  deadline: config.health.deadline
+const healthOptions = message => {
+  return {
+    callback: (error, res) => { // eslint-disable-line id-blacklist
+      if (error) {
+        logger.error({ message, error });
+      }
+      return !error && res.status === OK ? outputs.up() : outputs.down(error);
+    },
+    timeout: config.health.timeout,
+    deadline: config.health.deadline
+  };
 };
 
 router.get('/health', healthcheck.configure({
@@ -37,83 +45,27 @@ router.get('/health', healthcheck.configure({
           });
         });
     }),
-    'idam-authentication': healthcheck.web(config.services.idamAuthentication.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on idam-authentication:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
-    'idam-app': healthcheck.web(config.services.idamApp.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on idam-app:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
-    'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on evidence-management-client-api:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
-    'case-progression': healthcheck.web(config.services.transformation.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on case-progression:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
-    'service-auth-provider-api': healthcheck.web(config.services.serviceAuthProvider.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on service-auth-provider-api:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
-    'payment-api': healthcheck.web(config.services.payment.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on payment-api:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options),
-    feesAndPayments: healthcheck.web(config.services.feesAndPayments.health, {
-      callback: (error, res) => { // eslint-disable-line id-blacklist
-        if (error) {
-          logger.error({
-            message: 'Health check failed on fees and payments service:',
-            error
-          });
-        }
-        return !error && res.status === OK ? outputs.up() : outputs.down(error);
-      }
-    }, options)
+    'idam-authentication': healthcheck.web(config.services.idamAuthentication.health,
+      healthOptions('Health check failed on idam-authentication:')
+    ),
+    'idam-app': healthcheck.web(config.services.idamApp.health,
+      healthOptions('Health check failed on idam-app:')
+    ),
+    'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health,
+      healthOptions('Health check failed on evidence-management-client-api:')
+    ),
+    'case-orchestration': healthcheck.web(config.services.transformation.health,
+      healthOptions('Health check failed on case-orchestration:')
+    ),
+    'service-auth-provider-api': healthcheck.web(config.services.serviceAuthProvider.health,
+      healthOptions('Health check failed on service-auth-provider-api:')
+    ),
+    'payment-api': healthcheck.web(config.services.payment.health,
+      healthOptions('Health check failed on payment-api:')
+    ),
+    feesAndPayments: healthcheck.web(config.services.feesAndPayments.health,
+      healthOptions('Health check failed on fees and payments service:')
+    )
   },
   buildInfo: {
     name: config.service.name,

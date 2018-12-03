@@ -302,7 +302,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     // Load courts data into session and select court automatically.
     req.session.court = CONF.commonProps.court;
-    req.session.courts = courtsAllocation.allocateCourt();
+    req.session.courts = courtsAllocation
+      .allocateCourt(req.session.reasonForDivorce);
     ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
 
     // Get user token.

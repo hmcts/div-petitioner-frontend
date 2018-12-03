@@ -763,7 +763,8 @@ describe(modulePath, () => {
         confirmPrayer: 'Yes',
         submit: true,
         cookie: {},
-        expires: Date.now()
+        expires: Date.now(),
+        reasonForDivorce: 'unreasonable-behaviour'
       };
       withSession(done, agent, session);
     });

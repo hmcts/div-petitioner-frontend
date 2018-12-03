@@ -1,5 +1,6 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const moment = require('moment');
+const config = require('config');
 
 const twoYearsAgo = moment().subtract(2, 'years').subtract(1, 'day');
 const twoYearsAgoFormatted = {
@@ -61,6 +62,9 @@ Scenario('2 years separation', (I) => {
   I.enterMarriageDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
+  if (config.features.respondentConsent) {
+    I.selectRespondentConsentObtained();
+  }
   I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.enterLegalProceedings();
 });

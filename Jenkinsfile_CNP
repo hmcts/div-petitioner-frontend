@@ -5,7 +5,32 @@
 String product = "div"
 String component = "pfe"
 
+List<LinkedHashMap<String, Object>> secrets = [
+  secret('session-secret', 'SESSION_SECRET'),
+  secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
+  secret('idam-secret', 'IDAM_SECRET'),
+  secret('post-code-token', 'POST_CODE_ACCESS_TOKEN'),
+  secret('frontend-secret', 'MICROSERVICE_KEY')
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
+
 withPipeline("nodejs", product, component) {
+  if (env.CHANGE_TITLE && !env.CHANGE_TITLE.startsWith('[PREVIEW]')) {
+    enableDockerBuild()
+    enableDeployToAKS()
+    loadVaultSecrets(secrets)
+    setVaultName('div')
+  }
+
   after('build') {
     sh 'yarn setup'
   }
@@ -20,6 +45,9 @@ withPipeline("nodejs", product, component) {
   }
 
   before('functionalTest:preview') {
+    env.FEATURE_IDAM = 'true'
+    env.IDAM_API_URL = 'https://preprod-idamapi.reform.hmcts.net:3511'
+    env.CASE_ORCHESTRATION_SERVICE_DRAFT_URL = 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
     env.PREVIEW_ENV = 'true'
   }
 

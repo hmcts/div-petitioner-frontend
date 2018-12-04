@@ -21,6 +21,7 @@
     "test:nsp": "nsp check --preprocessor yarn",
     "test:mutation": "./bin/run-mutation-tests.sh",
     "test:stryker": "NODE_ENV=testing NODE_PATH=. stryker run ",
+    "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
     "test:smoke": "NODE_ENV=testing NODE_PATH=. ./node_modules/.bin/codeceptjs run -c test/end-to-end/smoke.conf.js --reporter mocha-multi",
     "test:functional": "./bin/run-functional-tests.sh",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",

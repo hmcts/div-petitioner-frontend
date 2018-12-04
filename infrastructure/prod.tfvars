@@ -20,4 +20,8 @@ payment_service_url = "https://payment.platform.hmcts.net"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
+decree_nisi_frontend_url = "https://dn.apply-divorce.service.gov.uk"
+
 capacity = "2"
+
+feature_redirect_on_state = "false"

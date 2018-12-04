@@ -25,3 +25,5 @@ capacity = "2"
 feature_redirect_to_application_submitted = "false"
 
 feature_respondent_consent = "true"
+
+feature_redirect_on_state = "false"

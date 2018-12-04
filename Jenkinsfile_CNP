@@ -37,6 +37,14 @@ withPipeline("nodejs", product, component) {
 
   after('test') {
     sh 'yarn test-validation'
+    // enable yarn audit and send message on master branch only
+    try {
+      sh 'yarn audit'
+    } catch (error) {
+      onMaster {
+        slackSend(channel: '#div-dev', color: 'warning', message: "Yarn Audit has detected vulnerabilities in ${env.JOB_NAME}. You can check if there are patches for them in the full reoport, build details here: <${env.RUN_DISPLAY_URL}|Build ${env.BUILD_DISPLAY_NAME}>.")
+      }
+    }
   }
 
   after('functionalTest:aat') {

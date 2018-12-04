@@ -4,6 +4,7 @@ const requireDir = require('require-directory');
 const { expect, sinon } = require('test/util/chai');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
+const { redirectOnCondition } = require('app/middleware/redirectMiddleware');
 const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const {
   restoreFromDraftStore,
@@ -33,6 +34,7 @@ describe(modulePath, () => {
         idamProtect,
         initSession,
         sessionTimeout,
+        redirectOnCondition,
         restoreFromDraftStore,
         setIdamUserDetails,
         hasSubmitted,

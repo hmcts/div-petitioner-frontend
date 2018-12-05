@@ -9,6 +9,10 @@ const weightPerFactPerCourt = {};
 const allocationPerFactLeft = {};
 const remainingWeightForCourt = {};
 
+function _getDivorceFactRatioForCourt(courtName, fact) {
+  return parseFloat(courts[courtName].divorceFactsRatio[fact]);
+}
+
 const initialiseAllocationRemainingForFact = fact => {
   if (typeof allocationPerFactLeft[fact] === 'undefined') {
     allocationPerFactLeft[fact] = 1;
@@ -28,7 +32,7 @@ const initialiseWeightPerFactPerCourt = fact => {
 };
 
 const updateAllocationRemainingForCourt = (fact, courtName) => {
-  remainingWeightForCourt[courtName] -= (courts[courtName].divorceFactsRatio[fact] * caseDistribution[fact]);
+  remainingWeightForCourt[courtName] -= (_getDivorceFactRatioForCourt(courtName, fact) * caseDistribution[fact]);
 
   // this will fail when the allocation configuration is not validation
   // it should break the deployment and it is the expected behaviour
@@ -38,7 +42,7 @@ const updateAllocationRemainingForCourt = (fact, courtName) => {
 };
 
 const updateAllocationRemainingForFact = (fact, courtName) => {
-  allocationPerFactLeft[fact] -= courts[courtName].divorceFactsRatio[fact];
+  allocationPerFactLeft[fact] -= _getDivorceFactRatioForCourt(courtName, fact);
 
   // this will fail when the allocation configuration is not validation
   // it should break the deployment and it is the expected behaviour
@@ -48,7 +52,7 @@ const updateAllocationRemainingForFact = (fact, courtName) => {
 };
 
 const updateWeightPerFactPerCourt = (fact, courtName) => {
-  weightPerFactPerCourt[fact][courtName] = courts[courtName].divorceFactsRatio[fact];
+  weightPerFactPerCourt[fact][courtName] = _getDivorceFactRatioForCourt(courtName, fact);
 };
 
 const calculateTotalUnAllocatedWeightPerFact = () => {
@@ -86,7 +90,7 @@ const calculatePreAllocations = () => {
     Object.keys(courts).forEach(courtName => {
       initialiseAllocationRemainingForCourt(courtName);
 
-      if (courts[courtName].divorceFactsRatio && typeof courts[courtName].divorceFactsRatio[fact] !== 'undefined') {
+      if (courts[courtName].divorceFactsRatio && typeof _getDivorceFactRatioForCourt(courtName, fact) !== 'undefined') {
         initialiseWeightPerFactPerCourt(fact);
         updateAllocationRemainingForCourt(fact, courtName);
         updateWeightPerFactPerCourt(fact, courtName);

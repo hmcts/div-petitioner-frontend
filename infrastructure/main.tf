@@ -231,8 +231,14 @@ module "frontend" {
     COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO   = "${var.court_westmidlands_divorce_facts_ratio}"
     COURT_SOUTHWEST_DIVORCE_FACT_RATIO      = "${var.court_southwest_divorce_facts_ratio}"
     COURT_NORTHWEST_DIVORCE_FACT_RATIO      = "${var.court_northwest_divorce_facts_ratio}"
-    COURT_SERVICE_CENTRE_DIVORCE_FACT_RATIO = "${replace(jsonencode(var.court_service_centre_divorce_facts_ratio), "/\"([0-9]*\\.?[0-9]*)\"/", "$1")}"
     DIVORCE_FACTS_RATIO                     = "${replace(jsonencode(var.divorce_facts_ratio), "/\"([0-9]*\\.?[0-9]*)\"/", "$1")}"
+
+    //Service centre facts distribution
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_BEHAVIOUR = "${var.court_service_centre_divorce_facts_ratio["unreasonable-behaviour"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_2_YEAR_SEPARATION = "${var.court_service_centre_divorce_facts_ratio["separation-2-years"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_5_YEAR_SEPARATION = "${var.court_service_centre_divorce_facts_ratio["separation-5-years"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_ADULTERY = "${var.court_service_centre_divorce_facts_ratio["adultery"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_DESERTION = "${var.court_service_centre_divorce_facts_ratio["desertion"]}"
 
     // Backwards compatibility envs, to be removed
     EASTMIDLANDS_COURTWEIGHT      = "${var.court_eastmidlands_court_weight}"

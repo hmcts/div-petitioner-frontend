@@ -450,11 +450,10 @@ variable "court_email" {
 }
 
 variable "court_service_centre_weight" {
-  default = 30
+  default = 0.30
 }
 
 variable "court_eastmidlands_court_weight" {
-<<<<<<< HEAD
   default = 0
 }
 
@@ -468,21 +467,6 @@ variable "court_southwest_court_weight" {
 
 variable "court_northwest_court_weight" {
   default = 0.5
-=======
-  default = 0.15
-}
-
-variable "court_westmidlands_court_weight" {
-  default = 0.1
-}
-
-variable "court_southwest_court_weight" {
-  default = 0.25
-}
-
-variable "court_northwest_court_weight" {
-  default = 0.2
->>>>>>> court allocation for CTSC
 }
 
 variable "court_northwest_divorce_facts_ratio" {

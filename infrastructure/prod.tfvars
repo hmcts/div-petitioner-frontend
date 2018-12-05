@@ -27,12 +27,9 @@ capacity = "2"
 feature_redirect_on_state = "false"
 
 court_service_centre_divorce_facts_ratio = {
-  type = "map"
-  default = {}
+  "unreasonable-behaviour" = 0
+  "separation-2-years" = 0
+  "separation-5-years" = 0
+  "adultery" = 0
+  "desertion" = 0
 }
-
-court_service_centre_weight = 0
-court_eastmidlands_court_weight = 0.25
-court_westmidlands_court_weight = 0.15
-court_southwest_court_weight = 0.35
-court_northwest_court_weight = 0.25

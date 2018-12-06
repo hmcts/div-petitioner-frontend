@@ -1,0 +1,77 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "When you separated",
+                    "info1": "You need to provide the following dates related to your separation. The court will use the most recent date as the date that you separated.",
+                    "info2": "Use the same date for both if they happened on the same day. If you're not sure of the exact dates, use the closest dates that you remember.",
+                    "dateHint" : "For example, 31 3 1980",
+                    "question1": {
+                        "text": "When did you first decide that the marriage was over?"
+                    },
+                    "question2": {
+                        "text": "When did you start living apart?",
+                        "info": "You can both live in the same property and be considered by the court to be living apart, as long as you're living separate lives. For example, you don’t eat, sleep, or socialise together."
+                    },
+                    "day": "Day",
+                    "month": "Month",
+                    "year": "Year"
+                },
+                "errors": {
+                    "reasonForDivorceDecisionDay": {
+                        "required": "Enter the day that you decided that the marriage was over.",
+                        "invalid": "Enter a valid day for when you first decided that the marriage was over (a number between 1 and 31)."
+                    },
+                    "reasonForDivorceDecisionMonth": {
+                        "required": "Enter the month that you decided that the marriage was over.",
+                        "invalid": "Enter a valid month for when you first decided that the marriage was over (a number between 1 and 12) ."
+                    },
+                    "reasonForDivorceDecisionYear": {
+                        "required": "Enter the year that you decided that the marriage was over.",
+                        "invalid": "Enter a valid year for when you first decided that the marriage was over (for example, 2010)."
+                    },
+                    "reasonForDivorceDecisionDate": {
+                        "required": "Enter the date that you decided that the marriage was over.",
+                        "invalid": "Enter a valid date for when you first decided that the marriage was over (for example, 11 12 2010)."
+                    },
+                    "reasonForDivorceDecisionDateInFuture": {
+                        "invalid": "Enter a date that is in the past."
+                    },
+                    "reasonForDivorceDecisionDateBeforeMarriageDate": {
+                        "invalid": "Enter a date that is after your marriage date."
+                    },
+                    "reasonForDivorceDecisionDateIsSameOrAfterLimitDate": {
+                        "required": "Enter the date for when you first decided the marriage was over."
+                    },
+                    "reasonForDivorceLivingApartDay": {
+                        "required": "Enter the day that you started living apart.",
+                        "invalid": "Enter a valid day for when you started living apart (a number between 1 and 31)."
+                    },
+                    "reasonForDivorceLivingApartMonth": {
+                        "required": "Enter the month that you started living apart.",
+                        "invalid": "Enter a valid month for when you started living apart (a number between 1 and 12)."
+                    },
+                    "reasonForDivorceLivingApartYear": {
+                        "required": "Enter the year that you started living apart.",
+                        "invalid": "Enter a valid year for when you started living apart  (for example, 2010)."
+                    },
+                    "reasonForDivorceLivingApartDate": {
+                        "required": "Enter the date that you started living apart from your {{ divorceWho }}.",
+                        "invalid": "Enter a valid date for when you started living apart (for example, 11 12 2010)."
+                    },
+                    "reasonForDivorceLivingApartDateInFuture": {
+                        "invalid": "Enter a date that is in the past."
+                    },
+                    "reasonForDivorceLivingApartDateBeforeMarriageDate": {
+                        "invalid": "Enter a date that is after your marriage date."
+                    },
+                    "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate": {
+                        "required": "Enter the date that you started living apart from your {{ divorceWho }}."
+                    }
+                }
+            }
+        }
+    }
+}

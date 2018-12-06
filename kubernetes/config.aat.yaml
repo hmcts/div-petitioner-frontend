@@ -44,6 +44,7 @@ data:
   PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
   SESSION_ENCRYPTION_SECRET: "${SESSION_ENCRYPTION_SECRET}"
   FEATURE_IDAM: "true"
+  FEATURE_RELEASE_510: "false"
   DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
   FEATURE_REDIRECT_ON_STATE: "false"
   SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"

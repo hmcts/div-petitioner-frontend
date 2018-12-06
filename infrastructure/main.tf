@@ -252,5 +252,6 @@ module "frontend" {
     FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED  = "${var.feature_redirect_to_application_submitted}"
     FEATURE_RESPONDENT_CONSENT                 = "${var.feature_respondent_consent}"
     FEATURE_REDIRECT_ON_STATE                  = "${var.feature_redirect_on_state}"
+    FEATURE_RELEASE_510                        = "${var.feature_release_510}"
   }
 }

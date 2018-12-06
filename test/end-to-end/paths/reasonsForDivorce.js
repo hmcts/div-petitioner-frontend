@@ -65,7 +65,13 @@ Scenario('2 years separation', (I) => {
   if (config.features.respondentConsent) {
     I.selectRespondentConsentObtained();
   }
-  I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  if (config.features.release510) {
+    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  } else {
+    I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  }
+
   I.enterLegalProceedings();
 });
 
@@ -79,11 +85,16 @@ Scenario('5 years separation', (I) => {
   I.enterMarriageDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
-  I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  if (config.features.release510) {
+    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  } else {
+    I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  }
   I.enterLegalProceedings();
 });
 
-Scenario('Exit if 5 years separation chosen but actual separation date is less', (I) => {
+Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
@@ -93,7 +104,33 @@ Scenario('Exit if 5 years separation chosen but actual separation date is less',
   I.enterMarriageDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
-  I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  if (config.features.release510) {
+    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  } else {
+    I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  }
+  I.seeCurrentUrlEquals('/exit/separation');
+  I.navByClick('choose another reason');
+  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
+});
+
+Scenario('Exit if 5 years separation chosen but actual living apart date is less', (I) => {
+
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.haveBrokenMarriage();
+  I.amOnLoadedPage('/about-your-marriage/details');
+  I.selectDivorceType();
+  I.enterMarriageDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
+  I.selectReasonForDivorce(content['5YearsSeparationHeading']);
+  if (config.features.release510) {
+    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  } else {
+    I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  }
   I.seeCurrentUrlEquals('/exit/separation');
   I.navByClick('choose another reason');
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');

@@ -65,12 +65,7 @@ Scenario('2 years separation', (I) => {
   if (config.features.respondentConsent) {
     I.selectRespondentConsentObtained();
   }
-  if (config.features.release510) {
-    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
-      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  } else {
-    I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
-  }
+  I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
 
   I.enterLegalProceedings();
 });

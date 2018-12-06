@@ -73,38 +73,20 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context, s.steps.DesertionDate);
     });
 
-    it('redirects to the respondent consent page when 2 year separation is selected and RespondentConsent is on and release510 is off', done => {
+    it('redirects to the respondent consent page when 2 year separation is selected and RespondentConsent is on', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['respondentConsent', 'release510'], [true, false], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
+        .when(['respondentConsent'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
 
       featureTest(done);
     });
 
-    it('redirects to the Separation Date page when 2 year separation is selected and RespondentConsent is off and release510 is off', done => {
+    it('redirects to the Separation Date page when 2 year separation is selected and RespondentConsent is off', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['respondentConsent', 'release510'], [false, false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
-
-      featureTest(done);
-    });
-
-    it('redirects to the respondent consent page when 2 year separation is selected and RespondentConsent is on and release510 is on', done => {
-      const context = { reasonForDivorce: 'separation-2-years' };
-
-      const featureTest = featureToggleConfig
-        .when(['respondentConsent', 'release510'], [true, true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
-
-      featureTest(done);
-    });
-
-    it('redirects to the Separation Date page when 2 year separation is selected and RespondentConsent is off and release510 is on', done => {
-      const context = { reasonForDivorce: 'separation-2-years' };
-
-      const featureTest = featureToggleConfig
-        .when(['respondentConsent', 'release510'], [false, true], testRedirect, agent, underTest, context, s.steps.SeparationDateNew);
+        .when(['respondentConsent'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
 
       featureTest(done);
     });

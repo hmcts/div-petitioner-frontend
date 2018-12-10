@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "lived-apart-since",
+  "type": "object",
+  "properties": {
+    "reasonForDivorceLivingApartEntireTime": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    },
+    "reasonForDivorceLivingTogetherMoreThan6Months": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    }
+  },
+  "switch": [
+    {
+      "if": {
+        "properties": {
+          "reasonForDivorceLivingApartEntireTime": {
+            "not": {
+              "type": "string",
+              "enum": ["Yes", "No"]
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reasonForDivorceLivingApartEntireTime"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reasonForDivorceLivingApartEntireTime": {
+            "enum": [ "No" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "reasonForDivorceLivingApartEntireTime": {
+            "enum": [ "No" ]
+          },
+          "reasonForDivorceLivingTogetherMoreThan6Months": {
+            "enum": ["Yes", "No"]
+          }
+        },
+        "required": [
+          "reasonForDivorceLivingTogetherMoreThan6Months"
+        ]
+      }
+    }
+  ]
+}

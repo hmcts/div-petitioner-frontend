@@ -1,0 +1,86 @@
+{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.title | safe }}
+{% endblock %}
+
+{% block form %}
+        <fieldset id="living-apart-entire-time" class="form-group">
+            <p class="text">{{ content.info1 | safe }} </p>
+            <p class="text">{{ content.info2 | safe }}</p>
+            <legend class="visually-hidden">{{ content.title | safe }}f</legend>
+            {{ yesNoRadioHeading(
+            legend = content.title,
+            name ='reasonForDivorceLivingApartEntireTime',
+            field = fields.reasonForDivorceLivingApartEntireTime,
+            yes = content.yes,
+            no = content.no,
+            targetYes = '',
+            targetNo = 'livedTogetherSince',
+            screenReader = content.title
+            ) }}
+        </fieldset>
+
+        <div id="livedTogetherSince" class="js-hidden">
+            <h2 class="heading-medium">
+                {{ content.question.text }} {{ session.livingTogetherMonths }}
+                {% if ctx.livingTogetherMonths >= 6 %}
+                    {{ content.question.6months }}
+                {% elif session.livingTogetherMonths < 6 %}
+                    {% if session.livingTogetherWeeks > 0 %}
+                    {{ session.livingTogetherWeeks }} {{ content.question.weeks }}
+                {% endif %}
+                {% if (session.livingTogetherWeeks > 0) and (session.liveTogetherPeriodRemainingDays | safe > 0) %}
+                    {{ content.question.and }}
+                {% endif %}
+                    {% if session.liveTogetherPeriodRemainingDays > 0 %}
+                    {{ session.liveTogetherPeriodRemainingDays | safe  }} {{ content.question.days }}
+                    {% endif %}
+                {% endif %}
+                {{ content.question.since }}
+                {% if session.livingTogetherMonths >= 6 %}
+                    {{ session.sepStartDate | safe }}
+                {% elif session.livingTogetherMonths < 6 %}
+                    {{ session.mostRecentSeparationDate | safe }}
+                {% endif %}
+            </h2>
+
+            <p>
+                {% if session.livingTogetherMonths >= 6 %}
+                    {{ session.sepStartDate }} {{ content.question.exactDate }} {{ session.sepYears }} {{ content.question.yearsAndMonths }}
+                {% elif session.livingTogetherMonths < 6 %}
+                    {{ content.question.livedMore }}
+                    {% if session.livingTogetherWeeks > 0 %}
+                        {{ session.livingTogetherWeeks }} {{ content.question.weeks }} 
+                    {% endif %}
+                    {% if (session.livingTogetherWeeks > 0) and (session.liveTogetherPeriodRemainingDays > 0) %}
+                        {{ content.question.and }}
+                    {% endif %}
+                    {% if session.liveTogetherPeriodRemainingDays > 0 %}
+                        {{ session.liveTogetherPeriodRemainingDays }} {{ content.question.days }}
+                    {% endif %}
+                {% endif %} 
+            </p>
+
+            <details>
+                <summary>
+                    <span class="summary">{{content.howThisAffects | safe }}</span>
+                </summary>
+                <div class="panel panel-border-narrow">
+                    <p class="text">{{ content.mustSpent2Yr | safe }}</p>
+                    <p class="text">{{ content.onlyUpTo6Months | safe }}</p>
+                    <p class="text">{{ content.ifMoreThan6Months | safe }}</p>
+                </div>
+            </details>
+
+             <fieldset id="living-together-more" class="form-group">
+                {{ yesNoRadioHeading(
+                legend = content.question1.text,
+                name ='reasonForDivorceLivingTogetherMoreThan6Months',
+                field = fields.reasonForDivorceLivingTogetherMoreThan6Months,
+                yes = content.yes,
+                no = content.no
+                ) }}
+            </fieldset>
+        </div>
+{% endblock %}

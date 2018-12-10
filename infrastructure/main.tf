@@ -43,7 +43,7 @@ locals {
   case_orchestration_service_url      = "${var.case_orchestration_service_url == "" ? "http://div-cos-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.case_orchestration_service_url}"
   evidence_management_client_api_url  = "${var.evidence_management_client_api_url == "" ? "http://div-emca-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.evidence_management_client_api_url}"
   fees_and_payments_url               = "${var.fees_and_payments_url == "" ? "http://div-fps-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fees_and_payments_url}"
-  decree_nisi_frontend_url           = "${var.decree_nisi_frontend_url == "" ? "https://div-dn-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.decree_nisi_frontend_url}"
+  decree_nisi_frontend_url            = "${var.decree_nisi_frontend_url == "" ? "https://div-dn-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.decree_nisi_frontend_url}"
 
   status_health_endpoint             = "/status/health"
 
@@ -215,17 +215,36 @@ module "frontend" {
     COURT_NORTHWEST_PHONENUMBER             = "${var.court_northwest_phonenumber}"
     COURT_NORTHWEST_SITEID                  = "${var.court_northwest_siteid}"
     COURT_NORTHWEST_WEIGHT                  = "${var.court_northwest_weight}"
+
+    SERVICE_CENTRE_NAME                     = "${var.service_centre_name}"
+    COURT_SERVICE_CENTRE_NAME               = "${var.court_service_centre_name}"
+    COURT_SERVICE_CENTRE_CITY               = "${var.court_service_centre_city}"
+    COURT_SERVICE_CENTRE_POBOX              = "${var.court_service_centre_pobox}"
+    COURT_SERVICE_CENTRE_POSTCODE           = "${var.court_service_centre_postcode}"
+    COURT_SERVICE_CENTRE_OPENINGHOURS       = "${var.court_service_centre_openinghours}"
+    COURT_SERVICE_CENTRE_EMAIL              = "${var.court_service_centre_email}"
+    COURT_SERVICE_CENTRE_PHONENUMBER        = "${var.court_service_centre_phonenumber}"
+    COURT_SERVICE_CENTRE_SITEID             = "${var.court_service_centre_siteid}"
+    COURT_SERVICE_CENTRE_WEIGHT             = "${var.court_service_centre_weight}"
+
     COURT_EASTMIDLANDS_DIVORCE_FACT_RATIO   = "${var.court_eastmidlands_divorce_facts_ratio}"
     COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO   = "${var.court_westmidlands_divorce_facts_ratio}"
     COURT_SOUTHWEST_DIVORCE_FACT_RATIO      = "${var.court_southwest_divorce_facts_ratio}"
-    COURT_SOUTHWEST_DIVORCE_FACT_RATIO      = "${var.court_northwest_divorce_facts_ratio}"
+    COURT_NORTHWEST_DIVORCE_FACT_RATIO      = "${var.court_northwest_divorce_facts_ratio}"
     DIVORCE_FACTS_RATIO                     = "${replace(jsonencode(var.divorce_facts_ratio), "/\"([0-9]*\\.?[0-9]*)\"/", "$1")}"
 
+    //Service centre facts distribution
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_BEHAVIOUR = "${var.court_service_centre_divorce_facts_ratio["unreasonable-behaviour"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_2_YEAR_SEPARATION = "${var.court_service_centre_divorce_facts_ratio["separation-2-years"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_5_YEAR_SEPARATION = "${var.court_service_centre_divorce_facts_ratio["separation-5-years"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_ADULTERY = "${var.court_service_centre_divorce_facts_ratio["adultery"]}"
+    SERVICE_CENTRE_DIVORCE_FACT_RATIO_DESERTION = "${var.court_service_centre_divorce_facts_ratio["desertion"]}"
+
     // Backwards compatibility envs, to be removed
-    EASTMIDLANDS_COURTWEIGHT = "${var.court_eastmidlands_court_weight}"
-    WESTMIDLANDS_COURTWEIGHT = "${var.court_westmidlands_court_weight}"
-    SOUTHWEST_COURTWEIGHT    = "${var.court_southwest_court_weight}"
-    NORTHWEST_COURTWEIGHT    = "${var.court_northwest_court_weight}"
+    EASTMIDLANDS_COURTWEIGHT      = "${var.court_eastmidlands_court_weight}"
+    WESTMIDLANDS_COURTWEIGHT      = "${var.court_westmidlands_court_weight}"
+    SOUTHWEST_COURTWEIGHT         = "${var.court_southwest_court_weight}"
+    NORTHWEST_COURTWEIGHT         = "${var.court_northwest_court_weight}"
 
     // Feature toggling through config
     FEATURE_IDAM                               = "${var.feature_idam}"

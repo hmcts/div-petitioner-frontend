@@ -1,4 +1,3 @@
-const CONF = require('config');
 const moment = require('moment');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
@@ -9,7 +8,10 @@ const constants = {
   two: '2',
   five: '5',
   sep2yrs: 'separation-2-years',
-  sep5yrs: 'separation-5-years'
+  sep5yrs: 'separation-5-years',
+  dateFormat: 'DD MMMM YYYY',
+  six: '6',
+  seven: '7'
 };
 
 module.exports = class LivedApartSince extends ValidationStep {
@@ -36,14 +38,14 @@ module.exports = class LivedApartSince extends ValidationStep {
     if (parseBool(config.features.release510)) {
       watch('reasonForDivorce', (previousSession, session, remove) => {
         remove('reasonForDivorceLivingApartEntireTime',
-                'reasonForDivorceLivingTogetherMoreThan6Months',
-                'sepYears',
-                'permittedSepDate',
-                'livingTogetherMonths',
-                'livingTogetherWeeks',
-                'livingTogetherDays',
-                'liveTogetherPeriodRemainingDays',
-                'sepStartDate');
+          'reasonForDivorceLivingTogetherMoreThan6Months',
+          'sepYears',
+          'permittedSepDate',
+          'livingTogetherMonths',
+          'livingTogetherWeeks',
+          'livingTogetherDays',
+          'liveTogetherPeriodRemainingDays',
+          'sepStartDate');
       });
 
       watch('reasonForDivorceLivingApartEntireTime', (previousSession, session, remove) => {
@@ -55,79 +57,63 @@ module.exports = class LivedApartSince extends ValidationStep {
   }
 
   interceptor(ctx, session) {
-    ctx.sepYears = this.getSepYears(session.reasonForDivorce);
-
-    ctx.permittedSepDate = this.getPermittedSepDate(
-      session.reasonForDivorce
-    );
-
-    ctx.livingTogetherMonths = this.getLivingTogetherMonths(
-      session.reasonForDivorce,
-      session.reasonForDivorceLivingApartDate
-    );
-
-    ctx.livingTogetherWeeks = this.getLivingTogetherWeeks(
-      session.reasonForDivorce,
-      session.reasonForDivorceLivingApartDate
-    );
-
-    ctx.livingTogetherDays = this.getLivingTogetherDays(
-      session.reasonForDivorce,
-      session.reasonForDivorceLivingApartDate
-    );
-
-    ctx.liveTogetherPeriodRemainingDays = this.getLiveTogetherPeriodRemainingDays(
-      session.reasonForDivorce,
-      session.reasonForDivorceLivingApartDate
-    );
-
-    ctx.sepStartDate = this.getSepStartDate(
-      session.reasonForDivorce
-    );
-
-    ctx.mostRecentSeparationDate = this.getMostRecentSeparationDate(
-      session.reasonForDivorceLivingApartDate,
-      session.reasonForDivorceDecisionDate
-    );
+    ctx.sepYears = this.getSepYears(session);
+    ctx.permittedSepDate = this.getPermittedSepDate(session);
+    ctx.livingTogetherMonths = this.getLivingTogetherMonths(session);
+    ctx.livingTogetherWeeks = this.getLivingTogetherWeeks(session);
+    ctx.livingTogetherDays = this.getLivingTogetherDays(session);
+    ctx.liveTogetherPeriodRemainingDays = this.getLiveTogetherPeriodRemainingDays(session); // eslint-disable-line 
+    ctx.sepStartDate = this.getSepStartDate(session);
+    ctx.mostRecentSeparationDate = this.formattedMostRecentSepDate(session);
 
     return ctx;
   }
 
-  getSepYears(reasonForDivorce) {
+  getSepYears(session) {
     let sepYears = '0';
-    if (reasonForDivorce === constants.sep2yrs) {
+    if (session.reasonForDivorce === constants.sep2yrs) {
       sepYears = constants.two;
-    } else if (reasonForDivorce === constants.sep5yrs) {
+    } else if (session.reasonForDivorce === constants.sep5yrs) {
       sepYears = constants.five;
     }
     return sepYears;
   }
 
-  getPermittedSepDate(reasonForDivorce) {
-    return moment().subtract(this.getSepYears(reasonForDivorce), 'years');
+  getPermittedSepDate(session) {
+    return moment().subtract(this.getSepYears(session), 'years');
   }
 
-  getLivingTogetherMonths(reasonForDivorce, reasonForDivorceLivingApartDate) {
-    return moment(this.getPermittedSepDate(reasonForDivorce)).diff(moment(reasonForDivorceLivingApartDate), 'months');
+  getLivingTogetherMonths(session) {
+    return moment(this.getPermittedSepDate(session)).diff(moment(this.getMostRecentSeparationDate(session)), 'months');
   }
 
-  getLivingTogetherWeeks(reasonForDivorce, reasonForDivorceLivingApartDate) {
-    return moment(this.getPermittedSepDate(reasonForDivorce)).diff(moment(reasonForDivorceLivingApartDate), 'weeks');
+  getLivingTogetherWeeks(session) {
+    return moment(this.getPermittedSepDate(session)).diff(moment(this.getMostRecentSeparationDate(session)), 'weeks');
   }
 
-  getLivingTogetherDays(reasonForDivorce, reasonForDivorceLivingApartDate) {
-    return moment(this.getPermittedSepDate(reasonForDivorce)).diff(moment(reasonForDivorceLivingApartDate), 'days');
+  getLivingTogetherDays(session) {
+    return moment(this.getPermittedSepDate(session)).diff(moment(this.getMostRecentSeparationDate(session)), 'days');
   }
 
-  getLiveTogetherPeriodRemainingDays(reasonForDivorce, reasonForDivorceLivingApartDate) {
-    return this.getLivingTogetherDays(reasonForDivorce, reasonForDivorceLivingApartDate) % 7;
+  getLiveTogetherPeriodRemainingDays(session) {
+    return this.getLivingTogetherDays(session) % constants.seven;
   }
 
-  getSepStartDate(reasonForDivorce) {
-    return moment().subtract(this.getSepYears(reasonForDivorce), 'years').subtract(6, 'months').format('DD MMMM YYYY');
+  getSepStartDate(session) {
+    return moment().subtract(this.getSepYears(session), 'years')
+      .subtract(constants.six, 'months')
+      .format('DD MMMM YYYY');
   }
 
-  getMostRecentSeparationDate(reasonForDivorceLivingApartDate, reasonForDivorceDecisionDate) {
-    return moment()
+
+  getMostRecentSeparationDate(session) {
+    if (moment(session.reasonForDivorceDecisionDate) > moment(session.reasonForDivorceLivingApartDate)) {
+      return session.reasonForDivorceDecisionDate;
+    }
+    return session.reasonForDivorceLivingApartDate;
+  }
+
+  formattedMostRecentSepDate(session) {
+    return moment(this.getMostRecentSeparationDate(session)).format(constants.dateFormat); // eslint-disable-line 
   }
 };

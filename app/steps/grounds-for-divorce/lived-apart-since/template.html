@@ -23,43 +23,44 @@
 
         <div id="livedTogetherSince" class="js-hidden">
             <h2 class="heading-medium">
-                {{ content.question.text }} {{ session.livingTogetherMonths }}
-                {% if ctx.livingTogetherMonths >= 6 %}
+                {{ content.question.text }}
+                {% if fields.livingTogetherMonths.value >= 6 %}
                     {{ content.question.6months }}
-                {% elif session.livingTogetherMonths < 6 %}
-                    {% if session.livingTogetherWeeks > 0 %}
-                    {{ session.livingTogetherWeeks }} {{ content.question.weeks }}
+                {% elif fields.livingTogetherMonths.value < 6 %}
+                    {% if fields.livingTogetherWeeks.value > 0 %}
+                    {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
                 {% endif %}
-                {% if (session.livingTogetherWeeks > 0) and (session.liveTogetherPeriodRemainingDays | safe > 0) %}
+                {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
                     {{ content.question.and }}
                 {% endif %}
-                    {% if session.liveTogetherPeriodRemainingDays > 0 %}
-                    {{ session.liveTogetherPeriodRemainingDays | safe  }} {{ content.question.days }}
+                    {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
+                    {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
                     {% endif %}
                 {% endif %}
                 {{ content.question.since }}
-                {% if session.livingTogetherMonths >= 6 %}
-                    {{ session.sepStartDate | safe }}
-                {% elif session.livingTogetherMonths < 6 %}
-                    {{ session.mostRecentSeparationDate | safe }}
+                {% if fields.livingTogetherMonths.value >= 6 %}
+                    {{ fields.sepStartDate.value }}
+                {% elif fields.livingTogetherMonths.value < 6 %}
+                    {{ fields.mostRecentSeparationDate.value }}
                 {% endif %}
             </h2>
 
             <p>
-                {% if session.livingTogetherMonths >= 6 %}
-                    {{ session.sepStartDate }} {{ content.question.exactDate }} {{ session.sepYears }} {{ content.question.yearsAndMonths }}
-                {% elif session.livingTogetherMonths < 6 %}
+                {% if fields.livingTogetherMonths.value >= 6 %}
+                    {{ fields.sepStartDate.value }} {{ content.question.exactDate }} {{ fields.sepYears.value }} {{ content.question.yearsAndMonths }}
+                {% elif fields.livingTogetherMonths.value < 6 %}
                     {{ content.question.livedMore }}
-                    {% if session.livingTogetherWeeks > 0 %}
-                        {{ session.livingTogetherWeeks }} {{ content.question.weeks }} 
+                    {% if fields.livingTogetherWeeks.value > 0 %}
+                        {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }} 
                     {% endif %}
-                    {% if (session.livingTogetherWeeks > 0) and (session.liveTogetherPeriodRemainingDays > 0) %}
+                    {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
                         {{ content.question.and }}
                     {% endif %}
-                    {% if session.liveTogetherPeriodRemainingDays > 0 %}
-                        {{ session.liveTogetherPeriodRemainingDays }} {{ content.question.days }}
+                    {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
+                        {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
                     {% endif %}
                 {% endif %} 
+                {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
             </p>
 
             <details>
@@ -69,7 +70,11 @@
                 <div class="panel panel-border-narrow">
                     <p class="text">{{ content.mustSpent2Yr | safe }}</p>
                     <p class="text">{{ content.onlyUpTo6Months | safe }}</p>
-                    <p class="text">{{ content.ifMoreThan6Months | safe }}</p>
+                    {% if fields.livingTogetherMonths.value >= 6 %}
+                       <p class="text">{{ content.ifMoreThan6Months | safe }}</p>
+                    {% elif fields.livingTogetherMonths.value < 6 %}
+                       <p class="text">{{ content.ifLessThan6Months | safe }}</p>
+                    {% endif %}
                 </div>
             </details>
 

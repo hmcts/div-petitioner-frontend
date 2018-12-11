@@ -24,7 +24,7 @@ module.exports = class LivedApartSince extends ValidationStep {
         Yes: this.steps.LegalProceedings,
         No: {
           reasonForDivorceLivingTogetherMoreThan6Months: {
-            Yes: this.steps.SeparationSixMonthPeriod,
+            Yes: this.steps.SeparationDateNew,
             No: this.steps.LegalProceedings
           }
         }
@@ -36,7 +36,10 @@ module.exports = class LivedApartSince extends ValidationStep {
     super(...args);
 
     if (parseBool(config.features.release510)) {
-      watch('reasonForDivorce', (previousSession, session, remove) => {
+      watch([
+        'reasonForDivorceDecisionDate',
+        'reasonForDivorceLivingApartDate'
+      ], (previousSession, session, remove) => {
         remove('reasonForDivorceLivingApartEntireTime',
           'reasonForDivorceLivingTogetherMoreThan6Months',
           'sepYears',

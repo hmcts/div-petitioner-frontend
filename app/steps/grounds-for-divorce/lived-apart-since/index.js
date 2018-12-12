@@ -108,7 +108,6 @@ module.exports = class LivedApartSince extends ValidationStep {
       .format('DD MMMM YYYY');
   }
 
-
   getMostRecentSeparationDate(session) {
     if (moment(session.reasonForDivorceDecisionDate) > moment(session.reasonForDivorceLivingApartDate)) {
       return session.reasonForDivorceDecisionDate;

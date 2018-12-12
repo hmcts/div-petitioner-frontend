@@ -43,7 +43,6 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
-
   describe('Separation-5-years - render content', () => {
     let session = {};
 
@@ -118,7 +117,6 @@ describe(modulePath, () => {
       ];
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
-
 
     it('render calculated values', done => {
       const valuesToTest = [

@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block form %}
-        <fieldset id="living-apart-entire-time" class="form-group">
-            <p class="text">{{ content.info1 | safe }} </p>
-            <p class="text">{{ content.info2 | safe }}</p>
-            {{ yesNoRadioHeading(
+            
+        <p class="text">{{ content.info1 | safe }} </p>
+        <p class="text">{{ content.info2 | safe }}</p>
+        {{ yesNoRadioHeading(
             legend = content.ques,
             name ='reasonForDivorceLivingApartEntireTime',
             field = fields.reasonForDivorceLivingApartEntireTime,
@@ -17,8 +17,8 @@
             targetYes = '',
             targetNo = 'livedTogetherSince',
             screenReader = content.ques
-            ) }}
-        </fieldset>
+        ) }}
+
 
         <div id="livedTogetherSince" class="js-hidden">
             <h2 class="heading-medium">
@@ -77,14 +77,12 @@
                 </div>
             </details>
 
-             <fieldset id="living-together-more" class="form-group">
-                {{ yesNoRadioHeading(
+            {{ yesNoRadioHeading(
                 legend = content.question1.text,
                 name ='reasonForDivorceLivingTogetherMoreThan6Months',
                 field = fields.reasonForDivorceLivingTogetherMoreThan6Months,
                 yes = content.yes,
                 no = content.no
-                ) }}
-            </fieldset>
+            ) }}
         </div>
 {% endblock %}

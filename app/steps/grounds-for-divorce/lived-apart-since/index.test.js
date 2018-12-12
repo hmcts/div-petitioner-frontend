@@ -368,13 +368,6 @@ describe(modulePath, () => {
     const expectFieldsToBeRemoved = newSession => {
       expect(newSession).not.to.have.property('reasonForDivorceLivingApartEntireTime');
       expect(newSession).not.to.have.property('reasonForDivorceLivingTogetherMoreThan6Months');
-      expect(newSession).not.to.have.property('sepYears');
-      expect(newSession).not.to.have.property('permittedSepDate');
-      expect(newSession).not.to.have.property('livingTogetherMonths');
-      expect(newSession).not.to.have.property('livingTogetherWeeks');
-      expect(newSession).not.to.have.property('livingTogetherDays');
-      expect(newSession).not.to.have.property('liveTogetherPeriodRemainingDays');
-      expect(newSession).not.to.have.property('sepStartDate');
     };
 
     const expectPropertyToExist = (newSession, shouldExists, propertyName) => {
@@ -400,12 +393,12 @@ describe(modulePath, () => {
       reasonForDivorce: 'separation-2-years'
     };
 
-    it('removes context if reasonForDivorceDecisionDate is changed', () => {
+    it('removes context if reasonForDivorceDecisionDateIsSameOrAfterLimitDate is changed', () => {
       const previousSession = clone(baseSession);
-      previousSession.reasonForDivorceDecisionDate = '20/02/2013';
+      previousSession.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = true;
 
       const session = clone(previousSession);
-      session.reasonForDivorceDecisionDate = '20/01/2013';
+      session.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = false;
 
       const newSession = removeStaleData(previousSession, session);
 
@@ -414,13 +407,13 @@ describe(modulePath, () => {
     });
 
     it('removes context if reasonForDivorceLivingApartDate is changed', () => {
-      const previousSession = clone(baseSession);
-      previousSession.reasonForDivorceLivingApartDate = '20/02/2013';
+      const prevSession = clone(baseSession);
+      prevSession.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = true;
 
-      const session = clone(previousSession);
-      session.reasonForDivorceLivingApartDate = '20/01/2013';
+      const session = clone(prevSession);
+      session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = false;
 
-      const newSession = removeStaleData(previousSession, session);
+      const newSession = removeStaleData(prevSession, session);
 
       expectFieldsToBeRemoved(newSession);
       expectPropertyToExist(newSession, true, 'reasonForDivorce');

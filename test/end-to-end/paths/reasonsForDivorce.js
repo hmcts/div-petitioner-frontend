@@ -103,7 +103,6 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
   if (config.features.release510) {
     I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
       twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-    I.selectLivingApartTime();
   } else {
     I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
   }
@@ -125,7 +124,6 @@ Scenario('Exit if 5 years separation chosen but actual living apart date is less
   if (config.features.release510) {
     I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
       twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-    I.selectLivingApartTime();
   } else {
     I.enterSeparationDate(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
   }

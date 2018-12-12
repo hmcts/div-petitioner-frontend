@@ -334,7 +334,7 @@ describe(modulePath, () => {
         reasonForDivorceLivingTogetherMoreThan6Months: 'Yes'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.SeparationDateNew);
+      testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
     });
 
     it('Living Apart Entire time after separation date : Yes', done => {

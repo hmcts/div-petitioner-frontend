@@ -45,9 +45,6 @@ router.get('/health', healthcheck.configure({
           });
         });
     }),
-    'idam-authentication': healthcheck.web(config.services.idamAuthentication.health,
-      healthOptions('Health check failed on idam-authentication:')
-    ),
     'idam-app': healthcheck.web(config.services.idamApp.health,
       healthOptions('Health check failed on idam-app:')
     ),

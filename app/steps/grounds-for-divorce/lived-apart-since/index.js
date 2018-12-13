@@ -21,7 +21,7 @@ module.exports = class LivedApartSince extends ValidationStep {
         Yes: this.steps.LegalProceedings,
         No: {
           livedTogetherMoreTimeThanPermitted: {
-            Yes: this.steps.ExitSeparation,
+            Yes: this.steps.ExitSixMonthRule,
             No: this.steps.LegalProceedings
           }
         }

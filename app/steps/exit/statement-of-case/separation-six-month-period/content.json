@@ -1,0 +1,15 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "You need to change your application",
+                    "reason": "You must have lived apart from your {{ divorceWho }}  for the past {{ limitYears }}  years to use this reason for divorce.",
+                    "allowed" : "You are allowed to have spent some time living together, but only for up to 6 months (over one or more periods) and this time doesn’t count towards the {{ limitYears }} year separation period. You’ll need to have lived apart for longer to make up any time that you spent living together.",
+                    "proceed": "If you want to proceed with your divorce application, you must <a href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a> or wait until you have been separated for long enough."
+                }
+            }
+        }
+    }
+}

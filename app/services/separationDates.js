@@ -78,7 +78,7 @@ const getSeparationTimeTogetherPermitted = session => {
     permittedSepTime = `${`${permittedSepTime}, ${Math.trunc(timeTogether.date / constants.seven)}`} weeks`;
   }
   if (timeTogether.date % constants.seven > 0) {
-    permittedSepTime = `${permittedSepTime + (timeTogether.date % constants.seven)} days`;
+    permittedSepTime = `${`${permittedSepTime} and ${timeTogether.date % constants.seven}`} days`;
   }
   return permittedSepTime;
 };

@@ -42,6 +42,7 @@
                 {% elif fields.livingTogetherMonths.value < 6 %}
                     {{ fields.mostRecentSeparationDate.value }}
                 {% endif %}
+                {{ content.question.mark }}
             </h2>
 
             <p>
@@ -58,8 +59,8 @@
                     {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
                         {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
                     {% endif %}
+                    {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
                 {% endif %} 
-                {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
             </p>
 
             <details>

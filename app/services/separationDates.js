@@ -13,7 +13,7 @@ const constants = {
 };
 
 const getSepYears = session => {
-  let sepYears = '0';
+  let sepYears = '2';
   if (session.reasonForDivorce === constants.sep2yrs) {
     sepYears = constants.two;
   } else if (session.reasonForDivorce === constants.sep5yrs) {

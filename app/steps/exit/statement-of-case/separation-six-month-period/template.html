@@ -1,0 +1,20 @@
+{% extends "exit.html" %}
+
+{% block heading %}
+{{ content.title | safe }}
+{% endblock %}
+
+{% block exit_reason %}
+<p class="text">
+    {{ content.reason | safe }}
+</p>
+
+<p class="text">
+    {{ content.allowed | safe }}
+</p>
+
+<p>
+    {{ content.proceed | safe }}
+</p>
+
+{% endblock %}

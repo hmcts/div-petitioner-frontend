@@ -10,8 +10,8 @@
         <p class="text">{{ content.info2 | safe }}</p>
         {{ yesNoRadioHeading(
             legend = content.ques,
-            name ='reasonForDivorceLivingApartEntireTime',
-            field = fields.reasonForDivorceLivingApartEntireTime,
+            name ='livedApartEntireTime',
+            field = fields.livedApartEntireTime,
             yes = content.yes,
             no = content.no,
             targetYes = '',
@@ -38,7 +38,7 @@
                 {% endif %}
                 {{ content.question.since }}
                 {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ fields.sepStartDate.value }}
+                    {{ fields.referenceDate.value }}
                 {% elif fields.livingTogetherMonths.value < 6 %}
                     {{ fields.mostRecentSeparationDate.value }}
                 {% endif %}
@@ -46,7 +46,7 @@
 
             <p>
                 {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ fields.sepStartDate.value }} {{ content.question.exactDate }} {{ fields.sepYears.value }} {{ content.question.yearsAndMonths }}
+                    {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.sepYears.value }} {{ content.question.yearsAndMonths }}
                 {% elif fields.livingTogetherMonths.value < 6 %}
                     {{ content.question.livedMore }}
                     {% if fields.livingTogetherWeeks.value > 0 %}
@@ -79,8 +79,8 @@
 
             {{ yesNoRadioHeading(
                 legend = content.question1.text,
-                name ='reasonForDivorceLivingTogetherMoreThan6Months',
-                field = fields.reasonForDivorceLivingTogetherMoreThan6Months,
+                name ='livedTogetherMoreTimeThanPermitted',
+                field = fields.livedTogetherMoreTimeThanPermitted,
                 yes = content.yes,
                 no = content.no
             ) }}

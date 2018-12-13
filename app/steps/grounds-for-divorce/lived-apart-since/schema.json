@@ -3,20 +3,23 @@
   "id": "lived-apart-since",
   "type": "object",
   "properties": {
-    "reasonForDivorceLivingApartEntireTime": {
+    "livedApartEntireTime": {
         "type": "string",
         "enum": ["Yes", "No"]
     },
-    "reasonForDivorceLivingTogetherMoreThan6Months": {
+    "livedTogetherMoreTimeThanPermitted": {
       "type": "string",
       "enum": ["Yes", "No"]
+    },
+    "separationTimeTogetherPermitted": {
+      "type": "string"
     }
   },
   "switch": [
     {
       "if": {
         "properties": {
-          "reasonForDivorceLivingApartEntireTime": {
+          "livedApartEntireTime": {
             "not": {
               "type": "string",
               "enum": ["Yes", "No"]
@@ -26,29 +29,29 @@
       },
       "then": {
         "required": [
-          "reasonForDivorceLivingApartEntireTime"
+          "livedApartEntireTime"
         ]
       }
     },
     {
       "if": {
         "properties": {
-          "reasonForDivorceLivingApartEntireTime": {
+          "livedApartEntireTime": {
             "enum": [ "No" ]
           }
         }
       },
       "then": {
         "properties": {
-          "reasonForDivorceLivingApartEntireTime": {
+          "livedApartEntireTime": {
             "enum": [ "No" ]
           },
-          "reasonForDivorceLivingTogetherMoreThan6Months": {
+          "livedTogetherMoreTimeThanPermitted": {
             "enum": ["Yes", "No"]
           }
         },
         "required": [
-          "reasonForDivorceLivingTogetherMoreThan6Months"
+          "livedTogetherMoreTimeThanPermitted"
         ]
       }
     }

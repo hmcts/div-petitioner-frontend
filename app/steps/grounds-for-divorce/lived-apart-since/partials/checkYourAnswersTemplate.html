@@ -1,12 +1,12 @@
 <tr>
   <th>{{ content.ques | safe }}</th>
-  <td>{{ fields.reasonForDivorceLivingApartEntireTime.value }}</td>
+  <td>{{ fields.livedApartEntireTime.value }}</td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.ques | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
-{% if fields.reasonForDivorceLivingTogetherMoreThan6Months.value %}
+{% if fields.livedTogetherMoreTimeThanPermitted.value %}
 <tr>
   <th>{{ content.question.text | safe }}</th>
-  <td>{{ fields.reasonForDivorceLivingTogetherMoreThan6Months.value }}</td>
+  <td>{{ fields.livedTogetherMoreTimeThanPermitted.value }}</td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.question.text | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% endif %}

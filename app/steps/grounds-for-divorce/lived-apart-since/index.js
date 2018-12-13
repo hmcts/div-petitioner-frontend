@@ -4,10 +4,11 @@ const config = require('config');
 const parseBool = require('app/core/utils/parseBool');
 
 const {
-  getSepYears, getPermittedSepDate, getLivingTogetherMonths,
+  getSepYears, getLivingTogetherMonths,
   getLivingTogetherWeeks, getLivingTogetherDays,
   getLiveTogetherPeriodRemainingDays,
-  getSepStartDate, formattedMostRecentSepDate
+  getReferenceDate, formattedMostRecentSepDate,
+  getSeparationTimeTogetherPermitted
 } = require('app/services/separationDates');
 
 module.exports = class LivedApartSince extends ValidationStep {
@@ -16,10 +17,10 @@ module.exports = class LivedApartSince extends ValidationStep {
   }
   get nextStep() {
     return {
-      reasonForDivorceLivingApartEntireTime: {
+      livedApartEntireTime: {
         Yes: this.steps.LegalProceedings,
         No: {
-          reasonForDivorceLivingTogetherMoreThan6Months: {
+          livedTogetherMoreTimeThanPermitted: {
             Yes: this.steps.ExitSeparation,
             No: this.steps.LegalProceedings
           }
@@ -36,14 +37,14 @@ module.exports = class LivedApartSince extends ValidationStep {
         'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
         'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'
       ], (previousSession, session, remove) => {
-        remove('reasonForDivorceLivingApartEntireTime',
-          'reasonForDivorceLivingTogetherMoreThan6Months'
+        remove('livedApartEntireTime',
+          'livedTogetherMoreTimeThanPermitted'
         );
       });
 
-      watch('reasonForDivorceLivingApartEntireTime', (previousSession, session, remove) => {
-        if (session.reasonForDivorceLivingApartEntireTime === 'Yes') {
-          remove('reasonForDivorceLivingTogetherMoreThan6Months');
+      watch('livedApartEntireTime', (previousSession, session, remove) => {
+        if (session.livedApartEntireTime === 'Yes') {
+          remove('livedTogetherMoreTimeThanPermitted');
         }
       });
     }
@@ -51,13 +52,13 @@ module.exports = class LivedApartSince extends ValidationStep {
 
   interceptor(ctx, session) {
     ctx.sepYears = getSepYears(session);
-    ctx.permittedSepDate = getPermittedSepDate(session);
     ctx.livingTogetherMonths = getLivingTogetherMonths(session);
     ctx.livingTogetherWeeks = getLivingTogetherWeeks(session);
     ctx.livingTogetherDays = getLivingTogetherDays(session);
     ctx.liveTogetherPeriodRemainingDays = getLiveTogetherPeriodRemainingDays(session); // eslint-disable-line 
-    ctx.sepStartDate = getSepStartDate(session);
+    ctx.referenceDate = getReferenceDate(session);
     ctx.mostRecentSeparationDate = formattedMostRecentSepDate(session);
+    ctx.separationTimeTogetherPermitted = getSeparationTimeTogetherPermitted(session); // eslint-disable-line 
 
     return ctx;
   }

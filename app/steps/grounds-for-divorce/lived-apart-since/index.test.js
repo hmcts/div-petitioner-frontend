@@ -320,8 +320,8 @@ describe(modulePath, () => {
     it(`Living Apart Entire time after separation date : No,
         Living Together More Than 6 Months rule : No `, done => {
       const context = {
-        reasonForDivorceLivingApartEntireTime: 'No',
-        reasonForDivorceLivingTogetherMoreThan6Months: 'No'
+        livedApartEntireTime: 'No',
+        livedTogetherMoreTimeThanPermitted: 'No'
       };
 
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
@@ -330,44 +330,44 @@ describe(modulePath, () => {
     it(`Living Apart Entire time after separation date : No,
         Living Together More Than 6 Months rule : Yes `, done => {
       const context = {
-        reasonForDivorceLivingApartEntireTime: 'No',
-        reasonForDivorceLivingTogetherMoreThan6Months: 'Yes'
+        livedApartEntireTime: 'No',
+        livedTogetherMoreTimeThanPermitted: 'Yes'
       };
 
       testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
     });
 
     it('Living Apart Entire time after separation date : Yes', done => {
-      const context = { reasonForDivorceLivingApartEntireTime: 'Yes' };
+      const context = { livedApartEntireTime: 'Yes' };
 
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
     });
   });
 
   describe('Test Errors on the page', () => {
-    it('reasonForDivorceLivingApartEntireTime : Not selected', done => {
+    it('livedApartEntireTime : Not selected', done => {
       const context = {};
       testErrors(done, agent, underTest, context,
-        content, 'reasonForDivorceLivingApartEntireTime.required');
+        content, 'livedApartEntireTime.required');
     });
 
-    it(`reasonForDivorceLivingApartEntireTime :  No ,
-        reasonForDivorceLivingTogetherMoreThan6Months : Not selected`, done => {
+    it(`livedApartEntireTime :  No ,
+        livedTogetherMoreTimeThanPermitted : Not selected`, done => {
       const context = {
-        reasonForDivorceLivingApartEntireTime: 'No',
-        reasonForDivorceLivingTogetherMoreThan6Months: '',
-        sepStartDate: moment().subtract(constants.five, 'years')
+        livedApartEntireTime: 'No',
+        livedTogetherMoreTimeThanPermitted: '',
+        referenceDate: moment().subtract(constants.five, 'years')
           .subtract(constants.six, 'months')
           .format('DD MMMM YYYY')
       };
-      testErrors(done, agent, underTest, context, content, 'reasonForDivorceLivingTogetherMoreThan6Months.required');
+      testErrors(done, agent, underTest, context, content, 'livedTogetherMoreTimeThanPermitted.required');
     });
   });
 
   describe('Watched session values', () => {
     const expectFieldsToBeRemoved = newSession => {
-      expect(newSession).not.to.have.property('reasonForDivorceLivingApartEntireTime');
-      expect(newSession).not.to.have.property('reasonForDivorceLivingTogetherMoreThan6Months');
+      expect(newSession).not.to.have.property('livedApartEntireTime');
+      expect(newSession).not.to.have.property('livedTogetherMoreTimeThanPermitted');
     };
 
     const expectPropertyToExist = (newSession, shouldExists, propertyName) => {
@@ -381,15 +381,15 @@ describe(modulePath, () => {
     };
 
     const baseSession = {
-      reasonForDivorceLivingApartEntireTime: 'No',
-      reasonForDivorceLivingTogetherMoreThan6Months: 'No',
+      livedApartEntireTime: 'No',
+      livedTogetherMoreTimeThanPermitted: 'No',
       sepYears: '5',
-      permittedSepDate: '20/07/2013',
+      dateBeforeSepYears: '20/07/2013',
       livingTogetherMonths: '9',
       livingTogetherWeeks: '4',
       livingTogetherDays: '30',
       liveTogetherPeriodRemainingDays: '2',
-      sepStartDate: '20/01/2013',
+      referenceDate: '20/01/2013',
       reasonForDivorce: 'separation-2-years'
     };
 
@@ -402,7 +402,7 @@ describe(modulePath, () => {
 
       const newSession = removeStaleData(previousSession, session);
 
-      expect(newSession).not.to.have.property('reasonForDivorceLivingTogetherMoreThan6Months');
+      expect(newSession).not.to.have.property('livedTogetherMoreTimeThanPermitted');
       expectPropertyToExist(newSession, true, 'reasonForDivorce');
     });
 
@@ -420,16 +420,16 @@ describe(modulePath, () => {
     });
 
 
-    it('removes context if reasonForDivorceLivingApartEntireTime is changed', () => {
+    it('removes context if livedApartEntireTime is changed', () => {
       const previousSession = clone(baseSession);
-      previousSession.reasonForDivorceLivingApartEntireTime = 'No';
+      previousSession.livedApartEntireTime = 'No';
 
       const session = clone(previousSession);
-      session.reasonForDivorceLivingApartEntireTime = 'Yes';
+      session.livedApartEntireTime = 'Yes';
 
       const newSession = removeStaleData(previousSession, session);
 
-      expect(newSession).not.to.have.property('reasonForDivorceLivingTogetherMoreThan6Months');
+      expect(newSession).not.to.have.property('livedTogetherMoreTimeThanPermitted');
       expectPropertyToExist(newSession, true, 'reasonForDivorce');
     });
   });
@@ -442,18 +442,18 @@ describe(modulePath, () => {
     it('Renders separation - time together details ', done => {
       const contentToExist = ['ques', 'question.text'];
 
-      const valuesToExist = ['reasonForDivorceLivingApartEntireTime', 'reasonForDivorceLivingTogetherMoreThan6Months'];
+      const valuesToExist = ['livedApartEntireTime', 'livedTogetherMoreTimeThanPermitted'];
 
       const context = {
-        reasonForDivorceLivingApartEntireTime: 'No',
-        reasonForDivorceLivingTogetherMoreThan6Months: 'No',
+        livedApartEntireTime: 'No',
+        livedTogetherMoreTimeThanPermitted: 'No',
         sepYears: '5',
-        permittedSepDate: '20/07/2013',
+        dateBeforeSepYears: '20/07/2013',
         livingTogetherMonths: '9',
         livingTogetherWeeks: '4',
         livingTogetherDays: '30',
         liveTogetherPeriodRemainingDays: '2',
-        sepStartDate: '20/01/2013',
+        referenceDate: '20/01/2013',
         reasonForDivorce: 'separation-2-years'
       };
 

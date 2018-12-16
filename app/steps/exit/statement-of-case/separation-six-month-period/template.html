@@ -6,62 +6,19 @@
 
 {% block exit_reason %}
 <p class="text">
-    {{ content.reason | safe }}
+  {{ content.reason | safe }}
 </p>
 
 <p class="text">
-    {{ content.allowed | safe }}
+  {{ content.allowed | safe }}
 </p>
 
-
-        <div id="livedTogetherSince" >
-            <h2 class="heading-medium">
-                {{ content.question.text }}
-                {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ content.question.6months }}
-                {% elif fields.livingTogetherMonths.value < 6 %}
-                    {% if fields.livingTogetherWeeks.value > 0 %}
-                    {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
-                {% endif %}
-                {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
-                    {{ content.question.and }}
-                {% endif %}
-                    {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
-                    {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
-                    {% endif %}
-                {% endif %}
-                {{ content.question.since }}
-                {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ fields.referenceDate.value }}
-                {% elif fields.livingTogetherMonths.value < 6 %}
-                    {{ fields.mostRecentSeparationDate.value }}
-                {% endif %}
-            </h2>
-
-            <p>
-                {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.limitYears.value }} {{ content.question.yearsAndMonths }}
-                {% elif fields.livingTogetherMonths.value < 6 %}
-                    {{ content.question.livedMore }}
-                    {% if fields.livingTogetherWeeks.value > 0 %}
-                        {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }} 
-                    {% endif %}
-                    {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
-                        {{ content.question.and }}
-                    {% endif %}
-                    {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
-                        {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
-                    {% endif %}
-                {% endif %} 
-                {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
-            </p>
-
-        </div>
-
-
+<p>
+  {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.limitYears.value }} {{ content.question.yearsAndMonths }} {{ content.question.livedTogehterMore6Months }}
+</p>
 
 <p>
-    {{ content.proceed | safe }}
+  {{ content.proceed | safe }}
 </p>
 
 {% endblock %}

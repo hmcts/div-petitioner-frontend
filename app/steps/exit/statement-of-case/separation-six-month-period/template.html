@@ -14,7 +14,7 @@
 </p>
 
 <p>
-  {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.limitYears.value }} {{ content.question.yearsAndMonths }} {{ content.question.livedTogehterMore6Months }}
+  {{ fields.referenceDate.value }} {{ content.exactDate | safe }} {{ fields.limitYears.value }} {{ content.yearsAndMonths | safe }} {{ content.livedTogetherMore6Months | safe }}
 </p>
 
 <p>

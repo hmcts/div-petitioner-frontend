@@ -62,6 +62,9 @@
             {%- if ( session.courts == 'northWest') %}
               {{ content.sendAddressnorthWest | safe}}
             {%- endif -%}
+            {%- if ( session.courts == 'serviceCentre') %}
+              {{ content.sendAddressServiceCentre | safe}}
+            {%- endif -%}
           </address>
 
           <p class="text">{{ content.certificateKept | safe }} </p>
@@ -75,6 +78,7 @@
             {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
             {{ content.southWestEmail | safe if session.courts === 'southWest' }}
             {{ content.northWestEmail | safe if session.courts === 'northWest' }}
+            {{ content.serviceCentreEmail | safe if session.courts === 'serviceCentre' }}
           </span>
       {% endif %}
 
@@ -98,18 +102,21 @@
         {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
         {{ content.southWestEmail | safe if session.courts === 'southWest' }}
         {{ content.northWestEmail | safe if session.courts === 'northWest' }}
+        {{ content.serviceCentreEmail | safe if session.courts === 'serviceCentre' }}
       </p>
       <p class="text">
         {{ content.eastMidlandsPhoneNumber | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsPhoneNumber | safe if session.courts === 'westMidlands' }}
         {{ content.southWestPhoneNumber | safe if session.courts === 'southWest' }}
         {{ content.northWestPhoneNumber | safe if session.courts === 'northWest' }}
+        {{ content.serviceCentrePhoneNumber | safe if session.courts === 'serviceCentre' }}
       </p>
       <p class="text">
         {{ content.eastMidlandsOpeningHours | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsOpeningHours | safe if session.courts === 'westMidlands' }}
         {{ content.southWestOpeningHours | safe if session.courts === 'southWest' }}
         {{ content.northWestOpeningHours | safe if session.courts === 'northWest' }}
+        {{ content.serviceCentreOpeningHours | safe if session.courts === 'serviceCentre' }}
       </p>
 
       {% if session.helpWithFeesReferenceNumber %}

@@ -12,6 +12,8 @@
         <p class="text">{{ content.remember | safe }}</p>
     </div>
 
+    <p class="text">{{ content.rejected | safe }}</p>
+
     {% if (fields.reasonForDivorceAdulteryKnowWhen.value === "Yes") %}
         {{ textArea(
             name='reasonForDivorceAdulteryWhenDetails',

@@ -21,6 +21,7 @@
           "sendAddresswestMidlands": "{{court.westMidlands.divorceCentre}} <br> {{court.westMidlands.poBox}} <br> {{court.westMidlands.courtCity}} <br> {{court.westMidlands.postCode}}",
           "sendAddresssouthWest": "{{court.southWest.divorceCentre}} <br> {{court.southWest.poBox}} <br> {{court.southWest.courtCity}} <br> {{court.southWest.postCode}}",
           "sendAddressnorthWest": "{{court.northWest.divorceCentre}} <br> {{court.northWest.divorceCentreAddressName}} <br> {{court.northWest.street}} <br> {{court.northWest.courtCity}} <br> {{court.northWest.postCode}}",
+          "sendAddressServiceCentre": "{{court.serviceCentre.serviceCentreName}} <br> c/o {{court.serviceCentre.divorceCentre}} <br> {{court.serviceCentre.poBox}} <br> {{court.serviceCentre.courtCity}} <br> {{court.serviceCentre.postCode}}",
           "certificateKept": "Your certificate will be kept by the court and won't be returned to you.",
 
           "whatToDoNowOrigCertOnly": "You need to write the 16-digit number on the back of your marriage certificate. This must be the original or a certified copy. Don't use a photocopy.",
@@ -54,6 +55,9 @@
           "northWestEmail": "Email: {{court.northWest.email}}",
           "northWestPhoneNumber": "Phone: {{court.northWest.phoneNumber}}",
           "northWestOpeningHours": "{{court.northWest.openingHours}}",
+          "serviceCentreEmail": "Email: {{court.serviceCentre.email}}",
+          "serviceCentrePhoneNumber": "Phone: {{court.serviceCentre.phoneNumber}}",
+          "serviceCentreOpeningHours": "{{court.serviceCentre.openingHours}}",
           "helpWithFees": "Help with fees",
           "courtCheckApp": "How much financial help you get with your fee depends on your individual circumstances. Court staff will check if your help with fees application has been successful, and if you still need to pay anything.",
           "youWillBeContacted": "You’ll be contacted if you need to pay anything.",

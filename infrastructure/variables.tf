@@ -38,6 +38,7 @@ variable "appinsights_location" {
   default     = "West Europe"
   description = "Location for Application Insights"
 }
+
 variable "deployment_env" {
   type = "string"
 }
@@ -216,11 +217,19 @@ variable "feature_idam" {
   default = true
 }
 
+variable "feature_respondent_consent" {
+  default = false
+}
+
 variable "feature_full_payment_event_data_submission" {
   default = true
 }
 
 variable "feature_redirect_to_application_submitted" {
+  default = "true"
+}
+
+variable "feature_redirect_on_state" {
   default = "true"
 }
 
@@ -265,7 +274,7 @@ variable "court_eastmidlands_siteid" {
 }
 
 variable "court_eastmidlands_weight" {
-  default = 0.20
+  default = 0
 }
 
 variable "court_eastmidlands_divorce_facts_ratio" {
@@ -305,7 +314,7 @@ variable "court_westmidlands_siteid" {
 }
 
 variable "court_westmidlands_weight" {
-  default = 0.35
+  default = 0
 }
 
 variable "court_westmidlands_divorce_facts_ratio" {
@@ -345,7 +354,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = 0.20
+  default = 0.5
 }
 
 variable "court_southwest_divorce_facts_ratio" {
@@ -389,7 +398,43 @@ variable "court_northwest_siteid" {
 }
 
 variable "court_northwest_weight" {
-  default = 0.25
+  default = 0.5
+}
+
+variable "service_centre_name" {
+  default = "Courts and Tribunals Service Centre"
+}
+
+variable "court_service_centre_name" {
+  default = "East Midlands Regional Divorce Centre"
+}
+
+variable "court_service_centre_city" {
+  default = "Nottingham"
+}
+
+variable "court_service_centre_pobox" {
+  default = "PO Box 10447"
+}
+
+variable "court_service_centre_postcode" {
+  default = "NG2 9QN"
+}
+
+variable "court_service_centre_openinghours" {
+  default = "Telephone Enquiries from: 8.30am to 5pm"
+}
+
+variable "court_service_centre_email" {
+  default = "divorce@justice.gov.uk"
+}
+
+variable "court_service_centre_phonenumber" {
+  default = "0300 303 0642"
+}
+
+variable "court_service_centre_siteid" {
+  default = "CTSC"
 }
 
 variable "court_phone_number" {
@@ -404,34 +449,50 @@ variable "court_email" {
   default = "divorce@justice.gov.uk"
 }
 
+variable "court_service_centre_weight" {
+  default = 0.30
+}
+
 variable "court_eastmidlands_court_weight" {
-  default = 0.25
+  default = 0
 }
 
 variable "court_westmidlands_court_weight" {
-  default = 0.15
+  default = 0
 }
 
 variable "court_southwest_court_weight" {
-  default = 0.35
+  default = 0.5
 }
 
 variable "court_northwest_court_weight" {
-  default = 0.25
+  default = 0.5
 }
 
 variable "court_northwest_divorce_facts_ratio" {
   default = ""
 }
 
-variable "divorce_facts_ratio" {
+variable "court_service_centre_divorce_facts_ratio" {
   type = "map"
   default = {
+    "unreasonable-behaviour" = 1
+    "separation-2-years" = 0
+    "separation-5-years" = 0
+    "adultery" = 0
+    "desertion" = 0
+  }
+}
+
+variable "divorce_facts_ratio" {
+  type = "map"
+
+  default = {
     "unreasonable-behaviour" = 0.30
-    "separation-2-years" = 0.37
-    "separation-5-years" = 0.21
-    "adultery" = 0.11
-    "desertion" = 0.01
+    "separation-2-years"     = 0.37
+    "separation-5-years"     = 0.21
+    "adultery"               = 0.11
+    "desertion"              = 0.01
   }
 }
 
@@ -443,3 +504,6 @@ variable "dev_support_notification_email" {
   default = "divorcesupportgroup@hmcts.net"
 }
 
+variable "decree_nisi_frontend_url" {
+  default = ""
+}

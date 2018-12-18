@@ -35,8 +35,8 @@ module.exports = class Authenticated extends Step {
 
   get middleware() {
     return [
-      initSession,
-      idamLandingPage
+      idamLandingPage,
+      initSession
     ];
   }
 

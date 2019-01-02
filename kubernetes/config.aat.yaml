@@ -23,6 +23,7 @@ data:
   RATE_LIMITER_EXPIRE: "3600000"
   SESSION_SECRET: "${SESSION_SECRET}"
   IDAM_SECRET: "${IDAM_SECRET}"
+  IDAM_CLIENT_ID: "divorce"
   POST_CODE_ACCESS_TOKEN: "${POST_CODE_ACCESS_TOKEN}"
   POST_CODE_URL: "https://postcodeinfo.service.justice.gov.uk"
   PAYMENT_SERVICE_URL: "http://payment-api-aat.service.core-compute-aat.internal"

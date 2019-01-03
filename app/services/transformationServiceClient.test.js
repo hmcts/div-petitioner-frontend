@@ -86,12 +86,12 @@ describe(modulePath, () => {
         json: true
       });
     });
-    it('appends pertitioner email to uri if send email arguement is true', () => {
+    it('appends petitioner email to uri if send email argument is true', () => {
       // Arrange.
       const userToken = 'user.token';
       const body = {
         foo: 'bar',
-        petitionerEmail: 'test@test.com'
+        petitionerEmail: 'simulate-delivered@notifications.service.gov.uk'
       };
       const petitionerEmail = encodeURIComponent(body.petitionerEmail);
       // Act.

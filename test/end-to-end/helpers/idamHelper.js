@@ -14,11 +14,12 @@ class IdamHelper extends Helper {
 
   _before() {
     if (CONF.features.idam) {
-      const emailName = 'simulate-delivered-' + randomstring.generate({
+      const randomString = randomstring.generate({
         length: 16,
         charset: 'numeric'
       });
-      const testEmail = emailName + '@notifications.service.gov.uk';
+      const emailName = `hmcts.divorce.reform+automatedtest-${randomString}`;
+      const testEmail = `${emailName}@gmail.com`;
       const testPassword = randomstring.generate(9);
 
       args.testEmail = testEmail;

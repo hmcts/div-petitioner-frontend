@@ -144,6 +144,7 @@ module "frontend" {
     REDISCLOUD_URL = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
     USE_AUTH       = "${var.use_auth}"
 
+    TEST_MODE      = "${var.test_mode}"
     // Encryption secrets
     SECRET                    = "${data.azurerm_key_vault_secret.session_secret.value}"
     SESSION_ENCRYPTION_SECRET = "${data.azurerm_key_vault_secret.redis_secret.value}"

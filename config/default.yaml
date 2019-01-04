@@ -64,6 +64,8 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:8080'
 
+testMode: 'false'
+
 commonProps:
   applicationFee:
     feeCode: 'FEE0002'

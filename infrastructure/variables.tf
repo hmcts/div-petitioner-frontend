@@ -125,6 +125,9 @@ variable "google_analytics_tracking_url" {
   default = "http://www.google-analytics.com/collect"
 }
 
+variable "test_mode" {
+  default = "false"
+}
 variable "use_auth" {
   default = false
 }

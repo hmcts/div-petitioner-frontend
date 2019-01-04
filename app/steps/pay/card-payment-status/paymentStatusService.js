@@ -50,6 +50,11 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
         session.payments[paymentId], response);
 
       const paymentSuccess = paymentService.isPaymentSuccessful(response);
+      if (CONF.testMode === 'true') {
+        logger.info('Breaking app for testing');
+        throw new Error('Breaking for test');
+      }
+
       logger.info(`paymentSuccess for ${session.caseId}: ${paymentSuccess}`);
       if (paymentSuccess) {
         const eventData = submissionService

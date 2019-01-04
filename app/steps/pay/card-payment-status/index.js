@@ -49,7 +49,7 @@ module.exports = class CardPaymentStatus extends Step {
       // Log any errors occurred and end up on the error page.
       .catch(error => {
         const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
-        logger.error(`Error occurred while checking/updating payment status for ${req.session.caseId}`, msg, req, error);
+        logger.error(`Error occurred while checking/updating payment status for ${req.session.caseId}`, msg, req);
         res.redirect('/generic-error');
       });
   }

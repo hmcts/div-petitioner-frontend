@@ -212,7 +212,7 @@ describe(modulePath, () => {
     });
 
     it('render calculated values', done => {
-      const valuesToTest = [ '91 days'];
+      const valuesToTest = [ '13 weeks', '92 days'];
       testMultipleValuesExistence(
         done,
         agent,

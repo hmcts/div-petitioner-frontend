@@ -164,6 +164,9 @@ e2e:
   waitForActionValue: E2E_WAIT_FOR_ACTION_VALUE
 
 testUrl: TEST_URL
+
+testMode: TEST_MODE
+
 divorceHttpProxy: DIVORCE_HTTP_PROXY
 
 public:

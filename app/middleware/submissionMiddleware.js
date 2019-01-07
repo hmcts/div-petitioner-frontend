@@ -30,6 +30,7 @@ const handleCcdCase = (req, res, next) => {
           return res.redirect('/generic-error');
         });
     }
+    logger.info(`AwaitingPayment but payment reference not found for ${session.caseId}`);
     return res.redirect(APPLICATION_SUBMITTED_PATH);
   case 'Rejected':
     return next();

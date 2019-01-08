@@ -1,3 +1,7 @@
+provider "azurerm" {
+  version = "1.19.0"
+}
+
 data "azurerm_key_vault" "div_key_vault" {
   name                = "${local.vaultName}"
   resource_group_name = "${local.vaultName}"

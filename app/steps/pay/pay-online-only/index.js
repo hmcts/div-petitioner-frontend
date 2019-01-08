@@ -141,7 +141,7 @@ module.exports = class PayOnline extends Step {
         next();
       })
       .catch(error => {
-        logger.error(error);
+        logger.error(`Error occurred while preparing payment details for ${caseId}`, req, error);
         res.redirect('/generic-error');
       });
   }

@@ -7,7 +7,7 @@ let req = {};
 let res = {};
 let next = {};
 const userDetails = {
-  email: 'email@email.com',
+  email: 'simulate-delivered@notifications.service.gov.uk',
   id: 'user.id'
 };
 const validSession = { expires: 1111 };

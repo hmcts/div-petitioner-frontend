@@ -31,7 +31,7 @@ module.exports = class FinancialArrangements extends ValidationStep {
       return error.param === 'financialOrderFor';
     };
 
-    const removeObsoliteErrors = error => {
+    const removeObsoleteErrors = error => {
       return error.param === 'financialOrder';
     };
 
@@ -39,7 +39,7 @@ module.exports = class FinancialArrangements extends ValidationStep {
       if (ctx.financialOrder === 'Yes') {
         return [isValid, errors.filter(removeUnWantedErrors)];
       }
-      return [isValid, errors.filter(removeObsoliteErrors)];
+      return [isValid, errors.filter(removeObsoleteErrors)];
     }
 
     return [isValid, errors];

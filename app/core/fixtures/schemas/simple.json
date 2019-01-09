@@ -6,9 +6,13 @@
     "hasMarriageCert": {
         "type": "string",
         "enum": ["Yes", "No"]
+    },
+    "petitionerFirstName": {
+      "type": "string"
     }
   },
   "required": [
-    "hasMarriageCert"
+    "hasMarriageCert",
+    "petitionerFirstName"
   ]
 }

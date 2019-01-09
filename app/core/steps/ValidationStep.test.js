@@ -555,6 +555,15 @@ describe(modulePath, () => {
           }).then(done, done);
         });
 
+        it('should filter out empty values before validating the given data', done => {
+          co(function* generator() {
+            const [isValid, errors] = yield underTest.validate({ hasMarriageCert: 'Yes', petitionerFirstName: ' ' });
+
+            expect(isValid).to.equal(false);
+            expect(errors).to.deep.equal([{ param: 'petitionerFirstName', msg: fixtures.content.simple.resources.en.translation.errors.petitionerFirstName.required }]);
+          }).then(done, done);
+        });
+
         it('should invalidate the given data', done => {
           co(function* generator() {
             const [isValid] = yield underTest.validate({});

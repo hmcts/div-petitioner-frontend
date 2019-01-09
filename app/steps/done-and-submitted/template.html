@@ -24,6 +24,27 @@
 
       {# Email notification copy will be added only when notifications is implemented #}
 
+      <div class="progress">
+        <ol class="progress__list">
+          <li class="progress__item progress__item--complete">
+            <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
+            <span class="progress__label">{{ content.youApply }}</span>
+          </li>
+          <li class="progress__item progress__item--current">
+            <i class="progress__icon"></i>
+            <span class="progress__label">{{ content.yourRespondes }}</span>
+          </li>
+          <li class="progress__item">
+            <i class="progress__icon"></i>
+            <span class="progress__label">{{ content.continueDivorce }}</span>
+          </li>
+          <li class="progress__item">
+            <i class="progress__icon"></i>
+            <span class="progress__label">{{ content.divorceFinalised }}</span>
+          </li>
+        </ol>
+      </div>
+
       {% if (session.marriageCertificateFiles | length === 0) %}
         <h2 class="heading-medium">{{content.whatToDoNow | safe}}</h2>
 

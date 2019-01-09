@@ -38,7 +38,7 @@
                         "invalid": "Enter a valid year for when you first decided that the marriage was over (for example, 2010)."
                     },
                     "reasonForDivorceDecisionDate": {
-                        "required": "Enter the date that you first decided that the marriage was over.",
+                        "required": "Enter the date when you first decided that the marriage was over.",
                         "invalid": "Enter a valid date for when you first decided that the marriage was over (for example, 11 12 2010)."
                     },
                     "reasonForDivorceDecisionDateInFuture": {

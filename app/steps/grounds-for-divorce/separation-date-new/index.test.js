@@ -228,7 +228,7 @@ describe(modulePath, () => {
         reasonForDivorceLivingApartYear: '2015'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(done, agent, underTest, context, s.steps.LivedApartSince);
     });
 
     it('redirects to the next page when decision and living apart dates are both after 2 years ago', done => {
@@ -300,7 +300,7 @@ describe(modulePath, () => {
         reasonForDivorceLivingApartYear: '2013'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(done, agent, underTest, context, s.steps.LivedApartSince);
     });
 
     it('redirects to the next page when decision and living apart dates are both after 5 years ago', done => {

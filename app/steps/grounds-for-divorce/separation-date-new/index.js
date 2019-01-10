@@ -24,7 +24,7 @@ module.exports = class SeparationDateNew extends ValidationStep {
         false: {
           reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: {
             true: this.steps.ExitSeparation,
-            false: this.steps.LegalProceedings
+            false: this.steps.LivedApartSince
           }
         }
       }

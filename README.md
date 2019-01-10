@@ -55,15 +55,15 @@ You need to have Yarn and Redis installed. This can be done with brew as follows
 ```
 brew install yarn
 brew install redis
-
 ```
 
 To run the front end app, run the following from the front end project root folder:
 
-
 ```
 yarn add redis-server & yarn start-dev
 ```
+
+The application will now be running on ```https://localhost:8080```.
 
 To run the tests and lint, run the following:
 ```

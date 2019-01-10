@@ -539,7 +539,7 @@ describe(modulePath, () => {
 
         it('should validate the given data', done => {
           co(function* generator() {
-            const [isValid, errors] = yield underTest.validate({ hasMarriageCert: 'Yes' });
+            const [isValid, errors] = yield underTest.validate({ hasMarriageCert: 'Yes', petitionerFirstName: 'Some name' });
 
             expect(isValid).to.equal(true);
             expect(errors).to.deep.equal([]);
@@ -548,10 +548,19 @@ describe(modulePath, () => {
 
         it('should validate the given data', done => {
           co(function* generator() {
-            const [isValid, errors] = yield underTest.validate({ hasMarriageCert: 'No' });
+            const [isValid, errors] = yield underTest.validate({ hasMarriageCert: 'No', petitionerFirstName: 'Some name' });
 
             expect(isValid).to.equal(true);
             expect(errors).to.deep.equal([]);
+          }).then(done, done);
+        });
+
+        it('should filter out empty values before validating the given data', done => {
+          co(function* generator() {
+            const [isValid, errors] = yield underTest.validate({ hasMarriageCert: 'Yes', petitionerFirstName: ' ' });
+
+            expect(isValid).to.equal(false);
+            expect(errors).to.deep.equal([{ param: 'petitionerFirstName', msg: fixtures.content.simple.resources.en.translation.errors.petitionerFirstName.required }]);
           }).then(done, done);
         });
 
@@ -565,7 +574,7 @@ describe(modulePath, () => {
 
         it('should generate the correct error messages for missing required data', done => {
           co(function* generator() {
-            const [, errors] = yield underTest.validate({});
+            const [, errors] = yield underTest.validate({ petitionerFirstName: 'Some name' });
 
             expect(errors).to.deep.equal([{ param: 'hasMarriageCert', msg: fixtures.content.simple.resources.en.translation.errors.hasMarriageCert.required }]);
           }).then(done, done);
@@ -573,7 +582,7 @@ describe(modulePath, () => {
 
         it('should generate the correct error messages for invalid data', done => {
           co(function* generator() {
-            const [, errors] = yield underTest.validate({ hasMarriageCert: 'invalid' });
+            const [, errors] = yield underTest.validate({ hasMarriageCert: 'invalid', petitionerFirstName: 'Some name' });
 
             expect(errors).to.deep.equal([{ param: 'hasMarriageCert', msg: fixtures.content.simple.resources.en.translation.errors.hasMarriageCert.invalid }]);
           }).then(done, done);

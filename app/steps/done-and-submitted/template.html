@@ -24,6 +24,27 @@
 
       {# Email notification copy will be added only when notifications is implemented #}
 
+      <div class="progress">
+        <ol class="progress__list">
+          <li class="progress__item progress__item--complete">
+            <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
+            <span class="progress__label">{{ content.youApply }}</span>
+          </li>
+          <li class="progress__item progress__item--current">
+            <i class="progress__icon"></i>
+            <span class="progress__label">{{ content.yourRespondes }}</span>
+          </li>
+          <li class="progress__item">
+            <i class="progress__icon"></i>
+            <span class="progress__label">{{ content.continueDivorce }}</span>
+          </li>
+          <li class="progress__item">
+            <i class="progress__icon"></i>
+            <span class="progress__label">{{ content.divorceFinalised }}</span>
+          </li>
+        </ol>
+      </div>
+
       {% if (session.marriageCertificateFiles | length === 0) %}
         <h2 class="heading-medium">{{content.whatToDoNow | safe}}</h2>
 
@@ -62,6 +83,9 @@
             {%- if ( session.courts == 'northWest') %}
               {{ content.sendAddressnorthWest | safe}}
             {%- endif -%}
+            {%- if ( session.courts == 'serviceCentre') %}
+              {{ content.sendAddressServiceCentre | safe}}
+            {%- endif -%}
           </address>
 
           <p class="text">{{ content.certificateKept | safe }} </p>
@@ -75,6 +99,7 @@
             {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
             {{ content.southWestEmail | safe if session.courts === 'southWest' }}
             {{ content.northWestEmail | safe if session.courts === 'northWest' }}
+            {{ content.serviceCentreEmail | safe if session.courts === 'serviceCentre' }}
           </span>
       {% endif %}
 
@@ -98,18 +123,21 @@
         {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
         {{ content.southWestEmail | safe if session.courts === 'southWest' }}
         {{ content.northWestEmail | safe if session.courts === 'northWest' }}
+        {{ content.serviceCentreEmail | safe if session.courts === 'serviceCentre' }}
       </p>
       <p class="text">
         {{ content.eastMidlandsPhoneNumber | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsPhoneNumber | safe if session.courts === 'westMidlands' }}
         {{ content.southWestPhoneNumber | safe if session.courts === 'southWest' }}
         {{ content.northWestPhoneNumber | safe if session.courts === 'northWest' }}
+        {{ content.serviceCentrePhoneNumber | safe if session.courts === 'serviceCentre' }}
       </p>
       <p class="text">
         {{ content.eastMidlandsOpeningHours | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsOpeningHours | safe if session.courts === 'westMidlands' }}
         {{ content.southWestOpeningHours | safe if session.courts === 'southWest' }}
         {{ content.northWestOpeningHours | safe if session.courts === 'northWest' }}
+        {{ content.serviceCentreOpeningHours | safe if session.courts === 'serviceCentre' }}
       </p>
 
       {% if session.helpWithFeesReferenceNumber %}

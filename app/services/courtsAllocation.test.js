@@ -19,11 +19,11 @@ const courts = {
       weight: 0.30,
       divorceFactsRatio:
             {
-              'unreasonable-behaviour': 0.70,
+              'unreasonable-behaviour': '0.70',
               'separation-2-years': 0.24,
-              'separation-5-years': 0,
-              adultery: 0,
-              desertion: 0
+              'separation-5-years': '0',
+              adultery: '0',
+              desertion: '0'
             }
     },
   eastMidlands:

@@ -130,7 +130,7 @@ describe(modulePath, () => {
   describe('Check Your Answers', () => {
     it('renders the cya template', done => {
       const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
-      const session = { petitionerEmail: 'test@test.com' };
+      const session = { petitionerEmail: 'simulate-delivered@notifications.service.gov.uk' };
       testCYATemplate(done, underTest, dataPhoneNumber, session);
     });
 

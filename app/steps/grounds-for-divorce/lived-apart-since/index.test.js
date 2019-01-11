@@ -333,12 +333,7 @@ describe(modulePath, () => {
         livedApartEntireTime: 'No',
         livedTogetherMoreTimeThanPermitted: 'Yes'
       };
-
-<<<<<<< HEAD
       testRedirect(done, agent, underTest, context, s.steps.ExitSixMonthRule);
-=======
-      testRedirect(done, agent, underTest, context, s.steps.ExitSeparation);
->>>>>>> 2yearSeperationAdditonalDatesNew
     });
 
     it('Living Apart Entire time after separation date : Yes', done => {

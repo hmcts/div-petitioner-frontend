@@ -18,7 +18,7 @@ describe(modulePath, () => {
     req = {};
     res = {};
     next = sinon.stub();
-    userDetails = { email: 'email@email.com' };
+    userDetails = { email: 'simulate-delivered@notifications.service.gov.uk' };
     const protectStub = sinon.stub().callsArgWith(two, userDetails);
     sinon.stub(idam, 'protect').returns(protectStub);
   });

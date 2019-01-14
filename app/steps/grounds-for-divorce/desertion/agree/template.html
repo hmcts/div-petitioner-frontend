@@ -8,13 +8,23 @@
     <p class="text">
         {{ content.questionHint | safe }}
     </p>
-    {{ yesNoRadioHeading(
-        legend = content.question,
-        name = 'reasonForDivorceDesertionAgreed',
-        field = fields.reasonForDivorceDesertionAgreed,
-        yes = content.yes,
-        no = content.no,
-        screenReader = content.question
-    ) }}
+    <div id="reasonForDivorceDesertionAgreed" class="form-group {{ 'form-group-error' if fields.reasonForDivorceDesertionAgreed.error }}">
+        <fieldset>
+            <legend class="visually-hidden">{{ content.question }}</legend>
+            {{ errorsFor(fields.reasonForDivorceDesertionAgreed) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.yes,
+                name = 'reasonForDivorceDesertionAgreed',
+                field = fields.reasonForDivorceDesertionAgreed
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.no,
+                name = 'reasonForDivorceDesertionAgreed',
+                field = fields.reasonForDivorceDesertionAgreed
+            ) }}
+        </fieldset>
+    </div>
 
 {% endblock %}

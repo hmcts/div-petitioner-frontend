@@ -96,6 +96,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
 
       const timeSinceMarriage = moment().diff(marriageDate, 'years');
 
+      // remove all previous attempted reasons for divorce
       if (ignoreDivorceReasons && ignoreDivorceReasons.length > 0) {
         ignoreDivorceReasons.forEach(reason => {
           switch (reason) {

@@ -24,4 +24,4 @@ decree_nisi_frontend_url = "https://www.decree-nisi.apply-divorce.service.gov.uk
 
 capacity = "2"
 
-feature_redirect_on_state = "false"
+feature_redirect_on_state = "true"

@@ -7,10 +7,10 @@ RUN addgroup --system --gid 1001 $APP_USER \
     && adduser --system --gid 1001 -uid 1001 --disabled-password --disabled-login $APP_USER \
     && chown -R $APP_USER:$APP_USER $WORKDIR \
     && apt-get update \
-    && apt-get install -y git bzip2
+    && apt-get install -y git bzip2 \
+    && yarn config set cache-folder $WORKDIR/.yarn-cache
 COPY package.json yarn.lock ./
-RUN yarn install --production \
-    && yarn cache clean
+RUN yarn install --production
 
 # ---- Build image ----
 # This images pulls the needed dev dependencies
@@ -18,10 +18,12 @@ RUN yarn install --production \
 # Removes node dependencies for next images
 # build convenience
 FROM base as build
-RUN yarn install \
-    && yarn cache clean
+RUN apt-get install -y python2.7 python-pip
+RUN yarn install && npm rebuild node-sass
 COPY . .
-RUN yarn setup && rm -rf node_modules/
+RUN yarn setup \
+    && rm -rf node_modules/ \
+    && yarn cache clean
 
 # ---- Runtime image ----
 # This is the runtime image, inheriting from

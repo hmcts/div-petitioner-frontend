@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "adultery-second-hand-info",
+  "type": "object",
+  "properties": {
+    "reasonForDivorceAdulterySecondHandInfo": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    }
+  },
+  "required": [
+    "reasonForDivorceAdulterySecondHandInfo"
+  ]
+}

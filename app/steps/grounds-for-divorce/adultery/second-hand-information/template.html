@@ -1,0 +1,38 @@
+{% from "common/components/formElements.html" import radioButton %}
+{% from "common/components/formElements.html" import textArea %}
+{% extends "question.html" %}
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+    <p class="text">{{ content.description | safe }}</p>
+
+    <fieldset class="inline">
+        {{ errorsFor(fields.legalProceedings) }}
+        {{ radioButton(
+            value = 'Yes',
+            label = content.yes,
+            name = 'reasonForDivorceAdulterySecondHandInfo',
+            field = fields.reasonForDivorceAdulterySecondHandInfo,
+            dataTarget='further-details'
+        ) }}
+        {{ radioButton(
+            value = 'No',
+            label = content.no,
+            name = 'reasonForDivorceAdulterySecondHandInfo',
+            field = fields.reasonForDivorceAdulterySecondHandInfo
+        ) }}
+    </fieldset>
+<div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorceAdulterySecondHandInfo.value != 'Yes' }}" id="further-details">
+    <fieldset class="form-group inline">
+    {{ textArea(
+        name='reasonForDivorceAdulterySecondHandInfoDetails',
+        field=fields.reasonForDivorceAdulterySecondHandInfoDetails,
+        label=content.informationDetailsQuestion
+    ) }}
+    </fieldset>
+</div>
+
+{% endblock %}

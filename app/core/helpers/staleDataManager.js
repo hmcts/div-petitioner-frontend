@@ -61,10 +61,10 @@ const removeStaleData = (previousSession = {}, session = {}) => {
   const sessionKeys = Object.keys(previousSession).concat(Object.keys(session));
 
   // remove duplicate session keys
-  const unqiueSessionKeys = [ ...new Set(sessionKeys) ];
+  const uniqueSessionKeys = [ ...new Set(sessionKeys) ];
 
   // compare previous and current session to find which fields have changed
-  const fieldsThatHaveChanged = unqiueSessionKeys.filter(key => {
+  const fieldsThatHaveChanged = uniqueSessionKeys.filter(key => {
     const isFieldUndefined = typeof session[key] === 'undefined';
     return isFieldUndefined || session[key] !== previousSession[key];
   });

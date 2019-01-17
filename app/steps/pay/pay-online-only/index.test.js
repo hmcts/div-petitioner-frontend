@@ -31,7 +31,7 @@ const amount = parseInt(
 );
 const userDetails = {
   id: 1,
-  email: 'email@email.com'
+  email: 'simulate-delivered@notifications.service.gov.uk'
 };
 const idamUserDetailsMiddlewareMock = (req, res, next) => {
   req.idam = { userDetails };

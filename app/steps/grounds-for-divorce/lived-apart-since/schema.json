@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "lived-apart-since",
+  "type": "object",
+  "properties": {
+    "livedApartEntireTime": {
+        "type": "string",
+        "enum": ["Yes", "No"]
+    },
+    "livedTogetherMoreTimeThanPermitted": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    },
+    "separationTimeTogetherPermitted": {
+      "type": "string"
+    }
+  },
+  "switch": [
+    {
+      "if": {
+        "properties": {
+          "livedApartEntireTime": {
+            "not": {
+              "type": "string",
+              "enum": ["Yes", "No"]
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "livedApartEntireTime"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "livedApartEntireTime": {
+            "enum": [ "No" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "livedApartEntireTime": {
+            "enum": [ "No" ]
+          },
+          "livedTogetherMoreTimeThanPermitted": {
+            "enum": ["Yes", "No"]
+          }
+        },
+        "required": [
+          "livedTogetherMoreTimeThanPermitted"
+        ]
+      }
+    }
+  ]
+}

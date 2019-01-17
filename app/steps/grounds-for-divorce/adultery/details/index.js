@@ -7,7 +7,7 @@ module.exports = class AdulteryDetails extends ValidationStep {
   }
 
   get nextStep() {
-    return this.steps.LegalProceedings;
+    return this.steps.AdulterySecondHandInfo;
   }
 
   constructor(...args) {

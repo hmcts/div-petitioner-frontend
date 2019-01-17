@@ -1,10 +1,8 @@
-
 {
   "lng": "en",
   "resources": {
     "en": {
       "translation": {
-
         "content": {
           "question": "Has any of the information about the adultery come from another person?",
           "description": "The court needs to know if any of this information is second hand.",
@@ -12,14 +10,12 @@
           "no": "no",
           "informationGivenQuestion": "Which information was given to you?"
         },
-
         "errors": {
           "reasonForDivorceSecondHandInfo": {
             "required": "Select yes if any of the information had come from another person",
             "invalid": "Select yes if any of the information had come from another person"
           }
         }
-
       }
     }
   }

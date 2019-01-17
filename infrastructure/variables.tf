@@ -438,7 +438,7 @@ variable "court_service_centre_phonenumber" {
 }
 
 variable "court_service_centre_siteid" {
-  default = "servicecentre"
+  default = "AA01"
 }
 
 variable "court_phone_number" {

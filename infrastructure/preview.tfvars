@@ -25,3 +25,5 @@ feature_redirect_to_application_submitted = "false"
 dev_support_notification_email = "divorce-team-a@hmcts.net"
 
 feature_redirect_on_state = "false"
+
+feature_release_520 = "true"

@@ -237,6 +237,10 @@ variable "feature_redirect_on_state" {
   default = "true"
 }
 
+variable "feature_release_520" {
+  default = false
+}
+
 variable "survey_feedback_url" {
   default = "http://www.smartsurvey.co.uk/s/0QIL4"
 }

@@ -10,6 +10,7 @@
     <p class="text">{{ content.description | safe }}</p>
 
     <fieldset class="inline">
+        <legend class="visually-hidden">{{ content.question | safe }}</legend>
         {{ errorsFor(fields.reasonForDivorceAdulterySecondHandInfo) }}
         {{ radioButton(
             value = 'Yes',

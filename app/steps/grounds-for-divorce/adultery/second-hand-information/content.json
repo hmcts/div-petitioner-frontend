@@ -11,9 +11,13 @@
           "informationDetailsQuestion": "Which information was given to you?"
         },
         "errors": {
-          "reasonForDivorceSecondHandInfo": {
+          "reasonForDivorceAdulterySecondHandInfo": {
             "required": "Select yes if any of the information had come from another person",
             "invalid": "Select yes if any of the information had come from another person"
+          },
+          "reasonForDivorceAdulterySecondHandInfoDetails": {
+            "required": "Enter the details of the second hand information",
+            "invalid": "Enter the details of the second hand information"
           }
         }
       }

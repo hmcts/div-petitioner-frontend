@@ -58,7 +58,12 @@ describe(modulePath, () => {
     it('redirects to the next page', done => {
       const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -107,7 +112,12 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -156,7 +166,12 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhereDetails: 'Adultery happend at a place.'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -203,7 +218,12 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 

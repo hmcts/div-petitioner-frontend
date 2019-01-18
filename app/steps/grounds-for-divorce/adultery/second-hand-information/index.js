@@ -1,7 +1,6 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
 
-
 module.exports = class AdulterySecondHandInfo extends ValidationStep {
   get url() {
     return '/about-divorce/reason-for-divorce/adultery/second-hand-information';
@@ -15,8 +14,14 @@ module.exports = class AdulterySecondHandInfo extends ValidationStep {
     super(...args);
 
     watch('reasonForDivorceAdulterySecondHandInfo', (previousSession, session, remove) => {
-      if (previousSession.reasonForDivorceAdulterySecondHandInfo === 'No') {
+      if (session.reasonForDivorceAdulterySecondHandInfo === 'No') {
         remove('reasonForDivorceAdulterySecondHandInfoDetails');
+      }
+    });
+
+    watch('reasonForDivorce', (previousSession, session, remove) => {
+      if (session.reasonForDivorce !== 'adultery') {
+        remove('reasonForDivorceAdulterySecondHandInfo', 'reasonForDivorceAdulterySecondHandInfoDetails');
       }
     });
   }

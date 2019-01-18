@@ -450,7 +450,7 @@ variable "court_opening_hours" {
 }
 
 variable "court_email" {
-  default = "divorce@justice.gov.uk"
+  default = "divorcecase@justice.gov.uk"
 }
 
 variable "court_service_centre_weight" {

@@ -10,7 +10,7 @@
     <p class="text">{{ content.description | safe }}</p>
 
     <fieldset class="inline">
-        {{ errorsFor(fields.legalProceedings) }}
+        {{ errorsFor(fields.reasonForDivorceAdulterySecondHandInfo) }}
         {{ radioButton(
             value = 'Yes',
             label = content.yes,
@@ -25,14 +25,15 @@
             field = fields.reasonForDivorceAdulterySecondHandInfo
         ) }}
     </fieldset>
-<div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorceAdulterySecondHandInfo.value != 'Yes' }}" id="further-details">
-    <fieldset class="form-group inline">
-    {{ textArea(
-        name = 'reasonForDivorceAdulterySecondHandInfoDetails',
-        field = fields.reasonForDivorceAdulterySecondHandInfoDetails,
-        label = content.informationDetailsQuestion
-    ) }}
-    </fieldset>
-</div>
+
+    <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorceAdulterySecondHandInfo.value != 'Yes' }}" id="further-details">
+        <fieldset class="form-group inline">
+        {{ textArea(
+            name = 'reasonForDivorceAdulterySecondHandInfoDetails',
+            field = fields.reasonForDivorceAdulterySecondHandInfoDetails,
+            label = content.informationDetailsQuestion
+        ) }}
+        </fieldset>
+    </div>
 
 {% endblock %}

@@ -59,7 +59,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('test error', () => {
+  describe('reporting validation errors', () => {
     it('renders error when no option selected', done => {
       const context = {};
       const onlyKey = [ 'reasonForDivorceAdulterySecondHandInfo'];
@@ -95,7 +95,7 @@ describe(modulePath, () => {
       );
     });
 
-    it('sets the second-hand-info details when user does not have second-hand-info details', done => {
+    it('does not set the second-hand-info details when user does not have second-hand-info details', done => {
       const context = { reasonForDivorceAdulterySecondHandInfo: 'No' };
 
       postData(agent, underTest.url, context).then(

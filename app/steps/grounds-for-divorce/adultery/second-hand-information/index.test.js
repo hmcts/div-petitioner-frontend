@@ -43,12 +43,6 @@ describe(modulePath, () => {
       testContent(done, agent, underTest, content);
     });
 
-    it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulterySecondHandInfo: 'Yes' };
-      const onlyKey = [ 'reasonForDivorceAdulterySecondHandInfoDetails'];
-      testErrors(done, agent, underTest, context, content, 'required', onlyKey);
-    });
-
     it('redirects to the next page when the user received information from another person', done => {
       const context = {
         reasonForDivorceAdulterySecondHandInfo: 'Yes',
@@ -62,6 +56,20 @@ describe(modulePath, () => {
       const context = { reasonForDivorceAdulterySecondHandInfo: 'No' };
 
       testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    });
+  });
+
+  describe('test error', () => {
+    it('renders error when no option selected', done => {
+      const context = {};
+      const onlyKey = [ 'reasonForDivorceAdulterySecondHandInfo'];
+      testErrors(done, agent, underTest, context, content, 'required', onlyKey);
+    });
+
+    it('renders errors when details not inserted', done => {
+      const context = { reasonForDivorceAdulterySecondHandInfo: 'Yes' };
+      const onlyKey = [ 'reasonForDivorceAdulterySecondHandInfoDetails'];
+      testErrors(done, agent, underTest, context, content, 'invalid', onlyKey);
     });
   });
 

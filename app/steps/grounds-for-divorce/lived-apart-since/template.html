@@ -1,13 +1,20 @@
 {% from "common/components/formElements.html" import yesNoRadioHeading %}
 {% extends "question.html" %}
 {% block question %}
-    {{ content.ques | safe }}
+    {% if session.reasonForDivorce === 'desertion' %}
+      {{ content.desQues | safe }}
+    {% else %}
+      {{ content.sepQues | safe }}
+    {% endif %}
 {% endblock %}
 
 {% block form %}
-            
+        
+
+    {% if reasonForDivorce !== 'desertion' %}
         <p class="text">{{ content.info1 | safe }} </p>
         <p class="text">{{ content.info2 | safe }}</p>
+    {% endif %}
         {{ yesNoRadioHeading(
             legend = content.ques,
             name ='livedApartEntireTime',

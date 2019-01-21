@@ -16,7 +16,7 @@ module.exports = class DesertionDate extends ValidationStep {
   get nextStep() {
     return {
       reasonForDivorceDesertionAlright: {
-        true: this.steps.DesertionAgree,
+        true: this.steps.LivedApartSince,
         false: this.steps.ExitDesertionDate
       }
     };

@@ -1,7 +1,11 @@
 <tr>
-  <th>{{ content.ques | safe }}</th>
+    {% if session.reasonForDivorce === 'desertion' %}
+      <th>{{ content.desQues | safe }}</th>
+    {% else %}
+      <th>{{ content.sepQues | safe }}</th>
+    {% endif %}
   <td>{{ fields.livedApartEntireTime.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.ques | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.livedTogetherMoreTimeThanPermitted.value %}
 <tr>

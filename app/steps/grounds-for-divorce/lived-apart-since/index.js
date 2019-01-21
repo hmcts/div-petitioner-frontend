@@ -15,14 +15,30 @@ module.exports = class LivedApartSince extends ValidationStep {
   get url() {
     return '/about-divorce/reason-for-divorce/separation/lived-apart-since';
   }
+
   get nextStep() {
     return {
-      livedApartEntireTime: {
-        Yes: this.steps.LegalProceedings,
-        No: {
-          livedTogetherMoreTimeThanPermitted: {
-            Yes: this.steps.ExitSixMonthRule,
-            No: this.steps.LegalProceedings
+      reasonForDivorceField: {
+        desertion: {
+          livedApartEntireTime: {
+            Yes: this.steps.DesertionDetails,
+            No: {
+              livedTogetherMoreTimeThanPermitted: {
+                Yes: this.steps.ExitSixMonthRule,
+                No: this.steps.DesertionDetails
+              }
+            }
+          }
+        },
+        separation: {
+          livedApartEntireTime: {
+            Yes: this.steps.LegalProceedings,
+            No: {
+              livedTogetherMoreTimeThanPermitted: {
+                Yes: this.steps.ExitSixMonthRule,
+                No: this.steps.LegalProceedings
+              }
+            }
           }
         }
       }
@@ -59,6 +75,7 @@ module.exports = class LivedApartSince extends ValidationStep {
     ctx.referenceDate = getReferenceDate(session);
     ctx.mostRecentSeparationDate = formattedMostRecentSepDate(session);
     ctx.separationTimeTogetherPermitted = getSeparationTimeTogetherPermitted(session); // eslint-disable-line
+    ctx.reasonForDivorceField = session.reasonForDivorce === 'desertion' ? 'desertion' : 'separation';
 
     return ctx;
   }

@@ -147,7 +147,7 @@ describe(modulePath, () => {
           reasonForDivorceDesertionDate3YearsAgo.year()
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.DesertionAgree);
+      testRedirect(done, agent, underTest, context, s.steps.LivedApartSince);
     });
 
     it('redirects to the exit page', done => {

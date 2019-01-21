@@ -59,6 +59,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.exactDate',
       'question.yearsAndMonths',
       'question.needNotToUse',
@@ -106,6 +107,7 @@ describe(modulePath, () => {
 
     it('Loads content if most recent sep date is > 5 yr 6 months', done => {
       const excludeKeys = [
+        'desQues',
         'question.weeks',
         'question.days',
         'question.yearsAndMonths',
@@ -151,6 +153,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.weeks',
       'question.days',
       'question.yearsAndMonths',
@@ -198,6 +201,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.exactDate',
       'question.yearsAndMonths',
       'question.needNotToUse',
@@ -240,6 +244,7 @@ describe(modulePath, () => {
 
     it('Loads content if most recent sep date is > 2 yr 6 months', done => {
       const excludeKeys = [
+        'desQues',
         'question.weeks',
         'question.days',
         'question.yearsAndMonths',
@@ -285,6 +290,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.weeks',
       'question.days',
       'question.yearsAndMonths',
@@ -439,7 +445,7 @@ describe(modulePath, () => {
     });
 
     it('Renders separation - time together details ', done => {
-      const contentToExist = ['ques', 'question.text'];
+      const contentToExist = ['sepQues', 'question.text'];
 
       const valuesToExist = ['livedApartEntireTime', 'livedTogetherMoreTimeThanPermitted'];
 
@@ -483,7 +489,7 @@ describe(modulePath, () => {
         };
 
         const contentToExist = [
-          'ques',
+          'sepQues',
           'question.text',
           'question.6months',
           'question.since',
@@ -518,7 +524,7 @@ describe(modulePath, () => {
         };
 
         const contentToExist = [
-          'ques',
+          'sepQues',
           'question.text',
           'question.weeks',
           'question.and',

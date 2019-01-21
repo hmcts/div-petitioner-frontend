@@ -3,28 +3,28 @@
   table.listing {
     table-layout: fixed;
     width: 100%;
-  }
 
-  th {
-    vertical-align: top;
-    width: 25%;
-    font-weight: normal;
-  }
+    th {
+      vertical-align: top;
+      width: 25%;
+      font-weight: normal;
+    }
 
-  td {
-    vertical-align: top;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
+    td {
+      vertical-align: top;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
 
-  td.no-border {
-    border: none;
-  }
+    td.no-border {
+      border: none;
+    }
 
-  span.address {
-    margin-top: 10px;
-    line-height: 1.1;
-    display: block
+    span.address {
+      margin-top: 10px;
+      line-height: 1.1;
+      display: block
+    }
   }
 
   form span.error-message {

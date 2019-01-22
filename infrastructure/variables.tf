@@ -237,6 +237,10 @@ variable "feature_redirect_on_state" {
   default = "true"
 }
 
+variable "feature_release_520" {
+  default = false
+}
+  
 variable "feature_release_510" {
   default = false
 }

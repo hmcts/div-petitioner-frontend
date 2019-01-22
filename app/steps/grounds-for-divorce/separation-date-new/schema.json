@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "separation-date-new",
+    "type": "object",
+    "properties": {
+        "reasonForDivorceDecisionDay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+        },
+        "reasonForDivorceDecisionMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "reasonForDivorceDecisionYear": {
+            "type": "integer"
+        },
+        "reasonForDivorceDecisionDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "reasonForDivorceDecisionDateIsSameOrAfterLimitDate": {
+            "type": "boolean"
+        },
+        "reasonForDivorceDecisionDateInFuture": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceDecisionDateBeforeMarriageDate": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceLivingApartDay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+        },
+        "reasonForDivorceLivingApartMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "reasonForDivorceLivingApartYear": {
+            "type": "integer"
+        },
+        "reasonForDivorceLivingApartDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate": {
+            "type": "boolean"
+        },
+        "reasonForDivorceLivingApartDateInFuture": {
+            "type": "boolean",
+            "enum": [false]
+        },
+        "reasonForDivorceLivingApartDateBeforeMarriageDate": {
+            "type": "boolean",
+            "enum": [false]
+        }
+    },
+    "required": [
+        "reasonForDivorceDecisionDay",
+        "reasonForDivorceDecisionMonth",
+        "reasonForDivorceDecisionYear",
+        "reasonForDivorceDecisionDate",
+        "reasonForDivorceDecisionDateIsSameOrAfterLimitDate",
+        "reasonForDivorceDecisionDateInFuture",
+        "reasonForDivorceDecisionDateBeforeMarriageDate",
+        "reasonForDivorceLivingApartDay",
+        "reasonForDivorceLivingApartMonth",
+        "reasonForDivorceLivingApartYear",
+        "reasonForDivorceLivingApartDate",
+        "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate",
+        "reasonForDivorceLivingApartDateInFuture",
+        "reasonForDivorceLivingApartDateBeforeMarriageDate"
+    ]
+}

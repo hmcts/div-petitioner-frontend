@@ -142,6 +142,7 @@ features:
   redirectToApplicationSubmitted: FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED
   respondentConsent: FEATURE_RESPONDENT_CONSENT
   redirectOnState: FEATURE_REDIRECT_ON_STATE
+  release510: FEATURE_RELEASE_510
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

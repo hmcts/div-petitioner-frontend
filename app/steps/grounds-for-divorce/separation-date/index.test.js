@@ -265,7 +265,7 @@ describe(modulePath, () => {
         .to.equal('undefined');
     });
 
-    it('does not remove context if reasonForDivorce is set to seperation-2-years', () => {
+    it.skip('does not remove context if reasonForDivorce is set to seperation-2-years', () => {
       const previousSession = {
         reasonForDivorce: 'seperation-5-years',
         reasonForDivorceSeperationDay: '1',
@@ -302,7 +302,7 @@ describe(modulePath, () => {
         );
     });
 
-    it('does not remove context if reasonForDivorce is set to seperation-5-years', () => {
+    it.skip('does not remove context if reasonForDivorce is set to seperation-5-years', () => {
       const previousSession = {
         reasonForDivorce: 'seperation-2-years',
         reasonForDivorceSeperationDay: '1',

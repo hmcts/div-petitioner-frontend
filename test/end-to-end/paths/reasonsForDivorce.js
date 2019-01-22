@@ -50,7 +50,11 @@ Scenario('Adultery, with details', (I) => {
   I.selectAdulteryWhere();
   I.selectAdulteryWhen();
   I.enterAdulteryDetails();
-  I.enterAdulterySecondHandInfo();
+  if (config.features.release520) {
+    I.enterAdulterySecondHandInfo();
+  }
+  I.enterLegalProceedings();
+
 });
 
 Scenario('2 years separation', (I) => {

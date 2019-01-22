@@ -114,7 +114,7 @@ describe(modulePath, () => {
       };
 
       const featureTest = featureToggleConfig
-      .when('release520', true, testRedirect, agent, underTest, context, s.steps.AdulterySecondHandInfo);
+        .when('release520', true, testRedirect, agent, underTest, context, s.steps.AdulterySecondHandInfo);
 
       featureTest(done);
     });
@@ -126,7 +126,7 @@ describe(modulePath, () => {
       };
 
       const featureTest = featureToggleConfig
-      .when('release520', false, testRedirect, agent, underTest, context, s.steps.LegalProceedings);
+        .when('release520', false, testRedirect, agent, underTest, context, s.steps.LegalProceedings);
 
       featureTest(done);
     });

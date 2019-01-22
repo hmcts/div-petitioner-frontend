@@ -546,4 +546,49 @@ describe(modulePath, () => {
       });
     });
   });
+
+  describe('Desertion - render content', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        reasonForDivorce: 'desertion',
+        reasonForDivorceDesertionDate: moment().subtract(constants.two, 'years')
+          .subtract(constants.four, 'months')
+      };
+      withSession(done, agent, session);
+    });
+
+    const excludeKeys = [
+      'sepQues',
+      'question.exactDate',
+      'question.yearsAndMonths',
+      'question.needNotToUse',
+      'mustSpentYr',
+      'onlyUpTo6Months',
+      'ifMoreThan6Months',
+      'ifLessThan6Months'
+    ];
+
+    it('Loads content if most recent desertion date is = 2 yr 4 months', done => {
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+
+    it('render calculated values', done => {
+      const valuesToTest = [
+        '17 weeks',
+        '3 days',
+        moment().subtract(constants.two, 'years')
+          .subtract(constants.four, 'months')
+          .format('DD MMMM YYYY')
+      ];
+      testMultipleValuesExistence(
+        done,
+        agent,
+        underTest,
+        valuesToTest,
+        session
+      );
+    });
+  });
 });

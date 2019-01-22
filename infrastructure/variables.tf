@@ -240,6 +240,10 @@ variable "feature_redirect_on_state" {
 variable "feature_release_520" {
   default = false
 }
+  
+variable "feature_release_510" {
+  default = false
+}
 
 variable "survey_feedback_url" {
   default = "http://www.smartsurvey.co.uk/s/0QIL4"
@@ -442,7 +446,7 @@ variable "court_service_centre_phonenumber" {
 }
 
 variable "court_service_centre_siteid" {
-  default = "CTSC"
+  default = "AA01"
 }
 
 variable "court_phone_number" {

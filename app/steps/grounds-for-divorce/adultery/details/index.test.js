@@ -9,6 +9,7 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
+const featureToggleConfig = require('test/util/featureToggles');
 
 const modulePath = 'app/steps/grounds-for-divorce/adultery/details';
 
@@ -106,18 +107,28 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
-    it('redirects to the next page', done => {
+    it('redirects to the next page when 520 feature flag is on', done => {
       const context = {
         reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
         reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
       };
 
-      testRedirect(
-        done,
-        agent,
-        underTest,
-        context,
-        s.steps.AdulterySecondHandInfo);
+      const featureTest = featureToggleConfig
+      .when('release520', true, testRedirect, agent, underTest, context, s.steps.AdulterySecondHandInfo);
+
+      featureTest(done);
+    });
+
+    it('redirects to the next page when 520 feature flag is off', done => {
+      const context = {
+        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
+        reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
+      };
+
+      const featureTest = featureToggleConfig
+      .when('release520', false, testRedirect, agent, underTest, context, s.steps.LegalProceedings);
+
+      featureTest(done);
     });
   });
 

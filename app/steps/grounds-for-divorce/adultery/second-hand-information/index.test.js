@@ -114,7 +114,7 @@ describe(modulePath, () => {
       const previousSession = {
         reasonForDivorceAdulterySecondHandInfo: 'Yes',
         reasonForDivorceAdulterySecondHandInfoDetails: 'placeholder'
-      };
+    };
 
       const session = clone(previousSession);
       session.reasonForDivorceAdulterySecondHandInfo = 'No';
@@ -129,7 +129,7 @@ describe(modulePath, () => {
       const previousSession = {
         reasonForDivorceAdulterySecondHandInfo: 'Yes',
         reasonForDivorceAdulterySecondHandInfoDetails: 'placeholder'
-      };
+    };
 
       const session = clone(previousSession);
       session.reasonForDivorce = 'Behaviour';

@@ -77,7 +77,7 @@ describe(modulePath, () => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when('respondentConsent', true, testRedirect, agent, underTest, context, s.steps.RespondentConsent);
+        .when(['respondentConsent'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
 
       featureTest(done);
     });
@@ -86,14 +86,27 @@ describe(modulePath, () => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when('respondentConsent', false, testRedirect, agent, underTest, context, s.steps.SeparationDate);
+        .when(['respondentConsent'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
 
       featureTest(done);
     });
 
-    it('redirects to the financial arrangements page when 5 year separation is selected', done => {
+    it('redirects to the old seperation date page page when 5 year separation is selected and release510 is off', done => {
       const context = { reasonForDivorce: 'separation-5-years' };
-      testRedirect(done, agent, underTest, context, s.steps.SeparationDate);
+
+      const featureTest = featureToggleConfig
+        .when('release510', false, testRedirect, agent, underTest, context, s.steps.SeparationDate);
+
+      featureTest(done);
+    });
+
+    it('redirects to the new seperation date page when 5 year separation is selected and release510 is on', done => {
+      const context = { reasonForDivorce: 'separation-5-years' };
+
+      const featureTest = featureToggleConfig
+        .when('release510', true, testRedirect, agent, underTest, context, s.steps.SeparationDateNew);
+
+      featureTest(done);
     });
   });
 

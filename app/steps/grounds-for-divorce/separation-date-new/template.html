@@ -1,0 +1,48 @@
+{% from "common/components/formElements.html" import date, radioButton %}
+
+{% extends "question.html" %}
+{% block question %}
+    {{ content.title | safe }}
+{% endblock %}
+
+{% block form %}
+    <p class="text">{{ content.info1 | safe}}</p>
+    <p class="text">{{ content.info2 | safe}}</p>
+
+    <h2 class="heading-medium">
+        {{ content.question1.text | safe }}
+    </h2>
+
+    {{ date(
+        dayField = fields.reasonForDivorceDecisionDay,
+        dayName = 'reasonForDivorceDecisionDay',
+        monthField = fields.reasonForDivorceDecisionMonth,
+        monthName = 'reasonForDivorceDecisionMonth',
+        yearField = fields.reasonForDivorceDecisionYear,
+        yearName = 'reasonForDivorceDecisionYear',
+        dateField = fields.reasonForDivorceDecisionDate,
+        hint = content.dateHint,
+        id = 'reasonForDivorceDecisionDate',
+        hiddenLegend = content.question1.text
+    ) }}
+
+    <h2 class="heading-medium">
+        {{ content.question2.text | safe }}
+    </h2>
+
+    <p class="text">{{ content.question2.info | safe}}</p>
+
+    {{ date(
+        dayField = fields.reasonForDivorceLivingApartDay,
+        dayName = 'reasonForDivorceLivingApartDay',
+        monthField = fields.reasonForDivorceLivingApartMonth,
+        monthName = 'reasonForDivorceLivingApartMonth',
+        yearField = fields.reasonForDivorceLivingApartYear,
+        yearName = 'reasonForDivorceLivingApartYear',
+        dateField = fields.reasonForDivorceLivingApartDate,
+        hint = content.dateHint,
+        id = 'reasonForDivorceLivingApartDate',
+        hiddenLegend = content.question2.text
+    ) }}
+
+{% endblock %}

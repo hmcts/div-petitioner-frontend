@@ -70,10 +70,10 @@
           "improveServiceContent": "This is a new service which is still being developed. If you haven’t already, please <a aria-label=\"This link will open in a new tab.\" href=\"{{smartSurveyFeedbackDonePageUrl}}?pageurl=/done\" target=\"_blank\">provide feedback</a> on what you think of it and how it can be improved.",
 
           "complete": "Complete",
-          "youApply": "You have applied",
-          "yourRespondes": "Your {{ divorceWho }} responds",
-          "continueDivorce": "You apply to continue the divorce",
-          "divorceFinalised": "The divorce is finialised"
+          "youApply": "You apply",
+          "yourRespondes": "Your {{ divorceWho }} must respond",
+          "continueDivorce": "Get a decree nisi",
+          "divorceFinalised": "The divorce is complete"
         },
         "errors": {
         }

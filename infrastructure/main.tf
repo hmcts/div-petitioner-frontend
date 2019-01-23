@@ -82,7 +82,6 @@ module "frontend" {
   common_tags                     = "${var.common_tags}"
   asp_name                        = "${local.asp_name}"
   asp_rg                          = "${local.asp_rg}"
-  instance_size                   = "I3"
 
   app_settings = {
     // Node specific vars
@@ -259,5 +258,6 @@ module "frontend" {
     FEATURE_RESPONDENT_CONSENT                 = "${var.feature_respondent_consent}"
     FEATURE_REDIRECT_ON_STATE                  = "${var.feature_redirect_on_state}"
     FEATURE_RELEASE_520                        = "${var.feature_release_520}"
+    FEATURE_RELEASE_510                        = "${var.feature_release_510}"
   }
 }

@@ -151,8 +151,8 @@ features:
   redirectToApplicationSubmitted: false
   respondentConsent: false
   redirectOnState: false
-  release520: false
   release510: true
+  release520: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

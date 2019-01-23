@@ -110,7 +110,7 @@ describe(modulePath, () => {
     it('redirects to the next page when 520 feature flag is on', done => {
       const context = {
         reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
-        reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
+        reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
       const featureTest = featureToggleConfig
@@ -122,7 +122,7 @@ describe(modulePath, () => {
     it('redirects to the next page when 520 feature flag is off', done => {
       const context = {
         reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
-        reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
+        reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
       const featureTest = featureToggleConfig

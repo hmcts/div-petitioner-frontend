@@ -115,6 +115,10 @@ const createHandler = nameSpace => {
             return res.status(httpStatus.OK).send();
           }
           return res.redirect(redirectUrl);
+        })
+        .catch(error => {
+          logger.error(req, 'evidence_delete_error', 'Error deleting evidence', error.message);
+          throw error;
         });
     case 'post':
       return validatePostRequest(req, nameSpace)

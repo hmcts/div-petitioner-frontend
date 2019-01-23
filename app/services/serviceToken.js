@@ -1,6 +1,7 @@
 const serviceAuthProviderClient = require('@hmcts/div-service-auth-provider-client');
 const mockedClient = require('app/services/mocks/serviceToken');
 const CONF = require('config');
+const logger = require('app/services/logger').logger(__filename);
 
 let client = {};
 let serviceToken = null;
@@ -23,6 +24,7 @@ const service = {
           resolve(token);
         })
         .catch(error => {
+          logger.info(null, 'get_token_error', 'Error getting token', error.message);
           reject(error);
         });
     });

@@ -144,7 +144,8 @@ const saveSessionToDraftStoreAndReply = function(req, res, next) {
           .status(statusCode.OK)
           .json({ message: 'ok' });
       })
-      .catch(() => {
+      .catch(error => {
+        logger.error(req, 'save_draft_and_reply_error', 'Error saving draft and reply', error.message);
         res
           .status(statusCode.INTERNAL_SERVER_ERROR)
           .json({ message: 'Error saving session to draft store' });

@@ -103,7 +103,7 @@ commonProps:
       phoneNumber: COURT_SERVICE_CENTRE_PHONENUMBER
       siteId: COURT_SERVICE_CENTRE_SITEID
       weight: COURT_SERVICE_CENTRE_WEIGHT
-      divorceFactsRatio: 
+      divorceFactsRatio:
         unreasonable-behaviour: SERVICE_CENTRE_DIVORCE_FACT_RATIO_BEHAVIOUR
         separation-2-years: SERVICE_CENTRE_DIVORCE_FACT_RATIO_2_YEAR_SEPARATION
         separation-5-years: SERVICE_CENTRE_DIVORCE_FACT_RATIO_5_YEAR_SEPARATION
@@ -142,8 +142,8 @@ features:
   redirectToApplicationSubmitted: FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED
   respondentConsent: FEATURE_RESPONDENT_CONSENT
   redirectOnState: FEATURE_REDIRECT_ON_STATE
-  release520: FEATURE_RELEASE_520
   release510: FEATURE_RELEASE_510
+  release520: FEATURE_RELEASE_520
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

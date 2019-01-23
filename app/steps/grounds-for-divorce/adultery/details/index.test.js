@@ -9,6 +9,7 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
+const config = require('config');
 const featureToggleConfig = require('test/util/featureToggles');
 
 const modulePath = 'app/steps/grounds-for-divorce/adultery/details';
@@ -59,12 +60,21 @@ describe(modulePath, () => {
     it('redirects to the next page', done => {
       const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
 
-      testRedirect(
-        done,
-        agent,
-        underTest,
-        context,
-        s.steps.AdulterySecondHandInfo);
+      if (config.features.release520) {
+        testRedirect(
+          done,
+          agent,
+          underTest,
+          context,
+          s.steps.AdulterySecondHandInfo);
+      } else {
+        testRedirect(
+          done,
+          agent,
+          underTest,
+          context,
+          s.steps.LegalProceedings);
+      }
     });
   });
 
@@ -177,12 +187,21 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhereDetails: 'Adultery happend at a place.'
       };
 
-      testRedirect(
-        done,
-        agent,
-        underTest,
-        context,
-        s.steps.AdulterySecondHandInfo);
+      if (config.features.release520) {
+        testRedirect(
+          done,
+          agent,
+          underTest,
+          context,
+          s.steps.AdulterySecondHandInfo);
+      } else {
+        testRedirect(
+          done,
+          agent,
+          underTest,
+          context,
+          s.steps.LegalProceedings);
+      }
     });
   });
 
@@ -229,12 +248,21 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
       };
 
-      testRedirect(
-        done,
-        agent,
-        underTest,
-        context,
-        s.steps.AdulterySecondHandInfo);
+      if (config.features.release520) {
+        testRedirect(
+          done,
+          agent,
+          underTest,
+          context,
+          s.steps.AdulterySecondHandInfo);
+      } else {
+        testRedirect(
+          done,
+          agent,
+          underTest,
+          context,
+          s.steps.LegalProceedings);
+      }
     });
   });
 

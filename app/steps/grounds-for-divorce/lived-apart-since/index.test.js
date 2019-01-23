@@ -567,7 +567,9 @@ describe(modulePath, () => {
       'mustSpentYr',
       'onlyUpTo6Months',
       'ifMoreThan6Months',
-      'ifLessThan6Months'
+      'ifLessThan6Months',
+      'info1',
+      'info2'
     ];
 
     it('Loads content if most recent desertion date is = 2 yr 4 months', done => {

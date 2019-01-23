@@ -11,6 +11,7 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
+const config = require('config');
 
 const modulePath = 'app/steps/grounds-for-divorce/desertion/when-left';
 
@@ -147,7 +148,11 @@ describe(modulePath, () => {
           reasonForDivorceDesertionDate3YearsAgo.year()
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LivedApartSince);
+      if (config.features.release520) {
+        testRedirect(done, agent, underTest, context, s.steps.LivedApartSince);
+      } else {
+        testRedirect(done, agent, underTest, context, s.steps.DesertionDetails);
+      }
     });
 
     it('redirects to the exit page', done => {

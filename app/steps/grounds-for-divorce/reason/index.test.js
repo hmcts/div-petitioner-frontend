@@ -82,20 +82,11 @@ describe(modulePath, () => {
       featureTest(done);
     });
 
-    it('redirects to the Separation Date page when 2 year separation is selected and RespondentConsent is off', done => {
+    it('redirects to the new Separation Date page when 2 year separation is selected and RespondentConsent is off', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['respondentConsent'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
-
-      featureTest(done);
-    });
-
-    it('redirects to the old seperation date page page when 5 year separation is selected and release510 is off', done => {
-      const context = { reasonForDivorce: 'separation-5-years' };
-
-      const featureTest = featureToggleConfig
-        .when('release510', false, testRedirect, agent, underTest, context, s.steps.SeparationDate);
+        .when(['respondentConsent'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDateNew);
 
       featureTest(done);
     });

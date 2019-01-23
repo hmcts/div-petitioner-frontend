@@ -22,8 +22,8 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          logger.info('### SESSION GET: done');
-          logger.debug('### SESSION GET:', response.body);
+          logger.info(null, 'session_get', '### SESSION GET: done');
+          logger.debug(null, 'session_get', '### SESSION GET:', response.body);
           resolve(response.body);
         });
     });
@@ -51,7 +51,7 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          logger.info(`### SESSION SET: ${response.body}`);
+          logger.info(null, 'session_set', `### SESSION SET: ${response.body}`);
           resolve();
         });
     });

@@ -31,10 +31,7 @@ const service = {
         };
       })
       .catch(error => {
-        logger.error({
-          message: `Error creating payment with ccd case number ${caseReference}:`,
-          error
-        });
+        logger.error(null, 'payment_error', 'Error creating payment with ccd case number', caseReference, error.message);
         throw error;
       });
   },
@@ -64,10 +61,7 @@ const service = {
         };
       })
       .catch(error => {
-        logger.error({
-          message: `Error getting payment details for payment reference caseId ${referenceInput}:`,
-          error
-        });
+        logger.error(null, 'payment_query_error', 'Error getting payment details for payment reference caseId', referenceInput, error.message);
         throw error;
       });
   }

@@ -65,7 +65,7 @@ module.exports = class PayOnline extends Step {
 
       const idamUserId = idam.userId(req);
       if (!idamUserId) {
-        logger.error('User does not have any idam userDetails', req);
+        logger.error(req, 'user_details_missing', 'User does not have any idam userDetails');
         return res.redirect('/generic-error');
       }
 
@@ -95,7 +95,7 @@ module.exports = class PayOnline extends Step {
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
     if (!caseId) {
-      logger.error('Case ID is missing', req);
+      logger.error(req, 'case_id_missing', 'Case ID is missing');
       return res.redirect('/generic-error');
     }
 
@@ -141,7 +141,7 @@ module.exports = class PayOnline extends Step {
         next();
       })
       .catch(error => {
-        logger.error(`Error occurred while preparing payment details for ${caseId}`, req, error);
+        logger.error(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
         res.redirect('/generic-error');
       });
   }

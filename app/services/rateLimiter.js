@@ -7,7 +7,9 @@ const redisHost = CONF.services.redis.host;
 
 module.exports = app => {
   const client = ioRedis.createClient(redisHost);
-  client.on('error', logger.error);
+  client.on('error', error => {
+    logger.error(null, 'Failed to connect to Redis', error);
+  });
   const limiter = expressLimiter(app, client);
 
   return limiter({

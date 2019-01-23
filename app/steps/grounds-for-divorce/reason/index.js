@@ -75,7 +75,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     if (isUndefined(marriageDate)) {
       const attInfoToDisplay = ['marriageDateDay', 'marriageDateMonth', 'marriageDateYear', 'state'];
       const displayObject = pick(session, attInfoToDisplay);
-      logger.info('Marriage date is empty', session.req, displayObject);
+      logger.info(session.req, 'marriage_date_empty', 'Marriage date is empty', displayObject);
     } else {
       ctx.reasonForDivorceHasMarriageDate = true;
       ctx.reasonForDivorceShowAdultery = true;

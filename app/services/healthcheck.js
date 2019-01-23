@@ -16,14 +16,14 @@ const client = ioRedis.createClient(
   { enableOfflineQueue: false }
 );
 client.on('error', error => {
-  logger.error(error);
+  logger.error('health_check_error', 'Health check failed on redis', error);
 });
 
 const healthOptions = message => {
   return {
     callback: (error, res) => { // eslint-disable-line id-blacklist
       if (error) {
-        logger.error({ message, error });
+        logger.error('health_check_error', message, error);
       }
       return !error && res.status === OK ? outputs.up() : outputs.down(error);
     },

@@ -136,7 +136,7 @@ const createHandler = nameSpace => {
           return res.redirect(redirectUrl);
         })
         .catch(error => {
-          logger.error(error);
+          logger.error('evidence_post_error', 'Error uploading evidence', error.message);
           return errorHandler(error, req, res, next);
         });
     default:

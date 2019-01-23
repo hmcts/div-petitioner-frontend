@@ -78,7 +78,7 @@ const restoreFromDraftStore = (req, res, next) => {
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(error);
+        logger.error('restore_draft_error', 'Error restoring draft', error.message);
       }
       next();
     });
@@ -96,7 +96,7 @@ const removeFromDraftStore = (req, res, next) => {
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(error);
+        logger.error('remove_draft_error', 'Error removing draft', error.message);
         return res.redirect('/generic-error');
       }
       return next();
@@ -125,7 +125,7 @@ const saveSessionToDraftStore = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(error);
+      logger.error('save_draft_error', 'Error saving draft', error);
       next();
     });
 };
@@ -179,7 +179,7 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
         res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
       })
       .catch(error => {
-        logger.error(error);
+        logger.error('save_draft_and_close_error', 'Error restoring draft', error.message);
         res.redirect('/generic-error');
       });
   } else {

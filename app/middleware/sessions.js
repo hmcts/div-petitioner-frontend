@@ -41,7 +41,7 @@ const sessions = module.exports = { // eslint-disable-line no-multi-assign
       try {
         serializer = sessionSerializer.createSerializer(req, res);
       } catch (error) {
-        logger.error(error);
+        logger.error('session_serialisation_error', 'Error creating serialiser', error);
         return res.redirect('/generic-error');
       }
 

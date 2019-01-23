@@ -240,7 +240,7 @@ variable "feature_redirect_on_state" {
 variable "feature_release_520" {
   default = false
 }
-  
+
 variable "feature_release_510" {
   default = false
 }

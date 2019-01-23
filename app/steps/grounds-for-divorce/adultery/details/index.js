@@ -1,5 +1,7 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const parseBool = require('app/core/utils/parseBool');
+const config = require('config');
 
 module.exports = class AdulteryDetails extends ValidationStep {
   get url() {
@@ -7,7 +9,7 @@ module.exports = class AdulteryDetails extends ValidationStep {
   }
 
   get nextStep() {
-    return this.steps.AdulterySecondHandInfo;
+    return parseBool(config.features.release520) ? this.steps.AdulterySecondHandInfo : this.steps.LegalProceedings;
   }
 
   constructor(...args) {

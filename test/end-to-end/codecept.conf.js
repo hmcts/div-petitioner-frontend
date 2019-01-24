@@ -67,9 +67,9 @@ exports.config = {
 function configureChunks() {
   console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
   if (CONF.preview_env === 'true') {
-    return 2;
+    return 1;
   } else {
-    return 5;
+    return 1;
   }
 }
 

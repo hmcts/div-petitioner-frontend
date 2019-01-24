@@ -58,7 +58,7 @@ describe(modulePath, () => {
     });
 
     it('redirects to Second Hand Info page if feature toggle if on', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
 
       if (config.features.release520) {
         testRedirect(
@@ -71,7 +71,7 @@ describe(modulePath, () => {
     });
 
     it('redirects to Legal Proceeding page if feature toggle is off', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
 
       if (!config.features.release520) {
         testRedirect(
@@ -110,7 +110,7 @@ describe(modulePath, () => {
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
       const ignoreContent = ['whatDoYouKnow'];
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
@@ -125,7 +125,7 @@ describe(modulePath, () => {
 
     it('redirects to the next page when 520 feature flag is on', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
         reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
@@ -137,7 +137,7 @@ describe(modulePath, () => {
 
     it('redirects to the next page when 520 feature flag is off', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
         reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
@@ -174,7 +174,7 @@ describe(modulePath, () => {
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
       const ignoreContent = ['whatDoYouKnow'];
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
@@ -189,7 +189,7 @@ describe(modulePath, () => {
 
     it('redirects to the next page', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
         reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.'
       };
 
@@ -249,7 +249,7 @@ describe(modulePath, () => {
 
     it('redirects to the next page', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
         reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.',
         reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };

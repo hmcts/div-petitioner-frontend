@@ -335,6 +335,13 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         }
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
+
+        // Overwrites the allocated court, if COS allocates one
+        const allocatedCourt = response.allocatedCourt;
+        if (allocatedCourt) {
+          req.session.courts = allocatedCourt.courtId;
+        }
+
         res.redirect(this.next(null, req.session).url);
       })
       .catch(error => {

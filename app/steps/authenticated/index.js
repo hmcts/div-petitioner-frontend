@@ -2,9 +2,10 @@ const Step = require('app/core/steps/Step');
 const idam = require('app/services/idam');
 const CONF = require('config');
 const initSession = require('app/middleware/initSession');
+const parseBool = require('app/core/utils/parseBool');
 
 const idamLandingPage = (req, res, next) => {
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     const landing = idam.landingPage();
     return landing(req, res, () => {
       const { session } = req;

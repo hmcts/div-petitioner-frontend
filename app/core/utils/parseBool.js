@@ -1,7 +1,7 @@
-const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
+const truthies = ['true', '1', 'yes', 'y'];
 
 const parseBool = (bool = '') => {
-  if (truthies.toLowerCase().includes(String(bool))) {
+  if (truthies.includes(String(bool).toLowerCase())) {
     return true;
   }
   return false;

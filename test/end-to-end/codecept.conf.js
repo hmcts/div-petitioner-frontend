@@ -15,10 +15,10 @@ exports.config = {
       url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
-      show: true,
-      restart: true,
-      // keepCookies: false,
-      // keepBrowserState: false,
+      show: false,
+      restart: false,
+      keepCookies: false,
+      keepBrowserState: false,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [

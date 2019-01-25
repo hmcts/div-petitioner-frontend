@@ -1,3 +1,10 @@
-module.exports = (bool = '') => {
-  return String(bool) === 'true' || bool === 1;
+const truthies = ['true', 'True', 'TRUE', '1', 'yes', 'Yes', 'YES', 'y', 'Y'];
+
+const parseBool = (bool = '') => {
+  if (truthies.includes(String(bool))) {
+    return true;
+  }
+  return false;
 };
+
+module.exports = parseBool;

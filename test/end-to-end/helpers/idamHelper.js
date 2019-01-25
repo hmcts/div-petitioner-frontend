@@ -7,13 +7,14 @@ const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper');
 let args = idamConfigHelper.getArgs();
 const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 let Helper = codecept_helper;
 
 class IdamHelper extends Helper {
 
   _before() {
-    if (CONF.features.idam) {
+    if (parseBool(CONF.features.idam)) {
       const randomString = randomstring.generate({
         length: 16,
         charset: 'numeric'
@@ -40,7 +41,7 @@ class IdamHelper extends Helper {
   }
 
   _after() {
-    if (CONF.features.idam) {
+    if (parseBool(CONF.features.idam)) {
       return idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           logger.info('Removed IDAM test user: ' + args.testEmail);

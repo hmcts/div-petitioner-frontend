@@ -25,11 +25,11 @@ const handleCcdCase = (req, res, next) => {
         )
         // Log any errors occurred and end up on the error page.
         .catch(error => {
-          logger.error(req, 'payment_status_error', 'Error checking/updating payment status', error.message);
+          logger.errorWithReq(req, 'payment_status_error', 'Error checking/updating payment status', error.message);
           return res.redirect('/generic-error');
         });
     }
-    logger.info(req, 'no_payment_ref', 'AwaitingPayment but payment reference not found');
+    logger.infoWithReq(req, 'no_payment_ref', 'AwaitingPayment but payment reference not found');
     return res.redirect(APPLICATION_SUBMITTED_PATH);
   case 'Rejected':
     return next();

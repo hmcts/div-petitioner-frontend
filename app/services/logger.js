@@ -10,16 +10,13 @@ const logger = name => {
   const loggerInstance = logging.Logger.getLogger(name);
 
   return {
-    log: (req, tag, message, ...args) => {
-      loggerInstance.log(getIdamId(req), tag, message, ...args);
-    },
-    info: (req, tag, message, ...args) => {
+    infoWithReq: (req, tag, message, ...args) => {
       loggerInstance.info(getIdamId(req), tag, message, ...args);
     },
-    warn: (req, tag, message, ...args) => {
+    warnWithReq: (req, tag, message, ...args) => {
       loggerInstance.warn(getIdamId(req), tag, message, ...args);
     },
-    error: (req, tag, message, ...args) => {
+    errorWithReq: (req, tag, message, ...args) => {
       loggerInstance.error(getIdamId(req), tag, message, ...args);
     }
   };

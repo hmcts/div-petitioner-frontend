@@ -181,7 +181,7 @@ module.exports = class Step {
   handler(req, res, next = defualtNext) {
     const method = req.method.toLowerCase();
     const throwError = error => {
-      logger.error(req, 'step_handler_error', 'Error during handling step', error.message);
+      logger.errorWithReq(req, 'step_handler_error', 'Error during handling step', error.message);
       res.status(statusCodes.INTERNAL_SERVER_ERROR);
       res.redirect('/generic-error');
     };

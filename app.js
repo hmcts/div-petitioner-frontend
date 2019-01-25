@@ -129,7 +129,7 @@ exports.init = listenForConnections => {
 
   app.use((error, req, res, next) => {
     if (error.code === 'EBADCSRFTOKEN') {
-      logger.error(req, 'csrf_error', 'csrf error has occurred', error.message);
+      logger.errorWithReq(req, 'csrf_error', 'csrf error has occurred', error.message);
       res.redirect('/generic-error');
     } else {
       next();
@@ -180,7 +180,7 @@ exports.init = listenForConnections => {
   if (CONF.environment !== 'testing') {
     // redirect user if page not found
     app.use((req, res) => {
-      logger.error(req, 'not_found', 'User attempted to view a page that was not found', req.originalUrl);
+      logger.errorWithReq(req, 'not_found', 'User attempted to view a page that was not found', req.originalUrl);
       steps.Error404.handler(req, res);
     });
   }

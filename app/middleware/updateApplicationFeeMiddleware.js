@@ -18,7 +18,7 @@ if (CONF.environment === 'testing') {
 }
 
 redisClient.on('error', error => {
-  logger.error(null, 'redis_error', 'Failed to connect to Redis', error.message);
+  logger.errorWithReq(null, 'redis_error', 'Failed to connect to Redis', error.message);
 });
 
 const getFeeFromFeesAndPayments = () => {
@@ -27,11 +27,11 @@ const getFeeFromFeesAndPayments = () => {
   return service.get()
     .then(response => {
       // set fee returned from Fees and payments service
-      logger.info(null, 'fees_code', 'Fee code set to', response.feeCode);
+      logger.infoWithReq(null, 'fees_code', 'Fee code set to', response.feeCode);
       CONF.commonProps.applicationFee.feeCode = response.feeCode;
-      logger.info(null, 'fees_version', 'Fee version set to', response.version);
+      logger.infoWithReq(null, 'fees_version', 'Fee version set to', response.version);
       CONF.commonProps.applicationFee.version = response.version;
-      logger.info(null, 'fees_amount', 'Fee amount set to', response.amount);
+      logger.infoWithReq(null, 'fees_amount', 'Fee amount set to', response.amount);
       CONF.commonProps.applicationFee.amount = response.amount;
       return true;
     });
@@ -50,7 +50,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(req, 'fees_error', 'Error retrieving fees', error.message);
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving fees', error.message);
       res.redirect('/generic-error');
     });
 };

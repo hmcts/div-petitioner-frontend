@@ -19,7 +19,7 @@ module.exports = (app, stepDefinitions) => {
         app.use(s.router);
         steps[s.name] = s;
       } catch (error) {
-        logger.error(null, 'init_step_error', 'Failed to initialise step', error.message, section, modulePath);
+        logger.errorWithReq(null, 'init_step_error', 'Failed to initialise step', error.message, section, modulePath);
         throw error;
       }
     } else {

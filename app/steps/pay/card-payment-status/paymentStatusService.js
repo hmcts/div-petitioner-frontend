@@ -43,14 +43,14 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
 
     // Store status in session then update CCD with payment status.
     .then(response => {
-      logger.info(req, 'payment_query', 'Payment status query response', response);
+      logger.infoWithReq(req, 'payment_query', 'Payment status query response', response);
       const paymentId = session.currentPaymentId;
       session.payments = session.payments || {};
       session.payments[paymentId] = Object.assign({},
         session.payments[paymentId], response);
 
       const paymentSuccess = paymentService.isPaymentSuccessful(response);
-      logger.info(req, 'payment_status', 'Payment success status is', paymentSuccess);
+      logger.infoWithReq(req, 'payment_status', 'Payment success status is', paymentSuccess);
       if (paymentSuccess) {
         const eventData = submissionService
           .generatePaymentEventData(session, response);
@@ -63,7 +63,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
     })
     .then(responseStatus => {
       if (responseStatus !== true) {
-        logger.info(req, 'case_update_status', 'Transformation service update response', responseStatus);
+        logger.infoWithReq(req, 'case_update_status', 'Transformation service update response', responseStatus);
         if (!responseStatus || responseStatus.status !== 'success') {
           // Fail immediately if the application could not be updated in CCD.
           throw responseStatus;

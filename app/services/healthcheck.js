@@ -16,14 +16,14 @@ const client = ioRedis.createClient(
   { enableOfflineQueue: false }
 );
 client.on('error', error => {
-  logger.error(null, 'health_check_error', 'Health check failed on redis', error);
+  logger.errorWithReq(null, 'health_check_error', 'Health check failed on redis', error);
 });
 
 const healthOptions = message => {
   return {
     callback: (error, res) => { // eslint-disable-line id-blacklist
       if (error) {
-        logger.error(null, 'health_check_error', message, error);
+        logger.errorWithReq(null, 'health_check_error', message, error);
       }
       return !error && res.status === OK ? outputs.up() : outputs.down(error);
     },
@@ -39,7 +39,7 @@ router.get('/health', healthcheck.configure({
         return healthcheck.status(_ === 'PONG');
       })
         .catch(error => {
-          logger.error(null, 'Health check failed on redis:', error);
+          logger.errorWithReq(null, 'Health check failed on redis:', error);
         });
     }),
     'idam-authentication': healthcheck.web(config.services.idamAuthentication.health,

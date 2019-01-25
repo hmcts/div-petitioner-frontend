@@ -9,7 +9,7 @@ const content = merge(common, commonJurisdiction);
 
 i18next.init(content, error => {
   if (error) {
-    logger.error(null, 'i18next_error', 'Failed to initialise i18next', error.message);
+    logger.errorWithReq(null, 'i18next_error', 'Failed to initialise i18next', error.message);
   }
 });
 i18next.changeLanguage('en');

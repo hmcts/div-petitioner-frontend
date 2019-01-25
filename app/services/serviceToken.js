@@ -24,7 +24,7 @@ const service = {
           resolve(token);
         })
         .catch(error => {
-          logger.info(null, 'get_token_error', 'Error getting token', error.message);
+          logger.infoWithReq(null, 'get_token_error', 'Error getting token', error.message);
           reject(error);
         });
     });

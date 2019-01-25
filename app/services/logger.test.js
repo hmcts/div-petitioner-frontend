@@ -79,17 +79,17 @@ describe(modulePath, () => {
     });
 
     it('calls logger info with arguments', () => {
-      loggerInstance.info(logString);
+      loggerInstance.infoWithReq(logString);
       expect(loggerStub.info.calledOnce).to.eql(true);
     });
 
     it('calls logger warn with arguments', () => {
-      loggerInstance.warn(logString);
+      loggerInstance.warnWithReq(logString);
       expect(loggerStub.warn.calledOnce).to.eql(true);
     });
 
     it('calls logger error with arguments', () => {
-      loggerInstance.error(logString);
+      loggerInstance.errorWithReq(logString);
       expect(loggerStub.error.calledOnce).to.eql(true);
     });
   });

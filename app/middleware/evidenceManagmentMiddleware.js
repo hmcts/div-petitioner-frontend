@@ -68,7 +68,7 @@ const errorHandler = (error = errors.unknown, req, res, next) => {
     errorToReturn = errors.unknown;
   }
 
-  logger.error(req, 'evidence_upload_error', 'Error when uploading to Evidence Management:', error.message);
+  logger.errorWithReq(req, 'evidence_upload_error', 'Error when uploading to Evidence Management:', error.message);
 
   const isJsRequest = req.query && req.query.js;
 
@@ -117,7 +117,7 @@ const createHandler = nameSpace => {
           return res.redirect(redirectUrl);
         })
         .catch(error => {
-          logger.error(req, 'evidence_delete_error', 'Error deleting evidence', error.message);
+          logger.errorWithReq(req, 'evidence_delete_error', 'Error deleting evidence', error.message);
           throw error;
         });
     case 'post':
@@ -136,7 +136,7 @@ const createHandler = nameSpace => {
           return res.redirect(redirectUrl);
         })
         .catch(error => {
-          logger.error(req, 'evidence_post_error', 'Error uploading evidence', error.message);
+          logger.errorWithReq(req, 'evidence_post_error', 'Error uploading evidence', error.message);
           return errorHandler(error, req, res, next);
         });
     default:

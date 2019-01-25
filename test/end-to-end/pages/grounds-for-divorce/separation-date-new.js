@@ -3,7 +3,7 @@ function enterSeparationDateNew(decisionDay = '1', decisionMonth = '1', decision
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/separated');
+  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/separation-dates');
   I.fillField('reasonForDivorceDecisionDay', decisionDay);
   I.fillField('reasonForDivorceDecisionMonth', decisionMonth);
   I.fillField('reasonForDivorceDecisionYear', decisionYear);

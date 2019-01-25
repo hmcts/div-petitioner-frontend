@@ -57,30 +57,20 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
-    it('redirects to Second Hand Info page if feature toggle if on', done => {
+    it('redirects to Second Hand Info page if feature toggle is on', done => {
       const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
+      const featureTest = featureToggleConfig
+        .when('release520', true, testRedirect, agent, underTest, context, s.steps.AdulterySecondHandInfo);
 
-      if (config.features.release520) {
-        testRedirect(
-          done,
-          agent,
-          underTest,
-          context,
-          s.steps.AdulterySecondHandInfo);
-      }
+      featureTest(done);
     });
 
     it('redirects to Legal Proceeding page if feature toggle is off', done => {
       const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
+      const featureTest = featureToggleConfig
+        .when('release520', false, testRedirect, agent, underTest, context, s.steps.LegalProceedings);
 
-      if (!config.features.release520) {
-        testRedirect(
-          done,
-          agent,
-          underTest,
-          context,
-          s.steps.LegalProceedings);
-      }
+      featureTest(done);
     });
   });
 

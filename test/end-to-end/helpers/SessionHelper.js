@@ -3,7 +3,7 @@ const { assert } = require('chai');
 const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData.js');
 const Tokens = require('csrf');
 const CONF = require('config');
-const logger = require('log4js').getLogger();
+const logger = require('app/services/logger').logger(__filename);
 
 class SessionHelper extends codecept_helper {
 

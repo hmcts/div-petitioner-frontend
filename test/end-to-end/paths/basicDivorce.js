@@ -48,4 +48,4 @@ Scenario('Get a divorce', async function(I) {
 
   I.amDoneAndSubmitted();
 
-});
+}).retry(2);

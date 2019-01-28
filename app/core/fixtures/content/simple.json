@@ -19,8 +19,10 @@
                     "hasMarriageCert": {
                         "required": "Please answer this question",
                         "invalid": "Please select an answer"
+                    },
+                    "petitionerFirstName": {
+                        "required": "Please enter first name"
                     }
-
                 }
 
             }

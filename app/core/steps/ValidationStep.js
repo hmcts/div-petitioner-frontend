@@ -200,10 +200,11 @@ module.exports = class ValidationStep extends Step {
 
     if (ctx) {
       //    validate ctx against associated schema if there is one
-      isValid = this.validateSchema(ctx);
+      const filteredCtx = removeEmptyValues(ctx);
+      isValid = this.validateSchema(filteredCtx);
 
       //    map the errors from the validator to the correct ones in the schema
-      errors = isValid ? [] : this.mapErrors(this.validateSchema.errors, ctx, session);
+      errors = isValid ? [] : this.mapErrors(this.validateSchema.errors, filteredCtx, session);
     }
 
     return [isValid, errors];

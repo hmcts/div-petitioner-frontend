@@ -10,4 +10,15 @@ const get = () => {
   });
 };
 
-module.exports = { get, mockFeeResponse };
+const getFee = feeType => {
+  return new Promise(resolve => {
+    resolve({
+      feeCode: feeType,
+      version: 1,
+      amount: 95.00
+    });
+  });
+};
+
+
+module.exports = { get, getFee, mockFeeResponse };

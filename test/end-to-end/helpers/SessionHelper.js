@@ -23,7 +23,7 @@ class SessionHelper extends codecept_helper {
         .proxy(proxyUrl)
         .end((response) => {
           logger.infoWithReq(null, 'session_get', '### SESSION GET: done');
-          logger.debug(null, 'session_get', '### SESSION GET:', response.body);
+          logger.debugWithReq(null, 'session_get', '### SESSION GET:', response.body);
           resolve(response.body);
         });
     });

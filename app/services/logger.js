@@ -18,6 +18,9 @@ const logger = name => {
     },
     errorWithReq: (req, tag, message, ...args) => {
       loggerInstance.error(getIdamId(req), tag, message, ...args);
+    },
+    debugWithReq: (req, tag, message, ...args) => {
+      loggerInstance.debug(getIdamId(req), tag, message, ...args);
     }
   };
 };

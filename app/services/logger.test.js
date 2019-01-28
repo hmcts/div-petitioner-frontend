@@ -20,7 +20,8 @@ describe(modulePath, () => {
         log: sinon.stub(),
         info: sinon.stub(),
         warn: sinon.stub(),
-        error: sinon.stub()
+        error: sinon.stub(),
+        debug: sinon.stub()
       };
       req = {
         httpVersionMajor: 1,
@@ -54,7 +55,8 @@ describe(modulePath, () => {
         log: sinon.stub(),
         info: sinon.stub(),
         warn: sinon.stub(),
-        error: sinon.stub()
+        error: sinon.stub(),
+        debug: sinon.stub()
       };
       req = { idam };
       sinon.stub(logging.Logger, 'getLogger').returns(loggerStub);
@@ -94,6 +96,15 @@ describe(modulePath, () => {
       expect(loggerStub.error.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
       expect(loggerStub.error.args[0][1]).to.eql(tag);
       expect(loggerStub.error.args[0][2]).to.eql(logString);
+    });
+
+    it('calls logger debug with arguments', () => {
+      loggerInstance.debugWithReq(req, tag, logString);
+      expect(loggerStub.debug.calledOnce).to.eql(true);
+      expect(loggerStub.debug.calledOnce).to.eql(true);
+      expect(loggerStub.debug.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.debug.args[0][1]).to.eql(tag);
+      expect(loggerStub.debug.args[0][2]).to.eql(logString);
     });
   });
 });

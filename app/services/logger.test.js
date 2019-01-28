@@ -70,27 +70,30 @@ describe(modulePath, () => {
       expect(logging.Logger.getLogger.calledOnce).to.eql(true);
     });
 
-    it('calls logger log with arguments', () => {
-      loggerInstance.log(req, tag, logString);
-      expect(loggerStub.log.calledOnce).to.eql(true);
-      expect(loggerStub.log.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
-      expect(loggerStub.log.args[0][1]).to.eql(tag);
-      expect(loggerStub.log.args[0][2]).to.eql(logString);
-    });
-
     it('calls logger info with arguments', () => {
-      loggerInstance.infoWithReq(logString);
+      loggerInstance.infoWithReq(req, tag, logString);
       expect(loggerStub.info.calledOnce).to.eql(true);
+      expect(loggerStub.info.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.info.args[0][1]).to.eql(tag);
+      expect(loggerStub.info.args[0][2]).to.eql(logString);
     });
 
     it('calls logger warn with arguments', () => {
-      loggerInstance.warnWithReq(logString);
+      loggerInstance.warnWithReq(req, tag, logString);
       expect(loggerStub.warn.calledOnce).to.eql(true);
+      expect(loggerStub.warn.calledOnce).to.eql(true);
+      expect(loggerStub.warn.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.warn.args[0][1]).to.eql(tag);
+      expect(loggerStub.warn.args[0][2]).to.eql(logString);
     });
 
     it('calls logger error with arguments', () => {
-      loggerInstance.errorWithReq(logString);
+      loggerInstance.errorWithReq(req, tag, logString);
       expect(loggerStub.error.calledOnce).to.eql(true);
+      expect(loggerStub.error.calledOnce).to.eql(true);
+      expect(loggerStub.error.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.error.args[0][1]).to.eql(tag);
+      expect(loggerStub.error.args[0][2]).to.eql(logString);
     });
   });
 });

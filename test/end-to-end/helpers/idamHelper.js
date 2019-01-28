@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('log4js').getLogger();
+const logger = require('app/services/logger').logger(__filename);
 const randomstring = require('randomstring');
 const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
 

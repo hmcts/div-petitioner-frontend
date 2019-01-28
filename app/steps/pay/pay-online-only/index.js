@@ -15,6 +15,7 @@ const idam = require('app/services/idam');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
+const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class PayOnline extends Step {
   get url() {
@@ -60,7 +61,7 @@ module.exports = class PayOnline extends Step {
     let authToken = '';
     let user = {};
 
-    if (CONF.features.idam) {
+    if (parseBool(CONF.features.idam)) {
       authToken = cookies['__auth-token'];
 
       const idamUserId = idam.userId(req);

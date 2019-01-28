@@ -4,6 +4,7 @@ const CONF = require('config');
 const get = require('lodash/get');
 const moment = require('moment');
 const logger = require('app/services/logger').logger(__filename);
+const parseBool = require('app/core/utils/parseBool');
 
 const PENCE_PER_POUND = 100;
 
@@ -53,7 +54,7 @@ const generatePaymentEventData = (session, response) => {
   const siteId = get(session, `court.${session.courts}.siteId`);
   let eventData = null;
 
-  if (CONF.features.fullPaymentEventDataSubmission) {
+  if (parseBool(CONF.features.fullPaymentEventDataSubmission)) {
     eventData = {
       payment: {
         PaymentChannel: 'online',

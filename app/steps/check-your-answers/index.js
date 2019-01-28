@@ -9,6 +9,7 @@ const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAt
 const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
+const parseBool = require('app/core/utils/parseBool');
 
 const maximumNumberOfSteps = 500;
 
@@ -296,7 +297,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     // Get user token.
     let authToken = '';
-    if (CONF.features.idam) {
+    if (parseBool(CONF.features.idam)) {
       authToken = req.cookies['__auth-token'];
     }
 

@@ -4,12 +4,13 @@ const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 const CONF = require('config');
 const idam = require('app/services/idam');
+const parseBool = require('app/core/utils/parseBool');
 
 const buildUser = function(req) {
   let authToken = '';
   let user = {};
 
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     authToken = req.cookies['__auth-token'];
 
     const idamUserId = idam.userId(req);

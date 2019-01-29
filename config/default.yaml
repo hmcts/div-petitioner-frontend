@@ -72,7 +72,7 @@ commonProps:
   amendFee:
     feeCode: 'FEE0269'
     version: 1
-    amount: 550.00
+    amount: 95.00
   financialOrderApplicationFee: 255
   divorceFactsRatio:
     unreasonable-behaviour: 0.30

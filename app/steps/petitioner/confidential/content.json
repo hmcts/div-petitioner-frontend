@@ -4,22 +4,22 @@
         "en": {
             "translation": {
                 "content": {
-                    "question": "Do you need your address and contact details kept private?",
-                    "divorcePetitionCopy": "A copy of your divorce application will be sent to your {{ divorceWho }}.",
-                    "court": "If you don’t want them to see your address, email or phone number you should ask the court to keep your details private.",
-                    "sameProperty": "You can’t keep your details private if you live in the same property as your {{ divorceWho }}.",
-                    "share": "I don't need my contact details kept private",
-                    "keep": "Keep my contact details private"
+                    "question": "Do you need your address kept private from your {{ divorceWho }}?",
+                    "divorcePetitionCopy": "A copy of your divorce application will be sent to your {{ divorceWho }}. If you don’t want them to know your address you should ask the court to keep it private.",
+                    "adultery":"If you use adultery as your reason for divorce and you choose to name the co-respondent, they'll also get a copy.",
+                    "sameProperty": "You can’t keep your address private if you live in the same property as your {{ divorceWho }}.",
+                    "share": "I don't need my address kept private",
+                    "keep": "Keep my address private"
                 },
 
                 "checkYourAnswersContent": {
-                    "question": "How your contact details can be shared"
+                    "question": "How your address can be shared"
                 },
 
                 "errors": {
                     "petitionerContactDetailsConfidential": {
-                        "required": "Select 'Keep my contact details private' if you want your address, email and phone number kept confidential",
-                        "invalid": "Select 'Keep my contact details private' if you want your address, email and phone number kept confidential"
+                        "required": "Select 'Keep my address private' if you want your address kept confidential",
+                        "invalid": "Select 'Keep my address private' if you want your address kept confidential"
                     }
 
                 }

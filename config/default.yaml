@@ -86,7 +86,7 @@ commonProps:
       email: 'simulate-delivered-eastmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
       siteId: '1'
-      weight: 0
+      weight: 0.15
       divorceFactsRatio:
     westMidlands:
       divorceCentre: 'West Midlands'
@@ -97,7 +97,7 @@ commonProps:
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
       siteId: '2'
-      weight: 0
+      weight: 0.1
       divorceFactsRatio:
     southWest:
       divorceCentre: 'South West'
@@ -108,7 +108,7 @@ commonProps:
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
       siteId: '3'
-      weight: 0.30
+      weight: 0.25
       divorceFactsRatio:
     northWest:
       divorceCentre: 'North West'
@@ -120,7 +120,7 @@ commonProps:
       email: 'simulate-delivered-northwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2224'
       siteId: '4'
-      weight: 0.30
+      weight: 0.20
       divorceFactsRatio:
     serviceCentre:
       serviceCentreName: 'Courts and Tribunals Service Centre'
@@ -132,11 +132,11 @@ commonProps:
       email: 'simulate-delivered-ctsc@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
       siteId: '5'
-      weight: 0.51
+      weight: 0.30
       divorceFactsRatio:
         unreasonable-behaviour: 1
         separation-2-years: 0
-        separation-5-years: 1
+        separation-5-years: 0
         adultery: 0
         desertion: 0
   smartSurveyFeedbackUrl: 'http://www.example.com/'

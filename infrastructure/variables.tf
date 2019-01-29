@@ -362,7 +362,7 @@ variable "court_southwest_siteid" {
 }
 
 variable "court_southwest_weight" {
-  default = 0.3
+  default = 0.5
 }
 
 variable "court_southwest_divorce_facts_ratio" {
@@ -406,7 +406,7 @@ variable "court_northwest_siteid" {
 }
 
 variable "court_northwest_weight" {
-  default = 0.3
+  default = 0.5
 }
 
 variable "service_centre_name" {
@@ -458,7 +458,7 @@ variable "court_email" {
 }
 
 variable "court_service_centre_weight" {
-  default = 0.51
+  default = 0.30
 }
 
 variable "court_eastmidlands_court_weight" {
@@ -470,11 +470,11 @@ variable "court_westmidlands_court_weight" {
 }
 
 variable "court_southwest_court_weight" {
-  default = 0.3
+  default = 0.5
 }
 
 variable "court_northwest_court_weight" {
-  default = 0.3
+  default = 0.5
 }
 
 variable "court_northwest_divorce_facts_ratio" {
@@ -486,7 +486,7 @@ variable "court_service_centre_divorce_facts_ratio" {
   default = {
     "unreasonable-behaviour" = 1
     "separation-2-years" = 0
-    "separation-5-years" = 1
+    "separation-5-years" = 0
     "adultery" = 0
     "desertion" = 0
   }

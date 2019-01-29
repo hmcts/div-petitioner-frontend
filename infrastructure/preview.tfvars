@@ -31,7 +31,7 @@ feature_release_510 = "true"
 court_service_centre_divorce_facts_ratio =  {
   "unreasonable-behaviour" = 1
   "separation-2-years" = 0
-  "separation-5-years" = 0
+  "separation-5-years" = 1
   "adultery" = 0
   "desertion" = 0
 }
@@ -45,12 +45,3 @@ court_service_centre_weight = 0.51
 court_southwest_court_weight = 0.3
 
 court_northwest_court_weight = 0.3
-
-court_service_centre_divorce_facts_ratio = {
-  "unreasonable-behaviour" = 1
-  "separation-2-years" = 0
-  "separation-5-years" = 1
-  "adultery" = 0
-  "desertion" = 0
-
-}

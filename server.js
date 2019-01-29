@@ -7,6 +7,7 @@ if (CONF.applicationInsights.instrumentationKey) {
   appInsights.setup(CONF.applicationInsights.instrumentationKey)
     .setAutoCollectConsole(true, true)
     .start();
+  appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'div-pfe';
 }
 
 const app = require('./app');

@@ -1,6 +1,7 @@
 const config = require('config');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class NeedHelpWithFees extends ValidationStep {
   get url() {
@@ -16,7 +17,7 @@ module.exports = class NeedHelpWithFees extends ValidationStep {
   }
 
   interceptor(ctx, session) {
-    ctx.feeToBePaid = session.previousCaseId ? config.commonProps.amendFee.amount : config.commonProps.applicationFee.amount;
+    ctx.feeToBePaid = parseBool(config.features.release520) && session.previousCaseId ? config.commonProps.amendFee.amount : config.commonProps.applicationFee.amount;
     return ctx;
   }
 

@@ -3,7 +3,7 @@ const { assert } = require('chai');
 const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData.js');
 const Tokens = require('csrf');
 const CONF = require('config');
-const logger = require('log4js').getLogger();
+const logger = require('app/services/logger').logger(__filename);
 
 class SessionHelper extends codecept_helper {
 
@@ -22,8 +22,8 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          logger.info('### SESSION GET: done');
-          logger.debug('### SESSION GET:', response.body);
+          logger.infoWithReq(null, 'session_get', '### SESSION GET: done');
+          logger.debugWithReq(null, 'session_get', '### SESSION GET:', response.body);
           resolve(response.body);
         });
     });
@@ -51,7 +51,7 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          logger.info(`### SESSION SET: ${response.body}`);
+          logger.infoWithReq(null, 'session_set', `### SESSION SET: ${response.body}`);
           resolve();
         });
     });

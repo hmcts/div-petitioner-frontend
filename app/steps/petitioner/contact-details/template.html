@@ -10,16 +10,13 @@
 
 <div tabindex="-1" class="contact-details">
 
+  <h2 class="heading-medium">{{ content.byEmail | safe }}</h2>
+
   <p>{{ content.communicateParagraph1 | safe }}</p>
-
-  {% if session.petitionerContactDetailsConfidential != 'share' %}
-    <p class="panel panel-border-wide">{{ content.confidentialContactDetails | safe }}</p>
-  {% endif %}
-
   <p>{{ content.communicateParagraph2 | safe }}</p>
-  <p class="bold-medium">{{ session.petitionerEmail }}</p>
+  <p class="bold-small">{{ session.petitionerEmail }}</p>
 
-  <fieldset class="form-group confirmation-container {{ ' form-group-error' if fields.petitionerConsent.error }}">
+  <fieldset class="form-group {{ ' form-group-error' if fields.petitionerConsent.error }}">
     <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>
     {{ errorsFor(fields.petitionerConsent) }}
 
@@ -33,6 +30,8 @@
 
   </fieldset>
 
+<h2 class="heading-medium">{{ content.byPhone | safe }}</h2>
+
   <fieldset class="form-group">
     <legend class="visually-hidden">{{ content.question | safe }}</legend>
 
@@ -41,10 +40,21 @@
     {{ textField(
       name = 'petitionerPhoneNumber',
       field = fields.petitionerPhoneNumber,
-      label = content.petitionerPhoneNumber
+      label = content.petitionerPhoneNumber,
+      boldLabel = true
     ) }}
 
   </fieldset>
+
+  <h2 class="heading-medium">{{ content.byPost | safe }}</h2>
+
+    <p>{{ content.somePost | safe }}</p>
+
+  {% if session.petitionerContactDetailsConfidential != 'share' %}
+    <p>{{ content.contactDetailsNotShare | safe }}</p>
+    {% else %}
+    <p>{{ content.contactDetailsShare | safe }}</p>
+  {% endif %}
 
 </div>
 

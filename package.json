@@ -40,7 +40,7 @@
   ],
   "dependencies": {
     "@hmcts/div-idam-express-middleware": "^6.3.5",
-    "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.2.0",
+    "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.2.1",
     "@hmcts/div-service-auth-provider-client": "https://github.com/hmcts/div-service-auth-provider-client#3.0.0",
     "@hmcts/nodejs-healthcheck": "^1.2.0",
     "@hmcts/nodejs-logging": "^3.0.0",

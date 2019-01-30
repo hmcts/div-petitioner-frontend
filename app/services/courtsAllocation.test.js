@@ -16,63 +16,63 @@ const caseDistribution = {
 const courts = {
   CTSC:
     {
-      weight: 0.30,
+      weight: 0.51,
       divorceFactsRatio:
             {
-              'unreasonable-behaviour': '0.70',
-              'separation-2-years': 0.24,
-              'separation-5-years': '0',
+              'unreasonable-behaviour': 1,
+              'separation-2-years': 0,
+              'separation-5-years': 1,
               adultery: '0',
               desertion: '0'
             }
     },
   eastMidlands:
-    { weight: 0.18 },
+    { weight: 0 },
   westMidlands:
-    { weight: 0.10 },
+    { weight: 0 },
   southWest:
-    { weight: 0.24 },
+    { weight: 0.30 },
   northWest:
-    { weight: 0.18 }
+    { weight: 0.30 }
 };
 
 const errorMargin = 0.005;
 
 const expectedFactsCourtPercentage = {
   'unreasonable-behaviour': {
-    CTSC: 0.21,
-    eastMidlands: 0.0231,
-    westMidlands: 0.0129,
-    southWest: 0.0309,
-    northWest: 0.0231
+    CTSC: 0.3,
+    eastMidlands: 0,
+    westMidlands: 0,
+    southWest: 0,
+    northWest: 0
   },
   'separation-2-years': {
-    CTSC: 0.0888,
-    eastMidlands: 0.0725,
-    westMidlands: 0.04,
-    southWest: 0.0962,
-    northWest: 0.0725
+    CTSC: 0,
+    eastMidlands: 0,
+    westMidlands: 0,
+    southWest: 0.185,
+    northWest: 0.185
   },
   'separation-5-years': {
-    CTSC: 0,
-    eastMidlands: 0.054,
-    westMidlands: 0.03,
-    southWest: 0.072,
-    northWest: 0.054
+    CTSC: 0.21,
+    eastMidlands: 0,
+    westMidlands: 0,
+    southWest: 0,
+    northWest: 0
   },
   adultery: {
     CTSC: 0,
-    eastMidlands: 0.0283,
-    westMidlands: 0.0157,
-    southWest: 0.0377,
-    northWest: 0.0283
+    eastMidlands: 0,
+    westMidlands: 0,
+    southWest: 0.055,
+    northWest: 0.055
   },
   desertion: {
     CTSC: 0,
-    eastMidlands: 0.0026,
-    westMidlands: 0.0014,
-    southWest: 0.0034,
-    northWest: 0.0026
+    eastMidlands: 0,
+    westMidlands: 0,
+    southWest: 0.005,
+    northWest: 0.005
   }
 };
 
@@ -92,7 +92,7 @@ describe(modulePath, () => {
   it('error when total facts allocation > court allocation', () => {
     const localCourts = cloneDeep(courts);
 
-    localCourts.CTSC.divorceFactsRatio['unreasonable-behaviour'] = 0.8;
+    localCourts.CTSC.divorceFactsRatio.adultery = 0.8;
 
     CONF.commonProps = {
       divorceFactsRatio: caseDistribution,
@@ -110,7 +110,7 @@ describe(modulePath, () => {
   it('error when facts allocation > 1', () => {
     const localCourts = cloneDeep(courts);
 
-    localCourts.eastMidlands.divorceFactsRatio = { 'unreasonable-behaviour': 0.4 };
+    localCourts.southWest.divorceFactsRatio = { 'unreasonable-behaviour': 0.4 };
 
     CONF.commonProps = {
       divorceFactsRatio: caseDistribution,
@@ -174,8 +174,7 @@ describe(modulePath, () => {
     Object.keys(caseDistribution).forEach(fact => {
       Object.keys(courts).forEach(courtName => {
         expect(
-          Math.abs(expectedFactsCourtPercentage[fact][courtName]
-            - (factsAllocation[fact][courtName] / count)) < errorMargin)
+          Math.abs(expectedFactsCourtPercentage[fact][courtName] - (factsAllocation[fact][courtName] / count)) < errorMargin)
           .to.be.true;
       });
     });

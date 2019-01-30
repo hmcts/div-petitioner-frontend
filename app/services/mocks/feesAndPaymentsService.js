@@ -55,13 +55,6 @@ const mockFeeResponse = (feeType = '') => {
   }
 };
 
-
-const get = () => {
-  return new Promise(resolve => {
-    resolve(mockFeeResponse());
-  });
-};
-
 const getFee = feeType => {
   return new Promise(resolve => {
     resolve(mockFeeResponse(feeType));
@@ -69,4 +62,4 @@ const getFee = feeType => {
 };
 
 
-module.exports = { get, getFee, mockFeeResponse };
+module.exports = { getFee, mockFeeResponse };

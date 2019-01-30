@@ -14,14 +14,6 @@ describe(modulePath, () => {
     request.get.restore();
   });
 
-  it('should call the fee and payments service', done => {
-    underTest.get({})
-      .then(() => {
-        expect(request.get.calledOnce).to.eql(true);
-      })
-      .then(done, done);
-  });
-
   it('should call the fee and payments service with the given feeType', done => {
     underTest.getFee('amend-fee')
       .then(() => {

@@ -33,21 +33,21 @@ describe(modulePath, () => {
     });
 
     it('resolves with body if valid', () => {
-      evidenceManagmentService.handleResponse(body, resolve, reject);
+      evidenceManagmentService.handleResponse({}, body, resolve, reject);
       expect(resolve.calledOnce).to.eql(true);
       expect(resolve.calledWith(body)).to.eql(true);
     });
 
     it('rejects with body if valid', () => {
       body = [{ status: 'BAD' }];
-      evidenceManagmentService.handleResponse(body, resolve, reject);
+      evidenceManagmentService.handleResponse({}, body, resolve, reject);
       expect(reject.calledOnce).to.eql(true);
       expect(reject.calledWith()).to.eql(true);
     });
 
     it('rejects with body if contains error', () => {
       body = { error: 'true' };
-      evidenceManagmentService.handleResponse(body, resolve, reject);
+      evidenceManagmentService.handleResponse({}, body, resolve, reject);
       expect(reject.calledOnce).to.eql(true);
       expect(reject.calledWith(body)).to.eql(true);
     });

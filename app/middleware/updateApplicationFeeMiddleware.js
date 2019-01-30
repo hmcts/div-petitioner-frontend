@@ -37,11 +37,11 @@ const getFeeFromFeesAndPayments = feeName => {
   return service.getFee(feeTypes[feeName])
     .then(response => {
       // set fee returned from Fees and payments service
-      logger.info(' Fee code set to ', response.feeCode);
+      logger.infoWithReq(null, 'fees_code', 'Fee code set to', response.feeCode);
       CONF.commonProps[feeName].feeCode = response.feeCode;
-      logger.info(' Fee version set to ', response.version);
+      logger.infoWithReq(null, 'fees_version', 'Fee version set to', response.version);
       CONF.commonProps[feeName].version = response.version;
-      logger.info(' Fee amount set to ', response.amount);
+      logger.infoWithReq(null, 'fees_amount', 'Fee amount set to', response.amount);
       CONF.commonProps[feeName].amount = response.amount;
       return true;
     });
@@ -60,7 +60,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(error);
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving fees', error.message);
       res.redirect('/generic-error');
     });
 };

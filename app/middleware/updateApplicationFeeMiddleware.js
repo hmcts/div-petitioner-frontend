@@ -60,7 +60,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(error);
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving fees', error.message);
       res.redirect('/generic-error');
     });
 };

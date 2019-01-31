@@ -24,6 +24,7 @@ const statusCode = require('app/core/utils/statusCode');
 const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
+const parseBool = require('app/core/utils/parseBool');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -144,6 +145,18 @@ exports.init = listenForConnections => {
   app.get('/', (req, res) => {
     res.redirect('/index');
   });
+
+  // sign out route
+  const nextMiddleware = (req, res, next) => {
+    next();
+  };
+  app.get('/sign-out',
+    parseBool(CONF.features.idam) ? idam.logout() : nextMiddleware,
+    (req, res) => {
+      req.session.regenerate(() => {
+        res.redirect('/index');
+      });
+    });
 
   //  register steps with the express app
   const steps = initSteps(app, stepDefinitions);

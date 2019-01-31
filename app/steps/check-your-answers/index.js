@@ -237,7 +237,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       //
     }
 
-    if (nextStep === this) {
+    if (nextStep === this || nextStep.stepType() === 'DestroySessionStep') {
       delete session.nextStepUrl;
     }
 

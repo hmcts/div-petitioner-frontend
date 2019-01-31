@@ -67,6 +67,9 @@ module.exports = class Step {
     });
   }
 
+  stepType() {
+    return 'Step';
+  }
 
   applyCtxToSession(ctx, session) {
     Object.assign(session, ctx);

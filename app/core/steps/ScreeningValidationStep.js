@@ -9,6 +9,10 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 
 module.exports = class ScreeningValidationStep extends ValidationStep {
+  stepType() {
+    return 'ScreeningValidationStep';
+  }
+
   get middleware() {
     return [
       idamProtect,

@@ -553,6 +553,9 @@ describe(modulePath, () => {
           prop1: 'prop1',
           prop2: 'prop2',
           prop3: 'prop3'
+        },
+        stepType: () => {
+          return 'ValidationStep';
         }
       };
 
@@ -618,6 +621,22 @@ describe(modulePath, () => {
 
         yield underTest.getNextTemplates(step1, session);
         expect(session.nextStepUrl).to.equal('/step1');
+        done();
+      });
+    });
+
+    it('sets removes the next step url if the last step is an exit step', done => {
+      step2 = Object.assign(
+        {}, step2, {
+          stepType: () => {
+            return 'ExitStep';
+          }
+        }
+      );
+
+      co(function* generator() {
+        yield underTest.getNextTemplates(step1, session);
+        expect(session.nextStepUrl).to.equal(undefined); // eslint-disable-line no-undefined
         done();
       });
     });

@@ -237,12 +237,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       //
     }
 
-    if (nextStep === this || nextStep.stepType() === 'DestroySessionStep') {
+    if (nextStep === this || (nextStep && nextStep.stepType() === 'ExitStep')) {
       delete session.nextStepUrl;
-    }
-
-    // if next step and next step is not check your answers
-    if (nextStep && nextStep !== this) {
+    } else if (nextStep) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.errorWithReq(null, 'never_ending_loop', 'Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         return templates;

@@ -64,6 +64,11 @@ describe(modulePath, () => {
         .to.equal(null);
     });
 
+    it('#stepType returns type of the step', () => {
+      expect(step.stepType())
+        .to.equal('Step');
+    });
+
     it('#applyCtxToSession assigns content of first argument to the second argument', () => {
       const object1 = { foo: 'foo' };
       const object2 = { bar: 'bar' };

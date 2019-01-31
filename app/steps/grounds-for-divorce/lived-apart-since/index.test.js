@@ -76,8 +76,8 @@ describe(modulePath, () => {
     it('render calculated values', done => {
       const valuesToTest = [
         '8 weeks',
-        '5 days',
-        '61 days',
+        '6 days',
+        '62 days',
         session.reasonForDivorceLivingApartDate.format('DD MMMM YYYY')
       ];
       testMultipleValuesExistence(

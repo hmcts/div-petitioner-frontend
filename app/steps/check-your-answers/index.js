@@ -10,6 +10,7 @@ const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
+const ExitStep = require('app/core/steps/ExitStep');
 
 const maximumNumberOfSteps = 500;
 
@@ -237,7 +238,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       //
     }
 
-    if (nextStep === this || (nextStep && nextStep.stepType() === 'ExitStep')) {
+    if (nextStep === this || nextStep instanceof ExitStep) {
       delete session.nextStepUrl;
     } else if (nextStep) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {

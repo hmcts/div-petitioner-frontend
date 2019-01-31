@@ -50,10 +50,6 @@ module.exports = class ValidationStep extends Step {
     return this.schemaFile;
   }
 
-  stepType() {
-    return 'ValidationStep';
-  }
-
   constructor(steps, section, templatePath, content, schema) {
     super(steps, section, templatePath, content);
 

@@ -13,6 +13,7 @@ const statusCodes = require('http-status-codes');
 const courtsAllocation = require('app/services/courtsAllocation');
 const CONF = require('config');
 const ga = require('app/services/ga');
+const ExitStep = require('app/core/steps/ExitStep');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -553,9 +554,6 @@ describe(modulePath, () => {
           prop1: 'prop1',
           prop2: 'prop2',
           prop3: 'prop3'
-        },
-        stepType: () => {
-          return 'ValidationStep';
         }
       };
 
@@ -626,13 +624,7 @@ describe(modulePath, () => {
     });
 
     it('sets removes the next step url if the last step is an exit step', done => {
-      step2 = Object.assign(
-        {}, step2, {
-          stepType: () => {
-            return 'ExitStep';
-          }
-        }
-      );
+      step2 = new ExitStep();
 
       co(function* generator() {
         yield underTest.getNextTemplates(step1, session);

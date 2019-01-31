@@ -1,19 +1,26 @@
+const requireDir = require('require-directory');
 const { expect } = require('test/util/chai');
+const initSession = require('app/middleware/initSession');
+const sessionTimeout = require('app/middleware/sessionTimeout');
+const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 
 const modulePath = 'app/core/steps/ExitStep';
+const UnderTest = require(modulePath);
 
-const ExitStep = require(modulePath);
+const fixtures = requireDir(module, `${__dirname}/../fixtures`);
 
-const withStep = (StepClass, test) => {
-  const step = new StepClass(null, null, null, {});
-  return test(step);
-};
+let underTest = {};
 
 describe(modulePath, () => {
-  withStep(ExitStep, step => {
-    it('#stepType returns type of the step', () => {
-      expect(step.stepType())
-        .to.equal('ExitStep');
+  describe('#middleware', () => {
+    it('returns middleware for exit step', () => {
+      underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
+      const middleware = [
+        idamProtect,
+        initSession,
+        sessionTimeout
+      ];
+      expect(underTest.middleware).to.eql(middleware);
     });
   });
 });

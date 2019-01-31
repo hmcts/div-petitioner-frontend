@@ -2,7 +2,7 @@
   <th>{{ content.question | safe }}</th>
   <td>
     {% if fields.respondentCorrespondenceSendToSolicitor.value === 'Yes' %}
-      {{ content['solicitor-' + session.divorceWho] | safe }}
+      {{ content.solicitor | safe }}
     {% elseif fields.respondentCorrespondenceSendToSolicitor.value === 'No' %}
       {{ content.correspondence }}
     {% endif %}

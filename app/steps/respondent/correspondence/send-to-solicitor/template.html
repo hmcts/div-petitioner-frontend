@@ -12,7 +12,7 @@
         {{ errorsFor(fields.respondentCorrespondenceSendToSolicitor) }}
         {{ radioButton(
             value = 'Yes',
-            label = content['solicitor-' + session.divorceWho],
+            label = content.solicitor,
             name = 'respondentCorrespondenceSendToSolicitor',
             field = fields.respondentCorrespondenceSendToSolicitor
         ) }}

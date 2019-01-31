@@ -22,7 +22,7 @@ describe(modulePath, () => {
       underTest.updateApplicationFeeMiddleware(req, res, () => {
         expect(ioRedisClient.get.calledOnce).to.eql(true);
         expect(CONF.commonProps.applicationFee)
-          .to.eql(mockFeesAndPaymentsService.mockFeeResponse);
+          .to.eql(mockFeesAndPaymentsService.mockFeeResponse('applicationFee'));
         done();
       });
     });
@@ -32,7 +32,7 @@ describe(modulePath, () => {
       underTest.updateApplicationFeeMiddleware(req, res, () => {
         expect(ioRedisClient.get.calledWith('commonProps.applicationFee.amount')).to.eql(true);
         expect(CONF.commonProps.applicationFee)
-          .to.eql(mockFeesAndPaymentsService.mockFeeResponse);
+          .to.eql(mockFeesAndPaymentsService.mockFeeResponse('applicationFee'));
         done();
       });
     });

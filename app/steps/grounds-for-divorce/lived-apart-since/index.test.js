@@ -53,7 +53,7 @@ describe(modulePath, () => {
         reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
           .subtract(constants.three, 'months'),
         reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
-          .subtract(constants.two, 'months')
+          .subtract('61', 'days')
       };
       withSession(done, agent, session);
     });

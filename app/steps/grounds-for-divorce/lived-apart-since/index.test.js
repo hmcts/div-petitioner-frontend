@@ -28,7 +28,8 @@ const constants = {
   seven: '7',
   eight: '8',
   nine: '9',
-  ten: '10'
+  ten: '10',
+  sixtyOne: '61'
 };
 
 describe(modulePath, () => {
@@ -53,7 +54,7 @@ describe(modulePath, () => {
         reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
           .subtract(constants.three, 'months'),
         reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
-          .subtract('61', 'days')
+          .subtract(constants.sixtyOne, 'days')
       };
       withSession(done, agent, session);
     });

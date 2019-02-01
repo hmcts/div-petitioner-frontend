@@ -563,7 +563,7 @@ describe(modulePath, () => {
   });
 
 
-  describe('if previousReasonForDivorce is separation-5-years', () => {
+  describe('if previousReasonForDivorce has separation-5-years, adultery', () => {
     let session = {};
 
     beforeEach(done => {
@@ -575,7 +575,7 @@ describe(modulePath, () => {
       withSession(done, agent, session);
     });
 
-    it('Remove separation-5-years from reasonForDivorce', done => {
+    it('Remove separation-5-years, adultery from reasonForDivorce', done => {
       const excludeKeys = [
         'woman',
         'hasNoMarriageDate',

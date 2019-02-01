@@ -20,10 +20,6 @@
                     "year": "Year"
                 },
 
-                "checkYourAnswersContent": {
-                    "separationDate": "Separation date"
-                },
-
                 "errors": {
                     "reasonForDivorceDecisionDay": {
                         "required": "Enter the day that you decided that the marriage was over.",

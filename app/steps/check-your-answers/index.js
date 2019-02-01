@@ -10,7 +10,7 @@ const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
-const ExitStep = require('app/core/steps/ExitStep');
+const DestroySessionStep = require('app/core/steps/DestroySessionStep');
 
 const maximumNumberOfSteps = 500;
 
@@ -238,9 +238,11 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       //
     }
 
-    if (nextStep === this || nextStep instanceof ExitStep) {
+    if (nextStep === this) {
       delete session.nextStepUrl;
-    } else if (nextStep) {
+    }
+
+    if (nextStep && nextStep !== this && !(nextStep instanceof DestroySessionStep)) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.errorWithReq(null, 'never_ending_loop', 'Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         return templates;

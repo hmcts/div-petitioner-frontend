@@ -1,10 +1,10 @@
-const ExitStep = require('./ExitStep');
+const Step = require('./Step');
 const idam = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
 const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
 
-module.exports = class DestroySessionStep extends ExitStep {
+module.exports = class DestroySessionStep extends Step {
   preResponse(req) {
     return new Promise(resolve => {
       req.session.regenerate(() => {

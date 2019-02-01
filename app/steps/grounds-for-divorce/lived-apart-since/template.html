@@ -26,14 +26,19 @@
                 {% if fields.livingTogetherMonths.value >= 6 %}
                     {{ content.question.6months }}
                 {% elif fields.livingTogetherMonths.value < 6 %}
-                    {% if fields.livingTogetherWeeks.value > 0 %}
-                    {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
+                    {% if fields.livingTogetherWeeks.value = 1 %}
+                        {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
+                    {% elif fields.livingTogetherWeeks.value > 1  %}
+                       {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
+                    {% endif %}
                 {% endif %}
                 {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
                     {{ content.question.and }}
                 {% endif %}
-                    {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
-                    {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
+                    {% if fields.liveTogetherPeriodRemainingDays.value = 1 %}
+                      {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
+                    {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
+                      {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
                     {% endif %}
                 {% endif %}
                 {{ content.question.since }}
@@ -50,13 +55,17 @@
                     {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.sepYears.value }} {{ content.question.yearsAndMonths }}
                 {% elif fields.livingTogetherMonths.value < 6 %}
                     {{ content.question.livedMore }}
-                    {% if fields.livingTogetherWeeks.value > 0 %}
+                    {% if fields.livingTogetherWeeks.value = 1  %}
+                        {{ fields.livingTogetherWeeks.value }} {{ content.question.week }} 
+                    {% elif fields.livingTogetherWeeks.value > 1 %}
                         {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }} 
                     {% endif %}
                     {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
                         {{ content.question.and }}
                     {% endif %}
-                    {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
+                    {% if fields.liveTogetherPeriodRemainingDays.value = 1 %}
+                        {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
+                    {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
                         {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
                     {% endif %}
                     {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}

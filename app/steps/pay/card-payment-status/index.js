@@ -30,7 +30,7 @@ module.exports = class CardPaymentStatus extends Step {
     // Return early when the status of the currently stored payment is already retrieved.
     const resultInSession = paymentService.getCurrentPaymentStatus(req.session);
     if (resultInSession === 'success' || resultInSession === 'failed') {
-      logger.info(`Payment status found in session for ${req.session.caseId}: ${JSON.stringify(resultInSession)}`);
+      logger.infoWithReq(req, 'payment_status', 'Payment status found in session', resultInSession);
       res.redirect(this.next(resultInSession).url);
       next();
       return;
@@ -39,7 +39,7 @@ module.exports = class CardPaymentStatus extends Step {
       .checkAndUpdatePaymentStatus(req)
       // Check CCD update response then redirect to a step based on payment status.
       .then(response => {
-        logger.info(`update paymentStatus: ${JSON.stringify(response)}`);
+        logger.infoWithReq(req, 'payment_status_updated', 'Payment status updated', response);
         const id = req.session.currentPaymentId;
         const paymentStatus = req.session.payments[id].status;
         res.redirect(this.next(paymentStatus).url);
@@ -48,8 +48,7 @@ module.exports = class CardPaymentStatus extends Step {
 
       // Log any errors occurred and end up on the error page.
       .catch(error => {
-        const msg = (error instanceof Error) ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : JSON.stringify(error);
-        logger.error(`Error occurred while checking/updating payment status for ${req.session.caseId}`, msg, req);
+        logger.errorWithReq(req, 'payment_error', 'Error occurred while checking/updating payment status', error.message);
         res.redirect('/generic-error');
       });
   }

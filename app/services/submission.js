@@ -4,6 +4,7 @@ const CONF = require('config');
 const get = require('lodash/get');
 const moment = require('moment');
 const logger = require('app/services/logger').logger(__filename);
+const parseBool = require('app/core/utils/parseBool');
 
 const PENCE_PER_POUND = 100;
 
@@ -22,10 +23,7 @@ const service = {
         return response;
       })
       .catch(error => {
-        logger.error({
-          message: `Error submitting caseId ${args.caseId} to ccd:`,
-          error
-        });
+        logger.errorWithReq(null, 'ccd_submission_error', 'Error submitting case to CCD', args.caseId, error.message);
         throw error;
       });
   },
@@ -36,10 +34,7 @@ const service = {
         return response;
       })
       .catch(error => {
-        logger.error({
-          message: `Error updating ccd with caseId ${args.caseId}:`,
-          error
-        });
+        logger.errorWithReq(null, 'ccd_update_error', 'Error updating case in CCD', args.caseId, error.message);
         throw error;
       });
   }
@@ -59,7 +54,7 @@ const generatePaymentEventData = (session, response) => {
   const siteId = get(session, `court.${session.courts}.siteId`);
   let eventData = null;
 
-  if (CONF.features.fullPaymentEventDataSubmission) {
+  if (parseBool(CONF.features.fullPaymentEventDataSubmission)) {
     eventData = {
       payment: {
         PaymentChannel: 'online',

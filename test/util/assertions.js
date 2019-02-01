@@ -348,6 +348,23 @@ exports.testRedirect = (done, agent, underTest, data, redirect) => {
     .then(() => done(), done);
 };
 
+exports.testMultipleValuesExistence = (done, agent, underTest, textArray = [], data) => {
+  const getPage = () => getUrl(agent, underTest.url);
+  const checkExists = (res) => {
+    textArray.forEach(text => {
+      if (data) {
+        text = interpolator.interpolate(text, data);
+      }
+      expect(res.text).to.contain(text);
+    });
+  };
+
+  return createSession(agent)
+    .then(getPage)
+    .then(checkExists)
+    .then(done, done);
+};
+
 exports.testExistence = (done, agent, underTest, text, data) => {
   const getPage = () => getUrl(agent, underTest.url);
   const checkExists = (res) => {

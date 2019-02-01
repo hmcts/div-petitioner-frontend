@@ -4,12 +4,13 @@ const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 const CONF = require('config');
 const idam = require('app/services/idam');
+const parseBool = require('app/core/utils/parseBool');
 
 const buildUser = function(req) {
   let authToken = '';
   let user = {};
 
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     authToken = req.cookies['__auth-token'];
 
     const idamUserId = idam.userId(req);
@@ -43,14 +44,14 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
 
     // Store status in session then update CCD with payment status.
     .then(response => {
-      logger.info(`Payment status query response for ${session.caseId}: ${JSON.stringify(response)}`);
+      logger.infoWithReq(req, 'payment_query', 'Payment status query response', response);
       const paymentId = session.currentPaymentId;
       session.payments = session.payments || {};
       session.payments[paymentId] = Object.assign({},
         session.payments[paymentId], response);
 
       const paymentSuccess = paymentService.isPaymentSuccessful(response);
-      logger.info(`paymentSuccess for ${session.caseId}: ${paymentSuccess}`);
+      logger.infoWithReq(req, 'payment_status', 'Payment success status is', paymentSuccess);
       if (paymentSuccess) {
         const eventData = submissionService
           .generatePaymentEventData(session, response);
@@ -63,7 +64,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
     })
     .then(responseStatus => {
       if (responseStatus !== true) {
-        logger.info(`Transformation service update response for ${session.caseId}: ${JSON.stringify(responseStatus)}`);
+        logger.infoWithReq(req, 'case_update_status', 'Transformation service update response', responseStatus);
         if (!responseStatus || responseStatus.status !== 'success') {
           // Fail immediately if the application could not be updated in CCD.
           throw responseStatus;

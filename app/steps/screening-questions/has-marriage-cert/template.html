@@ -11,7 +11,7 @@
    <div class="panel panel-border-wide">
     <p class="text"> {{content.camera | safe }}</p>
     </div>
-    
+
     <p class="text"> {{content.certificateTranslation | safe }}</p>
 
     {{ yesNoRadioHeading(
@@ -24,3 +24,5 @@
     ) }}
 
 {% endblock %}
+
+{% block saveAndClose %}{% endblock %}

@@ -1,8 +1,9 @@
 const idam = require('app/services/idam');
 const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 function idamProtect(req, res, next) {
-  if (!CONF.features.idam) {
+  if (!parseBool(CONF.features.idam)) {
     return next();
   }
 

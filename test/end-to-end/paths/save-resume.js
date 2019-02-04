@@ -1,12 +1,13 @@
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
+const parseBool = require('app/core/utils/parseBool');
 
 Feature('Draft petition store').retry(3);
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
 
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     I.startApplication();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
@@ -43,7 +44,7 @@ Scenario('Save and close', function (I) {
   I.clickSaveAndCLose();
   I.seeCurrentUrlEquals('/exit/application-saved');
 
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     I.see(idamConfigHelper.getTestEmail());
   }
 });
@@ -51,7 +52,7 @@ Scenario('Save and close', function (I) {
 Scenario('Delete application from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
 
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     I.startApplication();
     I.haveBrokenMarriage();
     I.clearCookie();
@@ -76,7 +77,7 @@ Scenario('Delete application from draft petition store', function (I) {
 Scenario('Decline to delete application from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
 
-  if (CONF.features.idam) {
+  if (parseBool(CONF.features.idam)) {
     I.startApplication();
     I.haveBrokenMarriage();
     I.clearCookie();

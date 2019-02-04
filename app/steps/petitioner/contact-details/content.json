@@ -4,14 +4,20 @@
         "en": {
             "translation": {
                 "content": {
-                    "question": "How you'll be contacted",
-                    "communicateParagraph1": "You'll be sent emails by the court throughout the divorce. You must agree to receive these emails to use this service.",
-                    "communicateParagraph2": "The court will send email notifications to:",
-                    "communicateParagraph3": "You can provide a UK phone number as another way for the court to contact you. This is optional.",
-                    "confidentialContactDetails": "Your email address and phone number will be kept confidential from your {{ divorceWho }}.",
+                    "question": "How the court will contact you",
+                    "byEmail": "By email",
+                    "communicateParagraph1": "You need to agree to receive emails about the divorce to use the online service. Your email address will not be shared with your {{divorceWho}}.",
+                    "communicateParagraph2": "Your emails will be sent to:",
+                    "communicateParagraph3": "Provide a phone number to let court staff contact you more quickly. Your phone number will not be shared with your {{divorceWho}}.",
                     "email": "Your email address",
-                    "petitionerPhoneNumber": "Enter your phone number",
-                    "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email."
+                    "byPhone": "By phone",
+                    "byPost": "By post",
+                    "petitionerPhoneNumber": "Enter your phone number (optional)",
+                    "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email.",
+                    "somePost": "You may need to receive some correspondence by post.",
+                    "contactDetailsNotShare": "Your address will not be shared with your {{divorceWho}} as you've asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
+                    "contactDetailsShare": "Your address will be shared with your {{divorceWho}}  as you’ve not asked for it to be kept private. If you use adultery as your reason for divorce, this address will also be shared with the co-respondent (if you choose to name them)."
+
                 },
 
                 "checkYourAnswersContent": {

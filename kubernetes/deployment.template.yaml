@@ -37,10 +37,10 @@ spec:
         # These may be adjusted, but be mindful please
         resources:
           requests:
-            memory: "64Mi"
+            memory: "256Mi"
             cpu: "200m"
           limits:
-            memory: "256Mi"
+            memory: "512Mi"
             cpu: "500m"
 
         # This is the port your process is listening on in the container

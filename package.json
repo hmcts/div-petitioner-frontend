@@ -7,7 +7,7 @@
     "node": ">=8.9.4"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_PATH=. node server.js",
     "start-basic": "NODE_ENV=production NODE_PATH=. node server",
     "start-dev": "NODE_ENV=development NODE_PATH=. grunt start-dev",
     "start-debug": "NODE_ENV=development NODE_PATH=. node --inspect=0.0.0.0:9229 server.js",

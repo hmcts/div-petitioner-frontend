@@ -311,7 +311,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     req.session.submissionStarted = true;
 
-    submission.submit(authToken, payload)
+    submission.submit(req, authToken, payload)
       .then(response => {
         delete req.session.submissionStarted;
         // Check for errors.

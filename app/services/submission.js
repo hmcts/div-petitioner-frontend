@@ -17,24 +17,24 @@ let client = {};
  * @returns {string}
  */
 const service = {
-  submit: (...args) => {
+  submit: (req, ...args) => {
     return client.submit(...args)
       .then(response => {
         return response;
       })
       .catch(error => {
-        logger.errorWithReq(null, 'ccd_submission_error', 'Error submitting case to CCD', args.caseId, error.message);
+        logger.errorWithReq(req, 'ccd_submission_error', 'Error submitting case to CCD', args.caseId, error.message);
         throw error;
       });
   },
 
-  update: (...args) => {
+  update: (req, ...args) => {
     return client.update(...args)
       .then(response => {
         return response;
       })
       .catch(error => {
-        logger.errorWithReq(null, 'ccd_update_error', 'Error updating case in CCD', args.caseId, error.message);
+        logger.errorWithReq(req, 'ccd_update_error', 'Error updating case in CCD', args.caseId, error.message);
         throw error;
       });
   }

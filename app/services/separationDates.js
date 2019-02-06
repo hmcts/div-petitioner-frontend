@@ -68,7 +68,7 @@ const getSeparationTimeTogetherPermitted = session => {
       moment(getMostRecentSeparationDate(session)))
   ).toObject();
   if (timeTogether.years > constants.zeroYear || timeTogether.months > constants.six) {
-    return getReferenceDate(session);
+    return '6 months';
   }
   let permittedSepTime = '';
   if (timeTogether.months === 1) {

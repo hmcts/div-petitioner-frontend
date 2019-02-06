@@ -9,6 +9,7 @@ const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAt
 const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
+const parseBool = require('app/core/utils/parseBool');
 
 const maximumNumberOfSteps = 500;
 
@@ -198,13 +199,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // we know user has not completed the questions and can show answered
     // questions up to this point
     if (previousQuestionsRendered.includes(step.url)) {
-      logger.warn('Application is attempting to render the same template more than once');
-      if (CONF.deployment_env !== 'prod') {
-        logger.warn({
-          message: 'Session when application attempted to render same template more than once',
-          session
-        });
-      }
+      logger.warnWithReq(null, 'duplicate_template', 'Application is attempting to render the same template more than once');
       return templates;
     }
 
@@ -249,13 +244,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // if next step and next step is not check your answers
     if (nextStep && nextStep !== this) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
-        logger.error('Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
-        if (CONF.deployment_env !== 'prod') {
-          logger.error({
-            message: 'Session when stopped never ending loop',
-            session
-          });
-        }
+        logger.errorWithReq(null, 'never_ending_loop', 'Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         return templates;
       }
 
@@ -280,7 +269,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     const { cookies } = req;
 
     if (!cookies || !cookies['connect.sid']) {
-      logger.error('Malformed request to Submit step');
+      logger.errorWithReq(req, 'malformed_request', 'Malformed request to Submit step');
       const step = this.steps.Error400;
       const content = step.generateContent();
       res.status(statusCodes.BAD_REQUEST);
@@ -308,7 +297,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     // Get user token.
     let authToken = '';
-    if (CONF.features.idam) {
+    if (parseBool(CONF.features.idam)) {
       authToken = req.cookies['__auth-token'];
     }
 
@@ -322,7 +311,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     req.session.submissionStarted = true;
 
-    submission.submit(authToken, payload)
+    submission.submit(req, authToken, payload)
       .then(response => {
         delete req.session.submissionStarted;
         // Check for errors.
@@ -338,7 +327,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       })
       .catch(error => {
         delete req.session.submissionStarted;
-        logger.error(`Error during submission step: ${error.message}`);
+        logger.errorWithReq(req, 'submission_error', 'Error during submission step', error.message);
         res.redirect('/generic-error');
       });
   }

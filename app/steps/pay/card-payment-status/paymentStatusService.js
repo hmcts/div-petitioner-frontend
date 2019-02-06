@@ -35,10 +35,10 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
   const submission = submissionService.setup();
 
   // Get service token.
-  return serviceToken.getToken()
+  return serviceToken.getToken(req)
   // Query payment status.
     .then(token => {
-      return payment.query(user, token, session.currentPaymentReference,
+      return payment.query(req, user, token, session.currentPaymentReference,
         session.mockedPaymentOutcome);
     })
 

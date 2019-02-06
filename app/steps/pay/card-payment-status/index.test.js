@@ -74,7 +74,7 @@ describe(modulePath, () => {
     it('takes payment id from session', done => {
       testCustom(done, agent, underTest, [], () => {
         // Assert.
-        expect(query.args[0][2]).to.equal(session.currentPaymentReference);
+        expect(query.args[0][3]).to.equal(session.currentPaymentReference);
       });
     });
 
@@ -124,7 +124,7 @@ describe(modulePath, () => {
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(query.calledOnce).to.equal(true);
-            expect(query.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
+            expect(query.args[0][1]).to.eql({ id: 1, bearerToken: 'auth.token' });
           });
         featureTest(done);
       });
@@ -137,7 +137,7 @@ describe(modulePath, () => {
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(query.calledOnce).to.equal(true);
-            expect(query.args[0][0]).to.eql({});
+            expect(query.args[0][1]).to.eql({});
           });
         featureTest(done);
       });

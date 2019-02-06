@@ -9,7 +9,7 @@
   @return url('../images/' + $file);
 }
 
-@import 'govuk-elements';
+@import '~govuk-frontend/all';
 
 @import 'file-upload';
 @import 'jurisdiction-concepts';
@@ -26,7 +26,7 @@
 // If you need to create a page as part of your journey, but without GOV.UK branding
 // See localhost:3000/examples/unbranded/
 .unbranded {
-  background: $white;
+  background: govuk-colours('white');
   // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
   * {
     font-family: Arial !important;
@@ -34,15 +34,15 @@
   // Remove GOV.UK footer styles
   #footer {
     border: 0;
-    background: $white;
+    background: govuk-colours('white');
   }
 }
 
 // Related items
 // (These styles will be moved to GOV.UK elements, duplicating here for now.)
 .govuk-related-items {
-  margin-top: $gutter;
-  border-top: 10px solid $govuk-blue;
+  margin-top: $govuk-gutter;
+  border-top: 10px solid govuk-colours('blue');
   padding-top: 5px;
 
   .heading-medium {
@@ -64,11 +64,11 @@
 
 .link-back {
   margin-bottom: 0;
-  margin-top: $gutter;
+  margin-top: $govuk-gutter;
 }
 
 .heading-large {
-  margin-top: $gutter;
+  margin-top: $govuk-gutter;
 }
 
 .underline {
@@ -88,10 +88,10 @@
   width: 100%;
 
   p {
-    @include bold-19();
+    @include govuk-font(19, $weight: bold);
     background: white;
     border: 2px solid black;
-    padding: (18px $gutter $gutter-half $gutter*1.8);
+    padding: (18px $govuk-gutter $govuk-gutter-half $govuk-gutter*1.8);
   }
 
   span {
@@ -99,16 +99,16 @@
     display: inline-block;
     width: 210px;
     text-align: center;
-    @include core-19;
+    @include govuk-font(19);
   }
 
   a {
-    @include button ($grey-2);
-    @include box-sizing (border-box);
+    //@include button ($grey-2);
+    //@include box-sizing (border-box);
     padding: em(10) em(15) em(5) em(15);
     vertical-align: top;
 
-    @include media (mobile) {
+    @include govuk-media-query($from: mobile) {
       width: 100%;
     }
 
@@ -129,11 +129,11 @@
 }
 
 .secondary-button {
-  @include button ($grey-2);
-  @include box-sizing (border-box);
+  //@include button ($grey-2);
+  //@include box-sizing (border-box);
   padding: em(10) em(15) em(5) em(15);
   vertical-align: top;
-  @include media (mobile) {
+  @include govuk-media-query($from: mobile) {
     width: 100%;
   }
 }
@@ -145,7 +145,7 @@
 }
 
 .secondary-button:focus {
-  outline: 3px solid $focus-colour;
+  outline: 3px solid $govuk-focus-colour;
 }
 
 .image-cert-example {
@@ -154,7 +154,7 @@
 
 .postcode {
   width: 8.5em;
-  @include media(mobile) {
+  @include govuk-media-query($from: mobile) {
     width: 100%;
   }
 }
@@ -164,7 +164,7 @@
 }
 
 .financial-orders {
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     width: 80%;
   }
 }

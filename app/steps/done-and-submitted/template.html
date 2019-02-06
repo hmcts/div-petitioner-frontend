@@ -4,8 +4,8 @@
 
 <main id="content" role="main" tabindex="-1">
   {% include "includes/phase_banner.html" %}
-  <div class="grid-row">
-    <div class="column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-box-highlight">
         <h1 class="bold-large">{{content.title | safe}}</h1>
@@ -46,9 +46,9 @@
       </div>
 
       {% if (session.marriageCertificateFiles | length === 0) %}
-        <h2 class="heading-medium">{{content.whatToDoNow | safe}}</h2>
+        <h2 class="govuk-heading-m">{{content.whatToDoNow | safe}}</h2>
 
-        <h3 class="heading-small">{{content.whatToDoNowReferenceNumber | safe}}</h3>
+        <h3 class="govuk-heading-s">{{content.whatToDoNowReferenceNumber | safe}}</h3>
         {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}
           <p class="text">{{content.whatToDoNowOrigCertOnly | safe}}</p>
         {% endif %}
@@ -68,7 +68,7 @@
         {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
           <p class="text">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
         {% endif %}
-        <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h3>
+        <h3 class="govuk-heading-s">{{content.whatToDoNowPostHeading | safe}}</h3>
         <p class="text">{{content.whatToDoNowPostText | safe}}</p>
           <address class="bold-small">
             {%- if ( session.courts == 'eastMidlands') %}
@@ -90,7 +90,7 @@
 
           <p class="text">{{ content.certificateKept | safe }} </p>
 
-          <h3 class="heading-small">{{content.sendEmail | safe}}</h3>
+          <h3 class="govuk-heading-s">{{content.sendEmail | safe}}</h3>
           <p class="text">{{ content.email | safe }} </p>
           <p class="text">{{ content.emailTo | safe }} </p>
 
@@ -104,17 +104,17 @@
       {% endif %}
 
 
-      <h2 class="heading-medium">{{content.whatHappensNext | safe}}</h2>
+      <h2 class="govuk-heading-m">{{content.whatHappensNext | safe}}</h2>
       <p class="text">{{content.courtWillCheck | safe}}</p>
       <p class="text">{{content.youCanFindMore | safe}}</p>
       <p class="text">{{content.contactTheCourt | safe}}</p>
 
-      <h2 class="heading-medium">{{content.helpImproveService | safe}}</h2>
+      <h2 class="govuk-heading-m">{{content.helpImproveService | safe}}</h2>
       <p class="text">
         {{content.improveServiceContent | safe}}
       </p>
 
-      <h2 class="heading-medium">{{content.getHelp | safe}}</h2>
+      <h2 class="govuk-heading-m">{{content.getHelp | safe}}</h2>
       <p class="text">
         {{content.getHelpDescription | safe}}
       </p>
@@ -141,7 +141,7 @@
       </p>
 
       {% if session.helpWithFeesReferenceNumber %}
-        <h2 class="heading-medium">{{content.helpWithFees | safe}}</h2>
+        <h2 class="govuk-heading-m">{{content.helpWithFees | safe}}</h2>
         <p class="text">
           {{content.courtCheckApp | safe}}
         </p>
@@ -150,7 +150,7 @@
         </p>
       {% endif %}
 
-      <h2 class="heading-medium">{{content.dividingMoney | safe}}</h2>
+      <h2 class="govuk-heading-m">{{content.dividingMoney | safe}}</h2>
       {% if session.financialOrder === 'Yes' %}
         <p class="text">
           {{content.startFinancialProceedings1 | safe}}

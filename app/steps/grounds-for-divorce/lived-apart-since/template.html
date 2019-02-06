@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block form %}
-            
+
         <p class="text">{{ content.info1 | safe }} </p>
         <p class="text">{{ content.info2 | safe }}</p>
         {{ yesNoRadioHeading(
@@ -21,7 +21,7 @@
 
 
         <div id="livedTogetherSince" class="js-hidden">
-            <h2 class="heading-medium">
+            <h2 class="govuk-heading-m">
                 {{ content.question.text }}
                 {% if fields.livingTogetherMonths.value >= 6 %}
                     {{ content.question.6months }}
@@ -55,9 +55,9 @@
                 {% elif fields.livingTogetherMonths.value < 6 %}
                     {{ content.question.livedMore }}
                     {% if fields.livingTogetherWeeks.value === 1  %}
-                        {{ fields.livingTogetherWeeks.value }} {{ content.question.week }} 
+                        {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
                     {% elif fields.livingTogetherWeeks.value > 1 %}
-                        {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }} 
+                        {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
                     {% endif %}
                     {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
                         {{ content.question.and }}
@@ -68,7 +68,7 @@
                         {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
                     {% endif %}
                     {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
-                {% endif %} 
+                {% endif %}
             </p>
 
             <details>

@@ -21,7 +21,7 @@
         </ul>
         {{ helpConnections(common) }}
         <fieldset id="connectionSummary" class="form-group {{ 'form-group-error' if fields.connectionSummary.error }}">
-            <legend class="heading-medium">{{ content.question | safe }}</legend>
+            <legend class="govuk-heading-m">{{ content.question | safe }}</legend>
             <p>{{ content.clarification | safe }}</p>
 
             {{ errorsFor(fields.connectionSummary) }}

@@ -9,7 +9,7 @@ $module: "progress";
   position: relative;
 
   &:before {
-    background-color: $green;
+    background-color: govuk-colours('green');
     content: "";
     height: 6px;
     position: absolute;
@@ -40,9 +40,9 @@ $module: "progress";
     width: 32px;
 
     &::before {
-      background-color: $white;
+      background-color: govuk-colours('white');
       border-radius: 50%;
-      box-shadow: inset 0 0 0 em(6, 16) $green;
+      box-shadow: inset 0 0 0 em(6, 16) govuk-colours('green');
       content: "";
       display: block;
       height: 32px;
@@ -54,7 +54,7 @@ $module: "progress";
   }
 
   &__label {
-    @include core-16;
+    @include govuk-font(16);
     display: block;
     margin-top: 10px;
     position: relative;
@@ -62,7 +62,7 @@ $module: "progress";
   }
 
   &__item {
-    @include core-19;
+    @include govuk-font(19);
     display: inline-block;
     max-width: 20%;
     position: relative;
@@ -75,7 +75,7 @@ $module: "progress";
 
         &::before {
           background-image: url("../images/icon-progress-tick.png");
-          background-color: $green;
+          background-color: govuk-colours('green');
           background-position: 50% 50%;
           background-repeat: no-repeat;
         }
@@ -100,7 +100,7 @@ $module: "progress";
         position: relative;
 
         &::after {
-          background-color: $white;
+          background-color: govuk-colours('white');
           content: "";
           height: 32px;
           position: absolute;

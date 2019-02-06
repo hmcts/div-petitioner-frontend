@@ -9,7 +9,7 @@
 
     <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
 
-    <h1 class="heading-large">
+    <h1 class="govuk-heading-l">
         {%- if fields.nextStepUrl.value -%}
           {{ content.titleSoFar }}
         {%- else -%}
@@ -20,7 +20,7 @@
     {%- if errors.length > 0 and not fields.nextStepUrl.value -%}
         <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
 
-            <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+            <h1 class="govuk-heading-m error-summary-heading" id="error-summary-heading">
                 {{ common.errorSummaryHeading | safe }}
             </h1>
 
@@ -36,7 +36,7 @@
     {%- for group, templates in fields.stepTemplates.value -%}
       {%- if templates and templates.length -%}
         {%- if content[group] != '' -%}
-          <h2 class="heading-medium">{{ content[group] | safe }}</h2>
+          <h2 class="govuk-heading-m">{{ content[group] | safe }}</h2>
         {%- endif -%}
       <table class="listing">
           <colgroup>
@@ -67,7 +67,7 @@
           autocomplete="off">
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
-          <h2 class="heading-medium">{{ content.confirmHeading | safe }}</h2>
+          <h2 class="govuk-heading-m">{{ content.confirmHeading | safe }}</h2>
           <p class="text">{{ content.confirmWarning | safe }}</p>
 
           <div class="form-group confirmation-container {{ 'form-group-error' if fields.confirmPrayer.error }}">

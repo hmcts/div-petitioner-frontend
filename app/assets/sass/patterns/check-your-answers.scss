@@ -1,15 +1,15 @@
 .check-your-answers {
 
   tbody {
-    border-top: 1px solid $grey-2;
+    border-top: 1px solid govuk-colours('grey-2');
   }
 
   table {
-    margin-bottom: $gutter;
+    margin-bottom: $govuk-gutter;
   }
 
   td {
-    @include core-19;
+    @include govuk-font(19);
     vertical-align: top;
   }
 
@@ -20,8 +20,6 @@
   }
 
   .button {
-    margin-top: $gutter;
+    margin-top: $govuk-gutter;
   }
-
-
 }

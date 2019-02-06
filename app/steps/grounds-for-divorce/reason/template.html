@@ -19,13 +19,13 @@
 
                 <div class="panel panel-border-narrow">
 
-                    <h4 class="heading-small">
+                    <h4 class="govuk-heading-s">
                         {{ content.sameResidenceHeading | safe }}
                     </h4>
 
                     <p>{{ content.sameResidenceSummary | safe }}</p>
 
-                    <h4 class="heading-small">
+                    <h4 class="govuk-heading-s">
                         {{ content.asACoupleHeading | safe }}
                     </h4>
 
@@ -64,13 +64,13 @@
 
                 <label class="form-label-bold"
                    for="unreasonable-behaviour" data-target="unreasonable-behaviour-warning">
-                
+
                     {{ content.unreasonableBehaviourHeading | safe }}<br>
                   <span class="font-small">
                     {{ content.unreasonableBehaviourSummary | safe }}
                   </span>
                 </label>
-            </div>   
+            </div>
 
             <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorce.value != 'unreasonable-behaviour' }}" id="unreasonable-behaviour-warning">
                 <div class="notice">
@@ -122,7 +122,7 @@
                                name="reasonForDivorce"
                                value="separation-2-years" {{ 'checked' if fields.reasonForDivorce.value == 'separation-2-years' }}>
                     <label class="form-label-bold" for="separation-2-years" >
-                        
+
                     {{ content.2YearsSeparationHeading | safe }}<br>
                     <span class="font-small">
                           {{ content.2YearsSeparationSummary | safe }}
@@ -150,7 +150,7 @@
                            value="separation-5-years" {{ 'checked' if fields.reasonForDivorce.value == 'separation-5-years' }}>
 
                     <label class="form-label-bold" for="separation-5-years">
-                    
+
                          {{ content.5YearsSeparationHeading | safe }}<br>
                         <span class="font-small">
                          {{ content.5YearsSeparationSummary | safe }}
@@ -168,7 +168,7 @@
 
                 <label class="form-label-bold"
                        for="desertion">
-                   
+
                     {{ content.desertionHeading | safe }}<br>
                     <span class="font-small">
                         {{ content.desertionSummary | safe }}

@@ -58,7 +58,7 @@
 <div class="{{ 'js-hidden' if fields.claimsCosts.value !== 'Yes'}} panel panel-border-narrow" id="claim-costs">
     {% if fields.reasonForDivorceClaimingAdultery.value and fields.reasonForDivorceAdulteryIsNamed.value == 'Yes' %}
     <fieldset id="claimsCostsFrom" class="form-group {{ 'error' if fields.claimsCostsFrom.error }}">
-        <legend class="heading-medium">
+        <legend class="govuk-heading-m">
             {{ content.whoCosts }}
         </legend>
         {{errorsFor(fields.claimsCostsFrom)}}

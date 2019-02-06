@@ -12,7 +12,7 @@
         <p>{{ content.task | safe }}</p>
 
         <fieldset id="jurisdictionPetitionerResidence" class="form-group inline {{ 'form-group-error' if fields.jurisdictionPetitionerResidence.error }}">
-            <legend class="heading-medium">{{ content.petitioner | safe }}</legend>
+            <legend class="govuk-heading-m">{{ content.petitioner | safe }}</legend>
             <p>{{ content.info | safe }}</p>
 
             {{ errorsFor(fields.jurisdictionPetitionerResidence) }}
@@ -36,7 +36,7 @@
         </fieldset>
 
         <fieldset id="jurisdictionRespondentResidence" class="form-group inline {{ 'js-hidden' if fields.jurisdictionPetitionerResidence.value === undefined }} {{ 'form-group-error' if fields.jurisdictionRespondentResidence.error }}">
-            <legend class="heading-medium">{{ content.respondent | safe }}</legend>
+            <legend class="govuk-heading-m">{{ content.respondent | safe }}</legend>
             <p>{{ content.info | safe }}</p>
 
             {{ errorsFor(fields.jurisdictionRespondentResidence) }}

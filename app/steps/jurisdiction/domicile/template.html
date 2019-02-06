@@ -25,7 +25,7 @@
     </details>
 
     <fieldset id="jurisdictionPetitionerDomicile" class="form-group inline {{ 'form-group-error' if fields.jurisdictionPetitionerDomicile.error }}">
-        <legend class="heading-medium">{{ content.petitioner | safe }}</legend>
+        <legend class="govuk-heading-m">{{ content.petitioner | safe }}</legend>
 
         {{ errorsFor(fields.jurisdictionPetitionerDomicile) }}
         {{ radioButton(
@@ -48,7 +48,7 @@
     </fieldset>
 
     <fieldset id="jurisdictionRespondentDomicile" class="form-group inline {{ 'js-hidden' if fields.jurisdictionPetitionerDomicile.value === undefined }} {{ 'form-group-error' if fields.jurisdictionRespondentDomicile.error }}">
-        <legend class="heading-medium">{{ content.respondent | safe }}</legend>
+        <legend class="govuk-heading-m">{{ content.respondent | safe }}</legend>
 
         {{ errorsFor(fields.jurisdictionRespondentDomicile) }}
         {{ radioButton(

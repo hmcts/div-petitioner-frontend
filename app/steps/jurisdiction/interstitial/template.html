@@ -18,7 +18,7 @@
         <summary >
             <span class="summary">{{ content[fields.jurisdictionConnectionFirst.value].help | safe }}</span>
         </summary>
-        
+
         <div class="panel panel-border-narrow font-small">
             <p>
                 {{ content[fields.jurisdictionConnectionFirst.value].helpText1 | safe }}
@@ -50,7 +50,7 @@
 {%- endif -%}
 
         <fieldset id="jurisdictionConfidentLegal" class="form-group {{ 'form-group-error' if fields.jurisdictionConfidentLegal.error }}">
-            <legend class="heading-medium">{{ content.question | safe }}</legend>
+            <legend class="govuk-heading-m">{{ content.question | safe }}</legend>
             <p>{{ content[fields.jurisdictionConnectionFirst.value].clarification | safe }}</p>
 
             {{ errorsFor(fields.jurisdictionConfidentLegal) }}

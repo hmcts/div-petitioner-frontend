@@ -19,7 +19,7 @@
   display: block;
 
   a {
-    @include media(desktop) {
+    @include govuk-media-query($from: desktop) {
       padding-left: 60px;
     }
   }
@@ -30,7 +30,7 @@
 }
 
 .file-upload-button {
-  @include button ($grey-2);
+  //@include button ($grey-2);
 }
 
 // Fix unwanted button padding in Firefox
@@ -40,5 +40,5 @@
 }
 
 .file-upload-button:focus {
-  outline: 3px solid $focus-colour;
+  outline: 3px solid $govuk-focus-colour;
 }

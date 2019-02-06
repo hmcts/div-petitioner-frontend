@@ -11,7 +11,7 @@
 <main id="content" role="main" tabindex="-1">
   {% include "includes/phase_banner.html" %}
     <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-    <h1 class="heading-large">
+    <h1 class="govuk-heading-l">
         {{content.question | safe}}
     </h1>
 
@@ -20,7 +20,7 @@
     {% if errors.length > 0 %}
       <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
 
-        <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+        <h1 class="govuk-heading-m error-summary-heading" id="error-summary-heading">
           {{common.errorSummaryHeading | safe}}
         </h1>
 
@@ -78,7 +78,7 @@
           <input type="hidden" name="addressType" value="postcode"/>
           <input type="hidden" name="searchPostcode" value="true"/>
           <input type="hidden" name="addressConfirmed" value="false"/>
-          <input type="submit" id="find-address" 
+          <input type="submit" id="find-address"
 
           {%- if (fields.postcode.value and session.postcodeLookup.validPostcode == true) or fields.selectAddressIndex -%}
           class="secondary-button"
@@ -93,7 +93,7 @@
           </p>
           {% include "includes/save_and_close.html" %}
         {% endif %}
-        
+
       </form>
 
       {% if fields.addresses.value and fields.postcode.value %}

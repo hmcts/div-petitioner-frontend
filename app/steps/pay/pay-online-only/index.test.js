@@ -160,7 +160,7 @@ describe(modulePath, () => {
             '//', response.request.host, '/pay/card-payment-status'
           );
           expect(create.calledWith(
-            {}, 'token', 'some-case-id', '1', code, version, amount,
+            sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
             'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
             returnUrl
           )).to.equal(true);
@@ -175,7 +175,7 @@ describe(modulePath, () => {
             expect(code).to.not.eql(null);
             expect(version).to.not.eql(null);
             expect(amount).to.not.eql(null);
-            expect(create.calledWith({}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
+            expect(create.calledWith(sinon.match.any, {}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
           }, 'post');
         });
       });
@@ -187,7 +187,7 @@ describe(modulePath, () => {
             .when('idam', true, testCustom, agent, underTest, cookies, () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
-              expect(create.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
+              expect(create.args[0][1]).to.eql({ id: 1, bearerToken: 'auth.token' });
             }, 'post');
           featureTest(done);
         });
@@ -200,7 +200,7 @@ describe(modulePath, () => {
             .when('idam', false, testCustom, agent, underTest, [], () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
-              expect(create.args[0][0]).to.eql({});
+              expect(create.args[0][1]).to.eql({});
             }, 'post');
           featureTest(done);
         });

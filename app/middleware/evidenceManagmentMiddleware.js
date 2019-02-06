@@ -124,7 +124,7 @@ const createHandler = nameSpace => {
       return validatePostRequest(req, nameSpace)
         .then(fileManagment.saveFileFromRequest)
         .then(file => {
-          return evidenceManagmentService.sendFile(file, { token });
+          return evidenceManagmentService.sendFile(req, file, { token });
         })
         .then(files => {
           return handleResponseFromFileStore(req, res, files, nameSpace);

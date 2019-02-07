@@ -55,7 +55,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
       if (paymentSuccess) {
         const eventData = submissionService
           .generatePaymentEventData(session, response);
-        return submission.update(user.bearerToken, session.caseId, eventData, 'paymentMade');
+        return submission.update(req, user.bearerToken, session.caseId, eventData, 'paymentMade');
       }
 
       return new Promise(resolve => {

@@ -80,7 +80,6 @@ Scenario('2 years separation', (I) => {
   } else {
     I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   }
-  
   I.enterLegalProceedings();
 });
 

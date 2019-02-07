@@ -18,37 +18,28 @@ const mockFileResponse = (file = { name: 'image.jpg' }) => {
   ];
 };
 
-const handleResponse = (body, resolve, reject) => {
+const handleResponse = (req, body, resolve, reject) => {
   if (body.error && body.error.length) {
-    logger.error({
-      message: 'Error when uploading to Evidence Management:',
-      body
-    });
+    logger.errorWithReq(req, 'evidence_upload_error', 'Error when uploading to Evidence Management', body);
     return reject(body);
   }
 
   const dataIsNotValid = !Array.isArray(body) || !body[0].status || body[0].status !== 'OK';
   if (dataIsNotValid) {
-    logger.error({
-      message: 'Error when uploading to Evidence Management:',
-      body
-    });
+    logger.errorWithReq(req, 'evidence_upload_not_valid', 'Evidence management data not valid', body);
     return reject();
   }
 
-  logger.info({
-    message: 'Uploaded files to Evidence Management Client',
-    body
-  });
+  logger.infoWithReq(req, 'evidence_uploaded', 'Uploaded files to Evidence Management Client', body);
 
   return resolve(body);
 };
 
-const sendFile = (file, options = { token: 'token' }) => {
+const sendFile = (req, file, options = { token: 'token' }) => {
   return new Promise((resolve, reject) => {
     // return mock if no client API available
     if (!CONF.evidenceManagmentClient.url) {
-      return handleResponse(mockFileResponse(file), resolve, reject);
+      return handleResponse(req, mockFileResponse(file), resolve, reject);
     }
     return superagent
       .post(evidenceManagmentClientUploadUrl)
@@ -56,22 +47,19 @@ const sendFile = (file, options = { token: 'token' }) => {
       .set('enctype', 'multipart/form-data')
       .attach('file', file.path, file.name)
       .end((error, response = { statusCode: null }) => {
-        fileManagment.removeFile(file);
+        fileManagment.removeFile(req, file);
         if (error || response.statusCode !== httpStatus.OK) {
           const errorToReturn = new Error(error || response.body || defaultEMCErrorMessage);
           errorToReturn.status = response.statusCode;
 
-          logger.error({
-            message: 'Error when uploading to Evidence Management:',
-            error: errorToReturn
-          });
+          logger.errorWithReq(req, 'evidence_error_response', 'Error response from evidence management', error);
 
           if (response && response.errorCode === 'invalidFileType') {
             return reject(errors.fileTypeInvalid);
           }
           return reject(errorToReturn);
         }
-        return handleResponse(response.body, resolve, reject);
+        return handleResponse(req, response.body, resolve, reject);
       });
   });
 };

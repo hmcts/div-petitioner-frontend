@@ -843,7 +843,7 @@ describe(modulePath, () => {
           .when('idam', true, testCustom, agent, underTest, userCookie, () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
-            expect(submit.args[0][0]).to.eql('auth.token');
+            expect(submit.args[0][1]).to.eql('auth.token');
           }, 'post', true, postBody);
         featureTest(done);
       });
@@ -856,7 +856,7 @@ describe(modulePath, () => {
           .when('idam', false, testCustom, agent, underTest, [], () => {
             // Assert.
             expect(submit.calledOnce).to.equal(true);
-            expect(submit.args[0][0]).to.eql('');
+            expect(submit.args[0][1]).to.eql('');
           }, 'post', true, postBody);
         featureTest(done);
       });

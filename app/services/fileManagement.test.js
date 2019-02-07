@@ -1,5 +1,3 @@
-const fs = require('fs');
-const tmp = require('tmp');
 const formidable = require('formidable');
 const { expect, sinon } = require('test/util/chai');
 const sinonStubPromise = require('sinon-stub-promise');
@@ -27,7 +25,7 @@ describe(modulePath, () => {
     });
 
     it('calls unlink', done => {
-      fileManagementService.removeFile(file)
+      fileManagementService.removeFile({}, file)
         .then(() => {
           expect(unlink.calledOnce).to.equal(true);
           expect(unlink.calledWith(file.path));
@@ -38,51 +36,7 @@ describe(modulePath, () => {
     it('rejects', done => {
       const error = new Error('foo');
       unlink.rejects(error);
-      expect(fileManagementService.removeFile(file))
-        .to.be.rejectedWith(error)
-        .and.notify(done);
-    });
-  });
-
-  describe('#saveFileFromBuffer', () => {
-    const path = 'some path';
-    const fileName = 'some filename';
-    const two = 2;
-
-    beforeEach(() => {
-      sinon.stub(tmp, 'file').callsArgWith(0, null, path);
-      sinon.stub(fs, 'writeFile').callsArgWith(two, null);
-    });
-
-    afterEach(() => {
-      tmp.file.restore();
-      fs.writeFile.restore();
-    });
-
-    it('resolves with file path', done => {
-      fileManagementService.saveFileFromBuffer(null, fileName)
-        .then(generatedPath => {
-          expect(tmp.file.calledOnce).to.equal(true);
-          expect(fs.writeFile.calledOnce).to.equal(true);
-          expect(generatedPath).to.eql({ path, name: fileName });
-        })
-        .then(done, done);
-    });
-
-    it('rejects when tempfile cannot be created', done => {
-      const error = new Error('cannot create file');
-      tmp.file.callsArgWith(0, error);
-
-      expect(fileManagementService.saveFileFromBuffer())
-        .to.be.rejectedWith(error)
-        .and.notify(done);
-    });
-
-    it('rejects when tempfile cannot be written to the file system', done => {
-      const error = new Error('cannot write file');
-      fs.writeFile.callsArgWith(two, error);
-
-      expect(fileManagementService.saveFileFromBuffer())
+      expect(fileManagementService.removeFile({}, file))
         .to.be.rejectedWith(error)
         .and.notify(done);
     });

@@ -204,6 +204,7 @@
     "D": "The Petitioner is habitually resident in England and Wales and has resided there for at least a year immediately prior to the presentation of the petition.",
     "E": "The Petitioner is domiciled and habitually resident in England and Wales and has resided there for at least six months immediately prior to the petition."
   },
+  "jurisdictionConnection": ["B", "A", "D", "E"],
   "jurisdictionLastTwelveMonths": "Yes",
   "jurisdictionPetitionerDomicile": "Yes",
   "jurisdictionPetitionerResidence": "Yes",

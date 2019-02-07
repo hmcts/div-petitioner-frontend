@@ -17,7 +17,7 @@ describe(modulePath, () => {
   let session = {};
 
   beforeEach(() => {
-    timekeeper.freeze(new Date('04/01/2000'));
+    timekeeper.freeze(new Date('2001-05-01T11:00:00Z'));
   });
 
   afterEach(() => {
@@ -50,7 +50,7 @@ describe(modulePath, () => {
         reasonForDivorceLivingApartDate: separationDate
       };
 
-      expect('3 months, 2 weeks and 2 days').to.equal(underTest.getSeparationTimeTogetherPermitted(session));
+      expect('3 months, 2 weeks and 3 days').to.equal(underTest.getSeparationTimeTogetherPermitted(session));
     });
 
     it('should return month, week and day when time together permitted is less than 6 months', () => {

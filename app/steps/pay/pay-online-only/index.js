@@ -125,7 +125,7 @@ module.exports = class PayOnline extends Step {
         const eventData = submissionService
           .generatePaymentEventData(req.session, response);
 
-        return submission.update(authToken, caseId, eventData, 'paymentReferenceGenerated');
+        return submission.update(req, authToken, caseId, eventData, 'paymentReferenceGenerated');
       })
 
       // If all is well, redirect to payment page.

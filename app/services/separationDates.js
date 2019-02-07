@@ -75,10 +75,13 @@ const getSeparationTimeTogetherPermitted = session => {
   } else if (timeTogetherWeeks > 1) {
     permittedSepTime = `${timeTogetherWeeks} weeks`;
   }
+  if (timeTogetherWeeks > 0 && timeTogetherDays > 0) {
+    permittedSepTime = `${permittedSepTime} and `;
+  }
   if (timeTogetherDays === 1) {
-    permittedSepTime = `${`${permittedSepTime} and ${timeTogetherDays}`} day`;
+    permittedSepTime = `${`${permittedSepTime}${timeTogetherDays}`} day`;
   } else if (timeTogetherDays > 1) {
-    permittedSepTime = `${`${permittedSepTime} and ${timeTogetherDays}`} days`;
+    permittedSepTime = `${`${permittedSepTime}${timeTogetherDays}`} days`;
   }
   return permittedSepTime;
 };

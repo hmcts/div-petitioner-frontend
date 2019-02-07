@@ -92,7 +92,7 @@ describe(modulePath, () => {
       expect('2 weeks and 2 days').to.equal(underTest.getSeparationTimeTogetherPermitted(session));
     });
 
-    it('should return month, week and day when time together permitted is less than 6 months', () => {
+    it('should return week and day when time together permitted is less than 6 months', () => {
       const separationDate = moment().startOf(constants.days)
         .subtract(5, constants.years)
         .subtract(1, constants.weeks)
@@ -104,6 +104,32 @@ describe(modulePath, () => {
       };
 
       expect('1 week and 1 day').to.equal(underTest.getSeparationTimeTogetherPermitted(session));
+    });
+
+    it('should return only week when time together permitted is less than 6 months', () => {
+      const separationDate = moment().startOf(constants.days)
+        .subtract(5, constants.years)
+        .subtract(1, constants.weeks);
+      session = {
+        reasonForDivorce: 'separation-5-years',
+        reasonForDivorceDecisionDate: separationDate,
+        reasonForDivorceLivingApartDate: separationDate
+      };
+
+      expect('1 week').to.equal(underTest.getSeparationTimeTogetherPermitted(session));
+    });
+
+    it('should return only day when time together permitted is less than 6 months', () => {
+      const separationDate = moment().startOf(constants.days)
+        .subtract(5, constants.years)
+        .subtract(1, constants.days);
+      session = {
+        reasonForDivorce: 'separation-5-years',
+        reasonForDivorceDecisionDate: separationDate,
+        reasonForDivorceLivingApartDate: separationDate
+      };
+
+      expect('1 day').to.equal(underTest.getSeparationTimeTogetherPermitted(session));
     });
   });
 });

@@ -311,6 +311,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     req.session.submissionStarted = true;
 
+    logger.infoWithReq(req, 'About to log payload');
+    logger.infoWithReq(req, payload);
+    logger.infoWithReq(req, JSON.stringify(payload));
+
     submission.submit(req, authToken, payload)
       .then(response => {
         delete req.session.submissionStarted;

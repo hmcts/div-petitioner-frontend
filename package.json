@@ -156,6 +156,7 @@
     "stryker-mocha-framework": "^0.9.1",
     "stryker-mocha-runner": "^0.11.1",
     "supertest": "^2.0.0",
+    "timekeeper": "^2.1.2",
     "unirest": "^0.5.1",
     "w3c-validate": "0.0.2",
     "webdriverio": "^4.13.1"

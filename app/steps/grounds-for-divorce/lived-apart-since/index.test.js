@@ -112,6 +112,7 @@ describe(modulePath, () => {
       const excludeKeys = [
         'question.weeks',
         'question.days',
+        'question.week',
         'question.yearsAndMonths',
         'question.needNotToUse',
         'mustSpentYr',
@@ -160,6 +161,7 @@ describe(modulePath, () => {
     const excludeKeys = [
       'question.weeks',
       'question.days',
+      'question.week',
       'question.yearsAndMonths',
       'question.needNotToUse',
       'mustSpentYr',
@@ -254,6 +256,7 @@ describe(modulePath, () => {
       const excludeKeys = [
         'question.weeks',
         'question.days',
+        'question.week',
         'question.yearsAndMonths',
         'question.needNotToUse',
         'mustSpentYr',
@@ -302,6 +305,7 @@ describe(modulePath, () => {
     const excludeKeys = [
       'question.weeks',
       'question.days',
+      'question.week',
       'question.yearsAndMonths',
       'question.needNotToUse',
       'mustSpentYr',
@@ -541,7 +545,7 @@ describe(modulePath, () => {
         const contentToExist = [
           'ques',
           'question.text',
-          'question.weeks',
+          'question.week',
           'question.and',
           'question.days',
           'question.since',

@@ -71,13 +71,22 @@ const getSeparationTimeTogetherPermitted = session => {
     return getReferenceDate(session);
   }
   let permittedSepTime = '';
-  if (timeTogether.months > 0) {
+  if (timeTogether.months === 1) {
+    permittedSepTime = `${timeTogether.months} month`;
+  }
+  if (timeTogether.months > 1) {
     permittedSepTime = `${timeTogether.months} months`;
   }
-  if (timeTogether.date / constants.seven >= 1) {
+  if (Math.trunc(timeTogether.date / constants.seven) === 1) {
+    permittedSepTime = `${`${permittedSepTime}, ${Math.trunc(timeTogether.date / constants.seven)}`} week`;
+  }
+  if (Math.trunc(timeTogether.date / constants.seven) > 1) {
     permittedSepTime = `${`${permittedSepTime}, ${Math.trunc(timeTogether.date / constants.seven)}`} weeks`;
   }
-  if (timeTogether.date % constants.seven > 0) {
+  if (timeTogether.date % constants.seven === 1) {
+    permittedSepTime = `${`${permittedSepTime} and ${timeTogether.date % constants.seven}`} day`;
+  }
+  if (timeTogether.date % constants.seven > 1) {
     permittedSepTime = `${`${permittedSepTime} and ${timeTogether.date % constants.seven}`} days`;
   }
   return permittedSepTime;

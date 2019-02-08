@@ -25,22 +25,3 @@ decree_nisi_frontend_url = "https://www.decree-nisi.apply-divorce.service.gov.uk
 capacity = "2"
 
 feature_redirect_on_state = "true"
-
-
-court_service_centre_divorce_facts_ratio =  {
-  "unreasonable-behaviour" = 1
-  "separation-2-years" = 0
-  "separation-5-years" = 1
-  "adultery" = 0
-  "desertion" = 0
-}
-
-court_southwest_weight = 0.3
-
-court_northwest_weight = 0.3
-
-court_service_centre_weight = 0.51
-
-court_southwest_court_weight = 0.3
-
-court_northwest_court_weight = 0.3

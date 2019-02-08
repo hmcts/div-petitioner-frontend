@@ -21,17 +21,17 @@ redisClient.on('error', error => {
   logger.errorWithReq(null, 'redis_error', 'Failed to connect to Redis', error.message);
 });
 
-const getFeeFromFeesAndPayments = () => {
+const getFeeFromFeesAndPayments = req => {
   const service = CONF.deployment_env === 'local' ? mockFeesAndPaymentsService : feesAndPaymentsRegisterService;
 
   return service.get()
     .then(response => {
       // set fee returned from Fees and payments service
-      logger.infoWithReq(null, 'fees_code', 'Fee code set to', response.feeCode);
+      logger.infoWithReq(req, 'fees_code', 'Fee code set to', response.feeCode);
       CONF.commonProps.applicationFee.feeCode = response.feeCode;
-      logger.infoWithReq(null, 'fees_version', 'Fee version set to', response.version);
+      logger.infoWithReq(req, 'fees_version', 'Fee version set to', response.version);
       CONF.commonProps.applicationFee.version = response.version;
-      logger.infoWithReq(null, 'fees_amount', 'Fee amount set to', response.amount);
+      logger.infoWithReq(req, 'fees_amount', 'Fee amount set to', response.amount);
       CONF.commonProps.applicationFee.amount = response.amount;
       return true;
     });
@@ -44,7 +44,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
         CONF.commonProps.applicationFee = JSON.parse(response);
         return true;
       }
-      return getFeeFromFeesAndPayments();
+      return getFeeFromFeesAndPayments(req);
     })
     .then(() => {
       next();

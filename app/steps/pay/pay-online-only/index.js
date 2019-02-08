@@ -106,10 +106,10 @@ module.exports = class PayOnline extends Step {
     const submission = submissionService.setup();
 
     // Get service token and create payment.
-    return serviceToken.getToken()
+    return serviceToken.getToken(req)
       // Create payment.
       .then(token => {
-        return payment.create(user, token, caseId, siteId, feeCode,
+        return payment.create(req, user, token, caseId, siteId, feeCode,
           feeVersion, amount, feeDescription, returnUrl);
       })
 
@@ -125,7 +125,7 @@ module.exports = class PayOnline extends Step {
         const eventData = submissionService
           .generatePaymentEventData(req.session, response);
 
-        return submission.update(authToken, caseId, eventData, 'paymentReferenceGenerated');
+        return submission.update(req, authToken, caseId, eventData, 'paymentReferenceGenerated');
       })
 
       // If all is well, redirect to payment page.

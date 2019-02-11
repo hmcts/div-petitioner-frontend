@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 const config = require('config');
 const server = require('app');
-const statusCode = require('app/core/utils/statusCode');
+const httpStatus = require('http-status-codes');
 
 describe(__filename, () => {
   it('renders sitemap when config.showSitemap is true', async () => {
@@ -12,7 +12,7 @@ describe(__filename, () => {
 
     await supertest(app)
       .get('/sitemap')
-      .expect(statusCode.OK);
+      .expect(httpStatus.OK);
 
     config.showSitemap = showSitemap;
   });
@@ -24,7 +24,7 @@ describe(__filename, () => {
 
     await supertest(app)
       .get('/sitemap')
-      .expect(statusCode.FOUND)
+      .expect(httpStatus.MOVED_TEMPORARILY)
       .expect('Location', '/errors/404');
 
     config.showSitemap = showSitemap;

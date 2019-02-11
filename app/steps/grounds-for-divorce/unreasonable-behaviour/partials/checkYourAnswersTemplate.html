@@ -1,7 +1,7 @@
 <tr>
   <th>{{ content.question | safe }}</th>
   <td>
-    <ul class="list list-bullet">
+    <ul class="govuk-list govuk-list--bullet">
       {%- for details in fields.reasonForDivorceBehaviourDetails.value -%}
         <li>{{ details }}</li>
       {%- endfor -%}

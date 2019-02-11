@@ -21,11 +21,11 @@
         hiddenLegend = content.question
     ) }}
 
-    <details>
+    <details class="govuk-details">
         <summary>
             <span class="summary">{{ content.duration | safe }}</span>
         </summary>
-        <div class="panel panel-border-narrow">
+        <div class="govuk-details__text">
             <p class="text">
                 {{ content.facts | safe }}
             </p>
@@ -33,15 +33,15 @@
                 {{ content.options | safe }}
             </p>
             <p class="text">
-                <span class="bold-small">{{ content.separated2YearsTitle | safe }}</span>
+                <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.separated2YearsTitle | safe }}</span>
                 - {{ content.separated2YearsDescription | safe }}
             </p>
             <p class="text">
-                <span class="bold-small">{{ content.separated5YearsTitle | safe }}</span>
+                <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.separated5YearsTitle | safe }}</span>
                 - {{ content.separated5YearsDescription | safe }}
             </p>
             <p class="text">
-                <span class="bold-small">{{ content.desertionTitle | safe }}</span>
+                <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.desertionTitle | safe }}</span>
                 - {{ content.desertionDescription | safe }}
             </p>
            <p class="text">

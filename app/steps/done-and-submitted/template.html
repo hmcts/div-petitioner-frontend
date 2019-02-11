@@ -54,7 +54,7 @@
         {% endif %}
         {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
           <p class="text">{{content.whatToDoNowRefNumText | safe}}</p>
-          <ul class="list list-bullet">
+          <ul class="govuk-list govuk-list--bullet">
             <li>{{content.whatToDoNowOrigCert | safe}}</li>
 
           {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
@@ -70,7 +70,7 @@
         {% endif %}
         <h3 class="govuk-heading-s">{{content.whatToDoNowPostHeading | safe}}</h3>
         <p class="text">{{content.whatToDoNowPostText | safe}}</p>
-          <address class="bold-small">
+          <address class="govuk-!-font-size-19 govuk-!-font-weight-bold">
             {%- if ( session.courts == 'eastMidlands') %}
               {{ content.sendAddresseastMidlands | safe}}
             {%- endif -%}
@@ -94,7 +94,7 @@
           <p class="text">{{ content.email | safe }} </p>
           <p class="text">{{ content.emailTo | safe }} </p>
 
-          <span class="bold-small">
+          <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">
             {{ content.eastMidlandsEmail | safe if session.courts === 'eastMidlands' }}
             {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
             {{ content.southWestEmail | safe if session.courts === 'southWest' }}

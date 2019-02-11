@@ -12,9 +12,9 @@
         <p>
             {{content.description}}
         </p>
-        <ul class="list list-bullet">
+        <ul class="govuk-list govuk-list--bullet">
             {% for connectionType in session.jurisdictionConnection %}
-                <li class="list list-bullet">
+                <li class="govuk-list govuk-list--bullet">
                     {{content['reason-'+connectionType]}}
                 </li>
             {% endfor %}

@@ -85,7 +85,7 @@ describe(modulePath, () => {
 
     it('does not show missing header', done => {
       testNonExistence(done, agent, underTest,
-        '<h2 class="heading-medium"></h2>', session);
+        '<h2 class="govuk-heading-m"></h2>', session);
     });
     it('should show header', done => {
       testExistence(done, agent, underTest,

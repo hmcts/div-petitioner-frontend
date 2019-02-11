@@ -14,23 +14,23 @@
         <p class="text">{{ content.info | safe }}</p>
     </div>
 
-    <details>
+    <details class="govuk-details">
         <summary>
             <span class="summary">{{ content.helpLink | safe }}</span>
         </summary>
-        <div class="panel panel-border-narrow">
-            <div class="bold-small">{{ content.helpBothAgreeTitle | safe }}</div>
+        <div class="govuk-details__text">
+            <div class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.helpBothAgreeTitle | safe }}</div>
             <p class="text">
                 {{ content.helpBothAgreeContent | safe }}
             </p>
-            <div class="bold-small">{{ content.helpApplyingTitle | safe }}</div>
+            <div class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.helpApplyingTitle | safe }}</div>
             <p class="text">
                 {{ content.helpApplyingContent1 | safe }}
             </p>
             <p class="text">
                 {{ content.helpApplyingContent2 | safe }}
             </p>
-            <ul class='list list-bullet'>
+            <ul class='govuk-list govuk-list--bullet'>
                 <li> {{ content.helpDontProceed | safe }} </li>
                 <li> {{ content.helpProceedAlive | safe }} </li>
             </ul>
@@ -40,7 +40,7 @@
             <p class="text">
                 {{ content.helpApplyingContent4 | safe }}
             </p>
-            <div class="bold-small">{{ content.helpChildMaintenanceTitle | safe }}</div>
+            <div class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.helpChildMaintenanceTitle | safe }}</div>
             <p class="text">
                 {{ content.helpChildMaintenanceContent | safe }}
             </p>

@@ -29,7 +29,7 @@
 {% block content %}
 <main id="content" role="main" tabindex="-1">
   {% include "includes/phase_banner.html" %}
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
+    <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
 
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -56,7 +56,7 @@
 
           <div class="text">
             <p>{{ content.uploadDigitalPhoto }}</p>
-            <ul class="list list-bullet">
+            <ul class="govuk-list govuk-list--bullet">
               <li>{{ content.marriageCertificateContent | safe }}</li>
               {%- if (session.certifiedTranslation == 'Yes' ) %}
                 <li>{{ content.translationContent | safe }}</li>
@@ -70,12 +70,12 @@
             <p class="text">{{ content.camera | safe }}</p>
           </div>
 
-            <details>
+            <details class="govuk-details">
               <summary>
                 <span class="summary">{{ content.howToTake }}</span>
               </summary>
               <div class="panel panel-border-narrow font-small">
-                <ul class="list list-number">
+                <ul class="govuk-list govuk-list--number">
                   <li>{{ content.howToTakeInfo1 }}</li>
                   <li>{{ content.howToTakeInfo2 }}</li>
                   <li>{{ content.howToTakeInfo3 }}</li>
@@ -143,7 +143,7 @@
               </table>
             </div>
 
-            <details>
+            <details class="govuk-details">
               <summary>
                 <span class="summary">{{ content.cantUpload | safe }}</span>
               </summary>

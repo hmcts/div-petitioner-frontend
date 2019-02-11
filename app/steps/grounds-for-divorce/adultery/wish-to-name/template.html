@@ -13,13 +13,13 @@
         <em class="icon icon-important">
         <span class="visuallyhidden">{{ content.warning }}</span>
         </em>
-    <p class="bold-small">
+    <p class="govuk-!-font-size-19 govuk-!-font-weight-bold">
     {{ content.delayed | safe }}
     </p>
     </div>
 
     <p class="text">{{ content.costs | safe }}</p>
-    
+
 
     <fieldset id="reasonForDivorceAdulteryWishToName" class="form-group inline {{ 'form-group-error' if fields.reasonForDivorceAdulteryWishToName.error }}" id="reasonForDivorceAdulteryWishToName">
         {{ errorsFor(fields.reasonForDivorceAdulteryWishToName) }}

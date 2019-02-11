@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block form %}
-    <details>
+    <details class="govuk-details">
         <summary>
             <span class="summary">{{content.help | safe }}</span>
         </summary>
-        <div class="panel panel-border-narrow">
+        <div class="govuk-details__text">
             <p class="text">{{content.helpText1 | safe }}</p>
             <p class="text">{{content.helpText2 | safe }}</p>
         </div>

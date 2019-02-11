@@ -1,5 +1,5 @@
 {% macro helpConnections(common) %}
-<details>
+<details class="govuk-details">
     <summary>
         <span class="summary">{{ common.findOutMore | safe }}</span>
     </summary>
@@ -26,9 +26,9 @@
         <p>{{ common.helpText5 | safe }}</p>
 
         <p>{{ common.domicileBulletHeading | safe }}</p>
-        <ul class="list list-bullet">
-            <li class="list list-bullet">{{ common.bullet1 | safe }}</li>
-            <li class="list list-bullet">{{ common.bullet2 | safe }}</li>
+        <ul class="govuk-list govuk-list--bullet">
+            <li class="govuk-list govuk-list--bullet">{{ common.bullet1 | safe }}</li>
+            <li class="govuk-list govuk-list--bullet">{{ common.bullet2 | safe }}</li>
         </ul>
         <p> {{ common.textbelowbullet | safe }}</p>
 
@@ -39,14 +39,14 @@
         <p> {{ common.textbelowresidualjurisdiction1 | safe }} </p>
 
         <p> {{ common.textbelowresidualjurisdiction2 | safe }} </p>
-        <ul class="list list-bullet">
-            <li class="list list-bullet">
+        <ul class="govuk-list govuk-list--bullet">
+            <li class="govuk-list govuk-list--bullet">
                 {{ common.bulletRJ1 | safe }}
             </li>
-            <li class="list list-bullet">
+            <li class="govuk-list govuk-list--bullet">
                 {{ common.bulletRJ2 | safe }}
             </li>
-            <li class="list list-bullet">
+            <li class="govuk-list govuk-list--bullet">
                 {{ common.bulletRJ3 | safe }}
             </li>
         </ul>

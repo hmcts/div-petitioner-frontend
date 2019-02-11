@@ -12,12 +12,12 @@
     <div class="text">
 
         {% if reasonForDivorceShowTwoYearsSeparation or reasonForDivorceShowFiveYearsSeparation %}
-            <details>
+            <details class="govuk-details">
                 <summary>
                     <span class="summary">{{ content.separatedDetails | safe }}</span>
                 </summary>
 
-                <div class="panel panel-border-narrow">
+                <div class="govuk-details__text">
 
                     <h4 class="govuk-heading-s">
                         {{ content.sameResidenceHeading | safe }}
@@ -179,25 +179,25 @@
         </fieldset>
         </div>
 
-        <details>
+        <details class="govuk-details">
             <summary>
                 <span class="summary">{{ content.noneApply | safe }}</span>
             </summary>
 
-            <div class="panel panel-border-narrow">
+            <div class="govuk-details__text">
                 <p class="text">
                     <span>{{ content.finalPossibilities | safe }}</span>
                 </p>
 
                 {% if fields.reasonForDivorceLimitReasons.value %}
                     <p class="text">
-                        <span class="bold-small">{{ content.alternativelyInFuture | safe }}</span>
+                        <span class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ content.alternativelyInFuture | safe }}</span>
                     </p>
 
                     {% if fields.reasonForDivorceTimeUntilReason2Years.value %}
                         {{ fromInfo(fields.reasonForDivorceTimeUntilReason2Years) }}
 
-                        <ul class="list list-bullet">
+                        <ul class="govuk-list govuk-list--bullet">
                             {% if not fields.reasonForDivorceShowTwoYearsSeparation.value %}
                                 {{ reasonInfo(content.2YearsSeparationHeading, content.2YearsSeparationExclusion) }}
                             {% endif %}
@@ -211,7 +211,7 @@
                     {% if not fields.reasonForDivorceShowFiveYearsSeparation.value %}
                         {{ fromInfo(fields.reasonForDivorceTimeUntilReason5Years) }}
 
-                        <ul class="list list-bullet">
+                        <ul class="govuk-list govuk-list--bullet">
                             {{ reasonInfo(content.5YearsSeparationHeading, content.5YearsSeparationExclusion) }}
                         </ul>
                     {% endif %}

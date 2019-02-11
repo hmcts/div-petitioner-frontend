@@ -7,7 +7,7 @@
 
     {% include "includes/phase_banner.html" %}
 
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
+    <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
 
     <h1 class="govuk-heading-l">
         {%- if fields.nextStepUrl.value -%}
@@ -76,7 +76,7 @@
                   <input id="confirmPrayer" name="confirmPrayer" type="checkbox" value="Yes" {{ 'checked="checked"' if fields.confirmPrayer.value == 'Yes' }}>
                   <label for="confirmPrayer">{{ content.confirmApply | safe }}</label>
               </div>
-              <ul class="list list-bullet">
+              <ul class="govuk-list govuk-list--bullet">
                  {%- if fields.claimsCosts.value == 'Yes' and fields.financialOrder.value == 'Yes' -%}
                      {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
                          <li>{{ content.confirmDissolvePayBothFinancial | safe }}</li>
@@ -106,7 +106,7 @@
           <div class="form-group">
 
           {%- if not fields.helpWithFeesReferenceNumber.value -%}
-            <p class="text bold-small">
+            <p class="text govuk-!-font-size-19 govuk-!-font-weight-bold">
               <em class="icon icon-important">
                 <span class="visuallyhidden">Warning</span>
               </em>

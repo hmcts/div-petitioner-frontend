@@ -91,6 +91,7 @@ module.exports = class PayOnline extends Step {
     const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
     const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
     const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
+    const serviceCallbackUrl = `${CONF.services.transformation.baseUrl}/payment-update`;
 
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
@@ -106,11 +107,11 @@ module.exports = class PayOnline extends Step {
     const submission = submissionService.setup();
 
     // Get service token and create payment.
-    return serviceToken.getToken()
+    return serviceToken.getToken(req)
       // Create payment.
       .then(token => {
-        return payment.create(user, token, caseId, siteId, feeCode,
-          feeVersion, amount, feeDescription, returnUrl);
+        return payment.create(req, user, token, caseId, siteId, feeCode,
+          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
       })
 
       // Store payment info in session and update the submitted application.
@@ -125,7 +126,7 @@ module.exports = class PayOnline extends Step {
         const eventData = submissionService
           .generatePaymentEventData(req.session, response);
 
-        return submission.update(authToken, caseId, eventData, 'paymentReferenceGenerated');
+        return submission.update(req, authToken, caseId, eventData, 'paymentReferenceGenerated');
       })
 
       // If all is well, redirect to payment page.

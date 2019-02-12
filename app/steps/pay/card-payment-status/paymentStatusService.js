@@ -35,10 +35,10 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
   const submission = submissionService.setup();
 
   // Get service token.
-  return serviceToken.getToken()
+  return serviceToken.getToken(req)
   // Query payment status.
     .then(token => {
-      return payment.query(user, token, session.currentPaymentReference,
+      return payment.query(req, user, token, session.currentPaymentReference,
         session.mockedPaymentOutcome);
     })
 
@@ -55,7 +55,7 @@ const checkAndUpdatePaymentStatus = function(req) { // eslint-disable-line
       if (paymentSuccess) {
         const eventData = submissionService
           .generatePaymentEventData(session, response);
-        return submission.update(user.bearerToken, session.caseId, eventData, 'paymentMade');
+        return submission.update(req, user.bearerToken, session.caseId, eventData, 'paymentMade');
       }
 
       return new Promise(resolve => {

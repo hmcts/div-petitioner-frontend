@@ -62,23 +62,26 @@ const formattedMostRecentSepDate = session => {
 };
 
 const getSeparationTimeTogetherPermitted = session => {
-  const dateBeforeSepYears = getDateBeforeSepYears(session);
-  const timeTogether = moment(
-    dateBeforeSepYears.diff(
-      moment(getMostRecentSeparationDate(session)))
-  ).toObject();
-  if (timeTogether.years > constants.zeroYear || timeTogether.months > constants.six) {
-    return getReferenceDate(session);
+  const timeTogetherMonths = getLivingTogetherMonths(session);
+  const timeTogetherWeeks = getLivingTogetherWeeks(session);
+  const timeTogetherDays = getLivingTogetherDays(session) % constants.seven;
+
+  if (timeTogetherMonths >= constants.six) {
+    return '6 months';
   }
   let permittedSepTime = '';
-  if (timeTogether.months > 0) {
-    permittedSepTime = `${timeTogether.months} months`;
+  if (timeTogetherWeeks === 1) {
+    permittedSepTime = `${timeTogetherWeeks} week`;
+  } else if (timeTogetherWeeks > 1) {
+    permittedSepTime = `${timeTogetherWeeks} weeks`;
   }
-  if (timeTogether.date / constants.seven >= 1) {
-    permittedSepTime = `${`${permittedSepTime}, ${Math.trunc(timeTogether.date / constants.seven)}`} weeks`;
+  if (timeTogetherWeeks > 0 && timeTogetherDays > 0) {
+    permittedSepTime = `${permittedSepTime} and `;
   }
-  if (timeTogether.date % constants.seven > 0) {
-    permittedSepTime = `${`${permittedSepTime} and ${timeTogether.date % constants.seven}`} days`;
+  if (timeTogetherDays === 1) {
+    permittedSepTime = `${`${permittedSepTime}${timeTogetherDays}`} day`;
+  } else if (timeTogetherDays > 1) {
+    permittedSepTime = `${`${permittedSepTime}${timeTogetherDays}`} days`;
   }
   return permittedSepTime;
 };

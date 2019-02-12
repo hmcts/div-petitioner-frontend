@@ -13,10 +13,10 @@ const service = {
    * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  create: (user, serviceToken, caseReference, siteId, feeCode,
-    feeVersion, amountInput, description, returnUrl) => {
+  create: (req, user, serviceToken, caseReference, siteId, feeCode,
+    feeVersion, amountInput, description, returnUrl, serviceCallbackUrl) => {
     return client.create(user, serviceToken, caseReference, siteId, feeCode,
-      feeVersion, amountInput, description, returnUrl)
+      feeVersion, amountInput, description, returnUrl, serviceCallbackUrl)
       .then(response => {
         const { id, amount, status, reference, date_created } = response; // eslint-disable-line camelcase
         const nextUrl = get(response, '_links.next_url.href');
@@ -31,7 +31,7 @@ const service = {
         };
       })
       .catch(error => {
-        logger.errorWithReq(null, 'payment_error', 'Error creating payment with ccd case number', caseReference, error.message);
+        logger.errorWithReq(req, 'payment_error', 'Error creating payment with ccd case number', caseReference, error.message);
         throw error;
       });
   },
@@ -42,7 +42,7 @@ const service = {
    * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  query: (user, serviceToken, referenceInput, mockedPaymentOutcome) => {
+  query: (req, user, serviceToken, referenceInput, mockedPaymentOutcome) => {
     return client.query(user, serviceToken, referenceInput,
       mockedPaymentOutcome)
       .then(response => {
@@ -61,7 +61,7 @@ const service = {
         };
       })
       .catch(error => {
-        logger.errorWithReq(null, 'payment_query_error', 'Error getting payment details for payment reference caseId', referenceInput, error.message);
+        logger.errorWithReq(req, 'payment_query_error', 'Error getting payment details for payment reference caseId', referenceInput, error.message);
         throw error;
       });
   }

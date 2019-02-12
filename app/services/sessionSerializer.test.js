@@ -75,20 +75,20 @@ describe(modulePath, () => {
 
   describe('#encryptData', () => {
     it('returns object with string if no passwordHash supplied', () => {
-      const encryptedData = sessionSerializer.encryptData(session);
+      const encryptedData = sessionSerializer.encryptData(req, session);
       expect(encryptedData).to.eql({ string: session });
     });
 
     it('returns object with string if no passwordHash supplied', () => {
       const encryptedData = sessionSerializer
-        .encryptData(sessionStringified, passwordHash);
+        .encryptData(req, sessionStringified, passwordHash);
       expect(encryptedData.hasOwnProperty('encryptedSession')).to.eql(true);
       expect(encryptedData.hasOwnProperty('iv')).to.eql(true);
     });
 
     it('throws error if not able to encrypt', () => {
       expect(() => {
-        return sessionSerializer.encryptData(session, passwordHash);
+        return sessionSerializer.encryptData(req, session, passwordHash);
       }).to.throw('Cipher data must be a string or a buffer');
     });
   });
@@ -102,40 +102,41 @@ describe(modulePath, () => {
 
     it('returns default string if no passwordHash', () => {
       const encryptedData = sessionSerializer
-        .encryptData(sessionStringified, passwordHash);
-      const string = sessionSerializer.decryptData(encryptedData);
+        .encryptData(req, sessionStringified, passwordHash);
+      const string = sessionSerializer.decryptData(req, encryptedData);
       expect(string).to.equal(defaultSessionString);
     });
 
     it('returns string object if no passwordHash', () => {
       const string = sessionSerializer
-        .decryptData({ string: sessionStringified });
+        .decryptData(req, { string: sessionStringified });
       expect(string).to.eql(sessionStringified);
     });
 
     it('returns default string if no iv supplied', () => {
-      const string = sessionSerializer.decryptData({ encryptedSession: 'test' });
+      const string = sessionSerializer.decryptData(req, { encryptedSession: 'test' });
       expect(string).to.equal(defaultSessionString);
     });
 
     it('returns default string if no encryptedSession supplied', () => {
-      const string = sessionSerializer.decryptData({ iv: 'test' });
+      const string = sessionSerializer.decryptData(req, { iv: 'test' });
       expect(string).to.equal(defaultSessionString);
     });
 
     it('returns decryptData', () => {
       const encryptedData = sessionSerializer
-        .encryptData(sessionStringified, passwordHash);
-      const string = sessionSerializer.decryptData(encryptedData, passwordHash);
+        .encryptData(req, sessionStringified, passwordHash);
+      const string = sessionSerializer
+        .decryptData(req, encryptedData, passwordHash);
       expect(string).to.eql(sessionStringified);
     });
 
     it('throws error if not able to encrypt', () => {
       const encryptedData = sessionSerializer
-        .encryptData(sessionStringified, passwordHash);
+        .encryptData(req, sessionStringified, passwordHash);
       expect(() => {
         return sessionSerializer
-          .decryptData(encryptedData, passwordHash.split(0, 1));
+          .decryptData(req, encryptedData, passwordHash.split(0, 1));
       }).to.throw('Key must be a buffer');
     });
   });

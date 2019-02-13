@@ -93,16 +93,6 @@ commonProps:
       email: COURT_SERVICE_CENTRE_EMAIL
       phoneNumber: COURT_SERVICE_CENTRE_PHONENUMBER
       siteId: COURT_SERVICE_CENTRE_SITEID
-<<<<<<< DIV-3964-adultery-info-from-another-person
-      weight: COURT_SERVICE_CENTRE_WEIGHT
-      divorceFactsRatio:
-        unreasonable-behaviour: SERVICE_CENTRE_DIVORCE_FACT_RATIO_BEHAVIOUR
-        separation-2-years: SERVICE_CENTRE_DIVORCE_FACT_RATIO_2_YEAR_SEPARATION
-        separation-5-years: SERVICE_CENTRE_DIVORCE_FACT_RATIO_5_YEAR_SEPARATION
-        adultery: SERVICE_CENTRE_DIVORCE_FACT_RATIO_ADULTERY
-        desertion: SERVICE_CENTRE_DIVORCE_FACT_RATIO_DESERTION
-=======
->>>>>>> master
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
   smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
   courtPhoneNumber: COURT_PHONENUMBER

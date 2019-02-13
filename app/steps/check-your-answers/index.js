@@ -9,6 +9,7 @@ const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAt
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
+const DestroySessionStep = require('app/core/steps/DestroySessionStep');
 
 const maximumNumberOfSteps = 500;
 
@@ -240,8 +241,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       delete session.nextStepUrl;
     }
 
-    // if next step and next step is not check your answers
-    if (nextStep && nextStep !== this) {
+    if (nextStep && nextStep !== this && !(nextStep instanceof DestroySessionStep)) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.errorWithReq(null, 'never_ending_loop', 'Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         return templates;

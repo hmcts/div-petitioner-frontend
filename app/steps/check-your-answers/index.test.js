@@ -10,7 +10,6 @@ const idamMock = require('test/mocks/idam');
 const featureToggleConfig = require('test/util/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
-const courtsAllocation = require('app/services/courtsAllocation');
 const CONF = require('config');
 const ga = require('app/services/ga');
 const DestroySessionStep = require('app/core/steps/DestroySessionStep');
@@ -751,200 +750,7 @@ describe(modulePath, () => {
     });
   });
 
-  // This was duplicated from the 'describe' test below and will be deleted when clearing up the code for finishing DIV-3724
-  describe('#submitApplication - using court allocated by PFE', () => {
-    let submit = {};
-    let postBody = {};
-
-    beforeEach(done => {
-      submit = sinon.stub().resolves({
-        error: null,
-        status: 'success',
-        caseId: '1234567890'
-      });
-      sinon.stub(submission, 'setup').returns({ submit });
-      sinon.stub(ga, 'trackEvent');
-      sinon.spy(courtsAllocation, 'allocateCourt');
-
-      postBody = {
-        submit: true,
-        confirmPrayer: 'Yes'
-      };
-
-      session = {
-        question1: 'Yes',
-        confirmPrayer: 'Yes',
-        submit: true,
-        cookie: {},
-        expires: Date.now(),
-        reasonForDivorce: 'unreasonable-behaviour'
-      };
-      withSession(done, agent, session);
-    });
-
-    afterEach(() => {
-      ga.trackEvent.restore();
-      submission.setup.restore();
-      courtsAllocation.allocateCourt.restore();
-    });
-
-    context('duplicate submission', () => {
-      beforeEach(done => {
-        session = {
-          submissionStarted: true,
-          cookie: {},
-          expires: Date.now()
-        };
-        withSession(done, agent, session);
-      });
-      it('redirects to ApplicationSubmitted if submission submitted twice', done => {
-        testCustom(done, agent, underTest, [], response => {
-          expect(response.res.headers.location)
-            .to.equal(s.steps.ApplicationSubmitted.url);
-        }, 'post', true, postBody);
-      });
-    });
-
-    it('loads court data from config and selects one automatically', done => {
-      // Arrange.
-      const courts = Object.keys(CONF.commonProps.court);
-
-      const testSession = () => {
-        getSession(agent)
-          .then(sess => {
-            courts.forEach(courtName => {
-              expect(sess.court[courtName]).to
-                .eql(CONF.commonProps.court[courtName]);
-            });
-            expect(sess.courts).to.be.oneOf(courts);
-          })
-          .then(done, done);
-      };
-
-      testCustom(testSession, agent, underTest, [], () => {
-        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
-      }, 'post', true, postBody);
-    });
-
-    it('google anayltics is called', done => {
-      // Act.
-      testCustom(done, agent, underTest, [], () => {
-        // Assert.
-        expect(ga.trackEvent.calledOnce)
-          .to.equal(true);
-      }, 'post', true, postBody);
-    });
-
-    it('redirects to error page when submission request fails', done => {
-      // Arrange.
-      submit.rejects();
-      // Act.
-      testCustom(done, agent, underTest, [], response => {
-        // Assert.
-        expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-        expect(response.headers.location).to.equal('/generic-error');
-      }, 'post', true, postBody);
-    });
-
-    context('Idam is turned ON', () => {
-      it('uses the token of the logged in user', done => {
-        // Arrange.
-        const userCookie = ['__auth-token=auth.token', 'connect.sid=abc'];
-        // Act.
-        const featureTest = featureToggleConfig
-          .when('idam', true, testCustom, agent, underTest, userCookie, () => {
-            // Assert.
-            expect(submit.calledOnce).to.equal(true);
-            expect(submit.args[0][1]).to.eql('auth.token');
-          }, 'post', true, postBody);
-        featureTest(done);
-      });
-    });
-
-    context('Idam is turned OFF', () => {
-      it('uses an empty token for the mocks', done => {
-        // Act.
-        const featureTest = featureToggleConfig
-          .when('idam', false, testCustom, agent, underTest, [], () => {
-            // Assert.
-            expect(submit.calledOnce).to.equal(true);
-            expect(submit.args[0][1]).to.eql('');
-          }, 'post', true, postBody);
-        featureTest(done);
-      });
-    });
-
-    context('submission was successful and petitioner applied for help with fees', () => {
-      beforeEach(done => {
-        const newSession = clone(session);
-        newSession.helpWithFeesNeedHelp = 'Yes';
-
-        withSession(done, agent, newSession);
-      });
-
-      it('redirects to Pay How page', done => {
-        // Act.
-        testCustom(done, agent, underTest, [], response => {
-          // Assert.
-          expect(response.res.statusCode)
-            .to.equal(statusCodes.MOVED_TEMPORARILY);
-          expect(response.res.headers.location)
-            .to.equal(s.steps.DoneAndSubmitted.url);
-        }, 'post', true, postBody);
-      });
-    });
-
-    context('submission was successful and petitioner did not apply for help with fees', () => {
-      it('redirects to Pay Online page', done => {
-        // Act.
-        testCustom(done, agent, underTest, [], response => {
-          // Assert.
-          expect(response.res.statusCode)
-            .to.equal(statusCodes.MOVED_TEMPORARILY);
-          expect(response.res.headers.location)
-            .to.equal(s.steps.PayOnline.url);
-        }, 'post', true, postBody);
-      });
-    });
-
-    context('submission was not successful', () => {
-      it('redirects to the generic error page', done => {
-        // Arrange.
-        submit.resolves({
-          caseId: 0,
-          error: 'some error',
-          status: 'error'
-        });
-        // Act.
-        testCustom(done, agent, underTest, [], response => {
-          // Assert.
-          expect(response.res.statusCode)
-            .to.equal(statusCodes.MOVED_TEMPORARILY);
-          expect(response.res.headers.location)
-            .to.equal(s.steps.GenericError.url);
-        }, 'post', true, postBody);
-      });
-    });
-
-    context('duplicate submission', () => {
-      beforeEach(done => {
-        session = {
-          submissionStarted: true,
-          cookie: {},
-          expires: Date.now()
-        };
-        withSession(done, agent, session);
-      });
-      it('redirects to ApplicationSubmitted if submission submitted twice', done => {
-        testCustom(done, agent, underTest, [], response => {
-          expect(response.res.headers.location)
-            .to.equal(s.steps.ApplicationSubmitted.url);
-        }, 'post', true, postBody);
-      });
-    });
-  });
-
-  describe('#submitApplication - using court allocated by COS', () => {
+  describe('#submitApplication', () => {
     let submit = {};
     let postBody = {};
 
@@ -957,7 +763,6 @@ describe(modulePath, () => {
       });
       sinon.stub(submission, 'setup').returns({ submit });
       sinon.stub(ga, 'trackEvent');
-      sinon.spy(courtsAllocation, 'allocateCourt');
 
       postBody = {
         submit: true,
@@ -978,7 +783,6 @@ describe(modulePath, () => {
     afterEach(() => {
       ga.trackEvent.restore();
       submission.setup.restore();
-      courtsAllocation.allocateCourt.restore();
     });
 
     context('duplicate submission', () => {
@@ -1009,14 +813,13 @@ describe(modulePath, () => {
               expect(sess.court[courtName]).to
                 .eql(CONF.commonProps.court[courtName]);
             });
-
-            expect(sess.courts).to.be.eql('randomlyAllocatedCourt');
+            expect(sess.courts).to.be.equal('randomlyAllocatedCourt');
           })
           .then(done, done);
       };
 
       testCustom(testSession, agent, underTest, [], () => {
-        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+        // do nothing
       }, 'post', true, postBody);
     });
 

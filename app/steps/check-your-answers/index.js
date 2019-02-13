@@ -6,10 +6,10 @@ const CONF = require('config');
 const statusCodes = require('http-status-codes');
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
-const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
+const DestroySessionStep = require('app/core/steps/DestroySessionStep');
 
 const maximumNumberOfSteps = 500;
 
@@ -241,8 +241,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       delete session.nextStepUrl;
     }
 
-    // if next step and next step is not check your answers
-    if (nextStep && nextStep !== this) {
+    if (nextStep && nextStep !== this && !(nextStep instanceof DestroySessionStep)) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.errorWithReq(null, 'never_ending_loop', 'Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         return templates;
@@ -289,11 +288,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
     );
 
-    // Load courts data into session and select court automatically.
+    // Load courts data into session.
     req.session.court = CONF.commonProps.court;
-    req.session.courts = courtsAllocation
-      .allocateCourt(req.session.reasonForDivorce);
-    ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
 
     // Get user token.
     let authToken = '';
@@ -324,11 +320,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
 
-        // Overwrites the allocated court, if COS allocates one
-        const allocatedCourt = response.allocatedCourt;
-        if (allocatedCourt) {
-          req.session.courts = allocatedCourt.courtId;
-        }
+        const courtId = response.allocatedCourt.courtId;
+        ga.trackEvent('Court_Allocation', 'Allocated_court', courtId, 1);
+        req.session.courts = courtId;
 
         res.redirect(this.next(null, req.session).url);
       })

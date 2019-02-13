@@ -1,6 +1,6 @@
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const Step = require('app/core/steps/Step');
 
-module.exports = class ExitMarriageBroken extends DestroySessionStep {
+module.exports = class ExitMarriageBroken extends Step {
   get url() {
     return '/exit/screening-questions/marriage-broken';
   }

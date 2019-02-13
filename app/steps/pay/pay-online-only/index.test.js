@@ -152,17 +152,18 @@ describe(modulePath, () => {
         }, 'post');
       });
 
-      it('sets the returnUrl dynamically', done => {
+      it('sets the returnUrl and serviceCallbackUrl dynamically', done => {
         // Act.
         testCustom(done, agent, underTest, cookies, response => {
           // Assert.
           const returnUrl = response.request.protocol.concat(
             '//', response.request.host, '/pay/card-payment-status'
           );
+          const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
           expect(create.calledWith(
             sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
             'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
-            returnUrl
+            returnUrl, serviceCallbackUrl
           )).to.equal(true);
         }, 'post');
       });

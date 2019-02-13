@@ -5,8 +5,8 @@ const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class DestroySessionStep extends Step {
-  * preResponse(req) {
-    yield new Promise(resolve => {
+  preResponse(req) {
+    return new Promise(resolve => {
       req.session.regenerate(() => {
         resolve();
       });

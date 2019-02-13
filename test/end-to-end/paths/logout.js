@@ -23,3 +23,20 @@ Scenario('Logount on Save and close', function (I) {
   I.navByClick('Back');
   I.startApplication();
 });
+
+Scenario('Logout on Sign Out', function (I) {
+  I.amOnLoadedPage('/index');
+
+  I.startApplication();
+
+  I.haveBrokenMarriage();
+  I.haveRespondentAddress();
+  I.haveMarriageCert();
+
+  I.signOut();
+
+  I.seeCurrentUrlEquals('/index');
+
+  I.startApplication();
+  I.haveBrokenMarriage();
+});

@@ -6,7 +6,6 @@ const CONF = require('config');
 const statusCodes = require('http-status-codes');
 const submissionService = require('app/services/submission');
 const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAttributes');
-const courtsAllocation = require('app/services/courtsAllocation');
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
@@ -289,11 +288,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
     );
 
-    // Load courts data into session and select court automatically.
+    // Load courts data into session.
     req.session.court = CONF.commonProps.court;
-    req.session.courts = courtsAllocation
-      .allocateCourt(req.session.reasonForDivorce);
-    ga.trackEvent('Court_Allocation', 'Allocated_court', req.session.courts, 1);
 
     // Get user token.
     let authToken = '';
@@ -324,11 +320,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
 
-        // Overwrites the allocated court, if COS allocates one
-        const allocatedCourt = response.allocatedCourt;
-        if (allocatedCourt) {
-          req.session.courts = allocatedCourt.courtId;
-        }
+        const courtId = response.allocatedCourt.courtId;
+        ga.trackEvent('Court_Allocation', 'Allocated_court', courtId, 1);
+        req.session.courts = courtId;
 
         res.redirect(this.next(null, req.session).url);
       })

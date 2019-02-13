@@ -104,7 +104,6 @@
     "w3cjs": "^0.4.0",
     "webpack": "2.2.1",
     "webpack-archive-plugin": "^3.0.0",
-    "weighted": "0.3.0",
     "xss-filters": "^1.2.7",
     "yarn": "^1.5.1"
   },

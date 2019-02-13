@@ -9,4 +9,13 @@ function haveMarriageCert() {
   I.navByClick('Continue');
 }
 
-module.exports = { haveMarriageCert };
+function haveNoMarriageCert() {
+
+  const I = this;
+
+  I.seeCurrentUrlEquals('/screening-questions/marriage-certificate');
+  I.checkOption(content.no);
+  I.navByClick('Continue');
+}
+
+module.exports = { haveMarriageCert, haveNoMarriageCert };

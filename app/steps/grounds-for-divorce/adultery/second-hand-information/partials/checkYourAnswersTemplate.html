@@ -1,0 +1,12 @@
+<tr>
+    <th>{{ content.question | safe}}</th>
+    <td> {{ fields.reasonForDivorceAdulterySecondHandInfo.value }} </td>
+    <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{% if fields.reasonForDivorceAdulterySecondHandInfo.value == 'Yes' %}
+<tr>
+    <th>{{ content.informationDetailsQuestion | safe}}</th>
+    <td> {{ fields.reasonForDivorceAdulterySecondHandInfoDetails.value  }} </td>
+    <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>
+{% endif %}

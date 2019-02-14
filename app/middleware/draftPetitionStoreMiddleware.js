@@ -5,6 +5,10 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const parseRequest = require('app/core/helpers/parseRequest');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
+const stepsHelper = require('app/core/helpers/steps');
+const co = require('co');
+
+const expires = CONF.session.expires;
 
 // Properties that should be removed from the session before saving to draft store
 const blacklistedProperties = [
@@ -23,18 +27,45 @@ const options = {
 
 const production = CONF.environment === 'production';
 const client = production ? transformationServiceClient.init(options) : mockedClient;
-
-const checkYourAnswers = '/check-your-answers';
 const authTokenString = '__auth-token';
 
 const redirectToCheckYourAnswers = (req, res, next) => {
-  const isCheckYourAnswers = req.originalUrl === checkYourAnswers;
+  const CheckYourAnswersStep = res.locals.steps.CheckYourAnswers;
 
-  if (isCheckYourAnswers) {
-    next();
-  } else {
-    res.redirect(checkYourAnswers);
+  const alreadyOnCYAStep = req.originalUrl === CheckYourAnswersStep.url;
+  if (alreadyOnCYAStep) {
+    return next();
   }
+
+  return res.redirect(CheckYourAnswersStep.url);
+};
+
+const redirectToNextUnansweredQuestion = function* (req, res, next) {
+  const { steps } = res.locals;
+  const { session } = req;
+  const UnAnsweredStep = yield stepsHelper
+    .findNextUnAnsweredStep(steps.Start, session);
+
+  const alreadyOnCurrentStep = req.originalUrl === UnAnsweredStep.url;
+  if (alreadyOnCurrentStep) {
+    return next();
+  }
+
+  return res.redirect(UnAnsweredStep.url);
+};
+
+const redirectToNextPage = (req, res, next) => {
+  const navigateToNextUnansweredPage = req.query && req.query.toNextUnansweredPage;
+
+  if (navigateToNextUnansweredPage) {
+    return co(redirectToNextUnansweredQuestion(req, res, next))
+      .catch(error => {
+        logger.errorWithReq(req, 'redirect_to_next_unanswered_step_error', 'Error finding and redirecting to next step', error.message);
+        return redirectToCheckYourAnswers(req, res, next);
+      });
+  }
+
+  return redirectToCheckYourAnswers(req, res, next);
 };
 
 const removeBlackListedPropertiesFromSession = session => {
@@ -50,6 +81,8 @@ const restoreFromDraftStore = (req, res, next) => {
   let authToken = false;
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
+  } else if (req.query && req.query[authTokenString]) {
+    authToken = req.query[authTokenString];
   }
 
   // test to see if we have already restored draft store
@@ -61,19 +94,39 @@ const restoreFromDraftStore = (req, res, next) => {
     return next();
   }
 
-  // set flag so we do not attempt to restore from draft store again
-  req.session.fetchedDraft = true;
+  if (req.session) {
+    // set flag so we do not attempt to restore from draft store again
+    req.session.fetchedDraft = true;
+  }
+
+  const assignToSessionAndRedirect = draftStoreResponse => {
+    Object.assign(
+      req.session,
+      removeBlackListedPropertiesFromSession(draftStoreResponse)
+    );
+    redirectToNextPage(req, res, next);
+  };
 
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
-    .then(restoredSession => {
-      if (restoredSession && !isEmpty(restoredSession)) {
-        Object.assign(req.session,
-          removeBlackListedPropertiesFromSession(restoredSession));
-        redirectToCheckYourAnswers(req, res, next);
-      } else {
-        next();
+    .then(draftStoreResponse => {
+      if (isEmpty(draftStoreResponse)) {
+        return next();
       }
+
+      if (req.session && req.session.expires) {
+        return assignToSessionAndRedirect(draftStoreResponse);
+      }
+
+      // there might not be a session as it could have been removed from
+      // idamLandingPage on authenticated step
+      return req.session.regenerate(() => {
+        // set session expires as new session - if we dont set it here initSession middleware will redirect to index
+        req.session.expires = Date.now() + expires;
+        // set flag so we do not attempt to restore from draft store again
+        req.session.fetchedDraft = true;
+        assignToSessionAndRedirect(draftStoreResponse);
+      });
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
@@ -193,5 +246,7 @@ module.exports = {
   redirectToCheckYourAnswers,
   saveSessionToDraftStoreAndClose,
   saveSessionToDraftStore,
-  saveSessionToDraftStoreAndReply
+  saveSessionToDraftStoreAndReply,
+  redirectToNextUnansweredQuestion,
+  redirectToNextPage
 };

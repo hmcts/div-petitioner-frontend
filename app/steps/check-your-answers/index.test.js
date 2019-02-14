@@ -362,35 +362,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('getStepCtx', () => {
-    it('gets properties defined by step from the session', done => {
-      co(function* generator() {
-        const step = {
-          properties: {
-            property1: null,
-            property2: null
-          },
-          interceptor: ctx => {
-            return ctx;
-          }
-        };
-
-        session = {
-          property1: 'value1',
-          property2: 'value2',
-          property3: 'value3'
-        };
-
-        const ctx = yield underTest.getStepCtx(step, session);
-
-        expect(ctx.property1).to.equal(session.property1);
-        expect(ctx.property2).to.equal(session.property2);
-
-        done();
-      });
-    });
-  });
-
   describe('getStepCheckYourAnswersTemplate', () => {
     let ctx = {}, step = {};
 
@@ -406,8 +377,8 @@ describe(modulePath, () => {
       fields = { one: 1, two: 2 };
 
       step = {
-        // getStepCtx: sinon.stub().returns(ctx),
         interceptor: sinon.stub().returns(ctx),
+        populateWithPreExistingData: sinon.stub().returns(ctx),
         checkYourAnswersInterceptor: sinon.stub().returns(ctx),
         validate: sinon.stub().returns([true, []]),
         generateContent: sinon.stub().returns(content),
@@ -522,7 +493,6 @@ describe(modulePath, () => {
     });
   });
 
-
   describe('getNextTemplates', () => {
     let ctx = {}, step1 = {}, step2 = {};
 
@@ -538,6 +508,7 @@ describe(modulePath, () => {
       fields = { one: 1, two: 2 };
 
       const stepDefaults = {
+        populateWithPreExistingData: sinon.stub().returns(ctx),
         interceptor: sinon.stub().returns(ctx),
         checkYourAnswersInterceptor: sinon.stub().returns(ctx),
         validate: sinon.stub().returns([true, []]),

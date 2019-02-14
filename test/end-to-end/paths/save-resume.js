@@ -18,7 +18,7 @@ Scenario('See the check your answers page if session restored from draft petitio
     I.enterMarriageDate();
     I.selectMarriedInUk();
     I.clearCookie();
-    
+
     I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
@@ -28,6 +28,32 @@ Scenario('See the check your answers page if session restored from draft petitio
   I.startApplication();
 
   I.checkMyAnswersRestoredSession();
+
+  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+});
+
+Scenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
+  let cookie = '';
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.enterHelpWithFees();
+    I.selectDivorceType();
+    I.enterMarriageDate();
+    I.selectMarriedInUk();
+    cookie = await I.grabCookie('__auth-token');
+    I.clearCookie();
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.amOnLoadedPage(`/authenticated?toNextUnansweredPage=true&__auth-token=${cookie}`);
 
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
@@ -60,7 +86,7 @@ Scenario('Delete application from draft petition store', function (I) {
     I.haveMarriageCert();
     I.selectHelpWithFees();
     I.clearCookie();
-    
+
     I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
@@ -88,7 +114,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
     I.haveMarriageCert();
     I.selectHelpWithFees();
     I.clearCookie();
-    
+
     I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
@@ -99,6 +125,6 @@ Scenario('Decline to delete application from draft petition store', function (I)
 
   I.checkMyAnswersRemoveApplication();
   I.declineRemoveApplicaiton();
-  
+
   I.seeCurrentUrlEquals('/check-your-answers');
 });

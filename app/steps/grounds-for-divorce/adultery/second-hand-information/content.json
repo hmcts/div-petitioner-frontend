@@ -1,0 +1,27 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Has any of the information about the adultery come from another person?",
+          "description": "The court needs to know if any of this information is second hand.",
+          "yes": "Yes",
+          "no": "No",
+          "informationDetailsQuestion": "Which information was given to you?"
+        },
+        "errors": {
+          "reasonForDivorceAdulterySecondHandInfo": {
+            "required": "Select whether you found out these details yourself, or if any of them came from another person.",
+            "invalid": "Select whether you found out these details yourself, or if any of them came from another person."
+          },
+          "reasonForDivorceAdulterySecondHandInfoDetails": {
+            "required": "Provide details of which information was given to you by another person.",
+            "invalid": "Provide details of which information was given to you by another person."
+          }
+        }
+      }
+    }
+  }
+}
+

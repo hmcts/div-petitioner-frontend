@@ -127,6 +127,7 @@ features:
   respondentConsent: FEATURE_RESPONDENT_CONSENT
   redirectOnState: FEATURE_REDIRECT_ON_STATE
   release510: FEATURE_RELEASE_510
+  release520: FEATURE_RELEASE_520
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

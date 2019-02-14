@@ -49,18 +49,16 @@ module.exports = class LivedApartSince extends ValidationStep {
     super(...args);
 
     if (parseBool(config.features.release510)) {
-      watch([
-        'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
-        'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'
-      ], (previousSession, session, remove) => {
-        remove('livedApartEntireTime',
-          'livedTogetherMoreTimeThanPermitted'
-        );
-      });
+      watch(['reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'], (previousSession, session, remove) => {
+        const isSameOrAfterLimitDateDoesNotExsits = !session.hasOwnProperty('reasonForDivorceLivingApartDateIsSameOrAfterLimitDate');
+        const isSameOrAfterLimitDateIsTrue = session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate && session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate === true;
 
-      watch('livedApartEntireTime', (previousSession, session, remove) => {
-        if (session.livedApartEntireTime === 'Yes') {
-          remove('livedTogetherMoreTimeThanPermitted');
+        if (isSameOrAfterLimitDateDoesNotExsits || isSameOrAfterLimitDateIsTrue) {
+          remove(
+            'livedApartEntireTime',
+            'livedTogetherMoreTimeThanPermitted',
+            'separationTimeTogetherPermitted',
+          );
         }
       });
     }

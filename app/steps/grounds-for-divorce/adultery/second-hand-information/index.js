@@ -13,15 +13,12 @@ module.exports = class AdulterySecondHandInfo extends ValidationStep {
   constructor(...args) {
     super(...args);
 
-    watch('reasonForDivorceAdulterySecondHandInfo', (previousSession, session, remove) => {
-      if (session.reasonForDivorceAdulterySecondHandInfo === 'No') {
-        remove('reasonForDivorceAdulterySecondHandInfoDetails');
-      }
-    });
-
     watch('reasonForDivorce', (previousSession, session, remove) => {
       if (session.reasonForDivorce !== 'adultery') {
-        remove('reasonForDivorceAdulterySecondHandInfo', 'reasonForDivorceAdulterySecondHandInfoDetails');
+        remove(
+          'reasonForDivorceAdulterySecondHandInfo',
+          'reasonForDivorceAdulterySecondHandInfoDetails'
+        );
       }
     });
   }

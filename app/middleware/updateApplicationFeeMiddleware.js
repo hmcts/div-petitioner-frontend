@@ -65,7 +65,6 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
     });
 };
 
-
 const updateAmendFeeMiddleware = (req, res, next) => {
   redisClient.get('commonProps.amendFee.amount')
     .then(response => {

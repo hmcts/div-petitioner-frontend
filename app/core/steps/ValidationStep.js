@@ -18,6 +18,7 @@ const fs = require('fs');
 const requestHandler = require('app/core/helpers/parseRequest');
 const walkMap = require('app/core/utils/treeWalker');
 const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
+const stepsHelper = require('app/core/helpers/steps');
 
 const ajv = new Ajv({ allErrors: true, v5: true });
 
@@ -159,7 +160,14 @@ module.exports = class ValidationStep extends Step {
       session = this.applyCtxToSession(ctx, session);
       session = staleDataManager.removeStaleData(previousSession, session);
 
-      const nextStepUrl = this.next(ctx, session).url;
+      let nextStepUrl = this.next(ctx, session).url;
+
+      if (session.hasOwnProperty('previousCaseId')) {
+        const unAnsweredStep = yield stepsHelper
+          .findNextUnAnsweredStep(this, session);
+        nextStepUrl = unAnsweredStep.url;
+      }
+
       res.redirect(nextStepUrl);
     }
 

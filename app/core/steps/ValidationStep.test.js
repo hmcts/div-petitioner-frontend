@@ -18,6 +18,7 @@ const Step = require('app/core/steps/Step');
 const requestHandler = require('app/core/helpers/parseRequest');
 const staleDataManager = require('app/core/helpers/staleDataManager');
 const fs = require('fs');
+const stepsHelper = require('app/core/helpers/steps');
 
 const modulePath = 'app/core/steps/ValidationStep';
 const UnderTest = require(modulePath);
@@ -346,7 +347,7 @@ describe(modulePath, () => {
 
   describe('#postRequest', () => {
     let req = {};
-    let res = {};
+    let res = { locals: {} };
     const exsistingData = {
       field1: 'value1',
       field2: 'value2'
@@ -354,6 +355,7 @@ describe(modulePath, () => {
     const postedData = { field3: 'value3' };
     const nextStepUrl = 'next/step/url';
     const currentStepUrl = 'current/step/url';
+    const findNextUnAnsweredStepUrl = 'next/unanswered/step/url';
     class TestClass extends UnderTest {
       get url() {
         return currentStepUrl;
@@ -378,6 +380,7 @@ describe(modulePath, () => {
       sinon.spy(underTest, 'applyCtxToSession');
       sinon.stub(underTest, 'next').returns({ url: nextStepUrl });
       sinon.stub(staleDataManager, 'removeStaleData').returnsArg(1);
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns({ url: findNextUnAnsweredStepUrl });
 
       done();
     });
@@ -389,6 +392,7 @@ describe(modulePath, () => {
       underTest.applyCtxToSession.restore();
       underTest.next.restore();
       staleDataManager.removeStaleData.restore();
+      stepsHelper.findNextUnAnsweredStep.restore();
     });
 
     context('valid post data', () => {
@@ -438,6 +442,26 @@ describe(modulePath, () => {
           });
         }).then(done, done);
       });
+    });
+
+    it('redirects to next unanswered question', done => {
+      underTest.validate.returns([true]);
+
+      // clone req object
+      const thisReq = JSON.parse(JSON.stringify(req));
+      thisReq.session.previousCaseId = '1234';
+
+      co(function* generator() {
+        yield underTest.postRequest(thisReq, res);
+
+        expect(underTest.parseCtx.calledOnce).to.eql(true);
+        expect(underTest.validate.calledOnce).to.eql(true);
+        expect(underTest.action.calledOnce).to.eql(true);
+        expect(underTest.applyCtxToSession.calledOnce).to.eql(true);
+        expect(underTest.next.calledOnce).to.eql(true);
+        expect(stepsHelper.findNextUnAnsweredStep.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(findNextUnAnsweredStepUrl)).to.eql(true);
+      }).then(done, done);
     });
   });
 

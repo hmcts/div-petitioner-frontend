@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "adultery-second-hand-info",
+  "properties": {
+    "reasonForDivorceAdulterySecondHandInfo": {
+      "type": "string",
+      "enum": ["Yes", "No"]
+    },
+    "reasonForDivorceAdulterySecondHandInfoDetails": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "switch": [
+    {
+      "if": {
+        "properties": {
+          "reasonForDivorceAdulterySecondHandInfo": {
+            "not": {
+              "type": "string",
+              "enum": ["Yes", "No"]
+            }
+
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reasonForDivorceAdulterySecondHandInfo"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reasonForDivorceAdulterySecondHandInfo": {
+            "enum": ["Yes"]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reasonForDivorceAdulterySecondHandInfoDetails"
+        ]
+      }
+    }
+  ]
+}

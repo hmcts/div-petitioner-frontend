@@ -234,5 +234,6 @@ module "frontend" {
     FEATURE_RESPONDENT_CONSENT                 = "${var.feature_respondent_consent}"
     FEATURE_REDIRECT_ON_STATE                  = "${var.feature_redirect_on_state}"
     FEATURE_RELEASE_510                        = "${var.feature_release_510}"
+    FEATURE_RELEASE_520                        = "${var.feature_release_520}"
   }
 }

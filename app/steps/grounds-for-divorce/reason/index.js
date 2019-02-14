@@ -96,7 +96,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
 
       const timeSinceMarriage = moment().diff(marriageDate, 'years');
 
-      // remove all previous attempted reasons for divorce
+      // remove all previous attempted reasons for divorce - comes from amend petition draft case data
       if (ignoreDivorceReasons && ignoreDivorceReasons.length > 0) {
         ignoreDivorceReasons.forEach(reason => {
           switch (reason) {

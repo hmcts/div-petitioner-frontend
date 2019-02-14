@@ -24,6 +24,7 @@ const statusCode = require('app/core/utils/statusCode');
 const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
+const signOutRoute = require('app/routes/sign-out');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -144,6 +145,9 @@ exports.init = listenForConnections => {
   app.get('/', (req, res) => {
     res.redirect('/index');
   });
+
+  // sign out route
+  signOutRoute(app);
 
   //  register steps with the express app
   const steps = initSteps(app, stepDefinitions);

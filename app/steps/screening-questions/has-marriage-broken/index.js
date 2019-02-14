@@ -1,6 +1,6 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep');
 
-module.exports = class ScreeningQuestionsMarriageBroken extends ValidationStep {
+module.exports = class ScreeningQuestionsMarriageBroken extends ScreeningValidationStep {
   get url() {
     return '/screening-questions/has-marriage-broken';
   }

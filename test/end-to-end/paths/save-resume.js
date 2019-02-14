@@ -40,6 +40,7 @@ Scenario('Save and close', function (I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.selectHelpWithFees();
 
   I.clickSaveAndCLose();
   I.seeCurrentUrlEquals('/exit/application-saved');
@@ -55,6 +56,9 @@ Scenario('Delete application from draft petition store', function (I) {
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
     I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
     I.clearCookie();
     
     I.amOnLoadedPage('/index');
@@ -80,6 +84,9 @@ Scenario('Decline to delete application from draft petition store', function (I)
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
     I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
     I.clearCookie();
     
     I.amOnLoadedPage('/index');

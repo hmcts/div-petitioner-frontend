@@ -10,9 +10,9 @@ const idamMock = require('test/mocks/idam');
 const featureToggleConfig = require('test/util/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
-const courtsAllocation = require('app/services/courtsAllocation');
 const CONF = require('config');
 const ga = require('app/services/ga');
+const DestroySessionStep = require('app/core/steps/DestroySessionStep');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -622,6 +622,17 @@ describe(modulePath, () => {
       });
     });
 
+    it('sets removes the next step url if the last step is an exit step', done => {
+      step2 = new DestroySessionStep();
+      step2.checkYourAnswersTemplate = `${__dirname}/../../views/common/components/defaultCheckYouAnswersTemplate.html`;
+
+      co(function* generator() {
+        const templates = yield underTest.getNextTemplates(step1, session);
+        expect(templates.length).to.equal(1);
+        done();
+      });
+    });
+
     it('renders the correct title', done => {
       testExistence(done, agent, underTest, contentStrings.titleSoFar, session);
     });
@@ -747,11 +758,11 @@ describe(modulePath, () => {
       submit = sinon.stub().resolves({
         error: null,
         status: 'success',
-        caseId: '1234567890'
+        caseId: '1234567890',
+        allocatedCourt: { courtId: 'randomlyAllocatedCourt' }
       });
       sinon.stub(submission, 'setup').returns({ submit });
       sinon.stub(ga, 'trackEvent');
-      sinon.spy(courtsAllocation, 'allocateCourt');
 
       postBody = {
         submit: true,
@@ -772,7 +783,6 @@ describe(modulePath, () => {
     afterEach(() => {
       ga.trackEvent.restore();
       submission.setup.restore();
-      courtsAllocation.allocateCourt.restore();
     });
 
     context('duplicate submission', () => {
@@ -803,13 +813,13 @@ describe(modulePath, () => {
               expect(sess.court[courtName]).to
                 .eql(CONF.commonProps.court[courtName]);
             });
-            expect(sess.courts).to.be.oneOf(courts);
+            expect(sess.courts).to.be.equal('randomlyAllocatedCourt');
           })
           .then(done, done);
       };
 
       testCustom(testSession, agent, underTest, [], () => {
-        expect(courtsAllocation.allocateCourt.calledOnce).to.eql(true);
+        // do nothing
       }, 'post', true, postBody);
     });
 

@@ -1,6 +1,6 @@
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const Step = require('app/core/steps/Step');
 
-module.exports = class ExitNoCertificateTranslated extends DestroySessionStep {
+module.exports = class ExitNoCertificateTranslated extends Step {
   get url() {
     return '/exit/about-your-marriage/no-certificate-translated';
   }

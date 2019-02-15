@@ -25,3 +25,7 @@ output "feature_respondent_consent" {
 output "feature_release_510" {
   value = "${var.feature_release_510}"
 }
+
+output "feature_release_520" {
+  value = "${var.feature_release_520}"
+}

@@ -11,6 +11,7 @@ const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
 const config = require('config');
 const featureToggleConfig = require('test/util/featureToggles');
+const parseBool = require('app/core/utils/parseBool');
 
 const modulePath = 'app/steps/grounds-for-divorce/adultery/details';
 
@@ -183,7 +184,7 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.'
       };
 
-      if (config.features.release520) {
+      if (parseBool(config.features.release520)) {
         testRedirect(
           done,
           agent,
@@ -244,7 +245,7 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
-      if (config.features.release520) {
+      if (parseBool(config.features.release520)) {
         testRedirect(
           done,
           agent,

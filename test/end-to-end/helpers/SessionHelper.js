@@ -76,6 +76,7 @@ class SessionHelper extends codecept_helper {
     const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:8080') > -1;
 
     expectedSession.csrfSecret                                  = actualSession.csrfSecret;
+    expectedSession.feeToBePaid                                 = actualSession.feeToBePaid;
     expectedSession.expires                                     = actualSession.expires;
     expectedSession.cookie.domain                               = actualSession.cookie.domain;
     expectedSession.marriageCertificateFiles[0]                 = actualSession.marriageCertificateFiles[0];

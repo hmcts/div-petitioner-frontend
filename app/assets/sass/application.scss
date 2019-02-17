@@ -67,6 +67,18 @@
   margin-top: $gutter;
 }
 
+a.link-sign-out {
+  float: right;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .heading-large {
   margin-top: $gutter;
 }

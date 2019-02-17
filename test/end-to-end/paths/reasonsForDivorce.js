@@ -58,6 +58,10 @@ Scenario('Adultery, with details', (I) => {
   I.selectAdulteryWhere();
   I.selectAdulteryWhen();
   I.enterAdulteryDetails();
+  if (parseBool(config.features.release520)) {
+    I.enterAdulterySecondHandInfo();
+  }
+  I.enterLegalProceedings();
 });
 
 Scenario('2 years separation', (I) => {
@@ -73,8 +77,13 @@ Scenario('2 years separation', (I) => {
   if (parseBool(config.features.respondentConsent)) {
     I.selectRespondentConsentObtained();
   }
-  I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-
+  if (parseBool(config.features.release510)) {
+    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+    I.selectLivingApartTime();
+  } else {
+    I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+  }
   I.enterLegalProceedings();
 });
 

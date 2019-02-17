@@ -60,11 +60,19 @@ function dontGetShownCookieBannerAgain() {
   I.dontSee(content.cookieLink);
 }
 
+function signOut() {
+  let I = this;
+
+  I.see(common.signOut);
+  I.navByClick(common.signOut);
+}
+
 module.exports = {
   startApplication,
   startApplicationWithAnExistingSession,
   seeCookieBanner,
   seeCookieFooter,
   followCookieBannerLink,
-  dontGetShownCookieBannerAgain
+  dontGetShownCookieBannerAgain,
+  signOut
 };

@@ -1,4 +1,6 @@
 const { mockSession } = require('test/fixtures');
+const config = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 function enterAdulteryDetails() {
 
@@ -7,7 +9,11 @@ function enterAdulteryDetails() {
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/details');
   I.fillField('reasonForDivorceAdulteryDetails', mockSession.reasonForDivorceAdulteryDetails);
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
+  if (parseBool(config.features.release520)) {
+    I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/second-hand-information');
+  } else {
+    I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
+  }
 }
 
 module.exports = { enterAdulteryDetails };

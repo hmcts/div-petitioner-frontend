@@ -1,12 +1,11 @@
 const CONF = require('config');
 const co = require('co');
+const httpStatus = require('http-status-codes');
 const superagent = require('superagent');
 
 require('superagent-proxy')(superagent);
 
 const timeout = CONF.services.postcodeInfo.timeout;
-
-const statusCode = require('app/core/utils/statusCode');
 
 exports.client = (
   tokenString, url, sa = superagent
@@ -32,7 +31,7 @@ exports.client = (
           const addresses = body || [];
           const valid = Boolean(addresses.length);
 
-          const error = status !== statusCode.OK;
+          const error = status !== httpStatus.OK;
 
           return { valid, addresses, error };
         } catch (error) {

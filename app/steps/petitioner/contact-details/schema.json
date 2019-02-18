@@ -11,7 +11,8 @@
       "pattern": "^[0-9 +().-]+$"
     },
     "petitionerConsent": {
-      "type": "string"
+      "type": "string",
+      "enum": ["Yes"]
     }
   },
   "required": [

@@ -55,7 +55,7 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
     .then(response => {
       if (response) {
         CONF.commonProps.applicationFee = JSON.parse(response);
-        return true;
+        return Promise.resolve();
       }
       return getFeeFromFeesAndPayments(req, 'applicationFee');
     })

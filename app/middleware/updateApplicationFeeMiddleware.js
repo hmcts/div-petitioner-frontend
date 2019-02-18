@@ -7,6 +7,7 @@ const ioRedis = require('ioredis');
 const ioRedisMock = require('app/services/mocks/ioRedis');
 
 const redisHost = CONF.services.redis.host;
+const twentyFourHours = 86400;
 
 const feeTypes = {
   applicationFee: 'petition-issue-fee',
@@ -43,12 +44,14 @@ const getFeeFromFeesAndPayments = (req, feeName) => {
       CONF.commonProps[feeName].version = response.version;
       logger.infoWithReq(req, 'fees_amount', 'Fee amount set to', response.amount);
       CONF.commonProps[feeName].amount = response.amount;
-      return true;
+
+      // cache fee for 24 hours
+      redisClient.set(`commonProps.${feeName}`, JSON.stringify(CONF.commonProps[feeName]), 'EX', twentyFourHours);
     });
 };
 
 const updateApplicationFeeMiddleware = (req, res, next) => {
-  redisClient.get('commonProps.applicationFee.amount')
+  redisClient.get('commonProps.applicationFee')
     .then(response => {
       if (response) {
         CONF.commonProps.applicationFee = JSON.parse(response);
@@ -56,18 +59,16 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
       }
       return getFeeFromFeesAndPayments(req, 'applicationFee');
     })
-    .then(() => {
-      next();
-    })
+    .then(next)
     .catch(error => {
-      logger.errorWithReq(req, 'fees_error', 'Error retrieving fees', error.message);
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving applicationFee', error.message);
       res.redirect('/generic-error');
     });
 };
 
 
 const updateAmendFeeMiddleware = (req, res, next) => {
-  redisClient.get('commonProps.amendFee.amount')
+  redisClient.get('commonProps.amendFee')
     .then(response => {
       if (response) {
         CONF.commonProps.amendFee = JSON.parse(response);
@@ -79,7 +80,7 @@ const updateAmendFeeMiddleware = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.errorWithReq(req, 'fees_error', 'Error retrieving fees', error.message);
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving amendFee', error.message);
       res.redirect('/generic-error');
     });
 };

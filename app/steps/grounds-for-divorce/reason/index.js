@@ -116,6 +116,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
             ctx.reasonForDivorceShowFiveYearsSeparation = false;
             break;
           default:
+            logger.errorWithReq(session.req, 'unkown_reason', `Unknown reason for divorce found: ${reason}`);
           }
         });
       }

@@ -16,7 +16,7 @@ const getNextValidStep = function* (step, session) {
       nextStep = step.next(nextStepCtx, session);
     }
   } catch (error) {
-    //
+    // if error caught means there is no next step
   }
 
   return nextStep;

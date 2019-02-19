@@ -13,12 +13,7 @@ const twentyFourHours = 86400;
 
 const feeTypes = {
   applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee',
-  defendPetitionFee: 'defended-petition-fee',
-  generalAppFee: 'general-application-fee',
-  enforcementFee: 'enforcement-fee',
-  appFinancialOrderFee: 'application-financial-order-fee',
-  appWithoutNoticeFee: 'application-without-notice-fee'
+  amendFee: 'amend-fee'
 };
 
 describe(modulePath, () => {

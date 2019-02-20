@@ -4,21 +4,20 @@ const feeTypes = {
 };
 
 const mockFeeResponse = (feeType = '') => {
-  switch (feeType) {
-  case feeTypes.amendFee:
+  if (feeType === feeTypes.amendFee) {
     return {
       feeCode: 'FEE0269',
       version: 1,
       amount: 95
     };
-  default:
-    return {
-      feeCode: 'FEE0002',
-      version: 4,
-      amount: 550
-    };
   }
+  return {
+    feeCode: 'FEE0002',
+    version: 4,
+    amount: 550
+  };
 };
+
 
 const getFee = feeType => {
   return new Promise(resolve => {

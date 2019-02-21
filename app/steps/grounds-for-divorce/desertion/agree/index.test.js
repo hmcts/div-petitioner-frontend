@@ -57,7 +57,7 @@ describe(modulePath, () => {
     it('redirects to the exit page', done => {
       const context = { reasonForDivorceDesertionAgreed: 'Yes' };
 
-      testRedirect(done, agent, underTest, context, s.steps.DesertionDetails);
+      testRedirect(done, agent, underTest, context, s.steps.DesertionDate);
     });
   });
 

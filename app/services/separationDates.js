@@ -5,6 +5,7 @@ const constants = {
   five: '5',
   sep2yrs: 'separation-2-years',
   sep5yrs: 'separation-5-years',
+  desertion: 'desertion',
   dateFormat: 'DD MMMM YYYY',
   six: '6',
   seven: '7',
@@ -13,10 +14,8 @@ const constants = {
 };
 
 const getSepYears = session => {
-  let sepYears = '2';
-  if (session.reasonForDivorce === constants.sep2yrs) {
-    sepYears = constants.two;
-  } else if (session.reasonForDivorce === constants.sep5yrs) {
+  let sepYears = constants.two;
+  if (session.reasonForDivorce === constants.sep5yrs) {
     sepYears = constants.five;
   }
   return sepYears;
@@ -27,6 +26,9 @@ const getDateBeforeSepYears = session => {
 };
 
 const getMostRecentSeparationDate = session => {
+  if (session.reasonForDivorce === constants.desertion) {
+    return session.reasonForDivorceDesertionDate;
+  }
   if (moment(session.reasonForDivorceDecisionDate) > moment(session.reasonForDivorceLivingApartDate)) {
     return session.reasonForDivorceDecisionDate;
   }

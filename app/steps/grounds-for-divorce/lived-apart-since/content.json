@@ -4,7 +4,8 @@
         "en": {
             "translation": {
                 "content": {
-                    "ques": "Have you lived apart for the entire time since you separated?",
+                    "sepQues": "Have you lived apart for the entire time since you separated?",
+                    "desQues": "Have you lived apart from your {{ divorceWho }} for the entire time since they deserted you?",
                     "info1": "You can both live in the same property and be considered by the court to be living apart, as long as you're living separate lives. For example, you don’t eat, sleep, or socialise together.",
                     "info2": "You can contact the court if you’re not sure if this applies to you.",
                     "yes": "Yes",

@@ -61,6 +61,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.exactDate',
       'question.yearsAndMonths',
       'question.needNotToUse',
@@ -110,6 +111,7 @@ describe(modulePath, () => {
 
     it('Loads content if most recent sep date is > 5 yr 6 months', done => {
       const excludeKeys = [
+        'desQues',
         'question.weeks',
         'question.days',
         'question.week',
@@ -159,6 +161,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.weeks',
       'question.days',
       'question.week',
@@ -210,6 +213,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.exactDate',
       'question.yearsAndMonths',
       'question.needNotToUse',
@@ -254,6 +258,7 @@ describe(modulePath, () => {
 
     it('Loads content if most recent sep date is > 2 yr 6 months', done => {
       const excludeKeys = [
+        'desQues',
         'question.weeks',
         'question.days',
         'question.week',
@@ -303,6 +308,7 @@ describe(modulePath, () => {
     });
 
     const excludeKeys = [
+      'desQues',
       'question.weeks',
       'question.days',
       'question.week',
@@ -460,7 +466,7 @@ describe(modulePath, () => {
     });
 
     it('Renders separation - time together details ', done => {
-      const contentToExist = ['ques', 'question.text'];
+      const contentToExist = ['sepQues', 'question.text'];
 
       const valuesToExist = ['livedApartEntireTime', 'livedTogetherMoreTimeThanPermitted'];
 
@@ -506,7 +512,7 @@ describe(modulePath, () => {
         };
 
         const contentToExist = [
-          'ques',
+          'sepQues',
           'question.text',
           'question.6months',
           'question.since',
@@ -543,7 +549,7 @@ describe(modulePath, () => {
         };
 
         const contentToExist = [
-          'ques',
+          'sepQues',
           'question.text',
           'question.week',
           'question.and',
@@ -563,6 +569,53 @@ describe(modulePath, () => {
           context
         );
       });
+    });
+  });
+
+  describe('Desertion - render content', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        reasonForDivorce: 'desertion',
+        reasonForDivorceDesertionDate: moment().subtract(constants.two, 'years')
+          .subtract(constants.four, 'months')
+      };
+      withSession(done, agent, session);
+    });
+
+    const excludeKeys = [
+      'sepQues',
+      'question.exactDate',
+      'question.yearsAndMonths',
+      'question.needNotToUse',
+      'mustSpentYr',
+      'onlyUpTo6Months',
+      'ifMoreThan6Months',
+      'ifLessThan6Months',
+      'info1',
+      'info2'
+    ];
+
+    it('Loads content if most recent desertion date is = 2 yr 4 months', done => {
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+
+    it('render calculated values', done => {
+      const valuesToTest = [
+        '17 weeks',
+        '3 days',
+        moment().subtract(constants.two, 'years')
+          .subtract(constants.four, 'months')
+          .format('DD MMMM YYYY')
+      ];
+      testMultipleValuesExistence(
+        done,
+        agent,
+        underTest,
+        valuesToTest,
+        session
+      );
     });
   });
 });

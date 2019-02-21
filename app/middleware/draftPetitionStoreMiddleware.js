@@ -138,23 +138,20 @@ const restoreFromDraftStore = (req, res, next) => {
 
 const removeFromDraftStore = (req, res, next) => {
   let authToken = false;
-  logger.log('PERFORMING DELETE DRAFT');
+  logger.infoWithReq(req, 'PERFORMING DELETE DRAFT');
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
   }
-  logger.log(authToken);
 
   return client.removeFromDraftStore(authToken)
-    .then(info => {
-      logger.log('DRAFT DELETED - NO ERRORS');
-      logger.log(info);
+    .then(() => {
+      logger.infoWithReq(req, 'PERFORMED DELETE DRAFT - OK');
       next();
     })
     .catch(error => {
-      logger.log('ERROR OCCURRED');
-      logger.log(error.message);
+      logger.errorWithReq(req, `PERFORMED DELETE DRAFT - ERROR - ${error.statusCode}`,
+        error.message);
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);
         return res.redirect('/generic-error');
       }
       return next();

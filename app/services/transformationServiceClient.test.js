@@ -86,20 +86,19 @@ describe(modulePath, () => {
         json: true
       });
     });
-    it('appends petitioner email to uri if send email argument is true', () => {
+    it('append sendEmail=true to uri if send email argument is true', () => {
       // Arrange.
       const userToken = 'user.token';
       const body = {
         foo: 'bar',
         petitionerEmail: 'simulate-delivered@notifications.service.gov.uk'
       };
-      const petitionerEmail = encodeURIComponent(body.petitionerEmail);
       // Act.
       const sendEmail = true;
       client.saveToDraftStore(userToken, body, sendEmail);
       // Assert.
       expect(request.put.args[0][0]).to.eql({
-        uri: `${options.draftBaseUrl}?notificationEmail=${petitionerEmail}`,
+        uri: `${options.draftBaseUrl}?sendEmail=true`,
         body,
         headers: { Authorization: `Bearer ${userToken}` },
         json: true

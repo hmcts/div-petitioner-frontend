@@ -190,8 +190,8 @@ Scenario('Deserted without agreement', function*(I) {
     I.selectLivingApartTime();
     I.enterDesertionDetails();        
   } else {
-    I.enterDesertionDate();
     I.enterDesertionAgreement();
+    I.enterDesertionDate();
     I.enterDesertionDetails();
   }
 

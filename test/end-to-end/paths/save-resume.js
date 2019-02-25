@@ -2,7 +2,7 @@ const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
 
-Feature('Draft petition store').retry(3);
+Feature('Draft petition store').retry(2);
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
@@ -94,6 +94,34 @@ Scenario('Delete application from draft petition store', function (I) {
   }
 
   I.startApplication();
+  I.checkMyAnswersRemoveApplication();
+  I.confirmRemoveApplication();
+  I.seeCurrentUrlEquals('/exit/removed-saved-application');
+
+  const ignoreIdam = true;
+  I.amOnLoadedPage('/index');
+  I.startApplication(ignoreIdam);
+  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+});
+
+Scenario('I Delete my amend petition from draft store', function (I) {
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.clearCookie();
+
+    I.amOnLoadedPage('/index');
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.startApplicationWithAnAmendPetitionSession();
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
   I.seeCurrentUrlEquals('/exit/removed-saved-application');

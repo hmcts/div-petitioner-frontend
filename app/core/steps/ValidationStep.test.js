@@ -465,6 +465,76 @@ describe(modulePath, () => {
     });
   });
 
+  describe('#postRequest - Delete', () => {
+    let req = {};
+    let res = { locals: {} };
+    const exsistingData = {
+      field1: 'value1',
+      field2: 'value2'
+    };
+    const postedData = { deleteApplication: 'Yes' };
+    const nextStepUrl = 'exit/removed-saved-application';
+    const currentStepUrl = 'delete-application';
+    const findNextUnAnsweredStepUrl = 'next/unanswered/step/url';
+    class TestClass extends UnderTest {
+      get url() {
+        return currentStepUrl;
+      }
+    }
+
+    beforeEach(done => {
+      underTest = new TestClass({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
+
+      req = {
+        session: exsistingData,
+        headers: {}
+      };
+      res = {
+        redirect: sinon.stub(),
+        headersSent: true
+      };
+
+      sinon.stub(underTest, 'parseCtx').returns(Object.assign({}, exsistingData, postedData));
+      sinon.stub(underTest, 'validate');
+      sinon.spy(underTest, 'action');
+      sinon.spy(underTest, 'applyCtxToSession');
+      sinon.stub(underTest, 'next').returns({ url: nextStepUrl });
+      sinon.stub(staleDataManager, 'removeStaleData').returnsArg(1);
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns({ url: findNextUnAnsweredStepUrl });
+
+      done();
+    });
+
+    afterEach(() => {
+      underTest.parseCtx.restore();
+      underTest.validate.restore();
+      underTest.action.restore();
+      underTest.applyCtxToSession.restore();
+      underTest.next.restore();
+      staleDataManager.removeStaleData.restore();
+      stepsHelper.findNextUnAnsweredStep.restore();
+    });
+
+    it('redirects to next unanswered question', done => {
+      underTest.validate.returns([true]);
+
+      // clone req object
+      const thisReq = JSON.parse(JSON.stringify(req));
+      thisReq.session.previousCaseId = '1234';
+
+      co(function* generator() {
+        yield underTest.postRequest(thisReq, res);
+
+        expect(underTest.parseCtx.calledOnce).to.eql(true);
+        expect(underTest.validate.calledOnce).to.eql(true);
+        expect(underTest.action.calledOnce).to.eql(true);
+        expect(underTest.applyCtxToSession.calledOnce).to.eql(true);
+        expect(underTest.next.calledOnce).to.eql(true);
+        expect(stepsHelper.findNextUnAnsweredStep.called).to.eql(false);
+      }).then(done, done);
+    });
+  });
+
   describe('#checkYourAnswersTemplate', () => {
     const templatePath = 'path/to/template';
     const stepCYAPath = `app/steps/${templatePath}/partials/checkYourAnswersTemplate.html`;

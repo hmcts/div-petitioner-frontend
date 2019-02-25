@@ -19,6 +19,7 @@ const requestHandler = require('app/core/helpers/parseRequest');
 const walkMap = require('app/core/utils/treeWalker');
 const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
 const stepsHelper = require('app/core/helpers/steps');
+const parseBool = require('app/core/utils/parseBool');
 
 const ajv = new Ajv({ allErrors: true, v5: true });
 
@@ -151,6 +152,7 @@ module.exports = class ValidationStep extends Step {
     const previousSession = cloneDeep(session);
 
     let ctx = yield this.parseCtx(req);
+    const isDeleteAction = ctx.hasOwnProperty('deleteApplication') && parseBool(ctx.deleteApplication);
 
     //  then test whether the request is valid
     const [isValid] = this.validate(ctx, session);
@@ -162,7 +164,7 @@ module.exports = class ValidationStep extends Step {
 
       let nextStepUrl = this.next(ctx, session).url;
 
-      if (session.hasOwnProperty('previousCaseId')) {
+      if (session.hasOwnProperty('previousCaseId') && !isDeleteAction) {
         const unAnsweredStep = yield stepsHelper
           .findNextUnAnsweredStep(this, session);
         nextStepUrl = unAnsweredStep.url;

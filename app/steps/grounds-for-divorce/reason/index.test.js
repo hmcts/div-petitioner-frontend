@@ -70,7 +70,7 @@ describe(modulePath, () => {
 
     it('redirects to the desertion date page when desertion is selected', done => {
       const context = { reasonForDivorce: 'desertion' };
-      testRedirect(done, agent, underTest, context, s.steps.DesertionDate);
+      testRedirect(done, agent, underTest, context, s.steps.DesertionAgree);
     });
 
     it('redirects to the respondent consent page when 2 year separation is selected and RespondentConsent is on', done => {

@@ -184,9 +184,16 @@ Scenario('Deserted without agreement', function*(I) {
   I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
 
   I.selectReasonForDivorce(content['desertionHeading']);
-  I.enterDesertionDate();
-  I.enterDesertionAgreement();
-  I.enterDesertionDetails();
+  if (parseBool(config.features.release520)) {
+    I.enterDesertionAgreement();
+    I.enterDesertionDate();
+    I.selectLivingApartTime();
+    I.enterDesertionDetails();        
+  } else {
+    I.enterDesertionAgreement();
+    I.enterDesertionDate();
+    I.enterDesertionDetails();
+  }
 
   I.enterLegalProceedings();
   I.selectFinancialArrangements();

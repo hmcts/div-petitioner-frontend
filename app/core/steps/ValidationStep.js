@@ -152,7 +152,7 @@ module.exports = class ValidationStep extends Step {
     const previousSession = cloneDeep(session);
 
     let ctx = yield this.parseCtx(req);
-    const isDeleteAction = ctx.hasOwnProperty('deleteApplication') && parseBool(ctx.deleteApplication);
+    const isDeleteAction = ctx && ctx.hasOwnProperty('deleteApplication') && parseBool(ctx.deleteApplication);
 
     //  then test whether the request is valid
     const [isValid] = this.validate(ctx, session);

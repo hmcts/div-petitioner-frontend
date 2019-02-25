@@ -515,7 +515,7 @@ describe(modulePath, () => {
       stepsHelper.findNextUnAnsweredStep.restore();
     });
 
-    it('redirects to next unanswered question', done => {
+    it('redirects to delete confirmed question', done => {
       underTest.validate.returns([true]);
 
       // clone req object

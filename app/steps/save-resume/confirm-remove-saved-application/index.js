@@ -13,12 +13,15 @@ module.exports = class DeleteApplication extends ValidationStep {
     };
   }
 
+  * getNextStep(ctx, session) {
+    return super.next(ctx, session).url;
+  }
+
   next(ctx, session) {
     const tmpCtx = { deleteApplication: ctx.deleteApplication };
 
     // do not store the answer to this question
     delete session.deleteApplication;
-    delete session.previousCaseId;
     delete ctx.deleteApplication;
 
     return super.next(tmpCtx);

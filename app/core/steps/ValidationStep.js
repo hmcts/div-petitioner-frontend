@@ -166,12 +166,12 @@ module.exports = class ValidationStep extends Step {
 
     //  then test whether the request is valid
     const [isValid] = this.validate(ctx, session);
-    const nextStepUrl = yield this.getNextStep(ctx, session);
 
     if (!req.headers['x-save-draft-session-only'] && isValid) {
       [ctx, session] = this.action(ctx, session);
       session = this.applyCtxToSession(ctx, session);
       session = staleDataManager.removeStaleData(previousSession, session);
+      const nextStepUrl = yield this.getNextStep(ctx, session);
 
       res.redirect(nextStepUrl);
     }

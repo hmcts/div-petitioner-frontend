@@ -129,7 +129,9 @@ const restoreFromDraftStore = (req, res, next) => {
       });
     })
     .catch(error => {
-      logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
+      if (error.statusCode !== httpStatus.NOT_FOUND) {
+        logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
+      }
       next();
     });
 };
@@ -148,10 +150,7 @@ const removeFromDraftStore = (req, res, next) => {
     })
     .catch(error => {
       logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);
-      if (error.statusCode !== httpStatus.NOT_FOUND) {
-        return res.redirect('/generic-error');
-      }
-      return next();
+      return res.redirect('/generic-error');
     });
 };
 

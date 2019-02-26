@@ -15,6 +15,8 @@ const service = {
    */
   create: (req, user, serviceToken, caseReference, siteId, feeCode,
     feeVersion, amountInput, description, returnUrl, serviceCallbackUrl) => {
+    // Temporarily disable sending serviceCallbackUrl
+    serviceCallbackUrl = ''; // eslint-disable-line
     return client.create(user, serviceToken, caseReference, siteId, feeCode,
       feeVersion, amountInput, description, returnUrl, serviceCallbackUrl)
       .then(response => {

@@ -47,6 +47,7 @@ data:
   FEATURE_IDAM: "true"
   FEATURE_RELEASE_510: "true"
   FEATURE_RELEASE_520: "false"
+  FEATURE_RELEASE_520_DESERTION: "false"
   DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
   FEATURE_REDIRECT_ON_STATE: "false"
   COURT_PHONENUMBER: "0300 303 0642"

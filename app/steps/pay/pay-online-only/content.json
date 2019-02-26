@@ -5,7 +5,7 @@
             "translation": {
                 "content": {
                     "question": "Payment",
-                    "applicationFee": "The application fee is £{{ applicationFee.amount }}. The payment can be made by anyone with a valid debit or credit card.",
+                    "applicationFee": "The application fee is £{{ feeToBePaid }}. The payment can be made by anyone with a valid debit or credit card.",
                     "noRefund": "Only continue if you’re sure that you want to apply. You can’t get a refund after the application has been issued (sent out).",
                     "claimingCosts": "If you're claiming the divorce costs from your {{ divorceWho }}, this fee can be included in any costs order the court makes.",
                     "save": "Save and close this page if you can’t pay the fee now. Your application won’t be processed until you have paid the fee."

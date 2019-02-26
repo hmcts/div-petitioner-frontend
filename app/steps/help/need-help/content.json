@@ -6,7 +6,7 @@
 
                 "content": {
                     "question": "Do you want help paying your fee?",
-                    "explanation": "If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ applicationFee.amount }}</strong> fee.",
+                    "explanation": "If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
                     "yes": "Yes",
                     "no": "No"
                 },

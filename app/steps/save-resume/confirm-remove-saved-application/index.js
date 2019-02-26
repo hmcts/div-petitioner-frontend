@@ -18,6 +18,7 @@ module.exports = class DeleteApplication extends ValidationStep {
 
     // do not store the answer to this question
     delete session.deleteApplication;
+    delete session.previousCaseId;
     delete ctx.deleteApplication;
 
     return super.next(tmpCtx);

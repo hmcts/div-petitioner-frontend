@@ -104,7 +104,7 @@ Scenario('Delete application from draft petition store', function (I) {
   I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
 });
 
-Scenario('I Delete my amend petition from draft store', function (I) {
+Scenario('@Testing I Delete my amend petition from draft store', function (I) {
   I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
@@ -125,11 +125,6 @@ Scenario('I Delete my amend petition from draft store', function (I) {
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
   I.seeCurrentUrlEquals('/exit/removed-saved-application');
-
-  const ignoreIdam = true;
-  I.amOnLoadedPage('/index');
-  I.startApplication(ignoreIdam);
-  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
 });
 
 Scenario('Decline to delete application from draft petition store', function (I) {

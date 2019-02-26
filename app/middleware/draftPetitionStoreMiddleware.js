@@ -129,28 +129,25 @@ const restoreFromDraftStore = (req, res, next) => {
       });
     })
     .catch(error => {
-      if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
-      }
+      logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
       next();
     });
 };
 
 const removeFromDraftStore = (req, res, next) => {
   let authToken = false;
-  logger.infoWithReq(req, 'PERFORMING DELETE DRAFT');
+  logger.infoWithReq(req, 'remove_draft_attempt', 'Attempting to remove draft');
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
   }
 
   return client.removeFromDraftStore(authToken)
     .then(() => {
-      logger.infoWithReq(req, 'PERFORMED DELETE DRAFT - OK');
+      logger.infoWithReq(req, 'remove_draft_done', 'Successfully removed draft');
       next();
     })
     .catch(error => {
-      logger.errorWithReq(req, `PERFORMED DELETE DRAFT - ERROR - ${error.statusCode}`,
-        error.message);
+      logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);
       if (error.statusCode !== httpStatus.NOT_FOUND) {
         return res.redirect('/generic-error');
       }

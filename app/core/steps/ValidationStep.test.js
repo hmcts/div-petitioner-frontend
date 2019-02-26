@@ -382,7 +382,7 @@ describe(modulePath, () => {
     context('non-amended draft', () => {
       const session = { field1: 'test' };
 
-      it('should use the found unanswered next step if there is a previous case ID', done => {
+      it('should use standard next step if there is no previous case ID', done => {
         co(function* generator() {
           const nextUrl = yield underTest.getNextStep({}, session);
           expect(nextUrl).to.eql(nextStepUrl);

@@ -76,11 +76,13 @@ Scenario('2 years separation', (I) => {
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
   if (parseBool(config.features.respondentConsent)) {
     I.selectRespondentConsentObtained();
-  }
-  if (parseBool(config.features.release510)) {
-    I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
-      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-    I.selectLivingApartTime();
+    if (parseBool(config.features.release510)) {
+      I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+        twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+      I.selectLivingApartTime();
+    } else {
+      I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+    }
   } else {
     I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   }

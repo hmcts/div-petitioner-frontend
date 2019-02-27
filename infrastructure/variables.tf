@@ -246,7 +246,7 @@ variable "feature_release_520" {
 }
 
 variable "feature_release_520_desertion" {
-  default = false
+  default = true
 }
 
 variable "survey_feedback_url" {

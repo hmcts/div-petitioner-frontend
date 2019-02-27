@@ -48,6 +48,7 @@ Scenario('See next unanswered question if toNextUnansweredPage=true in query str
     I.selectMarriedInUk();
     cookie = await I.grabCookie('__auth-token');
     I.clearCookie();
+    I.wait(2);
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
     I.seeCookie('mockRestoreSession');

@@ -27,7 +27,16 @@ async function startApplicationWithAnExistingSession() {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.haveABasicSession();
+  I.haveABasicSession('basicDivorceSessionData');
+}
+
+async function startApplicationWithAnAmendPetitionSession() {
+
+  let I = this;
+
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.haveABasicSession('amendPetitionSession');
 }
 
 function* seeCookieBanner() {
@@ -70,6 +79,7 @@ function signOut() {
 module.exports = {
   startApplication,
   startApplicationWithAnExistingSession,
+  startApplicationWithAnAmendPetitionSession,
   seeCookieBanner,
   seeCookieFooter,
   followCookieBannerLink,

@@ -138,20 +138,19 @@ const restoreFromDraftStore = (req, res, next) => {
 
 const removeFromDraftStore = (req, res, next) => {
   let authToken = false;
+  logger.infoWithReq(req, 'remove_draft_attempt', 'Attempting to remove draft');
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
   }
 
   return client.removeFromDraftStore(authToken)
     .then(() => {
+      logger.infoWithReq(req, 'remove_draft_done', 'Successfully removed draft');
       next();
     })
     .catch(error => {
-      if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);
-        return res.redirect('/generic-error');
-      }
-      return next();
+      logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);
+      return res.redirect('/generic-error');
     });
 };
 

@@ -32,7 +32,7 @@ Scenario('See the check your answers page if session restored from draft petitio
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
 
-Scenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
+xScenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
   let cookie = '';
   I.amOnLoadedPage('/index');
 
@@ -48,6 +48,7 @@ Scenario('See next unanswered question if toNextUnansweredPage=true in query str
     I.selectMarriedInUk();
     cookie = await I.grabCookie('__auth-token');
     I.clearCookie();
+    I.wait(2);
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
     I.seeCookie('mockRestoreSession');
@@ -102,6 +103,53 @@ Scenario('Delete application from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication(ignoreIdam);
   I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+});
+
+Scenario('I delete my amend petition from draft store', function (I) {
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.clearCookie();
+
+    I.amOnLoadedPage('/index');
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.startApplicationWithAnAmendPetitionSession();
+  I.checkMyAnswersRemoveApplication();
+  I.confirmRemoveApplication();
+  I.seeCurrentUrlEquals('/exit/removed-saved-application');
+});
+
+Scenario('I do not delete my amend petition from draft store', function (I) {
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.clearCookie();
+
+    I.amOnLoadedPage('/index');
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.startApplicationWithAnAmendPetitionSession();
+  I.checkMyAnswersRemoveApplication();
+  I.declineRemoveApplicaiton();
+
+  I.seeCurrentUrlEquals('/check-your-answers');
 });
 
 Scenario('Decline to delete application from draft petition store', function (I) {

@@ -242,7 +242,7 @@ variable "feature_release_510" {
 }
 
 variable "feature_release_520" {
-  default = false
+  default = true
 }
 
 variable "survey_feedback_url" {

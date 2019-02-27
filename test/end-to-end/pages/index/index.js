@@ -1,4 +1,4 @@
-const content = require('app/steps/index/content.json').resources.en.translation.content;
+const content = require('app/steps/screening-questions/has-respondent-address/content').resources.en.translation.content;
 const common = require('app/content/common.json').resources.en.translation;
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
@@ -6,13 +6,8 @@ const parseBool = require('app/core/utils/parseBool');
 
 function startApplication(ignoreIdamToggle = false) {
 
-  let I = this;
-
-  I.seeCurrentUrlEquals('/index');
-  I.see(common.continue);
-  I.navByClick(common.continue);
-
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
+    let I = this;
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());

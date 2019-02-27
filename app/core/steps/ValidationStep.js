@@ -144,6 +144,18 @@ module.exports = class ValidationStep extends Step {
     return ctx;
   }
 
+  * getNextStep(ctx, session) {
+    let nextStepUrl = this.next(ctx, session).url;
+
+    if (session.hasOwnProperty('previousCaseId')) {
+      const unAnsweredStep = yield stepsHelper
+        .findNextUnAnsweredStep(this, session);
+      nextStepUrl = unAnsweredStep.url;
+    }
+
+    return nextStepUrl;
+  }
+
   * postRequest(req, res) {
     let { session } = req;
 
@@ -159,14 +171,7 @@ module.exports = class ValidationStep extends Step {
       [ctx, session] = this.action(ctx, session);
       session = this.applyCtxToSession(ctx, session);
       session = staleDataManager.removeStaleData(previousSession, session);
-
-      let nextStepUrl = this.next(ctx, session).url;
-
-      if (session.hasOwnProperty('previousCaseId')) {
-        const unAnsweredStep = yield stepsHelper
-          .findNextUnAnsweredStep(this, session);
-        nextStepUrl = unAnsweredStep.url;
-      }
+      const nextStepUrl = yield this.getNextStep(ctx, session);
 
       res.redirect(nextStepUrl);
     }

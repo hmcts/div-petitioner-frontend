@@ -17,7 +17,6 @@ const strykerConfiguration = config => {
         'app/steps/save-resume/**/*.js',
         'app/steps/screening-questions/**/*.js',
         'app/steps/sitemap/**/*.js',
-        'app/steps/start/**/*.js',
         'app/steps/submit/**/*.js',
         'app/steps/terms-and-conditions/**/*.js',
         'app/steps/timeout/**/*.js',
@@ -25,7 +24,6 @@ const strykerConfiguration = config => {
         '!app/steps/save-resume/**/*.test.js',
         '!app/steps/screening-questions/**/*.test.js',
         '!app/steps/sitemap/**/*.test.js',
-        '!app/steps/start/**/*.test.js',
         '!app/steps/submit/**/*.test.js',
         '!app/steps/terms-and-conditions/**/*.test.js',
         '!app/steps/timeout/**/*.test.js'
@@ -41,7 +39,6 @@ const strykerConfiguration = config => {
           'app/steps/save-resume/**/*.test.js',
           'app/steps/screening-questions/**/*.test.js',
           'app/steps/sitemap/**/*.test.js',
-          'app/steps/start/**/*.test.js',
           'app/steps/submit/**/*.test.js',
           'app/steps/terms-and-conditions/**/*.test.js',
           'app/steps/timeout/**/*.test.js'

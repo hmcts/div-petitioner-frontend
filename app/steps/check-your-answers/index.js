@@ -60,7 +60,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     clonedCtx.confirmPrayer = confirmPrayer;
 
     // generate and order CYA templates
-    const templates = yield this.getNextTemplates(this.steps.Start, clonedCtx);
+    const templates = yield this.getNextTemplates(this.steps.Index, clonedCtx);
     clonedCtx.stepTemplates = this.orderTemplatesBasedOnArray(
       this.checkYourAnswersSectionOrder, templates
     );

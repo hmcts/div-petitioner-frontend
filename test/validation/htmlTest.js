@@ -11,15 +11,14 @@ let agent = {};
 s = server.init();
 agent = request.agent(s.app);
 
-// Build the map to ingore checks 
+// Build the map to ingore checks
 // which do not generate any HTML
 const keysToIgnore = [
-  'Authenticated', 
+  'Authenticated',
   'CheckYourAnswers',
   'FinancialArrangements',
   'Adultery3rdPartyAddress',
   'Submit',
-  'Start',
   'Graph',
   'Adultery3rdPartyDetails',
   'CardPaymentStatus',
@@ -125,7 +124,7 @@ for (let stepKey in s.steps) {
               }
 
               return true;
-             
+
             });
 
             expect(filteredWarnings.length).to.equal(0, JSON.stringify(filteredWarnings, null, 2));

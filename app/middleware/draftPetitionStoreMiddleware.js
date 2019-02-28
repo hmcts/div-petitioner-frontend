@@ -44,7 +44,7 @@ const redirectToNextUnansweredQuestion = function* (req, res, next) {
   const { steps } = res.locals;
   const { session } = req;
   const UnAnsweredStep = yield stepsHelper
-    .findNextUnAnsweredStep(steps.Start, session);
+    .findNextUnAnsweredStep(steps.Index, session);
 
   const alreadyOnCurrentStep = req.originalUrl === UnAnsweredStep.url;
   if (alreadyOnCurrentStep) {

@@ -6,7 +6,6 @@ const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMid
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const { expect, sinon } = require('test/util/chai');
 const initSession = require('app/middleware/initSession');
-const checkCookiesAllowed = require('app/middleware/initSession');
 
 const modulePath = 'app/steps/index';
 
@@ -40,12 +39,6 @@ describe(modulePath, () => {
     it('includes initSession in middleware', () => {
       expect(underTest.middleware
         .includes(initSession))
-        .to.eql(true);
-    });
-
-    it('includes checkCookiesAllowed in middleware', () => {
-      expect(underTest.middleware
-        .includes(checkCookiesAllowed))
         .to.eql(true);
     });
   });

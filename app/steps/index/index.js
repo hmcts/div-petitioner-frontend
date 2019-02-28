@@ -2,7 +2,6 @@ const Step = require('app/core/steps/Step');
 const { authenticate } = require('app/services/idam');
 const config = require('config');
 const initSession = require('app/middleware/initSession');
-const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class Index extends Step {
@@ -22,7 +21,6 @@ module.exports = class Index extends Step {
 
     return [
       initSession,
-      checkCookiesAllowed,
       idamAuthenticate
     ];
   }

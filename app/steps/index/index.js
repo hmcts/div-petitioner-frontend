@@ -1,8 +1,6 @@
 const Step = require('app/core/steps/Step');
 const { authenticate } = require('app/services/idam');
-const config = require('config');
 const initSession = require('app/middleware/initSession');
-const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class Index extends Step {
   get url() {
@@ -16,7 +14,7 @@ module.exports = class Index extends Step {
   get middleware() {
     const idamAuthenticate = (req, res, next) => {
       const auth = authenticate(req.protocol, req.get('host'), '/authenticated');
-      return parseBool(config.features.idam) ? auth(req, res, next) : next();
+      return auth(req, res, next);
     };
 
     return [

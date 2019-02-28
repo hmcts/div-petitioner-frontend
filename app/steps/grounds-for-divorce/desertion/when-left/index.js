@@ -17,7 +17,7 @@ module.exports = class DesertionDate extends ValidationStep {
   get nextStep() {
     return {
       reasonForDivorceDesertionAlright: {
-        true: parseBool(CONF.features.release520) ? this.steps.LivedApartSince : this.steps.DesertionDetails,
+        true: parseBool(CONF.features.release520Desertion) ? this.steps.LivedApartSince : this.steps.DesertionDetails,
         false: this.steps.ExitDesertionDate
       }
     };

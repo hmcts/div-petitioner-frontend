@@ -105,9 +105,11 @@ describe(modulePath, () => {
       stepsHelper.findNextUnAnsweredStep.restore();
     });
 
-    it('redirects to next UnAnsweredStep if query string has toNextUnansweredPage', done => {
-      req = { originalUrl: '/not-with-fees-url' };
-      req.query = { toNextUnansweredPage: true };
+    it('redirects to next UnAnsweredStep if session contains previousCaseId', done => {
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '123456789' }
+      };
 
       co(function* generator() {
         yield draftPetitionStoreMiddleware
@@ -121,7 +123,10 @@ describe(modulePath, () => {
 
     it('catches error with #redirectToNextUnansweredQuestion and redirects to CYA', done => {
       stepsHelper.findNextUnAnsweredStep.rejects('Error');
-      req = { originalUrl: '/not-with-fees-url' };
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '123456789' }
+      };
       req.query = { toNextUnansweredPage: true };
 
       co(function* generator() {

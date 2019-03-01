@@ -55,7 +55,7 @@ const redirectToNextUnansweredQuestion = function* (req, res, next) {
 };
 
 const redirectToNextPage = (req, res, next) => {
-  const navigateToNextUnansweredPage = req.query && req.query.toNextUnansweredPage;
+  const navigateToNextUnansweredPage = req.session && req.session.hasOwnProperty('previousCaseId');
 
   if (navigateToNextUnansweredPage) {
     return co(redirectToNextUnansweredQuestion(req, res, next))

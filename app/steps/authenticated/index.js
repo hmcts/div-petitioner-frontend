@@ -44,8 +44,6 @@ module.exports = class Authenticated extends Step {
     return [
       checkCookiesAllowed,
       idamLandingPage,
-      // Query string arguments are lost on redirect so restoreFromDraftStore middleware here to support
-      // toNextUnansweredPage query string argument ( used for amend petition )
       restoreFromDraftStore,
       initSession
     ];

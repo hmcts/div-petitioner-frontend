@@ -405,4 +405,185 @@ describe(modulePath, () => {
         contentToExist, valuesToExist, context);
     });
   });
+
+  describe('if previousReasonForDivorce is unreasonable-behaviour', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['unreasonable-behaviour']
+      };
+      withSession(done, agent, session);
+    });
+
+    it('Remove unreasonable-behaviour from reasonForDivorce', done => {
+      const excludeKeys = [
+        'woman',
+        'hasNoMarriageDate',
+        '2YearsSeparationExclusion',
+        '5YearsSeparationExclusion',
+        'desertionExclusion',
+        'alternativelyInFuture',
+        'unreasonableBehaviourSummary',
+        'unreasonableBehaviourHeading',
+        'unreasonableBehaviourWarning'
+      ];
+
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+  });
+
+  describe('if previousReasonForDivorce is desertion', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['desertion']
+      };
+      withSession(done, agent, session);
+    });
+
+    it('Remove desertion from reasonForDivorce', done => {
+      const excludeKeys = [
+        'woman',
+        'hasNoMarriageDate',
+        '2YearsSeparationExclusion',
+        '5YearsSeparationExclusion',
+        'desertionSummary',
+        'desertionExclusion',
+        'alternativelyInFuture'
+      ];
+
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+  });
+
+  describe('if previousReasonForDivorce is adultery', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['adultery']
+      };
+      withSession(done, agent, session);
+    });
+
+    it('Remove adultery from reasonForDivorce', done => {
+      const excludeKeys = [
+        'woman',
+        'hasNoMarriageDate',
+        'adulteryHeading',
+        'adulterySummary1',
+        'adulterySummary2',
+        'adulteryWarning',
+        '2YearsSeparationExclusion',
+        '5YearsSeparationExclusion',
+        'desertionExclusion',
+        'alternativelyInFuture'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+  });
+
+
+  describe('if previousReasonForDivorce is separation-2-years', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['separation-2-years']
+      };
+      withSession(done, agent, session);
+    });
+
+    it('Remove separation-2-years from reasonForDivorce', done => {
+      const excludeKeys = [
+        'woman',
+        'hasNoMarriageDate',
+        '2YearsSeparationHeading',
+        '2YearsSeparationSummary',
+        '2YearsSeparationWarning',
+        '2YearsSeparationExclusion',
+        '5YearsSeparationExclusion',
+        'desertionExclusion',
+        'alternativelyInFuture'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+  });
+
+  describe('if previousReasonForDivorce is separation-5-years', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['separation-5-years']
+      };
+      withSession(done, agent, session);
+    });
+
+    it('Remove separation-5-years from reasonForDivorce', done => {
+      const excludeKeys = [
+        'woman',
+        'hasNoMarriageDate',
+        '5Years',
+        '2YearsSeparationExclusion',
+        '5YearsSeparationHeading',
+        '5YearsSeparationSummary',
+        '5YearsSeparationExclusion',
+        'desertionExclusion',
+        'alternativelyInFuture'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+  });
+
+
+  describe('if previousReasonForDivorce is separation-5-years', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['separation-5-years', 'adultery']
+      };
+      withSession(done, agent, session);
+    });
+
+    it('Remove separation-5-years from reasonForDivorce', done => {
+      const excludeKeys = [
+        'woman',
+        'hasNoMarriageDate',
+        '5Years',
+        '2YearsSeparationExclusion',
+        '5YearsSeparationHeading',
+        '5YearsSeparationSummary',
+        '5YearsSeparationExclusion',
+        'desertionExclusion',
+        'alternativelyInFuture',
+        'adulteryHeading',
+        'adulterySummary1',
+        'adulterySummary2',
+        'adulteryWarning'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+  });
 });

@@ -18,7 +18,7 @@ Scenario('See the check your answers page if session restored from draft petitio
     I.enterMarriageDate();
     I.selectMarriedInUk();
     I.clearCookie();
-    
+
     I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
@@ -28,6 +28,33 @@ Scenario('See the check your answers page if session restored from draft petitio
   I.startApplication();
 
   I.checkMyAnswersRestoredSession();
+
+  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+});
+
+xScenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
+  let cookie = '';
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.enterHelpWithFees();
+    I.selectDivorceType();
+    I.enterMarriageDate();
+    I.selectMarriedInUk();
+    cookie = await I.grabCookie('__auth-token');
+    I.clearCookie();
+    I.wait(2);
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.amOnLoadedPage(`/authenticated?toNextUnansweredPage=true&__auth-token=${cookie}`);
 
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
@@ -60,7 +87,7 @@ Scenario('Delete application from draft petition store', function (I) {
     I.haveMarriageCert();
     I.selectHelpWithFees();
     I.clearCookie();
-    
+
     I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
@@ -78,6 +105,53 @@ Scenario('Delete application from draft petition store', function (I) {
   I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
 });
 
+Scenario('I delete my amend petition from draft store', function (I) {
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.clearCookie();
+
+    I.amOnLoadedPage('/index');
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.startApplicationWithAnAmendPetitionSession();
+  I.checkMyAnswersRemoveApplication();
+  I.confirmRemoveApplication();
+  I.seeCurrentUrlEquals('/exit/removed-saved-application');
+});
+
+Scenario('I do not delete my amend petition from draft store', function (I) {
+  I.amOnLoadedPage('/index');
+
+  if (parseBool(CONF.features.idam)) {
+    I.startApplication();
+    I.haveBrokenMarriage();
+    I.haveRespondentAddress();
+    I.haveMarriageCert();
+    I.selectHelpWithFees();
+    I.clearCookie();
+
+    I.amOnLoadedPage('/index');
+  } else {
+    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.seeCookie('mockRestoreSession');
+  }
+
+  I.startApplicationWithAnAmendPetitionSession();
+  I.checkMyAnswersRemoveApplication();
+  I.declineRemoveApplicaiton();
+
+  I.seeCurrentUrlEquals('/check-your-answers');
+});
+
 Scenario('Decline to delete application from draft petition store', function (I) {
   I.amOnLoadedPage('/index');
 
@@ -88,7 +162,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
     I.haveMarriageCert();
     I.selectHelpWithFees();
     I.clearCookie();
-    
+
     I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
@@ -99,6 +173,6 @@ Scenario('Decline to delete application from draft petition store', function (I)
 
   I.checkMyAnswersRemoveApplication();
   I.declineRemoveApplicaiton();
-  
+
   I.seeCurrentUrlEquals('/check-your-answers');
 });

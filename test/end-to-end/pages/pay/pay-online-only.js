@@ -1,5 +1,5 @@
 const content = require ('app/steps/pay/pay-online-only/content.json').resources.en.translation.content;
-const feeContent = content.applicationFee.replace('{{ applicationFee.amount }}', '550');
+const feeContent = content.applicationFee.replace('{{ feeToBePaid }}', '550');
 
 function confirmIWillPayOnline() {
 

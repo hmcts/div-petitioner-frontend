@@ -1,4 +1,4 @@
-const { cloneDeep, get, reduce, groupBy, forEach } = require('lodash');
+const { cloneDeep, groupBy, forEach } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const nunjucks = require('nunjucks');
 const logger = require('app/services/logger').logger(__filename);
@@ -10,6 +10,7 @@ const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
 const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const stepsHelper = require('app/core/helpers/steps');
 
 const maximumNumberOfSteps = 500;
 
@@ -104,26 +105,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     return ctx;
   }
 
-  getStepCtx(step, session = {}) {
-    let ctx = {};
-
-    // schemaScope is used for addresses
-    if (step.schemaScope) {
-      ctx = cloneDeep(get(session, step.schemaScope, {}));
-    } else {
-      const stepProperties = step.properties ? Object.keys(step.properties) : {};
-      ctx = reduce(stepProperties, (context, key) => {
-        context[key] = get(session, key);
-        return context;
-      }, {});
-    }
-
-    return ctx;
-  }
-
   * getStepCheckYourAnswersTemplate(step, session) {
     // generate the context for the step
-    let stepCtx = this.getStepCtx(step, session);
+    let stepCtx = step.populateWithPreExistingData(session);
 
     // run the step interceptor
     stepCtx = yield step.interceptor(stepCtx, session);
@@ -221,21 +205,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       }
     }
 
-    let nextStep; // eslint-disable-line init-declarations
-
-    // Put catch here because 'next' function throws
-    // error if step doesn't have valid next step
-    try {
-      let nextStepCtx = this.getStepCtx(step, session);
-      // run the step interceptor - some next step logic is created in the interceptor
-      // eslint-disable-next-line no-warning-comments
-      // TODO: this can be removed when all nextStep logic is moved to next function
-      nextStepCtx = yield step.interceptor(nextStepCtx, session);
-
-      nextStep = step.next(nextStepCtx, session);
-    } catch (error) {
-      //
-    }
+    const nextStep = yield stepsHelper.getNextValidStep(step, session);
 
     if (nextStep === this) {
       delete session.nextStepUrl;

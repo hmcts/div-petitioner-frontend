@@ -1,7 +1,11 @@
 <tr>
-  <th>{{ content.ques | safe }}</th>
+    {% if session.reasonForDivorce === 'desertion' %}
+      <th>{{ content.desQues | safe }}</th>
+    {% else %}
+      <th>{{ content.sepQues | safe }}</th>
+    {% endif %}
   <td>{{ fields.livedApartEntireTime.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.ques | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.livedTogetherMoreTimeThanPermitted.value %}
 <tr>
@@ -12,7 +16,9 @@
       {{ content.question.6months }}
     {% elif fields.livingTogetherMonths.value < 6 %}
 
-      {% if fields.livingTogetherWeeks.value > 0 %}
+      {% if fields.livingTogetherWeeks.value === 1 %}
+          {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
+      {% elif fields.livingTogetherWeeks.value > 1 %}
           {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
       {% endif %}
 
@@ -20,7 +26,9 @@
           {{ content.question.and }}
       {% endif %}
 
-      {% if fields.liveTogetherPeriodRemainingDays.value > 0 %}
+      {% if fields.liveTogetherPeriodRemainingDays.value === 1 %}
+        {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
+      {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
         {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
       {% endif %}
 

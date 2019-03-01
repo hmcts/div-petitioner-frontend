@@ -1,11 +1,11 @@
 const request = require('request-promise-native');
 const CONF = require('config');
 
-const feeCodeEndpoint = '/fees-and-payments/version/1/petition-issue-fee';
+const feeCodeEndpoint = '/fees-and-payments/version/1';
 
-const get = () => {
-  const uri = `${CONF.services.feesAndPayments.baseUrl}${feeCodeEndpoint}`;
+const getFee = feeType => {
+  const uri = `${CONF.services.feesAndPayments.baseUrl}${feeCodeEndpoint}/${feeType}`;
   return request.get({ uri, json: true });
 };
 
-module.exports = { get };
+module.exports = { getFee };

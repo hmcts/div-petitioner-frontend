@@ -17,6 +17,15 @@ const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 const parseBool = require('app/core/utils/parseBool');
 
+const feeConfigPropNames = {
+  applicationFee: 'applicationFee',
+  amendFee: 'amendFee'
+};
+
+const feeType = req => {
+  return req.session.previousCaseId ? feeConfigPropNames.amendFee : feeConfigPropNames.applicationFee;
+};
+
 module.exports = class PayOnline extends Step {
   get url() {
     return '/pay/online';
@@ -35,6 +44,7 @@ module.exports = class PayOnline extends Step {
       restoreFromDraftStore,
       setIdamUserDetails,
       applicationFeeMiddleware.updateApplicationFeeMiddleware,
+      applicationFeeMiddleware.updateAmendFeeMiddleware,
       saveSessionToDraftStoreAndClose
     ];
   }
@@ -78,12 +88,13 @@ module.exports = class PayOnline extends Step {
 
     // Fee properties below are hardcoded and obtained from config.
     // Eventually these values will be obtained from the fees-register.
-    const feeCode = CONF.commonProps.applicationFee.feeCode;
-    const feeVersion = CONF.commonProps.applicationFee.version;
+
+    const feeCode = CONF.commonProps[feeType(req)].feeCode;
+    const feeVersion = CONF.commonProps[feeType(req)].version;
     const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
     // Amount is specified in pound sterling.
     const amount = parseInt(
-      CONF.commonProps.applicationFee.amount
+      CONF.commonProps[feeType(req)].amount
     );
     const hostParts = req.get('host').split(':');
     // if hostParts is a length of 2, it is a valid hostname:port url
@@ -91,6 +102,7 @@ module.exports = class PayOnline extends Step {
     const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
     const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
     const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
+    const serviceCallbackUrl = `${CONF.services.transformation.baseUrl}/payment-update`;
 
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
@@ -106,11 +118,11 @@ module.exports = class PayOnline extends Step {
     const submission = submissionService.setup();
 
     // Get service token and create payment.
-    return serviceToken.getToken()
+    return serviceToken.getToken(req)
       // Create payment.
       .then(token => {
-        return payment.create(user, token, caseId, siteId, feeCode,
-          feeVersion, amount, feeDescription, returnUrl);
+        return payment.create(req, user, token, caseId, siteId, feeCode,
+          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
       })
 
       // Store payment info in session and update the submitted application.
@@ -125,7 +137,7 @@ module.exports = class PayOnline extends Step {
         const eventData = submissionService
           .generatePaymentEventData(req.session, response);
 
-        return submission.update(authToken, caseId, eventData, 'paymentReferenceGenerated');
+        return submission.update(req, authToken, caseId, eventData, 'paymentReferenceGenerated');
       })
 
       // If all is well, redirect to payment page.

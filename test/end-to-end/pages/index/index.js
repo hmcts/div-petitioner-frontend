@@ -27,7 +27,16 @@ async function startApplicationWithAnExistingSession() {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.haveABasicSession();
+  I.haveABasicSession('basicDivorceSessionData');
+}
+
+async function startApplicationWithAnAmendPetitionSession() {
+
+  let I = this;
+
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.haveABasicSession('amendPetitionSession');
 }
 
 function* seeCookieBanner() {
@@ -60,11 +69,20 @@ function dontGetShownCookieBannerAgain() {
   I.dontSee(content.cookieLink);
 }
 
+function signOut() {
+  let I = this;
+
+  I.see(common.signOut);
+  I.navByClick(common.signOut);
+}
+
 module.exports = {
   startApplication,
   startApplicationWithAnExistingSession,
+  startApplicationWithAnAmendPetitionSession,
   seeCookieBanner,
   seeCookieFooter,
   followCookieBannerLink,
-  dontGetShownCookieBannerAgain
+  dontGetShownCookieBannerAgain,
+  signOut
 };

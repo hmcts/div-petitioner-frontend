@@ -157,6 +157,8 @@
     "addressType": "postcode",
     "postcodeError": "false"
   },
+  "reasonForDivorceAdulterySecondHandInfo": "Yes",
+  "reasonForDivorceAdulterySecondHandInfoDetails": "Brenda from the chippy told me about it.",
   "financialOrder": "Yes",
   "financialOrderFor": [
     "petitioner",

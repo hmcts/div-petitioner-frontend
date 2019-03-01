@@ -34,7 +34,7 @@ describe(modulePath, () => {
   describe('content', () => {
     let session = {};
 
-    describe('when Help with fees refference number exists', () => {
+    describe('when Help with fees reference number exists', () => {
       beforeEach(done => {
         session = {
           divorceWho: 'wife',
@@ -61,7 +61,7 @@ describe(modulePath, () => {
       });
     });
 
-    describe('when Help with fees refference does not exist', () => {
+    describe('when Help with fees reference does not exist', () => {
       beforeEach(done => {
         session = { divorceWho: 'wife' };
         withSession(done, agent, session);

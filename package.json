@@ -7,7 +7,7 @@
     "node": ">=8.9.4"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_PATH=. node server.js",
     "start-basic": "NODE_ENV=production NODE_PATH=. node server",
     "start-dev": "NODE_ENV=development NODE_PATH=. grunt start-dev",
     "start-debug": "NODE_ENV=development NODE_PATH=. node --inspect=0.0.0.0:9229 server.js",
@@ -39,7 +39,7 @@
   ],
   "dependencies": {
     "@hmcts/div-idam-express-middleware": "^6.3.5",
-    "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.0.0",
+    "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.2.1",
     "@hmcts/div-service-auth-provider-client": "https://github.com/hmcts/div-service-auth-provider-client#3.0.0",
     "@hmcts/nodejs-healthcheck": "^1.2.0",
     "@hmcts/nodejs-logging": "^3.0.0",
@@ -103,7 +103,6 @@
     "w3cjs": "^0.4.0",
     "webpack": "2.2.1",
     "webpack-archive-plugin": "^3.0.0",
-    "weighted": "0.3.0",
     "xss-filters": "^1.2.7",
     "yarn": "^1.5.1"
   },
@@ -155,6 +154,7 @@
     "stryker-mocha-framework": "^0.9.1",
     "stryker-mocha-runner": "^0.11.1",
     "supertest": "^2.0.0",
+    "timekeeper": "^2.1.2",
     "unirest": "^0.5.1",
     "w3c-validate": "0.0.2",
     "webdriverio": "^4.13.1"

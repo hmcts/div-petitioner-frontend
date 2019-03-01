@@ -5,6 +5,7 @@ const constants = {
   five: '5',
   sep2yrs: 'separation-2-years',
   sep5yrs: 'separation-5-years',
+  desertion: 'desertion',
   dateFormat: 'DD MMMM YYYY',
   six: '6',
   seven: '7',
@@ -13,10 +14,8 @@ const constants = {
 };
 
 const getSepYears = session => {
-  let sepYears = '2';
-  if (session.reasonForDivorce === constants.sep2yrs) {
-    sepYears = constants.two;
-  } else if (session.reasonForDivorce === constants.sep5yrs) {
+  let sepYears = constants.two;
+  if (session.reasonForDivorce === constants.sep5yrs) {
     sepYears = constants.five;
   }
   return sepYears;
@@ -27,6 +26,9 @@ const getDateBeforeSepYears = session => {
 };
 
 const getMostRecentSeparationDate = session => {
+  if (session.reasonForDivorce === constants.desertion) {
+    return session.reasonForDivorceDesertionDate;
+  }
   if (moment(session.reasonForDivorceDecisionDate) > moment(session.reasonForDivorceLivingApartDate)) {
     return session.reasonForDivorceDecisionDate;
   }
@@ -62,23 +64,26 @@ const formattedMostRecentSepDate = session => {
 };
 
 const getSeparationTimeTogetherPermitted = session => {
-  const dateBeforeSepYears = getDateBeforeSepYears(session);
-  const timeTogether = moment(
-    dateBeforeSepYears.diff(
-      moment(getMostRecentSeparationDate(session)))
-  ).toObject();
-  if (timeTogether.years > constants.zeroYear || timeTogether.months > constants.six) {
-    return getReferenceDate(session);
+  const timeTogetherMonths = getLivingTogetherMonths(session);
+  const timeTogetherWeeks = getLivingTogetherWeeks(session);
+  const timeTogetherDays = getLivingTogetherDays(session) % constants.seven;
+
+  if (timeTogetherMonths >= constants.six) {
+    return '6 months';
   }
   let permittedSepTime = '';
-  if (timeTogether.months > 0) {
-    permittedSepTime = `${timeTogether.months} months`;
+  if (timeTogetherWeeks === 1) {
+    permittedSepTime = `${timeTogetherWeeks} week`;
+  } else if (timeTogetherWeeks > 1) {
+    permittedSepTime = `${timeTogetherWeeks} weeks`;
   }
-  if (timeTogether.date / constants.seven >= 1) {
-    permittedSepTime = `${`${permittedSepTime}, ${Math.trunc(timeTogether.date / constants.seven)}`} weeks`;
+  if (timeTogetherWeeks > 0 && timeTogetherDays > 0) {
+    permittedSepTime = `${permittedSepTime} and `;
   }
-  if (timeTogether.date % constants.seven > 0) {
-    permittedSepTime = `${`${permittedSepTime} and ${timeTogether.date % constants.seven}`} days`;
+  if (timeTogetherDays === 1) {
+    permittedSepTime = `${`${permittedSepTime}${timeTogetherDays}`} day`;
+  } else if (timeTogetherDays > 1) {
+    permittedSepTime = `${`${permittedSepTime}${timeTogetherDays}`} days`;
   }
   return permittedSepTime;
 };

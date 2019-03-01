@@ -10,7 +10,11 @@ const { expect, sinon } = require('test/util/chai');
 
 const modulePath = 'app/steps/help/need-help';
 
+const { withSession } = require('test/util/setup');
 const content = require(`${modulePath}/content`);
+
+const parseBool = require('app/core/utils/parseBool');
+const config = require('config');
 
 let s = {};
 let agent = {};
@@ -40,9 +44,47 @@ describe(modulePath, () => {
     });
   });
 
-  describe('success', () => {
+  describe('Amend petition - Render content', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = { previousCaseId: '2001-2002-2003-2004' };
+      withSession(done, agent, session);
+    });
+
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content);
+      const excludeKeys = [ 'explanation' ];
+      let dataContent = {};
+      if (parseBool(config.features.release520)) {
+        dataContent = { feeToBePaid: '95' };
+      } else {
+        dataContent = { feeToBePaid: '550' };
+      }
+      testContent(
+        done,
+        agent,
+        underTest,
+        content,
+        session,
+        excludeKeys,
+        dataContent
+      );
+    });
+  });
+
+  describe('New Application - success', () => {
+    it('renders the content from the content file', done => {
+      const excludeKeys = [ 'explanation' ];
+      const dataContent = { feeToBePaid: '550' };
+      testContent(
+        done,
+        agent,
+        underTest,
+        content,
+        {},
+        excludeKeys,
+        dataContent
+      );
     });
 
     it('renders errors for missing required context', done => {

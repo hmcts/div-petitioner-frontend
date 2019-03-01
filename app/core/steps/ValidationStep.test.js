@@ -18,6 +18,7 @@ const Step = require('app/core/steps/Step');
 const requestHandler = require('app/core/helpers/parseRequest');
 const staleDataManager = require('app/core/helpers/staleDataManager');
 const fs = require('fs');
+const stepsHelper = require('app/core/helpers/steps');
 
 const modulePath = 'app/core/steps/ValidationStep';
 const UnderTest = require(modulePath);
@@ -344,9 +345,56 @@ describe(modulePath, () => {
     });
   });
 
+  describe('#getNextStep', () => {
+    const nextStepUrl = 'next/step/url';
+    const currentStepUrl = 'current/step/url';
+    const findNextUnAnsweredStepUrl = 'next/unanswered/step/url';
+    class TestClass extends UnderTest {
+      get url() {
+        return currentStepUrl;
+      }
+    }
+
+    beforeEach(done => {
+      underTest = new TestClass({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns({ url: findNextUnAnsweredStepUrl });
+      sinon.stub(underTest, 'next').returns({ url: nextStepUrl });
+      done();
+    });
+
+    afterEach(() => {
+      stepsHelper.findNextUnAnsweredStep.restore();
+      underTest.next.restore();
+    });
+
+    context('amended draft', () => {
+      const session = { previousCaseId: '111' };
+
+      it('should use the found unanswered next step if there is a previous case ID', done => {
+        co(function* generator() {
+          const nextUrl = yield underTest.getNextStep({}, session);
+          expect(nextUrl).to.eql(findNextUnAnsweredStepUrl);
+          expect(stepsHelper.findNextUnAnsweredStep.calledOnce).to.eql(true);
+        }).then(done, done);
+      });
+    });
+
+    context('non-amended draft', () => {
+      const session = { field1: 'test' };
+
+      it('should use standard next step if there is no previous case ID', done => {
+        co(function* generator() {
+          const nextUrl = yield underTest.getNextStep({}, session);
+          expect(nextUrl).to.eql(nextStepUrl);
+          expect(stepsHelper.findNextUnAnsweredStep.called).to.eql(false);
+        }).then(done, done);
+      });
+    });
+  });
+
   describe('#postRequest', () => {
     let req = {};
-    let res = {};
+    let res = { locals: {} };
     const exsistingData = {
       field1: 'value1',
       field2: 'value2'
@@ -354,6 +402,7 @@ describe(modulePath, () => {
     const postedData = { field3: 'value3' };
     const nextStepUrl = 'next/step/url';
     const currentStepUrl = 'current/step/url';
+    const findNextUnAnsweredStepUrl = 'next/unanswered/step/url';
     class TestClass extends UnderTest {
       get url() {
         return currentStepUrl;
@@ -376,8 +425,10 @@ describe(modulePath, () => {
       sinon.stub(underTest, 'validate');
       sinon.spy(underTest, 'action');
       sinon.spy(underTest, 'applyCtxToSession');
+      sinon.spy(underTest, 'getNextStep');
       sinon.stub(underTest, 'next').returns({ url: nextStepUrl });
       sinon.stub(staleDataManager, 'removeStaleData').returnsArg(1);
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns({ url: findNextUnAnsweredStepUrl });
 
       done();
     });
@@ -387,8 +438,10 @@ describe(modulePath, () => {
       underTest.validate.restore();
       underTest.action.restore();
       underTest.applyCtxToSession.restore();
+      underTest.getNextStep.restore();
       underTest.next.restore();
       staleDataManager.removeStaleData.restore();
+      stepsHelper.findNextUnAnsweredStep.restore();
     });
 
     context('valid post data', () => {
@@ -406,6 +459,7 @@ describe(modulePath, () => {
           expect(underTest.action.calledOnce).to.eql(true);
           expect(underTest.applyCtxToSession.calledOnce).to.eql(true);
           expect(underTest.next.calledOnce).to.eql(true);
+          expect(underTest.getNextStep.calledOnce).to.eql(true);
           expect(res.redirect.calledWith(nextStepUrl)).to.eql(true);
 
           expect(req.session).to.eql(sessionShouldBe);
@@ -429,6 +483,7 @@ describe(modulePath, () => {
           expect(underTest.action.calledOnce).to.eql(false);
           expect(underTest.applyCtxToSession.calledOnce).to.eql(false);
           expect(underTest.next.calledOnce).to.eql(false);
+          expect(underTest.getNextStep.calledOnce).to.eql(false);
           expect(res.redirect.calledWith(currentStepUrl)).to.eql(true);
 
           expect(req.session.hasOwnProperty('flash')).to.eql(true);
@@ -438,6 +493,27 @@ describe(modulePath, () => {
           });
         }).then(done, done);
       });
+    });
+
+    it('redirects to next unanswered question', done => {
+      underTest.validate.returns([true]);
+
+      // clone req object
+      const thisReq = JSON.parse(JSON.stringify(req));
+      thisReq.session.previousCaseId = '1234';
+
+      co(function* generator() {
+        yield underTest.postRequest(thisReq, res);
+
+        expect(underTest.parseCtx.calledOnce).to.eql(true);
+        expect(underTest.validate.calledOnce).to.eql(true);
+        expect(underTest.action.calledOnce).to.eql(true);
+        expect(underTest.applyCtxToSession.calledOnce).to.eql(true);
+        expect(underTest.next.calledOnce).to.eql(true);
+        expect(underTest.getNextStep.calledOnce).to.eql(true);
+        expect(stepsHelper.findNextUnAnsweredStep.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(findNextUnAnsweredStepUrl)).to.eql(true);
+      }).then(done, done);
     });
   });
 

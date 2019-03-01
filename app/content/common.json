@@ -17,7 +17,8 @@
                 "pleaseEmailOrCallDivorceCourt": "You can call or email us if you’re having problems with this service.",
                 "phoneToCallIfProblems": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
                 "emailIfProblems": "Email: {{courtEmail}}",
-                "saveAndClose": "Save and close"
+                "saveAndClose": "Save and close",
+                "signOut": "Sign Out"
             }
         }
     }

@@ -58,6 +58,10 @@ Scenario('Adultery, with details', (I) => {
   I.selectAdulteryWhere();
   I.selectAdulteryWhen();
   I.enterAdulteryDetails();
+  if (parseBool(config.features.release520)) {
+    I.enterAdulterySecondHandInfo();
+  }
+  I.enterLegalProceedings();
 });
 
 Scenario('2 years separation', (I) => {
@@ -72,9 +76,16 @@ Scenario('2 years separation', (I) => {
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
   if (parseBool(config.features.respondentConsent)) {
     I.selectRespondentConsentObtained();
+    if (parseBool(config.features.release510)) {
+      I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+        twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+      I.selectLivingApartTime();
+    } else {
+      I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+    }
+  } else {
+    I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   }
-  I.enterSeparationDate(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-
   I.enterLegalProceedings();
 });
 
@@ -175,9 +186,16 @@ Scenario('Deserted without agreement', function*(I) {
   I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
 
   I.selectReasonForDivorce(content['desertionHeading']);
-  I.enterDesertionDate();
-  I.enterDesertionAgreement();
-  I.enterDesertionDetails();
+  if (parseBool(config.features.release520Desertion)) {
+    I.enterDesertionAgreement();
+    I.enterDesertionDate();
+    I.selectLivingApartTime();
+    I.enterDesertionDetails();        
+  } else {
+    I.enterDesertionAgreement();
+    I.enterDesertionDate();
+    I.enterDesertionDetails();
+  }
 
   I.enterLegalProceedings();
   I.selectFinancialArrangements();

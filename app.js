@@ -20,10 +20,11 @@ const i18nTemplate = require('app/core/utils/i18nTemplate')({
   viewDirectory: './app/views/',
   fileExtension: 'html'
 });
-const statusCode = require('app/core/utils/statusCode');
+const httpStatus = require('http-status-codes');
 const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
+const signOutRoute = require('app/routes/sign-out');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -145,6 +146,9 @@ exports.init = listenForConnections => {
     res.redirect('/index');
   });
 
+  // sign out route
+  signOutRoute(app);
+
   //  register steps with the express app
   const steps = initSteps(app, stepDefinitions);
 
@@ -161,10 +165,10 @@ exports.init = listenForConnections => {
     app.post('/session', (req, res) => {
       Object.assign(req.session, req.body);
 
-      res.sendStatus(statusCode.OK);
+      res.sendStatus(httpStatus.OK);
     });
     app.get('/session', (req, res) => {
-      res.writeHead(statusCode.OK, { 'Content-Type': 'application/json' });
+      res.writeHead(httpStatus.OK, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(req.session));
     });
   }

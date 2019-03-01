@@ -50,15 +50,18 @@ describe(modulePath, () => {
       session = {
         marriageDate: '2001-02-02T00:00:00.000Z',
         reasonForDivorce: 'separation-5-years',
-        reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
+        reasonForDivorceDecisionDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.three, 'months'),
-        reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
+        reasonForDivorceLivingApartDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.two, 'months')
       };
       withSession(done, agent, session);
     });
 
     const excludeKeys = [
+      'desQues',
       'question.exactDate',
       'question.yearsAndMonths',
       'question.needNotToUse',
@@ -75,8 +78,8 @@ describe(modulePath, () => {
     it('render calculated values', done => {
       const valuesToTest = [
         '8 weeks',
-        '5 days',
-        '61 days',
+        '6 days',
+        '62 days',
         session.reasonForDivorceLivingApartDate.format('DD MMMM YYYY')
       ];
       testMultipleValuesExistence(
@@ -96,9 +99,11 @@ describe(modulePath, () => {
       session = {
         marriageDate: '2001-02-02T00:00:00.000Z',
         reasonForDivorce: 'separation-5-years',
-        reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
+        reasonForDivorceDecisionDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.nine, 'months'),
-        reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
+        reasonForDivorceLivingApartDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.eight, 'months')
       };
       withSession(done, agent, session);
@@ -106,8 +111,10 @@ describe(modulePath, () => {
 
     it('Loads content if most recent sep date is > 5 yr 6 months', done => {
       const excludeKeys = [
+        'desQues',
         'question.weeks',
         'question.days',
+        'question.week',
         'question.yearsAndMonths',
         'question.needNotToUse',
         'mustSpentYr',
@@ -121,7 +128,8 @@ describe(modulePath, () => {
     it('render calculated values', done => {
       const valuesToTest = [
         '6 months',
-        moment().subtract(constants.five, 'years')
+        moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.six, 'months')
           .format('DD MMMM YYYY')
       ];
@@ -142,17 +150,21 @@ describe(modulePath, () => {
       session = {
         marriageDate: '2001-02-02T00:00:00.000Z',
         reasonForDivorce: 'separation-5-years',
-        reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
+        reasonForDivorceDecisionDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.six, 'months'),
-        reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
+        reasonForDivorceLivingApartDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.seven, 'months')
       };
       withSession(done, agent, session);
     });
 
     const excludeKeys = [
+      'desQues',
       'question.weeks',
       'question.days',
+      'question.week',
       'question.yearsAndMonths',
       'question.needNotToUse',
       'mustSpentYr',
@@ -168,7 +180,8 @@ describe(modulePath, () => {
     it('render calculated values', done => {
       const valuesToTest = [
         '6 months',
-        moment().subtract(constants.five, 'years')
+        moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.six, 'months')
           .format('DD MMMM YYYY')
       ];
@@ -189,15 +202,18 @@ describe(modulePath, () => {
       session = {
         marriageDate: '2001-02-02T00:00:00.000Z',
         reasonForDivorce: 'separation-2-years',
-        reasonForDivorceDecisionDate: moment().subtract(constants.two, 'years')
+        reasonForDivorceDecisionDate: moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.three, 'months'),
-        reasonForDivorceLivingApartDate: moment().subtract(constants.two, 'years')
+        reasonForDivorceLivingApartDate: moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.four, 'months')
       };
       withSession(done, agent, session);
     });
 
     const excludeKeys = [
+      'desQues',
       'question.exactDate',
       'question.yearsAndMonths',
       'question.needNotToUse',
@@ -230,9 +246,11 @@ describe(modulePath, () => {
       session = {
         marriageDate: '2001-02-02T00:00:00.000Z',
         reasonForDivorce: 'separation-2-years',
-        reasonForDivorceDecisionDate: moment().subtract(constants.two, 'years')
+        reasonForDivorceDecisionDate: moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.nine, 'months'),
-        reasonForDivorceLivingApartDate: moment().subtract(constants.two, 'years')
+        reasonForDivorceLivingApartDate: moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.ten, 'months')
       };
       withSession(done, agent, session);
@@ -240,8 +258,10 @@ describe(modulePath, () => {
 
     it('Loads content if most recent sep date is > 2 yr 6 months', done => {
       const excludeKeys = [
+        'desQues',
         'question.weeks',
         'question.days',
+        'question.week',
         'question.yearsAndMonths',
         'question.needNotToUse',
         'mustSpentYr',
@@ -255,7 +275,8 @@ describe(modulePath, () => {
     it('render calculated values', done => {
       const valuesToTest = [
         '6 months',
-        moment().subtract(constants.two, 'years')
+        moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.six, 'months')
           .format('DD MMMM YYYY')
       ];
@@ -276,17 +297,21 @@ describe(modulePath, () => {
       session = {
         marriageDate: '2001-02-02T00:00:00.000Z',
         reasonForDivorce: 'separation-2-years',
-        reasonForDivorceDecisionDate: moment().subtract(constants.two, 'years')
+        reasonForDivorceDecisionDate: moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.seven, 'months'),
-        reasonForDivorceLivingApartDate: moment().subtract(constants.two, 'years')
+        reasonForDivorceLivingApartDate: moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.six, 'months')
       };
       withSession(done, agent, session);
     });
 
     const excludeKeys = [
+      'desQues',
       'question.weeks',
       'question.days',
+      'question.week',
       'question.yearsAndMonths',
       'question.needNotToUse',
       'mustSpentYr',
@@ -302,7 +327,8 @@ describe(modulePath, () => {
     it('render calculated values', done => {
       const valuesToTest = [
         '6 months',
-        moment().subtract(constants.two, 'years')
+        moment().startOf('day')
+          .subtract(constants.two, 'years')
           .subtract(constants.six, 'months')
           .format('DD MMMM YYYY')
       ];
@@ -355,7 +381,8 @@ describe(modulePath, () => {
       const context = {
         livedApartEntireTime: 'No',
         livedTogetherMoreTimeThanPermitted: '',
-        referenceDate: moment().subtract(constants.five, 'years')
+        referenceDate: moment().startOf('day')
+          .subtract(constants.five, 'years')
           .subtract(constants.six, 'months')
           .format('DD MMMM YYYY')
       };
@@ -439,7 +466,7 @@ describe(modulePath, () => {
     });
 
     it('Renders separation - time together details ', done => {
-      const contentToExist = ['ques', 'question.text'];
+      const contentToExist = ['sepQues', 'question.text'];
 
       const valuesToExist = ['livedApartEntireTime', 'livedTogetherMoreTimeThanPermitted'];
 
@@ -475,15 +502,17 @@ describe(modulePath, () => {
           liveTogetherPeriodRemainingDays: 3,
           marriageDate: '2001-02-02T00:00:00.000Z',
           reasonForDivorce: 'separation-5-years',
-          reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
+          reasonForDivorceDecisionDate: moment().startOf('day')
+            .subtract(constants.five, 'years')
             .subtract(constants.nine, 'months'),
-          reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
+          reasonForDivorceLivingApartDate: moment().startOf('day')
+            .subtract(constants.five, 'years')
             .subtract(constants.eight, 'months'),
           referenceDate: '2001-02-01T00:00:00.000Z'
         };
 
         const contentToExist = [
-          'ques',
+          'sepQues',
           'question.text',
           'question.6months',
           'question.since',
@@ -510,17 +539,19 @@ describe(modulePath, () => {
           liveTogetherPeriodRemainingDays: 3,
           marriageDate: '2001-02-02T00:00:00.000Z',
           reasonForDivorce: 'separation-5-years',
-          reasonForDivorceDecisionDate: moment().subtract(constants.five, 'years')
+          reasonForDivorceDecisionDate: moment().startOf('day')
+            .subtract(constants.five, 'years')
             .subtract(constants.nine, 'months'),
-          reasonForDivorceLivingApartDate: moment().subtract(constants.five, 'years')
+          reasonForDivorceLivingApartDate: moment().startOf('day')
+            .subtract(constants.five, 'years')
             .subtract(constants.eight, 'months'),
           mostRecentSeparationDate: '2001-02-01T00:00:00.000Z'
         };
 
         const contentToExist = [
-          'ques',
+          'sepQues',
           'question.text',
-          'question.weeks',
+          'question.week',
           'question.and',
           'question.days',
           'question.since',
@@ -538,6 +569,53 @@ describe(modulePath, () => {
           context
         );
       });
+    });
+  });
+
+  describe('Desertion - render content', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        reasonForDivorce: 'desertion',
+        reasonForDivorceDesertionDate: moment().subtract(constants.two, 'years')
+          .subtract(constants.four, 'months')
+      };
+      withSession(done, agent, session);
+    });
+
+    const excludeKeys = [
+      'sepQues',
+      'question.exactDate',
+      'question.yearsAndMonths',
+      'question.needNotToUse',
+      'mustSpentYr',
+      'onlyUpTo6Months',
+      'ifMoreThan6Months',
+      'ifLessThan6Months',
+      'info1',
+      'info2'
+    ];
+
+    it('Loads content if most recent desertion date is = 2 yr 4 months', done => {
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+
+    it('render calculated values', done => {
+      const valuesToTest = [
+        '17 weeks',
+        '3 days',
+        moment().subtract(constants.two, 'years')
+          .subtract(constants.four, 'months')
+          .format('DD MMMM YYYY')
+      ];
+      testMultipleValuesExistence(
+        done,
+        agent,
+        underTest,
+        valuesToTest,
+        session
+      );
     });
   });
 });

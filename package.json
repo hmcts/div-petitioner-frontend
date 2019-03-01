@@ -154,13 +154,14 @@
     "stryker-javascript-mutator": "^0.6.2",
     "stryker-mocha-framework": "^0.9.1",
     "stryker-mocha-runner": "^0.11.1",
-    "supertest": "^2.0.0",
+    "supertest": "^3.4.2",
     "timekeeper": "^2.1.2",
     "unirest": "^0.5.1",
     "w3c-validate": "0.0.2",
     "webdriverio": "^4.13.1"
   },
   "resolutions": {
+    "braces": "^2.3.2",
     "debug": "^3.1.0",
     "event-stream": "3.3.4",
     "growl": "^1.10.2",

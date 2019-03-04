@@ -8,7 +8,7 @@ console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-li
 console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
 
 exports.config = {
-  tests: getTests(),
+  tests: './paths/**/*.js',
   output: process.cwd() + '/functional-output',
   helpers: {
     Puppeteer: {
@@ -67,16 +67,5 @@ function configureChunks() {
     return 2;
   } else {
     return 5;
-  }
-}
-
-// Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
-// E2E tests must be run manually against Preview in the meantime.
-function getTests() {
-  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
-  if (CONF.preview_env === 'true') {
-    return './paths/**/basicDivorce.js';
-  } else {
-    return './paths/**/*.js';
   }
 }

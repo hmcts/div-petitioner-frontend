@@ -48,18 +48,32 @@ module.exports = class LivedApartSince extends ValidationStep {
   constructor(...args) {
     super(...args);
 
+    const thisStepFields = [
+      'sepYears',
+      'livingTogetherMonths',
+      'livingTogetherWeeks',
+      'livingTogetherDays',
+      'liveTogetherPeriodRemainingDays',
+      'referenceDate',
+      'mostRecentSeparationDate',
+      'separationTimeTogetherPermitted',
+      'reasonForDivorceField',
+      'livedApartEntireTime',
+      'livedTogetherMoreTimeThanPermitted'
+    ];
+
     if (parseBool(config.features.release510)) {
       watch(['reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'], (previousSession, session, remove) => {
         const isSameOrAfterLimitDateDoesNotExsits = !session.hasOwnProperty('reasonForDivorceLivingApartDateIsSameOrAfterLimitDate');
         const isSameOrAfterLimitDateIsTrue = session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate && session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate === true;
 
         if (isSameOrAfterLimitDateDoesNotExsits || isSameOrAfterLimitDateIsTrue) {
-          remove(
-            'livedApartEntireTime',
-            'livedTogetherMoreTimeThanPermitted',
-            'separationTimeTogetherPermitted',
-          );
+          remove(...thisStepFields);
         }
+      });
+
+      watch(['reasonForDivorce'], (previousSession, session, remove) => {
+        remove(...thisStepFields);
       });
     }
   }

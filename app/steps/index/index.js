@@ -1,6 +1,6 @@
 const Step = require('app/core/steps/Step');
+const { authenticate } = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
-const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 
 module.exports = class Index extends Step {
   get url() {
@@ -12,16 +12,19 @@ module.exports = class Index extends Step {
   }
 
   get middleware() {
+    const idamAuthenticate = (req, res, next) => {
+      const auth = authenticate(req.protocol, req.get('host'), '/authenticated');
+      return auth(req, res, next);
+    };
+
     return [
       initSession,
-      applicationFeeMiddleware.updateApplicationFeeMiddleware
+      idamAuthenticate
     ];
   }
 
-  get ignorePa11yWarnings() {
-    return [
-      // Paragraph with 2 links in it but it's not semantically a list
-      'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48'
-    ];
+  handler(req, res, next) {
+    res.redirect(this.next().url);
+    next();
   }
 };

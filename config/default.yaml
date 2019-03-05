@@ -142,7 +142,7 @@ idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'
   indexUrl: '/index'
   idamApiUrl: 'http://localhost:8001'
-  idamLoginUrl: 'https://localhost:8000/login'
+  idamLoginUrl: 'https://localhost:8080/authenticated'
   idamSecret: '123456'
   idamClientID: 'divorce'
 

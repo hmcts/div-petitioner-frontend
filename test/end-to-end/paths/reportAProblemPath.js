@@ -9,6 +9,7 @@ Feature('Report A Problem Handling').retry(3);
 Scenario('I see link to go the ’Report a problem’ page', (I) => {
 
   I.amOnLoadedPage('/index');
+  I.startApplication();
   I.see('Is there a problem with this page');
   I.click('//span[text()="Is there a problem with this page?"]');
   I.see('You can call or email us if you’re having problems with this service.');

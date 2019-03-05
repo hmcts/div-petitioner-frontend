@@ -4,5 +4,5 @@ Scenario('Redirected to /index page when request a session-required page with no
 
   I.clearCookie();
   I.amOnLoadedPage('/check-your-answers');
-  I.seeCurrentUrlEquals('/index');
+  I.see('Sign in');
 });

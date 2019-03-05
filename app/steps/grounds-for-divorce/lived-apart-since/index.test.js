@@ -14,6 +14,7 @@ const { clone } = require('lodash');
 const { expect } = require('test/util/chai');
 const { withSession } = require('test/util/setup');
 const moment = require('moment');
+const timekeeper = require('timekeeper');
 
 let s = {};
 let agent = {};
@@ -37,10 +38,12 @@ describe(modulePath, () => {
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.LivedApartSince;
+    timekeeper.freeze(new Date('2019-02-28T11:00:00Z'));
   });
 
   afterEach(() => {
     idamMock.restore();
+    timekeeper.reset();
   });
 
   describe('Separation-5-years - render content', () => {

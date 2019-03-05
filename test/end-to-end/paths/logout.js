@@ -35,7 +35,7 @@ Scenario('Logout on Sign Out', function (I) {
 
   I.signOut();
 
-  I.seeCurrentUrlEquals('/index');
+  I.see('Sign in');
 
   I.startApplication();
   I.haveBrokenMarriage();

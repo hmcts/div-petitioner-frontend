@@ -1,11 +1,13 @@
 const request = require('supertest');
-const { testContent, testExistence } = require('test/util/assertions');
+const { testRedirect, testCustom } = require('test/util/assertions');
+const config = require('config');
 const server = require('app');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
+const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const { expect, sinon } = require('test/util/chai');
+const initSession = require('app/middleware/initSession');
 
 const modulePath = 'app/steps/index';
-const content = require(`${modulePath}/content`);
 
 const { withSession } = require('test/util/setup');
 
@@ -19,18 +21,24 @@ describe(modulePath, () => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
     s = server.init();
+    sinon.stub(idamExpressMiddleware, 'authenticate').callsFake(() => {
+      return (req, res, next) => {
+        next();
+      };
+    });
     agent = request.agent(s.app);
     underTest = s.steps.Index;
   });
 
   afterEach(() => {
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
+    idamExpressMiddleware.authenticate.restore();
   });
 
   describe('#middleware', () => {
-    it('returns updateApplicationFeeMiddleware in middleware', () => {
+    it('includes initSession in middleware', () => {
       expect(underTest.middleware
-        .includes(applicationFeeMiddleware.updateApplicationFeeMiddleware))
+        .includes(initSession))
         .to.eql(true);
     });
   });
@@ -40,12 +48,30 @@ describe(modulePath, () => {
       withSession(done, agent);
     });
 
-    it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content);
+    it('should immediately redirect to the has marriage broken step page if authenticated', done => {
+      const context = {};
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.ScreeningQuestionsMarriageBroken);
     });
 
-    it('redirects to the next page', done => {
-      testExistence(done, agent, underTest, '/start');
+    it('should set up the current host as the redirect uri for idam', done => {
+      testCustom(done, agent, underTest, [], response => {
+        const hostName = response.request.host.split(':')[0];
+        const redirectUri = response.request.protocol.concat('//', response.request.host, '/authenticated');
+        const confIdam = config.idamArgs;
+        const idamArgs = {
+          hostName,
+          indexUrl: confIdam.indexUrl,
+          idamApiUrl: confIdam.idamApiUrl,
+          idamLoginUrl: confIdam.idamLoginUrl,
+          idamSecret: confIdam.idamSecret,
+          idamClientID: confIdam.idamClientID,
+          redirectUri
+        };
+
+        sinon.assert.calledWith(idamExpressMiddleware.authenticate, idamArgs);
+      });
     });
   });
 });

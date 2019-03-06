@@ -98,36 +98,6 @@ describe(modulePath, () => {
     afterEach(() => {
       CONF.commonProps = originalCommonProps;
     });
-    context('feature is set to false', () => {
-      it('returns only payment reference from event data', done => {
-        const generatePaymentEventData = (resolved, callback) => { // eslint-disable-line id-blacklist
-          mockedPaymentClient.create()
-            .then(responsePayment => {
-              callback(responsePayment);
-              resolved();
-            })
-            .catch(error => {
-              resolved(error);
-            });
-        };
-
-        const featureTest = featureToggleConfig
-          .when('fullPaymentEventDataSubmission', false, generatePaymentEventData, responsePayment => {
-            // Assert.
-            const output = underTest
-              .generatePaymentEventData(session, responsePayment);
-            expect(output.payment.PaymentChannel).to.be.an('undefined');
-            expect(output.payment.PaymentTransactionId).to.be.an('undefined');
-            expect(output.payment).to.have.property('PaymentReference', 'a65-f836-4f61-a628-727199ef6c20');
-            expect(output.payment.PaymentDate).to.be.an('undefined');
-            expect(output.payment.PaymentAmount).to.be.an('undefined');
-            expect(output.payment.PaymentStatus).to.be.an('undefined');
-            expect(output.payment.PaymentFeeId).to.be.an('undefined');
-            expect(output.payment.PaymentSiteId).to.be.an('undefined');
-          });
-        featureTest(done);
-      });
-    });
     context('feature is set to true', () => {
       it('returns the full body of the event data', done => {
         const generatePaymentEventData = (resolved, callback) => { // eslint-disable-line id-blacklist

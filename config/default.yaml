@@ -130,8 +130,6 @@ commonProps:
 
 features:
   idam: false
-  fullPaymentEventDataSubmission: true
-  redirectToApplicationSubmitted: false
   respondentConsent: false
   redirectOnState: false
   release510: true

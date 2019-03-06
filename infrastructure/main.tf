@@ -229,7 +229,6 @@ module "frontend" {
 
     // Feature toggling through config
     FEATURE_IDAM                               = "${var.feature_idam}"
-    FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION = "${var.feature_full_payment_event_data_submission}"
     FEATURE_RESPONDENT_CONSENT                 = "${var.feature_respondent_consent}"
     FEATURE_REDIRECT_ON_STATE                  = "${var.feature_redirect_on_state}"
     FEATURE_RELEASE_510                        = "${var.feature_release_510}"

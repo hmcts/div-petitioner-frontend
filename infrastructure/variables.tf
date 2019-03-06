@@ -225,10 +225,6 @@ variable "feature_respondent_consent" {
   default = false
 }
 
-variable "feature_full_payment_event_data_submission" {
-  default = true
-}
-
 variable "feature_redirect_on_state" {
   default = "true"
 }

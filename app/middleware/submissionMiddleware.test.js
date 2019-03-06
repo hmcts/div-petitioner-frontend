@@ -56,7 +56,8 @@ describe(modulePath, () => {
       req.session.caseId = 'someid';
       config.deployment_env = 'prod';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(next.calledOnce).to.eql(true);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(APPLICATION_SUBMITTED_PATH)).to.eql(true);
     });
     it('redirects to /contact-divorce-team if application has multiple cases that are not "Rejected"', () => {
       req.session.caseId = 'someid';

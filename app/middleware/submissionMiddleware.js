@@ -1,7 +1,6 @@
 const logger = require('app/services/logger').logger(__filename);
 const config = require('config');
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
-const parseBool = require('app/core/utils/parseBool');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
@@ -49,7 +48,7 @@ const hasSubmitted = function(req, res, next) {
     return handleCcdCase(req, res, next);
   }
   // when a new case has just been submitted for the session
-  if (parseBool(config.features.redirectToApplicationSubmitted) && session.caseId) { // eslint-line-disable
+  if (session.caseId) { // eslint-line-disable
     return res.redirect(APPLICATION_SUBMITTED_PATH);
   }
 

@@ -229,10 +229,6 @@ variable "feature_full_payment_event_data_submission" {
   default = true
 }
 
-variable "feature_redirect_to_application_submitted" {
-  default = "true"
-}
-
 variable "feature_redirect_on_state" {
   default = "true"
 }

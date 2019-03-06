@@ -41,7 +41,6 @@ data:
   EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL: "http://div-emca-aat.service.core-compute-aat.internal/health"
   EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-aat.service.core-compute-aat.internal"
   EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
-  FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED: "false"
   PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
   SESSION_ENCRYPTION_SECRET: "${SESSION_ENCRYPTION_SECRET}"
   FEATURE_IDAM: "true"

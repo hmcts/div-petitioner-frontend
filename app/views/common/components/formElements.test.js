@@ -198,6 +198,8 @@ describe(`Date fields should render as expected`, () => {
     expect(res).to.contain('name="month" value="02"');
     expect(res).to.contain('name="year" value="1980"');
     expect(res).to.contain('id="testDate"');
+    expect(res).to.contain('maxlength="2"');
+    expect(res).to.contain('maxlength="4"');
     expect(res).to.not.contain('<legend class="form-label-bold">');
     expect(res).to.not.contain('<legend class="visually-hidden">');
     expect(res).to.not.contain('<span class="form-hint">');

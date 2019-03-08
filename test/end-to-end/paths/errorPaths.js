@@ -27,5 +27,6 @@ Scenario('Redirects to application submitted page if case already submitted with
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyAnswers();
   I.amOnPage('/check-your-answers');
+  I.wait(2);
   I.waitInUrl('/application-submitted');
 });

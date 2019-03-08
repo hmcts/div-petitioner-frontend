@@ -192,14 +192,18 @@ describe(`Date fields should render as expected`, () => {
     };
 
     const res = nunjucks.renderString(date, input);
+    const dayRegExp = new RegExp(/(<input)[^>]*(name="day")[^>]*(maxlength="2")[^>]*(>)/);
+    const monthRegExp = new RegExp(/(<input)[^>]*(name="month")[^>]*(maxlength="2")[^>]*(>)/);
+    const yearRegExp = new RegExp(/(<input)[^>]*(name="year")[^>]*(maxlength="4")[^>]*(>)/);
 
     expect(res).to.contain('<span class="form-label">dateLabel</span>');
     expect(res).to.contain('name="day" value="01"');
     expect(res).to.contain('name="month" value="02"');
     expect(res).to.contain('name="year" value="1980"');
     expect(res).to.contain('id="testDate"');
-    expect(res).to.contain('maxlength="2"');
-    expect(res).to.contain('maxlength="4"');
+    expect(res).to.match(dayRegExp);
+    expect(res).to.match(monthRegExp);
+    expect(res).to.match(yearRegExp);
     expect(res).to.not.contain('<legend class="form-label-bold">');
     expect(res).to.not.contain('<legend class="visually-hidden">');
     expect(res).to.not.contain('<span class="form-hint">');

@@ -94,8 +94,7 @@
 
 "@hmcts/div-idam-express-middleware@^6.0.1":
   version "6.3.5"
-  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.3.5.tgz#32c76173e33213bd0be7439c97d639dda30b0870"
-  integrity sha512-19ihrwRYQiT2MhrhvpnVJdkgRWGspp1j1g/bHWV4quvDBO1EhMRpdp/nN3SHIgQx9TY1zpA8WlKRIjd7qL0+Lg==
+  resolved "https://github.com/hmcts/div-idam-express-middleware#ced104bae07f246d8c04264dd313c5b0209f7013"
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     jwt-decode "^2.2.0"

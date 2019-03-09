@@ -16,12 +16,12 @@ class IdamHelper extends Helper {
   _before() {
     if (parseBool(CONF.features.idam)) {
       const randomString = randomstring.generate({
-        length: 16,
+        length: 8,
         charset: 'numeric'
       });
-      const emailName = `hmcts.divorce.reform+pfe-automatedtest-${randomString}`;
-      const testEmail = `${emailName}@gmail.com`;
-      const testPassword = randomstring.generate(9);
+      const emailName = `divorce+pfe-test-${randomString}`;
+      const testEmail = `${emailName}@example.com`;
+      const testPassword = 'genericPassword1';
 
       args.testEmail = testEmail;
       args.testPassword = testPassword;

@@ -16,7 +16,7 @@ class IdamHelper extends Helper {
   _before() {
     if (parseBool(CONF.features.idam)) {
       const randomString = randomstring.generate({
-        length: 8,
+        length: 16,
         charset: 'numeric'
       });
       const emailName = `divorce+pfe-test-${randomString}`;

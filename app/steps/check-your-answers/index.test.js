@@ -12,7 +12,6 @@ const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
 const CONF = require('config');
 const ga = require('app/services/ga');
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
 const ExitStep = require('app/core/steps/ExitStep');
 
 const modulePath = 'app/steps/check-your-answers';
@@ -590,17 +589,6 @@ describe(modulePath, () => {
 
         yield underTest.getNextTemplates(step1, session);
         expect(session.nextStepUrl).to.equal('/step1');
-        done();
-      });
-    });
-
-    it('removes the next step url if the last step is a destroy session step', done => {
-      step2 = new DestroySessionStep();
-      step2.checkYourAnswersTemplate = `${__dirname}/../../views/common/components/defaultCheckYouAnswersTemplate.html`;
-
-      co(function* generator() {
-        const templates = yield underTest.getNextTemplates(step1, session);
-        expect(templates.length).to.equal(1);
         done();
       });
     });

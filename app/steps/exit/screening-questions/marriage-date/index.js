@@ -1,6 +1,6 @@
-const ExitStep = require('app/core/steps/ExitStep');
+const Step = require('app/core/steps/Step');
 
-module.exports = class ExitMarriageDate extends ExitStep {
+module.exports = class ExitMarriageDate extends Step {
   get url() {
     return '/exit/screening-questions/marriage-date';
   }

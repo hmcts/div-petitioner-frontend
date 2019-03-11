@@ -162,14 +162,14 @@
   },
   "resolutions": {
     "braces": "^2.3.2",
+    "cryptiles": "^4.1.2",
     "debug": "^3.1.0",
     "event-stream": "3.3.4",
     "growl": "^1.10.2",
     "hoek": "^4.2.1",
     "lodash": "^4.17.5",
     "mime": "^1.4.1",
-    "tunnel-agent": "^0.6.0",
-    "cryptiles": "^4.1.2"
+    "tunnel-agent": "^0.6.0"
   },
   "nyc": {
     "report-dir": "coverage",

@@ -162,6 +162,7 @@
   },
   "resolutions": {
     "braces": "^2.3.2",
+    "cryptiles": "^4.1.2",
     "debug": "^3.1.0",
     "event-stream": "3.3.4",
     "growl": "^1.10.2",
@@ -179,3 +180,4 @@
     ]
   }
 }
+

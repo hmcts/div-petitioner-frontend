@@ -1,6 +1,6 @@
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const ExitStep = require('app/core/steps/ExitStep');
 
-module.exports = class Timeout extends DestroySessionStep {
+module.exports = class Timeout extends ExitStep {
   get url() {
     return '/timeout';
   }

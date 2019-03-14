@@ -1,7 +1,7 @@
 <tr>
   <th>{{ content.question | safe }}</th>
   <td>
-		{%- if not fields.marriageCertificateFiles.value OR not fields.marriageCertificateFiles.value.length -%}
+		{%- if (not fields.marriageCertificateFiles.value or not fields.marriageCertificateFiles.value.length ) -%}
 			{{ content.noFiles }}
 		{%- else -%}
     	{%- for file in fields.marriageCertificateFiles.value -%}

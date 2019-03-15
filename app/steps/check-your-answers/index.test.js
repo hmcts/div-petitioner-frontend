@@ -12,7 +12,7 @@ const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
 const CONF = require('config');
 const ga = require('app/services/ga');
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const ExitStep = require('app/core/steps/ExitStep');
 
 const modulePath = 'app/steps/check-your-answers';
 
@@ -593,8 +593,8 @@ describe(modulePath, () => {
       });
     });
 
-    it('sets removes the next step url if the last step is an exit step', done => {
-      step2 = new DestroySessionStep();
+    it('removes the next step url if the last step is an exit step', done => {
+      step2 = new ExitStep();
       step2.checkYourAnswersTemplate = `${__dirname}/../../views/common/components/defaultCheckYouAnswersTemplate.html`;
 
       co(function* generator() {

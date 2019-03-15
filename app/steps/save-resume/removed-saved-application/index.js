@@ -1,7 +1,7 @@
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const ExitStep = require('app/core/steps/ExitStep');
 const draftPetitionStoreMiddleware = require('app/middleware/draftPetitionStoreMiddleware');
 
-module.exports = class ExitRemovedSavedApplication extends DestroySessionStep {
+module.exports = class ExitRemovedSavedApplication extends ExitStep {
   get middleware() {
     return [draftPetitionStoreMiddleware.removeFromDraftStore];
   }

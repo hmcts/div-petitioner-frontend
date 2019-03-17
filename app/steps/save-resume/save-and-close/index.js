@@ -1,6 +1,6 @@
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const ExitStep = require('app/core/steps/ExitStep');
 
-module.exports = class ExitApplicationSaved extends DestroySessionStep {
+module.exports = class ExitApplicationSaved extends ExitStep {
   get url() {
     return '/exit/application-saved';
   }

@@ -39,7 +39,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/div-idam-express-middleware": "^6.3.5",
+    "@hmcts/div-idam-express-middleware": "^6.4.1",
     "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#6.2.1",
     "@hmcts/div-service-auth-provider-client": "https://github.com/hmcts/div-service-auth-provider-client#3.0.0",
     "@hmcts/nodejs-healthcheck": "^1.2.0",
@@ -162,6 +162,7 @@
   },
   "resolutions": {
     "braces": "^2.3.2",
+    "cryptiles": "^4.1.2",
     "debug": "^3.1.0",
     "event-stream": "3.3.4",
     "growl": "^1.10.2",
@@ -179,3 +180,4 @@
     ]
   }
 }
+

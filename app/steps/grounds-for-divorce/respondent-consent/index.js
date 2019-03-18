@@ -7,11 +7,9 @@ module.exports = class RespondentConsent extends ValidationStep {
   get url() {
     return '/about-divorce/reason-for-divorce/separated-2-years/respondent-consent';
   }
+
   get nextStep() {
-    if (parseBool(config.features.release510)) {
-      return this.steps.SeparationDateNew;
-    }
-    return this.steps.SeparationDate;
+    return parseBool(config.features.release510) ? this.steps.SeparationDateNew : this.steps.SeparationDate;
   }
 
   constructor(...args) {

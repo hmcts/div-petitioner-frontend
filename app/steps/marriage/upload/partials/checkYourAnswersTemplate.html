@@ -1,15 +1,13 @@
-{%- if fields.marriageCertificateFiles.value -%}
-  <tr>
-    <th>{{ content.question | safe }}</th>
-    <td>
-  		{%- if not fields.marriageCertificateFiles.value.length -%}
-  			{{ content.noFiles }}
-  		{%- else -%}
-	    	{%- for file in fields.marriageCertificateFiles.value -%}
-	        {{ file.fileName }}<br/>
-	      {%- endfor -%}
-      {%- endif -%}
-    </td>
-    <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
-  </tr>
-{%- endif -%}
+<tr>
+  <th>{{ content.question | safe }}</th>
+  <td>
+		{%- if (not fields.marriageCertificateFiles.value or not fields.marriageCertificateFiles.value.length ) -%}
+			{{ content.noFiles }}
+		{%- else -%}
+    	{%- for file in fields.marriageCertificateFiles.value -%}
+        {{ file.fileName }}<br/>
+      {%- endfor -%}
+    {%- endif -%}
+  </td>
+  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

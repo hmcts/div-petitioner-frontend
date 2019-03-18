@@ -10,7 +10,6 @@ const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const { clone } = require('lodash');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
-const draftPetitionStoreMiddleware = require('app/middleware/draftPetitionStoreMiddleware');
 const initSession = require('app/middleware/initSession');
 
 const modulePath = 'app/steps/authenticated';
@@ -41,12 +40,6 @@ describe(modulePath, () => {
     it('includes checkCookiesAllowed in middleware', () => {
       expect(underTest.middleware
         .includes(checkCookiesAllowed))
-        .to.eql(true);
-    });
-
-    it('includes restoreFromDraftStore in middleware', () => {
-      expect(underTest.middleware
-        .includes(draftPetitionStoreMiddleware.restoreFromDraftStore))
         .to.eql(true);
     });
 

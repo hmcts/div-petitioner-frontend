@@ -77,17 +77,17 @@
         <div class="form-group form-group-day ">
             <label for="{{ dayName }}">Day</label>
             <input class="form-control {{ 'form-control-error' if dayField.error}}" id="{{ dayName }}"
-                   name="{{ dayName }}" value="{{ dayField.value }}">
+                   name="{{ dayName }}" value="{{ dayField.value }}" maxlength="2">
         </div>
         <div class="form-group form-group-month ">
             <label for="{{ monthName }}">Month</label>
             <input class="form-control {{ 'form-control-error' if monthField.error }}" id="{{ monthName }}"
-                   name="{{ monthName }}" value="{{ monthField.value }}">
+                   name="{{ monthName }}" value="{{ monthField.value }}" maxlength="2">
         </div>
         <div class="form-group form-group-year ">
             <label for="{{ yearName }}">Year</label>
             <input class="form-control {{ 'form-control-error' if yearField.error}}" id="{{ yearName }}"
-                   name="{{ yearName }}" value="{{ yearField.value }}">
+                   name="{{ yearName }}" value="{{ yearField.value }}" maxlength="4">
         </div>
     </fieldset>
 {% endmacro %}

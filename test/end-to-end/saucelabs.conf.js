@@ -38,6 +38,7 @@ const setupConfig = {
       cssSelectorsEnabled: 'true',
       host: 'ondemand.saucelabs.com',
       port: 80,
+      region: 'eu',
       user: process.env.SAUCE_USERNAME || CONF.saucelabs.username,
       key: process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key,
       desiredCapabilities: {}

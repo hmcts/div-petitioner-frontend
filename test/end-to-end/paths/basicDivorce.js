@@ -4,7 +4,7 @@ Feature('Basic divorce path');
 
 Scenario('Get a divorce', async function(I) {
 
-  I.amOnPage();
+  I.amOnPage('/');
   I.startApplication();
   I.wait(1);
   I.haveBrokenMarriage();

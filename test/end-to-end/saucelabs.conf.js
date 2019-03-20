@@ -30,7 +30,7 @@ const setupConfig = {
   tests: './paths/**/basicDivorce.js',
   output: process.cwd() + '/functional-output',
   helpers: {
-    WebDriverIO: {
+    WebDriver: {
       url: process.env.E2E_FRONTEND_URL || CONF.e2e.frontendUrl,
       browser,
       waitForTimeout,

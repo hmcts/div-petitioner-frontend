@@ -70,10 +70,18 @@ const setupConfig = {
       }
     }
   },
-  multiple: {
-
+ multiple: {
+    microsoft: {
+      browsers: getBrowserConfig('microsoft')
+    },
     chrome: {
       browsers: getBrowserConfig('chrome')
+    },
+    firefox: {
+      browsers: getBrowserConfig('firefox')
+    },
+    safari: {
+      browsers: getBrowserConfig('safari')
     }
   },
   name: 'Frontend Tests'

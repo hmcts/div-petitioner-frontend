@@ -70,7 +70,7 @@ const setupConfig = {
       }
     }
   },
- multiple: {
+  multiple: {
     microsoft: {
       browsers: getBrowserConfig('microsoft')
     },

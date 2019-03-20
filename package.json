@@ -124,11 +124,11 @@
     "grunt-cli": "1.2.0",
     "grunt-concurrent": "2.3.1",
     "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "1.0.0",
     "grunt-eslint": "^19.0.0",
     "grunt-nodemon": "0.4.2",
     "grunt-sass": "^1.1.0",
-    "grunt-sync": "^0.6.2",
     "grunt-webpack": "^2.0.1",
     "jsdom": "^11.2.0",
     "jsdom-global": "^3.0.2",
@@ -180,4 +180,3 @@
     ]
   }
 }
-

@@ -158,7 +158,7 @@
     "timekeeper": "^2.1.2",
     "unirest": "^0.5.1",
     "w3c-validate": "0.0.2",
-    "webdriverio": "^4.13.1"
+    "webdriverio": "^4.14.4"
   },
   "resolutions": {
     "braces": "^2.3.2",

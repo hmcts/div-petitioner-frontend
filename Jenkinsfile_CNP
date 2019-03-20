@@ -29,7 +29,7 @@ withPipeline("nodejs", product, component) {
       env.RUN_BASIC_TESTS = "true"
     } else {
       enableDockerBuild()
-      enableDeployToAKS()
+      installCharts()
       loadVaultSecrets(secrets)
       setVaultName('div')
     }

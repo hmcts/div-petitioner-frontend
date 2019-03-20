@@ -1,0 +1,27 @@
+java:
+    environment:
+        REFORM_ENVIRONMENT: "aat"
+        APPLICATION_INSIGHTS_IKEY: "63c30ef9-a27b-4d38-8afc-4c180fb6ac33"
+        APPINSIGHTS_INSTRUMENTATIONKEY: "019ed56f-e01d-4651-895d-bc6334f3d1b1"=
+        DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
+        FEES_AND_PAYMENTS_URL: "http://div-fps-aat.service.core-compute-aat.internal"
+        FEES_AND_PAYMENTS_HEALTHCHECK_URL: "http://div-fps-aat.service.core-compute-aat.internal/health"
+        EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL: "http://div-emca-aat.service.core-compute-aat.internal/health"
+        EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-aat.service.core-compute-aat.internal"
+        PAYMENT_SERVICE_URL: "http://payment-api-aat.service.core-compute-aat.internal"
+        PAYMENT_SERVICE_HEALTHCHECK_URL: "http://payment-api-aat.service.core-compute-aat.internal/health"
+        PAYMENT_REFERENCE_SERVICE_IDENTIFICATION: "DIV1"
+        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-aat.service.core-compute-aat.internal"
+        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1"
+        CASE_ORCHESTRATION_SERVICE_HEALTHCHECK_URL: "http://div-cos-aat.service.core-compute-aat.internal/health"
+        SERVICE_AUTH_PROVIDER_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
+        SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal/health"
+        IDAM_LOGIN_URL: "https://idam.preprod.ccidam.reform.hmcts.net/login"
+        IDAM_AUTHENTICATION_HEALHCHECK_URL: "https://idam.preprod.ccidam.reform.hmcts.net/health"
+        IDAM_APP_HEALHCHECK_URL: "https://preprod-idamapi.reform.hmcts.net:3511/health"
+        IDAM_API_URL: "https://preprod-idamapi.reform.hmcts.net:3511"
+        GOOGLE_ANALYTICS_ID: "TBD"
+        DEPLOYMENT_ENV: "preprod"
+        # TODO - this should be changed once we deploy AAT to AKS
+        BASE_URL: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
+        PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"

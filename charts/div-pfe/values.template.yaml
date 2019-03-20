@@ -1,0 +1,55 @@
+nodejs:
+    applicationPort: 8080
+    environment:
+        REFORM_SERVICE_NAME: "pfs"
+        REFORM_TEAM: "div"
+        SLOT: "PRODUCTION"
+        GOOGLE_ANALYTICS_TRACKING_URL: "http://www.google-analytics.com/collect"
+        REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis:6379"
+        NODE_ENV: "production"
+        NODE_PATH: "."
+        HPKP_MAX_AGE: "86400"
+        HPKP_SHAS: "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
+        RATE_LIMITER_ENABLED: "false"
+        RATE_LIMITER_TOTAL: "3600"
+        RATE_LIMITER_EXPIRE: "3600000"
+        SESSION_SECRET: "${SESSION_SECRET}"
+        IDAM_SECRET: "${IDAM_SECRET}"
+        IDAM_CLIENT_ID: "divorce"
+        POST_CODE_ACCESS_TOKEN: "${POST_CODE_ACCESS_TOKEN}"
+        POST_CODE_URL: "https://postcodeinfo.service.justice.gov.uk"
+        MICROSERVICE_NAME: "divorce_frontend"
+        MICROSERVICE_KEY: "${MICROSERVICE_KEY}"   
+        EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
+        FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED: "false"
+        SESSION_ENCRYPTION_SECRET: "${SESSION_ENCRYPTION_SECRET}"
+        FEATURE_IDAM: "true"
+        FEATURE_RELEASE_510: "true"
+        FEATURE_RELEASE_520: "false"
+        FEATURE_RELEASE_520_DESERTION: "true"
+        FEATURE_REDIRECT_ON_STATE: "false"
+        COURT_PHONENUMBER: "0300 303 0642"
+        COURT_OPENINGHOURS: "Monday to Friday, 8.30am to 5pm"
+        COURT_EMAIL: "divorce@justice.gov.uk"
+        SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"
+        COURT_SERVICE_CENTRE_NAME: "East Midlands Regional Divorce Centre"
+        COURT_SERVICE_CENTRE_CITY: "Nottingham"
+        COURT_SERVICE_CENTRE_POBOX: "PO Box 10447"
+        COURT_SERVICE_CENTRE_POSTCODE: "NG2 9QN"
+        COURT_SERVICE_CENTRE_OPENINGHOURS: "Telephone Enquiries from: 8.30am to 5pm"
+        COURT_SERVICE_CENTRE_EMAIL: "divorcecase@justice.gov.uk"
+        COURT_SERVICE_CENTRE_PHONENUMBER: "0300 303 0642"
+        COURT_SERVICE_CENTRE_SITEID: "CTSC"
+
+    # Don't modify below here
+    image: ${IMAGE_NAME}
+    ingressHost: ${SERVICE_FQDN}
+
+redis:
+    cluster:
+        enabled: false
+        slaveCount: 0
+    usePassword: false
+    master:
+        persistence:
+            enabled: false

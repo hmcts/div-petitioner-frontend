@@ -2,7 +2,7 @@ nodejs:
     environment:
         REFORM_ENVIRONMENT: "aat"
         APPLICATION_INSIGHTS_IKEY: "63c30ef9-a27b-4d38-8afc-4c180fb6ac33"
-        APPINSIGHTS_INSTRUMENTATIONKEY: "019ed56f-e01d-4651-895d-bc6334f3d1b1"=
+        APPINSIGHTS_INSTRUMENTATIONKEY: "019ed56f-e01d-4651-895d-bc6334f3d1b1"
         DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
         FEES_AND_PAYMENTS_URL: "http://div-fps-aat.service.core-compute-aat.internal"
         FEES_AND_PAYMENTS_HEALTHCHECK_URL: "http://div-fps-aat.service.core-compute-aat.internal/health"

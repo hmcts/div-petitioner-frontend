@@ -30,13 +30,13 @@ const setupConfig = {
   tests: './paths/**/basicDivorce.js',
   output: process.cwd() + '/functional-output',
   helpers: {
-    WebDriver: {
+    WebDriverIO: {
       url: process.env.E2E_FRONTEND_URL || CONF.e2e.frontendUrl,
       browser,
       waitForTimeout,
       smartWait,
       cssSelectorsEnabled: 'true',
-      host: 'ondemand.saucelabs.com',
+      host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
       region: 'eu',
       user: process.env.SAUCE_USERNAME || CONF.saucelabs.username,

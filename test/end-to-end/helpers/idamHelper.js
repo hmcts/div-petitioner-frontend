@@ -21,10 +21,12 @@ class IdamHelper extends Helper {
       });
       const emailName = `divorce+pfe-test-${randomString}`;
       const testEmail = `${emailName}@example.com`;
-      const testPassword = 'genericPassword1';
+      const testPassword = 'genericPassword123';
 
       args.testEmail = testEmail;
       args.testPassword = testPassword;
+      args.testGroupCode = 'citizens';
+      args.roles = [{ code: 'citizen' }];
 
       idamConfigHelper.setTestEmail(testEmail);
       idamConfigHelper.setTestPassword(testPassword);

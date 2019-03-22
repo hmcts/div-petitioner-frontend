@@ -8,8 +8,6 @@ const { isEmpty } = require('lodash');
 const stepsHelper = require('app/core/helpers/steps');
 const co = require('co');
 
-const expires = CONF.session.expires;
-
 // Properties that should be removed from the session before saving to draft store
 const blacklistedProperties = [
   'expires',
@@ -55,9 +53,9 @@ const redirectToNextUnansweredQuestion = function* (req, res, next) {
 };
 
 const redirectToNextPage = (req, res, next) => {
-  const navigateToNextUnansweredPage = req.query && req.query.toNextUnansweredPage;
+  const { session } = req;
 
-  if (navigateToNextUnansweredPage) {
+  if (session.hasOwnProperty('previousCaseId')) {
     return co(redirectToNextUnansweredQuestion(req, res, next))
       .catch(error => {
         logger.errorWithReq(req, 'redirect_to_next_unanswered_step_error', 'Error finding and redirecting to next step', error.message);
@@ -94,18 +92,8 @@ const restoreFromDraftStore = (req, res, next) => {
     return next();
   }
 
-  if (req.session) {
-    // set flag so we do not attempt to restore from draft store again
-    req.session.fetchedDraft = true;
-  }
-
-  const assignToSessionAndRedirect = draftStoreResponse => {
-    Object.assign(
-      req.session,
-      removeBlackListedPropertiesFromSession(draftStoreResponse)
-    );
-    redirectToNextPage(req, res, next);
-  };
+  // set flag so we do not attempt to restore from draft store again
+  req.session.fetchedDraft = true;
 
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
@@ -114,19 +102,12 @@ const restoreFromDraftStore = (req, res, next) => {
         return next();
       }
 
-      if (req.session && req.session.expires) {
-        return assignToSessionAndRedirect(draftStoreResponse);
-      }
+      Object.assign(
+        req.session,
+        removeBlackListedPropertiesFromSession(draftStoreResponse)
+      );
 
-      // there might not be a session as it could have been removed from
-      // idamLandingPage on authenticated step
-      return req.session.regenerate(() => {
-        // set session expires as new session - if we dont set it here initSession middleware will redirect to index
-        req.session.expires = Date.now() + expires;
-        // set flag so we do not attempt to restore from draft store again
-        req.session.fetchedDraft = true;
-        assignToSessionAndRedirect(draftStoreResponse);
-      });
+      return redirectToNextPage(req, res, next);
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {

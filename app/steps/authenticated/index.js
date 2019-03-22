@@ -4,7 +4,6 @@ const CONF = require('config');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const initSession = require('app/middleware/initSession');
 const parseBool = require('app/core/utils/parseBool');
-const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 
 const runNext = (req, res, next) => {
   const { session } = req;
@@ -44,9 +43,6 @@ module.exports = class Authenticated extends Step {
     return [
       checkCookiesAllowed,
       idamLandingPage,
-      // Query string arguments are lost on redirect so restoreFromDraftStore middleware here to support
-      // toNextUnansweredPage query string argument ( used for amend petition )
-      restoreFromDraftStore,
       initSession
     ];
   }

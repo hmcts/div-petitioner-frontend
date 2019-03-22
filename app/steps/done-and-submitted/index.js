@@ -1,7 +1,7 @@
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const ExitStep = require('app/core/steps/ExitStep');
 const paymentService = require('app/services/payment');
 
-module.exports = class DoneAndSubmitted extends DestroySessionStep {
+module.exports = class DoneAndSubmitted extends ExitStep {
   get url() {
     return '/done-and-submitted';
   }

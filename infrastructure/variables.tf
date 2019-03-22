@@ -225,10 +225,6 @@ variable "feature_respondent_consent" {
   default = false
 }
 
-variable "feature_redirect_on_state" {
-  default = "true"
-}
-
 variable "feature_release_510" {
   default = true
 }

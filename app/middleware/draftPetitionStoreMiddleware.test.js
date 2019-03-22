@@ -105,9 +105,11 @@ describe(modulePath, () => {
       stepsHelper.findNextUnAnsweredStep.restore();
     });
 
-    it('redirects to next UnAnsweredStep if query string has toNextUnansweredPage', done => {
-      req = { originalUrl: '/not-with-fees-url' };
-      req.query = { toNextUnansweredPage: true };
+    it('redirects to next UnAnsweredStep if case is an amend case', done => {
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '1234' }
+      };
 
       co(function* generator() {
         yield draftPetitionStoreMiddleware
@@ -121,8 +123,10 @@ describe(modulePath, () => {
 
     it('catches error with #redirectToNextUnansweredQuestion and redirects to CYA', done => {
       stepsHelper.findNextUnAnsweredStep.rejects('Error');
-      req = { originalUrl: '/not-with-fees-url' };
-      req.query = { toNextUnansweredPage: true };
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '1234' }
+      };
 
       co(function* generator() {
         yield draftPetitionStoreMiddleware
@@ -135,7 +139,11 @@ describe(modulePath, () => {
     });
 
     it('redirects to next CYA if no query string has toNextUnansweredPage', () => {
-      req = { originalUrl: '/not-cya' };
+      req = {
+        originalUrl: '/not-cya',
+        session: {}
+      };
+
       draftPetitionStoreMiddleware.redirectToNextPage(req, res, next);
       expect(next.called).to.eql(false);
       expect(res.redirect.calledOnce).to.eql(true);
@@ -251,9 +259,10 @@ describe(modulePath, () => {
       req.cookies = { mockRestoreSession: 'true' };
       mockedClient.restoreFromDraftStore.resolves(mockedClient.mockSession);
 
-      draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
-      // wait for promise to resolve
-      setTimeout(() => {
+      co(function* generator() {
+        yield draftPetitionStoreMiddleware
+          .restoreFromDraftStore(req, res, next);
+
         expect(mockedClient.restoreFromDraftStore.called).to.equal(true);
         expect(res.redirect.calledOnce).to.eql(true);
         expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
@@ -263,8 +272,7 @@ describe(modulePath, () => {
           mockedClient.mockSession
         );
         expect(req.session).to.eql(sessionShouldMatch);
-        done();
-      }, 1);
+      }).then(done, done);
     });
 
     it('saveSessionToDraftStoreAndReply() with save only header', async () => {

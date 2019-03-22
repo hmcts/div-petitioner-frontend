@@ -19,5 +19,3 @@ idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 payment_service_url = "http://payment-api-demo.service.core-compute-demo.internal"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
-
-feature_redirect_on_state = "false"

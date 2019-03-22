@@ -19,12 +19,14 @@ class IdamHelper extends Helper {
         length: 16,
         charset: 'numeric'
       });
-      const emailName = `hmcts.divorce.reform+pfe-automatedtest-${randomString}`;
-      const testEmail = `${emailName}@gmail.com`;
-      const testPassword = randomstring.generate(9);
+      const emailName = `divorce+pfe-test-${randomString}`;
+      const testEmail = `${emailName}@example.com`;
+      const testPassword = 'genericPassword123';
 
       args.testEmail = testEmail;
       args.testPassword = testPassword;
+      args.testGroupCode = 'citizens';
+      args.roles = [{ code: 'citizen' }];
 
       idamConfigHelper.setTestEmail(testEmail);
       idamConfigHelper.setTestPassword(testPassword);

@@ -21,5 +21,3 @@ payment_service_url = "http://payment-api-saat.service.core-compute-saat.interna
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 feature_respondent_consent = "true"
-
-feature_redirect_on_state = "false"

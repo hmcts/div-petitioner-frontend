@@ -22,8 +22,6 @@ post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 dev_support_notification_email = "divorce-team-a@hmcts.net"
 
-feature_redirect_on_state = "false"
-
 feature_release_510 = "true"
 
 feature_release_520 = "true"

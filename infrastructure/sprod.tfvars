@@ -21,5 +21,3 @@ payment_service_url = "http://payment-api-sprod.service.core-compute-sprod.inter
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
 decree_nisi_frontend_url = "https://div-dn-sprod.service.core-compute-sprod.internal"
-
-feature_redirect_on_state = "true"

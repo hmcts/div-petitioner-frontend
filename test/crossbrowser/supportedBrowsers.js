@@ -7,7 +7,7 @@ const supportedBrowsers = {
       ignoreZoomSetting: true,
       nativeEvents: false,
       ignoreProtectedModeSettings: true,
-      version: '11'
+      version: '11.285'
     },
     edge_win10: {
       browserName: 'MicrosoftEdge',
@@ -16,7 +16,7 @@ const supportedBrowsers = {
       ignoreZoomSetting: true,
       nativeEvents: false,
       ignoreProtectedModeSettings: true,
-      version: '17.17134'
+      version: '18.17763'
     }
   },
   chrome: {
@@ -52,7 +52,7 @@ const supportedBrowsers = {
       browserName: 'safari',
       name: 'DIV_SAFARI_11',
       platform: 'macOS 10.13',
-      version: '11.1',
+      version: '12.0',
       avoidProxy: true
     }
   }

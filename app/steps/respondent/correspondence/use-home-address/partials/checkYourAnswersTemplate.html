@@ -11,7 +11,7 @@
     {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'No' %}
       {{ content.no | safe }}
     {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'Solicitor' %}
-      {{ content['solicitor-' + session.divorceWho] | safe }}
+      {{ content.solicitor | safe }}
     {% endif %}
   </td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>

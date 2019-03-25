@@ -6,14 +6,12 @@ function chooseYesRespondentLivesAtAddress(address) {
   completeLivesAtLastAddressPage(this, address, selectContent.yes);
 }
 
-function chooseNoRespondentLivesAtAnotherAddress(address, respondent) {
-  const selection = (respondent === 'husband') ? selectContent['no-husband'] : selectContent['no-wife'];
-  completeLivesAtLastAddressPage(this, address, selection);
+function chooseNoRespondentLivesAtAnotherAddress(address) {
+  completeLivesAtLastAddressPage(this, address, selectContent.unknown);
 }
 
-function chooseDontKnowRespondentAddress(address, respondent) {
-  const selection = (respondent === 'husband') ? selectContent['unknown-husband'] : selectContent['unknown-wife'];
-  completeLivesAtLastAddressPage(this, address, selection);
+function chooseDontKnowRespondentAddress(address) {
+  completeLivesAtLastAddressPage(this, address, selectContent.unknown);
 }
 
 function completeLivesAtLastAddressPage(I, address, chosenOption) {

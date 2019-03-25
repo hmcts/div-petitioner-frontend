@@ -31,7 +31,7 @@
                         "helpText1": "If your life is mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
                         "helpText2": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
                         "helpText3": "The examples above aren't a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
-                        "clarification": "You only need to do this if your {{ divorceWho }} may disagree that he/she is habitually resident."
+                        "clarification": "You only need to do this if your {{ divorceWho }} may disagree that they is habitually resident."
                     },
                     "D": {
                         "summary": "Your answers indicate that you can apply for a divorce in England and Wales because you are 'habitually resident' and have lived here for at least 12 months.",

@@ -1,7 +1,5 @@
 const logger = require('app/services/logger').logger(__filename);
-const config = require('config');
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
-const parseBool = require('app/core/utils/parseBool');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
@@ -32,24 +30,26 @@ const handleCcdCase = (req, res, next) => {
     logger.infoWithReq(req, 'no_payment_ref', 'AwaitingPayment but payment reference not found');
     return res.redirect(APPLICATION_SUBMITTED_PATH);
   case 'Rejected':
+    logger.infoWithReq(req, 'case_rejected', 'Case is in rejected state');
     return next();
   case 'MultipleRejectedCases':
+    logger.infoWithReq(req, 'multiple_cases_rejected', 'Multiple cases rejected');
     return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
   default:
+    logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);
   }
 };
 
 const hasSubmitted = function(req, res, next) {
   const { session } = req;
-  const hasSubmittedEnabled = ['prod'].includes(config.deployment_env);
 
   if (session.payment_reference) session.currentPaymentReference = session.payment_reference;
-  if (hasSubmittedEnabled && session.caseId && session.state) { // eslint-disable-line
+  if (session.caseId && session.state) {
     return handleCcdCase(req, res, next);
   }
   // when a new case has just been submitted for the session
-  if (parseBool(config.features.redirectToApplicationSubmitted) && session.caseId) { // eslint-line-disable
+  if (session.caseId) {
     return res.redirect(APPLICATION_SUBMITTED_PATH);
   }
 

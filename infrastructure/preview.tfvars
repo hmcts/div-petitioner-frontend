@@ -20,11 +20,7 @@ payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
-feature_redirect_to_application_submitted = "false"
-
 dev_support_notification_email = "divorce-team-a@hmcts.net"
-
-feature_redirect_on_state = "false"
 
 feature_release_510 = "true"
 

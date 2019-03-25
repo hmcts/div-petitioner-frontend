@@ -26,7 +26,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
       reasonForDivorce: {
         'unreasonable-behaviour': this.steps.UnreasonableBehaviour,
         adultery: this.steps.AdulteryWishToName,
-        'separation-2-years': parseBool(config.features.respondentConsent) ? this.steps.RespondentConsent : this.steps.SeparationDateNew,
+        'separation-2-years': parseBool(config.features.release520) ? this.steps.RespondentConsent : this.steps.SeparationDateNew,
         'separation-5-years': this.steps.SeparationDateNew,
         desertion: this.steps.DesertionAgree
       }

@@ -49,7 +49,7 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', 'divorceWho', session);
     });
 
-    it('redirects to the old seperation date page release510 feature is off', done => {
+    it('redirects to the old separation date page release510 feature is off', done => {
       const context = { reasonForDivorceRespondentConsent: 'No' };
 
       const featureTest = featureToggleConfig
@@ -58,7 +58,7 @@ describe(modulePath, () => {
       featureTest(done);
     });
 
-    it('redirects to the new seperation date page release510 feature is on', done => {
+    it('redirects to the new separation date page release510 feature is on', done => {
       const context = { reasonForDivorceRespondentConsent: 'Yes' };
 
       const featureTest = featureToggleConfig

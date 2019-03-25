@@ -10,10 +10,6 @@ output "feature_idam" {
   value = "${var.feature_idam}"
 }
 
-output "feature_respondent_consent" {
-  value = "${var.feature_respondent_consent}"
-}
-
 output "feature_release_510" {
   value = "${var.feature_release_510}"
 }

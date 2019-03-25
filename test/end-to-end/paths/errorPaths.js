@@ -18,15 +18,3 @@ Scenario('Redirects to cookie error page if start application with no cookies', 
   I.amOnLoadedPage('/authenticated');
   I.seeCurrentUrlEquals('/cookie-error');
 });
-
-Scenario('Redirects to application submitted page if case already submitted with feature flag', (I) => {
-
-  I.startApplicationWithAnExistingSession();
-  I.amOnLoadedPage('/pay/help/need-help');
-  I.selectHelpWithFees(false);
-  I.amOnLoadedPage('/check-your-answers');
-  I.checkMyAnswers();
-  I.amOnPage('/check-your-answers');
-  I.wait(2);
-  I.waitInUrl('/application-submitted');
-});

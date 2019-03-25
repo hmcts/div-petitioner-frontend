@@ -9,9 +9,9 @@
     {% if fields.respondentLivesAtLastAddress.value === 'Yes' %}
       {{ content.yes }}
     {% elseif fields.respondentLivesAtLastAddress.value === 'No' %}
-      {{ content['no-' + session.divorceWho] | safe }}
+      {{ content.no | safe }}
     {% elseif fields.respondentLivesAtLastAddress.value === 'Unknown' %}
-      {{ content['unknown-' + session.divorceWho] | safe }}
+      {{ content.unknown | safe }}
     {% endif %}
   </td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>

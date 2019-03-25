@@ -8310,7 +8310,7 @@ redis-parser@^2.6.0:
   resolved "https://registry.yarnpkg.com/redis-parser/-/redis-parser-2.6.0.tgz#52ed09dacac108f1a631c07e9b69941e7a19504b"
   integrity sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
 
-redis-server@^1.2.0:
+redis-server@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/redis-server/-/redis-server-1.2.2.tgz#d0415b549ee06256248bf728b407ddf19999818a"
   integrity sha512-pOaSIeSMVFkEFIuaMtpQ3TOr3uI4sUmEHm4ofGks5vTPRseHUszxyIlC70IFjUR9qSeH8o/ARZEM8dqcJmgGJw==

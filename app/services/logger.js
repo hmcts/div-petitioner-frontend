@@ -3,7 +3,8 @@ const { get } = require('lodash');
 
 const getIdamId = req => {
   const idamId = get(req, 'idam.userDetails.id', 'unknown');
-  return `IDAM ID: ${idamId}`;
+  const caseId = get(req, 'session.caseId', 'unknown');
+  return `IDAM ID: ${idamId}, CASE ID: ${caseId}`;
 };
 
 const logger = name => {

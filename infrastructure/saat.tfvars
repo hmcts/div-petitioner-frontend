@@ -12,14 +12,12 @@ http_proxy = ""
 
 google_analytics_tracking_id = "TBD"
 
-idam_authentication_web_url = "https://idam-test.dev.ccidam.reform.hmcts.net"
+idam_authentication_web_url = "https://idam-web-public-idam-saat.service.core-compute-idam-saat.internal"
 
-idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
+idam_api_url = "http://idam-api-idam-saat.service.core-compute-idam-saat.internal"
 
 payment_service_url = "http://payment-api-saat.service.core-compute-saat.internal"
 
 post_code_url = "https://postcodeinfo.service.justice.gov.uk"
 
-feature_redirect_to_application_submitted = "false"
-
-feature_redirect_on_state = "false"
+feature_respondent_consent = "true"

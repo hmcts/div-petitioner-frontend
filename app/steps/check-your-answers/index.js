@@ -9,7 +9,7 @@ const sessionBlacklistedAttributes = require('app/resources/sessionBlacklistedAt
 const ga = require('app/services/ga');
 const addressHelpers = require('../../components/AddressLookupStep/helpers/addressHelpers');
 const parseBool = require('app/core/utils/parseBool');
-const DestroySessionStep = require('app/core/steps/DestroySessionStep');
+const ExitStep = require('app/core/steps/ExitStep');
 const stepsHelper = require('app/core/helpers/steps');
 
 const maximumNumberOfSteps = 500;
@@ -211,7 +211,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       delete session.nextStepUrl;
     }
 
-    if (nextStep && nextStep !== this && !(nextStep instanceof DestroySessionStep)) {
+    if (nextStep && nextStep !== this && !(nextStep instanceof ExitStep)) {
       if (previousQuestionsRendered.length > maximumNumberOfSteps) {
         logger.errorWithReq(null, 'never_ending_loop', 'Application has entered a never ending loop. Stop attempting to build CYA template and return answers up until this point');
         return templates;
@@ -289,6 +289,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         }
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
+
+        logger.infoWithReq(req, 'case_created', 'Case Created', response.caseId);
 
         const courtId = response.allocatedCourt.courtId;
         ga.trackEvent('Court_Allocation', 'Allocated_court', courtId, 1);

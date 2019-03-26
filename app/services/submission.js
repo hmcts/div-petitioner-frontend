@@ -4,7 +4,6 @@ const CONF = require('config');
 const get = require('lodash/get');
 const moment = require('moment');
 const logger = require('app/services/logger').logger(__filename);
-const parseBool = require('app/core/utils/parseBool');
 
 const PENCE_PER_POUND = 100;
 
@@ -52,27 +51,18 @@ const generatePaymentEventData = (session, response) => {
     { external_reference, amount, reference, status, date_created } = response; // eslint-disable-line camelcase
   // Provide status when finished, empty string otherwise.
   const siteId = get(session, `court.${session.courts}.siteId`);
-  let eventData = null;
-
-  if (parseBool(CONF.features.fullPaymentEventDataSubmission)) {
-    eventData = {
-      payment: {
-        PaymentChannel: 'online',
-        PaymentTransactionId: external_reference,
-        PaymentReference: reference,
-        PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
-        PaymentAmount: amount * PENCE_PER_POUND,
-        PaymentStatus: status,
-        PaymentFeeId: CONF.commonProps.applicationFee.feeCode,
-        PaymentSiteId: siteId
-      }
-    };
-  } else {
-    eventData = {
-      payment:
-        { PaymentReference: reference }
-    };
-  }
+  const eventData = {
+    payment: {
+      PaymentChannel: 'online',
+      PaymentTransactionId: external_reference,
+      PaymentReference: reference,
+      PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
+      PaymentAmount: amount * PENCE_PER_POUND,
+      PaymentStatus: status,
+      PaymentFeeId: CONF.commonProps.applicationFee.feeCode,
+      PaymentSiteId: siteId
+    }
+  };
   return eventData;
 };
 

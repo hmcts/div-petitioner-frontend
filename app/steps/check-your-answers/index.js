@@ -290,6 +290,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         // Store the resulting case identifier in session for later use.
         req.session.caseId = response.caseId;
 
+        logger.infoWithReq(req, 'case_created', 'Case Created', response.caseId);
+
         const courtId = response.allocatedCourt.courtId;
         ga.trackEvent('Court_Allocation', 'Allocated_court', courtId, 1);
         req.session.courts = courtId;

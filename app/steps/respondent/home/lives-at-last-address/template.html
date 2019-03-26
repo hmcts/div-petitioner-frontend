@@ -24,14 +24,14 @@
         ) }}
         {{ radioButton(
             value = 'No',
-            label = content['no-' + session.divorceWho],
+            label = content.no,
             name = 'respondentLivesAtLastAddress',
             field = fields.respondentLivesAtLastAddress,
             screenReader = content.question
         ) }}
         {{ radioButton(
             value = 'Unknown',
-            label = content['unknown-' + session.divorceWho],
+            label = content.unknown,
             name = 'respondentLivesAtLastAddress',
             field = fields.respondentLivesAtLastAddress,
             screenReader = content.question

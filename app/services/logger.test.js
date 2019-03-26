@@ -4,7 +4,7 @@ const logging = require('@hmcts/nodejs-logging');
 const modulePath = 'app/services/logger';
 const logger = require(modulePath);
 
-const idamUserId = 'idam.id';
+const idamUserId = '111';
 const idam = { userDetails: { id: idamUserId } };
 const logString = 'This is an error';
 const tag = 'test';
@@ -28,7 +28,8 @@ describe(modulePath, () => {
         httpVersionMinor: 1,
         method: 'GET',
         url: 'url',
-        idam
+        idam,
+        session: { caseId: 123 }
       };
       res = { statusCode: 200 };
       sinon.stub(logging.Express, 'accessLogger').returnsArg(0);
@@ -39,13 +40,14 @@ describe(modulePath, () => {
     it('creates a message with the idam user id', () => {
       const accessLogger = logger.accessLogger();
       const message = accessLogger.formatter(req, res);
-      expect(message).to.eql(`IDAM ID: ${idamUserId} - "GET url HTTP/1.1" 200`);
+      expect(message).to.eql('IDAM ID: 111, CASE ID: 123 - "GET url HTTP/1.1" 200');
     });
-    it('creates a message with the unkown if no idam', () => {
+    it('creates a message with the unknown if no idam/case ID', () => {
       delete req.idam;
+      delete req.session;
       const accessLogger = logger.accessLogger();
       const message = accessLogger.formatter(req, res);
-      expect(message).to.eql('IDAM ID: unknown - "GET url HTTP/1.1" 200');
+      expect(message).to.eql('IDAM ID: unknown, CASE ID: unknown - "GET url HTTP/1.1" 200');
     });
   });
 
@@ -58,7 +60,7 @@ describe(modulePath, () => {
         error: sinon.stub(),
         debug: sinon.stub()
       };
-      req = { idam };
+      req = { idam, session: { caseId: 123 } };
       sinon.stub(logging.Logger, 'getLogger').returns(loggerStub);
       loggerInstance = logger.logger('name');
     });
@@ -75,7 +77,7 @@ describe(modulePath, () => {
     it('calls logger info with arguments', () => {
       loggerInstance.infoWithReq(req, tag, logString);
       expect(loggerStub.info.calledOnce).to.eql(true);
-      expect(loggerStub.info.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.info.args[0][0]).to.eql('IDAM ID: 111, CASE ID: 123');
       expect(loggerStub.info.args[0][1]).to.eql(tag);
       expect(loggerStub.info.args[0][2]).to.eql(logString);
     });
@@ -84,7 +86,7 @@ describe(modulePath, () => {
       loggerInstance.warnWithReq(req, tag, logString);
       expect(loggerStub.warn.calledOnce).to.eql(true);
       expect(loggerStub.warn.calledOnce).to.eql(true);
-      expect(loggerStub.warn.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.warn.args[0][0]).to.eql('IDAM ID: 111, CASE ID: 123');
       expect(loggerStub.warn.args[0][1]).to.eql(tag);
       expect(loggerStub.warn.args[0][2]).to.eql(logString);
     });
@@ -93,7 +95,7 @@ describe(modulePath, () => {
       loggerInstance.errorWithReq(req, tag, logString);
       expect(loggerStub.error.calledOnce).to.eql(true);
       expect(loggerStub.error.calledOnce).to.eql(true);
-      expect(loggerStub.error.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.error.args[0][0]).to.eql('IDAM ID: 111, CASE ID: 123');
       expect(loggerStub.error.args[0][1]).to.eql(tag);
       expect(loggerStub.error.args[0][2]).to.eql(logString);
     });
@@ -102,7 +104,7 @@ describe(modulePath, () => {
       loggerInstance.debugWithReq(req, tag, logString);
       expect(loggerStub.debug.calledOnce).to.eql(true);
       expect(loggerStub.debug.calledOnce).to.eql(true);
-      expect(loggerStub.debug.args[0][0]).to.eql(`IDAM ID: ${idamUserId}`);
+      expect(loggerStub.debug.args[0][0]).to.eql('IDAM ID: 111, CASE ID: 123');
       expect(loggerStub.debug.args[0][1]).to.eql(tag);
       expect(loggerStub.debug.args[0][2]).to.eql(logString);
     });

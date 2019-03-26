@@ -45,7 +45,7 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['solicitor-husband'];
+      const excludeKeys = ['solicitor'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -166,9 +166,7 @@ describe(modulePath, () => {
       ];
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
       const context = { respondentCorrespondenceUseHomeAddress: 'Yes' };
-
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,
@@ -182,9 +180,7 @@ describe(modulePath, () => {
       ];
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
       const context = { respondentCorrespondenceUseHomeAddress: 'No' };
-
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,
@@ -194,30 +190,12 @@ describe(modulePath, () => {
     it('renders when respondentCorrespondenceUseHomeAddress is solicitor and divorceWho is wife', done => {
       const contentToExist = [
         'question',
-        'solicitor-wife'
+        'solicitor'
       ];
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
       const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
-
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
-    });
-
-    it('renders when respondentCorrespondenceUseHomeAddress is solicitor and divorceWho is husband', done => {
-      const contentToExist = [
-        'question',
-        'solicitor-husband'
-      ];
-
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
-      const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
-
-      const session = { divorceWho: 'husband', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context, session);

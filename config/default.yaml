@@ -130,7 +130,6 @@ commonProps:
 
 features:
   idam: false
-  respondentConsent: false
   release510: true
   release520: false
   release520Desertion: true

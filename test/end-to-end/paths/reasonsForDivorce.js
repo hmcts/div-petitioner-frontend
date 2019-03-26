@@ -74,7 +74,7 @@ Scenario('2 years separation', (I) => {
   I.enterMarriageDate(tenYearsAgoFormatted.day, tenYearsAgoFormatted.month, tenYearsAgoFormatted.year);
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
-  if (parseBool(config.features.respondentConsent)) {
+  if (parseBool(config.features.release520)) {
     I.selectRespondentConsentObtained();
     if (parseBool(config.features.release510)) {
       I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
@@ -190,7 +190,7 @@ Scenario('Deserted without agreement', function*(I) {
     I.enterDesertionAgreement();
     I.enterDesertionDate();
     I.selectLivingApartTime();
-    I.enterDesertionDetails();        
+    I.enterDesertionDetails();
   } else {
     I.enterDesertionAgreement();
     I.enterDesertionDate();

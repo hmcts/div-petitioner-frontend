@@ -221,10 +221,6 @@ variable "feature_idam" {
   default = true
 }
 
-variable "feature_respondent_consent" {
-  default = false
-}
-
 variable "feature_release_510" {
   default = true
 }

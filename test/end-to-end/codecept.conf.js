@@ -75,7 +75,7 @@ function configureChunks() {
 function getTests() {
   console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
   if (CONF.preview_env === 'true') {
-    return './paths/**/basicDivorce.js';
+    return './paths/**/*.js';
   } else {
     return './paths/**/*.js';
   }

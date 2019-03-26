@@ -4,16 +4,14 @@
         "en": {
             "translation": {
                 "content": {
-                    "question": "Has your {{ divorceWho }} given you their written consent to a divorce?",
-                    "text": "The court will contact your {{ divorceWho }} and ask them if they agree to a divorce.",
-                    "questionHint": "If you already have their written consent, you can send it to the court with your application. You don’t have to do this, but it may save you time later on.",
+                    "question": "Has your {{ divorceWho }} given their consent to a divorce (agreed to it)?",
                     "yes": {
                         "label": "Yes",
-                        "additionalInfo": "You can upload a digital photo or scan of the document later in this application or send it to the court by post."
+                        "additionalInfo": "The court will contact your {{ divorceWho }} and ask them if they agree to a divorce. If you already have their written consent, you have the option of uploading a picture of it later in this application."
                     },
                     "no": {
                         "label": "No",
-                        "additionalInfo": "Your {{ divorceWho }} must give their consent to a divorce for you to use this reason. If they don’t, you’ll have to pay a fee to change your application and your divorce will be delayed."
+                        "additionalInfo": "You can continue using this reason for divorce, but be aware your {{ divorceWho }} will be asked if they agree to a divorce. If they don’t, you’ll have to pay a fee to change your application."
                     }
                 },
                 "errors": {

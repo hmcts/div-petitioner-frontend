@@ -122,7 +122,6 @@ http:
 
 features:
   idam: FEATURE_IDAM
-  respondentConsent: FEATURE_RESPONDENT_CONSENT
   release510: FEATURE_RELEASE_510
   release520: FEATURE_RELEASE_520
   release520Desertion: FEATURE_RELEASE_520_DESERTION

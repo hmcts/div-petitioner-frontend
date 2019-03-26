@@ -40,7 +40,7 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['solicitor-husband'];
+      const excludeKeys = ['solicitor'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -105,7 +105,7 @@ describe(modulePath, () => {
     it('renders when respondentCorrespondenceSendToSolicitor is yes and divorceWho is wife', done => {
       const contentToExist = [
         'question',
-        'solicitor-wife'
+        'solicitor'
       ];
 
       const valuesToExist = [];
@@ -121,7 +121,7 @@ describe(modulePath, () => {
     it('renders when respondentCorrespondenceSendToSolicitor is yes and divorceWho is husband', done => {
       const contentToExist = [
         'question',
-        'solicitor-husband'
+        'solicitor'
       ];
 
       const valuesToExist = [];

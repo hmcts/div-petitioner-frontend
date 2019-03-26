@@ -1,20 +1,24 @@
 #!groovy
-//noinspection GroovyUnusedAssignment
+
 @Library("Infrastructure") _
 
-//noinspection GroovyAssignabilityCheck
 properties([
-		parameters([
-			choice(name: 'ENVIRONMENT', choices: 'sandbox\nsaat\nsprod', description: 'Environment where code should be build and deployed')
-		])
+    parameters([
+        string(name: 'PRODUCT', defaultValue: 'div', description: 'Divorce'),
+        string(name: 'COMPONENT', defaultValue: 'pfe', description: 'Divorce Petitioner Frontend'),
+        string(name: 'TYPE', defaultValue: 'nodejs', description: ''),
+        string(name: 'ENVIRONMENT', defaultValue: 'saat', description: 'Environment where code should be built and deployed'),
+        choice(name: 'SUBSCRIPTION', choices: 'sandbox\nnonprod\nprod', description: 'Azure subscriptions available to build in')
+    ])
 ])
 
-withParameterizedPipeline('nodejs', 'div', 'pfe', params.ENVIRONMENT, 'sandbox') {
+withParameterizedPipeline(params.TYPE, params.PRODUCT, params.COMPONENT, params.ENVIRONMENT, params.SUBSCRIPTION) {
   after('build') {
     sh 'yarn setup'
   }
-
-  before('functionalTest:saat') {
-    env.E2E_PROXY_SERVER = ' '
+    
+  after('functionalTest:saat') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 }

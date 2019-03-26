@@ -1,5 +1,4 @@
 const { expect, sinon } = require('test/util/chai');
-const featureToggleConfig = require('test/util/featureToggles');
 const CONF = require('config');
 
 const modulePath = 'app/middleware/redirectMiddleware';
@@ -27,90 +26,44 @@ describe(modulePath, () => {
   });
 
   context('feature is enabled', () => {
-    it('should call next when there is no state', done => {
-      const test = cleanup => {
-        redirectMiddleware.redirectOnCondition(req, res, next);
+    it('should call next when there is no state', () => {
+      redirectMiddleware.redirectOnCondition(req, res, next);
 
-        expect(next.calledOnce).to.eql(true);
-        cleanup();
-      };
-
-      const featureTest = featureToggleConfig.when('redirectOnState', true, test);
-      featureTest(done);
+      expect(next.calledOnce).to.eql(true);
     });
 
-    it('should call next wen there is no session', done => {
-      const test = cleanup => {
-        delete req.session;
+    it('should call next wen there is no session', () => {
+      delete req.session;
 
-        redirectMiddleware.redirectOnCondition(req, res, next);
+      redirectMiddleware.redirectOnCondition(req, res, next);
 
-        expect(next.calledOnce).to.eql(true);
-        cleanup();
-      };
-
-      const featureTest = featureToggleConfig.when('redirectOnState', true, test);
-      featureTest(done);
+      expect(next.calledOnce).to.eql(true);
     });
 
-    it('should call next when the state is AwaitingPayment', done => {
-      const test = cleanup => {
-        req.session.state = 'AwaitingPayment';
+    it('should call next when the state is AwaitingPayment', () => {
+      req.session.state = 'AwaitingPayment';
 
-        redirectMiddleware.redirectOnCondition(req, res, next);
+      redirectMiddleware.redirectOnCondition(req, res, next);
 
-        expect(next.calledOnce).to.eql(true);
-        cleanup();
-      };
-
-      const featureTest = featureToggleConfig.when('redirectOnState', true, test);
-      featureTest(done);
+      expect(next.calledOnce).to.eql(true);
     });
 
-    it('should call redirect to DN if the state is not AwaitingPayment', done => {
-      const test = cleanup => {
-        req.session.state = 'AwaitingDecreeNisi';
+    it('should call redirect to DN if the state is not AwaitingPayment', () => {
+      req.session.state = 'AwaitingDecreeNisi';
 
-        redirectMiddleware.redirectOnCondition(req, res, next);
+      redirectMiddleware.redirectOnCondition(req, res, next);
 
-        expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
-        cleanup();
-      };
-
-      const featureTest = featureToggleConfig.when('redirectOnState', true, test);
-      featureTest(done);
+      expect(next.calledOnce).to.eql(false);
+      expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
     });
 
-    it('should call next when court is not CTSC', done => {
-      const test = cleanup => {
-        req.session.courts = 'eastMidlands';
-        req.session.state = 'AwaitingDecreeNisi';
+    it('should call next when court is not CTSC', () => {
+      req.session.courts = 'eastMidlands';
+      req.session.state = 'AwaitingDecreeNisi';
 
-        redirectMiddleware.redirectOnCondition(req, res, next);
+      redirectMiddleware.redirectOnCondition(req, res, next);
 
-        expect(next.calledOnce).to.eql(true);
-        cleanup();
-      };
-
-      const featureTest = featureToggleConfig.when('redirectOnState', true, test);
-      featureTest(done);
-    });
-  });
-
-  context('feature is disabled', () => {
-    it('should call next when feature is disabled', done => {
-      const test = cleanup => {
-        req.session.state = 'AwaitingDecreeNisi';
-
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce).to.eql(true);
-        cleanup();
-      };
-
-      const featureTest = featureToggleConfig.when('redirectOnState', false, test);
-      featureTest(done);
+      expect(next.calledOnce).to.eql(true);
     });
   });
 });

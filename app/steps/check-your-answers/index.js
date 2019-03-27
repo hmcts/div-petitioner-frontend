@@ -228,7 +228,32 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     return templates;
   }
 
+    capitalizeName(str) {
+      var result = str;
+      result = result.charAt(0).toUpperCase() + result.slice(1);
+      result = this.uppercaseAfterLetter('' + ' ', result)
+      result = this.uppercaseAfterLetter('-', result)
+      result = this.uppercaseAfterLetter('\'' , result)
+      return result;
+    }
+
+    uppercaseAfterLetter(letter, str) {
+        var splitStr = str.split(letter);
+        for (var i = 0; i < splitStr.length; i++) {
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+        }
+        return splitStr.join(letter);
+    }
+
+
   submitApplication(req, res) {
+      req.session.petitionerFirstName = this.capitalizeName(req.session.petitionerFirstName)
+      req.session.petitionerLastName = this.capitalizeName(req.session.petitionerLastName)
+      req.session.respondentFirstName = this.capitalizeName(req.session.respondentFirstName)
+      req.session.respondentLastName = this.capitalizeName(req.session.respondentLastName)
+      req.session.reasonForDivorceAdultery3rdPartyFirstName = this.capitalizeName(req.session.reasonForDivorceAdultery3rdPartyFirstName)
+      req.session.reasonForDivorceAdultery3rdPartyLastName = this.capitalizeName(req.session.reasonForDivorceAdultery3rdPartyLastName)
+
     if (req.session.submissionStarted) {
       res.redirect(this.steps.ApplicationSubmitted.url);
       return;

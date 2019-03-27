@@ -863,44 +863,43 @@ describe(modulePath, () => {
     });
 
     context('submission was successful and names capitalised', () => {
-          beforeEach(done => {
-            const newSession = clone(session);
-            newSession.petitionerFirstName = "petitioner first o'martin o-neil"
-            newSession.petitionerLastName = "petitioner last o'martin o-neil"
-            newSession.respondentFirstName = "respondent first o'martin o-neil"
-            newSession.respondentLastName = "respondent last o'martin o-neil"
-            newSession.reasonForDivorceAdultery3rdPartyFirstName = "adultery first o'martin o-neil"
-            newSession.reasonForDivorceAdultery3rdPartyLastName = "adultery last o'martin o-neil"
-            withSession(done, agent, newSession);
-          });
+      beforeEach(done => {
+        const newSession = clone(session);
+        newSession.petitionerFirstName = 'petitioner first o\'martin o-neil';
+        newSession.petitionerLastName = 'petitioner last o\'martin o-neil';
+        newSession.respondentFirstName = 'respondent first o\'martin o-neil';
+        newSession.respondentLastName = 'respondent last o\'martin o-neil';
+        newSession.reasonForDivorceAdultery3rdPartyFirstName = 'adultery first o\'martin o-neil';
+        newSession.reasonForDivorceAdultery3rdPartyLastName = 'adultery last o\'martin o-neil';
+        withSession(done, agent, newSession);
+      });
 
-          it('redirects to Pay How page', done => {
-                const testSession = () => {
-                  getSession(agent)
-                    .then(sess => {
-                      expect(sess.petitionerFirstName)
-                        .to.eql("Petitioner First O'Martin O-Neil");
-                      expect(sess.petitionerLastName)
-                        .to.eql("Petitioner Last O'Martin O-Neil");
-                      expect(sess.respondentFirstName)
-                        .to.eql("Respondent First O'Martin O-Neil");
-                      expect(sess.respondentLastName)
-                        .to.eql("Respondent Last O'Martin O-Neil");
-                      expect(sess.reasonForDivorceAdultery3rdPartyFirstName)
-                        .to.eql("Adultery First O'Martin O-Neil");
-                      expect(sess.reasonForDivorceAdultery3rdPartyLastName)
-                        .to.eql("Adultery Last O'Martin O-Neil");
-                    })
-                    .then(done, done);
-                };
+      it('redirects to Pay How page', done => {
+        const testSession = () => {
+          getSession(agent)
+            .then(sess => {
+              expect(sess.petitionerFirstName)
+                .to.eql('Petitioner First O\'Martin O-Neil');
+              expect(sess.petitionerLastName)
+                .to.eql('Petitioner Last O\'Martin O-Neil');
+              expect(sess.respondentFirstName)
+                .to.eql('Respondent First O\'Martin O-Neil');
+              expect(sess.respondentLastName)
+                .to.eql('Respondent Last O\'Martin O-Neil');
+              expect(sess.reasonForDivorceAdultery3rdPartyFirstName)
+                .to.eql('Adultery First O\'Martin O-Neil');
+              expect(sess.reasonForDivorceAdultery3rdPartyLastName)
+                .to.eql('Adultery Last O\'Martin O-Neil');
+            })
+            .then(done, done);
+        };
 
-                testCustom(testSession, agent, underTest, [], response => {
-                  expect(response.res.headers.location)
-                    .to.equal(s.steps.DoneAndSubmitted.url);
-                },
-                'post', true, postBody);
-          });
-        });
+        testCustom(testSession, agent, underTest, [], response => {
+          expect(response.res.headers.location)
+            .to.equal(s.steps.DoneAndSubmitted.url);
+        }, 'post', true, postBody);
+      });
+    });
 
     context('submission was successful and petitioner did not apply for help with fees', () => {
       it('redirects to Pay Online page', done => {

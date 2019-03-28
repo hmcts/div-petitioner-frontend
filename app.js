@@ -195,7 +195,7 @@ exports.init = listenForConnections => {
     });
 
     // Setup secrets using properties volume when not a unit test
-    app.use(setupSecrets);
+    app.use(setupSecrets.setup);
   }
 
   let http = {};

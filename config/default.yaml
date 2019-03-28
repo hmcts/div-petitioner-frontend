@@ -133,7 +133,6 @@ features:
   release510: true
   release520: false
   release520Desertion: true
-  release530: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

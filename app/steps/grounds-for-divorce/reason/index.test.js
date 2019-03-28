@@ -73,20 +73,20 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context, s.steps.DesertionAgree);
     });
 
-    it('redirects to the respondent consent page when 2 year separation is selected and release530 is on', done => {
+    it('redirects to the respondent consent page when 2 year separation is selected and release520 is on', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['release530'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
+        .when(['release520'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
 
       featureTest(done);
     });
 
-    it('redirects to the separation date page when 2 year separation is selected and release530 is off', done => {
+    it('redirects to the separation date page when 2 year separation is selected and release520 is off', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['release530'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
+        .when(['release520'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
 
       featureTest(done);
     });

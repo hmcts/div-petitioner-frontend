@@ -13,7 +13,7 @@ nodejs:
         RATE_LIMITER_ENABLED: "false"
         RATE_LIMITER_TOTAL: "3600"
         RATE_LIMITER_EXPIRE: "3600000"
-        SESSION_SECRET: "${SESSION_SECRET}"
+        SECRET: "${SESSION_SECRET}"
         IDAM_SECRET: "${IDAM_SECRET}"
         IDAM_CLIENT_ID: "divorce"
         POST_CODE_ACCESS_TOKEN: "${POST_CODE_ACCESS_TOKEN}"
@@ -40,6 +40,15 @@ nodejs:
         COURT_SERVICE_CENTRE_EMAIL: "divorcecase@justice.gov.uk"
         COURT_SERVICE_CENTRE_PHONENUMBER: "0300 303 0642"
         COURT_SERVICE_CENTRE_SITEID: "CTSC"
+    keyVaults:
+        "div":
+        resourceGroup: div
+        secrets:
+            - session-secret
+            - redis-secret
+            - idam-secret
+            - post-code-token
+            - frontend-secret
 
     # Don't modify below here
     image: ${IMAGE_NAME}

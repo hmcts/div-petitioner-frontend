@@ -63,7 +63,7 @@ describe(modulePath, () => {
         s.steps.UnreasonableBehaviour);
     });
 
-    it('redirects to the adultery wish to name page when adultry is selected', done => {
+    it('redirects to the adultery wish to name page when adultery is selected', done => {
       const context = { reasonForDivorce: 'adultery' };
       testRedirect(done, agent, underTest, context, s.steps.AdulteryWishToName);
     });
@@ -73,31 +73,27 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context, s.steps.DesertionAgree);
     });
 
-    it('redirects to the respondent consent page when 2 year separation is selected and release520 is on', done => {
+    it('redirects to the respondent consent page when 2 year separation is selected and release530 is on', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['release520'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
+        .when(['release530'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
 
       featureTest(done);
     });
 
-    it('redirects to the new Separation Date page when 2 year separation is selected and release520 is off', done => {
+    it('redirects to the separation date page when 2 year separation is selected and release530 is off', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
       const featureTest = featureToggleConfig
-        .when(['release520'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDateNew);
+        .when(['release530'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
 
       featureTest(done);
     });
 
-    it('redirects to the new seperation date page when 5 year separation is selected and release510 is on', done => {
+    it('redirects to the new separation date page when 5 year separation is selected', done => {
       const context = { reasonForDivorce: 'separation-5-years' };
-
-      const featureTest = featureToggleConfig
-        .when('release510', true, testRedirect, agent, underTest, context, s.steps.SeparationDateNew);
-
-      featureTest(done);
+      testRedirect(done, agent, underTest, context, s.steps.SeparationDateNew);
     });
   });
 

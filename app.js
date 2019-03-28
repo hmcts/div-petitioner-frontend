@@ -138,7 +138,7 @@ exports.init = listenForConnections => {
     }
   });
 
-  app.use(healthcheck);
+  healthcheck.setup(app);
 
   app.use(middleware.commonContent);
 

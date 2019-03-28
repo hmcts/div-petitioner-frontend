@@ -9,7 +9,6 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
-const featureToggleConfig = require('test/util/featureToggles');
 
 const modulePath = 'app/steps/grounds-for-divorce/respondent-consent';
 
@@ -49,22 +48,10 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', 'divorceWho', session);
     });
 
-    it('redirects to the old separation date page release510 feature is off', done => {
+    it('redirects to the new separation date page', done => {
       const context = { reasonForDivorceRespondentConsent: 'No' };
 
-      const featureTest = featureToggleConfig
-        .when('release510', false, testRedirect, agent, underTest, context, s.steps.SeparationDate);
-
-      featureTest(done);
-    });
-
-    it('redirects to the new separation date page release510 feature is on', done => {
-      const context = { reasonForDivorceRespondentConsent: 'Yes' };
-
-      const featureTest = featureToggleConfig
-        .when('release510', true, testRedirect, agent, underTest, context, s.steps.SeparationDateNew);
-
-      featureTest(done);
+      testRedirect(done, agent, underTest, context, s.steps.SeparationDateNew);
     });
   });
 

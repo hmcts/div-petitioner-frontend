@@ -13,16 +13,11 @@ nodejs:
         RATE_LIMITER_ENABLED: "false"
         RATE_LIMITER_TOTAL: "3600"
         RATE_LIMITER_EXPIRE: "3600000"
-        SECRET: "${SESSION_SECRET}"
-        IDAM_SECRET: "${IDAM_SECRET}"
         IDAM_CLIENT_ID: "divorce"
-        POST_CODE_ACCESS_TOKEN: "${POST_CODE_ACCESS_TOKEN}"
         POST_CODE_URL: "https://postcodeinfo.service.justice.gov.uk"
         MICROSERVICE_NAME: "divorce_frontend"
-        MICROSERVICE_KEY: "${MICROSERVICE_KEY}"   
         EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
         FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED: "false"
-        SESSION_ENCRYPTION_SECRET: "${SESSION_ENCRYPTION_SECRET}"
         FEATURE_IDAM: "true"
         FEATURE_RELEASE_510: "true"
         FEATURE_RELEASE_520: "false"
@@ -42,13 +37,13 @@ nodejs:
         COURT_SERVICE_CENTRE_SITEID: "CTSC"
     keyVaults:
         "div":
-        resourceGroup: div
-        secrets:
-            - session-secret
-            - redis-secret
-            - idam-secret
-            - post-code-token
-            - frontend-secret
+            resourceGroup: div
+            secrets:
+                - session-secret
+                - redis-secret
+                - idam-secret
+                - post-code-token
+                - frontend-secret
 
     # Don't modify below here
     image: ${IMAGE_NAME}

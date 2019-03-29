@@ -10,7 +10,6 @@ const bodyParser = require('body-parser');
 const requireDir = require('require-directory');
 const cookieParser = require('cookie-parser');
 const sessions = require('app/middleware/sessions');
-const setupSecrets = require('app/middleware/setupSecretsMiddleware');
 const rateLimiter = require('app/services/rateLimiter');
 const initSteps = require('app/core/initSteps');
 const siteGraph = require('app/core/helpers/siteGraph');
@@ -193,9 +192,6 @@ exports.init = listenForConnections => {
       logger.errorWithReq(req, 'not_found', 'User attempted to view a page that was not found', req.originalUrl);
       steps.Error404.handler(req, res);
     });
-
-    // Setup secrets using properties volume when not a unit test
-    app.use(setupSecrets.setup);
   }
 
   let http = {};

@@ -1,19 +1,15 @@
-const { expect, sinon } = require('test/util/chai');
+const { expect } = require('test/util/chai');
 const { cloneDeep } = require('lodash');
 const config = require('config');
 const proxyquire = require('proxyquire');
 
-const modulePath = 'app/middleware/setupSecretsMiddleware';
+const modulePath = 'app/core/setup/setupSecrets';
 
-const req = {};
-const res = {};
-let next = {};
 let mockConfig = {};
 
 describe(modulePath, () => {
   describe('#setup', () => {
     beforeEach(() => {
-      next = sinon.stub();
       mockConfig = cloneDeep(config);
     });
 
@@ -29,9 +25,9 @@ describe(modulePath, () => {
       };
 
       // Update config with secret setup
-      const setupSecretsMiddleware = proxyquire(modulePath,
+      const setupSecrets = proxyquire(modulePath,
         { config: mockConfig });
-      setupSecretsMiddleware.setup(req, res, next);
+      setupSecrets.setup();
 
       expect(mockConfig.secret)
         .to.equal(mockConfig.secrets.div['session-secret']);
@@ -43,14 +39,13 @@ describe(modulePath, () => {
         .to.equal(mockConfig.secrets.div['post-code-token']);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(mockConfig.secrets.div['frontend-secret']);
-      expect(next.calledOnce).to.eql(true);
     });
 
     it('should not set config values when secrets path is not set', () => {
       // Update config with secret setup
-      const setupSecretsMiddleware = proxyquire(modulePath,
+      const setupSecrets = proxyquire(modulePath,
         { config: mockConfig });
-      setupSecretsMiddleware.setup(req, res, next);
+      setupSecrets.setup();
 
       expect(mockConfig.secret)
         .to.equal(config.secret);
@@ -62,16 +57,15 @@ describe(modulePath, () => {
         .to.equal(config.services.postcodeInfo.token);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(config.services.serviceAuthProvider.microserviceKey);
-      expect(next.calledOnce).to.eql(true);
     });
 
     it('should only set one config value when single secret path is set', () => {
       mockConfig.secrets = { div: { 'idam-secret': 'idamValue' } };
 
       // Update config with secret setup
-      const setupSecretsMiddleware = proxyquire(modulePath,
+      const setupSecrets = proxyquire(modulePath,
         { config: mockConfig });
-      setupSecretsMiddleware.setup(req, res, next);
+      setupSecrets.setup();
 
       expect(mockConfig.secret)
         .to.equal(config.secret);
@@ -85,7 +79,6 @@ describe(modulePath, () => {
         .to.equal(config.services.postcodeInfo.token);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(config.services.serviceAuthProvider.microserviceKey);
-      expect(next.calledOnce).to.eql(true);
     });
   });
 });

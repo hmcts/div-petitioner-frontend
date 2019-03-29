@@ -8,8 +8,7 @@ const setSecret = (secretPath, configPath) => {
   }
 };
 
-const setup = (req, res, next) => {
-  // Property Volumes will be the correct format to use in the future, so it will take precendence
+const setup = () => {
   if (config.has('secrets.div')) {
     setSecret('secrets.div.session-secret', 'secret');
     setSecret('secrets.div.redis-secret', 'sessionEncryptionSecret');
@@ -17,8 +16,6 @@ const setup = (req, res, next) => {
     setSecret('secrets.div.post-code-token', 'services.postcodeInfo.token');
     setSecret('secrets.div.frontend-secret', 'services.serviceAuthProvider.microserviceKey');
   }
-
-  next();
 };
 
 module.exports = { setup };

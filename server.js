@@ -4,7 +4,7 @@ const setupSecrets = require('app/core/setup/setupSecrets');
 
 // Populate secrets from filesystem when not automated testing
 if (CONF.environment !== 'testing') {
-  setupSecrets();
+  setupSecrets.setup();
 }
 
 const listenForConnections = true;

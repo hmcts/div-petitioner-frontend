@@ -16,22 +16,13 @@ function startApplication(ignoreIdamToggle = false) {
   }
 }
 
-async function startApplicationWithAnExistingSession() {
+async function startApplicationWith(sessionName) {
 
   let I = this;
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.haveABasicSession('basicDivorceSessionData');
-}
-
-async function startApplicationWithAnAmendPetitionSession() {
-
-  let I = this;
-
-  I.amOnLoadedPage('/index');
-  I.startApplication();
-  I.haveABasicSession('amendPetitionSession');
+  I.haveABasicSession(sessionName);
 }
 
 function* seeCookieBanner() {
@@ -73,8 +64,7 @@ function signOut() {
 
 module.exports = {
   startApplication,
-  startApplicationWithAnExistingSession,
-  startApplicationWithAnAmendPetitionSession,
+  startApplicationWith,
   seeCookieBanner,
   seeCookieFooter,
   followCookieBannerLink,

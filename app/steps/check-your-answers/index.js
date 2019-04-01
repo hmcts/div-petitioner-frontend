@@ -304,4 +304,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         res.redirect('/generic-error');
       });
   }
+
+  isSkipWhenValid() {
+    return true;
+  }
 };

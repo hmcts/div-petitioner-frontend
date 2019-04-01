@@ -76,7 +76,7 @@ module.exports = function(grunt) {
         options: {
           nodeArgs: ['--trace-warnings', '--inspect'],
           ext: 'js, json, yaml',
-          ignore: ['node_modules/**', 'app/assets/**', 'public/**'],
+          ignore: ['node_modules/**', 'app/assets/**', 'public/**', 'functional-output/**', 'coverage/**', 'test/**'],
           args: grunt.option.flags()
         }
       }

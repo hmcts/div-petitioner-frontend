@@ -103,6 +103,11 @@ describe(modulePath, () => {
     it('#action returns two arguments as an array', () => {
       expect(step.action('ctx', 'session')).to.eql(['ctx', 'session']);
     });
+
+    it('#isSkipWhenValid is false by default', () => {
+      expect(step.isSkipWhenValid())
+        .to.equal(false);
+    });
   });
 
   describe('#generateContent()', () => {

@@ -12,7 +12,7 @@ const getNextValidStep = function* (step, session) {
 
     // ensure step is valid
     const [isValid] = step.validate(nextStepCtx, session);
-    if (isValid) {
+    if (!step.isSkipWhenValid() && isValid) {
       nextStep = step.next(nextStepCtx, session);
     }
   } catch (error) {

@@ -1,7 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
-const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
 const {
   getSepYears, getLivingTogetherMonths,
@@ -48,22 +46,20 @@ module.exports = class LivedApartSince extends ValidationStep {
   constructor(...args) {
     super(...args);
 
-    if (parseBool(config.features.release510)) {
-      watch([
-        'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
-        'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'
-      ], (previousSession, session, remove) => {
-        remove('livedApartEntireTime',
-          'livedTogetherMoreTimeThanPermitted'
-        );
-      });
+    watch([
+      'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
+      'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'
+    ], (previousSession, session, remove) => {
+      remove('livedApartEntireTime',
+        'livedTogetherMoreTimeThanPermitted'
+      );
+    });
 
-      watch('livedApartEntireTime', (previousSession, session, remove) => {
-        if (session.livedApartEntireTime === 'Yes') {
-          remove('livedTogetherMoreTimeThanPermitted');
-        }
-      });
-    }
+    watch('livedApartEntireTime', (previousSession, session, remove) => {
+      if (session.livedApartEntireTime === 'Yes') {
+        remove('livedTogetherMoreTimeThanPermitted');
+      }
+    });
   }
 
   interceptor(ctx, session) {

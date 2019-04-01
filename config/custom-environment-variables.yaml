@@ -123,7 +123,6 @@ http:
 features:
   idam: FEATURE_IDAM
   release520: FEATURE_RELEASE_520
-  release520Desertion: FEATURE_RELEASE_520_DESERTION
   release530: FEATURE_RELEASE_530
 
 idamArgs:

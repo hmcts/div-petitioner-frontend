@@ -225,10 +225,6 @@ variable "feature_release_520" {
   default = false
 }
 
-variable "feature_release_520_desertion" {
-  default = true
-}
-
 variable "feature_release_530" {
   default = false
 }

@@ -89,7 +89,7 @@ module.exports = class Step {
     return [true, []];
   }
 
-  shouldSkipWhenValid() {
+  get isSkippable() {
     return true;
   }
 

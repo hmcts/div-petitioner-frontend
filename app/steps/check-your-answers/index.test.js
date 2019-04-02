@@ -1003,9 +1003,9 @@ describe(modulePath, () => {
     });
   });
 
-  describe('#shouldSkipWhenValid', () => {
+  describe('#isSkippable', () => {
     it('Ensure we visit the check-your-answers page even if a statement of truth was saved to the draft', done => {
-      expect(underTest.shouldSkipWhenValid()).to.equal(false);
+      expect(underTest.isSkippable).to.equal(false);
       done();
     });
   });

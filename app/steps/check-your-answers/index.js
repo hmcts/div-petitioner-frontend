@@ -305,7 +305,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       });
   }
 
-  shouldSkipWhenValid() {
+  get isSkippable() {
     return false;
   }
 };

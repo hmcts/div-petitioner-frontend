@@ -3,6 +3,10 @@ const idam = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
 const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
+const logging = require('app/services/logger');
+
+const logger = logging.logger(__filename);
+
 
 module.exports = class ExitStep extends Step {
   constructor(steps, section, templatePath, content,
@@ -14,10 +18,12 @@ module.exports = class ExitStep extends Step {
   preResponse(req) {
     return new Promise(resolve => {
       if (this.logout) {
-        req.session.regenerate(() => {
+        req.session.regenerate(error => {
+          logger.errorWithReq(req, 'session_regenerate', 'error regenerating session', error.message);
           resolve();
         });
       } else {
+        logger.infoWithReq(req, 'session_regenerate', 'Not a logout, will not regenerate session', '');
         resolve();
       }
     });

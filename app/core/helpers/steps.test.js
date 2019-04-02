@@ -57,7 +57,7 @@ describe(modulePath, () => {
         populateWithPreExistingData: sinon.stub().returns({}),
         interceptor: sinon.stub().returns({}),
         validate: sinon.stub().returns([true]),
-        isSkippable: sinon.stub(),
+        isSkippable: true,
         next: sinon.stub()
       };
     });
@@ -66,7 +66,7 @@ describe(modulePath, () => {
       const nextStep2 = {
         name: 'test-step2',
         validate: sinon.stub().returns([true]),
-        isSkippable: sinon.stub()
+        isSkippable: true
       };
 
       const nextStep1 = {
@@ -74,7 +74,7 @@ describe(modulePath, () => {
         populateWithPreExistingData: sinon.stub().returns({}),
         interceptor: sinon.stub().returns({}),
         validate: sinon.stub().returns([true]),
-        isSkippable: sinon.stub().returns(true),
+        isSkippable: true,
         next: sinon.stub().returns(nextStep2)
       };
 
@@ -91,13 +91,13 @@ describe(modulePath, () => {
       const nextStep2 = {
         name: 'test-step2',
         validate: sinon.stub().returns([true]),
-        isSkippable: sinon.stub()
+        isSkippable: true
       };
 
       const nextStep1 = {
         name: 'test-step1',
         validate: sinon.stub().returns([true]),
-        isSkippable: sinon.stub().returns(false),
+        isSkippable: false,
         next: sinon.stub().returns(nextStep2)
       };
 

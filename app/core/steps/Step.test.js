@@ -104,8 +104,8 @@ describe(modulePath, () => {
       expect(step.action('ctx', 'session')).to.eql(['ctx', 'session']);
     });
 
-    it('#isSkipWhenValid is true by default', () => {
-      expect(step.isSkipWhenValid())
+    it('#shouldSkipWhenValid is true by default', () => {
+      expect(step.shouldSkipWhenValid())
         .to.equal(true);
     });
   });

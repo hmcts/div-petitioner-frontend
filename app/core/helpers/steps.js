@@ -27,7 +27,7 @@ const findNextUnAnsweredStep = function* (step, session = {}) {
 
   if (!nextStep) {
     return step;
-  } else if (!nextStep.isSkipWhenValid()) {
+  } else if (!nextStep.shouldSkipWhenValid()) {
     return nextStep;
   }
 

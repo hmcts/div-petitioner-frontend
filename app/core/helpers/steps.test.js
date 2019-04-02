@@ -1,5 +1,4 @@
 const { expect, sinon } = require('test/util/chai');
-const { cloneDeep } = require('lodash');
 const co = require('co');
 
 const modulePath = 'app/core/helpers/steps';
@@ -54,45 +53,60 @@ describe(modulePath, () => {
   describe('#findNextUnAnsweredStep', () => {
     beforeEach(() => {
       testStep = {
+        name: 'test-step',
         populateWithPreExistingData: sinon.stub().returns({}),
         interceptor: sinon.stub().returns({}),
         validate: sinon.stub().returns([true]),
-        isSkipWhenValid: sinon.stub(),
+        shouldSkipWhenValid: sinon.stub(),
         next: sinon.stub()
       };
     });
 
     it('loops until no next step found', () => {
-      const stepShouldBeReturned1 = cloneDeep(testStep);
-      const stepShouldBeReturned2 = cloneDeep(testStep);
+      const nextStep2 = {
+        name: 'test-step2',
+        validate: sinon.stub().returns([true]),
+        shouldSkipWhenValid: sinon.stub()
+      };
 
-      testStep.next.returns(stepShouldBeReturned1);
-      stepShouldBeReturned1.next.returns(stepShouldBeReturned2);
-      stepShouldBeReturned2.next.returns(null);
-      stepShouldBeReturned1.isSkipWhenValid.returns(true);
-      stepShouldBeReturned2.isSkipWhenValid.returns(true);
+      const nextStep1 = {
+        name: 'test-step1',
+        populateWithPreExistingData: sinon.stub().returns({}),
+        interceptor: sinon.stub().returns({}),
+        validate: sinon.stub().returns([true]),
+        shouldSkipWhenValid: sinon.stub().returns(true),
+        next: sinon.stub().returns(nextStep2)
+      };
+
+      testStep.next.returns(nextStep1);
 
       return co(function* generator() {
         const nextStep = yield steps.findNextUnAnsweredStep(testStep);
 
-        expect(nextStep).to.eql(stepShouldBeReturned2);
+        expect(nextStep).to.eql(nextStep2);
       });
     });
 
     it('returns next step if it should not be skipped', () => {
-      const stepShouldBeReturned1 = cloneDeep(testStep);
-      const stepShouldBeReturned2 = cloneDeep(testStep);
+      const nextStep2 = {
+        name: 'test-step2',
+        validate: sinon.stub().returns([true]),
+        shouldSkipWhenValid: sinon.stub()
+      };
 
-      testStep.next.returns(stepShouldBeReturned1);
-      stepShouldBeReturned1.next.returns(stepShouldBeReturned2);
-      stepShouldBeReturned2.next.returns(null);
-      stepShouldBeReturned1.isSkipWhenValid.returns(false);
-      stepShouldBeReturned2.isSkipWhenValid.returns(true);
+      const nextStep1 = {
+        name: 'test-step1',
+        validate: sinon.stub().returns([true]),
+        shouldSkipWhenValid: sinon.stub().returns(false),
+        next: sinon.stub().returns(nextStep2)
+      };
+
+      testStep.next.returns(nextStep1);
 
       return co(function* generator() {
         const nextStep = yield steps.findNextUnAnsweredStep(testStep);
 
-        expect(nextStep).to.eql(stepShouldBeReturned1);
+        expect(nextStep).to.eql(nextStep1);
       });
     });
   });

@@ -90,7 +90,7 @@ module.exports = class Step {
   }
 
   isSkipWhenValid() {
-    return false;
+    return true;
   }
 
   generateContent(ctx, session, lang = 'en') {

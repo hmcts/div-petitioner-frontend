@@ -12,7 +12,7 @@ const getNextValidStep = function* (step, session) {
 
     // ensure step is valid
     const [isValid] = step.validate(nextStepCtx, session);
-    if (!step.isSkipWhenValid() && isValid) {
+    if (isValid) {
       nextStep = step.next(nextStepCtx, session);
     }
   } catch (error) {
@@ -27,6 +27,8 @@ const findNextUnAnsweredStep = function* (step, session = {}) {
 
   if (!nextStep) {
     return step;
+  } else if (!nextStep.isSkipWhenValid()) {
+    return nextStep;
   }
 
   return yield findNextUnAnsweredStep(nextStep, session);

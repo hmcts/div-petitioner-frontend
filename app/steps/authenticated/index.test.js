@@ -82,7 +82,7 @@ describe(modulePath, () => {
         withSession(done, agent, session);
       });
 
-      it('ensure session data is destroyed if expired after user login', done => {
+      it('ensure session data is regenerated if expired after user login', done => {
         expect(session.hasOwnProperty('courts')).to.eql(true);
 
         const testSession = () => {

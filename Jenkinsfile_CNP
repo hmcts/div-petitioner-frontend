@@ -57,6 +57,8 @@ withPipeline("nodejs", product, component) {
     env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
     env.CASE_ORCHESTRATION_SERVICE_DRAFT_URL = 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
     env.PREVIEW_ENV = 'true'
+
+    sh "curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/divorce -H 'Accept: application/json' -H 'Content-Type: application/json' -d '[{\"operation\": \"add\", \"field\": \"redirect_uri\", \"value\": \"${env.TEST_URL}/authenticated\"}]'"
   }
 
   after('functionalTest:preview') {

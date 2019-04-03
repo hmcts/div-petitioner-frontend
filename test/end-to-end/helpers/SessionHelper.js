@@ -2,12 +2,14 @@ const unirest = require('unirest');
 const { assert } = require('chai');
 const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData');
 const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession');
+const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
 const Tokens = require('csrf');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const availableSessions = {
   basicDivorceSessionData,
-  amendPetitionSession
+  amendPetitionSession,
+  amendPetitionSessionWithConfirmation
 };
 
 class SessionHelper extends codecept_helper {

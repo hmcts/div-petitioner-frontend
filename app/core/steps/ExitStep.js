@@ -19,7 +19,7 @@ module.exports = class ExitStep extends Step {
     return new Promise(resolve => {
       if (this.logout) {
         req.session.regenerate(error => {
-          logger.errorWithReq(req, 'session_regenerate', 'error regenerating session', error.message);
+          logger.errorWithReq(req, 'session_regenerate', 'error regenerating session', error);
           resolve();
         });
       } else {

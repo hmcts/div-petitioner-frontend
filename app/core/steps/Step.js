@@ -89,6 +89,10 @@ module.exports = class Step {
     return [true, []];
   }
 
+  get isSkippable() {
+    return true;
+  }
+
   generateContent(ctx, session, lang = 'en') {
     if (!this.content || !this.content.resources) {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);

@@ -103,6 +103,11 @@ describe(modulePath, () => {
     it('#action returns two arguments as an array', () => {
       expect(step.action('ctx', 'session')).to.eql(['ctx', 'session']);
     });
+
+    it('#isSkippable is true by default', () => {
+      expect(step.isSkippable)
+        .to.equal(true);
+    });
   });
 
   describe('#generateContent()', () => {

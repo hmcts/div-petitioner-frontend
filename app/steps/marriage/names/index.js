@@ -1,4 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
+const capitalizeNames = require('app/middleware/capitalizeNames');
 
 module.exports = class MarriageNames extends ValidationStep {
   get url() {
@@ -6,5 +7,11 @@ module.exports = class MarriageNames extends ValidationStep {
   }
   get nextStep() {
     return this.steps.MarriageCertificateNames;
+  }
+  get postMiddleware() {
+    return [
+      capitalizeNames,
+      ...super.postMiddleware
+    ];
   }
 };

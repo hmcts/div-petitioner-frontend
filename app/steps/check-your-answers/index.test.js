@@ -153,7 +153,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('help with fees refference number does not exists warning', () => {
+  describe('help with fees reference number does not exists warning', () => {
     beforeEach(done => {
       session = clone(mockSession);
       delete session.helpWithFeesReferenceNumber;
@@ -167,7 +167,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('help with fees refference number does not exists payment', () => {
+  describe('help with fees reference number does not exists payment', () => {
     beforeEach(done => {
       session = clone(mockSession);
       delete session.helpWithFeesReferenceNumber;
@@ -1000,6 +1000,13 @@ describe(modulePath, () => {
           .to.equal(s.steps.ApplicationSubmitted.url);
       },
       'post', true, postBody);
+    });
+  });
+
+  describe('#isSkippable', () => {
+    it('Ensure we visit the check-your-answers page even if a statement of truth was saved to the draft', done => {
+      expect(underTest.isSkippable).to.equal(false);
+      done();
     });
   });
 });

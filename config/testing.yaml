@@ -6,3 +6,10 @@ http:
 session:
   expires: 10000 # ms
   ttl: 60 # s
+
+features:
+  idam: false
+  release510: true
+  release520: true
+  release520Desertion: true
+  release530: true

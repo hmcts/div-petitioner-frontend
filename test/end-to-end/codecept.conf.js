@@ -59,7 +59,7 @@ exports.config = {
 
 // Reduce chunks on Preview env
 function configureChunks() {
-  if (CONF.runBasicTests === 'true') {
+  if (CONF.e2e.runBasicTests === 'true') {
     return 2;
   } else {
     return 5;
@@ -69,7 +69,7 @@ function configureChunks() {
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
-  if (CONF.runBasicTests === 'true') {
+  if (CONF.e2e.runBasicTests === 'true') {
     return './paths/**/basicDivorce.js';
   } else {
     return './paths/**/*.js';

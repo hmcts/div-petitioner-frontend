@@ -131,9 +131,9 @@ commonProps:
 features:
   idam: false
   release510: true
-  release520: false
+  release520: true
   release520Desertion: true
-  release530: false
+  release530: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

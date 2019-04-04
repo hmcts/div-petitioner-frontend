@@ -1,5 +1,9 @@
 const { reduce, isArray } = require('lodash');
 const xssFilters = require('xss-filters');
+const emoji = require('node-emoji');
+const { flow } = require('lodash');
+
+const santizeValue = flow([emoji.strip, xssFilters.inHTMLData]);
 
 const parse = (step, req) => {
   const { body, params, query } = req;
@@ -35,10 +39,10 @@ const parse = (step, req) => {
     if (typeof acc[k] !== 'undefined') {
       if (isArray(acc[k])) {
         acc[k] = acc[k].map(val => {
-          return xssFilters.inHTMLData(val);
+          return santizeValue(val);
         });
       } else {
-        acc[k] = xssFilters.inHTMLData(acc[k]);
+        acc[k] = santizeValue(acc[k]);
       }
     }
 

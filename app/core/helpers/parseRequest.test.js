@@ -41,6 +41,27 @@ describe(modulePath, () => {
     });
   });
 
+  it('should strip emojis from request body', () => {
+    const req = {
+      body: {
+        a: 'one😆😟☹🤥🤗👿👺',
+        b: 'two🇧🇲🇨🇻🇬🇷🇮🇱🇨🇮🇭🇺',
+        c: '3.1😆😟☹🤥🤗👿👺',
+        d: '4🐐🕊🐪🐳🦐🎄',
+        e: ['one', 'two🇧🇲🇨🇻🇬🇷🇮🇱🇨🇮🇭🇺']
+      },
+      method: 'post'
+    };
+
+    expect(underTest(step, req)).to.deep.equal({
+      a: 'one',
+      b: 'two',
+      c: 3.1,
+      d: 4,
+      e: ['one', 'two']
+    });
+  });
+
   it('should ignore values not specified by the step properties', () => {
     const req = {
       body: {

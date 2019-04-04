@@ -31,6 +31,12 @@
   with-proposition
 {% endblock %}
 
+{% block body_start %}
+  <noscript>
+    <img src="/noJS.png" alt="1px" width="1" height="1" style="display: none;" />
+  </noscript>
+{% endblock %}
+
 {% block footer_support_links %}
 <ul>
   <li><a href="/cookie">Cookies</a></li>

@@ -66,5 +66,13 @@ withPipeline("nodejs", product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 
+  before('buildinfra:prod') {
+    error('Halting pipeline before prod stages - code freeze')
+  }
+  
+  before('deploy:prod') {
+    error('Halting pipeline before prod stages - code freeze')
+  }
+
   enableSlackNotifications('#div-dev')
 }

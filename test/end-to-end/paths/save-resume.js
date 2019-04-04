@@ -122,7 +122,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
     I.seeCookie('mockRestoreSession');
   }
 
-  I.startApplicationWithAnAmendPetitionSession();
+  I.startApplicationWith('amendPetitionSession');
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
   I.seeCurrentUrlEquals('/exit/removed-saved-application');
@@ -145,7 +145,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
     I.seeCookie('mockRestoreSession');
   }
 
-  I.startApplicationWithAnAmendPetitionSession();
+  I.startApplicationWith('amendPetitionSession');
   I.checkMyAnswersRemoveApplication();
   I.declineRemoveApplicaiton();
 

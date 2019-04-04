@@ -89,6 +89,7 @@ describe(modulePath, () => {
           getSession(agent)
             .then(newSession => {
               expect(newSession.hasOwnProperty('courts')).to.eql(false);
+              expect(newSession.hasOwnProperty('expires')).to.eql(true);
             })
             .then(done, done);
         };

@@ -4,9 +4,6 @@ const CONF = require('config');
 const waitForTimeout = parseInt(CONF.e2e.waitForTimeoutValue);
 const waitForAction = parseInt(CONF.e2e.waitForActionValue);
 
-console.log('waitForTimeout value set to', waitForTimeout); // eslint-disable-line no-console
-console.log('waitForAction value set to', waitForAction); // eslint-disable-line no-console
-
 exports.config = {
   tests: getTests(),
   output: process.cwd() + '/functional-output',
@@ -62,9 +59,8 @@ exports.config = {
 
 // Reduce chunks on Preview env
 function configureChunks() {
-  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
-  if (CONF.preview_env === 'true') {
-    return 5;
+  if (CONF.runBasicTests === 'true') {
+    return 2;
   } else {
     return 5;
   }
@@ -73,9 +69,8 @@ function configureChunks() {
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
-  console.log('### CONF.preview_env =', CONF.preview_env);  // eslint-disable-line no-console
-  if (CONF.preview_env === 'true') {
-    return './paths/**/*.js';
+  if (CONF.runBasicTests === 'true') {
+    return './paths/**/basicDivorce.js';
   } else {
     return './paths/**/*.js';
   }

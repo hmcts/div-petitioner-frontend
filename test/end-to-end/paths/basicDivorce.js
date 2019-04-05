@@ -1,4 +1,6 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 Feature('Basic divorce path');
 
@@ -10,6 +12,10 @@ Scenario('Get a divorce', async function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+
+  if (parseBool(CONF.features.showSystemMessage)) {
+    I.viewSystemMessage();
+  }
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();

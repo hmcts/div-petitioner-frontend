@@ -239,5 +239,6 @@ module "frontend" {
     FEATURE_RELEASE_520                        = "${var.feature_release_520}"
     FEATURE_RELEASE_520_DESERTION              = "${var.feature_release_520_desertion}"
     FEATURE_RELEASE_530                        = "${var.feature_release_530}"
+    FEATURE_SHOW_SYSTEM_MESSAGE                = "${var.feature_show_system_message}"
   }
 }

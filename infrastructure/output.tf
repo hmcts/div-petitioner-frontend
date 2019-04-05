@@ -25,3 +25,7 @@ output "feature_release_520_desertion" {
 output "feature_release_530" {
   value = "${var.feature_release_530}"
 }
+
+output "feature_show_system_message" {
+  value = "${var.feature_show_system_message}"
+}

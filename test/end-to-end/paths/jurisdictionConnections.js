@@ -1,3 +1,6 @@
+const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
+
 Feature('New Jurisdiction Journeys').retry(3);
 
 Before((I) => {
@@ -6,6 +9,10 @@ Before((I) => {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+
+  if (parseBool(CONF.features.showSystemMessage)) {
+    I.viewSystemMessage();
+  }
 
   I.selectHelpWithFees(false);
   I.selectDivorceType();

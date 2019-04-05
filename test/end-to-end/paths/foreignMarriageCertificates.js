@@ -1,3 +1,6 @@
+const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
+
 Feature('Foreign Marriage Certificates').retry(3);
 
 Scenario('Certificate in English ', function(I) {
@@ -6,6 +9,10 @@ Scenario('Certificate in English ', function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+
+  if (parseBool(CONF.features.showSystemMessage)) {
+    I.viewSystemMessage();
+  }
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();
@@ -25,6 +32,10 @@ Scenario('Certificate not English but with translation', function(I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
 
+  if (parseBool(CONF.features.showSystemMessage)) {
+    I.viewSystemMessage();
+  }
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
@@ -42,6 +53,10 @@ Scenario('Certificate not English with no translation - exit page - and can go b
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+
+  if (parseBool(CONF.features.showSystemMessage)) {
+    I.viewSystemMessage();
+  }
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();

@@ -1,4 +1,6 @@
 const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep');
+const config = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class ScreeningQuestionsMarriageCertificate extends ScreeningValidationStep {
   get url() {
@@ -6,9 +8,10 @@ module.exports = class ScreeningQuestionsMarriageCertificate extends ScreeningVa
   }
 
   get nextStep() {
+    const nextStep = parseBool(config.features.showSystemMessage) ? this.steps.SystemMessage : this.steps.NeedHelpWithFees;
     return {
       screenHasMarriageCert: {
-        Yes: this.steps.NeedHelpWithFees,
+        Yes: nextStep,
         No: this.steps.ExitMarriageCertificate
       }
     };

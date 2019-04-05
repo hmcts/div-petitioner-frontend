@@ -126,6 +126,7 @@ features:
   release520: FEATURE_RELEASE_520
   release520Desertion: FEATURE_RELEASE_520_DESERTION
   release530: FEATURE_RELEASE_530
+  showSystemMessage: FEATURE_SHOW_SYSTEM_MESSAGE
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

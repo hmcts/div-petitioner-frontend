@@ -1,0 +1,16 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "heading": "Sorry, the service is currently unavailable",
+                    "message1":  "We are carrying out work to improve the system we use to process divorce applications after they have been submitted.",
+                    "message2":  "This system is running too slowly which is having a knock-on effect on how quickly we can process your application. We’re sorry for any inconvenience.",
+                    "message3":  "If you have already submitted an application, there is no need to send it again. We will contact you with the next step of the process at the appropriate time.",
+                    "message4":  "We wanted to let you know why your application may take longer than expected and to apologise for the delay."
+                }
+            }
+        }
+    }
+}

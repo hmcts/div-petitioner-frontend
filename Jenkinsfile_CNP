@@ -54,6 +54,7 @@ withPipeline("nodejs", product, component) {
 
   before('functionalTest:preview') {
     env.FEATURE_IDAM = 'true'
+    env.FEATURE_SHOW_SYSTEM_MESSAGE = 'false'
     env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
     env.CASE_ORCHESTRATION_SERVICE_DRAFT_URL = 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
     env.PREVIEW_ENV = 'true'

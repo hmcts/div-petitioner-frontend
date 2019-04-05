@@ -159,6 +159,10 @@ Scenario('Deserted without agreement', function*(I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
 
+  if (parseBool(config.features.showSystemMessage)) {
+    I.viewSystemMessage();
+  }
+
   I.selectHelpWithFees(false);
 
   I.selectDivorceType();

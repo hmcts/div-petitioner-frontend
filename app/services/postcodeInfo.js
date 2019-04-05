@@ -4,37 +4,34 @@ const httpStatus = require('http-status-codes');
 const superagent = require('superagent');
 
 require('superagent-proxy')(superagent);
-
 const timeout = CONF.services.postcodeInfo.timeout;
 
 exports.client = (
   tokenString, url, sa = superagent
 ) => {
-  const token = `Token ${tokenString}`;
-
   return {
 
     lookupPostcode(postcode) {
       const proxy = CONF.divorceHttpProxy;
-
       return co(function* generator() {
         try {
-          let request = sa.get(`${url}/addresses/?postcode=${encodeURIComponent(postcode)}`)
-            .set('Authorization', token)
+          let request = sa.get(`${url}/addresses/postcode?postcode=${encodeURIComponent(postcode)}&key=${tokenString}`)
             .timeout(timeout);
-
           if (proxy) {
             request = request.proxy(proxy);
           }
 
           const { body, status } = yield request;
-          const addresses = body || [];
+          const addresses = body.results || [];
           const valid = Boolean(addresses.length);
-
           const error = status !== httpStatus.OK;
-
           return { valid, addresses, error };
         } catch (error) {
+          // eslint-disable-next-line no-magic-numbers
+          if (error.status === 400) {
+            // Do not return Bad Request error as it will be handled by custom logic
+            return {};
+          }
           return { error };
         }
       });

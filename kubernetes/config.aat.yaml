@@ -25,7 +25,7 @@ data:
   IDAM_SECRET: "${IDAM_SECRET}"
   IDAM_CLIENT_ID: "divorce"
   POST_CODE_ACCESS_TOKEN: "${POST_CODE_ACCESS_TOKEN}"
-  POST_CODE_URL: "https://postcodeinfo.service.justice.gov.uk"
+  POST_CODE_URL: "https://api.ordnancesurvey.co.uk/places/v1"
   PAYMENT_SERVICE_URL: "http://payment-api-aat.service.core-compute-aat.internal"
   PAYMENT_SERVICE_HEALTHCHECK_URL: "http://payment-api-aat.service.core-compute-aat.internal/health"
   PAYMENT_REFERENCE_SERVICE_IDENTIFICATION: "DIV1"

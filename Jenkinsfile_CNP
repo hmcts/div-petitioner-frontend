@@ -9,7 +9,7 @@ List<LinkedHashMap<String, Object>> secrets = [
   secret('session-secret', 'SESSION_SECRET'),
   secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
   secret('idam-secret', 'IDAM_SECRET'),
-  secret('post-code-token', 'POST_CODE_ACCESS_TOKEN'),
+  secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
   secret('frontend-secret', 'MICROSERVICE_KEY')
 ]
 

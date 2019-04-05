@@ -134,7 +134,7 @@ features:
   release520: false
   release520Desertion: true
   release530: false
-  showSystemMessage: false
+  showSystemMessage: true
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

@@ -238,7 +238,7 @@ variable "feature_release_530" {
 }
 
 variable "feature_show_system_message" {
-  default = false
+  default = true
 }
 
 variable "survey_feedback_url" {

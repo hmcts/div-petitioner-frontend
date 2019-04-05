@@ -18,7 +18,7 @@ data "azurerm_key_vault_secret" "idam_secret" {
 }
 
 data "azurerm_key_vault_secret" "post_code_token" {
-  name      = "post-code-token"
+  name      = "os-places-token"
   vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 

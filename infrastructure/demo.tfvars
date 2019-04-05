@@ -18,4 +18,4 @@ idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
 
 payment_service_url = "http://payment-api-demo.service.core-compute-demo.internal"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"

@@ -30,11 +30,12 @@
   "petitionerContactDetailsConfidential": "share",
   "petitionerHomeAddress": {
     "address": [
-      "80 Landor Road",
+      "80",
+      "Landor Road",
       "London",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -42,11 +43,12 @@
   "petitionerCorrespondenceUseHomeAddress": "Yes",
   "petitionerCorrespondenceAddress": {
     "address": [
-      "82 Landor Road",
+      "82",
+      "Landor Road",
       "London",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -60,7 +62,7 @@
       "London",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -72,7 +74,7 @@
       "London",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -87,7 +89,7 @@
       "London",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -104,7 +106,7 @@
       "London",
       "W6 0AT"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"

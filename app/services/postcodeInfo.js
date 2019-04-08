@@ -27,8 +27,7 @@ exports.client = (
           const error = status !== httpStatus.OK;
           return { valid, addresses, error };
         } catch (error) {
-          // eslint-disable-next-line no-magic-numbers
-          if (error.status === 400) {
+          if (error.status === httpStatus.BAD_REQUEST) {
             // Do not return Bad Request error as it will be handled by custom logic
             return {};
           }

@@ -187,7 +187,7 @@ describe(modulePath, () => {
 
         let ctx = { addressType: 'postcode', selectAddressIndex: '5', addresses, selectAddress: true };
         ctx = yield underTest.interceptor(ctx, {});
-        expect(ctx.address).to.deep.equal(addresses[5].formatted_address.split('\n'));
+        expect(ctx.address).to.deep.equal(addresses[5].DPA.ADDRESS.replace(/,\s/g, ',').split(','));
       }).then(done, done);
     });
 
@@ -197,7 +197,7 @@ describe(modulePath, () => {
         const expectedAddressBasedUK5 = {
           addressLine1: 'Divorced Org Unfun Department Box 99',
           addressLine2: 'The Splited Builing Aka Sad House 94 LANDOR ROAD',
-          addressLine3: 'Small Local Dependent Place',
+          addressLine3: 'Small Local Dependent Place Near the river',
           postCode: 'SW9 9PE',
           postTown: 'LONDON',
           county: '',

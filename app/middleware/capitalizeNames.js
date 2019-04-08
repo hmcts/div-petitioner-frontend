@@ -20,20 +20,32 @@ function capitalizeName(str) {
 }
 
 function capitalizeNames(req, res, next) {
-  req.session
-    .petitionerFirstName = capitalizeName(req.session.petitionerFirstName);
-  req.session
-    .petitionerLastName = capitalizeName(req.session.petitionerLastName);
-  req.session
-    .respondentFirstName = capitalizeName(req.session.respondentFirstName);
-  req.session
-    .respondentLastName = capitalizeName(req.session.respondentLastName);
-  req.session
-    .reasonForDivorceAdultery3rdPartyFirstName = capitalizeName(req
-      .session.reasonForDivorceAdultery3rdPartyFirstName);
-  req.session
-    .reasonForDivorceAdultery3rdPartyLastName = capitalizeName(req
-      .session.reasonForDivorceAdultery3rdPartyLastName);
+  if (req.session.petitionerFirstName) {
+    req.session
+      .petitionerFirstName = capitalizeName(req.session.petitionerFirstName);
+  }
+  if (req.session.petitionerLastName) {
+    req.session
+      .petitionerLastName = capitalizeName(req.session.petitionerLastName);
+  }
+  if (req.session.respondentFirstName) {
+    req.session
+      .respondentFirstName = capitalizeName(req.session.respondentFirstName);
+  }
+  if (req.session.respondentLastName) {
+    req.session
+      .respondentLastName = capitalizeName(req.session.respondentLastName);
+  }
+  if (req.session.reasonForDivorceAdultery3rdPartyFirstName) {
+    req.session
+      .reasonForDivorceAdultery3rdPartyFirstName = capitalizeName(req
+        .session.reasonForDivorceAdultery3rdPartyFirstName);
+  }
+  if (req.session.reasonForDivorceAdultery3rdPartyLastName) {
+    req.session
+      .reasonForDivorceAdultery3rdPartyLastName = capitalizeName(req
+        .session.reasonForDivorceAdultery3rdPartyLastName);
+  }
   next();
 }
 

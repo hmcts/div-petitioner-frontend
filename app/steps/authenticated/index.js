@@ -11,7 +11,7 @@ const runNext = (req, res, next) => {
   // if the previous session has expired
   // after user logged in then destroy it
   if (session.expires <= Date.now()) {
-    req.session.destroy(() => {
+    req.session.regenerate(() => {
       next();
     });
   } else {

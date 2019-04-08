@@ -27,6 +27,8 @@ const findNextUnAnsweredStep = function* (step, session = {}) {
 
   if (!nextStep) {
     return step;
+  } else if (!nextStep.isSkippable) {
+    return nextStep;
   }
 
   return yield findNextUnAnsweredStep(nextStep, session);

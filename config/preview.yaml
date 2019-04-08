@@ -1,4 +1,4 @@
-# This is used in E2E testing
+# This is used specifically E2E tests running in github pull requests
 
 showSitemap: true
 
@@ -10,8 +10,8 @@ session:
   ttl: 60 # s
 
 features:
-  idam: false
+  idam: true
   release510: true
-  release520: false
+  release520: true
   release520Desertion: true
-  release530: false
+  release530: true

@@ -63,7 +63,7 @@ withPipeline("nodejs", product, component) {
     //This is to force the loading of preview.yaml instead of testing.yaml in PRs
     env.NODE_CONFIG_ENV = 'preview'
   
-    // sh "curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/divorce -H 'Accept: application/json' -H 'Content-Type: application/json' -d '[{\"operation\": \"add\", \"field\": \"redirect_uri\", \"value\": \"${env.TEST_URL}/authenticated\"}]'"
+    sh "curl -X PATCH https://idam-api.aat.platform.hmcts.net/testing-support/services/divorce -H 'Accept: application/json' -H 'Content-Type: application/json' -d '[{\"operation\": \"add\", \"field\": \"redirect_uri\", \"value\": \"${env.TEST_URL}/authenticated\"}]'"
   }
 
   after('functionalTest:preview') {

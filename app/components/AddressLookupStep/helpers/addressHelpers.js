@@ -10,7 +10,7 @@ const buildAddressBaseUk = function(selectedAddress) {
   let line2 = `${selectedAddress.DPA.BUILDING_NAME} ${selectedAddress.DPA.SUB_BUILDING_NAME} ${selectedAddress.DPA.BUILDING_NUMBER} ${selectedAddress.DPA.THOROUGHFARE_NAME}`;
   let line3 = `${selectedAddress.DPA.DEPENDENT_LOCALITY} ${selectedAddress.DPA.DOUBLE_DEPENDENT_LOCALITY} ${selectedAddress.DPA.DEPENDENT_THOROUGHFARE_NAME}`;
 
-  if (line1.trim().length === 0) {
+  if (cleanLine(line1).length === 0) {
     line1 = line2;
     line2 = line3;
     line3 = '';

@@ -394,72 +394,91 @@ describe(modulePath, () => {
   });
 
   describe('Watched session values', () => {
-    const expectFieldsToBeRemoved = newSession => {
-      expect(newSession).not.to.have.property('livedApartEntireTime');
-      expect(newSession).not.to.have.property('livedTogetherMoreTimeThanPermitted');
-    };
+    const thisStepFields = [
+      'sepYears',
+      'livingTogetherMonths',
+      'livingTogetherWeeks',
+      'livingTogetherDays',
+      'liveTogetherPeriodRemainingDays',
+      'referenceDate',
+      'mostRecentSeparationDate',
+      'separationTimeTogetherPermitted',
+      'reasonForDivorceField',
+      'livedApartEntireTime',
+      'livedTogetherMoreTimeThanPermitted'
+    ];
 
-    const expectPropertyToExist = (newSession, shouldExists, propertyName) => {
-      if (shouldExists) {
-        expect(newSession)
-          .to.have.property(propertyName, newSession[propertyName]);
-      } else {
-        expect(newSession)
-          .not.to.have.property(propertyName);
-      }
-    };
-
-    const baseSession = {
-      livedApartEntireTime: 'No',
-      livedTogetherMoreTimeThanPermitted: 'No',
-      sepYears: '5',
-      dateBeforeSepYears: '20/07/2013',
-      livingTogetherMonths: '9',
-      livingTogetherWeeks: '4',
-      livingTogetherDays: '30',
-      liveTogetherPeriodRemainingDays: '2',
-      referenceDate: '20/01/2013',
-      reasonForDivorce: 'separation-2-years'
-    };
-
-    it('removes context if reasonForDivorceDecisionDateIsSameOrAfterLimitDate is changed', () => {
-      const previousSession = clone(baseSession);
-      previousSession.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = true;
+    it('removes all fields if reasonForDivorceLivingApartDateIsSameOrAfterLimitDate does not exsist', () => {
+      const previousSession = {
+        reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: true,
+        livedApartEntireTime: 'Yes',
+        livedTogetherMoreTimeThanPermitted: 'Yes',
+        separationTimeTogetherPermitted: 'some text'
+      };
 
       const session = clone(previousSession);
-      session.reasonForDivorceDecisionDateIsSameOrAfterLimitDate = false;
+      delete session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate;
 
       const newSession = removeStaleData(previousSession, session);
 
-      expect(newSession).not.to.have.property('livedTogetherMoreTimeThanPermitted');
-      expectPropertyToExist(newSession, true, 'reasonForDivorce');
+      thisStepFields.forEach(property => {
+        expect(newSession).not.to.have.property(property);
+      });
     });
 
-    it('removes context if reasonForDivorceLivingApartDate is changed', () => {
-      const prevSession = clone(baseSession);
-      prevSession.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = true;
+    it('removes all fields if reasonForDivorceLivingApartDateIsSameOrAfterLimitDate is true', () => {
+      const previousSession = {
+        reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: false,
+        livedApartEntireTime: 'Yes',
+        livedTogetherMoreTimeThanPermitted: 'Yes',
+        separationTimeTogetherPermitted: 'some text'
+      };
 
-      const session = clone(prevSession);
+      const session = clone(previousSession);
+      session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = true;
+
+      const newSession = removeStaleData(previousSession, session);
+
+      thisStepFields.forEach(property => {
+        expect(newSession).not.to.have.property(property);
+      });
+    });
+
+    it('removes all fields if reasonForDivorce changes', () => {
+      const previousSession = {
+        reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: false,
+        livedApartEntireTime: 'Yes',
+        livedTogetherMoreTimeThanPermitted: 'Yes',
+        separationTimeTogetherPermitted: 'some text',
+        reasonForDivorce: 'separation-5-years'
+      };
+
+      const session = clone(previousSession);
+      session.reasonForDivorce = 'separation-2-years';
+
+      const newSession = removeStaleData(previousSession, session);
+
+      thisStepFields.forEach(property => {
+        expect(newSession).not.to.have.property(property);
+      });
+    });
+
+    it('does not remove fields if reasonForDivorceLivingApartDateIsSameOrAfterLimitDate is false', () => {
+      const previousSession = {
+        reasonForDivorceLivingApartDateIsSameOrAfterLimitDate: true,
+        livedApartEntireTime: 'Yes',
+        livedTogetherMoreTimeThanPermitted: 'Yes',
+        separationTimeTogetherPermitted: 'some text'
+      };
+
+      const session = clone(previousSession);
       session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate = false;
 
-      const newSession = removeStaleData(prevSession, session);
-
-      expectFieldsToBeRemoved(newSession);
-      expectPropertyToExist(newSession, true, 'reasonForDivorce');
-    });
-
-
-    it('removes context if livedApartEntireTime is changed', () => {
-      const previousSession = clone(baseSession);
-      previousSession.livedApartEntireTime = 'No';
-
-      const session = clone(previousSession);
-      session.livedApartEntireTime = 'Yes';
-
       const newSession = removeStaleData(previousSession, session);
 
-      expect(newSession).not.to.have.property('livedTogetherMoreTimeThanPermitted');
-      expectPropertyToExist(newSession, true, 'reasonForDivorce');
+      expect(newSession).to.have.property('livedApartEntireTime');
+      expect(newSession).to.have.property('livedTogetherMoreTimeThanPermitted');
+      expect(newSession).to.have.property('separationTimeTogetherPermitted');
     });
   });
 

@@ -110,33 +110,31 @@ describe(modulePath, () => {
   });
 
   describe('Watch session values', () => {
-    it('removes reasonForDivorceAdulterySecondHandInfoDetails if reasonForDivorceAdulterySecondHandInfo is set to No', () => {
+    it('removes reasonForDivorceAdulterySecondHandInfoDetails if reasonForDivorce changes', () => {
       const previousSession = {
-        reasonForDivorceAdulterySecondHandInfo: 'Yes',
-        reasonForDivorceAdulterySecondHandInfoDetails: 'placeholder'
+        reasonForDivorceAdulterySecondHandInfoDetails: 'placeholder',
+        reasonForDivorce: 'adultery'
       };
 
       const session = clone(previousSession);
-      session.reasonForDivorceAdulterySecondHandInfo = 'No';
+      session.reasonForDivorce = 'seperation-2-years';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(newSession.reasonForDivorceAdulterySecondHandInfo).to.equal('No');
       expect(typeof newSession.reasonForDivorceAdulterySecondHandInfoDetails)
         .to.equal('undefined');
     });
 
-    it('removes reasonForDivorceAdulterySecondHandInfo and reasonForDivorceAdulterySecondHandInfoDetails if reasonForDivorce is not Adultery', () => {
+    it('removes reasonForDivorceAdulterySecondHandInfoDetails if reasonForDivorce changes', () => {
       const previousSession = {
         reasonForDivorceAdulterySecondHandInfo: 'Yes',
-        reasonForDivorceAdulterySecondHandInfoDetails: 'placeholder'
+        reasonForDivorce: 'adultery'
       };
 
       const session = clone(previousSession);
-      session.reasonForDivorce = 'Behaviour';
+      session.reasonForDivorce = 'seperation-2-years';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.reasonForDivorceAdulterySecondHandInfo).to.equal('undefined');
-      expect(typeof newSession.reasonForDivorceAdulterySecondHandInfoDetails)
+      expect(typeof newSession.reasonForDivorceAdulterySecondHandInfo)
         .to.equal('undefined');
     });
   });

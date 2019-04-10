@@ -1,7 +1,7 @@
 const CONF = require('config');
 const moment = require('moment');
 const ValidationStep = require('app/core/steps/ValidationStep');
-const { filter, some, isEmpty, map } = require('lodash');
+const { isEmpty, isUndefined } = require('lodash');
 const utils = require('app/services/utils');
 
 const DATE_FORMAT = CONF.dateFormat;
@@ -47,21 +47,27 @@ module.exports = class MarriageDate extends ValidationStep {
   validate(ctx) {
     let [isValid, errors] = super.validate(ctx); // eslint-disable-line prefer-const
 
+    // find marriageDate errors
+    const findMarriageDateError = error => {
+      return error.param === 'marriageDate';
+    };
+
+    // find date field errors
+    const dateFieldErrors = ['marriageDateDay', 'marriageDateMonth', 'marriageDateYear'];
+    const findDateFieldError = error => {
+      return dateFieldErrors.includes(error.param);
+    };
+
     if (!isEmpty(errors)) {
-      if (some(errors, error => {
-        return error.param === 'marriageDate';
-      })) {
-        errors = filter(errors, error => {
-          return !(/^day|month|year/.test(error.param));
-        });
+      // if no marriageDate then no dates have been entered so
+      if (isUndefined(ctx.marriageDate)) {
+        errors = errors.filter(findMarriageDateError);
       }
 
-      errors = map(errors, error => {
-        if (error.param === 'marriageDateIsFuture' || error.param === 'marriageDateMoreThan100') {
-          error.param = 'marriageDate';
-        }
-        return error;
-      });
+      // if any errors are date field errors only show date field errors
+      if (errors.find(findDateFieldError)) {
+        errors = errors.filter(findDateFieldError);
+      }
     }
 
     return [isValid, errors];

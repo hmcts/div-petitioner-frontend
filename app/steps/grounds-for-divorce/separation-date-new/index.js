@@ -36,16 +36,6 @@ module.exports = class SeparationDateNew extends ValidationStep {
 
     if (parseBool(config.features.release510)) {
       watch('reasonForDivorce', (previousSession, session, remove) => {
-        remove(
-          'reasonForDivorceSeperationDay',
-          'reasonForDivorceSeperationMonth',
-          'reasonForDivorceSeperationYear',
-          'reasonForDivorceSeperationDate',
-          'reasonForDivorceSeperationDateIsSameOrAfterLimitDate',
-          'reasonForDivorceSeperationDateInFuture',
-          'reasonForDivorceSeperationDateBeforeMarriageDate'
-        );
-
         if (session.reasonForDivorce !== 'separation-2-years' && session.reasonForDivorce !== 'separation-5-years') {
           remove(
             'reasonForDivorceDecisionDay',

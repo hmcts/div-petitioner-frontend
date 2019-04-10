@@ -2,7 +2,7 @@
 const request = require('supertest');
 const {
   testContent, testCYATemplate, testExistenceCYA,
-  testErrors, testRedirect
+  testRedirect, testValidation
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const moment = require('moment');
@@ -46,8 +46,7 @@ describe(modulePath, () => {
 
     it('renders error for missing required context', done => {
       const context = {};
-
-      testErrors(done, agent, stepUnderTest, context, content, 'marriageDate.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDate.required' ]);
     });
 
     it('renders error for missing day', done => {
@@ -57,7 +56,7 @@ describe(modulePath, () => {
         marriageDateYear: '2000'
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'day.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateDay.required' ]);
     });
 
     it('renders error for missing month', done => {
@@ -67,7 +66,7 @@ describe(modulePath, () => {
         marriageDateYear: '2000'
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'month.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateMonth.required' ]);
     });
 
     it('renders error for missing year', done => {
@@ -77,7 +76,7 @@ describe(modulePath, () => {
         marriageDateYear: ''
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'year.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateYear.required' ]);
     });
 
     it('renders error for invalid date', done => {
@@ -87,7 +86,7 @@ describe(modulePath, () => {
         marriageDateYear: '2013'
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'marriageDate.invalid');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDate.invalid' ]);
     });
 
     it('renders error for future date', done => {
@@ -99,7 +98,7 @@ describe(modulePath, () => {
         marriageDateYear: marriageDateInFuture.year()
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'isFuture.invalid');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateIsFuture.invalid' ]);
     });
 
     it('renders error for "more than 100 years in the past"', done => {
@@ -111,7 +110,7 @@ describe(modulePath, () => {
         marriageDateYear: marriageDateOld.year()
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'moreThan100.invalid');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateMoreThan100.invalid' ]);
     });
 
     it('redirects to the exit page when a date 1 year or less in the past is entered', done => {

@@ -28,8 +28,6 @@ feature_release_520 = "true"
 
 feature_release_520_desertion = "true"
 
-feature_release_530 = "true"
-
 court_service_centre_divorce_facts_ratio =  {
   "unreasonable-behaviour" = 1
   "separation-2-years" = 0

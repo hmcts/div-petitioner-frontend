@@ -3,7 +3,6 @@ project: PACKAGES_PROJECT
 environment: NODE_ENV
 version: PACKAGES_VERSION
 deployment_env: DEPLOYMENT_ENV
-preview_env: PREVIEW_ENV
 
 service:
   name: SERVICE_NAME
@@ -125,7 +124,6 @@ features:
   release510: FEATURE_RELEASE_510
   release520: FEATURE_RELEASE_520
   release520Desertion: FEATURE_RELEASE_520_DESERTION
-  release530: FEATURE_RELEASE_530
 
 idamArgs:
   idamApiUrl: IDAM_API_URL
@@ -146,6 +144,7 @@ e2e:
   defaultEnvironmentNodeEnv: E2E_FRONTEND_NODE_ENV
   waitForTimeoutValue: E2E_WAIT_FOR_TIMEOUT_VALUE
   waitForActionValue: E2E_WAIT_FOR_ACTION_VALUE
+  runBasicTests: RUN_BASIC_TESTS
 
 testUrl: TEST_URL
 divorceHttpProxy: DIVORCE_HTTP_PROXY

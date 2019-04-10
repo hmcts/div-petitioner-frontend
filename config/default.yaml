@@ -133,7 +133,6 @@ features:
   release510: true
   release520: false
   release520Desertion: true
-  release530: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'
@@ -183,6 +182,7 @@ e2e:
   defaultEnvironmentNodeEnv: 'development'
   waitForTimeoutValue: 10000
   waitForActionValue: 100
+  runBasicTests: false
 
 saucelabs:
   browser: 'chrome'

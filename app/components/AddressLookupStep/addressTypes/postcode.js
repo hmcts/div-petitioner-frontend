@@ -97,7 +97,8 @@ module.exports = {
       if (ctx.selectAddressIndex !== '-1' && ctx.addresses && ctx.addresses.length) {
         const address = ctx.addresses[ctx.selectAddressIndex];
         if (address && address.DPA.ADDRESS) {
-          ctx.address = address.DPA.ADDRESS.replace(/,\s/g, ',').split(',');
+          ctx.address = addressHelpers.buildConcatenatedAddress(
+            ctx.addresses[ctx.selectAddressIndex]);
           ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(
             ctx.addresses[ctx.selectAddressIndex]);
         } else {

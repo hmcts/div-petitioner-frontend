@@ -6,6 +6,7 @@ const modulePath = 'app/components/AddressLookupStep/addressTypes/postcode';
 const underTest = rewire(modulePath);
 
 const mockPostcodeClient = require('../mocks/postcodeInfo');
+const addressHelpers = require('../helpers/addressHelpers');
 
 describe(modulePath, () => {
   describe('#action', () => {
@@ -187,7 +188,8 @@ describe(modulePath, () => {
 
         let ctx = { addressType: 'postcode', selectAddressIndex: '5', addresses, selectAddress: true };
         ctx = yield underTest.interceptor(ctx, {});
-        expect(ctx.address).to.deep.equal(addresses[5].DPA.ADDRESS.replace(/,\s/g, ',').split(','));
+        expect(ctx.address).to.deep.equal(
+          addressHelpers.buildConcatenatedAddress(addresses[5]));
       }).then(done, done);
     });
 

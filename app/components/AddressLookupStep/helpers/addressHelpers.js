@@ -42,12 +42,23 @@ const buildConcatenatedAddress = function(address) {
     secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY} ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
   }
 
-  const concatenatedAddress = [
-    cleanLine(firstLine),
-    cleanLine(secondLine),
-    address.DPA.POSTCODE,
-    address.DPA.POST_TOWN
-  ];
+  let concatenatedAddress = [];
+
+  if (cleanLine(secondLine) === '') {
+    concatenatedAddress = [
+      cleanLine(firstLine),
+      address.DPA.POSTCODE,
+      address.DPA.POST_TOWN
+    ];
+  } else {
+    concatenatedAddress = [
+      cleanLine(firstLine),
+      cleanLine(secondLine),
+      address.DPA.POSTCODE,
+      address.DPA.POST_TOWN
+    ];
+  }
+
   return concatenatedAddress;
 };
 

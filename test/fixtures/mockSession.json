@@ -30,9 +30,8 @@
   "petitionerContactDetailsConfidential": "share",
   "petitionerHomeAddress": {
     "address": [
-      "80",
-      "Landor Road",
-      "London",
+      "80, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
     "postcode": "SW9 9PE",
@@ -43,9 +42,8 @@
   "petitionerCorrespondenceUseHomeAddress": "Yes",
   "petitionerCorrespondenceAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
     "postcode": "SW9 9PE",
@@ -57,9 +55,8 @@
   "respondentLastName": "William",
   "respondentHomeAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
     "postcode": "SW9 9PE",
@@ -69,9 +66,8 @@
   },
   "respondentCorrespondenceAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
     "postcode": "SW9 9PE",
@@ -84,9 +80,8 @@
   "respondentCorrespondenceSendToSolicitor": "Yes",
   "respondentSolicitorAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
     "postcode": "SW9 9PE",
@@ -101,9 +96,8 @@
   "livingArrangementsLiveTogether": "Yes",
   "livingArrangementsLastLivedTogetherAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "W6 0AT"
     ],
     "postcode": "SW9 9PE",
@@ -149,9 +143,8 @@
   "reasonForDivorceAdulteryIsNamed": "Yes",
   "reasonForDivorceAdultery3rdAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "W6 0AT"
     ],
     "postcode": "W6 0AT",

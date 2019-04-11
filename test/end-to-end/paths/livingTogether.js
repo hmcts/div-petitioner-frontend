@@ -2,7 +2,7 @@ const { mockSession } = require('test/fixtures');
 
 const petitionerAddress = mockSession.petitionerHomeAddress;
 const respondentAddress = {
-  address: ['82', 'Landor Road', 'London', 'SW9 9PE'],
+  address: ['82, LANDOR ROAD', 'LONDON', 'SW9 9PE'],
   postcode: 'SW9 9PE',
   addressConfirmed: 'true',
   addressType: 'postcode',

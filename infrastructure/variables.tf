@@ -406,7 +406,7 @@ variable "court_service_centre_phonenumber" {
 }
 
 variable "court_service_centre_siteid" {
-  default = "AA01"
+  default = "AA07"
 }
 
 variable "court_phone_number" {

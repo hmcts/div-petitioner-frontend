@@ -1,3 +1,8 @@
+idam-pr:
+  service:
+    name: divorce
+    redirect_uri: https://${SERVICE_FQDN}/authenticated
+
 nodejs:
     environment:
         APPINSIGHTS_INSTRUMENTATIONKEY: "dummykey"
@@ -30,6 +35,8 @@ nodejs:
         # TODO - this should be changed once we deploy AAT to AKS
         BASE_URL: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
         PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
+    tags:
+    - idam-pr
 
     # Don't modify below here
     image: ${IMAGE_NAME}

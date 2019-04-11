@@ -47,15 +47,17 @@ const buildConcatenatedAddress = function(address) {
   if (cleanLine(secondLine) === '') {
     concatenatedAddress = [
       cleanLine(firstLine),
-      address.DPA.POSTCODE,
-      address.DPA.POST_TOWN
+      address.DPA.POST_TOWN,
+      address.DPA.POSTCODE
+
     ];
   } else {
     concatenatedAddress = [
       cleanLine(firstLine),
       cleanLine(secondLine),
-      address.DPA.POSTCODE,
-      address.DPA.POST_TOWN
+      address.DPA.POST_TOWN,
+      address.DPA.POSTCODE
+
     ];
   }
 

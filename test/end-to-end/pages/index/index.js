@@ -4,9 +4,9 @@ const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
 
-function startApplication(ignoreIdamToggle = false) {
+function startApplication() {
 
-  if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
+  if (parseBool(CONF.features.idam)) {
     let I = this;
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());

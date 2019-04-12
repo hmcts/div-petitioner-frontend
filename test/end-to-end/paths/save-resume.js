@@ -99,9 +99,7 @@ Scenario('Delete application from draft petition store', function (I) {
   I.confirmRemoveApplication();
   I.seeCurrentUrlEquals('/exit/removed-saved-application');
 
-  const ignoreIdam = true;
   I.amOnLoadedPage('/index');
-  I.startApplication(ignoreIdam);
   I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
 });
 

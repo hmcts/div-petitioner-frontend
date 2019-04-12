@@ -131,7 +131,7 @@ commonProps:
 features:
   idam: false
   release510: true
-  release520: false
+  release520: true
   release520Desertion: true
 
 idamArgs:

@@ -31,4 +31,9 @@ module.exports = class DeleteApplication extends ValidationStep {
   get checkYourAnswersTemplate() {
     return false;
   }
+
+  // do not run the save draft post middleware
+  get postMiddleware() {
+    return [];
+  }
 };

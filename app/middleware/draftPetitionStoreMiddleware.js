@@ -138,7 +138,6 @@ const removeFromDraftStore = (req, res, next) => {
           logger.infoWithReq(req, 'Error restore after delete', error.message);
           next();
         });
-      next();
     })
     .catch(error => {
       logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);

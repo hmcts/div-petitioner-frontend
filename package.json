@@ -21,7 +21,7 @@
     "test:nsp": "echo 'skip'",
     "test:mutation": "./bin/run-mutation-tests.sh",
     "test:stryker": "NODE_ENV=testing NODE_PATH=. stryker run",
-    "sonar-scan": "echo 'skip'",
+    "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
     "test:smoke": "./bin/run-smoke-tests.sh",
     "test:functional": "./bin/run-functional-tests.sh",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",

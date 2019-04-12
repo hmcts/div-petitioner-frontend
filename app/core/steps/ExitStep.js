@@ -16,10 +16,12 @@ module.exports = class ExitStep extends Step {
     logger.infoWithReq(req, 'ExitStep', 'Entering PreResponse');
     return new Promise(resolve => {
       if (this.logout) {
+        logger.infoWithReq(req, req.session);
         req.session.regenerate(() => {
           logger.infoWithReq(req, 'ExitStep', 'Regenerating Session');
           resolve();
           logger.infoWithReq(req, 'ExitStep', 'Regenerated Session');
+          logger.infoWithReq(req, req.session);
         });
       } else {
         logger.infoWithReq(req, 'ExitStep', 'Not Regenerating');

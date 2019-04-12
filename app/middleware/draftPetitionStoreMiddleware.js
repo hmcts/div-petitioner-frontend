@@ -87,10 +87,11 @@ const restoreFromDraftStore = (req, res, next) => {
   const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
   const mockResponse = req.cookies.mockRestoreSession === 'true';
   const restoreSession = !hadFetchedFromDraftStore && (mockResponse || authToken);
-
+  logger.infoWithReq(req, 'rsty draft', hadFetchedFromDraftStore, authToken, mockResponse);
   if (!restoreSession) {
     return next();
   }
+  logger.infoWithReq(req, 'restore drafty');
 
   // set flag so we do not attempt to restore from draft store again
   req.session.fetchedDraft = true;
@@ -98,6 +99,7 @@ const restoreFromDraftStore = (req, res, next) => {
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
     .then(draftStoreResponse => {
+      logger.infoWithReq(req, 'restoring', 'Successfully restorey draft', draftStoreResponse);
       if (isEmpty(draftStoreResponse)) {
         return next();
       }

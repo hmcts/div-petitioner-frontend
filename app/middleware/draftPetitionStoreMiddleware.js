@@ -132,9 +132,11 @@ const removeFromDraftStore = (req, res, next) => {
           logger.infoWithReq(req, 'Get after delete', response);
           logger.infoWithReq(req, 'split');
           logger.infoWithReq(req, response);
+          next();
         })
         .catch(error => {
           logger.infoWithReq(req, 'Error restore after delete', error.message);
+          return res.redirect('/generic-error');
         });
       next();
     })

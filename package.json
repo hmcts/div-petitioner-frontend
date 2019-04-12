@@ -17,7 +17,7 @@
     "setup": "NODE_PATH=. grunt setup-prod",
     "test": "echo 'skip'",
     "test:coverage": "echo 'skip'",
-    "test:a11y": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/accessibility/ --reporter spec --recursive --timeout 15000",
+    "test:a11y": "echo 'skip'",
     "test:nsp": "nsp check --preprocessor yarn",
     "test:mutation": "./bin/run-mutation-tests.sh",
     "test:stryker": "NODE_ENV=testing NODE_PATH=. stryker run ",

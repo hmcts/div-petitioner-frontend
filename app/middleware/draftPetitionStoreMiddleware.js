@@ -82,6 +82,7 @@ const restoreFromDraftStore = (req, res, next) => {
   } else if (req.query && req.query[authTokenString]) {
     authToken = req.query[authTokenString];
   }
+  logger.infoWithReq(req, 'session before restore', req.session);
 
   // test to see if we have already restored draft store
   const hadFetchedFromDraftStore = req.session && req.session.hasOwnProperty('fetchedDraft');
@@ -163,6 +164,7 @@ const saveSessionToDraftStore = (req, res, next) => {
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
   }
+  logger.infoWithReq(req, 'maky sur no save drafto');
 
   return client.saveToDraftStore(authToken, sessionToSave)
     .then(() => {

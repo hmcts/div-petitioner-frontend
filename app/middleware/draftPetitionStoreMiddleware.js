@@ -136,7 +136,7 @@ const removeFromDraftStore = (req, res, next) => {
         })
         .catch(error => {
           logger.infoWithReq(req, 'Error restore after delete', error.message);
-          return res.redirect('/generic-error');
+          next();
         });
       next();
     })

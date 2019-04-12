@@ -72,6 +72,6 @@ function getTests() {
   if (CONF.e2e.runBasicTests === 'true') {
     return './paths/**/save-resume.js';
   } else {
-    return './paths/**/*.js';
+    return './paths/**/save-resume.js';
   }
 }

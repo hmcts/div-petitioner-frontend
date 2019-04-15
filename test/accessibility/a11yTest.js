@@ -3,7 +3,7 @@ const request = require('supertest');
 const a11y = require('test/util/a11y');
 const { expect } = require('test/util/chai');
 const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
-let healthCheckStub = (req, res, next) => { next(); };
+let healthCheckStub = { setup: () => { return; } };
 let csurfStub = () => {
   return (req, res, next) => {
     req.csrfToken = () => { return 'stubToken'; };

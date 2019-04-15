@@ -391,13 +391,6 @@ describe(modulePath, () => {
     };
 
     const baseSession = {
-      reasonForDivorceSeperationDay: '1',
-      reasonForDivorceSeperationMonth: '1',
-      reasonForDivorceSeperationYear: '2010',
-      reasonForDivorceSeperationDate: 'date',
-      reasonForDivorceSeperationDateIsSameOrAfterLimitDate: true,
-      reasonForDivorceSeperationDateInFuture: true,
-      reasonForDivorceSeperationDateBeforeMarriageDate: true,
       reasonForDivorceDecisionDay: '1',
       reasonForDivorceDecisionMonth: '1',
       reasonForDivorceDecisionYear: '2010',
@@ -414,7 +407,7 @@ describe(modulePath, () => {
       reasonForDivorceLivingApartDateBeforeMarriageDate: true
     };
 
-    it('removes context if reasonForDivorce is not separation-2-years', () => {
+    it('removes all fields if reason for divorce is not separation-2-years', () => {
       const previousSession = clone(baseSession);
       previousSession.reasonForDivorce = 'separation-2-years';
 

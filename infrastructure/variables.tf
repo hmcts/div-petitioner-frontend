@@ -226,15 +226,11 @@ variable "feature_release_510" {
 }
 
 variable "feature_release_520" {
-  default = false
+  default = true
 }
 
 variable "feature_release_520_desertion" {
   default = true
-}
-
-variable "feature_release_530" {
-  default = false
 }
 
 variable "survey_feedback_url" {
@@ -410,7 +406,7 @@ variable "court_service_centre_phonenumber" {
 }
 
 variable "court_service_centre_siteid" {
-  default = "AA01"
+  default = "AA07"
 }
 
 variable "court_phone_number" {

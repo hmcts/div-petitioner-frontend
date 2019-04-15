@@ -1,6 +1,6 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
-const capitalizeNames = require('app/middleware/capitalizeNames');
+const capitalizeName = require('app/core/utils/capitalizeName');
 
 module.exports = class Adultery3rdPartyDetails extends ValidationStep {
   get url() {
@@ -20,10 +20,12 @@ module.exports = class Adultery3rdPartyDetails extends ValidationStep {
       }
     });
   }
-  get postMiddleware() {
-    return [
-      capitalizeNames,
-      ...super.postMiddleware
-    ];
+
+  action(ctx, session) {
+    ctx.reasonForDivorceAdultery3rdPartyFirstName = capitalizeName(ctx
+      .reasonForDivorceAdultery3rdPartyFirstName);
+    ctx.reasonForDivorceAdultery3rdPartyLastName = capitalizeName(ctx
+      .reasonForDivorceAdultery3rdPartyLastName);
+    return [ctx, session];
   }
 };

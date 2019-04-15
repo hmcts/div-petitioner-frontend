@@ -9,7 +9,6 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
-const capitalizeNames = require('app/middleware/capitalizeNames');
 
 const modulePath = 'app/steps/grounds-for-divorce/adultery/3rd-party/details';
 
@@ -29,14 +28,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-  });
-
-  describe('#middleware', () => {
-    it('includes capitalizeNames in middleware', () => {
-      expect(underTest.postMiddleware
-        .includes(capitalizeNames))
-        .to.eql(true);
-    });
   });
 
   describe('success', () => {

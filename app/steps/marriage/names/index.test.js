@@ -6,10 +6,8 @@ const {
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const capitalizeNames = require('app/middleware/capitalizeNames');
 
 const modulePath = 'app/steps/marriage/names';
-const { expect } = require('test/util/chai');
 const content = require(`${modulePath}/content`);
 
 let s = {};
@@ -26,14 +24,6 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
-  });
-
-  describe('#middleware', () => {
-    it('includes capitalizeNames in middleware', () => {
-      expect(underTest.postMiddleware
-        .includes(capitalizeNames))
-        .to.eql(true);
-    });
   });
 
   describe('content', () => {

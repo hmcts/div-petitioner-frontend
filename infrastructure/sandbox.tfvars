@@ -12,9 +12,9 @@ http_proxy = ""
 
 google_analytics_tracking_id = "TBD"
 
-idam_authentication_web_url = "https://idam-test.dev.ccidam.reform.hmcts.net"
+idam_authentication_web_url = "https://idam-web-public-idam-sandbox.service.core-compute-idam-sandbox.internal"
 
-idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
+idam_api_url = "http://idam-api-idam-sandbox.service.core-compute-idam-sandbox.internal"
 
 payment_service_url = "http://payment-api-saat.service.core-compute-saat.internal"
 

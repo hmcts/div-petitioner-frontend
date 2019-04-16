@@ -6,7 +6,7 @@ String product = "div"
 String component = "pfe"
 
 List<LinkedHashMap<String, Object>> secrets = [
-  secret('session-secret', 'SESSION_SECRET'),
+  secret('session-secret', 'SECRET'),
   secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
   secret('idam-secret', 'IDAM_SECRET'),
   secret('post-code-token', 'POST_CODE_ACCESS_TOKEN'),
@@ -29,7 +29,7 @@ withPipeline("nodejs", product, component) {
       env.RUN_BASIC_TESTS = "true"
     } else {
       enableDockerBuild()
-      enableDeployToAKS()
+      installCharts()
       loadVaultSecrets(secrets)
       setVaultName('div')
     }

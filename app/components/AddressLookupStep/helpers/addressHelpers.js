@@ -2,7 +2,8 @@ const cleanLine = function(line) {
   return line.replace(' null', ' ').replace('null ', ' ')
     .replace(/undefined/g, '')
     .replace(/ +/g, ' ')
-    .trim();
+    .trim()
+    .replace(/^,/g, '');
 };
 
 const buildAddressBaseUk = function(selectedAddress) {

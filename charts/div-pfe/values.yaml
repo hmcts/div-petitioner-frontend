@@ -1,0 +1,48 @@
+nodejs:
+    applicationPort: 8080
+    environment:
+        REFORM_SERVICE_NAME: "pfs"
+        REFORM_TEAM: "div"
+        EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
+        GOOGLE_ANALYTICS_TRACKING_URL: "http://www.google-analytics.com/collect"
+        HPKP_MAX_AGE: "86400"
+        HPKP_SHAS: "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
+        IDAM_CLIENT_ID: "divorce"
+        MICROSERVICE_NAME: "divorce_frontend"
+        NODE_ENV: "production"
+        NODE_PATH: "."
+        POST_CODE_URL: "https://postcodeinfo.service.justice.gov.uk"
+        RATE_LIMITER_ENABLED: "false"
+        RATE_LIMITER_EXPIRE: "3600000"
+        RATE_LIMITER_TOTAL: "3600"
+        # Court Details
+        COURT_EMAIL: "divorce@justice.gov.uk"
+        COURT_OPENINGHOURS: "Monday to Friday, 8.30am to 5pm"
+        COURT_PHONENUMBER: "0300 303 0642"
+        COURT_SERVICE_CENTRE_NAME: "East Midlands Regional Divorce Centre"
+        COURT_SERVICE_CENTRE_CITY: "Nottingham"
+        COURT_SERVICE_CENTRE_POBOX: "PO Box 10447"
+        COURT_SERVICE_CENTRE_POSTCODE: "NG2 9QN"
+        COURT_SERVICE_CENTRE_EMAIL: "divorcecase@justice.gov.uk"
+        COURT_SERVICE_CENTRE_OPENINGHOURS: "Telephone Enquiries from: 8.30am to 5pm"
+        COURT_SERVICE_CENTRE_PHONENUMBER: "0300 303 0642"
+        COURT_SERVICE_CENTRE_SITEID: "CTSC"
+        SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"
+    keyVaults:
+        "div":
+            resourceGroup: div
+            secrets:
+                - session-secret
+                - redis-secret
+                - idam-secret
+                - post-code-token
+                - frontend-secret
+
+redis:
+    cluster:
+        enabled: false
+        slaveCount: 0
+    usePassword: false
+    master:
+        persistence:
+            enabled: false

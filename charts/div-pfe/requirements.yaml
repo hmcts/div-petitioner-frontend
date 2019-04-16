@@ -1,0 +1,12 @@
+dependencies:
+   - name: nodejs
+     version: 1.0.0
+     repository: '@hmcts'
+   - name: redis
+     version: 5.1.2
+     repository: '@stable'
+   - name: idam-pr
+     version: ~1.0.0
+     repository: '@hmcts'
+     tags:
+     - idam-pr

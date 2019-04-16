@@ -1,5 +1,11 @@
 const appInsights = require('applicationinsights');
-const CONF = require('config');
+const CONF = require('@hmcts/properties-volume').addTo(require('config'));
+const setupSecrets = require('app/core/setup/setupSecrets');
+
+// Populate secrets from filesystem when not automated testing
+if (CONF.environment !== 'testing') {
+  setupSecrets.setup();
+}
 
 const listenForConnections = true;
 

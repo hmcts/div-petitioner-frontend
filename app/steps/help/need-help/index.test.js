@@ -13,9 +13,6 @@ const modulePath = 'app/steps/help/need-help';
 const { withSession } = require('test/util/setup');
 const content = require(`${modulePath}/content`);
 
-const parseBool = require('app/core/utils/parseBool');
-const config = require('config');
-
 let s = {};
 let agent = {};
 let underTest = {};
@@ -54,12 +51,7 @@ describe(modulePath, () => {
 
     it('renders the content from the content file', done => {
       const excludeKeys = [ 'explanation' ];
-      let dataContent = {};
-      if (parseBool(config.features.release520)) {
-        dataContent = { feeToBePaid: '95' };
-      } else {
-        dataContent = { feeToBePaid: '550' };
-      }
+      const dataContent = { feeToBePaid: '95' };
       testContent(
         done,
         agent,

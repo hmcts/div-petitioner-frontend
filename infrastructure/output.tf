@@ -9,15 +9,3 @@ output "case_orchestration_service_draft_url" {
 output "feature_idam" {
   value = "${var.feature_idam}"
 }
-
-output "feature_release_510" {
-  value = "${var.feature_release_510}"
-}
-
-output "feature_release_520" {
-  value = "${var.feature_release_520}"
-}
-
-output "feature_release_520_desertion" {
-  value = "${var.feature_release_520_desertion}"
-}

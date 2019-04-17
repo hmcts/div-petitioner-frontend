@@ -20,6 +20,10 @@ describe(modulePath, () => {
   });
 
   describe('success', () => {
+    it('does not have a postMiddleware', () => {
+      expect(underTest.postMiddleware).to.eql([]);
+    });
+
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content);
     });

@@ -18,4 +18,4 @@ idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
 
 payment_service_url = "http://payment-api-saat.service.core-compute-saat.internal"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"

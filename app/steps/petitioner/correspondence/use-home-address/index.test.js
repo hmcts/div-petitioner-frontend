@@ -38,7 +38,7 @@ describe(modulePath, () => {
     });
 
     it('renders the previously selected address', done => {
-      testExistence(done, agent, underTest, 'Landor Road');
+      testExistence(done, agent, underTest, 'LANDOR ROAD');
     });
 
     it('redirects to the petitioner confidential page', done => {

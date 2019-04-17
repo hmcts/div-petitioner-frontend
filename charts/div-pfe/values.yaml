@@ -11,7 +11,7 @@ nodejs:
         MICROSERVICE_NAME: "divorce_frontend"
         NODE_ENV: "production"
         NODE_PATH: "."
-        POST_CODE_URL: "https://postcodeinfo.service.justice.gov.uk"
+        POST_CODE_URL: "https://api.ordnancesurvey.co.uk/places/v1"
         RATE_LIMITER_ENABLED: "false"
         RATE_LIMITER_EXPIRE: "3600000"
         RATE_LIMITER_TOTAL: "3600"
@@ -35,7 +35,7 @@ nodejs:
                 - session-secret
                 - redis-secret
                 - idam-secret
-                - post-code-token
+                - os-places-token
                 - frontend-secret
 
 redis:

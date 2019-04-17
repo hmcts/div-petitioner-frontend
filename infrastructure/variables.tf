@@ -198,7 +198,7 @@ variable "fees_and_payments_url" {
 }
 
 variable "post_code_url" {
-  default = "https://postcodeinfo.service.justice.gov.uk"
+  default = "https://api.ordnancesurvey.co.uk/places/v1"
 }
 
 variable "hpkp_max_age" {

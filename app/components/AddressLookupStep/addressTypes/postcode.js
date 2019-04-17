@@ -73,7 +73,6 @@ module.exports = {
         addresses,
         error
       } = yield postcodeLookupClient.lookupPostcode(ctx.postcode);
-
       if (error) {
         delete ctx.searchPostcode;
         ctx.postcodeError = 'true';
@@ -97,8 +96,9 @@ module.exports = {
 
       if (ctx.selectAddressIndex !== '-1' && ctx.addresses && ctx.addresses.length) {
         const address = ctx.addresses[ctx.selectAddressIndex];
-        if (address && address.formatted_address) {
-          ctx.address = address.formatted_address.split('\n');
+        if (address && address.DPA.ADDRESS) {
+          ctx.address = addressHelpers.buildConcatenatedAddress(
+            ctx.addresses[ctx.selectAddressIndex]);
           ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(
             ctx.addresses[ctx.selectAddressIndex]);
         } else {

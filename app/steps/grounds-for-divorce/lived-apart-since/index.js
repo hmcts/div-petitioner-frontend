@@ -1,7 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
-const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
 const {
   getSepYears, getLivingTogetherMonths,
@@ -62,20 +60,18 @@ module.exports = class LivedApartSince extends ValidationStep {
       'livedTogetherMoreTimeThanPermitted'
     ];
 
-    if (parseBool(config.features.release510)) {
-      watch(['reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'], (previousSession, session, remove) => {
-        const isSameOrAfterLimitDateDoesNotExsits = !session.hasOwnProperty('reasonForDivorceLivingApartDateIsSameOrAfterLimitDate');
-        const isSameOrAfterLimitDateIsTrue = session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate && session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate === true;
+    watch(['reasonForDivorceLivingApartDateIsSameOrAfterLimitDate'], (previousSession, session, remove) => {
+      const isSameOrAfterLimitDateDoesNotExsits = !session.hasOwnProperty('reasonForDivorceLivingApartDateIsSameOrAfterLimitDate');
+      const isSameOrAfterLimitDateIsTrue = session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate && session.reasonForDivorceLivingApartDateIsSameOrAfterLimitDate === true;
 
-        if (isSameOrAfterLimitDateDoesNotExsits || isSameOrAfterLimitDateIsTrue) {
-          remove(...thisStepFields);
-        }
-      });
-
-      watch(['reasonForDivorce'], (previousSession, session, remove) => {
+      if (isSameOrAfterLimitDateDoesNotExsits || isSameOrAfterLimitDateIsTrue) {
         remove(...thisStepFields);
-      });
-    }
+      }
+    });
+
+    watch(['reasonForDivorce'], (previousSession, session, remove) => {
+      remove(...thisStepFields);
+    });
   }
 
   interceptor(ctx, session) {

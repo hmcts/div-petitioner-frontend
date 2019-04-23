@@ -235,8 +235,5 @@ module "frontend" {
 
     // Feature toggling through config
     FEATURE_IDAM                               = "${var.feature_idam}"
-    FEATURE_RELEASE_510                        = "${var.feature_release_510}"
-    FEATURE_RELEASE_520                        = "${var.feature_release_520}"
-    FEATURE_RELEASE_520_DESERTION              = "${var.feature_release_520_desertion}"
   }
 }

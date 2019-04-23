@@ -9,9 +9,6 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
-const config = require('config');
-const featureToggleConfig = require('test/util/featureToggles');
-const parseBool = require('app/core/utils/parseBool');
 
 const modulePath = 'app/steps/grounds-for-divorce/adultery/details';
 
@@ -58,20 +55,10 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
-    it('redirects to Second Hand Info page if feature toggle is on', done => {
+    it('redirects to Second Hand Info page', done => {
       const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
-      const featureTest = featureToggleConfig
-        .when('release520', true, testRedirect, agent, underTest, context, s.steps.AdulterySecondHandInfo);
-
-      featureTest(done);
-    });
-
-    it('redirects to Legal Proceeding page if feature toggle is off', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
-      const featureTest = featureToggleConfig
-        .when('release520', false, testRedirect, agent, underTest, context, s.steps.LegalProceedings);
-
-      featureTest(done);
+      testRedirect(done, agent, underTest, context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -114,28 +101,14 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
-    it('redirects to the next page when 520 feature flag is on', done => {
+    it('redirects to the next page', done => {
       const context = {
         reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
         reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
-      const featureTest = featureToggleConfig
-        .when('release520', true, testRedirect, agent, underTest, context, s.steps.AdulterySecondHandInfo);
-
-      featureTest(done);
-    });
-
-    it('redirects to the next page when 520 feature flag is off', done => {
-      const context = {
-        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
-        reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
-      };
-
-      const featureTest = featureToggleConfig
-        .when('release520', false, testRedirect, agent, underTest, context, s.steps.LegalProceedings);
-
-      featureTest(done);
+      testRedirect(done, agent, underTest, context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -184,21 +157,12 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.'
       };
 
-      if (parseBool(config.features.release520)) {
-        testRedirect(
-          done,
-          agent,
-          underTest,
-          context,
-          s.steps.AdulterySecondHandInfo);
-      } else {
-        testRedirect(
-          done,
-          agent,
-          underTest,
-          context,
-          s.steps.LegalProceedings);
-      }
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -245,21 +209,12 @@ describe(modulePath, () => {
         reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
-      if (parseBool(config.features.release520)) {
-        testRedirect(
-          done,
-          agent,
-          underTest,
-          context,
-          s.steps.AdulterySecondHandInfo);
-      } else {
-        testRedirect(
-          done,
-          agent,
-          underTest,
-          context,
-          s.steps.LegalProceedings);
-      }
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 

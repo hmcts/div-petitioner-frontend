@@ -4,8 +4,6 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 const utils = require('app/services/utils');
 const { filter, some, isEmpty, map } = require('lodash');
 const { watch } = require('app/core/helpers/staleDataManager');
-const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
 const DATE_FORMAT = CONF.dateFormat;
 
@@ -34,28 +32,26 @@ module.exports = class SeparationDateNew extends ValidationStep {
   constructor(...args) {
     super(...args);
 
-    if (parseBool(config.features.release510)) {
-      watch('reasonForDivorce', (previousSession, session, remove) => {
-        if (session.reasonForDivorce !== 'separation-2-years' && session.reasonForDivorce !== 'separation-5-years') {
-          remove(
-            'reasonForDivorceDecisionDay',
-            'reasonForDivorceDecisionMonth',
-            'reasonForDivorceDecisionYear',
-            'reasonForDivorceDecisionDate',
-            'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
-            'reasonForDivorceDecisionDateInFuture',
-            'reasonForDivorceDecisionDateBeforeMarriageDate',
-            'reasonForDivorceLivingApartDay',
-            'reasonForDivorceLivingApartMonth',
-            'reasonForDivorceLivingApartYear',
-            'reasonForDivorceLivingApartDate',
-            'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate',
-            'reasonForDivorceLivingApartDateInFuture',
-            'reasonForDivorceLivingApartDateBeforeMarriageDate'
-          );
-        }
-      });
-    }
+    watch('reasonForDivorce', (previousSession, session, remove) => {
+      if (session.reasonForDivorce !== 'separation-2-years' && session.reasonForDivorce !== 'separation-5-years') {
+        remove(
+          'reasonForDivorceDecisionDay',
+          'reasonForDivorceDecisionMonth',
+          'reasonForDivorceDecisionYear',
+          'reasonForDivorceDecisionDate',
+          'reasonForDivorceDecisionDateIsSameOrAfterLimitDate',
+          'reasonForDivorceDecisionDateInFuture',
+          'reasonForDivorceDecisionDateBeforeMarriageDate',
+          'reasonForDivorceLivingApartDay',
+          'reasonForDivorceLivingApartMonth',
+          'reasonForDivorceLivingApartYear',
+          'reasonForDivorceLivingApartDate',
+          'reasonForDivorceLivingApartDateIsSameOrAfterLimitDate',
+          'reasonForDivorceLivingApartDateInFuture',
+          'reasonForDivorceLivingApartDateBeforeMarriageDate'
+        );
+      }
+    });
   }
 
   interceptor(ctx, session) {

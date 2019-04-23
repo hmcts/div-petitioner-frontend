@@ -22,12 +22,6 @@ post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 dev_support_notification_email = "divorce-team-a@hmcts.net"
 
-feature_release_510 = "true"
-
-feature_release_520 = "true"
-
-feature_release_520_desertion = "true"
-
 court_service_centre_divorce_facts_ratio =  {
   "unreasonable-behaviour" = 1
   "separation-2-years" = 0

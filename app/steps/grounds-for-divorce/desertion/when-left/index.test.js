@@ -11,7 +11,6 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
-const featureToggleConfig = require('test/util/featureToggles');
 
 const modulePath = 'app/steps/grounds-for-divorce/desertion/when-left';
 
@@ -134,7 +133,7 @@ describe(modulePath, () => {
         content, 'reasonForDivorceDesertionDateInFuture.invalid');
     });
 
-    it('redirects to the next page if desertion not enabled', done => {
+    it('redirects to the next page', done => {
       const THREE_YEARS = 3;
 
       const reasonForDivorceDesertionDate3YearsAgo = moment().subtract(THREE_YEARS, 'years');
@@ -148,30 +147,7 @@ describe(modulePath, () => {
           reasonForDivorceDesertionDate3YearsAgo.year()
       };
 
-      const featureTest = featureToggleConfig
-        .when('release520Desertion', false, testRedirect, agent, underTest, context, s.steps.DesertionDetails);
-
-      featureTest(done);
-    });
-
-    it('redirects to the next page if desertion enabled', done => {
-      const THREE_YEARS = 3;
-
-      const reasonForDivorceDesertionDate3YearsAgo = moment().subtract(THREE_YEARS, 'years');
-
-      const context = {
-        reasonForDivorceDesertionDay:
-          reasonForDivorceDesertionDate3YearsAgo.date(),
-        reasonForDivorceDesertionMonth:
-          reasonForDivorceDesertionDate3YearsAgo.month() + 1,
-        reasonForDivorceDesertionYear:
-          reasonForDivorceDesertionDate3YearsAgo.year()
-      };
-
-      const featureTest = featureToggleConfig
-        .when('release520Desertion', true, testRedirect, agent, underTest, context, s.steps.LivedApartSince);
-
-      featureTest(done);
+      testRedirect(done, agent, underTest, context, s.steps.LivedApartSince);
     });
 
     it('redirects to the exit page', done => {

@@ -4,7 +4,6 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 const { filter, some, map } = require('lodash');
 const utils = require('app/services/utils');
 const { watch } = require('app/core/helpers/staleDataManager');
-const parseBool = require('app/core/utils/parseBool');
 
 const DATE_FORMAT = CONF.dateFormat;
 const TWO_YEARS = 2;
@@ -17,7 +16,7 @@ module.exports = class DesertionDate extends ValidationStep {
   get nextStep() {
     return {
       reasonForDivorceDesertionAlright: {
-        true: parseBool(CONF.features.release520Desertion) ? this.steps.LivedApartSince : this.steps.DesertionDetails,
+        true: this.steps.LivedApartSince,
         false: this.steps.ExitDesertionDate
       }
     };

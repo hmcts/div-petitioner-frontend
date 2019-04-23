@@ -221,18 +221,6 @@ variable "feature_idam" {
   default = true
 }
 
-variable "feature_release_510" {
-  default = true
-}
-
-variable "feature_release_520" {
-  default = true
-}
-
-variable "feature_release_520_desertion" {
-  default = true
-}
-
 variable "survey_feedback_url" {
   default = "http://www.smartsurvey.co.uk/s/0QIL4"
 }

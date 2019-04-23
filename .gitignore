@@ -27,3 +27,4 @@ package-lock.json
 functional-output
 .stryker-tmp
 local*.yaml
+.scannerwork/

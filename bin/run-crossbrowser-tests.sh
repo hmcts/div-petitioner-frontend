@@ -5,6 +5,7 @@ set -ex
 export E2E_FRONTEND_URL=${TEST_URL}
 export FEATURE_IDAM=true
 export IDAM_API_URL=${IDAM_API_URL:-"https://idam-api.aat.platform.hmcts.net"}
+export IGNORE_SESSION_VALIDATION=true
 
 EXIT_STATUS=0
 BROWSER_GROUP=microsoft yarn test-crossbrowser-e2e || EXIT_STATUS=$?

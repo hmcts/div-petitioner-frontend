@@ -15,6 +15,7 @@ Scenario('Redirects to cookie error page if start application with no cookies', 
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();
-  I.amOnLoadedPage('/authenticated');
+  //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
+  I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
   I.seeCurrentUrlEquals('/cookie-error');
 });

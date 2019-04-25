@@ -11,7 +11,7 @@
         },
         "respondentSolicitorEmail": {
             "type": "string",
-            "pattern": "^.+@.+[.].+$"
+            "format": "email"
         },
         "respondentSolicitorPhoneNumber": {
             "type": "string",

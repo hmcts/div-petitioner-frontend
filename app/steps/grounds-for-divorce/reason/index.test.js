@@ -10,7 +10,6 @@ const { clone } = require('lodash');
 const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
-const featureToggleConfig = require('test/util/featureToggles');
 
 const modulePath = 'app/steps/grounds-for-divorce/reason';
 
@@ -73,22 +72,10 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context, s.steps.DesertionAgree);
     });
 
-    it('redirects to the respondent consent page when 2 year separation is selected and release520 is on', done => {
+    it('redirects to the respondent consent page when 2 year separation is selected', done => {
       const context = { reasonForDivorce: 'separation-2-years' };
 
-      const featureTest = featureToggleConfig
-        .when(['release520'], [true], testRedirect, agent, underTest, context, s.steps.RespondentConsent);
-
-      featureTest(done);
-    });
-
-    it('redirects to the separation date page when 2 year separation is selected and release520 is off', done => {
-      const context = { reasonForDivorce: 'separation-2-years' };
-
-      const featureTest = featureToggleConfig
-        .when(['release520'], [false], testRedirect, agent, underTest, context, s.steps.SeparationDate);
-
-      featureTest(done);
+      testRedirect(done, agent, underTest, context, s.steps.RespondentConsent);
     });
 
     it('redirects to the new separation date page when 5 year separation is selected', done => {

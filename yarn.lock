@@ -9081,10 +9081,10 @@ socks@^1.1.10:
     ip "^1.1.4"
     smart-buffer "^1.0.13"
 
-sonar-scanner@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/sonar-scanner/-/sonar-scanner-1.0.1.tgz#09ec309e30e5e9570a4ccaf21dcc1adc2b1856c5"
-  integrity sha1-CewwnjDl6VcKTMryHcwa3CsYVsU=
+sonar-scanner@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/sonar-scanner/-/sonar-scanner-3.1.0.tgz#51c1c1101f54b98abc5d8565209b1d9232979343"
+  integrity sha1-UcHBEB9UuYq8XYVlIJsdkjKXk0M=
 
 sort-keys@^1.0.0:
   version "1.1.2"

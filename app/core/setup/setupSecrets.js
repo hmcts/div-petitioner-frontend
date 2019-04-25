@@ -13,7 +13,7 @@ const setup = () => {
     setSecret('secrets.div.session-secret', 'secret');
     setSecret('secrets.div.redis-secret', 'sessionEncryptionSecret');
     setSecret('secrets.div.idam-secret', 'idamArgs.idamSecret');
-    setSecret('secrets.div.post-code-token', 'services.postcodeInfo.token');
+    setSecret('secrets.div.os-places-token', 'services.postcodeInfo.token');
     setSecret('secrets.div.frontend-secret', 'services.serviceAuthProvider.microserviceKey');
   }
 };

@@ -2,20 +2,14 @@ const supportedBrowsers = {
   microsoft: {
     ie11_win10: {
       browserName: 'internet explorer',
-      name: 'IE11_Win10',
+      name: 'IE11',
       platform: 'Windows 10',
-      ignoreZoomSetting: true,
-      nativeEvents: false,
-      ignoreProtectedModeSettings: true,
       version: '11.285'
     },
     edge_win10: {
       browserName: 'MicrosoftEdge',
       name: 'Edge_Win10',
       platform: 'Windows 10',
-      ignoreZoomSetting: true,
-      nativeEvents: false,
-      ignoreProtectedModeSettings: true,
       version: '18.17763'
     }
   },

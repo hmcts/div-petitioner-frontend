@@ -18,7 +18,7 @@ data "azurerm_key_vault_secret" "idam_secret" {
 }
 
 data "azurerm_key_vault_secret" "post_code_token" {
-  name      = "post-code-token"
+  name      = "os-places-token"
   vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 
@@ -235,8 +235,5 @@ module "frontend" {
 
     // Feature toggling through config
     FEATURE_IDAM                               = "${var.feature_idam}"
-    FEATURE_RELEASE_510                        = "${var.feature_release_510}"
-    FEATURE_RELEASE_520                        = "${var.feature_release_520}"
-    FEATURE_RELEASE_520_DESERTION              = "${var.feature_release_520_desertion}"
   }
 }

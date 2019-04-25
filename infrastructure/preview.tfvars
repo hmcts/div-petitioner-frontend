@@ -18,15 +18,9 @@ idam_api_url = "https://idam-api.aat.platform.hmcts.net"
 
 payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 dev_support_notification_email = "divorce-team-a@hmcts.net"
-
-feature_release_510 = "true"
-
-feature_release_520 = "true"
-
-feature_release_520_desertion = "true"
 
 court_service_centre_divorce_facts_ratio =  {
   "unreasonable-behaviour" = 1

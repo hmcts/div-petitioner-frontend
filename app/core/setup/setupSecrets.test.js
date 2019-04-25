@@ -19,7 +19,7 @@ describe(modulePath, () => {
           'session-secret': 'sessionValue',
           'redis-secret': 'redisValue',
           'idam-secret': 'idamValue',
-          'post-code-token': 'postCodeValue',
+          'os-places-token': 'postCodeValue',
           'frontend-secret': 'frontendValue'
         }
       };
@@ -36,7 +36,7 @@ describe(modulePath, () => {
       expect(mockConfig.idamArgs.idamSecret)
         .to.equal(mockConfig.secrets.div['idam-secret']);
       expect(mockConfig.services.postcodeInfo.token)
-        .to.equal(mockConfig.secrets.div['post-code-token']);
+        .to.equal(mockConfig.secrets.div['os-places-token']);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(mockConfig.secrets.div['frontend-secret']);
     });

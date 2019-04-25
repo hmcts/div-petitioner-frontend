@@ -18,6 +18,6 @@ idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
 
 payment_service_url = "http://payment-api-sprod.service.core-compute-sprod.internal"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 decree_nisi_frontend_url = "https://div-dn-sprod.service.core-compute-sprod.internal"

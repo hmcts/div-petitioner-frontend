@@ -30,11 +30,11 @@
   "petitionerContactDetailsConfidential": "share",
   "petitionerHomeAddress": {
     "address": [
-      "80 Landor Road",
-      "London",
+      "80, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -42,11 +42,11 @@
   "petitionerCorrespondenceUseHomeAddress": "Yes",
   "petitionerCorrespondenceAddress": {
     "address": [
-      "82 Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -55,24 +55,22 @@
   "respondentLastName": "William",
   "respondentHomeAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
   },
   "respondentCorrespondenceAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -82,12 +80,11 @@
   "respondentCorrespondenceSendToSolicitor": "Yes",
   "respondentSolicitorAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -99,12 +96,11 @@
   "livingArrangementsLiveTogether": "Yes",
   "livingArrangementsLastLivedTogetherAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "W6 0AT"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -147,9 +143,8 @@
   "reasonForDivorceAdulteryIsNamed": "Yes",
   "reasonForDivorceAdultery3rdAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "W6 0AT"
     ],
     "postcode": "W6 0AT",

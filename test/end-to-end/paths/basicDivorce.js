@@ -1,9 +1,10 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const parseBool = require('app/core/utils/parseBool');
+const config = require('config');
 
 Feature('Basic divorce path');
 
 Scenario('Get a divorce', async function(I) {
-
   I.amOnPage('/index');
   I.startApplication();
   I.wait(1);
@@ -44,8 +45,12 @@ Scenario('Get a divorce', async function(I) {
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
   I.uploadMarriageCertificateFile(isDragAndDropSupported);
 
-  await I.checkMyAnswersAndValidateSession();
-
+  if (parseBool(config.features.ignoreSessionValidation)) {
+    I.checkMyAnswers();
+  }
+  else{
+    await I.checkMyAnswersAndValidateSession();
+  }
   I.amDoneAndSubmitted();
 
 }).retry(2);

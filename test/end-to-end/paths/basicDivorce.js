@@ -43,20 +43,17 @@ Scenario('Get a divorce', async function(I) {
   I.enterFinancialAdvice();
   I.enterClaimCosts();
 
-  if(config.feature.browserSupport === ( 'safari' || 'microsoftEdge' ))
-  {
+  if(config.feature.browserSupport === ( 'safari' || 'microsoftEdge' )) {
     I.withoutUploadFile();
-  }
-  else {
+  } else {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
     I.uploadMarriageCertificateFile(isDragAndDropSupported);
   }
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers();
-  }
-  else{
+  } else{
     await I.checkMyAnswersAndValidateSession();
   }
   I.amDoneAndSubmitted();
 
-});
+}).retry(2);

@@ -43,7 +43,7 @@ Scenario('Get a divorce', async function(I) {
   I.enterFinancialAdvice();
   I.enterClaimCosts();
 
-  if(config.feature.browserSupport === ( 'safari' || 'microsoftEdge' )) {
+  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
     I.withoutUploadFile();
   } else {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');

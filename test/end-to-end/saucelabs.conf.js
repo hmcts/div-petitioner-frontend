@@ -7,7 +7,6 @@ const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeoutValue);
 const smartWait = parseInt(CONF.saucelabs.smartWait);
 const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;
-
 const getBrowserConfig = (browserGroup) => {
   const browserConfig = [];
   for (const candidateBrowser in supportedBrowsers[browserGroup]) {
@@ -71,8 +70,11 @@ const setupConfig = {
     }
   },
   multiple: {
-    microsoft: {
-      browsers: getBrowserConfig('microsoft')
+    microsoftIE11: {
+      browsers: getBrowserConfig('microsoftIE11')
+    },
+    microsoftEdge: {
+      browsers: getBrowserConfig('microsoftEdge')
     },
     chrome: {
       browsers: getBrowserConfig('chrome')
@@ -84,7 +86,7 @@ const setupConfig = {
       browsers: getBrowserConfig('safari')
     }
   },
-  name: 'Frontend Tests'
+  name: 'PFE Frontend Tests'
 };
 
 exports.config = setupConfig;

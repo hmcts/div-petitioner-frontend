@@ -5,6 +5,7 @@ const config = require('config');
 Feature('Basic divorce path');
 
 Scenario('Get a divorce', async function(I) {
+
   I.amOnPage('/index');
   I.startApplication();
   I.wait(1);
@@ -42,13 +43,15 @@ Scenario('Get a divorce', async function(I) {
   I.enterFinancialAdvice();
   I.enterClaimCosts();
 
-  const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-  I.uploadMarriageCertificateFile(isDragAndDropSupported);
-
+  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+    I.withoutUploadFile();
+  } else {
+    const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
+    I.uploadMarriageCertificateFile(isDragAndDropSupported);
+  }
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers();
-  }
-  else{
+  } else{
     await I.checkMyAnswersAndValidateSession();
   }
   I.amDoneAndSubmitted();

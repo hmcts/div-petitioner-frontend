@@ -45,8 +45,16 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   I.navByClick('Continue');
 }
 
+function withoutUploadFile() {
+  const I = this;
+  I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
+  I.see('No files uploaded');
+  I.navByClick('Continue');
+}
+
 module.exports = {
   uploadMarriageCertificateFile,
   deleteAMarriageCertificateFile,
-  testUploadResponse
+  testUploadResponse,
+  withoutUploadFile
 };

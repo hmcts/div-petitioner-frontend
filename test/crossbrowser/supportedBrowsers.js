@@ -1,12 +1,14 @@
 const supportedBrowsers = {
-  microsoft: {
-    ie11_win10: {
+  microsoftIE11: {
+    ie11: {
       browserName: 'internet explorer',
       name: 'IE11',
       platform: 'Windows 10',
       version: '11.285'
-    },
-    edge_win10: {
+    }
+  },
+  microsoftEdge: {
+    edge: {
       browserName: 'MicrosoftEdge',
       name: 'Edge_Win10',
       platform: 'Windows 10',

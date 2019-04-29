@@ -121,6 +121,8 @@ http:
 
 features:
   idam: FEATURE_IDAM
+  ignoreSessionValidation: IGNORE_SESSION_VALIDATION
+  browserSupport: BROWSER_GROUP
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

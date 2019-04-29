@@ -130,6 +130,8 @@ commonProps:
 
 features:
   idam: false
+  ignoreSessionValidation: false
+  browserSupport: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

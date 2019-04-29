@@ -13,7 +13,8 @@ const modulePath = 'app/steps/marriage/date';
 
 const content = require(`${modulePath}/content`);
 
-const ONE_HUNDRED_YEARS = 100;
+const FIRST = 1;
+const ONE_HUNDRED_ONE_YEARS = 101;
 const TEN_MONTHS = 10;
 
 let s = {};
@@ -93,7 +94,7 @@ describe(modulePath, () => {
       const marriageDateInFuture = moment().add(1, 'years');
 
       const context = {
-        marriageDateDay: marriageDateInFuture.date(),
+        marriageDateDay: FIRST,
         marriageDateMonth: marriageDateInFuture.month() + 1,
         marriageDateYear: marriageDateInFuture.year()
       };
@@ -102,11 +103,11 @@ describe(modulePath, () => {
     });
 
     it('renders error for "more than 100 years in the past"', done => {
-      const marriageDateOld = moment().subtract(ONE_HUNDRED_YEARS, 'years');
+      const marriageDateOld = moment().subtract(ONE_HUNDRED_ONE_YEARS, 'years');
 
       const context = {
-        marriageDateDay: marriageDateOld.date(),
-        marriageDateMonth: marriageDateOld.month() - 1,
+        marriageDateDay: FIRST,
+        marriageDateMonth: FIRST,
         marriageDateYear: marriageDateOld.year()
       };
 
@@ -117,7 +118,7 @@ describe(modulePath, () => {
       const marriageDate1YearAgo = moment().subtract(TEN_MONTHS, 'months');
 
       const context = {
-        marriageDateDay: marriageDate1YearAgo.date(),
+        marriageDateDay: FIRST,
         marriageDateMonth: marriageDate1YearAgo.format('MM'),
         marriageDateYear: marriageDate1YearAgo.year()
       };

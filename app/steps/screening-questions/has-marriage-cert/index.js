@@ -8,7 +8,7 @@ module.exports = class ScreeningQuestionsMarriageCertificate extends ScreeningVa
   get nextStep() {
     return {
       screenHasMarriageCert: {
-        Yes: this.steps.NeedHelpWithFees,
+        Yes: this.steps.ScreeningQuestionsFinancialRemedy,
         No: this.steps.ExitMarriageCertificate
       }
     };

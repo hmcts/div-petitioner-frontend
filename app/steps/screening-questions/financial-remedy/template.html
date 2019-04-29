@@ -1,0 +1,17 @@
+{% extends "question.html" %}
+{% block question %}
+    {{ content.settlingYourFinances | safe }}
+{% endblock %}
+
+{% block form %}
+    <p class="text"> {{content.beforeYourBegin | safe }}</p>
+    <p class="text"> {{content.youNeedToGet | safe }}</p>
+    <ul class="list list-bullet">
+        <li>{{ content.haveNothingToSplit | safe }}</li>
+        <li>{{ content.agreeOnHowYouWant | safe }}</li>
+        <li>{{ content.disagreeOnTheSplit | safe }}</li>
+    </ul>
+    <p class="text"> {{content.youShouldReadMore | safe }}</p>
+{% endblock %}
+
+{% block saveAndClose %}{% endblock %}

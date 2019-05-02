@@ -138,6 +138,7 @@ Scenario('Deserted without agreement', function*(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.readFinancialRemedy();
 
   I.selectHelpWithFees(false);
 

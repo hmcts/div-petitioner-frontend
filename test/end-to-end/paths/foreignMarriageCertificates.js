@@ -6,6 +6,7 @@ Scenario('Certificate in English ', function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.readFinancialRemedy();
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();
@@ -42,6 +43,7 @@ Scenario('Certificate not English with no translation - exit page - and can go b
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.readFinancialRemedy();
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();

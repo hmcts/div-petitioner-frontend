@@ -15,7 +15,8 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
 
     watch('respondentCorrespondenceUseHomeAddress', (previousSession, session, remove) => {
       if (session.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
-        remove('respondentSolicitorName', 'respondentSolicitorCompany', 'respondentSolicitorAddress');
+        remove('respondentSolicitorName', 'respondentSolicitorCompany', 'respondentSolicitorAddress',
+          'respondentSolicitorEmail', 'respondentSolicitorPhoneNumber');
       }
     });
   }

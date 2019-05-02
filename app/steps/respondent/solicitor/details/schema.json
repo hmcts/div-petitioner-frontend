@@ -8,6 +8,15 @@
         },
         "respondentSolicitorCompany": {
             "type": "string"
+        },
+        "respondentSolicitorEmail": {
+            "type": "string",
+            "format": "email"
+        },
+        "respondentSolicitorPhoneNumber": {
+            "type": "string",
+            "minLength": 9,
+            "pattern": "^[0-9 +().-]+$"
         }
     },
     "required": [

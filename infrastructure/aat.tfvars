@@ -6,7 +6,7 @@ packages_environment = "preprod"
 
 packages_version = "3.0.0"
 
-additional_host_name = "divorce.nonprod.platform.hmcts.net"
+additional_host_name = "apply-divorce.aat.platform.hmcts.net"
 
 http_proxy = ""
 

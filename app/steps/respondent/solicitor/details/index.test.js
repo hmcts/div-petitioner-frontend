@@ -50,7 +50,7 @@ describe(modulePath, () => {
         content, 'required', [], session);
     });
 
-    it('redirects to the RespondentSolicitorAddress', done => {
+    it('redirects to the RespondentSolicitorAddress with required fields filled', done => {
       const context = {
         respondentSolicitorName: 'Blood sucking leech',
         respondentSolicitorCompany: 'Sue grabbit and run'
@@ -58,6 +58,39 @@ describe(modulePath, () => {
 
       testRedirect(done, agent, underTest, context,
         s.steps.RespondentSolicitorAddress);
+    });
+
+    it('redirects to the RespondentSolicitorAddress with all fields filled', done => {
+      const context = {
+        respondentSolicitorName: 'Blood sucking leech',
+        respondentSolicitorCompany: 'Sue grabbit and run',
+        respondentSolicitorEmail: 'solicitor@example.com',
+        respondentSolicitorPhoneNumber: '01234567890'
+      };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.RespondentSolicitorAddress);
+    });
+  });
+
+  describe('errors', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = { divorceWho: 'wife' };
+      withSession(done, agent, session);
+    });
+
+    it('renders errors for invalid email address and phone number', done => {
+      const context = {
+        respondentSolicitorName: 'Blood sucking leech',
+        respondentSolicitorCompany: 'Sue grabbit and run',
+        respondentSolicitorEmail: 'solicitorexamplecom',
+        respondentSolicitorPhoneNumber: 'abadnumber'
+      };
+
+      testErrors(done, agent, underTest, context,
+        content, 'invalid', [], session);
     });
   });
 
@@ -103,12 +136,44 @@ describe(modulePath, () => {
         .to.equal('undefined');
     });
 
+    it('removes respondentSolicitorEmail if respondentCorrespondenceUseHomeAddress is changed and does not equal Solicitor', () => {
+      const previousSession = {
+        respondentSolicitorAddress: ['Address 1', 'Address 2', 'Address 3'],
+        respondentCorrespondenceUseHomeAddress: 'Solicitor',
+        respondentSolicitorEmail: 'solicitor@example.com'
+      };
+
+      const session = clone(previousSession);
+      session.respondentCorrespondenceUseHomeAddress = 'No';
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(typeof newSession.respondentSolicitorEmail)
+        .to.equal('undefined');
+    });
+
+    it('removes respondentSolicitorPhoneNumber if respondentCorrespondenceUseHomeAddress is changed and does not equal Solicitor', () => {
+      const previousSession = {
+        respondentSolicitorAddress: ['Address 1', 'Address 2', 'Address 3'],
+        respondentCorrespondenceUseHomeAddress: 'Solicitor',
+        respondentSolicitorPhoneNumber: '01234567890'
+      };
+
+      const session = clone(previousSession);
+      session.respondentCorrespondenceUseHomeAddress = 'No';
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(typeof newSession.respondentSolicitorPhoneNumber)
+        .to.equal('undefined');
+    });
+
     it('removes respondentSolicitorName, respondentSolicitorCompany, respondentSolicitorAddress if respondentCorrespondenceUseHomeAddress is changed and does not equal Solicitor', () => {
       const previousSession = {
         respondentSolicitorName: 'Solicitor Name',
         respondentSolicitorCompany: 'Solicitor Company',
         respondentSolicitorAddress: ['Address 1', 'Address 2', 'Address 3'],
-        respondentCorrespondenceUseHomeAddress: 'Solicitor'
+        respondentCorrespondenceUseHomeAddress: 'Solicitor',
+        respondentSolicitorEmail: 'solicitor@example.com',
+        respondentSolicitorPhoneNumber: '01234567890'
       };
 
       const session = clone(previousSession);
@@ -119,6 +184,10 @@ describe(modulePath, () => {
       expect(typeof newSession.respondentSolicitorCompany)
         .to.equal('undefined');
       expect(typeof newSession.respondentSolicitorAddress)
+        .to.equal('undefined');
+      expect(typeof newSession.respondentSolicitorEmail)
+        .to.equal('undefined');
+      expect(typeof newSession.respondentSolicitorPhoneNumber)
         .to.equal('undefined');
     });
   });
@@ -133,12 +202,16 @@ describe(modulePath, () => {
 
       const valuesToExist = [
         'respondentSolicitorName',
-        'respondentSolicitorCompany'
+        'respondentSolicitorCompany',
+        'respondentSolicitorEmail',
+        'respondentSolicitorPhoneNumber'
       ];
 
       const context = {
         respondentSolicitorName: 'Solicitor Name',
-        respondentSolicitorCompany: 'Solicitor Company'
+        respondentSolicitorCompany: 'Solicitor Company',
+        respondentSolicitorEmail: 'solicitor@example.com',
+        respondentSolicitorPhoneNumber: '01234567890'
       };
 
       const session = { divorceWho: 'wife' };

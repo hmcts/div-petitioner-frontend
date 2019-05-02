@@ -8,7 +8,7 @@ const sauceKey = process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key;
 
 function updateSauceLabsResult(result, sessionId) {
   console.log('SauceOnDemandSessionID=' + sessionId + ' job-name=div-petitioner-frontend'); /* eslint-disable-line no-console, prefer-template */
-  return 'curl -X PUT -s -d \'{"passed": ' + result + '}\' -u ' + sauceUsername + ':' + sauceKey + ' https://saucelabs.com/rest/v1/' + sauceUsername + '/jobs/' + sessionId;
+  return 'curl -X PUT -s -d \'{"passed": ' + result + '}\' -u ' + sauceUsername + ':' + sauceKey + ' https://eu-central-1.saucelabs.com/rest/v1/' + sauceUsername + '/jobs/' + sessionId;
 }
 
 module.exports = function() {

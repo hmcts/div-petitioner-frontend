@@ -40,15 +40,26 @@ describe(modulePath, () => {
       });
 
       it('uses the client', done => {
+        const req = {}, user = {}, serviceToken = 'serviceToken',
+          caseReference = 'caseReference', siteId = 'siteId',
+          feeCode = 'feeCode', feeVersion = 'feeVersion',
+          amountInput = 'amountInput', description = 'description',
+          returnUrl = 'returnUrl', serviceCallbackUrl = 'serviceCallbackUrl';
+
         // Arrange.
         const client = underTest.setup();
         // Assert.
         const assertion = reallyDone => {
           expect(createStub.called).to.equal(true);
+          expect(createStub.calledWith(user, serviceToken, caseReference,
+            siteId, feeCode, feeVersion, amountInput, description,
+            returnUrl, serviceCallbackUrl)).to.equal(true);
           reallyDone();
         };
         // Act.
-        client.create()
+        client.create(req, user, serviceToken, caseReference, siteId,
+          feeCode, feeVersion, amountInput, description,
+          returnUrl, serviceCallbackUrl)
           .then(assertion(done))
           .catch(done);
       });

@@ -25,6 +25,7 @@ Scenario('Certificate not English but with translation', function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.readFinancialRemedy();
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();

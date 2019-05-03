@@ -1,9 +1,6 @@
 <tr>
   <th>
     {{ content.question | safe }}<br/>
-    {% if fields.livingArrangementsLastLivedTogetherAddress.value %}
-      <span class="address">{{ fields.livingArrangementsLastLivedTogetherAddress.value.address | join("<br/>") | safe }}</span>
-    {% endif %}
   </th>
   <td>
     {% if fields.respondentLivesAtLastAddress.value === 'Yes' %}
@@ -12,6 +9,9 @@
       {{ content.no | safe }}
     {% elseif fields.respondentLivesAtLastAddress.value === 'Unknown' %}
       {{ content.unknown | safe }}
+    {% endif %}
+    {% if fields.livingArrangementsLastLivedTogetherAddress.value %}
+      <span class="address">{{ fields.livingArrangementsLastLivedTogetherAddress.value.address | join("<br/>") | safe }}</span>
     {% endif %}
   </td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>

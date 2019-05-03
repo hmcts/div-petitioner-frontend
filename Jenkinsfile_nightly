@@ -15,8 +15,8 @@ def component = "pfe"
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
-    // enableCrossBrowserTest()
-    // enableMutationTest()
+    enableCrossBrowserTest()
+    enableMutationTest()
     enableSecurityScan()
 
     after('crossBrowserTest') {

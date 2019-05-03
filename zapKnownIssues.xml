@@ -1,42 +1,251 @@
-<?xml version="1.0"?><OWASPZAPReport version="D-2019-04-29" generated="Thu, 2 May 2019 15:12:14">
-    <site name="https://div-pfe-aat.service.core-compute-aat.internal" host="div-pfe-aat.service.core-compute-aat.internal" port="443" ssl="true"><alerts><alertitem>
+<?xml version="1.0"?><OWASPZAPReport version="D-2019-04-29" generated="Fri, 3 May 2019 09:43:05">
+    <site name="https://idam-web-public.aat.platform.hmcts.net" host="idam-web-public.aat.platform.hmcts.net" port="443" ssl="true"><alerts><alertitem>
+        <pluginid>10016</pluginid>
+        <alert>Web Browser XSS Protection Not Enabled</alert>
+        <name>Web Browser XSS Protection Not Enabled</name>
+        <riskcode>1</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Low (Medium)</riskdesc>
+        <desc>&lt;p&gt;Web Browser XSS Protection is not enabled, or is disabled by the configuration of the &apos;X-XSS-Protection&apos; HTTP response header on the web server&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://idam-web-public.aat.platform.hmcts.net/login?client_id=divorce&amp;redirect_uri=https%3A%2F%2Fdiv-pfe-aat.service.core-compute-aat.internal%2Fauthenticated&amp;response_type=code&amp;state=badb1560-85d4-459f-b678-31f163df1887</uri>
+                <method>GET</method>
+                <param>X-XSS-Protection</param>
+            </instance>
+        </instances>
+        <count>1</count>
+        <solution>&lt;p&gt;Ensure that the web browser&apos;s XSS filter is enabled, by setting the X-XSS-Protection HTTP response header to &apos;1&apos;.&lt;/p&gt;</solution>
+        <otherinfo>&lt;p&gt;The X-XSS-Protection HTTP response header allows the web server to enable or disable the web browser&apos;s XSS protection mechanism. The following values would attempt to enable it: &lt;/p&gt;&lt;p&gt;X-XSS-Protection: 1; mode=block&lt;/p&gt;&lt;p&gt;X-XSS-Protection: 1; report=http://www.example.com/xss&lt;/p&gt;&lt;p&gt;The following values would disable it:&lt;/p&gt;&lt;p&gt;X-XSS-Protection: 0&lt;/p&gt;&lt;p&gt;The X-XSS-Protection HTTP response header is currently supported on Internet Explorer, Chrome and Safari (WebKit).&lt;/p&gt;&lt;p&gt;Note that this alert is only raised if the response body could potentially contain an XSS payload (with a text-based content type, with a non-zero length).&lt;/p&gt;</otherinfo>
+        <reference>&lt;p&gt;https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&lt;/p&gt;&lt;p&gt;https://www.veracode.com/blog/2014/03/guidelines-for-setting-security-headers/&lt;/p&gt;</reference>
+        <cweid>933</cweid>
+        <wascid>14</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    </alerts></site><site name="https://div-pfe-aat.service.core-compute-aat.internal" host="div-pfe-aat.service.core-compute-aat.internal" port="443" ssl="true"><alerts><alertitem>
+    <pluginid>10037</pluginid>
+    <alert>Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</alert>
+    <name>Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</name>
+    <riskcode>1</riskcode>
+    <confidence>2</confidence>
+    <riskdesc>Low (Medium)</riskdesc>
+    <desc>&lt;p&gt;The web/application server is leaking information via one or more &quot;X-Powered-By&quot; HTTP response headers. Access to such information may facilitate attackers identifying other frameworks/components your web application is reliant upon and the vulnerabilities such components may be subject to.&lt;/p&gt;</desc>
+    <instances>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/ie.js?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/images/apple-touch-icon-76x76.png?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/stylesheets/govuk-template-ie6.css?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/stylesheets/govuk-template-ie8.css?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/stylesheets/govuk-template-ie7.css?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/robots.txt</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/images/apple-touch-icon-152x152.png?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/images/apple-touch-icon-120x120.png?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/stylesheets/govuk-template.css?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/stylesheets/application.css</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/noJS.png</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/govuk-template.js?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/images/gov.uk_logotype_crown.svg?0.17.0</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+        <instance>
+            <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
+            <method>GET</method>
+            <evidence>X-Powered-By: ASP.NET</evidence>
+        </instance>
+    </instances>
+    <count>27</count>
+    <solution>&lt;p&gt;Ensure that your web server, application server, load balancer, etc. is configured to suppress &quot;X-Powered-By&quot; headers.&lt;/p&gt;</solution>
+    <reference>&lt;p&gt;http://blogs.msdn.com/b/varunm/archive/2013/04/23/remove-unwanted-http-response-headers.aspx&lt;/p&gt;&lt;p&gt;http://www.troyhunt.com/2012/02/shhh-dont-let-your-response-headers.html&lt;/p&gt;</reference>
+    <cweid>200</cweid>
+    <wascid>13</wascid>
+    <sourceid>3</sourceid>
+</alertitem>
+    <alertitem>
+        <pluginid>10096</pluginid>
+        <alert>Timestamp Disclosure - Unix</alert>
+        <name>Timestamp Disclosure - Unix</name>
+        <riskcode>0</riskcode>
+        <confidence>1</confidence>
+        <riskdesc>Informational (Low)</riskdesc>
+        <desc>&lt;p&gt;A timestamp was disclosed by the application/web server - Unix&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+                <method>GET</method>
+                <evidence>816519475</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+                <method>GET</method>
+                <evidence>198794158</evidence>
+            </instance>
+        </instances>
+        <count>2</count>
+        <solution>&lt;p&gt;Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.&lt;/p&gt;</solution>
+        <otherinfo>&lt;p&gt;816519475, which evaluates to: 1995-11-16 10:57:55&lt;/p&gt;</otherinfo>
+        <reference>&lt;p&gt;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&lt;/p&gt;&lt;p&gt;http://projects.webappsec.org/w/page/13246936/Information%20Leakage&lt;/p&gt;</reference>
+        <cweid>200</cweid>
+        <wascid>13</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    <alertitem>
+        <pluginid>10054</pluginid>
+        <alert>Cookie Without SameSite Attribute</alert>
+        <name>Cookie Without SameSite Attribute</name>
+        <riskcode>1</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Low (Medium)</riskdesc>
+        <desc>&lt;p&gt;A cookie has been set without the SameSite attribute, which means that the cookie can be sent as a result of a &apos;cross-site&apos; request. The SameSite attribute is an effective counter measure to cross-site request forgery, cross-site script inclusion, and timing attacks.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sign-out</uri>
+                <method>GET</method>
+                <param>__auth-token</param>
+                <evidence>Set-Cookie: __auth-token</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/index</uri>
+                <method>GET</method>
+                <param>__state</param>
+                <evidence>Set-Cookie: __state</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sign-out</uri>
+                <method>GET</method>
+                <param>connect.sid</param>
+                <evidence>Set-Cookie: connect.sid</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/</uri>
+                <method>GET</method>
+                <param>connect.sid</param>
+                <evidence>Set-Cookie: connect.sid</evidence>
+            </instance>
+        </instances>
+        <count>4</count>
+        <solution>&lt;p&gt;Ensure that the SameSite attribute is set to either &apos;lax&apos; or ideally &apos;strict&apos; for all cookies.&lt;/p&gt;</solution>
+        <reference>&lt;p&gt;https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site&lt;/p&gt;</reference>
+        <cweid>16</cweid>
+        <wascid>13</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    <alertitem>
         <pluginid>10055</pluginid>
-        <alert>CSP Scanner: script-src unsafe-inline</alert>
-        <name>CSP Scanner: script-src unsafe-inline</name>
+        <alert>CSP Scanner: Wildcard Directive</alert>
+        <name>CSP Scanner: Wildcard Directive</name>
         <riskcode>2</riskcode>
         <confidence>2</confidence>
         <riskdesc>Medium (Medium)</riskdesc>
-        <desc>&lt;p&gt;script-src includes unsafe-inline.&lt;/p&gt;</desc>
+        <desc>&lt;p&gt;The following directives either allow wildcard sources (or ancestors), are not defined, or are overly broadly defined: &lt;/p&gt;&lt;p&gt;style-src, frame-ancestor, object-src, manifest-src, prefetch-src&lt;/p&gt;</desc>
         <instances>
             <instance>
-                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
                 <method>GET</method>
                 <param>Content-Security-Policy</param>
-                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
             </instance>
             <instance>
                 <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
                 <method>GET</method>
                 <param>Content-Security-Policy</param>
-                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
-            </instance>
-            <instance>
-                <uri>https://div-pfe-aat.service.core-compute-aat.internal/noJS.png</uri>
-                <method>GET</method>
-                <param>Content-Security-Policy</param>
-                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
             </instance>
             <instance>
                 <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
                 <method>GET</method>
                 <param>Content-Security-Policy</param>
-                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
             </instance>
             <instance>
-                <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/noJS.png</uri>
                 <method>GET</method>
                 <param>Content-Security-Policy</param>
-                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
+                <method>GET</method>
+                <param>Content-Security-Policy</param>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
             </instance>
         </instances>
         <count>5</count>
@@ -46,464 +255,173 @@
         <wascid>15</wascid>
         <sourceid>3</sourceid>
     </alertitem>
-        <alertitem>
-            <pluginid>20012</pluginid>
-            <alert>Anti CSRF Tokens Scanner</alert>
-            <name>Anti CSRF Tokens Scanner</name>
-            <riskcode>3</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>High (Medium)</riskdesc>
-            <desc>&lt;p&gt;A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. The underlying cause is application functionality using predictable URL/form actions in a repeatable way. The nature of the attack is that CSRF exploits the trust that a web site has for a user. By contrast, cross-site scripting (XSS) exploits the trust that a user has for a web site. Like XSS, CSRF attacks are not necessarily cross-site, but they can be. Cross-site request forgery is also known as CSRF, XSRF, one-click attack, session riding, confused deputy, and sea surf.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;CSRF attacks are effective in a number of situations, including:&lt;/p&gt;&lt;p&gt;    * The victim has an active session on the target site.&lt;/p&gt;&lt;p&gt;    * The victim is authenticated via HTTP auth on the target site.&lt;/p&gt;&lt;p&gt;    * The victim is on the same local network as the target site.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;CSRF has primarily been used to perform an action against a target site using the victim&apos;s privileges, but recent techniques have been discovered to disclose information by gaining access to the response. The risk of information disclosure is dramatically increased when the target site is vulnerable to XSS, because XSS can be used as a platform for CSRF, allowing the attack to operate within the bounds of the same-origin policy.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/main.js</uri>
-                    <method>GET</method>
-                    <evidence>&lt;form&gt;</evidence>
-                </instance>
-            </instances>
-            <count>1</count>
-            <solution>&lt;p&gt;Phase: Architecture and Design&lt;/p&gt;&lt;p&gt;Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.&lt;/p&gt;&lt;p&gt;For example, use anti-CSRF packages such as the OWASP CSRFGuard.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Implementation&lt;/p&gt;&lt;p&gt;Ensure that your application is free of cross-site scripting issues, because most CSRF defenses can be bypassed using attacker-controlled script.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Architecture and Design&lt;/p&gt;&lt;p&gt;Generate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330).&lt;/p&gt;&lt;p&gt;Note that this can be bypassed using XSS.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Identify especially dangerous operations. When the user performs a dangerous operation, send a separate confirmation request to ensure that the user intended to perform that operation.&lt;/p&gt;&lt;p&gt;Note that this can be bypassed using XSS.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Use the ESAPI Session Management control.&lt;/p&gt;&lt;p&gt;This control includes a component for CSRF.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Do not use the GET method for any request that triggers a state change.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Implementation&lt;/p&gt;&lt;p&gt;Check the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;http://projects.webappsec.org/Cross-Site-Request-Forgery&lt;/p&gt;&lt;p&gt;http://cwe.mitre.org/data/definitions/352.html&lt;/p&gt;</reference>
-            <cweid>352</cweid>
-            <wascid>9</wascid>
-            <sourceid>1</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10054</pluginid>
-            <alert>Cookie Without SameSite Attribute</alert>
-            <name>Cookie Without SameSite Attribute</name>
-            <riskcode>1</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Low (Medium)</riskdesc>
-            <desc>&lt;p&gt;A cookie has been set without the SameSite attribute, which means that the cookie can be sent as a result of a &apos;cross-site&apos; request. The SameSite attribute is an effective counter measure to cross-site request forgery, cross-site script inclusion, and timing attacks.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
-                    <method>GET</method>
-                    <param>i18n</param>
-                    <evidence>Set-Cookie: i18n</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/</uri>
-                    <method>GET</method>
-                    <param>i18n</param>
-                    <evidence>Set-Cookie: i18n</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
-                    <method>GET</method>
-                    <param>i18n</param>
-                    <evidence>Set-Cookie: i18n</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
-                    <method>GET</method>
-                    <param>i18n</param>
-                    <evidence>Set-Cookie: i18n</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
-                    <method>GET</method>
-                    <param>session</param>
-                    <evidence>Set-Cookie: session</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
-                    <method>GET</method>
-                    <param>i18n</param>
-                    <evidence>Set-Cookie: i18n</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
-                    <method>GET</method>
-                    <param>session</param>
-                    <evidence>Set-Cookie: session</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
-                    <method>GET</method>
-                    <param>session</param>
-                    <evidence>Set-Cookie: session</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
-                    <method>GET</method>
-                    <param>session</param>
-                    <evidence>Set-Cookie: session</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/</uri>
-                    <method>GET</method>
-                    <param>session</param>
-                    <evidence>Set-Cookie: session</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
-                    <method>GET</method>
-                    <param>session</param>
-                    <evidence>Set-Cookie: session</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
-                    <method>GET</method>
-                    <param>__state</param>
-                    <evidence>Set-Cookie: __state</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
-                    <method>GET</method>
-                    <param>i18n</param>
-                    <evidence>Set-Cookie: i18n</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/</uri>
-                    <method>GET</method>
-                    <param>__state</param>
-                    <evidence>Set-Cookie: __state</evidence>
-                </instance>
-            </instances>
-            <count>14</count>
-            <solution>&lt;p&gt;Ensure that the SameSite attribute is set to either &apos;lax&apos; or ideally &apos;strict&apos; for all cookies.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site&lt;/p&gt;</reference>
-            <cweid>16</cweid>
-            <wascid>13</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10037</pluginid>
-            <alert>Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</alert>
-            <name>Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</name>
-            <riskcode>1</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Low (Medium)</riskdesc>
-            <desc>&lt;p&gt;The web/application server is leaking information via one or more &quot;X-Powered-By&quot; HTTP response headers. Access to such information may facilitate attackers identifying other frameworks/components your web application is reliant upon and the vulnerabilities such components may be subject to.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/images/apple-touch-icon-167x167.png?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/images/gov.uk_logotype_crown.svg?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/stylesheets/govuk-template-ie8.css?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/robots.txt</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/images/gov.uk_logotype_crown_invert_trans.png?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/main.css</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/main.js</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/stylesheets/govuk-template-print.css?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/stylesheets/fonts.css?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/stylesheets/govuk-template-ie6.css?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/stylesheets/govuk-template-ie7.css?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/images/apple-touch-icon-180x180.png?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/images/apple-touch-icon.png?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/javascripts/govuk-template.js?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/stylesheets/govuk-template.css?0.23.3</uri>
-                    <method>GET</method>
-                    <evidence>X-Powered-By: ASP.NET</evidence>
-                </instance>
-            </instances>
-            <count>25</count>
-            <solution>&lt;p&gt;Ensure that your web server, application server, load balancer, etc. is configured to suppress &quot;X-Powered-By&quot; headers.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;http://blogs.msdn.com/b/varunm/archive/2013/04/23/remove-unwanted-http-response-headers.aspx&lt;/p&gt;&lt;p&gt;http://www.troyhunt.com/2012/02/shhh-dont-let-your-response-headers.html&lt;/p&gt;</reference>
-            <cweid>200</cweid>
-            <wascid>13</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10055</pluginid>
-            <alert>CSP Scanner: Wildcard Directive</alert>
-            <name>CSP Scanner: Wildcard Directive</name>
-            <riskcode>2</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Medium (Medium)</riskdesc>
-            <desc>&lt;p&gt;The following directives either allow wildcard sources (or ancestors), are not defined, or are overly broadly defined: &lt;/p&gt;&lt;p&gt;style-src, frame-ancestor, object-src, manifest-src, prefetch-src&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
-                    <method>GET</method>
-                    <param>Content-Security-Policy</param>
-                    <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
-                    <method>GET</method>
-                    <param>Content-Security-Policy</param>
-                    <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
-                    <method>GET</method>
-                    <param>Content-Security-Policy</param>
-                    <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
-                    <method>GET</method>
-                    <param>Content-Security-Policy</param>
-                    <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/noJS.png</uri>
-                    <method>GET</method>
-                    <param>Content-Security-Policy</param>
-                    <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk www.googletagmanager.com; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
-                </instance>
-            </instances>
-            <count>5</count>
-            <solution>&lt;p&gt;Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;http://www.w3.org/TR/CSP2/&lt;/p&gt;&lt;p&gt;http://www.w3.org/TR/CSP/&lt;/p&gt;&lt;p&gt;http://caniuse.com/#search=content+security+policy&lt;/p&gt;&lt;p&gt;http://content-security-policy.com/&lt;/p&gt;&lt;p&gt;https://github.com/shapesecurity/salvation&lt;/p&gt;</reference>
-            <cweid>16</cweid>
-            <wascid>15</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10096</pluginid>
-            <alert>Timestamp Disclosure - Unix</alert>
-            <name>Timestamp Disclosure - Unix</name>
-            <riskcode>0</riskcode>
-            <confidence>1</confidence>
-            <riskdesc>Informational (Low)</riskdesc>
-            <desc>&lt;p&gt;A timestamp was disclosed by the application/web server - Unix&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/main.js</uri>
-                    <method>GET</method>
-                    <evidence>20030331</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
-                    <method>GET</method>
-                    <evidence>93824767</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/main.js</uri>
-                    <method>GET</method>
-                    <evidence>20110929</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
-                    <method>GET</method>
-                    <evidence>93824767</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
-                    <method>GET</method>
-                    <evidence>93824767</evidence>
-                </instance>
-            </instances>
-            <count>5</count>
-            <solution>&lt;p&gt;Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.&lt;/p&gt;</solution>
-            <otherinfo>&lt;p&gt;20030331, which evaluates to: 1970-08-20 19:58:51&lt;/p&gt;</otherinfo>
-            <reference>&lt;p&gt;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&lt;/p&gt;&lt;p&gt;http://projects.webappsec.org/w/page/13246936/Information%20Leakage&lt;/p&gt;</reference>
-            <cweid>200</cweid>
-            <wascid>13</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10027</pluginid>
-            <alert>Information Disclosure - Suspicious Comments</alert>
-            <name>Information Disclosure - Suspicious Comments</name>
-            <riskcode>0</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Informational (Medium)</riskdesc>
-            <desc>&lt;p&gt;The response appears to contain suspicious comments which may help an attacker.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/main.js</uri>
-                    <method>GET</method>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/assets/javascripts/ie.js?0.23.3</uri>
-                    <method>GET</method>
-                </instance>
-            </instances>
-            <count>2</count>
-            <solution>&lt;p&gt;Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.&lt;/p&gt;</solution>
-            <otherinfo>&lt;p&gt;        // For CommonJS and CommonJS-like environments where a proper `window`&lt;/p&gt;&lt;p&gt;       // Return just the one element from the set&lt;/p&gt;&lt;p&gt;  select,&lt;/p&gt;&lt;p&gt;      // We use this for POS matching in `select`&lt;/p&gt;&lt;p&gt;  rinputs = /^(?:input|select|textarea|button)$/i,&lt;/p&gt;&lt;p&gt; // Return early from calls with invalid selector or context&lt;/p&gt;&lt;p&gt;          // (excepting DocumentFragment context, where the methods don&apos;t exist)&lt;/p&gt;&lt;p&gt;                          // TODO: identify versions&lt;/p&gt;&lt;p&gt;                       // TODO: identify versions&lt;/p&gt;&lt;p&gt;   return select( selector.replace( rtrim, &quot;$1&quot; ), context, results, seed );&lt;/p&gt;&lt;p&gt;      // Remove from its parent by default&lt;/p&gt;&lt;p&gt;                 // Where there is no isDisabled, check manually&lt;/p&gt;&lt;p&gt;  // documentElement is verified for cases where it doesn&apos;t yet exist&lt;/p&gt;&lt;p&gt; // We allow this because of a bug in IE8/9 that throws an error&lt;/p&gt;&lt;p&gt;  // See https://bugs.jquery.com/ticket/13378&lt;/p&gt;&lt;p&gt;      // Regex strategy adopted from Diego Perini&lt;/p&gt;&lt;p&gt;          // Select is set to empty string on purpose&lt;/p&gt;&lt;p&gt;          // https://bugs.jquery.com/ticket/12359&lt;/p&gt;&lt;p&gt;              &quot;&lt;select id=&apos;&quot; + expando + &quot;-\r\\&apos; msallowcapture=&apos;&apos;&gt;&quot; +&lt;/p&gt;&lt;p&gt;               &quot;&lt;option selected=&apos;&apos;&gt;&lt;/option&gt;&lt;/select&gt;&quot;;&lt;/p&gt;&lt;p&gt;          // IE8 throws error here and will not see later tests&lt;/p&gt;&lt;p&gt;            // https://bugs.webkit.org/show_bug.cgi?id=136851&lt;/p&gt;&lt;p&gt;                &quot;&lt;select disabled=&apos;disabled&apos;&gt;&lt;option/&gt;&lt;/select&gt;&quot;;&lt;/p&gt;&lt;p&gt;          // IE8 throws error here and will not see later tests&lt;/p&gt;&lt;p&gt;    // Can be adjusted by the user&lt;/p&gt;&lt;p&gt;           /* matches from matchExpr[&quot;CHILD&quot;]&lt;/p&gt;&lt;p&gt;         // Strip excess characters from unquoted arguments&lt;/p&gt;&lt;p&gt;               // Get excess from tokenize (recursively)&lt;/p&gt;&lt;p&gt;                            // Seek `elem` from a previously-cached index&lt;/p&gt;&lt;p&gt;                                // Fallback to seeking `elem` from the start&lt;/p&gt;&lt;p&gt;                             // Use the same loop as above to seek `elem` from the start&lt;/p&gt;&lt;p&gt;          // Remember that setFilters inherits from pseudos&lt;/p&gt;&lt;p&gt;            // The user may use createPseudo to indicate that&lt;/p&gt;&lt;p&gt;            // We can&apos;t set arbitrary data on XML nodes, so they don&apos;t benefit from combinator caching&lt;/p&gt;&lt;p&gt;         // Get initial elements from seed or context&lt;/p&gt;&lt;p&gt;             // Move matched elements from seed to results to keep them synchronized&lt;/p&gt;&lt;p&gt;      // The foundational matcher ensures that elements are reachable from top-level context(s)&lt;/p&gt;&lt;p&gt;            // case, which will result in a &quot;00&quot; `matchedCount` that differs from `i` but is also&lt;/p&gt;&lt;p&gt;select = Sizzle.select = function( selector, context, results, seed ) {&lt;/p&gt;&lt;p&gt;// Give the init function the jQuery prototype for later instantiation&lt;/p&gt;&lt;p&gt;   // Methods guaranteed to produce a unique set when starting from a unique set&lt;/p&gt;&lt;p&gt;    // Convert options from String-formatted to Object-formatted if needed&lt;/p&gt;&lt;p&gt;                   // If we have memory from a past run, we should fire after adding&lt;/p&gt;&lt;p&gt;            // Remove a callback from the list&lt;/p&gt;&lt;p&gt;           // Remove all callbacks from the list&lt;/p&gt;&lt;p&gt;                            // Re-resolve promises immediately to dodge false rejection from&lt;/p&gt;&lt;p&gt;// Catch cases where $(document).ready() is called&lt;/p&gt;&lt;p&gt;        // In cases where either:&lt;/p&gt;&lt;p&gt;            // from DOM nodes, so set to undefined instead&lt;/p&gt;&lt;p&gt;           // https://bugs.chromium.org/p/chromium/issues/detail?id=378607 (bug restricted)&lt;/p&gt;&lt;p&gt;//   3. Use the same single mechanism to support &quot;private&quot; and &quot;user&quot; data.&lt;/p&gt;&lt;p&gt;// 4. _Never_ expose &quot;private&quot; data to user code (TODO: Drop _data, _removeData)&lt;/p&gt;&lt;p&gt;//    5. Avoid exposing implementation details on user objects (eg. expando properties)&lt;/p&gt;&lt;p&gt;    // data from the HTML5 data-* attribute&lt;/p&gt;&lt;p&gt;          // Make sure we set the data so it isn&apos;t changed later&lt;/p&gt;&lt;p&gt;  // TODO: Now that all calls to _data and _removeData have been replaced&lt;/p&gt;&lt;p&gt;              // Attempt to get data from the cache&lt;/p&gt;&lt;p&gt;            // Add a progress sentinel to prevent the fx queue from being&lt;/p&gt;&lt;p&gt;        // isHiddenWithinTree might be called from jQuery#filter function;&lt;/p&gt;&lt;p&gt;       // Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)&lt;/p&gt;&lt;p&gt;      // Iteratively approximate from a nonzero starting point&lt;/p&gt;&lt;p&gt;     // Make sure we update the tween properties later on&lt;/p&gt;&lt;p&gt; option: [ 1, &quot;&lt;select multiple=&apos;multiple&apos;&gt;&quot;, &quot;&lt;/select&gt;&quot; ],&lt;/p&gt;&lt;p&gt;    // Remove wrapper from fragment&lt;/p&gt;&lt;p&gt;      // Make sure that the handler has a unique ID, used to find/remove it later&lt;/p&gt;&lt;p&gt;  // Detach an event or set of events from an element&lt;/p&gt;&lt;p&gt;      // Make a writable jQuery.Event from the native event object&lt;/p&gt;&lt;p&gt;         // Prevent triggered image.load events from bubbling to window.load&lt;/p&gt;&lt;p&gt;// https://bugs.chromium.org/p/chromium/issues/detail?id=470258&lt;/p&gt;&lt;p&gt;// for the description of the bug (it existed in older Chrome versions as well).&lt;/p&gt;&lt;p&gt; // 2. Copy user data&lt;/p&gt;&lt;p&gt;// Fix IE bugs, see support tests&lt;/p&gt;&lt;p&gt;                 // Keep references to cloned scripts for later restoration&lt;/p&gt;&lt;p&gt;       // Copy the events from the original to the clone&lt;/p&gt;&lt;p&gt;                    // We should always get a number back from opacity&lt;/p&gt;&lt;p&gt;       // want to query the value if it is a CSS custom property&lt;/p&gt;&lt;p&gt;        // since they are user-defined.&lt;/p&gt;&lt;p&gt;              // Fixes bug #9237&lt;/p&gt;&lt;p&gt;           // If a hook was provided get the non-computed value from there&lt;/p&gt;&lt;p&gt;          // Otherwise just get the value from the style object&lt;/p&gt;&lt;p&gt;        // since they are user-defined.&lt;/p&gt;&lt;p&gt;      // If a hook was provided get the computed value from there&lt;/p&gt;&lt;p&gt;          // Use .style if available and use plain properties where available.&lt;/p&gt;&lt;p&gt;             // there is still data from a stopped show/hide&lt;/p&gt;&lt;p&gt;      // from identically-valued overflowX and overflowY and Edge just mirrors&lt;/p&gt;&lt;p&gt;             // Archaic crash bug won&apos;t allow us to use `1 - ( 0.5 || 0 )` (#12497)&lt;/p&gt;&lt;p&gt;  // Attach callbacks from options&lt;/p&gt;&lt;p&gt;     select = document.createElement( &quot;select&quot; ),&lt;/p&gt;&lt;p&gt;       opt = select.appendChild( document.createElement( &quot;option&quot; ) );&lt;/p&gt;&lt;p&gt;    // Must access selectedIndex to make default options select&lt;/p&gt;&lt;p&gt;          // Avoid an infinite loop by temporarily removing this function from the getter&lt;/p&gt;&lt;p&gt;var rfocusable = /^(?:input|select|textarea|button)$/i,&lt;/p&gt;&lt;p&gt;                // Handle cases where value is null/undef or number&lt;/p&gt;&lt;p&gt;      select: {&lt;/p&gt;&lt;p&gt;                    one = elem.type === &quot;select-one&quot;,&lt;/p&gt;&lt;p&gt;              // Don&apos;t do default actions on window, that&apos;s where global variables be (#6170)&lt;/p&gt;&lt;p&gt;// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857&lt;/p&gt;&lt;p&gt; rsubmittable = /^(?:input|select|textarea|keygen)/i;&lt;/p&gt;&lt;p&gt;// key/values into a query string&lt;/p&gt;&lt;p&gt;         // Convert response if prev dataType is non-auto and differs from current&lt;/p&gt;&lt;p&gt;                                error: conv ? e : &quot;No conversion from &quot; + prev + &quot; to &quot; + current&lt;/p&gt;&lt;p&gt;        username: null,&lt;/p&gt;&lt;p&gt;      // and/or If-None-Match header later on&lt;/p&gt;&lt;p&gt;              // Extract error from statusText and normalize for non-aborts&lt;/p&gt;&lt;p&gt;        // Make this explicit, since user can override this through ajaxSetup (#11264)&lt;/p&gt;&lt;p&gt;                   options.username,&lt;/p&gt;&lt;p&gt;// https://bugs.webkit.org/show_bug.cgi?id=137337&lt;/p&gt;&lt;p&gt;        // Stop scripts or inline event handlers from being executed immediately&lt;/p&gt;&lt;p&gt;         // user can override it through ajaxSetup method&lt;/p&gt;&lt;p&gt;     // position:fixed elements are offset from the viewport, which itself always has zero offset&lt;/p&gt;&lt;p&gt;// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084&lt;/p&gt;&lt;p&gt;// Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347&lt;/p&gt;&lt;p&gt; &quot;change select submit keydown keypress keyup contextmenu&quot; ).split( &quot; &quot; ),&lt;/p&gt;&lt;p&gt;// derived from file names, and jQuery is normally delivered in a lowercase&lt;/p&gt;&lt;p&gt;/*** IMPORTS FROM imports-loader ***/&lt;/p&gt;&lt;p&gt;      // Select content for this control&lt;/p&gt;&lt;p&gt;/*** EXPORTS FROM exports-loader ***/&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</otherinfo>
-            <reference>&lt;p&gt;&lt;/p&gt;</reference>
-            <cweid>200</cweid>
-            <wascid>13</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10010</pluginid>
-            <alert>Cookie No HttpOnly Flag</alert>
-            <name>Cookie No HttpOnly Flag</name>
-            <riskcode>1</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Low (Medium)</riskdesc>
-            <desc>&lt;p&gt;A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
-                    <method>GET</method>
-                    <param>__state</param>
-                    <evidence>Set-Cookie: __state</evidence>
-                </instance>
-            </instances>
-            <count>1</count>
-            <solution>&lt;p&gt;Ensure that the HttpOnly flag is set for all cookies.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;http://www.owasp.org/index.php/HttpOnly&lt;/p&gt;</reference>
-            <cweid>16</cweid>
-            <wascid>13</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10011</pluginid>
-            <alert>Cookie Without Secure Flag</alert>
-            <name>Cookie Without Secure Flag</name>
-            <riskcode>1</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Low (Medium)</riskdesc>
-            <desc>&lt;p&gt;A cookie has been set without the secure flag, which means that the cookie can be accessed via unencrypted connections.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal</uri>
-                    <method>GET</method>
-                    <param>__state</param>
-                    <evidence>Set-Cookie: __state</evidence>
-                </instance>
-            </instances>
-            <count>1</count>
-            <solution>&lt;p&gt;Whenever a cookie contains sensitive information or is a session token, then it should always be passed using an encrypted channel. Ensure that the secure flag is set for cookies containing such sensitive information.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;http://www.owasp.org/index.php/Testing_for_cookies_attributes_(OWASP-SM-002)&lt;/p&gt;</reference>
-            <cweid>614</cweid>
-            <wascid>13</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-        <alertitem>
-            <pluginid>10017</pluginid>
-            <alert>Cross-Domain JavaScript Source File Inclusion</alert>
-            <name>Cross-Domain JavaScript Source File Inclusion</name>
-            <riskcode>1</riskcode>
-            <confidence>2</confidence>
-            <riskdesc>Low (Medium)</riskdesc>
-            <desc>&lt;p&gt;The page includes one or more script files from a third-party domain.&lt;/p&gt;</desc>
-            <instances>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
-                    <method>GET</method>
-                    <param>https://www.googletagmanager.com/gtag/js?id=UA-93824767-2</param>
-                    <evidence>&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=UA-93824767-2&quot;&gt;&lt;/script&gt;</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
-                    <method>GET</method>
-                    <param>https://www.googletagmanager.com/gtag/js?id=UA-93824767-2</param>
-                    <evidence>&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=UA-93824767-2&quot;&gt;&lt;/script&gt;</evidence>
-                </instance>
-                <instance>
-                    <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
-                    <method>GET</method>
-                    <param>https://www.googletagmanager.com/gtag/js?id=UA-93824767-2</param>
-                    <evidence>&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=UA-93824767-2&quot;&gt;&lt;/script&gt;</evidence>
-                </instance>
-            </instances>
-            <count>3</count>
-            <solution>&lt;p&gt;Ensure JavaScript source files are loaded from only trusted sources, and the sources can&apos;t be controlled by end users of the application.&lt;/p&gt;</solution>
-            <reference>&lt;p&gt;&lt;/p&gt;</reference>
-            <cweid>829</cweid>
-            <wascid>15</wascid>
-            <sourceid>3</sourceid>
-        </alertitem>
-    </alerts></site><site name="https://idam-web-public.aat.platform.hmcts.net" host="idam-web-public.aat.platform.hmcts.net" port="443" ssl="true"><alerts><alertitem>
-    <pluginid>10016</pluginid>
-    <alert>Web Browser XSS Protection Not Enabled</alert>
-    <name>Web Browser XSS Protection Not Enabled</name>
-    <riskcode>1</riskcode>
-    <confidence>2</confidence>
-    <riskdesc>Low (Medium)</riskdesc>
-    <desc>&lt;p&gt;Web Browser XSS Protection is not enabled, or is disabled by the configuration of the &apos;X-XSS-Protection&apos; HTTP response header on the web server&lt;/p&gt;</desc>
-    <instances>
-        <instance>
-            <uri>https://idam-web-public.aat.platform.hmcts.net/login?client_id=divorce&amp;redirect_uri=https%3A%2F%2Fdiv-pfe-aat.service.core-compute-aat.internal%2Fauthenticated&amp;response_type=code&amp;state=7fa999d3-61c0-4141-91e9-b7f8d20ea792</uri>
-            <method>GET</method>
-            <param>X-XSS-Protection</param>
-        </instance>
-    </instances>
-    <count>1</count>
-    <solution>&lt;p&gt;Ensure that the web browser&apos;s XSS filter is enabled, by setting the X-XSS-Protection HTTP response header to &apos;1&apos;.&lt;/p&gt;</solution>
-    <otherinfo>&lt;p&gt;The X-XSS-Protection HTTP response header allows the web server to enable or disable the web browser&apos;s XSS protection mechanism. The following values would attempt to enable it: &lt;/p&gt;&lt;p&gt;X-XSS-Protection: 1; mode=block&lt;/p&gt;&lt;p&gt;X-XSS-Protection: 1; report=http://www.example.com/xss&lt;/p&gt;&lt;p&gt;The following values would disable it:&lt;/p&gt;&lt;p&gt;X-XSS-Protection: 0&lt;/p&gt;&lt;p&gt;The X-XSS-Protection HTTP response header is currently supported on Internet Explorer, Chrome and Safari (WebKit).&lt;/p&gt;&lt;p&gt;Note that this alert is only raised if the response body could potentially contain an XSS payload (with a text-based content type, with a non-zero length).&lt;/p&gt;</otherinfo>
-    <reference>&lt;p&gt;https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&lt;/p&gt;&lt;p&gt;https://www.veracode.com/blog/2014/03/guidelines-for-setting-security-headers/&lt;/p&gt;</reference>
-    <cweid>933</cweid>
-    <wascid>14</wascid>
-    <sourceid>3</sourceid>
-</alertitem>
+    <alertitem>
+        <pluginid>10055</pluginid>
+        <alert>CSP Scanner: script-src unsafe-inline</alert>
+        <name>CSP Scanner: script-src unsafe-inline</name>
+        <riskcode>2</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Medium (Medium)</riskdesc>
+        <desc>&lt;p&gt;script-src includes unsafe-inline.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/noJS.png</uri>
+                <method>GET</method>
+                <param>Content-Security-Policy</param>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/cookie</uri>
+                <method>GET</method>
+                <param>Content-Security-Policy</param>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sitemap.xml</uri>
+                <method>GET</method>
+                <param>Content-Security-Policy</param>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/privacy-policy</uri>
+                <method>GET</method>
+                <param>Content-Security-Policy</param>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/terms-and-conditions</uri>
+                <method>GET</method>
+                <param>Content-Security-Policy</param>
+                <evidence>font-src &apos;self&apos; data:; script-src &apos;self&apos; &apos;unsafe-inline&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk; connect-src &apos;self&apos;; media-src &apos;self&apos;; frame-src &apos;none&apos;; img-src &apos;self&apos; www.google-analytics.com hmctspiwik.useconnect.co.uk</evidence>
+            </instance>
+        </instances>
+        <count>5</count>
+        <solution>&lt;p&gt;Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.&lt;/p&gt;</solution>
+        <reference>&lt;p&gt;http://www.w3.org/TR/CSP2/&lt;/p&gt;&lt;p&gt;http://www.w3.org/TR/CSP/&lt;/p&gt;&lt;p&gt;http://caniuse.com/#search=content+security+policy&lt;/p&gt;&lt;p&gt;http://content-security-policy.com/&lt;/p&gt;&lt;p&gt;https://github.com/shapesecurity/salvation&lt;/p&gt;</reference>
+        <cweid>16</cweid>
+        <wascid>15</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    <alertitem>
+        <pluginid>10010</pluginid>
+        <alert>Cookie No HttpOnly Flag</alert>
+        <name>Cookie No HttpOnly Flag</name>
+        <riskcode>1</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Low (Medium)</riskdesc>
+        <desc>&lt;p&gt;A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sign-out</uri>
+                <method>GET</method>
+                <param>__auth-token</param>
+                <evidence>Set-Cookie: __auth-token</evidence>
+            </instance>
+        </instances>
+        <count>1</count>
+        <solution>&lt;p&gt;Ensure that the HttpOnly flag is set for all cookies.&lt;/p&gt;</solution>
+        <reference>&lt;p&gt;http://www.owasp.org/index.php/HttpOnly&lt;/p&gt;</reference>
+        <cweid>16</cweid>
+        <wascid>13</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    <alertitem>
+        <pluginid>10027</pluginid>
+        <alert>Information Disclosure - Suspicious Comments</alert>
+        <name>Information Disclosure - Suspicious Comments</name>
+        <riskcode>0</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Informational (Medium)</riskdesc>
+        <desc>&lt;p&gt;The response appears to contain suspicious comments which may help an attacker.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/ie.js?0.17.0</uri>
+                <method>GET</method>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+                <method>GET</method>
+            </instance>
+        </instances>
+        <count>2</count>
+        <solution>&lt;p&gt;Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.&lt;/p&gt;</solution>
+        <otherinfo>&lt;p&gt;!function(a,b){function c(a,b){var c=a.createElement(&quot;p&quot;),d=a.getElementsByTagName(&quot;head&quot;)[0]||a.documentElement;return c.innerHTML=&quot;x&lt;style&gt;&quot;+b+&quot;&lt;/style&gt;&quot;,d.insertBefore(c.lastChild,d.firstChild)}function d(){var a=y.elements;return&quot;string&quot;==typeof a?a.split(&quot; &quot;):a}function e(a,b){var c=y.elements;&quot;string&quot;!=typeof c&amp;&amp;(c=c.join(&quot; &quot;)),&quot;string&quot;!=typeof a&amp;&amp;(a=a.join(&quot; &quot;)),y.elements=c+&quot; &quot;+a,j(b)}function f(a){var b=x[a[v]];return b||(b={},w++,a[v]=w,x[w]=b),b}function g(a,c,d){if(c||(c=b),q)return c.createElement(a);d||(d=f(c));var e;return e=d.cache[a]?d.cache[a].cloneNode():u.test(a)?(d.cache[a]=d.createElem(a)).cloneNode():d.createElem(a),!e.canHaveChildren||t.test(a)||e.tagUrn?e:d.frag.appendChild(e)}function h(a,c){if(a||(a=b),q)return a.createDocumentFragment();c=c||f(a);for(var e=c.frag.cloneNode(),g=0,h=d(),i=h.length;i&gt;g;g++)e.createElement(h[g]);return e}function i(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return y.shivMethods?g(c,a,b):b.createElem(c)},a.createDocumentFragment=Function(&quot;h,f&quot;,&quot;return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&amp;&amp;(&quot;+d().join().replace(/[\w\-:]+/g,function(a){return b.createElem(a),b.frag.createElement(a),&apos;c(&quot;&apos;+a+&apos;&quot;)&apos;})+&quot;);return n}&quot;)(y,b.frag)}function j(a){a||(a=b);var d=f(a);return!y.shivCSS||p||d.hasCSS||(d.hasCSS=!!c(a,&quot;article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}&quot;)),q||i(a,d),a}function k(a){for(var b,c=a.getElementsByTagName(&quot;*&quot;),e=c.length,f=RegExp(&quot;^(?:&quot;+d().join(&quot;|&quot;)+&quot;)$&quot;,&quot;i&quot;),g=[];e--;)b=c[e],f.test(b.nodeName)&amp;&amp;g.push(b.applyElement(l(b)));return g}function l(a){for(var b,c=a.attributes,d=c.length,e=a.ownerDocument.createElement(A+&quot;:&quot;+a.nodeName);d--;)b=c[d],b.specified&amp;&amp;e.setAttribute(b.nodeName,b.nodeValue);return e.style.cssText=a.style.cssText,e}function m(a){for(var b,c=a.split(&quot;{&quot;),e=c.length,f=RegExp(&quot;(^|[\\s,&gt;+~])(&quot;+d().join(&quot;|&quot;)+&quot;)(?=[[\\s,&gt;+~#.:]|$)&quot;,&quot;gi&quot;),g=&quot;$1&quot;+A+&quot;\\:$2&quot;;e--;)b=c[e]=c[e].split(&quot;}&quot;),b[b.length-1]=b[b.length-1].replace(f,g),c[e]=b.join(&quot;}&quot;);return c.join(&quot;{&quot;)}function n(a){for(var b=a.length;b--;)a[b].removeNode()}function o(a){function b(){clearTimeout(g._removeSheetTimer),d&amp;&amp;d.removeNode(!0),d=null}var d,e,g=f(a),h=a.namespaces,i=a.parentWindow;return!B||a.printShived?a:(&quot;undefined&quot;==typeof h[A]&amp;&amp;h.add(A),i.attachEvent(&quot;onbeforeprint&quot;,function(){b();for(var f,g,h,i=a.styleSheets,j=[],l=i.length,n=Array(l);l--;)n[l]=i[l];for(;h=n.pop();)if(!h.disabled&amp;&amp;z.test(h.media)){try{f=h.imports,g=f.length}catch(o){g=0}for(l=0;g&gt;l;l++)n.push(f[l]);try{j.push(h.cssText)}catch(o){}}j=m(j.reverse().join(&quot;&quot;)),e=k(a),d=c(a,j)}),i.attachEvent(&quot;onafterprint&quot;,function(){n(e),clearTimeout(g._removeSheetTimer),g._removeSheetTimer=setTimeout(b,500)}),a.printShived=!0,a)}var p,q,r=&quot;3.7.3&quot;,s=a.html5||{},t=/^&lt;|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,u=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,v=&quot;_html5shiv&quot;,w=0,x={};!function(){try{var a=b.createElement(&quot;a&quot;);a.innerHTML=&quot;&lt;xyz&gt;&lt;/xyz&gt;&quot;,p=&quot;hidden&quot;in a,q=1==a.childNodes.length||function(){b.createElement(&quot;a&quot;);var a=b.createDocumentFragment();return&quot;undefined&quot;==typeof a.cloneNode||&quot;undefined&quot;==typeof a.createDocumentFragment||&quot;undefined&quot;==typeof a.createElement}()}catch(c){p=!0,q=!0}}();var y={elements:s.elements||&quot;abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video&quot;,version:r,shivCSS:s.shivCSS!==!1,supportsUnknownElements:q,shivMethods:s.shivMethods!==!1,type:&quot;default&quot;,shivDocument:j,createElement:g,createDocumentFragment:h,addElements:e};a.html5=y,j(b);var z=/^$|\b(?:all|print)\b/,A=&quot;html5shiv&quot;,B=!q&amp;&amp;function(){var c=b.documentElement;return!(&quot;undefined&quot;==typeof b.namespaces||&quot;undefined&quot;==typeof b.parentWindow||&quot;undefined&quot;==typeof c.applyElement||&quot;undefined&quot;==typeof c.removeNode||&quot;undefined&quot;==typeof a.attachEvent)}();y.type+=&quot; print&quot;,y.shivPrint=o,o(b),&quot;object&quot;==typeof module&amp;&amp;module.exports&amp;&amp;(module.exports=y)}(&quot;undefined&quot;!=typeof window?window:this,document);&lt;/p&gt;&lt;p&gt;    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU DO&lt;/p&gt;&lt;p&gt;            This method produces a JSON text from a JavaScript value.&lt;/p&gt;&lt;p&gt;            object. The value that is returned from your method will be&lt;/p&gt;&lt;p&gt;            be excluded from the serialization.&lt;/p&gt;&lt;p&gt;            used to select the members to be serialized. It filters the results&lt;/p&gt;&lt;p&gt;// Produce a string from holder[key].&lt;/p&gt;&lt;p&gt;// If the replacer is an array, use it to select the members to be stringified.&lt;/p&gt;&lt;p&gt;// that can replace values, or an array of strings that will select the keys.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</otherinfo>
+        <reference>&lt;p&gt;&lt;/p&gt;</reference>
+        <cweid>200</cweid>
+        <wascid>13</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    <alertitem>
+        <pluginid>20012</pluginid>
+        <alert>Anti CSRF Tokens Scanner</alert>
+        <name>Anti CSRF Tokens Scanner</name>
+        <riskcode>3</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>High (Medium)</riskdesc>
+        <desc>&lt;p&gt;A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. The underlying cause is application functionality using predictable URL/form actions in a repeatable way. The nature of the attack is that CSRF exploits the trust that a web site has for a user. By contrast, cross-site scripting (XSS) exploits the trust that a user has for a web site. Like XSS, CSRF attacks are not necessarily cross-site, but they can be. Cross-site request forgery is also known as CSRF, XSRF, one-click attack, session riding, confused deputy, and sea surf.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;CSRF attacks are effective in a number of situations, including:&lt;/p&gt;&lt;p&gt;    * The victim has an active session on the target site.&lt;/p&gt;&lt;p&gt;    * The victim is authenticated via HTTP auth on the target site.&lt;/p&gt;&lt;p&gt;    * The victim is on the same local network as the target site.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;CSRF has primarily been used to perform an action against a target site using the victim&apos;s privileges, but recent techniques have been discovered to disclose information by gaining access to the response. The risk of information disclosure is dramatically increased when the target site is vulnerable to XSS, because XSS can be used as a platform for CSRF, allowing the attack to operate within the bounds of the same-origin policy.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+                <method>GET</method>
+                <evidence>&lt;form action=&quot;&apos;+this.options.url+&apos;&quot; enctype=&quot;multipart/form-data&quot; method=&quot;&apos;+this.options.method+&apos;&quot;&gt;</evidence>
+            </instance>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+                <method>GET</method>
+                <evidence>&lt;form&gt;</evidence>
+            </instance>
+        </instances>
+        <count>2</count>
+        <solution>&lt;p&gt;Phase: Architecture and Design&lt;/p&gt;&lt;p&gt;Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.&lt;/p&gt;&lt;p&gt;For example, use anti-CSRF packages such as the OWASP CSRFGuard.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Implementation&lt;/p&gt;&lt;p&gt;Ensure that your application is free of cross-site scripting issues, because most CSRF defenses can be bypassed using attacker-controlled script.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Architecture and Design&lt;/p&gt;&lt;p&gt;Generate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330).&lt;/p&gt;&lt;p&gt;Note that this can be bypassed using XSS.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Identify especially dangerous operations. When the user performs a dangerous operation, send a separate confirmation request to ensure that the user intended to perform that operation.&lt;/p&gt;&lt;p&gt;Note that this can be bypassed using XSS.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Use the ESAPI Session Management control.&lt;/p&gt;&lt;p&gt;This control includes a component for CSRF.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Do not use the GET method for any request that triggers a state change.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Implementation&lt;/p&gt;&lt;p&gt;Check the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.&lt;/p&gt;</solution>
+        <reference>&lt;p&gt;http://projects.webappsec.org/Cross-Site-Request-Forgery&lt;/p&gt;&lt;p&gt;http://cwe.mitre.org/data/definitions/352.html&lt;/p&gt;</reference>
+        <cweid>352</cweid>
+        <wascid>9</wascid>
+        <sourceid>1</sourceid>
+    </alertitem>
+    <alertitem>
+        <pluginid>10011</pluginid>
+        <alert>Cookie Without Secure Flag</alert>
+        <name>Cookie Without Secure Flag</name>
+        <riskcode>1</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Low (Medium)</riskdesc>
+        <desc>&lt;p&gt;A cookie has been set without the secure flag, which means that the cookie can be accessed via unencrypted connections.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/sign-out</uri>
+                <method>GET</method>
+                <param>__auth-token</param>
+                <evidence>Set-Cookie: __auth-token</evidence>
+            </instance>
+        </instances>
+        <count>1</count>
+        <solution>&lt;p&gt;Whenever a cookie contains sensitive information or is a session token, then it should always be passed using an encrypted channel. Ensure that the secure flag is set for cookies containing such sensitive information.&lt;/p&gt;</solution>
+        <reference>&lt;p&gt;http://www.owasp.org/index.php/Testing_for_cookies_attributes_(OWASP-SM-002)&lt;/p&gt;</reference>
+        <cweid>614</cweid>
+        <wascid>13</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
+    <alertitem>
+        <pluginid>10202</pluginid>
+        <alert>Absence of Anti-CSRF Tokens</alert>
+        <name>Absence of Anti-CSRF Tokens</name>
+        <riskcode>1</riskcode>
+        <confidence>2</confidence>
+        <riskdesc>Low (Medium)</riskdesc>
+        <desc>&lt;p&gt;No Anti-CSRF tokens were found in a HTML submission form.&lt;/p&gt;&lt;p&gt;A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. The underlying cause is application functionality using predictable URL/form actions in a repeatable way. The nature of the attack is that CSRF exploits the trust that a web site has for a user. By contrast, cross-site scripting (XSS) exploits the trust that a user has for a web site. Like XSS, CSRF attacks are not necessarily cross-site, but they can be. Cross-site request forgery is also known as CSRF, XSRF, one-click attack, session riding, confused deputy, and sea surf.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;CSRF attacks are effective in a number of situations, including:&lt;/p&gt;&lt;p&gt;    * The victim has an active session on the target site.&lt;/p&gt;&lt;p&gt;    * The victim is authenticated via HTTP auth on the target site.&lt;/p&gt;&lt;p&gt;    * The victim is on the same local network as the target site.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;CSRF has primarily been used to perform an action against a target site using the victim&apos;s privileges, but recent techniques have been discovered to disclose information by gaining access to the response. The risk of information disclosure is dramatically increased when the target site is vulnerable to XSS, because XSS can be used as a platform for CSRF, allowing the attack to operate within the bounds of the same-origin policy.&lt;/p&gt;</desc>
+        <instances>
+            <instance>
+                <uri>https://div-pfe-aat.service.core-compute-aat.internal/public/65432f96009043ca41cd/javascripts/bundle--common.js</uri>
+                <method>GET</method>
+                <evidence>&lt;form action=&quot;&apos;+this.options.url+&apos;&quot; enctype=&quot;multipart/form-data&quot; method=&quot;&apos;+this.options.method+&apos;&quot;&gt;</evidence>
+            </instance>
+        </instances>
+        <count>1</count>
+        <solution>&lt;p&gt;Phase: Architecture and Design&lt;/p&gt;&lt;p&gt;Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.&lt;/p&gt;&lt;p&gt;For example, use anti-CSRF packages such as the OWASP CSRFGuard.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Implementation&lt;/p&gt;&lt;p&gt;Ensure that your application is free of cross-site scripting issues, because most CSRF defenses can be bypassed using attacker-controlled script.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Architecture and Design&lt;/p&gt;&lt;p&gt;Generate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330).&lt;/p&gt;&lt;p&gt;Note that this can be bypassed using XSS.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Identify especially dangerous operations. When the user performs a dangerous operation, send a separate confirmation request to ensure that the user intended to perform that operation.&lt;/p&gt;&lt;p&gt;Note that this can be bypassed using XSS.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Use the ESAPI Session Management control.&lt;/p&gt;&lt;p&gt;This control includes a component for CSRF.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Do not use the GET method for any request that triggers a state change.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Phase: Implementation&lt;/p&gt;&lt;p&gt;Check the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.&lt;/p&gt;</solution>
+        <otherinfo>&lt;p&gt;No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret] was found in the following HTML form: [Form 1: ].&lt;/p&gt;</otherinfo>
+        <reference>&lt;p&gt;http://projects.webappsec.org/Cross-Site-Request-Forgery&lt;/p&gt;&lt;p&gt;http://cwe.mitre.org/data/definitions/352.html&lt;/p&gt;</reference>
+        <cweid>352</cweid>
+        <wascid>9</wascid>
+        <sourceid>3</sourceid>
+    </alertitem>
 </alerts></site></OWASPZAPReport>

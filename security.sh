@@ -23,10 +23,10 @@ while !(curl -s http://0.0.0.0:1001) > /dev/null
 
 if [ -f zapKnownIssues.xml ]; then
 
-egrep -v "<uri>|<solution>|<otherinfo>|generated.*>" zapKnownIssues.xml > zapKnownIssues.xml
+egrep -v "<uri>|<solution>|<otherinfo>|generated.*>" zapKnownIssues.xml > zapKnownIssuesUpdated.xml
 egrep -v "<uri>|<solution>|<otherinfo>|generated.*>" functional-output/activescanReport.xml > functional-output/activescanReportUpated.xml
 
-  if diff -q zapKnownIssues.xml functional-output/activescanReportUpated.xml --ignore-all-space > output.xml 2>&1; then
+  if diff -q zapKnownIssuesUpdated.xml functional-output/activescanReportUpated.xml --ignore-all-space > output.xml 2>&1; then
     echo
     echo Ignorning known vulnerabilities
     exit 0

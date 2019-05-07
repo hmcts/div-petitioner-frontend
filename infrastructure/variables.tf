@@ -221,6 +221,10 @@ variable "feature_idam" {
   default = true
 }
 
+variable "feature_strategic_pay" {
+  default = false
+}
+
 variable "survey_feedback_url" {
   default = "http://www.smartsurvey.co.uk/s/0QIL4"
 }

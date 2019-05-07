@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const Step = require('app/core/steps/Step');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -102,7 +103,7 @@ module.exports = class PayOnline extends Step {
     const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
     const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
     const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
-    const serviceCallbackUrl = `${CONF.services.transformation.baseUrl}/payment-update`;
+    const serviceCallbackUrl = parseBool(CONF.features.strategicPay) ? `${CONF.services.transformation.baseUrl}/payment-update` : '';
 
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);

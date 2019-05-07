@@ -11,12 +11,21 @@ const addressHelpers = require('../../components/AddressLookupStep/helpers/addre
 const parseBool = require('app/core/utils/parseBool');
 const ExitStep = require('app/core/steps/ExitStep');
 const stepsHelper = require('app/core/helpers/steps');
+const { watch } = require('app/core/helpers/staleDataManager');
 
 const maximumNumberOfSteps = 500;
 
 module.exports = class CheckYourAnswers extends ValidationStep {
   get url() {
     return '/check-your-answers';
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    watch('confirmPrayer', (previousSession, session, remove) => {
+      remove('confirmPrayer');
+    });
   }
 
   next(ctx, session) {

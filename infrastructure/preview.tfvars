@@ -39,3 +39,5 @@ court_service_centre_weight = 0.51
 court_southwest_court_weight = 0.3
 
 court_northwest_court_weight = 0.3
+
+feature_strategic_pay = "true"

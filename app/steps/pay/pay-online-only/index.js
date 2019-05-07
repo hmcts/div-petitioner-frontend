@@ -26,6 +26,8 @@ const feeType = req => {
   return req.session.previousCaseId ? feeConfigPropNames.amendFee : feeConfigPropNames.applicationFee;
 };
 
+const serviceCallbackUrl = parseBool(CONF.features.strategicPay) ? `${CONF.services.transformation.baseUrl}/payment-update` : '';
+
 module.exports = class PayOnline extends Step {
   get url() {
     return '/pay/online';
@@ -102,7 +104,6 @@ module.exports = class PayOnline extends Step {
     const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
     const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
     const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
-    const serviceCallbackUrl = `${CONF.services.transformation.baseUrl}/payment-update`;
 
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);

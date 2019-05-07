@@ -155,20 +155,42 @@ describe(modulePath, () => {
         }, 'post');
       });
 
-      it('sets the returnUrl and serviceCallbackUrl dynamically', done => {
+      it('sets the returnUrl and serviceCallbackUrl dynamically when feature flag is true', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', true, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
         // Act.
-        testCustom(done, agent, underTest, cookies, response => {
-          // Assert.
-          const returnUrl = response.request.protocol.concat(
-            '//', response.request.host, '/pay/card-payment-status'
-          );
-          const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
-          expect(create.calledWith(
-            sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
-            'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
-            returnUrl, serviceCallbackUrl
-          )).to.equal(true);
-        }, 'post');
+        featureTest(done);
+      });
+
+      it('sets the returnUrl dynamically when feature flag is false', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', false, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = '';
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
+        // Act.
+        featureTest(done);
       });
     });
 
@@ -200,22 +222,43 @@ describe(modulePath, () => {
         }, 'post');
       });
 
-      it('sets the returnUrl and serviceCallbackUrl dynamically', done => {
+      it('sets the returnUrl and serviceCallbackUrl dynamically when feature flag is true', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', true, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
         // Act.
-        testCustom(done, agent, underTest, cookies, response => {
-          // Assert.
-          const returnUrl = response.request.protocol.concat(
-            '//', response.request.host, '/pay/card-payment-status'
-          );
-          const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
-          expect(create.calledWith(
-            sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
-            'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
-            returnUrl, serviceCallbackUrl
-          )).to.equal(true);
-        }, 'post');
+        featureTest(done);
       });
 
+      it('sets the returnUrl dynamically when feature flag is false', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', false, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = '';
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
+        // Act.
+        featureTest(done);
+      });
 
       context('Court is selected', () => {
         it('creates payment with the site ID of the court', done => {

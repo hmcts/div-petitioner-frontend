@@ -51,10 +51,9 @@ describe(modulePath, () => {
         // Assert.
         const assertion = reallyDone => {
           expect(createStub.called).to.equal(true);
-          // change expected param back to serviceCallbackUrl when strategic pay is enabled again
           expect(createStub.calledWith(user, serviceToken, caseReference,
             siteId, feeCode, feeVersion, amountInput, description,
-            returnUrl, '')).to.equal(true);
+            returnUrl, serviceCallbackUrl)).to.equal(true);
           reallyDone();
         };
         // Act.

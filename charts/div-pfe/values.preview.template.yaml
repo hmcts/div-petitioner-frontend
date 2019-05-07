@@ -17,6 +17,7 @@ nodejs:
         EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL: "http://div-emca-aat.service.core-compute-aat.internal/health"
         EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-aat.service.core-compute-aat.internal"
         FEATURE_IDAM: "true"
+        FEATURE_STRATEGIC_PAY: "false"
         FEES_AND_PAYMENTS_HEALTHCHECK_URL: "http://div-fps-aat.service.core-compute-aat.internal/health"
         FEES_AND_PAYMENTS_URL: "http://div-fps-aat.service.core-compute-aat.internal"
         GOOGLE_ANALYTICS_ID: "TBD"

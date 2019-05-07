@@ -234,6 +234,7 @@ module "frontend" {
     COURT_SERVICE_CENTRE_SITEID             = "${var.court_service_centre_siteid}"
 
     // Feature toggling through config
-    FEATURE_IDAM                               = "${var.feature_idam}"
+    FEATURE_IDAM                            = "${var.feature_idam}"
+    FEATURE_STRATEGIC_PAY                   = "${var.feature_strategic_pay}"
   }
 }

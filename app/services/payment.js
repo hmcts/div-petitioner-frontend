@@ -15,6 +15,8 @@ const service = {
    */
   create: (req, user, serviceToken, caseReference, siteId, feeCode,
     feeVersion, amountInput, description, returnUrl, serviceCallbackUrl) => {
+    // temporarily disable strategic payment callback whilst bug is being resolved.
+    serviceCallbackUrl = ''; // eslint-disable-line
     return client.create(user, serviceToken, caseReference, siteId, feeCode,
       feeVersion, amountInput, description, returnUrl, serviceCallbackUrl)
       .then(response => {

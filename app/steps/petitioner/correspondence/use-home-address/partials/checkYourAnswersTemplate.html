@@ -1,10 +1,12 @@
 <tr>
   <th>
     {{ content.question | safe }}
+  </th>
+  <td>
+    {{ fields.petitionerCorrespondenceUseHomeAddress.value }}
     {% if session.petitionerHomeAddress %}
       <span class="address">{{ session.petitionerHomeAddress.address.join('<br/>') | safe }}</span>
     {% endif %}
-  </th>
-  <td>{{ fields.petitionerCorrespondenceUseHomeAddress.value }}</td>
+  </td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

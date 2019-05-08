@@ -132,6 +132,7 @@ features:
   idam: false
   ignoreSessionValidation: false
   browserSupport: false
+  strategicPay: false
 
 idamArgs:
   redirectUri: 'https://localhost:8080/authenticated'

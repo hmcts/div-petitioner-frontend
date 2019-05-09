@@ -29,7 +29,7 @@ describe(modulePath, () => {
     });
 
     it('redirects to the next page', done => {
-      const nextStep = s.steps.NeedHelpWithFees;
+      const nextStep = s.steps.PetitionerContactDetails;
       const context = { };
       testRedirect(done, agent, underTest, context, nextStep);
     });

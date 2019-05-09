@@ -5,7 +5,7 @@ module.exports = class PetitionerContactDetails extends ValidationStep {
     return '/petitioner-respondent/contact-details';
   }
   get nextStep() {
-    return this.steps.PetitionerHomeAddress;
+    return this.steps.NeedHelpWithFees;
   }
 
   parseRequest(req) {

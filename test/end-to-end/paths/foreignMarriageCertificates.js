@@ -6,8 +6,9 @@ Scenario('Certificate in English ', function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
@@ -25,8 +26,9 @@ Scenario('Certificate not English but with translation', function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
@@ -44,8 +46,9 @@ Scenario('Certificate not English with no translation - exit page - and can go b
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();

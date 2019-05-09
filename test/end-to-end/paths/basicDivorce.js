@@ -12,8 +12,9 @@ Scenario('Get a divorce', async function(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
+
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
@@ -28,7 +29,6 @@ Scenario('Get a divorce', async function(I) {
   I.enterPetitionerAndRespondentNames();
   I.enterMarriageCertificateDetails();
   I.enterPetitionerChangedName();
-  I.enterPetitionerContactDetails();
 
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
   I.enterCorrespondence();

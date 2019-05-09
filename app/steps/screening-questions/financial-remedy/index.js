@@ -6,7 +6,7 @@ module.exports = class ScreeningQuestionsFinancialRemedy extends ScreeningValida
   }
 
   get nextStep() {
-    return this.steps.NeedHelpWithFees;
+    return this.steps.PetitionerContactDetails;
   }
 
   get ignorePa11yWarnings() {

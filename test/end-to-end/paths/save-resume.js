@@ -13,6 +13,7 @@ Scenario('See the check your answers page if session restored from draft petitio
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
+    I.enterPetitionerContactDetails();
     I.selectHelpWithFees();
     I.enterHelpWithFees();
     I.selectDivorceType();
@@ -43,6 +44,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
+    I.enterPetitionerContactDetails();
     I.selectHelpWithFees();
     I.enterHelpWithFees();
     I.selectDivorceType();
@@ -68,6 +70,7 @@ Scenario('Save and close', function (I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
   I.selectHelpWithFees();
 
   I.clickSaveAndCLose();
@@ -87,6 +90,7 @@ Scenario('Delete application from draft petition store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
+    I.enterPetitionerContactDetails();
     I.selectHelpWithFees();
     I.clearCookie();
 
@@ -116,6 +120,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
+    I.enterPetitionerContactDetails();
     I.selectHelpWithFees();
     I.clearCookie();
 
@@ -140,6 +145,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
+    I.enterPetitionerContactDetails();
     I.selectHelpWithFees();
     I.clearCookie();
 
@@ -165,6 +171,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
+    I.enterPetitionerContactDetails();
     I.selectHelpWithFees();
     I.clearCookie();
 

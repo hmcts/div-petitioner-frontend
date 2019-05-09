@@ -57,7 +57,7 @@ describe(modulePath, () => {
     it('redirects to the next page if petitionerNameDifferentToMarriageCertificate is No', done => {
       const context = { petitionerNameDifferentToMarriageCertificate: 'No' };
 
-      const nextStep = s.steps.PetitionerContactDetails;
+      const nextStep = s.steps.PetitionerHomeAddress;
 
       testRedirect(done, agent, underTest, context, nextStep);
     });
@@ -68,7 +68,7 @@ describe(modulePath, () => {
         petitionerNameChangedHow: ['marriageCertificate']
       };
 
-      const nextStep = s.steps.PetitionerContactDetails;
+      const nextStep = s.steps.PetitionerHomeAddress;
 
       testRedirect(done, agent, underTest, context, nextStep);
     });
@@ -80,7 +80,7 @@ describe(modulePath, () => {
         petitionerNameChangedHowOtherDetails: 'details...'
       };
 
-      const nextStep = s.steps.PetitionerContactDetails;
+      const nextStep = s.steps.PetitionerHomeAddress;
 
       testRedirect(done, agent, underTest, context, nextStep);
     });

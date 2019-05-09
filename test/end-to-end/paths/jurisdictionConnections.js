@@ -6,8 +6,9 @@ Before((I) => {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
+
   I.selectHelpWithFees(false);
   I.selectDivorceType();
   I.enterMarriageDate();

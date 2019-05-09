@@ -6,7 +6,7 @@ module.exports = class PetitionerChangedNamed extends ValidationStep {
     return '/petitioner-respondent/changed-name';
   }
   get nextStep() {
-    return this.steps.PetitionerContactDetails;
+    return this.steps.PetitionerHomeAddress;
   }
 
   constructor(...args) {

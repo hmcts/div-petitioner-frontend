@@ -113,7 +113,7 @@ describe(modulePath, () => {
       const context = { petitionerConsent: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerHomeAddress);
+        s.steps.NeedHelpWithFees);
     });
 
     it('redirects to the next page when valid phone is entered and consent is given', done => {
@@ -123,7 +123,7 @@ describe(modulePath, () => {
       };
 
       testRedirect(done, agent, underTest, context,
-        s.steps.PetitionerHomeAddress);
+        s.steps.NeedHelpWithFees);
     });
   });
 

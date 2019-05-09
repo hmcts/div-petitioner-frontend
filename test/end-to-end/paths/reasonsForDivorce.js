@@ -138,8 +138,9 @@ Scenario('Deserted without agreement', function*(I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
-
   I.readFinancialRemedy();
+  I.enterPetitionerContactDetails();
+
   I.selectHelpWithFees(false);
 
   I.selectDivorceType();
@@ -154,7 +155,6 @@ Scenario('Deserted without agreement', function*(I) {
   I.enterPetitionerAndRespondentNames();
   I.enterMarriageCertificateDetails();
   I.enterPetitionerChangedName();
-  I.enterPetitionerContactDetails();
 
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
   I.enterCorrespondence();

@@ -12,6 +12,7 @@ Scenario('Logount on Save and close', function (I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.readFinancialRemedy();
 
   I.clickSaveAndCLose();
   I.seeCurrentUrlEquals('/exit/application-saved');
@@ -32,6 +33,7 @@ Scenario('Logout on Sign Out', function (I) {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+  I.readFinancialRemedy();
 
   I.signOut();
 

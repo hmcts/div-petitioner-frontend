@@ -22,6 +22,7 @@ const keysToIgnore = [
   'Graph',
   'Adultery3rdPartyDetails',
   'CardPaymentStatus',
+  'ScreeningQuestionsFinancialRemedy',
   'ScreeningQuestionsMarriageBroken',
   'ScreeningQuestionsMarriageCertificate',
   'AdulteryDetails',

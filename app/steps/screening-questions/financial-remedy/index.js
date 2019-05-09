@@ -1,17 +1,12 @@
 const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep');
 
-module.exports = class ScreeningQuestionsMarriageCertificate extends ScreeningValidationStep {
+module.exports = class ScreeningQuestionsFinancialRemedy extends ScreeningValidationStep {
   get url() {
-    return '/screening-questions/marriage-certificate';
+    return '/screening-questions/financial-remedy';
   }
 
   get nextStep() {
-    return {
-      screenHasMarriageCert: {
-        Yes: this.steps.ScreeningQuestionsFinancialRemedy,
-        No: this.steps.ExitMarriageCertificate
-      }
-    };
+    return this.steps.NeedHelpWithFees;
   }
 
   get ignorePa11yWarnings() {

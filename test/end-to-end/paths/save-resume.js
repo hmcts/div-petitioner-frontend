@@ -63,9 +63,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
 
 Scenario('Save and close', function (I) {
   I.amOnLoadedPage('/index');
-
   I.startApplication();
-
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();

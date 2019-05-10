@@ -18,6 +18,7 @@ const modulePath = 'app/steps/check-your-answers';
 
 const content = require(`${modulePath}/content`);
 const commonContent = require('app/content/common');
+const { removeStaleData } = require('app/core/helpers/staleDataManager');
 
 const contentStrings = content.resources.en.translation.content;
 
@@ -1019,6 +1020,22 @@ describe(modulePath, () => {
     it('Ensure we visit the check-your-answers page even if a statement of truth was saved to the draft', done => {
       expect(underTest.isSkippable).to.equal(false);
       done();
+    });
+  });
+
+  describe('Watched session values', () => {
+    const thisStepFields = ['confirmPrayer'];
+
+    it('removes confirmPrayer field on load', () => {
+      const previousSession = { confirmPrayer: 'Yes' };
+      session = clone(previousSession);
+      delete session.confirmPrayer;
+
+      const newSession = removeStaleData(previousSession, session);
+
+      thisStepFields.forEach(property => {
+        expect(newSession).not.to.have.property(property);
+      });
     });
   });
 });

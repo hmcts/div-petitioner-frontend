@@ -12,9 +12,9 @@ http_proxy = ""
 
 google_analytics_tracking_id = "UA-93824767-2"
 
-idam_authentication_web_url = "https://idam-test.dev.ccidam.reform.hmcts.net"
+idam_authentication_web_url = "https://idam-web-public-idam-sprod.service.core-compute-idam-sprod.internal"
 
-idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
+idam_api_url = "http://idam-api-idam-sprod.service.core-compute-idam-sprod.internal"
 
 payment_service_url = "http://payment-api-sprod.service.core-compute-sprod.internal"
 

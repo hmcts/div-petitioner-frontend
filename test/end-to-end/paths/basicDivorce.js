@@ -13,6 +13,7 @@ Scenario('Get a divorce', async function(I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
 
+  I.readFinancialRemedy();
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();

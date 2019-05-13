@@ -5,7 +5,7 @@
             "translation": {
                 "content": {
                     "enterPostcodeLink": "Enter postcode to select address",
-                    "enterManualLink": "I can’t enter a UK postcode",
+                    "enterManualLink": "The address is not located in the UK",
                     "findAddress": "Find address",
                     "enterPostcode": "Enter a UK postcode",
                     "address": "Address",
@@ -18,7 +18,7 @@
                     "county": "County",
                     "optional": "optional",
                     "postcode": "Postcode",
-                    "fullAddress": "Enter full address",
+                    "fullAddress": "Enter full non UK address",
                     "adressesFound": "addresses found",
                     "updateAddress": "Update address"
                 },

@@ -410,7 +410,7 @@ variable "court_opening_hours" {
 }
 
 variable "court_email" {
-  default = "divorce@justice.gov.uk"
+  default = "contactdivorce@justice.gov.uk"
 }
 
 variable "common_tags" {

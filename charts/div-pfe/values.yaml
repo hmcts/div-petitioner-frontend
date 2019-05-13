@@ -16,7 +16,7 @@ nodejs:
         RATE_LIMITER_EXPIRE: "3600000"
         RATE_LIMITER_TOTAL: "3600"
         # Court Details
-        COURT_EMAIL: "divorce@justice.gov.uk"
+        COURT_EMAIL: "contactdivorce@justice.gov.uk"
         COURT_OPENINGHOURS: "Monday to Friday, 8.30am to 5pm"
         COURT_PHONENUMBER: "0300 303 0642"
         COURT_SERVICE_CENTRE_NAME: "East Midlands Regional Divorce Centre"

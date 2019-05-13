@@ -390,7 +390,7 @@ variable "court_service_centre_openinghours" {
 }
 
 variable "court_service_centre_email" {
-  default = "divorcecase@justice.gov.uk"
+  default = "contactdivorce@justice.gov.uk"
 }
 
 variable "court_service_centre_phonenumber" {

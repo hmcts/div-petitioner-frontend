@@ -22,7 +22,7 @@ services:
       - "8080"
     volumes:
       - "../node_modules:/opt/app/node_modules"
-    command: ["yarn", "run", "start-dev"]
+    command: ["yarn", "run", "dev"]
     depends_on:
       redis:
         condition: service_healthy

@@ -30,7 +30,7 @@ This installs the dev dependencies to your local folder.
 ### Start the app
 
 ```
-make start-dev
+make dev
 ```
 
 ###  Run the tests
@@ -60,7 +60,7 @@ brew install redis
 To run the front end app, run the following from the front end project root folder:
 
 ```
-yarn add redis-server & yarn start-dev
+yarn add redis-server & yarn dev
 ```
 
 The application will now be running on ```https://localhost:8080```.

@@ -196,7 +196,8 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
   const hasSaveAndCloseBody = body && body.saveAndClose;
 
   if (isPost && hasSaveAndCloseBody) {
-    const ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
+    let ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
+    ctx = this.interceptor(ctx); // eslint-disable-line no-invalid-this
     const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
     const sessionToSave = removeBlackListedPropertiesFromSession(session);
 

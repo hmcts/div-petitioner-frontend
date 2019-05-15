@@ -80,7 +80,7 @@ class SessionHelper extends codecept_helper {
   }
 
   updateExpectedSessionWithActualSession(expectedSession, actualSession) {
-    const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:8080') > -1;
+    const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:3000') > -1;
 
     expectedSession.csrfSecret                                  = actualSession.csrfSecret;
     expectedSession.feeToBePaid                                 = actualSession.feeToBePaid;

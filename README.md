@@ -63,7 +63,7 @@ To run the front end app, run the following from the front end project root fold
 yarn add redis-server & yarn dev
 ```
 
-The application will now be running on ```https://localhost:8080```.
+The application will now be running on ```https://localhost:3000```.
 
 To run the tests and lint, run the following:
 ```

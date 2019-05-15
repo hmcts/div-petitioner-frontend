@@ -26,6 +26,6 @@ describe(modulePath, () => {
     // Assert.
     expect(output).to.have.property('protocol', 'https:');
     expect(output).to.have.property('hostname', 'localhost');
-    expect(output).to.have.property('port', '8080');
+    expect(output).to.have.property('port', '3000');
   });
 });

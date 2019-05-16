@@ -196,26 +196,28 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
   const hasSaveAndCloseBody = body && body.saveAndClose;
 
   if (isPost && hasSaveAndCloseBody) {
-    let ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
-    ctx = this.interceptor(ctx); // eslint-disable-line no-invalid-this
-    const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
-    const sessionToSave = removeBlackListedPropertiesFromSession(session);
+    co(function* generator() {
+      let ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
+      ctx = yield this.interceptor(ctx); // eslint-disable-line no-invalid-this
+      const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
+      const sessionToSave = removeBlackListedPropertiesFromSession(session);
 
-    // Get user token.
-    let authToken = '';
-    if (req.cookies && req.cookies[authTokenString]) {
-      authToken = req.cookies[authTokenString];
-    }
+      // Get user token.
+      let authToken = '';
+      if (req.cookies && req.cookies[authTokenString]) {
+        authToken = req.cookies[authTokenString];
+      }
 
-    const sendEmail = true;
-    client.saveToDraftStore(authToken, sessionToSave, sendEmail)
-      .then(() => {
-        res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
-      })
-      .catch(error => {
-        logger.errorWithReq(req, 'save_draft_and_close_error', 'Error restoring draft', error.message);
-        res.redirect('/generic-error');
-      });
+      const sendEmail = true;
+      client.saveToDraftStore(authToken, sessionToSave, sendEmail)
+        .then(() => {
+          res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+        })
+        .catch(error => {
+          logger.errorWithReq(req, 'save_draft_and_close_error', 'Error restoring draft', error.message);
+          res.redirect('/generic-error');
+        });
+    });
   } else {
     next();
   }

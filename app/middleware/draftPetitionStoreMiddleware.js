@@ -200,7 +200,7 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
 
     co(function* generator() {
       let ctx = context.parseRequest(req);
-      ctx = yield context.interceptor(ctx);
+      ctx = yield context.interceptor(ctx, req.session);
       const session = context.applyCtxToSession(ctx, req.session);
       const sessionToSave = removeBlackListedPropertiesFromSession(session);
 

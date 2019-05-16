@@ -196,10 +196,12 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
   const hasSaveAndCloseBody = body && body.saveAndClose;
 
   if (isPost && hasSaveAndCloseBody) {
+    const context = this; // eslint-disable-line no-invalid-this
+
     co(function* generator() {
-      let ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
-      ctx = yield this.interceptor(ctx); // eslint-disable-line no-invalid-this
-      const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
+      let ctx = context.parseRequest(req);
+      ctx = yield context.interceptor(ctx);
+      const session = context.applyCtxToSession(ctx, req.session);
       const sessionToSave = removeBlackListedPropertiesFromSession(session);
 
       // Get user token.
@@ -211,7 +213,7 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
       const sendEmail = true;
       client.saveToDraftStore(authToken, sessionToSave, sendEmail)
         .then(() => {
-          res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+          res.redirect(context.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
         })
         .catch(error => {
           logger.errorWithReq(req, 'save_draft_and_close_error', 'Error restoring draft', error.message);

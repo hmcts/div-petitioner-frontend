@@ -29,6 +29,9 @@ const buildAddressBaseUk = function(selectedAddress) {
   return addressBaseUK;
 };
 
+// refactored based off logic in Royal Mail Programmers' Guide
+// https://www.royalmail.com/sites/default/files/docs/pdf/programmers_guide_edition_7_v5.pdf
+
 // @todo Refactor this to reduce complexity.
 
 const buildConcatenatedAddress = function(address) { // eslint-disable-line complexity

@@ -151,6 +151,48 @@ describe(modulePath, () => {
     });
   });
 
+  describe('#saveSessionToDraftStoreAndClose', () => {
+    beforeEach(() => {
+      res = {
+        redirect: sinon.stub(),
+        locals: { steps: s.steps }
+      };
+      req = { query: {} };
+      next = sinon.stub();
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').resolves(s.steps.WithFees);
+    });
+
+    afterEach(() => {
+      stepsHelper.findNextUnAnsweredStep.restore();
+    });
+
+    it('redirects to next ExitApplicationSaved when user saves and exits', done => {
+      const sandbox = sinon.sandbox.create();
+
+      sandbox
+        .stub(mockedClient, 'saveToDraftStore')
+        .resolves();
+
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '1234' },
+        method: 'post',
+        body: { saveAndClose: true }
+      };
+
+      draftPetitionStoreMiddleware
+        .saveSessionToDraftStoreAndClose
+        .call(s.steps.ScreeningQuestionsMarriageBroken, req, res, next);
+
+      const doTheTest = () => {
+        expect(res.redirect.calledWith('/exit/application-saved')).to.eql(true);
+        done();
+      };
+
+      setTimeout(doTheTest, 1);
+    });
+  });
+
   describe('#restoreFromDraftStore', () => {
     beforeEach(() => {
       res = {

@@ -160,19 +160,15 @@ describe(modulePath, () => {
       req = { query: {} };
       next = sinon.stub();
       sinon.stub(stepsHelper, 'findNextUnAnsweredStep').resolves(s.steps.WithFees);
+      sinon.stub(mockedClient, 'saveToDraftStore').resolves();
     });
 
     afterEach(() => {
       stepsHelper.findNextUnAnsweredStep.restore();
+      mockedClient.saveToDraftStore.restore();
     });
 
     it('redirects to next ExitApplicationSaved when user saves and exits', done => {
-      const sandbox = sinon.sandbox.create();
-
-      sandbox
-        .stub(mockedClient, 'saveToDraftStore')
-        .resolves();
-
       req = {
         originalUrl: '/not-with-fees-url',
         session: { previousCaseId: '1234' },

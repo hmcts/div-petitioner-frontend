@@ -1,5 +1,5 @@
 nodejs:
-    applicationPort: 8080
+    applicationPort: 3000
     environment:
         REFORM_SERVICE_NAME: "pfs"
         REFORM_TEAM: "div"

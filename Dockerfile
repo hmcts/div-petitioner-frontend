@@ -11,4 +11,4 @@ RUN yarn setup && rm -rf node_modules
 FROM base as runtime
 COPY --from=build $WORKDIR ./
 USER hmcts
-EXPOSE 8080
+EXPOSE 3000

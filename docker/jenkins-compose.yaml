@@ -5,7 +5,7 @@ services:
     image: reform/codeceptjs:8
     command: /bin/true
     environment:
-      E2E_FRONTEND_URL: ${E2E_FRONTEND_URL:-https://localhost:8080}
+      E2E_FRONTEND_URL: ${E2E_FRONTEND_URL:-https://localhost:3000}
     network_mode: 'service:frontend'
     volumes:
       - "../.:/tests"
@@ -19,10 +19,10 @@ services:
     links:
       - redis
     expose:
-      - "8080"
+      - "3000"
     volumes:
       - "../node_modules:/opt/app/node_modules"
-    command: ["yarn", "run", "start-dev"]
+    command: ["yarn", "run", "dev"]
     depends_on:
       redis:
         condition: service_healthy

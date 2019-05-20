@@ -62,7 +62,8 @@ describe(modulePath, () => {
 
   describe('success', () => {
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content);
+      const dataContent = { feeToBePaid: '550' };
+      testContent(done, agent, underTest, content, dataContent);
     });
   });
 

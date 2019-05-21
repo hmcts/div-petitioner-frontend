@@ -60,9 +60,25 @@ describe(modulePath, () => {
     });
   });
 
-  describe('success', () => {
+
+  describe('New Application', () => {
     it('renders the content from the content file', done => {
       const dataContent = { feeToBePaid: '550' };
+      testContent(done, agent, underTest, content, dataContent);
+    });
+  });
+
+  describe('Amended Case', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = { previousCaseId: 'old-case-id' };
+
+      withSession(done, agent, session);
+    });
+
+    it('renders the content from the content file', done => {
+      const dataContent = { feeToBePaid: '95' };
       testContent(done, agent, underTest, content, dataContent);
     });
   });

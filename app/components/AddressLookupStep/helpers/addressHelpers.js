@@ -65,15 +65,14 @@ function buildNameIsAnException(buildingName) {
   }
 
   const firstChar = buildingName.charAt(0);
-  // Exception rule 3 - Building Name has only one character (eg ‘A’)
-  if (buildingName.length === 1) {
-    return Boolean(firstChar.match(/[a-z]/i));
-  }
-
   const lastChar = buildingName.slice(-1);
   // Exception rule 1 - first and last characters are numeric
   if (!isNaN(firstChar) && !isNaN(lastChar)) {
     return true;
+  }
+  // Exception rule 3 - Building Name has only one character (eg ‘A’)
+  if (buildingName.length === 1) {
+    return Boolean(firstChar.match(/[a-z]/i));
   }
   // Exception rule 2 - First and penultimate characters are numeric, last character is alphabetic
   const penultimateCharIndex = -2;

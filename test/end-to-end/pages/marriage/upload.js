@@ -45,6 +45,18 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   I.navByClick('Continue');
 }
 
+function uploadCorruptedFileAndRemovingSuccessfully(isDragAndDropSupported) {
+  const I = this;
+
+  I.say('Drag and Drop supported: ' + isDragAndDropSupported);
+  I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
+  upload.call(I, '/assets/corruptedImage.bmp', isDragAndDropSupported);
+  I.waitForVisible('.file', 30);
+  I.waitForText('Hide', 30);
+  I.see('No files uploaded');
+  I.navByClick('Continue');
+}
+
 function withoutUploadFile() {
   const I = this;
   I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
@@ -56,5 +68,6 @@ module.exports = {
   uploadMarriageCertificateFile,
   deleteAMarriageCertificateFile,
   testUploadResponse,
-  withoutUploadFile
+  withoutUploadFile,
+  uploadCorruptedFileAndRemovingSuccessfully
 };

@@ -40,48 +40,48 @@
               $('.dz-preview').remove();
             });
             this.on('uploadprogress', function(file, progress){
-              if(file.element){
+              if (file.element){
                 file.element.find('span.progress').attr('style', 'width:'+progress+'%;');
                 file.element.find('span.form-hint').html(' - ' + options.uploadingHint);
               }
             });
             this.on('complete', function(file){
-              if(file.element){
+              if (file.element){
                 file.element.removeClass('uploading');
               }
             });
             this.on('success', function(file, resp){
-              if(file.element && resp && resp.length){
+              if (file.element && resp && resp.length){
                 $(file.element).find('.remove-file').data('fileurl', resp[0].fileUrl);
               }
             });
             this.on('canceled', function(file){
-              if(file.element){
+              if (file.element){
                 file.element.addClass('error');
                 file.element.find('span.form-hint').remove();
                 file.element.find('td:first')
                   .addClass('form-group-error')
                   .append('<span class="error-message">' + options.errors.errorUnknown + '</span>');
               }
-              if(!this.getQueuedFiles().length){
+              if (!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
               }
             });
             this.on('error', function(file, errorMessage){
               var errorMessageText = options.errors.errorUnknown;
 
-              if(errorMessage && errorMessage.code && options.errors[errorMessage.code]){
+              if (errorMessage && errorMessage.code && options.errors[errorMessage.code]){
                 errorMessageText = options.errors[errorMessage.code];
               }
 
-              if(file.element){
+              if (file.element){
                 file.element.addClass('error');
                 file.element.find('span.form-hint').remove();
                 file.element.find('td:first')
                   .addClass('form-group-error')
                   .append('<span class="error-message">' + errorMessageText + '</span>');
               }
-              if(!this.getQueuedFiles().length){
+              if (!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
               }
               setTimeout(function(){
@@ -122,7 +122,7 @@
         self.$zone.dropzone(dzOptions);
 
         // fix a11y tests
-        if($('.dz-hidden-input').length){
+        if ($('.dz-hidden-input').length){
           var att = document.createAttribute('title');
           att.value = 'Upload file';
           $('.dz-hidden-input')[0].setAttributeNode(att);
@@ -148,13 +148,14 @@
           e.preventDefault();
           var $file = $(this).parents('.file');
           var fileUrl = $(this).data('fileurl');
+          const endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
           $.ajax({
-            url: window.location + '?js=true&fileUrl=' + encodeURI(fileUrl) + '&_csrf=' + csrfToken,
+            url: endPoint,
             type: 'DELETE',
             success: function() {
               self.removeFileFromList($file);
-              for(var i = 0; i < dropzone.files.length; i++){
-                if(dropzone.files[i].status === 'success'){
+              for (var i = 0; i < dropzone.files.length; i++){
+                if (dropzone.files[i].status === 'success'){
                   dropzone.files.splice(i, 1);
                   return;
                 }
@@ -166,13 +167,14 @@
           e.preventDefault();
           var $file = $(this).parents('.file');
           var fileUrl = $(this).data('fileurl');
+          const endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
           $.ajax({
-            url: window.location + '?js=true&fileUrl=' + encodeURI(fileUrl) + '&_csrf=' + csrfToken,
+            url: endPoint,
             type: 'DELETE',
             success: function() {
               self.removeFileFromList($file);
-              for(var i = 0; i < dropzone.files.length; i++){
-                if(dropzone.files[i].status === 'success'){
+              for (var i = 0; i < dropzone.files.length; i++){
+                if (dropzone.files[i].status === 'success'){
                   dropzone.files.splice(i, 1);
                   return;
                 }
@@ -182,7 +184,7 @@
         });
 
         $(document).on('keydown', 'a.faux-link, .dz-clickable', function(e) {
-          if([13, 32].includes(e.keyCode)) { // pressed RETURN or SPACE
+          if ([13, 32].includes(e.keyCode)) { // pressed RETURN or SPACE
             e.preventDefault();
             e.stopPropagation();
             self.$zone.trigger('click');
@@ -203,7 +205,7 @@
         $el.fadeOut(400, function() {
           $el.remove();
 
-          if(!self.$fileList.find('.file').length) {
+          if (!self.$fileList.find('.file').length) {
             self.$fileList.find('.no-files').show();
           }
 

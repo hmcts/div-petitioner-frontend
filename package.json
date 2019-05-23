@@ -9,7 +9,7 @@
   "scripts": {
     "start": "NODE_PATH=. node server.js",
     "start-basic": "NODE_ENV=production NODE_PATH=. node server",
-    "start-dev": "NODE_ENV=development NODE_PATH=. grunt start-dev",
+    "dev": "NODE_ENV=development NODE_PATH=. grunt dev",
     "start-debug": "NODE_ENV=development NODE_PATH=. node --inspect=0.0.0.0:9229 server.js",
     "start-debug-ide": "NODE_ENV=development NODE_PATH=. node $NODE_DEBUG_OPTION server.js",
     "start-prod": "NODE_PATH=. grunt start-prod",

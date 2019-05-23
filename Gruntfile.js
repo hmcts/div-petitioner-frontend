@@ -109,7 +109,7 @@ module.exports = function(grunt) {
     'clean'
   ]);
 
-  grunt.registerTask('start-dev', [
+  grunt.registerTask('dev', [
     'copy',
     'webpack:dev',
     'clean',

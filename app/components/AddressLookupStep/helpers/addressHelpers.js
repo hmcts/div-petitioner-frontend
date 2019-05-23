@@ -6,7 +6,6 @@ const cleanLine = function(line) {
     .replace(/^,/g, '');
 };
 
-
 const buildAddressBaseUk = function(selectedAddress) {
   let line1 = `${selectedAddress.DPA.ORGANISATION_NAME} ${selectedAddress.DPA.DEPARTMENT_NAME} ${selectedAddress.DPA.PO_BOX_NUMBER}`;
   let line2 = `${selectedAddress.DPA.BUILDING_NAME} ${selectedAddress.DPA.SUB_BUILDING_NAME} ${selectedAddress.DPA.BUILDING_NUMBER} ${selectedAddress.DPA.THOROUGHFARE_NAME}`;
@@ -30,9 +29,8 @@ const buildAddressBaseUk = function(selectedAddress) {
   return addressBaseUK;
 };
 
-// refactored based off logic in Royal Mail Programmers' Guide
+// Refactored based off address logic in Royal Mail Programmers' Guide
 // https://www.royalmail.com/sites/default/files/docs/pdf/programmers_guide_edition_7_v5.pdf
-// @todo prepend the word 'PO BOX' in the cases where it applies
 
 const defaultAddressTemplate = function(address) {
   return {
@@ -63,7 +61,6 @@ function buildNameIsAnException(buildingName) {
   if (!buildingName) {
     return false;
   }
-
   const firstChar = buildingName.charAt(0);
   const lastChar = buildingName.slice(-1);
   // Exception rule 1 - first and last characters are numeric
@@ -109,165 +106,47 @@ function buildAddressLines(address) {
       firstLine = `${templateAddress.SUB_BUILDING_NAME}`;
       secondLine = `${templateAddress.BUILDING_NAME} ${thoroughfaresLocalities.firstLine}`;
       thirdLine = `${thoroughfaresLocalities.otherLines}`;
+    } else {
+      // when sub-building is an exception - same line as building name
+      firstLine = `${templateAddress.SUB_BUILDING_NAME} ${templateAddress.BUILDING_NAME} ${thoroughfaresLocalities.firstLine}`;
+      secondLine = `${thoroughfaresLocalities.otherLines}`;
     }
-    // when sub-building is an exception - same line as building name
-    firstLine = `${templateAddress.SUB_BUILDING_NAME} ${templateAddress.BUILDING_NAME} ${thoroughfaresLocalities.firstLine}`;
-    secondLine = `${thoroughfaresLocalities.otherLines}`;
-  } else {
+  } else if (buildNameIsAnException(templateAddress.SUB_BUILDING_NAME)) {
     // given a/no building number and no/exceptional/non-exceptional building name
-    if (buildNameIsAnException(templateAddress.SUB_BUILDING_NAME)) {
-      // if there's a sub-building name and it's an exception - Rules 6 and 7
-      firstLine = `${templateAddress.SUB_BUILDING_NAME} ${templateAddress.BUILDING_NAME}`;
-      secondLine = `${templateAddress.BUILDING_NUMBER} ${thoroughfaresLocalities.firstLine}`;
-      thirdLine = `${thoroughfaresLocalities.otherLines}`;
-    }
+    // if there's a sub-building name and it's an exception - Rules 6 and 7
+    firstLine = `${templateAddress.SUB_BUILDING_NAME} ${templateAddress.BUILDING_NAME}`;
+    secondLine = `${templateAddress.BUILDING_NUMBER} ${thoroughfaresLocalities.firstLine}`;
+    thirdLine = `${thoroughfaresLocalities.otherLines}`;
+  } else {
     // sub-building name is not an exception OR doesn't exist - Rules 6 and 7
     firstLine = `${templateAddress.SUB_BUILDING_NAME}`;
     secondLine = `${templateAddress.BUILDING_NAME}`;
     thirdLine = `${templateAddress.BUILDING_NUMBER} ${thoroughfaresLocalities.firstLine} ${thoroughfaresLocalities.otherLines}`;
   }
+
   // Org/dept names should appear on the first line and precede everything else - Rule 1
   if (templateAddress.ORG_NAME || templateAddress.DEPT_NAME) {
     secondLine = `${firstLine} ${secondLine}`;
     firstLine = organisationLine;
   }
 
-  return {
-    firstAddressLine: firstLine,
-    secondAddressLine: secondLine,
-    thirdAddressLine: thirdLine
-  };
-}
+  const allAddressLines = [firstLine, secondLine, thirdLine];
 
-function buildConcatenatedAddress(address) {
-  const allAddressLines = Object.values(buildAddressLines(address));
-
-  const addressLines = allAddressLines.reduce((acc, current) => {
+  // form the first part of the address to be returned
+  // containing only the lines that are populated in order
+  return allAddressLines.reduce((acc, current) => {
     const line = cleanLine(current);
     if (line) {
       acc.push(line);
     }
     return acc;
   }, []);
+}
 
+function buildConcatenatedAddress(address) {
+  const addressLines = buildAddressLines(address);
   addressLines.push(address.DPA.POST_TOWN, address.DPA.POSTCODE);
   return addressLines;
 }
-
-// if (templateAddress.BUILDING_NAME &&
-//     buildNameIsAnException(templateAddress.BUILDING_NAME) &&
-//     !templateAddress.BUILDING_NUMBER) {
-//     // format acc to rule 3/6
-//     if (templateAddress.ORG_NAME || templateAddress.DEPT_NAME) {
-//         firstLine = `${templateAddress.ORG_NAME}  ${templateAddress.DEPT_NAME}`;
-//         secondLine = `${templateAddress.PO_BOX} ${templateAddress.SUB_BUILDING_NAME}
-//             ${templateAddress.BUILDING_NAME}` + localitiesThoroughfares;
-//     }
-//     firstLine =
-//
-// } else {
-//     // no building name, or building name is not a number or there's a building number present
-//     // follow default address template
-//     if (templateAddress.ORG_NAME || templateAddress.DEPT_NAME) {
-//         firstLine = `${templateAddress.ORG_NAME}  ${templateAddress.DEPT_NAME}`;
-//         secondLine = `${templateAddress.PO_BOX} ${templateAddress.SUB_BUILDING_NAME}
-//             ${templateAddress.BUILDING_NAME} ${templateAddress.BUILDING_NUMBER} ` + localitiesThoroughfares;
-//     } else {
-//         firstLine = `${templateAddress.PO_BOX} ${templateAddress.SUB_BUILDING_NAME}
-//             ${templateAddress.BUILDING_NAME}`;
-//         secondLine = `${templateAddress.BUILDING_NUMBER} ` + localitiesThoroughfares;
-//     }
-// }
-// }
-// ;
-
-// const buildAddress = function (address) {
-//     let firstLine = '';
-//     let secondline = '';
-//
-//     if (address.DPA.PO_BOX_NUMBER !== 'undefined') {
-//         if (address.DPA.ORGANISATION_NAME !== 'undefined' || address.DPA.DEPARTMENT_NAME !== 'undefined') {
-//             // PO Box on second line because organisation/department are present
-//             firstLine = `${address.DPA.ORGANISATION_NAME}`;
-//             secondline = `${address.DPA.DEPARTMENT_NAME} ${address.DPA.PO_BOX_NUMBER}`;
-//         } else {
-//             // PO Box should be first on the first line
-//             // Check against other rules
-//             // fn()
-//         }
-//
-//     } else {
-//         // For any other case where we dont have a PO BOX
-//         if (address.DPA.ORGANISATION_NAME || address.DPA.DEPARTMENT_NAME) {
-//             // organisation must be on the first line, department name on the second
-//             firstLine += `${address.DPA.ORGANISATION_NAME}`;
-//             secondline += `${address.DPA.DEPARTMENT_NAME}`;
-//         }
-//
-//         if (address.DPA.SUB_BUILDING_NAME &&
-//             address.DPA.BUILDING_NUMBER &&
-//             address.DPA.BUILDING_NAME) {
-//
-//         }
-//     }
-// };
-
-// @todo Refactor this to reduce complexity.
-
-// eslint-disable-next-line no-unused-vars
-const buildConcatenatedAddress1 = function(address) { // eslint-disable-line complexity
-  let firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.PO_BOX_NUMBER} ${address.DPA.SUB_BUILDING_NAME}  ${address.DPA.BUILDING_NUMBER}, ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.BUILDING_NAME}`;
-  let secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY}  ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
-
-  if (`${address.DPA.BUILDING_NAME}` !== 'undefined') {
-    firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.SUB_BUILDING_NAME} ${address.DPA.BUILDING_NUMBER}, ${address.DPA.BUILDING_NAME} `;
-    secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY} ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
-  }
-
-  if (`${address.DPA.BUILDING_NAME}` !== 'undefined' && `${address.DPA.THOROUGHFARE_NAME}` !== 'undefined' && `${address.DPA.BUILDING_NUMBER}` === 'undefined') {
-    firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.SUB_BUILDING_NAME} ${address.DPA.BUILDING_NAME} `;
-    secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY} ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
-  }
-
-  if (`${address.DPA.PO_BOX_NUMBER}` !== 'undefined') {
-    firstLine = ` ${address.DPA.CLASSIFICATION_CODE_DESCRIPTION} ${address.DPA.PO_BOX_NUMBER}, ${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME}   ${address.DPA.SUB_BUILDING_NAME} ${address.DPA.BUILDING_NUMBER} ${address.DPA.BUILDING_NAME} `;
-    secondLine = `${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY} ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} `;
-  }
-
-  if (`${address.DPA.BUILDING_NUMBER}` !== 'undefined' && `${address.DPA.SUB_BUILDING_NAME}` !== 'undefined' && `${address.DPA.THOROUGHFARE_NAME}` !== 'undefined') {
-    if (`${address.DPA.BUILDING_NAME}` === 'undefined') {
-      firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.SUB_BUILDING_NAME}`;
-      secondLine = `${address.DPA.BUILDING_NUMBER}, ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY} ${address.DPA.DEPENDENT_LOCALITY} `;
-    } else {
-      firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME} ${address.DPA.SUB_BUILDING_NAME}, ${address.DPA.BUILDING_NAME} `;
-      secondLine = `${address.DPA.BUILDING_NUMBER}, ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY} ${address.DPA.DEPENDENT_LOCALITY} `;
-    }
-  }
-
-  if (`${address.DPA.ORGANISATION_NAME}` !== 'undefined' && `${address.DPA.THOROUGHFARE_NAME}` !== 'undefined') {
-    firstLine = `${address.DPA.ORGANISATION_NAME} ${address.DPA.DEPARTMENT_NAME}`;
-    secondLine = `${address.DPA.BUILDING_NUMBER} ${address.DPA.SUB_BUILDING_NAME} ${address.DPA.BUILDING_NAME}, ${address.DPA.THOROUGHFARE_NAME} ${address.DPA.DEPENDENT_THOROUGHFARE_NAME} ${address.DPA.DEPENDENT_LOCALITY} ${address.DPA.DOUBLE_DEPENDENT_LOCALITY}`;
-  }
-
-
-  let concatenatedAddress = [];
-
-  if (cleanLine(secondLine) === '') {
-    concatenatedAddress = [
-      cleanLine(firstLine),
-      address.DPA.POST_TOWN,
-      address.DPA.POSTCODE
-    ];
-  } else {
-    concatenatedAddress = [
-      cleanLine(firstLine),
-      cleanLine(secondLine),
-      address.DPA.POST_TOWN,
-      address.DPA.POSTCODE
-    ];
-  }
-
-  return concatenatedAddress;
-};
 
 module.exports = { buildAddressBaseUk, buildConcatenatedAddress };

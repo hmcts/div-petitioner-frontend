@@ -197,9 +197,9 @@ describe(modulePath, () => {
       co(function* generator() {
         const { addresses } = yield mockPostcodeClient.lookupPostcode();
         const expectedAddressBasedUK5 = {
-          addressLine1: 'Divorced Org Unfun Department Box 99',
-          addressLine2: 'The Splited Builing Aka Sad House 94 LANDOR ROAD',
-          addressLine3: 'Small Local Dependent Place Near the river',
+          addressLine1: 'HMCTS Marketing Department PO Box 99',
+          addressLine2: 'Main Building 1-90 94 LANDOR ROAD',
+          addressLine3: 'Greater London Westminster Parade Court',
           postCode: 'SW9 9PE',
           postTown: 'LONDON',
           county: '',

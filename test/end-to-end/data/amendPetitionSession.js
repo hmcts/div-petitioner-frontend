@@ -22,7 +22,7 @@ module.exports = {
     'postcodeError': 'false',
     'url': null,
     'address': [
-      '82, LANDOR ROAD',
+      '82 LANDOR ROAD',
       'LONDON',
       'SW9 9PE'
     ]
@@ -51,7 +51,7 @@ module.exports = {
     'postcodeError': 'false',
     'url': null,
     'address': [
-      '84, LANDOR ROAD',
+      '84 LANDOR ROAD',
       'LONDON',
       'SW9 9PE'
     ]

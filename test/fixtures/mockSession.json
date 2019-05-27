@@ -30,7 +30,7 @@
   "petitionerContactDetailsConfidential": "share",
   "petitionerHomeAddress": {
     "address": [
-      "80, LANDOR ROAD",
+      "80 LANDOR ROAD",
       "LONDON",
       "SW9 9PE"
     ],
@@ -42,7 +42,7 @@
   "petitionerCorrespondenceUseHomeAddress": "Yes",
   "petitionerCorrespondenceAddress": {
     "address": [
-      "82, LANDOR ROAD",
+      "82 LANDOR ROAD",
       "LONDON",
       "SW9 9PE"
     ],
@@ -55,7 +55,7 @@
   "respondentLastName": "William",
   "respondentHomeAddress": {
     "address": [
-      "82, LANDOR ROAD",
+      "82 LANDOR ROAD",
       "LONDON",
       "SW9 9PE"
     ],
@@ -66,7 +66,7 @@
   },
   "respondentCorrespondenceAddress": {
     "address": [
-      "82, LANDOR ROAD",
+      "82 LANDOR ROAD",
       "LONDON",
       "SW9 9PE"
     ],
@@ -80,7 +80,7 @@
   "respondentCorrespondenceSendToSolicitor": "Yes",
   "respondentSolicitorAddress": {
     "address": [
-      "82, LANDOR ROAD",
+      "82 LANDOR ROAD",
       "LONDON",
       "SW9 9PE"
     ],
@@ -96,7 +96,7 @@
   "livingArrangementsLiveTogether": "Yes",
   "livingArrangementsLastLivedTogetherAddress": {
     "address": [
-      "82, LANDOR ROAD",
+      "82 LANDOR ROAD",
       "LONDON",
       "W6 0AT"
     ],
@@ -143,7 +143,7 @@
   "reasonForDivorceAdulteryIsNamed": "Yes",
   "reasonForDivorceAdultery3rdAddress": {
     "address": [
-      "82, LANDOR ROAD",
+      "82 LANDOR ROAD",
       "LONDON",
       "W6 0AT"
     ],

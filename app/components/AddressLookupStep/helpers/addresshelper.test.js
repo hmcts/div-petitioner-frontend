@@ -85,31 +85,34 @@ describe(modulePath, () => {
       });
 
       it('all localities in the given order', () => {
+        const addressWithAllLocalities = testAddresses[3].DPA;
         tfaresLocalities = orderedTfaresLocalities(templateAddressAt(3));
         splitLines = splitTfaresLocalities(tfaresLocalities);
         expectedObject = {
-          firstLine: testAddresses[3].DPA.DOUBLE_DEPENDENT_LOCALITY,
-          otherLines: testAddresses[3].DPA.DEPENDENT_LOCALITY
+          firstLine: addressWithAllLocalities.DOUBLE_DEPENDENT_LOCALITY,
+          otherLines: addressWithAllLocalities.DEPENDENT_LOCALITY
         };
         expect(splitLines).to.deep.equal(expectedObject);
       });
 
       it('multiple localities and thoroughfares in the given order', () => {
+        const addressWithTfaresLocalities = testAddresses[9].DPA;
         tfaresLocalities = orderedTfaresLocalities(templateAddressAt(9));
         splitLines = splitTfaresLocalities(tfaresLocalities);
         expectedObject = {
-          firstLine: testAddresses[9].DPA.DEPENDENT_THOROUGHFARE_NAME,
-          otherLines: `${testAddresses[9].DPA.THOROUGHFARE_NAME} ${testAddresses[9].DPA.DEPENDENT_LOCALITY}`
+          firstLine: addressWithTfaresLocalities.DEPENDENT_THOROUGHFARE_NAME,
+          otherLines: `${addressWithTfaresLocalities.THOROUGHFARE_NAME} ${addressWithTfaresLocalities.DEPENDENT_LOCALITY}`
         };
         expect(splitLines).to.deep.equal(expectedObject);
       });
 
       it('all localities/thoroughfares in the given order', () => {
+        const addressWithAllTfaresLocalities = testAddresses[13].DPA;
         tfaresLocalities = orderedTfaresLocalities(templateAddressAt(13));
         splitLines = splitTfaresLocalities(tfaresLocalities);
         expectedObject = {
-          firstLine: testAddresses[13].DPA.DEPENDENT_THOROUGHFARE_NAME,
-          otherLines: `${testAddresses[13].DPA.THOROUGHFARE_NAME} ${testAddresses[13].DPA.DOUBLE_DEPENDENT_LOCALITY} ${testAddresses[13].DPA.DEPENDENT_LOCALITY}`
+          firstLine: addressWithAllTfaresLocalities.DEPENDENT_THOROUGHFARE_NAME,
+          otherLines: `${addressWithAllTfaresLocalities.THOROUGHFARE_NAME} ${addressWithAllTfaresLocalities.DOUBLE_DEPENDENT_LOCALITY} ${addressWithAllTfaresLocalities.DEPENDENT_LOCALITY}`
         };
         expect(splitLines).to.deep.equal(expectedObject);
       });

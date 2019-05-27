@@ -57,7 +57,7 @@ module.exports = {
     selectAddressIndex: '0',
     postcode: 'SW9 9PE',
     address: [
-      '80, LANDOR ROAD',
+      '80 LANDOR ROAD',
       'LONDON',
       'SW9 9PE'
     ],
@@ -349,7 +349,7 @@ module.exports = {
     url: '/petitioner-respondent/address',
     formattedAddress: {
       whereabouts: [
-        '80, LANDOR ROAD',
+        '80 LANDOR ROAD',
         'LONDON'
       ],
       postcode: 'SW9 9PE'
@@ -361,7 +361,7 @@ module.exports = {
     selectAddressIndex: '0',
     postcode: 'SW9 9PE',
     address: [
-      '80, LANDOR ROAD',
+      '80 LANDOR ROAD',
       'LONDON',
       'SW9 9PE'
     ],
@@ -653,7 +653,7 @@ module.exports = {
     url: '/petitioner-respondent/address',
     formattedAddress: {
       whereabouts: [
-        '80, LANDOR ROAD',
+        '80 LANDOR ROAD',
         'LONDON'
       ],
       postcode: 'SW9 9PE'
@@ -665,7 +665,7 @@ module.exports = {
     selectAddressIndex: '0',
     postcode: 'SW9 9PE',
     address: [
-      '80, LANDOR ROAD',
+      '80 LANDOR ROAD',
       'LONDON',
       'SW9 9PE'
     ],
@@ -957,7 +957,7 @@ module.exports = {
     url: '/petitioner-respondent/address',
     formattedAddress: {
       whereabouts: [
-        '80, LANDOR ROAD',
+        '80 LANDOR ROAD',
         'LONDON'
       ],
       postcode: 'SW9 9PE'
@@ -969,7 +969,7 @@ module.exports = {
     selectAddressIndex: '0',
     postcode: 'SW9 9PE',
     address: [
-      '80, LANDOR ROAD',
+      '80 LANDOR ROAD',
       'LONDON',
       'SW9 9PE'
     ],
@@ -1261,7 +1261,7 @@ module.exports = {
     url: '/petitioner-respondent/respondent-correspondence-address',
     formattedAddress: {
       whereabouts: [
-        '80, LANDOR ROAD',
+        '80 LANDOR ROAD',
         'LONDON'
       ],
       postcode: 'SW9 9PE'

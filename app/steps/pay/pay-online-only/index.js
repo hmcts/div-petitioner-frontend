@@ -17,6 +17,7 @@ const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 const parseBool = require('app/core/utils/parseBool');
+const HarryTest = 'Yo';
 
 const feeConfigPropNames = {
   applicationFee: 'applicationFee',

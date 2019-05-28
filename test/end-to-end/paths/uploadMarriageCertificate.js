@@ -20,6 +20,15 @@ Scenario('Test remove marriage Certificate', function* (I) {
   I.deleteAMarriageCertificateFile(isDragAndDropSupported);
 });
 
+Scenario('Test remove corrupted marriage Certificate', function* (I) {
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.haveBrokenMarriage();
+  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
+  const isDragAndDropSupported = yield I.checkElementExist('.dz-hidden-input');
+  I.uploadCorruptedFileAndRemovingSuccessfully(isDragAndDropSupported);
+});
+
 Scenario('Test ability validate document type', function* (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();

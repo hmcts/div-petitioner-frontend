@@ -30,23 +30,23 @@
             <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
             <span class="progress__label">{{ content.youApply }}</span>
             {% if content.youApply %}
-            <span class="visually-hidden">This is complete</span>
+            <span class="visually-hidden">{{ content.thisIsComplete }}</span>
             {% endif %}
           </li>
           <li class="progress__item progress__item--current">
             <i class="progress__icon"></i>
             <span class="progress__label">{{ content.yourRespondes }}</span>
-            <span class="visually-hidden">This is incomplete</span>
+            <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
           </li>
           <li class="progress__item">
             <i class="progress__icon"></i>
             <span class="progress__label">{{ content.continueDivorce }}</span>
-            <span class="visually-hidden">This is incomplete</span>
+            <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
           </li>
           <li class="progress__item">
             <i class="progress__icon"></i>
             <span class="progress__label">{{ content.divorceFinalised }}</span>
-            <span class="visually-hidden">This is incomplete</span>
+            <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
           </li>
         </ol>
       </div>

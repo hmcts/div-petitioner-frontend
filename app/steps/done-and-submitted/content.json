@@ -71,6 +71,8 @@
 
           "complete": "Complete",
           "youApply": "You apply",
+          "thisIsComplete": "This is complete",
+          "thisIsIncomplete": "This is incomplete",
           "yourRespondes": "Your {{ divorceWho }} must respond",
           "continueDivorce": "Get a decree nisi",
           "divorceFinalised": "The divorce is complete"

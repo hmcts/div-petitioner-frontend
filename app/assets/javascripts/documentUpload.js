@@ -148,7 +148,7 @@
           e.preventDefault();
           var $file = $(this).parents('.file');
           var fileUrl = $(this).data('fileurl');
-          const endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
+          var endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
           $.ajax({
             url: endPoint,
             type: 'DELETE',
@@ -167,7 +167,7 @@
           e.preventDefault();
           var $file = $(this).parents('.file');
           var fileUrl = $(this).data('fileurl');
-          const endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
+          var endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
           $.ajax({
             url: endPoint,
             type: 'DELETE',

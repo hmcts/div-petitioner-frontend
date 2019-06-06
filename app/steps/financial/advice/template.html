@@ -1,29 +1,18 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block two_thirds -%}
 
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-  <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-  <div class="grid-row">
-    <div class="column-two-thirds">
+  <h1 class="govuk-heading-l">{{content.title | safe}}</h1>
+  <p class="govuk-body">
+      {{ content.formallyStartFinancialProceedings | safe }}
+  </p>
+  <p class="govuk-body">
+      {{ content.sendFormA | safe }}
+  </p>
+  <p class="govuk-body">
+      {{ content.linkToMoreGuidance | safe }}
+  </p>
 
-        <h1 class="heading-large">{{content.title | safe}}</h1>
-        <p class="text">
-            {{ content.formallyStartFinancialProceedings | safe }}
-        </p>
-        <p class="text">
-            {{ content.sendFormA | safe }}
-        </p>
-        <p class="text">
-            {{ content.linkToMoreGuidance | safe }}
-        </p>
-
-        <a class="button" href="{{fields.nextStepUrl.value}}" role="button">{{common.continue}}</a>
-
-    </div>
-  </div>
-
-</main>
+  <a class="govuk-button" href="{{fields.nextStepUrl.value}}" role="button">{{common.continue}}</a>
 
 {% endblock %}

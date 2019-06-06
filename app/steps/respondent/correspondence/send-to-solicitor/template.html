@@ -6,23 +6,27 @@
 
 {% block form %}
 
-
-    <fieldset id="respondentCorrespondenceSendToSolicitor" class="form-group {{ 'form-group-error' if fields.respondentCorrespondenceSendToSolicitor.error }}">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+ <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceSendToSolicitor.error }}">
+    <fieldset id="respondentCorrespondenceSendToSolicitor" class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
         {{ errorsFor(fields.respondentCorrespondenceSendToSolicitor) }}
-        {{ radioButton(
-            value = 'Yes',
-            label = content.solicitor,
-            name = 'respondentCorrespondenceSendToSolicitor',
-            field = fields.respondentCorrespondenceSendToSolicitor
-        ) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.correspondence,
-            name = 'respondentCorrespondenceSendToSolicitor',
-            field = fields.respondentCorrespondenceSendToSolicitor
-        ) }}
+
+        <div class="govuk-radios govuk-radios--inline">
+            {{ radioButton(
+                value = 'Yes',
+                label = content.solicitor,
+                name = 'respondentCorrespondenceSendToSolicitor',
+                field = fields.respondentCorrespondenceSendToSolicitor
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.correspondence,
+                name = 'respondentCorrespondenceSendToSolicitor',
+                field = fields.respondentCorrespondenceSendToSolicitor
+            ) }}
+        </div>
 
     </fieldset>
+</div>
 
 {% endblock %}

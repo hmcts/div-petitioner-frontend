@@ -7,7 +7,7 @@
                     "heading": "Sorry, you can't use this service",
                     "legalGround":  "The only legal ground for divorce in England and Wales is if your marriage has broken down irretrievably.",
                     "confirm":  "You need to confirm this before the court can consider granting you a divorce.",
-                    "notSure":  "If you’re not sure about getting a divorce, you may want to consider other options. Relationship advice and counselling is available from private therapists and charities such as <a href=\"https://www.relate.org.uk/relationship-help/help-relationships\" target=\"_blank\">Relate</a>."
+                    "notSure":  "If you’re not sure about getting a divorce, you may want to consider other options. Relationship advice and counselling is available from private therapists and charities such as <a class=\"govuk-link\" href=\"https://www.relate.org.uk/relationship-help/help-relationships\" target=\"_blank\">Relate</a>."
                 }
             }
         }

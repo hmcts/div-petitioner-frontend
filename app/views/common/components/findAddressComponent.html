@@ -1,15 +1,15 @@
 {% macro findAddressComponent(addresses) %}
 
-<fieldset class="form-group">
-  <legend class="visually-hidden">Address</legend>
-  {% if label %} <p class="text" for="postcode">{{ label }}</p> {% endif %}
-  <label class="form-label" for="postcode">Enter a UK postcode</label>
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend visually-hidden">Address</legend>
+  {% if label %} <p class="govuk-body" for="postcode">{{ label }}</p> {% endif %}
+  <label class="govuk-label" for="postcode">Enter a UK postcode</label>
   <input class="form-control postcode" id="postcode" name="postcodeFinder" type="text" value="{{ postcode }}">
   <a class="secondary-button" onclick="showAddressSelect()">Find address</a>
 
 
-  <div id="select-address" class="form-group js-hidden">
-    <label class="form-label">
+  <div id="select-address" class="govuk-form-group js-hidden">
+    <label class="govuk-label">
       Pick an address
     </label>
     <select class="form-control" name="addressSelect" onchange="updateAddress(this.value)" title="Pick an address">
@@ -20,14 +20,14 @@
     </select>
 
     <div id="enter-manually">
-      <a class="link" href="enter-manually">Enter address manually</a>
+      <a class="govuk-link" href="enter-manually">Enter address manually</a>
     </div>
   </div>
 
   <div id=address-fields {% if not postcode %} class="js-hidden" {% endif %}>
 
-    <div class="form-group">
-      <label class="form-label" for="street-1">Street</label>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="street-1">Street</label>
       <input class="form-control" id="street-1" name="street1" type="text" value="{{ address.street1 }}">
       <input class="form-control second-text-input" id="street-2" name="street2" type="text"
              value="{{ address.street2 }}" title="Street line 2">
@@ -35,29 +35,29 @@
              value="{{ address.street3 }}" title="Street line 3">
     </div>
 
-    <div class="form-group">
-      <label class="form-label" for="town">Town or city</label>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="town">Town or city</label>
       <input class="form-control" id="town" name="town" type="text" value="{{ address.town }}">
     </div>
 
-    <div class="form-group">
-      <label class="form-label" for="county">County</label>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="county">County</label>
       <input class="form-control" id="county" name="county" type="text" value="{{ address.county }}">
     </div>
 
-    <div class="form-group">
-      <label class="form-label" for="postcode-full">Postcode</label>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="postcode-full">Postcode</label>
       <input class="form-control" id="postcode-full" name="postcode" type="text" value="{{ address.postcode }}">
     </div>
 
   </div>
 
   {% if outsideUKText %}
-  <p><a class="link" href="abroad">
+  <p class="govuk-body"><a class="govuk-link" href="abroad">
     {{ outsideUKText}}
   </a></p>
   {% else %}
-  <p><a class="link" href="abroad">
+  <p class="govuk-body"><a class="govuk-link" href="abroad">
     Addresses outside the UK
   </a></p>
   {% endif %}

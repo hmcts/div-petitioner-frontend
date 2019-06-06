@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block exit_reason %}
-    <p class="text">{{ content.reason | safe }}</p>
-    <p class="text">{{ content.advice | safe }}</p>
-    <ul class="list list-bullet">
-      <li><a href="/jurisdiction/habitual-residence">{{ content.option1 | safe }}</a></li>
+    <p class="govuk-body">{{ content.reason | safe }}</p>
+    <p class="govuk-body">{{ content.advice | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><a class="govuk-link" href="/jurisdiction/habitual-residence">{{ content.option1 | safe }}</a></li>
       <!-- Removing below link due to bug with CYA TODO: replace link with form or alternative logic -->
-      <!-- <li><a href="/jurisdiction/last-resort">{{ content.option2 | safe }}</a></li> -->
-      <li><a href="/bye">{{ content.option3 | safe }}</a></li>
+      <!-- <li><a class="govuk-link" href="/jurisdiction/last-resort">{{ content.option2 | safe }}</a></li> -->
+      <li><a class="govuk-link" href="/bye">{{ content.option3 | safe }}</a></li>
     </ul>
 
 {% endblock %}

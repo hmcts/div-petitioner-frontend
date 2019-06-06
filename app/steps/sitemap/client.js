@@ -4,7 +4,7 @@ window.initStep = function (graph, graphData) {
 
     document.addEventListener('DOMContentLoaded', function () {
 
-        var sitemap = document.querySelector('#content');
+        var sitemap = document.querySelector('body');
         sitemap.innerHTML = nomnoml.renderSvg(graph);
 
         var mapsvg = sitemap.children[0];

@@ -5,11 +5,11 @@
   }
 
   table {
-    margin-bottom: $gutter;
+    margin-bottom: $govuk-gutter;
   }
 
   td {
-    @include core-19;
+    @include govuk-font(19);
     vertical-align: top;
   }
 
@@ -20,7 +20,7 @@
   }
 
   .button {
-    margin-top: $gutter;
+    margin-top: $govuk-gutter;
   }
 
 

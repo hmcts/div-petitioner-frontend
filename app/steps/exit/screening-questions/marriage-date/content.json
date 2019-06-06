@@ -7,8 +7,8 @@
                 "content": {
                     "title": "You haven&#39;t been married for long enough to get a divorce",
                     "reason": "In England and Wales you can only divorce after at least one year of marriage.",
-                    "seperation": "You can <a href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">apply for a legal separation</a> if you&#39;ve been married for less than a year.",
-                    "annul": "You may also be able to <a href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>."
+                    "seperation": "You can <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">apply for a legal separation</a> if you&#39;ve been married for less than a year.",
+                    "annul": "You may also be able to <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>."
                 },
 
                 "errors": {

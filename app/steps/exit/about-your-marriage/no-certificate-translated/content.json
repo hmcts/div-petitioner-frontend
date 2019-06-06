@@ -9,13 +9,13 @@
                     "reason": "You must upload an English translation of your marriage certificate.",
                     "advice": "The certificate must be translated and certified by one of the following methods.",
                     "statementOfTruth": "Statement of truth",
-                    "statementOfTruth_description1": "The translator of your marriage certificate provides a statement of truth for <a href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\">certifying a translation.</a>",
+                    "statementOfTruth_description1": "The translator of your marriage certificate provides a statement of truth for <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\">certifying a translation.</a>",
                     "statementOfTruth_description2": "You can find translation services online which include certification as part of their service.",
                     "notaryPublic": "Notary public",
                     "notaryPublic_description1": "The marriage certificate is translated and then certified by a notary public.",
                     "notaryPublic_description2": "You can find a notary public through either the:",
-                    "notaryPublic_link1": "<a href=\"http://www.thenotariessociety.org.uk/\" target=\"_blank\">Notaries Society</a>",
-                    "notaryPublic_link2": "<a href=\"http://www.scrivener-notaries.org.uk/\" target=\"_blank\">Society of Scrivener Notaries</a>"
+                    "notaryPublic_link1": "<a class=\"govuk-link\" href=\"http://www.thenotariessociety.org.uk/\" target=\"_blank\">Notaries Society</a>",
+                    "notaryPublic_link2": "<a class=\"govuk-link\" href=\"http://www.scrivener-notaries.org.uk/\" target=\"_blank\">Society of Scrivener Notaries</a>"
                 }
             }
         }

@@ -7,30 +7,28 @@
 
 {% block form %}
 
-    <div class="text jurisdiction">
-        <p>{{ content.description | safe }}</p>
+    <div class="govuk-body jurisdiction">
+        <p class="govuk-body">{{ content.description | safe }}</p>
 
-        <details>
-            <summary>
-                {{ content.connection | safe }}
+        <details class="govuk-details govuk-!-margin-bottom-2">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">{{ content.connection | safe }}</span>
             </summary>
-            <div class="panel panel-border-narrow font-small">
-                <p>{{ content.connectionText1 | safe }}</p>
-                <p>{{ content.connectionText2 | safe }}</p>
-                <p>{{ content.connectionText3 | safe }}</p>
-
-
+            <div class="govuk-details__text">
+                <p class="govuk-body">{{ content.connectionText1 | safe }}</p>
+                <p class="govuk-body">{{ content.connectionText2 | safe }}</p>
+                <p class="govuk-body">{{ content.connectionText3 | safe }}</p>
             </div><br>
         </details>
 
-            {{ yesNoRadioHeading(
-                legend = content.description,
-                name = 'jurisdictionLastHabitualResident',
-                field = fields.jurisdictionLastHabitualResident,
-                yes = content.yes,
-                no = content.no,
-                screenReader = content.heading
-            ) }}
+        {{ yesNoRadioHeading(
+            legend = content.description,
+            name = 'jurisdictionLastHabitualResident',
+            field = fields.jurisdictionLastHabitualResident,
+            yes = content.yes,
+            no = content.no,
+            screenReader = content.heading
+        ) }}
 
     </div>
 

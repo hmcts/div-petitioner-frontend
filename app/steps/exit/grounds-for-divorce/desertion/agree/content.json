@@ -6,7 +6,7 @@
                 "content": {
                     "title": "You can&#39;t use desertion as your reason for divorce",
                     "reason": "For desertion to have taken place your {{ divorceWho }} must have left without your consent.",
-                    "proceed": "If you want to proceed with your divorce application, you must <a href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a>."
+                    "proceed": "If you want to proceed with your divorce application, you must <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a>."
                 }
             }
         }

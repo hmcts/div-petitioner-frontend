@@ -6,13 +6,13 @@
 
 {% block form %}
 
-    <p class="text"> {{content.originalCertificate | safe }}</p>
+    <p class="govuk-body"> {{content.originalCertificate | safe }}</p>
 
-   <div class="panel panel-border-wide">
-    <p class="text"> {{content.camera | safe }}</p>
+   <div class="govuk-inset-text">
+    <p class="govuk-body"> {{content.camera | safe }}</p>
     </div>
 
-    <p class="text"> {{content.certificateTranslation | safe }}</p>
+    <p class="govuk-body"> {{content.certificateTranslation | safe }}</p>
 
     {{ yesNoRadioHeading(
         legend = content.question,

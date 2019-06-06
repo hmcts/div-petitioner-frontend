@@ -5,25 +5,28 @@
 {{ content.question }}
 {% endblock %}
 {% block form %}
-    <p class="text">
+    <p class="govuk-body">
         {{ content.questionHint | safe }}
     </p>
-    <div id="reasonForDivorceDesertionAgreed" class="form-group {{ 'form-group-error' if fields.reasonForDivorceDesertionAgreed.error }}">
-        <fieldset>
-            <legend class="visually-hidden">{{ content.question }}</legend>
+    <div id="reasonForDivorceDesertionAgreed" class="govuk-form-group {{ 'govuk-form-group--error' if fields.reasonForDivorceDesertionAgreed.error }}">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question }}</legend>
             {{ errorsFor(fields.reasonForDivorceDesertionAgreed) }}
-            {{ radioButton(
-                value = 'Yes',
-                label = content.yes,
-                name = 'reasonForDivorceDesertionAgreed',
-                field = fields.reasonForDivorceDesertionAgreed
-            ) }}
-            {{ radioButton(
-                value = 'No',
-                label = content.no,
-                name = 'reasonForDivorceDesertionAgreed',
-                field = fields.reasonForDivorceDesertionAgreed
-            ) }}
+
+            <div class="govuk-radios govuk-radios--inline">
+                {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'reasonForDivorceDesertionAgreed',
+                    field = fields.reasonForDivorceDesertionAgreed
+                ) }}
+                {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'reasonForDivorceDesertionAgreed',
+                    field = fields.reasonForDivorceDesertionAgreed
+                ) }}
+            </div>
         </fieldset>
     </div>
 

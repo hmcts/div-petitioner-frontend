@@ -1,6 +1,5 @@
-{% from "common/components/formElements.html" import radioButton %}
+{% from "common/components/formElements.html" import yesNoRadioHeading, textField %}
 {% extends "question.html" %}
-{% from "common/components/formElements.html" import textField %}
 
 {% block question %}
 {{ content.question | safe }}
@@ -8,30 +7,19 @@
 
 {% block form %}
 
-<fieldset id="helpWithFeesAppliedForFees" class="form-group inline {{ 'form-group-error' if fields.helpWithFeesAppliedForFees.error }}">
-    <legend class="visually-hidden">{{ content.question | safe }}</legend>
-
-    {{ errorsFor(fields.helpWithFeesAppliedForFees) }}
-    {{ radioButton(
-    value = 'Yes',
-    label = content.yes,
+{{ yesNoRadioHeading(
+    legend = content.question,
     name = 'helpWithFeesAppliedForFees',
     field = fields.helpWithFeesAppliedForFees,
-    dataTarget = 'help-yes',
-    screenReader = content.question
-    ) }}
-    {{ radioButton(
-    value = 'No',
-    label = content.no,
-    name = 'helpWithFeesAppliedForFees',
-    field = fields.helpWithFeesAppliedForFees,
-    dataTarget = '',
-    screenReader = content.question
-    ) }}
-</fieldset>
+    yes = content.yes,
+    no = content.no,
+    screenReader = content.question,
+    targetYes = 'help-yes',
+    targetNo = ''
+) }}
 
 <div id="help-yes"
-     class="panel form-help-with-fees-reference {{ 'js-hidden' if fields.helpWithFeesAppliedForFees.value !== 'Yes' }}">
+     class="govuk-details__text form-help-with-fees-reference {{ 'js-hidden' if fields.helpWithFeesAppliedForFees.value !== 'Yes' }}">
 
     {{ textField(
     name = 'helpWithFeesReferenceNumber',
@@ -40,6 +28,8 @@
     ) }}
 
 </div>
+
+<br>
 
 {% endblock %}
 

@@ -6,37 +6,43 @@
 
 {% block form %}
 
-    <fieldset id="divorceWho" class="form-group {{ 'form-group-error' if fields.divorceWho.error }}">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
-        {{ errorsFor(fields.divorceWho) }}
-        {{ radioButton(
-            value = 'husband',
-            label = content.husband,
-            name = 'divorceWho',
-            field = fields.divorceWho,
-            screenReader = content.question
-        ) }}
-        {{ radioButton(
-            value = 'wife',
-            label = content.wife,
-            name = 'divorceWho',
-            field = fields.divorceWho,
-            screenReader = content.question
-        ) }}
-    </fieldset>
+    <div class="govuk-form-group">
+        <fieldset id="divorceWho" class="govuk-fieldset {{ 'govuk-form-group--error' if fields.divorceWho.error }}">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+            {{ errorsFor(fields.divorceWho) }}
+            <div class="govuk-radios">
+                {{ radioButton(
+                    value = 'husband',
+                    label = content.husband,
+                    name = 'divorceWho',
+                    field = fields.divorceWho,
+                    screenReader = content.question
+                ) }}
+                {{ radioButton(
+                    value = 'wife',
+                    label = content.wife,
+                    name = 'divorceWho',
+                    field = fields.divorceWho,
+                    screenReader = content.question
+                ) }}
+            </div>
+        </fieldset>
+    </div>
 
-    <fieldset class="form-group">
-        <legend class="form-label-bold">
-            {{ content.marriageIsSameSexCouple | safe }}
-        </legend>
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+                {{ content.marriageIsSameSexCouple | safe }}
+            </legend>
 
-        {{ errorsFor(fields.marriageIsSameSexCouple) }}
-        {{ checkBox(
-            id = 'marriageIsSameSexCoupleId',
-            label = content.marriageIsSameSexCoupleText,
-            name = 'marriageIsSameSexCouple',
-            field = fields.marriageIsSameSexCouple
-        ) }}
-    </fieldset>
+            {{ errorsFor(fields.marriageIsSameSexCouple) }}
+            {{ checkBox(
+                id = 'marriageIsSameSexCoupleId',
+                label = content.marriageIsSameSexCoupleText,
+                name = 'marriageIsSameSexCouple',
+                field = fields.marriageIsSameSexCouple
+            ) }}
+        </fieldset>
+    </div>
 
 {% endblock %}

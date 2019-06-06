@@ -8,43 +8,46 @@
 
 {% block form %}
 
-    <div class="text">
-        <p>
+    <div class="govuk-body">
+        <p class="govuk-body">
             {{content.description}}
         </p>
-        <ul class="list list-bullet">
+        <ul class="govuk-list govuk-list--bullet">
             {% for connectionType in session.jurisdictionConnection %}
-                <li class="list list-bullet">
+                <li class="govuk-list govuk-list--bullet">
                     {{content['reason-'+connectionType]}}
                 </li>
             {% endfor %}
         </ul>
         {{ helpConnections(common) }}
-        <fieldset id="connectionSummary" class="form-group {{ 'form-group-error' if fields.connectionSummary.error }}">
-            <legend class="heading-medium">{{ content.question | safe }}</legend>
-            <p>{{ content.clarification | safe }}</p>
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.connectionSummary.error }}">
+            <fieldset id="connectionSummary" class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.question | safe }}</legend>
+                <p class="govuk-body">{{ content.clarification | safe }}</p>
 
-            {{ errorsFor(fields.connectionSummary) }}
-            {{ radioButton(
-            value = 'Yes',
-            label = content.confident,
-            name = 'connectionSummary',
-            field = fields.connectionSummary
-            ) }}
-            {{ radioButton(
-            value = 'No',
-            label = content.needInfo,
-            name = 'connectionSummary',
-            field = fields.connectionSummary
-            ) }}
-            {{ radioButton(
-            value = 'Manual',
-            label = content.showAll,
-            name = 'connectionSummary',
-            field = fields.connectionSummary
-            ) }}
+                {{ errorsFor(fields.connectionSummary) }}
+                {{ radioButton(
+                    value = 'Yes',
+                    label = content.confident,
+                    name = 'connectionSummary',
+                    field = fields.connectionSummary
+                ) }}
+                {{ radioButton(
+                    value = 'No',
+                    label = content.needInfo,
+                    name = 'connectionSummary',
+                    field = fields.connectionSummary
+                ) }}
+                {{ radioButton(
+                    value = 'Manual',
+                    label = content.showAll,
+                    name = 'connectionSummary',
+                    field = fields.connectionSummary
+                ) }}
 
-        </fieldset>
+            </fieldset>
+
+        </div>
 
     </div>
 {% endblock %}

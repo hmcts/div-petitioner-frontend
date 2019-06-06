@@ -7,19 +7,19 @@
 
 {% block form %}
   {%- if session.marriageIsSameSexCouple === 'Yes' %}
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextSame1 | safe }}
     </p>
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextSame2 | safe }}
     </p>
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextSame3 | safe }}
     </p>
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextSameConHead | safe }}
     </p>
-    <ul class="list list-bullet">
+    <ul class="govuk-list govuk-list--bullet">
       <li>{{ content.residualTextSameCon1 | safe }}</li>
       <li>{{ content.residualTextSameCon2 | safe }}</li>
       <li>{{ content.residualTextSameCon3 | safe }}</li>
@@ -27,19 +27,19 @@
 
   {% else %}
 
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextOposite1 | safe }}
     </p>
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextOposite2 | safe }}
     </p>
-    <p class="text">
+    <p class="govuk-body">
       {{ content.residualTextOposite3 | safe }}
     </p>
 
   {% endif -%}
 
-    <h2 class="heading-medium">{{ content.question | safe }}</h2>
+    <h2 class="govuk-heading-m">{{ content.question | safe }}</h2>
 
     {{ yesNoRadioHeading(
         legend = content.question,

@@ -7,55 +7,66 @@
 
 {% block form %}
 
-    <div class="text jurisdiction">
-        <p>{{ content.connection | safe }}</p>
-        <p>{{ content.task | safe }}</p>
+    <div class="govuk-body jurisdiction">
+        <p class="govuk-body">{{ content.connection | safe }}</p>
+        <p class="govuk-body">{{ content.task | safe }}</p>
 
-        <fieldset id="jurisdictionPetitionerResidence" class="form-group inline {{ 'form-group-error' if fields.jurisdictionPetitionerResidence.error }}">
-            <legend class="heading-medium">{{ content.petitioner | safe }}</legend>
-            <p>{{ content.info | safe }}</p>
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.jurisdictionPetitionerResidence.error }}">
+            <fieldset id="jurisdictionPetitionerResidence" class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.petitioner | safe }}</legend>
+                <p class="govuk-body">{{ content.info | safe }}</p>
 
-            {{ errorsFor(fields.jurisdictionPetitionerResidence) }}
-            {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'jurisdictionPetitionerResidence',
-            field = fields.jurisdictionPetitionerResidence,
-            dataTarget = 'jurisdictionRespondentResidence',
-            screenReader = content.petitioner
-            ) }}
-            {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'jurisdictionPetitionerResidence',
-            field = fields.jurisdictionPetitionerResidence,
-            dataTarget = 'jurisdictionRespondentResidence',
-            screenReader = content.petitioner
-            ) }}
+                {{ errorsFor(fields.jurisdictionPetitionerResidence) }}
 
-        </fieldset>
+                <div class="govuk-radios govuk-radios--inline">
+                    {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'jurisdictionPetitionerResidence',
+                    field = fields.jurisdictionPetitionerResidence,
+                    dataTarget = 'jurisdictionRespondentResidence',
+                    screenReader = content.petitioner
+                    ) }}
+                    {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'jurisdictionPetitionerResidence',
+                    field = fields.jurisdictionPetitionerResidence,
+                    dataTarget = 'jurisdictionRespondentResidence',
+                    screenReader = content.petitioner
+                    ) }}
+                </div>
 
-        <fieldset id="jurisdictionRespondentResidence" class="form-group inline {{ 'js-hidden' if fields.jurisdictionPetitionerResidence.value === undefined }} {{ 'form-group-error' if fields.jurisdictionRespondentResidence.error }}">
-            <legend class="heading-medium">{{ content.respondent | safe }}</legend>
-            <p>{{ content.info | safe }}</p>
+            </fieldset>
 
-            {{ errorsFor(fields.jurisdictionRespondentResidence) }}
-            {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'jurisdictionRespondentResidence',
-            field = fields.jurisdictionRespondentResidence,
-            screenReader = content.respondent
-            ) }}
-            {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'jurisdictionRespondentResidence',
-            field = fields.jurisdictionRespondentResidence,
-            screenReader = content.respondent
-            ) }}
+        </div>
 
-        </fieldset>
+        <div class="govuk-form-group">
+            <fieldset id="jurisdictionRespondentResidence" class="govuk-fieldset {{ 'js-hidden' if fields.jurisdictionPetitionerResidence.value === undefined }} {{ 'govuk-form-group--error' if fields.jurisdictionRespondentResidence.error }}">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.respondent | safe }}</legend>
+                <p class="govuk-body">{{ content.info | safe }}</p>
+
+                {{ errorsFor(fields.jurisdictionRespondentResidence) }}
+                <div class="govuk-radios govuk-radios--inline">
+                    {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'jurisdictionRespondentResidence',
+                    field = fields.jurisdictionRespondentResidence,
+                    screenReader = content.respondent
+                    ) }}
+                    {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'jurisdictionRespondentResidence',
+                    field = fields.jurisdictionRespondentResidence,
+                    screenReader = content.respondent
+                    ) }}
+                </div>
+
+            </fieldset>
+
+        </div>
 
     </div>
 

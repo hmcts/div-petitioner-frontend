@@ -7,35 +7,38 @@
 {% block form %}
 
     {% if session.livingArrangementsLastLivedTogetherAddress %}
-        <p>
+        <p class="govuk-body">
             {{ session.livingArrangementsLastLivedTogetherAddress.address | join("<br/>") | safe }}
         </p>
     {% endif %}
 
-    <fieldset id="respondentLivesAtLastAddress" class="form-group {{ 'form-group-error' if fields.respondentLivesAtLastAddress.error }}">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
-        {{ errorsFor(fields.respondentLivesAtLastAddress) }}
-        {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'respondentLivesAtLastAddress',
-            field = fields.respondentLivesAtLastAddress,
-            screenReader = content.question
-        ) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'respondentLivesAtLastAddress',
-            field = fields.respondentLivesAtLastAddress,
-            screenReader = content.question
-        ) }}
-        {{ radioButton(
-            value = 'Unknown',
-            label = content.unknown,
-            name = 'respondentLivesAtLastAddress',
-            field = fields.respondentLivesAtLastAddress,
-            screenReader = content.question
-        ) }}
-    </fieldset>
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentLivesAtLastAddress.error }}">
+        <fieldset id="respondentLivesAtLastAddress" class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+            {{ errorsFor(fields.respondentLivesAtLastAddress) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.yes,
+                name = 'respondentLivesAtLastAddress',
+                field = fields.respondentLivesAtLastAddress,
+                screenReader = content.question
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.no,
+                name = 'respondentLivesAtLastAddress',
+                field = fields.respondentLivesAtLastAddress,
+                screenReader = content.question
+            ) }}
+            {{ radioButton(
+                value = 'Unknown',
+                label = content.unknown,
+                name = 'respondentLivesAtLastAddress',
+                field = fields.respondentLivesAtLastAddress,
+                screenReader = content.question
+            ) }}
+        </fieldset>
+
+    </div>
 
 {% endblock %}

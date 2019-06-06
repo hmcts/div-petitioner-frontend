@@ -6,13 +6,13 @@
 
 {% block form %}
 
-    <p class="text">{{ content.description | safe }}</p>
+    <p class="govuk-body">{{ content.description | safe }}</p>
 
-    <div class="panel panel-border-wide">
-        <p class="text">{{ content.remember | safe }}</p>
+    <div class="govuk-inset-text">
+        <p class="govuk-body">{{ content.remember | safe }}</p>
     </div>
 
-    <p class="text">{{ content.rejected | safe }}</p>
+    <p class="govuk-body">{{ content.rejected | safe }}</p>
 
     {% if (fields.reasonForDivorceAdulteryKnowWhen.value === "Yes") %}
         {{ textArea(

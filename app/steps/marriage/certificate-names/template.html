@@ -1,4 +1,5 @@
 {% from "common/components/formElements.html" import textField %}
+{% from "warning-text/macro.njk" import govukWarningText %}
 
 {% extends "question.html" %}
 
@@ -12,69 +13,67 @@
 
 {% block form %}
 
-<p class="text">
+<p class="govuk-body">
   {{content.copy|safe}}
 </p>
 
-<div class="notice">
-  <em class="icon icon-important">
-    <span class="visuallyhidden">{{ content.warning }}</span>
-  </em>
-  <p class="bold-small">
-    {%- if session.certificateInEnglish == 'No' -%}
-      {{ content.hintTrans | safe}}
-    {%- else -%}
-      {{ content.hint | safe}}
-    {%- endif -%}
-  </p>
-</div>
-
-<fieldset class="form-group">
-  <legend class="visually-hidden">
-  {%- if session.certificateInEnglish == 'No' -%}
-    {{ content.questionTrans | safe}}
-  {%- else -%}
-    {{ content.question | safe}}
-  {%- endif -%}
-</legend>
-
-
+{% set hintContent = content.hint %}
 {%- if session.certificateInEnglish == 'No' -%}
-
-  {{ textField(
-  name = 'marriagePetitionerName',
-  field = fields.marriagePetitionerName,
-  label = content.marriagePetitionerNameTrans,
-  boldLabel = true,
-  hint = content.marriageNameHint
-  ) }}
-
-  {{ textField(
-  name = 'marriageRespondentName',
-  field = fields.marriageRespondentName,
-  label = content.marriageRespondentNameTrans,
-  boldLabel = true,
-  hint = content.marriageNameHint
-  ) }}
-
-{%- else -%}
-  {{ textField(
-  name = 'marriagePetitionerName',
-  field = fields.marriagePetitionerName,
-  label = content.marriagePetitionerName,
-  boldLabel = true,
-  hint = content.marriageNameHint
-  ) }}
-
-  {{ textField(
-  name = 'marriageRespondentName',
-  field = fields.marriageRespondentName,
-  label = content.marriageRespondentName,
-  boldLabel = true,
-  hint = content.marriageNameHint
-  ) }}
+  {% set hintContent = content.hintTrans %}
 {%- endif -%}
-</fieldset>
+
+{{ govukWarningText({
+    text: hintContent | safe,
+    iconFallbackText: content.warning
+}) }}
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend visually-hidden">
+      {%- if session.certificateInEnglish == 'No' -%}
+        {{ content.questionTrans | safe}}
+      {%- else -%}
+        {{ content.question | safe}}
+      {%- endif -%}
+    </legend>
+
+  {%- if session.certificateInEnglish == 'No' -%}
+
+    {{ textField(
+    name = 'marriagePetitionerName',
+    field = fields.marriagePetitionerName,
+    label = content.marriagePetitionerNameTrans,
+    boldLabel = true,
+    hint = content.marriageNameHint
+    ) }}
+
+    {{ textField(
+    name = 'marriageRespondentName',
+    field = fields.marriageRespondentName,
+    label = content.marriageRespondentNameTrans,
+    boldLabel = true,
+    hint = content.marriageNameHint
+    ) }}
+
+  {%- else -%}
+    {{ textField(
+    name = 'marriagePetitionerName',
+    field = fields.marriagePetitionerName,
+    label = content.marriagePetitionerName,
+    boldLabel = true,
+    hint = content.marriageNameHint
+    ) }}
+
+    {{ textField(
+    name = 'marriageRespondentName',
+    field = fields.marriageRespondentName,
+    label = content.marriageRespondentName,
+    boldLabel = true,
+    hint = content.marriageNameHint
+    ) }}
+  {%- endif -%}
+  </fieldset>
+
+</div>
 
 {% endblock %}
 

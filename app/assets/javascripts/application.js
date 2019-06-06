@@ -1,13 +1,18 @@
 /* eslint-disable no-unused-vars  */
 /* eslint-disable no-undef  */
 const saveProgress = require('./save-progress');
+const govukFrontend = require('govuk-frontend/all');
+
+import './showHideContent';
+
+window.jQuery = $;
 
 (function (global) {
   'use strict';
   var DIVORCE = {
     // Add/remove classes on reason for divorce step to switch background color of selected reason
     SwitchReasonColor: function(){
-      var $multipleChoice = $('.multiple-choice');
+      var $multipleChoice = $('.govuk-radios__item');
       $multipleChoice.find('input[type="radio"]').click(function(){
           $multipleChoice.removeClass('selected-reason-state');
           $(this).parent().addClass('selected-reason-state');
@@ -16,17 +21,18 @@ const saveProgress = require('./save-progress');
     saveProgress
   } ;
   global.DIVORCE = DIVORCE;
+
+  $(document).ready(function() {
+    const showHideContent = new global.GOVUK.ShowHideContent();
+    showHideContent.init();
+
+    var enableDisableButton = new GOVUK.EnableDisableButton();
+    enableDisableButton.init();
+
+    govukFrontend.initAll();
+  });
+
 })(window);
-
-$(document).ready(function() {
-  //Call govuk toolkit constructor to use functionality show/hide content
-  var showHideContent = new GOVUK.ShowHideContent();
-  showHideContent.init();
-
-  //Call divorce constructor to use functionality enable/disable button
-  var enableDisableButton = new GOVUK.EnableDisableButton();
-  enableDisableButton.init();
-});
 
 function dateSlice(date)
 {

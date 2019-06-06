@@ -7,9 +7,9 @@
                 "content": {
                     "question": "Upload your documents",
                     "uploadDigitalPhoto": "You need to upload a digital photo of the following documents:",
-                    "marriageCertificateContent": "your original marriage certificate or a <a href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">certified copy</a>",
-                    "translationContent" : "a <a href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\">certified English translation</a> of your marriage certificate",
-                    "nameChangeContent" : "proof of your name change, for example a <a href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
+                    "marriageCertificateContent": "your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">certified copy</a>",
+                    "translationContent" : "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\">certified English translation</a> of your marriage certificate",
+                    "nameChangeContent" : "proof of your name change, for example a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
                     "camera": "You can use your phone to do this now if it has a camera.",
                     "howToTake": "How to take the picture",
                     "howToTakeInfo1": "Place your certificate on a flat service in a well lit room. Use a flash if you need to.",
@@ -23,10 +23,10 @@
                     "continue": "Continue with your application. When you're finished you'll be given a reference number and the court's address.",
                     "emailOrPost": "You can email or post your documents to the court.",
 
-                
 
 
-                    
+
+
                     "keptAndReturned": "You need to send the original marriage certificate or a certified copy if you're sending it by post. Do not send a photocopy. Your certificate will be kept and won't be returned to you.",
                     "noFiles": "No files uploaded",
                     "remove": "Remove",

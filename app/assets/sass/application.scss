@@ -9,24 +9,32 @@
   @return url('../images/' + $file);
 }
 
-@import 'govuk-elements';
+@import '~govuk-frontend/all';
 
 @import 'file-upload';
 @import 'jurisdiction-concepts';
 @import 'details';
 @import 'notice';
-@import 'phase-banner';
 @import 'patterns/facts';
 @import 'check-your-answers';
 @import 'contact-details';
 @import 'reason-for-divorce';
 @import 'dropzone';
 @import 'progress';
+@import 'gov-uk-frontend-toolkit-backward-compatable';
+
+input.govuk-link {
+  border: none;
+  padding: 0;
+  color: $govuk-link-colour;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 // If you need to create a page as part of your journey, but without GOV.UK branding
 // See localhost:3000/examples/unbranded/
 .unbranded {
-  background: $white;
+  background: govuk-colours('white');
   // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
   * {
     font-family: Arial !important;
@@ -34,18 +42,18 @@
   // Remove GOV.UK footer styles
   #footer {
     border: 0;
-    background: $white;
+    background: govuk-colours('white');
   }
 }
 
 // Related items
 // (These styles will be moved to GOV.UK elements, duplicating here for now.)
 .govuk-related-items {
-  margin-top: $gutter;
-  border-top: 10px solid $govuk-blue;
+  margin-top: $govuk-gutter;
+  border-top: 10px solid govuk-colours('blue');
   padding-top: 5px;
 
-  .heading-medium {
+  .govuk-heading-m {
     margin-top: 0.3em;
     margin-bottom: 0.5em
   }
@@ -62,25 +70,16 @@
   margin-top: 15px;
 }
 
-.link-back {
-  margin-bottom: 0;
-  margin-top: $gutter;
-}
-
 a.link-sign-out {
   float: right;
   font-weight: bold;
   color: white;
   text-decoration: none;
   margin-right: 15px;
-  
+
   &:hover {
     text-decoration: underline;
   }
-}
-
-.heading-large {
-  margin-top: $gutter;
 }
 
 .underline {
@@ -100,10 +99,10 @@ a.link-sign-out {
   width: 100%;
 
   p {
-    @include bold-19();
+    color: govuk-colours('black');
     background: white;
     border: 2px solid black;
-    padding: (18px $gutter $gutter-half $gutter*1.8);
+    padding: (18px $govuk-gutter $govuk-gutter-half $govuk-gutter*1.8);
   }
 
   span {
@@ -111,16 +110,14 @@ a.link-sign-out {
     display: inline-block;
     width: 210px;
     text-align: center;
-    @include core-19;
+    @include govuk-font(19);
   }
 
   a {
-    @include button ($grey-2);
-    @include box-sizing (border-box);
     padding: em(10) em(15) em(5) em(15);
     vertical-align: top;
 
-    @include media (mobile) {
+    @include govuk-media-query($from: mobile) {
       width: 100%;
     }
 
@@ -134,18 +131,10 @@ a.link-sign-out {
   width: 50% !important;
 }
 
-.form-group {
-  textarea {
-    width: 100%;
-  }
-}
-
 .secondary-button {
-  @include button ($grey-2);
-  @include box-sizing (border-box);
   padding: em(10) em(15) em(5) em(15);
   vertical-align: top;
-  @include media (mobile) {
+  @include govuk-media-query($from: mobile) {
     width: 100%;
   }
 }
@@ -157,7 +146,7 @@ a.link-sign-out {
 }
 
 .secondary-button:focus {
-  outline: 3px solid $focus-colour;
+  outline: 3px solid $govuk-focus-colour;
 }
 
 .image-cert-example {
@@ -166,7 +155,7 @@ a.link-sign-out {
 
 .postcode {
   width: 8.5em;
-  @include media(mobile) {
+  @include govuk-media-query($from: mobile) {
     width: 100%;
   }
 }
@@ -176,7 +165,7 @@ a.link-sign-out {
 }
 
 .financial-orders {
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     width: 80%;
   }
 }
@@ -197,15 +186,11 @@ section {
     margin-bottom: 2em;
 }
 
-.add-example-link {
-  margin: 0 0 30px 0;
-}
-
 @media (min-width: 641px) {
-  .jurisdiction > .multiple-choice,
-  #reason > .multiple-choice {
+  .jurisdiction > .govuk-radios__item,
+  #reason > .govuk-radios__item {
     min-width: 85%;
-    .font-small {
+    .govuk-body-s {
       min-height: 50px;
       padding-left: 22px;
       display: block;
@@ -214,7 +199,7 @@ section {
   }
 
   .jurisdiction {
-    .heading-medium {
+    .govuk-heading-m {
       margin-top: 25px;
     }
   }
@@ -224,15 +209,11 @@ section {
       .text {
           max-width: 100%;
       }
-      .heading-medium {
+      .govuk-heading-m{
         margin-top: 0px;
       }
     }
   }
-}
-// update for the latest radio buttons and checkboxes
-.form-label-bold {
-  padding-bottom: 9px;
 }
 
 address {
@@ -257,4 +238,14 @@ input.link{
   border: none;
   padding: 0;
   cursor: pointer;
+}
+
+#global-cookie-message {
+  width: 100%;
+  background-color: #d5e8f3;
+  padding: 10px;
+
+  p {
+    margin: 0 !important;
+  }
 }

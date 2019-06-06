@@ -69,7 +69,7 @@
 
   // Error messages should be red and bold
   span {
-    color: $error-colour;
+    color: $govuk-error-colour;
     font-weight: bold;
   }
 }
@@ -94,8 +94,9 @@
       }
     }
     &.error{
-      .error-message{
+      .govuk-error-message{
         word-break: normal;
+        margin: 0;
       }
       .remove-file{
         display: none;
@@ -109,7 +110,7 @@
       display: none;
     }
 
-    .form-group-error{
+    .govuk-form-group--error{
       padding-left: 20px;
     }
 

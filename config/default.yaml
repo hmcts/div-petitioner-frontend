@@ -182,7 +182,7 @@ e2e:
   defaultEnvironmentNodeEnv: 'development'
   waitForTimeoutValue: 10000
   waitForActionValue: 100
-  runBasicTests: 'true'
+  runBasicTests: false
 
 saucelabs:
   browser: 'chrome'

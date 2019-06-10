@@ -15,7 +15,21 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     req = {
-      session: { courts: 'serviceCentre' },
+      session: {
+        allocatedCourt: {
+          courtId: 'serviceCentre',
+          identifiableCentreName: 'Courts and Tribunals Service Centre',
+          serviceCentreName: 'Courts and Tribunals Service Centre',
+          divorceCentre: 'East Midlands Regional Divorce Centre',
+          poBox: 'PO Box 10447',
+          courtCity: 'Nottingham',
+          postCode: 'NG2 9QN',
+          openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
+          email: 'contactdivorce@justice.gov.uk',
+          phoneNumber: '0300 303 0642',
+          siteId: 'AA07'
+        }
+      },
       cookies: { '__auth-token': 'authToken' }
     };
     res = {
@@ -58,7 +72,7 @@ describe(modulePath, () => {
     });
 
     it('should call next when court is not CTSC', () => {
-      req.session.courts = 'eastMidlands';
+      req.session.allocatedCourt = { courtId: 'eastMidlands' };
       req.session.state = 'AwaitingDecreeNisi';
 
       redirectMiddleware.redirectOnCondition(req, res, next);

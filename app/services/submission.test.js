@@ -8,7 +8,6 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const featureToggleConfig = require('test/util/featureToggles');
 const mockedPaymentClient = require('app/services/mocks/payment');
 
-
 describe(modulePath, () => {
   const submitSuccess = {
     status: 200,
@@ -88,8 +87,18 @@ describe(modulePath, () => {
 
     beforeEach(() => {
       session = {
-        courts: 'someCourt',
-        court: { someCourt: { siteId: 'XX00' } }
+        allocatedCourt: {
+          courtId: 'serviceCentre',
+          serviceCentreName: 'Courts and Tribunals Service Centre',
+          divorceCentre: 'East Midlands Regional Divorce Centre',
+          courtCity: 'Nottingham',
+          poBox: 'PO Box 10447',
+          postCode: 'NG2 9QN',
+          openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
+          email: 'contactdivorce@justice.gov.uk',
+          phoneNumber: '0300 303 0642',
+          siteId: 'XX00'
+        }
       };
       originalCommonProps = CONF.commonProps;
       CONF.commonProps = { applicationFee: { feeCode: 'some-code', feeVersion: '1' } };

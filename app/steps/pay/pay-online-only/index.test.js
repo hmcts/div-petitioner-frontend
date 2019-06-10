@@ -35,6 +35,19 @@ const idamUserDetailsMiddlewareMock = (req, res, next) => {
 };
 
 describe(modulePath, () => {
+  const allocatedCourt = {
+    courtId: 'serviceCentre',
+    serviceCentreName: 'Courts and Tribunals Service Centre',
+    divorceCentre: 'East Midlands Regional Divorce Centre',
+    courtCity: 'Nottingham',
+    poBox: 'PO Box 10447',
+    postCode: 'NG2 9QN',
+    openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
+    email: 'contactdivorce@justice.gov.uk',
+    phoneNumber: '0300 303 0642',
+    siteId: 'AA07'
+  };
+
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
@@ -119,17 +132,10 @@ describe(modulePath, () => {
     });
 
     context('Case Id is missing', () => {
-      let session = {}, siteId = '';
+      let session = {};
 
       beforeEach(done => {
-        siteId = 'some-code';
-        session = {
-          court: {
-            someCourt: { siteId },
-            someOtherCourt: { siteId: 'some-other-code' }
-          },
-          courts: 'someCourt'
-        };
+        session = { allocatedCourt };
 
         withSession(done, agent, session);
       });
@@ -157,7 +163,7 @@ describe(modulePath, () => {
       beforeEach(done => {
         session = {
           caseId: 'some-case-id',
-          courts: 'eastMidlands',
+          allocatedCourt,
           previousCaseId: 'old-case-id'
         };
 
@@ -181,7 +187,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -200,7 +206,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = '';
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -213,7 +219,7 @@ describe(modulePath, () => {
 
 
     context('Success - New Application', () => {
-      let session = {}, siteId = '';
+      let session = {};
 
       const code = CONF.commonProps.applicationFee.feeCode;
       const version = CONF.commonProps.applicationFee.version;
@@ -222,10 +228,9 @@ describe(modulePath, () => {
       );
 
       beforeEach(done => {
-        siteId = '1';
         session = {
           caseId: 'some-case-id',
-          courts: 'eastMidlands'
+          allocatedCourt
         };
 
         withSession(done, agent, session);
@@ -248,7 +253,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -267,7 +272,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = '';
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -285,7 +290,7 @@ describe(modulePath, () => {
             expect(code).to.not.eql(null);
             expect(version).to.not.eql(null);
             expect(amount).to.not.eql(null);
-            expect(create.calledWith(sinon.match.any, {}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
+            expect(create.calledWith(sinon.match.any, {}, 'token', session.caseId, allocatedCourt.siteId, code, version, amount)).to.equal(true);
           }, 'post');
         });
       });

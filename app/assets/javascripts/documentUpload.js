@@ -6,8 +6,6 @@
 
   var documentUpload = function() {
 
-    console.log('here');
-
     return {
       $zone: null,
       $fileList: $('.uploaded-files-wrapper').eq(0),

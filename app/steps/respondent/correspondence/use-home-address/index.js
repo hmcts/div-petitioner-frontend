@@ -22,6 +22,9 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
       if (session.respondentCorrespondenceUseHomeAddress !== 'Yes') {
         remove('respondentCorrespondenceAddress');
       }
+      if (session.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
+        remove('respondentSolicitorRepresented');
+      }
     });
 
     watch('respondentHomeAddress', (previousSession, session, remove) => {
@@ -31,7 +34,7 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     });
   }
 
-  setRespondentCorrespondenceDisplayAddress(ctx, session) {
+  setRespondentCorrespondenceCtx(ctx, session) {
     ctx.respondentCorrespondenceDisplayAddress = '';
 
     if (session.livingArrangementsLiveTogether === 'Yes') {
@@ -42,11 +45,15 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
       ctx.respondentCorrespondenceDisplayAddress = session.livingArrangementsLastLivedTogetherAddress; // eslint-disable-line max-len
     }
 
+    if (session.respondentCorrespondenceUseHomeAddress === 'Solicitor') {
+      ctx.respondentSolicitorRepresented = 'Yes';
+    }
+
     return ctx;
   }
 
   interceptor(ctx, session) {
-    return this.setRespondentCorrespondenceDisplayAddress(ctx, session);
+    return this.setRespondentCorrespondenceCtx(ctx, session);
   }
 
   action(ctx, session) {
@@ -62,6 +69,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   }
 
   checkYourAnswersInterceptor(ctx, session) {
-    return this.setRespondentCorrespondenceDisplayAddress(ctx, session);
+    return this.setRespondentCorrespondenceCtx(ctx, session);
   }
 };

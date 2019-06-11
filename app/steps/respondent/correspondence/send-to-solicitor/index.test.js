@@ -53,14 +53,14 @@ describe(modulePath, () => {
     });
 
     it('redirects to the RespondentSolicitorDetails page', done => {
-      const context = { respondentCorrespondenceSendToSolicitor: 'Yes' };
+      const context = { respondentSolicitorRepresented: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.RespondentSolicitorDetails);
     });
 
     it('redirects to the RespondentCorrespondenceAddress page', done => {
-      const context = { respondentCorrespondenceSendToSolicitor: 'No' };
+      const context = { respondentSolicitorRepresented: 'No' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.RespondentCorrespondenceAddress);
@@ -68,9 +68,9 @@ describe(modulePath, () => {
   });
 
   describe('Watched session values', () => {
-    it('removes respondentCorrespondenceSendToSolicitor if respondentAskToUseHomeAddress is changed to true', () => {
+    it('removes respondentSolicitorRepresented if respondentAskToUseHomeAddress is changed to true', () => {
       const previousSession = {
-        respondentCorrespondenceSendToSolicitor: 'Yes',
+        respondentSolicitorRepresented: 'Yes',
         respondentAskToUseHomeAddress: 'false'
       };
 
@@ -82,9 +82,9 @@ describe(modulePath, () => {
         .to.equal('undefined');
     });
 
-    it('does not remove respondentCorrespondenceSendToSolicitor if respondentAskToUseHomeAddress is changed to false', () => {
+    it('does not remove respondentSolicitorRepresented if respondentAskToUseHomeAddress is changed to false', () => {
       const previousSession = {
-        respondentCorrespondenceSendToSolicitor: 'Yes',
+        respondentSolicitorRepresented: 'Yes',
         respondentAskToUseHomeAddress: 'true'
       };
 
@@ -102,7 +102,7 @@ describe(modulePath, () => {
       testCYATemplate(done, underTest);
     });
 
-    it('renders when respondentCorrespondenceSendToSolicitor is yes and divorceWho is wife', done => {
+    it('renders when respondentSolicitorRepresented is yes and divorceWho is wife', done => {
       const contentToExist = [
         'question',
         'solicitor'
@@ -110,7 +110,7 @@ describe(modulePath, () => {
 
       const valuesToExist = [];
 
-      const context = { respondentCorrespondenceSendToSolicitor: 'Yes' };
+      const context = { respondentSolicitorRepresented: 'Yes' };
 
       const session = { divorceWho: 'wife' };
 
@@ -118,7 +118,7 @@ describe(modulePath, () => {
         contentToExist, valuesToExist, context, session);
     });
 
-    it('renders when respondentCorrespondenceSendToSolicitor is yes and divorceWho is husband', done => {
+    it('renders when respondentSolicitorRepresented is yes and divorceWho is husband', done => {
       const contentToExist = [
         'question',
         'solicitor'
@@ -126,7 +126,7 @@ describe(modulePath, () => {
 
       const valuesToExist = [];
 
-      const context = { respondentCorrespondenceSendToSolicitor: 'Yes' };
+      const context = { respondentSolicitorRepresented: 'Yes' };
 
       const session = { divorceWho: 'husband' };
 
@@ -134,7 +134,7 @@ describe(modulePath, () => {
         contentToExist, valuesToExist, context, session);
     });
 
-    it('renders when respondentCorrespondenceSendToSolicitor is no', done => {
+    it('renders when respondentSolicitorRepresented is no', done => {
       const contentToExist = [
         'question',
         'correspondence'
@@ -142,7 +142,7 @@ describe(modulePath, () => {
 
       const valuesToExist = [];
 
-      const context = { respondentCorrespondenceSendToSolicitor: 'No' };
+      const context = { respondentSolicitorRepresented: 'No' };
 
       const session = { divorceWho: 'husband' };
 

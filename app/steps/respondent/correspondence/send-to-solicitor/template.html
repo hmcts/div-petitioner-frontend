@@ -7,20 +7,20 @@
 {% block form %}
 
 
-    <fieldset id="respondentCorrespondenceSendToSolicitor" class="form-group {{ 'form-group-error' if fields.respondentCorrespondenceSendToSolicitor.error }}">
+    <fieldset id="respondentSolicitorRepresented" class="form-group {{ 'form-group-error' if fields.respondentSolicitorRepresented.error }}">
         <legend class="visually-hidden">{{ content.question | safe }}</legend>
-        {{ errorsFor(fields.respondentCorrespondenceSendToSolicitor) }}
+        {{ errorsFor(fields.respondentSolicitorRepresented) }}
         {{ radioButton(
             value = 'Yes',
             label = content.solicitor,
-            name = 'respondentCorrespondenceSendToSolicitor',
-            field = fields.respondentCorrespondenceSendToSolicitor
+            name = 'respondentSolicitorRepresented',
+            field = fields.respondentSolicitorRepresented
         ) }}
         {{ radioButton(
             value = 'No',
             label = content.correspondence,
-            name = 'respondentCorrespondenceSendToSolicitor',
-            field = fields.respondentCorrespondenceSendToSolicitor
+            name = 'respondentSolicitorRepresented',
+            field = fields.respondentSolicitorRepresented
         ) }}
 
     </fieldset>

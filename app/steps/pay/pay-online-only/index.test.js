@@ -14,6 +14,7 @@ const payment = require('app/services/payment');
 const submission = require('app/services/submission');
 const CONF = require('config');
 const idam = require('app/services/idam');
+const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/steps/pay/pay-online-only';
 
@@ -35,18 +36,7 @@ const idamUserDetailsMiddlewareMock = (req, res, next) => {
 };
 
 describe(modulePath, () => {
-  const allocatedCourt = {
-    courtId: 'serviceCentre',
-    serviceCentreName: 'Courts and Tribunals Service Centre',
-    divorceCentre: 'East Midlands Regional Divorce Centre',
-    courtCity: 'Nottingham',
-    poBox: 'PO Box 10447',
-    postCode: 'NG2 9QN',
-    openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
-    email: 'contactdivorce@justice.gov.uk',
-    phoneNumber: '0300 303 0642',
-    siteId: 'AA07'
-  };
+  const allocatedCourt = serviceCentreCourt;
 
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
@@ -135,7 +125,7 @@ describe(modulePath, () => {
       let session = {};
 
       beforeEach(done => {
-        session = { allocatedCourt };
+        session = { allocatedCourt: serviceCentreCourt };
 
         withSession(done, agent, session);
       });
@@ -163,7 +153,7 @@ describe(modulePath, () => {
       beforeEach(done => {
         session = {
           caseId: 'some-case-id',
-          allocatedCourt,
+          allocatedCourt: serviceCentreCourt,
           previousCaseId: 'old-case-id'
         };
 
@@ -230,7 +220,7 @@ describe(modulePath, () => {
       beforeEach(done => {
         session = {
           caseId: 'some-case-id',
-          allocatedCourt
+          allocatedCourt: serviceCentreCourt
         };
 
         withSession(done, agent, session);

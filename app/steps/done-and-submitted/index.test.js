@@ -4,6 +4,7 @@ const { withSession } = require('test/util/setup');
 const server = require('app');
 const escape = require('escape-html');
 const { expect } = require('test/util/chai');
+const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/steps/done-and-submitted';
 
@@ -16,19 +17,7 @@ let agent = {};
 let underTest = {};
 
 describe(modulePath, () => {
-  const allocatedCourt = {
-    courtId: 'randomlyAllocatedCourt',
-    identifiableCentreName: 'Courts and Tribunals Service Centre',
-    serviceCentreName: 'Courts and Tribunals Service Centre',
-    divorceCentre: 'East Midlands Regional Divorce Centre',
-    poBox: 'PO Box 10447',
-    courtCity: 'Nottingham',
-    postCode: 'NG2 9QN',
-    openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
-    email: 'allocated-court@justice.gov.uk',
-    phoneNumber: '0300 303 0642',
-    siteId: 'AA07'
-  };
+  const allocatedCourt = serviceCentreCourt;
 
   beforeEach(() => {
     s = server.init();
@@ -365,18 +354,7 @@ describe(modulePath, () => {
             petitionerNameDifferentToMarriageCertificate: 'No',
             marriedInUk: 'Yes',
             divorceWho: 'husband',
-            allocatedCourt: {
-              courtId: 'serviceCentre',
-              serviceCentreName: 'Courts and Tribunals Service Centre',
-              divorceCentre: 'East Midlands Regional Divorce Centre',
-              courtCity: 'Nottingham',
-              poBox: 'PO Box 10447',
-              postCode: 'NG2 9QN',
-              openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
-              email: 'contactdivorce@justice.gov.uk',
-              phoneNumber: '0300 303 0642',
-              siteId: 'AA07'
-            }
+            allocatedCourt: serviceCentreCourt
           };
 
           withSession(done, agent, session);

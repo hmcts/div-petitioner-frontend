@@ -1,5 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const CONF = require('config');
+const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/middleware/redirectMiddleware';
 
@@ -15,21 +16,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     req = {
-      session: {
-        allocatedCourt: {
-          courtId: 'serviceCentre',
-          identifiableCentreName: 'Courts and Tribunals Service Centre',
-          serviceCentreName: 'Courts and Tribunals Service Centre',
-          divorceCentre: 'East Midlands Regional Divorce Centre',
-          poBox: 'PO Box 10447',
-          courtCity: 'Nottingham',
-          postCode: 'NG2 9QN',
-          openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
-          email: 'contactdivorce@justice.gov.uk',
-          phoneNumber: '0300 303 0642',
-          siteId: 'AA07'
-        }
-      },
+      session: { allocatedCourt: serviceCentreCourt },
       cookies: { '__auth-token': 'authToken' }
     };
     res = {

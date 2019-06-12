@@ -32,7 +32,7 @@ const buildAddressBaseUk = function(selectedAddress) {
 // Refactored based off address logic in Royal Mail Programmers' Guide
 // https://www.royalmail.com/sites/default/files/docs/pdf/programmers_guide_edition_7_v5.pdf
 
-const defaultAddressTemplate = function(address) {
+const defaultAddressTemplate = address => {
   return {
     ORG_NAME: address.DPA.ORGANISATION_NAME,
     DEPT_NAME: address.DPA.DEPARTMENT_NAME,
@@ -57,23 +57,39 @@ const orderedTfaresLocalities = templateAddress => {
   ];
 };
 
+const isFirstAndLastCharNumeric = buildingName => {
+  const firstChar = buildingName.charAt(0);
+  const lastChar = buildingName.slice(-1);
+  return !isNaN(firstChar) && !isNaN(lastChar);
+};
+
+const isFirstAndPenultimateCharNumeric = buildingName => {
+  const penultimateCharIndex = -2;
+  const getOneChar = -1;
+
+  const firstChar = buildingName.charAt(0);
+  const penultimateChar = buildingName.slice(penultimateCharIndex, getOneChar);
+
+  return !isNaN(penultimateChar) && !isNaN(firstChar);
+};
+
+const isBuildingNameSingleAlphabeticChar = buildingName => {
+  const firstChar = buildingName.charAt(0);
+  return buildingName.length === 1 && Boolean(firstChar.match(/[a-z]/i));
+};
+
 function buildNameIsAnException(buildingName) {
   if (!buildingName) {
     return false;
   }
-  const firstChar = buildingName.charAt(0);
   const lastChar = buildingName.slice(-1);
   // Exception rule 1 - first and last characters are numeric
-  if (!isNaN(firstChar) && !isNaN(lastChar)) {
+  // Exception rule 3 - Building Name has only one character (eg ‘A’)
+  if (isFirstAndLastCharNumeric(buildingName) || isBuildingNameSingleAlphabeticChar(buildingName)) {
     return true;
   }
-  // Exception rule 3 - Building Name has only one character (eg ‘A’)
-  if (buildingName.length === 1) {
-    return Boolean(firstChar.match(/[a-z]/i));
-  }
   // Exception rule 2 - First and penultimate characters are numeric, last character is alphabetic
-  const penultimateCharIndex = -2;
-  return (isNaN(lastChar) && !isNaN(buildingName.slice(penultimateCharIndex, -1)) && !isNaN(firstChar));
+  return (isNaN(lastChar) && isFirstAndPenultimateCharNumeric(buildingName));
 }
 
 const splitTfaresLocalities = orderedTfaresLocalitiesFields => {

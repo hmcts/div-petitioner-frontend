@@ -77,7 +77,7 @@
   },
   "respondentSolicitorName": "solicitor's name",
   "respondentSolicitorCompany": "solicitor's Company/Organisat",
-  "respondentCorrespondenceSendToSolicitor": "Yes",
+  "respondentSolicitorRepresented": "Yes",
   "respondentSolicitorAddress": {
     "address": [
       "82 LANDOR ROAD",

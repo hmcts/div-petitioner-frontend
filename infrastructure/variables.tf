@@ -12,6 +12,10 @@ variable "capacity" {
   default = "1"
 }
 
+variable "instance_size" {
+  default = "I2"
+}
+
 variable "reform_service_name" {
   default = "pfe"
 }
@@ -390,7 +394,7 @@ variable "court_service_centre_openinghours" {
 }
 
 variable "court_service_centre_email" {
-  default = "divorcecase@justice.gov.uk"
+  default = "contactdivorce@justice.gov.uk"
 }
 
 variable "court_service_centre_phonenumber" {
@@ -410,7 +414,7 @@ variable "court_opening_hours" {
 }
 
 variable "court_email" {
-  default = "divorce@justice.gov.uk"
+  default = "contactdivorce@justice.gov.uk"
 }
 
 variable "common_tags" {

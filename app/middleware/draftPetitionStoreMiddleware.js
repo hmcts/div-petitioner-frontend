@@ -196,25 +196,30 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
   const hasSaveAndCloseBody = body && body.saveAndClose;
 
   if (isPost && hasSaveAndCloseBody) {
-    const ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
-    const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
-    const sessionToSave = removeBlackListedPropertiesFromSession(session);
+    const context = this; // eslint-disable-line no-invalid-this
 
-    // Get user token.
-    let authToken = '';
-    if (req.cookies && req.cookies[authTokenString]) {
-      authToken = req.cookies[authTokenString];
-    }
+    co(function* generator() {
+      let ctx = context.parseRequest(req);
+      ctx = yield context.interceptor(ctx, req.session);
+      const session = context.applyCtxToSession(ctx, req.session);
+      const sessionToSave = removeBlackListedPropertiesFromSession(session);
 
-    const sendEmail = true;
-    client.saveToDraftStore(authToken, sessionToSave, sendEmail)
-      .then(() => {
-        res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
-      })
-      .catch(error => {
-        logger.errorWithReq(req, 'save_draft_and_close_error', 'Error restoring draft', error.message);
-        res.redirect('/generic-error');
-      });
+      // Get user token.
+      let authToken = '';
+      if (req.cookies && req.cookies[authTokenString]) {
+        authToken = req.cookies[authTokenString];
+      }
+
+      const sendEmail = true;
+      client.saveToDraftStore(authToken, sessionToSave, sendEmail)
+        .then(() => {
+          res.redirect(context.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+        })
+        .catch(error => {
+          logger.errorWithReq(req, 'save_draft_and_close_error', 'Error restoring draft', error.message);
+          res.redirect('/generic-error');
+        });
+    });
   } else {
     next();
   }

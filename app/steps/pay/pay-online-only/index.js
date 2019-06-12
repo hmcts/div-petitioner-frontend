@@ -50,6 +50,13 @@ module.exports = class PayOnline extends Step {
     ];
   }
 
+  interceptor(ctx, session) {
+    if (!session.feeToBePaid) {
+      ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : CONF.commonProps.applicationFee.amount;
+    }
+    return ctx;
+  }
+
   handler(req, res, next) {
     const { method, cookies, body } = req;
 

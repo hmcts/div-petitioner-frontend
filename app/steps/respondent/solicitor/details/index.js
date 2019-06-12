@@ -20,4 +20,9 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
       }
     });
   }
+
+  interceptor(ctx) {
+    ctx.respondentSolicitorRepresented = 'Yes';
+    return ctx;
+  }
 };

@@ -32,7 +32,7 @@ up down start stop pull:
 coverage test test-validation test-unit test-nsp test-coverage eslint setup:
 	@$(call compose, run frontend yarn run $@)
 
-start-debug start-dev:
+start-debug dev:
 	@$(call compose, run --service-ports frontend yarn run $@)
 
 test-e2e test-a11y:

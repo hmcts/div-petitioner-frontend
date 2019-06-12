@@ -22,6 +22,9 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
       if (session.respondentCorrespondenceUseHomeAddress !== 'Yes') {
         remove('respondentCorrespondenceAddress');
       }
+      if (session.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
+        remove('respondentSolicitorRepresented');
+      }
     });
 
     watch('respondentHomeAddress', (previousSession, session, remove) => {
@@ -41,7 +44,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     } else if (session.livingArrangementsLastLivedTogetherAddress) {
       ctx.respondentCorrespondenceDisplayAddress = session.livingArrangementsLastLivedTogetherAddress; // eslint-disable-line max-len
     }
-
     return ctx;
   }
 
@@ -53,7 +55,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
       session.respondentCorrespondenceAddress = session.respondentHomeAddress;
     }
-
     // remove data used for template
     delete session.respondentCorrespondenceDisplayAddress;
     delete ctx.respondentCorrespondenceDisplayAddress;

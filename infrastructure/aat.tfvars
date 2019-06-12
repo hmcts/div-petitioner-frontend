@@ -22,4 +22,6 @@ post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 capacity = "2"
 
+instance_size = "I3"
+
 feature_strategic_pay = "true"

@@ -154,7 +154,7 @@
             type: 'DELETE',
             success: function() {
               self.removeFileFromList($file);
-              for (var i = 0; i < dropzone.files.length; i++){
+              for (var i = 0; i < dropzone.files.length; i++) {
                 if (dropzone.files[i].status === 'success'){
                   dropzone.files.splice(i, 1);
                   return;
@@ -184,7 +184,9 @@
         });
 
         $(document).on('keydown', 'a.faux-link, .dz-clickable', function(e) {
-          if ([13, 32].includes(e.keyCode)) { // pressed RETURN or SPACE
+          var returnKey = 13;
+          var spaceKey = 32;
+          if ([returnKey, spaceKey].includes(e.keyCode)) { // pressed RETURN or SPACE
             e.preventDefault();
             e.stopPropagation();
             self.$zone.trigger('click');

@@ -38,7 +38,7 @@
           "settle": "If in the future you want the court to settle your financial arrangements with your {{divorceWho}}, you can only <a href=\"https://www.gov.uk/money-property-when-relationship-ends/apply-for-a-financial-order\" target=\"_blank\">apply for a financial order</a> until you remarry. Once you've married someone else, your will lose the right to do so.",
           "helpImproveService": "Help us improve this service",
           "improveServiceContent": "This is a new service which is still being developed. If you haven’t already, please <a aria-label=\"This link will open in a new tab.\" href=\"{{smartSurveyFeedbackDonePageUrl}}?pageurl=/done\" target=\"_blank\">provide feedback</a> on what you think of it and how it can be improved.",
-
+          "careOf": "c/o",
           "complete": "Complete",
           "youApply": "You apply",
           "yourRespondes": "Your {{ divorceWho }} must respond",

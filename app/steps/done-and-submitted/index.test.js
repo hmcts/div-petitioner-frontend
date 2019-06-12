@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testContent, testExistence, testNonExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testNonExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const escape = require('escape-html');
@@ -337,6 +337,9 @@ describe(modulePath, () => {
     });
 
     describe('should show allocated court\'s post address', () => {
+      const careOfText = ' c/o ';
+      const htmlLineBreak = ' <br/>';
+
       const contentRenderingTest = done => {
         excludeKeys.push('whatToDoNowRefNumText');
         excludeKeys.push('whatToDoNowOrigCert');
@@ -363,12 +366,13 @@ describe(modulePath, () => {
         it('renders the content from the content file', contentRenderingTest);
 
         it('should render post address correctly', done => {
-          const expectedPostAddress = `${session.allocatedCourt.serviceCentreName} <br> c/o ${
-            session.allocatedCourt.divorceCentre} <br> ${
-            session.allocatedCourt.poBox} <br> ${
-            session.allocatedCourt.courtCity} <br> ${
-            session.allocatedCourt.postCode}`;
-          testExistence(done, agent, underTest, escape(expectedPostAddress));
+          testMultipleValuesExistence(done, agent, underTest, [
+            serviceCentreCourt.serviceCentreName + htmlLineBreak + careOfText,
+            serviceCentreCourt.divorceCentre + htmlLineBreak,
+            serviceCentreCourt.poBox + htmlLineBreak,
+            serviceCentreCourt.courtCity + htmlLineBreak,
+            serviceCentreCourt.postCode
+          ]);
         });
       });
 
@@ -398,15 +402,16 @@ describe(modulePath, () => {
         it('renders the content from the content file', contentRenderingTest);
 
         it('should render post address correctly', done => {
-          const expectedPostAddress = `${session.allocatedCourt.divorceCentre} <br> ${
-            session.allocatedCourt.poBox} <br> ${
-            session.allocatedCourt.courtCity} <br> ${
-            session.allocatedCourt.postCode}`;
-          testExistence(done, agent, underTest, escape(expectedPostAddress));
+          testMultipleValuesExistence(done, agent, underTest, [
+            session.allocatedCourt.divorceCentre + htmlLineBreak,
+            session.allocatedCourt.poBox + htmlLineBreak,
+            session.allocatedCourt.courtCity + htmlLineBreak,
+            session.allocatedCourt.postCode
+          ]);
         });
 
         it('should not have c/o', done => {
-          testNonExistence(done, agent, underTest, escape(' c/o '));
+          testNonExistence(done, agent, underTest, careOfText);
         });
       });
 
@@ -437,16 +442,17 @@ describe(modulePath, () => {
         it('renders the content from the content file', contentRenderingTest);
 
         it('should render post address correctly', done => {
-          const expectedPostAddress = `${session.allocatedCourt.divorceCentre} <br> ${
-            session.allocatedCourt.divorceCentreAddressName} <br> ${
-            session.allocatedCourt.street} <br> ${
-            session.allocatedCourt.courtCity} <br> ${
-            session.allocatedCourt.postCode}`;
-          testExistence(done, agent, underTest, escape(expectedPostAddress));
+          testMultipleValuesExistence(done, agent, underTest, [
+            session.allocatedCourt.divorceCentre + htmlLineBreak,
+            escape(session.allocatedCourt.divorceCentreAddressName),
+            session.allocatedCourt.street + htmlLineBreak,
+            session.allocatedCourt.courtCity + htmlLineBreak,
+            session.allocatedCourt.postCode
+          ]);
         });
 
         it('should not have c/o', done => {
-          testNonExistence(done, agent, underTest, escape(' c/o '));
+          testNonExistence(done, agent, underTest, careOfText);
         });
       });
     });

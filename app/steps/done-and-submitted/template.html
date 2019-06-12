@@ -11,7 +11,7 @@
         <h1 class="bold-large">{{content.title | safe}}</h1>
         <p class="no-bottom-margin">
           {{ content.caseReferenceNumber | safe }}
-          <br>
+          <br/>
           <strong class="text-reference-number">
             {{ session.caseId | insertHyphens | safe }}
           </strong>
@@ -71,7 +71,16 @@
         <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h3>
         <p class="text">{{content.whatToDoNowPostText | safe}}</p>
           <address class="bold-small">
-            {{ fields.courtPostAddress.value }}
+            {% if session.allocatedCourt.serviceCentreName %}
+              {{ session.allocatedCourt.serviceCentreName }} <br/> {{ content.careOf }} 
+            {% endif %}
+            {{ session.allocatedCourt.divorceCentre }} <br/> 
+            {% if session.allocatedCourt.poBox %}
+              {{ session.allocatedCourt.poBox }} <br/> 
+            {% else %}
+              {{ session.allocatedCourt.divorceCentreAddressName }} <br/> {{session.allocatedCourt.street}} <br/>
+            {% endif %}
+            {{ session.allocatedCourt.courtCity }} <br/> {{ session.allocatedCourt.postCode }}
           </address>
 
           <p class="text">{{ content.certificateKept | safe }} </p>

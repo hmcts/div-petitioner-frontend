@@ -1,14 +1,16 @@
 'use strict';
 
-(function (global) {
+(function(global) {
 
-  var csrfToken = $('input[name="_csrf"]').attr('value');
+  var csrfToken = $('input[name="_csrf"]')
+    .attr('value');
 
   var documentUpload = function() {
 
     return {
       $zone: null,
-      $fileList: $('.uploaded-files-wrapper').eq(0),
+      $fileList: $('.uploaded-files-wrapper')
+        .eq(0),
 
       init: function(options) {
 
@@ -27,9 +29,10 @@
         };
 
         var self = this,
-            dzOptions;
+          dzOptions;
         self.$zone = $('.document-upload');
-        self.$zone.find('.hidden').removeClass('hidden');
+        self.$zone.find('.hidden')
+          .removeClass('hidden');
         this.$fileList.removeClass('hidden');
         dzOptions = {
           dictFileTooBig: options.errors.errorFileSizeTooLarge,
@@ -37,64 +40,77 @@
           dictInvalidFileType: options.errors.errorFileTypeInvalid,
           init: function() {
             this.on('drop', function() {
-              $('.dz-preview').remove();
+              $('.dz-preview')
+                .remove();
             });
-            this.on('uploadprogress', function(file, progress){
-              if (file.element){
-                file.element.find('span.progress').attr('style', 'width:'+progress+'%;');
-                file.element.find('span.form-hint').html(' - ' + options.uploadingHint);
+            this.on('uploadprogress', function(file, progress) {
+              if (file.element) {
+                file.element.find('span.progress')
+                  .attr('style', 'width:' + progress + '%;');
+                file.element.find('span.form-hint')
+                  .html(' - ' + options.uploadingHint);
               }
             });
-            this.on('complete', function(file){
-              if (file.element){
+            this.on('complete', function(file) {
+              if (file.element) {
                 file.element.removeClass('uploading');
               }
             });
-            this.on('success', function(file, resp){
-              if (file.element && resp && resp.length){
-                $(file.element).find('.remove-file').data('fileurl', resp[0].fileUrl);
+            this.on('success', function(file, resp) {
+              if (file.element && resp && resp.length) {
+                $(file.element)
+                  .find('.remove-file')
+                  .data('fileurl', resp[0].fileUrl);
               }
             });
-            this.on('canceled', function(file){
-              if (file.element){
+            this.on('canceled', function(file) {
+              if (file.element) {
                 file.element.addClass('error');
-                file.element.find('span.form-hint').remove();
+                file.element.find('span.form-hint')
+                  .remove();
                 file.element.find('td:first')
                   .addClass('form-group-error')
                   .append('<span class="error-message">' + options.errors.errorUnknown + '</span>');
               }
-              if (!this.getQueuedFiles().length){
-                $('input[type="submit"]').prop('disabled', false);
+              if (!this.getQueuedFiles().length) {
+                $('input[type="submit"]')
+                  .prop('disabled', false);
               }
             });
-            this.on('error', function(file, errorMessage){
+            this.on('error', function(file, errorMessage) {
               var errorMessageText = options.errors.errorUnknown;
 
-              if (errorMessage && errorMessage.code && options.errors[errorMessage.code]){
+              if (errorMessage && errorMessage.code && options.errors[errorMessage.code]) {
                 errorMessageText = options.errors[errorMessage.code];
               }
 
-              if (file.element){
+              if (file.element) {
                 file.element.addClass('error');
-                file.element.find('span.form-hint').remove();
+                file.element.find('span.form-hint')
+                  .remove();
                 file.element.find('td:first')
                   .addClass('form-group-error')
                   .append('<span class="error-message">' + errorMessageText + '</span>');
               }
-              if (!this.getQueuedFiles().length){
-                $('input[type="submit"]').prop('disabled', false);
+              if (!this.getQueuedFiles().length) {
+                $('input[type="submit"]')
+                  .prop('disabled', false);
               }
-              setTimeout(function(){
-                $('.dz-preview').fadeOut(function(){
-                  $('.dz-preview').remove();
-                });
+              setTimeout(function() {
+                $('.dz-preview')
+                  .fadeOut(function() {
+                    $('.dz-preview')
+                      .remove();
+                  });
               }, 2000);
             });
-            this.on('addedfile', function(){
-              $('input[type="submit"]').attr('disabled', 'disabled');
+            this.on('addedfile', function() {
+              $('input[type="submit"]')
+                .attr('disabled', 'disabled');
             });
-            this.on('queuecomplete', function(){
-              $('input[type="submit"]').prop('disabled', false);
+            this.on('queuecomplete', function() {
+              $('input[type="submit"]')
+                .prop('disabled', false);
             });
             self.addExsistingFiles(this);
             self.bindEvents(this);
@@ -122,32 +138,36 @@
         self.$zone.dropzone(dzOptions);
 
         // fix a11y tests
-        if ($('.dz-hidden-input').length){
+        if ($('.dz-hidden-input').length) {
           var att = document.createAttribute('title');
           att.value = 'Upload file';
           $('.dz-hidden-input')[0].setAttributeNode(att);
         }
       },
 
-      addExsistingFiles: function(dropzone){
-        $('.file').each(function($row){
-          dropzone.files.push({
-            accepted: true,
-            status: 'success'
+      addExsistingFiles: function(dropzone) {
+        $('.file')
+          .each(function($row) {
+            dropzone.files.push({
+              accepted: true,
+              status: 'success'
+            });
           });
-        });
       },
 
       bindEvents: function(dropzone) {
         var self = this;
 
-        $(document).on('click', 'a.faux-link', function(e) {
+        $(document)
+          .on('click', 'a.faux-link', function(e) {
             e.preventDefault();
-        });
+          });
         this.$fileList.on('click', '.remove-file', function(e) {
           e.preventDefault();
-          var $file = $(this).parents('.file');
-          var fileUrl = $(this).data('fileurl');
+          var $file = $(this)
+            .parents('.file');
+          var fileUrl = $(this)
+            .data('fileurl');
           var endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
           $.ajax({
             url: endPoint,
@@ -155,7 +175,7 @@
             success: function() {
               self.removeFileFromList($file);
               for (var i = 0; i < dropzone.files.length; i++) {
-                if (dropzone.files[i].status === 'success'){
+                if (dropzone.files[i].status === 'success') {
                   dropzone.files.splice(i, 1);
                   return;
                 }
@@ -165,16 +185,18 @@
         });
         this.$fileList.on('click', '.hide-file', function(e) {
           e.preventDefault();
-          var $file = $(this).parents('.file');
-          var fileUrl = $(this).data('fileurl');
+          var $file = $(this)
+            .parents('.file');
+          var fileUrl = $(this)
+            .data('fileurl');
           var endPoint = `${window.location}?js=true&fileUrl=${encodeURI(fileUrl)}&_csrf=${csrfToken}`;
           $.ajax({
             url: endPoint,
             type: 'DELETE',
             success: function() {
               self.removeFileFromList($file);
-              for (var i = 0; i < dropzone.files.length; i++){
-                if (dropzone.files[i].status === 'success'){
+              for (var i = 0; i < dropzone.files.length; i++) {
+                if (dropzone.files[i].status === 'success') {
                   dropzone.files.splice(i, 1);
                   return;
                 }
@@ -183,16 +205,17 @@
           });
         });
 
-        $(document).on('keydown', 'a.faux-link, .dz-clickable', function(e) {
-          var returnKey = 13;
-          var spaceKey = 32;
-          if ([returnKey, spaceKey].includes(e.keyCode)) { // pressed RETURN or SPACE
-            e.preventDefault();
-            e.stopPropagation();
-            self.$zone.trigger('click');
-            return false;
-          }
-        });
+        $(document)
+          .on('keydown', 'a.faux-link, .dz-clickable', function(e) {
+            var returnKey = 13;
+            var spaceKey = 32;
+            if ([returnKey, spaceKey].includes(e.keyCode)) { // pressed RETURN or SPACE
+              e.preventDefault();
+              e.stopPropagation();
+              self.$zone.trigger('click');
+              return false;
+            }
+          });
       },
 
       addFileToList: function(file) {
@@ -208,32 +231,36 @@
           $el.remove();
 
           if (!self.$fileList.find('.file').length) {
-            self.$fileList.find('.no-files').show();
+            self.$fileList.find('.no-files')
+              .show();
           }
 
         });
       },
 
-      addFileToUploadList: function(file){
+      addFileToUploadList: function(file) {
         var self = this;
 
         var $element = $('<tr/>')
-        .addClass('file')
-        .addClass('uploading')
-        .html(
-          '<td>' + file.name + ' <span class="form-hint"> - ' + this.options.pendingUploadHint + '</span><span class="progress"></span></td>' +
-          '<td><a class="link remove-file" href="#">' + this.options.removeFileLink + '</a><a class="link hide-file" href="#">' + this.options.hideErrorFileLink + '</a></td>'
-        );
+          .addClass('file')
+          .addClass('uploading')
+          .html(
+            '<td>' + file.name + ' <span class="form-hint"> - ' + this.options.pendingUploadHint + '</span><span class="progress"></span></td>' +
+            '<td><a class="link remove-file" href="#">' + this.options.removeFileLink + '</a><a class="link hide-file" href="#">' + this.options.hideErrorFileLink + '</a></td>'
+          );
 
-        self.$fileList.find('.no-files').hide();
-        self.$fileList.find('table tbody').append($element);
+        self.$fileList.find('.no-files')
+          .hide();
+        self.$fileList.find('table tbody')
+          .append($element);
         file.element = $element;
 
       },
 
       removeFilePreview: function(file) {
         var self = this;
-        $(file.previewElement).remove();
+        $(file.previewElement)
+          .remove();
         self.$zone.removeClass('dz-started dz-drag-hover');
       }
     };

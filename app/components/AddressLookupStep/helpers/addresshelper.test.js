@@ -7,6 +7,10 @@ const underTest = rewire(modulePath);
 const testAddresses = require('../mocks/responses/testpostcode.json');
 
 describe(modulePath, () => {
+  let isFirstAndLastCharNumeric = '';
+  let isFirstAndPenultimateCharNumeric = '';
+  let isBuildingNameSingleAlphabeticChar = '';
+
   let buildNameIsAnException = '';
   let splitTfaresLocalities = '';
   let orderedTfaresLocalities = '';
@@ -18,12 +22,65 @@ describe(modulePath, () => {
   }
 
   before(() => {
+    isFirstAndLastCharNumeric = underTest.__get__('isFirstAndLastCharNumeric');
+    isFirstAndPenultimateCharNumeric = underTest.__get__('isFirstAndPenultimateCharNumeric');
+    isBuildingNameSingleAlphabeticChar = underTest.__get__('isBuildingNameSingleAlphabeticChar');
+
     buildNameIsAnException = underTest.__get__('buildNameIsAnException');
     splitTfaresLocalities = underTest.__get__('splitTfaresLocalities');
     orderedTfaresLocalities = underTest.__get__('orderedTfaresLocalities');
     defaultAddressTemplate = underTest.__get__('defaultAddressTemplate');
     buildAddressLines = underTest.__get__('buildAddressLines');
   });
+
+  describe('isFirstAndLastCharNumeric', () => {
+    it('should correctly return whether a building name has a first and last numeric character', () => {
+      const numeric = ['3', '12', '1237', '12-19', '114 - 124'];
+      const nonNumeric = ['112B', 'B', 'D', 'S', 'The Manor', 'Britney Spears Tower', 'Flat 2', 'APT.15', 'Apartment 23'];
+      numeric.forEach(
+        elem => {
+          return expect(isFirstAndLastCharNumeric(elem)).to.be.true;
+        });
+
+      nonNumeric.forEach(
+        elem => {
+          return expect(isFirstAndLastCharNumeric(elem)).to.be.false;
+        });
+    });
+  });
+
+  describe('isFirstAndPenultimateCharNumeric', () => {
+    it('should correctly return whether a building name has a first and penultimate numeric character', () => {
+      const numeric = ['3', '12', '1237', '12-19', '114 - 124', '112A', '45-51B'];
+      const nonNumeric = ['A', 'C', 'N', 'The Manor', 'Britney Spears Tower', 'Flat 2', 'APT.15', 'Apartment 23'];
+      numeric.forEach(
+        elem => {
+          return expect(isFirstAndPenultimateCharNumeric(elem)).to.be.true;
+        });
+
+      nonNumeric.forEach(
+        elem => {
+          return expect(isFirstAndPenultimateCharNumeric(elem)).to.be.false;
+        });
+    });
+  });
+
+  describe('isBuildingNameSingleAlphabeticChar', () => {
+    it('should correctly return whether a building name is only one alphabetic character', () => {
+      const numeric = ['A', 'B', 'D', 'F', 'K', 'a', 'c', 'e'];
+      const nonNumeric = ['AB', '2', '12-19', 'The Manor', 'Britney Spears Tower', 'Flat 2', 'APT.15', 'Apartment 23'];
+      numeric.forEach(
+        elem => {
+          return expect(isBuildingNameSingleAlphabeticChar(elem)).to.be.true;
+        });
+
+      nonNumeric.forEach(
+        elem => {
+          return expect(isBuildingNameSingleAlphabeticChar(elem)).to.be.false;
+        });
+    });
+  });
+
 
   describe('buildNameIsAnException', () => {
     it('should correctly return whether a string matches the exception criteria', () => {
@@ -135,7 +192,8 @@ describe(modulePath, () => {
 
       it('an organisation and department name, along with a PO BOX number', () => {
         const addressArg1 = testAddresses[1];
-        expectedAddress.push(`${addressArg1.DPA.ORGANISATION_NAME} ${addressArg1.DPA.DEPARTMENT_NAME} ${addressArg1.DPA.PO_BOX_NUMBER}`);
+        const poBoxString = `PO BOX ${addressArg1.DPA.PO_BOX_NUMBER}`;
+        expectedAddress.push(`${addressArg1.DPA.ORGANISATION_NAME} ${addressArg1.DPA.DEPARTMENT_NAME} ${poBoxString}`);
         expectedAddress.push(addressArg1.DPA.DEPENDENT_LOCALITY);
         expect(buildAddressLines(addressArg1)).to.deep.equal(expectedAddress);
       });

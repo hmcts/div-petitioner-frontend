@@ -108,12 +108,17 @@ function buildAddressLines(address) {
   let firstLine = '';
   let secondLine = '';
   let thirdLine = '';
+  let createdPoBoxString = '';
 
   const thoroughfaresLocalities = splitTfaresLocalities(
     orderedTfaresLocalities(templateAddress));
 
+  if (templateAddress.PO_BOX) {
+    createdPoBoxString = `PO BOX ${templateAddress.PO_BOX}`;
+  }
+
   // build organisation, dept name and po box line - should come first per Rule 1
-  const organisationLine = `${templateAddress.ORG_NAME} ${templateAddress.DEPT_NAME} ${templateAddress.PO_BOX}`;
+  const organisationLine = `${templateAddress.ORG_NAME} ${templateAddress.DEPT_NAME} ${createdPoBoxString}`;
 
   // Rules 3 and 6 - if building name/sub-building name is an exception and no building number
   if (buildNameIsAnException(templateAddress.BUILDING_NAME) && !templateAddress.BUILDING_NUMBER) {

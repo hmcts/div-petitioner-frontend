@@ -30,11 +30,12 @@
 
     <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorceAdulterySecondHandInfo.value != 'Yes' }}" id="further-details">
         <fieldset class="form-group inline">
-        {{ textArea(
-            name = 'reasonForDivorceAdulterySecondHandInfoDetails',
-            field = fields.reasonForDivorceAdulterySecondHandInfoDetails,
-            label = content.informationDetailsQuestion
-        ) }}
+            <legend class="visually-hidden">{{ content.informationDetailsQuestion | safe }}</legend>
+            {{ textArea(
+                name = 'reasonForDivorceAdulterySecondHandInfoDetails',
+                field = fields.reasonForDivorceAdulterySecondHandInfoDetails,
+                label = content.informationDetailsQuestion
+            ) }}
         </fieldset>
     </div>
 

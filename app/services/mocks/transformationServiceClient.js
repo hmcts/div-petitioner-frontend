@@ -1,5 +1,6 @@
 const success = {
   caseId: '1509031793780148',
+  allocatedCourt: { courtId: 'serviceCentre' },
   error: null,
   status: 'success'
 };

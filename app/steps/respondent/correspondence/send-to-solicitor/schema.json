@@ -3,12 +3,12 @@
   "id": "respondent-correspondence-send-to-solicitor",
   "type": "object",
   "properties": {
-    "respondentCorrespondenceSendToSolicitor": {
+    "respondentSolicitorRepresented": {
         "type": "string",
         "enum": ["Yes", "No"]
     }
   },
   "required": [
-    "respondentCorrespondenceSendToSolicitor"
+    "respondentSolicitorRepresented"
   ]
 }

@@ -12,7 +12,7 @@
         <p class="no-bottom-margin">
           {{ content.caseReferenceNumber | safe }}
           <br>
-          <strong class="text-reference-number">
+          <strong class="text-reference-number" aria-label="{{ session.caseId | a11yCharSeparator | safe }}">
             {{ session.caseId | insertHyphens | safe }}
           </strong>
         </p>

@@ -40,22 +40,22 @@ const setup = app => {
             logger.errorWithReq(null, 'Health check failed on redis:', error);
           });
       }),
-      'idam-app': healthcheck.web(config.services.idamApp.health,
-        healthOptions('Health check failed on idam-app:')
+      'idam-api': healthcheck.web(config.services.idamApp.health,
+        healthOptions('Health check failed on idam-api:')
       ),
-      'evidence-management-client-api': healthcheck.web(config.evidenceManagmentClient.health,
-        healthOptions('Health check failed on evidence-management-client-api:')
+      'evidence-management-client': healthcheck.web(config.evidenceManagmentClient.health,
+        healthOptions('Health check failed on evidence-management-client:')
       ),
-      'case-orchestration': healthcheck.web(config.services.transformation.health,
-        healthOptions('Health check failed on case-orchestration:')
+      'case-orchestration-service': healthcheck.web(config.services.transformation.health,
+        healthOptions('Health check failed on case-orchestration-service:')
       ),
-      'service-auth-provider-api': healthcheck.web(config.services.serviceAuthProvider.health,
-        healthOptions('Health check failed on service-auth-provider-api:')
+      'service-auth-provider': healthcheck.web(config.services.serviceAuthProvider.health,
+        healthOptions('Health check failed on service-auth-provider:')
       ),
       'payment-api': healthcheck.web(config.services.payment.health,
         healthOptions('Health check failed on payment-api:')
       ),
-      feesAndPayments: healthcheck.web(config.services.feesAndPayments.health,
+      'fees-and-payments-service': healthcheck.web(config.services.feesAndPayments.health,
         healthOptions('Health check failed on fees and payments service:')
       )
     },

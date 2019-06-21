@@ -77,6 +77,10 @@
         <fieldset class="form-group inline">
             <legend class="form-label-bold text">{{ content.whoItsFor | safe }}</legend>
             <p class="form-hint text">{{ content.selectAll | safe }}</p>
+            <label class="form-label no-padding" for="petitioner">
+              <span class="visually-hidden">{{ content.whoItsFor | safe }}</span>
+              <span class="form-hint visually-hidden">({{ content.selectAll | safe }})</span>
+            </label>
             {{ errorsFor(fields.financialOrderFor) }}
             {{ checkBoxCustom(
             id = 'petitioner',
@@ -86,6 +90,10 @@
             field = fields.financialOrderFor
             ) }}
 
+            <label class="form-label no-padding" for="children">
+              <span class="visually-hidden">{{ content.whoItsFor | safe }}</span>
+              <span class="form-hint visually-hidden">({{ content.selectAll | safe }})</span>
+            </label>
             {{ checkBoxCustom(
             id = 'children',
             name = 'financialOrderFor[]',

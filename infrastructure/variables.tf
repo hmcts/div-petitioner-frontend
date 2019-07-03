@@ -374,19 +374,19 @@ variable "service_centre_name" {
 }
 
 variable "court_service_centre_name" {
-  default = "East Midlands Regional Divorce Centre"
+  default = "HMCTS Digital Divorce"
 }
 
 variable "court_service_centre_city" {
-  default = "Nottingham"
+  default = "Harlow"
 }
 
 variable "court_service_centre_pobox" {
-  default = "PO Box 10447"
+  default = "PO Box 12706"
 }
 
 variable "court_service_centre_postcode" {
-  default = "NG2 9QN"
+  default = "CM20 9QT"
 }
 
 variable "court_service_centre_openinghours" {
@@ -394,7 +394,7 @@ variable "court_service_centre_openinghours" {
 }
 
 variable "court_service_centre_email" {
-  default = "contactdivorce@justice.gov.uk"
+  default = "divorcecase@justice.gov.uk"
 }
 
 variable "court_service_centre_phonenumber" {

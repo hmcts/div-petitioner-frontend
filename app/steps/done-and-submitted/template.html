@@ -71,7 +71,7 @@
         {% endif %}
         <h3 class="govuk-heading-s">{{content.whatToDoNowPostHeading | safe}}</h3>
         <p class="govuk-body">{{content.whatToDoNowPostText | safe}}</p>
-          <address class="govuk-body-s govuk-!-font-weight-bold">
+          <address class="govuk-body govuk-!-font-weight-bold">
             {%- if ( session.courts == 'eastMidlands') %}
               {{ content.sendAddresseastMidlands | safe}}
             {%- endif -%}
@@ -95,7 +95,7 @@
           <p class="govuk-body">{{ content.email | safe }} </p>
           <p class="govuk-body">{{ content.emailTo | safe }} </p>
 
-          <span class="govuk-body-s govuk-!-font-weight-bold">
+          <span class="govuk-body govuk-!-font-weight-bold">
             {{ content.eastMidlandsEmail | safe if session.courts === 'eastMidlands' }}
             {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
             {{ content.southWestEmail | safe if session.courts === 'southWest' }}

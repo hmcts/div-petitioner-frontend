@@ -25,7 +25,8 @@ let excludeSteps = [
 
 // Ignored Errors
 const excludedErrors = [
-  'WCAG2AA.Principle1.Guideline1_3.1_3_1.F92,ARIA4'
+  'WCAG2AA.Principle1.Guideline1_3.1_3_1.F92,ARIA4',
+  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail'
 ];
 const filteredErrors = r => {
   return !excludedErrors.includes(r.code);

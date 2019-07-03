@@ -36,7 +36,7 @@
                     "D": {
                         "summary": "Your answers indicate that you can apply for a divorce in England and Wales because you are 'habitually resident' and have lived here for at least 12 months.",
                         "help": "Read more about habitual residence",
-                        "helpText1": "<p>If your life is mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
+                        "helpText1": "<p class=\"govuk-body\">If your life is mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
                         "helpText2": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
                         "helpText3": "The examples above aren't a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
                         "clarification": "You only need to do this if your {{ divorceWho }} may disagree that you are habitually resident and have lived here for at least 12 months."
@@ -44,12 +44,12 @@
                     "E": {
                       "summary": "Your answers indicate that you’re domiciled and habitually resident and have lived here for at least 6 months.",
                       "help": "Read more about your connections",
-                      "helpText1": "<h3 class='heading-small'>Habitual residence</h3>",
+                      "helpText1": "<h3 class='govuk-heading-s'>Habitual residence</h3>",
                       "helpText2": "If your life is mainly based in England or Wales then you’re what is legally known as ‘habitually resident’.",
                       "helpText3": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
                       "helpText4": "The examples above aren’t a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident.",
-                      "helpText5": "<h3 class='heading-small'>Domicile</h3><p>Your domicile is usually the place in which you were born, regard as your permanent home and to which you have the closest ties.</p><p>However, domicile can be more complex, for example if you or your parents have moved countries in the past.</p>",
-                      "helpText6": "When you’re born, you acquire a 'domicile of origin'. This is usually: <ul class='list list-bullet'> <li>the country your father was domiciled in if your parents were married</li> <li>the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born</li> </ul>",
+                      "helpText5": "<h3 class='govuk-heading-s'>Domicile</h3><p class=\"govuk-body\">Your domicile is usually the place in which you were born, regard as your permanent home and to which you have the closest ties.</p><p class=\"govuk-body\">However, domicile can be more complex, for example if you or your parents have moved countries in the past.</p>",
+                      "helpText6": "When you’re born, you acquire a 'domicile of origin'. This is usually: <ul class='govuk-list govuk-list--bullet'> <li>the country your father was domiciled in if your parents were married</li> <li>the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born</li> </ul>",
                       "helpText7": "If you leave your domicile of origin and settle in another country as an adult, the new country may become your 'domicile of choice'.",
                       "helpText8": "If you're not sure about your habitual residence or domicile you should get legal advice.",
                       "clarification": "You only need to do this if your {{ divorceWho }} may disagree that you’re domiciled and habitually resident and have lived here for at least 6 months."
@@ -57,7 +57,7 @@
                     "F": {
                         "summary": "Your answers indicate that you can apply for a divorce in England and Wales because both of you are 'domiciled' in England or Wales.",
                         "help": "Read more about domicile",
-                        "helpText1": "When you're born, you acquire a <strong>domicile of origin</strong>.  This is usually: <ul class='list list-bullet'> <li>the country your father was domiciled in if your parents were married</li> <li>the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born</li> </ul>",
+                        "helpText1": "When you're born, you acquire a <strong>domicile of origin</strong>.  This is usually: <ul class='govuk-list govuk-list--bullet'> <li>the country your father was domiciled in if your parents were married</li> <li>the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born</li> </ul>",
                         "helpText2": "If you leave your domicile of origin and settle in another country as an adult, the new country may become your <strong>domicile of choice</strong>.",
                         "helpText3": "You should select Yes if you have either type of domicile in England or Wales.",
                         "helpText4": "If you're not sure about your domicile you should get legal advice.",

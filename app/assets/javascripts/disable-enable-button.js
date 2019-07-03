@@ -14,11 +14,13 @@
     var enableTarget = function($target){
       $target.removeAttr('disabled');
       $target.removeAttr('aria-disabled');
+      $target.removeClass('govuk-button--disabled');
     };
 
     var disableTarget = function($target){
       $target.attr('disabled', true);
       $target.attr('aria-disabled', true);
+      $target.addClass('govuk-button--disabled');
     };
 
     var getTarget = function($input){

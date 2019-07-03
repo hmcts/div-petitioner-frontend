@@ -1,20 +1,9 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block two_thirds %}
+  <h1 class="govuk-heading-l">{{content.title | safe}}</h1>
+  <p class="govuk-body">{{content.info | safe}}</p>
+  <p class="govuk-body">{{content.pay | safe}}</p>
 
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-large">{{content.title | safe}}</h1>
-      <p class="text">{{content.info | safe}}</p>
-      <p class="text">{{content.pay | safe}}</p>
-
-      <a class="button" href="{{fields.nextStepUrl.value}}" role="button">{{common.continue}}</a>
-    </div>
-  </div>
-
-</main>
-
+  <a class="govuk-button" href="{{fields.nextStepUrl.value}}" role="button">{{common.continue}}</a>
 {% endblock %}

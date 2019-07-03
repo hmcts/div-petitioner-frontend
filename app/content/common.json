@@ -5,13 +5,13 @@
             "translation": {
 
                 "phase": "Beta",
-                "feedback": "This is a new service – your <a aria-label=\"This link will open in a new tab. You’ll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\" href=\"{{smartSurveyFeedbackUrl}}?pageurl={{ pageUrl }}\" target=\"_blank\">feedback</a> will help us to improve it.",
+                "feedback": "This is a new service – your <a class=\"govuk-link\" aria-label=\"This link will open in a new tab. You’ll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\" href=\"{{smartSurveyFeedbackUrl}}?pageurl={{ pageUrl }}\" target=\"_blank\">feedback</a> will help us to improve it.",
                 "serviceName": "Apply for a divorce",
                 "back": "Back",
                 "continue": "Continue",
                 "download": "Download",
-                "ogl": "All content is available under the <a href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Open Government Licence v3.0</a>, except where otherwise stated",
-                "cookieText": "GOV.UK uses cookies to make the site simpler. <a href=\"#\" title=\"Find out more about cookies\">Find out more about cookies</a>",
+                "ogl": "All content is available under the <a class=\"govuk-link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Open Government Licence v3.0</a>, except where otherwise stated",
+                "cookieText": "GOV.UK uses cookies to make the site simpler. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\">Find out more about cookies</a>",
                 "errorSummaryHeading" : "There was a problem",
                 "problemWithThisPage": "Is there a problem with this page?",
                 "pleaseEmailOrCallDivorceCourt": "You can call or email us if you’re having problems with this service.",

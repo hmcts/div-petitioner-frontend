@@ -1,55 +1,46 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ content.title | safe }}</h1>
 
-    <main id="content" role="main" tabindex="-1">
-        {% include "includes/phase_banner.html" %}
-        <div class="grid-row">
-            <div class="column-two-thirds">
-                <h1 class="heading-large">{{ content.title | safe }}</h1>
+    <p class="govuk-body">{{ content.thisPage | safe }}</p>
 
-                <p class="text">{{ content.thisPage | safe }}</p>
+    <h2 class="govuk-heading-m">{{ content.whoWeAre | safe }}</h2>
+    <p class="govuk-body">{{ content.managedBy | safe }}</p>
+    <p class="govuk-body">{{ content.update | safe }}</p>
 
-                <h2 class="heading-medium">{{ content.whoWeAre | safe }}</h2>
-                <p class="text">{{ content.managedBy | safe }}</p>
-                <p class="text">{{ content.update | safe }}</p>
+    <h2 class="govuk-heading-m">{{ content.info | safe }}</h2>
+    <p class="govuk-body">{{ content.service | safe }}</p>
+    <p class="govuk-body">{{ content.answer | safe }}</p>
 
-                <h2 class="heading-medium">{{ content.info | safe }}</h2>
-                <p class="text">{{ content.service | safe }}</p>
-                <p class="text">{{ content.answer | safe }}</p>
+    <h2 class="govuk-heading-m">{{ content.stored | safe }}</h2>
+    <p class="govuk-body">{{ content.data | safe }}</p>
+    <p class="govuk-body">{{ content.notifyEmails | safe }}</p>
 
-                <h2 class="heading-medium">{{ content.stored | safe }}</h2>
-                <p class="text">{{ content.data | safe }}</p>
-                <p class="text">{{ content.notifyEmails | safe }}</p>
+    <h2 class="govuk-heading-m">{{ content.applicationLaw | safe }}</h2>
+    <p class="govuk-body">{{ content.dispute | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.dispute1 | safe }}</li>
+        <li>{{ content.dispute2 | safe }}</li>
+        <li>{{ content.dispute3 | safe }}</li>
+    </ul>
 
-                <h2 class="heading-medium">{{ content.applicationLaw | safe }}</h2>
-                <p class="text">{{ content.dispute | safe }}</p>
-                <ul class="list list-bullet">
-                    <li>{{ content.dispute1 | safe }}</li>
-                    <li>{{ content.dispute2 | safe }}</li>
-                    <li>{{ content.dispute3 | safe }}</li>
-                </ul>
+    <h2 class="govuk-heading-m">{{ content.responsible | safe }}</h2>
+    <p class="govuk-body">{{ content.designedForPeople | safe }}</p>
+    <p class="govuk-body">{{ content.risks | safe }}</p>
+    <p class="govuk-body">{{ content.precautions | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.precautions1 | safe }}</li>
+        <li>{{ content.precautions2 | safe }}</li>
+        <li>{{ content.precautions3 | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.knowinglyIntroducing | safe }}</p>
+    <p class="govuk-body">{{ content.containsSeveral | safe }}</p>
 
-                <h2 class="heading-medium">{{ content.responsible | safe }}</h2>
-                <p class="text">{{ content.designedForPeople | safe }}</p>
-                <p class="text">{{ content.risks | safe }}</p>
-                <p class="text">{{ content.precautions | safe }}</p>
-                <ul class="list list-bullet">
-                    <li>{{ content.precautions1 | safe }}</li>
-                    <li>{{ content.precautions2 | safe }}</li>
-                    <li>{{ content.precautions3 | safe }}</li>
-                </ul>
-                <p class="text">{{ content.knowinglyIntroducing | safe }}</p>
-                <p class="text">{{ content.containsSeveral | safe }}</p>
+    <h2 class="govuk-heading-m">{{ content.changes | safe }}</h2>
+    <p class="govuk-body">{{ content.checkTermsAndConditions | safe }}</p>
+    <p class="govuk-body">{{ content.agreeToChanges | safe }}</p>
 
-                <h2 class="heading-medium">{{ content.changes | safe }}</h2>
-                <p class="text">{{ content.checkTermsAndConditions | safe }}</p>
-                <p class="text">{{ content.agreeToChanges | safe }}</p>
-
-                <h2 class="heading-medium">{{ content.contactUs | safe }}</h2>
-                <p class="text">{{ content.address | safe }}</p>
-            </div>
-        </div>
-    </main>
-
+    <h2 class="govuk-heading-m">{{ content.contactUs | safe }}</h2>
+    <p class="govuk-body">{{ content.address | safe }}</p>
 {% endblock %}

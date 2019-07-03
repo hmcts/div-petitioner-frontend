@@ -6,38 +6,37 @@
 
 {% block form %}
 
-<p>
-         {{ content.correspondence | safe }}
-</p>
+    <p class="govuk-body">{{ content.correspondence | safe }}</p>
 
     {% if fields.respondentCorrespondenceDisplayAddress.value %}
-        <p>
+        <p class="govuk-body">
             {{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}
         </p>
     {% endif %}
 
-
-    <fieldset id="respondentCorrespondenceUseHomeAddress" class="form-group {{ 'form-group-error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
-        {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
-        {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'respondentCorrespondenceUseHomeAddress',
-            field = fields.respondentCorrespondenceUseHomeAddress
-        ) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'respondentCorrespondenceUseHomeAddress',
-            field = fields.respondentCorrespondenceUseHomeAddress
-        ) }}
-        {{ radioButton(
-            value = 'Solicitor',
-            label = content.solicitor,
-            name = 'respondentCorrespondenceUseHomeAddress',
-            field = fields.respondentCorrespondenceUseHomeAddress
-        ) }}
-    </fieldset>
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
+        <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+            {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.yes,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.no,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+            {{ radioButton(
+                value = 'Solicitor',
+                label = content.solicitor,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+        </fieldset>
+    </div>
 
 {% endblock %}

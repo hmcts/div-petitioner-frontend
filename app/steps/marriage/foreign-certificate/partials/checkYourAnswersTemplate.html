@@ -1,19 +1,19 @@
-<tr>
-  <th>{{ content.countryName | safe }}</th>
-  <td>{{ fields.countryName.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.countryName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.countryName | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.countryName.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.countryName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 
 {% if session.certificateInEnglish === 'Yes' %}
-<tr>
-  <th>{{ content.placeOfMarriageFromCertificate | safe }}</th>
-  <td>{{ fields.placeOfMarriage.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.placeOfMarriageFromCertificate | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.placeOfMarriageFromCertificate | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.placeOfMarriage.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.placeOfMarriageFromCertificate | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% else %}
-<tr>
-  <th>{{ content.placeOfMarriageFromTranslation | safe }}</th>
-  <td>{{ fields.placeOfMarriage.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.placeOfMarriageFromTranslation | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.placeOfMarriageFromTranslation | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.placeOfMarriage.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.placeOfMarriageFromTranslation | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% endif %}

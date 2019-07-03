@@ -1,5 +1,5 @@
-<tr>
-  <th>{{ content.question | safe }}</th>
-  <td>{{ fields.marriageDate.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.marriageDate.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

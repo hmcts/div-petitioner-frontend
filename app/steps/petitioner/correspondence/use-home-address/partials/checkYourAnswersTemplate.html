@@ -1,12 +1,12 @@
-<tr>
-  <th>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
     {{ content.question | safe }}
-  </th>
-  <td>
+  </td>
+  <td class="govuk-table__cell">
     {{ fields.petitionerCorrespondenceUseHomeAddress.value }}
     {% if session.petitionerHomeAddress %}
       <span class="address">{{ session.petitionerHomeAddress.address.join('<br/>') | safe }}</span>
     {% endif %}
   </td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

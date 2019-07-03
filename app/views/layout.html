@@ -1,55 +1,111 @@
-{% extends "govuk_template.html" %}
+{% extends "template.njk" %}
+{% from "phase-banner/macro.njk" import govukPhaseBanner %}
 
-{% block page_title %}
-  {{ common.serviceName }}
+{% block pageTitle %}
+  {{ common.serviceName }} - GOV.UK
 {% endblock %}
+
+{% set footerLinks = [
+    {
+        href: "/cookie",
+        text: "Cookies"
+    },
+    {
+        href: "/terms-and-conditions",
+        text: "Terms and conditions"
+    },
+    {
+        href: "/privacy-policy",
+        text: "Privacy Policy"
+    }
+] %}
 
 {% block head %}
   {% include "includes/head.html" %}
-  <!--[if lt IE 9]>
-    <style>
-      div .multiple-choice input {
-        filter: none;
-      }
-      body.js-enabled .js-hidden {
-        display: block;
-        visibility: visible;
-      }
-    </style>
-  <![endif]-->
 {% endblock %}
 
-{% block cookie_message %}
-  <p>{{cookieText | safe }}</p>
+{% block skipLink %}{% endblock %}
+
+{% block bodyStart %}
+  {% if cookieText.length > 0 %}
+    <div id="global-cookie-message" style="display: block;">
+      <p class="govuk-body govuk-!-font-size-16">{{ cookieText | safe }}</p>
+    </div>
+  {% endif %}
 {% endblock %}
 
-{% block proposition_header %}
-  {% include "includes/propositional_navigation.html" %}
+{% block header %}
+
+  {{ govukHeader({
+    serviceName: common.serviceName,
+    serviceUrl: serviceUrl or '/',
+    navigation: [
+        {
+          href: "/sign-out",
+          text: common.signOut
+        }
+    ]
+  }) }}
+
 {% endblock %}
 
-{% block header_class %}
-  with-proposition
-{% endblock %}
-
-{% block body_start %}
+{% block beforeContent -%}
   <noscript>
     <img src="/noJS.png" alt="1px" width="1" height="1" style="display: none;" />
   </noscript>
+  {% block breadcrumbs %}
+    {% set html %}{{common.feedback | safe}}{% endset %}
+    {{ govukPhaseBanner({
+        tag: {
+            text: common.phase
+        },
+        html: html
+    }) }}
+    {% block back %}
+    <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
+    {% endblock %}
+  {% endblock %}
+{%- endblock %}
+
+{% block content -%}
+  {% block full_width %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% block two_thirds -%}{%- endblock %}
+
+      {% include "includes/problem_with_this_page.html" %}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% block one_third -%}{%- endblock %}
+    </div>
+  </div>
+  {% endblock %}
+{%- endblock %}
+
+{% block footer %}
+
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/cookie",
+          text: "Cookies"
+        },
+        {
+          href: "/terms-and-conditions",
+          text: "Terms and conditions"
+        },
+        {
+          href: "/privacy-policy",
+          text: "Privacy Policy"
+        }
+      ]
+    }
+  }) }}
+
 {% endblock %}
 
-{% block footer_support_links %}
-<ul>
-  <li><a href="/cookie">Cookies</a></li>
-  <li><a href="/terms-and-conditions">Terms and conditions</a></li>
-  <li><a href="/privacy-policy">Privacy Policy</a></li>
-</ul>
-{% endblock %}
-
-{% block licence_message %}
-    <p>{{common.ogl | safe}}</p>
-{% endblock %}
-
-{% block body_end %}
+{% block bodyEnd %}
   {% include "includes/scripts.html" %}
   {% block extra_scripts %}{% endblock %}
 {% endblock %}

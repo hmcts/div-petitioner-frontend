@@ -10,7 +10,7 @@
                     "haveNothingToSplit": "have nothing to split but want to make your financial separation final",
                     "agreeOnHowYouWant": "agree on how you want to share your money and property and want to make that legally binding",
                     "disagreeOnTheSplit": "disagree on the split and want the court to settle the dispute",
-                    "youShouldReadMore": "You should <a href=\"https://www.gov.uk/money-property-when-relationship-ends\"target=\"_blank\">read more about financial orders</a> before you continue as you'll be asked if you want to apply for one later in this application."
+                    "youShouldReadMore": "You should <a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\"target=\"_blank\">read more about financial orders</a> before you continue as you'll be asked if you want to apply for one later in this application."
                 }
             }
         }

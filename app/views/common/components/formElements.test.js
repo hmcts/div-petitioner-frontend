@@ -66,11 +66,11 @@ describe(`Text areas should render as expected`, () => {
 
     const res = nunjucks.renderString(textArea, input);
 
-    expect(res).to.contain('<label class="form-label-bold" for="testName">testLabel</label>');
+    expect(res).to.contain('<label class="govuk-label govuk-!-font-weight-bold" for="testName">testLabel</label>');
     expect(res).to.contain('id="testName');
     expect(res).to.contain('name="testName"');
     expect(res).to.contain(input.field.value);
-    expect(res).to.not.contain('<span class="form-hint">');
+    expect(res).to.not.contain('<span class="govuk-hint">');
   });
 
   it('errors are shown if present', () => {
@@ -79,7 +79,7 @@ describe(`Text areas should render as expected`, () => {
       field: {
         value: 'some text',
         error: true,
-        errorMessage: 'error-message'
+        errorMessage: 'govuk-error-message'
       },
       label: 'testLabel'
     };
@@ -87,8 +87,8 @@ describe(`Text areas should render as expected`, () => {
     const res = nunjucks.renderString(textArea, input);
 
 
-    expect(res).to.contain('<div class="form-group form-group-error">');
-    expect(res).to.contain('<span class="error-message">');
+    expect(res).to.contain('<div class="govuk-form-group govuk-form-group--error">');
+    expect(res).to.contain('<span class="govuk-error-message">');
     expect(res).to.contain(input.field.errorMessage);
   });
 
@@ -101,7 +101,7 @@ describe(`Text areas should render as expected`, () => {
     };
 
     const res = nunjucks.renderString(textArea, input);
-    expect(res).to.contain('<span class="form-hint">');
+    expect(res).to.contain('<span class="govuk-hint">');
     expect(res).to.contain(input.hint);
   });
 });
@@ -116,11 +116,11 @@ describe(`Text fields should render as expected`, () => {
 
     const res = nunjucks.renderString(textField, input);
 
-    expect(res).to.contain('<label class="form-label text" for="testName">testLabel</label>');
+    expect(res).to.contain('<label class="govuk-label " for="testName">testLabel</label>');
     expect(res).to.contain('id="testName');
     expect(res).to.contain('name="testName"');
     expect(res).to.contain(input.field.value);
-    expect(res).to.not.contain('<span class="form-hint">');
+    expect(res).to.not.contain('<span class="govuk-hint">');
   });
 
   it('label class is bold if requested', () => {
@@ -132,7 +132,7 @@ describe(`Text fields should render as expected`, () => {
     };
 
     const res = nunjucks.renderString(textField, input);
-    expect(res).to.contain('<label class="form-label-bold text" for="testName">testLabel</label>');
+    expect(res).to.contain('<label class="govuk-label govuk-!-font-weight-bold" for="testName">testLabel</label>');
   });
 
   it('label class is applied if provided', () => {
@@ -144,7 +144,7 @@ describe(`Text fields should render as expected`, () => {
     };
 
     const res = nunjucks.renderString(textField, input);
-    expect(res).to.contain('<label class="hidden" for="testName">testLabel</label>');
+    expect(res).to.contain('<label class="govuk-label hidden" for="testName">testLabel</label>');
   });
 
   it('errors are shown if present', () => {
@@ -153,7 +153,7 @@ describe(`Text fields should render as expected`, () => {
       field: {
         value: 'some text',
         error: true,
-        errorMessage: 'error-message'
+        errorMessage: 'govuk-error-message'
       },
       label: 'testLabel'
     };
@@ -161,8 +161,8 @@ describe(`Text fields should render as expected`, () => {
     const res = nunjucks.renderString(textField, input);
 
 
-    expect(res).to.contain('<div class="form-group form-group-error">');
-    expect(res).to.contain('<span class="error-message">');
+    expect(res).to.contain('<div class="govuk-form-group govuk-form-group--error">');
+    expect(res).to.contain('<span class="govuk-error-message">');
     expect(res).to.contain(input.field.errorMessage);
   });
 
@@ -175,7 +175,7 @@ describe(`Text fields should render as expected`, () => {
     };
 
     const res = nunjucks.renderString(textField, input);
-    expect(res).to.contain('<span class="form-hint text">');
+    expect(res).to.contain('<span class="govuk-hint">');
     expect(res).to.contain(input.hint);
   });
 });
@@ -193,14 +193,14 @@ describe(`Date fields should render as expected`, () => {
 
     const res = nunjucks.renderString(date, input);
 
-    expect(res).to.contain('<span class="form-label">dateLabel</span>');
+    expect(res).to.contain('<span class="govuk-label">dateLabel</span>');
     expect(res).to.contain('name="day" value="01" maxlength="2"');
     expect(res).to.contain('name="month" value="02" maxlength="2"');
     expect(res).to.contain('name="year" value="1980" maxlength="4"');
     expect(res).to.contain('id="testDate"');
-    expect(res).to.not.contain('<legend class="form-label-bold">');
-    expect(res).to.not.contain('<legend class="visually-hidden">');
-    expect(res).to.not.contain('<span class="form-hint">');
+    expect(res).to.not.contain('<legend class="govuk-fieldset__legend govuk-!-font-weight-bold">');
+    expect(res).to.not.contain('<legend class="govuk-fieldset__legend visually-hidden">');
+    expect(res).to.not.contain('<span class="govuk-hint">');
     // Test for the absence of HTML5 form validation attributes.
     expect(res).to.not.contain('pattern=');
     expect(res).to.not.contain('type="number"');
@@ -240,7 +240,7 @@ describe(`Date fields should render as expected`, () => {
     expect(res).to.contain(input.month.errorMessage);
     expect(res).to.contain(input.year.errorMessage);
     expect(res).to.contain(input.dateField.errorMessage);
-    expect(res).to.contain('<fieldset class="form-group form-date form-group-error" id="testDate">');
+    expect(res).to.contain('<fieldset class="govuk-fieldset form-date" id="testDate">');
   });
 
   it('hint, legend and hidden legend are shown when present', () => {
@@ -276,7 +276,7 @@ describe(`Yes no radio buttons should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioButton, input);
 
-    expect(res).to.contain('<legend class="form-label text">testLabel</legend>');
+    expect(res).to.contain('<legend class="govuk-fieldset__legend govuk-label text">testLabel</legend>');
     expect(res).to.contain('id="testName_No');
     expect(res).to.contain('id="testName_Yes');
     expect(res).to.contain('value="Yes" checked=checked');
@@ -298,8 +298,8 @@ describe(`Yes no radio buttons should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioButton, input);
 
-    expect(res).to.contain('class="form-group form-group-error">');
-    expect(res).to.contain('<span class="error-message">');
+    expect(res).to.contain('class="govuk-form-group govuk-form-group--error">');
+    expect(res).to.contain('<span class="govuk-error-message">');
     expect(res).to.contain(input.field.errorMessage);
   });
 
@@ -315,7 +315,7 @@ describe(`Yes no radio buttons should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioButton, input);
 
-    expect(res).to.contain('<p class="form-hint text">hintText</p>');
+    expect(res).to.contain('<p class="govuk-hint">hintText</p>');
   });
 });
 
@@ -332,7 +332,7 @@ describe(`Yes no radio button headings should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioHeading, input);
 
-    expect(res).to.contain(' <legend class="visually-hidden">testLabel</legend>');
+    expect(res).to.contain(' <legend class="govuk-fieldset__legend govuk-fieldset__legend--m visually-hidden">testLabel</legend>');
     expect(res).to.contain('id="testName_No');
     expect(res).to.contain('id="testName_Yes');
     expect(res).to.contain('value="Yes" checked=checked');
@@ -356,7 +356,7 @@ describe(`Yes no radio button headings should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioHeading, input);
 
-    expect(res).to.contain(' <legend class="visually-hidden">testLabel</legend>');
+    expect(res).to.contain(' <legend class="govuk-fieldset__legend govuk-fieldset__legend--m visually-hidden">testLabel</legend>');
     expect(res).to.contain('id="testName_No');
     expect(res).to.contain('id="testName_Yes');
     expect(res).to.contain('value="Yes" checked=checked');
@@ -382,8 +382,8 @@ describe(`Yes no radio button headings should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioHeading, input);
 
-    expect(res).to.contain('class="form-group form-group-error">');
-    expect(res).to.contain('<span class="error-message">');
+    expect(res).to.contain('class="govuk-form-group govuk-form-group--error">');
+    expect(res).to.contain('<span class="govuk-error-message">');
     expect(res).to.contain(input.field.errorMessage);
   });
 
@@ -399,7 +399,7 @@ describe(`Yes no radio button headings should render as expected`, () => {
 
     const res = nunjucks.renderString(yesNoRadioHeading, input);
 
-    expect(res).to.contain('<p class="text form-hint">hintText</p>');
+    expect(res).to.contain('<span id="-hint" class="govuk-hint">hintText</span>');
   });
 });
 

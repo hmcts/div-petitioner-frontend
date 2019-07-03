@@ -1,19 +1,19 @@
-<tr>
-  <th>{{ content['how-your-connected'] | safe }}</th>
-  <td>
-    <ul class="list list-bullet" id="jurisdiction-connections">
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content['how-your-connected'] | safe }}</td>
+  <td class="govuk-table__cell">
+    <ul class="govuk-list govuk-list--bullet" id="jurisdiction-connections">
       {%- for connectionType, connectionText in session.connections -%}
         {%- if connectionText -%}
           <li>{{content['connection' + connectionType] | safe}}</li>
         {%- endif -%}
       {%- endfor -%}
     </ul>
-    <details>
-      <summary>
-        <span class="summary">{{ content['see-you-legal-connections'] | safe }}</span>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">{{ content['see-you-legal-connections'] | safe }}</span>
       </summary>
       <div>
-        <ul class="list list-bullet" id="jurisdiction-legal-connections">
+        <ul class="govuk-list govuk-list--bullet" id="jurisdiction-legal-connections">
           {%- for connectionType, connectionText in session.connections -%}
             {%- if connectionText -%}
               <li>{{content['legal' + connectionType] | safe}}</li>
@@ -23,9 +23,9 @@
       </div>
     </details>
   </td>
-  <td>
+  <td class="govuk-table__cell">
     {%- if fields.changeLink.value  === true -%}
-      <a class="link" aria-label="{{ content.change }} {{ content['how-your-connected'] | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a>
+      <a class="govuk-link" aria-label="{{ content.change }} {{ content['how-your-connected'] | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a>
     {%- endif -%}
   </td>
 </tr>

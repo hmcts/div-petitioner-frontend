@@ -1,12 +1,12 @@
-<tr>
-  <th>{{ content.question | safe }}</th>
-  <td>{{ fields.certificateInEnglish.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.certificateInEnglish.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.certifiedTranslation.value %}
-<tr>
-  <th>{{ content.cyaCertifiedTranslation | safe }}</th>
-  <td>{{ fields.certifiedTranslation.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.cyaCertifiedTranslation | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.cyaCertifiedTranslation | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.certifiedTranslation.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.cyaCertifiedTranslation | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% endif %}

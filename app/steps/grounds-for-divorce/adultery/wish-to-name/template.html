@@ -1,4 +1,5 @@
 {% from "common/components/formElements.html" import radioButton %}
+{% from "warning-text/macro.njk" import govukWarningText %}
 {% extends "question.html" %}
 {% block question %}
     {{ content.question | safe }}
@@ -6,44 +7,43 @@
 {% block form %}
 
 
-    <p class="text">{{ content.noBenefit | safe }}</p>
-    <p class="text">{{ content.provideAddress | safe }}</p>
+    <p class="govuk-body">{{ content.noBenefit | safe }}</p>
+    <p class="govuk-body">{{ content.provideAddress | safe }}</p>
 
-    <div class="notice">
-        <em class="icon icon-important">
-        <span class="visuallyhidden">{{ content.warning }}</span>
-        </em>
-    <p class="bold-small">
-    {{ content.delayed | safe }}
-    </p>
+    {{ govukWarningText({
+        text: content.delayed | safe,
+        iconFallbackText: content.warning
+    }) }}
+
+    <p class="govuk-body">{{ content.costs | safe }}</p>
+
+    <div class="govuk-form-group">
+        <fieldset id="reasonForDivorceAdulteryWishToName" class="govuk-fieldset inline {{ 'govuk-form-group--error' if fields.reasonForDivorceAdulteryWishToName.error }}" id="reasonForDivorceAdulteryWishToName">
+            {{ errorsFor(fields.reasonForDivorceAdulteryWishToName) }}
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+
+            <div class="govuk-radios govuk-radios--inline">
+                {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'reasonForDivorceAdulteryWishToName',
+                    field = fields.reasonForDivorceAdulteryWishToName,
+                    dataTarget = 'wish-to-name-warning',
+                    screenReader = content.question
+                ) }}
+                {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'reasonForDivorceAdulteryWishToName',
+                    field = fields.reasonForDivorceAdulteryWishToName,
+                    screenReader = content.question
+                ) }}
+            </div>
+        </fieldset>
     </div>
 
-    <p class="text">{{ content.costs | safe }}</p>
-    
-
-    <fieldset id="reasonForDivorceAdulteryWishToName" class="form-group inline {{ 'form-group-error' if fields.reasonForDivorceAdulteryWishToName.error }}" id="reasonForDivorceAdulteryWishToName">
-        {{ errorsFor(fields.reasonForDivorceAdulteryWishToName) }}
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
-
-        {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'reasonForDivorceAdulteryWishToName',
-            field = fields.reasonForDivorceAdulteryWishToName,
-            dataTarget = 'wish-to-name-warning',
-            screenReader = content.question
-        ) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'reasonForDivorceAdulteryWishToName',
-            field = fields.reasonForDivorceAdulteryWishToName,
-            screenReader = content.question
-        ) }}
-    </fieldset>
-
-    <div class="panel js-hidden" id="wish-to-name-warning">
-                <p class="text">
+    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="wish-to-name-warning">
+                <p class="govuk-body">
                     {{ content.mustProvideAddress }}
                 </p>
     </div>

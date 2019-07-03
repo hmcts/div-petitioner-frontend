@@ -1,146 +1,141 @@
 {%- extends "layout.html" -%}
 {%- from "common/errors.html" import errorsFor -%}
+{% from "warning-text/macro.njk" import govukWarningText %}
 
-{%- block content -%}
+{% block full_width %}
 
-<main id="content" role="main" tabindex="-1" class="check-your-answers">
+<div class="check-your-answers">
 
-    {% include "includes/phase_banner.html" %}
-
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-
-    <h1 class="heading-large">
-        {%- if fields.nextStepUrl.value -%}
-          {{ content.titleSoFar }}
-        {%- else -%}
-          {{ content.title }}
-        {%- endif -%}
-    </h1>
-
-    {%- if errors.length > 0 and not fields.nextStepUrl.value -%}
-        <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
-
-            <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
-                {{ common.errorSummaryHeading | safe }}
-            </h1>
-
-            <ul class="error-summary-list">
-                {%- for error in errors -%}
-                    <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
-                {%- endfor -%}
-            </ul>
-
-        </div>
-    {%- endif -%}
-
-    {%- for group, templates in fields.stepTemplates.value -%}
-      {%- if templates and templates.length -%}
-        {%- if content[group] != '' -%}
-          <h2 class="heading-medium">{{ content[group] | safe }}</h2>
-        {%- endif -%}
-      <table class="listing">
-          <colgroup>
-             <col span="1" style="width: 45%;">
-             <col span="1" style="width: 40%;">
-             <col span="1" style="width: 15%;">
-          </colgroup>
-          <tbody>
-              {%- for template in templates -%}
-                  {{ template.html | safe }}
-              {%- endfor -%}
-          </tbody>
-      </table>
-      <br>
+  <h1 class="govuk-heading-l">
+      {%- if fields.nextStepUrl.value -%}
+        {{ content.titleSoFar }}
+      {%- else -%}
+        {{ content.title }}
       {%- endif -%}
-    {%- endfor -%}
+  </h1>
 
+  {% if errors.length > 0 and not fields.nextStepUrl.value %}
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+        <h1 class="govuk-error-summary__title" id="error-summary-title">
+            {{ common.errorSummaryHeading | safe }}
+        </h1>
+
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {% for error in errors %}
+                <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+    </div>
+  {% endif %}
+
+  {%- for group, templates in fields.stepTemplates.value -%}
+    {%- if templates and templates.length -%}
+      {%- if content[group] != '' -%}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">{{ content[group] | safe }}</h2>
+      {%- endif -%}
+    <table class="govuk-table">
+        <colgroup>
+           <col span="1" style="width: 45%;">
+           <col span="1" style="width: 40%;">
+           <col span="1" style="width: 15%;">
+        </colgroup>
+        <tbody class="govuk-table__body">
+            {%- for template in templates -%}
+                {{ template.html | safe }}
+            {%- endfor -%}
+        </tbody>
+    </table>
     <br>
-
-    {%- if fields.nextStepUrl.value -%}
-
-      <a class="button" href="{{ fields.nextStepUrl.value }}">{{ content.continueApplication }}</a>
-
-    {%- else -%}
-
-      <form method="POST" accept-charset="utf-8" class="form"
-          enctype="{%- block encoding -%}application/x-www-form-urlencoded{%- endblock -%}"
-          autocomplete="off">
-          <input type="hidden" name="_csrf" value="{{csrfToken}}">
-
-          <h2 class="heading-medium">{{ content.confirmHeading | safe }}</h2>
-          <p class="text">{{ content.confirmWarning | safe }}</p>
-
-          <div class="form-group confirmation-container {{ 'form-group-error' if fields.confirmPrayer.error }}">
-              {{ errorsFor(fields.confirmPrayer) }}
-              <div class="multiple-choice" data-target-toggle-enabled="confirmCheckYourAnswers">
-                  <input id="confirmPrayer" name="confirmPrayer" type="checkbox" value="Yes" {{ 'checked="checked"' if fields.confirmPrayer.value == 'Yes' }}>
-                  <label for="confirmPrayer">{{ content.confirmApply | safe }}</label>
-              </div>
-              <ul class="list list-bullet">
-                 {%- if fields.claimsCosts.value == 'Yes' and fields.financialOrder.value == 'Yes' -%}
-                     {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
-                         <li>{{ content.confirmDissolvePayBothFinancial | safe }}</li>
-                     {%- elseif fields.claimsCostsFrom.value.indexOf('respondent') > -1 -%}
-                         <li>{{ content.confirmDissolvePayRespondentFinancial | safe }}</li>
-                     {%- elseif fields.claimsCostsFrom.value.indexOf('correspondent') > -1 -%}
-                         <li>{{ content.confirmDissolvePayCoRespondentFinancial | safe }}</li>
-                     {%- endif -%}
-                 {%- elseif fields.claimsCosts.value == 'Yes' -%}
-                     {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
-                         <li>{{ content.confirmDissolvePayBoth | safe }}</li>
-                     {%- elseif fields.claimsCostsFrom.value.indexOf('respondent') > -1 -%}
-                         <li>{{ content.confirmDissolvePayRespondent | safe }}</li>
-                     {%- elseif fields.claimsCostsFrom.value.indexOf('correspondent') > -1 -%}
-                         <li>{{ content.confirmDissolvePayCoRespondent | safe }}</li>
-                     {%- endif -%}
-                 {%- elseif fields.financialOrder.value == 'Yes' -%}
-                 <li>{{ content.confirmDissolveFinancial | safe }}</li>
-                 {%- else -%}
-                 <li>{{ content.confirmDissolve | safe }}</li>
-                 {%- endif -%}
-                 <li> {{ content.confirmBelieve | safe }}</li>
-             </ul>
-             <p class="text">{{ content.confirmApplication | safe }}</p>
-          </div>
-          <br>
-          <div class="form-group">
-
-          {%- if not fields.helpWithFeesReferenceNumber.value -%}
-            <p class="text bold-small">
-              <em class="icon icon-important">
-                <span class="visuallyhidden">Warning</span>
-              </em>
-               <span class="check-your-answers-warning">{{ content.submitPayWarning | safe}}</span>
-            </p>
-          {%- endif -%}
-
-            <input id="confirmCheckYourAnswers" type="submit" name="submit" class="button" value="
-              {%- if fields.helpWithFeesReferenceNumber.value -%}
-               {{ content.submitOnline | safe }}
-              {%- else -%}
-               {{ content.submitAndPay | safe }}
-              {%- endif -%}
-            ">
-          </div>
-      </form>
-
     {%- endif -%}
+  {%- endfor -%}
 
-    <br/><br/>
+  <br>
+
+  {%- if fields.nextStepUrl.value -%}
+
+    <a class="govuk-button" href="{{ fields.nextStepUrl.value }}">{{ content.continueApplication }}</a>
+
+  {%- else -%}
 
     <form method="POST" accept-charset="utf-8" class="form"
-          enctype="application/x-www-form-urlencoded"
-          autocomplete="off">
+        enctype="{%- block encoding -%}application/x-www-form-urlencoded{%- endblock -%}"
+        autocomplete="off">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
-      {% include "includes/save_and_close.html" %}
+
+        <h2 class="govuk-heading-m">{{ content.confirmHeading | safe }}</h2>
+        <p class="govuk-body">{{ content.confirmWarning | safe }}</p>
+
+        <div class="govuk-form-group confirmation-container {{ 'govuk-form-group--error' if fields.confirmPrayer.error }}">
+            {{ errorsFor(fields.confirmPrayer) }}
+            <div class="govuk-radios__item" data-target-toggle-enabled="confirmCheckYourAnswers">
+                <input class="govuk-checkboxes__input" id="confirmPrayer" name="confirmPrayer" type="checkbox" value="Yes" {{ 'checked="checked"' if fields.confirmPrayer.value == 'Yes' }}>
+                <label class="govuk-label govuk-checkboxes__label" for="confirmPrayer">{{ content.confirmApply | safe }}</label>
+            </div>
+            <br>
+            <ul class="govuk-list govuk-list--bullet">
+               {%- if fields.claimsCosts.value == 'Yes' and fields.financialOrder.value == 'Yes' -%}
+                   {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
+                       <li>{{ content.confirmDissolvePayBothFinancial | safe }}</li>
+                   {%- elseif fields.claimsCostsFrom.value.indexOf('respondent') > -1 -%}
+                       <li>{{ content.confirmDissolvePayRespondentFinancial | safe }}</li>
+                   {%- elseif fields.claimsCostsFrom.value.indexOf('correspondent') > -1 -%}
+                       <li>{{ content.confirmDissolvePayCoRespondentFinancial | safe }}</li>
+                   {%- endif -%}
+               {%- elseif fields.claimsCosts.value == 'Yes' -%}
+                   {%- if (fields.claimsCostsFrom.value.indexOf('respondent') > -1) and (fields.claimsCostsFrom.value.indexOf('correspondent') > -1) -%}
+                       <li>{{ content.confirmDissolvePayBoth | safe }}</li>
+                   {%- elseif fields.claimsCostsFrom.value.indexOf('respondent') > -1 -%}
+                       <li>{{ content.confirmDissolvePayRespondent | safe }}</li>
+                   {%- elseif fields.claimsCostsFrom.value.indexOf('correspondent') > -1 -%}
+                       <li>{{ content.confirmDissolvePayCoRespondent | safe }}</li>
+                   {%- endif -%}
+               {%- elseif fields.financialOrder.value == 'Yes' -%}
+               <li>{{ content.confirmDissolveFinancial | safe }}</li>
+               {%- else -%}
+               <li>{{ content.confirmDissolve | safe }}</li>
+               {%- endif -%}
+               <li> {{ content.confirmBelieve | safe }}</li>
+           </ul>
+           <p class="govuk-body">{{ content.confirmApplication | safe }}</p>
+        </div>
+        <br>
+        <div class="govuk-form-group">
+
+        {%- if not fields.helpWithFeesReferenceNumber.value -%}
+
+          {{ govukWarningText({
+              text: content.submitPayWarning | safe,
+              iconFallbackText: content.warning
+          }) }}
+
+        {%- endif -%}
+
+          <input id="confirmCheckYourAnswers" type="submit" name="submit" class="govuk-button" value="
+            {%- if fields.helpWithFeesReferenceNumber.value -%}
+             {{ content.submitOnline | safe }}
+            {%- else -%}
+             {{ content.submitAndPay | safe }}
+            {%- endif -%}
+          ">
+        </div>
     </form>
 
-    <a href="/save-return/delete-application">{{ content.deleteApplciation }}</a>
+  {%- endif -%}
 
-    <br/><br/>
+  <form method="POST" accept-charset="utf-8" class="form"
+        enctype="application/x-www-form-urlencoded"
+        autocomplete="off">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    {% include "includes/save_and_close.html" %}
+  </form>
 
-    {% include "includes/problem_with_this_page.html" %}
+  <a class="govuk-link" href="/save-return/delete-application">{{ content.deleteApplciation }}</a>
 
-</main>
+  <br><br>
+
+</div>
 
 {%- endblock -%}

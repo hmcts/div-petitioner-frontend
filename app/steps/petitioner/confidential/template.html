@@ -5,36 +5,38 @@
 {% endblock %}
 
 {% block form %}
-<p class="text">
+<p class="govuk-body">
 {{ content.divorcePetitionCopy | safe }}
 </p>
 
-<div class="panel panel-border-wide">
-    <p class="text">
+<div class="govuk-inset-text">
+    <p class="govuk-body">
         {{ content.adultery | safe }}
     </p>
 
 </div>
 
-<p class="text">
+<p class="govuk-body">
 {{ content.sameProperty | safe }}
 </p>
 
-<div id="petitionerContactDetailsConfidential" class="form-group {{ 'form-group-error' if fields.petitionerContactDetailsConfidential.error }}">
-    <fieldset>
-        <legend class="visually-hidden">{{ content.question }}</legend>
+<div id="petitionerContactDetailsConfidential" class="govuk-form-group {{ 'govuk-form-group--error' if fields.petitionerContactDetailsConfidential.error }}">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question }}</legend>
         {{ errorsFor(fields.petitionerContactDetailsConfidential) }}
+
+
         {{ radioButton(
-        value = 'share',
-        label = content.share,
-        name = 'petitionerContactDetailsConfidential',
-        field = fields.petitionerContactDetailsConfidential
+            value = 'share',
+            label = content.share,
+            name = 'petitionerContactDetailsConfidential',
+            field = fields.petitionerContactDetailsConfidential
         ) }}
         {{ radioButton(
-        value = 'keep',
-        label = content.keep,
-        name = 'petitionerContactDetailsConfidential',
-        field = fields.petitionerContactDetailsConfidential
+            value = 'keep',
+            label = content.keep,
+            name = 'petitionerContactDetailsConfidential',
+            field = fields.petitionerContactDetailsConfidential
         ) }}
     </fieldset>
 </div>

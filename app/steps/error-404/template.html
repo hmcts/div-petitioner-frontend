@@ -1,15 +1,24 @@
 {% extends "layout.html" %}
 
-{% block back %}{% endblock %}
+{% block content %}
 
-{% block two_thirds %}
-    <h1 class="govuk-heading-l">{{content.title | safe}}</h1>
+<main id="content" role="main" tabindex="-1">
+    {% include "includes/phase_banner.html" %}
+    <div class="grid-row">
+        <div class="column-two-thirds">
 
-    <p class="govuk-body">{{content.info | safe}}</p>
+            <h1 class="heading-large">{{content.title | safe}}</h1>
 
-    <p class="govuk-body">{{content.youCan | safe}}</p>
-    <ul class="govuk-list govuk-list--bullet">
-        <li>{{content.goBack | safe}}</li>
-        <li><a class="govuk-link" href="/">{{content.signIn | safe}}</a></li>
-    </ul>
+            <p class="text">{{content.info | safe}}</p>
+
+            <p class="text">{{content.youCan | safe}}</p>
+            <ul class="list list-bullet">
+                <li>{{content.goBack | safe}}</li>
+                <li><a href="/">{{content.signIn | safe}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+</main>
+
 {% endblock %}

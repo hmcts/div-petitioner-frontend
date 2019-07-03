@@ -36,6 +36,18 @@ module.exports = function(grunt) {
             cwd: 'app/assets/images',
             src: '**',
             dest: 'tmp/images/'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/govuk_template_mustache/assets/images',
+            src: '**',
+            dest: 'tmp/images/'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/govuk_frontend_toolkit/images',
+            src: '**',
+            dest: 'tmp/images/'
           }
         ]
       }

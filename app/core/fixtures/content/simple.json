@@ -6,7 +6,7 @@
 
                 "content": {
                     "question": "Do you have your marriage certificate?",
-                    "originalCertificate": "This must be your original marriage certificate or a <a href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
+                    "originalCertificate": "This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
                     "court": "You'll need to post this to the court with your printed application."
                 },
 

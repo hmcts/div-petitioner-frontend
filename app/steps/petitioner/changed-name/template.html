@@ -7,82 +7,92 @@
 
 {% block form %}
 
-  <p class="text">
+  <p class="govuk-body">
     {{content.weddingDayName | safe}}
   </p>
 
-  <fieldset id="petitionerNameDifferentToMarriageCertificate" class="form-group inline {{ 'form-group-error' if fields.petitionerNameDifferentToMarriageCertificate.error }}">
-    <legend class="visually-hidden">{{ content.question | safe }}</legend>
+<div class="govuk-form-group {{ 'govuk-form-group--error' if fields.petitionerNameDifferentToMarriageCertificate.error }}">
+  <fieldset id="petitionerNameDifferentToMarriageCertificate" class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
     {{ errorsFor(fields.petitionerNameDifferentToMarriageCertificate) }}
-    {{ radioButton(
-      value = 'Yes',
-      label = content.yes,
-      name = 'petitionerNameDifferentToMarriageCertificate',
-      field = fields.petitionerNameDifferentToMarriageCertificate,
-      dataTarget = 'petitionerNameChangedHow',
-      screenReader = content.question
-    ) }}
 
-    {{ radioButton(
-      value = 'No',
-      label = content.no,
-      name = 'petitionerNameDifferentToMarriageCertificate',
-      field = fields.petitionerNameDifferentToMarriageCertificate,
-      screenReader = content.question
-    ) }}
+    <div class="govuk-radios govuk-radios--inline">
+      {{ radioButton(
+        value = 'Yes',
+        label = content.yes,
+        name = 'petitionerNameDifferentToMarriageCertificate',
+        field = fields.petitionerNameDifferentToMarriageCertificate,
+        dataTarget = 'petitionerNameChangedHow',
+        screenReader = content.question
+      ) }}
+
+      {{ radioButton(
+        value = 'No',
+        label = content.no,
+        name = 'petitionerNameDifferentToMarriageCertificate',
+        field = fields.petitionerNameDifferentToMarriageCertificate,
+        screenReader = content.question
+      ) }}
+    </div>
   </fieldset>
+</div>
 
-  <fieldset id="petitionerNameChangedHow" class="form-group {{ 'form-group-error' if fields.petitionerNameChangedHow.error }} {{ 'js-hidden' if fields.petitionerNameDifferentToMarriageCertificate.value !== 'Yes' }}">
-
-    <legend class="form-label-bold">{{ content.howChangeName | safe }}</legend>
+<div id="petitionerNameChangedHow" class="govuk-form-group {{ 'govuk-form-group--error' if fields.petitionerNameChangedHow.error }} {{ 'js-hidden' if fields.petitionerNameDifferentToMarriageCertificate.value !== 'Yes' }}">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">{{ content.howChangeName | safe }}</legend>
 
     {{ errorsFor(fields.petitionerNameChangedHow) }}
 
-    {{ checkBoxCustom(
-      id = 'marriageCertificate',
-      name = 'petitionerNameChangedHow[]',
-      field = fields.petitionerNameChangedHow,
-      value = 'marriageCertificate',
-      label = content.marriageCertificate,
-      arialabelledBy = 'petitionerNameDifferentToMarriageCertificate_Yes'
-    ) }}
+    <div class="govuk-checkboxes">
 
-    {{ checkBoxCustom(
-      id = 'deedPoll',
-      name = 'petitionerNameChangedHow[]',
-      field = fields.petitionerNameChangedHow,
-      value = 'deedPoll',
-      label = content.deedPoll,
-      dataTarget = 'deed-poll-hint-text',
-      arialabelledBy = 'petitionerNameDifferentToMarriageCertificate_Yes'
-    ) }}
+      {{ checkBoxCustom(
+        id = 'marriageCertificate',
+        name = 'petitionerNameChangedHow[]',
+        field = fields.petitionerNameChangedHow,
+        value = 'marriageCertificate',
+        label = content.marriageCertificate,
+        arialabelledBy = 'petitionerNameDifferentToMarriageCertificate_Yes'
+      ) }}
 
-    <div id="deed-poll-hint-text" class="panel panel-border-narrow {{ 'js-hidden' if fields.petitionerNameChangedHow.value === undefined or fields.petitionerNameChangedHow.value.indexOf('deedPoll') === -1 }}">
-      <p class="text">
-        {{content.postACopy | safe}}
-      </p>
-    </div>
+      {{ checkBoxCustom(
+        id = 'deedPoll',
+        name = 'petitionerNameChangedHow[]',
+        field = fields.petitionerNameChangedHow,
+        value = 'deedPoll',
+        label = content.deedPoll,
+        dataTarget = 'deed-poll-hint-text',
+        arialabelledBy = 'petitionerNameDifferentToMarriageCertificate_Yes'
+      ) }}
 
-    {{ checkBoxCustom(
-      id = 'other',
-      name = 'petitionerNameChangedHow[]',
-      field = fields.petitionerNameChangedHow,
-      value = 'other',
-      label = content.other,
-      dataTarget = 'other-hint-text',
-      arialabelledBy = 'petitionerNameDifferentToMarriageCertificate_Yes'
-    ) }}
+      <div id="deed-poll-hint-text" class="govuk-details__text govuk-!-margin-bottom-2 {{ 'js-hidden' if fields.petitionerNameChangedHow.value === undefined or fields.petitionerNameChangedHow.value.indexOf('deedPoll') === -1 }}">
+        <p class="govuk-body">
+          {{content.postACopy | safe}}
+        </p>
+      </div>
 
-    <div id="other-hint-text" class="panel panel-border-narrow {{ 'js-hidden' if fields.petitionerNameChangedHow.value === undefined or fields.petitionerNameChangedHow.value.indexOf('other') === -1 }}">
-      <label class="form-label-bold" for="petitionerNameChangedHowOtherDetails">{{ content.detailsTitle | safe }}</label>
-      <span class="form-hint text">{{content.detailsDocuments | safe}}</span>
-      <textarea class="form-control"
-        rows="3"
-        name="petitionerNameChangedHowOtherDetails"
-        id="petitionerNameChangedHowOtherDetails">{% if fields.petitionerNameChangedHowOtherDetails.value %}{{ fields.petitionerNameChangedHowOtherDetails.value }}{% endif %}</textarea>
+      {{ checkBoxCustom(
+        id = 'other',
+        name = 'petitionerNameChangedHow[]',
+        field = fields.petitionerNameChangedHow,
+        value = 'other',
+        label = content.other,
+        dataTarget = 'other-hint-text',
+        arialabelledBy = 'petitionerNameDifferentToMarriageCertificate_Yes'
+      ) }}
+
+      <div id="other-hint-text" class="govuk-details__text {{ 'js-hidden' if fields.petitionerNameChangedHow.value === undefined or fields.petitionerNameChangedHow.value.indexOf('other') === -1 }}">
+        <label class="govuk-fieldset__legend" for="petitionerNameChangedHowOtherDetails">{{ content.detailsTitle | safe }}</label>
+        <span class="govuk-hint">{{content.detailsDocuments | safe}}</span>
+        <textarea class="govuk-textarea"
+          rows="3"
+          name="petitionerNameChangedHowOtherDetails"
+          id="petitionerNameChangedHowOtherDetails">{% if fields.petitionerNameChangedHowOtherDetails.value %}{{ fields.petitionerNameChangedHowOtherDetails.value }}{% endif %}</textarea>
+      </div>
+
     </div>
 
   </fieldset>
+</div>
 
 {% endblock %}

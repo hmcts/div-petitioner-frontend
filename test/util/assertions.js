@@ -285,7 +285,7 @@ exports.testErrors = (done, agent, underTest, data, content, type, onlyKeys = []
     .then(done, done);
 };
 
-exports.testValidation = (done, agent, underTest, data, content, expectedErrors = [], selector = 'ul.error-summary-list li a') => {
+exports.testValidation = (done, agent, underTest, data, content, expectedErrors = [], selector = 'ul.govuk-error-summary__list li a') => {
   const triggerErrors = () => {
     return postToUrl(agent, underTest.url, data).expect(302);
   };

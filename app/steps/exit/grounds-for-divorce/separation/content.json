@@ -6,7 +6,7 @@
                 "content": {
                     "title": "You can&#39;t use this reason for divorce",
                     "reason": "You must have been separated for at least {{ limitYears }} years to use this reason for divorce.",
-                    "proceed": "If you want to proceed with your application, you need to <a href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
+                    "proceed": "If you want to proceed with your application, you need to <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
                 }
             }
         }

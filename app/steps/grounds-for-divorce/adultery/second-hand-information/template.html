@@ -7,29 +7,32 @@
 
 {% block form %}
 
-    <p class="text">{{ content.description | safe }}</p>
-    <div id="reasonForDivorceAdulterySecondHandInfo" class="form-group {{ 'form-group-error' if fields.reasonForDivorceAdulterySecondHandInfo.error }}">
-        <fieldset class="inline">
-            <legend class="visually-hidden">{{ content.question | safe }}</legend>
+    <p class="govuk-body">{{ content.description | safe }}</p>
+    <div id="reasonForDivorceAdulterySecondHandInfo" class="govuk-form-group {{ 'govuk-form-group--error' if fields.reasonForDivorceAdulterySecondHandInfo.error }}">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(fields.reasonForDivorceAdulterySecondHandInfo) }}
-            {{ radioButton(
-                value = 'Yes',
-                label = content.yes,
-                name = 'reasonForDivorceAdulterySecondHandInfo',
-                field = fields.reasonForDivorceAdulterySecondHandInfo,
-                dataTarget='further-details'
-            ) }}
-            {{ radioButton(
-                value = 'No',
-                label = content.no,
-                name = 'reasonForDivorceAdulterySecondHandInfo',
-                field = fields.reasonForDivorceAdulterySecondHandInfo
-            ) }}
+
+            <div class="govuk-radios govuk-radios--inline">
+                {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'reasonForDivorceAdulterySecondHandInfo',
+                    field = fields.reasonForDivorceAdulterySecondHandInfo,
+                    dataTarget='further-details'
+                ) }}
+                {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'reasonForDivorceAdulterySecondHandInfo',
+                    field = fields.reasonForDivorceAdulterySecondHandInfo
+                ) }}
+            </div>
         </fieldset>
     </div>
 
-    <div class="panel panel-border-narrow {{ 'js-hidden' if fields.reasonForDivorceAdulterySecondHandInfo.value != 'Yes' }}" id="further-details">
-        <fieldset class="form-group inline">
+    <div class="govuk-form-group govuk-details__text {{ 'js-hidden' if fields.reasonForDivorceAdulterySecondHandInfo.value != 'Yes' }}" id="further-details">
+        <fieldset class="govuk-fieldset">
             <legend class="visually-hidden">{{ content.informationDetailsQuestion | safe }}</legend>
             {{ textArea(
                 name = 'reasonForDivorceAdulterySecondHandInfoDetails',

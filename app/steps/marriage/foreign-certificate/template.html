@@ -5,38 +5,41 @@
 {% endblock %}
 {% block form %}
 
-<fieldset class="form-group">
-  <legend class="form-label-bold">{{ content.countryOfMarriage | safe }}</legend>
-    {{ textField(
-      name = 'countryName',
-      field = fields.countryName,
-      hint = content.countryName,
-      label = content.countryName,
-      labelClass = 'visually-hidden'
-    ) }}
-</fieldset>
-
-<fieldset class="form-group">
-
-      {% if session.certificateInEnglish === 'No' %}
-        <legend class="form-label-bold">{{ content.placeOfMarriageTranslation | safe }}</legend>
-        {{ textField(
-          name = 'placeOfMarriage',
-          field = fields.placeOfMarriage,
-          hint = content.wordsOfTranslation,
-          label = content.wordsOfTranslation,
-          labelClass = 'visually-hidden'
-        )}}
-      {% else %}
-        <legend class="form-label-bold">{{ content.placeOfMarriage | safe }}</legend>
-        {{ textField(
-          name = 'placeOfMarriage',
-          field = fields.placeOfMarriage,
-          label = content.copyPlaceOfMarriage,
-          labelClass = 'visually-hidden'
-        )}}
-
-      {% endif %}
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">{{ content.countryOfMarriage | safe }}</legend>
+      {{ textField(
+        name = 'countryName',
+        field = fields.countryName,
+        hint = content.countryName,
+        label = content.countryName,
+        labelClass = 'visually-hidden'
+      ) }}
   </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    {% if session.certificateInEnglish === 'No' %}
+      <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">{{ content.placeOfMarriageTranslation | safe }}</legend>
+      {{ textField(
+        name = 'placeOfMarriage',
+        field = fields.placeOfMarriage,
+        hint = content.wordsOfTranslation,
+        label = content.wordsOfTranslation,
+        labelClass = 'visually-hidden'
+      )}}
+    {% else %}
+      <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">{{ content.placeOfMarriage | safe }}</legend>
+      {{ textField(
+        name = 'placeOfMarriage',
+        field = fields.placeOfMarriage,
+        label = content.copyPlaceOfMarriage,
+        labelClass = 'visually-hidden'
+      )}}
+
+    {% endif %}
+  </fieldset>
+</div>
 
 {% endblock %}

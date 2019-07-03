@@ -3,7 +3,7 @@
   .confirmation-container {
     background: #dee0e2;
     padding: 25px;
-    .multiple-choice [type=checkbox] + label::before {
+    .govuk-radios__item [type=checkbox] + label::before {
       background: #fff;
     }
   }

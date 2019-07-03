@@ -7,8 +7,8 @@
                 "content": {
                     "heading": "Sorry, you can&#39;t use this service yet",
                     "title": "You need an address for your husband/wife to use this service.",
-                    "text1": "You can still <a href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115\" target=\"_blank\">apply for a divorce using the paper D8 form.</a>",
-                    "text2": "Read the guidance on <a href=\"https://www.gov.uk/divorce-missing-husband-wife\" target=\"_blank\">divorcing someone when you don&#39;t know where they are</a>."
+                    "text1": "You can still <a class=\"govuk-link\" href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115\" target=\"_blank\">apply for a divorce using the paper D8 form.</a>",
+                    "text2": "Read the guidance on <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce-missing-husband-wife\" target=\"_blank\">divorcing someone when you don&#39;t know where they are</a>."
                 }
             }
         }

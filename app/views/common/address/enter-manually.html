@@ -5,26 +5,30 @@
 {% endblock %}
 
 {% block form %}
-{% if label %} <p class="text" for="postcode">{{ label }}</p> {% endif %}
-<fieldset class="form-group">
-  <label class="form-label" for="street-1">Building and Street</label>
-  <input class="form-control" id="street-1" name="street1" type="text" value={{ address.street1 }}>
-  <input class="form-control second-text-input" id="street-2" name="street2" type="text" value={{ address.street2 }}>
-</fieldset>
+{% if label %} <p class="govuk-body" for="postcode">{{ label }}</p> {% endif %}
 
-<fieldset class="form-group">
-  <label class="form-label" for="town">Town or city</label>
-  <input class="form-control" id="town" name="town" type="text" value={{ address.town }}>
-</fieldset>
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend visually-hidden">{{ title }}</legend>
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="street-1">Building and Street</label>
+    <input class="form-control" id="street-1" name="street1" type="text" value={{ address.street1 }}>
+    <input class="form-control second-text-input" id="street-2" name="street2" type="text" value={{ address.street2 }}>
+  </div>
 
-<fieldset class="form-group">
-  <label class="form-label" for="county">County (optional)</label>
-  <input class="form-control" id="county" name="county" type="text" value="{{ address.county }}">
-</fieldset>
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="town">Town or city</label>
+    <input class="form-control" id="town" name="town" type="text" value={{ address.town }}>
+  </div>
 
-<fieldset class="form-group">
-  <label class="form-label" for="postcode">Postcode</label>
-  <input class="form-control" id="postcode" name="postcode" type="text" value="{{ address.postcode }}">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="county">County (optional)</label>
+    <input class="form-control" id="county" name="county" type="text" value="{{ address.county }}">
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="postcode">Postcode</label>
+    <input class="form-control" id="postcode" name="postcode" type="text" value="{{ address.postcode }}">
+  </div>
 </fieldset>
 
 {% endblock %}

@@ -61,7 +61,8 @@ describe(modulePath, () => {
         'confirmDissolvePayBothFinancial',
         'submitPayWarning',
         'submitAndPay',
-        'titleSoFar'
+        'titleSoFar',
+        'warning'
       ];
 
       testContent(done, agent, underTest, content, session, ignoredContent);
@@ -86,7 +87,7 @@ describe(modulePath, () => {
 
     it('does not show missing header', done => {
       testNonExistence(done, agent, underTest,
-        '<h2 class="heading-medium"></h2>', session);
+        '<h2 class="govuk-heading-m"></h2>', session);
     });
     it('should show header', done => {
       testExistence(done, agent, underTest,
@@ -190,7 +191,7 @@ describe(modulePath, () => {
       withSession(done, agent, session);
     });
     it('renders the correct dynamic text', done => {
-      testExistence(done, agent, underTest, 'No', session);
+      testExistence(done, agent, underTest, 'Yes', session);
     });
   });
 

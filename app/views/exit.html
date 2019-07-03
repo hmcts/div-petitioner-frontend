@@ -1,31 +1,10 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
-{{ common.serviceName }} - GOV.UK
-{% endblock %}
-
-{% block content %}
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-  <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-
-  <div class="grid-row">
-      <div class="column-two-thirds">
-
-          <h1 class="heading-large">
-            {% block heading %}{% endblock %}
-          </h1>
-          {% block exit_reason %}{% endblock %}
-
-      </div>
-      <div class="column-one-third">
-          <!-- side nav -->
-      </div>
-  </div>
-
-  {% include "includes/problem_with_this_page.html" %}
-
-</main>
+{% block two_thirds -%}
+  <h1 class="govuk-heading-l">
+    {% block heading %}{% endblock %}
+  </h1>
+  {% block exit_reason %}{% endblock %}
 {% endblock %}
 
 {% block saveAndClose %}{% endblock %}

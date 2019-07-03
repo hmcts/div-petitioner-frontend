@@ -29,6 +29,7 @@
         var self = this,
             dzOptions;
         self.$zone = $('.document-upload');
+
         self.$zone.find('.hidden').removeClass('hidden');
         this.$fileList.removeClass('hidden');
         dzOptions = {
@@ -60,8 +61,9 @@
                 file.element.addClass('error');
                 file.element.find('span.form-hint').remove();
                 file.element.find('td:first')
-                  .addClass('form-group-error')
-                  .append('<span class="error-message">' + options.errors.errorUnknown + '</span>');
+                  .addClass('govuk-table__cell')
+                  .addClass('govuk-form-group--error')
+                  .append('<span class="govuk-error-message">' + options.errors.errorUnknown + '</span>');
               }
               if(!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
@@ -78,8 +80,8 @@
                 file.element.addClass('error');
                 file.element.find('span.form-hint').remove();
                 file.element.find('td:first')
-                  .addClass('form-group-error')
-                  .append('<span class="error-message">' + errorMessageText + '</span>');
+                  .addClass('govuk-form-group--error')
+                  .append('<span class="govuk-error-message">' + errorMessageText + '</span>');
               }
               if(!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
@@ -203,9 +205,10 @@
         var $element = $('<tr/>')
         .addClass('file')
         .addClass('uploading')
+        .addClass('govuk-table__row')
         .html(
-          '<td>' + file.name + ' <span class="form-hint"> - ' + this.options.pendingUploadHint + '</span><span class="progress"></span></td>' +
-          '<td><a class="link remove-file" href="#">' + this.options.removeFileLink + '</a><a class="link hide-file" href="#">' + this.options.hideErrorFileLink + '</a></td>'
+          '<td class="govuk-table__cell">' + file.name + ' <span class="form-hint"> - ' + this.options.pendingUploadHint + '</span><span class="progress"></span></td>' +
+          '<td class="govuk-table__cell"><a class="govuk-link remove-file" href="#">' + this.options.removeFileLink + '</a><a class="govuk-link hide-file" href="#">' + this.options.hideErrorFileLink + '</a></td>'
         );
 
         self.$fileList.find('.no-files').hide();

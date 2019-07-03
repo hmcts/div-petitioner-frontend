@@ -6,27 +6,29 @@
 
 {% block form %}
 
-<div id="respondent-consent">
-    <fieldset class="form-group inline">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+<div id="respondent-consent" class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
         {{  yesNoRadioHeading(
-        legend = content.question,
-        name = 'reasonForDivorceRespondentConsent',
-        field = fields.reasonForDivorceRespondentConsent,
-        yes = content.yes.label,
-        no = content.no.label,
-        targetYes = 'info-yes',
-        targetNo = 'info-no',
-        screenReader = content.question
+            legend = content.question,
+            name = 'reasonForDivorceRespondentConsent',
+            field = fields.reasonForDivorceRespondentConsent,
+            yes = content.yes.label,
+            no = content.no.label,
+            targetYes = 'info-yes',
+            targetNo = 'info-no',
+            screenReader = content.question
         ) }}
     </fieldset>
 
-    <div id="info-yes" class="panel js-hidden">
-        <p class="text"> {{ content.yes.additionalInfo | safe }}</p>
+    <br>
+
+    <div id="info-yes" class="govuk-details__text js-hidden">
+        <p class="govuk-body"> {{ content.yes.additionalInfo | safe }}</p>
     </div>
 
-    <div id="info-no" class="panel js-hidden">
-        <p class="text"> {{ content.no.additionalInfo | safe }}</p>
+    <div id="info-no" class="govuk-details__text js-hidden">
+        <p class="govuk-body"> {{ content.no.additionalInfo | safe }}</p>
     </div>
 </div>
 

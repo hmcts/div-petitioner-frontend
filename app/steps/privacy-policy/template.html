@@ -1,111 +1,100 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block two_thirds %}
+    <h1 class="govuk-heading-l">{{ content.title }}</h1>
+    <p class="govuk-body">{{ content.info }}</p>
 
-<main id="content" role="main">
-    {% include "includes/phase_banner.html" %}
-    <div class="grid-row">
-        <div class="column-two-thirds">
+    <h2 class="govuk-heading-s">{{ content.whoManages }}</h2>
+    <p class="govuk-body">{{ content.managedBy | safe }}</p>
+    <p class="govuk-body">{{ content.moj | safe }}</p>
+    <p class="govuk-body">{{ content.responsibleRorDeciding | safe }}</p>
+    <p class="govuk-body">{{ content.moreInformation | safe }}</p>
 
-            <h1 class="heading-large">{{ content.title }}</h1>
-            <p class="text">{{ content.info }}</p>
+    <h3 class="govuk-heading-s">{{ content.thePersonal | safe }}</h3>
+    <p class="govuk-body">{{ content.whenYouUseDivorceService | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.applicantAndRespNames | safe }}</li>
+        <li>{{ content.changedName | safe }}</li>
+        <li>{{ content.marriageCert | safe }}</li>
+        <li>{{ content.countryInMarried | safe }}</li>
+        <li>{{ content.yourHabitualResidence | safe }}</li>
+        <li>{{ content.yourDomicile | safe }}</li>
+        <li>{{ content.emailAndPhone | safe }}</li>
+        <li>{{ content.addressAndNames | safe }}</li>
+        <li>{{ content.reasonsForDivorce | safe }}</li>
+        <li>{{ content.otherCourtCases | safe }}</li>
+        <li>{{ content.adulteryNames | safe }}</li>
+    </ul>
+    <h3 class="govuk-heading-s">{{ content.receivingNotifications | safe }}</h3>
+    <p class="govuk-body">{{ content.youNeedSignUp | safe }}</p>
 
-            <h2 class="heading-small">{{ content.whoManages }}</h2>
-            <p class="text">{{ content.managedBy | safe }}</p>
-            <p class="text">{{ content.moj | safe }}</p>
-            <p class="text">{{ content.responsibleRorDeciding | safe }}</p>
-            <p class="text">{{ content.moreInformation | safe }}</p>
+    <h3 class="govuk-heading-s">{{ content.storingYourData | safe }}</h3>
+    <p class="govuk-body">{{ content.askedForEmailAddress | safe }}</p>
+    <p class="govuk-body">{{ content.holdYourData | safe }}</p>
+    <p class="govuk-body">{{ content.whenADivorceIsFinalised | safe }}</p>
+    <p class="govuk-body">{{ content.theRemainder | safe }}</p>
 
-            <h3 class="heading-small">{{ content.thePersonal | safe }}</h3>
-            <p class="text">{{ content.whenYouUseDivorceService | safe }}</p>
-            <ul class="list list-bullet">
-                <li>{{ content.applicantAndRespNames | safe }}</li>
-                <li>{{ content.changedName | safe }}</li>
-                <li>{{ content.marriageCert | safe }}</li>
-                <li>{{ content.countryInMarried | safe }}</li>
-                <li>{{ content.yourHabitualResidence | safe }}</li>
-                <li>{{ content.yourDomicile | safe }}</li>
-                <li>{{ content.emailAndPhone | safe }}</li>
-                <li>{{ content.addressAndNames | safe }}</li>
-                <li>{{ content.reasonsForDivorce | safe }}</li>
-                <li>{{ content.otherCourtCases | safe }}</li>
-                <li>{{ content.adulteryNames | safe }}</li>
-            </ul>
-            <h3 class="heading-small">{{ content.receivingNotifications | safe }}</h3>
-            <p class="text">{{ content.youNeedSignUp | safe }}</p>
-            
-            <h3 class="heading-small">{{ content.storingYourData | safe }}</h3>
-            <p class="text">{{ content.askedForEmailAddress | safe }}</p>
-            <p class="text">{{ content.holdYourData | safe }}</p>
-            <p class="text">{{ content.whenADivorceIsFinalised | safe }}</p>
-            <p class="text">{{ content.theRemainder | safe }}</p>
+    <h2 class="govuk-heading-s">{{ content.whyWeCollect | safe }}</h2>
+    <p class="govuk-body">{{ content.personalData | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.processApplication | safe }}</li>
+        <li>{{ content.legalRequirements | safe }}</li>
+        <li>{{ content.improveService | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.staffUse | safe }}</p>
 
-            <h2 class="heading-small">{{ content.whyWeCollect | safe }}</h2>
-            <p class="text">{{ content.personalData | safe }}</p>
-            <ul class="list list-bullet">
-                <li>{{ content.processApplication | safe }}</li>
-                <li>{{ content.legalRequirements | safe }}</li>
-                <li>{{ content.improveService | safe }}</li>
-            </ul>
-            <p class="text">{{ content.staffUse | safe }}</p>
+    <h2 id="usingYourData" class="govuk-heading-s">{{ content.usingYourData | safe }}</h2>
+    <p class="govuk-body">{{ content.asPart | safe }}</p>
+    <p class="govuk-body">{{ content.weMayAskForPermission | safe }}</p>
+    <p class="govuk-body">{{ content.weUseCookies | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.ifYouOpenEmail | safe }}</li>
+        <li>{{ content.yourComputer | safe }}</li>
+        <li>{{ content.theRegion | safe }}</li>
+        <li>{{ content.theWeb | safe }}</li>
+    </ul>
 
-            <h2 id="usingYourData" class="heading-small">{{ content.usingYourData | safe }}</h2>
-            <p class="text">{{ content.asPart | safe }}</p>
-            <p class="text">{{ content.weMayAskForPermission | safe }}</p>
-            <p class="text">{{ content.weUseCookies | safe }}</p>
-            <ul class="list list-bullet">
-                <li>{{ content.ifYouOpenEmail | safe }}</li>
-                <li>{{ content.yourComputer | safe }}</li>
-                <li>{{ content.theRegion | safe }}</li>
-                <li>{{ content.theWeb | safe }}</li>
-            </ul>
+    <h2 id="sharingYourData" class="govuk-heading-s">{{ content.sharingYour | safe }}</h2>
+    <p class="govuk-body">{{ content.ifAnother | safe }}</p>
+    <p class="govuk-body">{{ content.dataSharedWithPrintingServiceProvider | safe }}</p>
+    <p class="govuk-body">{{ content.ifYouContactUs | safe }}</p>
+    <p class="govuk-body">{{ content.crime | safe }}</p>
+    <p class="govuk-body">{{ content.weUse | safe }}</p>
 
-            <h2 id="sharingYourData" class="heading-small">{{ content.sharingYour | safe }}</h2>
-            <p class="text">{{ content.ifAnother | safe }}</p>
-            <p class="text">{{ content.dataSharedWithPrintingServiceProvider | safe }}</p>
-            <p class="text">{{ content.ifYouContactUs | safe }}</p>
-            <p class="text">{{ content.crime | safe }}</p>
-            <p class="text">{{ content.weUse | safe }}</p>
+    <h2 id="storeAndShare" class="govuk-heading-s">{{ content.storeAndShare | safe }}</h2>
+    <p class="govuk-body">{{ content.personalInformation | safe }}</p>
 
-            <h2 id="storeAndShare" class="heading-small">{{ content.storeAndShare | safe }}</h2>
-            <p class="text">{{ content.personalInformation | safe }}</p>
-            
-            <h3 class="heading-small">{{ content.yourRights | safe }}</h3>
-            <p class="text">{{ content.youCanAsk | safe }}</p>
-            <ul class="list list-bullet">
-                <li>{{ content.toSeePersonal | safe }}</li>
-                <li>{{ content.toHavePersonal | safe }}</li>
-                <li>{{ content.toHaveDataRemoved | safe }}</li>
-                <li>{{ content.thatAccessIsRestricted | safe }}</li>
-            </ul>
-            <p class="text">{{ content.ifYouWantToSeePersonal | safe }}</p>
-             <ul class="list list-bullet">
-                <li>{{ content.completeForm | safe }}</li>
-                <li>{{ content.writeToUs | safe }}</li>
-            </ul>
+    <h3 class="govuk-heading-s">{{ content.yourRights | safe }}</h3>
+    <p class="govuk-body">{{ content.youCanAsk | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.toSeePersonal | safe }}</li>
+        <li>{{ content.toHavePersonal | safe }}</li>
+        <li>{{ content.toHaveDataRemoved | safe }}</li>
+        <li>{{ content.thatAccessIsRestricted | safe }}</li>
+    </ul>
+    <p class="govuk-body">{{ content.ifYouWantToSeePersonal | safe }}</p>
+     <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.completeForm | safe }}</li>
+        <li>{{ content.writeToUs | safe }}</li>
+    </ul>
 
-            <p class="text">{{ content.askMoreInformation | safe }}</p>
-             <ul class="list list-bullet">
-                <li>{{ content.agreementsWeHave | safe }}</li>
-                <li>{{ content.withoutTellingYou | safe }}</li>
-                <li>{{ content.ourInstructions | safe }}</li>
-                <li>{{ content.howWeCheck | safe }}</li>
-            </ul>
+    <p class="govuk-body">{{ content.askMoreInformation | safe }}</p>
+     <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.agreementsWeHave | safe }}</li>
+        <li>{{ content.withoutTellingYou | safe }}</li>
+        <li>{{ content.ourInstructions | safe }}</li>
+        <li>{{ content.howWeCheck | safe }}</li>
+    </ul>
 
-            <p class="text">{{ content.mojProtection | safe }}</p>
-             <ul class="list list-bullet">
-                <li>{{ content.pettyFrance | safe }}</li>
-                <li>{{ content.emailing | safe }}</li>
-            </ul>
+    <p class="govuk-body">{{ content.mojProtection | safe }}</p>
+     <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.pettyFrance | safe }}</li>
+        <li>{{ content.emailing | safe }}</li>
+    </ul>
 
-            <h2 class="heading-small">{{ content.howToComplain | safe }}</h2>
-            <p class="text">{{ content.seeOurComplaints | safe }}</p>
-            <p class="text">{{ content.writeTo | safe }}</p>
-            <p class="text">{{ content.email | safe }}</p>
-            <p class="text">{{ content.youCanAlsoComplain | safe }}</p>
-        </div>
-    </div>
-
-</main>
-
+    <h2 class="govuk-heading-s">{{ content.howToComplain | safe }}</h2>
+    <p class="govuk-body">{{ content.seeOurComplaints | safe }}</p>
+    <p class="govuk-body">{{ content.writeTo | safe }}</p>
+    <p class="govuk-body">{{ content.email | safe }}</p>
+    <p class="govuk-body">{{ content.youCanAlsoComplain | safe }}</p>
 {% endblock %}

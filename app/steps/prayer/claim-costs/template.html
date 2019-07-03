@@ -1,3 +1,4 @@
+{% from "warning-text/macro.njk" import govukWarningText %}
 {% extends "question.html" %}
 {% block question %}
 {{ content.question | safe }}
@@ -5,7 +6,7 @@
 
 {% block form %}
 
-<p class="text">
+<p class="govuk-body">
     {% if fields.reasonForDivorceClaimingAdultery.value %}
     {{ content.introWhenClaimingAdultery }}
     {% else %}
@@ -13,89 +14,82 @@
     {% endif %}
 </p>
 
-<p class="text">
+<p class="govuk-body">
     {{ content.infoAboutFees }}
 </p>
 
 {% if fields.reasonForDivorceClaiming5YearSeparation.value %}
-<p class="text">
-<div class="notice">
-    <em class="icon icon-important">
-        <span class="visuallyhidden">{{ content.warning }}</span>
-    </em>
-    <strong class="text">
-        {{ content.warning5YearsSeparation }}
-    </strong>
-</div>
-</p>
+{{ govukWarningText({
+    text: content.warning5YearsSeparation | safe,
+    iconFallbackText: content.warning
+}) }}
 {% endif %}
 
-<fieldset id="claimsCosts" class="form-group inline {{ 'error' if fields.claimsCosts.error }}">
-    {{errorsFor(fields.claimsCosts)}}
-    <legend class="visually-hidden">{{ content.question | safe }}</legend>
-    <div class="multiple-choice" data-target="{{'claim-costs'}}">
-      <input id="yes"
-                   type="radio"
-                   name="claimsCosts"
-                   value="Yes"
-                   {{ checked(fields.claimsCosts.value, 'Yes') }}>
-      <label for="yes" class="block-label">
-         <span class="visually-hidden">{{ content.question | safe }}</span> {{content.yes | safe}}
-      </label>
-    </div>
-    <div class="multiple-choice">
-      <input id="no"
-                   type="radio"
-                   name="claimsCosts"
-                   value="No"
-                   {{ checked(fields.claimsCosts.value, 'No') }}>
-      <label for="no" class="block-label">
-         <span class="visually-hidden">{{ content.question | safe }}</span> {{content.no | safe}}
-      </label>
-    </div>
-</fieldset>
+<div class="govuk-form-group {{ 'govuk-form-group--error' if fields.claimsCosts.error }}">
+  <fieldset id="claimsCosts" class="govuk-fieldset">
+      {{errorsFor(fields.claimsCosts)}}
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      <div class="govuk-radios govuk-radios--inline">
+        <div class="govuk-radios__item" data-target="{{'claim-costs'}}">
+          <input id="yes"
+                       class="govuk-radios__input"
+                       type="radio"
+                       name="claimsCosts"
+                       value="Yes"
+                       {{ checked(fields.claimsCosts.value, 'Yes') }}>
+          <label for="yes" class="govuk-label govuk-radios__label">
+             <span class="visually-hidden">{{ content.question | safe }}</span> {{content.yes | safe}}
+          </label>
+        </div>
+        <div class="govuk-radios__item">
+          <input id="no"
+                       class="govuk-radios__input"
+                       type="radio"
+                       name="claimsCosts"
+                       value="No"
+                       {{ checked(fields.claimsCosts.value, 'No') }}>
+          <label for="no" class="govuk-label govuk-radios__label">
+             <span class="visually-hidden">{{ content.question | safe }}</span> {{content.no | safe}}
+          </label>
+        </div>
+      </div>
+  </fieldset>
+</div>
 
-<div class="{{ 'js-hidden' if fields.claimsCosts.value !== 'Yes'}} panel panel-border-narrow" id="claim-costs">
-    {% if fields.reasonForDivorceClaimingAdultery.value and fields.reasonForDivorceAdulteryIsNamed.value == 'Yes' %}
-    <fieldset id="claimsCostsFrom" class="form-group {{ 'error' if fields.claimsCostsFrom.error }}">
-        <legend class="heading-medium">
-            {{ content.whoCosts }}
-        </legend>
-        {{errorsFor(fields.claimsCostsFrom)}}
-        <div class="multiple-choice">
-          <input id="respondent"
-                       name="claimsCostsFrom[]"
-                       type="checkbox"
-                       value="respondent"
-                       {% for claimsCostsFrom in fields.claimsCostsFrom.value %}
-                       {{ 'checked' if claimsCostsFrom === 'respondent' }}
-                {% endfor %}/>
-          <label class="block-label"
-                 for="respondent">
-              {{ content.your }} {{ session.divorceWho }}
+<div class="govuk-form-group govuk-details__text {{ 'js-hidden' if fields.claimsCosts.value !== 'Yes'}} {{ 'govuk-form-group--error' if fields.claimsCostsFrom.error }}" id="claim-costs">
+  {% if fields.reasonForDivorceClaimingAdultery.value and fields.reasonForDivorceAdulteryIsNamed.value == 'Yes' %}
+    <fieldset id="claimsCostsFrom" class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          {{ content.whoCosts }}
+      </legend>
+
+      {{ errorsFor(fields.claimsCostsFrom) }}
+
+      <div class="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="respondent" name="claimsCostsFrom[]" type="checkbox" value="respondent" {% for claimsCostsFrom in fields.claimsCostsFrom.value %}{{ 'checked' if claimsCostsFrom === 'respondent' }}{% endfor %}>
+          <label class="govuk-label govuk-checkboxes__label" for="respondent">
+            {{ content.your }} {{ session.divorceWho }}
           </label>
         </div>
-        <div class="multiple-choice">
-          <input id="correspondent"
-                       name="claimsCostsFrom[]"
-                       type="checkbox"
-                       value="correspondent"
-                       {% for claimsCostsFrom in fields.claimsCostsFrom.value %}
-                       {{ 'checked' if claimsCostsFrom === 'correspondent' }}
-                {% endfor %}/>
-          <label class="block-label"
-                 for="correspondent">
-              {{ content.theCorespondent | safe }}
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="correspondent" name="claimsCostsFrom[]" type="checkbox" value="correspondent" {% for claimsCostsFrom in fields.claimsCostsFrom.value %}{{ 'checked' if claimsCostsFrom === 'correspondent' }}{% endfor %}>
+          <label class="govuk-label govuk-checkboxes__label" for="correspondent">
+            {{ content.theCorespondent | safe }}
           </label>
         </div>
+
+      </div>
     </fieldset>
+    <br>
     {%- endif -%}
-    <p class="text">
-    {%- if fields.helpWithFeesReferenceNumber.value -%}
-     {{content.youHaveToPayFeeNow | safe}}
-    {%- else -%}
-      {{content.youHaveToPayFeeAppNow | safe }} {{content.youHaveToPayFeeNow | safe}}
-    {%- endif -%}
+    <p class="govuk-body">
+      {%- if fields.helpWithFeesReferenceNumber.value -%}
+       {{content.youHaveToPayFeeNow | safe}}
+      {%- else -%}
+        {{content.youHaveToPayFeeAppNow | safe }} {{content.youHaveToPayFeeNow | safe}}
+      {%- endif -%}
     </p>
 </div>
 

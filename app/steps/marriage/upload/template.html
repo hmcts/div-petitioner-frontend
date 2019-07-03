@@ -50,7 +50,7 @@
 
           <div class="govuk-body">
             <p class="govuk-body">{{ content.uploadDigitalPhoto }}</p>
-            <ul class="govuk-list govuk-list--number">
+            <ul class="govuk-list govuk-list--bullet">
               <li>{{ content.marriageCertificateContent | safe }}</li>
               {%- if (session.certifiedTranslation == 'Yes' ) %}
                 <li>{{ content.translationContent | safe }}</li>
@@ -67,7 +67,7 @@
                 <span class="govuk-details__summary-text">{{ content.howToTake }}</span>
               </summary>
               <div class="govuk-details__text">
-                <ul class="govuk-list govuk-list--bullet">
+                <ul class="govuk-list govuk-list--number">
                   <li>{{ content.howToTakeInfo1 }}</li>
                   <li>{{ content.howToTakeInfo2 }}</li>
                   <li>{{ content.howToTakeInfo3 }}</li>

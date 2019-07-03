@@ -4,8 +4,7 @@ const path = require('path');
 const https = require('https');
 const fs = require('fs');
 const express = require('express');
-const nunjucks = require('nunjucks');
-const expressNunjucks = require('express-nunjucks');
+const nunjucks = require('express-nunjucks');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const requireDir = require('require-directory');
@@ -70,27 +69,23 @@ exports.init = listenForConnections => {
   //  moved here to make it at start of middleware as recommended in docs
   app.use(favicon(path.join(__dirname, 'public', manifest.STATIC_ASSET_PATH, 'images', 'favicon.ico')));
 
-  app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')));
-
   // Application settings
   app.set('view engine', 'html');
   app.set('views', [
     `${__dirname}/app/steps`,
     `${__dirname}/app/components`,
     `${__dirname}/app/views`,
-    `${__dirname}/node_modules/govuk-frontend`,
-    `${__dirname}/node_modules/govuk-frontend/components`
+    `${__dirname}/node_modules/govuk_template_jinja/views/layouts/`
   ]);
 
 
   const isDev = app.get('env') === 'development';
 
-  expressNunjucks(app, {
+  nunjucks(app, {
     autoescape: true,
     watch: isDev,
     noCache: isDev,
-    filters: nunjucksFilters,
-    loader: nunjucks.FileSystemLoader
+    filters: nunjucksFilters
   });
 
   // Disallow search index idexing

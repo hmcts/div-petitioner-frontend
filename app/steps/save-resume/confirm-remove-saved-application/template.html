@@ -5,22 +5,20 @@
 {% endblock %}
 
 {% block form %}
-    <p class="govuk-body"> {{content.deleted | safe }}</p>
-    <p class="govuk-body"> {{content.userAccount | safe }}</p>
+    <p class="text"> {{content.deleted | safe }}</p>
+    <p class="text"> {{content.userAccount | safe }}</p>
 
-    <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-        {{ yesNoRadioHeading(
-            legend = content.question,
-            name = 'deleteApplication',
-            field = fields.deleteApplication,
-            yes = content.yes,
-            no = content.no,
-            screenReader = content.question
-        ) }}
-      </fieldset>
-    </div>
+    <fieldset class="form-group inline">
+      <legend class="visually-hidden">{{ content.question | safe }}</legend>
+      {{ yesNoRadioHeading(
+          legend = content.question,
+          name = 'deleteApplication',
+          field = fields.deleteApplication,
+          yes = content.yes,
+          no = content.no,
+          screenReader = content.question
+      ) }}
+    </fieldset>
 {% endblock %}
 
 {% block saveAndClose %}{% endblock %}

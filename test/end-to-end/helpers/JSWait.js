@@ -38,7 +38,7 @@ class JSWait extends codecept_helper {
     } else {
       await helper.amOnPage(url);
       await helper.waitInUrl(url);
-      await helper.waitForElement('body');
+      await helper.waitForElement('#content');
     }
   };
 }

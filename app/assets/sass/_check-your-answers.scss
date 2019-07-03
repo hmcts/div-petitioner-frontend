@@ -27,17 +27,21 @@
     }
   }
 
+  form span.error-message {
+      margin-bottom: 7px;
+  }
+
   .confirmation-container {
     background: #dee0e2;
     padding: 25px;
-    .govuk-radios__item [type=checkbox] + label::before {
+    .multiple-choice [type=checkbox] + label::before {
       background: #fff;
     }
 
-    .govuk-list--bullet {
+    .list-bullet {
       padding-left: 70px;
     }
-    .govuk-body {
+    .text {
       margin-left: 50px;
     }
   }

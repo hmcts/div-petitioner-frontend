@@ -1,5 +1,3 @@
-{% from "warning-text/macro.njk" import govukWarningText %}
-
 {% extends "question.html" %}
 
 {% block question %}
@@ -8,20 +6,24 @@
 
 {% block form %}
 
-<p class="govuk-body">
+<p class="text">
   {{ content.applicationFee | safe }}
 </p>
 
-{{ govukWarningText({
-    text: content.noRefund | safe,
-    iconFallbackText: content.noRefund
-}) }}
+<div class="notice">
+  <em class="icon icon-important">
+    <span class="visuallyhidden">{{ content.noRefund }}</span>
+  </em>
+  <p class="bold-small">
+      {{ content.noRefund | safe}}
+  </p>
+</div>
 
-<p class="govuk-body">
+<p class="text">
   {{ content.claimingCosts | safe }}
 </p>
 
-<p class="govuk-body">
+<p class="text">
   {{ content.save | safe }}
 </p>
 

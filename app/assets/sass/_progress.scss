@@ -9,11 +9,11 @@ $module: "progress";
   position: relative;
 
   &:before {
-    background-color: govuk-colour("green");
+    background-color: $green;
     content: "";
     height: 6px;
     position: absolute;
-    top: 19px; left: 0;
+    top: 13px; left: 0;
     width: 100%;
   }
 
@@ -40,9 +40,9 @@ $module: "progress";
     width: 32px;
 
     &::before {
-      background-color: govuk-colour("white");
+      background-color: $white;
       border-radius: 50%;
-      box-shadow: inset 0 0 0 0.375em govuk-colour("green");
+      box-shadow: inset 0 0 0 em(6, 16) $green;
       content: "";
       display: block;
       height: 32px;
@@ -54,7 +54,7 @@ $module: "progress";
   }
 
   &__label {
-    @include govuk-font(16);
+    @include core-16;
     display: block;
     margin-top: 10px;
     position: relative;
@@ -62,7 +62,7 @@ $module: "progress";
   }
 
   &__item {
-    @include govuk-font(19);
+    @include core-19;
     display: inline-block;
     max-width: 20%;
     position: relative;
@@ -74,8 +74,8 @@ $module: "progress";
       .#{$module}__icon {
 
         &::before {
-          background-image: url("/assets/images/icons/icon-progress-tick.svg"); // if less than ie9 provide png fallback (TODO)
-          background-color: govuk-colour("green");
+          background-image: url("../images/icon-progress-tick.png");
+          background-color: $green;
           background-position: 50% 50%;
           background-repeat: no-repeat;
         }
@@ -100,7 +100,7 @@ $module: "progress";
         position: relative;
 
         &::after {
-          background-color: govuk-colour("white");
+          background-color: $white;
           content: "";
           height: 32px;
           position: absolute;

@@ -43,18 +43,6 @@ const keysToIgnore = [
   return res;
 }, {});
 
-/* eslint-disable */
-// FIXME - Ignored errors (temporarily)
-const excludeErrors = [
-  'Attribute “src” not allowed on element “image” at this point.',
-  'Element “image” is missing required attribute “height”.',
-  'Element “image” is missing required attribute “width”.'
-];
-/* eslint-enable */
-const filteredErrors = r => {
-  return !excludeErrors.includes(r.message);
-};
-
 for (let stepKey in s.steps) {
 
 // If step is to be ignored - continue
@@ -86,13 +74,7 @@ for (let stepKey in s.steps) {
             //   uncomment the next line :
             //   console.log('HTML CODE : ', res.context);
 
-            if(error) {
-              expect(error).to.equal(null, JSON.stringify(error.message, null, 2));
-            }
-
-            let errors = filter(res.messages, (r) => r.type === 'error')
-              .filter(filteredErrors);
-
+            let errors = filter(res.messages, (r) => r.type === 'error');
             expect(errors.length).to.equal(0, JSON.stringify(errors, null, 2));
             done();
           }
@@ -121,9 +103,7 @@ for (let stepKey in s.steps) {
                 'The “main” role is unnecessary for element “main”.',
                 'The “contentinfo” role is unnecessary for element “footer”.',
                 'The “complementary” role is unnecessary for element “aside”.',
-                'The “navigation” role is unnecessary for element “nav”.',
-                'The “button” role is unnecessary for element “button”.',
-                'Possible misuse of “aria-label”. (If you disagree with this warning, file an issue report or send e-mail to www-validator@w3.org.)'
+                'The “navigation” role is unnecessary for element “nav”.'
               ];
 
               if (excluded.includes(r.message)) {

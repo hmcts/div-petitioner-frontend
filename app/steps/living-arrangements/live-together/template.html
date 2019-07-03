@@ -7,7 +7,7 @@
 {% block form %}
 
     {% if session.petitionerHomeAddress %}
-        <p class="govuk-body">
+        <p>
             {{ session.petitionerHomeAddress.address | join("<br/>") | safe }}
         </p>
     {% endif %}

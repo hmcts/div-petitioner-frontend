@@ -7,81 +7,74 @@
 
 {% block form %}
 
-<div class="govuk-body">
+<div class="text">
 
-    <p class="govuk-body">{{ content.explanation | safe }} {{ content.noneApply | safe }}</p>
+    <p>{{ content.explanation | safe }} {{ content.noneApply | safe }}</p>
 
-    <p class="govuk-body">{{ content.basedOn | safe }} {{ content.noneApply | safe }}</p>
+    <p>{{ content.basedOn | safe }} {{ content.noneApply | safe }}</p>
 
     {{ helpConnections(common) }}
 
-    <div class="govuk-form-group">
-        <fieldset id="reason" class="govuk-fieldset jurisdiction{{ ' error' if fields.reason.error }}">
-            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">{{ content.select | safe }}</legend>
+    <fieldset id="reason" class="form-group jurisdiction{{ ' error' if fields.reason.error }}">
+        <legend class="form-label-bold">{{ content.select | safe }}</legend>
 
-            <div class="govuk-checkboxes">
+        {{ checkBoxCustom(
+        id = 'A',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'A',
+        label = content['connectionA']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'A',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'A',
-                label = content['connectionA']
-                ) }}
+        {{ checkBoxCustom(
+        id = 'B',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'B',
+        label = content['connectionB']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'B',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'B',
-                label = content['connectionB']
-                ) }}
+        {{ checkBoxCustom(
+        id = 'C',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'C',
+        label = content['connectionC']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'C',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'C',
-                label = content['connectionC']
-                ) }}
+        {{ checkBoxCustom(
+        id = 'D',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'D',
+        label = content['connectionD']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'D',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'D',
-                label = content['connectionD']
-                ) }}
+        {{ checkBoxCustom(
+        id = 'E',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'E',
+        label = content['connectionE']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'E',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'E',
-                label = content['connectionE']
-                ) }}
+        {{ checkBoxCustom(
+        id = 'F',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'F',
+        label = content['connectionF']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'F',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'F',
-                label = content['connectionF']
-                ) }}
+        {{ checkBoxCustom(
+        id = 'G',
+        name = 'jurisdictionLastResortConnections[]',
+        field = fields.jurisdictionLastResortConnections,
+        value = 'G',
+        label = content['connectionG']
+        ) }}
 
-                {{ checkBoxCustom(
-                id = 'G',
-                name = 'jurisdictionLastResortConnections[]',
-                field = fields.jurisdictionLastResortConnections,
-                value = 'G',
-                label = content['connectionG']
-                ) }}
-
-            </div>
-
-        </fieldset>
-
-    </div>
+    </fieldset>
 
 </div>
 

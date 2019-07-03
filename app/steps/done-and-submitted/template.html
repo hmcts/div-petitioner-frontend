@@ -5,12 +5,12 @@
 {% block two_thirds %}
 
       <div class="govuk-panel govuk-panel--confirmation">
-        <h1 class="govuk-panel__title">{{content.title | safe}}</h1>
-        <p class="govuk-panel__body">
-          {{ content.caseReferenceNumber | safe }}
+        <h1 class="govuk-panel__title govuk-!-margin-bottom-2">{{content.title | safe}}</h1>
+        <p class="govuk-panel__body govuk-!-margin-0">
+          <span class="govuk-!-font-size-16">{{ content.caseReferenceNumber | safe }}</span>
           <br>
           <strong class="govuk-body-reference-number" aria-label="{{ session.caseId | a11yCharSeparator | safe }}">
-            {{ session.caseId | insertHyphens | safe }}
+            {{ session.caseId | insertHyphens | safe }}12345 - 12345 - 12345 - 12345
           </strong>
         </p>
       </div>
@@ -47,7 +47,7 @@
       </div>
 
       {% if (session.marriageCertificateFiles | length === 0) %}
-        <h2 class="govuk-heading-m">{{content.whatToDoNow | safe}}</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
 
         <h3 class="govuk-heading-s">{{content.whatToDoNowReferenceNumber | safe}}</h3>
         {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}

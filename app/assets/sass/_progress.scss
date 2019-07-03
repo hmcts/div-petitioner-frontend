@@ -74,7 +74,7 @@ $module: "progress";
       .#{$module}__icon {
 
         &::before {
-          background-image: url("/assets/images/icons/icon-progress-tick.svg"); // if less than ie9 provide png fallback (TODO)
+          background-image: url("../images/icon-progress-tick.png"); // if less than ie9 provide png fallback (TODO)
           background-color: govuk-colour("green");
           background-position: 50% 50%;
           background-repeat: no-repeat;

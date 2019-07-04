@@ -2,10 +2,10 @@
 
   details {
     max-width: 570px;
-    background: $panel-colour;
+    background: govuk-colours('grey-4');
 
     &:hover {
-      outline: 1px solid $black;
+      outline: 1px solid govuk-colours('black');
     }
 
     summary {
@@ -13,15 +13,14 @@
       max-width: 510px;
       width: 100%;
       padding: 15px 30px;
-      @include bold-19();
-      color: $black;
+      color: govuk-colours('black');
 
       &:focus {
-        outline: 3px solid $focus-colour;
+        outline: 3px solid $govuk-focus-colour;
       }
 
       &:hover {
-        color: $black;
+        color: govuk-colours('black');
 
       }
     }
@@ -33,6 +32,6 @@
     }
   }
 
-  margin-bottom: $gutter;
+  margin-bottom: $govuk-gutter;
 
 }

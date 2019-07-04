@@ -8,15 +8,16 @@
 {% block form %}
 
     {% if session.petitionerHomeAddress %}
-        <p>
+        <p class="govuk-body">
             {{ session.petitionerHomeAddress.address | join("<br/>") | safe }}
         </p>
     {% endif %}
 
-    <div id="petitionerCorrespondenceUseHomeAddress" class="form-group {{ 'form-group-error' if fields.petitionerCorrespondenceUseHomeAddress.error }}">
-        <fieldset>
-            <legend class="visually-hidden">{{ content.question }}</legend>
+    <div id="petitionerCorrespondenceUseHomeAddress" class="govuk-form-group {{ 'govuk-form-group--error' if fields.petitionerCorrespondenceUseHomeAddress.error }}">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question }}</legend>
             {{ errorsFor(fields.petitionerCorrespondenceUseHomeAddress) }}
+
             {{ radioButton(
                 value = 'Yes',
                 label = content.yes,

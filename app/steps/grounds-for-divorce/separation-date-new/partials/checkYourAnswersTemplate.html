@@ -1,10 +1,10 @@
-<tr>
-  <th>{{ content.question1.text | safe }}</th>
-  <td>{{ fields.reasonForDivorceDecisionDate.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.title | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question1.text | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.reasonForDivorceDecisionDate.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.title | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
-<tr>
-  <th>{{ content.question2.text | safe }}</th>
-  <td>{{ fields.reasonForDivorceLivingApartDate.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.title | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question2.text | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.reasonForDivorceLivingApartDate.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.title | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

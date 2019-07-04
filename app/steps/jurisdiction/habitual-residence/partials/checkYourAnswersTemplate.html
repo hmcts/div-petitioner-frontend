@@ -1,10 +1,10 @@
-<tr>
-  <th>{{ content.petitioner | safe }}</th>
-  <td>{{ fields.jurisdictionPetitionerResidence.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.petitioner | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.petitioner | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.jurisdictionPetitionerResidence.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.petitioner | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
-<tr>
-  <th>{{ content.respondent | safe }}</th>
-  <td>{{ fields.jurisdictionRespondentResidence.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.respondent | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.respondent | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.jurisdictionRespondentResidence.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.respondent | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

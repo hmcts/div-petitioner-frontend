@@ -1,19 +1,19 @@
 {% if fields.reasonForDivorceAdulteryKnowWhen.value == 'Yes' %}
-  <tr>
-    <th>{{ content.whenDidAdulteryHappen | safe }}</th>
-    <td>{{ fields.reasonForDivorceAdulteryWhenDetails.value }}</td>
-    <td><a class="link" aria-label="{{ content.change }} {{ content.whenDidAdulteryHappen | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">{{ content.whenDidAdulteryHappen | safe }}</td>
+    <td class="govuk-table__cell">{{ fields.reasonForDivorceAdulteryWhenDetails.value }}</td>
+    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whenDidAdulteryHappen | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}
 {% if fields.reasonForDivorceAdulteryKnowWhere.value == 'Yes' %}
-  <tr>
-    <th>{{ content.whereDidAdulteryHappen | safe }}</th>
-    <td>{{ fields.reasonForDivorceAdulteryWhereDetails.value }}</td>
-    <td><a class="link" aria-label="{{ content.change }} {{ content.whereDidAdulteryHappen | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">{{ content.whereDidAdulteryHappen | safe }}</td>
+    <td class="govuk-table__cell">{{ fields.reasonForDivorceAdulteryWhereDetails.value }}</td>
+    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whereDidAdulteryHappen | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}
-<tr>
-  <th>{{ content.whatDoYouKnow | safe }}</th>
-  <td>{{ fields.reasonForDivorceAdulteryDetails.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.whatDoYouKnow | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.whatDoYouKnow | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.reasonForDivorceAdulteryDetails.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whatDoYouKnow | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

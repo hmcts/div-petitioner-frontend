@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block exit_reason %}
-<p class="text">
+<p class="govuk-body">
   {{ content.reason | safe }}
 </p>
 
-<p class="text">
+<p class="govuk-body">
   {{ content.allowed | safe }}
 </p>
 
-<p>
+<p class="govuk-body">
   {{ fields.referenceDate.value }} {{ content.exactDate | safe }} {{ fields.limitYears.value }} {{ content.yearsAndMonths | safe }} {{ content.livedTogetherMore6Months | safe }}
 </p>
 
-<p>
+<p class="govuk-body">
   {{ content.proceed | safe }}
 </p>
 

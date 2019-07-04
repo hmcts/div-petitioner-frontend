@@ -26,37 +26,31 @@
   </script>
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-
-    <div class="grid-row">
-        <div class="column-two-thirds">
-
+{% block two_thirds -%}
           {% if errors.length > 0 %}
-              <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
+              <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h1 class="govuk-error-summary__title" id="error-summary-title">
+                    {{ common.errorSummaryHeading | safe }}
+                </h1>
 
-                  <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
-                      {{ common.errorSummaryHeading | safe }}
-                  </h1>
-
-                  <ul class="error-summary-list">
-                      {% for error in errors %}
-                          <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
-                      {% endfor %}
+                <div class="govuk-error-summary__body">
+                  <ul class="govuk-list govuk-error-summary__list">
+                    {% for error in errors %}
+                        <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+                    {% endfor %}
                   </ul>
+                </div>
 
               </div>
           {% endif %}
 
-          <h1 class="heading-large">
+          <h1 class="govuk-heading-l">
               {{ content.question | safe }}
           </h1>
 
-          <div class="text">
-            <p>{{ content.uploadDigitalPhoto }}</p>
-            <ul class="list list-bullet">
+          <div class="govuk-body">
+            <p class="govuk-body">{{ content.uploadDigitalPhoto }}</p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>{{ content.marriageCertificateContent | safe }}</li>
               {%- if (session.certifiedTranslation == 'Yes' ) %}
                 <li>{{ content.translationContent | safe }}</li>
@@ -66,16 +60,14 @@
               {%- endif -%}
             </ul>
 
-          <div class="panel panel-border-wide">
-            <p class="text">{{ content.camera | safe }}</p>
-          </div>
-         
-            <details>
-              <summary>
-                <span class="summary">{{ content.howToTake }}</span>
+          <p class="govuk-body govuk-inset-text">{{ content.camera | safe }}</p>
+
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">{{ content.howToTake }}</span>
               </summary>
-              <div class="panel panel-border-narrow font-small">
-                <ul class="list list-number">
+              <div class="govuk-details__text">
+                <ul class="govuk-list govuk-list--number">
                   <li>{{ content.howToTakeInfo1 }}</li>
                   <li>{{ content.howToTakeInfo2 }}</li>
                   <li>{{ content.howToTakeInfo3 }}</li>
@@ -84,8 +76,8 @@
               </div>
             </details>
 
-            <p>{{ content.limitations }}</p>
-            <p>{{ content.otherDocuments }}</p>
+            <p class="govuk-body">{{ content.limitations }}</p>
+            <p class="govuk-body">{{ content.otherDocuments }}</p>
 
             <div class="document-upload">
               <div class="fallback">
@@ -97,7 +89,7 @@
                     {{ content.selectFiles }}
                   </label>
                   <input id="marriageCertificateFiles" type="file" name="file" class="file-upload-input" accept="image/x-png,image/png,image/jpeg,image/jpg,.pdf,.bmp,.tiff,.tif" required />
-                  <input type="submit" class="file-upload-button" name="upload" value="{{ content.upload }}" />
+                  <input type="submit" class="govuk-button govuk-button--secondary" name="upload" value="{{ content.upload }}" />
                 </form>
               </div>
               <div class="dropzone-container hidden">
@@ -119,42 +111,42 @@
             <div class="uploaded-files-wrapper {{ 'hidden' if not fields.marriageCertificateFiles.value.length }}">
               <br />
 
-              <h2 class="heading-small" style="margin-bottom: 0;">{{ content.uploadedFiles }}</h2>
-              <table>
+              <h2 class="govuk-heading-s" style="margin-bottom: 0;">{{ content.uploadedFiles }}</h2>
+              <table class="govuk-table">
                 <colgroup>
                    <col span="1" style="width: 85%;">
                    <col span="1" style="width: 15%;">
                 </colgroup>
-                <tbody>
+                <tbody class="govuk-table__body">
                   {%- if fields.marriageCertificateFiles.value.length -%}
                     {%- for file in fields.marriageCertificateFiles.value -%}
-                      <tr class="file">
-                        <td>{{ file.fileName | safe }}</td>
-                        <td><a class="link remove-file" data-fileUrl="{{ file.fileUrl | safe }}" href="?fileUrl={{ file.fileUrl | urlencode }}&noJsDelete=true">{{ content.remove }}</a></td>
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">{{ file.fileName | safe }}</td>
+                        <td class="govuk-table__cell"><a class="govuk-link remove-file" data-fileUrl="{{ file.fileUrl | safe }}" href="?fileUrl={{ file.fileUrl | urlencode }}&noJsDelete=true">{{ content.remove }}</a></td>
                       </tr>
                     {%- endfor -%}
                   {%- else -%}
-                    <tr class='no-files'>
-                      <td>{{ content.noFiles }}</td>
-                      <td>&nbsp;</td>
+                    <tr class='no-files govuk-table__row'>
+                      <td class="govuk-table__cell">{{ content.noFiles }}</td>
+                      <td class="govuk-table__cell">&nbsp;</td>
                     </tr>
                   {%- endif -%}
                 </tbody>
               </table>
             </div>
 
-            <details>
-              <summary>
-                <span class="summary">{{ content.cantUpload | safe }}</span>
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">{{ content.cantUpload | safe }}</span>
               </summary>
-              <div class="panel panel-border-narrow font-small">
-                
-               <p class="text">{{ content.continue | safe }}</p>
-              <p class="text">{{ content.emailOrPost | safe }}</p>
+              <div class="govuk-details__text">
+
+               <p class="govuk-body">{{ content.continue | safe }}</p>
+              <p class="govuk-body">{{ content.emailOrPost | safe }}</p>
 
 
-                  
-                <p>{{ content.keptAndReturned | safe}}</p>
+
+                <p class="govuk-body">{{ content.keptAndReturned | safe}}</p>
               </div>
             </details>
           </div>
@@ -163,46 +155,8 @@
                 enctype="application/x-www-form-urlencoded"
                 autocomplete="off">
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
-              <div class="form-group">
-                  <input name="submit" type="submit" class="button" value="{{common.continue}}">
-              </div>
+                <input name="submit" type="submit" class="govuk-button" value="{{common.continue}}">
               {% include "includes/save_and_close.html" %}
           </form>
 
-
-          {% block help %}{% endblock %}
-
-        </div>
-        <div class="column-one-third">
-            <!-- side nav -->
-        </div>
-    </div>
-
-    {% include "includes/problem_with_this_page.html" %}
-
-    {% block script %}{% endblock %}
-
-</main>
 {% endblock %}
-{% macro checked(isChecked, answer) %}
-  {%if isChecked == answer %}
-    checked
-  {% endif %}
-{% endmacro %}
-
-
-{% macro inputTextLabel(id, name, content, field) %}
-    <label class="form-label-bold" for="{{id}}">{{content | safe}}</label>
-    {{ errorsFor(field) }}
-    <input class="form-control" role="textbox" id="{{id}}" name="{{name}}" type="text" value="{{field.value}}">
-{% endmacro %}
-
-
-{% macro inputRadioLabel(id, name, content, field, value, target) %}
-  <div class="form-group" {% if target %} data-target="{{target}}"{% endif %}>
-      <input id="{{id}}" name="{{name}}" value="{{value}}" type="radio" {{checked(field.value, value)}}>
-      <label for="{{id}}">
-        {{content | safe}}
-      </label>
-  </div>
-{% endmacro %}

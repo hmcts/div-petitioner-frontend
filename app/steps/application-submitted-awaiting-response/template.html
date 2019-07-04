@@ -1,22 +1,10 @@
 {% extends "layout.html" %}
 
-{% block content %}
-
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-large">{{content.title | safe}}</h1>
-      <p class="text">{{content.info | safe}}</p>
-      <p class="text">{{content.info2 | safe}}</p>
-      <h2 class="heading-medium">{{content.contactTitle | safe}}</h2>
-      <p class="text">{{content.contactPhone | safe}}</p>
-      <p class="text">{{content.contactEmail | safe}}</p>
-
-    </div>
-  </div>
-
-</main>
-
+{% block two_thirds %}
+  <h1 class="govuk-heading-l">{{content.title | safe}}</h1>
+  <p class="govuk-body">{{content.info | safe}}</p>
+  <p class="govuk-body">{{content.info2 | safe}}</p>
+  <h2 class="govuk-heading-m">{{content.contactTitle | safe}}</h2>
+  <p class="govuk-body">{{content.contactPhone | safe}}</p>
+  <p class="govuk-body">{{content.contactEmail | safe}}</p>
 {% endblock %}

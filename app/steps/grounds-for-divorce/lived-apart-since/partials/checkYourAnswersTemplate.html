@@ -1,15 +1,15 @@
-<tr>
+<tr class="govuk-table__row">
     {% if session.reasonForDivorce === 'desertion' %}
-      <th>{{ content.desQues | safe }}</th>
+      <td class="govuk-table__cell">{{ content.desQues | safe }}</td>
     {% else %}
-      <th>{{ content.sepQues | safe }}</th>
+      <td class="govuk-table__cell">{{ content.sepQues | safe }}</td>
     {% endif %}
-  <td>{{ fields.livedApartEntireTime.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell">{{ fields.livedApartEntireTime.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.livedTogetherMoreTimeThanPermitted.value %}
-<tr>
-  <th>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
     {{ content.question.text | safe }}
 
     {% if fields.livingTogetherMonths.value >= 6 %}
@@ -43,8 +43,8 @@
     {% endif %}
 
     {{ content.question.mark }}
-  </th>
-  <td>{{ fields.livedTogetherMoreTimeThanPermitted.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question.text | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  </td>
+  <td class="govuk-table__cell">{{ fields.livedTogetherMoreTimeThanPermitted.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question.text | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% endif %}

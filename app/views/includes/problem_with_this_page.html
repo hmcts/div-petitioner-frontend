@@ -1,25 +1,18 @@
-<div class="grid-row">
-    <div class="column-two-thirds">
-        <details>
-            <summary class="font-xsmall">
-                <span class="summary">{{ common.problemWithThisPage | safe }}</span>
-            </summary>
-            <div class="panel panel-border-narrow">
-                <p class="text">
-                    {{common.pleaseEmailOrCallDivorceCourt | safe}}
-                </p>
+<details class="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text govuk-!-font-size-16">{{ common.problemWithThisPage | safe }}</span>
+    </summary>
+    <div class="govuk-details__text">
+        <p class="govuk-body">
+            {{common.pleaseEmailOrCallDivorceCourt | safe}}
+        </p>
 
-                <p class="text">
-                    {{common.phoneToCallIfProblems | safe}}
-                </p>
+        <p class="govuk-body">
+            {{common.phoneToCallIfProblems | safe}}
+        </p>
 
-                <p class="text">
-                    {{common.emailIfProblems | safe}}
-                </p>
-            </div>
-        </details>
+        <p class="govuk-body">
+            {{common.emailIfProblems | safe}}
+        </p>
     </div>
-    <div class="column-one-third">
-        <!-- side nav -->
-    </div>
-</div>
+</details>

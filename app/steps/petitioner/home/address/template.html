@@ -2,6 +2,6 @@
 
 {% block warning %}
   {% if session.petitionerContactDetailsConfidential != 'share' %}
-    <p class="panel panel-border-wide">{{content.confidentialAddressMessage | safe}}</p>
+    <p class="govuk-inset-text">{{content.confidentialAddressMessage | safe}}</p>
   {% endif %}
 {% endblock %}

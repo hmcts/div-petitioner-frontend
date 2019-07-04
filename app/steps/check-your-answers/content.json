@@ -30,7 +30,8 @@
                     "submitOnline": "Submit",
                     "submitAndPay": "Submit and pay",
                     "submitPayWarning": "Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
-                    "deleteApplciation": "Delete application"
+                    "deleteApplciation": "Delete application",
+                    "warning": "Warning"
                 },
                 "errors": {
                     "confirmPrayer": {

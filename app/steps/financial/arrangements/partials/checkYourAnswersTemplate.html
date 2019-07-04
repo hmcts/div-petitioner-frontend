@@ -1,16 +1,16 @@
-<tr>
-  <th>{{ content.question | safe }}</th>
-  <td>{{ fields.financialOrder.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.financialOrder.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {%- if fields.financialOrder.value === "Yes" -%}
-  <tr>
-    <th>{{ content.whoItsFor | safe }}</th>
-    <td>
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">{{ content.whoItsFor | safe }}</td>
+    <td class="govuk-table__cell">
       {%- for financialOrderFor in fields.financialOrderFor.value -%}
         {{ content[financialOrderFor] | safe }}<br/>
       {%- endfor -%}
     </td>
-    <td><a class="link" aria-label="{{ content.change }} {{ content.whoItsFor | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whoItsFor | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {%- endif -%}

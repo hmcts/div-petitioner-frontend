@@ -1,7 +1,7 @@
-// <details> polyfill
+// <details class="govuk-details"> polyfill
 // http://caniuse.com/#feat=details
 
-// FF Support for HTML5's <details> and <summary>
+// FF Support for HTML5's <details class="govuk-details"> and <summary>
 // https://bugzilla.mozilla.org/show_bug.cgi?id=591737
 
 // http://www.sitepoint.com/fixing-the-details-element/

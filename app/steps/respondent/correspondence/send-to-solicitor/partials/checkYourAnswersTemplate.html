@@ -1,11 +1,11 @@
-<tr>
-  <th>{{ content.question | safe }}</th>
-  <td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <td class="govuk-table__cell">
     {% if fields.respondentSolicitorRepresented.value === 'Yes' %}
       {{ content.solicitor | safe }}
     {% elseif fields.respondentSolicitorRepresented.value === 'No' %}
       {{ content.correspondence }}
     {% endif %}
   </td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

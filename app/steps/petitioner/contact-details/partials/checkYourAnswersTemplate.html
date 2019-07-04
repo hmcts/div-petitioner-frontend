@@ -1,12 +1,12 @@
-<tr>
-  <th>{{ content.email | safe }}</th>
-  <td>{{ session.petitionerEmail }}</td>
-  <td>&nbsp;</td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.email | safe }}</td>
+  <td class="govuk-table__cell">{{ session.petitionerEmail }}</td>
+  <td class="govuk-table__cell">&nbsp;</td>
 </tr>
 {% if fields.petitionerPhoneNumber.value %}
-  <tr>
-    <th>{{ content.petitionerPhoneNumber | safe }}</th>
-    <td>{{ fields.petitionerPhoneNumber.value }}</td>
-    <td><a class="link" aria-label="{{ content.change }} {{ content.petitionerPhoneNumber | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">{{ content.petitionerPhoneNumber | safe }}</td>
+    <td class="govuk-table__cell">{{ fields.petitionerPhoneNumber.value }}</td>
+    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.petitionerPhoneNumber | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}

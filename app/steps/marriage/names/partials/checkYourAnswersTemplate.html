@@ -1,10 +1,10 @@
-<tr>
-  <th>{{ content.yourName | safe }}</th>
-  <td>{{ fields.petitionerFirstName.value }} {{ fields.petitionerLastName.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.yourName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.yourName | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.petitionerFirstName.value }} {{ fields.petitionerLastName.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.yourName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
-<tr>
-  <th>{{ content.respondentName | safe }}</th>
-  <td>{{ fields.respondentFirstName.value }} {{ fields.respondentLastName.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.respondentName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.respondentName | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.respondentFirstName.value }} {{ fields.respondentLastName.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.respondentName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

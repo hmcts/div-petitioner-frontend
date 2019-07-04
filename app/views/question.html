@@ -1,86 +1,49 @@
 {% extends "layout.html" %}
 {% from "common/errors.html" import errorsFor %}
 
-{% block page_title %}
-  {{ common.serviceName }} - GOV.UK
+{% block two_thirds %}
+  {% if errors.length > 0 %}
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+          <h1 class="govuk-error-summary__title" id="error-summary-title">
+              {{ common.errorSummaryHeading | safe }}
+          </h1>
+
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              {% for error in errors %}
+                  <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+      </div>
+  {% endif %}
+
+  <h1 class="govuk-heading-l">
+      {% block question %}{% endblock %}
+  </h1>
+
+  <form method="POST" accept-charset="utf-8" class="form" id="form"
+        enctype="{% block encoding %}application/x-www-form-urlencoded{% endblock %}"
+        autocomplete="off">
+
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+      {% block form %}{% endblock %}
+
+      {% block submitbutton %}
+        <input class="govuk-button" type="submit" name="submit" value="{{common.continue}}">
+      {% endblock %}
+
+      {% block help %}{% endblock %}
+
+      {% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
+  </form>
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
 
-    <div class="grid-row">
-        <div class="column-two-thirds">
-
-        {% if errors.length > 0 %}
-            <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
-
-                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
-                    {{ common.errorSummaryHeading | safe }}
-                </h1>
-
-                <ul class="error-summary-list">
-                    {% for error in errors %}
-                        <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
-                    {% endfor %}
-                </ul>
-
-            </div>
-        {% endif %}
-
-            <h1 class="heading-large">
-                {% block question %}{% endblock %}
-            </h1>
-
-            <form method="POST" accept-charset="utf-8" class="form" id="form"
-                  enctype="{% block encoding %}application/x-www-form-urlencoded{% endblock %}"
-                  autocomplete="off">
-                  <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                {% block form %}{% endblock %}
-                {% block submitbutton %}
-                <div class="form-group">
-                    <input name="submit" type="submit" class="button" value="{{common.continue}}">
-                </div>
-                {% endblock %}
-
-
-                {% block help %}{% endblock %}
-
-                {% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
-            </form>
-
-        </div>
-        <div class="column-one-third">
-            <!-- side nav -->
-        </div>
-    </div>
-
-    {% include "includes/problem_with_this_page.html" %}
-
-    {% block script %}{% endblock %}
-
-</main>
-{% endblock %}
 {% macro checked(isChecked, answer) %}
   {%if isChecked == answer %}
     checked
   {% endif %}
-{% endmacro %}
-
-
-{% macro inputTextLabel(id, name, content, field) %}
-    <label class="form-label-bold" for="{{id}}">{{content | safe}}</label>
-    {{ errorsFor(field) }}
-    <input class="form-control" role="textbox" id="{{id}}" name="{{name}}" type="text" value="{{field.value}}">
-{% endmacro %}
-
-
-{% macro inputRadioLabel(id, name, content, field, value, target) %}
-  <div class="form-group" {% if target %} data-target="{{target}}"{% endif %}>
-      <input id="{{id}}" name="{{name}}" value="{{value}}" type="radio" {{checked(field.value, value)}}>
-      <label for="{{id}}">
-        {{content | safe}}
-      </label>
-  </div>
 {% endmacro %}

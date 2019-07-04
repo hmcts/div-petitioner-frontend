@@ -1,11 +1,16 @@
+{% from "warning-text/macro.njk" import govukWarningText %}
 {% from "common/components/formElements.html" import yesNoRadioHeading %}
 {% extends "question.html" %}
 
-{% block cookie_message %}
-    <p>
-        {{ content.cookie | safe }}
-        <a href="/cookie" target="_blank">{{ content.cookieLink | safe }}</a>
-    </p>
+{% block skipLink %}
+  <div id="global-cookie-message" style="display: block;">
+    <div class="govuk-width-container">
+      <p class="govuk-body-s">
+          {{ content.cookie | safe }}
+          <a class="govuk-link" href="/cookie" target="_blank">{{ content.cookieLink | safe }}</a>
+      </p>
+    </div>
+  </div>
 {% endblock %}
 
 {% block question %}
@@ -14,30 +19,25 @@
 
 {% block form %}
 
-    <p class="text"> {{content.line1 | safe }}</p>
+    <p class="govuk-body"> {{ content.line1 | safe }}</p>
 
-    <fieldset class="form-group inline">
-      <legend class="visually-hidden">{{ content.question | safe }}</legend>
-      {{ yesNoRadioHeading(
-          legend = content.question,
-          name = 'screenHasMarriageBroken',
-          field = fields.screenHasMarriageBroken,
-          yes = content.yes,
-          no = content.no,
-          targetYes = '',
-          targetNo = 'marriage-broken-down-no',
-          screenReader = content.question
-      ) }}
+    {{ yesNoRadioHeading(
+        legend = content.question,
+        name = 'screenHasMarriageBroken',
+        field = fields.screenHasMarriageBroken,
+        yes = content.yes,
+        no = content.no,
+        targetYes = '',
+        targetNo = 'marriage-broken-down-no',
+        screenReader = content.question
+    ) }}
 
-      <div class="panel panel-border-narrow js-hidden" id="marriage-broken-down-no">
-        <div class="notice">
-          <em class="icon icon-important">
-            <span class="visuallyhidden">Warning</span>
-          </em>
-          <p class="normal-small"><br>{{ content.marriageBrokenDownNo | safe }}<br></p>
-        </div>
-      </div>
-    </fieldset>
+    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="marriage-broken-down-no">
+      {{ govukWarningText({
+          text: content.marriageBrokenDownNo | safe,
+          iconFallbackText: content.warning
+      }) }}
+    </div>
 
 {% endblock %}
 

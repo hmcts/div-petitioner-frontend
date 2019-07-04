@@ -7,7 +7,7 @@
                 "content": {
                     "heading": "Sorry, you can&#39;t use this service yet",
                     "title": "You need your original marriage certificate or a certified copy to use this service.",
-                    "text": "You can <a href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">order a certified copy online</a> if you got married in England or Wales."
+                    "text": "You can <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">order a certified copy online</a> if you got married in England or Wales."
                 }
             }
         }

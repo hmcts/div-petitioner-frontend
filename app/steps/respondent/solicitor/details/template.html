@@ -6,9 +6,9 @@
 
 {% block form %}
 
-    <div id="provide-respondent-details">
-        <fieldset>
-            <legend class="form-label-bold js-hidden">{{ content.question | safe }}</legend>
+    <div id="provide-respondent-details" class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold js-hidden">{{ content.question | safe }}</legend>
             {{ textField(
                 name = 'respondentSolicitorName',
                 field = fields.respondentSolicitorName,

@@ -6,7 +6,7 @@
 
                 "content": {
                     "title": "Apply for Help with Fees before you continue",
-                    "reason": "You should <a href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\">apply for Help with Fees</a> before you continue with your divorce application. When applying, use form number 'D8' when asked which court fee you need help with.",
+                    "reason": "You should <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\">apply for Help with Fees</a> before you continue with your divorce application. When applying, use form number 'D8' when asked which court fee you need help with.",
                     "advice": "You’ll get a HWF reference number to enter here."
                 }
             }

@@ -7,94 +7,93 @@
 {% endblock %}
 
 {% block form %}
-    <p class="text">{{ content.courtNeedsToKnow | safe }}</p>
-    <p class="text">{{ content.onGoingProceedings | safe }}</p>
-    <p class="text">{{ content.includeProceedings | safe }}</p>
+    <p class="govuk-body">{{ content.courtNeedsToKnow | safe }}</p>
+    <p class="govuk-body">{{ content.onGoingProceedings | safe }}</p>
+    <p class="govuk-body">{{ content.includeProceedings | safe }}</p>
 
-    <div id="legalProceedings" class="form-group {{ 'form-group-error' if fields.legalProceedings.error }}">
-        <fieldset class="inline">
-            <legend class="form-label-bold text">{{ content.question | safe }}</legend>
+    <div id="legalProceedings" class="govuk-form-group {{ 'govuk-form-group--error' if fields.legalProceedings.error }}">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold text">{{ content.question | safe }}</legend>
             {{ errorsFor(fields.legalProceedings) }}
-            {{ radioButton(
-                value = 'Yes',
-                label = content.yes,
-                name = 'legalProceedings',
-                field = fields.legalProceedings,
-                dataTarget='further-details'
-            ) }}
-            {{ radioButton(
-                value = 'No',
-                label = content.no,
-                name = 'legalProceedings',
-                field = fields.legalProceedings
-            ) }}
+            <div class="govuk-radios govuk-radios--inline">
+                {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'legalProceedings',
+                    field = fields.legalProceedings,
+                    dataTarget='further-details'
+                ) }}
+                {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'legalProceedings',
+                    field = fields.legalProceedings
+                ) }}
+            </div>
         </fieldset>
     </div>
 
-    <div class="panel panel-border-narrow {{ 'js-hidden' if fields.legalProceedings.value != 'Yes' }}" id="further-details">
-        <fieldset class="form-group inline">
-            <legend class="form-label-bold text">{{ content.furtherDetails | safe }}</legend>
-            <p class="form-hint text">{{ content.youShouldInclude | safe }}</p>
-            <ul class="list-bullet list">
-                <li>{{ content.caseNumbers | safe }}</li>
-                <li>{{ content.stillOngoing | safe}}</li>
-                <li>{{ content.proceedingAreAbout | safe}}</li>
-                <li>{{ content.namesInvolved | safe}}</li>
-                <li>{{ content.courtNames | safe}}</li>
-                <li>{{ content.datesBegan | safe}}</li>
-                <li>{{ content.orderDetails | safe}}</li>
-            </ul>
+    <div id="further-details" class="govuk-form-group govuk-details__text {{ 'js-hidden' if fields.legalProceedings.value != 'Yes' }}" >
 
-            <fieldset class="form-group inline {{ 'form-group-error' if fields.legalProceedingsRelated.error }}" >
-                <legend class="form-label-bold text">{{ content.proceedingsRelated | safe }}</legend>
-                {{ errorsFor(fields.legalProceedingsRelated) }}
-                <div class="multiple-choice">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">{{ content.furtherDetails | safe }}</h3>
+        <p class="govuk-hint">{{ content.youShouldInclude | safe }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>{{ content.caseNumbers | safe }}</li>
+            <li>{{ content.stillOngoing | safe}}</li>
+            <li>{{ content.proceedingAreAbout | safe}}</li>
+            <li>{{ content.namesInvolved | safe}}</li>
+            <li>{{ content.courtNames | safe}}</li>
+            <li>{{ content.datesBegan | safe}}</li>
+            <li>{{ content.orderDetails | safe}}</li>
+        </ul>
+
+        <fieldset class="govuk-fieldset {{ 'govuk-form-group--error' if fields.legalProceedingsRelated.error }}">
+            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold text">{{ content.proceedingsRelated | safe }}</legend>
+            {{ errorsFor(fields.legalProceedingsRelated) }}
+            <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
                     <input id="{{content.marriage}}"
+                            class="govuk-checkboxes__input"
                             name="legalProceedingsRelated[]"
                             type="checkbox"
                             value="{{content.marriage}}"
                             {% for related in  fields.legalProceedingsRelated.value %}
                               {{ 'checked' if related === content.marriage }}
                             {% endfor %}/>
-                    <label class="no-padding" for="{{content.marriage}}">
-                      <span class="visually-hidden">{{ content.proceedingsRelated | safe }}</span>
-                    </label>
-                    <label for="{{content.marriage}}">
-                      {{ content.marriage }}
+                    <label class="govuk-label govuk-checkboxes__label" for="{{content.marriage}}">
+                      <span class="visually-hidden">{{ content.proceedingsRelated | safe }}</span> {{ content.marriage }}
                     </label>
                 </div>
-                <div class="multiple-choice">
+                <div class="govuk-checkboxes__item">
                     <input id="{{content.children}}"
+                            class="govuk-checkboxes__input"
                             name="legalProceedingsRelated[]"
                             type="checkbox"
                             value="{{content.children}}"
                             {% for related in  fields.legalProceedingsRelated.value %}
                               {{ 'checked' if related === content.children }}
                             {% endfor %}/>
-                    <label class="no-padding" for="{{content.children}}">
-                      <span class="visually-hidden">{{ content.proceedingsRelated | safe }}</span>
-                    </label>
-                    <label for="{{content.children}}">
-                      {{ content.children }}
+                    <label class="govuk-label govuk-checkboxes__label" for="{{content.children}}">
+                      <span class="visually-hidden">{{ content.proceedingsRelated | safe }}</span> {{ content.children }}
                     </label>
                 </div>
-                <div class="multiple-choice">
+                <div class="govuk-checkboxes__item">
                     <input id="{{content.property}}"
+                            class="govuk-checkboxes__input"
                             name="legalProceedingsRelated[]"
                             type="checkbox"
                             value="{{content.property}}"
                             {% for related in  fields.legalProceedingsRelated.value %}
                               {{ 'checked' if related === content.property }}
                             {% endfor %}/>
-                    <label class="no-padding" for="{{content.property}}">
-                      <span class="visually-hidden">{{ content.proceedingsRelated | safe }}</span>
-                    </label>
-                    <label for="{{content.property}}">
-                      {{ content.property }}
+                    <label class="govuk-label govuk-checkboxes__label" for="{{content.property}}">
+                      <span class="visually-hidden">{{ content.proceedingsRelated | safe }}</span> {{ content.property }}
                     </label>
                 </div>
 
-            </fieldset>
+            </div>
+
+            <br>
 
             {{ textArea(
                 name='legalProceedingsDetails',

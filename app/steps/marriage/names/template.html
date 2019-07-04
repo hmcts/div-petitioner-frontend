@@ -5,37 +5,41 @@
 {% endblock %}
 {% block form %}
 
-<fieldset class="form-group">
-  <legend class="form-label-bold">{{ content.yourName | safe }}</legend>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">{{ content.yourName | safe }}</legend>
 
-    {{ textField(
-      name = 'petitionerFirstName',
-      field = fields.petitionerFirstName,
-      label = content.firstName,
-      hint = content.middleNames
-    ) }}
-    {{ textField(
-      name = 'petitionerLastName',
-      field = fields.petitionerLastName,
-      label = content.lastName
-    ) }}
-</fieldset>
+      {{ textField(
+        name = 'petitionerFirstName',
+        field = fields.petitionerFirstName,
+        label = content.firstName,
+        hint = content.middleNames
+      ) }}
+      {{ textField(
+        name = 'petitionerLastName',
+        field = fields.petitionerLastName,
+        label = content.lastName
+      ) }}
+  </fieldset>
+</div>
 
-<fieldset class="form-group">
-  <legend class="form-label-bold">{{ content.respondentName | safe }}</legend>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">{{ content.respondentName | safe }}</legend>
 
-    {{ textField(
-      name = 'respondentFirstName',
-      field = fields.respondentFirstName,
-      label = content.respondentFirstName | capitalize,
-      hint = content.middleNames
-    ) }}
-    {{ textField(
-      name = 'respondentLastName',
-      field = fields.respondentLastName,
-      label = content.respondentLastName | capitalize
-    ) }}
-</fieldset>
+      {{ textField(
+        name = 'respondentFirstName',
+        field = fields.respondentFirstName,
+        label = content.respondentFirstName | capitalize,
+        hint = content.middleNames
+      ) }}
+      {{ textField(
+        name = 'respondentLastName',
+        field = fields.respondentLastName,
+        label = content.respondentLastName | capitalize
+      ) }}
+  </fieldset>
+</div>
 
 {% endblock %}
 {% block extra_scripts %}
@@ -45,8 +49,8 @@
   </script>
 {% endblock %}
 {% macro hiddenTextField(name, field, label) %}
-    <div id="{{ name }}" class="form-group {{ 'error' if field.error }} panel panel-narrow js-hidden">
-        <label class="form-label-bold text" for="input_{{ name }}">{{ label | safe }}</label>
+    <div id="{{ name }}" class="govuk-form-group {{ 'govuk-form-group--error' if field.error }} panel panel-narrow js-hidden">
+        <label class="govuk-!-font-weight-bold text" for="input_{{ name }}">{{ label | safe }}</label>
 
         {{ errorsFor(field) }}
         <input class="form-control"

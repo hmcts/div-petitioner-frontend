@@ -5,7 +5,7 @@
             "translation": {
                 "content": {
                     "title": "Terms and conditions",
-                    "thisPage": "This page explains this service’s terms of use. They include this website’s <a href=\"https://www.gov.uk/help/privacy-policy\" target=\"_blank\">privacy policy</a> and <a href=\"https://www.gov.uk/help/terms-conditions\" target=\"_blank\">terms and conditions</a>. By using this service you're agreeing to the privacy policy and terms and conditions.",
+                    "thisPage": "This page explains this service’s terms of use. They include this website’s <a class=\"govuk-link\" href=\"https://www.gov.uk/help/privacy-policy\" target=\"_blank\">privacy policy</a> and <a class=\"govuk-link\" href=\"https://www.gov.uk/help/terms-conditions\" target=\"_blank\">terms and conditions</a>. By using this service you're agreeing to the privacy policy and terms and conditions.",
                     "whoWeAre": "Who we are",
                     "managedBy": "This service is managed by Her Majesty’s Courts and Tribunals Service and will be referred to as ‘we’ from now on.",
                     "update": "We may update these terms and conditions if there is a change in the law or to the way the service works.",

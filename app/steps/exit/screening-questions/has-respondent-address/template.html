@@ -1,13 +1,13 @@
 {% extends "exit.html" %}
 
 {% block heading %}
-{{ content.heading | safe }} 
+{{ content.heading | safe }}
 {% endblock %}
 
 {% block exit_reason %}
 
-    <p class="text">{{ content.title | safe }}</p>
-    <p class="text">{{ content.text1 | safe }}</p>
-    <p class="text">{{ content.text2 | safe }}</p>
+    <p class="govuk-body">{{ content.title | safe }}</p>
+    <p class="govuk-body">{{ content.text1 | safe }}</p>
+    <p class="govuk-body">{{ content.text2 | safe }}</p>
 
 {% endblock %}

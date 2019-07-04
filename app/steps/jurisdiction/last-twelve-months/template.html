@@ -5,24 +5,27 @@
 {% endblock %}
 
 {% block form %}
-
-    <fieldset class="form-group inline {{ 'form-group-error' if fields.jurisdictionLastTwelveMonths.error }}" id="jurisdictionLastTwelveMonths">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+<div class="govuk-form-group {{ 'govuk-form-group--error' if fields.jurisdictionLastTwelveMonths.error }}">
+    <fieldset class="govuk-fieldset" id="jurisdictionLastTwelveMonths">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
         {{ errorsFor(fields.jurisdictionLastTwelveMonths) }}
-        {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'jurisdictionLastTwelveMonths',
-            field = fields.jurisdictionLastTwelveMonths,
-            screenReader = content.question
-        ) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'jurisdictionLastTwelveMonths',
-            field = fields.jurisdictionLastTwelveMonths,
-            screenReader = content.question
-        ) }}
+        <div class="govuk-radios govuk-radios--inline">
+            {{ radioButton(
+                value = 'Yes',
+                label = content.yes,
+                name = 'jurisdictionLastTwelveMonths',
+                field = fields.jurisdictionLastTwelveMonths,
+                screenReader = content.question
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.no,
+                name = 'jurisdictionLastTwelveMonths',
+                field = fields.jurisdictionLastTwelveMonths,
+                screenReader = content.question
+            ) }}
+        </div>
     </fieldset>
+</div>
 
 {% endblock %}

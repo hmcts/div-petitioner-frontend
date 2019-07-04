@@ -1,11 +1,11 @@
 {% macro genderComponent(gender, identifyAs, whoIdentifyAs) %}
 
-  <div class="form-group">
-    <fieldset id="gender">
-      <span class="form-label">Gender (optional)</span>
-      <span class="form-hint">This is used for National Statistics</span>
-      <legend class="visually-hidden">Gender</legend>
-      <div class="multiple-choice">
+  <div class="govuk-form-group">
+    <fieldset id="gender" class="govuk-fieldset">
+      <span class="govuk-label">Gender (optional)</span>
+      <span class="govuk-hint">This is used for National Statistics</span>
+      <legend class="govuk-fieldset__legend visually-hidden">Gender</legend>
+      <div class="govuk-radios__item">
         <input id="female"
                 name="gender"
                 value="female"
@@ -15,7 +15,7 @@
           Female
         </label>
       </div>
-      <div class="multiple-choice">
+      <div class="govuk-radios__item">
         <input id="male"
                 name="gender"
                 value="male"
@@ -25,7 +25,7 @@
           Male
         </label>
       </div>
-      <div class="multiple-choice" data-target="identify-as">
+      <div class="govuk-radios__item" data-target="identify-as">
         <input id="other"
                  name="gender"
                  value="other"
@@ -35,8 +35,8 @@
           Other gender identity
         </label>
       </div>
-      <div class="panel panel-border-narrow js-hidden {{ "error" if identifyAs.error }}" id="identify-as">
-        <label class="form-label" for="identity">{{whoIdentifyAs}} identify as:</label>
+      <div class="govuk-details__text js-hidden {{ "error" if identifyAs.error }}" id="identify-as">
+        <label class="govuk-label" for="identity">{{whoIdentifyAs}} identify as:</label>
           <input
             class="form-control"
             id="identity"

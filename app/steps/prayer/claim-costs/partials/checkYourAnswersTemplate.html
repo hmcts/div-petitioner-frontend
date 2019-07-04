@@ -1,12 +1,12 @@
-<tr>
-  <th>{{ content.question | safe }}</th>
-  <td>{{ fields.claimsCosts.value }}</td>
-  <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <td class="govuk-table__cell">{{ fields.claimsCosts.value }}</td>
+  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.claimsCostsFrom.value %}
-  <tr>
-    <th>{{ content.whoCosts | safe }}</th>
-    <td>
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">{{ content.whoCosts | safe }}</td>
+    <td class="govuk-table__cell">
       {%- for claimsCostsFrom in fields.claimsCostsFrom.value -%}
         {% if claimsCostsFrom === "respondent" %}
           {{ content.your }} {{ session.divorceWho }} <br/>
@@ -15,6 +15,6 @@
         {% endif %}
       {%- endfor -%}
     </td>
-    <td><a class="link" aria-label="{{ content.change }} {{ content.whoCosts | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whoCosts | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {% endif %}

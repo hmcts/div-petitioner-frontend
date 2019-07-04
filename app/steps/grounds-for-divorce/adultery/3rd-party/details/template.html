@@ -6,12 +6,12 @@
 
 {% block form %}
 
- <p class="text">{{ content.description | safe }}</p>
+ <p class="govuk-body">{{ content.description | safe }}</p>
 
+ <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
 
-    <fieldset>
-
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
         {{ textField(
             name = 'reasonForDivorceAdultery3rdPartyFirstName',
@@ -26,5 +26,6 @@
         ) }}
 
     </fieldset>
+</div>
 
 {% endblock %}

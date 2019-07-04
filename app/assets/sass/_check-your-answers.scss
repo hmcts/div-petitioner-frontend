@@ -1,6 +1,6 @@
 .check-your-answers {
 
-  table.listing {
+  table.govuk-table {
     table-layout: fixed;
     width: 100%;
 
@@ -27,21 +27,17 @@
     }
   }
 
-  form span.error-message {
-      margin-bottom: 7px;
-  }
-
   .confirmation-container {
     background: #dee0e2;
     padding: 25px;
-    .multiple-choice [type=checkbox] + label::before {
+    .govuk-radios__item [type=checkbox] + label::before {
       background: #fff;
     }
 
-    .list-bullet {
+    .govuk-list--bullet {
       padding-left: 70px;
     }
-    .text {
+    .govuk-body {
       margin-left: 50px;
     }
   }

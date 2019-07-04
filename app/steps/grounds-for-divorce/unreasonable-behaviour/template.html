@@ -1,4 +1,5 @@
 {% from "common/components/formElements.html" import textArea %}
+{% from "warning-text/macro.njk" import govukWarningText %}
 {% extends "question.html" %}
 {% block question %}
 {{ content.question | safe }}
@@ -8,31 +9,27 @@
 
 {% block form %}
 
-<p class="text">
+<p class="govuk-body">
     {{ content.explanation | safe }}
 </p>
 
-<div class="notice">
-  <em class="icon icon-important">
-    <span class="visuallyhidden">{{ content.warning }}</span>
-  </em>
-  <p class="bold-small">
-    {{ content.fault | safe }}
-  </p>
-</div>
+{{ govukWarningText({
+    text: content.fault | safe,
+    iconFallbackText: content.warning
+}) }}
 
-<p class="text">
+<p class="govuk-body">
     {{ content.overTime | safe }}
 </p>
 
-<div class="panel panel-border-wide">
-    <p class="text">
+<div class="govuk-inset-text">
+    <p class="govuk-body">
         {{ content.warning | safe }}
     </p>
 
 </div>
 
-<p class="text">
+<p class="govuk-body">
     {{ content.examples | safe }}
 </p>
 
@@ -48,10 +45,12 @@
 {% endfor%}
 
 <div id="add-example" style="display: none;">
-    <a href="javaScript:void(0);" class="secondary-button add-example-link" onclick=" DIVORCE.addAttributeWhenVisible();DIVORCE.showAnotherExample();">
+    <a class="govuk-button govuk-button--secondary add-example-link" href="javaScript:void(0);" class="secondary-button add-example-link" onclick=" DIVORCE.addAttributeWhenVisible();DIVORCE.showAnotherExample();">
         {{ content.addAnother}}
     </a>
 </div>
+
+<br>
 
 {% endblock %}
 {% block extra_scripts %}
@@ -62,14 +61,14 @@
 {% endblock %}
 
 {% macro behaviourExample(name, field, label, id='') %}
-<div class="form-group {{ 'form-group-error' if field.error and id == 0}}
+<div class="govuk-form-group {{ 'govuk-form-group--error' if field.error and id == 0}}
 {{' js-hidden ' if id > visibleExamples-1 and fields.reasonForDivorceBehaviourDetails.value[id] == null }}"
      id="how-behaved-example-{{ id }}">
 
-    <label class="form-label-bold" for="{{ name }}">{{ label | safe }}</label>
+    <label class="govuk-label govuk-!-font-weight-bold" for="{{ name }}">{{ label | safe }}</label>
 
     {{ errorsFor(field) if id == 0 }}
-        <textarea class="form-control {{ 'form-control-error' if field.error and id == 0}}"
+        <textarea class="govuk-textarea {{ 'govuk-input--error' if field.error and id == 0}}"
                   id="{{ name }}"
                   rows="5"
                   name="reasonForDivorceBehaviourDetails[]"

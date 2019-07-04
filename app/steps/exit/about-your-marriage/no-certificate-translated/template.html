@@ -5,20 +5,20 @@
 {% endblock %}
 
 {% block exit_reason %}
-<p class="text">{{ content.reason | safe }}</p>
-<p class="text">{{ content.advice | safe }}</p>
+<p class="govuk-body">{{ content.reason | safe }}</p>
+<p class="govuk-body">{{ content.advice | safe }}</p>
 
-<div class="text">
-    <h2 class="heading-small">{{ content.statementOfTruth | safe }}</h2>
-    <p class="text">{{ content.statementOfTruth_description1 | safe }}</p>
-    <p class="text">{{ content.statementOfTruth_description2 | safe }}</p>
+<div class="govuk-body">
+    <h2 class="govuk-heading-s">{{ content.statementOfTruth | safe }}</h2>
+    <p class="govuk-body">{{ content.statementOfTruth_description1 | safe }}</p>
+    <p class="govuk-body">{{ content.statementOfTruth_description2 | safe }}</p>
 </div>
 
-<div class="text">
-    <h2 class="heading-small">{{ content.notaryPublic | safe }}</h2>
-    <p class="text">{{ content.notaryPublic_description1 | safe }}</p>
-    <p class="text">{{ content.notaryPublic_description2 | safe }}</p>
-    <ul class="list list-bullet">
+<div class="govuk-body">
+    <h2 class="govuk-heading-s">{{ content.notaryPublic | safe }}</h2>
+    <p class="govuk-body">{{ content.notaryPublic_description1 | safe }}</p>
+    <p class="govuk-body">{{ content.notaryPublic_description2 | safe }}</p>
+    <ul class="govuk-list govuk-list--bullet">
         <li>{{ content.notaryPublic_link1 | safe }}</li>
         <li>{{ content.notaryPublic_link2 | safe }}</li>
     </ul>

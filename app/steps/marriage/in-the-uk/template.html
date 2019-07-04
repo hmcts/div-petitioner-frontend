@@ -6,21 +6,23 @@
 
 {% block form %}
 
-    <p class="text"> {{content.definition | safe }}</p>
+    <p class="govuk-body"> {{content.definition | safe }}</p>
 
-    <fieldset class="form-group inline">
-      <legend class="visually-hidden">{{ content.question | safe }}</legend>
-      {{ yesNoRadioHeading(
-          legend = content.question,
-          name = 'marriedInUk',
-          field = fields.marriedInUk,
-          yes = content.yes,
-          no = content.no,
-          targetYes = '',
-          targetNo = '',
-          screenReader = content.question
-      ) }}
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset inline">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+        {{ yesNoRadioHeading(
+            legend = content.question,
+            name = 'marriedInUk',
+            field = fields.marriedInUk,
+            yes = content.yes,
+            no = content.no,
+            targetYes = '',
+            targetNo = '',
+            screenReader = content.question
+        ) }}
 
-    </fieldset>
+      </fieldset>
+    </div>
 
 {% endblock %}

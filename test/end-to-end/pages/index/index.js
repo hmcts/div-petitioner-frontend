@@ -42,7 +42,7 @@ function* seeCookieFooter() {
 
 function followCookieBannerLink(cookiePageLink) {
   let I = this;
-  const cookieTitle = '#content h1';
+  const cookieTitle = 'body h1';
 
   I.amOnLoadedPage(cookiePageLink);
   I.see('Cookies', cookieTitle);

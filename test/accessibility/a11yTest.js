@@ -23,6 +23,27 @@ let excludeSteps = [
   'Submit'
 ];
 
+// Ignored Errors
+const excludedErrors = [
+  'WCAG2AA.Principle1.Guideline1_3.1_3_1.F92,ARIA4',
+  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail'
+];
+const filteredErrors = r => {
+  return !excludedErrors.includes(r.code);
+};
+
+// Ignored Warnings
+const excludedWarnings = [
+  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Abs',
+  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Abs',
+  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.BgImage',
+  'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48',
+  'WCAG2AA.Principle1.Guideline1_3.1_3_1_A.G141'
+];
+const filteredWarnings = r => {
+  return !excludedWarnings.includes(r.code);
+};
+
 for (let stepKey in s.steps) {
 
   if (!excludeSteps.includes(stepKey)) {
@@ -51,6 +72,7 @@ for (let stepKey in s.steps) {
 
           const errors = results
             .filter((res) => res.type === 'error')
+            .filter(filteredErrors)
             .filter((err) =>
               !step.ignorePa11yErrors.includes(err.code)
             );
@@ -62,6 +84,7 @@ for (let stepKey in s.steps) {
 
           const warnings = results
             .filter((res) => res.type === 'warning')
+            .filter(filteredWarnings)
             .filter((warn) =>
               !step.ignorePa11yWarnings.includes(warn.code)
             );
@@ -92,6 +115,7 @@ for (let stepKey in s.steps) {
 
             const errors = results
               .filter((res) => res.type === 'error')
+              .filter(filteredErrors)
               .filter((err) =>
                 !step.ignorePa11yErrors.includes(err.code)
               );
@@ -103,6 +127,7 @@ for (let stepKey in s.steps) {
 
             const warnings = results
               .filter((res) => res.type === 'warning')
+              .filter(filteredWarnings)
               .filter((warn) =>
                 !step.ignorePa11yWarnings.includes(warn.code)
               );

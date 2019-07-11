@@ -35,7 +35,7 @@ const middleware = requireDir(module, `${__dirname}/app/middleware`, { exclude: 
 const healthcheck = require('app/services/healthcheck');
 const nunjucksFilters = require('app/filters/nunjucks');
 
-const PORT = CONF.http.port || CONF.http.porttactical;
+const PORT = CONF.http.port;
 
 const logger = logging.logger(__filename);
 

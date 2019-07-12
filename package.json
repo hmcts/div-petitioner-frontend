@@ -82,6 +82,8 @@
     "jsonwebtoken": "^8.2.2",
     "loadsh": "^0.0.3",
     "lodash": "^4.17.11",
+    "lodash.merge": "^4.6.2",
+    "mem": "^4.0.0",
     "moment": "^2.19.3",
     "negotiator": "^0.6.1",
     "nomnoml": "0.2.0",

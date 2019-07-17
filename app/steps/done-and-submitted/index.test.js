@@ -1,8 +1,9 @@
 const request = require('supertest');
-const { testContent, testExistence, testNonExistence } = require('test/util/assertions');
+const { testContent, testExistence, testNonExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
-const CONF = require('config');
+const { expect } = require('test/util/chai');
+const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/steps/done-and-submitted';
 
@@ -15,6 +16,8 @@ let agent = {};
 let underTest = {};
 
 describe(modulePath, () => {
+  const allocatedCourt = serviceCentreCourt;
+
   beforeEach(() => {
     s = server.init();
     agent = request.agent(s.app);
@@ -56,7 +59,7 @@ describe(modulePath, () => {
           paymentMethod: 'card-online',
           currentPaymentId: '1',
           payments: { 1: { status: 'success' } },
-          courts: 'westMidlands',
+          allocatedCourt,
           caseId: 'ABC'
         };
         withSession(done, agent, session);
@@ -95,20 +98,7 @@ describe(modulePath, () => {
         'whatToDoNowPostHeading',
         'whatToDoNowPostText',
         'whatToDoNowPostText2',
-        'sendAddresseastMidlands',
-        'sendAddresswestMidlands',
-        'sendAddresssouthWest',
-        'sendAddressnorthWest',
-        'sendAddressServiceCentre',
         'whatToDoNowOrigCertOnly',
-        'eastMidlandsEmail',
-        'eastMidlandsPhoneNumber',
-        'southWestEmail',
-        'southWestPhoneNumber',
-        'northWestEmail',
-        'northWestPhoneNumber',
-        'serviceCentreEmail',
-        'serviceCentrePhoneNumber',
         'helpWithFees',
         'courtCheckApp',
         'youWillBeContacted',
@@ -124,8 +114,7 @@ describe(modulePath, () => {
         session = {
           caseId: '123',
           divorceWho: 'husband',
-          financialOrder: 'Yes',
-          courts: 'westMidlands'
+          financialOrder: 'Yes'
         };
 
         withSession(done, agent, session);
@@ -146,7 +135,6 @@ describe(modulePath, () => {
           caseId: '123',
           divorceWho: 'husband',
           financialOrder: 'No',
-          courts: 'westMidlands',
           marriageCertificateFiles: '123'
         };
 
@@ -172,8 +160,7 @@ describe(modulePath, () => {
         petitionerNameDifferentToMarriageCertificate: 'No',
         divorceWho: 'husband',
         reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        courts: 'westMidlands'
+        financialOrder: 'No'
       };
 
       withSession(done, agent, session);
@@ -197,8 +184,7 @@ describe(modulePath, () => {
         petitionerNameDifferentToMarriageCertificate: 'No',
         divorceWho: 'wife',
         reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        courts: 'westMidlands'
+        financialOrder: 'No'
       };
 
       withSession(done, agent, session);
@@ -213,33 +199,7 @@ describe(modulePath, () => {
     });
   });
 
-  const westMidlandsDetails = [
-    CONF.commonProps.court.westMidlands.email,
-    CONF.commonProps.court.westMidlands.phoneNumber,
-    CONF.commonProps.court.westMidlands.openingHours
-  ];
-  const eastMidlandsDetails = [
-    CONF.commonProps.court.eastMidlands.email,
-    CONF.commonProps.court.eastMidlands.phoneNumber,
-    CONF.commonProps.court.eastMidlands.openingHours
-  ];
-  const southWestDetails = [
-    CONF.commonProps.court.southWest.email,
-    CONF.commonProps.court.southWest.phoneNumber,
-    CONF.commonProps.court.southWest.openingHours
-  ];
-  const northWestDetails = [
-    CONF.commonProps.court.northWest.email,
-    CONF.commonProps.court.northWest.phoneNumber,
-    CONF.commonProps.court.northWest.openingHours
-  ];
-  const serviceCentreDetails = [
-    CONF.commonProps.court.serviceCentre.email,
-    CONF.commonProps.court.serviceCentre.phoneNumber,
-    CONF.commonProps.court.serviceCentre.openingHours
-  ];
-
-  describe('when selected court is westMidlands', () => {
+  describe('should display allocated court info', () => {
     let session = {};
 
     beforeEach(done => {
@@ -249,208 +209,26 @@ describe(modulePath, () => {
         divorceWho: 'husband',
         reasonForDivorceAdulteryWishToName: 'Yes',
         financialOrder: 'No',
-        courts: 'westMidlands'
+        allocatedCourt
       };
 
       withSession(done, agent, session);
     });
 
-    westMidlandsDetails.forEach(courtDetail => {
-      it(`contains westMidlands contact detail: ${courtDetail}`, done => {
-        testExistence(done, agent, underTest, courtDetail);
+    it('contains allocated court e-mail twice', done => {
+      testCustom(done, agent, underTest, [], response => {
+        const timesEmailShouldAppearOnPage = 2;
+        const emailOccurrencesInPage = response.text.match(new RegExp(allocatedCourt.email, 'g')).length;
+        expect(emailOccurrencesInPage).to.equal(timesEmailShouldAppearOnPage);
       });
     });
 
-    it('does not contain eastMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.eastMidlands.email);
+    it('contains allocated court phone number', done => {
+      testExistence(done, agent, underTest, allocatedCourt.phoneNumber);
     });
 
-    it('does not contain southWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.southWest.email);
-    });
-
-    it('does not contain northWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.northWest.email);
-    });
-
-    it('does not contain serviceCentre contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.serviceCentre.email);
-    });
-  });
-
-  describe('when selected court is eastMidlands', () => {
-    let session = {};
-
-    beforeEach(done => {
-      session = {
-        reasonForDivorce: 'adultery',
-        petitionerNameDifferentToMarriageCertificate: 'No',
-        divorceWho: 'husband',
-        reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        courts: 'eastMidlands'
-      };
-
-      withSession(done, agent, session);
-    });
-
-    eastMidlandsDetails.forEach(courtDetail => {
-      it(`contains eastMidlands contact detail: ${courtDetail}`, done => {
-        testExistence(done, agent, underTest, courtDetail);
-      });
-    });
-
-    it('does not contain westMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.westMidlands.email);
-    });
-
-    it('does not contain southWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.southWest.email);
-    });
-
-    it('does not contain northWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.northWest.email);
-    });
-
-    it('does not contain serviceCentre contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.serviceCentre.email);
-    });
-  });
-
-  describe('when selected court is southWest', () => {
-    let session = {};
-
-    beforeEach(done => {
-      session = {
-        reasonForDivorce: 'adultery',
-        petitionerNameDifferentToMarriageCertificate: 'No',
-        divorceWho: 'husband',
-        reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        courts: 'southWest'
-      };
-
-      withSession(done, agent, session);
-    });
-
-    southWestDetails.forEach(courtDetail => {
-      it(`contains southWest contact detail: ${courtDetail}`, done => {
-        testExistence(done, agent, underTest, courtDetail);
-      });
-    });
-
-    it('does not contain westMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.westMidlands.email);
-    });
-
-    it('does not contain eastMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.eastMidlands.email);
-    });
-
-    it('does not contain northWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.northWest.email);
-    });
-
-    it('does not contain serviceCentre contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.serviceCentre.email);
-    });
-  });
-
-  describe('when selected court is northWest', () => {
-    let session = {};
-
-    beforeEach(done => {
-      session = {
-        reasonForDivorce: 'adultery',
-        petitionerNameDifferentToMarriageCertificate: 'No',
-        divorceWho: 'husband',
-        reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        courts: 'northWest'
-      };
-
-      withSession(done, agent, session);
-    });
-
-    northWestDetails.forEach(courtDetail => {
-      it(`contains northWest contact detail: ${courtDetail}`, done => {
-        testExistence(done, agent, underTest, courtDetail);
-      });
-    });
-
-    it('does not contain westMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.westMidlands.email);
-    });
-
-    it('does not contain eastMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.eastMidlands.email);
-    });
-
-    it('does not contain southWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.westMidlands.email);
-    });
-
-    it('does not contain serviceCentre contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.serviceCentre.email);
-    });
-  });
-
-  describe('when selected court is serviceCentre', () => {
-    let session = {};
-
-    beforeEach(done => {
-      session = {
-        reasonForDivorce: 'adultery',
-        petitionerNameDifferentToMarriageCertificate: 'No',
-        divorceWho: 'husband',
-        reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        courts: 'serviceCentre'
-      };
-
-      withSession(done, agent, session);
-    });
-
-    serviceCentreDetails.forEach(courtDetail => {
-      it(`contains serviceCentre contact detail: ${courtDetail}`, done => {
-        testExistence(done, agent, underTest, courtDetail);
-      });
-    });
-
-    it('does not contain westMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.westMidlands.email);
-    });
-
-    it('does not contain southWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.southWest.email);
-    });
-
-    it('does not contain northWest contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.northWest.email);
-    });
-
-    it('does not contain eastMidlands contact email', done => {
-      testNonExistence(done, agent, underTest,
-        CONF.commonProps.court.eastMidlands.email);
+    it('contains allocated court opening hours', done => {
+      testExistence(done, agent, underTest, allocatedCourt.openingHours);
     });
   });
 
@@ -462,21 +240,6 @@ describe(modulePath, () => {
       excludeKeys = [
         'paymentSuccessful',
         'emailConfirmation',
-        'eastMidlandsEmail',
-        'eastMidlandsPhoneNumber',
-        'eastMidlandsOpeningHours',
-        'westMidlandsEmail',
-        'westMidlandsPhoneNumber',
-        'westMidlandsOpeningHours',
-        'southWestEmail',
-        'southWestPhoneNumber',
-        'southWestOpeningHours',
-        'northWestEmail',
-        'northWestPhoneNumber',
-        'northWestOpeningHours',
-        'serviceCentreEmail',
-        'serviceCentrePhoneNumber',
-        'serviceCentreOpeningHours',
         'helpWithFees',
         'courtCheckApp',
         'youWillBeContacted',
@@ -504,11 +267,6 @@ describe(modulePath, () => {
         excludeKeys.push('whatToDoNowCertTrans');
         excludeKeys.push('whatToDoNowRefNumPrtScr');
         excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -530,11 +288,6 @@ describe(modulePath, () => {
       it('renders the content from the content file', done => {
         excludeKeys.push('whatToDoNowCertTrans');
         excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -556,11 +309,6 @@ describe(modulePath, () => {
       it('renders the content from the content file', done => {
         excludeKeys.push('whatToDoNowNameChange');
         excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
@@ -581,134 +329,130 @@ describe(modulePath, () => {
 
       it('renders the content from the content file', done => {
         excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
 
         testContent(done, agent, underTest, content,
           session, excludeKeys);
       });
     });
 
-    context('If court selected East Midlands post address', () => {
-      beforeEach(done => {
-        session = {
-          marriageCertificateFiles: [],
-          petitionerNameDifferentToMarriageCertificate: 'No',
-          marriedInUk: 'Yes',
-          divorceWho: 'husband',
-          courts: 'eastMidlands'
-        };
+    describe('should show allocated court\'s post address', () => {
+      const careOfText = ' c/o ';
+      const htmlLineBreak = ' <br/>';
 
-        withSession(done, agent, session);
-      });
-
-      it('renders the content from the content file', done => {
+      const contentRenderingTest = done => {
         excludeKeys.push('whatToDoNowRefNumText');
         excludeKeys.push('whatToDoNowOrigCert');
         excludeKeys.push('whatToDoNowNameChange');
         excludeKeys.push('whatToDoNowCertTrans');
         excludeKeys.push('whatToDoNowRefNumPrtScr');
         excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
+        testContent(done, agent, underTest, content, session, excludeKeys);
+      };
 
-        testContent(done, agent, underTest, content,
-          session, excludeKeys);
-      });
-    });
+      context('for service centre', () => {
+        beforeEach(done => {
+          session = {
+            marriageCertificateFiles: [],
+            petitionerNameDifferentToMarriageCertificate: 'No',
+            marriedInUk: 'Yes',
+            divorceWho: 'husband',
+            allocatedCourt: serviceCentreCourt
+          };
 
-    context('If court selected West Midlands post address', () => {
-      beforeEach(done => {
-        session = {
-          marriageCertificateFiles: [],
-          petitionerNameDifferentToMarriageCertificate: 'No',
-          marriedInUk: 'Yes',
-          divorceWho: 'husband',
-          courts: 'westMidlands'
-        };
+          withSession(done, agent, session);
+        });
 
-        withSession(done, agent, session);
-      });
+        it('renders the content from the content file', contentRenderingTest);
 
-      it('renders the content from the content file', done => {
-        excludeKeys.push('whatToDoNowRefNumText');
-        excludeKeys.push('whatToDoNowOrigCert');
-        excludeKeys.push('whatToDoNowNameChange');
-        excludeKeys.push('whatToDoNowCertTrans');
-        excludeKeys.push('whatToDoNowRefNumPrtScr');
-        excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
-
-        testContent(done, agent, underTest, content,
-          session, excludeKeys);
-      });
-    });
-
-    context('If court selected South West post address', () => {
-      beforeEach(done => {
-        session = {
-          marriageCertificateFiles: [],
-          petitionerNameDifferentToMarriageCertificate: 'No',
-          marriedInUk: 'Yes',
-          divorceWho: 'husband',
-          courts: 'southWest'
-        };
-
-        withSession(done, agent, session);
+        it('should render post address correctly', done => {
+          testMultipleValuesExistence(done, agent, underTest, [
+            serviceCentreCourt.serviceCentreName + htmlLineBreak + careOfText,
+            serviceCentreCourt.divorceCentre + htmlLineBreak,
+            serviceCentreCourt.poBox + htmlLineBreak,
+            serviceCentreCourt.courtCity + htmlLineBreak,
+            serviceCentreCourt.postCode
+          ]);
+        });
       });
 
-      it('renders the content from the content file', done => {
-        excludeKeys.push('whatToDoNowRefNumText');
-        excludeKeys.push('whatToDoNowOrigCert');
-        excludeKeys.push('whatToDoNowNameChange');
-        excludeKeys.push('whatToDoNowCertTrans');
-        excludeKeys.push('whatToDoNowRefNumPrtScr');
-        excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddressnorthWest');
-        excludeKeys.push('sendAddressServiceCentre');
+      context('for court with PO Box', () => {
+        beforeEach(done => {
+          session = {
+            marriageCertificateFiles: [],
+            petitionerNameDifferentToMarriageCertificate: 'No',
+            marriedInUk: 'Yes',
+            divorceWho: 'husband',
+            allocatedCourt: {
+              courtId: 'eastMidlands',
+              divorceCentre: 'East Midlands Regional Divorce Centre',
+              courtCity: 'Nottingham',
+              poBox: 'PO Box 10447',
+              postCode: 'NG2 9QN',
+              openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
+              email: 'eastmidlandsdivorce@hmcts.gsi.gov.uk',
+              phoneNumber: '0300 303 0642',
+              siteId: 'AA01'
+            }
+          };
 
-        testContent(done, agent, underTest, content,
-          session, excludeKeys);
+          withSession(done, agent, session);
+        });
+
+        it('renders the content from the content file', contentRenderingTest);
+
+        it('should render post address correctly', done => {
+          testMultipleValuesExistence(done, agent, underTest, [
+            session.allocatedCourt.divorceCentre + htmlLineBreak,
+            session.allocatedCourt.poBox + htmlLineBreak,
+            session.allocatedCourt.courtCity + htmlLineBreak,
+            session.allocatedCourt.postCode
+          ]);
+        });
+
+        it('should not have c/o', done => {
+          testNonExistence(done, agent, underTest, careOfText);
+        });
       });
-    });
 
-    context('If court selected North West post address', () => {
-      beforeEach(done => {
-        session = {
-          marriageCertificateFiles: [],
-          petitionerNameDifferentToMarriageCertificate: 'No',
-          marriedInUk: 'Yes',
-          divorceWho: 'husband',
-          courts: 'northWest'
-        };
+      context('for court without PO Box', () => {
+        beforeEach(done => {
+          session = {
+            marriageCertificateFiles: [],
+            petitionerNameDifferentToMarriageCertificate: 'No',
+            marriedInUk: 'Yes',
+            divorceWho: 'husband',
+            allocatedCourt: {
+              courtId: 'northWest',
+              divorceCentre: 'North West Regional Divorce Centre',
+              divorceCentreAddressName: 'Liverpool Civil & Family Court',
+              courtCity: 'Liverpool',
+              street: '35 Vernon Street',
+              postCode: 'L2 2BX',
+              openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
+              email: 'family@liverpool.countycourt.gsi.gov.uk',
+              phoneNumber: '0300 303 0642',
+              siteId: 'AA04'
+            }
+          };
 
-        withSession(done, agent, session);
-      });
+          withSession(done, agent, session);
+        });
 
-      it('renders the content from the content file', done => {
-        excludeKeys.push('whatToDoNowRefNumText');
-        excludeKeys.push('whatToDoNowOrigCert');
-        excludeKeys.push('whatToDoNowNameChange');
-        excludeKeys.push('whatToDoNowCertTrans');
-        excludeKeys.push('whatToDoNowRefNumPrtScr');
-        excludeKeys.push('whatToDoNowOrigCertOnly');
-        excludeKeys.push('sendAddresseastMidlands');
-        excludeKeys.push('sendAddresswestMidlands');
-        excludeKeys.push('sendAddresssouthWest');
-        excludeKeys.push('sendAddressServiceCentre');
+        it('renders the content from the content file', contentRenderingTest);
 
-        testContent(done, agent, underTest, content,
-          session, excludeKeys);
+        it('should render post address correctly', done => {
+          testMultipleValuesExistence(done, agent, underTest, [
+            session.allocatedCourt.divorceCentre + htmlLineBreak,
+            session.allocatedCourt.divorceCentreAddressName,
+            session.allocatedCourt.street + htmlLineBreak,
+            session.allocatedCourt.courtCity + htmlLineBreak,
+            session.allocatedCourt.postCode
+          ]);
+        });
+
+        it('should not have c/o', done => {
+          testNonExistence(done, agent, underTest, careOfText);
+        });
       });
     });
   });

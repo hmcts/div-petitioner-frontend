@@ -37,7 +37,7 @@
                     "desertionSummary": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
                     "desertionExclusion": "if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
                     "noneApply" : "None of these apply to my situation",
-                    "finalPossibilities" : "If you can&#39;t use any of the above reasons, you may be able to get a <a href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+                    "finalPossibilities" : "If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
                     "alternativelyInFuture" : "Alternatively, in future you may be able to use the following",
                     "warning": "Warning"
                 },

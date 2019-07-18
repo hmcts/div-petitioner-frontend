@@ -6,23 +6,27 @@
 
 {% block form %}
 
-<fieldset class="form-group inline {{ 'form-group-error' if fields.jurisdictionLastSixMonths.error }}" id="jurisdictionLastSixMonths">
-    <legend class="visually-hidden">{{ content.question | safe }}</legend>
-    {{ errorsFor(fields.jurisdictionLastSixMonths) }}
-    {{ radioButton(
-    value = 'Yes',
-    label = content.yes,
-    name = 'jurisdictionLastSixMonths',
-    field = fields.jurisdictionLastSixMonths,
-    screenReader = content.question
-    ) }}
-    {{ radioButton(
-    value = 'No',
-    label = content.no,
-    name = 'jurisdictionLastSixMonths',
-    field = fields.jurisdictionLastSixMonths,
-    screenReader = content.question
-    ) }}
-</fieldset>
+<div class="govuk-form-group {{ 'govuk-form-group--error' if fields.jurisdictionLastSixMonths.error }}">
+    <fieldset class="govuk-fieldset inline" id="jurisdictionLastSixMonths">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+        {{ errorsFor(fields.jurisdictionLastSixMonths) }}
+        <div class="govuk-radios govuk-radios--inline">
+            {{ radioButton(
+            value = 'Yes',
+            label = content.yes,
+            name = 'jurisdictionLastSixMonths',
+            field = fields.jurisdictionLastSixMonths,
+            screenReader = content.question
+            ) }}
+            {{ radioButton(
+            value = 'No',
+            label = content.no,
+            name = 'jurisdictionLastSixMonths',
+            field = fields.jurisdictionLastSixMonths,
+            screenReader = content.question
+            ) }}
+        </div>
+    </fieldset>
+</div>
 
 {% endblock %}

@@ -5,24 +5,26 @@
 {% endblock %}
 
 {% block form %}
-
-
-    <fieldset id="respondentSolicitorRepresented" class="form-group {{ 'form-group-error' if fields.respondentSolicitorRepresented.error }}">
-        <legend class="visually-hidden">{{ content.question | safe }}</legend>
+ <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorRepresented.error }}">
+    <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
         {{ errorsFor(fields.respondentSolicitorRepresented) }}
-        {{ radioButton(
-            value = 'Yes',
-            label = content.solicitor,
-            name = 'respondentSolicitorRepresented',
-            field = fields.respondentSolicitorRepresented
-        ) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.correspondence,
-            name = 'respondentSolicitorRepresented',
-            field = fields.respondentSolicitorRepresented
-        ) }}
 
+        <div class="govuk-radios govuk-radios--inline">
+            {{ radioButton(
+                value = 'Yes',
+                label = content.solicitor,
+                name = 'respondentSolicitorRepresented',
+                field = fields.respondentSolicitorRepresented
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.correspondence,
+                name = 'respondentSolicitorRepresented',
+                field = fields.respondentSolicitorRepresented
+            ) }}
+        </div>
     </fieldset>
+</div>
 
 {% endblock %}

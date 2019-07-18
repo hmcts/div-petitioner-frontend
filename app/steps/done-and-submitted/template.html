@@ -1,25 +1,22 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block back %}{% endblock %}
 
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block two_thirds %}
 
-      <div class="govuk-box-highlight">
-        <h1 class="bold-large">{{content.title | safe}}</h1>
-        <p class="no-bottom-margin">
-          {{ content.caseReferenceNumber | safe }}
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title govuk-!-margin-bottom-2">{{content.title | safe}}</h1>
+        <p class="govuk-panel__body govuk-!-margin-0">
+          <span class="govuk-!-font-size-19">{{ content.caseReferenceNumber | safe }}</span>
           <br>
-          <strong class="text-reference-number" aria-label="{{ session.caseId | a11yCharSeparator | safe }}">
+          <strong class="govuk-body-reference-number" aria-label="{{ session.caseId | a11yCharSeparator | safe }}">
             {{ session.caseId | insertHyphens | safe }}
           </strong>
         </p>
       </div>
 
       {% if fields.paymentCompleted.value %}
-        <p class="text">{{ content.paymentSuccessful | safe }}</p>
+        <p class="govuk-body">{{ content.paymentSuccessful | safe }}</p>
       {% endif %}
 
       {# Email notification copy will be added only when notifications is implemented #}
@@ -50,15 +47,15 @@
       </div>
 
       {% if (session.marriageCertificateFiles | length === 0) %}
-        <h2 class="heading-medium">{{content.whatToDoNow | safe}}</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
 
-        <h3 class="heading-small">{{content.whatToDoNowReferenceNumber | safe}}</h3>
+        <h3 class="govuk-heading-s">{{content.whatToDoNowReferenceNumber | safe}}</h3>
         {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}
-          <p class="text">{{content.whatToDoNowOrigCertOnly | safe}}</p>
+          <p class="govuk-body">{{content.whatToDoNowOrigCertOnly | safe}}</p>
         {% endif %}
         {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
-          <p class="text">{{content.whatToDoNowRefNumText | safe}}</p>
-          <ul class="list list-bullet">
+          <p class="govuk-body">{{content.whatToDoNowRefNumText | safe}}</p>
+          <ul class="govuk-list govuk-list--bullet">
             <li>{{content.whatToDoNowOrigCert | safe}}</li>
 
           {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
@@ -70,11 +67,11 @@
           </ul>
         {% endif %}
         {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
-          <p class="text">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
+          <p class="govuk-body">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
         {% endif %}
-        <h3 class="heading-small">{{content.whatToDoNowPostHeading | safe}}</h3>
-        <p class="text">{{content.whatToDoNowPostText | safe}}</p>
-          <address class="bold-small">
+        <h3 class="govuk-heading-s">{{content.whatToDoNowPostHeading | safe}}</h3>
+        <p class="govuk-body">{{content.whatToDoNowPostText | safe}}</p>
+          <address class="govuk-body govuk-!-font-weight-bold">
             {%- if ( session.courts == 'eastMidlands') %}
               {{ content.sendAddresseastMidlands | safe}}
             {%- endif -%}
@@ -92,13 +89,13 @@
             {%- endif -%}
           </address>
 
-          <p class="text">{{ content.certificateKept | safe }} </p>
+          <p class="govuk-body">{{ content.certificateKept | safe }} </p>
 
-          <h3 class="heading-small">{{content.sendEmail | safe}}</h3>
-          <p class="text">{{ content.email | safe }} </p>
-          <p class="text">{{ content.emailTo | safe }} </p>
+          <h3 class="govuk-heading-s">{{content.sendEmail | safe}}</h3>
+          <p class="govuk-body">{{ content.email | safe }} </p>
+          <p class="govuk-body">{{ content.emailTo | safe }} </p>
 
-          <span class="bold-small">
+          <span class="govuk-body govuk-!-font-weight-bold">
             {{ content.eastMidlandsEmail | safe if session.courts === 'eastMidlands' }}
             {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
             {{ content.southWestEmail | safe if session.courts === 'southWest' }}
@@ -108,35 +105,35 @@
       {% endif %}
 
 
-      <h2 class="heading-medium">{{content.whatHappensNext | safe}}</h2>
-      <p class="text">{{content.courtWillCheck | safe}}</p>
-      <p class="text">{{content.youCanFindMore | safe}}</p>
-      <p class="text">{{content.contactTheCourt | safe}}</p>
+      <h2 class="govuk-heading-m">{{content.whatHappensNext | safe}}</h2>
+      <p class="govuk-body">{{content.courtWillCheck | safe}}</p>
+      <p class="govuk-body">{{content.youCanFindMore | safe}}</p>
+      <p class="govuk-body">{{content.contactTheCourt | safe}}</p>
 
-      <h2 class="heading-medium">{{content.helpImproveService | safe}}</h2>
-      <p class="text">
+      <h2 class="govuk-heading-m">{{content.helpImproveService | safe}}</h2>
+      <p class="govuk-body">
         {{content.improveServiceContent | safe}}
       </p>
 
-      <h2 class="heading-medium">{{content.getHelp | safe}}</h2>
-      <p class="text">
+      <h2 class="govuk-heading-m">{{content.getHelp | safe}}</h2>
+      <p class="govuk-body">
         {{content.getHelpDescription | safe}}
       </p>
-      <p class="text">
+      <p class="govuk-body">
         {{ content.eastMidlandsEmail | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsEmail | safe if session.courts === 'westMidlands' }}
         {{ content.southWestEmail | safe if session.courts === 'southWest' }}
         {{ content.northWestEmail | safe if session.courts === 'northWest' }}
         {{ content.serviceCentreEmail | safe if session.courts === 'serviceCentre' }}
       </p>
-      <p class="text">
+      <p class="govuk-body">
         {{ content.eastMidlandsPhoneNumber | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsPhoneNumber | safe if session.courts === 'westMidlands' }}
         {{ content.southWestPhoneNumber | safe if session.courts === 'southWest' }}
         {{ content.northWestPhoneNumber | safe if session.courts === 'northWest' }}
         {{ content.serviceCentrePhoneNumber | safe if session.courts === 'serviceCentre' }}
       </p>
-      <p class="text">
+      <p class="govuk-body">
         {{ content.eastMidlandsOpeningHours | safe if session.courts === 'eastMidlands' }}
         {{ content.westMidlandsOpeningHours | safe if session.courts === 'westMidlands' }}
         {{ content.southWestOpeningHours | safe if session.courts === 'southWest' }}
@@ -145,35 +142,30 @@
       </p>
 
       {% if session.helpWithFeesReferenceNumber %}
-        <h2 class="heading-medium">{{content.helpWithFees | safe}}</h2>
-        <p class="text">
+        <h2 class="govuk-heading-m">{{content.helpWithFees | safe}}</h2>
+        <p class="govuk-body">
           {{content.courtCheckApp | safe}}
         </p>
-        <p class="text">
+        <p class="govuk-body">
           {{content.youWillBeContacted | safe}}
         </p>
       {% endif %}
 
-      <h2 class="heading-medium">{{content.dividingMoney | safe}}</h2>
+      <h2 class="govuk-heading-m">{{content.dividingMoney | safe}}</h2>
       {% if session.financialOrder === 'Yes' %}
-        <p class="text">
+        <p class="govuk-body">
           {{content.startFinancialProceedings1 | safe}}
         </p>
-        <p class="text">
+        <p class="govuk-body">
           {{content.startFinancialProceedings2 | safe}}
         </p>
       {% else %}
-        <p class="text">
+        <p class="govuk-body">
           {{content.consentOrder | safe}}
         </p>
-        <p class="text">
+        <p class="govuk-body">
           {{content.settle | safe}}
         </p>
       {% endif %}
-
-    </div>
-  </div>
-
-</main>
 
 {% endblock %}

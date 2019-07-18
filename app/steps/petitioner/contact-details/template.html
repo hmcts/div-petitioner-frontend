@@ -10,50 +10,54 @@
 
 <div tabindex="-1" class="contact-details">
 
-  <h2 class="heading-medium">{{ content.byEmail | safe }}</h2>
+  <h2 class="govuk-heading-m">{{ content.byEmail | safe }}</h2>
 
-  <p>{{ content.communicateParagraph1 | safe }}</p>
-  <p>{{ content.communicateParagraph2 | safe }}</p>
-  <p class="bold-small">{{ session.petitionerEmail }}</p>
+  <p class="govuk-body">{{ content.communicateParagraph1 | safe }}</p>
+  <p class="govuk-body">{{ content.communicateParagraph2 | safe }}</p>
+  <p class="govuk-body govuk-!-font-weight-bold">{{ session.petitionerEmail }}</p>
 
-  <fieldset class="form-group {{ ' form-group-error' if fields.petitionerConsent.error }}">
-    <legend class="visually-hidden">{{ content.petitionerConsent | safe }}</legend>
-    {{ errorsFor(fields.petitionerConsent) }}
+  <div class="govuk-form-group {{ ' govuk-form-group--error' if fields.petitionerConsent.error }}">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.petitionerConsent | safe }}</legend>
+      {{ errorsFor(fields.petitionerConsent) }}
 
-    {{ checkBox(
-    id = 'petitionerConsent',
-    name = 'petitionerConsent',
-    field = fields.petitionerConsent,
-    value = fields.petitionerConsent.value,
-    label = content.petitionerConsent
-    ) }}
+      {{ checkBox(
+      id = 'petitionerConsent',
+      name = 'petitionerConsent',
+      field = fields.petitionerConsent,
+      value = fields.petitionerConsent.value,
+      label = content.petitionerConsent
+      ) }}
 
-  </fieldset>
+    </fieldset>
+  </div>
 
-<h2 class="heading-medium">{{ content.byPhone | safe }}</h2>
+<h2 class="govuk-heading-m">{{ content.byPhone | safe }}</h2>
 
-  <fieldset class="form-group">
-    <legend class="visually-hidden">{{ content.question | safe }}</legend>
+  <div class="govuk-form-group {{ ' govuk-form-group--error' if fields.petitionerPhoneNumber.error }}">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
-    <p>{{ content.communicateParagraph3 | safe }}</p>
+      <p class="govuk-body">{{ content.communicateParagraph3 | safe }}</p>
 
-    {{ textField(
-      name = 'petitionerPhoneNumber',
-      field = fields.petitionerPhoneNumber,
-      label = content.petitionerPhoneNumber,
-      boldLabel = true
-    ) }}
+      {{ textField(
+        name = 'petitionerPhoneNumber',
+        field = fields.petitionerPhoneNumber,
+        label = content.petitionerPhoneNumber,
+        boldLabel = true
+      ) }}
 
-  </fieldset>
+    </fieldset>
+  </div>
 
-  <h2 class="heading-medium">{{ content.byPost | safe }}</h2>
+  <h2 class="govuk-heading-m">{{ content.byPost | safe }}</h2>
 
-    <p>{{ content.somePost | safe }}</p>
+    <p class="govuk-body">{{ content.somePost | safe }}</p>
 
   {% if session.petitionerContactDetailsConfidential != 'share' %}
-    <p>{{ content.contactDetailsNotShare | safe }}</p>
+    <p class="govuk-body">{{ content.contactDetailsNotShare | safe }}</p>
     {% else %}
-    <p>{{ content.contactDetailsShare | safe }}</p>
+    <p class="govuk-body">{{ content.contactDetailsShare | safe }}</p>
   {% endif %}
 
 </div>

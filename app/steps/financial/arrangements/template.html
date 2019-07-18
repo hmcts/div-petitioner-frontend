@@ -7,80 +7,76 @@
 {% endblock %}
 
 {% block form %}
-    <p class="text">{{ content.disagreeWithPartener | safe }}</p>
-    <p class="text">{{ content.financialOrders | safe }}</p>
+    <p class="govuk-body">{{ content.disagreeWithPartener | safe }}</p>
+    <p class="govuk-body">{{ content.financialOrders | safe }}</p>
 
-    <div class="panel panel-border-wide">
-        <p class="text">{{ content.info | safe }}</p>
+    <div class="govuk-inset-text">
+        <p class="govuk-body">{{ content.info | safe }}</p>
     </div>
 
-    <details>
-        <summary>
-            <span class="summary">{{ content.helpLink | safe }}</span>
+    <details class="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">{{ content.helpLink | safe }}</span>
         </summary>
-        <div class="panel panel-border-narrow">
-            <div class="bold-small">{{ content.helpBothAgreeTitle | safe }}</div>
-            <p class="text">
+        <div class="govuk-details__text">
+            <div class="govuk-body govuk-!-font-weight-bold">{{ content.helpBothAgreeTitle | safe }}</div>
+            <p class="govuk-body">
                 {{ content.helpBothAgreeContent | safe }}
             </p>
-            <div class="bold-small">{{ content.helpApplyingTitle | safe }}</div>
-            <p class="text">
+            <div class="govuk-body govuk-!-font-weight-bold">{{ content.helpApplyingTitle | safe }}</div>
+            <p class="govuk-body">
                 {{ content.helpApplyingContent1 | safe }}
             </p>
-            <p class="text">
+            <p class="govuk-body">
                 {{ content.helpApplyingContent2 | safe }}
             </p>
-            <ul class='list list-bullet'>
+            <ul class='govuk-list govuk-list--bullet'>
                 <li> {{ content.helpDontProceed | safe }} </li>
                 <li> {{ content.helpProceedAlive | safe }} </li>
             </ul>
-            <p class="text">
+            <p class="govuk-body">
                 {{ content.helpApplyingContent3 | safe }}
             </p>
-            <p class="text">
+            <p class="govuk-body">
                 {{ content.helpApplyingContent4 | safe }}
             </p>
-            <div class="bold-small">{{ content.helpChildMaintenanceTitle | safe }}</div>
-            <p class="text">
+            <div class="govuk-body govuk-!-font-weight-bold">{{ content.helpChildMaintenanceTitle | safe }}</div>
+            <p class="govuk-body">
                 {{ content.helpChildMaintenanceContent | safe }}
             </p>
         </div>
     </details>
 
-    <br>
-
-    <div id="financialOrder" class="form-group {{ 'form-group-error' if fields.financialOrder.error }}">
-        <fieldset class="inline">
-            <legend class="form-label-bold text">{{ content.question | safe }}</legend>
+    <div id="financialOrder" class="govuk-form-group govuk-!-margin-bottom-3 {{ 'govuk-form-group--error' if fields.financialOrder.error }}">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold text">{{ content.question | safe }}</legend>
             {{ errorsFor(fields.financialOrder) }}
-            {{ radioButton(
-                value = 'Yes',
-                label = content.yes,
-                name = 'financialOrder',
-                field = fields.financialOrder,
-                dataTarget='financialOrderFor',
-                screenReader = content.question
-            ) }}
-            {{ radioButton(
-                value = 'No',
-                label = content.no,
-                name = 'financialOrder',
-                field = fields.financialOrder,
-                screenReader = content.question
-            ) }}
+
+            <div class="govuk-radios govuk-radios--inline">
+                {{ radioButton(
+                    value = 'Yes',
+                    label = content.yes,
+                    name = 'financialOrder',
+                    field = fields.financialOrder,
+                    dataTarget='financialOrderFor',
+                    screenReader = content.question
+                ) }}
+                {{ radioButton(
+                    value = 'No',
+                    label = content.no,
+                    name = 'financialOrder',
+                    field = fields.financialOrder,
+                    screenReader = content.question
+                ) }}
+            </div>
         </fieldset>
     </div>
 
+    <div class="govuk-details__text govuk-!-margin-bottom-3 {{ 'govuk-form-group--error' if fields.financialOrderFor.error }} {{ 'js-hidden' if fields.financialOrder.value != 'Yes' }}" id="financialOrderFor">
+        <fieldset class="govuk-fieldset inline">
+            <legend class="govuk-fieldset__legend govuk-!-font-weight-bold text">{{ content.whoItsFor | safe }}</legend>
+            <p class="govuk-hint">{{ content.selectAll | safe }}</p>
 
-    <div class="panel panel-border-narrow {{ 'form-group-error' if fields.financialOrderFor.error }} {{ 'js-hidden' if fields.financialOrder.value != 'Yes' }}" id="financialOrderFor">
-
-        <fieldset class="form-group inline">
-            <legend class="form-label-bold text">{{ content.whoItsFor | safe }}</legend>
-            <p class="form-hint text">{{ content.selectAll | safe }}</p>
-            <label class="form-label no-padding" for="petitioner">
-              <span class="visually-hidden">{{ content.whoItsFor | safe }}</span>
-              <span class="form-hint visually-hidden">({{ content.selectAll | safe }})</span>
-            </label>
             {{ errorsFor(fields.financialOrderFor) }}
             {{ checkBoxCustom(
             id = 'petitioner',
@@ -90,10 +86,6 @@
             field = fields.financialOrderFor
             ) }}
 
-            <label class="form-label no-padding" for="children">
-              <span class="visually-hidden">{{ content.whoItsFor | safe }}</span>
-              <span class="form-hint visually-hidden">({{ content.selectAll | safe }})</span>
-            </label>
             {{ checkBoxCustom(
             id = 'children',
             name = 'financialOrderFor[]',

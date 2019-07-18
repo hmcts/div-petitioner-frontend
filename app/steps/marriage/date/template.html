@@ -21,30 +21,30 @@
         hiddenLegend = content.question
     ) }}
 
-    <details>
-        <summary>
-            <span class="summary">{{ content.duration | safe }}</span>
+    <details class="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">{{ content.duration | safe }}</span>
         </summary>
-        <div class="panel panel-border-narrow">
-            <p class="text">
+        <div class="govuk-details__text">
+            <p class="govuk-body">
                 {{ content.facts | safe }}
             </p>
-            <p class="text">
+            <p class="govuk-body">
                 {{ content.options | safe }}
             </p>
-            <p class="text">
-                <span class="bold-small">{{ content.separated2YearsTitle | safe }}</span>
+            <p class="govuk-body">
+                <span class="govuk-body govuk-!-font-weight-bold">{{ content.separated2YearsTitle | safe }}</span>
                 - {{ content.separated2YearsDescription | safe }}
             </p>
-            <p class="text">
-                <span class="bold-small">{{ content.separated5YearsTitle | safe }}</span>
+            <p class="govuk-body">
+                <span class="govuk-body govuk-!-font-weight-bold">{{ content.separated5YearsTitle | safe }}</span>
                 - {{ content.separated5YearsDescription | safe }}
             </p>
-            <p class="text">
-                <span class="bold-small">{{ content.desertionTitle | safe }}</span>
+            <p class="govuk-body">
+                <span class="govuk-body govuk-!-font-weight-bold">{{ content.desertionTitle | safe }}</span>
                 - {{ content.desertionDescription | safe }}
             </p>
-           <p class="text">
+           <p class="govuk-body">
             {{ content.stillCanUse | safe }}
            </p>
         </div>

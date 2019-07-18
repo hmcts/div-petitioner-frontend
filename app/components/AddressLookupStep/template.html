@@ -3,158 +3,150 @@
 {% import "common/components/findAddressComponent.html" as findAddressComponent %}
 
 
-{% block page_title %}
-  {{ common.serviceName }} - GOV.UK
-{% endblock %}
 
-{% block content %}
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-    <a class="link-back" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-    <h1 class="heading-large">
-        {{content.question | safe}}
-    </h1>
+{% block two_thirds %}
+  <h1 class="govuk-heading-l">
+      {{content.question | safe}}
+  </h1>
 
-    {% block warning %}{% endblock %}
+  {% block warning %}{% endblock %}
 
-    {% if errors.length > 0 %}
-      <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
-
-        <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
-          {{common.errorSummaryHeading | safe}}
+  {% if errors.length > 0 %}
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+        <h1 class="govuk-error-summary__title" id="error-summary-title">
+            {{ common.errorSummaryHeading | safe }}
         </h1>
 
-        <ul class="error-summary-list">
-          {% for error in errors %}
-          <li><a href="#{{error.param}}">{{error.msg}}</a></li>
-          {% endfor %}
-        </ul>
-
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            {% for error in errors %}
+                <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
-    {% endif %}
+  {% endif %}
 
-    {% if fields.addressType.value != 'postcode' %}
-    <p>
-      <a id="enter-postcode" class="link" href="{{fields.url.value}}/postcode">{{content.enterPostcodeLink}}</a>
-    </p>
-    {% endif %}
+  {% if fields.addressType.value != 'postcode' %}
+    <a id="enter-postcode" class="govuk-body govuk-link" href="{{fields.url.value}}/postcode">{{content.enterPostcodeLink}}</a>
+    <br><br>
+  {% endif %}
 
-    {% if fields.addressType.value == 'manual' %}
+  {% if fields.addressType.value == 'manual' %}
 
-      <form method="POST" accept-charset="utf-8" class="form" id="address-manual"
-            enctype="application/x-www-form-urlencoded" autocomplete="off">
-          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <form method="POST" accept-charset="utf-8" class="form" id="address-manual"
+          enctype="application/x-www-form-urlencoded" autocomplete="off">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
-          <div class="form-group">
-            <label for="addressManual">{{content.fullAddress}}</label>
-            <textarea class="form-control"
-                      rows="10"
-                      id="addressManual"
-                      name="addressManual">{{fields.addressManual.value}}</textarea>
-          </div>
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-visually-hidden">{{content.fullAddress}}</legend>
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.addressManual.error }}">
+          <label class="govuk-label" for="addressManual">{{content.fullAddress}}</label>
 
-        <div class="form-group">
-          <input type="hidden" name="addressType" value="manual"/>
-          <input type="hidden" name="addressConfirmed" value="true"/>
+          {{ errorsFor(fields.addressManual) }}
+          <textarea class="govuk-textarea"
+                    rows="10"
+                    id="addressManual"
+                    name="addressManual">{{fields.addressManual.value}}</textarea>
         </div>
-          <input type="submit" class="button" value="{{common.continue}}"/>
-          <br>
-          <br>
-          {% include "includes/save_and_close.html" %}
-      </form>
+
+        <input type="hidden" name="addressType" value="manual"/>
+        <input type="hidden" name="addressConfirmed" value="true"/>
+        <input type="submit" class="govuk-button" value="{{common.continue}}"/>
+      </fieldset>
+      {% include "includes/save_and_close.html" %}
+    </form>
 
 
-    {% else %}
+  {% else %}
 
-      <form method="POST" accept-charset="utf-8" class="form" id="postcode-lookup"
-            enctype="application/x-www-form-urlencoded" autocomplete="off">
-        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <form method="POST" accept-charset="utf-8" class="form" id="postcode-lookup"
+          enctype="application/x-www-form-urlencoded" autocomplete="off">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
-        <div class="form-group">
-          <label class="form-label" for="postcode">{{content.enterPostcode}}</label>
-          <fieldset>
-          <legend class="visually-hidden">{{content.address}}</legend>
-          <input class="form-control postcode" id="postcode" name="postcode" type="text" value="{{ fields.postcode.value }}"/>
-          <input type="hidden" name="addressType" value="postcode"/>
-          <input type="hidden" name="searchPostcode" value="true"/>
-          <input type="hidden" name="addressConfirmed" value="false"/>
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{content.address}}</legend>
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.postcode.error }}  govuk-!-margin-bottom-0">
+          <label class="govuk-label" for="postcode">{{content.enterPostcode}}</label>
+
+          {{ errorsFor(fields.postcode) }}
+          <input class="govuk-input postcode govuk-!-width-one-third" id="postcode" name="postcode" type="text" value="{{ fields.postcode.value }}"/>
           <input type="submit" id="find-address"
-
-          {%- if (fields.postcode.value and session.postcodeLookup.validPostcode == true) or fields.selectAddressIndex -%}
-          class="secondary-button"
-          {%- else %}
-          class="button"
-          {%- endif %} value="{{content.findAddress}}"/>
-          </fieldset>
+            {%- if (fields.postcode.value and session.postcodeLookup.validPostcode == true) or fields.selectAddressIndex -%}
+            class="govuk-button govuk-button--secondary"
+            {%- else %}
+            class="govuk-button"
+            {%- endif %} value="{{content.findAddress}}"/>
         </div>
-        {%- ifAsync not fields.postcode.value or (session.postcodeLookup.validPostcode == false and session.flash.errors == true) or (not fields.addresses.value and not fields.address.value) %}
-          <p>
-            <a id="enter-manual" class="link" href="{{fields.url.value}}/manual">{{content.enterManualLink}}</a>
-          </p>
-          {% include "includes/save_and_close.html" %}
-        {% endif %}
+        <input type="hidden" name="addressType" value="postcode"/>
+        <input type="hidden" name="searchPostcode" value="true"/>
+        <input type="hidden" name="addressConfirmed" value="false"/>
+      </fieldset>
+      {%- ifAsync not fields.postcode.value or (session.postcodeLookup.validPostcode == false and session.flash.errors == true) or (not fields.addresses.value and not fields.address.value) %}
+        <a id="enter-manual" class="govuk-body govuk-link" href="{{fields.url.value}}/manual">{{content.enterManualLink}}</a>
+        <br><br>
+        {% include "includes/save_and_close.html" %}
+      {% endif %}
+    </form>
 
-      </form>
-
-      {% if fields.addresses.value and fields.postcode.value %}
+    {% if fields.addresses.value and fields.postcode.value %}
       <form method="POST" accept-charset="utf-8" class="form" id="address-selector"
             enctype="application/x-www-form-urlencoded" autocomplete="off">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
-        <div class="form-group">
-          <label class="form-label" for="selectAddressIndex">{{content.pickAddress}}</label>
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-visually-hidden">{{content.pickAddress}}</legend>
+          <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.addresses.error }}">
+            <label class="govuk-label" for="selectAddressIndex">{{content.pickAddress}}</label>
 
-          <select class="form-control" id="selectAddressIndex" name="selectAddressIndex" title="{{content.selectAnAddress}}" onchange="this.form.submit()">
-            <option value="-1">{{fields.addresses.value | length }} {{ content.adressesFound}}</option>
-            {%- for address in fields.addresses.value %}
-              <option value={{loop.index0}} {{ 'selected' if fields.selectAddressIndex.value == loop.index0 }}>{{address.DPA.ADDRESS | safe}}</option>
-            {%- endfor %}
-          </select>
+            {{ errorsFor(fields.addresses) }}
+
+            <select class="govuk-select" id="selectAddressIndex" name="selectAddressIndex" title="{{content.selectAnAddress}}" onchange="this.form.submit()">
+              <option value="-1">{{fields.addresses.value | length }} {{ content.adressesFound}}</option>
+              {%- for address in fields.addresses.value %}
+                <option value={{loop.index0}} {{ 'selected' if fields.selectAddressIndex.value == loop.index0 }}>{{address.DPA.ADDRESS | safe}}</option>
+              {%- endfor %}
+            </select>
+          </div>
+
           <input type="hidden" name="addressType" value="postcode"/>
           <input type="hidden" name="selectAddress" value="true"/>
           <input type="hidden" name="searchPostcode" value="false"/>
           <input type="hidden" name="addressConfirmed" value="false"/>
           <input type="hidden" name="postcode" value="{{ fields.postcode.value }}"/>
-        <noscript>
-          <input type="submit"  style="margin: 4px 0 10px 0 ;" class="secondary-button" value="{{content.updateAddress}}"/>
+
+          <noscript>
+            <input type="submit"  style="margin: 4px 0 10px 0 ;" class="govuk-button govuk-button--secondary" value="{{content.updateAddress}}"/>
           </noscript>
-        </div>
 
-        {%- ifAsync fields.selectAddressIndex.value == '-1' or not fields.selectAddressIndex -%}
-          <input type="submit" class="button" value="{{common.continue}}"/>
-          <br><br>
-          {% include "includes/save_and_close.html" %}
-        {%- endif -%}
-
+          {%- ifAsync fields.selectAddressIndex.value == '-1' or not fields.selectAddressIndex -%}
+            <input type="submit" class="govuk-button" value="{{common.continue}}"/>
+            {% include "includes/save_and_close.html" %}
+          {%- endif -%}
+        </fieldset>
       </form>
+    {% endif %}
 
-      {% endif %}
-
-      {% ifAsync fields.address.value and fields.postcode.value %}
+    {% ifAsync fields.address.value and fields.postcode.value %}
       <form method="POST" accept-charset="utf-8" class="form" id="address-postcode"
             enctype="application/x-www-form-urlencoded" autocomplete="off">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
-        {% for line in fields.address.value %}
-          <div class="form-group">
-            <label class="form-label visually-hidden" for="addressLine{{loop.index0}}">Address Line {{loop.index0}}</label>
-            <input class="form-control" type="text" id="addressLine{{loop.index0}}" name="addressLine{{loop.index0}}" value="{{line}}" />
-          </div>
-        {% endfor %}
+
+        <fieldset class="govuk-fieldset {{ 'govuk-form-group--error' if fields.address.error }}">
+          <legend class="govuk-fieldset__legend govuk-visually-hidden">Address</legend>
+          {% for line in fields.address.value %}
+            <div class="govuk-form-group">
+              <label class="govuk-label visually-hidden" for="addressLine{{loop.index0}}">Address Line {{loop.index0}}</label>
+              <input class="govuk-input" type="text" id="addressLine{{loop.index0}}" name="addressLine{{loop.index0}}" value="{{line}}" />
+            </div>
+          {% endfor %}
           <input type="hidden" name="addressType" value="postcode"/>
           <input type="hidden" name="addressConfirmed" value="true"/>
           <input type="hidden" name="postcode" value="{{ fields.postcode.value }}"/>
-          <input type="submit" class="button" value="{{common.continue}}"/>
-          <br><br>
-          {% include "includes/save_and_close.html" %}
+          <input type="submit" class="govuk-button" value="{{common.continue}}"/>
+        </fieldset>
+        {% include "includes/save_and_close.html" %}
       </form>
-
-      {% endif %}
-
     {% endif %}
-
-    <br/>
-
-    {% include "includes/problem_with_this_page.html" %}
-
-</main>
+  {% endif %}
 {% endblock %}

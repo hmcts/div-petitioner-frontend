@@ -121,12 +121,12 @@ module.exports = {
     },
     'serviceCentre': {
       'serviceCentreName': 'Courts and Tribunals Service Centre',
-      'divorceCentre': 'East Midlands Regional Divorce Centre',
-      'courtCity': 'Nottingham',
-      'poBox': 'PO Box 10447',
-      'postCode': 'NG2 9QN',
+      'divorceCentre': 'HMCTS Digital Divorce',
+      'courtCity': 'Harlow',
+      'poBox': 'PO Box 12706',
+      'postCode': 'CM20 9QT',
       'openingHours': 'Telephone Enquiries from: 8.30am to 5pm',
-      'email': 'contactdivorce@justice.gov.uk',
+      'email': 'divorcecase@justice.gov.uk',
       'phoneNumber': '0300 303 0642',
       'siteId': 'AA01'
     }

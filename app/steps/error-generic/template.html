@@ -1,17 +1,10 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block back %}{% endblock %}
 
-<main id="content" role="main" tabindex="-1">
-  {% include "includes/phase_banner.html" %}
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block two_thirds %}
 
-      <h1 class="heading-large">{{content.title | safe}}</h1>
-      <p class="text"></p>
-    </div>
-  </div>
-
-</main>
+<h1 class="govuk-heading-l">{{content.title | safe}}</h1>
+<p class="govuk-body"></p>
 
 {% endblock %}

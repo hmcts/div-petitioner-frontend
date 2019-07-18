@@ -1,56 +1,56 @@
 {% macro helpConnections(common) %}
-<details>
-    <summary>
-        <span class="summary">{{ common.findOutMore | safe }}</span>
+<details class="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">{{ common.findOutMore | safe }}</span>
     </summary>
-    <div class="panel panel-border-narrow font-small">
-        <h2 class="heading-medium">{{ common.habitualresidenttitle | safe
+    <div class="govuk-details__text govuk-body-s">
+        <h2 class="govuk-heading-m">{{ common.habitualresidenttitle | safe
             }}</h2>
 
-        <p>
+        <p class="govuk-body">
             {{ common.helpText1 | safe }}
         </p>
 
-        <p>
+        <p class="govuk-body">
             {{ common.helpText2 | safe }}
         </p>
 
-        <p>
+        <p class="govuk-body">
             {{ common.helpText3 | safe }}
         </p>
 
-        <h2 class="heading-medium">{{ common.domicilehelptitle | safe }}</h2>
+        <h2 class="govuk-heading-m">{{ common.domicilehelptitle | safe }}</h2>
 
-        <p>{{ common.helpText4 | safe }}</p>
+        <p class="govuk-body">{{ common.helpText4 | safe }}</p>
 
-        <p>{{ common.helpText5 | safe }}</p>
+        <p class="govuk-body">{{ common.helpText5 | safe }}</p>
 
-        <p>{{ common.domicileBulletHeading | safe }}</p>
-        <ul class="list list-bullet">
-            <li class="list list-bullet">{{ common.bullet1 | safe }}</li>
-            <li class="list list-bullet">{{ common.bullet2 | safe }}</li>
+        <p class="govuk-body">{{ common.domicileBulletHeading | safe }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li class="govuk-list govuk-list--bullet">{{ common.bullet1 | safe }}</li>
+            <li class="govuk-list govuk-list--bullet">{{ common.bullet2 | safe }}</li>
         </ul>
-        <p> {{ common.textbelowbullet | safe }}</p>
+        <p class="govuk-body"> {{ common.textbelowbullet | safe }}</p>
 
-        <p> {{ common.textbellowbullet1 | safe }}</p>
+        <p class="govuk-body"> {{ common.textbellowbullet1 | safe }}</p>
 
-        <h2 class="heading-medium">{{ common.residualjurisdiction | safe }}</h2>
+        <h2 class="govuk-heading-m">{{ common.residualjurisdiction | safe }}</h2>
 
-        <p> {{ common.textbelowresidualjurisdiction1 | safe }} </p>
+        <p class="govuk-body"> {{ common.textbelowresidualjurisdiction1 | safe }} </p>
 
-        <p> {{ common.textbelowresidualjurisdiction2 | safe }} </p>
-        <ul class="list list-bullet">
-            <li class="list list-bullet">
+        <p class="govuk-body"> {{ common.textbelowresidualjurisdiction2 | safe }} </p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li class="govuk-list govuk-list--bullet">
                 {{ common.bulletRJ1 | safe }}
             </li>
-            <li class="list list-bullet">
+            <li class="govuk-list govuk-list--bullet">
                 {{ common.bulletRJ2 | safe }}
             </li>
-            <li class="list list-bullet">
+            <li class="govuk-list govuk-list--bullet">
                 {{ common.bulletRJ3 | safe }}
             </li>
         </ul>
-        <p>{{ common.lastparaRJ}}</p>
+        <p class="govuk-body">{{ common.lastparaRJ}}</p>
     </div>
 </details>
 {% endmacro %}

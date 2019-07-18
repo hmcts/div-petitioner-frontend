@@ -3,21 +3,23 @@
 
 {% block form %}
 
-<fieldset class="form-group inline">
-  <legend class="form-label-bold text">{{ content.title | safe }}</legend>
-  {{ errorsFor(fields.mockedOutcome) }}
-  {{ radioButton(
-    value = 'success',
-    label = content.success,
-    name = 'mockedOutcome',
-    field = fields.mockedOutcome
-  ) }}
-  {{ radioButton(
-    value = 'failure',
-    label = content.failure,
-    name = 'mockedOutcome',
-    field = fields.mockedOutcome
-  ) }}
-</fieldset>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset inline">
+    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold text">{{ content.title | safe }}</legend>
+    {{ errorsFor(fields.mockedOutcome) }}
+    {{ radioButton(
+      value = 'success',
+      label = content.success,
+      name = 'mockedOutcome',
+      field = fields.mockedOutcome
+    ) }}
+    {{ radioButton(
+      value = 'failure',
+      label = content.failure,
+      name = 'mockedOutcome',
+      field = fields.mockedOutcome
+    ) }}
+  </fieldset>
+</div>
 
 {% endblock %}

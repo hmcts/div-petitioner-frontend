@@ -1,28 +1,17 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block two_thirds -%}
 
-<main id="content" role="main" tabindex="-1">
-    {% include "includes/phase_banner.html" %}
-    <div class="grid-row">
-        <div class="column-two-thirds">
+<h1 class="govuk-heading-l">Sorry you can't use the online service</h1>
 
-            <h1 class="heading-large">Sorry you can't use the online service</h1>
+<p class="govuk-body">You must have cookies enabled in your web browser to use this service.</p>
 
-            <p class="text">You must have cookies enabled in your web browser to use this service.</p>
+<p class="govuk-body">You can either:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>enable cookies in your web browser (you can do this in the privacy settings of most browsers)</li>
+    <li>apply for a divorce using the <a class="govuk-link" href="http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115" target="_blank">paper D8 form</a></li>
+</ul>
 
-            <p class="text">You can either:</p>
-            <ul class="list list-bullet">
-                <li>enable cookies in your web browser (you can do this in the privacy settings of most browsers)</li>
-                <li>apply for a divorce using the <a href="http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115" target="_blank">paper D8 form</a></li>
-            </ul>
-
-            <a href="/cookie">Find out more about cookies</a>
-        </div>
-    </div>
-
-    {% include "includes/problem_with_this_page.html" %}
-
-</main>
+<a class="govuk-link" href="/cookie">Find out more about cookies</a>
 
 {% endblock %}

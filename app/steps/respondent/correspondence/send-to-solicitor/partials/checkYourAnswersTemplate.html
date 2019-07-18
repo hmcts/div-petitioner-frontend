@@ -1,9 +1,9 @@
 <tr>
   <th>{{ content.question | safe }}</th>
   <td>
-    {% if fields.respondentCorrespondenceSendToSolicitor.value === 'Yes' %}
-      {{ content['solicitor-' + session.divorceWho] | safe }}
-    {% elseif fields.respondentCorrespondenceSendToSolicitor.value === 'No' %}
+    {% if fields.respondentSolicitorRepresented.value === 'Yes' %}
+      {{ content.solicitor | safe }}
+    {% elseif fields.respondentSolicitorRepresented.value === 'No' %}
       {{ content.correspondence }}
     {% endif %}
   </td>

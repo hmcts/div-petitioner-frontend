@@ -1,17 +1,13 @@
-const content = require('app/steps/index/content.json').resources.en.translation.content;
+const content = require('app/steps/screening-questions/has-respondent-address/content').resources.en.translation.content;
 const common = require('app/content/common.json').resources.en.translation;
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
+const parseBool = require('app/core/utils/parseBool');
 
 function startApplication(ignoreIdamToggle = false) {
 
-  let I = this;
-
-  I.seeCurrentUrlEquals('/index');
-  I.see(common.continue);
-  I.navByClick(common.continue);
-
-  if (CONF.features.idam && !ignoreIdamToggle) {
+  if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
+    let I = this;
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
@@ -20,13 +16,13 @@ function startApplication(ignoreIdamToggle = false) {
   }
 }
 
-async function startApplicationWithAnExistingSession() {
+async function startApplicationWith(sessionName) {
 
   let I = this;
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.haveABasicSession();
+  I.haveABasicSession(sessionName);
 }
 
 function* seeCookieBanner() {
@@ -59,11 +55,19 @@ function dontGetShownCookieBannerAgain() {
   I.dontSee(content.cookieLink);
 }
 
+function signOut() {
+  let I = this;
+
+  I.see(common.signOut);
+  I.navByClick(common.signOut);
+}
+
 module.exports = {
   startApplication,
-  startApplicationWithAnExistingSession,
+  startApplicationWith,
   seeCookieBanner,
   seeCookieFooter,
   followCookieBannerLink,
-  dontGetShownCookieBannerAgain
+  dontGetShownCookieBannerAgain,
+  signOut
 };

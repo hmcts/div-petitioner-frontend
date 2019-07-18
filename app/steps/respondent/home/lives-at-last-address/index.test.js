@@ -42,7 +42,7 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['no-wife', 'unknown-wife'];
+      const excludeKeys = ['no', 'unknown'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -76,7 +76,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('modifies session data when the step posts succesfully', () => {
+  describe('modifies session data when the step posts successfully', () => {
     let session = {};
 
     beforeEach(done => {
@@ -171,9 +171,7 @@ describe(modulePath, () => {
       ];
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
       const context = { respondentLivesAtLastAddress: 'Yes' };
-
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,
@@ -183,30 +181,12 @@ describe(modulePath, () => {
     it('renders when respondentLivesAtLastAddress is no and wife', done => {
       const contentToExist = [
         'question',
-        'no-wife'
+        'no'
       ];
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
       const context = { respondentLivesAtLastAddress: 'No' };
-
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
-    });
-
-    it('renders when respondentLivesAtLastAddress is no and husband', done => {
-      const contentToExist = [
-        'question',
-        'no-husband'
-      ];
-
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
-      const context = { respondentLivesAtLastAddress: 'No' };
-
-      const session = { divorceWho: 'husband', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context, session);
@@ -215,30 +195,12 @@ describe(modulePath, () => {
     it('renders when respondentLivesAtLastAddress is unknown and wife', done => {
       const contentToExist = [
         'question',
-        'unknown-wife'
+        'unknown'
       ];
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
       const context = { respondentLivesAtLastAddress: 'Unknown' };
-
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
-    });
-
-    it('renders when respondentLivesAtLastAddress is unknown and husband', done => {
-      const contentToExist = [
-        'question',
-        'unknown-husband'
-      ];
-
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-
-      const context = { respondentLivesAtLastAddress: 'Unknown' };
-
-      const session = { divorceWho: 'husband', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,
         contentToExist, valuesToExist, context, session);

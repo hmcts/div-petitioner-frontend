@@ -8,7 +8,6 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 
 const modulePath = 'app/steps/marriage/names';
-
 const content = require(`${modulePath}/content`);
 
 let s = {};

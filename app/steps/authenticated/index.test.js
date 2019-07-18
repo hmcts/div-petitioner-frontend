@@ -9,6 +9,8 @@ const { expect, sinon } = require('test/util/chai');
 const { withSession } = require('test/util/setup');
 const { mockSession } = require('test/fixtures');
 const { clone } = require('lodash');
+const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
+const initSession = require('app/middleware/initSession');
 
 const modulePath = 'app/steps/authenticated';
 
@@ -34,6 +36,19 @@ describe(modulePath, () => {
     idam.landingPage.restore();
   });
 
+  describe('#middleware', () => {
+    it('includes checkCookiesAllowed in middleware', () => {
+      expect(underTest.middleware
+        .includes(checkCookiesAllowed))
+        .to.eql(true);
+    });
+
+    it('includes initSession in middleware', () => {
+      expect(underTest.middleware
+        .includes(initSession))
+        .to.eql(true);
+    });
+  });
 
   describe('success', () => {
     it('should immediately redirect to the has marriage broken step page', done => {
@@ -67,13 +82,14 @@ describe(modulePath, () => {
         withSession(done, agent, session);
       });
 
-      it('ensure session data is destroyed if expired after user login', done => {
+      it('ensure session data is regenerated if expired after user login', done => {
         expect(session.hasOwnProperty('courts')).to.eql(true);
 
         const testSession = () => {
           getSession(agent)
             .then(newSession => {
               expect(newSession.hasOwnProperty('courts')).to.eql(false);
+              expect(newSession.hasOwnProperty('expires')).to.eql(true);
             })
             .then(done, done);
         };

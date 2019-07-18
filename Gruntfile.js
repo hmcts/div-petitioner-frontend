@@ -22,25 +22,29 @@ module.exports = function(grunt) {
       }
     },
 
-    sync: {
-      assets: {
+    copy: {
+      main: {
         files: [
           {
+            expand: true,
             cwd: 'app/assets/sass',
             src: '**',
             dest: 'tmp/sass/'
           },
           {
+            expand: true,
             cwd: 'app/assets/images',
             src: '**',
             dest: 'tmp/images/'
           },
           {
+            expand: true,
             cwd: 'node_modules/govuk_template_mustache/assets/images',
             src: '**',
             dest: 'tmp/images/'
           },
           {
+            expand: true,
             cwd: 'node_modules/govuk_frontend_toolkit/images',
             src: '**',
             dest: 'tmp/images/'
@@ -72,7 +76,7 @@ module.exports = function(grunt) {
         options: {
           nodeArgs: ['--trace-warnings', '--inspect'],
           ext: 'js, json, yaml',
-          ignore: ['node_modules/**', 'app/assets/**', 'public/**'],
+          ignore: ['node_modules/**', 'app/assets/**', 'public/**', 'functional-output/**', 'coverage/**', 'test/**'],
           args: grunt.option.flags()
         }
       }
@@ -88,7 +92,7 @@ module.exports = function(grunt) {
 
   [
     'grunt-contrib-clean',
-    'grunt-sync',
+    'grunt-contrib-copy',
     'grunt-contrib-watch',
     'grunt-nodemon',
     'grunt-concurrent',
@@ -100,13 +104,13 @@ module.exports = function(grunt) {
   grunt.registerTask('setup-assets', ['webpack:assets']);
 
   grunt.registerTask('setup-prod', [
-    'sync',
+    'copy',
     'webpack:prod',
     'clean'
   ]);
 
-  grunt.registerTask('start-dev', [
-    'sync',
+  grunt.registerTask('dev', [
+    'copy',
     'webpack:dev',
     'clean',
     'concurrent:dev'

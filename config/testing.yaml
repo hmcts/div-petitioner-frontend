@@ -1,3 +1,5 @@
+# This is used in E2E testing
+
 showSitemap: true
 
 http:
@@ -6,3 +8,6 @@ http:
 session:
   expires: 10000 # ms
   ttl: 60 # s
+
+features:
+  idam: false

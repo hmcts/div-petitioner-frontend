@@ -8,13 +8,13 @@ module.exports = class PetitionerContactDetails extends ValidationStep {
     return this.steps.PetitionerHomeAddress;
   }
 
-  validate(ctx, session) {
-    if (session.req && !session.req.body.petitionerConsent) {
-      delete session.petitionerConsent;
-      delete ctx.petitionerConsent;
+  parseRequest(req) {
+    const ctx = super.parseRequest(req);
+
+    if (!ctx.petitionerConsent) {
+      ctx.petitionerConsent = undefined; // eslint-disable-line no-undefined
     }
 
-    const [isValid, errors] = super.validate(ctx, session);
-    return [isValid, errors];
+    return ctx;
   }
 };

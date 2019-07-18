@@ -21,6 +21,7 @@
 @import 'contact-details';
 @import 'reason-for-divorce';
 @import 'dropzone';
+@import 'progress';
 
 // If you need to create a page as part of your journey, but without GOV.UK branding
 // See localhost:3000/examples/unbranded/
@@ -64,6 +65,18 @@
 .link-back {
   margin-bottom: 0;
   margin-top: $gutter;
+}
+
+a.link-sign-out {
+  float: right;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+  
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .heading-large {
@@ -228,6 +241,10 @@ address {
 
 .no-bottom-margin {
   margin-bottom: 0;
+}
+
+.no-padding {
+  padding: 0 !important;
 }
 
 .text-reference-number {

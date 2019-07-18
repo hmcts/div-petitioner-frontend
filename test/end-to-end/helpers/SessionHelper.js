@@ -1,9 +1,16 @@
 const unirest = require('unirest');
 const { assert } = require('chai');
-const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData.js');
+const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData');
+const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession');
+const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
 const Tokens = require('csrf');
 const CONF = require('config');
-const logger = require('log4js').getLogger();
+const logger = require('app/services/logger').logger(__filename);
+const availableSessions = {
+  basicDivorceSessionData,
+  amendPetitionSession,
+  amendPetitionSessionWithConfirmation
+};
 
 class SessionHelper extends codecept_helper {
 
@@ -22,8 +29,8 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          logger.info('### SESSION GET: done');
-          logger.debug('### SESSION GET:', response.body);
+          logger.infoWithReq(null, 'session_get', '### SESSION GET: done');
+          logger.debugWithReq(null, 'session_get', '### SESSION GET:', response.body);
           resolve(response.body);
         });
     });
@@ -51,7 +58,7 @@ class SessionHelper extends codecept_helper {
         .strictSSL(false)
         .proxy(proxyUrl)
         .end((response) => {
-          logger.info(`### SESSION SET: ${response.body}`);
+          logger.infoWithReq(null, 'session_set', `### SESSION SET: ${response.body}`);
           resolve();
         });
     });
@@ -73,9 +80,10 @@ class SessionHelper extends codecept_helper {
   }
 
   updateExpectedSessionWithActualSession(expectedSession, actualSession) {
-    const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:8080') > -1;
+    const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:3000') > -1;
 
     expectedSession.csrfSecret                                  = actualSession.csrfSecret;
+    expectedSession.feeToBePaid                                 = actualSession.feeToBePaid;
     expectedSession.expires                                     = actualSession.expires;
     expectedSession.cookie.domain                               = actualSession.cookie.domain;
     expectedSession.marriageCertificateFiles[0]                 = actualSession.marriageCertificateFiles[0];
@@ -92,13 +100,14 @@ class SessionHelper extends codecept_helper {
     return expectedSession;
   }
 
-  async haveABasicSession() {
+  async haveABasicSession(sessionName) {
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
     const connectSidCookie = await helper.grabCookie('connect.sid');
     const authTokenCookie = await helper.grabCookie('__auth-token');
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);
+    const sessionUpdate = availableSessions[sessionName];
 
-    let basicSession = Object.assign(basicDivorceSessionData, session);
+    let basicSession = Object.assign(sessionUpdate, session);
 
     await this.setTheSession(connectSidCookie, authTokenCookie, basicSession);
   }

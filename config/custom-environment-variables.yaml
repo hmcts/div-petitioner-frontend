@@ -3,7 +3,6 @@ project: PACKAGES_PROJECT
 environment: NODE_ENV
 version: PACKAGES_VERSION
 deployment_env: DEPLOYMENT_ENV
-preview_env: PREVIEW_ENV
 
 service:
   name: SERVICE_NAME
@@ -45,7 +44,6 @@ evidenceManagmentClient:
   uploadEndpoint: EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT
 
 commonProps:
-  divorceFactsRatio: DIVORCE_FACT_RATIO
   court:
     eastMidlands:
       divorceCentre: COURT_EASTMIDLANDS_NAME
@@ -56,8 +54,6 @@ commonProps:
       email: COURT_EASTMIDLANDS_EMAIL
       phoneNumber: COURT_EASTMIDLANDS_PHONENUMBER
       siteId: COURT_EASTMIDLANDS_SITEID
-      weight: COURT_EASTMIDLANDS_WEIGHT
-      divorceFactsRatio: COURT_EASTMIDLANDS_DIVORCE_FACT_RATIO
     westMidlands:
       divorceCentre: COURT_WESTMIDLANDS_NAME
       courtCity: COURT_WESTMIDLANDS_CITY
@@ -67,8 +63,6 @@ commonProps:
       email: COURT_WESTMIDLANDS_EMAIL
       phoneNumber: COURT_WESTMIDLANDS_PHONENUMBER
       siteId: COURT_WESTMIDLANDS_SITEID
-      weight: COURT_WESTMIDLANDS_WEIGHT
-      divorceFactsRatio: COURT_WESTMIDLANDS_DIVORCE_FACT_RATIO
     southWest:
       divorceCentre: COURT_SOUTHWEST_NAME
       courtCity: COURT_SOUTHWEST_CITY
@@ -78,8 +72,6 @@ commonProps:
       email: COURT_SOUTHWEST_EMAIL
       phoneNumber: COURT_SOUTHWEST_PHONENUMBER
       siteId: COURT_SOUTHWEST_SITEID
-      weight: COURT_SOUTHWEST_WEIGHT
-      divorceFactsRatio: COURT_SOUTHWEST_DIVORCE_FACT_RATIO
     northWest:
       divorceCentre: COURT_NORTHWEST_NAME
       divorceCentreAddressName: COURT_NORTHWEST_ADDRESSNAME
@@ -90,8 +82,6 @@ commonProps:
       email: COURT_NORTHWEST_EMAIL
       phoneNumber: COURT_NORTHWEST_PHONENUMBER
       siteId: COURT_NORTHWEST_SITEID
-      weight: COURT_NORTHWEST_WEIGHT
-      divorceFactsRatio: COURT_NORTHWEST_DIVORCE_FACT_RATIO
     serviceCentre:
       serviceCentreName: SERVICE_CENTRE_NAME
       divorceCentre: COURT_SERVICE_CENTRE_NAME
@@ -102,13 +92,6 @@ commonProps:
       email: COURT_SERVICE_CENTRE_EMAIL
       phoneNumber: COURT_SERVICE_CENTRE_PHONENUMBER
       siteId: COURT_SERVICE_CENTRE_SITEID
-      weight: COURT_SERVICE_CENTRE_WEIGHT
-      divorceFactsRatio: 
-        unreasonable-behaviour: SERVICE_CENTRE_DIVORCE_FACT_RATIO_BEHAVIOUR
-        separation-2-years: SERVICE_CENTRE_DIVORCE_FACT_RATIO_2_YEAR_SEPARATION
-        separation-5-years: SERVICE_CENTRE_DIVORCE_FACT_RATIO_5_YEAR_SEPARATION
-        adultery: SERVICE_CENTRE_DIVORCE_FACT_RATIO_ADULTERY
-        desertion: SERVICE_CENTRE_DIVORCE_FACT_RATIO_DESERTION
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
   smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
   courtPhoneNumber: COURT_PHONENUMBER
@@ -138,10 +121,9 @@ http:
 
 features:
   idam: FEATURE_IDAM
-  fullPaymentEventDataSubmission: FEATURE_FULL_PAYMENT_EVENT_DATA_SUBMISSION
-  redirectToApplicationSubmitted: FEATURE_REDIRECT_TO_APPLICATION_SUBMITTED
-  respondentConsent: FEATURE_RESPONDENT_CONSENT
-  redirectOnState: FEATURE_REDIRECT_ON_STATE
+  ignoreSessionValidation: IGNORE_SESSION_VALIDATION
+  browserSupport: BROWSER_GROUP
+  strategicPay: FEATURE_STRATEGIC_PAY
 
 idamArgs:
   idamApiUrl: IDAM_API_URL
@@ -162,6 +144,7 @@ e2e:
   defaultEnvironmentNodeEnv: E2E_FRONTEND_NODE_ENV
   waitForTimeoutValue: E2E_WAIT_FOR_TIMEOUT_VALUE
   waitForActionValue: E2E_WAIT_FOR_ACTION_VALUE
+  runBasicTests: RUN_BASIC_TESTS
 
 testUrl: TEST_URL
 divorceHttpProxy: DIVORCE_HTTP_PROXY

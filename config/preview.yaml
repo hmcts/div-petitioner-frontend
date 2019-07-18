@@ -1,0 +1,13 @@
+# This is used specifically E2E tests running in github pull requests
+
+showSitemap: true
+
+http:
+  port: 3001
+
+session:
+  expires: 10000 # ms
+  ttl: 60 # s
+
+features:
+  idam: true

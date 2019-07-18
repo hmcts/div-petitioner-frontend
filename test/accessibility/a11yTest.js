@@ -3,7 +3,7 @@ const request = require('supertest');
 const a11y = require('test/util/a11y');
 const { expect } = require('test/util/chai');
 const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
-let healthCheckStub = (req, res, next) => { next(); };
+let healthCheckStub = { setup: () => { return; } };
 let csurfStub = () => {
   return (req, res, next) => {
     req.csrfToken = () => { return 'stubToken'; };
@@ -14,7 +14,6 @@ const server = proxyquire('app', { 'app/services/healthcheck': healthCheckStub, 
 const idamMock = require('test/mocks/idam');
 const ValidationStep = require('app/core/steps/ValidationStep');
 
-idamMock.stub();
 let s = server.init();
 let agent = request.agent(s.app);
 let excludeSteps = [
@@ -23,7 +22,6 @@ let excludeSteps = [
   'GovPayStub',
   'Submit'
 ];
-idamMock.restore();
 
 for (let stepKey in s.steps) {
 
@@ -36,12 +34,17 @@ for (let stepKey in s.steps) {
       describe(`GET Requests - Verify accessibility for the page ${step.name}`, () => {
 
         before((done) => {
+          idamMock.stub();
 
           co(function* generator() {
 
             results = yield a11y(agent.get(step.url).url);
 
           }).then(done, done);
+        });
+
+        after(() => {
+          idamMock.restore();
         });
 
         it('should not generate any errors', () => {
@@ -73,12 +76,16 @@ for (let stepKey in s.steps) {
         describe(`POST Requests - Verify accessibility for the page ${step.name}`, () => {
 
           before((done) => {
-
+            idamMock.stub();
             co(function* generator() {
 
               results = yield a11y(agent.get(step.url).url, 'POST');
 
             }).then(done, done);
+          });
+
+          after(() => {
+            idamMock.restore();
           });
 
           it('should not generate any errors', () => {

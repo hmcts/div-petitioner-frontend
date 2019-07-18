@@ -13,8 +13,8 @@ log:
   DEBUG: 1
 
 http:
-  port: 8080
-  healthCheckport: 8080
+  port: 3000
+  healthCheckport: 3000
 
 service:
   name: 'divorce-frontend'
@@ -62,20 +62,18 @@ sessionEncryptionSecret: myVeryTopSecretK
 dateFormat: 'DD/MM/YYYY'
 paymentDateFormat: 'DDMMYYYY'
 
-testUrl: 'https://localhost:8080'
+testUrl: 'https://localhost:3000'
 
 commonProps:
   applicationFee:
     feeCode: 'FEE0002'
     version: 4
     amount: 550.00
+  amendFee:
+    feeCode: 'FEE0269'
+    version: 1
+    amount: 95.00
   financialOrderApplicationFee: 255
-  divorceFactsRatio:
-    unreasonable-behaviour: 0.30
-    separation-2-years: 0.37
-    separation-5-years: 0.21
-    desertion: 0.11
-    adultery: 0.01
   court:
     eastMidlands:
       divorceCentre: 'East Midlands'
@@ -86,8 +84,6 @@ commonProps:
       email: 'simulate-delivered-eastmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
       siteId: '1'
-      weight: 0.15
-      divorceFactsRatio:
     westMidlands:
       divorceCentre: 'West Midlands'
       courtCity: 'City-in-West-Midlands'
@@ -97,8 +93,6 @@ commonProps:
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
       siteId: '2'
-      weight: 0.1
-      divorceFactsRatio:
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -108,8 +102,6 @@ commonProps:
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
       siteId: '3'
-      weight: 0.25
-      divorceFactsRatio:
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'
@@ -120,8 +112,6 @@ commonProps:
       email: 'simulate-delivered-northwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2224'
       siteId: '4'
-      weight: 0.20
-      divorceFactsRatio:
     serviceCentre:
       serviceCentreName: 'Courts and Tribunals Service Centre'
       divorceCentre: 'East Midlands'
@@ -132,13 +122,6 @@ commonProps:
       email: 'simulate-delivered-ctsc@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
       siteId: '5'
-      weight: 0.30
-      divorceFactsRatio:
-        unreasonable-behaviour: 1
-        separation-2-years: 0
-        separation-5-years: 0
-        adultery: 0
-        desertion: 0
   smartSurveyFeedbackUrl: 'http://www.example.com/'
   smartSurveyFeedbackDonePageUrl: 'http://www.example.com/'
   courtPhoneNumber: '0000 111 2220'
@@ -147,16 +130,15 @@ commonProps:
 
 features:
   idam: false
-  fullPaymentEventDataSubmission: true
-  redirectToApplicationSubmitted: false
-  respondentConsent: false
-  redirectOnState: false
+  ignoreSessionValidation: false
+  browserSupport: false
+  strategicPay: false
 
 idamArgs:
-  redirectUri: 'https://localhost:8080/authenticated'
+  redirectUri: 'https://localhost:3000/authenticated'
   indexUrl: '/index'
   idamApiUrl: 'http://localhost:8001'
-  idamLoginUrl: 'https://localhost:8000/login'
+  idamLoginUrl: 'https://localhost:3000/authenticated'
   idamSecret: '123456'
   idamClientID: 'divorce'
 
@@ -182,7 +164,7 @@ ssl:
     sha256s: 'AbCdEf123=,XyzABC123='
 
 google_analytics:
-  eventTrackingUrl: https://localhost:8080/
+  eventTrackingUrl: https://localhost:3000/
 
 rateLimiter:
   total: 3600 # 1 req/s on average per hour
@@ -193,13 +175,14 @@ applicationInsights:
   instrumentationKey: 'dummy-key'
 
 e2e:
-  frontendUrl: 'https://localhost:8080'
+  frontendUrl: 'https://localhost:3000'
   proxyServer: ''
   proxyBypassList: ''
   outputDirectory: './functional-output'
   defaultEnvironmentNodeEnv: 'development'
   waitForTimeoutValue: 10000
   waitForActionValue: 100
+  runBasicTests: false
 
 saucelabs:
   browser: 'chrome'

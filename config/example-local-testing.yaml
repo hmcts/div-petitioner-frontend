@@ -1,0 +1,4 @@
+# make a copy of this as local-testing.yaml  (which should be git ignored) and add any local testing specific stuff
+
+features:
+  idam: false

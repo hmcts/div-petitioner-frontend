@@ -16,30 +16,24 @@ let client = {};
  * @returns {string}
  */
 const service = {
-  submit: (...args) => {
+  submit: (req, ...args) => {
     return client.submit(...args)
       .then(response => {
         return response;
       })
       .catch(error => {
-        logger.error({
-          message: `Error submitting caseId ${args.caseId} to ccd:`,
-          error
-        });
+        logger.errorWithReq(req, 'ccd_submission_error', 'Error submitting case to CCD', args.caseId, error.message);
         throw error;
       });
   },
 
-  update: (...args) => {
+  update: (req, ...args) => {
     return client.update(...args)
       .then(response => {
         return response;
       })
       .catch(error => {
-        logger.error({
-          message: `Error updating ccd with caseId ${args.caseId}:`,
-          error
-        });
+        logger.errorWithReq(req, 'ccd_update_error', 'Error updating case in CCD', args.caseId, error.message);
         throw error;
       });
   }
@@ -57,27 +51,18 @@ const generatePaymentEventData = (session, response) => {
     { external_reference, amount, reference, status, date_created } = response; // eslint-disable-line camelcase
   // Provide status when finished, empty string otherwise.
   const siteId = get(session, `court.${session.courts}.siteId`);
-  let eventData = null;
-
-  if (CONF.features.fullPaymentEventDataSubmission) {
-    eventData = {
-      payment: {
-        PaymentChannel: 'online',
-        PaymentTransactionId: external_reference,
-        PaymentReference: reference,
-        PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
-        PaymentAmount: amount * PENCE_PER_POUND,
-        PaymentStatus: status,
-        PaymentFeeId: CONF.commonProps.applicationFee.feeCode,
-        PaymentSiteId: siteId
-      }
-    };
-  } else {
-    eventData = {
-      payment:
-        { PaymentReference: reference }
-    };
-  }
+  const eventData = {
+    payment: {
+      PaymentChannel: 'online',
+      PaymentTransactionId: external_reference,
+      PaymentReference: reference,
+      PaymentDate: moment(date_created).format(CONF.paymentDateFormat),
+      PaymentAmount: amount * PENCE_PER_POUND,
+      PaymentStatus: status,
+      PaymentFeeId: CONF.commonProps.applicationFee.feeCode,
+      PaymentSiteId: siteId
+    }
+  };
   return eventData;
 };
 

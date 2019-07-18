@@ -7,7 +7,7 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
   }
   get nextStep() {
     return {
-      respondentCorrespondenceSendToSolicitor: {
+      respondentSolicitorRepresented: {
         Yes: this.steps.RespondentSolicitorDetails,
         No: this.steps.RespondentCorrespondenceAddress
       }
@@ -19,7 +19,7 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
 
     watch('respondentAskToUseHomeAddress', (previousSession, session, remove) => {
       if (session.respondentAskToUseHomeAddress === 'true') {
-        remove('respondentCorrespondenceSendToSolicitor');
+        remove('respondentSolicitorRepresented');
       }
     });
   }

@@ -12,16 +12,32 @@ http_proxy = ""
 
 google_analytics_tracking_id = "TBD"
 
-idam_authentication_web_url = "https://idam.preprod.ccidam.reform.hmcts.net"
+idam_authentication_web_url = "https://idam-web-public.aat.platform.hmcts.net"
 
-idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
+idam_api_url = "https://idam-api.aat.platform.hmcts.net"
 
 payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
-
-feature_redirect_to_application_submitted = "false"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 dev_support_notification_email = "divorce-team-a@hmcts.net"
 
-feature_redirect_on_state = "false"
+court_service_centre_divorce_facts_ratio =  {
+  "unreasonable-behaviour" = 1
+  "separation-2-years" = 0
+  "separation-5-years" = 1
+  "adultery" = 0
+  "desertion" = 0
+}
+
+court_southwest_weight = 0.3
+
+court_northwest_weight = 0.3
+
+court_service_centre_weight = 0.51
+
+court_southwest_court_weight = 0.3
+
+court_northwest_court_weight = 0.3
+
+feature_strategic_pay = "true"

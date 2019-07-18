@@ -4,6 +4,8 @@ const featureToggleConfig = require('test/util/featureToggles');
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const parseRequest = require('app/core/helpers/parseRequest');
 const server = require('app');
+const stepsHelper = require('app/core/helpers/steps');
+const co = require('co');
 
 const modulePath = 'app/middleware/draftPetitionStoreMiddleware';
 
@@ -25,7 +27,11 @@ describe(modulePath, () => {
 
   describe('#redirectToCheckYourAnswers', () => {
     beforeEach(() => {
-      res = { redirect: sinon.stub() };
+      res = {
+        redirect: sinon.stub(),
+        locals: { steps: s.steps }
+      };
+      req = {};
       next = sinon.stub();
     });
     it('redirects to check your answers if current page is not check your answers', () => {
@@ -43,12 +49,155 @@ describe(modulePath, () => {
     });
   });
 
+  describe('#redirectToNextUnansweredQuestion', () => {
+    beforeEach(() => {
+      res = {
+        redirect: sinon.stub(),
+        locals: { steps: s.steps }
+      };
+      req = {};
+      next = sinon.stub();
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').resolves(s.steps.WithFees);
+    });
+
+    afterEach(() => {
+      stepsHelper.findNextUnAnsweredStep.restore();
+    });
+
+    it('redirects to next UnAnsweredStep if url does not equal the next UnAnsweredStep', done => {
+      req = { originalUrl: '/not-with-fees-url' };
+
+      co(function* generator() {
+        yield draftPetitionStoreMiddleware
+          .redirectToNextUnansweredQuestion(req, res, next);
+
+        expect(next.called).to.eql(false);
+        expect(res.redirect.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(s.steps.WithFees.url)).to.eql(true);
+      }).then(done, done);
+    });
+
+    it('runs `next()` if page is already UnAnsweredStep', done => {
+      req = { originalUrl: s.steps.WithFees.url };
+
+      co(function* generator() {
+        yield draftPetitionStoreMiddleware
+          .redirectToNextUnansweredQuestion(req, res, next);
+
+        expect(next.called).to.eql(true);
+        expect(res.redirect.calledOnce).to.eql(false);
+      }).then(done, done);
+    });
+  });
+
+  describe('#redirectToNextPage', () => {
+    beforeEach(() => {
+      res = {
+        redirect: sinon.stub(),
+        locals: { steps: s.steps }
+      };
+      req = { query: {} };
+      next = sinon.stub();
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').resolves(s.steps.WithFees);
+    });
+
+    afterEach(() => {
+      stepsHelper.findNextUnAnsweredStep.restore();
+    });
+
+    it('redirects to next UnAnsweredStep if case is an amend case', done => {
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '1234' }
+      };
+
+      co(function* generator() {
+        yield draftPetitionStoreMiddleware
+          .redirectToNextPage(req, res, next);
+
+        expect(next.called).to.eql(false);
+        expect(res.redirect.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(s.steps.WithFees.url)).to.eql(true);
+      }).then(done, done);
+    });
+
+    it('catches error with #redirectToNextUnansweredQuestion and redirects to CYA', done => {
+      stepsHelper.findNextUnAnsweredStep.rejects('Error');
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '1234' }
+      };
+
+      co(function* generator() {
+        yield draftPetitionStoreMiddleware
+          .redirectToNextPage(req, res, next);
+
+        expect(next.called).to.eql(false);
+        expect(res.redirect.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
+      }).then(done, done);
+    });
+
+    it('redirects to next CYA if no query string has toNextUnansweredPage', () => {
+      req = {
+        originalUrl: '/not-cya',
+        session: {}
+      };
+
+      draftPetitionStoreMiddleware.redirectToNextPage(req, res, next);
+      expect(next.called).to.eql(false);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
+    });
+  });
+
+  describe('#saveSessionToDraftStoreAndClose', () => {
+    beforeEach(() => {
+      res = {
+        redirect: sinon.stub(),
+        locals: { steps: s.steps }
+      };
+      req = { query: {} };
+      next = sinon.stub();
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').resolves(s.steps.WithFees);
+      sinon.stub(mockedClient, 'saveToDraftStore').resolves();
+    });
+
+    afterEach(() => {
+      stepsHelper.findNextUnAnsweredStep.restore();
+      mockedClient.saveToDraftStore.restore();
+    });
+
+    it('redirects to next ExitApplicationSaved when user saves and exits', done => {
+      req = {
+        originalUrl: '/not-with-fees-url',
+        session: { previousCaseId: '1234' },
+        method: 'post',
+        body: { saveAndClose: true }
+      };
+
+      draftPetitionStoreMiddleware
+        .saveSessionToDraftStoreAndClose
+        .call(s.steps.ScreeningQuestionsMarriageBroken, req, res, next);
+
+      const doTheTest = () => {
+        expect(res.redirect.calledWith('/exit/application-saved')).to.eql(true);
+        done();
+      };
+
+      setTimeout(doTheTest, 1);
+    });
+  });
+
   describe('#restoreFromDraftStore', () => {
     beforeEach(() => {
-      res = { redirect: sinon.stub() };
+      res = {
+        redirect: sinon.stub(),
+        locals: { steps: s.steps }
+      };
       req = {
         cookies: { '__auth-token': 'auth.token' },
-        session: {}
+        session: { expires: 1 }
       };
       next = sinon.stub();
       sinon.stub(mockedClient, 'restoreFromDraftStore');
@@ -60,7 +209,13 @@ describe(modulePath, () => {
 
     context('session restored', () => {
       it('redirect to check your answers page with new session', done => {
-        mockedClient.restoreFromDraftStore.resolves(mockedClient.mockSession);
+        const mockSession = Object.assign(
+          { expires: 1 },
+          mockedClient.mockSession
+        );
+
+        mockedClient.restoreFromDraftStore.resolves(mockSession);
+
         const test = cleanUp => {
           draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
           // wait for promise to resolve
@@ -68,7 +223,7 @@ describe(modulePath, () => {
             expect(mockedClient.restoreFromDraftStore.called).to.equal(true);
             expect(res.redirect.calledOnce).to.eql(true);
             expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
-            expect(req.session).to.eql(mockedClient.mockSession);
+            expect(req.session).to.eql(mockSession);
             cleanUp();
           }, 1);
         };
@@ -78,14 +233,16 @@ describe(modulePath, () => {
 
       it('restore session with blacklisted element, blacklisted elements are filtered', done => {
         const mockSession = Object.assign({
-          expires: '',
+          expires: 1,
           cookie: '',
           sessionKey: '',
           saveAndResumeUrl: '',
           submissionStarted: 'true',
           csrfSecret: 'csrf'
         }, mockedClient.mockSession);
+
         mockedClient.restoreFromDraftStore.resolves(mockSession);
+
         const test = cleanUp => {
           draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
           // wait for promise to resolve
@@ -93,13 +250,19 @@ describe(modulePath, () => {
             expect(mockedClient.restoreFromDraftStore.called).to.equal(true);
             expect(res.redirect.calledOnce).to.eql(true);
             expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
-            expect(req.session).to.eql(mockedClient.mockSession);
+
+            const sessionShouldMatch = Object.assign(
+              { expires: 1 },
+              mockedClient.mockSession
+            );
+            expect(req.session).to.eql(sessionShouldMatch);
             cleanUp();
           }, 1);
         };
         const featureTest = featureToggleConfig.when('idam', true, test);
         featureTest(done);
       });
+
       it('does not attempt to restore if we have already fetched from Draft store', done => {
         req.session = { screenHasMarriageBroken: true, fetchedDraft: true };
         const test = cleanUp => {
@@ -134,15 +297,20 @@ describe(modulePath, () => {
       req.cookies = { mockRestoreSession: 'true' };
       mockedClient.restoreFromDraftStore.resolves(mockedClient.mockSession);
 
-      draftPetitionStoreMiddleware.restoreFromDraftStore(req, res, next);
-      // wait for promise to resolve
-      setTimeout(() => {
+      co(function* generator() {
+        yield draftPetitionStoreMiddleware
+          .restoreFromDraftStore(req, res, next);
+
         expect(mockedClient.restoreFromDraftStore.called).to.equal(true);
         expect(res.redirect.calledOnce).to.eql(true);
         expect(res.redirect.calledWith(checkYourAnswersUrl)).to.eql(true);
-        expect(req.session).to.eql(mockedClient.mockSession);
-        done();
-      }, 1);
+
+        const sessionShouldMatch = Object.assign(
+          { expires: 1 },
+          mockedClient.mockSession
+        );
+        expect(req.session).to.eql(sessionShouldMatch);
+      }).then(done, done);
     });
 
     it('saveSessionToDraftStoreAndReply() with save only header', async () => {

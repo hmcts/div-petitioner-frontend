@@ -9,7 +9,7 @@ const ivLength = 16;
 // Ensure that blank session data is compatible with express-session.
 const defaultStringifiedJson = JSON.stringify({ cookie: { expires: null } });
 
-const encryptData = (string = defaultStringifiedJson, passwordHash) => {
+const encryptData = (req, string = defaultStringifiedJson, passwordHash) => {
   if (!passwordHash) {
     return { string };
   }
@@ -25,15 +25,12 @@ const encryptData = (string = defaultStringifiedJson, passwordHash) => {
       iv: iv.toString('hex')
     };
   } catch (error) {
-    logger.error({
-      message: 'Error encrypting session for Redis:',
-      error
-    });
+    logger.errorWithReq(req, 'session_encryption_error', 'Error encrypting session for Redis', error.message);
     throw error;
   }
 };
 
-const decryptData = (encryptedData, passwordHash) => {
+const decryptData = (req, encryptedData, passwordHash) => {
   const isValidEncryptedData = encryptedData.hasOwnProperty('iv') && encryptedData.hasOwnProperty('encryptedSession');
 
   if (!passwordHash || !isValidEncryptedData) {
@@ -49,10 +46,7 @@ const decryptData = (encryptedData, passwordHash) => {
 
     return decryptedString;
   } catch (error) {
-    logger.error({
-      message: 'Error decrypting session from Redis:',
-      error
-    });
+    logger.errorWithReq(req, 'session_decryption_error', 'Error decrypting session from Redis', error.message);
     throw error;
   }
 };
@@ -71,12 +65,12 @@ const createSerializer = req => {
   return {
     parse: string => {
       const redisData = JSON.parse(string);
-      const decryptedData = decryptData(redisData, passwordHash);
+      const decryptedData = decryptData(req, redisData, passwordHash);
       return JSON.parse(decryptedData);
     },
     stringify: session => {
       const sessionStringified = JSON.stringify(session);
-      const encryptedData = encryptData(sessionStringified, passwordHash);
+      const encryptedData = encryptData(req, sessionStringified, passwordHash);
       return JSON.stringify(encryptedData);
     }
   };

@@ -4,6 +4,12 @@ const logger = require('app/services/logger').logger(__filename);
 const steps = {};
 
 module.exports = (app, stepDefinitions) => {
+  // attach steps to locals
+  app.use((req, res, next) => {
+    res.locals.steps = steps;
+    next();
+  });
+
   const initStep = curry((modulePathParam, def, k) => {
     const modulePath = modulePathParam ? `${modulePathParam}/${k}` : k;
 
@@ -19,11 +25,7 @@ module.exports = (app, stepDefinitions) => {
         app.use(s.router);
         steps[s.name] = s;
       } catch (error) {
-        logger.error({
-          message: `Failed to initialise step: ${error.message}`,
-          stacktrace: error.stack,
-          section, modulePath
-        });
+        logger.errorWithReq(null, 'init_step_error', 'Failed to initialise step', error.message, section, modulePath);
         throw error;
       }
     } else {

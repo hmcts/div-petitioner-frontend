@@ -32,7 +32,7 @@ describe(modulePath, () => {
 
     co(function* generator() {
       superagentStub.timeout.resolves({
-        body: mockAddresses,
+        body: { results: mockAddresses },
         status: statusCode.OK
       });
       resp = yield client.lookupPostcode(mockPostcode);
@@ -60,7 +60,7 @@ describe(modulePath, () => {
 
       co(function* generator() {
         superagentStub.timeout.resolves({
-          body: mockAddresses,
+          body: { results: mockAddresses },
           status: statusCode.OK
         });
         resp = yield client.lookupPostcode(mockPostcode);
@@ -94,7 +94,10 @@ describe(modulePath, () => {
     let resp = {};
 
     co(function* generator() {
-      superagentStub.timeout.resolves({ status: statusCode.NOT_FOUND });
+      superagentStub.timeout.resolves({
+        status: statusCode.NOT_FOUND,
+        body: {}
+      });
       resp = yield client.lookupPostcode(mockPostcode);
     }).then(() => {
       expect(resp.valid).to.eql(false);

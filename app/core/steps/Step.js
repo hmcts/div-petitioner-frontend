@@ -67,7 +67,6 @@ module.exports = class Step {
     });
   }
 
-
   applyCtxToSession(ctx, session) {
     Object.assign(session, ctx);
     return session;
@@ -88,6 +87,10 @@ module.exports = class Step {
 
   validate(/* ctx, session*/) {
     return [true, []];
+  }
+
+  get isSkippable() {
+    return true;
   }
 
   generateContent(ctx, session, lang = 'en') {
@@ -181,7 +184,7 @@ module.exports = class Step {
   handler(req, res, next = defualtNext) {
     const method = req.method.toLowerCase();
     const throwError = error => {
-      logger.error(error);
+      logger.errorWithReq(req, 'step_handler_error', 'Error during handling step', error.message);
       res.status(statusCodes.INTERNAL_SERVER_ERROR);
       res.redirect('/generic-error');
     };

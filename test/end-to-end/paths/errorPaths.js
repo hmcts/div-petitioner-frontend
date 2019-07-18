@@ -1,6 +1,3 @@
-const CONF = require('config');
-const parseBool = require('app/core/utils/parseBool');
-
 Feature('Invalid Paths Handling').retry(3);
 
 Scenario('Incorrect URLs are served a 404 page', (I) => {
@@ -15,24 +12,10 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
 Scenario('Redirects to cookie error page if start application with no cookies', (I) => {
 
-  const ignoreIdamToggle = true;
-
   I.amOnLoadedPage('/index');
+  I.startApplication();
   I.clearCookie();
-  //  checkCookies middleware runs before idamAuth
-  I.startApplication(ignoreIdamToggle);
+  //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
+  I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
   I.seeCurrentUrlEquals('/cookie-error');
-});
-
-Scenario('Redirects to application submitted page if case already submitted with feature flag', (I) => {
-
-  if (parseBool(CONF.features.redirectToApplicationSubmitted)) {
-    I.startApplicationWithAnExistingSession();
-    I.amOnLoadedPage('/pay/help/need-help');
-    I.selectHelpWithFees(false);
-    I.amOnLoadedPage('/check-your-answers');
-    I.checkMyAnswers();
-    I.amOnPage('/check-your-answers');
-    I.waitInUrl('/application-submitted');
-  }
 });

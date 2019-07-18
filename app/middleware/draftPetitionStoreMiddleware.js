@@ -5,7 +5,8 @@ const mockedClient = require('app/services/mocks/transformationServiceClient');
 const parseRequest = require('app/core/helpers/parseRequest');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
-const statusCode = require('app/core/utils/statusCode');
+const stepsHelper = require('app/core/helpers/steps');
+const co = require('co');
 
 // Properties that should be removed from the session before saving to draft store
 const blacklistedProperties = [
@@ -24,18 +25,45 @@ const options = {
 
 const production = CONF.environment === 'production';
 const client = production ? transformationServiceClient.init(options) : mockedClient;
-
-const checkYourAnswers = '/check-your-answers';
 const authTokenString = '__auth-token';
 
 const redirectToCheckYourAnswers = (req, res, next) => {
-  const isCheckYourAnswers = req.originalUrl === checkYourAnswers;
+  const CheckYourAnswersStep = res.locals.steps.CheckYourAnswers;
 
-  if (isCheckYourAnswers) {
-    next();
-  } else {
-    res.redirect(checkYourAnswers);
+  const alreadyOnCYAStep = req.originalUrl === CheckYourAnswersStep.url;
+  if (alreadyOnCYAStep) {
+    return next();
   }
+
+  return res.redirect(CheckYourAnswersStep.url);
+};
+
+const redirectToNextUnansweredQuestion = function* (req, res, next) {
+  const { steps } = res.locals;
+  const { session } = req;
+  const UnAnsweredStep = yield stepsHelper
+    .findNextUnAnsweredStep(steps.Index, session);
+
+  const alreadyOnCurrentStep = req.originalUrl === UnAnsweredStep.url;
+  if (alreadyOnCurrentStep) {
+    return next();
+  }
+
+  return res.redirect(UnAnsweredStep.url);
+};
+
+const redirectToNextPage = (req, res, next) => {
+  const { session } = req;
+
+  if (session.hasOwnProperty('previousCaseId')) {
+    return co(redirectToNextUnansweredQuestion(req, res, next))
+      .catch(error => {
+        logger.errorWithReq(req, 'redirect_to_next_unanswered_step_error', 'Error finding and redirecting to next step', error.message);
+        return redirectToCheckYourAnswers(req, res, next);
+      });
+  }
+
+  return redirectToCheckYourAnswers(req, res, next);
 };
 
 const removeBlackListedPropertiesFromSession = session => {
@@ -51,6 +79,8 @@ const restoreFromDraftStore = (req, res, next) => {
   let authToken = false;
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
+  } else if (req.query && req.query[authTokenString]) {
+    authToken = req.query[authTokenString];
   }
 
   // test to see if we have already restored draft store
@@ -67,18 +97,21 @@ const restoreFromDraftStore = (req, res, next) => {
 
   // attempt to restore session from draft petition store
   return client.restoreFromDraftStore(authToken, mockResponse)
-    .then(restoredSession => {
-      if (restoredSession && !isEmpty(restoredSession)) {
-        Object.assign(req.session,
-          removeBlackListedPropertiesFromSession(restoredSession));
-        redirectToCheckYourAnswers(req, res, next);
-      } else {
-        next();
+    .then(draftStoreResponse => {
+      if (isEmpty(draftStoreResponse)) {
+        return next();
       }
+
+      Object.assign(
+        req.session,
+        removeBlackListedPropertiesFromSession(draftStoreResponse)
+      );
+
+      return redirectToNextPage(req, res, next);
     })
     .catch(error => {
       if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(error);
+        logger.errorWithReq(req, 'restore_draft_error', 'Error restoring draft', error.message);
       }
       next();
     });
@@ -86,20 +119,19 @@ const restoreFromDraftStore = (req, res, next) => {
 
 const removeFromDraftStore = (req, res, next) => {
   let authToken = false;
+  logger.infoWithReq(req, 'remove_draft_attempt', 'Attempting to remove draft');
   if (req.cookies && req.cookies[authTokenString]) {
     authToken = req.cookies[authTokenString];
   }
 
   return client.removeFromDraftStore(authToken)
     .then(() => {
+      logger.infoWithReq(req, 'remove_draft_done', 'Successfully removed draft');
       next();
     })
     .catch(error => {
-      if (error.statusCode !== httpStatus.NOT_FOUND) {
-        logger.error(error);
-        return res.redirect('/generic-error');
-      }
-      return next();
+      logger.errorWithReq(req, 'remove_draft_error', 'Error removing draft', error.message);
+      return res.redirect('/generic-error');
     });
 };
 
@@ -125,7 +157,7 @@ const saveSessionToDraftStore = (req, res, next) => {
       next();
     })
     .catch(error => {
-      logger.error(error);
+      logger.errorWithReq(req, 'save_draft_error', 'Error saving draft', error.message);
       next();
     });
 };
@@ -141,12 +173,13 @@ const saveSessionToDraftStoreAndReply = function(req, res, next) {
       .saveToDraftStore(authToken, session)
       .then(() => {
         res
-          .status(statusCode.OK)
+          .status(httpStatus.OK)
           .json({ message: 'ok' });
       })
-      .catch(() => {
+      .catch(error => {
+        logger.errorWithReq(req, 'save_draft_and_reply_error', 'Error saving draft and reply', error.message);
         res
-          .status(statusCode.INTERNAL_SERVER_ERROR)
+          .status(httpStatus.INTERNAL_SERVER_ERROR)
           .json({ message: 'Error saving session to draft store' });
       });
   }
@@ -163,25 +196,30 @@ const saveSessionToDraftStoreAndClose = function(req, res, next) {
   const hasSaveAndCloseBody = body && body.saveAndClose;
 
   if (isPost && hasSaveAndCloseBody) {
-    const ctx = this.parseRequest(req); // eslint-disable-line no-invalid-this
-    const session = this.applyCtxToSession(ctx, req.session); // eslint-disable-line no-invalid-this
-    const sessionToSave = removeBlackListedPropertiesFromSession(session);
+    const context = this; // eslint-disable-line no-invalid-this
 
-    // Get user token.
-    let authToken = '';
-    if (req.cookies && req.cookies[authTokenString]) {
-      authToken = req.cookies[authTokenString];
-    }
+    co(function* generator() {
+      let ctx = context.parseRequest(req);
+      ctx = yield context.interceptor(ctx, req.session);
+      const session = context.applyCtxToSession(ctx, req.session);
+      const sessionToSave = removeBlackListedPropertiesFromSession(session);
 
-    const sendEmail = true;
-    client.saveToDraftStore(authToken, sessionToSave, sendEmail)
-      .then(() => {
-        res.redirect(this.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
-      })
-      .catch(error => {
-        logger.error(error);
-        res.redirect('/generic-error');
-      });
+      // Get user token.
+      let authToken = '';
+      if (req.cookies && req.cookies[authTokenString]) {
+        authToken = req.cookies[authTokenString];
+      }
+
+      const sendEmail = true;
+      client.saveToDraftStore(authToken, sessionToSave, sendEmail)
+        .then(() => {
+          res.redirect(context.steps.ExitApplicationSaved.url); // eslint-disable-line no-invalid-this
+        })
+        .catch(error => {
+          logger.errorWithReq(req, 'save_draft_and_close_error', 'Error restoring draft', error.message);
+          res.redirect('/generic-error');
+        });
+    });
   } else {
     next();
   }
@@ -193,5 +231,7 @@ module.exports = {
   redirectToCheckYourAnswers,
   saveSessionToDraftStoreAndClose,
   saveSessionToDraftStore,
-  saveSessionToDraftStoreAndReply
+  saveSessionToDraftStoreAndReply,
+  redirectToNextUnansweredQuestion,
+  redirectToNextPage
 };

@@ -2,7 +2,7 @@
 const request = require('supertest');
 const {
   testContent, testCYATemplate, testExistenceCYA,
-  testErrors, testRedirect
+  testRedirect, testValidation
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const moment = require('moment');
@@ -13,7 +13,8 @@ const modulePath = 'app/steps/marriage/date';
 
 const content = require(`${modulePath}/content`);
 
-const ONE_HUNDRED_YEARS = 100;
+const FIRST = 1;
+const ONE_HUNDRED_ONE_YEARS = 101;
 const TEN_MONTHS = 10;
 
 let s = {};
@@ -46,8 +47,7 @@ describe(modulePath, () => {
 
     it('renders error for missing required context', done => {
       const context = {};
-
-      testErrors(done, agent, stepUnderTest, context, content, 'marriageDate.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDate.required' ]);
     });
 
     it('renders error for missing day', done => {
@@ -57,7 +57,7 @@ describe(modulePath, () => {
         marriageDateYear: '2000'
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'day.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateDay.required' ]);
     });
 
     it('renders error for missing month', done => {
@@ -67,7 +67,7 @@ describe(modulePath, () => {
         marriageDateYear: '2000'
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'month.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateMonth.required' ]);
     });
 
     it('renders error for missing year', done => {
@@ -77,7 +77,7 @@ describe(modulePath, () => {
         marriageDateYear: ''
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'year.required');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateYear.required' ]);
     });
 
     it('renders error for invalid date', done => {
@@ -87,38 +87,38 @@ describe(modulePath, () => {
         marriageDateYear: '2013'
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'marriageDate.invalid');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDate.invalid' ]);
     });
 
     it('renders error for future date', done => {
       const marriageDateInFuture = moment().add(1, 'years');
 
       const context = {
-        marriageDateDay: marriageDateInFuture.date(),
+        marriageDateDay: FIRST,
         marriageDateMonth: marriageDateInFuture.month() + 1,
         marriageDateYear: marriageDateInFuture.year()
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'isFuture.invalid');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateIsFuture.invalid' ]);
     });
 
     it('renders error for "more than 100 years in the past"', done => {
-      const marriageDateOld = moment().subtract(ONE_HUNDRED_YEARS, 'years');
+      const marriageDateOld = moment().subtract(ONE_HUNDRED_ONE_YEARS, 'years');
 
       const context = {
-        marriageDateDay: marriageDateOld.date(),
-        marriageDateMonth: marriageDateOld.month() - 1,
+        marriageDateDay: FIRST,
+        marriageDateMonth: FIRST,
         marriageDateYear: marriageDateOld.year()
       };
 
-      testErrors(done, agent, stepUnderTest, context, content, 'moreThan100.invalid');
+      testValidation(done, agent, stepUnderTest, context, content, [ 'marriageDateMoreThan100.invalid' ]);
     });
 
     it('redirects to the exit page when a date 1 year or less in the past is entered', done => {
       const marriageDate1YearAgo = moment().subtract(TEN_MONTHS, 'months');
 
       const context = {
-        marriageDateDay: marriageDate1YearAgo.date(),
+        marriageDateDay: FIRST,
         marriageDateMonth: marriageDate1YearAgo.format('MM'),
         marriageDateYear: marriageDate1YearAgo.year()
       };

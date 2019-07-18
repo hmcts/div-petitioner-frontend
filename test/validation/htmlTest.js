@@ -11,34 +11,33 @@ let agent = {};
 s = server.init();
 agent = request.agent(s.app);
 
-// Build the map to ingore checks 
-// which do not generate any HTML
+// Build the map to ignore checks which do not generate any HTML
 const keysToIgnore = [
-  'Authenticated', 
-  'CheckYourAnswers',
-  'FinancialArrangements',
-  'Adultery3rdPartyAddress',
-  'Submit',
-  'Start',
-  'Graph',
-  'Adultery3rdPartyDetails',
-  'CardPaymentStatus',
-  'ScreeningQuestionsMarriageBroken',
-  'ScreeningQuestionsMarriageCertificate',
   'AdulteryDetails',
   'AdulteryWhen',
-  'ScreeningQuestionsRespondentAddress',
   'AdulteryWhere',
   'AdulteryWishToName',
+  'Adultery3rdPartyDetails',
+  'Adultery3rdPartyAddress',
+  'Authenticated',
+  'CardPaymentStatus',
+  'CheckYourAnswers',
   'DesertionAgree',
-  'DesertionDetails',
   'DesertionDate',
-  'ReasonForDivorce',
-  'SeparationDate',
-  'UnreasonableBehaviour',
+  'DesertionDetails',
+  'FinancialArrangements',
+  'GovPayStub',
+  'Graph',
   'NeedHelpWithFees',
-  'WithFees',
-  'GovPayStub'
+  'ReasonForDivorce',
+  'ScreeningQuestionsFinancialRemedy',
+  'ScreeningQuestionsMarriageBroken',
+  'ScreeningQuestionsMarriageCertificate',
+  'ScreeningQuestionsRespondentAddress',
+  'SeparationDate',
+  'Submit',
+  'UnreasonableBehaviour',
+  'WithFees'
 ].reduce(function (res, key) {
   res[key] = true;
   return res;
@@ -54,17 +53,11 @@ for (let stepKey in s.steps) {
     let res;
 
     describe(`Validate html for the page ${step.name}`, () => {
-
       before((done) => {
-
         co(function* generator() {
-
           res = yield agent.get(step.url);
-
         }).then(done, done);
       });
-
-
 
       it('should not have any html errors', (done) => {
 
@@ -75,23 +68,16 @@ for (let stepKey in s.steps) {
         }
 
         w3cjs.validate({
-
           input: res.text,
-
           callback: (error, res) => {
-
             //   For debugging, to check if the response returns any HTML
             //   uncomment the next line :
             //   console.log('HTML CODE : ', res.context);
 
             let errors = filter(res.messages, (r) => r.type === 'error');
-
             expect(errors.length).to.equal(0, JSON.stringify(errors, null, 2));
-
             done();
-
           }
-
         });
       });
 
@@ -125,7 +111,6 @@ for (let stepKey in s.steps) {
               }
 
               return true;
-             
             });
 
             expect(filteredWarnings.length).to.equal(0, JSON.stringify(filteredWarnings, null, 2));

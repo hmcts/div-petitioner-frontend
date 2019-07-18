@@ -55,10 +55,10 @@ describe(modulePath, () => {
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
-    it('redirects to the next page', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
-
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+    it('redirects to Second Hand Info page', done => {
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
+      testRedirect(done, agent, underTest, context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -88,14 +88,14 @@ describe(modulePath, () => {
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
       const ignoreContent = ['whatDoYouKnow'];
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.' };
+      const context = { reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.' };
       const ignoreContent = ['whatDoYouKnow'];
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
@@ -103,11 +103,12 @@ describe(modulePath, () => {
 
     it('redirects to the next page', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
-        reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
+        reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(done, agent, underTest, context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -137,14 +138,14 @@ describe(modulePath, () => {
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.' };
+      const context = { reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.' };
       const ignoreContent = ['whatDoYouKnow'];
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryWhereDetails: 'Adultery happend at a place.' };
+      const context = { reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.' };
       const ignoreContent = ['whatDoYouKnow'];
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
@@ -152,11 +153,16 @@ describe(modulePath, () => {
 
     it('redirects to the next page', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
-        reasonForDivorceAdulteryWhereDetails: 'Adultery happend at a place.'
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
+        reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 
@@ -185,25 +191,30 @@ describe(modulePath, () => {
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryWhereDetails: 'Adultery happend at a place.' };
+      const context = { reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.' };
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
     it('renders errors for missing required context', done => {
-      const context = { reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.' };
+      const context = { reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.' };
 
       testErrors(done, agent, underTest, context, content, 'required', ignoreContent);
     });
 
     it('redirects to the next page', done => {
       const context = {
-        reasonForDivorceAdulteryDetails: 'I don\'t want to talk about it really.',
-        reasonForDivorceAdulteryWhereDetails: 'Adultery happend at a place.',
-        reasonForDivorceAdulteryWhenDetails: 'Adultery happend at a point in time.'
+        reasonForDivorceAdulteryDetails: 'I don’t want to talk about it really.',
+        reasonForDivorceAdulteryWhereDetails: 'Adultery happened at a place.',
+        reasonForDivorceAdulteryWhenDetails: 'Adultery happened at a point in time.'
       };
 
-      testRedirect(done, agent, underTest, context, s.steps.LegalProceedings);
+      testRedirect(
+        done,
+        agent,
+        underTest,
+        context,
+        s.steps.AdulterySecondHandInfo);
     });
   });
 

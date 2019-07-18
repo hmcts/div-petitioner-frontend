@@ -1,0 +1,45 @@
+{
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "sepQues": "Have you lived apart for the entire time since you separated?",
+                    "desQues": "Have you lived apart from your {{ divorceWho }} for the entire time since they deserted you?",
+                    "info1": "You can both live in the same property and be considered by the court to be living apart, as long as you're living separate lives. For example, you don’t eat, sleep, or socialise together.",
+                    "info2": "You can contact the court if you’re not sure if this applies to you.",
+                    "yes": "Yes",
+                    "no": "No",
+                    "question": {
+                        "text": "Have you lived together for more than ",
+                        "6months": "6 months",
+                        "weeks": "weeks",
+                        "week": "week",
+                        "and": "and",
+                        "day": "day",
+                        "days": "days",
+                        "since": "since",
+                        "exactDate": "is the date exactly",
+                        "mark": "?",
+                        "yearsAndMonths": "years and 6 months in the past. If you have lived together for more than 6 months (over one or more periods) since that date, then you can't use this reason for divorce at this time.",
+                        "livedMore":"If you have lived together for more than ",
+                        "needNotToUse": "you won’t have been separated for long enough to use the {{ sepYears }} years separation reason for divorce at this time."
+                    },
+                    "howThisAffects": "How this affects your separation period",
+                    "mustSpentYr": "You must have spent the past {{ sepYears }} years living apart to use this reason for divorce.",
+                    "onlyUpTo6Months": "You are allowed to have spent some time living together, but only for up to 6 months (over one or more periods) and this time doesn’t count towards the {{ sepYears }} year period. You’ll need to have lived apart for longer to make up any time that you spent living together.",
+                    "ifMoreThan6Months": "If you lived together for more than 6 months since {{ referenceDate }}, then you can't satisfy the rules to use this reason for divorce. You will therefore need to use a different reason, or wait until you have been separated for long enough.",
+                    "ifLessThan6Months": "There are {{ livingTogetherDays }} days between your separation date ({{ mostRecentSeparationDate }}) and the date exactly {{ sepYears }} years in the past. If you lived together for more than this, then you can't satisfy the rules to use this reason for divorce and will need to use a different reason, or wait until you have been separated for long enough."
+                },
+                "errors": {
+                    "livedApartEntireTime": {
+                        "required": "Select yes if you lived apart for the entire time since you separated?"
+                    },
+                    "livedTogetherMoreTimeThanPermitted": {
+                        "required": "Select yes if you lived together for more than 6 months since {{ referenceDate }}?"
+                    }
+                }
+            }
+        }
+    }
+}

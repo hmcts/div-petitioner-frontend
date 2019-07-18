@@ -48,6 +48,7 @@ describe(modulePath, () => {
         session);
     });
   });
+
   describe('Confidential Contact Details selected', () => {
     let session = {};
 
@@ -56,9 +57,9 @@ describe(modulePath, () => {
       session.petitionerContactDetailsConfidential = 'private';
       withSession(done, agent, session);
     });
-    it('should show confidential message', done => {
+    it('should show contactDetailsNotShare', done => {
       testExistence(done, agent, underTest,
-        content.resources.en.translation.content.confidentialContactDetails,
+        content.resources.en.translation.content.contactDetailsNotShare,
         session);
     });
     it('should show email address', done => {
@@ -69,8 +70,16 @@ describe(modulePath, () => {
   });
 
   describe('content', () => {
-    it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content);
+    let session = {};
+
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.petitionerContactDetailsConfidential = 'share';
+      withSession(done, agent, session);
+    });
+    it('renders the content from the content file ignore contactDetailsNotShare', done => {
+      const ignoredContent = ['contactDetailsNotShare'];
+      testContent(done, agent, underTest, content, session, ignoredContent);
     });
   });
 
@@ -78,7 +87,6 @@ describe(modulePath, () => {
     it('renders errors for missing required context', done => {
       testErrors(done, agent, underTest, {}, content, 'required');
     });
-
 
     it('renders errors for invalid phone', done => {
       const context = {
@@ -122,7 +130,7 @@ describe(modulePath, () => {
   describe('Check Your Answers', () => {
     it('renders the cya template', done => {
       const dataPhoneNumber = { petitionerPhoneNumber: '0123456789' };
-      const session = { petitionerEmail: 'test@test.com' };
+      const session = { petitionerEmail: 'simulate-delivered@notifications.service.gov.uk' };
       testCYATemplate(done, underTest, dataPhoneNumber, session);
     });
 

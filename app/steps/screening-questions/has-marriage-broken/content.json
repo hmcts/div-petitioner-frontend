@@ -9,7 +9,9 @@
                     "line1": "You can only get a divorce on the ground that your marriage has broken down irretrievably.",
                     "yes": "Yes",
                     "no": "No",
-                    "marriageBrokenDownNo": "The only legal ground for divorce in England and Wales is that your marriage has broken down irretrievably."
+                    "marriageBrokenDownNo": "The only legal ground for divorce in England and Wales is that your marriage has broken down irretrievably.",
+                    "cookie": "This service uses cookies to make the site simpler.",
+                    "cookieLink": "Find out more about cookies"
                 },
 
                 "errors": {

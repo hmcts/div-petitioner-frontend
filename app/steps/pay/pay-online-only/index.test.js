@@ -24,14 +24,10 @@ let agent = {};
 let underTest = {};
 const two = 2;
 let cookies = [];
-const code = CONF.commonProps.applicationFee.feeCode;
-const version = CONF.commonProps.applicationFee.version;
-const amount = parseInt(
-  CONF.commonProps.applicationFee.amount
-);
+
 const userDetails = {
   id: 1,
-  email: 'email@email.com'
+  email: 'simulate-delivered@notifications.service.gov.uk'
 };
 const idamUserDetailsMiddlewareMock = (req, res, next) => {
   req.idam = { userDetails };
@@ -64,9 +60,26 @@ describe(modulePath, () => {
     });
   });
 
-  describe('success', () => {
+
+  describe('New Application', () => {
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content);
+      const dataContent = { feeToBePaid: '550' };
+      testContent(done, agent, underTest, content, dataContent);
+    });
+  });
+
+  describe('Amended Case', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = { previousCaseId: 'old-case-id' };
+
+      withSession(done, agent, session);
+    });
+
+    it('renders the content from the content file', done => {
+      const dataContent = { feeToBePaid: '95' };
+      testContent(done, agent, underTest, content, dataContent);
     });
   });
 
@@ -131,8 +144,82 @@ describe(modulePath, () => {
       });
     });
 
-    context('success', () => {
+
+    context('Success - Amend Petition', () => {
+      let session = {};
+
+      const code = CONF.commonProps.amendFee.feeCode;
+      const version = CONF.commonProps.amendFee.version;
+      const amount = parseInt(
+        CONF.commonProps.amendFee.amount
+      );
+
+      beforeEach(done => {
+        session = {
+          caseId: 'some-case-id',
+          courts: 'eastMidlands',
+          previousCaseId: 'old-case-id'
+        };
+
+        withSession(done, agent, session);
+      });
+
+      it('gets a service token before calling the payment service', done => {
+        // Act.
+        testCustom(done, agent, underTest, cookies, () => {
+          // Assert.
+          expect(getToken.calledBefore(create)).to.equal(true);
+        }, 'post');
+      });
+
+      it('sets the returnUrl and serviceCallbackUrl dynamically when feature flag is true', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', true, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
+        // Act.
+        featureTest(done);
+      });
+
+      it('sets the returnUrl dynamically when feature flag is false', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', false, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = '';
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
+        // Act.
+        featureTest(done);
+      });
+    });
+
+
+    context('Success - New Application', () => {
       let session = {}, siteId = '';
+
+      const code = CONF.commonProps.applicationFee.feeCode;
+      const version = CONF.commonProps.applicationFee.version;
+      const amount = parseInt(
+        CONF.commonProps.applicationFee.amount
+      );
 
       beforeEach(done => {
         siteId = '1';
@@ -152,19 +239,42 @@ describe(modulePath, () => {
         }, 'post');
       });
 
-      it('sets the returnUrl dynamically', done => {
+      it('sets the returnUrl and serviceCallbackUrl dynamically when feature flag is true', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', true, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
         // Act.
-        testCustom(done, agent, underTest, cookies, response => {
-          // Assert.
-          const returnUrl = response.request.protocol.concat(
-            '//', response.request.host, '/pay/card-payment-status'
-          );
-          expect(create.calledWith(
-            {}, 'token', 'some-case-id', '1', code, version, amount,
-            'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
-            returnUrl
-          )).to.equal(true);
-        }, 'post');
+        featureTest(done);
+      });
+
+      it('sets the returnUrl dynamically when feature flag is false', done => {
+        const featureTest = featureToggleConfig
+          .when('strategicPay', false, testCustom, agent, underTest, cookies, response => {
+            // Assert.
+            const returnUrl = response.request.protocol.concat(
+              '//', response.request.host, '/pay/card-payment-status'
+            );
+            const serviceCallbackUrl = '';
+            expect(create.calledWith(
+              sinon.match.any, {}, 'token', 'some-case-id', '1', code, version, amount,
+              'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
+              returnUrl, serviceCallbackUrl
+            )).to.equal(true);
+          }, 'post');
+
+        // Act.
+        featureTest(done);
       });
 
       context('Court is selected', () => {
@@ -175,7 +285,7 @@ describe(modulePath, () => {
             expect(code).to.not.eql(null);
             expect(version).to.not.eql(null);
             expect(amount).to.not.eql(null);
-            expect(create.calledWith({}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
+            expect(create.calledWith(sinon.match.any, {}, 'token', session.caseId, siteId, code, version, amount)).to.equal(true);
           }, 'post');
         });
       });
@@ -187,7 +297,7 @@ describe(modulePath, () => {
             .when('idam', true, testCustom, agent, underTest, cookies, () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
-              expect(create.args[0][0]).to.eql({ id: 1, bearerToken: 'auth.token' });
+              expect(create.args[0][1]).to.eql({ id: 1, bearerToken: 'auth.token' });
             }, 'post');
           featureTest(done);
         });
@@ -200,7 +310,7 @@ describe(modulePath, () => {
             .when('idam', false, testCustom, agent, underTest, [], () => {
               // Assert.
               expect(create.calledOnce).to.equal(true);
-              expect(create.args[0][0]).to.eql({});
+              expect(create.args[0][1]).to.eql({});
             }, 'post');
           featureTest(done);
         });

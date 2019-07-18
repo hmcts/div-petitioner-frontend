@@ -1,18 +1,6 @@
 {%- extends "layout.html" -%}
 {%- from "common/errors.html" import errorsFor -%}
 
-{%- block page_title -%}
-{{ common.serviceName }} - GOV.UK
-{%- endblock -%}
-
-{%- block proposition_header -%}
-<!-- blank to remove the proposition header -->
-{%- endblock -%}
-
-{%- block header_class -%}
-<!-- blank to remove the proposition header -->
-{%- endblock -%}
-
 {%- block content -%}
 
 <main id="content" role="main" tabindex="-1" class="check-your-answers">
@@ -50,7 +38,7 @@
         {%- if content[group] != '' -%}
           <h2 class="heading-medium">{{ content[group] | safe }}</h2>
         {%- endif -%}
-      <table>
+      <table class="listing">
           <colgroup>
              <col span="1" style="width: 45%;">
              <col span="1" style="width: 40%;">

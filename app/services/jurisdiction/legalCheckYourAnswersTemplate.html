@@ -3,7 +3,9 @@
   <td>
     <ul class="list list-bullet" id="jurisdiction-connections">
       {%- for connectionType, connectionText in session.connections -%}
-        <li>{{content['connection' + connectionType] | safe}}</li>
+        {%- if connectionText -%}
+          <li>{{content['connection' + connectionType] | safe}}</li>
+        {%- endif -%}
       {%- endfor -%}
     </ul>
     <details>
@@ -13,7 +15,9 @@
       <div>
         <ul class="list list-bullet" id="jurisdiction-legal-connections">
           {%- for connectionType, connectionText in session.connections -%}
-            <li>{{content['legal' + connectionType] | safe}}</li>
+            {%- if connectionText -%}
+              <li>{{content['legal' + connectionType] | safe}}</li>
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>

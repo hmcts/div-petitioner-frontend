@@ -1,5 +1,5 @@
 const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
-const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ applicationFee.amount }}</strong>', '£550');
+const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', '£550');
 
 Feature('Payment method').retry(3);
 
@@ -13,7 +13,7 @@ Scenario('Fee displays on /pay/help/need-help page', function (I) {
 });
 
 Scenario('Card payment online', function* (I) {
-  I.startApplicationWithAnExistingSession();
+  I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
   I.amOnLoadedPage('/check-your-answers');
@@ -27,7 +27,7 @@ Scenario('Card payment online', function* (I) {
 
 
 Scenario('Card payment online failure', function* (I) {
-  I.startApplicationWithAnExistingSession();
+  I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
   I.amOnLoadedPage('/check-your-answers');
@@ -46,7 +46,7 @@ Scenario('Card payment online failure', function* (I) {
 });
 
 Scenario('Card payment online cancellation with retry', function* (I) {
-  I.startApplicationWithAnExistingSession();
+  I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
   I.amOnLoadedPage('/check-your-answers');

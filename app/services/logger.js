@@ -1,56 +1,27 @@
 const logging = require('@hmcts/nodejs-logging');
-const idam = require('app/services/idam');
+const { get } = require('lodash');
 
-const idamUserIdFromReq = args => {
-  let idamUserId = 'unknown';
-  args.forEach(arg => {
-    if (typeof arg === 'object' && arg.hasOwnProperty('idam')) {
-      const uid = idam.userId(arg);
-      if (uid) {
-        idamUserId = uid;
-      }
-    }
-  });
-  return idamUserId;
-};
-
-const addUserIdToMessage = args => {
-  const idamUserId = idamUserIdFromReq(args);
-  const idamUserIdString = `IDAM UID:${idamUserId}`;
-
-  if (typeof args[0] === 'object' && args[0].hasOwnProperty('message')) {
-    args[0].message = `${idamUserIdString} - ${args[0].message}`;
-  } else {
-    args[0] = `${idamUserIdString} - ${args[0]}`;
-  }
-
-  // remove the request object
-  const argsWithoutReqObject = args.filter(arg => {
-    return arg && !arg.hasOwnProperty('method');
-  });
-
-  return argsWithoutReqObject;
+const getIdamId = req => {
+  const idamId = get(req, 'idam.userDetails.id', 'unknown');
+  const caseId = get(req, 'session.caseId', 'unknown');
+  return `IDAM ID: ${idamId}, CASE ID: ${caseId}`;
 };
 
 const logger = name => {
   const loggerInstance = logging.Logger.getLogger(name);
 
   return {
-    log: (...args) => {
-      const newArgs = addUserIdToMessage(args);
-      loggerInstance.log(...newArgs);
+    infoWithReq: (req, tag, message, ...args) => {
+      loggerInstance.info(getIdamId(req), tag, message, ...args);
     },
-    info: (...args) => {
-      const newArgs = addUserIdToMessage(args);
-      loggerInstance.info(...newArgs);
+    warnWithReq: (req, tag, message, ...args) => {
+      loggerInstance.warn(getIdamId(req), tag, message, ...args);
     },
-    warn: (...args) => {
-      const newArgs = addUserIdToMessage(args);
-      loggerInstance.warn(...newArgs);
+    errorWithReq: (req, tag, message, ...args) => {
+      loggerInstance.error(getIdamId(req), tag, message, ...args);
     },
-    error: (...args) => {
-      const newArgs = addUserIdToMessage(args);
-      loggerInstance.error(...newArgs);
+    debugWithReq: (req, tag, message, ...args) => {
+      loggerInstance.debug(getIdamId(req), tag, message, ...args);
     }
   };
 };
@@ -59,16 +30,12 @@ const accessLogger = () => {
   return logging.Express.accessLogger({
     formatter: (req, res) => {
       const url = req.originalUrl || req.url;
-      const message = `"${req.method} ${url} HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${res.statusCode}`;
-      const args = addUserIdToMessage([message, req]);
-      return args[0];
+      return `${getIdamId(req)} - "${req.method} ${url} HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${res.statusCode}`;
     }
   });
 };
 
 module.exports = {
   logger,
-  accessLogger,
-  idamUserIdFromReq,
-  addUserIdToMessage
+  accessLogger
 };

@@ -7,7 +7,6 @@ const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeoutValue);
 const smartWait = parseInt(CONF.saucelabs.smartWait);
 const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;
-
 const getBrowserConfig = (browserGroup) => {
   const browserConfig = [];
   for (const candidateBrowser in supportedBrowsers[browserGroup]) {
@@ -36,8 +35,9 @@ const setupConfig = {
       waitForTimeout,
       smartWait,
       cssSelectorsEnabled: 'true',
-      host: 'ondemand.saucelabs.com',
+      host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
+      region: 'eu',
       user: process.env.SAUCE_USERNAME || CONF.saucelabs.username,
       key: process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key,
       desiredCapabilities: {}
@@ -70,8 +70,11 @@ const setupConfig = {
     }
   },
   multiple: {
-    microsoft: {
-      browsers: getBrowserConfig('microsoft')
+    microsoftIE11: {
+      browsers: getBrowserConfig('microsoftIE11')
+    },
+    microsoftEdge: {
+      browsers: getBrowserConfig('microsoftEdge')
     },
     chrome: {
       browsers: getBrowserConfig('chrome')
@@ -83,7 +86,7 @@ const setupConfig = {
       browsers: getBrowserConfig('safari')
     }
   },
-  name: 'Frontend Tests'
+  name: 'PFE Frontend Tests'
 };
 
 exports.config = setupConfig;

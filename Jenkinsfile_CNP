@@ -6,10 +6,10 @@ String product = "div"
 String component = "pfe"
 
 List<LinkedHashMap<String, Object>> secrets = [
-  secret('session-secret', 'SESSION_SECRET'),
+  secret('session-secret', 'SECRET'),
   secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
   secret('idam-secret', 'IDAM_SECRET'),
-  secret('post-code-token', 'POST_CODE_ACCESS_TOKEN'),
+  secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
   secret('frontend-secret', 'MICROSERVICE_KEY')
 ]
 
@@ -24,11 +24,15 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 
 withPipeline("nodejs", product, component) {
-  if (env.CHANGE_TITLE && !env.CHANGE_TITLE.startsWith('[PREVIEW]')) {
-    enableDockerBuild()
-    enableDeployToAKS()
-    loadVaultSecrets(secrets)
-    setVaultName('div')
+  if (env.CHANGE_TITLE) {
+    if(env.CHANGE_TITLE.startsWith('[PREVIEW]')) {
+      env.RUN_BASIC_TESTS = "true"
+    } else {
+      enableDockerBuild()
+      installCharts()
+      loadVaultSecrets(secrets)
+      setVaultName('div')
+    }
   }
 
   after('build') {
@@ -54,9 +58,10 @@ withPipeline("nodejs", product, component) {
 
   before('functionalTest:preview') {
     env.FEATURE_IDAM = 'true'
-    env.IDAM_API_URL = 'https://preprod-idamapi.reform.hmcts.net:3511'
+    env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
     env.CASE_ORCHESTRATION_SERVICE_DRAFT_URL = 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
-    env.PREVIEW_ENV = 'true'
+    //This is to force the loading of preview.yaml instead of testing.yaml in PRs
+    env.NODE_CONFIG_ENV = 'preview'
   }
 
   after('functionalTest:preview') {
@@ -64,5 +69,7 @@ withPipeline("nodejs", product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
 
-  enableSlackNotifications('#div-dev')
+  onMaster {
+    enableSlackNotifications('#div-dev')
+  }
 }

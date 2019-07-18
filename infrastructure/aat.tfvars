@@ -6,24 +6,22 @@ packages_environment = "preprod"
 
 packages_version = "3.0.0"
 
-additional_host_name = "divorce.nonprod.platform.hmcts.net"
+additional_host_name = "apply-divorce.aat.platform.hmcts.net"
 
 http_proxy = ""
 
 google_analytics_tracking_id = "TBD"
 
-idam_authentication_web_url = "https://idam.preprod.ccidam.reform.hmcts.net"
+idam_authentication_web_url = "https://idam-web-public.aat.platform.hmcts.net"
 
-idam_api_url = "https://preprod-idamapi.reform.hmcts.net:3511"
+idam_api_url = "https://idam-api.aat.platform.hmcts.net"
 
 payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 capacity = "2"
 
-feature_redirect_to_application_submitted = "false"
+instance_size = "I3"
 
-feature_respondent_consent = "true"
-
-feature_redirect_on_state = "false"
+feature_strategic_pay = "true"

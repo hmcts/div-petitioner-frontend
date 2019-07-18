@@ -18,18 +18,8 @@ idam_api_url = "https://idam-api.platform.hmcts.net"
 
 payment_service_url = "https://payment.platform.hmcts.net"
 
-post_code_url = "https://postcodeinfo.service.justice.gov.uk"
+post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
-decree_nisi_frontend_url = "https://dn.apply-divorce.service.gov.uk"
+decree_nisi_frontend_url = "https://www.decree-nisi.apply-divorce.service.gov.uk"
 
 capacity = "2"
-
-feature_redirect_on_state = "false"
-
-court_service_centre_divorce_facts_ratio = {
-  "unreasonable-behaviour" = 0
-  "separation-2-years" = 0
-  "separation-5-years" = 0
-  "adultery" = 0
-  "desertion" = 0
-}

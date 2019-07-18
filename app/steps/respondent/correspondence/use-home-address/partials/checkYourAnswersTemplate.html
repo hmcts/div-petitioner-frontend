@@ -1,9 +1,6 @@
 <tr>
   <th>
     {{ content.question | safe }}
-    {% if fields.respondentCorrespondenceDisplayAddress.value %}
-      <span class="address">{{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}</span>
-    {% endif %}
   </th>
   <td>
     {% if fields.respondentCorrespondenceUseHomeAddress.value === 'Yes' %}
@@ -11,7 +8,10 @@
     {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'No' %}
       {{ content.no | safe }}
     {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'Solicitor' %}
-      {{ content['solicitor-' + session.divorceWho] | safe }}
+      {{ content.solicitor | safe }}
+    {% endif %}
+    {% if fields.respondentCorrespondenceDisplayAddress.value %}
+      <span class="address">{{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}</span>
     {% endif %}
   </td>
   <td><a class="link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>

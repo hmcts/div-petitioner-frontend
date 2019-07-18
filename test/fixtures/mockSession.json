@@ -30,11 +30,11 @@
   "petitionerContactDetailsConfidential": "share",
   "petitionerHomeAddress": {
     "address": [
-      "80 Landor Road",
-      "London",
+      "80, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -42,11 +42,11 @@
   "petitionerCorrespondenceUseHomeAddress": "Yes",
   "petitionerCorrespondenceAddress": {
     "address": [
-      "82 Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -55,39 +55,36 @@
   "respondentLastName": "William",
   "respondentHomeAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
   },
   "respondentCorrespondenceAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
   },
   "respondentSolicitorName": "solicitor's name",
   "respondentSolicitorCompany": "solicitor's Company/Organisat",
-  "respondentCorrespondenceSendToSolicitor": "Yes",
+  "respondentSolicitorRepresented": "Yes",
   "respondentSolicitorAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "SW9 9PE"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -99,12 +96,11 @@
   "livingArrangementsLiveTogether": "Yes",
   "livingArrangementsLastLivedTogetherAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "W6 0AT"
     ],
-    "postcode": "W6 0AT",
+    "postcode": "SW9 9PE",
     "addressConfirmed": "true",
     "addressType": "postcode",
     "postcodeError": "false"
@@ -131,6 +127,10 @@
   "reasonForDivorceSeperationMonth": 10,
   "reasonForDivorceSeperationYear": 2010,
   "reasonForDivorceSeperationDate": "2014-02-11T00:00:00.000Z",
+  "reasonForDivorceDecisionDate": "2013-08-20T00:00:00.000Z",
+  "reasonForDivorceLivingApartDate": "2013-09-20T00:00:00.000Z",
+  "livedApartEntireTime": "No",
+  "livedTogetherMoreTimeThanPermitted": "No",
   "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": false,
   "reasonForDivorceAdultery3rdPartyFirstName": "John",
   "reasonForDivorceAdultery3rdPartyLastName": "Smith",
@@ -143,9 +143,8 @@
   "reasonForDivorceAdulteryIsNamed": "Yes",
   "reasonForDivorceAdultery3rdAddress": {
     "address": [
-      "82",
-      "Landor Road",
-      "London",
+      "82, LANDOR ROAD",
+      "LONDON",
       "W6 0AT"
     ],
     "postcode": "W6 0AT",
@@ -153,6 +152,8 @@
     "addressType": "postcode",
     "postcodeError": "false"
   },
+  "reasonForDivorceAdulterySecondHandInfo": "Yes",
+  "reasonForDivorceAdulterySecondHandInfoDetails": "Brenda from the chippy told me about it.",
   "financialOrder": "Yes",
   "financialOrderFor": [
     "petitioner",

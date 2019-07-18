@@ -7,12 +7,11 @@
                 "content": {
                     "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
                     "correspondence": "To a different address",
-                    "solicitor-wife": "To her solicitor's address",
-                    "solicitor-husband": "To his solicitor's address"
+                    "solicitor": "To their solicitor"
                 },
 
                 "errors": {
-                    "respondentCorrespondenceSendToSolicitor": {
+                    "respondentSolicitorRepresented": {
                         "required": "Select where your {{ divorceWho }}'s divorce papers should be sent"
                     }
                 }

@@ -13,6 +13,10 @@ module.exports = class DeleteApplication extends ValidationStep {
     };
   }
 
+  * getNextStep(ctx, session) {
+    return super.next(ctx, session).url;
+  }
+
   next(ctx, session) {
     const tmpCtx = { deleteApplication: ctx.deleteApplication };
 
@@ -26,5 +30,10 @@ module.exports = class DeleteApplication extends ValidationStep {
   // disable check your answers
   get checkYourAnswersTemplate() {
     return false;
+  }
+
+  // don't call default save draft middleware
+  get postMiddleware() {
+    return [];
   }
 };

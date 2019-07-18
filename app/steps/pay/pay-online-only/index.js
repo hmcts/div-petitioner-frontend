@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const Step = require('app/core/steps/Step');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const serviceTokenService = require('app/services/serviceToken');
@@ -15,6 +16,16 @@ const idam = require('app/services/idam');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
+const parseBool = require('app/core/utils/parseBool');
+
+const feeConfigPropNames = {
+  applicationFee: 'applicationFee',
+  amendFee: 'amendFee'
+};
+
+const feeType = req => {
+  return req.session.previousCaseId ? feeConfigPropNames.amendFee : feeConfigPropNames.applicationFee;
+};
 
 module.exports = class PayOnline extends Step {
   get url() {
@@ -34,8 +45,16 @@ module.exports = class PayOnline extends Step {
       restoreFromDraftStore,
       setIdamUserDetails,
       applicationFeeMiddleware.updateApplicationFeeMiddleware,
+      applicationFeeMiddleware.updateAmendFeeMiddleware,
       saveSessionToDraftStoreAndClose
     ];
+  }
+
+  interceptor(ctx, session) {
+    if (!session.feeToBePaid) {
+      ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : CONF.commonProps.applicationFee.amount;
+    }
+    return ctx;
   }
 
   handler(req, res, next) {
@@ -60,12 +79,12 @@ module.exports = class PayOnline extends Step {
     let authToken = '';
     let user = {};
 
-    if (CONF.features.idam) {
+    if (parseBool(CONF.features.idam)) {
       authToken = cookies['__auth-token'];
 
       const idamUserId = idam.userId(req);
       if (!idamUserId) {
-        logger.error('User does not have any idam userDetails', req);
+        logger.errorWithReq(req, 'user_details_missing', 'User does not have any idam userDetails');
         return res.redirect('/generic-error');
       }
 
@@ -77,12 +96,13 @@ module.exports = class PayOnline extends Step {
 
     // Fee properties below are hardcoded and obtained from config.
     // Eventually these values will be obtained from the fees-register.
-    const feeCode = CONF.commonProps.applicationFee.feeCode;
-    const feeVersion = CONF.commonProps.applicationFee.version;
+
+    const feeCode = CONF.commonProps[feeType(req)].feeCode;
+    const feeVersion = CONF.commonProps[feeType(req)].version;
     const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
     // Amount is specified in pound sterling.
     const amount = parseInt(
-      CONF.commonProps.applicationFee.amount
+      CONF.commonProps[feeType(req)].amount
     );
     const hostParts = req.get('host').split(':');
     // if hostParts is a length of 2, it is a valid hostname:port url
@@ -90,12 +110,13 @@ module.exports = class PayOnline extends Step {
     const baseUrl = getBaseUrl(req.protocol, req.hostname, port);
     const cardPaymentStatusUrl = this.steps.CardPaymentStatus.url;
     const returnUrl = `${baseUrl}${cardPaymentStatusUrl}`;
+    const serviceCallbackUrl = parseBool(CONF.features.strategicPay) ? `${CONF.services.transformation.baseUrl}/payment-update` : '';
 
     const caseId = req.session.caseId;
     const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
     if (!caseId) {
-      logger.error('Case ID is missing', req);
+      logger.errorWithReq(req, 'case_id_missing', 'Case ID is missing');
       return res.redirect('/generic-error');
     }
 
@@ -105,11 +126,11 @@ module.exports = class PayOnline extends Step {
     const submission = submissionService.setup();
 
     // Get service token and create payment.
-    return serviceToken.getToken()
+    return serviceToken.getToken(req)
       // Create payment.
       .then(token => {
-        return payment.create(user, token, caseId, siteId, feeCode,
-          feeVersion, amount, feeDescription, returnUrl);
+        return payment.create(req, user, token, caseId, siteId, feeCode,
+          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
       })
 
       // Store payment info in session and update the submitted application.
@@ -124,7 +145,7 @@ module.exports = class PayOnline extends Step {
         const eventData = submissionService
           .generatePaymentEventData(req.session, response);
 
-        return submission.update(authToken, caseId, eventData, 'paymentReferenceGenerated');
+        return submission.update(req, authToken, caseId, eventData, 'paymentReferenceGenerated');
       })
 
       // If all is well, redirect to payment page.
@@ -141,7 +162,7 @@ module.exports = class PayOnline extends Step {
         next();
       })
       .catch(error => {
-        logger.error(error);
+        logger.errorWithReq(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
         res.redirect('/generic-error');
       });
   }

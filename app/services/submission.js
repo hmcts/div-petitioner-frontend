@@ -50,8 +50,7 @@ const generatePaymentEventData = (session, response) => {
   const
     { external_reference, amount, reference, status, date_created } = response; // eslint-disable-line camelcase
   // Provide status when finished, empty string otherwise.
-  const siteId = get(session, 'allocatedCourt.siteId');
-
+  const siteId = get(session, `court.${session.courts}.siteId`);
   const eventData = {
     payment: {
       PaymentChannel: 'online',

@@ -1,8 +1,6 @@
-const serviceCentreCourt = require('test/examples/courts/serviceCentre');
-
 const success = {
   caseId: '1509031793780148',
-  allocatedCourt: serviceCentreCourt,
+  allocatedCourt: { courtId: 'serviceCentre' },
   error: null,
   status: 'success'
 };

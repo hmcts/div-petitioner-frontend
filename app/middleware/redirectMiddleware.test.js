@@ -1,6 +1,5 @@
 const { expect, sinon } = require('test/util/chai');
 const CONF = require('config');
-const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/middleware/redirectMiddleware';
 
@@ -16,7 +15,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     req = {
-      session: { allocatedCourt: serviceCentreCourt },
+      session: { courts: 'serviceCentre' },
       cookies: { '__auth-token': 'authToken' }
     };
     res = {
@@ -59,7 +58,7 @@ describe(modulePath, () => {
     });
 
     it('should call next when court is not CTSC', () => {
-      req.session.allocatedCourt = { courtId: 'eastMidlands' };
+      req.session.courts = 'eastMidlands';
       req.session.state = 'AwaitingDecreeNisi';
 
       redirectMiddleware.redirectOnCondition(req, res, next);

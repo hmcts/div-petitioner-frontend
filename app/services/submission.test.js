@@ -1,13 +1,13 @@
 const { expect, sinon } = require('test/util/chai');
 const transformationServiceClient = require('app/services/transformationServiceClient');
 const CONF = require('config');
-const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/services/submission';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const featureToggleConfig = require('test/util/featureToggles');
 const mockedPaymentClient = require('app/services/mocks/payment');
+
 
 describe(modulePath, () => {
   const submitSuccess = {
@@ -87,7 +87,10 @@ describe(modulePath, () => {
     let session = {}, originalCommonProps = '';
 
     beforeEach(() => {
-      session = { allocatedCourt: serviceCentreCourt };
+      session = {
+        courts: 'someCourt',
+        court: { someCourt: { siteId: 'XX00' } }
+      };
       originalCommonProps = CONF.commonProps;
       CONF.commonProps = { applicationFee: { feeCode: 'some-code', feeVersion: '1' } };
     });
@@ -121,7 +124,7 @@ describe(modulePath, () => {
             expect(output.payment).to.have.property('PaymentAmount', ammountFromMock);
             expect(output.payment).to.have.property('PaymentStatus', 'created');
             expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
-            expect(output.payment).to.have.property('PaymentSiteId', 'AA07');
+            expect(output.payment).to.have.property('PaymentSiteId', 'XX00');
           });
         featureTest(done);
       });

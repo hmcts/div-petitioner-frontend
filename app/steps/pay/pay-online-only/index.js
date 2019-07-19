@@ -72,6 +72,9 @@ module.exports = class PayOnline extends Step {
 
     req.session = req.session || {};
 
+    // Set court details to latest from config
+    req.session.court = CONF.commonProps.court;
+
     // Some prerequisites. @todo extract these elsewhere?
     let authToken = '';
     let user = {};
@@ -110,7 +113,7 @@ module.exports = class PayOnline extends Step {
     const serviceCallbackUrl = parseBool(CONF.features.strategicPay) ? `${CONF.services.transformation.baseUrl}/payment-update` : '';
 
     const caseId = req.session.caseId;
-    const siteId = get(req.session, 'allocatedCourt.siteId');
+    const siteId = get(req.session, `court.${req.session.courts}.siteId`);
 
     if (!caseId) {
       logger.errorWithReq(req, 'case_id_missing', 'Case ID is missing');

@@ -21,6 +21,7 @@ function commonContentMiddleware(req, res, next) {
         return target.t(key, {
           pageUrl: req.baseUrl,
           smartSurveyFeedbackUrl: CONF.commonProps.smartSurveyFeedbackUrl,
+          court: CONF.commonProps.court,
           courtPhoneNumber: CONF.commonProps.courtPhoneNumber,
           courtOpeningHour: CONF.commonProps.courtOpeningHour,
           courtEmail: CONF.commonProps.courtEmail

@@ -157,6 +157,7 @@ a.link-sign-out {
   width: 8.5em;
   @include govuk-media-query($from: mobile) {
     width: 100%;
+    margin-bottom: govuk-spacing(2)
   }
 }
 

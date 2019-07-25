@@ -83,7 +83,7 @@ commonProps:
       openingHours: 'Monday to Friday, 8.30am to 5pm'
       email: 'simulate-delivered-eastmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
-      siteId: '1'
+      siteId: 'AA01'
     westMidlands:
       divorceCentre: 'West Midlands'
       courtCity: 'City-in-West-Midlands'
@@ -92,7 +92,7 @@ commonProps:
       openingHours: 'Monday to Friday, 8.30am to 5pm'
       email: 'simulate-delivered-westmidlands@notifications.service.gov.uk'
       phoneNumber: '0000 111 2222'
-      siteId: '2'
+      siteId: 'AA02'
     southWest:
       divorceCentre: 'South West'
       courtCity: 'City-in-South-West'
@@ -101,7 +101,7 @@ commonProps:
       openingHours: 'Monday to Friday, 8.30am to 5pm'
       email: 'simulate-delivered-southwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2223'
-      siteId: '3'
+      siteId: 'AA03'
     northWest:
       divorceCentre: 'North West'
       divorceCentreAddressName: 'Address Name'
@@ -111,7 +111,7 @@ commonProps:
       openingHours: 'Monday to Friday, 8.30am to 5pm'
       email: 'simulate-delivered-northwest@notifications.service.gov.uk'
       phoneNumber: '0000 111 2224'
-      siteId: '4'
+      siteId: 'AA04'
     serviceCentre:
       serviceCentreName: 'Courts and Tribunals Service Centre'
       divorceCentre: 'HMCTS Digital Divorce'
@@ -121,7 +121,7 @@ commonProps:
       openingHours: 'Monday to Friday, 8.30am to 5pm'
       email: 'simulate-delivered-ctsc@notifications.service.gov.uk'
       phoneNumber: '0000 111 2221'
-      siteId: '5'
+      siteId: 'AA07'
   smartSurveyFeedbackUrl: 'http://www.example.com/'
   smartSurveyFeedbackDonePageUrl: 'http://www.example.com/'
   courtPhoneNumber: '0000 111 2220'

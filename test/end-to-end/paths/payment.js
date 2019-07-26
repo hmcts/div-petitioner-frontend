@@ -12,7 +12,7 @@ Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.see(payHelpFeeContent);
 });
 
-Scenario('Card payment online', function* (I) {
+Scenario('Card payment online', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
@@ -20,13 +20,13 @@ Scenario('Card payment online', function* (I) {
   I.checkMyAnswers();
 
   I.confirmIWillPayOnline();
-  const isPaymentOnStub = yield I.getPaymentIsOnStub();
+  const isPaymentOnStub = await I.getPaymentIsOnStub();
   I.payOnPaymentPage(isPaymentOnStub);
   I.amDoneAndSubmitted();
 });
 
 
-Scenario('Card payment online failure', function* (I) {
+Scenario('Card payment online failure', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
@@ -35,7 +35,7 @@ Scenario('Card payment online failure', function* (I) {
 
   // Failure
   I.confirmIWillPayOnline();
-  const isPaymentOnStub = yield I.getPaymentIsOnStub();
+  const isPaymentOnStub = await I.getPaymentIsOnStub();
   I.payFailureOnPaymentPage(isPaymentOnStub);
   I.waitInUrl('/pay/online');
 
@@ -45,7 +45,7 @@ Scenario('Card payment online failure', function* (I) {
   I.amDoneAndSubmitted();
 });
 
-Scenario('Card payment online cancellation with retry', function* (I) {
+Scenario('Card payment online cancellation with retry', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
@@ -54,7 +54,7 @@ Scenario('Card payment online cancellation with retry', function* (I) {
 
   // Cancellation
   I.confirmIWillPayOnline();
-  const isPaymentOnStub = yield I.getPaymentIsOnStub();
+  const isPaymentOnStub = await I.getPaymentIsOnStub();
   I.cancelOnPaymentPage(isPaymentOnStub);
   I.waitInUrl('/pay/online');
 

@@ -232,6 +232,8 @@ exports.testNoneExistenceCYA = (done, underTest, content, contentToNotExist = []
         valuesToNotExist.forEach(value => {
           expect(html).to.not.contain(ctx[value]);
         });
+      }).catch(error => {
+        done(error);
       });
 
   };

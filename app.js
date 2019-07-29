@@ -16,6 +16,7 @@ const initSteps = require('app/core/initSteps');
 const siteGraph = require('app/core/helpers/siteGraph');
 const manifest = require('manifest.json');
 const helmet = require('helmet');
+const hpkp = require('hpkp');
 const csurf = require('csurf');
 const i18nTemplate = require('app/core/utils/i18nTemplate')({
   viewDirectory: './app/views/',
@@ -58,7 +59,7 @@ exports.init = listenForConnections => {
     }
   }));
   // http public key pinning
-  app.use(helmet.hpkp({
+  app.use(hpkp({
     maxAge: CONF.ssl.hpkp.maxAge,
     sha256s: CONF.ssl.hpkp.sha256s.split(',')
   }));

@@ -338,7 +338,7 @@ describe(modulePath, () => {
 
       const context = {
         reasonForDivorceAdulteryDetails: 'details...',
-        reasonForDivorceAdulteryWhereDetails: 'details...',
+        reasonForDivorceAdulteryWhereDetails: 'knowWhereDetails',
         reasonForDivorceAdulteryKnowWhere: 'No'
       };
 
@@ -353,7 +353,7 @@ describe(modulePath, () => {
 
       const context = {
         reasonForDivorceAdulteryDetails: 'details...',
-        reasonForDivorceAdulteryWhenDetails: 'details...',
+        reasonForDivorceAdulteryWhenDetails: 'knowWhenDetails',
         reasonForDivorceAdulteryKnowWhen: 'No'
       };
 

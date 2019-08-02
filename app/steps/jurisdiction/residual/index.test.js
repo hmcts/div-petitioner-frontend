@@ -30,7 +30,7 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = { marriageIsSameSexCouple: 'Yes' };
+      session = { marriageIsSameSexCouple: 'Yes', divorceWho: 'wife' };
 
       withSession(done, agent, session);
     });
@@ -47,7 +47,7 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = { marriageIsSameSexCouple: 'No' };
+      session = { marriageIsSameSexCouple: 'No', divorceWho: 'wife' };
 
       withSession(done, agent, session);
     });

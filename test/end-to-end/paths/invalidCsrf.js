@@ -1,11 +1,11 @@
 Feature('Simulated invalid CSRF token').retry(3);
 
-Scenario('Should continue if there is a csrf token set', function* (I) {
+Scenario('Should continue if there is a csrf token set', async function (I) {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.haveBrokenMarriage();
-  let csrfToken = yield I.grabValueFrom('input[name=_csrf]');
+  let csrfToken = await I.grabValueFrom('input[name=_csrf]');
   if (!csrfToken) {
     throw new Error('Missing csrfToken');
   }

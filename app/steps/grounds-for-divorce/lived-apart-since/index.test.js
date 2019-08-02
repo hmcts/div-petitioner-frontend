@@ -599,6 +599,7 @@ describe(modulePath, () => {
 
     beforeEach(done => {
       session = {
+        divorceWho: 'husband',
         reasonForDivorce: 'desertion',
         reasonForDivorceDesertionDate: moment().subtract(constants.two, 'years')
           .subtract(constants.four, 'months')

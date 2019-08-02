@@ -61,6 +61,12 @@ describe(modulePath, () => {
   });
 
   describe('Check Your Answers', () => {
+    let session = {};
+
+    beforeEach(() => {
+      session = { divorceWho: 'wife' };
+    });
+
     it('renders the cya template', done => {
       testCYATemplate(done, underTest);
     });
@@ -73,7 +79,7 @@ describe(modulePath, () => {
       const context = { marriedInUk: 'Yes' };
 
       testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
+        contentToExist, valuesToExist, context, session);
     });
 
     it('renders "Did you marry your wife in the UK?" No', done => {
@@ -84,7 +90,7 @@ describe(modulePath, () => {
       const context = { marriedInUk: 'No' };
 
       testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context);
+        contentToExist, valuesToExist, context, session);
     });
   });
 });

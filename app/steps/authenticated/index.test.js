@@ -83,12 +83,12 @@ describe(modulePath, () => {
       });
 
       it('ensure session data is regenerated if expired after user login', done => {
-        expect(session.hasOwnProperty('courts')).to.eql(true);
+        expect(session.hasOwnProperty('allocatedCourt')).to.eql(true);
 
         const testSession = () => {
           getSession(agent)
             .then(newSession => {
-              expect(newSession.hasOwnProperty('courts')).to.eql(false);
+              expect(newSession.hasOwnProperty('allocatedCourt')).to.eql(false);
               expect(newSession.hasOwnProperty('expires')).to.eql(true);
             })
             .then(done, done);
@@ -111,12 +111,12 @@ describe(modulePath, () => {
       });
 
       it('ensure session data is still there after user login', done => {
-        expect(session.hasOwnProperty('courts')).to.eql(true);
+        expect(session.hasOwnProperty('allocatedCourt')).to.eql(true);
 
         const testSession = () => {
           getSession(agent)
             .then(newSession => {
-              expect(newSession.hasOwnProperty('courts')).to.eql(true);
+              expect(newSession.hasOwnProperty('allocatedCourt')).to.eql(true);
             })
             .then(done, done);
         };

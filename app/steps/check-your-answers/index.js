@@ -267,9 +267,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     }
     );
 
-    // Load courts data into session.
-    req.session.court = CONF.commonProps.court;
-
     // Get user token.
     let authToken = '';
     if (parseBool(CONF.features.idam)) {
@@ -301,9 +298,10 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
         logger.infoWithReq(req, 'case_created', 'Case Created', response.caseId);
 
-        const courtId = response.allocatedCourt.courtId;
+        const allocatedCourt = response.allocatedCourt;
+        const courtId = allocatedCourt.courtId;
         ga.trackEvent('Court_Allocation', 'Allocated_court', courtId, 1);
-        req.session.courts = courtId;
+        req.session.allocatedCourt = allocatedCourt;
 
         res.redirect(this.next(null, req.session).url);
       })

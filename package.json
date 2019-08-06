@@ -54,6 +54,7 @@
     "connect-redis": "3.1.0",
     "cookie-parser": "^1.4.3",
     "copy-webpack-plugin": "^4.0.1",
+    "cryptiles": "^4.1.2",
     "csrf": "^3.0.6",
     "css-loader": "^0.28.11",
     "csurf": "^1.9.0",

@@ -428,15 +428,15 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
     let request = agent[method](underTest.url);
 
     if (method !== 'get') {
-      request.set('X-CSRF-token', agent.csrfToken);
+      request = request.set('X-CSRF-token', agent.csrfToken);
     }
 
     if (cookies.length) {
-      request = request.set('Cookie', [request.cookies, ...cookies]);
+      request = request.set('cookie', [request.cookies, ...cookies].join(';'));
     }
 
     if (data){
-      request
+      request = request
         .type('form')
         .send(data);
     }

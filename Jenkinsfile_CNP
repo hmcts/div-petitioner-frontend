@@ -5,6 +5,8 @@
 String product = "div"
 String component = "pfe"
 
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
 List<LinkedHashMap<String, Object>> secrets = [
   secret('session-secret', 'SECRET'),
   secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
@@ -36,14 +38,14 @@ withPipeline("nodejs", product, component) {
   }
 
   after('build') {
-    sh 'yarn setup'
+    yarnBuilder.yarn('setup')
   }
 
   after('test') {
-    sh 'yarn test-validation'
+    yarnBuilder.yarn('test-validation')
     // enable yarn audit and send message on master branch only
     try {
-      sh 'yarn audit'
+      yarnBuilder.yarn('audit')
     } catch (error) {
       onMaster {
         slackSend(channel: '#div-dev', color: 'warning', message: "Yarn Audit has detected vulnerabilities in ${env.JOB_NAME}. You can check if there are patches for them in the full report, build details here: <${env.RUN_DISPLAY_URL}|Build ${env.BUILD_DISPLAY_NAME}>.")

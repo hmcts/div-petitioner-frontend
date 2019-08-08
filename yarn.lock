@@ -147,11 +147,12 @@
     request-promise-native "^1.0.7"
     socks5-https-client "^1.2.1"
 
-"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#6.2.1":
-  version "6.2.1"
-  resolved "https://github.com/hmcts/div-pay-client#011f72cc8702c4ee50e7308f3cfb82cbe3f2d200"
+"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#7.0.0":
+  version "7.0.0"
+  resolved "https://github.com/hmcts/div-pay-client#84e0569c38c55ec63e7c2e272ffa9b57926d726b"
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
+    lodash "^4.17.15"
     request "^2.81.0"
     request-promise-native "^1.0.5"
 

@@ -1,11 +1,11 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">{{ fields.petitionerNameDifferentToMarriageCertificate.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.petitionerNameDifferentToMarriageCertificate.value === 'Yes' %}
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell">{{ content.nameChangeProof | safe }}</td>
+    <th class="govuk-table__cell" scope="row">{{ content.nameChangeProof | safe }}</th>
     <td class="govuk-table__cell">
       {%- for how in fields.petitionerNameChangedHow.value -%}
         {{ content[how] | safe }} <br/>

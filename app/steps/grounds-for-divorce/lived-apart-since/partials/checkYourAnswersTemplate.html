@@ -1,8 +1,8 @@
 <tr class="govuk-table__row">
     {% if session.reasonForDivorce === 'desertion' %}
-      <td class="govuk-table__cell">{{ content.desQues | safe }}</td>
+      <th class="govuk-table__cell" scope="row">{{ content.desQues | safe }}</th>
     {% else %}
-      <td class="govuk-table__cell">{{ content.sepQues | safe }}</td>
+      <th class="govuk-table__cell" scope="row">{{ content.sepQues | safe }}</th>
     {% endif %}
   <td class="govuk-table__cell">{{ fields.livedApartEntireTime.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>

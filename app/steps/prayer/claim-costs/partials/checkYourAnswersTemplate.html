@@ -1,11 +1,11 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">{{ fields.claimsCosts.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.claimsCostsFrom.value %}
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell">{{ content.whoCosts | safe }}</td>
+    <th class="govuk-table__cell" scope="row">{{ content.whoCosts | safe }}</th>
     <td class="govuk-table__cell">
       {%- for claimsCostsFrom in fields.claimsCostsFrom.value -%}
         {% if claimsCostsFrom === "respondent" %}

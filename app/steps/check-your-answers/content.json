@@ -31,7 +31,8 @@
                     "submitAndPay": "Submit and pay",
                     "submitPayWarning": "Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
                     "deleteApplciation": "Delete application",
-                    "warning": "Warning"
+                    "warning": "Warning",
+                    "tableExplanation": "This table has a list of your questions and answers. The first column is the question. The second column is your answer and the third column is a link to change your answer of that particular question."
                 },
                 "errors": {
                     "confirmPrayer": {

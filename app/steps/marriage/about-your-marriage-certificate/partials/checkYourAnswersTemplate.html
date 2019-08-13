@@ -1,11 +1,11 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">{{ fields.certificateInEnglish.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.certifiedTranslation.value %}
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.cyaCertifiedTranslation | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.cyaCertifiedTranslation | safe }}</th>
   <td class="govuk-table__cell">{{ fields.certifiedTranslation.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.cyaCertifiedTranslation | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

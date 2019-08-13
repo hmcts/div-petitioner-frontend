@@ -3,7 +3,7 @@
 
 {% block two_thirds %}
   {% if errors.length > 0 %}
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary" autofocus>
           <h1 class="govuk-error-summary__title" id="error-summary-title">
               {{ common.errorSummaryHeading | safe }}
           </h1>

@@ -63,6 +63,7 @@
                 file.element.find('td:first')
                   .addClass('govuk-table__cell')
                   .addClass('govuk-form-group--error')
+                  .focus()
                   .append('<span class="govuk-error-message">' + options.errors.errorUnknown + '</span>');
               }
               if(!this.getQueuedFiles().length){
@@ -81,6 +82,7 @@
                 file.element.find('span.form-hint').remove();
                 file.element.find('td:first')
                   .addClass('govuk-form-group--error')
+                  .focus()
                   .append('<span class="govuk-error-message">' + errorMessageText + '</span>');
               }
               if(!this.getQueuedFiles().length){

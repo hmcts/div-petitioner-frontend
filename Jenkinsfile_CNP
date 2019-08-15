@@ -71,8 +71,4 @@ withPipeline("nodejs", product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
-
-  onMaster {
-    enableSlackNotifications('#div-dev')
-  }
 }

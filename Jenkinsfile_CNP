@@ -7,12 +7,14 @@ String component = "pfe"
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-List<LinkedHashMap<String, Object>> secrets = [
-  secret('session-secret', 'SECRET'),
-  secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
-  secret('idam-secret', 'IDAM_SECRET'),
-  secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
-  secret('frontend-secret', 'MICROSERVICE_KEY')
+def secrets = [
+  'div-${env}': [
+    secret('session-secret', 'SECRET'),
+    secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
+    secret('idam-secret', 'IDAM_SECRET'),
+    secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
+    secret('frontend-secret', 'MICROSERVICE_KEY')
+  ]
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {

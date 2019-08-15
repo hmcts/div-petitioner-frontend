@@ -35,7 +35,6 @@ withPipeline("nodejs", product, component) {
       enableDockerBuild()
       installCharts()
       loadVaultSecrets(secrets)
-      setVaultName('div')
     }
   }
 

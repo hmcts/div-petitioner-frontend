@@ -26,7 +26,7 @@
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
     "test-unit": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha './app/**/*.test.js' --reporter spec --recursive -t 10000",
     "test-unit-ide": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha $NODE_DEBUG_OPTION './app/**/*.test.js' --reporter spec --recursive",
-    "test-validation": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/validation/ --reporter spec --recursive --timeout 30000",
+    "test-validation": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/validation/ --reporter spec --recursive --timeout 15000",
     "test-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. ./node_modules/.bin/codeceptjs run-multiple parallel -c test/end-to-end/codecept.conf.js --steps --reporter mocha-multi",
     "test-overnight-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. codeceptjs run -c test/end-to-end/codecept.conf.js --steps",
     "test-crossbrowser-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. node_modules/.bin/codeceptjs run-multiple  ${BROWSER_GROUP:-'--all'} -c test/end-to-end/saucelabs.conf.js --steps --reporter mocha-multi",
@@ -100,7 +100,6 @@
     "tar": "^2.2.2",
     "tmp": "^0.0.33",
     "uuid": "^3.0.1",
-    "w3cjs": "^0.4.0",
     "webpack": "2.2.1",
     "webpack-archive-plugin": "^3.0.0",
     "xss-filters": "^1.2.7",
@@ -129,6 +128,7 @@
     "grunt-nodemon": "0.4.2",
     "grunt-sass": "^1.1.0",
     "grunt-webpack": "^2.0.1",
+    "html-validator": "^4.1.1",
     "jsdom": "^11.2.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^3.0.0",
@@ -156,7 +156,6 @@
     "supertest": "^4.0.2",
     "timekeeper": "^2.1.2",
     "unirest": "^0.5.1",
-    "w3c-validate": "0.0.2",
     "webdriverio": "^4.14.4"
   },
   "resolutions": {

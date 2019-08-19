@@ -84,15 +84,13 @@
                   .addClass('govuk-form-group--error')
                   .focus()
                   .append('<span class="govuk-error-message">' + errorMessageText + '</span>');
+                $('.dz-preview').remove();
+              } else {
+                $('.dz-preview .dz-error-message').focus();
               }
               if(!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
               }
-              setTimeout(function(){
-                $('.dz-preview').fadeOut(function(){
-                  $('.dz-preview').remove();
-                });
-              }, 2000);
             });
             this.on('addedfile', function(){
               $('input[type="submit"]').attr('disabled', 'disabled');

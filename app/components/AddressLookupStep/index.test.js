@@ -1,6 +1,6 @@
 const { merge } = require('lodash');
 const request = require('supertest');
-const { testContent, testCYATemplate, testExistenceCYA, testErrors } = require('test/util/assertions');
+const { testContent, testCYATemplate, testExistenceCYA, testErrors, testExistence } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect, sinon } = require('test/util/chai');
@@ -61,7 +61,7 @@ describe(modulePath, () => {
           testAddress: {
             addressType: 'postcode',
             addresses: ['address\n1'],
-            addressSelect: 0
+            postcode: 'postcode'
           }
         };
         withSession(done, agent, session);
@@ -71,11 +71,17 @@ describe(modulePath, () => {
         const excludeKeys = [
           'enterPostcodeLink', 'address', 'buildingAndStreet', 'streetLine2',
           'townOrCity', 'county', 'optional',
-          'postcode', 'fullAddress', 'selectAnAddress', 'selectAddress',
-          'pickAddress', 'adressesFound', 'updateAddress'
+          'postcode', 'fullAddress', 'selectAddress',
+          'adressesFound', 'updateAddress', 'enterManualLink'
         ];
 
         testContent(done, agent, underTest, content, session, excludeKeys);
+      });
+
+      it('adds auto focus to select an address element', done => {
+        const autoFocusHTML = 'name="selectAddressIndex" title="Select an address" onchange="this.form.submit()" autofocus>';
+
+        testExistence(done, agent, underTest, autoFocusHTML, session);
       });
     });
 

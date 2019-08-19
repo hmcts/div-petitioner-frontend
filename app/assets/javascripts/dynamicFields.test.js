@@ -25,17 +25,17 @@ describe('dynamicFields', () => {
         before(() => {
 
             divElementArray = [
-                { id : 'how-behaved-example-0', className : 'class js-hidden' },
-                { id : 'how-behaved-example-1', className : 'class js-hidden' },
-                { id : 'how-behaved-example-2', className : 'class js-not-hidden' },
-                { id : 'irrelevent-id-0', className : 'class js-hidden' },
-                { id : 'irrelevent-id-1', className : 'class js-hidden' },
-                { id : 'how-behaved-example-3', className : 'class js-hidden' },
-                { id : 'irrelevent-id-2', className : 'class js-not-hidden' },
-                { id : 'how-behaved-example-4', className : 'class js-hidden' },
-                { id : 'how-behaved-example-5', className : 'class js-not-hidden' },
-                { id : 'how-behaved-example-6', className : 'class js-not-hidden' },
-                { id : 'irrelevent-id-3', className : 'class js-not-hidden' }
+                { id : 'how-behaved-example-0', className : 'class js-hidden', focus: sinon.stub() },
+                { id : 'how-behaved-example-1', className : 'class js-hidden', focus: sinon.stub() },
+                { id : 'how-behaved-example-2', className : 'class js-not-hidden', focus: sinon.stub() },
+                { id : 'irrelevent-id-0', className : 'class js-hidden', focus: sinon.stub() },
+                { id : 'irrelevent-id-1', className : 'class js-hidden', focus: sinon.stub() },
+                { id : 'how-behaved-example-3', className : 'class js-hidden', focus: sinon.stub() },
+                { id : 'irrelevent-id-2', className : 'class js-not-hidden', focus: sinon.stub() },
+                { id : 'how-behaved-example-4', className : 'class js-hidden', focus: sinon.stub() },
+                { id : 'how-behaved-example-5', className : 'class js-not-hidden', focus: sinon.stub() },
+                { id : 'how-behaved-example-6', className : 'class js-not-hidden', focus: sinon.stub() },
+                { id : 'irrelevent-id-3', className : 'class js-not-hidden', focus: sinon.stub() }
             ];
 
             documentGetElementsByTagNameStub.withArgs('DIV').returns(divElementArray);
@@ -54,20 +54,24 @@ describe('dynamicFields', () => {
             window.DIVORCE.showAnotherExample();
 
             sinon.assert.calledWith(document.getElementById, 'how-behaved-example-0');
+            expect(divElementArray[0].focus.called).to.eql(true);
             sinon.assert.neverCalledWith(document.getElementById, 'how-behaved-example-1', 'how-behaved-example-2');
 
             window.DIVORCE.showAnotherExample();
 
             sinon.assert.calledWith(document.getElementById, 'how-behaved-example-1');
+            expect(divElementArray[1].focus.called).to.eql(true);
             sinon.assert.neverCalledWith(document.getElementById, 'how-behaved-example-2');
 
             window.DIVORCE.showAnotherExample();
 
             sinon.assert.calledWith(document.getElementById, 'how-behaved-example-3');
+            expect(divElementArray[5].focus.called).to.eql(true);
             sinon.assert.neverCalledWith(document.getElementById, 'how-behaved-example-2, irrelevent-id-0, irrelevent-id-1');
 
             //  we have 4 hidden fields, so we need to call showAnotherExample again
             window.DIVORCE.showAnotherExample();
+            expect(divElementArray[7].focus.called).to.eql(true);
 
             expect(addExampleObject).to.eql({ style : { display : 'none' }});
         });

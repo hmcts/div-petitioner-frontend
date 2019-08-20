@@ -16,6 +16,8 @@ class ElementExist extends Helper {
           return !!els.value.length;
         }
         return !!els.length;
+      }).catch(err => {
+        throw err;
       });
 
   }

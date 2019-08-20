@@ -1,5 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const CONF = require('config');
+const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/middleware/redirectMiddleware';
 
@@ -15,7 +16,7 @@ describe(modulePath, () => {
 
   beforeEach(() => {
     req = {
-      session: { courts: 'serviceCentre' },
+      session: { allocatedCourt: serviceCentreCourt },
       cookies: { '__auth-token': 'authToken' }
     };
     res = {
@@ -25,16 +26,16 @@ describe(modulePath, () => {
     next = sinon.stub();
   });
 
-  context('feature is enabled', () => {
-    it('should call next when there is no state', () => {
+  context('generic tests', () => {
+    it('should call next when there is no session', () => {
+      delete req.session;
+
       redirectMiddleware.redirectOnCondition(req, res, next);
 
       expect(next.calledOnce).to.eql(true);
     });
 
-    it('should call next wen there is no session', () => {
-      delete req.session;
-
+    it('should call next when there is no state', () => {
       redirectMiddleware.redirectOnCondition(req, res, next);
 
       expect(next.calledOnce).to.eql(true);
@@ -56,14 +57,54 @@ describe(modulePath, () => {
       expect(next.calledOnce).to.eql(false);
       expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
     });
+  });
+
+  context('court information', () => {
+    context('session comes from draft store or redis (old format)', () => {
+      beforeEach(() => {
+        delete req.session.allocatedCourt;
+      });
+
+      it('should call redirect to DN when court is CTSC', () => {
+        req.session.courts = 'serviceCentre';
+        req.session.state = 'AwaitingDecreeNisi';
+
+        redirectMiddleware.redirectOnCondition(req, res, next);
+
+        expect(next.calledOnce).to.eql(false);
+        expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+      });
+
+      it('should call next when court is not CTSC', () => {
+        req.session.courts = 'eastMidlands';
+        req.session.state = 'AwaitingDecreeNisi';
+
+        redirectMiddleware.redirectOnCondition(req, res, next);
+
+        expect(next.calledOnce).to.eql(true);
+        expect(res.redirect.called).to.eql(false);
+      });
+    });
+  });
+
+  context('session is formed in PFE (in the new format)', () => {
+    it('should call redirect to DN when court is CTSC', () => {
+      req.session.state = 'AwaitingDecreeNisi';
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce).to.eql(false);
+      expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+    });
 
     it('should call next when court is not CTSC', () => {
-      req.session.courts = 'eastMidlands';
+      req.session.allocatedCourt = { courtId: 'eastMidlands' };
       req.session.state = 'AwaitingDecreeNisi';
 
       redirectMiddleware.redirectOnCondition(req, res, next);
 
       expect(next.calledOnce).to.eql(true);
+      expect(res.redirect.called).to.eql(false);
     });
   });
 });

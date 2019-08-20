@@ -12,11 +12,13 @@ properties([
     ])
 ])
 
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
 withParameterizedPipeline(params.TYPE, params.PRODUCT, params.COMPONENT, params.ENVIRONMENT, params.SUBSCRIPTION) {
   after('build') {
-    sh 'yarn setup'
+    yarnBuilder.yarn("setup")
   }
-    
+
   after('functionalTest:saat') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

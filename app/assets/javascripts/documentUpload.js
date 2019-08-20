@@ -63,7 +63,7 @@
                 file.element.find('td:first')
                   .addClass('govuk-table__cell')
                   .addClass('govuk-form-group--error')
-                  .append('<span class="govuk-error-message">' + options.errors.errorUnknown + '</span>');
+                  .append('<span class="govuk-error-message" role="alert">' + options.errors.errorUnknown + '</span>');
               }
               if(!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
@@ -81,16 +81,14 @@
                 file.element.find('span.form-hint').remove();
                 file.element.find('td:first')
                   .addClass('govuk-form-group--error')
-                  .append('<span class="govuk-error-message">' + errorMessageText + '</span>');
+                  .append('<span class="govuk-error-message" role="alert">' + errorMessageText + '</span>');
+                $('.dz-preview').remove();
+              } else {
+                $('.dz-preview .dz-error-message').attr('role', 'alert');
               }
               if(!this.getQueuedFiles().length){
                 $('input[type="submit"]').prop('disabled', false);
               }
-              setTimeout(function(){
-                $('.dz-preview').fadeOut(function(){
-                  $('.dz-preview').remove();
-                });
-              }, 2000);
             });
             this.on('addedfile', function(){
               $('input[type="submit"]').attr('disabled', 'disabled');

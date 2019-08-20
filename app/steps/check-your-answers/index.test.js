@@ -10,7 +10,6 @@ const idamMock = require('test/mocks/idam');
 const featureToggleConfig = require('test/util/featureToggles');
 const submission = require('app/services/submission');
 const statusCodes = require('http-status-codes');
-const CONF = require('config');
 const ga = require('app/services/ga');
 const ExitStep = require('app/core/steps/ExitStep');
 
@@ -521,7 +520,7 @@ describe(modulePath, () => {
         url: '/test',
         name: '',
         template: 'template',
-        next: () => {}, // eslint-disable-line no-empty-function
+        next: () => { }, // eslint-disable-line no-empty-function
         properties: {
           prop1: 'prop1',
           prop2: 'prop2',
@@ -727,12 +726,26 @@ describe(modulePath, () => {
     let submit = {};
     let postBody = {};
 
+    const allocatedCourt = {
+      courtId: 'randomlyAllocatedCourt',
+      identifiableCentreName: 'Courts and Tribunals Service Centre',
+      serviceCentreName: 'Courts and Tribunals Service Centre',
+      divorceCentre: 'East Midlands Regional Divorce Centre',
+      poBox: 'PO Box 10447',
+      courtCity: 'Nottingham',
+      postCode: 'NG2 9QN',
+      openingHours: 'Telephone Enquiries from: 8.30am to 5pm',
+      email: 'contactdivorce@justice.gov.uk',
+      phoneNumber: '0300 303 0642',
+      siteId: 'AA07'
+    };
+
     beforeEach(done => {
       submit = sinon.stub().resolves({
         error: null,
         status: 'success',
         caseId: '1234567890',
-        allocatedCourt: { courtId: 'randomlyAllocatedCourt' }
+        allocatedCourt
       });
       sinon.stub(submission, 'setup').returns({ submit });
       sinon.stub(ga, 'trackEvent');
@@ -776,17 +789,10 @@ describe(modulePath, () => {
     });
 
     it('loads court data from config and selects one automatically', done => {
-      // Arrange.
-      const courts = Object.keys(CONF.commonProps.court);
-
       const testSession = () => {
         getSession(agent)
           .then(sess => {
-            courts.forEach(courtName => {
-              expect(sess.court[courtName]).to
-                .eql(CONF.commonProps.court[courtName]);
-            });
-            expect(sess.courts).to.be.equal('randomlyAllocatedCourt');
+            expect(sess.allocatedCourt).to.be.eql(allocatedCourt);
           })
           .then(done, done);
       };
@@ -892,23 +898,6 @@ describe(modulePath, () => {
             .to.equal(statusCodes.MOVED_TEMPORARILY);
           expect(response.res.headers.location)
             .to.equal(s.steps.GenericError.url);
-        }, 'post', true, postBody);
-      });
-    });
-
-    context('duplicate submission', () => {
-      beforeEach(done => {
-        session = {
-          submissionStarted: true,
-          cookie: {},
-          expires: Date.now()
-        };
-        withSession(done, agent, session);
-      });
-      it('redirects to ApplicationSubmitted if submission submitted twice', done => {
-        testCustom(done, agent, underTest, [], response => {
-          expect(response.res.headers.location)
-            .to.equal(s.steps.ApplicationSubmitted.url);
         }, 'post', true, postBody);
       });
     });

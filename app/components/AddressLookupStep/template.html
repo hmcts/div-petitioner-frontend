@@ -12,7 +12,7 @@
   {% block warning %}{% endblock %}
 
   {% if errors.length > 0 %}
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary" autofocus>
         <h1 class="govuk-error-summary__title" id="error-summary-title">
             {{ common.errorSummaryHeading | safe }}
         </h1>
@@ -101,7 +101,7 @@
 
             {{ errorsFor(fields.addresses) }}
 
-            <select class="govuk-select" id="selectAddressIndex" name="selectAddressIndex" title="{{content.selectAnAddress}}" onchange="this.form.submit()">
+            <select class="govuk-select" id="selectAddressIndex" name="selectAddressIndex" title="{{content.selectAnAddress}}" onchange="this.form.submit()" {{ 'autofocus' if not fields.selectAddressIndex.value }}>
               <option value="-1">{{fields.addresses.value | length }} {{ content.adressesFound}}</option>
               {%- for address in fields.addresses.value %}
                 <option value={{loop.index0}} {{ 'selected' if fields.selectAddressIndex.value == loop.index0 }}>{{address.DPA.ADDRESS | safe}}</option>
@@ -137,7 +137,7 @@
           {% for line in fields.address.value %}
             <div class="govuk-form-group">
               <label class="govuk-label visually-hidden" for="addressLine{{loop.index0}}">Address Line {{loop.index0}}</label>
-              <input class="govuk-input" type="text" id="addressLine{{loop.index0}}" name="addressLine{{loop.index0}}" value="{{line}}" />
+              <input class="govuk-input" type="text" id="addressLine{{loop.index0}}" name="addressLine{{loop.index0}}" value="{{line}}" {{ 'autofocus' if loop.index0 === 0 }} />
             </div>
           {% endfor %}
           <input type="hidden" name="addressType" value="postcode"/>

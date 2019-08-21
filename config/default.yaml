@@ -53,6 +53,12 @@ services:
   feesAndPayments:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'
+  webchat:
+    chatId: 3077733355d19fd430f23c7.02555395
+    tenant: c2FuZGJveGhtY3RzMDE
+    buttonNoAgents: 20599210435d19f59cdc3e95.94551214
+    buttonAgentsBusy: 8752254635d19f5bb21ff07.71234899
+    buttonServiceClosed: 4639879315d19f67c3c1055.15174024
 
 defaultEnvironmentNodeEnv: 'development'
 
@@ -85,6 +91,7 @@ features:
   ignoreSessionValidation: false
   browserSupport: false
   strategicPay: false
+  webchat: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

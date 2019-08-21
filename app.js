@@ -91,7 +91,11 @@ exports.init = listenForConnections => {
     watch: isDev,
     noCache: isDev,
     filters: nunjucksFilters,
-    loader: nunjucks.FileSystemLoader
+    loader: nunjucks.FileSystemLoader,
+    globals: {
+      webchat: CONF.services.webchat,
+      features: CONF.features
+    }
   });
 
   // Disallow search index idexing
@@ -109,6 +113,7 @@ exports.init = listenForConnections => {
 
   // Middleware to serve static assets
   app.use('/public', express.static(`${__dirname}/public`));
+  app.use('/webchat', express.static(`${__dirname}/node_modules/@hmcts/ctsc-web-chat/assets`));
 
   // Parsing cookies for the stored encrypted session key
   app.use(cookieParser());

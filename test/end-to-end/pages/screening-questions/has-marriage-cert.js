@@ -7,7 +7,7 @@ function haveMarriageCert() {
 
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
-  I.click(content.yes);
+  I.retry(2).click(content.yes);
   I.moveCursorTo('input[name=submit]');
   I.scrollPageToBottom();
   I.navByClick('Continue');

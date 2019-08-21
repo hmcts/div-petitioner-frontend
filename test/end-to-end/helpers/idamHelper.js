@@ -34,10 +34,9 @@ class IdamHelper extends Helper {
       return idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           logger.infoWithReq(null, 'idam_user_created', 'Created IDAM test user', testEmail);
-          return;
         }).catch((err) => {
           logger.warnWithReq(null, 'idam_user_create_error', 'Unable to create IDAM test user', err);
-          return;
+          throw err ;
         });
     }
   }
@@ -47,10 +46,9 @@ class IdamHelper extends Helper {
       return idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           logger.infoWithReq(null, 'idam_user_removed', 'Removed IDAM test user', args.testEmail);
-          return;
         }).catch((err) => {
           logger.warnWithReq(null, 'idam_user_remove_error', 'Unable to remove IDAM test user', err);
-          return;
+          throw err;
         });
     }
   }

@@ -4,6 +4,7 @@ function enterAddressUsingPostcode(stepUrl, testAddressIndex) {
   if (!testAddressIndex) {
     testAddressIndex = '0';
   }
+  I.waitInUrl(stepUrl, 5);
   I.seeCurrentUrlEquals(stepUrl);
   I.fillField('postcode', 'SW9 9PE');
   I.navByClick('Find address');
@@ -13,7 +14,6 @@ function enterAddressUsingPostcode(stepUrl, testAddressIndex) {
   I.waitForElement('#addressLine0');
   I.wait(2);
   I.navByClick('Continue');
-  I.wait(2);
 }
 
 module.exports = { enterAddressUsingPostcode };

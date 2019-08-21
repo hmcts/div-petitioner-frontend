@@ -1,10 +1,11 @@
 const { mockSession } = require('test/fixtures');
+const pagePath = '/about-divorce/reason-for-divorce/unreasonable-behaviour';
 
 function enterUnreasonableBehaviourExample() {
 
   const I = this;
-
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 
   I.navByClick('Continue');
@@ -14,7 +15,7 @@ function enterUnreasonableBehaviourAddMoreExamples() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/unreasonable-behaviour');
+  I.seeCurrentUrlEquals(pagePath);
   //  enter data to pass validation
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 

@@ -1,12 +1,15 @@
 const content = require('app/steps/help/need-help/content.json').resources.en.translation.content;
 const { mockSession } = require('test/fixtures');
+const pagePath = '/pay/help/with-fees';
 
 function enterHelpWithFees(appliedForFees = content.yes) {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/pay/help/with-fees');
-  I.click('#helpWithFeesAppliedForFees_' + appliedForFees);
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
+  I.retry(2).click(appliedForFees);
+  //I.retry(2).click('#helpWithFeesAppliedForFees_' + appliedForFees);
   if (appliedForFees) {
     I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
   }

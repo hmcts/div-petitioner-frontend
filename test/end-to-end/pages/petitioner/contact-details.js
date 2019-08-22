@@ -2,16 +2,19 @@ const content = require('app/steps/petitioner/contact-details/content.json').res
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
+const pagePath = '/petitioner-respondent/contact-details';
 
 function enterPetitionerContactDetails() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/petitioner-respondent/contact-details');
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
+  I.wait(1);
   if (parseBool(CONF.features.idam)) {
     I.see(idamConfigHelper.getTestEmail());
   }
-  I.fillField('petitionerPhoneNumber', '01234567890');
-  I.checkOption(content.petitionerConsent);
+  I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
+  I.retry(2).checkOption(content.petitionerConsent);
   I.navByClick('Continue');
 }
 

@@ -1,6 +1,7 @@
 const content = require('app/steps/check-your-answers/content.json').resources.en.translation.content;
 const jurisdictionContent = require('app/services/jurisdiction/content.json').resources.en.translation.content;
 const getOtherConnections = require('test/end-to-end/helpers/GeneralHelpers.js').getOtherJurisdictionConnections;
+const pagePath = '/check-your-answers';
 
 function* checkMyConnectionsAre(...connections) { // eslint-disable-line require-yield
 
@@ -34,11 +35,11 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 function checkMyAnswers() {
 
   const I = this;
-
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
   I.see(content.title);
 
-  I.checkOption(content.confirmApply);
+  I.retry(2).checkOption(content.confirmApply);
 
   I.navByClick(content.submitOnline);
 }

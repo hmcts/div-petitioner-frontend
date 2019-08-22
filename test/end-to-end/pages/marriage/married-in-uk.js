@@ -1,11 +1,13 @@
 const content = require('app/steps/marriage/in-the-uk/content.json').resources.en.translation.content;
+const pagePath = '/about-your-marriage/in-the-uk';
 
 function selectMarriedInUk() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/in-the-uk');
-  I.checkOption(content.yes);
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
+  I.retry(2).click(content.yes);
   I.navByClick('Continue');
 }
 

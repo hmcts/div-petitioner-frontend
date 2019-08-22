@@ -15,8 +15,7 @@ def component = "pfe"
 def secrets = [
   'div-${env}': [
     secret('session-secret', 'SECRET'),
-    secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
-    secret('idam-secret', 'IDAM_SECRET')
+    secret('redis-secret', 'SESSION_ENCRYPTION_SECRET')
   ]
 ]
 

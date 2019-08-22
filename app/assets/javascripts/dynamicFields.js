@@ -36,7 +36,9 @@
     }
 
     function focusElement(elementId) {
-        document.getElementById(elementId).focus();
+        document.getElementById(elementId)
+            .getElementsByTagName('textarea')[0]
+            .focus();
     }
 
     function addAttributeWhenVisible(){

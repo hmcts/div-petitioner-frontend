@@ -9,7 +9,6 @@ function enterHelpWithFees(appliedForFees = content.yes) {
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
   I.retry(2).click(appliedForFees);
-  //I.retry(2).click('#helpWithFeesAppliedForFees_' + appliedForFees);
   if (appliedForFees) {
     I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
   }

@@ -6,8 +6,9 @@ function enterPeConfidentialContactDetails() {
   const I = this;
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
-  I.retry(2).click(content.share);
-  I.retry(2).navByClick('Continue');
+  I.retry(2).checkOption(content.share);
+  I.scrollPageToBottom();
+  I.navByClick('Continue');
 }
 
 module.exports = { enterPeConfidentialContactDetails };

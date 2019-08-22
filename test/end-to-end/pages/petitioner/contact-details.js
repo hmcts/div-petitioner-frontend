@@ -14,7 +14,7 @@ function enterPetitionerContactDetails() {
     I.see(idamConfigHelper.getTestEmail());
   }
   I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
-  I.checkOption(content.petitionerConsent);
+  I.retry(2).checkOption(content.petitionerConsent);
   I.navByClick('Continue');
 }
 

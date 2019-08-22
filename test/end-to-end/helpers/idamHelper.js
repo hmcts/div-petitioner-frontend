@@ -43,7 +43,7 @@ class IdamHelper extends Helper {
 
   _after() {
     if (parseBool(CONF.features.idam)) {
-      return idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
+      idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           logger.infoWithReq(null, 'idam_user_removed', 'Removed IDAM test user', args.testEmail);
         }).catch((err) => {

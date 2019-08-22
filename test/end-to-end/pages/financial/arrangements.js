@@ -9,7 +9,7 @@ function selectFinancialArrangements() {
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
 
-  I.checkOption(content.yes);
+  I.retry(2).checkOption(content.yes);
   I.checkOption(content.petitioner);
   I.checkOption(content.children);
   I.navByClick('Continue');

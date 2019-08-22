@@ -11,7 +11,8 @@ function enterCorrespondence(addressObj) {
   if (addressObj) {
     I.see(prettifyAddress(addressObj));
   }
-  I.retry(2).checkOption(content.yes);
+  I.retry(2).click(content.yes);
+  I.scrollPageToBottom();
   I.navByClick('Continue');
 }
 

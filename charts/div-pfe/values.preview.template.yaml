@@ -2,9 +2,9 @@ tags:
   - idam-pr
 
 idam-pr:
-  service:
-    name: divorce
-    redirect_uri: https://${SERVICE_FQDN}/authenticated
+  redirect_uris:
+    divorce:
+      - https://${SERVICE_FQDN}/authenticated
 
 nodejs:
     environment:

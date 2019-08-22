@@ -54,24 +54,20 @@ describe('dynamicFields', () => {
             window.DIVORCE.showAnotherExample();
 
             sinon.assert.calledWith(document.getElementById, 'how-behaved-example-0');
-            expect(divElementArray[0].focus.called).to.eql(true);
             sinon.assert.neverCalledWith(document.getElementById, 'how-behaved-example-1', 'how-behaved-example-2');
 
             window.DIVORCE.showAnotherExample();
 
             sinon.assert.calledWith(document.getElementById, 'how-behaved-example-1');
-            expect(divElementArray[1].focus.called).to.eql(true);
             sinon.assert.neverCalledWith(document.getElementById, 'how-behaved-example-2');
 
             window.DIVORCE.showAnotherExample();
 
             sinon.assert.calledWith(document.getElementById, 'how-behaved-example-3');
-            expect(divElementArray[5].focus.called).to.eql(true);
             sinon.assert.neverCalledWith(document.getElementById, 'how-behaved-example-2, irrelevent-id-0, irrelevent-id-1');
 
             //  we have 4 hidden fields, so we need to call showAnotherExample again
             window.DIVORCE.showAnotherExample();
-            expect(divElementArray[7].focus.called).to.eql(true);
 
             expect(addExampleObject).to.eql({ style : { display : 'none' }});
         });

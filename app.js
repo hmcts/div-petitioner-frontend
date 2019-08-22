@@ -51,11 +51,28 @@ exports.init = listenForConnections => {
   app.use(helmet.contentSecurityPolicy({
     directives: {
       fontSrc: ['\'self\' data:'],
-      scriptSrc: ['\'self\'', '\'unsafe-inline\'', 'www.google-analytics.com', 'hmctspiwik.useconnect.co.uk'],
+      scriptSrc: [
+        '\'self\'',
+        '\'unsafe-inline\'',
+        'www.google-analytics.com',
+        'hmctspiwik.useconnect.co.uk',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ],
       connectSrc: ['\'self\''],
       mediaSrc: ['\'self\''],
-      frameSrc: ['\'none\''],
-      imgSrc: ['\'self\'', 'www.google-analytics.com', 'hmctspiwik.useconnect.co.uk']
+      frameSrc: [
+        '\'none\'',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ],
+      imgSrc: [
+        '\'self\'',
+        'www.google-analytics.com',
+        'hmctspiwik.useconnect.co.uk',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ]
     }
   }));
   // http public key pinning

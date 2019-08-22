@@ -9,7 +9,7 @@
                     "originalCertificate": "You'll be asked to upload a digital photo of the certificate. You can use your phone to do this if it has a camera.",
                     "camera": "If you don't have your certificate you should save and close your application and return later.",
 
-                    "certificateTranslation": "You must have the original certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\"target=\"_blank\">certified copy</a>. If it isn't in English, you'll also need to provide a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified translation</a>.",
+                    "certificateTranslation": "You must have the original certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\"target=\"_blank\" aria-label=\"certifying a document link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 mins so you don’t lose your progress.\">certified copy</a>. If it isn't in English, you'll also need to provide a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified translation</a>.",
                     "yes": "Yes",
                     "no": "No"
                 },

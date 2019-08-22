@@ -42,15 +42,6 @@ const supportedBrowsers = {
       platform: 'macOS 10.13',
       version: 'latest'
     }
-  },
-  safari: {
-    safari11: {
-      browserName: 'safari',
-      name: 'DIV_SAFARI_11',
-      platform: 'macOS 10.13',
-      version: '12.0',
-      avoidProxy: true
-    }
   }
 };
 

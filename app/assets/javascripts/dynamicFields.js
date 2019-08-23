@@ -19,6 +19,7 @@
             var hiddenFields = findHiddenFields();
 
             removeHiddenClass(hiddenFields[hiddenFields.length - 1].id, 'js-hidden');
+            focusElement(hiddenFields[hiddenFields.length - 1].id);
 
             if (hiddenFields.length === 1)
                 hideAddExampleButton();
@@ -32,6 +33,12 @@
         document.getElementById(elementId).className =
                 document.getElementById(elementId).className
                         .replace(new RegExp('(?:^|\\s)' + className + '(?:\\s|$)'), ' ');
+    }
+
+    function focusElement(elementId) {
+        document.getElementById(elementId)
+            .getElementsByTagName('textarea')[0]
+            .focus();
     }
 
     function addAttributeWhenVisible(){

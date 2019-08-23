@@ -24,18 +24,20 @@ describe('dynamicFields', () => {
 
         before(() => {
 
+            const getElementsByTagName = sinon.stub().returns([{ focus: sinon.stub() }]);
+
             divElementArray = [
-                { id : 'how-behaved-example-0', className : 'class js-hidden' },
-                { id : 'how-behaved-example-1', className : 'class js-hidden' },
-                { id : 'how-behaved-example-2', className : 'class js-not-hidden' },
-                { id : 'irrelevent-id-0', className : 'class js-hidden' },
-                { id : 'irrelevent-id-1', className : 'class js-hidden' },
-                { id : 'how-behaved-example-3', className : 'class js-hidden' },
-                { id : 'irrelevent-id-2', className : 'class js-not-hidden' },
-                { id : 'how-behaved-example-4', className : 'class js-hidden' },
-                { id : 'how-behaved-example-5', className : 'class js-not-hidden' },
-                { id : 'how-behaved-example-6', className : 'class js-not-hidden' },
-                { id : 'irrelevent-id-3', className : 'class js-not-hidden' }
+                { id : 'how-behaved-example-0', className : 'class js-hidden', getElementsByTagName },
+                { id : 'how-behaved-example-1', className : 'class js-hidden', getElementsByTagName },
+                { id : 'how-behaved-example-2', className : 'class js-not-hidden', getElementsByTagName },
+                { id : 'irrelevent-id-0', className : 'class js-hidden', getElementsByTagName },
+                { id : 'irrelevent-id-1', className : 'class js-hidden', getElementsByTagName },
+                { id : 'how-behaved-example-3', className : 'class js-hidden', getElementsByTagName },
+                { id : 'irrelevent-id-2', className : 'class js-not-hidden', getElementsByTagName },
+                { id : 'how-behaved-example-4', className : 'class js-hidden', getElementsByTagName },
+                { id : 'how-behaved-example-5', className : 'class js-not-hidden', getElementsByTagName },
+                { id : 'how-behaved-example-6', className : 'class js-not-hidden', getElementsByTagName },
+                { id : 'irrelevent-id-3', className : 'class js-not-hidden', getElementsByTagName }
             ];
 
             documentGetElementsByTagNameStub.withArgs('DIV').returns(divElementArray);

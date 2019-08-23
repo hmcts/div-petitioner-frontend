@@ -1,11 +1,11 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.email | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.email | safe }}</th>
   <td class="govuk-table__cell">{{ session.petitionerEmail }}</td>
   <td class="govuk-table__cell">&nbsp;</td>
 </tr>
 {% if fields.petitionerPhoneNumber.value %}
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell">{{ content.petitionerPhoneNumber | safe }}</td>
+    <th class="govuk-table__cell" scope="row">{{ content.petitionerPhoneNumber | safe }}</th>
     <td class="govuk-table__cell">{{ fields.petitionerPhoneNumber.value }}</td>
     <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.petitionerPhoneNumber | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>

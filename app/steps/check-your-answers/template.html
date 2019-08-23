@@ -40,12 +40,15 @@
       {%- if content[group] != '' -%}
         <h2 class="govuk-heading-m govuk-!-margin-top-8">{{ content[group] | safe }}</h2>
       {%- endif -%}
-    <table class="govuk-table">
+    <table class="govuk-table"> //NOSONAR
         <colgroup>
            <col span="1" style="width: 45%;">
            <col span="1" style="width: 40%;">
            <col span="1" style="width: 15%;">
         </colgroup>
+        <caption class="govuk-table__caption">
+          <span class="govuk-visually-hidden">{{ content.tableExplanation }}</span>
+        </caption>
         <tbody class="govuk-table__body">
             {%- for template in templates -%}
                 {{ template.html | safe }}

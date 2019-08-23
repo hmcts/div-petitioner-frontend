@@ -1,18 +1,18 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.countryName | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.countryName | safe }}</th>
   <td class="govuk-table__cell">{{ fields.countryName.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.countryName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 
 {% if session.certificateInEnglish === 'Yes' %}
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.placeOfMarriageFromCertificate | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.placeOfMarriageFromCertificate | safe }}</th>
   <td class="govuk-table__cell">{{ fields.placeOfMarriage.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.placeOfMarriageFromCertificate | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% else %}
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.placeOfMarriageFromTranslation | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.placeOfMarriageFromTranslation | safe }}</th>
   <td class="govuk-table__cell">{{ fields.placeOfMarriage.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.placeOfMarriageFromTranslation | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

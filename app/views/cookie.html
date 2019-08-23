@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+  {{ common.serviceName }} - Cookies - GOV.UK
+{% endblock %}
+
 {% block two_thirds -%}
 
     <section>
@@ -40,9 +44,9 @@
 
             <p class="govuk-body">You can <a class="govuk-link" href="https://tools.google.com/dlpage/gaoptout">opt out of Google Analytics</a> if you do not want Google to have access to your information.</p>
 
-            <p class="govuk-body">Google Analytics sets the following cookies:</p>
-            <table class="govuk-table">
-                <tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Purpose</th><th class="govuk-table__header">Expires</th></tr>
+            <p class="govuk-body">List of google analytics cookies used.</p>
+            <table class="govuk-table" aria-describedby="Google Analytics sets the following cookies">
+                <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Name</th><th class="govuk-table__header" scope="col">Purpose</th><th class="govuk-table__header" scope="col">Expires</th></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">_ga</td><td class="govuk-table__cell">This helps us count how many people visit the service by tracking if you’ve visited before</td><td class="govuk-table__cell">2 years</td></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">_gat</td><td class="govuk-table__cell">Manages the rate at which page view requests are made</td><td class="govuk-table__cell">10 minutes</td></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">_gid</td><td class="govuk-table__cell">Identifies you to the service</td><td class="govuk-table__cell">24 hours</td></tr>
@@ -55,33 +59,32 @@
 
             <p class="govuk-body">You may see a pop-up welcome message when you first visit the service. We’ll store a cookie so that your computer knows you’ve seen it and knows not to show it again.</p>
 
-            <table class="govuk-table">
-                <tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Purpose</th><th class="govuk-table__header">Expires</th></tr>
+            <table class="govuk-table" aria-describedby="List of introductory cookies used.">
+                <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Name</th><th class="govuk-table__header" scope="col">Purpose</th><th class="govuk-table__header" scope="col">Expires</th></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">seen_cookie_message</td><td class="govuk-table__cell">Saves a message to let us know that you’ve seen our cookie message</td><td class="govuk-table__cell">1 month</td></tr>
-
             </table>
         </section>
         <section>
             <h3 class="govuk-heading-s">To store the answers you’ve given during your visit (known as a ‘session’)</h3>
             <p class="govuk-body">Session cookies are stored on your computer as you travel through a website, and let the website know what you’ve seen and done so far. These are temporary cookies and are automatically deleted a short while after you leave the website.</p>
-            <table class="govuk-table">
-                <tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Purpose</th><th class="govuk-table__header">Expires</th></tr>
+            <table class="govuk-table" aria-describedby="List of session cookies used.">
+                <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Name</th><th class="govuk-table__header" scope="col">Purpose</th><th class="govuk-table__header" scope="col">Expires</th></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">connect.sid</td><td class="govuk-table__cell">Carries details of your current session</td><td class="govuk-table__cell">When you close your browser</td></tr>
             </table>
         </section>
         <section>
             <h3 class="govuk-heading-s">To identify you when you come back to the service</h3>
             <p class="govuk-body">We use authentication cookies to identify you when you return to the service.</p>
-            <table class="govuk-table">
-                <tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Purpose</th><th class="govuk-table__header">Expires</th></tr>
+            <table class="govuk-table" aria-describedby="List of authorisation cookies used.">
+                <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Name</th><th class="govuk-table__header" scope="col">Purpose</th><th class="govuk-table__header" scope="col">Expires</th></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">__auth-token</td><td class="govuk-table__cell">Identifies you to the service</td><td class="govuk-table__cell">When you close your browser</td></tr>
             </table>
         </section>
         <section>
             <h3 class="govuk-heading-s">To make the service more secure</h3>
             <p class="govuk-body">We set cookies which prevent attackers from modifying the contents of the other cookies we set. This makes the service more secure and protects your personal information.</p>
-            <table class="govuk-table">
-                <tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Purpose</th><th class="govuk-table__header">Expires</th></tr>
+            <table class="govuk-table" aria-describedby="List of secirity cookies used.">
+                <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Name</th><th class="govuk-table__header" scope="col">Purpose</th><th class="govuk-table__header" scope="col">Expires</th></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">TSxxxxxxxx</td><td class="govuk-table__cell">Protects your session from tampering</td><td class="govuk-table__cell">When you close your browser</td></tr>
                 <tr class="govuk-table__row"><td class="govuk-table__cell">__state</td><td class="govuk-table__cell">Identifies you to the service and secures your authentication</td><td class="govuk-table__cell">When you close your browser</td></tr>
             </table>

@@ -2,6 +2,10 @@
 {%- from "common/errors.html" import errorsFor -%}
 {% from "warning-text/macro.njk" import govukWarningText %}
 
+{% block pageTitle %}
+  {{ common.serviceName }} - {{ content.titleSoFar if fields.nextStepUrl.value else content.title }} - GOV.UK
+{% endblock %}
+
 {% block full_width %}
 
 <div class="check-your-answers">
@@ -36,7 +40,7 @@
       {%- if content[group] != '' -%}
         <h2 class="govuk-heading-m govuk-!-margin-top-8">{{ content[group] | safe }}</h2>
       {%- endif -%}
-    <table class="govuk-table">
+    <table class="govuk-table"> //NOSONAR
         <colgroup>
            <col span="1" style="width: 45%;">
            <col span="1" style="width: 40%;">

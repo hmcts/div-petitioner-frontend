@@ -132,7 +132,7 @@ e2e:
   proxyBypassList: ''
   outputDirectory: './functional-output'
   defaultEnvironmentNodeEnv: 'development'
-  waitForTimeoutValue: 10000
+  waitForTimeoutValue: 5000
   waitForActionValue: 100
   runBasicTests: false
 
@@ -141,8 +141,8 @@ saucelabs:
   username: 'username'
   key: 'privatekey'
   tunnelId: 'reformtunnel'
-  waitForTimeout: 60000
-  smartWait: 45000
+  waitForTimeout: 5000
+  smartWait: 5000
 
 public:
   protocol: 'https'

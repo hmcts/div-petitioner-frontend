@@ -1,5 +1,5 @@
 const habituallyResident = require('app/steps/jurisdiction/habitual-residence/content.json').resources.en.translation.content;
-
+const pagePath = '/jurisdiction/habitual-residence';
 
 function chooseBothHabituallyResident() {
   setHabitualResidence(this, {
@@ -30,9 +30,10 @@ function chooseRespondentHabituallyResident() {
 }
 
 function setHabitualResidence(I, residenceFor) {
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
-  I.click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
-  I.click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
+  I.retry(2).click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
+  I.retry(2).click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
   I.navByClick('Continue');
 }
 

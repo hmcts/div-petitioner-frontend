@@ -6,13 +6,15 @@ const email = config.get('commonProps.courtEmail');
 
 Feature('Report A Problem Handling').retry(3);
 
-Scenario('I see link to go the ’Report a problem’ page', (I) => {
+Scenario('I see link to go the ’Contact us for help’ page', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.see('Is there a problem with this page');
-  I.click('//span[text()="Is there a problem with this page?"]');
-  I.see('You can call or email us if you’re having problems with this service.');
-  I.see(`Phone: ${phone} (${hours})`);
-  I.see(`Email: ${email}`);
+  I.see('Contact us for help');
+  I.click('//span[text()="Contact us for help"]');
+  I.see('Phone');
+  I.see(phone);
+  I.see(hours);
+  I.see('Email');
+  I.see(`Email us at ${ email }`);
 });

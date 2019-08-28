@@ -1,5 +1,5 @@
 tags:
-  - idam-pr
+  idam-pr: true
 
 idam-pr:
   redirect_uris:

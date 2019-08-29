@@ -1,4 +1,4 @@
-<?xml version="1.0"?><OWASPZAPReport version="D-2019-08-19" generated="Tue, 20 Aug 2019 21:29:04">
+<?xml version="1.0"?><OWASPZAPReport version="D-2019-08-19" generated="Thu, 22 Aug 2019 21:22:31">
     <site name="https://idam-web-public.aat.platform.hmcts.net" host="idam-web-public.aat.platform.hmcts.net" port="443" ssl="true"><alerts><alertitem>
         <pluginid>10016</pluginid>
         <alert>Web Browser XSS Protection Not Enabled</alert>
@@ -9,7 +9,7 @@
         <desc>&lt;p&gt;Web Browser XSS Protection is not enabled, or is disabled by the configuration of the &apos;X-XSS-Protection&apos; HTTP response header on the web server&lt;/p&gt;</desc>
         <instances>
             <instance>
-                <uri>https://idam-web-public.aat.platform.hmcts.net/login?client_id=divorce&amp;redirect_uri=https%3A%2F%2Fdiv-pfe-aat.service.core-compute-aat.internal%2Fauthenticated&amp;response_type=code&amp;state=c170e964-7054-4e46-abd8-6b26671f7f57</uri>
+                <uri>https://idam-web-public.aat.platform.hmcts.net/login?client_id=divorce&amp;redirect_uri=https%3A%2F%2Fdiv-pfe-aat.service.core-compute-aat.internal%2Fauthenticated&amp;response_type=code&amp;state=83cf6542-d118-4787-92d7-c25afd381d75</uri>
                 <method>GET</method>
                 <param>X-XSS-Protection</param>
             </instance>

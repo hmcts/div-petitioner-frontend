@@ -277,7 +277,8 @@ describe(modulePath, () => {
           ServiceAuthorization: `Bearer ${serviceToken}`
         },
         json: true
-      }).resolves(queryAllPaymentsSuccess);
+      })
+        .resolves(queryAllPaymentsSuccess);
       client = underTest.setup();
     });
 

@@ -27,6 +27,9 @@ const feeType = req => {
   return req.session.previousCaseId ? feeConfigPropNames.amendFee : feeConfigPropNames.applicationFee;
 };
 
+const successPaymentExits = 'success_payment_exists';
+const initiatedPaymentExists = 'initiated_payment_exists';
+
 module.exports = class PayOnline extends Step {
   get url() {
     return '/pay/online';
@@ -121,12 +124,28 @@ module.exports = class PayOnline extends Step {
     const serviceToken = serviceTokenService.setup();
     const payment = paymentService.setup();
     const submission = submissionService.setup();
+    let generatedServiceToken;
 
     // Get service token and create payment.
     return serviceToken.getToken(req)
-      // Create payment.
       .then(token => {
-        return payment.create(req, user, token, caseId, siteId, feeCode,
+        generatedServiceToken = token;
+        return payment.queryAllPayments(req, user, token, caseId);
+      })
+      .then(payments => {
+        payments.forEach(paymentEntry => {
+          if (paymentEntry.status.toLowerCase() === 'success') {
+            return Promise.reject(Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
+          }
+          if (paymentEntry.status.toLowerCase() === 'initiated') {
+            return Promise.reject(new Error(`${initiatedPaymentExists} - Found an initiated payment reference: ${paymentEntry.payment_reference}`));
+          }
+        });
+        return Promise.resolve({});
+      })
+      // Create payment.
+      .then(() => {
+        return payment.create(req, user, generatedServiceToken, caseId, siteId, feeCode,
           feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
       })
 
@@ -160,7 +179,17 @@ module.exports = class PayOnline extends Step {
       })
       .catch(error => {
         logger.errorWithReq(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
-        res.redirect('/generic-error');
+        if (error.message) {
+          if (error.message.includes(successPaymentExits)) {
+            res.redirect('/done-and-submitted');
+          } else if (error.message.includes(initiatedPaymentExists)) {
+            res.redirect('/awaiting-payment-status');
+          } else {
+            res.redirect('/generic-error');
+          }
+        } else {
+          res.redirect('/generic-error');
+        }
       });
   }
 

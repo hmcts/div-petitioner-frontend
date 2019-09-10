@@ -1,4 +1,5 @@
 const payClient = require('@hmcts/div-pay-client');
+const request = require('request-promise-native');
 const get = require('lodash/get');
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
@@ -60,6 +61,28 @@ const service = {
           date_created
         };
       })
+      .catch(error => {
+        logger.errorWithReq(req, 'payment_query_error', 'Error getting payment details for payment reference caseId', referenceInput, error.message);
+        throw error;
+      });
+  },
+  /**
+   * Query the payment API to return all payment references for a case
+   *
+   * @see @hmcts/div-pay-client for params
+   * @returns {Promise}
+   */
+  queryAllPayments: (req, user, serviceToken, referenceInput) => {
+    return request.get({
+      uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${req.session.caseId}`,
+      headers: {
+        Authorization: `Bearer ${user.bearerToken}`,
+        ServiceAuthorization: `Bearer ${serviceToken}`
+      },
+      json: true
+    }).then(response => {
+      return response.payments;
+    })
       .catch(error => {
         logger.errorWithReq(req, 'payment_query_error', 'Error getting payment details for payment reference caseId', referenceInput, error.message);
         throw error;

@@ -180,7 +180,7 @@ module.exports = class PayOnline extends Step {
       .catch(error => {
         logger.errorWithReq(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
         if (error.message && error.message.includes(successPaymentExits)) {
-          res.redirect('/done-and-submitted');
+          res.redirect('/pay/card-payment-status');
         } else {
           res.redirect('/generic-error');
         }

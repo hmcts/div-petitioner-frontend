@@ -323,7 +323,7 @@ describe(modulePath, () => {
       });
 
       context('check payment history', () => {
-        it('case containing a success payment is redirected to done page', done => {
+        it('case containing a success payment is redirected to card payment status', done => {
           payment.setup.restore();
           queryAllPayments = sinon.stub().resolves({
             payments: [
@@ -341,7 +341,7 @@ describe(modulePath, () => {
             expect(create.notCalled).to.equal(true);
             expect(update.notCalled).to.equal(true);
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-            expect(response.header.location).to.equal('/done-and-submitted');
+            expect(response.header.location).to.equal('/pay/card-payment-status');
           }, 'post');
         });
 

@@ -79,8 +79,6 @@ const service = {
         ServiceAuthorization: `Bearer ${serviceToken}`
       },
       json: true
-    }).then(response => {
-      return response.payments;
     })
       .catch(error => {
         logger.errorWithReq(req, 'payment_query_error', 'Error getting payment details for payment reference caseId', caseId, error.message);

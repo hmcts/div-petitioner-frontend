@@ -106,14 +106,16 @@ describe(modulePath, () => {
         nextUrl: 'https://pay.the.gov/here'
       });
       // Payment query all payments stub
-      queryAllPayments = sinon.stub().resolves([
-        {
-          id: '42',
-          reference: 'some-payment-reference',
-          status: 'failed',
-          nextUrl: 'https://pay.the.gov/here'
-        }
-      ]);
+      queryAllPayments = sinon.stub().resolves({
+        payments: [
+          {
+            id: '42',
+            reference: 'some-payment-reference',
+            status: 'failed',
+            nextUrl: 'https://pay.the.gov/here'
+          }
+        ]
+      });
       // Submission update stub
       update = sinon.stub().resolves({
         caseId: '1509031793780148',
@@ -323,13 +325,15 @@ describe(modulePath, () => {
       context('check payment history', () => {
         it('case containing a success payment is redirected to done page', done => {
           payment.setup.restore();
-          queryAllPayments = sinon.stub().resolves([
-            {
-              id: '42',
-              payment_reference: 'some-payment-reference',
-              status: 'Success'
-            }
-          ]);
+          queryAllPayments = sinon.stub().resolves({
+            payments: [
+              {
+                id: '42',
+                payment_reference: 'some-payment-reference',
+                status: 'Success'
+              }
+            ]
+          });
           sinon.stub(payment, 'setup').returns({ create, queryAllPayments });
           // Act.
           testCustom(done, agent, underTest, cookies, response => {
@@ -343,13 +347,15 @@ describe(modulePath, () => {
 
         it('case not containing an success payment directed to gov.uk payment page', done => {
           payment.setup.restore();
-          queryAllPayments = sinon.stub().resolves([
-            {
-              id: '42',
-              payment_reference: 'some-payment-reference',
-              status: 'Failed'
-            }
-          ]);
+          queryAllPayments = sinon.stub().resolves({
+            payments: [
+              {
+                id: '42',
+                payment_reference: 'some-payment-reference',
+                status: 'Failed'
+              }
+            ]
+          });
           sinon.stub(payment, 'setup').returns({ create, queryAllPayments });
           const testSession = () => {
             getSession(agent).then(currentSession => {

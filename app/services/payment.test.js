@@ -298,7 +298,7 @@ describe(modulePath, () => {
       // Act.
       client.queryAllPayments(req, user, serviceToken).then(output => {
         // Assert.
-        expect(output).to.eql(queryAllPaymentsSuccess.payments);
+        expect(output).to.eql(queryAllPaymentsSuccess);
         done();
       })
         .catch(error => {

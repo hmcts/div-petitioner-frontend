@@ -131,9 +131,9 @@ module.exports = class PayOnline extends Step {
         generatedServiceToken = token;
         return payment.queryAllPayments(req, user, token, caseId);
       })
-      .then(payments => {
+      .then(response => {
         return new Promise((resolve, reject) => {
-          payments.forEach(paymentEntry => {
+          response.payments.forEach(paymentEntry => {
             if (paymentEntry.status.toLowerCase() === 'success') {
               reject(new Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
             }

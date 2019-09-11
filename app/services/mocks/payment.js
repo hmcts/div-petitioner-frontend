@@ -65,7 +65,7 @@ module.exports = {
               channel: 'online',
               method: 'card',
               external_provider: 'gov pay',
-              status: 'Success',
+              status: outcome === true ? 'Success' : 'Failed',
               external_reference: '2lkfor5neonun6u5ji2rr6qdlv',
               site_id: 'AA00',
               service_name: 'Divorce',

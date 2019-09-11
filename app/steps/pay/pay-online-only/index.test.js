@@ -334,8 +334,8 @@ describe(modulePath, () => {
           // Act.
           testCustom(done, agent, underTest, cookies, response => {
             // Assert.
-            expect(create.notCalled).to.equal(false);
-            expect(update.notCalled).to.equal(false);
+            expect(create.notCalled).to.equal(true);
+            expect(update.notCalled).to.equal(true);
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
             expect(response.header.location).to.equal('/done-and-submitted');
           }, 'post');
@@ -356,8 +356,8 @@ describe(modulePath, () => {
           // Act.
           testCustom(done, agent, underTest, cookies, response => {
             // Assert.
-            expect(create.notCalled).to.equal(false);
-            expect(update.notCalled).to.equal(false);
+            expect(create.notCalled).to.equal(true);
+            expect(update.notCalled).to.equal(true);
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
             expect(response.header.location).to.equal('/awaiting-payment-status');
           }, 'post');
@@ -382,8 +382,10 @@ describe(modulePath, () => {
           // Act.
           testCustom(testSession, agent, underTest, cookies, response => {
             // Assert.
+            expect(create.calledOnce).to.equal(true);
+            expect(update.calledOnce).to.equal(true);
             expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
-            expect(response.header.location).to.equal('/awaiting-payment-status');
+            expect(response.header.location).to.equal('https://pay.the.gov/here');
           }, 'post');
         });
       });

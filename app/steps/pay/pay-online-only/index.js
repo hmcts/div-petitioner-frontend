@@ -124,7 +124,7 @@ module.exports = class PayOnline extends Step {
     const serviceToken = serviceTokenService.setup();
     const payment = paymentService.setup();
     const submission = submissionService.setup();
-    let generatedServiceToken;
+    let generatedServiceToken = null;
 
     // Get service token and create payment.
     return serviceToken.getToken(req)
@@ -133,19 +133,23 @@ module.exports = class PayOnline extends Step {
         return payment.queryAllPayments(req, user, token, caseId);
       })
       .then(payments => {
-        payments.forEach(paymentEntry => {
-          if (paymentEntry.status.toLowerCase() === 'success') {
-            return Promise.reject(Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
-          }
-          if (paymentEntry.status.toLowerCase() === 'initiated') {
-            return Promise.reject(new Error(`${initiatedPaymentExists} - Found an initiated payment reference: ${paymentEntry.payment_reference}`));
-          }
+        return new Promise((resolve, reject) => {
+          payments.forEach(paymentEntry => {
+            if (paymentEntry.status.toLowerCase() === 'success') {
+              reject(new Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
+            }
+            if (paymentEntry.status.toLowerCase() === 'initiated') {
+              reject(
+                new Error(`${initiatedPaymentExists} - Found an initiated payment reference: ${paymentEntry.payment_reference}`));
+            }
+          });
+          resolve({});
         });
-        return Promise.resolve({});
       })
       // Create payment.
       .then(() => {
-        return payment.create(req, user, generatedServiceToken, caseId, siteId, feeCode,
+        return payment.create(
+          req, user, generatedServiceToken, caseId, siteId, feeCode,
           feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
       })
 

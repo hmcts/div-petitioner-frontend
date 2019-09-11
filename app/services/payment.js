@@ -69,10 +69,9 @@ const service = {
   /**
    * Query the payment API to return all payment references for a case
    *
-   * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  queryAllPayments: (req, user, serviceToken, referenceInput) => {
+  queryAllPayments: (req, user, serviceToken, caseId) => {
     return request.get({
       uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${req.session.caseId}`,
       headers: {
@@ -84,7 +83,7 @@ const service = {
       return response.payments;
     })
       .catch(error => {
-        logger.errorWithReq(req, 'payment_query_error', 'Error getting payment details for payment reference caseId', referenceInput, error.message);
+        logger.errorWithReq(req, 'payment_query_error', 'Error getting payment details for payment reference caseId', caseId, error.message);
         throw error;
       });
   }

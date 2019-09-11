@@ -1,0 +1,16 @@
+## DO NOT PUT SECRETS IN THIS EXAMPLE FILE - COPY IT AS local-aat.yaml (which is .gitignored)
+services:
+  postcodeInfo:
+    token: # Defined by POST_CODE_ACCESS_TOKEN in env
+  serviceAuthProvider:
+    microserviceKey: # Microservice key should be defined as MICROSERVICE_KEY in env
+
+secret: # Defined by SECRET in env
+sessionEncryptionSecret: # Defined by SESSION_ENCRYPTION_SECRET in env
+
+idamArgs:
+  idamSecret: # Defined by IDAM_SECRET in env
+
+ssl:
+  hpkp:
+    sha256s: # Defined by HPKP_SHAS in env

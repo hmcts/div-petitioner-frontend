@@ -28,3 +28,4 @@ functional-output
 .stryker-tmp
 local*.yaml
 .scannerwork/
+config/local*

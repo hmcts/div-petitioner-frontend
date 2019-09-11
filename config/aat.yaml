@@ -1,0 +1,36 @@
+
+deployment_env: 'aat'
+
+services:
+  postcodeInfo:
+    url: 'https://api.ordnancesurvey.co.uk/places/v1'
+  idamAuthentication:
+    health: 'https://idam-web-public.aat.platform.hmcts.net/health'
+  idamApp:
+    health: 'https://idam-api.aat.platform.hmcts.net/health'
+  serviceAuthProvider:
+    baseUrl: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
+    health: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal/health'
+  payment:
+    baseUrl: 'http://payment-api-aat.service.core-compute-aat.internal'
+    health: 'http://payment-api-aat.service.core-compute-aat.internal/health'
+  transformation:
+    baseUrl: 'http://div-cos-aat.service.core-compute-aat.internal'
+    draftBaseUrl: 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
+    health: 'http://div-cos-aat.service.core-compute-aat.internal/health'
+  feesAndPayments:
+    baseUrl: 'http://div-fps-aat.service.core-compute-aat.internal'
+    health: 'http://div-fps-aat.service.core-compute-aat.internal/health'
+
+features:
+  idam: true
+  strategicPay: true
+
+idamArgs:
+  redirectUri: 'https://localhost:3000/authenticated'
+  idamApiUrl: 'https://idam-api.aat.platform.hmcts.net'
+  idamLoginUrl: 'https://idam-web-public.aat.platform.hmcts.net/login'
+
+evidenceManagmentClient:
+  url: 'http://div-emca-aat.service.core-compute-aat.internal'
+  health: 'http://div-emca-aat.service.core-compute-aat.internal/health'

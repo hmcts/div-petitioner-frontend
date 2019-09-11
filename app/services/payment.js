@@ -73,7 +73,7 @@ const service = {
    */
   queryAllPayments: (req, user, serviceToken, caseId) => {
     return request.get({
-      uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${req.session.caseId}`,
+      uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${caseId}`,
       headers: {
         Authorization: `Bearer ${user.bearerToken}`,
         ServiceAuthorization: `Bearer ${serviceToken}`

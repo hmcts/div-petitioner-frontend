@@ -261,7 +261,7 @@ describe(modulePath, () => {
 
   describe('#queryAllPayments', () => {
     let client = null;
-    const req = { session: { caseId: '1111222233334444' } };
+    const req = {};
     const user = { bearerToken: '123' };
     const serviceToken = 'someServiceToken';
 
@@ -284,7 +284,7 @@ describe(modulePath, () => {
 
     it('forwards the call to the service', done => {
       // Act.
-      client.queryAllPayments(req, user, serviceToken).then(() => {
+      client.queryAllPayments(req, user, serviceToken, '1111222233334444').then(() => {
         // Assert.
         expect(request.get.calledOnce).to.equal(true);
         done();
@@ -296,7 +296,7 @@ describe(modulePath, () => {
 
     it('resolves sending required data of the response', done => {
       // Act.
-      client.queryAllPayments(req, user, serviceToken).then(output => {
+      client.queryAllPayments(req, user, serviceToken, '1111222233334444').then(output => {
         // Assert.
         expect(output).to.eql(queryAllPaymentsSuccess);
         done();

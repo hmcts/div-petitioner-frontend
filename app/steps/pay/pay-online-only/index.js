@@ -28,7 +28,6 @@ const feeType = req => {
 };
 
 const successPaymentExits = 'success_payment_exists';
-const initiatedPaymentExists = 'initiated_payment_exists';
 
 module.exports = class PayOnline extends Step {
   get url() {
@@ -138,10 +137,6 @@ module.exports = class PayOnline extends Step {
             if (paymentEntry.status.toLowerCase() === 'success') {
               reject(new Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
             }
-            if (paymentEntry.status.toLowerCase() === 'initiated') {
-              reject(
-                new Error(`${initiatedPaymentExists} - Found an initiated payment reference: ${paymentEntry.payment_reference}`));
-            }
           });
           resolve({});
         });
@@ -183,14 +178,8 @@ module.exports = class PayOnline extends Step {
       })
       .catch(error => {
         logger.errorWithReq(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
-        if (error.message) {
-          if (error.message.includes(successPaymentExits)) {
-            res.redirect('/done-and-submitted');
-          } else if (error.message.includes(initiatedPaymentExists)) {
-            res.redirect('/awaiting-payment-status');
-          } else {
-            res.redirect('/generic-error');
-          }
+        if (error.message && error.message.includes(successPaymentExits)) {
+          res.redirect('/done-and-submitted');
         } else {
           res.redirect('/generic-error');
         }

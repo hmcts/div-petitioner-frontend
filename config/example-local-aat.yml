@@ -10,7 +10,3 @@ sessionEncryptionSecret: # Defined by SESSION_ENCRYPTION_SECRET in env
 
 idamArgs:
   idamSecret: # Defined by IDAM_SECRET in env
-
-ssl:
-  hpkp:
-    sha256s: # Defined by HPKP_SHAS in env

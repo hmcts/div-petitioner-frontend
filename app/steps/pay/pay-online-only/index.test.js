@@ -328,8 +328,11 @@ describe(modulePath, () => {
           queryAllPayments = sinon.stub().resolves({
             payments: [
               {
-                id: '42',
-                payment_reference: 'some-payment-reference',
+                payment_reference: 'some-payment-reference-1',
+                status: 'Initiated'
+              },
+              {
+                payment_reference: 'some-payment-reference-2',
                 status: 'Success'
               }
             ]
@@ -344,8 +347,34 @@ describe(modulePath, () => {
             expect(response.header.location).to.equal('/pay/card-payment-status');
           }, 'post');
         });
+        it('case containing an initiated payment is redirect to an awaiting payment status page', done => {
+          payment.setup.restore();
 
-        it('case not containing an success payment directed to gov.uk payment page', done => {
+          queryAllPayments = sinon.stub().resolves({
+            payments: [
+              {
+                payment_reference: 'some-payment-reference-1',
+                status: 'Failed'
+              },
+              {
+                payment_reference: 'some-payment-reference-2',
+                status: 'Initiated'
+              }
+            ]
+          });
+          sinon.stub(payment, 'setup').returns({ create, queryAllPayments });
+
+          // Act.
+          testCustom(done, agent, underTest, cookies, response => {
+            // Assert.
+            expect(create.notCalled).to.equal(true);
+            expect(update.notCalled).to.equal(true);
+            expect(response.status).to.equal(statusCodes.MOVED_TEMPORARILY);
+            expect(response.header.location).to.equal('/pay/awaiting-payment-status');
+          }, 'post');
+        });
+
+        it('case not containing an initiated/success payment directed to gov.uk payment page', done => {
           payment.setup.restore();
           queryAllPayments = sinon.stub().resolves({
             payments: [

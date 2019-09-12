@@ -126,6 +126,15 @@
   dependencies:
     detox "^12.11.0"
 
+"@hmcts/ctsc-web-chat@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.3.9.tgz#035041bbaac45abefec98e9b1fe39df635290a57"
+  integrity sha512-72+DyrutM2CZArC/towDbVZWV/jiMXzMWLa/nuEaRBqftcBRNm5Of1T93PISc5+WoO34dVblU5fjaMmpI3mBsA==
+  dependencies:
+    "@hmcts/nodejs-logging" "^3.0.0"
+    govuk-frontend "^2.13.0"
+    node-sass "^4.12.0"
+
 "@hmcts/div-idam-express-middleware@^6.5.0":
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.5.0.tgz#357020b9d73d013268338ba9469540e2e839fee6"
@@ -4568,7 +4577,7 @@ govuk-elements-sass@~3.0.2:
   dependencies:
     govuk_frontend_toolkit "^6.0.2"
 
-govuk-frontend@^2.11.0:
+govuk-frontend@^2.11.0, govuk-frontend@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-2.13.0.tgz#0273f7c92070abd6450c73a006ebb3ddc793463a"
   integrity sha512-6XDtTt5plSrPQvPgLFN4LCtb9ULuqoXCgkHy5c7XE/70/sVm47RPbLR11tYGPcmV8cOApBhW0wL8y8ryspHfpw==
@@ -7007,7 +7016,7 @@ node-sass@^3.7.0:
     request "^2.61.0"
     sass-graph "^2.1.1"
 
-node-sass@^4.0.0:
+node-sass@^4.0.0, node-sass@^4.12.0:
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.12.0.tgz#0914f531932380114a30cc5fa4fa63233a25f017"
   integrity sha512-A1Iv4oN+Iel6EPv77/HddXErL2a+gZ4uBeZUy+a8O35CFYTXhgA8MgLCWBtwpGZdCvTvQ9d+bQxX/QC36GDPpQ==

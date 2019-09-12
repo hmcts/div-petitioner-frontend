@@ -37,6 +37,7 @@
     "lint"
   ],
   "dependencies": {
+    "@hmcts/ctsc-web-chat": "^0.3.9",
     "@hmcts/div-idam-express-middleware": "^6.5.0",
     "@hmcts/div-pay-client": "https://github.com/hmcts/div-pay-client#7.0.0",
     "@hmcts/div-service-auth-provider-client": "https://github.com/hmcts/div-service-auth-provider-client#3.0.0",

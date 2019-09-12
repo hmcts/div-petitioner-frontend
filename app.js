@@ -51,11 +51,28 @@ exports.init = listenForConnections => {
   app.use(helmet.contentSecurityPolicy({
     directives: {
       fontSrc: ['\'self\' data:'],
-      scriptSrc: ['\'self\'', '\'unsafe-inline\'', 'www.google-analytics.com', 'hmctspiwik.useconnect.co.uk'],
+      scriptSrc: [
+        '\'self\'',
+        '\'unsafe-inline\'',
+        'www.google-analytics.com',
+        'hmctspiwik.useconnect.co.uk',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ],
       connectSrc: ['\'self\''],
       mediaSrc: ['\'self\''],
-      frameSrc: ['\'none\''],
-      imgSrc: ['\'self\'', 'www.google-analytics.com', 'hmctspiwik.useconnect.co.uk']
+      frameSrc: [
+        '\'none\'',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ],
+      imgSrc: [
+        '\'self\'',
+        'www.google-analytics.com',
+        'hmctspiwik.useconnect.co.uk',
+        'vcc-eu4.8x8.com',
+        'vcc-eu4b.8x8.com'
+      ]
     }
   }));
   // http public key pinning
@@ -91,7 +108,11 @@ exports.init = listenForConnections => {
     watch: isDev,
     noCache: isDev,
     filters: nunjucksFilters,
-    loader: nunjucks.FileSystemLoader
+    loader: nunjucks.FileSystemLoader,
+    globals: {
+      webchat: CONF.services.webchat,
+      features: CONF.features
+    }
   });
 
   // Disallow search index idexing
@@ -109,6 +130,7 @@ exports.init = listenForConnections => {
 
   // Middleware to serve static assets
   app.use('/public', express.static(`${__dirname}/public`));
+  app.use('/webchat', express.static(`${__dirname}/node_modules/@hmcts/ctsc-web-chat/assets`));
 
   // Parsing cookies for the stored encrypted session key
   app.use(cookieParser());

@@ -3,16 +3,15 @@
         <span class="govuk-details__summary-text govuk-!-font-size-16">{{ common.problemWithThisPage | safe }}</span>
     </summary>
     <div class="govuk-details__text">
-        <p class="govuk-body">
-            {{common.pleaseEmailOrCallDivorceCourt | safe}}
-        </p>
+        {% if features.webchat %}
+            <p class="govuk-heading-s govuk-!-margin-bottom-1" id="ctsc-web-chat-header">{{ common.webChatTitle | safe }}</p>
+            <div id="ctsc-web-chat"></div><br>
+        {% endif %}
 
-        <p class="govuk-body">
-            {{common.phoneToCallIfProblems | safe}}
-        </p>
+        <p class="govuk-heading-s govuk-!-margin-bottom-1" >{{ common.emailTitle | safe }}</p>
+        <p class="govuk-body">{{ common.emailIfProblems | safe }}<br>{{ common.responseTime }}</p>
 
-        <p class="govuk-body">
-            {{common.emailIfProblems | safe}}
-        </p>
+        <p class="govuk-heading-s govuk-!-margin-bottom-1" >{{ common.phoneTitle | safe }}</p>
+        <p class="govuk-body">{{ common.phoneToCallIfProblems | safe }}</p>
     </div>
 </details>

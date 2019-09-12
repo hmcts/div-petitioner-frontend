@@ -192,5 +192,12 @@ module "frontend" {
     // Feature toggling through config
     FEATURE_IDAM                            = "${var.feature_idam}"
     FEATURE_STRATEGIC_PAY                   = "${var.feature_strategic_pay}"
+    FEATURE_WEBCHAT                         = "${var.feature_webchat}"
+
+    WEBCHAT_CHAT_ID = "${var.webchat_chat_id}"
+    WEBCHAT_TENANT = "${var.webchat_tenant}"
+    WEBCHAT_BUTTON_NO_AGENTS = "${var.webchat_button_no_agents}"
+    WEBCHAT_BUTTON_AGENTS_BUSY = "${var.webchat_button_agents_busy}"
+    WEBCHAT_BUTTON_SERVICE_CLOSED = "${var.webchat_button_service_closed}"
   }
 }

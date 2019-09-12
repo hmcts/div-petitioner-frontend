@@ -260,32 +260,3 @@ variable "dev_support_notification_email" {
 variable "decree_nisi_frontend_url" {
   default = ""
 }
-
-variable "feature_webchat" {
-  default = false
-}
-
-variable "webchat_chat_id" {
-  type = "string"
-  default = "3833071605d5d4518036a09.30917386"
-}
-
-variable "webchat_tenant" {
-  type = "string"
-  default = "aG1jdHNzdGFnaW5nMDE"
-}
-
-variable "webchat_button_no_agents" {
-  type = "string"
-  default = "7732814745cac6f4603c4d1.53357933"
-}
-
-variable "webchat_button_agents_busy" {
-  type = "string"
-  default = "2042157415cc19c95669039.65793052"
-}
-
-variable "webchat_button_service_closed" {
-  type = "string"
-  default = "20199488815cc1a89e0861d5.73103009"
-}

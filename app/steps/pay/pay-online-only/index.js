@@ -17,6 +17,7 @@ const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 const parseBool = require('app/core/utils/parseBool');
+const moment = require('moment');
 
 const feeConfigPropNames = {
   applicationFee: 'applicationFee',
@@ -28,6 +29,7 @@ const feeType = req => {
 };
 
 const successPaymentExits = 'success_payment_exists';
+const initiatedPaymentExits = 'initiated_payment_exists';
 
 module.exports = class PayOnline extends Step {
   get url() {
@@ -134,11 +136,17 @@ module.exports = class PayOnline extends Step {
       .then(response => {
         return new Promise((resolve, reject) => {
           logger.infoWithReq(req, 'query_all_payments', 'query all payments response for case ID', caseId, response);
+          const initiatedPayments = [];
           response.payments.forEach(paymentEntry => {
             if (paymentEntry.status.toLowerCase() === 'success') {
               reject(new Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
+            } else if (paymentEntry.status.toLowerCase() === 'initiated') {
+              initiatedPayments.push(paymentEntry);
             }
           });
+          if (initiatedPayments.length) {
+            reject(new Error(`${initiatedPaymentExits} - Found a recently initiated payment reference(s): ${recentlyInitiatedPayments}`));
+          }
           resolve({});
         });
       })
@@ -181,6 +189,8 @@ module.exports = class PayOnline extends Step {
         logger.errorWithReq(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
         if (error.message && error.message.includes(successPaymentExits)) {
           res.redirect('/pay/card-payment-status');
+        } else if (error.message && error.message.includes(initiatedPaymentExits)) {
+          res.redirect('/pay/awaiting-payment-status');
         } else {
           res.redirect('/generic-error');
         }

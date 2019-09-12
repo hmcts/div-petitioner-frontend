@@ -202,7 +202,7 @@ exports.init = listenForConnections => {
 
   let http = {};
   if (listenForConnections) {
-    if (CONF.environment === 'development' || CONF.environment === 'testing' || CONF.environment === 'local-aat') {
+    if (CONF.environment === 'development' || CONF.environment === 'testing' || CONF.environment === 'aat') {
       const sslDirectory = path.join(__dirname, 'app', 'resources', 'localhost-ssl');
       const sslOptions = {
         key: fs.readFileSync(path.join(sslDirectory, 'localhost.key')),

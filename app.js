@@ -112,7 +112,7 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      features: { webchat: parseBool(CONF.features) }
+      features: { webchat: parseBool(CONF.features.webchat) }
     }
   });
 

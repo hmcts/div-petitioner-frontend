@@ -27,6 +27,7 @@ const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
 const signOutRoute = require('app/routes/sign-out');
+const parseBool = require('app/core/utils/parseBool');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -111,7 +112,7 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      features: CONF.features
+      features: { webchat: parseBool(CONF.features) }
     }
   });
 

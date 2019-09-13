@@ -2,6 +2,33 @@
 {% if session.caseId %}
 <meta name="format-detection" content="telephone=no">
 {% endif %}
+
+{% if features.webchat %}
+<script src="/webchat/javascript/hmcts-webchat.js"></script>
+<script type="text/javascript">
+webchat_init({ // eslint-disable-line
+  uuid: 'script_{{ webchat.chatId }}',
+  tenant: '{{ webchat.tenant }}',
+  channel: 'Divorce',
+  stylesheetURL: 'https://' + window.location.hostname + '/webchat/css/hmcts-webchat-gds-v2.css',
+  busHandlerURL: 'https://' + window.location.hostname + '/webchat/javascript/hmcts-webchat-busHandler.js',
+  btnNoAgents: '/{{ webchat.tenant }}/button_{{ webchat.buttonNoAgents }}/img/logo',
+  btnAgentsBusy: '/{{ webchat.tenant }}/button_{{ webchat.buttonAgentsBusy }}/img/logo',
+  btnServiceClosed: '/{{ webchat.tenant }}/button_{{ webchat.buttonServiceClosed }}/img/logo',
+  chatDownAction: 'showMessage',
+  chatLinkFocusable: false,
+  textChatDown: '{{ common.chatDown | safe }}',
+  textChatClosed: '{{ common.chatClosed | safe }}',
+  textChatWithAnAgent: '{{ common.chatWithAnAgent | safe }}',
+  textNoAgentsAvailable: '{{ common.noAgentsAvailable | safe }}',
+  textAllAgentsBusy: '{{ common.allAgentsBusy | safe }}',
+  textChatAlreadyOpen: '{{ common.chatAlreadyOpen | safe }}',
+  textAdditional: '{{ common.chatOpeningHours | safe }}',
+  gdsMajorVersion: 2
+});
+</script>
+{% endif %}
+
 {% if googleAnalyticsId %}
   <!-- Google Analytics -->
   <script>

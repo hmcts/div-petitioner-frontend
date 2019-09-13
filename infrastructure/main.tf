@@ -65,7 +65,7 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
 }
 
 module "redis-cache" {
-  source      = "git@github.com:hmcts/moj-module-redis?ref=master"
+  source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product     = "${var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.reform_service_name}-redis"}"
   location    = "${var.location}"
   env         = "${var.env}"
@@ -74,7 +74,7 @@ module "redis-cache" {
 }
 
 module "frontend" {
-  source                          = "git@github.com:hmcts/moj-module-webapp.git?ref=master"
+  source                          = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product                         = "${var.product}-${var.reform_service_name}"
   location                        = "${var.location}"
   env                             = "${var.env}"

@@ -68,7 +68,7 @@ sessionEncryptionSecret: myVeryTopSecretK
 dateFormat: 'DD/MM/YYYY'
 paymentDateFormat: 'DDMMYYYY'
 
-testUrl: 'http://localhost:3000'
+testUrl: 'https://localhost:3000'
 
 commonProps:
   applicationFee:
@@ -134,7 +134,7 @@ applicationInsights:
   instrumentationKey: 'dummy-key'
 
 e2e:
-  frontendUrl: 'http://localhost:3000'
+  frontendUrl: 'https://localhost:3000'
   proxyServer: ''
   proxyBypassList: ''
   outputDirectory: './functional-output'
@@ -156,7 +156,7 @@ public:
 
 apps:
   dn:
-    url: 'http://localhost:3000'
+    url: 'https://localhost:3000'
     landing: '/authenticated'
 
 ccd:

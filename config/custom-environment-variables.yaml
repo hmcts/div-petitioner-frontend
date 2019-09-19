@@ -34,6 +34,12 @@ services:
   feesAndPayments:
     baseUrl: FEES_AND_PAYMENTS_URL
     health: FEES_AND_PAYMENTS_HEALTHCHECK_URL
+  webchat:
+    chatId: WEBCHAT_CHAT_ID
+    tenant: WEBCHAT_TENANT
+    buttonNoAgents: WEBCHAT_BUTTON_NO_AGENTS
+    buttonAgentsBusy: WEBCHAT_BUTTON_AGENTS_BUSY
+    buttonServiceClosed: WEBCHAT_BUTTON_SERVICE_CLOSED
 
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET
@@ -75,6 +81,7 @@ features:
   ignoreSessionValidation: IGNORE_SESSION_VALIDATION
   browserSupport: BROWSER_GROUP
   strategicPay: FEATURE_STRATEGIC_PAY
+  webchat: FEATURE_WEBCHAT
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

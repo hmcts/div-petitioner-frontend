@@ -1,18 +1,29 @@
 const config = require('config');
+const commonContent = require('app/content/common').resources.en.translation;
 
 const phone = config.get('commonProps.courtPhoneNumber');
 const hours = config.get('commonProps.courtOpeningHour');
-const email = config.get('commonProps.courtEmail');
 
 Feature('Report A Problem Handling').retry(3);
 
-Scenario('I see link to go the ’Report a problem’ page', (I) => {
+Scenario.only('I see link to go the ’Contact us for help’ page', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.see('Is there a problem with this page');
-  I.click('//span[text()="Is there a problem with this page?"]');
-  I.see('You can call or email us if you’re having problems with this service.');
-  I.see(`Phone: ${phone} (${hours})`);
-  I.see(`Email: ${email}`);
+  I.see(commonContent.problemWithThisPage);
+  I.click(`//span[text()="${commonContent.problemWithThisPage}"]`);
+
+  // webchat
+  if (config.features.webchat) {
+    I.see(commonContent.webChatTitle);
+  }
+
+  // telephone
+  I.see(commonContent.phoneTitle);
+  I.see(phone);
+  I.see(hours);
+
+  // email
+  I.see(commonContent.emailTitle);
+  I.see(commonContent.responseTime);
 });

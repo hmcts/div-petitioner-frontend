@@ -75,6 +75,16 @@ make dev
 
 The application will now be running on  ```https://localhost:3000```.
 
+## Running locally but pointing to real AAT services
+
+This allows you to run the app while connecting to real IDAM/COS/Payment etc.. services in AAT
+
+* Make a copy of `config/example-local-aat.yaml` as `local-aat.yaml` (this file is .gitignored and shouldn't be commited to git because it contains secrets)
+* Copy the secrets into _local-aat.yaml_ - the secret values can be found in `div-pfe-aat` in the Azure portal
+* Remove the conditional in `app/middleware/draftPetitionStoreMiddleware.js` to always use the real `transformationServiceClient` (this is temporary and should be removed)
+* Connect to the VPN
+* Run the app using ` yarn dev-aat`
+
 ##  Testing
 
 All commands from the package.json are available through make. They will be run

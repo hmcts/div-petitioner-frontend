@@ -1,5 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const payClient = require('@hmcts/div-pay-client');
+const request = require('request-promise-native');
 
 const modulePath = 'app/services/payment';
 const underTest = require(modulePath);
@@ -23,6 +24,15 @@ describe(modulePath, () => {
     external_reference: 'a65-f836-4f61-a628-727199ef6c20',
     date_created: 1505459675824,
     _links: {}
+  };
+  const queryAllPaymentsSuccess = {
+    payments: [
+      {
+        amount: 55000,
+        status: 'Success',
+        payment_reference: 'some-reference'
+      }
+    ]
   };
 
   describe('module', () => {
@@ -241,6 +251,70 @@ describe(modulePath, () => {
         .then(() => {
           done(new Error('Promise not expected to resolve'));
         })
+        .catch(output => {
+          // Assert.
+          expect(output).to.equal(error);
+          done();
+        });
+    });
+  });
+
+  describe('#queryAllPayments', () => {
+    let client = null;
+    const req = {};
+    const user = { bearerToken: '123' };
+    const serviceToken = 'someServiceToken';
+
+    beforeEach(() => {
+      sinon.stub(request, 'get').withArgs({
+        uri: 'http://localhost:4401/payments?ccd_case_number=1111222233334444',
+        headers: {
+          Authorization: `Bearer ${user.bearerToken}`,
+          ServiceAuthorization: `Bearer ${serviceToken}`
+        },
+        json: true
+      })
+        .resolves(queryAllPaymentsSuccess);
+      client = underTest.setup();
+    });
+
+    afterEach(() => {
+      request.get.restore();
+    });
+
+    it('forwards the call to the service', done => {
+      // Act.
+      client.queryAllPayments(req, user, serviceToken, '1111222233334444').then(() => {
+        // Assert.
+        expect(request.get.calledOnce).to.equal(true);
+        done();
+      })
+        .catch(error => {
+          done(error);
+        });
+    });
+
+    it('resolves sending required data of the response', done => {
+      // Act.
+      client.queryAllPayments(req, user, serviceToken, '1111222233334444').then(output => {
+        // Assert.
+        expect(output).to.eql(queryAllPaymentsSuccess);
+        done();
+      })
+        .catch(error => {
+          done(error);
+        });
+    });
+
+    it('rejects if something goes wrong', done => {
+      // Arrange.
+      const error = new Error('Something went wrong');
+      request.get.withArgs(sinon.match.any).rejects(error);
+      client = underTest.setup();
+      // Act.
+      client.queryAllPayments(req, user, serviceToken).then(() => {
+        done(new Error('Promise not expected to resolve'));
+      })
         .catch(output => {
           // Assert.
           expect(output).to.equal(error);

@@ -27,6 +27,9 @@ const feeType = req => {
   return req.session.previousCaseId ? feeConfigPropNames.amendFee : feeConfigPropNames.applicationFee;
 };
 
+const successPaymentExits = 'success_payment_exists';
+const initiatedPaymentExits = 'initiated_payment_exists';
+
 module.exports = class PayOnline extends Step {
   get url() {
     return '/pay/online';
@@ -121,12 +124,38 @@ module.exports = class PayOnline extends Step {
     const serviceToken = serviceTokenService.setup();
     const payment = paymentService.setup();
     const submission = submissionService.setup();
+    let generatedServiceToken = null;
 
     // Get service token and create payment.
     return serviceToken.getToken(req)
-      // Create payment.
       .then(token => {
-        return payment.create(req, user, token, caseId, siteId, feeCode,
+        generatedServiceToken = token;
+        return payment.queryAllPayments(req, user, token, caseId);
+      })
+      .then(response => {
+        return new Promise((resolve, reject) => {
+          logger.infoWithReq(req, 'query_all_payments', 'query all payments response for case ID', caseId, response);
+          const initiatedPayments = [];
+          response.payments.forEach(paymentEntry => {
+            if (this.isPaymentSuccessful(paymentEntry)) {
+              // we stop to prevent users from paying again
+              reject(new Error(`${successPaymentExits} - Found a success payment reference: ${paymentEntry.payment_reference}`));
+            } else if (this.isPaymentInitiated(paymentEntry)) {
+              // in case we don't find any success later, we temporarily store any initiated payments
+              initiatedPayments.push(paymentEntry);
+            }
+          });
+          if (initiatedPayments.length) {
+            // we stop to prevent users from paying again
+            reject(new Error(`${initiatedPaymentExits} - Found recently initiated payment reference(s)`));
+          }
+          resolve({});
+        });
+      })
+      // Create payment.
+      .then(() => {
+        return payment.create(
+          req, user, generatedServiceToken, caseId, siteId, feeCode,
           feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
       })
 
@@ -160,8 +189,24 @@ module.exports = class PayOnline extends Step {
       })
       .catch(error => {
         logger.errorWithReq(req, 'payment_error', 'Error occurred while preparing payment details', error.message);
-        res.redirect('/generic-error');
+        if (error.message && error.message.includes(successPaymentExits)) {
+          // redirect to the payment callback URL to update the case status
+          res.redirect(this.steps.CardPaymentStatus.url);
+        } else if (error.message && error.message.includes(initiatedPaymentExits)) {
+          // redirect to a place holder page until the payment has failed or succeeded
+          res.redirect(this.steps.AwaitingPaymentStatus.url);
+        } else {
+          res.redirect(this.steps.GenericError.url);
+        }
       });
+  }
+
+  isPaymentInitiated(paymentEntry) {
+    return paymentEntry.status.toLowerCase() === 'initiated';
+  }
+
+  isPaymentSuccessful(paymentEntry) {
+    return paymentEntry.status.toLowerCase() === 'success';
   }
 
   // disable check your answers

@@ -23,3 +23,5 @@ post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 decree_nisi_frontend_url = "https://www.decree-nisi.apply-divorce.service.gov.uk"
 
 capacity = "2"
+
+feature_strategic_pay = "true"

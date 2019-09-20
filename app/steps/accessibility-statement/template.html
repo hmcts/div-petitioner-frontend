@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
 {% block two_thirds %}
+<h1 class="govuk-heading-l">{{ content.title }}</h1>
+
 <h2 class="govuk-heading-m">{{ content.statment | safe }}</h2>
 <p class="govuk-body">{{ content.websiteRanBy | safe }}</p>
 <p class="govuk-body">{{ content.asManyAsPossible | safe }}</p>

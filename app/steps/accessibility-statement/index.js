@@ -1,10 +1,7 @@
-const { Page } = require('@hmcts/one-per-page');
-const config = require('config');
+const Step = require('app/core/steps/Step');
 
-class AccessibilityStatement extends Page {
-  static get path() {
-    return config.paths.accessibilityStatement;
+module.exports = class AccessibilityStatement extends Step {
+  get url() {
+    return '/sccessibility-statement';
   }
-}
-
-module.exports = AccessibilityStatement;
+};

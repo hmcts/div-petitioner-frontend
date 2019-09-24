@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block back %}{% endblock %}
+
+{% block two_thirds %}
+
+<h1 class="govuk-heading-l">{{content.title | safe}}</h1>
+<p class="govuk-body">{{content.body | safe}}</p>
+
+{% endblock %}

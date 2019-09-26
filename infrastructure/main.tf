@@ -94,6 +94,7 @@ module "frontend" {
     // Node specific vars
     NODE_ENV  = "${var.node_env}"
     NODE_PATH = "${var.node_path}"
+    WEBSITE_NODE_DEFAULT_VERSION = "${var.node_version}"
 
     UV_THREADPOOL_SIZE = "${var.uv_threadpool_size}"
     NODE_CONFIG_DIR    = "${var.node_config_dir}"

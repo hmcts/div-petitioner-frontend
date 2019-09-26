@@ -289,3 +289,7 @@ variable "webchat_button_service_closed" {
   type = "string"
   default = "20199488815cc1a89e0861d5.73103009"
 }
+
+variable "node_version" {
+  default = "10.15.2"
+}

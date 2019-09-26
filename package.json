@@ -169,7 +169,8 @@
     "lodash": "^4.17.5",
     "mime": "^1.4.1",
     "tunnel-agent": "^0.6.0",
-    "assign-deep": ">=1.0.1"
+    "assign-deep": ">=1.0.1",
+    "handlebars": ">=4.3.0"
   },
   "nyc": {
     "report-dir": "coverage",

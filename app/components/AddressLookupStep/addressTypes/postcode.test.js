@@ -182,6 +182,23 @@ describe(modulePath, () => {
       }).then(done, done);
     });
 
+    it('should not set the ctx.address property if DPA property is not set from API', done => {
+      co(function* generator() {
+        const addresses = [{ nonValid: 'address' }];
+
+        let ctx = {
+          addressType: 'postcode',
+          selectAddressIndex: '0',
+          selectAddress: true,
+          addresses
+        };
+        const session = {};
+        ctx = yield underTest.interceptor(ctx, session);
+        expect(ctx).to.not.haveOwnProperty('address');
+        expect(session.postcodeLookup.selectAddressIndex).to.eql('0');
+      }).then(done, done);
+    });
+
     it('should set the ctx.address property based upon the value of ctx.selectAddressIndex', done => {
       co(function* generator() {
         const { addresses } = yield mockPostcodeClient.lookupPostcode();
@@ -190,6 +207,16 @@ describe(modulePath, () => {
         ctx = yield underTest.interceptor(ctx, {});
         expect(ctx.address).to.deep.equal(
           addressHelpers.buildConcatenatedAddress(addresses[5]));
+      }).then(done, done);
+    });
+
+    it('should not set the ctx.address property if address object is invalid', done => {
+      co(function* generator() {
+        const addresses = [{ nonValid: 'address' }];
+
+        let ctx = { addressType: 'postcode', selectAddressIndex: '5', addresses, selectAddress: true };
+        ctx = yield underTest.interceptor(ctx, {});
+        expect(ctx.address).to.be.an('undefined');
       }).then(done, done);
     });
 

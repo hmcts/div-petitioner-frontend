@@ -96,7 +96,7 @@ module.exports = {
 
       if (ctx.selectAddressIndex !== '-1' && ctx.addresses && ctx.addresses.length) {
         const address = ctx.addresses[ctx.selectAddressIndex];
-        if (address && address.DPA.ADDRESS) {
+        if (address && address.DPA && address.DPA.ADDRESS) {
           ctx.address = addressHelpers.buildConcatenatedAddress(
             ctx.addresses[ctx.selectAddressIndex]);
           ctx.addressBaseUK = addressHelpers.buildAddressBaseUk(

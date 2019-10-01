@@ -214,7 +214,7 @@ describe(modulePath, () => {
       co(function* generator() {
         const addresses = [{ nonValid: 'address' }];
 
-        let ctx = { addressType: 'postcode', selectAddressIndex: '5', addresses, selectAddress: true };
+        let ctx = { addressType: 'postcode', selectAddressIndex: '0', addresses, selectAddress: true };
         ctx = yield underTest.interceptor(ctx, {});
         expect(ctx.address).to.be.an('undefined');
       }).then(done, done);

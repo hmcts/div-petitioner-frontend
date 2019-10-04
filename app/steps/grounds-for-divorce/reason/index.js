@@ -1,7 +1,7 @@
 const moment = require('moment');
-const { isUndefined, pick } = require('lodash');
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const { checkMarriageDate } = require('app/middleware/checkMarriageDateMiddleware');
 
 const datePeriod = require('app/core/utils/datePeriod');
 const logger = require('app/services/logger').logger(__filename);
@@ -79,62 +79,63 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     ctx.reasonForDivorceLimitReasons = true;
     ctx.reasonForDivorceEnableAdultery = true;
 
-    if (isUndefined(marriageDate)) {
-      const attInfoToDisplay = ['marriageDateDay', 'marriageDateMonth', 'marriageDateYear', 'state'];
-      const displayObject = pick(session, attInfoToDisplay);
-      logger.infoWithReq(session.req, 'marriage_date_empty', 'Marriage date is empty', displayObject);
-    } else {
-      ctx.reasonForDivorceHasMarriageDate = true;
-      ctx.reasonForDivorceShowAdultery = true;
-      ctx.reasonForDivorceShowUnreasonableBehaviour = true;
-      ctx.reasonForDivorceShowTwoYearsSeparation = true;
-      ctx.reasonForDivorceShowFiveYearsSeparation = true;
-      ctx.reasonForDivorceShowDesertion = true;
-      ctx.reasonForDivorceLimitReasons = false;
+    ctx.reasonForDivorceHasMarriageDate = true;
+    ctx.reasonForDivorceShowAdultery = true;
+    ctx.reasonForDivorceShowUnreasonableBehaviour = true;
+    ctx.reasonForDivorceShowTwoYearsSeparation = true;
+    ctx.reasonForDivorceShowFiveYearsSeparation = true;
+    ctx.reasonForDivorceShowDesertion = true;
+    ctx.reasonForDivorceLimitReasons = false;
 
-      const timeSinceMarriage = moment().diff(marriageDate, 'years');
+    const timeSinceMarriage = moment().diff(marriageDate, 'years');
 
-      // remove all previous attempted reasons for divorce
-      if (ignoreDivorceReasons && ignoreDivorceReasons.length > 0) {
-        ignoreDivorceReasons.forEach(reason => {
-          switch (reason) {
-          case reasons.adultery:
-            ctx.reasonForDivorceShowAdultery = false;
-            break;
-          case reasons.behaviour:
-            ctx.reasonForDivorceShowUnreasonableBehaviour = false;
-            break;
-          case reasons.desertion:
-            ctx.reasonForDivorceShowDesertion = false;
-            break;
-          case reasons.sep2Yr:
-            ctx.reasonForDivorceShowTwoYearsSeparation = false;
-            break;
-          case reasons.sep5Yr:
-            ctx.reasonForDivorceShowFiveYearsSeparation = false;
-            break;
-          default:
-            logger.errorWithReq(session.req, 'unkown_reason', `Unknown reason for divorce found: ${reason}`);
-          }
-        });
-      }
+    // remove all previous attempted reasons for divorce
+    if (ignoreDivorceReasons && ignoreDivorceReasons.length > 0) {
+      ignoreDivorceReasons.forEach(reason => {
+        switch (reason) {
+        case reasons.adultery:
+          ctx.reasonForDivorceShowAdultery = false;
+          break;
+        case reasons.behaviour:
+          ctx.reasonForDivorceShowUnreasonableBehaviour = false;
+          break;
+        case reasons.desertion:
+          ctx.reasonForDivorceShowDesertion = false;
+          break;
+        case reasons.sep2Yr:
+          ctx.reasonForDivorceShowTwoYearsSeparation = false;
+          break;
+        case reasons.sep5Yr:
+          ctx.reasonForDivorceShowFiveYearsSeparation = false;
+          break;
+        default:
+          logger.errorWithReq(session.req, 'unkown_reason', `Unknown reason for divorce found: ${reason}`);
+        }
+      });
+    }
 
-      if (timeSinceMarriage < datePeriod.FIVE_YEARS) {
-        ctx.reasonForDivorceTimeUntilReason5Years = moment(marriageDate).add(datePeriod.FIVE_YEARS, 'years')
-          .format('DD MMMM YYYY');
-        ctx.reasonForDivorceShowFiveYearsSeparation = false;
-        ctx.reasonForDivorceLimitReasons = true;
-      }
+    if (timeSinceMarriage < datePeriod.FIVE_YEARS) {
+      ctx.reasonForDivorceTimeUntilReason5Years = moment(marriageDate).add(datePeriod.FIVE_YEARS, 'years')
+        .format('DD MMMM YYYY');
+      ctx.reasonForDivorceShowFiveYearsSeparation = false;
+      ctx.reasonForDivorceLimitReasons = true;
+    }
 
-      if (timeSinceMarriage < datePeriod.TWO_YEARS) {
-        ctx.reasonForDivorceTimeUntilReason2Years = moment(marriageDate).add(datePeriod.TWO_YEARS, 'years')
-          .format('DD MMMM YYYY');
-        ctx.reasonForDivorceShowTwoYearsSeparation = false;
-        ctx.reasonForDivorceShowDesertion = false;
-        ctx.reasonForDivorceLimitReasons = true;
-      }
+    if (timeSinceMarriage < datePeriod.TWO_YEARS) {
+      ctx.reasonForDivorceTimeUntilReason2Years = moment(marriageDate).add(datePeriod.TWO_YEARS, 'years')
+        .format('DD MMMM YYYY');
+      ctx.reasonForDivorceShowTwoYearsSeparation = false;
+      ctx.reasonForDivorceShowDesertion = false;
+      ctx.reasonForDivorceLimitReasons = true;
     }
 
     return ctx;
+  }
+
+  get middleware() {
+    return [
+      ...super.middleware,
+      checkMarriageDate
+    ];
   }
 };

@@ -10,6 +10,7 @@ const { clone } = require('lodash');
 const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
+const { checkMarriageDate } = require('app/middleware/checkMarriageDateMiddleware');
 
 const modulePath = 'app/steps/grounds-for-divorce/reason';
 
@@ -37,6 +38,14 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
+  describe('#middleware', () => {
+    it('includes checkMarriageDate in middleware', () => {
+      expect(underTest.middleware
+        .includes(checkMarriageDate))
+        .to.eql(true);
+    });
+  });
+
   describe('error messages', () => {
     let session = {};
 
@@ -56,10 +65,17 @@ describe(modulePath, () => {
   });
 
   describe('valid context', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = { marriageDate: '2000-01-01T00:00:00.000Z' };
+      withSession(done, agent, session);
+    });
+
     it('redirects to the unreasonable behaviour page when unreasonable-behaviour is selected', done => {
       const context = { reasonForDivorce: 'unreasonable-behaviour' };
       testRedirect(done, agent, underTest, context,
-        s.steps.UnreasonableBehaviour);
+        s.steps.UnreasonableBehaviour, session);
     });
 
     it('redirects to the adultery wish to name page when adultery is selected', done => {

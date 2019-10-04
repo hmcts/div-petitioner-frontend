@@ -32,6 +32,10 @@ const isEmptyAddress = function(address) {
 
 const addressHelpers = require('../helpers/addressHelpers');
 
+const addressDataValid = function(error, addresses) {
+  return !(error || (Array.isArray(addresses) && addresses.length > 0 && !addresses[0].DPA));
+};
+
 module.exports = {
 
   * interceptor(ctx, session) {
@@ -73,7 +77,7 @@ module.exports = {
         addresses,
         error
       } = yield postcodeLookupClient.lookupPostcode(ctx.postcode);
-      if (error || (Array.isArray(addresses) && addresses.length > 0 && !addresses[0].DPA)) {
+      if (!addressDataValid(error, addresses)) {
         delete ctx.searchPostcode;
         ctx.postcodeError = 'true';
         session.postcodeLookup.postcodeError = 'true';

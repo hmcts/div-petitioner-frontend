@@ -73,7 +73,7 @@ module.exports = {
         addresses,
         error
       } = yield postcodeLookupClient.lookupPostcode(ctx.postcode);
-      if (error || (addresses.length > 0 && !addresses[0].DPA)) {
+      if (error || (Array.isArray(addresses) && addresses.length > 0 && !addresses[0].DPA)) {
         delete ctx.searchPostcode;
         ctx.postcodeError = 'true';
         session.postcodeLookup.postcodeError = 'true';

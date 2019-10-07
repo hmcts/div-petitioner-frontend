@@ -6,7 +6,7 @@ const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');
 
 const secret = CONF.secret;
-const redisHost = CONF.services.redis.host;
+const redisHost = CONF.secrets.div.redis-connection-string;
 const ttl = CONF.session.ttl;
 const cookieSecure = CONF.public.protocol === 'https';
 

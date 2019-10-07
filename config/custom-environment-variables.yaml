@@ -114,3 +114,7 @@ public:
 apps:
   dn:
     url: DECREE_NISI_FRONTEND_URL
+
+secrets:
+  div:
+    redis-connection-string: REDISCLOUD_URL

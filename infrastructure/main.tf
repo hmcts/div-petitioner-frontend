@@ -32,6 +32,13 @@ data "azurerm_key_vault_secret" "redis_secret" {
   vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
 }
 
+resource "azurerm_key_vault_secert" "redis_connection_string" {
+  name = "redis-connection-string"
+  value = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
+  key_vault_id = ""
+}
+
+
 locals {
   aseName                             = "core-compute-${var.env}"
   public_hostname                     = "div-pfe-${var.env}.service.${local.aseName}.internal"

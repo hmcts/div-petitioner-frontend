@@ -61,7 +61,8 @@ describe(modulePath, () => {
         'submitPayWarning',
         'submitAndPay',
         'titleSoFar',
-        'warning'
+        'warning',
+        'amendJounrey'
       ];
 
       testContent(done, agent, underTest, content, session, ignoredContent);
@@ -75,6 +76,24 @@ describe(modulePath, () => {
     it('shows delete application button', done => {
       testExistence(done, agent, underTest,
         content.resources.en.translation.content.deleteApplciation, session);
+    });
+
+    it('does not show content for amend journey', done => {
+      testNonExistence(done, agent, underTest,
+        content.resources.en.translation.content.amendJourney, session);
+    });
+  });
+
+  describe('Dn refused - amend journey', () => {
+    beforeEach(done => {
+      session = clone(mockSession);
+      session.refusalRejectionReason = ['some reason'];
+      withSession(done, agent, session);
+    });
+
+    it('renders extra content specific for amend journey', done => {
+      testExistence(done, agent, underTest,
+        content.resources.en.translation.content.amendJourney, session);
     });
   });
 

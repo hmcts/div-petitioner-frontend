@@ -6,7 +6,7 @@ const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');
 const ioRedisMock = require('app/services/mocks/ioRedis');
 
-const redisHost = CONF.secrets.div.redis-connection-string;
+const redisHost = CONF.secrets.div['redis-connection-string'];
 const twentyFourHours = 86400;
 
 const feeTypes = {

@@ -9,7 +9,7 @@ const logger = require('app/services/logger').logger(__filename);
 
 
 const client = ioRedis.createClient(
-  config.secrets.div.redis-connection-string,
+  config.secrets.div['redis-connection-string'],
   { enableOfflineQueue: false }
 );
 client.on('error', error => {

@@ -6,10 +6,6 @@ deployment_env: DEPLOYMENT_ENV
 
 service:
   name: SERVICE_NAME
-
-services:
-  redis:
-    host: REDISCLOUD_URL
   postcodeInfo:
     token: POST_CODE_ACCESS_TOKEN
     url: POST_CODE_URL

@@ -62,7 +62,7 @@ describe(modulePath, () => {
         'submitAndPay',
         'titleSoFar',
         'warning',
-        'amendJounrey'
+        'amendJourney'
       ];
 
       testContent(done, agent, underTest, content, session, ignoredContent);

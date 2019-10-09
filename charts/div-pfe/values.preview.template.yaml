@@ -10,7 +10,6 @@ idam-pr:
 nodejs:
     environment:
         APPINSIGHTS_INSTRUMENTATIONKEY: "dummykey"
-        FEATURE_IDAM: "true"
         FEATURE_STRATEGIC_PAY: "false"
         REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis-master:6379"
         PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"

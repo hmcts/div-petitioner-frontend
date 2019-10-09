@@ -1,6 +1,6 @@
 nodejs:
     applicationPort: 3000
-    ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-preview.internal" # override in public facing environments
+    ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing environments
     environment:
         # Info provider config
         REFORM_SERVICE_NAME: "pfe"
@@ -33,9 +33,7 @@ nodejs:
         IDAM_API_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net"
         IDAM_AUTHENTICATION_HEALHCHECK_URL: "https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/health"
         IDAM_LOGIN_URL: "https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login"
-        PUBLIC_HOSTNAME: "https://div-pfe-{{ .Values.global.environment }}.service.core-compute-preview.internal" # override in public facing envs
-
-        REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis-master:6379"
+        PUBLIC_HOSTNAME: "https://div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing envs
 
         EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
         IDAM_CLIENT_ID: "divorce"

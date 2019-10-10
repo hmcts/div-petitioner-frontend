@@ -71,7 +71,7 @@ nodejs:
                 - idam-secret
                 - os-places-token
                 - frontend-secret
-                - redis-connection-string
+                - pfe-redis-connection-string
 
 redis:
     cluster:

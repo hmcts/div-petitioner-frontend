@@ -1,5 +1,5 @@
 provider "azurerm" {
-  version = "1.19.0"
+  version = "1.22.1"
 }
 
 data "azurerm_key_vault" "div_key_vault" {
@@ -9,33 +9,33 @@ data "azurerm_key_vault" "div_key_vault" {
 
 data "azurerm_key_vault_secret" "frontend_secret" {
   name      = "frontend-secret"
-  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "idam_secret" {
   name      = "idam-secret"
-  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "post_code_token" {
   name      = "os-places-token"
-  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "session_secret" {
   name      = "session-secret"
-  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
 data "azurerm_key_vault_secret" "redis_secret" {
   name      = "redis-secret"
-  vault_uri = "${data.azurerm_key_vault.div_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
 resource "azurerm_key_vault_secert" "redis_connection_string" {
-  name = "redis-connection-string"
+  name = "${var.component}-redis-connection-string"
   value = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
-  key_vault_id = ""
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
 
@@ -61,8 +61,8 @@ locals {
   asp_name = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
   asp_rg   = "${var.env == "prod" ? "div-pfe-prod" : "${var.raw_product}-${var.env}"}"
 
-  appinsights_name           = "${var.env == "preview" ? "${var.product}-${var.reform_service_name}-appinsights-${var.env}" : "${var.product}-${var.env}"}"
-  appinsights_resource_group = "${var.env == "preview" ? "${var.product}-${var.reform_service_name}-${var.env}" : "${var.product}-${var.env}"}"
+  appinsights_name           = "${var.env == "preview" ? "${var.product}-${var.component}-appinsights-${var.env}" : "${var.product}-${var.env}"}"
+  appinsights_resource_group = "${var.env == "preview" ? "${var.product}-${var.component}-${var.env}" : "${var.product}-${var.env}"}"
 }
 
 data "azurerm_subnet" "core_infra_redis_subnet" {
@@ -73,7 +73,7 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
 
 module "redis-cache" {
   source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
-  product     = "${var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.reform_service_name}-redis"}"
+  product     = "${var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.component}-redis"}"
   location    = "${var.location}"
   env         = "${var.env}"
   subnetid    = "${data.azurerm_subnet.core_infra_redis_subnet.id}"
@@ -82,7 +82,7 @@ module "redis-cache" {
 
 module "frontend" {
   source                          = "git@github.com:hmcts/cnp-module-webapp?ref=master"
-  product                         = "${var.product}-${var.reform_service_name}"
+  product                         = "${var.product}-${var.component}"
   location                        = "${var.location}"
   env                             = "${var.env}"
   ilbIp                           = "${var.ilbIp}"
@@ -108,7 +108,7 @@ module "frontend" {
 
     // Logging vars
     REFORM_TEAM         = "${var.reform_team}"
-    REFORM_SERVICE_NAME = "${var.reform_service_name}"
+    REFORM_SERVICE_NAME = "${var.component}"
     REFORM_ENVIRONMENT  = "${var.env}"
 
     // Packages

@@ -16,9 +16,7 @@ variable "instance_size" {
   default = "I2"
 }
 
-variable "reform_service_name" {
-  default = "pfe"
-}
+variable "component" {}
 
 variable "product" {
   type = "string"

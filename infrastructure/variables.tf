@@ -230,11 +230,11 @@ variable "feature_strategic_pay" {
 }
 
 variable "survey_feedback_url" {
-  default = "http://www.smartsurvey.co.uk/s/0QIL4"
+  default = "https://www.smartsurvey.co.uk/s/Divorce_Feedback"
 }
 
 variable "survey_feedback_done_url" {
-  default = "http://www.smartsurvey.co.uk/s/8RR1T"
+  default = "https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant"
 }
 
 variable "court_phone_number" {

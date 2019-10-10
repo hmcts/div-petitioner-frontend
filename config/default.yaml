@@ -27,6 +27,8 @@ paths:
   index: '/'
 
 services:
+  redis:
+    host: 'redis://localhost:6379'
   postcodeInfo:
     token: # Defined by POST_CODE_ACCESS_TOKEN in env
     url: # Defined by POST_CODE_URL in env
@@ -162,7 +164,3 @@ ccd:
     - 'AwaitingPayment'
   courts:
     - 'serviceCentre'
-
-secrets:
-  div:
-    redis-connection-string: 'redis://localhost:6379'

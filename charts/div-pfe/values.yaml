@@ -2,6 +2,7 @@ nodejs:
     applicationPort: 3000
     ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing environments
     environment:
+        MICROSERVICE_NAME: "divorce_frontend"
         # Info provider config
         REFORM_SERVICE_NAME: "pfe"
         REFORM_TEAM: "div"
@@ -11,33 +12,31 @@ nodejs:
         HPKP_MAX_AGE: "86400"
         HPKP_SHAS: "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
 
-        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/draftsapi/version/1"
-        CASE_ORCHESTRATION_SERVICE_HEALTHCHECK_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/health"
-        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
-        DECREE_NISI_FRONTEND_URL: "https://div-dn-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        # Why is there 2 values for the same thing?
         DEPLOYMENT_ENV: "{{ .Values.global.environment }}"
-        EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL: "http://div-emca-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/health"
-        EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
-        FEATURE_IDAM: "true"
-        FEATURE_STRATEGIC_PAY: "true"
-        FEES_AND_PAYMENTS_HEALTHCHECK_URL: "http://div-fps-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/health"
-        FEES_AND_PAYMENTS_URL: "http://div-fps-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        REFORM_ENVIRONMENT: "{{ .Values.global.environment }}"
+
         GOOGLE_ANALYTICS_ID: "TBD" # override for prod TBD in all other envs
         PAYMENT_REFERENCE_SERVICE_IDENTIFICATION: "DIV1"
-        PAYMENT_SERVICE_HEALTHCHECK_URL: "http://payment-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/health"
+
+        # Features
+        FEATURE_IDAM: "true"
+        FEATURE_STRATEGIC_PAY: "true"
+
+        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/draftsapi/version/1"
+        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        DECREE_NISI_FRONTEND_URL: "https://div-dn-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        FEES_AND_PAYMENTS_URL: "http://div-fps-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         PAYMENT_SERVICE_URL: "http://payment-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
-        REFORM_ENVIRONMENT: "{{ .Values.global.environment }}"
-        SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/health"
         SERVICE_AUTH_PROVIDER_URL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
-        IDAM_APP_HEALHCHECK_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net/health"
         IDAM_API_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net"
-        IDAM_AUTHENTICATION_HEALHCHECK_URL: "https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/health"
         IDAM_LOGIN_URL: "https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login"
         PUBLIC_HOSTNAME: "https://div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing envs
 
-        EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
         IDAM_CLIENT_ID: "divorce"
-        MICROSERVICE_NAME: "divorce_frontend"
+
+        EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
         NODE_ENV: "production"
         NODE_PATH: "."
         POST_CODE_URL: "https://api.ordnancesurvey.co.uk/places/v1"

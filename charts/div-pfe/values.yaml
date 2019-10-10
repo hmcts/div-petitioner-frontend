@@ -1,5 +1,6 @@
 nodejs:
     applicationPort: 3000
+    image: "hmctspublic.azurecr.io/div/rfe:latest"
     ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing environments
     environment:
         MICROSERVICE_NAME: "divorce_frontend"

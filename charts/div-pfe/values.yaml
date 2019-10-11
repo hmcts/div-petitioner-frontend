@@ -73,6 +73,7 @@ nodejs:
                 - os-places-token
                 - frontend-secret
                 - pfe-redis-connection-string
+                - AppInsightsInstrumentationKey
 
 redis:
     cluster:
@@ -82,3 +83,7 @@ redis:
     master:
         persistence:
             enabled: false
+
+tags:
+    idam-pr: false
+    pr: false

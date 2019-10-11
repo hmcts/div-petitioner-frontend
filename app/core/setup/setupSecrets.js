@@ -16,6 +16,7 @@ const setup = () => {
     setSecret('secrets.div.idam-secret', 'idamArgs.idamSecret');
     setSecret('secrets.div.os-places-token', 'services.postcodeInfo.token');
     setSecret('secrets.div.frontend-secret', 'services.serviceAuthProvider.microserviceKey');
+    setSecret('secrets.div.AppInsightsInstrumentationKey', 'applicationInsights.instrumentationKey');
   }
 };
 

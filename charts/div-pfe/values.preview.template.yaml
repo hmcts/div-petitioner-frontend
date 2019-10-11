@@ -1,6 +1,6 @@
 tags:
-  - idam-pr
-  - pr
+  idam-pr: true
+  pr: true
 
 idam-pr:
   redirect_uris:
@@ -8,6 +8,7 @@ idam-pr:
       - https://${SERVICE_FQDN}/authenticated
 
 nodejs:
+    aadIdentityName:
     environment:
         APPINSIGHTS_INSTRUMENTATIONKEY: "dummykey"
         FEATURE_STRATEGIC_PAY: "false"

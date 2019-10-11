@@ -12,6 +12,8 @@ const listenForConnections = true;
 if (CONF.applicationInsights.instrumentationKey) {
   appInsights.setup(CONF.applicationInsights.instrumentationKey)
     .setAutoCollectConsole(true, true)
+    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
+    .setSendLiveMetrics(true)
     .start();
   appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'div-pfe';
 }

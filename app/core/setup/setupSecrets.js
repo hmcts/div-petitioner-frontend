@@ -11,6 +11,7 @@ const setSecret = (secretPath, configPath) => {
 const setup = () => {
   if (config.has('secrets.div')) {
     setSecret('secrets.div.session-secret', 'secret');
+    setSecret('secrets.div.pfe-redis-connection-string', 'services.redis.host');
     setSecret('secrets.div.redis-secret', 'sessionEncryptionSecret');
     setSecret('secrets.div.idam-secret', 'idamArgs.idamSecret');
     setSecret('secrets.div.os-places-token', 'services.postcodeInfo.token');

@@ -1,20 +1,50 @@
 nodejs:
     applicationPort: 3000
+    image: "hmctspublic.azurecr.io/div/rfe:latest"
+    ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing environments
     environment:
-        REFORM_SERVICE_NAME: "pfs"
+        MICROSERVICE_NAME: "divorce_frontend"
+        # Info provider config
+        REFORM_SERVICE_NAME: "pfe"
         REFORM_TEAM: "div"
-        EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
+        # Analytics
         GOOGLE_ANALYTICS_TRACKING_URL: "http://www.google-analytics.com/collect"
+        # Security config
         HPKP_MAX_AGE: "86400"
         HPKP_SHAS: "Naw+prhcXSIkbtYJ0t7vAD+Fc92DWL9UZevVfWBvids=,klO23nT2ehFDXCfx3eHTDRESMz3asj1muO+4aIdjiuY=,grX4Ta9HpZx6tSHkmCrvpApTQGo67CYDnvprLg5yRME="
+
+        # Why is there 2 values for the same thing?
+        DEPLOYMENT_ENV: "{{ .Values.global.environment }}"
+        REFORM_ENVIRONMENT: "{{ .Values.global.environment }}"
+
+        GOOGLE_ANALYTICS_ID: "TBD" # override for prod TBD in all other envs
+        PAYMENT_REFERENCE_SERVICE_IDENTIFICATION: "DIV1"
+
+        # Features
+        FEATURE_IDAM: "true"
+        FEATURE_STRATEGIC_PAY: "true"
+
+        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/draftsapi/version/1"
+        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        DECREE_NISI_FRONTEND_URL: "https://div-dn-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        FEES_AND_PAYMENTS_URL: "http://div-fps-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        PAYMENT_SERVICE_URL: "http://payment-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        SERVICE_AUTH_PROVIDER_URL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        IDAM_API_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net"
+        IDAM_LOGIN_URL: "https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login"
+        PUBLIC_HOSTNAME: "https://div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing envs
+
         IDAM_CLIENT_ID: "divorce"
-        MICROSERVICE_NAME: "divorce_frontend"
+
+        EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
         NODE_ENV: "production"
         NODE_PATH: "."
         POST_CODE_URL: "https://api.ordnancesurvey.co.uk/places/v1"
-        RATE_LIMITER_ENABLED: "false"
+        RATE_LIMITER_ENABLED: "false" # seems like this is never enabled?
         RATE_LIMITER_EXPIRE: "3600000"
         RATE_LIMITER_TOTAL: "3600"
+
         # Court Details
         COURT_EMAIL: "contactdivorce@justice.gov.uk"
         COURT_OPENINGHOURS: "Monday to Friday, 8.30am to 5pm"
@@ -28,20 +58,21 @@ nodejs:
         COURT_SERVICE_CENTRE_PHONENUMBER: "0300 303 0642"
         COURT_SERVICE_CENTRE_SITEID: "CTSC"
         SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"
-        WEBCHAT_CHAT_ID: 3833071605d5d4518036a09.30917386
-        WEBCHAT_TENANT: aG1jdHNzdGFnaW5nMDE
-        WEBCHAT_BUTTON_NO_AGENTS: 7732814745cac6f4603c4d1.53357933
-        WEBCHAT_BUTTON_AGENTS_BUSY: 2042157415cc19c95669039.65793052
-        WEBCHAT_BUTTON_SERVICE_CLOSED: 20199488815cc1a89e0861d5.73103009
+
+        WEBCHAT_CHAT_ID: 3833071605d5d4518036a09.30917386 # TODO override per env or move to vault
+        WEBCHAT_TENANT: aG1jdHNzdGFnaW5nMDE # TODO override per env or move to vault
+        WEBCHAT_BUTTON_NO_AGENTS: 7732814745cac6f4603c4d1.53357933 # TODO override per env or move to vault
+        WEBCHAT_BUTTON_AGENTS_BUSY: 2042157415cc19c95669039.65793052 # TODO override per env or move to vault
+        WEBCHAT_BUTTON_SERVICE_CLOSED: 20199488815cc1a89e0861d5.73103009 # TODO override per env or move to vault
     keyVaults:
-        "div":
-            resourceGroup: div
+        div:
             secrets:
                 - session-secret
                 - redis-secret
                 - idam-secret
                 - os-places-token
                 - frontend-secret
+                - pfe-redis-connection-string
 
 redis:
     cluster:

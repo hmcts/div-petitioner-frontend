@@ -171,7 +171,8 @@
     "mime": "^1.4.1",
     "tunnel-agent": "^0.6.0",
     "assign-deep": ">=1.0.1",
-    "handlebars": ">=4.3.0"
+    "handlebars": ">=4.3.0",
+    "helmet-csp": ">=2.9.1"
   },
   "nyc": {
     "report-dir": "coverage",

@@ -260,7 +260,7 @@ variable "decree_nisi_frontend_url" {
 }
 
 variable "feature_webchat" {
-  default = false
+  default = true
 }
 
 variable "webchat_chat_id" {

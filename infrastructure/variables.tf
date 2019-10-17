@@ -16,9 +16,7 @@ variable "instance_size" {
   default = "I2"
 }
 
-variable "reform_service_name" {
-  default = "pfe"
-}
+variable "component" {}
 
 variable "product" {
   type = "string"
@@ -230,11 +228,11 @@ variable "feature_strategic_pay" {
 }
 
 variable "survey_feedback_url" {
-  default = "http://www.smartsurvey.co.uk/s/0QIL4"
+  default = "https://www.smartsurvey.co.uk/s/Divorce_Feedback"
 }
 
 variable "survey_feedback_done_url" {
-  default = "http://www.smartsurvey.co.uk/s/8RR1T"
+  default = "https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant"
 }
 
 variable "court_phone_number" {
@@ -262,7 +260,7 @@ variable "decree_nisi_frontend_url" {
 }
 
 variable "feature_webchat" {
-  default = false
+  default = true
 }
 
 variable "webchat_chat_id" {

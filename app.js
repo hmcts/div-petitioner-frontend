@@ -146,7 +146,7 @@ exports.init = listenForConnections => {
   app.set('trust proxy', 1);
   app.use(sessions.prod());
 
-  if (CONF.rateLimiter.enabled) {
+  if (parseBool(CONF.rateLimiter.enabled)) {
     app.use(rateLimiter(app));
   }
 

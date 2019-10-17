@@ -55,8 +55,20 @@
           "decreeNisiLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Decree nisi link, This link will open in a new tab.\">Decree nisi</a>",
           "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
           "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",
-          "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Money and property link, This link will open in a new tab.\">Money and property</a>"
+          "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Money and property link, This link will open in a new tab.\">Money and property</a>",
 
+          "amendedApplictionTitle": "Amendment made",
+          "amendedCourtCheck": "The court will check your amended application and may contact you again if they need further information.",
+          "amendedAmendedApplication": "If your amended application passes these checks, you’ll be sent a notice telling you that it has been issued (sent out). Your {{ divorceWho }} will then receive a copy of the amended application and a form to return.",
+          "amendedUsedAdultery": "If you have used adultery as your reason for divorce, and named the person that your {{ divorceWho }} committed adultery with, they will also get a copy and a form to return.",
+          "amendedContactUs": "You can contact us if you don’t hear anything back after 4 weeks.",
+
+          "amendedPostDocsResponse": "Post documents to court",
+          "amendedPostDocsSubmitDocuments": "Your response said you want to submit additional documents.",
+          "amendedPostDocsOriginalDocs": "Post all your original documents to:",
+          "amendedPostDocsWarning": "Warning",
+          "amendedPostDocsReferenceNumber": "You must write your reference number on each document.",
+          "amendedPostDocsCheckResponse": "The court will check your response"
         },
         "errors": {
         }

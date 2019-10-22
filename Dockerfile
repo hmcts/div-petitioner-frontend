@@ -1,12 +1,19 @@
 FROM hmctspublic.azurecr.io/base/node/alpine-lts-10:10-alpine as base
-COPY package.json yarn.lock ./
-RUN yarn && npm rebuild node-sass
+
+COPY --chown=hmcts:hmcts package.json yarn.lock ./
 
 FROM base as build
-COPY . .
-RUN yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
 
-FROM base as runtime
-COPY --from=build $WORKDIR ./
+USER root
+RUN apk add python2 make g++
 USER hmcts
-EXPOSE 3000
+
+RUN yarn && npm rebuild node-sass
+
+COPY --chown=hmcts:hmcts . .
+#RUN yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
+
+#FROM base as runtime
+#COPY --from=build $WORKDIR ./
+#USER hmcts
+#EXPOSE 3000

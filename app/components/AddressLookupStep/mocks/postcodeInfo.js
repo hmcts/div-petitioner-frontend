@@ -23,6 +23,10 @@ module.exports = {
       addresses = resultN42SW;
       break;
 
+    case 'malformed':
+      addresses = [{ invalid: { ADDRESS: '2, WILBERFORCE ROAD, LONDON, N4 2SW' } }];
+      break;
+
     default:
       addresses = resultSw99pe;
       break;

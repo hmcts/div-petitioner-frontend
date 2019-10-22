@@ -11,9 +11,9 @@ USER hmcts
 RUN yarn && npm rebuild node-sass
 
 COPY --chown=hmcts:hmcts . .
-#RUN yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
+RUN yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
 
-#FROM base as runtime
-#COPY --from=build $WORKDIR ./
-#USER hmcts
-#EXPOSE 3000
+FROM base as runtime
+COPY --from=build $WORKDIR ./
+USER hmcts
+EXPOSE 3000

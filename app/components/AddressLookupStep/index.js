@@ -28,8 +28,16 @@ module.exports = class AddressLookupStep extends ValidationStep {
     return cloneDeep(get(session, this.schemaScope, {}));
   }
 
+  hasSessionSelectedAddress(session) {
+    const hasPostcodeLookup = session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex;
+    if (hasPostcodeLookup) {
+      return session.postcodeLookup.addresses[session.postcodeLookup.selectAddressIndex] && session.postcodeLookup.addresses[session.postcodeLookup.selectAddressIndex].DPA;
+    }
+    return false;
+  }
+
   applyCtxToSession(ctx, session) {
-    if (session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex) {
+    if (this.hasSessionSelectedAddress(session)) {
       ctx.addressBaseUK = addressHelpers
         .buildAddressBaseUk(
           session.postcodeLookup.addresses[session

@@ -156,18 +156,20 @@
     request-promise-native "^1.0.7"
     socks5-https-client "^1.2.1"
 
-"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#7.0.0":
+"@hmcts/div-pay-client@^7.0.0":
   version "7.0.0"
-  resolved "https://github.com/hmcts/div-pay-client#84e0569c38c55ec63e7c2e272ffa9b57926d726b"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-pay-client/-/div-pay-client-7.0.0.tgz#9f7ef6e7462a9417465125ae174d1e7e247cddbf"
+  integrity sha512-GXbCPZK//P9Id6qPOX/5axgi++c8qhy3vl+d8US+2J6WsdcPlk1TW68iYrb7sGCnuN3f34+EcU7PVh0dU0rKbw==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     lodash "^4.17.15"
     request "^2.81.0"
     request-promise-native "^1.0.5"
 
-"@hmcts/div-service-auth-provider-client@https://github.com/hmcts/div-service-auth-provider-client#3.0.0":
-  version "3.0.0"
-  resolved "https://github.com/hmcts/div-service-auth-provider-client#82ac790f04376ed26691eb012ca72a092e5bd00d"
+"@hmcts/div-service-auth-provider-client@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-service-auth-provider-client/-/div-service-auth-provider-client-3.0.1.tgz#3b27eb3314f1c56aec005515a0dc958ba286ea5c"
+  integrity sha512-ZsMZ15+xGoyR7b/n3mj0GppuSDiW8i0ZC9hdZmavfDZvFOQohjk65oJKUGjT65cwain3lwszwuC5igpXmRLFgQ==
   dependencies:
     jsonwebtoken "^8.0.1"
     otp "^0.1.3"

@@ -156,18 +156,20 @@
     request-promise-native "^1.0.7"
     socks5-https-client "^1.2.1"
 
-"@hmcts/div-pay-client@https://github.com/hmcts/div-pay-client#7.0.0":
+"@hmcts/div-pay-client@^7.0.0":
   version "7.0.0"
-  resolved "https://github.com/hmcts/div-pay-client#84e0569c38c55ec63e7c2e272ffa9b57926d726b"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-pay-client/-/div-pay-client-7.0.0.tgz#9f7ef6e7462a9417465125ae174d1e7e247cddbf"
+  integrity sha512-GXbCPZK//P9Id6qPOX/5axgi++c8qhy3vl+d8US+2J6WsdcPlk1TW68iYrb7sGCnuN3f34+EcU7PVh0dU0rKbw==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     lodash "^4.17.15"
     request "^2.81.0"
     request-promise-native "^1.0.5"
 
-"@hmcts/div-service-auth-provider-client@https://github.com/hmcts/div-service-auth-provider-client#3.0.0":
-  version "3.0.0"
-  resolved "https://github.com/hmcts/div-service-auth-provider-client#82ac790f04376ed26691eb012ca72a092e5bd00d"
+"@hmcts/div-service-auth-provider-client@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-service-auth-provider-client/-/div-service-auth-provider-client-3.0.1.tgz#3b27eb3314f1c56aec005515a0dc958ba286ea5c"
+  integrity sha512-ZsMZ15+xGoyR7b/n3mj0GppuSDiW8i0ZC9hdZmavfDZvFOQohjk65oJKUGjT65cwain3lwszwuC5igpXmRLFgQ==
   dependencies:
     jsonwebtoken "^8.0.1"
     otp "^0.1.3"
@@ -439,15 +441,23 @@ append-transform@^1.0.0:
   dependencies:
     default-require-extensions "^2.0.0"
 
-applicationinsights@^1.0.2:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-1.4.0.tgz#e17e436427b6e273291055181e29832cca978644"
-  integrity sha512-TV8MYb0Kw9uE2cdu4V/UvTKdOABkX2+Fga9iDz0zqV7FLrNXfmAugWZmmdTx4JoynYkln3d5CUHY3oVSUEbfFw==
+applicationinsights-native-metrics@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/applicationinsights-native-metrics/-/applicationinsights-native-metrics-0.0.5.tgz#24b3db2a168ca40b5a112b7e0d9121c0be54af7a"
+  integrity sha512-Tn8mYl312m/+BlcGtmhu7zU7XljGqjIKlcffnQxZrjw/ArdzyhYx2djdH4X+1reLVUYEZsW1ZTGVmFA9zpO/SQ==
+  dependencies:
+    nan "^2.13.2"
+    node-pre-gyp "^0.12.0"
+
+applicationinsights@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-1.5.0.tgz#074df9e525dcfd592822e7b80723b9284d2716fd"
+  integrity sha512-D+JyPrDx9RWVNIwukoe03ANKNdyVe/ejExbR7xMvZTm09553TzXenW2oPZmfN9jeguKSDugzIWdbILMPNSRRlg==
   dependencies:
     cls-hooked "^4.2.2"
     continuation-local-storage "^3.2.1"
     diagnostic-channel "0.2.0"
-    diagnostic-channel-publishers "^0.3.2"
+    diagnostic-channel-publishers "^0.3.3"
 
 aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
@@ -3037,10 +3047,10 @@ detox@^12.11.0:
     yargs "^13.0.0"
     yargs-parser "^13.0.0"
 
-diagnostic-channel-publishers@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/diagnostic-channel-publishers/-/diagnostic-channel-publishers-0.3.2.tgz#c3d222e0588844b2caaf8b4bfeb98dda2eab0ff9"
-  integrity sha512-2hBlg1BtBT+nd04MGGGZinDv5gOTRQOCzdgk+KRQZ20XJ/uepC0B0rwWLQtz6Tk6InXymWqsk1sMC975cPEReA==
+diagnostic-channel-publishers@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/diagnostic-channel-publishers/-/diagnostic-channel-publishers-0.3.3.tgz#376b7798f4fa90f37eb4f94d2caca611b0e9c330"
+  integrity sha512-qIocRYU5TrGUkBlDDxaziAK1+squ8Yf2Ls4HldL3xxb/jzmWO2Enux7CvevNKYmF2kDXZ9HiRqwjPsjk8L+i2Q==
 
 diagnostic-channel@0.2.0:
   version "0.2.0"

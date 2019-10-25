@@ -28,12 +28,13 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 
 withPipeline("nodejs", product, component) {
+  enableDockerBuild()
+  installCharts()
+
   if (env.CHANGE_TITLE) {
     if(env.CHANGE_TITLE.startsWith('[PREVIEW]')) {
       env.RUN_BASIC_TESTS = "true"
     } else {
-      enableDockerBuild()
-      installCharts()
       loadVaultSecrets(secrets)
     }
   }

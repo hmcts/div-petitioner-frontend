@@ -1,33 +1,4 @@
 nodejs:
-    environment:
-        APPINSIGHTS_INSTRUMENTATIONKEY: "dummykey"
-        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1"
-        CASE_ORCHESTRATION_SERVICE_HEALTHCHECK_URL: "http://div-cos-aat.service.core-compute-aat.internal/health"
-        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-aat.service.core-compute-aat.internal"
-        DECREE_NISI_FRONTEND_URL: "https://div-dn-aat.service.core-compute-aat.internal"
-        DEPLOYMENT_ENV: "preprod"
-        EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL: "http://div-emca-aat.service.core-compute-aat.internal/health"
-        EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-aat.service.core-compute-aat.internal"
-        FEATURE_IDAM: "true"
-        FEATURE_STRATEGIC_PAY: "true"
-        FEES_AND_PAYMENTS_HEALTHCHECK_URL: "http://div-fps-aat.service.core-compute-aat.internal/health"
-        FEES_AND_PAYMENTS_URL: "http://div-fps-aat.service.core-compute-aat.internal"
-        GOOGLE_ANALYTICS_ID: "TBD"
-        PAYMENT_REFERENCE_SERVICE_IDENTIFICATION: "DIV1"
-        PAYMENT_SERVICE_HEALTHCHECK_URL: "http://payment-api-aat.service.core-compute-aat.internal/health"
-        PAYMENT_SERVICE_URL: "http://payment-api-aat.service.core-compute-aat.internal"
-        REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis-master:6379"
-        REFORM_ENVIRONMENT: "aat"
-        SERVICE_AUTH_PROVIDER_HEALTHCHECK_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal/health"
-        SERVICE_AUTH_PROVIDER_URL: "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
-        IDAM_APP_HEALHCHECK_URL: "https://idam-api.aat.platform.hmcts.net/health"
-        IDAM_API_URL: "https://idam-api.aat.platform.hmcts.net"
-        IDAM_AUTHENTICATION_HEALHCHECK_URL: "https://idam-web-public.aat.platform.hmcts.net/health"
-        IDAM_LOGIN_URL: "https://idam-web-public.aat.platform.hmcts.net/login"
-        # TODO - this should be changed once we deploy AAT to AKS
-        BASE_URL: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
-        PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
-
     # Don't modify below here
     image: ${IMAGE_NAME}
     ingressHost: ${SERVICE_FQDN}

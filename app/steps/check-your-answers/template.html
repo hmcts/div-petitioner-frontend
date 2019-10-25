@@ -35,6 +35,10 @@
     </div>
   {% endif %}
 
+  {% if session.refusalRejectionReason|length %}
+    <p class="govuk-body">{{ content.amendJourney }}</p>
+  {% endif %}
+
   {%- for group, templates in fields.stepTemplates.value -%}
     {%- if templates and templates.length -%}
       {%- if content[group] != '' -%}

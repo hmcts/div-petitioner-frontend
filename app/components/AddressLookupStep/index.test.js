@@ -108,7 +108,7 @@ describe(modulePath, () => {
     describe('API data formats', () => {
       it('does not apply address base UK if not available', () => {
         session = {
-          postcodeLookup: {
+          testAddress: {
             addressType: 'postcode',
             addresses: [{ ORGANISATION_NAME: 'TEST' }]
           }
@@ -120,7 +120,7 @@ describe(modulePath, () => {
 
       it('only applies address base UK if data is available', () => {
         session = {
-          postcodeLookup: {
+          testAddress: {
             addressType: 'postcode',
             addresses: [{ DPA: { ORGANISATION_NAME: 'TEST' } }],
             selectAddressIndex: 0

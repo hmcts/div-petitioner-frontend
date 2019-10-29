@@ -102,7 +102,6 @@ describe(modulePath, () => {
         'helpWithFees',
         'courtCheckApp',
         'youWillBeContacted',
-        'certificateKept',
         'sendEmail',
         'email',
         'emailTo'

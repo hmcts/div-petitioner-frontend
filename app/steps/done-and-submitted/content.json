@@ -45,7 +45,18 @@
           "thisIsIncomplete": "This is incomplete",
           "yourRespondes": "Your {{ divorceWho }} must respond",
           "continueDivorce": "Get a decree nisi",
-          "divorceFinalised": "The divorce is complete"
+          "divorceFinalised": "The divorce is complete",
+
+          "help": "Getting help",
+          "emailHeading": "Email",
+          "phoneHeading": "Phone",
+          "guidanceHeading": "Guidance on GOV.UK",
+          "howRespondsLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ case.divorceWho }} responds</a>",
+          "decreeNisiLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Decree nisi link, This link will open in a new tab.\">Decree nisi</a>",
+          "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
+          "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",
+          "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Money and property link, This link will open in a new tab.\">Money and property</a>"
+
         },
         "errors": {
         }

@@ -73,11 +73,11 @@
         <p class="govuk-body">{{content.whatToDoNowPostText | safe}}</p>
           <address class="govuk-body govuk-!-font-weight-bold">
             {% if session.allocatedCourt.serviceCentreName %}
-              {{ session.allocatedCourt.serviceCentreName | safe }} <br/> {{ content.careOf | safe }} 
+              {{ session.allocatedCourt.serviceCentreName | safe }} <br/> {{ content.careOf | safe }}
             {% endif %}
-            {{ session.allocatedCourt.divorceCentre | safe }} <br/> 
+            {{ session.allocatedCourt.divorceCentre | safe }} <br/>
             {% if session.allocatedCourt.poBox %}
-              {{ session.allocatedCourt.poBox | safe }} <br/> 
+              {{ session.allocatedCourt.poBox | safe }} <br/>
             {% else %}
               {{ session.allocatedCourt.divorceCentreAddressName | safe }} <br/> {{ session.allocatedCourt.street | safe }} <br/>
             {% endif %}
@@ -146,5 +146,51 @@
           {{content.settle | safe}}
         </p>
       {% endif %}
+
+{% endblock %}
+
+{% block one_third %}
+
+  <aside class="govuk-related-items" role="complementary">
+
+    <h3 class="govuk-heading-m">{{ content.help }}</h3>
+
+    <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
+        <li>
+            <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
+            <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
+        </li>
+        <li>
+            <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
+            {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }} <br>
+            {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }} <br>
+        </li>
+        <li>
+            {% if session.allocatedCourt.serviceCentreName %}
+              {{ session.allocatedCourt.serviceCentreName | safe }} <br/> {{ content.careOf | safe }}
+            {% endif %}
+            {{ session.allocatedCourt.divorceCentre | safe }} <br/>
+            {% if session.allocatedCourt.poBox %}
+              {{ session.allocatedCourt.poBox | safe }} <br/>
+            {% else %}
+              {{ session.allocatedCourt.divorceCentreAddressName | safe }} <br/> {{ session.allocatedCourt.street | safe }} <br/>
+            {% endif %}
+            {{ session.allocatedCourt.courtCity | safe }} <br/> {{ session.allocatedCourt.postCode | safe }}
+        </li>
+    </ul>
+
+    <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
+
+    <nav role="navigation" aria-labelledby="subsection-title">
+      <ul class="govuk-list govuk-body govuk-!-font-size-16">
+        <li>{{ content.howRespondsLink | safe }}</li>
+        <li>{{ content.decreeNisiLink | safe }}</li>
+        <li>{{ content.decreeAbsoluteLink | safe }}</li>
+        <li>{{ content.childrenAndDivorceLink | safe }}</li>
+        <li>{{ content.moneyAndPropertyLink | safe }}</li>
+     </ul>
+    </nav>
+
+</aside>
 
 {% endblock %}

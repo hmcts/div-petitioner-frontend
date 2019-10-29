@@ -215,9 +215,9 @@ describe(modulePath, () => {
       withSession(done, agent, session);
     });
 
-    it('contains allocated court e-mail twice', done => {
+    it('contains allocated court e-mail three times', done => {
       testCustom(done, agent, underTest, [], response => {
-        const timesEmailShouldAppearOnPage = 2;
+        const timesEmailShouldAppearOnPage = 3;
         const emailOccurrencesInPage = response.text.match(new RegExp(allocatedCourt.email, 'g')).length;
         expect(emailOccurrencesInPage).to.equal(timesEmailShouldAppearOnPage);
       });
@@ -336,7 +336,7 @@ describe(modulePath, () => {
     });
 
     describe('should show allocated court\'s post address', () => {
-      const careOfText = ' c/o ';
+      const careOfText = ' c/o';
       const htmlLineBreak = ' <br/>';
 
       const contentRenderingTest = done => {

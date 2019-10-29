@@ -264,3 +264,7 @@ input.link{
 .govuk-related-items .govuk-heading-s {
   @include govuk-responsive-margin(1, "bottom");
 }
+
+.govuk-panel--confirmation {
+  background: govuk-colour("green") !important;
+}

@@ -29,7 +29,11 @@ module.exports = class AddressLookupStep extends ValidationStep {
   }
 
   hasSessionSelectedAddress(session) {
-    const hasPostcodeLookup = session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex;
+    const hasPostcodeLookup = !([
+      session.postcodeLookup,
+      session.postcodeLookup.addresses,
+      session.postcodeLookup.selectAddressIndex
+    ].includes(undefined)); // eslint-disable-line no-undefined
     if (hasPostcodeLookup) {
       return session.postcodeLookup.addresses[session.postcodeLookup.selectAddressIndex] && session.postcodeLookup.addresses[session.postcodeLookup.selectAddressIndex].DPA;
     }

@@ -104,6 +104,33 @@ describe(modulePath, () => {
         testErrors(done, agent, underTest, context, content, 'required', onlyKeys);
       });
     });
+
+    describe('API data formats', () => {
+      it('does not apply address base UK if not available', () => {
+        session = {
+          postcodeLookup: {
+            addressType: 'postcode',
+            addresses: [{ ORGANISATION_NAME: 'TEST' }]
+          }
+        };
+        const sessionProcessed = underTest
+          .applyCtxToSession({ test: true }, session);
+        expect(sessionProcessed.testAddress.addressBaseUK).to.be.an('undefined');
+      });
+
+      it('only applies address base UK if data is available', () => {
+        session = {
+          postcodeLookup: {
+            addressType: 'postcode',
+            addresses: [{ DPA: { ORGANISATION_NAME: 'TEST' } }],
+            selectAddressIndex: 0
+          }
+        };
+        const sessionProcessed = underTest
+          .applyCtxToSession({ test: true }, session);
+        expect(sessionProcessed.testAddress.addressBaseUK.addressLine1).to.contain('TEST');
+      });
+    });
   });
 
   describe('entering an address manually', () => {

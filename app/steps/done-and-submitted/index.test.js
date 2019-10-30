@@ -486,7 +486,6 @@ describe(modulePath, () => {
     beforeEach(done => {
       excludeKeys = [
         'paymentSuccessful',
-        'emailConfirmation',
         'whatToDoNow',
         'whatToDoNowReferenceNumber',
         'whatToDoNowRefNumText',
@@ -518,7 +517,8 @@ describe(modulePath, () => {
         caseId: '123',
         divorceWho: 'husband',
         financialOrder: 'Yes',
-        refusalRejectionReason: ['some reason']
+        refusalRejectionReason: ['some reason'],
+        petitionerEmail: 'simulate-delivered@notifications.service.gov.uk'
       };
 
       withSession(done, agent, session);

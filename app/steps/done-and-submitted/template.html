@@ -53,6 +53,8 @@
       </div>
 
       {% if session.refusalRejectionReason|length %}
+        <p class="govuk-body">{{ content.emailConfirmation | safe }} <strong>{{ session.petitionerEmail }}</stong></p>
+
         <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatHappensNext | safe}}</h2>
 
         {% if (session.marriageCertificateFiles | length === 0) %}

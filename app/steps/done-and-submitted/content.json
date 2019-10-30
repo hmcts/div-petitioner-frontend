@@ -7,7 +7,7 @@
           "title": "Application complete",
           "paymentSuccessful": "Payment has been taken. Your payment reference and receipt have been emailed to you.",
           "caseReferenceNumber": "Your reference number is:",
-          "emailConfirmation": "Email confirmation has been sent to {{email}}",
+          "emailConfirmation": "Email confirmation has been sent to ",
           "whatToDoNow": "What to do now",
           "whatToDoNowReferenceNumber": "1. Write your reference number on each document",
           "whatToDoNowRefNumText": "You need to write the 16-digit number on the back of each of the following documents:",

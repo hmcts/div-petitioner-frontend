@@ -105,7 +105,18 @@ describe(modulePath, () => {
         'certificateKept',
         'sendEmail',
         'email',
-        'emailTo'
+        'emailTo',
+        'amendedApplictionTitle',
+        'amendedCourtCheck',
+        'amendedAmendedApplication',
+        'amendedUsedAdultery',
+        'amendedContactUs',
+        'amendedPostDocsResponse',
+        'amendedPostDocsSubmitDocuments',
+        'amendedPostDocsOriginalDocs',
+        'amendedPostDocsWarning',
+        'amendedPostDocsReferenceNumber',
+        'amendedPostDocsCheckResponse'
       ];
     });
 
@@ -244,7 +255,18 @@ describe(modulePath, () => {
         'courtCheckApp',
         'youWillBeContacted',
         'startFinancialProceedings1',
-        'startFinancialProceedings2'
+        'startFinancialProceedings2',
+        'amendedApplictionTitle',
+        'amendedCourtCheck',
+        'amendedAmendedApplication',
+        'amendedUsedAdultery',
+        'amendedContactUs',
+        'amendedPostDocsResponse',
+        'amendedPostDocsSubmitDocuments',
+        'amendedPostDocsOriginalDocs',
+        'amendedPostDocsWarning',
+        'amendedPostDocsReferenceNumber',
+        'amendedPostDocsCheckResponse'
       ];
     });
 
@@ -454,6 +476,103 @@ describe(modulePath, () => {
           testNonExistence(done, agent, underTest, careOfText);
         });
       });
+    });
+  });
+
+  describe('Dn Refusal amend journey - refusalRejectionReason is filled', () => {
+    let session = {};
+    let excludeKeys = [];
+
+    beforeEach(done => {
+      excludeKeys = [
+        'paymentSuccessful',
+        'whatToDoNow',
+        'whatToDoNowReferenceNumber',
+        'whatToDoNowRefNumText',
+        'whatToDoNowOrigCert',
+        'whatToDoNowNameChange',
+        'whatToDoNowCertTrans',
+        'whatToDoNowRefNumPrtScr',
+        'whatToDoNowPostHeading',
+        'whatToDoNowPostText',
+        'certificateKept',
+        'whatToDoNowOrigCertOnly',
+        'sendEmail',
+        'email',
+        'emailTo',
+        'courtWillCheck',
+        'youCanFindMore',
+        'contactTheCourt',
+        'helpWithFees',
+        'courtCheckApp',
+        'youWillBeContacted',
+        'consentOrder',
+        'settle',
+        'dividingMoney',
+        'startFinancialProceedings1',
+        'startFinancialProceedings2'
+      ];
+
+      session = {
+        caseId: '123',
+        divorceWho: 'husband',
+        financialOrder: 'Yes',
+        refusalRejectionReason: ['some reason'],
+        petitionerEmail: 'simulate-delivered@notifications.service.gov.uk'
+      };
+
+      withSession(done, agent, session);
+    });
+
+    it('renders correct content if user has uploaded documents', done => {
+      excludeKeys.push(
+        'amendedPostDocsResponse',
+        'amendedPostDocsSubmitDocuments',
+        'amendedPostDocsOriginalDocs',
+        'amendedPostDocsReferenceNumber',
+        'amendedPostDocsWarning',
+        'amendedPostDocsCheckResponse'
+      );
+
+      testContent(done, agent, underTest, content,
+        session, excludeKeys);
+    });
+
+    it('renders the content if user has not uploaded documents', done => {
+      excludeKeys.push(
+        'whatHappensNext',
+        'amendedCourtCheck',
+        'amendedAmendedApplication',
+        'amendedUsedAdultery',
+        'amendedContactUs'
+      );
+
+      testContent(done, agent, underTest, content,
+        session, excludeKeys);
+    });
+  });
+
+  describe('Dn Refusal amend journey - refusalRejectionReason is NOT filled', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        caseId: '123',
+        divorceWho: 'husband',
+        financialOrder: 'Yes'
+      };
+
+      withSession(done, agent, session);
+    });
+
+    it('amend title not shown', done => {
+      testNonExistence(done, agent, underTest,
+        contentStrings.amendedApplictionTitle);
+    });
+
+    it('amend court check content not shown', done => {
+      testNonExistence(done, agent, underTest,
+        contentStrings.amendedCourtCheck);
     });
   });
 });

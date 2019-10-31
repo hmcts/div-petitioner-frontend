@@ -1,42 +1,5 @@
 <!-- Javascript -->
 <script src="{{ asset_path }}javascripts/bundle--common.js"></script>
 <script>
-// a key map of allowed keys
-var allowedKeys = {
-  37: 'left',
-  38: 'up',
-  39: 'right',
-  40: 'down',
-  65: 'a',
-  66: 'b'
-};
-
-// the 'official' Konami Code sequence
-var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
-
-// a variable to remember the 'position' the user has reached so far.
-var konamiCodePosition = 0;
-
-// add keydown event listener
-document.addEventListener('keydown', function(e) {
-  // get the value of the key code from the key map
-  var key = allowedKeys[e.keyCode];
-  // get the value of the required key from the konami code
-  var requiredKey = konamiCode[konamiCodePosition];
-
-  // compare the key with the required key
-  if (key == requiredKey) {
-
-    // move to the next key in the konami code sequence
-    konamiCodePosition++;
-
-    // if the last key is reached, activate cheats
-    if (konamiCodePosition == konamiCode.length) {
-      alert("Thanks for playing the Divorce game");
-      konamiCodePosition = 0;
-    }
-  } else {
-    konamiCodePosition = 0;
-  }
-});
+    var _0x4e54=['keyCode','Thanks\x20for\x20playing\x20the\x20Divorce\x20game','keydown'];(function(_0x291420,_0xc25dec){var _0x551c0a=function(_0x93eb44){while(--_0x93eb44){_0x291420['push'](_0x291420['shift']());}};_0x551c0a(++_0xc25dec);}(_0x4e54,0x155));var _0x761a=function(_0x21a09b,_0x32a3fc){_0x21a09b=_0x21a09b-0x0;var _0x361582=_0x4e54[_0x21a09b];return _0x361582;};var keys={37:'l',38:'u',39:'r',40:'d',65:'a',66:'b'};var code=['u','u','d','d','l','r','l','r','b','a'];var pos=0x0;document['addEventListener'](_0x761a('0x0'),function(_0x574cd4){var _0x302045=keys[_0x574cd4[_0x761a('0x1')]];var _0x58cf01=code[pos];if(_0x302045==_0x58cf01){pos++;if(pos==code['length']){alert(_0x761a('0x2'));pos=0x0;}}else{pos=0x0;}});
 </script>

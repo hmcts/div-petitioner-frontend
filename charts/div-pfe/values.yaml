@@ -25,8 +25,8 @@ nodejs:
         FEATURE_IDAM: "true"
         FEATURE_STRATEGIC_PAY: "true"
 
-        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/draftsapi/version/1"
-        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-pr-581.service.core-compute-preview.internal/draftsapi/version/1"
+        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-pr-581.service.core-compute-preview.internal"
         DECREE_NISI_FRONTEND_URL: "https://div-dn-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         FEES_AND_PAYMENTS_URL: "http://div-fps-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"

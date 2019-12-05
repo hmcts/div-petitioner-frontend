@@ -31,6 +31,10 @@ withPipeline("nodejs", product, component) {
   enableDockerBuild()
   installCharts()
   enableAksStagingDeployment()
+  disableLegacyDeploymentOnAAT()
+  
+  env.FEATURE_IDAM = 'true'
+  env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
 
   if (env.CHANGE_TITLE) {
     if(env.CHANGE_TITLE.startsWith('[PREVIEW]')) {
@@ -62,8 +66,6 @@ withPipeline("nodejs", product, component) {
   }
 
   before('functionalTest:preview') {
-    env.FEATURE_IDAM = 'true'
-    env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
     env.CASE_ORCHESTRATION_SERVICE_DRAFT_URL = 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
     //This is to force the loading of preview.yaml instead of testing.yaml in PRs
     env.NODE_CONFIG_ENV = 'preview'

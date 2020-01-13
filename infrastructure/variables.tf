@@ -291,3 +291,7 @@ variable "webchat_button_service_closed" {
 variable "node_version" {
   default = "10.15.2"
 }
+
+variable "enable_ase" {
+  default = false
+}

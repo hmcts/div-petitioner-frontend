@@ -96,6 +96,7 @@ module "frontend" {
   asp_name                        = "${local.asp_name}"
   asp_rg                          = "${local.asp_rg}"
   instance_size                   = "${var.instance_size}"
+  enable_ase                      = "${var.enable_ase}"
 
   app_settings = {
     // Node specific vars

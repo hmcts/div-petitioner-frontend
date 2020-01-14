@@ -21,3 +21,5 @@ payment_service_url = "http://payment-api-demo.service.core-compute-demo.interna
 post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
 
 feature_strategic_pay = "true"
+
+enable_ase = true

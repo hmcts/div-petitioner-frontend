@@ -102,7 +102,7 @@ module.exports = class Step {
 
     this.i18next.changeLanguage(lang);
 
-    return walkMap(this.content.resources.en.translation.content, path => {
+    return walkMap(this.content.resources[lang].translation.content, path => {
       return this.i18next.t(`content.${path}`, contentCtx);
     });
   }

@@ -2,9 +2,10 @@
 
 This repo is for the frontend part of the journey that the petitioner will go through to apply for a divorce.
 
-## Setup 
+## Setup
 
 **Building locally**
+
 You need to have Yarn and Redis installed. This can be done with brew as follows:
 
 ```
@@ -101,6 +102,6 @@ make lint
 ```
 
 
-## Licensing 
+## Licensing
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -21,7 +21,7 @@
             "exactDate": "is the date exactly",
             "mark": "?",
             "yearsAndMonths": "years and 6 months in the past. If you have lived together for more than 6 months (over one or more periods) since that date, then you can't use this reason for divorce at this time.",
-            "livedMore":"If you have lived together for more than ",
+            "livedMore": "If you have lived together for more than ",
             "needNotToUse": "you won’t have been separated for long enough to use the {{ sepYears }} years separation reason for divorce at this time."
           },
           "howThisAffects": "How this affects your separation period",
@@ -61,7 +61,7 @@
             "exactDate": "[CY] is the date exactly",
             "mark": "[CY] ?",
             "yearsAndMonths": "[CY] years and 6 months in the past. If you have lived together for more than 6 months (over one or more periods) since that date, then you can't use this reason for divorce at this time.",
-            "livedMore":"[CY] If you have lived together for more than ",
+            "livedMore": "[CY] If you have lived together for more than ",
             "needNotToUse": "[CY] you won’t have been separated for long enough to use the {{ sepYears }} years separation reason for divorce at this time."
           },
           "howThisAffects": "[CY] How this affects your separation period",

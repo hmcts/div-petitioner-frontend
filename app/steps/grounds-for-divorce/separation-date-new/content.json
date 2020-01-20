@@ -6,7 +6,7 @@
           "title": "When you separated",
           "info1": "You need to provide the following dates related to your separation. The court will use the most recent date as the date that you separated.",
           "info2": "Use the same date for both if they happened on the same day. If you're not sure of the exact dates, use the closest dates that you remember.",
-          "dateHint" : "For example, 31 3 1980",
+          "dateHint": "For example, 31 3 1980",
           "question1": {
             "text": "When did you first decide that the marriage was over?"
           },
@@ -78,7 +78,7 @@
           "title": "[CY] When you separated",
           "info1": "[CY] You need to provide the following dates related to your separation. The court will use the most recent date as the date that you separated.",
           "info2": "[CY] Use the same date for both if they happened on the same day. If you're not sure of the exact dates, use the closest dates that you remember.",
-          "dateHint" : "[CY] For example, 31 3 1980",
+          "dateHint": "[CY] For example, 31 3 1980",
           "question1": {
             "text": "[CY] When did you first decide that the marriage was over?"
           },

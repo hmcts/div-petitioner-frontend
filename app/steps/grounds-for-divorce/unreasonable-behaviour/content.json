@@ -10,7 +10,7 @@
           "examples": "Use as many examples as you want to, as long as it's enough to satisfy the court that you can't reasonably be expected to live with your {{ divorceWho }}.",
           "warning": " Your {{ divorceWho }} will be sent a copy of your divorce application, so you may want to avoid language that will cause conflict between you. You can discuss your examples with your {{ divorceWho }} if you want to.",
           "describe": "Example",
-          "my":"My {{ divorceWho }} ...",
+          "my": "My {{ divorceWho }} ...",
           "addAnother": "+ Add another example"
         },
         "checkYourAnswersContent": {
@@ -33,7 +33,7 @@
           "examples": "[CY] Use as many examples as you want to, as long as it's enough to satisfy the court that you can't reasonably be expected to live with your {{ divorceWho }}.",
           "warning": "[CY]  Your {{ divorceWho }} will be sent a copy of your divorce application, so you may want to avoid language that will cause conflict between you. You can discuss your examples with your {{ divorceWho }} if you want to.",
           "describe": "[CY] Example",
-          "my":"[CY] My {{ divorceWho }} ...",
+          "my": "[CY] My {{ divorceWho }} ...",
           "addAnother": "[CY] + Add another example"
         },
         "checkYourAnswersContent": {

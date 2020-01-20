@@ -18,10 +18,10 @@
         },
         "errors": {
           "countryName": {
-            "required" : "Enter the country in which you got married"
+            "required": "Enter the country in which you got married"
           },
           "placeOfMarriage": {
-            "required" : "Enter the place you got married as it is displayed on your marriage certificate"
+            "required": "Enter the place you got married as it is displayed on your marriage certificate"
           }
         }
       }
@@ -44,10 +44,10 @@
         },
         "errors": {
           "countryName": {
-            "required" : "[CY] Enter the country in which you got married"
+            "required": "[CY] Enter the country in which you got married"
           },
           "placeOfMarriage": {
-            "required" : "[CY] Enter the place you got married as it is displayed on your marriage certificate"
+            "required": "[CY] Enter the place you got married as it is displayed on your marriage certificate"
           }
         }
       }

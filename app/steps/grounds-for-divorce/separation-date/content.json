@@ -4,7 +4,7 @@
       "translation": {
         "content": {
           "question": "When did you separate from your {{ divorceWho }}?",
-          "dateHint" : "For example, 31 3 1980",
+          "dateHint": "For example, 31 3 1980",
           "day": "Day",
           "month": "Month",
           "year": "Year"
@@ -45,7 +45,7 @@
       "translation": {
         "content": {
           "question": "[CY] When did you separate from your {{ divorceWho }}?",
-          "dateHint" : "[CY] For example, 31 3 1980",
+          "dateHint": "[CY] For example, 31 3 1980",
           "day": "[CY] Day",
           "month": "[CY] Month",
           "year": "[CY] Year"

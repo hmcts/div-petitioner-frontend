@@ -18,20 +18,20 @@
         },
         "errors": {
           "petitionerFirstName": {
-            "required" : "Enter your first name(s)",
-            "invalid" : "Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your first name(s)",
+            "invalid": "Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "petitionerLastName": {
-            "required" : "Enter your last name(s)",
-            "invalid" : "Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your last name(s)",
+            "invalid": "Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "respondentFirstName" : {
-            "required" : "Enter your {{ divorceWho }}&#39;s first name(s)",
-            "invalid" : "Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your {{ divorceWho }}&#39;s first name(s)",
+            "invalid": "Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "respondentLastName" : {
-            "required" : "Enter your {{ divorceWho }}&#39;s last name(s)",
-            "invalid" : "Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your {{ divorceWho }}&#39;s last name(s)",
+            "invalid": "Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }
@@ -54,20 +54,20 @@
         },
         "errors": {
           "petitionerFirstName": {
-            "required" : "[CY] Enter your first name(s)",
-            "invalid" : "[CY] Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "[CY] Enter your first name(s)",
+            "invalid": "[CY] Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "petitionerLastName": {
-            "required" : "[CY] Enter your last name(s)",
-            "invalid" : "[CY] Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "[CY] Enter your last name(s)",
+            "invalid": "[CY] Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "respondentFirstName" : {
-            "required" : "[CY] Enter your {{ divorceWho }}&#39;s first name(s)",
-            "invalid" : "[CY] Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "[CY] Enter your {{ divorceWho }}&#39;s first name(s)",
+            "invalid": "[CY] Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "respondentLastName" : {
-            "required" : "[CY] Enter your {{ divorceWho }}&#39;s last name(s)",
-            "invalid" : "[CY] Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "[CY] Enter your {{ divorceWho }}&#39;s last name(s)",
+            "invalid": "[CY] Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }

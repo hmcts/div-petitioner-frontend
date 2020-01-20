@@ -21,15 +21,15 @@
         },
         "errors": {
           "petitionerNameDifferentToMarriageCertificate": {
-            "required" : "Select yes if you have changed your name",
-            "invalid" : "Select yes if you have changed your name"
+            "required": "Select yes if you have changed your name",
+            "invalid": "Select yes if you have changed your name"
           },
           "petitionerNameChangedHow": {
-            "required" : "Select how you changed your name",
-            "invalid" : "Select how you changed your name"
+            "required": "Select how you changed your name",
+            "invalid": "Select how you changed your name"
           },
           "petitionerNameChangedHowOtherDetails": {
-            "invalid" : "The details can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "invalid": "The details can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }
@@ -55,15 +55,15 @@
         },
         "errors": {
           "petitionerNameDifferentToMarriageCertificate": {
-            "required" : "[CY] Select yes if you have changed your name",
-            "invalid" : "[CY] Select yes if you have changed your name"
+            "required": "[CY] Select yes if you have changed your name",
+            "invalid": "[CY] Select yes if you have changed your name"
           },
           "petitionerNameChangedHow": {
-            "required" : "[CY] Select how you changed your name",
-            "invalid" : "[CY] Select how you changed your name"
+            "required": "[CY] Select how you changed your name",
+            "invalid": "[CY] Select how you changed your name"
           },
           "petitionerNameChangedHowOtherDetails": {
-            "invalid" : "[CY] The details can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "invalid": "[CY] The details can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }

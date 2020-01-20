@@ -20,12 +20,12 @@
         },
         "errors": {
           "marriagePetitionerName": {
-            "required" : "Enter your full name as it appears on your marriage certificate",
-            "invalid" : "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your full name as it appears on your marriage certificate",
+            "invalid": "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "marriageRespondentName": {
-            "required" : "Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
-            "invalid" : "Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
+            "invalid": "Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }
@@ -50,12 +50,12 @@
         },
         "errors": {
           "marriagePetitionerName": {
-            "required" : "[CY] Enter your full name as it appears on your marriage certificate",
-            "invalid" : "[CY] Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "[CY] Enter your full name as it appears on your marriage certificate",
+            "invalid": "[CY] Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "marriageRespondentName": {
-            "required" : "[CY] Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
-            "invalid" : "[CY] Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "[CY] Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
+            "invalid": "[CY] Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }

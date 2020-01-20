@@ -4,7 +4,7 @@
       "translation": {
         "content": {
           "woman": "woman",
-          "man" : "man",
+          "man": "man",
           "question": "Choose a reason for your divorce",
           "explanation": "You must choose one of the following reasons (legally known as the &#39;facts&#39;) for your divorce.",
           "hasNoMarriageDate": "No marriage date",
@@ -35,9 +35,9 @@
           "desertionHeading": "Desertion",
           "desertionSummary": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
           "desertionExclusion": "if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-          "noneApply" : "None of these apply to my situation",
-          "finalPossibilities" : "If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
-          "alternativelyInFuture" : "Alternatively, in future you may be able to use the following",
+          "noneApply": "None of these apply to my situation",
+          "finalPossibilities": "If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+          "alternativelyInFuture": "Alternatively, in future you may be able to use the following",
           "warning": "Warning"
         },
         "checkYourAnswersContent": {
@@ -55,7 +55,7 @@
       "translation": {
         "content": {
           "woman": "[CY] woman",
-          "man" : "[CY] man",
+          "man": "[CY] man",
           "question": "[CY] Choose a reason for your divorce",
           "explanation": "[CY] You must choose one of the following reasons (legally known as the &#39;facts&#39;) for your divorce.",
           "hasNoMarriageDate": "[CY] No marriage date",
@@ -86,9 +86,9 @@
           "desertionHeading": "[CY] Desertion",
           "desertionSummary": "[CY] Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
           "desertionExclusion": "[CY] if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-          "noneApply" : "[CY] None of these apply to my situation",
-          "finalPossibilities" : "[CY] If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
-          "alternativelyInFuture" : "[CY] Alternatively, in future you may be able to use the following",
+          "noneApply": "[CY] None of these apply to my situation",
+          "finalPossibilities": "[CY] If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+          "alternativelyInFuture": "[CY] Alternatively, in future you may be able to use the following",
           "warning": "[CY] Warning"
         },
         "checkYourAnswersContent": {

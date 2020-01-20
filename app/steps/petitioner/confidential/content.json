@@ -5,7 +5,7 @@
         "content": {
           "question": "Do you need your address kept private from your {{ divorceWho }}?",
           "divorcePetitionCopy": "A copy of your divorce application will be sent to your {{ divorceWho }}. If you don’t want them to know your address you should ask the court to keep it private.",
-          "adultery":"If you use adultery as your reason for divorce and you choose to name the co-respondent, they'll also get a copy.",
+          "adultery": "If you use adultery as your reason for divorce and you choose to name the co-respondent, they'll also get a copy.",
           "sameProperty": "You can’t keep your address private if you live in the same property as your {{ divorceWho }}.",
           "share": "I don't need my address kept private",
           "keep": "Keep my address private"
@@ -26,7 +26,7 @@
         "content": {
           "question": "[CY] Do you need your address kept private from your {{ divorceWho }}?",
           "divorcePetitionCopy": "[CY] A copy of your divorce application will be sent to your {{ divorceWho }}. If you don’t want them to know your address you should ask the court to keep it private.",
-          "adultery":"[CY] If you use adultery as your reason for divorce and you choose to name the co-respondent, they'll also get a copy.",
+          "adultery": "[CY] If you use adultery as your reason for divorce and you choose to name the co-respondent, they'll also get a copy.",
           "sameProperty": "[CY] You can’t keep your address private if you live in the same property as your {{ divorceWho }}.",
           "share": "[CY] I don't need my address kept private",
           "keep": "[CY] Keep my address private"

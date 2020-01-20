@@ -94,10 +94,10 @@ features:
   webchat: true
 
 idamArgs:
-  redirectUri: 'http://localhost:3000/authenticated'
+  redirectUri: 'https://localhost:3000/authenticated'
   indexUrl: '/index'
-  idamApiUrl: 'http://localhost:5000'
-  idamLoginUrl: 'http://localhost:9002/login'
+  idamApiUrl: 'http://localhost:8001'
+  idamLoginUrl: 'https://localhost:3000/authenticated'
   idamSecret: '123456'
   idamClientID: 'divorce'
 

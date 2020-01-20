@@ -60,7 +60,7 @@
     <img src="/noJS.png" alt="1px" width="1" height="1" style="display: none;" />
   </noscript>
   {% block breadcrumbs %}
-    {% set html %}{{common.feedback | safe}}{% endset %}
+    {% set html %}{{(common.feedback + common.languageToggle) | safe}}{% endset %}
     {{ govukPhaseBanner({
         tag: {
             text: common.phase

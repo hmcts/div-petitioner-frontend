@@ -1,13 +1,18 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "What is your {{divorceWho}}'s home address?"
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "What is your {{divorceWho}}'s home address?"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] What is your {{divorceWho}}'s home address?"
+        }
+      }
     }
+  }
 }

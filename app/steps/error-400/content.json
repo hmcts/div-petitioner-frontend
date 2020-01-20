@@ -1,16 +1,26 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "Bad request",
-                    "info": "This could be because you’ve followed a broken or outdated link, or because there’s an error on our site.",
-                    "youCan": "You can either:",
-                    "goBack": "go back to the previous page",
-                    "signIn": "sign in again"
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Bad request",
+          "info": "This could be because you’ve followed a broken or outdated link, or because there’s an error on our site.",
+          "youCan": "You can either:",
+          "goBack": "go back to the previous page",
+          "signIn": "sign in again"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] Bad request",
+          "info": "[CY] This could be because you’ve followed a broken or outdated link, or because there’s an error on our site.",
+          "youCan": "[CY] You can either:",
+          "goBack": "[CY] go back to the previous page",
+          "signIn": "[CY] sign in again"
+        }
+      }
     }
+  }
 }

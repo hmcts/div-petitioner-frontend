@@ -1,5 +1,4 @@
 {
-  "lng": "en",
   "resources": {
     "en": {
       "translation": {
@@ -10,11 +9,9 @@
           "middleNames": "Include all middle names here",
           "reasonForDivorceAdultery3rdPartyLastName": "Last names"
         },
-
         "checkYourAnswersContent": {
-            "question": "Name of the person with whom the adultery was committed"
+          "question": "Name of the person with whom the adultery was committed"
         },
-
         "errors": {
           "reasonForDivorceAdultery3rdPartyFirstName": {
             "required": "Enter the co-respondent's first names",
@@ -23,6 +20,30 @@
           "reasonForDivorceAdultery3rdPartyLastName": {
             "required": "Enter the co-respondent's last names",
             "invalid": "Last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] What is their name?",
+          "description": "[CY] Enter the full name of the person you believe your {{ divorceWho }} committed adultery with (legally known as the 'co-respondent').",
+          "reasonForDivorceAdultery3rdPartyFirstName": "[CY] First names",
+          "middleNames": "[CY] Include all middle names here",
+          "reasonForDivorceAdultery3rdPartyLastName": "[CY] Last names"
+        },
+        "checkYourAnswersContent": {
+          "question": "[CY] Name of the person with whom the adultery was committed"
+        },
+        "errors": {
+          "reasonForDivorceAdultery3rdPartyFirstName": {
+            "required": "[CY] Enter the co-respondent's first names",
+            "invalid": "[CY] First name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "reasonForDivorceAdultery3rdPartyLastName": {
+            "required": "[CY] Enter the co-respondent's last names",
+            "invalid": "[CY] Last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }

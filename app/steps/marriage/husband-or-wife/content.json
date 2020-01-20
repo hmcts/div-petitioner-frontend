@@ -1,30 +1,48 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Who are you divorcing?",
-                    "husband": "Your husband",
-                    "wife": "Your wife",
-                    "marriageIsSameSexCouple": "Select the following if it applies to you:",
-                    "marriageIsSameSexCoupleText": "We were a same-sex couple when we got married."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Who you're divorcing",
-                    "marriageIsSameSexCoupleText": "Type of relationship",
-                    "Yes": "Same sex",
-                    "No": "Opposite sex"
-                },
-
-                "errors": {
-                    "divorceWho": {
-                        "required": "Select who you are divorcing"
-                    }
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Who are you divorcing?",
+          "husband": "Your husband",
+          "wife": "Your wife",
+          "marriageIsSameSexCouple": "Select the following if it applies to you:",
+          "marriageIsSameSexCoupleText": "We were a same-sex couple when we got married."
+        },
+        "checkYourAnswersContent": {
+          "question": "Who you're divorcing",
+          "marriageIsSameSexCoupleText": "Type of relationship",
+          "Yes": "Same sex",
+          "No": "Opposite sex"
+        },
+        "errors": {
+          "divorceWho": {
+            "required": "Select who you are divorcing"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Who are you divorcing?",
+          "husband": "[CY] Your husband",
+          "wife": "[CY] Your wife",
+          "marriageIsSameSexCouple": "[CY] Select the following if it applies to you:",
+          "marriageIsSameSexCoupleText": "[CY] We were a same-sex couple when we got married."
+        },
+        "checkYourAnswersContent": {
+          "question": "[CY] Who you're divorcing",
+          "marriageIsSameSexCoupleText": "[CY] Type of relationship",
+          "Yes": "[CY] Same sex",
+          "No": "[CY] Opposite sex"
+        },
+        "errors": {
+          "divorceWho": {
+            "required": "[CY] Select who you are divorcing"
+          }
+        }
+      }
     }
+  }
 }

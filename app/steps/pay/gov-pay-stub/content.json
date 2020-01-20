@@ -1,5 +1,4 @@
 {
-  "lng": "en",
   "resources": {
     "en": {
       "translation": {
@@ -12,6 +11,21 @@
           "mockedOutcome": {
             "required": "Select the desired outcome",
             "invalid": "Select the outcome from the available options above"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] Mock payment outcome",
+          "success": "[CY] Success",
+          "failure": "[CY] Failure"
+        },
+        "errors": {
+          "mockedOutcome": {
+            "required": "[CY] Select the desired outcome",
+            "invalid": "[CY] Select the outcome from the available options above"
           }
         }
       }

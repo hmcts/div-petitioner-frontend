@@ -1,47 +1,86 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "title": "Check your answers",
-                    "titleSoFar": "Check your answers so far",
-                    "change": "Change",
-                    "about-your-marriage": "",
-                    "jurisdiction": "Your connections to England and Wales",
-                    "petitioner-respondent": "About you and your {{ divorceWho }}",
-                    "about-divorce": "About your divorce",
-                    "pay": "Payment",
-                    "continueApplication": "Continue application",
-                    "confirmHeading": "Confirm the following",
-                    "confirmWarning": "You could be fined or imprisoned for contempt of court if you deliberately submit false information.",
-                    "confirmApply": "I confirm that:",
-                    "confirmDissolve": "I'm applying to the court for my marriage to be dissolved.",
-                    "confirmDissolvePayRespondent": "I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} to pay some or all of the divorce costs.",
-                    "confirmDissolvePayCoRespondent": "I'm applying to the court for my marriage to be dissolved, and to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
-                    "confirmDissolvePayBoth": "I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
-                    "confirmDissolveFinancial": "I'm applying to the court for my marriage to be dissolved, and to make financial orders to decide how our money and property will be split.",
-                    "confirmDissolvePayRespondentFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
-                    "confirmDissolvePayCoRespondentFinancial": "I'm applying to the court for my marriage to be dissolved, to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
-                    "confirmDissolvePayBothFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
-                    "confirmBelieve": "I believe that the facts stated in this application are true.",
-                    "confirmApplication": "The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
-                    "submitOnline": "Submit",
-                    "submitAndPay": "Submit and pay",
-                    "submitPayWarning": "Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
-                    "deleteApplciation": "Delete application",
-                    "warning": "Warning",
-                    "tableExplanation": "This table has a list of your questions and answers. The first column is the question. The second column is your answer and the third column is a link to change your answer of that particular question.",
-                    "amendJourney": "You can amend all parts of your application before submitting."
-                },
-                "errors": {
-                    "confirmPrayer": {
-                        "required": "Confirm that you’re making an application to the court, and that the information you’ve given is true",
-                        "invalid": "Confirm that you’re making an application to the court, and that the information you’ve given is true"
-                    }
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Check your answers",
+          "titleSoFar": "Check your answers so far",
+          "change": "Change",
+          "about-your-marriage": "",
+          "jurisdiction": "Your connections to England and Wales",
+          "petitioner-respondent": "About you and your {{ divorceWho }}",
+          "about-divorce": "About your divorce",
+          "pay": "Payment",
+          "continueApplication": "Continue application",
+          "confirmHeading": "Confirm the following",
+          "confirmWarning": "You could be fined or imprisoned for contempt of court if you deliberately submit false information.",
+          "confirmApply": "I confirm that:",
+          "confirmDissolve": "I'm applying to the court for my marriage to be dissolved.",
+          "confirmDissolvePayRespondent": "I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} to pay some or all of the divorce costs.",
+          "confirmDissolvePayCoRespondent": "I'm applying to the court for my marriage to be dissolved, and to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
+          "confirmDissolvePayBoth": "I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
+          "confirmDissolveFinancial": "I'm applying to the court for my marriage to be dissolved, and to make financial orders to decide how our money and property will be split.",
+          "confirmDissolvePayRespondentFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+          "confirmDissolvePayCoRespondentFinancial": "I'm applying to the court for my marriage to be dissolved, to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+          "confirmDissolvePayBothFinancial": "I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+          "confirmBelieve": "I believe that the facts stated in this application are true.",
+          "confirmApplication": "The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
+          "submitOnline": "Submit",
+          "submitAndPay": "Submit and pay",
+          "submitPayWarning": "Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
+          "deleteApplciation": "Delete application",
+          "warning": "Warning",
+          "tableExplanation": "This table has a list of your questions and answers. The first column is the question. The second column is your answer and the third column is a link to change your answer of that particular question.",
+          "amendJourney": "You can amend all parts of your application before submitting."
+        },
+        "errors": {
+          "confirmPrayer": {
+            "required": "Confirm that you’re making an application to the court, and that the information you’ve given is true",
+            "invalid": "Confirm that you’re making an application to the court, and that the information you’ve given is true"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] Check your answers",
+          "titleSoFar": "[CY] Check your answers so far",
+          "change": "[CY] Change",
+          "about-your-marriage": "",
+          "jurisdiction": "[CY] Your connections to England and Wales",
+          "petitioner-respondent": "[CY] About you and your {{ divorceWho }}",
+          "about-divorce": "[CY] About your divorce",
+          "pay": "[CY] Payment",
+          "continueApplication": "[CY] Continue application",
+          "confirmHeading": "[CY] Confirm the following",
+          "confirmWarning": "[CY] You could be fined or imprisoned for contempt of court if you deliberately submit false information.",
+          "confirmApply": "[CY] I confirm that:",
+          "confirmDissolve": "[CY] I'm applying to the court for my marriage to be dissolved.",
+          "confirmDissolvePayRespondent": "[CY] I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} to pay some or all of the divorce costs.",
+          "confirmDissolvePayCoRespondent": "[CY] I'm applying to the court for my marriage to be dissolved, and to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
+          "confirmDissolvePayBoth": "[CY] I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
+          "confirmDissolveFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, and to make financial orders to decide how our money and property will be split.",
+          "confirmDissolvePayRespondentFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+          "confirmDissolvePayCoRespondentFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+          "confirmDissolvePayBothFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
+          "confirmBelieve": "[CY] I believe that the facts stated in this application are true.",
+          "confirmApplication": "[CY] The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
+          "submitOnline": "[CY] Submit",
+          "submitAndPay": "[CY] Submit and pay",
+          "submitPayWarning": "[CY] Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
+          "deleteApplciation": "[CY] Delete application",
+          "warning": "[CY] Warning",
+          "tableExplanation": "[CY] This table has a list of your questions and answers. The first column is the question. The second column is your answer and the third column is a link to change your answer of that particular question.",
+          "amendJourney": "[CY] You can amend all parts of your application before submitting."
+        },
+        "errors": {
+          "confirmPrayer": {
+            "required": "[CY] Confirm that you’re making an application to the court, and that the information you’ve given is true",
+            "invalid": "[CY] Confirm that you’re making an application to the court, and that the information you’ve given is true"
+          }
+        }
+      }
     }
+  }
 }

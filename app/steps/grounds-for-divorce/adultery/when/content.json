@@ -1,23 +1,34 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Do you know when the adultery took place?",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-
-                "errors": {
-                    "reasonForDivorceAdulteryKnowWhen": {
-                        "required": "Select yes if you know when the adultery happened",
-                        "invalid": "Select yes if you know when the adultery happened"
-                    }
-                }
-
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you know when the adultery took place?",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "errors": {
+          "reasonForDivorceAdulteryKnowWhen": {
+            "required": "Select yes if you know when the adultery happened",
+            "invalid": "Select yes if you know when the adultery happened"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Do you know when the adultery took place?",
+          "yes": "[CY] Yes",
+          "no": "[CY] No"
+        },
+        "errors": {
+          "reasonForDivorceAdulteryKnowWhen": {
+            "required": "[CY] Select yes if you know when the adultery happened",
+            "invalid": "[CY] Select yes if you know when the adultery happened"
+          }
+        }
+      }
     }
+  }
 }

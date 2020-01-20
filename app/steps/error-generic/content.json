@@ -1,12 +1,18 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "There has been a problem"
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "There has been a problem"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] There has been a problem"
+        }
+      }
     }
+  }
 }

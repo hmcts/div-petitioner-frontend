@@ -1,14 +1,22 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "You can&#39;t use this reason for divorce",
-                    "reason": "You must have been separated for at least {{ limitYears }} years to use this reason for divorce.",
-                    "proceed": "If you want to proceed with your application, you need to <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "You can&#39;t use this reason for divorce",
+          "reason": "You must have been separated for at least {{ limitYears }} years to use this reason for divorce.",
+          "proceed": "If you want to proceed with your application, you need to <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] You can&#39;t use this reason for divorce",
+          "reason": "[CY] You must have been separated for at least {{ limitYears }} years to use this reason for divorce.",
+          "proceed": "[CY] If you want to proceed with your application, you need to <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
+        }
+      }
     }
+  }
 }

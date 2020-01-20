@@ -1,17 +1,28 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "Application submitted",
-                    "info": "Your application has now been submitted.",
-                    "info2": "You can contact us if you need help with your divorce application.",
-                    "contactTitle": "Contact Us",
-                    "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
-                    "contactEmail": "Email: {{courtEmail}}"
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Application submitted",
+          "info": "Your application has now been submitted.",
+          "info2": "You can contact us if you need help with your divorce application.",
+          "contactTitle": "Contact Us",
+          "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactEmail": "Email: {{courtEmail}}"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] Application submitted",
+          "info": "[CY] Your application has now been submitted.",
+          "info2": "[CY] You can contact us if you need help with your divorce application.",
+          "contactTitle": "[CY] Contact Us",
+          "contactPhone": "[CY] Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactEmail": "[CY] Email: {{courtEmail}}"
+        }
+      }
     }
+  }
 }

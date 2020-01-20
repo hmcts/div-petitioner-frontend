@@ -1,72 +1,132 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Upload your documents",
-                    "uploadDigitalPhoto": "You need to upload a digital photo of the following documents:",
-                    "marriageCertificateContent": "your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\" aria-label=\"Certified copy link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified copy</a>",
-                    "translationContent" : "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Certifying a document link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified English translation</a> of your marriage certificate",
-                    "nameChangeContent" : "proof of your name change, for example a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Change name deed poll link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
-                    "camera": "You can use your phone to do this now if it has a camera.",
-                    "howToTake": "How to take the picture",
-                    "howToTakeInfo1": "Place your certificate on a flat service in a well lit room. Use a flash if you need to.",
-                    "howToTakeInfo2": "Take a good quality picture of the entire certificate. You should be able to see its edges.",
-                    "howToTakeInfo3": "Check that the image is in focus. You must be able to read all the writing on the certificate, including the handwriting. Zoom in if you need to check this.",
-                    "howToTakeInfo4": "Send the picture to this device (e.g. by email) and save it.",
-                    "limitations": "The image must be of the entire document and has to be readable by court staff. You can upload most types of image (up to 10MB).",
-                    "otherDocuments": "You can also upload other documents that you need to send.",
-                    "uploadedFiles": "Uploaded files",
-                    "cantUpload": "If you can't upload your documents",
-                    "continue": "Continue with your application. When you're finished you'll be given a reference number and the court's address.",
-                    "emailOrPost": "You can email or post your documents to the court.",
-                    "keptAndReturned": "You need to send the original marriage certificate or a certified copy if you're sending it by post. Do not send a photocopy. Your certificate will be kept and won't be returned to you.",
-                    "noFiles": "No files uploaded",
-                    "remove": "Remove",
-                    "clickToChooseFile": "Choose a file or take a photo",
-                    "or": "or",
-                    "dragAndDrop": "Drag and drop files here",
-                    "selectFiles": "Select files to upload",
-                    "upload": "Upload",
-                    "fileToBig": "This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again.",
-                    "dictMaxFilesExceeded": "You can upload a maximum of 10 files.",
-                    "uploading": "Uploading",
-                    "pendingUpload": "Pending Upload",
-                    "hide": "Hide",
-                    "errorUnknown" : "Sorry, there has been a problem uploading this file. Please try again later.",
-                    "errorFileSizeTooLarge" : "This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again.",
-                    "errorFileTypeInvalid" : "The file must be in jpg, bmp, tiff, png or PDF format.",
-                    "errorMaximumFilesExceeded" : "You can upload a maximum of 10 files.",
-                    "errorVirusFoundInFile": "This file has failed a virus check. Please try again with a different file."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Uploaded documents"
-                },
-
-                "errors": {
-                    "marriageCertificateFiles": {
-                      "invalid" : "The files you have uploaded are invalid."
-                    },
-                    "errorUnknown": {
-                      "invalid" : "Sorry, there has been a problem uploading this file. Please try again later."
-                    },
-                    "errorFileSizeTooLarge": {
-                      "invalid" : "This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again."
-                    },
-                    "errorFileTypeInvalid": {
-                      "invalid" : "The file must be in jpg, bmp, tiff, png or PDF format."
-                    },
-                    "errorMaximumFilesExceeded": {
-                      "invalid" : "You can upload a maximum of 10 files."
-                    },
-                    "errorVirusFoundInFile": {
-                        "invalid" : "This file has failed a virus check. Please try again with a different file."
-                    }
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Upload your documents",
+          "uploadDigitalPhoto": "You need to upload a digital photo of the following documents:",
+          "marriageCertificateContent": "your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\" aria-label=\"Certified copy link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified copy</a>",
+          "translationContent" : "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Certifying a document link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified English translation</a> of your marriage certificate",
+          "nameChangeContent" : "proof of your name change, for example a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Change name deed poll link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
+          "camera": "You can use your phone to do this now if it has a camera.",
+          "howToTake": "How to take the picture",
+          "howToTakeInfo1": "Place your certificate on a flat service in a well lit room. Use a flash if you need to.",
+          "howToTakeInfo2": "Take a good quality picture of the entire certificate. You should be able to see its edges.",
+          "howToTakeInfo3": "Check that the image is in focus. You must be able to read all the writing on the certificate, including the handwriting. Zoom in if you need to check this.",
+          "howToTakeInfo4": "Send the picture to this device (e.g. by email) and save it.",
+          "limitations": "The image must be of the entire document and has to be readable by court staff. You can upload most types of image (up to 10MB).",
+          "otherDocuments": "You can also upload other documents that you need to send.",
+          "uploadedFiles": "Uploaded files",
+          "cantUpload": "If you can't upload your documents",
+          "continue": "Continue with your application. When you're finished you'll be given a reference number and the court's address.",
+          "emailOrPost": "You can email or post your documents to the court.",
+          "keptAndReturned": "You need to send the original marriage certificate or a certified copy if you're sending it by post. Do not send a photocopy. Your certificate will be kept and won't be returned to you.",
+          "noFiles": "No files uploaded",
+          "remove": "Remove",
+          "clickToChooseFile": "Choose a file or take a photo",
+          "or": "or",
+          "dragAndDrop": "Drag and drop files here",
+          "selectFiles": "Select files to upload",
+          "upload": "Upload",
+          "fileToBig": "This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again.",
+          "dictMaxFilesExceeded": "You can upload a maximum of 10 files.",
+          "uploading": "Uploading",
+          "pendingUpload": "Pending Upload",
+          "hide": "Hide",
+          "errorUnknown" : "Sorry, there has been a problem uploading this file. Please try again later.",
+          "errorFileSizeTooLarge" : "This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again.",
+          "errorFileTypeInvalid" : "The file must be in jpg, bmp, tiff, png or PDF format.",
+          "errorMaximumFilesExceeded" : "You can upload a maximum of 10 files.",
+          "errorVirusFoundInFile": "This file has failed a virus check. Please try again with a different file."
+        },
+        "checkYourAnswersContent": {
+          "question": "Uploaded documents"
+        },
+        "errors": {
+          "marriageCertificateFiles": {
+            "invalid" : "The files you have uploaded are invalid."
+          },
+          "errorUnknown": {
+            "invalid" : "Sorry, there has been a problem uploading this file. Please try again later."
+          },
+          "errorFileSizeTooLarge": {
+            "invalid" : "This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again."
+          },
+          "errorFileTypeInvalid": {
+            "invalid" : "The file must be in jpg, bmp, tiff, png or PDF format."
+          },
+          "errorMaximumFilesExceeded": {
+            "invalid" : "You can upload a maximum of 10 files."
+          },
+          "errorVirusFoundInFile": {
+            "invalid" : "This file has failed a virus check. Please try again with a different file."
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Upload your documents",
+          "uploadDigitalPhoto": "[CY] You need to upload a digital photo of the following documents:",
+          "marriageCertificateContent": "[CY] your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\" aria-label=\"Certified copy link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified copy</a>",
+          "translationContent" : "[CY] a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Certifying a document link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified English translation</a> of your marriage certificate",
+          "nameChangeContent" : "[CY] proof of your name change, for example a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Change name deed poll link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
+          "camera": "[CY] You can use your phone to do this now if it has a camera.",
+          "howToTake": "[CY] How to take the picture",
+          "howToTakeInfo1": "[CY] Place your certificate on a flat service in a well lit room. Use a flash if you need to.",
+          "howToTakeInfo2": "[CY] Take a good quality picture of the entire certificate. You should be able to see its edges.",
+          "howToTakeInfo3": "[CY] Check that the image is in focus. You must be able to read all the writing on the certificate, including the handwriting. Zoom in if you need to check this.",
+          "howToTakeInfo4": "[CY] Send the picture to this device (e.g. by email) and save it.",
+          "limitations": "[CY] The image must be of the entire document and has to be readable by court staff. You can upload most types of image (up to 10MB).",
+          "otherDocuments": "[CY] You can also upload other documents that you need to send.",
+          "uploadedFiles": "[CY] Uploaded files",
+          "cantUpload": "[CY] If you can't upload your documents",
+          "continue": "[CY] Continue with your application. When you're finished you'll be given a reference number and the court's address.",
+          "emailOrPost": "[CY] You can email or post your documents to the court.",
+          "keptAndReturned": "[CY] You need to send the original marriage certificate or a certified copy if you're sending it by post. Do not send a photocopy. Your certificate will be kept and won't be returned to you.",
+          "noFiles": "[CY] No files uploaded",
+          "remove": "[CY] Remove",
+          "clickToChooseFile": "[CY] Choose a file or take a photo",
+          "or": "[CY] or",
+          "dragAndDrop": "[CY] Drag and drop files here",
+          "selectFiles": "[CY] Select files to upload",
+          "upload": "[CY] Upload",
+          "fileToBig": "[CY] This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again.",
+          "dictMaxFilesExceeded": "[CY] You can upload a maximum of 10 files.",
+          "uploading": "[CY] Uploading",
+          "pendingUpload": "[CY] Pending Upload",
+          "hide": "[CY] Hide",
+          "errorUnknown" : "[CY] Sorry, there has been a problem uploading this file. Please try again later.",
+          "errorFileSizeTooLarge" : "[CY] This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again.",
+          "errorFileTypeInvalid" : "[CY] The file must be in jpg, bmp, tiff, png or PDF format.",
+          "errorMaximumFilesExceeded" : "[CY] You can upload a maximum of 10 files.",
+          "errorVirusFoundInFile": "[CY] This file has failed a virus check. Please try again with a different file."
+        },
+        "checkYourAnswersContent": {
+          "question": "[CY] Uploaded documents"
+        },
+        "errors": {
+          "marriageCertificateFiles": {
+            "invalid" : "[CY] The files you have uploaded are invalid."
+          },
+          "errorUnknown": {
+            "invalid" : "[CY] Sorry, there has been a problem uploading this file. Please try again later."
+          },
+          "errorFileSizeTooLarge": {
+            "invalid" : "[CY] This file is too large and exceeds the 10mb limit. Please reduce the size of the file and try again."
+          },
+          "errorFileTypeInvalid": {
+            "invalid" : "[CY] The file must be in jpg, bmp, tiff, png or PDF format."
+          },
+          "errorMaximumFilesExceeded": {
+            "invalid" : "[CY] You can upload a maximum of 10 files."
+          },
+          "errorVirusFoundInFile": {
+            "invalid" : "[CY] This file has failed a virus check. Please try again with a different file."
+          }
+        }
+      }
     }
+  }
 }

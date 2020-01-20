@@ -1,20 +1,32 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Do you want your divorce papers sent to this address?",
-                    "yes": "Yes, use this address",
-                    "no": "No, add a different address"
-                },
-
-                "errors": {
-                    "petitionerCorrespondenceUseHomeAddress": {
-                        "required": "Select no if you want your divorce papers sent to a different address"
-                    }
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you want your divorce papers sent to this address?",
+          "yes": "Yes, use this address",
+          "no": "No, add a different address"
+        },
+        "errors": {
+          "petitionerCorrespondenceUseHomeAddress": {
+            "required": "Select no if you want your divorce papers sent to a different address"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Do you want your divorce papers sent to this address?",
+          "yes": "[CY] Yes, use this address",
+          "no": "[CY] No, add a different address"
+        },
+        "errors": {
+          "petitionerCorrespondenceUseHomeAddress": {
+            "required": "[CY] Select no if you want your divorce papers sent to a different address"
+          }
+        }
+      }
     }
+  }
 }

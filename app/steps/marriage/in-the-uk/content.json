@@ -1,21 +1,34 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Did you marry your {{ divorceWho }} in the UK?",
-                    "definition": "The UK is made up of England, Scotland, Wales and Northern Ireland.",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-
-                "errors": {
-                    "marriedInUk": {
-                        "required": "Select yes if you married your {{ divorceWho }} in the UK."
-                    }
-                }
-            }
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Did you marry your {{ divorceWho }} in the UK?",
+          "definition": "The UK is made up of England, Scotland, Wales and Northern Ireland.",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "errors": {
+          "marriedInUk": {
+            "required": "Select yes if you married your {{ divorceWho }} in the UK."
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Did you marry your {{ divorceWho }} in the UK?",
+          "definition": "[CY] The UK is made up of England, Scotland, Wales and Northern Ireland.",
+          "yes": "[CY] Yes",
+          "no": "[CY] No"
+        },
+        "errors": {
+          "marriedInUk": {
+            "required": "[CY] Select yes if you married your {{ divorceWho }} in the UK."
+          }
+        }
+      }
     }
+  }
 }

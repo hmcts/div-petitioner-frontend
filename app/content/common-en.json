@@ -1,0 +1,39 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "phase": "Beta",
+        "feedback": "This is a new service – your <a class=\"govuk-link\" aria-label=\"Feedback link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 mins so you don’t lose your progress.\" href=\"{{smartSurveyFeedbackUrl}}?pageurl={{ pageUrl }}\" target=\"_blank\">feedback</a> will help us to improve it.",
+        "languageToggle": "<a href=\"?locale=cy\" class=\"govuk-link language\">Cymraeg</a>",
+        "serviceName": "Apply for a divorce",
+        "back": "Back",
+        "continue": "Continue",
+        "download": "Download",
+        "ogl": "All content is available under the <a class=\"govuk-link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Open Government Licence v3.0</a>, except where otherwise stated",
+        "cookieText": "GOV.UK uses cookies to make the site simpler. <a class=\"govuk-link\" href=\"#\" title=\"Find out more about cookies\">Find out more about cookies</a>",
+        "errorSummaryHeading": "There was a problem",
+        "problemWithThisPage": "Contact us for help",
+        "phoneTitle": "Telephone",
+        "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
+        "emailTitle": "Send us a message",
+        "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:{{ courtEmail }}\" aria-label=\"Send us a message at at {{ courtEmail }}, this link opens a new email.\">Send us a message</a>",
+        "responseTime": "We aim to get back to you within 5 days",
+        "webChatTitle": "Web chat",
+        "chatDown": "The web chat service is temporarily unavailable, please try again later.",
+        "chatWithAnAgent": "Chat online with an agent",
+        "noAgentsAvailable": "No agents are available, please try again later.",
+        "allAgentsBusy": "All our web chat agents are busy helping other people. Please try again later or contact us using one of the ways above.",
+        "chatClosed": "Web chat is now closed.\\nOpening hours are {{courtOpeningHour}}.",
+        "chatAlreadyOpen": "A web chat window is already open.",
+        "chatOpeningHours": "{{courtOpeningHour}}.",
+        "saveAndClose": "Save and close",
+        "signOut": "Sign Out",
+        "accessibility": "Accessibility statement",
+        "cookies": "Cookies",
+        "privacyPolicy": "Privacy policy",
+        "termsAndConditions": "Terms and conditions"
+      }
+    }
+  }
+}

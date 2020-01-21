@@ -147,6 +147,7 @@ module.exports = class Step {
 
   * getRequest(req, res) {
     const { session } = req;
+    const language = req.session.language;
 
     //  extract data from the request
     let ctx = this.populateWithPreExistingData(session);
@@ -159,7 +160,7 @@ module.exports = class Step {
     // let errors = null;
     // let fields = null;
     //  fetch all the content from the content files
-    res.locals.content = this.generateContent(ctx, session);
+    res.locals.content = this.generateContent(ctx, session, language);
 
     if (!res.locals.fields) {
       //  map the context into data fields for use in templates and macros

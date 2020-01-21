@@ -47,7 +47,8 @@ This should open a browser window for you to login, use your HMCTS account
 After logging in run the following command:
 
 ```
-az acr login --name hmcts --subscription <ask the team for the secret>
+az acr login --name hmctspublic --subscription DCD-CNP-Prod
+az acr login --name hmctsprivate --subscription DCD-CNP-Prod
 ```
 
 

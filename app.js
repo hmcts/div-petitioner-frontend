@@ -154,7 +154,6 @@ exports.init = listenForConnections => {
       req.session.language = req.query.locale;
     }
 
-    // otherwise continue
     next();
   });
 

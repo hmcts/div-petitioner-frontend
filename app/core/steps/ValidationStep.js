@@ -281,7 +281,7 @@ module.exports = class ValidationStep extends Step {
 
     this.i18next.changeLanguage(lang);
 
-    const translatedContent = this.content.resources.en.translation;
+    const translatedContent = this.content.resources[lang].translation;
 
     return walkMap(translatedContent.checkYourAnswersContent, path => {
       return this.i18next.t(`checkYourAnswersContent.${path}`, contentCtx);

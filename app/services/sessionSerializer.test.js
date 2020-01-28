@@ -137,7 +137,7 @@ describe(modulePath, () => {
       expect(() => {
         return sessionSerializer
           .decryptData(req, encryptedData, passwordHash.split(0, 1));
-      }).to.throw('The "key" argument must be one of type string, Buffer, TypedArray, or DataView. Received type object');
+      }).to.throw('The "key" argument must be one of type Buffer, TypedArray, DataView, string, or KeyObject. Received type object');
     });
   });
 });

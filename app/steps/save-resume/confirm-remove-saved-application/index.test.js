@@ -40,14 +40,14 @@ describe(modulePath, () => {
     });
 
     it('redirects to the next page', done => {
-      const context = { deleteApplication: 'Yes' };
+      const context = { deleteApplication: 'No' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.ExitRemovedSavedApplication);
     });
 
     it('redirects to the exit page', done => {
-      const context = { deleteApplication: 'No' };
+      const context = { deleteApplication: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.CheckYourAnswers);

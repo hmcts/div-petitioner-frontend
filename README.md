@@ -2,7 +2,7 @@
 
 This repo is for the frontend part of the journey that the petitioner will go through to apply for a divorce.
 
-## Setup 
+## Setup
 
 **Building locally**
 You need to have Yarn and Redis installed. This can be done with brew as follows:
@@ -10,6 +10,12 @@ You need to have Yarn and Redis installed. This can be done with brew as follows
 ```
 brew install yarn
 brew install redis
+```
+
+If it's your first time running the app then run this command to setup the Grunt config files:
+
+```
+yarn setup
 ```
 
 To run the front end app, run the following from the front end project root folder:
@@ -101,6 +107,6 @@ make lint
 ```
 
 
-## Licensing 
+## Licensing
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

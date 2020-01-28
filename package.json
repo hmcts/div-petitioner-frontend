@@ -55,7 +55,7 @@
     "config": "^1.21.0",
     "connect-redis": "3.1.0",
     "cookie-parser": "^1.4.3",
-    "copy-webpack-plugin": "^5.1.1",
+    "copy-webpack-plugin": "^4.0.1",
     "cryptiles": "^4.1.2",
     "csrf": "^3.0.6",
     "css-loader": "^0.28.11",
@@ -162,18 +162,19 @@
     "webdriverio": "^4.14.4"
   },
   "resolutions": {
+    "assign-deep": ">=1.0.1",
     "braces": "^2.3.2",
     "debug": "^3.1.0",
     "growl": "^1.10.2",
+    "handlebars": ">=4.3.0",
+    "helmet-csp": ">=2.9.1",
     "hoek": "^4.2.1",
+    "https-proxy-agent": ">=2.2.3",
     "js-yaml": "^3.13.0",
     "lodash": "^4.17.5",
     "mime": "^1.4.1",
-    "tunnel-agent": "^0.6.0",
-    "assign-deep": ">=1.0.1",
-    "handlebars": ">=4.3.0",
-    "helmet-csp": ">=2.9.1",
-    "https-proxy-agent": ">=2.2.3"
+    "serialize-javascript": ">=2.1.1",
+    "tunnel-agent": "^0.6.0"
   },
   "nyc": {
     "report-dir": "coverage",

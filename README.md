@@ -91,21 +91,6 @@ This allows you to run the app while connecting to real IDAM/COS/Payment etc.. s
 * Connect to the VPN
 * Run the app using ` yarn dev-aat`
 
-##  Testing
-
-All commands from the package.json are available through make. They will be run
-inside a docker container, ensuring a consistent dev environment.
-
-For example:
-
-```
-make test
-make test-unit
-make test-e2e
-make lint
-...
-```
-
 
 ## Licensing
 

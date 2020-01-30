@@ -16,7 +16,7 @@
     "start-prod": "NODE_PATH=. grunt start-prod",
     "setup-assets": "NODE_PATH=. grunt setup-assets",
     "setup": "NODE_PATH=. grunt setup-prod",
-    "test": "NODE_PATH=. LOG_LEVEL=OFF NODE_ENV=testing nyc mocha 'app/**/*.test.js' -t 15000 --exit",
+    "test": "NODE_PATH=. LOG_LEVEL=DEBUG NODE_ENV=testing nyc mocha 'app/**/*.test.js' -t 15000 --exit",
     "test:coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
     "test:a11y": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/accessibility/ --reporter spec --recursive --timeout 15000",
     "test:mutation": "./bin/run-mutation-tests.sh",

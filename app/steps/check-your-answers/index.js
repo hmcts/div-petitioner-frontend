@@ -264,8 +264,13 @@ module.exports = class CheckYourAnswers extends ValidationStep {
           .buildAddressBaseUk(element.addresses[element
             .selectAddressIndex]);
       }
+    });
+
+    // Append the languagePreference flag to the session before submitting it
+    req.session.languagePreferenceWelsh = 'No';
+    if (req.cookies.i18n === 'cy') {
+      req.session.languagePreferenceWelsh = 'Yes';
     }
-    );
 
     // Get user token.
     let authToken = '';

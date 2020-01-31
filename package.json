@@ -102,7 +102,7 @@
     "tar": "^2.2.2",
     "tmp": "^0.0.33",
     "uuid": "^3.0.1",
-    "webpack": "^2.2.1",
+    "webpack": "2.2.1",
     "webpack-archive-plugin": "^3.0.0",
     "xss-filters": "^1.2.7",
     "yarn": "^1.5.1"

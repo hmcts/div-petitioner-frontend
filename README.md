@@ -18,6 +18,17 @@ If it's your first time running the app then run this command to setup the Grunt
 yarn setup
 ```
 
+If it's your first time running the app then run this command to setup the Grunt config files:
+
+```
+yarn setup
+```
+
+If necessary you can run redis via docker using:
+```
+docker-compose up redis
+```
+
 To run the front end app, run the following from the front end project root folder:
 
 ```
@@ -90,6 +101,21 @@ This allows you to run the app while connecting to real IDAM/COS/Payment etc.. s
 * Remove the conditional in `app/middleware/draftPetitionStoreMiddleware.js` to always use the real `transformationServiceClient` (this is temporary and should be removed)
 * Connect to the VPN
 * Run the app using ` yarn dev-aat`
+
+##  Testing
+
+All commands from the package.json are available through make. They will be run
+inside a docker container, ensuring a consistent dev environment.
+
+For example:
+
+```
+make test
+make test-unit
+make test-e2e
+make lint
+...
+```
 
 
 ## Licensing

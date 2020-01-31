@@ -70,7 +70,8 @@ describe(modulePath, () => {
         s.steps.RespondentCorrespondenceAddress);
     });
 
-    it('redirects to RespondentSolicitorDetails when No is selected', done => {
+    // RPET-47: Removing ability for petitioner to add respondent's solicitor details
+    it.skip('redirects to RespondentSolicitorDetails when Solicitor is selected', done => {
       const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
 
       testRedirect(done, agent, underTest, context,
@@ -202,7 +203,8 @@ describe(modulePath, () => {
         contentToExist, valuesToExist, context, session);
     });
 
-    it('renders when respondentCorrespondenceUseHomeAddress is solicitor and divorceWho is wife', done => {
+    // RPET-47: Removing ability for petitioner to add respondent's solicitor details
+    it.skip('renders when respondentCorrespondenceUseHomeAddress is solicitor and divorceWho is wife', done => {
       const contentToExist = [
         'question',
         'solicitor'

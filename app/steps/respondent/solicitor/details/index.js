@@ -26,6 +26,7 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
     return ctx;
   }
 
+  // RPET-47: Removing ability for petitioner to add respondent's solicitor details
   handler(req, res, next) {
     return this.steps.Error404.handler(req, res, next);
   }

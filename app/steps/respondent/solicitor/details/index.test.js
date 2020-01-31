@@ -19,7 +19,8 @@ let s = {};
 let agent = {};
 let underTest = {};
 
-describe(modulePath, () => {
+// RPET-47: Removing ability for petitioner to add respondent's solicitor details
+describe.skip(modulePath, () => {
   beforeEach(() => {
     idamMock.stub();
     s = server.init();

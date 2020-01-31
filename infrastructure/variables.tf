@@ -240,7 +240,7 @@ variable "court_phone_number" {
 }
 
 variable "court_opening_hours" {
-  default = "Monday to Friday, 8.30am to 5pm"
+  default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
 }
 
 variable "court_email" {

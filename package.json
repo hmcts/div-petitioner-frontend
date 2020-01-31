@@ -157,7 +157,7 @@
     "stryker-mocha-runner": "^0.11.1",
     "supertest": "^4.0.2",
     "timekeeper": "^2.1.2",
-    "unirest": "^0.5.1",
+    "unirest": "^0.6.0",
     "webdriverio": "^4.14.4"
   },
   "resolutions": {

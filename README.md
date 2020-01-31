@@ -6,20 +6,12 @@ This repo is for the frontend part of the journey that the petitioner will go th
 
 **Building locally**
 You need to have Yarn and Redis installed. This can be done with brew as follows:
-
 ```
 brew install yarn
 brew install redis
 ```
 
 If it's your first time running the app then run this command to setup the Grunt config files:
-
-```
-yarn setup
-```
-
-If it's your first time running the app then run this command to setup the Grunt config files:
-
 ```
 yarn setup
 ```
@@ -30,7 +22,6 @@ docker-compose up redis
 ```
 
 To run the front end app, run the following from the front end project root folder:
-
 ```
 yarn add redis-server & yarn dev
 ```
@@ -44,11 +35,9 @@ yarn lint
 ```
 
 
-
 **Building with Docker**
 
 To begin download the azure client cli
-
 ```
 brew update && brew install azure-cli
 ```
@@ -61,14 +50,11 @@ az login
 This should open a browser window for you to login, use your HMCTS account
 
 After logging in run the following command:
-
 ```
 az acr login --name hmcts --subscription <ask the team for the secret>
 ```
 
-
 To build the docker containers afresh:
-
 ```
 make build
 ```
@@ -76,16 +62,12 @@ make build
 
 **Install dependencies**
 
-To install NPM dependencies:
-
+To install NPM dependencies (This installs the dev dependencies to your local folder):
 ```
 make install
 ```
 
-This installs the dev dependencies to your local folder.
-
 **Start the app**
-
 ```
 make dev
 ```
@@ -108,7 +90,6 @@ All commands from the package.json are available through make. They will be run
 inside a docker container, ensuring a consistent dev environment.
 
 For example:
-
 ```
 make test
 make test-unit

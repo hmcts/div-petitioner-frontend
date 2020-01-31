@@ -1,6 +1,6 @@
 {
   "name": "divorce-frontend",
-  "description": "Apply for a Divorce",
+  "description": "Apply for a Divorce Frontend",
   "version": "3.0.0",
   "private": true,
   "engines": {
@@ -16,7 +16,7 @@
     "start-prod": "NODE_PATH=. grunt start-prod",
     "setup-assets": "NODE_PATH=. grunt setup-assets",
     "setup": "NODE_PATH=. grunt setup-prod",
-    "test": "NODE_PATH=. LOG_LEVEL=DEBUG NODE_ENV=testing nyc mocha 'app/**/*.test.js' -t 15000 --exit",
+    "test": "FEATURE_IDAM=false NODE_PATH=. LOG_LEVEL=OFF NODE_ENV=testing nyc mocha 'app/**/*.test.js' -t 15000 --exit",
     "test:coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80",
     "test:a11y": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/accessibility/ --reporter spec --recursive --timeout 15000",
     "test:mutation": "./bin/run-mutation-tests.sh",
@@ -88,6 +88,7 @@
     "negotiator": "^0.6.1",
     "nomnoml": "0.2.0",
     "nunjucks": "^3.2.0",
+    "redis": "^2.8.0",
     "redis-server": "^1.2.2",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",

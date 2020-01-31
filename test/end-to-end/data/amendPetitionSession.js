@@ -37,7 +37,7 @@ module.exports = {
     'courtCity': 'Nottingham',
     'poBox': 'PO Box 10447',
     'postCode': 'NG2 9QN',
-    'openingHours': 'Telephone Enquiries from: 8.30am to 5pm',
+    'openingHours': 'Telephone Enquiries from: Monday - Friday 8am to 8pm, Saturday 8am to 2pmm',
     'email': 'contactdivorce@justice.gov.uk',
     'phoneNumber': '0300 303 0642',
     'siteId': 'AA01'

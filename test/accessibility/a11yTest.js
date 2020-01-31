@@ -17,6 +17,7 @@ const ValidationStep = require('app/core/steps/ValidationStep');
 let s = server.init();
 let agent = request.agent(s.app);
 let excludeSteps = [
+  'RespondentSolicitorDetails',// RPET-47: Removing ability for petitioner to add respondent's solicitor details
   'PayByCard',
   'CardPaymentStatus',
   'GovPayStub',

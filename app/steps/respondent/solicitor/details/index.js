@@ -25,4 +25,8 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
     ctx.respondentSolicitorRepresented = 'Yes';
     return ctx;
   }
+
+  handler(req, res, next) {
+    return this.steps.Error404.handler(req, res, next);
+  }
 };

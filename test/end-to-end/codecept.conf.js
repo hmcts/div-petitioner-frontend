@@ -54,7 +54,7 @@ exports.config = {
       browsers: ['chrome']
     }
   },
-  name: 'frontend Tests'
+  name: 'Petitioner Frontend Tests'
 };
 
 // Reduce chunks on Preview env

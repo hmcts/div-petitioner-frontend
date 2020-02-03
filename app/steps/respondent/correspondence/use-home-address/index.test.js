@@ -69,13 +69,6 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context,
         s.steps.RespondentCorrespondenceAddress);
     });
-
-    it('redirects to RespondentSolicitorDetails when No is selected', done => {
-      const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
-
-      testRedirect(done, agent, underTest, context,
-        s.steps.RespondentSolicitorDetails);
-    });
   });
 
 
@@ -196,20 +189,6 @@ describe(modulePath, () => {
 
       const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
       const context = { respondentCorrespondenceUseHomeAddress: 'No' };
-      const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
-    });
-
-    it('renders when respondentCorrespondenceUseHomeAddress is solicitor and divorceWho is wife', done => {
-      const contentToExist = [
-        'question',
-        'solicitor'
-      ];
-
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-      const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
       const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
 
       testExistenceCYA(done, underTest, content,

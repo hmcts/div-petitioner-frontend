@@ -13,7 +13,6 @@ const serviceToken = require('app/services/serviceToken');
 const payment = require('app/services/payment');
 const submission = require('app/services/submission');
 const CONF = require('config');
-const idam = require('app/services/idam');
 const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/steps/pay/pay-online-only';
@@ -26,15 +25,6 @@ let underTest = {};
 const two = 2;
 let cookies = [];
 
-const userDetails = {
-  id: 1,
-  email: 'simulate-delivered@notifications.service.gov.uk'
-};
-const idamUserDetailsMiddlewareMock = (req, res, next) => {
-  req.idam = { userDetails };
-  next();
-};
-
 describe(modulePath, () => {
   const allocatedCourt = serviceCentreCourt;
 
@@ -42,7 +32,6 @@ describe(modulePath, () => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);
     sinon.spy(getBaseUrl);
-    sinon.stub(idam, 'userDetails').returns(idamUserDetailsMiddlewareMock);
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
@@ -52,7 +41,6 @@ describe(modulePath, () => {
   afterEach(() => {
     idamMock.restore();
     applicationFeeMiddleware.updateApplicationFeeMiddleware.restore();
-    idam.userDetails.restore();
   });
 
   describe('#middleware', () => {

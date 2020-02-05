@@ -6,6 +6,7 @@ const underTest = require(modulePath);
 const serviceToken = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
+const idamMock = require('test/mocks/idam');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
@@ -23,7 +24,13 @@ describe(modulePath, () => {
       req = { session: {} };
       res = { redirect: sinon.stub() };
       next = sinon.stub();
+      idamMock.stub();
     });
+
+    afterEach(() => {
+      idamMock.restore();
+    });
+
     it('calls next if application has not been submitted', () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.called).to.eql(false);
@@ -128,6 +135,7 @@ describe(modulePath, () => {
         req.session.caseId = 'someid';
         req.session.state = 'AwaitingPayment';
         req.session.currentPaymentReference = 'somepaymentid';
+        req.idam = { userDetails: { id: 1 } };
         await underTest.hasSubmitted(req, res, next);
         expect(getToken.calledOnce).to.equal(true);
         expect(query.calledOnce).to.equal(true);
@@ -160,6 +168,7 @@ describe(modulePath, () => {
         req.session.caseId = 'someid';
         req.session.state = 'AwaitingPayment';
         req.session.currentPaymentReference = 'somepaymentid';
+        req.idam = { userDetails: { id: 1 } };
         await underTest.hasSubmitted.apply(ctx, [req, res, next]);
         expect(getToken.calledOnce).to.equal(true);
         expect(query.calledOnce).to.equal(true);
@@ -192,6 +201,7 @@ describe(modulePath, () => {
         req.session.caseId = 'someid';
         req.session.state = 'AwaitingPayment';
         req.session.currentPaymentReference = 'somepaymentid';
+        req.idam = { userDetails: { id: 1 } };
 
         await underTest.hasSubmitted.apply(ctx, [req, res, next]);
         expect(res.redirect.calledWith('/generic-error')).to.eql(true);

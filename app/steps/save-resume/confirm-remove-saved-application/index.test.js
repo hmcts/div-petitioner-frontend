@@ -7,6 +7,7 @@ const modulePath = 'app/steps/save-resume/confirm-remove-saved-application';
 
 const content = require(`${modulePath}/content`);
 const commonContent = require('app/content/common');
+const idamMock = require('test/mocks/idam');
 
 let s = {};
 let agent = {};
@@ -17,6 +18,11 @@ describe(modulePath, () => {
     s = server.init();
     agent = request.agent(s.app);
     underTest = s.steps.DeleteApplication;
+    idamMock.stub();
+  });
+
+  afterEach(() => {
+    idamMock.restore();
   });
 
   describe('success', () => {

@@ -11,6 +11,7 @@ const addressContent = require(`${modulePath}/content`);
 
 const UnderTest = require('app/components/AddressLookupStep/fixtures');
 const underTestContent = require('app/components/AddressLookupStep/fixtures/content');
+const idamMock = require('test/mocks/idam');
 
 const content = merge({}, addressContent, underTestContent);
 
@@ -20,10 +21,15 @@ let underTest = {};
 
 describe(modulePath, () => {
   beforeEach(() => {
+    idamMock.stub();
     s = server.init();
     underTest = new UnderTest({}, 'test.section', 'AddressLookupStep', underTestContent);
     s.app.use(underTest.router);
     agent = request.agent(s.app);
+  });
+
+  afterEach(() => {
+    idamMock.restore();
   });
 
   describe('selecting an address via the postcode service', () => {

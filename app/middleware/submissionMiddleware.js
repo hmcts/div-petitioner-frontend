@@ -44,7 +44,10 @@ const handleCcdCase = (req, res, next) => {
 const hasSubmitted = function(req, res, next) {
   const { session } = req;
 
-  if (session.payment_reference) session.currentPaymentReference = session.payment_reference;
+  if (session.payment_reference) {
+    session.currentPaymentReference = session.payment_reference;
+  }
+
   if (session.caseId && session.state) {
     return handleCcdCase(req, res, next);
   }

@@ -5,7 +5,7 @@
   "properties": {
     "respondentSolicitorRepresented": {
         "type": "string",
-        "enum": ["Yes", "No"]
+        "enum": ["No"]
     }
   },
   "required": [

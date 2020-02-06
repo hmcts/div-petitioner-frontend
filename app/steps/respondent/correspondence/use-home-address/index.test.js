@@ -145,21 +145,6 @@ describe(modulePath, () => {
       expect(typeof newSession.respondentCorrespondenceAddress)
         .to.equal('undefined');
     });
-
-    it('remove respondentSolicitorRepresented if respondentCorrespondenceUseHomeAddress is changed from solicitor', () => {
-      const previousSession = {
-        respondentCorrespondenceUseHomeAddress: 'Solicitor',
-        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3'],
-        respondentSolicitorRepresented: 'Yes'
-      };
-
-      const session = clone(previousSession);
-      delete session.respondentCorrespondenceUseHomeAddress;
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.respondentSolicitorRepresented)
-        .to.equal('undefined');
-    });
   });
 
   describe('Check Your Answers', () => {

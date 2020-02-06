@@ -6,11 +6,8 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
     return '/petitioner-respondent/correspondence/send-to-solicitor';
   }
   get nextStep() {
-    return {
-      respondentSolicitorRepresented: {
-        No: this.steps.RespondentCorrespondenceAddress
-      }
-    };
+    const respondentAddress = this.steps.RespondentCorrespondenceAddress;
+    return { respondentSolicitorRepresented: { No: respondentAddress } };
   }
 
   constructor(steps, section, templatePath, content, schema) {

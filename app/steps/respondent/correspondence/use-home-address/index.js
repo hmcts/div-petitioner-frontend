@@ -21,9 +21,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
       if (session.respondentCorrespondenceUseHomeAddress !== 'Yes') {
         remove('respondentCorrespondenceAddress');
       }
-      if (session.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
-        remove('respondentSolicitorRepresented');
-      }
     });
 
     watch('respondentHomeAddress', (previousSession, session, remove) => {

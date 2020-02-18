@@ -15,9 +15,9 @@ def component = "pfe"
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
-    enableCrossBrowserTest()
-    enableMutationTest()
-    // enableSecurityScan()
+    //enableCrossBrowserTest()
+    //enableMutationTest()
+    enableSecurityScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

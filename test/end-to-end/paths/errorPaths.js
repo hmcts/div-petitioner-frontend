@@ -11,6 +11,11 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 });
 
 Scenario('Redirects to login page if start application and clear cookies', async (I) => {
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.clearCookie();
+  //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
+  I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
 
   let previewUrl = await I.grabCurrentUrl();
   let splitPath = previewUrl.split('-')[5];
@@ -19,13 +24,7 @@ Scenario('Redirects to login page if start application and clear cookies', async
   // eslint-disable-next-line no-console
   console.log(urlContainsPreview[0]);
 
-  I.amOnLoadedPage('/index');
-  I.startApplication();
-  I.clearCookie();
-  //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
-  I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
-
-  if(urlContainsPreview[0] ==='preview'){
+  if(urlContainsPreview[0] === 'preview'){
     I.seeCurrentUrlEquals('/cookie-error');
   }
   else{I.seeCurrentUrlEquals('/login');}

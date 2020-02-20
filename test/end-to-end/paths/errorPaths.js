@@ -10,7 +10,7 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
 });
 
-Scenario('Redirects to login page if start application and clear cookies', async (I) => {
+Scenario('Redirects to login page or cookie error page based on build if start application and clear cookies', async (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();

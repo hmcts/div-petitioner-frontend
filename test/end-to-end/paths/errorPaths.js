@@ -24,7 +24,7 @@ Scenario('Redirects to login page or cookie error page based on build if start a
   if(urlContainsPreview[0] === 'preview'){
     I.seeCurrentUrlEquals('/cookie-error');
   }
-  else{I.seeCurrentUrlEquals('/login');}
+  else{I.seeInCurrentUrl('/login?');}
 
 });
 

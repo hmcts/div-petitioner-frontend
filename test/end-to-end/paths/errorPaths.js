@@ -21,9 +21,6 @@ Scenario('Redirects to login page if start application and clear cookies', async
   let splitPath = previewUrl.split('-')[5];
   let urlContainsPreview = splitPath.split('.');
 
-  // eslint-disable-next-line no-console
-  console.log(urlContainsPreview[0]);
-
   if(urlContainsPreview[0] === 'preview'){
     I.seeCurrentUrlEquals('/cookie-error');
   }

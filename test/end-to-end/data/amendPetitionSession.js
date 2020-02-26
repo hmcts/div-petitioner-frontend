@@ -103,7 +103,7 @@ module.exports = {
   'screenHasPrinter': 'Yes',
   'petitionerPhoneNumber': '01234567890',
   'marriageDateDay': 2,
-  'respondentCorrespondenceUseHomeAddress': 'Solicitor',
+  'respondentCorrespondenceUseHomeAddress': 'Yes',
   'reasonForDivorceShowAdultery': false,
   'marriageDateYear': 2001,
   'jurisdictionConnection': [

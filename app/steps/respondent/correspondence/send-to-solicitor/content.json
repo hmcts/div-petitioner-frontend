@@ -6,8 +6,7 @@
 
                 "content": {
                     "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
-                    "correspondence": "To a different address",
-                    "solicitor": "To their solicitor"
+                    "correspondence": "To a different address"
                 },
 
                 "errors": {

@@ -9,8 +9,7 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     return {
       respondentCorrespondenceUseHomeAddress: {
         Yes: this.steps.ReasonForDivorce,
-        No: this.steps.RespondentCorrespondenceAddress,
-        Solicitor: this.steps.RespondentSolicitorDetails
+        No: this.steps.RespondentCorrespondenceAddress
       }
     };
   }
@@ -21,9 +20,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     watch('respondentCorrespondenceUseHomeAddress', (previousSession, session, remove) => {
       if (session.respondentCorrespondenceUseHomeAddress !== 'Yes') {
         remove('respondentCorrespondenceAddress');
-      }
-      if (session.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
-        remove('respondentSolicitorRepresented');
       }
     });
 

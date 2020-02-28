@@ -14,7 +14,7 @@ google_analytics_tracking_id = "TBD"
 
 idam_authentication_web_url = "https://idam-web-public.demo.platform.hmcts.net"
 
-idam_api_url = "https://idam-api.demo.platform.hmcts.net"
+idam_api_url = "https://idam-api-idam-demo.service.core-compute-idam-demo.internal"
 
 payment_service_url = "http://payment-api-demo.service.core-compute-demo.internal"
 

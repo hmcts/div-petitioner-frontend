@@ -16,7 +16,7 @@ function commonContentMiddleware(req, res, next) {
   });
 
   i18next.languages = CONF.languages;
-  i18next.changeLanguage(req.session.languge);
+  i18next.changeLanguage(req.session.language);
 
   const i18nProxy = new Proxy(i18next, {
     get: (target, key) => {

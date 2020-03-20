@@ -83,7 +83,7 @@ commonProps:
   smartSurveyFeedbackUrl: 'http://www.example.com/'
   smartSurveyFeedbackDonePageUrl: 'http://www.example.com/'
   courtPhoneNumber: '0000 111 2220'
-  courtOpeningHour: 'Monday to Friday, 8.30am to 5pm'
+  courtOpeningHour: 'Monday to Friday, 8am to 8pm, Saturday 8am to 2pm'
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:

@@ -4,8 +4,7 @@
       "translation": {
         "content": {
           "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
-          "correspondence": "To a different address",
-          "solicitor": "To their solicitor"
+          "correspondence": "To a different address"
         },
         "errors": {
           "respondentSolicitorRepresented": {
@@ -18,8 +17,7 @@
       "translation": {
         "content": {
           "question": "[CY] Where should your {{ divorceWho }}'s divorce papers be sent?",
-          "correspondence": "[CY] To a different address",
-          "solicitor": "[CY] To their solicitor"
+          "correspondence": "[CY] To a different address"
         },
         "errors": {
           "respondentSolicitorRepresented": {

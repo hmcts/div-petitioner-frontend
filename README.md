@@ -84,7 +84,7 @@ This allows you to run the app while connecting to real IDAM/COS/Payment etc.. s
 * Copy the secrets into _local-aat.yaml_ - the secret values can be found in `div-pfe-aat` in the Azure portal
 * Remove the conditional in `app/middleware/draftPetitionStoreMiddleware.js` to always use the real `transformationServiceClient` (this is temporary and should be removed)
 * Connect to the VPN
-* Run the app using ` yarn dev-aat`
+* Run the app using `yarn dev-aat`
 
 ##  Testing
 

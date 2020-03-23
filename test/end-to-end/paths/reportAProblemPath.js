@@ -6,7 +6,7 @@ const hours = config.get('commonProps.courtOpeningHour');
 
 Feature('Report A Problem Handling').retry(3);
 
-Scenario.only('I see link to go the ’Contact us for help’ page', (I) => {
+Scenario('I see link to go the ’Contact us for help’ page', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();

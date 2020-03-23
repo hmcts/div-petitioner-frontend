@@ -240,7 +240,7 @@ variable "court_phone_number" {
 }
 
 variable "court_opening_hours" {
-  default = "Monday to Friday, 8.30am to 5pm"
+  default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
 }
 
 variable "court_email" {
@@ -289,7 +289,7 @@ variable "webchat_button_service_closed" {
 }
 
 variable "node_version" {
-  default = "10.15.2"
+  default = "12.14.1"
 }
 
 variable "enable_ase" {

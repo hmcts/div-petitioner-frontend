@@ -7,14 +7,22 @@ This repo is for the frontend part of the journey that the petitioner will go th
 **Building locally**
 
 You need to have Yarn and Redis installed. This can be done with brew as follows:
-
 ```
 brew install yarn
 brew install redis
 ```
 
-To run the front end app, run the following from the front end project root folder:
+If it's your first time running the app then run this command to setup the Grunt config files:
+```
+yarn setup
+```
 
+If necessary you can run redis via docker using:
+```
+docker-compose up redis
+```
+
+To run the front end app, run the following from the front end project root folder:
 ```
 yarn add redis-server & yarn dev
 ```
@@ -28,11 +36,9 @@ yarn lint
 ```
 
 
-
 **Building with Docker**
 
 To begin download the azure client cli
-
 ```
 brew update && brew install azure-cli
 ```
@@ -45,15 +51,12 @@ az login
 This should open a browser window for you to login, use your HMCTS account
 
 After logging in run the following command:
-
 ```
 az acr login --name hmctspublic --subscription DCD-CNP-Prod
 az acr login --name hmctsprivate --subscription DCD-CNP-Prod
 ```
 
-
 To build the docker containers afresh:
-
 ```
 make build
 ```
@@ -61,16 +64,12 @@ make build
 
 **Install dependencies**
 
-To install NPM dependencies:
-
+To install NPM dependencies (This installs the dev dependencies to your local folder):
 ```
 make install
 ```
 
-This installs the dev dependencies to your local folder.
-
 **Start the app**
-
 ```
 make dev
 ```
@@ -85,7 +84,7 @@ This allows you to run the app while connecting to real IDAM/COS/Payment etc.. s
 * Copy the secrets into _local-aat.yaml_ - the secret values can be found in `div-pfe-aat` in the Azure portal
 * Remove the conditional in `app/middleware/draftPetitionStoreMiddleware.js` to always use the real `transformationServiceClient` (this is temporary and should be removed)
 * Connect to the VPN
-* Run the app using ` yarn dev-aat`
+* Run the app using `yarn dev-aat`
 
 ##  Testing
 
@@ -93,7 +92,6 @@ All commands from the package.json are available through make. They will be run
 inside a docker container, ensuring a consistent dev environment.
 
 For example:
-
 ```
 make test
 make test-unit

@@ -45,7 +45,7 @@ module.exports = class ValidationStep extends Step {
 
   get schema() {
     if (!this.schemaFile) {
-      throw new TypeError(`Step ${this.name} has no schema file in its resource folder`);
+      throw new TypeError(`Step ${this.name} has no schema file in it's resource folder`);
     }
 
     return this.schemaFile;

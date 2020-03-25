@@ -28,12 +28,25 @@ module.exports = class AddressLookupStep extends ValidationStep {
     return cloneDeep(get(session, this.schemaScope, {}));
   }
 
+  hasSessionSelectedAddress(session) {
+    const currentSession = session[this.schemaScope];
+    const hasPostcodeLookup = !([
+      currentSession,
+      currentSession.addresses,
+      currentSession.selectAddressIndex
+    ].includes(undefined)); // eslint-disable-line no-undefined
+    if (hasPostcodeLookup) {
+      return currentSession.addresses[currentSession.selectAddressIndex] && currentSession.addresses[currentSession.selectAddressIndex].DPA;
+    }
+    return false;
+  }
+
   applyCtxToSession(ctx, session) {
-    if (session.postcodeLookup && session.postcodeLookup.addresses && session.postcodeLookup.selectAddressIndex) {
+    const currentSession = session[this.schemaScope];
+    if (this.hasSessionSelectedAddress(session)) {
       ctx.addressBaseUK = addressHelpers
         .buildAddressBaseUk(
-          session.postcodeLookup.addresses[session
-            .postcodeLookup.selectAddressIndex]
+          currentSession.addresses[currentSession.selectAddressIndex]
         );
     }
     session[this.schemaScope] = ctx;

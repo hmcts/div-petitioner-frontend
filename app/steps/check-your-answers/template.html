@@ -2,6 +2,10 @@
 {%- from "common/errors.html" import errorsFor -%}
 {% from "warning-text/macro.njk" import govukWarningText %}
 
+{% block pageTitle %}
+  {{ common.serviceName }} - {{ content.titleSoFar if fields.nextStepUrl.value else content.title }} - GOV.UK
+{% endblock %}
+
 {% block full_width %}
 
 <div class="check-your-answers">
@@ -31,6 +35,10 @@
     </div>
   {% endif %}
 
+  {% if session.refusalRejectionReason|length %}
+    <p class="govuk-body">{{ content.amendJourney }}</p>
+  {% endif %}
+
   {%- for group, templates in fields.stepTemplates.value -%}
     {%- if templates and templates.length -%}
       {%- if content[group] != '' -%}
@@ -42,6 +50,9 @@
            <col span="1" style="width: 40%;">
            <col span="1" style="width: 15%;">
         </colgroup>
+        <caption class="govuk-table__caption">
+          <span class="govuk-visually-hidden">{{ content.tableExplanation }}</span>
+        </caption>
         <tbody class="govuk-table__body">
             {%- for template in templates -%}
                 {{ template.html | safe }}
@@ -134,7 +145,9 @@
 
   <a class="govuk-link" href="/save-return/delete-application">{{ content.deleteApplciation }}</a>
 
-  <br><br>
+  <br><br><br>
+
+  {% include "includes/problem_with_this_page.html" %}
 
 </div>
 

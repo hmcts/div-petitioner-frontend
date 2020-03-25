@@ -1,5 +1,5 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content['how-your-connected'] | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content['how-your-connected'] | safe }}</th>
   <td class="govuk-table__cell">
     <ul class="govuk-list govuk-list--bullet" id="jurisdiction-connections">
       {%- for connectionType, connectionText in session.connections -%}

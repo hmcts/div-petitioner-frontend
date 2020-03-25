@@ -1,12 +1,17 @@
-FROM hmctspublic.azurecr.io/base/node/stretch-slim-lts-10:10-stretch-slim as base
-USER root
-RUN apt-get update && apt-get install -y bzip2 git python2.7 python-pip
-COPY package.json yarn.lock ./
-RUN yarn && npm rebuild node-sass
+FROM hmctspublic.azurecr.io/base/node:12-alpine as base
+
+COPY --chown=hmcts:hmcts package.json yarn.lock ./
 
 FROM base as build
-COPY . .
-RUN yarn setup && rm -rf node_modules
+
+USER root
+RUN apk add python2 make g++
+USER hmcts
+
+RUN yarn && npm rebuild node-sass
+
+COPY --chown=hmcts:hmcts . .
+RUN yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn
 
 FROM base as runtime
 COPY --from=build $WORKDIR ./

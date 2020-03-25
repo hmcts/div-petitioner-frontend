@@ -1,11 +1,11 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.question | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">{{ content[fields.divorceWho.value] }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.marriageIsSameSexCouple.value === 'Yes' %}
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell">{{ content.marriageIsSameSexCoupleText | safe }}</td>
+    <th class="govuk-table__cell" scope="row">{{ content.marriageIsSameSexCoupleText | safe }}</th>
     <td class="govuk-table__cell">{{ content[fields.marriageIsSameSexCouple.value] }}</td>
     <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.marriageIsSameSexCoupleText | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>

@@ -1,8 +1,11 @@
+const pagePath = '/screening-questions/financial-remedy';
+
 function readFinancialRemedy() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/financial-remedy');
+  I.waitInUrl(pagePath, 5);
+  I.seeCurrentUrlEquals(pagePath);
   I.navByClick('Continue');
 }
 

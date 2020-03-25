@@ -1,8 +1,10 @@
 {% extends "template.njk" %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 
+{% set title = content.question or content.title %}
+
 {% block pageTitle %}
-  {{ common.serviceName }} - GOV.UK
+  {{ common.serviceName }}{{ ' - ' if title }}{{ title | safe if title }} - GOV.UK
 {% endblock %}
 
 {% set footerLinks = [
@@ -17,6 +19,10 @@
     {
         href: "/privacy-policy",
         text: "Privacy Policy"
+    },
+    {
+        href: "/accessibility-statement",
+        text: "Accessibility Statement"
     }
 ] %}
 
@@ -98,6 +104,10 @@
         {
           href: "/privacy-policy",
           text: "Privacy Policy"
+        },
+        {
+          href: "/accessibility-statement",
+          text: "Accessibility Statement"
         }
       ]
     }

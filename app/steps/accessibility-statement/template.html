@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block two_thirds %}
+<h1 class="govuk-heading-l">{{ content.title }}</h1>
+
+<h2 class="govuk-heading-m">{{ content.statment | safe }}</h2>
+<p class="govuk-body">{{ content.websiteRanBy | safe }}</p>
+<p class="govuk-body">{{ content.asManyAsPossible | safe }}</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>{{ content.asManyAsPossibleColours | safe }}</li>
+  <li>{{ content.asManyAsPossibleZoom | safe }}</li>
+  <li>{{ content.asManyAsPossibleKeyboard | safe }}</li>
+  <li>{{ content.asManyAsPossibleSpeech | safe }}</li>
+  <li>{{ content.asManyAsPossibleListen | safe }}</li>
+</ul>
+<p class="govuk-body">{{ content.abilityNet | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.howAccessbile | safe }}</h3>
+<p class="govuk-body">{{ content.somePartsNot | safe }}</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>{{ content.somePartsNotPDF | safe }}</li>
+  <li>{{ content.somePartsNotColour | safe }}</li>
+  <li>{{ content.somePartsNotTextToSpeech | safe }}</li>
+  <li>{{ content.somePartsNotEveryLink | safe }}</li>
+  <li>{{ content.somePartsNotTextForHyperlinks | safe }}</li>
+</ul>
+
+<h3 class="govuk-heading-s">{{ content.whatToDoIfYouCanAccessParts | safe }}</h3>
+<p class="govuk-body">{{ content.needMoreInformation | safe }}</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>{{ content.email | safe }}</li>
+  <li>{{ content.phone | safe }}</li>
+</ul>
+<p class="govuk-body">{{ content.considerYourRequest | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.reportingAccessibility | safe }}</h3>
+<p class="govuk-body">{{ content.improveAccessibility | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.enforcementProcedure | safe }}</h3>
+<p class="govuk-body">{{ content.humanRightsCommission | safe }}</p>
+<p class="govuk-body">{{ content.notHappy | safe }}</p>
+
+<h2 class="govuk-heading-m">{{ content.technicalInfo | safe }}</h2>
+<p class="govuk-body">{{ content.hmctsIsCommitted | safe }}</p>
+<p class="govuk-body">{{ content.websiteIsPartiallyCompliant | safe }}</p>
+
+<h2 class="govuk-heading-m">{{ content.nonAccessibleContent | safe }}</h2>
+<p class="govuk-body">{{ content.contentListedBelow | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.accessibilityRegulations | safe }}</h3>
+
+<h3 class="govuk-heading-s">{{ content.issuesWithLinks | safe }}</h3>
+<p class="govuk-body">{{ content.issuesWithLinksDescription | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.issuesWithHeadings | safe }}</h3>
+<p class="govuk-body">{{ content.issuesWithHeadingsDescription | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.issuesWithPDF | safe }}</h3>
+<p class="govuk-body">{{ content.issuesWithPDFDescription | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.issuesWithColour | safe }}</h3>
+<p class="govuk-body">{{ content.issuesWithColourDescription | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.issuesWithLanguage | safe }}</h3>
+<p class="govuk-body">{{ content.issuesWithLanguageDescription | safe }}</p>
+
+<h3 class="govuk-heading-s">{{ content.issuesWithOther | safe }}</h3>
+<p class="govuk-body">{{ content.issuesWithOtherDescription1 | safe }}</p>
+<p class="govuk-body">{{ content.issuesWithOtherDescription2 | safe }}</p>
+<p class="govuk-body">{{ content.issuesWithOtherDescription3 | safe }}</p>
+<p class="govuk-body">{{ content.issuesWithOtherDescription4 | safe }}</p>
+
+<h2 class="govuk-heading-m">{{ content.improvingAccessibility | safe }}</h2>
+<p class="govuk-body">{{ content.planning | safe }}</p>
+
+<p class="govuk-body">{{ content.statmentPrepared | safe }}</p>
+{% endblock %}

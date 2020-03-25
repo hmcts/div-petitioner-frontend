@@ -1,5 +1,5 @@
 {
-  rules: {
+  "rules": {
     "id-blacklist": 0
   }
 }

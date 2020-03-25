@@ -53,6 +53,12 @@ services:
   feesAndPayments:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'
+  webchat:
+    chatId: 3833071605d5d4518036a09.30917386
+    tenant: aG1jdHNzdGFnaW5nMDE
+    buttonNoAgents: 7732814745cac6f4603c4d1.53357933
+    buttonAgentsBusy: 2042157415cc19c95669039.65793052
+    buttonServiceClosed: 20199488815cc1a89e0861d5.73103009
 
 defaultEnvironmentNodeEnv: 'development'
 
@@ -74,10 +80,10 @@ commonProps:
     version: 1
     amount: 95.00
   financialOrderApplicationFee: 255
-  smartSurveyFeedbackUrl: 'http://www.example.com/'
-  smartSurveyFeedbackDonePageUrl: 'http://www.example.com/'
+  smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
+  smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
   courtPhoneNumber: '0000 111 2220'
-  courtOpeningHour: 'Monday to Friday, 8.30am to 5pm'
+  courtOpeningHour: 'Monday to Friday, 8am to 8pm, Saturday 8am to 2pm'
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:
@@ -85,6 +91,7 @@ features:
   ignoreSessionValidation: false
   browserSupport: false
   strategicPay: false
+  webchat: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'
@@ -132,7 +139,7 @@ e2e:
   proxyBypassList: ''
   outputDirectory: './functional-output'
   defaultEnvironmentNodeEnv: 'development'
-  waitForTimeoutValue: 10000
+  waitForTimeoutValue: 5000
   waitForActionValue: 100
   runBasicTests: false
 
@@ -141,8 +148,8 @@ saucelabs:
   username: 'username'
   key: 'privatekey'
   tunnelId: 'reformtunnel'
-  waitForTimeout: 60000
-  smartWait: 45000
+  waitForTimeout: 5000
+  smartWait: 5000
 
 public:
   protocol: 'https'

@@ -16,9 +16,7 @@ variable "instance_size" {
   default = "I2"
 }
 
-variable "reform_service_name" {
-  default = "pfe"
-}
+variable "component" {}
 
 variable "product" {
   type = "string"
@@ -230,11 +228,11 @@ variable "feature_strategic_pay" {
 }
 
 variable "survey_feedback_url" {
-  default = "http://www.smartsurvey.co.uk/s/0QIL4"
+  default = "https://www.smartsurvey.co.uk/s/Divorce_Feedback"
 }
 
 variable "survey_feedback_done_url" {
-  default = "http://www.smartsurvey.co.uk/s/8RR1T"
+  default = "https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant"
 }
 
 variable "court_phone_number" {
@@ -242,7 +240,7 @@ variable "court_phone_number" {
 }
 
 variable "court_opening_hours" {
-  default = "Monday to Friday, 8.30am to 5pm"
+  default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
 }
 
 variable "court_email" {
@@ -259,4 +257,41 @@ variable "dev_support_notification_email" {
 
 variable "decree_nisi_frontend_url" {
   default = ""
+}
+
+variable "feature_webchat" {
+  default = true
+}
+
+variable "webchat_chat_id" {
+  type = "string"
+  default = "3833071605d5d4518036a09.30917386"
+}
+
+variable "webchat_tenant" {
+  type = "string"
+  default = "aG1jdHNzdGFnaW5nMDE"
+}
+
+variable "webchat_button_no_agents" {
+  type = "string"
+  default = "7732814745cac6f4603c4d1.53357933"
+}
+
+variable "webchat_button_agents_busy" {
+  type = "string"
+  default = "2042157415cc19c95669039.65793052"
+}
+
+variable "webchat_button_service_closed" {
+  type = "string"
+  default = "20199488815cc1a89e0861d5.73103009"
+}
+
+variable "node_version" {
+  default = "12.14.1"
+}
+
+variable "enable_ase" {
+  default = false
 }

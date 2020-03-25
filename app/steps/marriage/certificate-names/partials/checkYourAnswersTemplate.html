@@ -1,10 +1,10 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.marriagePetitionerName | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.marriagePetitionerName | safe }}</th>
   <td class="govuk-table__cell">{{ fields.marriagePetitionerName.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.marriagePetitionerName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">{{ content.marriageRespondentName | safe }}</td>
+  <th class="govuk-table__cell" scope="row">{{ content.marriageRespondentName | safe }}</th>
   <td class="govuk-table__cell">{{ fields.marriageRespondentName.value }}</td>
   <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.marriageRespondentName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

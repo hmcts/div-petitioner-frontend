@@ -4,8 +4,8 @@ const CONF = require('config');
 const confIdam = CONF.idamArgs;
 
 const PUBLIC_HOSTNAME = CONF.public.hostname;
-const PUBLIC_PROTOCOL = CONF.public.protocol;
-const redirectUri = `${PUBLIC_PROTOCOL}://${PUBLIC_HOSTNAME}/authenticated`;
+// const PUBLIC_PROTOCOL = CONF.public.protocol;
+const redirectUri = `https://${PUBLIC_HOSTNAME}/authenticated`;
 
 const landingPageUrl = PUBLIC_HOSTNAME ? redirectUri : confIdam.redirectUri;
 

@@ -7,5 +7,6 @@
   "csrfSecret",
   "sessionKey",
   "saveAndResumeUrl",
-  "fetchedDraft"
+  "fetchedDraft",
+  "language"
 ]

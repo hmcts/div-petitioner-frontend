@@ -1,14 +1,21 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Where do you want your divorce papers sent?",
-                    "confidentialAddressMessage": "Your correspondence address will be kept confidential from your {{ divorceWho }}."
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Where do you want your divorce papers sent?",
+          "confidentialAddressMessage": "Your correspondence address will be kept confidential from your {{ divorceWho }}."
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Where do you want your divorce papers sent?",
+          "confidentialAddressMessage": "[CY] Your correspondence address will be kept confidential from your {{ divorceWho }}."
+        }
+      }
     }
+  }
 }

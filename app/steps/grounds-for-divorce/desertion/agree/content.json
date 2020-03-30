@@ -1,20 +1,35 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Did your {{ divorceWho }} leave without your agreement?",
-                    "questionHint": "You can only use desertion as a reason for divorce if you didn&#39;t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
-                    "yes": "Yes, they left without my agreement",
-                    "no": "No, I agreed that they should go"
-                },
-                "errors": {
-                    "reasonForDivorceDesertionAgreed": {
-                        "required": "Select yes if you agreed to your {{ divorceWho }} leaving"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Did your {{ divorceWho }} leave without your agreement?",
+          "questionHint": "You can only use desertion as a reason for divorce if you didn&#39;t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
+          "yes": "Yes, they left without my agreement",
+          "no": "No, I agreed that they should go"
+        },
+        "errors": {
+          "reasonForDivorceDesertionAgreed": {
+            "required": "Select yes if you agreed to your {{ divorceWho }} leaving"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Did your {{ divorceWho }} leave without your agreement?",
+          "questionHint": "[CY] You can only use desertion as a reason for divorce if you didn&#39;t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
+          "yes": "[CY] Yes, they left without my agreement",
+          "no": "[CY] No, I agreed that they should go"
+        },
+        "errors": {
+          "reasonForDivorceDesertionAgreed": {
+            "required": "[CY] Select yes if you agreed to your {{ divorceWho }} leaving"
+          }
+        }
+      }
     }
+  }
 }

@@ -13,7 +13,7 @@ module.exports = class Index extends Step {
 
   get middleware() {
     const idamAuthenticate = (req, res, next) => {
-      const auth = authenticate(req.protocol, req.get('host'), '/authenticated');
+      const auth = authenticate('https', req.get('host'), '/authenticated');
       return auth(req, res, next);
     };
 

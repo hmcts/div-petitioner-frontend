@@ -3,7 +3,6 @@
   "resources": {
     "en": {
       "translation": {
-
         "content": {
           "question": "Where you got married",
           "countryOfMarriage": "In which country did you get married?",
@@ -13,20 +12,43 @@
           "wordsOfTranslation": "Copy the words on the translation of your marriage certificate exactly",
           "copyPlaceOfMarriage": "Copy the place of marriage from your marriage certificate exactly"
         },
-
         "checkYourAnswersContent": {
           "countryName": "Country in which you got married",
           "placeOfMarriageFromCertificate": "Place of marriage as it's displayed on your marriage certificate",
           "placeOfMarriageFromTranslation": "Place of marriage as it's displayed on the translation"
         },
-
         "errors": {
           "countryName": {
-            "required" : "Enter the country in which you got married"
+            "required": "Enter the country in which you got married"
           },
-
           "placeOfMarriage": {
-            "required" : "Enter the place you got married as it is displayed on your marriage certificate"
+            "required": "Enter the place you got married as it is displayed on your marriage certificate"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Where you got married",
+          "countryOfMarriage": "[CY] In which country did you get married?",
+          "countryName": "[CY] Enter the country name",
+          "placeOfMarriageTranslation": "[CY] How is the place of marriage displayed on the translation of your marriage certificate?",
+          "placeOfMarriage": "[CY] How is the place of marriage displayed on your marriage certificate?",
+          "wordsOfTranslation": "[CY] Copy the words on the translation of your marriage certificate exactly",
+          "copyPlaceOfMarriage": "[CY] Copy the place of marriage from your marriage certificate exactly"
+        },
+        "checkYourAnswersContent": {
+          "countryName": "[CY] Country in which you got married",
+          "placeOfMarriageFromCertificate": "[CY] Place of marriage as it's displayed on your marriage certificate",
+          "placeOfMarriageFromTranslation": "[CY] Place of marriage as it's displayed on the translation"
+        },
+        "errors": {
+          "countryName": {
+            "required": "[CY] Enter the country in which you got married"
+          },
+          "placeOfMarriage": {
+            "required": "[CY] Enter the place you got married as it is displayed on your marriage certificate"
           }
         }
       }

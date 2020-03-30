@@ -164,3 +164,5 @@ ccd:
     - 'AwaitingPayment'
   courts:
     - 'serviceCentre'
+
+languages: ['en', 'cy']

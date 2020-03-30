@@ -69,6 +69,7 @@
         ],
         "new-cap": "off",
         "no-sync": "off",
-        "max-lines": "off"
+        "max-lines": "off",
+        "global-require": "off"
     }
 }

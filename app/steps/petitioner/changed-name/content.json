@@ -1,44 +1,73 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Have you changed your name since you got married?",
-                    "weddingDayName": "The court needs to know if you changed your name when you got married, or if you've changed it since.",
-                    "howChangeName": "How did you change your name?",
-                    "marriageCertificate": "Marriage Certificate",
-                    "deedPoll": "Deed poll or statutory declaration",
-                    "postACopy": "You'll need to send a copy to the court. You can upload a digital photo or scan at the end of this application or you can send it by post.",
-                    "other": "Other",
-                    "detailsTitle": "Provide details of how you changed your name",
-                    "detailsDocuments": "You'll need to send the document proving you changed your name to the court. You can upload a digital photo or scan at the end of this application or you can send it by post. If you don't have any documents showing how you changed your name, explain why here.",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-
-                "checkYourAnswersContent": {
-                    "nameChangeProof": "Proof of your name change",
-                    "howChangeName": "How you changed your name"
-                },
-
-                "errors": {
-                    "petitionerNameDifferentToMarriageCertificate": {
-                      "required" : "Select yes if you have changed your name",
-                      "invalid" : "Select yes if you have changed your name"
-                    },
-
-                    "petitionerNameChangedHow": {
-                      "required" : "Select how you changed your name",
-                      "invalid" : "Select how you changed your name"
-                    },
-
-                    "petitionerNameChangedHowOtherDetails": {
-                      "invalid" : "The details can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Have you changed your name since you got married?",
+          "weddingDayName": "The court needs to know if you changed your name when you got married, or if you've changed it since.",
+          "howChangeName": "How did you change your name?",
+          "marriageCertificate": "Marriage Certificate",
+          "deedPoll": "Deed poll or statutory declaration",
+          "postACopy": "You'll need to send a copy to the court. You can upload a digital photo or scan at the end of this application or you can send it by post.",
+          "other": "Other",
+          "detailsTitle": "Provide details of how you changed your name",
+          "detailsDocuments": "You'll need to send the document proving you changed your name to the court. You can upload a digital photo or scan at the end of this application or you can send it by post. If you don't have any documents showing how you changed your name, explain why here.",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "checkYourAnswersContent": {
+          "nameChangeProof": "Proof of your name change",
+          "howChangeName": "How you changed your name"
+        },
+        "errors": {
+          "petitionerNameDifferentToMarriageCertificate": {
+            "required": "Select yes if you have changed your name",
+            "invalid": "Select yes if you have changed your name"
+          },
+          "petitionerNameChangedHow": {
+            "required": "Select how you changed your name",
+            "invalid": "Select how you changed your name"
+          },
+          "petitionerNameChangedHowOtherDetails": {
+            "invalid": "The details can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Have you changed your name since you got married?",
+          "weddingDayName": "[CY] The court needs to know if you changed your name when you got married, or if you've changed it since.",
+          "howChangeName": "[CY] How did you change your name?",
+          "marriageCertificate": "[CY] Marriage Certificate",
+          "deedPoll": "[CY] Deed poll or statutory declaration",
+          "postACopy": "[CY] You'll need to send a copy to the court. You can upload a digital photo or scan at the end of this application or you can send it by post.",
+          "other": "[CY] Other",
+          "detailsTitle": "[CY] Provide details of how you changed your name",
+          "detailsDocuments": "[CY] You'll need to send the document proving you changed your name to the court. You can upload a digital photo or scan at the end of this application or you can send it by post. If you don't have any documents showing how you changed your name, explain why here.",
+          "yes": "[CY] Yes",
+          "no": "[CY] No"
+        },
+        "checkYourAnswersContent": {
+          "nameChangeProof": "[CY] Proof of your name change",
+          "howChangeName": "[CY] How you changed your name"
+        },
+        "errors": {
+          "petitionerNameDifferentToMarriageCertificate": {
+            "required": "[CY] Select yes if you have changed your name",
+            "invalid": "[CY] Select yes if you have changed your name"
+          },
+          "petitionerNameChangedHow": {
+            "required": "[CY] Select how you changed your name",
+            "invalid": "[CY] Select how you changed your name"
+          },
+          "petitionerNameChangedHowOtherDetails": {
+            "invalid": "[CY] The details can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
+        }
+      }
     }
+  }
 }

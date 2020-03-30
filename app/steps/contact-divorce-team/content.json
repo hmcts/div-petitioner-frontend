@@ -1,16 +1,27 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "There is a problem with your application",
-                    "info": "You need to contact us about your divorce application.",
-                    "contactTitle": "Contact Us",
-                    "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
-                    "contactEmail": "Email: {{courtEmail}}"
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "There is a problem with your application",
+          "info": "You need to contact us about your divorce application.",
+          "contactTitle": "Contact Us",
+          "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactEmail": "Email: {{courtEmail}}"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] There is a problem with your application",
+          "info": "[CY] You need to contact us about your divorce application.",
+          "contactTitle": "[CY] Contact Us",
+          "contactPhone": "[CY] Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactEmail": "[CY] Email: {{courtEmail}}"
+        }
+      }
     }
+  }
 }

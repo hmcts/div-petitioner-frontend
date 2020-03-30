@@ -1,40 +1,65 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "How are your names displayed on the marriage certificate?",
-                    "questionTrans": "How are your names displayed on the marriage certificate translation?",
-                    "copy": "These will be the names you both used before you were married, such as maiden names.",
-                    "hint": "Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
-                    "hintTrans": "Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
-                    "marriagePetitionerName": "Provide your full name on the certificate",
-                    "marriagePetitionerNameTrans": "Provide your full name on the translation",
-                    "marriageRespondentName": "Provide your {{ divorceWho }}&#39;s full name on the certificate",
-                    "marriageRespondentNameTrans": "Provide your {{ divorceWho }}&#39;s full name on the translation",
-                    "marriageNameHint": "Include all the text related to the name"
-                },
-
-                "checkYourAnswersContent": {
-                    "marriageRespondentName": "Your {{ divorceWho }}&#39;s name on the marriage certificate",
-                    "marriagePetitionerName": "Your name on the marriage certificate"
-                },
-
-                "errors": {
-                    "marriagePetitionerName": {
-                      "required" : "Enter your full name as it appears on your marriage certificate",
-                      "invalid" : "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    },
-
-                    "marriageRespondentName": {
-                      "required" : "Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
-                      "invalid" : "Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    }
-
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "How are your names displayed on the marriage certificate?",
+          "questionTrans": "How are your names displayed on the marriage certificate translation?",
+          "copy": "These will be the names you both used before you were married, such as maiden names.",
+          "hint": "Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+          "hintTrans": "Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+          "marriagePetitionerName": "Provide your full name on the certificate",
+          "marriagePetitionerNameTrans": "Provide your full name on the translation",
+          "marriageRespondentName": "Provide your {{ divorceWho }}&#39;s full name on the certificate",
+          "marriageRespondentNameTrans": "Provide your {{ divorceWho }}&#39;s full name on the translation",
+          "marriageNameHint": "Include all the text related to the name"
+        },
+        "checkYourAnswersContent": {
+          "marriageRespondentName": "Your {{ divorceWho }}&#39;s name on the marriage certificate",
+          "marriagePetitionerName": "Your name on the marriage certificate"
+        },
+        "errors": {
+          "marriagePetitionerName": {
+            "required": "Enter your full name as it appears on your marriage certificate",
+            "invalid": "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "marriageRespondentName": {
+            "required": "Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
+            "invalid": "Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] How are your names displayed on the marriage certificate?",
+          "questionTrans": "[CY] How are your names displayed on the marriage certificate translation?",
+          "copy": "[CY] These will be the names you both used before you were married, such as maiden names.",
+          "hint": "[CY] Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+          "hintTrans": "[CY] Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+          "marriagePetitionerName": "[CY] Provide your full name on the certificate",
+          "marriagePetitionerNameTrans": "[CY] Provide your full name on the translation",
+          "marriageRespondentName": "[CY] Provide your {{ divorceWho }}&#39;s full name on the certificate",
+          "marriageRespondentNameTrans": "[CY] Provide your {{ divorceWho }}&#39;s full name on the translation",
+          "marriageNameHint": "[CY] Include all the text related to the name"
+        },
+        "checkYourAnswersContent": {
+          "marriageRespondentName": "[CY] Your {{ divorceWho }}&#39;s name on the marriage certificate",
+          "marriagePetitionerName": "[CY] Your name on the marriage certificate"
+        },
+        "errors": {
+          "marriagePetitionerName": {
+            "required": "[CY] Enter your full name as it appears on your marriage certificate",
+            "invalid": "[CY] Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "marriageRespondentName": {
+            "required": "[CY] Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
+            "invalid": "[CY] Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
+        }
+      }
     }
+  }
 }

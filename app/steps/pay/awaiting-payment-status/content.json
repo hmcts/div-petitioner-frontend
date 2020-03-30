@@ -1,13 +1,21 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "We're confirming your payment",
-                    "body": "A payment session is in progress or was recently completed. This page is displayed to prevent multiple payment attempts. Please check back after 90 minutes to see if your payment has been successful."
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "We're confirming your payment",
+          "body": "A payment session is in progress or was recently completed. This page is displayed to prevent multiple payment attempts. Please check back after 90 minutes to see if your payment has been successful."
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] We're confirming your payment",
+          "body": "[CY] A payment session is in progress or was recently completed. This page is displayed to prevent multiple payment attempts. Please check back after 90 minutes to see if your payment has been successful."
+        }
+      }
     }
+  }
 }

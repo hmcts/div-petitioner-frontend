@@ -1,29 +1,41 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Do you want help paying your fee?",
-                    "explanation": "If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Applied for help with fees?"
-                },
-
-                "errors": {
-
-                    "helpWithFeesNeedHelp": {
-                        "required": "Select yes if you want help with fees"
-                    }
-
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you want help paying your fee?",
+          "explanation": "If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "checkYourAnswersContent": {
+          "question": "Applied for help with fees?"
+        },
+        "errors": {
+          "helpWithFeesNeedHelp": {
+            "required": "Select yes if you want help with fees"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Do you want help paying your fee?",
+          "explanation": "[CY] If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
+          "yes": "[CY] Yes",
+          "no": "[CY] No"
+        },
+        "checkYourAnswersContent": {
+          "question": "[CY] Applied for help with fees?"
+        },
+        "errors": {
+          "helpWithFeesNeedHelp": {
+            "required": "[CY] Select yes if you want help with fees"
+          }
+        }
+      }
     }
+  }
 }

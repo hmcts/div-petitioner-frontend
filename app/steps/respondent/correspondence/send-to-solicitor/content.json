@@ -1,21 +1,31 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
-                    "correspondence": "To a different address"
-                },
-
-                "errors": {
-                    "respondentSolicitorRepresented": {
-                        "required": "Select where your {{ divorceWho }}'s divorce papers should be sent"
-                    }
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
+          "correspondence": "To a different address"
+        },
+        "errors": {
+          "respondentSolicitorRepresented": {
+            "required": "Select where your {{ divorceWho }}'s divorce papers should be sent"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Where should your {{ divorceWho }}'s divorce papers be sent?",
+          "correspondence": "[CY] To a different address"
+        },
+        "errors": {
+          "respondentSolicitorRepresented": {
+            "required": "[CY] Select where your {{ divorceWho }}'s divorce papers should be sent"
+          }
+        }
+      }
     }
+  }
 }

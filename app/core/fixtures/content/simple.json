@@ -1,31 +1,47 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Do you have your marriage certificate?",
-                    "originalCertificate": "This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
-                    "court": "You'll need to post this to the court with your printed application."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Do you have your marriage certificate?"
-                },
-
-                "errors": {
-
-                    "hasMarriageCert": {
-                        "required": "Please answer this question",
-                        "invalid": "Please select an answer"
-                    },
-                    "petitionerFirstName": {
-                        "required": "Please enter first name"
-                    }
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you have your marriage certificate?",
+          "originalCertificate": "This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
+          "court": "You'll need to post this to the court with your printed application."
+        },
+        "checkYourAnswersContent": {
+          "question": "Do you have your marriage certificate?"
+        },
+        "errors": {
+          "hasMarriageCert": {
+            "required": "Please answer this question",
+            "invalid": "Please select an answer"
+          },
+          "petitionerFirstName": {
+            "required": "Please enter first name"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Do you have your marriage certificate?",
+          "originalCertificate": "[CY] This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
+          "court": "[CY] You'll need to post this to the court with your printed application."
+        },
+        "checkYourAnswersContent": {
+          "question": "[CY] Do you have your marriage certificate?"
+        },
+        "errors": {
+          "hasMarriageCert": {
+            "required": "[CY] Please answer this question",
+            "invalid": "[CY] Please select an answer"
+          },
+          "petitionerFirstName": {
+            "required": "[CY] Please enter first name"
+          }
+        }
+      }
     }
+  }
 }

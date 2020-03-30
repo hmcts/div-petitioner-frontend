@@ -1,18 +1,21 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "title": "Sitemap"
-                },
-
-                "errors": {
-
-                }
-
-            }
-        }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Sitemap"
+        },
+        "errors": {}
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] Sitemap"
+        },
+        "errors": {}
+      }
     }
+  }
 }

@@ -1,23 +1,35 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Did you last live together at this address?",
-                    "yes": "Yes, at this address",
-                    "no": "No, at another address",
-                    "never": "No, we&#39;ve never lived together"
-                },
-
-                "errors": {
-                    "livingArrangementsLastLivedTogether": {
-                        "required": "Select yes if you last lived together at this address"
-                    }
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Did you last live together at this address?",
+          "yes": "Yes, at this address",
+          "no": "No, at another address",
+          "never": "No, we&#39;ve never lived together"
+        },
+        "errors": {
+          "livingArrangementsLastLivedTogether": {
+            "required": "Select yes if you last lived together at this address"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Did you last live together at this address?",
+          "yes": "[CY] Yes, at this address",
+          "no": "[CY] No, at another address",
+          "never": "[CY] No, we&#39;ve never lived together"
+        },
+        "errors": {
+          "livingArrangementsLastLivedTogether": {
+            "required": "[CY] Select yes if you last lived together at this address"
+          }
+        }
+      }
     }
+  }
 }

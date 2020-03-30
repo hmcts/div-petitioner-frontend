@@ -1,24 +1,37 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Does your {{ divorceWho }} still live at this address?",
-                    "yes": "Yes",
-                    "no": "No, they live at another address",
-                    "unknown": "No, and I don't know where they live"
-                },
-
-                "errors": {
-                    "respondentLivesAtLastAddress": {
-                        "required": "Select yes if your {{ divorceWho }} lives at this address",
-                        "invalid": "Address is invalid"
-                    }
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Does your {{ divorceWho }} still live at this address?",
+          "yes": "Yes",
+          "no": "No, they live at another address",
+          "unknown": "No, and I don't know where they live"
+        },
+        "errors": {
+          "respondentLivesAtLastAddress": {
+            "required": "Select yes if your {{ divorceWho }} lives at this address",
+            "invalid": "Address is invalid"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Does your {{ divorceWho }} still live at this address?",
+          "yes": "[CY] Yes",
+          "no": "[CY] No, they live at another address",
+          "unknown": "[CY] No, and I don't know where they live"
+        },
+        "errors": {
+          "respondentLivesAtLastAddress": {
+            "required": "[CY] Select yes if your {{ divorceWho }} lives at this address",
+            "invalid": "[CY] Address is invalid"
+          }
+        }
+      }
     }
+  }
 }

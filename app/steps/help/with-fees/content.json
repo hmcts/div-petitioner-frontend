@@ -1,30 +1,45 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Do you have a Help with Fees reference number?",
-                    "yes": "Yes",
-                    "no": "No",
-                    "reference": "Enter your reference number:"
-                },
-
-                "errors": {
-
-                    "helpWithFeesAppliedForFees": {
-                        "required": "Select yes if you have a help with fees reference number",
-                        "invalid": "Please select an answer"
-                    },
-                    "helpWithFeesReferenceNumber": {
-                        "required": "Enter your help with fees reference number",
-                        "invalid": "Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
-                    }
-
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you have a Help with Fees reference number?",
+          "yes": "Yes",
+          "no": "No",
+          "reference": "Enter your reference number:"
+        },
+        "errors": {
+          "helpWithFeesAppliedForFees": {
+            "required": "Select yes if you have a help with fees reference number",
+            "invalid": "Please select an answer"
+          },
+          "helpWithFeesReferenceNumber": {
+            "required": "Enter your help with fees reference number",
+            "invalid": "Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Do you have a Help with Fees reference number?",
+          "yes": "[CY] Yes",
+          "no": "[CY] No",
+          "reference": "[CY] Enter your reference number:"
+        },
+        "errors": {
+          "helpWithFeesAppliedForFees": {
+            "required": "[CY] Select yes if you have a help with fees reference number",
+            "invalid": "[CY] Please select an answer"
+          },
+          "helpWithFeesReferenceNumber": {
+            "required": "[CY] Enter your help with fees reference number",
+            "invalid": "[CY] Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
+          }
+        }
+      }
     }
+  }
 }

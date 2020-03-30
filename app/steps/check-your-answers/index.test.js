@@ -16,7 +16,7 @@ const ExitStep = require('app/core/steps/ExitStep');
 const modulePath = 'app/steps/check-your-answers';
 
 const content = require(`${modulePath}/content`);
-const commonContent = require('app/content/common');
+const commonContent = require('app/content/common-en');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 
 const contentStrings = content.resources.en.translation.content;
@@ -780,7 +780,8 @@ describe(modulePath, () => {
         submit: true,
         cookie: {},
         expires: Date.now(),
-        reasonForDivorce: 'unreasonable-behaviour'
+        reasonForDivorce: 'unreasonable-behaviour',
+        language: 'en'
       };
       withSession(done, agent, session);
     });
@@ -819,6 +820,48 @@ describe(modulePath, () => {
       testCustom(testSession, agent, underTest, [], () => {
         // do nothing
       }, 'post', true, postBody);
+    });
+
+    context('languagePreferenceWelsh - EN to No', () => {
+      beforeEach(done => {
+        session = { language: 'en' };
+        withSession(done, agent, session);
+      });
+
+      it('sets the Welsh flag to No when language is English', done => {
+        const testSession = () => {
+          getSession(agent)
+            .then(sess => {
+              expect(sess.languagePreferenceWelsh).to.equal('No');
+            })
+            .then(done, done);
+        };
+
+        testCustom(testSession, agent, underTest, [], () => {
+          // do nothing
+        }, 'post', true, postBody);
+      });
+    });
+
+    context('languagePreferenceWelsh - CY to Yes', () => {
+      beforeEach(done => {
+        session = { language: 'cy' };
+        withSession(done, agent, session);
+      });
+
+      it('sets the Welsh flag to Yes when language is Welsh', done => {
+        const testSession = () => {
+          getSession(agent)
+            .then(sess => {
+              expect(sess.languagePreferenceWelsh).to.equal('Yes');
+            })
+            .then(done, done);
+        };
+
+        testCustom(testSession, agent, underTest, [], () => {
+          // do nothing
+        }, 'post', true, postBody);
+      });
     });
 
     it('google anayltics is called', done => {

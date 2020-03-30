@@ -5,7 +5,7 @@ const idamMock = require('test/mocks/idam');
 
 const modulePath = 'app/steps/screening-questions/financial-remedy';
 const content = require(`${modulePath}/content`);
-const commonContent = require('app/content/common');
+const commonContent = require('app/content/common-en');
 
 let s = {};
 let agent = {};

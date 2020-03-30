@@ -1,39 +1,67 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "How the court will contact you",
-                    "byEmail": "By email",
-                    "communicateParagraph1": "You need to agree to receive emails about the divorce to use the online service. Your email address will not be shared with your {{divorceWho}}.",
-                    "communicateParagraph2": "Your emails will be sent to:",
-                    "communicateParagraph3": "Provide a phone number to let court staff contact you more quickly. Your phone number will not be shared with your {{divorceWho}}.",
-                    "email": "Your email address",
-                    "byPhone": "By phone",
-                    "byPost": "By post",
-                    "petitionerPhoneNumber": "Enter your phone number (optional)",
-                    "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email.",
-                    "somePost": "You may need to receive some correspondence by post.",
-                    "contactDetailsNotShare": "Your address will not be shared with your {{divorceWho}} as you've asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
-                    "contactDetailsShare": "Your address will be shared with your {{divorceWho}}  as you’ve not asked for it to be kept private. If you use adultery as your reason for divorce, this address will also be shared with the co-respondent (if you choose to name them)."
-
-                },
-
-                "checkYourAnswersContent": {
-                    "email": "Your email address",
-                    "petitionerPhoneNumber": "Your phone number"
-                },
-
-                "errors": {
-                    "petitionerPhoneNumber": {
-                        "invalid": "Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
-                    },
-                    "petitionerConsent": {
-                        "required": "You must agree to receive notifications and court documents by email to use this service."
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "How the court will contact you",
+          "byEmail": "By email",
+          "communicateParagraph1": "You need to agree to receive emails about the divorce to use the online service. Your email address will not be shared with your {{divorceWho}}.",
+          "communicateParagraph2": "Your emails will be sent to:",
+          "communicateParagraph3": "Provide a phone number to let court staff contact you more quickly. Your phone number will not be shared with your {{divorceWho}}.",
+          "email": "Your email address",
+          "byPhone": "By phone",
+          "byPost": "By post",
+          "petitionerPhoneNumber": "Enter your phone number (optional)",
+          "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email.",
+          "somePost": "You may need to receive some correspondence by post.",
+          "contactDetailsNotShare": "Your address will not be shared with your {{divorceWho}} as you've asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
+          "contactDetailsShare": "Your address will be shared with your {{divorceWho}}  as you’ve not asked for it to be kept private. If you use adultery as your reason for divorce, this address will also be shared with the co-respondent (if you choose to name them)."
+        },
+        "checkYourAnswersContent": {
+          "email": "Your email address",
+          "petitionerPhoneNumber": "Your phone number"
+        },
+        "errors": {
+          "petitionerPhoneNumber": {
+            "invalid": "Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
+          },
+          "petitionerConsent": {
+            "required": "You must agree to receive notifications and court documents by email to use this service."
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] How the court will contact you",
+          "byEmail": "[CY] By email",
+          "communicateParagraph1": "[CY] You need to agree to receive emails about the divorce to use the online service. Your email address will not be shared with your {{divorceWho}}.",
+          "communicateParagraph2": "[CY] Your emails will be sent to:",
+          "communicateParagraph3": "[CY] Provide a phone number to let court staff contact you more quickly. Your phone number will not be shared with your {{divorceWho}}.",
+          "email": "[CY] Your email address",
+          "byPhone": "[CY] By phone",
+          "byPost": "[CY] By post",
+          "petitionerPhoneNumber": "[CY] Enter your phone number (optional)",
+          "petitionerConsent": "[CY] I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email.",
+          "somePost": "[CY] You may need to receive some correspondence by post.",
+          "contactDetailsNotShare": "[CY] Your address will not be shared with your {{divorceWho}} as you've asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
+          "contactDetailsShare": "[CY] Your address will be shared with your {{divorceWho}}  as you’ve not asked for it to be kept private. If you use adultery as your reason for divorce, this address will also be shared with the co-respondent (if you choose to name them)."
+        },
+        "checkYourAnswersContent": {
+          "email": "[CY] Your email address",
+          "petitionerPhoneNumber": "[CY] Your phone number"
+        },
+        "errors": {
+          "petitionerPhoneNumber": {
+            "invalid": "[CY] Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
+          },
+          "petitionerConsent": {
+            "required": "[CY] You must agree to receive notifications and court documents by email to use this service."
+          }
+        }
+      }
     }
+  }
 }

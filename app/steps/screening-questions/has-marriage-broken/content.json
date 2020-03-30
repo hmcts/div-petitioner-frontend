@@ -1,29 +1,43 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Has your marriage broken down irretrievably (it can&#39;t be saved)?",
-                    "line1": "You can only get a divorce on the ground that your marriage has broken down irretrievably.",
-                    "yes": "Yes",
-                    "no": "No",
-                    "marriageBrokenDownNo": "The only legal ground for divorce in England and Wales is that your marriage has broken down irretrievably.",
-                    "cookie": "This service uses cookies to make the site simpler.",
-                    "cookieLink": "Find out more about cookies",
-                    "warning": "Warning"
-                },
-
-                "errors": {
-
-                    "screenHasMarriageBroken": {
-                        "required": "Select yes if your marriage has broken down irretrievably"
-                    }
-
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Has your marriage broken down irretrievably (it can&#39;t be saved)?",
+          "line1": "You can only get a divorce on the ground that your marriage has broken down irretrievably.",
+          "yes": "Yes",
+          "no": "No",
+          "marriageBrokenDownNo": "The only legal ground for divorce in England and Wales is that your marriage has broken down irretrievably.",
+          "cookie": "This service uses cookies to make the site simpler.",
+          "cookieLink": "Find out more about cookies",
+          "warning": "Warning"
+        },
+        "errors": {
+          "screenHasMarriageBroken": {
+            "required": "Select yes if your marriage has broken down irretrievably"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Has your marriage broken down irretrievably (it can&#39;t be saved)?",
+          "line1": "[CY] You can only get a divorce on the ground that your marriage has broken down irretrievably.",
+          "yes": "[CY] Yes",
+          "no": "[CY] No",
+          "marriageBrokenDownNo": "[CY] The only legal ground for divorce in England and Wales is that your marriage has broken down irretrievably.",
+          "cookie": "[CY] This service uses cookies to make the site simpler.",
+          "cookieLink": "[CY] Find out more about cookies",
+          "warning": "[CY] Warning"
+        },
+        "errors": {
+          "screenHasMarriageBroken": {
+            "required": "[CY] Select yes if your marriage has broken down irretrievably"
+          }
+        }
+      }
     }
+  }
 }

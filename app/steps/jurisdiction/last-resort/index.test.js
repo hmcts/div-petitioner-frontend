@@ -9,7 +9,7 @@ const { clone, merge } = require('lodash');
 
 const modulePath = 'app/steps/jurisdiction/last-resort';
 const content = require(`${modulePath}/content`);
-const contentJurisdiction = require('app/content/commonJurisdiction');
+const contentJurisdiction = require('app/content/commonJurisdiction-en');
 const contentCYA = require('app/services/jurisdiction/content');
 
 let s = {};

@@ -146,6 +146,17 @@ exports.init = listenForConnections => {
   app.set('trust proxy', 1);
   app.use(sessions.prod());
 
+  app.use((req, res, next) => {
+    if (!req.session.language) {
+      req.session.language = 'en';
+    }
+    if (req.query && req.query.locale && CONF.languages.includes(req.query.locale)) {
+      req.session.language = req.query.locale;
+    }
+
+    next();
+  });
+
   if (parseBool(CONF.rateLimiter.enabled)) {
     app.use(rateLimiter(app));
   }

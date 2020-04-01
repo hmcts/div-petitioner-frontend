@@ -28,7 +28,7 @@ yarn add redis-server & yarn dev
 
 The application will now be running on ```https://localhost:3000```.
 
-To run the tests and lint, run the following:
+To run the tests and lint, run the following commands:
 ```
 yarn test
 yarn lint

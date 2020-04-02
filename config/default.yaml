@@ -98,7 +98,7 @@ idamArgs:
   indexUrl: '/index'
   idamApiUrl: 'http://localhost:8001'
   idamLoginUrl: 'https://localhost:3000/authenticated'
-  idamSecret: '123456'
+  idamSecret: 'divorce_secret'
   idamClientID: 'divorce'
 
 evidenceManagmentClient:

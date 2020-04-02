@@ -14,8 +14,8 @@ const idamArgs = {
   indexUrl: confIdam.indexUrl,
   idamApiUrl: confIdam.idamApiUrl,
   idamLoginUrl: confIdam.idamLoginUrl,
-  idamSecret: confIdam.idamSecret,
-  idamClientID: confIdam.idamClientID
+  idamSecret: 'divorce_secret',
+  idamClientID: 'divorce'
 };
 
 module.exports = {

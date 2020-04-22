@@ -15,11 +15,11 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] There is a problem with your application",
-          "info": "[CY] You need to contact us about your divorce application.",
-          "contactTitle": "[CY] Contact Us",
-          "contactPhone": "[CY] Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
-          "contactEmail": "[CY] Email: {{courtEmail}}"
+          "title": "Mae yna broblem gyda’ch cais",
+          "info": "Mae angen ichi gysylltu â ni i drafod eich cais am ysgariad.",
+          "contactTitle": "Cysylltu â ni",
+          "contactPhone": "Rhif ffôn: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactEmail": "E-bost: {{courtEmail}}"
         }
       }
     }

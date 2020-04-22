@@ -20,15 +20,15 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Does your {{ divorceWho }} still live at this address?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No, they live at another address",
-          "unknown": "[CY] No, and I don't know where they live"
+          "question": "A yw eich {{ divorceWho }} yn dal i fyw yn y cyfeiriad hwn?",
+          "yes": "Ydy",
+          "no": "Nac ydy, mae’n byw mewn cyfeiriad arall",
+          "unknown": "Nac ydy, ac nid wyf yn gwybod ble mae’n byw"
         },
         "errors": {
           "respondentLivesAtLastAddress": {
-            "required": "[CY] Select yes if your {{ divorceWho }} lives at this address",
-            "invalid": "[CY] Address is invalid"
+            "required": "Dewiswch ydy os yw eich {{ divorceWho }} yn byw yn y cyfeiriad hwn",
+            "invalid": "Cyfeiriad annilys"
           }
         }
       }

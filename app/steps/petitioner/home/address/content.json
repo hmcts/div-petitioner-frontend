@@ -15,12 +15,13 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] What is your home address?",
-          "confidentialAddressMessage": "[CY] Your home address will be kept confidential from your {{ divorceWho }}."
+          "question": "Beth yw eich cyfeiriad cartref?",
+          "confidentialAddressMessage": "Cedwir eich cyfeiriad cartref yn gyfrinachol oddi wrth eich {{ divorceWho }}."
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Your home address"
+          "question": "Eich cyfeiriad cartref"
         }
+
       }
     }
   }

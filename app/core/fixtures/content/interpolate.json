@@ -13,10 +13,11 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you have an address for your {{divorceWho}}?",
-          "answer": "[CY] Yes, I do have an address for my {{screening-questions.respondent}}"
+          "question": "A oes gennych gyfeiriad ar gyfer eich {{divorceWho}}?",
+          "answer": "Oes, mae gennyf gyfeiriad ar gyfer fy {{screening-questions.respondent}}"
         },
-        "errors": {}
+        "errors": {
+        }
       }
     }
   }

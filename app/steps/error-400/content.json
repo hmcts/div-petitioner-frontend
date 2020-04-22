@@ -15,11 +15,11 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Bad request",
-          "info": "[CY] This could be because you’ve followed a broken or outdated link, or because there’s an error on our site.",
-          "youCan": "[CY] You can either:",
-          "goBack": "[CY] go back to the previous page",
-          "signIn": "[CY] sign in again"
+          "title": "Cais gwael",
+          "info": "Efallai eich bod wedi defnyddio dolen nad yw’n gweithio neu hen ddolen, neu bod yna nam ar ein safle.",
+          "youCan": "Gallwch:",
+          "goBack": "fynd yn ôl i’r dudalen flaenorol",
+          "signIn": "mewngofnodi eto"
         }
       }
     }

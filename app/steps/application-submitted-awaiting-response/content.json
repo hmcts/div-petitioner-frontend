@@ -16,12 +16,9 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Application submitted",
-          "info": "[CY] Your application has now been submitted.",
-          "info2": "[CY] You can contact us if you need help with your divorce application.",
-          "contactTitle": "[CY] Contact Us",
-          "contactPhone": "[CY] Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
-          "contactEmail": "[CY] Email: {{courtEmail}}"
+          "title": "Mae angen ichi dalu’r ffi",
+          "info": "Mae eich cais wedi ei gyflwyno ond ni fydd yn cael ei brosesu nes ichi dalu’r ffi.",
+          "pay": "Os ydych angen gwneud unrhyw newidiadau i’ch cais bydd gofyn ichi gysylltu â’r ganolfan ysgaru ar {{courtPhoneNumber}} (ar ôl {{courtOpeningHour}})."
         }
       }
     }

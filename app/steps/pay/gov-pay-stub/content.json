@@ -19,14 +19,14 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Mock payment outcome",
-          "success": "[CY] Success",
-          "failure": "[CY] Failure"
+          "title": "Canlyniad y ffug daliad",
+          "success": "Llwyddiant",
+          "failure": " Aflwyddiant"
         },
         "errors": {
           "mockedOutcome": {
-            "required": "[CY] Select the desired outcome",
-            "invalid": "[CY] Select the outcome from the available options above"
+            "required": "Dewiswch y canlyniad a ddymunir",
+            "invalid": "Dewiswch ganlyniad o blith yr opsiynau sydd ar gael uchod"
           }
         }
       }

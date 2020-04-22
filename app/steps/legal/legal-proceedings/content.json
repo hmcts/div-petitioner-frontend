@@ -50,45 +50,45 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Other court cases related to your marriage, property or children",
-          "courtNeedsToKnow": "[CY] The court needs to know if there are, or have ever been, any other legal proceedings related to your marriage, property or children.",
-          "onGoingProceedings": "[CY] This includes any proceedings that are still ongoing, have finished or which have been abandoned.",
-          "includeProceedings": "[CY] Include proceedings that are between you and your {{ divorceWho }}, and between yourselves and third parties.",
-          "question": "[CY] Have you ever been involved in any court cases relating to your marriage, property or children?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No",
-          "furtherDetails": "[CY] Provide further details",
-          "youShouldInclude": "[CY] You should try to include:",
-          "caseNumbers": "[CY] case numbers",
-          "stillOngoing": "[CY] if they're still ongoing or if they've finished",
-          "proceedingAreAbout": "[CY] what they're about",
-          "namesInvolved": "[CY] names of those involved",
-          "courtNames": "[CY] name of the court and the country it's in",
-          "datesBegan": "[CY] dates that the proceedings began and of any future hearings",
-          "orderDetails": "[CY] details of any orders that were made",
-          "proceedingsRelated": "[CY] The proceedings are related to our:",
-          "marriage": "[CY] marriage",
-          "children": "[CY] children",
-          "property": "[CY] property",
-          "caseDetailsInputTitle": "[CY] Enter details"
+          "title": " Achosion llys eraill sy’n ymwneud â’ch priodas, eich eiddo neu eich plant",
+          "courtNeedsToKnow": " Mae’r llys angen gwybod a oes, neu a fu erioed, unrhyw achosion cyfreithiol eraill yn ymwneud â’ch priodas, eich eiddo neu eich plant.",
+          "onGoingProceedings": " Mae hyn yn cynnwys unrhyw achosion sy’n dal i fynd ymlaen, achosion sydd wedi gorffen neu achosion y rhoddwyd y gorau iddynt.",
+          "includeProceedings": " Dylech gynnwys achosion sydd rhyngoch chi a’ch {{ divorceWho }}, ac achosion rhyngoch chi eich dau a thrydydd parti.",
+          "question": "Ydych chi erioed wedi bod yn rhan o unrhyw achos llys sy’n ymwneud â’ch priodas, eich eiddo neu eich plant?",
+          "yes": "Do",
+          "no": "Naddo",
+          "furtherDetails": "Rhowch fwy o fanylion",
+          "youShouldInclude": " Dylech geisio cynnwys:",
+          "caseNumbers": "rhifau’r achos",
+          "stillOngoing": "a yw’r achos yn dal i fynd ymlaen neu a yw wedi gorffen",
+          "proceedingAreAbout": " testun yr achos",
+          "namesInvolved": "enwau’r rhai oedd yn rhan o’r achos",
+          "courtNames": "enw’r llys a’r wlad lle cynhelir yr achos",
+          "datesBegan": "dyddiad cychwyn yr achos a dyddiad unrhyw wrandawiad yn y dyfodol",
+          "orderDetails": "manylion unrhyw orchmynion a wnaed",
+          "proceedingsRelated": "Mae’r achos ynglyn â’n:",
+          "marriage": "priodas",
+          "children": "plant",
+          "property": "eiddo",
+          "caseDetailsInputTitle": "Rhowch fanylion"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Other court cases?",
-          "proceedingsRelated": "[CY] There have been other court cases related to our ",
-          "no": "[CY] None"
+          "question": "Achosion llys eraill?",
+          "proceedingsRelated": "Bu achosion llys eraill ynglyn â’n ",
+          "no": "Dim"
         },
         "errors": {
           "legalProceedings": {
-            "required": "[CY] Select yes if there are other legal proceedings",
-            "invalid": "[CY] Select yes if there are other legal proceedings"
+            "required": "Dewiswch do os oes achos llys arall",
+            "invalid": "Dewiswch do os oes achos llys arall"
           },
           "legalProceedingsRelated": {
-            "required": "[CY] Select what the proceedings relate to, e.g. the marriage",
-            "invalid": "[CY] Select what the proceedings relate to, e.g. the marriage"
+            "required": "Ynglyn â beth mae’r achos,y briodas, er enghraifft",
+            "invalid": "Ynglyn â beth mae’r achos,y briodas, er enghraifft"
           },
           "legalProceedingsDetails": {
-            "required": "[CY] Enter the details of the proceedings",
-            "invalid": "[CY] Enter the details of the proceedings"
+            "required": "Rhowch fanylion yr achos",
+            "invalid": "Rhowch fanylion yr achos"
           }
         }
       }

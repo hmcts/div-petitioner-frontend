@@ -17,12 +17,13 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Where should your {{ divorceWho }}'s divorce papers be sent?",
-          "correspondence": "[CY] To a different address"
+          "question": "I ble y dylid anfon eich {{ divorceWho }} papurau ysgariad?",
+          "correspondence": "I gyfeiriad gwahanol",
+          "solicitor": "At ei gyfreithiwr/chyfreithiwr"
         },
         "errors": {
           "respondentSolicitorRepresented": {
-            "required": "[CY] Select where your {{ divorceWho }}'s divorce papers should be sent"
+            "required": "Dewiswch i ble y dylid anfon papurau ysgariad eich {{ divorceWho }}"
           }
         }
       }

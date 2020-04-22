@@ -18,13 +18,13 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Have you been living in England or Wales for the last 12 months?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "question": "Ydych chi wedi bod yn byw yng Nghymru neu Loegr yn y 12 mis diwethaf?",
+          "yes": "Do",
+          "no": "Naddo"
         },
         "errors": {
           "jurisdictionLastTwelveMonths": {
-            "required": "[CY] Select yes if you have been living in England or Wales for the last 12 months"
+            "required": "Dewiswch Do os ydych chi wedi bod yn byw yng Nghymru neu Loegr yn ystod y 12 mis diwethaf"
           }
         }
       }

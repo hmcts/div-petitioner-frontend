@@ -40,35 +40,35 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Enter your current names",
-          "yourName": "[CY] Provide your full name",
-          "firstName": "[CY] First name(s)",
-          "lastName": "[CY] Last name(s)",
-          "middleNames": "[CY] Include all middle names here",
-          "respondentName": "[CY] Provide {{ divorceWho }}&#39;s full name",
-          "respondentFirstName": "[CY] {{ divorceWho }}&#39;s first name(s)",
-          "respondentLastName": "[CY] {{ divorceWho }}&#39;s last name(s)"
+          "question": "Nodwch eich enwau cyfredol",
+          "yourName": "Nodwch eich enw llawn",
+          "firstName": "Enw(au) cyntaf",
+          "lastName": "Cyfenw(au)",
+          "middleNames": "Rhowch bob enw canol yma",
+          "respondentName": "Rhowch enw llawn {{ divorceWho }}&#39;",
+          "respondentFirstName": "Enw(au) cyntaf {{ divorceWho }}&#39;",
+          "respondentLastName": "Enw(au) olaf {{ divorceWho }}&#39;s"
         },
         "checkYourAnswersContent": {
-          "respondentName": "[CY] Your {{ divorceWho }}&#39;s current name",
-          "yourName": "[CY] Your current name"
+          "respondentName": "Enw cyfredol eich{{ divorceWho }}&#39;",
+          "yourName": "Eich enw cyfredol"
         },
         "errors": {
           "petitionerFirstName": {
-            "required": "[CY] Enter your first name(s)",
-            "invalid": "[CY] Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required" : " Nodwch eich enw(au) cyntaf",
+            "invalid" : " Ni all eich enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "petitionerLastName": {
-            "required": "[CY] Enter your last name(s)",
-            "invalid": "[CY] Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required" : "Nodwch eich enw(au) olaf",
+            "invalid" : "Ni all eich cyfenw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "respondentFirstName" : {
-            "required": "[CY] Enter your {{ divorceWho }}&#39;s first name(s)",
-            "invalid": "[CY] Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required" : " Rhowch enw(au) cyntaf eich {{ divorceWho }}&#39;",
+            "invalid" : " Ni all enw cyntaf eich{{ divorceWho }}&#39;s gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "respondentLastName" : {
-            "required": "[CY] Enter your {{ divorceWho }}&#39;s last name(s)",
-            "invalid": "[CY] Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required" : " Rhowch enw(au) olaf eich  {{ divorceWho }}&#39;",
+            "invalid" : " Ni all enw olaf eich {{ divorceWho }}&#39; gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

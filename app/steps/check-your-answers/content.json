@@ -45,42 +45,43 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Check your answers",
-          "titleSoFar": "[CY] Check your answers so far",
-          "change": "[CY] Change",
+          "title": "Gwirio eich atebion",
+          "titleSoFar": "Gwirio eich atebion hyd yma",
+          "change": "Newid",
           "about-your-marriage": "",
-          "jurisdiction": "[CY] Your connections to England and Wales",
-          "petitioner-respondent": "[CY] About you and your {{ divorceWho }}",
-          "about-divorce": "[CY] About your divorce",
-          "pay": "[CY] Payment",
-          "continueApplication": "[CY] Continue application",
-          "confirmHeading": "[CY] Confirm the following",
-          "confirmWarning": "[CY] You could be fined or imprisoned for contempt of court if you deliberately submit false information.",
-          "confirmApply": "[CY] I confirm that:",
-          "confirmDissolve": "[CY] I'm applying to the court for my marriage to be dissolved.",
-          "confirmDissolvePayRespondent": "[CY] I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} to pay some or all of the divorce costs.",
-          "confirmDissolvePayCoRespondent": "[CY] I'm applying to the court for my marriage to be dissolved, and to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
-          "confirmDissolvePayBoth": "[CY] I'm applying to the court for my marriage to be dissolved, and to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs.",
-          "confirmDissolveFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, and to make financial orders to decide how our money and property will be split.",
-          "confirmDissolvePayRespondentFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
-          "confirmDissolvePayCoRespondentFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, to order {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
-          "confirmDissolvePayBothFinancial": "[CY] I'm applying to the court for my marriage to be dissolved, to order my {{ divorceWho }} and {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} to pay some or all of the divorce costs, and to make financial orders to decide how our money and property will be split.",
-          "confirmBelieve": "[CY] I believe that the facts stated in this application are true.",
-          "confirmApplication": "[CY] The first statement is your formal application to the court (known as ‘the prayer’). The second is your statement of truth.",
-          "submitOnline": "[CY] Submit",
-          "submitAndPay": "[CY] Submit and pay",
-          "submitPayWarning": "[CY] Only submit your application if you can pay now. If you can’t pay now, save and close it and return to it later.",
-          "deleteApplciation": "[CY] Delete application",
-          "warning": "[CY] Warning",
-          "tableExplanation": "[CY] This table has a list of your questions and answers. The first column is the question. The second column is your answer and the third column is a link to change your answer of that particular question.",
-          "amendJourney": "[CY] You can amend all parts of your application before submitting."
+          "jurisdiction": "Eich cysylltiad â Chymru a Lloegr",
+          "petitioner-respondent": "Amdanoch chi a’ch {{ divorceWho }}",
+          "about-divorce": "Ynglyn â’ch ysgariad",
+          "pay": "Taliad",
+          "continueApplication": "Parhau â’r cais",
+          "confirmHeading": "Cadarnhau’r canlynol",
+          "confirmWarning": "Gellir eich dirwyo neu eich carcharu am ddirmyg llys os byddwch yn cyflwyno gwybodaeth y gwyddoch ei bod yn anwireddus.",
+          "confirmApply": "Rwy’n cadarnhau’r canlynol:",
+          "confirmDissolve": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas.",
+          "confirmDissolvePayRespondent": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gorchymyn bod fy {{ divorceWho }} yn talu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
+          "confirmDissolvePayCoRespondent": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gorchymyn bod {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} yn talu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
+          "confirmDissolvePayBoth": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gorchymyn bod fy {{ divorceWho }} a {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} yn talu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
+          "confirmDissolveFinancial": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gwneud gorchmynion ariannol i benderfynu sut y rhennir ein harian a’n heiddo.",
+          "confirmDissolvePayRespondentFinancial": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gorchymyn bod fy {{ divorceWho }} yn talu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad, a gwneud gorchmynion ariannol i benderfynu sut y rhennir ein harian a’n heiddo.",
+          "confirmDissolvePayCoRespondentFinancial": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gorchymyn bod {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} yn talu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad a gwneud gorchmynion ariannol i benderfynu sut y rhennir ein harian a’n heiddo.",
+          "confirmDissolvePayBothFinancial": "Rwy’n gwneud cais i’r llys i ddiddymu fy mhriodas, a gorchymyn bod fy {{ divorceWho }} a {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }}yn talu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad, a gwneud gorchmynion ariannol i benderfynu sut y rhennir ein harian a’n heiddo.",
+          "confirmBelieve": "Credaf fod y ffeithiau a nodir yn y cais hwn yn wir.",
+          "confirmApplication": "Y datganiad cyntaf yw eich cais ffurfiol i'r llys (sef ‘y deisyfiad’). Yr ail yw eich datganiad gwirionedd.",
+          "submitOnline": "Cyflwyno",
+          "submitAndPay": "Cyflwyno a thalu",
+          "submitPayWarning": "Peidiwch â chyflwyno eich cais os na allwch chi dalu nawr. Os na allwch chi dalu nawr, dylech arbed y cais, ei gau a dychwelyd ato yn nes ymlaen.",
+          "deleteApplciation": "Dileu’r cais",
+          "warning": "Rhybudd",
+          "tableExplanation": "Mae’r tabl hwn yn cynnwys rhestr o'ch cwestiynau a’ch atebion. Mae'r cwestiwn yn y golofn gyntaf. Mae eich ateb yn yr ail golofn ac mae’r drydedd golofn yn cynnwys dolen ichi newid eich ateb ar gyfer y cwestiwn hwnnw.",
+          "amendJourney": "Gallwch newid unrhyw ran o’ch cais cyn cyflwyno."
         },
         "errors": {
           "confirmPrayer": {
-            "required": "[CY] Confirm that you’re making an application to the court, and that the information you’ve given is true",
-            "invalid": "[CY] Confirm that you’re making an application to the court, and that the information you’ve given is true"
+            "required": "Cadarnhau eich bod yn gwneud cais i’r llys, a bod yr wybodaeth a ddarparwyd gennych yn gywir",
+            "invalid": "Cadarnhau eich bod yn gwneud cais i’r llys, a bod yr wybodaeth a ddarparwyd gennych yn gywir"
           }
         }
+
       }
     }
   }

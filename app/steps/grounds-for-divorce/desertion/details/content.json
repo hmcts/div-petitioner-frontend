@@ -23,18 +23,16 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Describe how your {{ divorceWho }} deserted you",
-          "describe": "[CY] Give a short summary of the circumstances surrounding the desertion"
+          "question": "Eglurwch sut y gwnaeth eich {{ divorceWho }} eich gadael",
+          "describe": "Rhowch grynodeb byr o’r amgylchiadau "
         },
-
         "checkYourAnswersContent": {
-          "question": "[CY] Description of the desertion"
+          "question": "Disgrifiad o’r amgylchiadau"
         },
-
         "errors": {
           "reasonForDivorceDesertionDetails": {
-            "required": "[CY] Enter a description of how your {{ divorceWho }} deserted you",
-            "invalid": "[CY] Enter a valid description of how your {{ divorceWho }} deserted you. Maximum 20000 characters"
+            "required": "Eglurwch sut y gwnaeth eich {{ divorceWho }} eich gadael",
+            "invalid": "Rhowch eglurhad dilys ynglyn â sut y gwnaeth eich {{ divorceWho }} eich gadael. Peidiwch â defnyddio mwy na 20000 o eiriau"
           }
         }
       }

@@ -25,20 +25,20 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you want to name the person you believe your {{ divorceWho }} committed adultery with?",
-          "noBenefit": "[CY] You don't have to name this person, and naming them usually doesn't benefit an application for divorce.",
-          "provideAddress": "[CY] If you do name them you must provide their full name and address so that they can respond.",
-          "delayed": "[CY] Your divorce will take longer and could cost more if they don't respond.",
-          "costs": "[CY] You can ask the court to order them to pay some or all of your divorce costs.",
-          "mustProvideAddress": "[CY] You must provide their full name and address so the court can send them a copy of your divorce application.",
-          "warning": "[CY] Warning",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "question": "A ydych chi eisiau enwi’r unigolyn yr ydych yn credu bod eich {{ divorceWho }} wedi godinebu ag ef/hi?",
+          "noBenefit": "Nid oes raid ichi enwi’r unigolyn, ac fel rheol ni fydd gwneud hynny’n cynorthwyo cais am ysgariad.",
+          "provideAddress": "Os byddwch yn enwi’r unigolyn, mae’n rhaid ichi ddarparu enw a chyfeiriad llawn yr unigolyn er mwyn iddo/iddi ymateb.",
+          "delayed": "Bydd eich ysgariad yn cymryd mwy o amser a gallai gostio mwy os na fydd yn ymateb.",
+          "costs": "Gallwch ofyn i'r llys orchymyn iddo/iddi dalu rhywfaint o gostau eich ysgariad neu holl gostau eich ysgariad.",
+          "mustProvideAddress": "Rhaid ichi ddarparu enw a chyfeiriad llawn yr unigolyn er mwyn i’r llys allu anfon copi o'ch cais am ysgariad ato/ati.",
+          "warning": "Rhybudd",
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "errors": {
           "reasonForDivorceAdulteryWishToName": {
-            "required": "[CY] Select yes if you wish to name the person you believe your {{ divorceWho }} committed adultery with",
-            "invalid": "[CY] Select yes if you wish to name the person you believe your {{ divorceWho }} committed adultery with"
+            "required": "Dewiswch ydw os ydych chi eisiau enwi’r unigolyn yr ydych yn credu bod eich {{ divorceWho }} wedi godinebu ag ef/hi",
+            "invalid": "Dewiswch ydw os ydych chi eisiau enwi’r unigolyn yr ydych yn credu bod eich {{ divorceWho }} wedi godinebu ag ef/hi"
           }
         }
       }

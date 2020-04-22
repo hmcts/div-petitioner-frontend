@@ -21,16 +21,16 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] How are you legally connected to England and Wales?",
-          "explanation": "[CY] You must have at least one of the following connections for your divorce to fall within the jurisdiction of a court in England and Wales.",
-          "basedOn": "[CY] If you're not sure how you're legally connected, you should get legal advice.",
-          "habitualExplained": "[CY] This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
-          "select": "[CY] Select all of the following which apply to you",
-          "residualJurisdiction": "[CY] The courts of England and Wales have jurisdiction on a residual basis"
+          "question": "Eglurwch eich cysylltiadau cyfreithiol â Chymru a Lloegr",
+          "explanation": "Mae’n rhaid ichi fod yn gysylltiedig ag o leiaf un o’r ffyrdd canlynol i’ch ysgariad syrthio o fewn awdurdodaeth llys yng Nghymru a Lloegr.",
+          "basedOn": "Os nad ydych chi’n siwr ynglyn â’ch cysylltiad cyfreithiol, dylech ofyn am gyngor cyfreithiol.",
+          "habitualExplained": "Mae’n bosib i hyn gynnwys gweithio, bod yn berchen ar eiddo, bod â phlant mewn ysgol, a bod eich prif fywyd teuluol yng Nghymru neu Lloegr.",
+          "select": "Dewiswch bob un o’r canlynol sy’n berthnasol ichi",
+          "residualJurisdiction": "Mae gan lysoedd Cymru a Lloegr awdurdodaeth ar sail weddillol"
         },
         "errors": {
           "jurisdictionLastResortConnections": {
-            "invalid": "[CY] Invalid answer"
+            "invalid": "Ateb annilys"
           }
         }
       }

@@ -55,52 +55,53 @@
     "cy": {
       "translation": {
         "content": {
-          "woman": "[CY] woman",
-          "man": "[CY] man",
-          "question": "[CY] Choose a reason for your divorce",
-          "explanation": "[CY] You must choose one of the following reasons (legally known as the &#39;facts&#39;) for your divorce.",
-          "hasNoMarriageDate": "[CY] No marriage date",
-          "separatedDetails": "[CY] What if we lived together after we separated?",
-          "sameResidenceHeading": "[CY] Living in the same residence while separated",
-          "sameResidenceSummary": "[CY] You can still live in the same residence while separated, as long you&#39;re not living together as a couple, for example, you don&#39;t eat, sleep or cook together.",
-          "asACoupleHeading": "[CY] Living together as a couple after separating",
-          "asACoupleSummary1": "[CY] If you have lived together as a couple after separating, you can&#39;t use the",
-          "asACoupleSummary2": "[CY] facts if it was for more than 6 months, during or after the separation period. This can have been either in a single period or over several periods.",
-          "asACoupleSummary3": "[CY] Any time you spent living as a couple doesn&#39;t count towards the separation period, and you&#39;ll need to make up any time you were together before you apply for a divorce.",
-          "2Years": "[CY] Living together as a couple after separating",
-          "5Years": "[CY] 2 years separation with consent, 5 years separation and desertion",
-          "chooseAReason": "[CY] Choose one of the following reasons:",
-          "unreasonableBehaviourHeading": "[CY] Behaviour",
-          "unreasonableBehaviourSummary": "[CY] Your {{ divorceWho }} has behaved in such a way that you can&#39;t reasonably be expected to live with them any more",
-          "unreasonableBehaviourWarning": "[CY] You&#39;ll be asked to provide examples of the behaviour. If you have lived together as a couple for a period or periods totalling more than 6 months since the most recent incident you rely on, the court may take that into account in its decision on whether to grant you a divorce.",
-          "adulteryHeading": "[CY] Adultery",
-          "adulterySummary1": "[CY] Your {{ divorceWho }} has committed adultery with a",
-          "adulterySummary2": "[CY] and you find it intolerable (unbearable) to live with them. Adultery can only be used if it was with a member of the opposite sex",
-          "adulteryWarning": "[CY] You can still use this reason if you continued to live together as a married couple afterwards; eg you still ate, slept, and cooked together. However, this can only have been for up to 6 months after you found out about the adultery - you&#39;ll have to choose another reason if it&#39;s more.",
-          "2YearsSeparationHeading": "[CY] Separated for 2 years with consent",
-          "2YearsSeparationSummary": " [CY] Your {{ divorceWho }} agrees to a divorce and you&#39;ve been separated for the past 2 years",
-          "2YearsSeparationWarning": "[CY] The court will ask your {{ divorceWho }} if they agree to a divorce. If they don&#39;t agree, your application will be rejected and you&#39;ll need to choose another reason.",
-          "2YearsSeparationExclusion": "[CY] if you&#39;ve been separated for the 2 year period immediately before the divorce application, and your {{ divorceWho }} agrees to a divorce",
-          "5YearsSeparationHeading": "[CY] Separated for 5 years",
-          "5YearsSeparationSummary": "[CY] You&#39;ve been separated from your {{ divorceWho }} for the past 5 years",
-          "5YearsSeparationExclusion": "[CY] if you&#39;ve been separated for the 5 year period immediately before the divorce application",
-          "desertionHeading": "[CY] Desertion",
-          "desertionSummary": "[CY] Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-          "desertionExclusion": "[CY] if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-          "noneApply": "[CY] None of these apply to my situation",
-          "finalPossibilities": "[CY] If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
-          "alternativelyInFuture": "[CY] Alternatively, in future you may be able to use the following",
-          "warning": "[CY] Warning"
+          "woman": "Dynes",
+          "man" : "Dyn",
+          "question": "Dewiswch reswm dros eich ysgariad",
+          "explanation": "Rhaid i chi ddewis un o’r rhesymau canlynol dros eich ysgariad (a elwir yn gyfreithiol yn ‘ffeithiau’).",
+          "hasNoMarriageDate": "Dim dyddiad priodi",
+          "separatedDetails": "Beth os ydym ni wedi byw gyda’n gilydd ar ôl i ni wahanu?",
+          "sameResidenceHeading": "Byw yn yr un ty ac wedi gwahanu",
+          "sameResidenceSummary": "Mae’n iawn i chi ddal i fyw yn yr un ty ar ôl gwahanu, cyn belled nad ydych yn byw efo’ch gilydd fel cwpl ac nad ydych, er enghraifft, yn bwyta, cysgu na choginio efo'ch gilydd.",
+          "asACoupleHeading": "Byw efo’ch gilydd fel cwpl ar ôl gwahanu",
+          "asACoupleSummary1": "Os ydych wedi byw gyda’ch gilydd fel cwpl ar ôl gwahanu gallwch ddefnyddio’r",
+          "asACoupleSummary2": "ffeithiau os oedd hynny am fwy na 6 mis, yn ystod y cyfnod gwahanu neu ar ôl hynny. Mae hyn yn gallu bod yn un cyfnod, neu dros sawl cyfnod.",
+          "asACoupleSummary3": "Nid yw unrhyw gyfnod y gwnaethoch ei dreulio fel cwpl yn cyfrif&#39; fel rhan o’r cyfnod gwahanu, a bydd angen&#39; ichi wneud iawn am unrhyw amser y buoch gyda’ch gilydd cyn ichi wneud cais am ysgariad.",
+          "2Years": "Byw efo’ch gilydd fel cwpl ar ôl gwahanu",
+          "5Years": "2 flynedd ar wahân gyda chydsyniad, 5 mlynedd ar wahân a gadael",
+          "chooseAReason": "Dewiswch un o’r rhesymau canlynol:",
+          "unreasonableBehaviourHeading": "Ymddygiad",
+          "unreasonableBehaviourSummary": "Mae eich {{ divorceWho }} wedi ymddwyn mewn ffordd lle nad &#39;oes disgwyl, yn rhesymol, i chi allu byw gydag ef/hi ddim mwy",
+          "unreasonableBehaviourWarning": "Gofynnir ichi &#39; ddarparu enghreifftiau o’u hymddygiad. Os ydych wedi byw gyda’ch gilydd fel cwpwl am gyfnod neu gyfnodau o fwy na 6 mis ers y digwyddiad diweddaraf yr ydych yn dibynnu arno, efallai y bydd y llys yn cymryd hynny i ystyriaeth wrth benderfynu a ddylid caniatáu ysgariad.",
+          "adulteryHeading": "Godineb",
+          "adulterySummary1": "Mae eich {{ divorceWho }} wedi godinebu gyda",
+          "adulterySummary2": "ac nid ydych yn gallu dioddef byw gydag ef/hi. Ni ellir defnyddio godineb yn rheswm ond yn achos rhywun nad yw o’r un rhyw",
+          "adulteryWarning": "Gallwch ddefnyddio’r rheswm hwn o hyd os gwnaethoch barhau i fyw gyda’ch gilydd fel cwpl priod wedyn; hynny yw roeddech yn dal i gysgu, bwyta a choginio gyda’ch gilydd. Fodd bynnag, ni all hyn fod am fwy na 6 mis ar ôl ichi gael gwybod am y godineb - bydd yn rhaid&#39; ichi ddewis rheswm arall os oedd y cyfnod yn &#39; hwy na hynny.",
+          "2YearsSeparationHeading": "Wedi gwahanu am 2 flynedd drwy gytundeb",
+          "2YearsSeparationSummary": " Mae eich{{ divorceWho }} yn cytuno i ysgaru ac rydych &#39; wedi gwahanu ers 2 flynedd",
+          "2YearsSeparationWarning": "Bydd y llys yn gofyn i'ch {{ divorceWho }} a yw’n cytuno i gael ysgariad. Os nad yw’n cytuno&#39;, bydd eich cais yn cael ei wrthod  a bydd angen ichi&#39; ddewis rheswm arall.",
+          "2YearsSeparationExclusion": "Os ydych &#39; wedi gwahanu ers cyfnod o 2 flynedd yn union cyn y cais am ysgariad, a bod eich {{ divorceWho }} yn cytuno i ysgaru",
+          "5YearsSeparationHeading": "Wedi gwahanu ers 5 mlynedd",
+          "5YearsSeparationSummary": "Rydych &#39; wedi gwahanu oddi wrth eich {{ divorceWho }} ers 5 mlynedd",
+          "5YearsSeparationExclusion": "Os ydych &#39; wedi gwahanu ers cyfnod o 5 mlynedd yn union cyn y cais am ysgariad",
+          "desertionHeading": "Gadael",
+          "desertionSummary": "Mae eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd yn ôl",
+          "desertionExclusion": "Os yw eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd yn ôl",
+          "noneApply" : "Nid yw’r un o’r rhain yn berthnasol i fy sefyllfa",
+          "finalPossibilities" : "Os na allwch&#39; ddefnyddio unrhyw un o’r rhesymau uchod, efallai y bydd modd ichi gael <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+          "alternativelyInFuture" : "Fel arall, yn y dyfodol efallai y bydd modd ichi ddefnyddio’r canlynol",
+          "warning": "Rhybudd"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Reason for divorce"
+          "question": "Rheswm dros ysgaru"
         },
         "errors": {
           "reasonForDivorce": {
-            "required": "[CY] Select a reason",
-            "invalid": "[CY] Select a reason"
+            "required": "Dewis rheswm",
+            "invalid": "Dewis rheswm"
           }
         }
+
       }
     }
   }

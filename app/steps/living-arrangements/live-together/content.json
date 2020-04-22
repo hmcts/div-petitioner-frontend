@@ -18,13 +18,13 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you and your {{ divorceWho }} live at the same address?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "question": " Ydych chi a’ch {{ divorceWho }} yn byw yn yr un cyfeiriad?",
+          "yes": "Ydym",
+          "no": "Nac ydym"
         },
         "errors": {
           "livingArrangementsLiveTogether": {
-            "required": "[CY] Select yes if you and your {{ divorceWho }} live at the same address"
+            "required": " Dewiswch ydym os ydych chi a’ch {{ divorceWho }} yn byw yn yr un cyfeiriad"
           }
         }
       }

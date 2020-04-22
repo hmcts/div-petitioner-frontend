@@ -4,16 +4,17 @@
     "en": {
       "translation": {
         "content": {
-          "title": "There has been a problem"
-        }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Mae yna broblem"
+          "question": "What is your {{divorceWho}}&#39;s solicitor&#39;s address?"
         }
       }
     }
-  }
+  },
+
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Beth yw cyfeiriad cyfreithiwr&#39; eich {{divorceWho}}?"
+        }
+      }
+    }
 }

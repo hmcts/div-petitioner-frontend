@@ -34,29 +34,29 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] How are your names displayed on the marriage certificate?",
-          "questionTrans": "[CY] How are your names displayed on the marriage certificate translation?",
-          "copy": "[CY] These will be the names you both used before you were married, such as maiden names.",
-          "hint": "[CY] Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
-          "hintTrans": "[CY] Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
-          "marriagePetitionerName": "[CY] Provide your full name on the certificate",
-          "marriagePetitionerNameTrans": "[CY] Provide your full name on the translation",
-          "marriageRespondentName": "[CY] Provide your {{ divorceWho }}&#39;s full name on the certificate",
-          "marriageRespondentNameTrans": "[CY] Provide your {{ divorceWho }}&#39;s full name on the translation",
-          "marriageNameHint": "[CY] Include all the text related to the name"
+          "question": "Sut mae eich enwau yn ymddangos ar y dystysgrif priodas?",
+          "questionTrans": "Sut mae eich enwau yn ymddangos ar y cyfieithiad o’r dystysgrif priodas?",
+          "copy": "Dyna’r enwau yr oeddech yn eu defnyddio cyn ichi briodi (enw morwynol).",
+          "hint": "Dylid copïo’r dystysgrif yn gywir. Er enghraifft, os yw’n dweud â€œSarah Brown (a elwid yn flaenorol yn Sarah Smith)â€ yna dylid ei gopïo felly.",
+          "hintTrans": "Dylid copïo’r cyfieithiad yn gywir. Er enghraifft, os yw’n dweud â€œSarah Brown (a elwid yn flaenorol yn Sarah Smith)â€ yna dylid ei gopïo felly.",
+          "marriagePetitionerName": "Rhowch eich enw llawn fel mae’n ymddangos ar y dystysgrif",
+          "marriagePetitionerNameTrans": "Rhowch eich enw llawn fel mae’n ymddangos yn y cyfieithiad",
+          "marriageRespondentName": "Rhowch enw llawn eich {{ divorceWho }}&#39; fel mae’n ymddangos ar y dystysgrif",
+          "marriageRespondentNameTrans": "Rhowch enw llawn eich {{ divorceWho }}&#39; fel mae’n ymddangos yn y cyfieithiad",
+          "marriageNameHint": "Dylid cynnwys testun eich enw yn llawn"
         },
         "checkYourAnswersContent": {
-          "marriageRespondentName": "[CY] Your {{ divorceWho }}&#39;s name on the marriage certificate",
-          "marriagePetitionerName": "[CY] Your name on the marriage certificate"
+          "marriageRespondentName": "Enw eich {{ divorceWho }}&#39; ar y dystysgrif priodas",
+          "marriagePetitionerName": "Eich enw ar y dystysgrif priodas"
         },
         "errors": {
           "marriagePetitionerName": {
-            "required": "[CY] Enter your full name as it appears on your marriage certificate",
-            "invalid": "[CY] Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required" : "Rhowch eich enw yn llawn fel mae’n ymddangos ar eich tystysgrif priodas",
+            "invalid" : "Ni all eich enw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "marriageRespondentName": {
-            "required": "[CY] Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
-            "invalid": "[CY] Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required" : "Nodwch enw llawn eich {{ divorceWho }}&#39; fel mae’n ymddangos ar eich tystysgrif priodas",
+            "invalid" : "Ni all enw eich {{ divorceWho }}&#39; gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

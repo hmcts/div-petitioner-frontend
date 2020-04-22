@@ -12,8 +12,8 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Where do you want your divorce papers sent?",
-          "confidentialAddressMessage": "[CY] Your correspondence address will be kept confidential from your {{ divorceWho }}."
+          "question": "I ble yr ydych chi eisiau inni anfon eich papurau ysgariad?",
+          "confidentialAddressMessage": "Cedwir eich cyfeiriad gohebu yn gyfrinachol oddi wrth eich {{ divorceWho }}."
         }
       }
     }

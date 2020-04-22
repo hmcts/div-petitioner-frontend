@@ -27,22 +27,22 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Describe your {{ divorceWho }}'s behaviour",
-          "explanation": "[CY] Include examples of your {{ divorceWho }}'s behaviour which affect you the most, and the most recent incidents. If you think your health has been affected, state how it's been affected.",
-          "fault": "[CY] Don't include examples in which you're both at fault.",
-          "overTime": "[CY] You can describe how they've behaved over a period of time or use particular incidents. Try to include dates if you remember them.",
-          "examples": "[CY] Use as many examples as you want to, as long as it's enough to satisfy the court that you can't reasonably be expected to live with your {{ divorceWho }}.",
-          "warning": "[CY]  Your {{ divorceWho }} will be sent a copy of your divorce application, so you may want to avoid language that will cause conflict between you. You can discuss your examples with your {{ divorceWho }} if you want to.",
-          "describe": "[CY] Example",
-          "my": "[CY] My {{ divorceWho }} ...",
-          "addAnother": "[CY] + Add another example"
+          "question": "Disgrifiwch ymddygiad eich {{ divorceWho }}",
+          "explanation": "Dylech gynnwys enghreifftiau o ymddygiad eich {{ divorceWho }} sy’n effeithio arnoch fwyaf, a’r digwyddiadau mwyaf diweddar. Os ydych yn meddwl eu bod wedi effeithio ar eich iechyd, eglurwch sut.",
+          "fault": "Peidiwch â chynnwys enghreifftiau lle yr ydych ill dau ar fai.",
+          "overTime": "Gallwch ddisgrifio sut mae wedi ymddwyn dros gyfnod o amser neu ddefnyddio digwyddiadau penodol. Ceisiwch gynnwys dyddiadau os ydych yn eu cofio.",
+          "examples": "Defnyddiwch hynny o enghreifftiau ag y mae arnoch eisiau eu defnyddio, cyn belled â bod hynny’n ddigon i fodloni’r llys na ellir disgwyl yn rhesymol ichi fyw gyda’ch {{ divorceWho }}.",
+          "warning": " Anfonir copi o’ch cais am ysgariad at eich {{ divorceWho }}, felly efallai y byddwch am osgoi defnyddio iaith a fyddai’n achosi gwrthdaro rhyngoch. Gallwch drafod eich enghreifftiau gyda’ch {{ divorceWho }} os oes arnoch eisiau gwneud hynny.",
+          "describe": "Enghraifft",
+          "my":"Fy {{ divorceWho }} ...",
+          "addAnother": "+ Ychwanegwch enghraifft arall"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Examples of your {{ divorceWho }}'s behaviour"
+          "question": "Enghreifftiau o ymddygiad eich {{ divorceWho }}"
         },
         "errors": {
           "reasonForDivorceBehaviourDetails": {
-            "invalid": "[CY] Provide at least 1 example of your {{ divorceWho }}'s behaviour"
+            "invalid": "Darparwch o leiaf un enghraifft o ymddygiad eich {{ divorceWho }}"
           }
         }
       }

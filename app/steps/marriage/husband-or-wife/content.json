@@ -26,21 +26,21 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Who are you divorcing?",
-          "husband": "[CY] Your husband",
-          "wife": "[CY] Your wife",
-          "marriageIsSameSexCouple": "[CY] Select the following if it applies to you:",
-          "marriageIsSameSexCoupleText": "[CY] We were a same-sex couple when we got married."
+          "question": " Pwy ydych chi’n ysgaru oddi wrtho/wrthi?",
+          "husband": "Eich gwr",
+          "wife": "Eich gwraig",
+          "marriageIsSameSexCouple": "Dewiswch y canlynol os yw’n berthnasol i chi:",
+          "marriageIsSameSexCoupleText": "Roeddem yn gwpl o’r un rhyw pan briodasom."
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Who you're divorcing",
-          "marriageIsSameSexCoupleText": "[CY] Type of relationship",
-          "Yes": "[CY] Same sex",
-          "No": "[CY] Opposite sex"
+          "question": "Yr un yr ydych yn ysgaru oddi wrtho/wrthi",
+          "marriageIsSameSexCoupleText": "Math o berthynas",
+          "Yes": "Cyfunryw",
+          "No": "Y rhyw arall"
         },
         "errors": {
           "divorceWho": {
-            "required": "[CY] Select who you are divorcing"
+            "required": " Dewiswch yr un yr ydych am ysgaru oddi wrth/wrthi"
           }
         }
       }

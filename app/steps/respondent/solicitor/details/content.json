@@ -1,0 +1,62 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Enter the details of your {{ divorceWho }}'s solicitor",
+          "name": "Solicitor's name",
+          "company": "Solicitor's Company/Organisation",
+          "email": "Solicitor's Email Address",
+          "phoneNumber": "Solicitor's Phone Number"
+        },
+        "checkYourAnswersContent": {
+          "question": "Your {{ divorceWho }}'s solicitor's details"
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Enter the name of your {{ divorceWho }}'s solicitor"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Enter the company/organisation of your {{ divorceWho }}'s solicitor"
+          },
+          "respondentSolicitorEmail": {
+            "invalid": "Enter a valid email address"
+          },
+          "respondentSolicitorPhoneNumber": {
+            "invalid": "Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
+          }
+        }
+      }
+    }
+  },
+
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Rhowch fanylion cyfreithiwr eich {{ divorceWho }}",
+          "name": "Enw�r cyfreithiwr",
+          "company": "Cwmni/Sefydliad y cyfreithiwr",
+          "email": "Cyfeiriad e-bost y cyfreithiwr",
+          "phoneNumber": "Rhif ff�n y cyfreithiwr"
+        },
+        "checkYourAnswersContent": {
+          "question": "Manylion cyfreithiwr eich {{ divorceWho }}"
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Rhowch enw cyfreithiwr eich {{ divorceWho }}"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Rhowch enw cwmni/sefydliad cyfreithiwr eich {{ divorceWho }}"
+          },
+          "respondentSolicitorEmail": {
+            "invalid": "Rhowch gyfeiriad e-bost dilys"
+          },
+          "respondentSolicitorPhoneNumber": {
+            "invalid": "Rhowch rif ff�n dilys. Rhaid i rifau ff�n gynnwys o leiaf 9 rhif ac nid ddylent gynnwys unrhyw symbolau ac eithrio�r rhifau 0-9 a�r symbolau +, - , ( , ) , ."
+          }
+        }
+      }
+    }
+}

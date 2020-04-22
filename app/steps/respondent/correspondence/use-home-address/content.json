@@ -22,17 +22,18 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Is this where your {{ divorceWho }}'s divorce papers should be sent?",
-          "correspondence": "[CY] If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
-          "yes": "[CY] Yes, use this address",
-          "no": "[CY] No, send them to a different address"
+          "question": "Ai i’r fan hon y dylid anfon papurau ysgariad eich {{ divorceWho }}?",
+          "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
+          "yes": "Ydy, defnyddiwch y cyfeiriad hwn",
+          "no": "Na, dylid eu hanfon i gyfeiriad arall",
+          "solicitor": "Na, dylid eu hanfon at ei gyfreithiwr/chyfreithiwr"
         },
         "checkYourAnswersContent": {
-          "yes": "[CY] Yes"
+          "yes": "Ydw"
         },
         "errors": {
           "respondentCorrespondenceUseHomeAddress": {
-            "required": "[CY] Select whether you want your {{ divorceWho }}'s divorce papers sent to this address"
+            "required": "Dewiswch a ydych chi eisiau inni anfon papurau ysgariad eich {{ divorceWho }} i’r cyfeiriad hwn?"
           }
         }
       }

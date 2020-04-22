@@ -25,20 +25,20 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you have your marriage certificate?",
-          "originalCertificate": "[CY] This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
-          "court": "[CY] You'll need to post this to the court with your printed application."
+          "question": "A yw eich tystysgrif priodas yn eich meddiant?",
+          "originalCertificate": " Rhaid mai eich tystysgrif priodas wreiddiol yw hon neu gopi swyddogol ohoni <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\" >Copi ardystiedig</a>. Ni ellir defnyddio llungopi.",
+          "court": "Bydd angen ichi bostio hon i’r llys gyda’ch cais."
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Do you have your marriage certificate?"
+          "question": "A yw eich tystysgrif priodas yn eich meddiant?"
         },
         "errors": {
           "hasMarriageCert": {
-            "required": "[CY] Please answer this question",
-            "invalid": "[CY] Please select an answer"
+            "required": "Atebwch y cwestiwn hwn",
+            "invalid": "Dewiswch ateb"
           },
           "petitionerFirstName": {
-            "required": "[CY] Please enter first name"
+            "required": "Rhowch enw cyntaf"
           }
         }
       }

@@ -21,17 +21,17 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] You need a translation to continue",
-          "reason": "[CY] You must upload an English translation of your marriage certificate.",
-          "advice": "[CY] The certificate must be translated and certified by one of the following methods.",
-          "statementOfTruth": "[CY] Statement of truth",
-          "statementOfTruth_description1": "[CY] The translator of your marriage certificate provides a statement of truth for <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\">certifying a translation.</a>",
-          "statementOfTruth_description2": "[CY] You can find translation services online which include certification as part of their service.",
-          "notaryPublic": "[CY] Notary public",
-          "notaryPublic_description1": "[CY] The marriage certificate is translated and then certified by a notary public.",
-          "notaryPublic_description2": "[CY] You can find a notary public through either the:",
-          "notaryPublic_link1": "[CY] <a class=\"govuk-link\" href=\"http://www.thenotariessociety.org.uk/\" target=\"_blank\">Notaries Society</a>",
-          "notaryPublic_link2": "[CY] <a class=\"govuk-link\" href=\"http://www.scrivener-notaries.org.uk/\" target=\"_blank\">Society of Scrivener Notaries</a>"
+          "title": "Mae angen cyfieithiad i fynd ymlaen",
+          "reason": "Mae’n rhaid ichi lwytho cyfieithiad Saesneg o’ch tystysgrif priodas.",
+          "advice": "Rhaid cyfieithu ac ardystio’r dystysgrif priodas drwy un o'r dulliau canlynol:.",
+          "statementOfTruth": "Datganiad gwirionedd",
+          "statementOfTruth_description1": " Mae cyfieithydd eich tystysgrif priodas yn darparu datganiad o wirionedd i <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" >Ardystio’r cyfieithiad.</a>",
+          "statementOfTruth_description2": "Mae yna wasanaethau cyfieithu ar-lein sy’n cynnwys gwasanaeth ardystio.",
+          "notaryPublic": "Notari cyhoeddus",
+          "notaryPublic_description1": "Cyfieithir y dystysgrif priodas ac yna fe’i hardystir gan notari cyhoeddus.",
+          "notaryPublic_description2": "Gellir dod o hyd i notari cyhoeddus:",
+          "notaryPublic_link1": "<a class=\"govuk-link\" href=\"http://www.thenotariessociety.org.uk/\" target=\"_blank\">Drwy Gymdeithas y Notarïaid<a>",
+          "notaryPublic_link2": "<a class=\"govuk-link\" href=\"http://www.scrivener-notaries.org.uk/\" target=\"_blank\">Drwy Gymdeithas Ysgrifenyddion Notarïaid </a>"
         }
       }
     }

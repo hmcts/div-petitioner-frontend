@@ -17,13 +17,13 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] You need to change your application",
-          "reason": "[CY] You must have lived apart from your {{ divorceWho }}  for the past {{ limitYears }}  years to use this reason for divorce.",
-          "allowed": "[CY] You are allowed to have spent some time living together, but only for up to 6 months (over one or more periods) and this time doesn’t count towards the {{ limitYears }} year separation period. You’ll need to have lived apart for longer to make up any time that you spent living together.",
-          "proceed": "[CY] If you want to proceed with your divorce application, you must <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a> or wait until you have been separated for long enough.",
-          "exactDate": "[CY] is the date exactly",
-          "yearsAndMonths": "[CY] years and 6 months in the past.",
-          "livedTogetherMore6Months": "[CY] As you have lived together for more than 6 months since then, then you can't use this reason for divorce at this time."
+          "title": "Mae angen ichi newid eich cais",
+          "reason": "Mae’n rhaid i chi a’ch {{ divorceWho }}  fod wedi byw ar wahân yn ystod y {{ limitYears }}  blynedd diwethaf ichi ddefnyddio’r rheswm hwn dros ysgaru.",
+          "allowed" : "Mae gennych hawl i fod wedi treulio rhywfaint o amser yn byw gyda’ch gilydd, ond dim ond hyd at 6 mis (mewn un cyfnod neu dros nifer o gyfnodau) ac nid yw’r amser hwn yn cyfrif tuag at y cyfnod o {{ limitYears }} blynedd o fyw ar wahân. Mae’n rhaid eich bod wedi byw ar wahân am fwy o amser i wneud i fyny am yr amser y bu ichi  fyw gyda’i gilydd.",
+          "proceed": " Os ydych am fwrw ymlaen gyda’ch cais am ysgariad, mae’n rhaid ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">ddewis ffaith arall sy’n berthnasol ichi </a> neu aros nes byddwch wedi byw ar wahân yn ddigon hir.",
+          "exactDate": "yw’r union ddyddiad",
+          "yearsAndMonths": "blynedd a 6 mis yn y gorffennol.",
+          "livedTogetherMore6Months": "Gan eich bod wedi byw gyda’ch gilydd am fwy na 6 mis ers hynny, ni allwch ddefnyddio’r rheswm hwn dros ysgaru ar hyn o bryd."
         }
       }
     }

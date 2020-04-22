@@ -22,17 +22,17 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you want help paying your fee?",
-          "explanation": "[CY] If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "question": "Ydych chi eisiau help i dalu eich ffi?",
+          "explanation": "Os nad oes gennych gynilon neu os nad oes gennych ond ychydig o gynilon, os ydych yn cael budd-daliadau penodol neu os yw eich incwm yn isel efallai y byddwch yn gallu cael help i dalu’r <strong>Â£{{ feeToBePaid }}</strong> ffi.",
+          "yes": "Do",
+          "no": "Nac oes"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Applied for help with fees?"
+          "question": "A ydych chi wedi gwneud cais am help i dalu ffioedd?"
         },
         "errors": {
           "helpWithFeesNeedHelp": {
-            "required": "[CY] Select yes if you want help with fees"
+            "required": "Dewiswch ydw os oes arnoch chi eisiau help i dalu ffioedd"
           }
         }
       }

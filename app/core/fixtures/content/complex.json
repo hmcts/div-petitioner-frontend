@@ -27,22 +27,22 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] What do you want to do?",
-          "apply": "[CY] Apply for a divorce from my:",
-          "marriage": "[CY] Marriage",
-          "sameSexMarriage": "[CY] Same sex marriage",
-          "husband": "[CY] My husband",
-          "wife": "[CY] My wife",
-          "formerPartner": "[CY] My former partner"
+          "question": "Beth ydych chi eisiau ei wneud?",
+          "apply": "Gwneud cais am ysgariad oddi wrth fy:",
+          "marriage": "Wedi priodi",
+          "sameSexMarriage": "Priodas gyfunryw",
+          "husband": "Fy ngwr",
+          "wife": "Fy ngwraig",
+          "formerPartner": "Fy nghynbartner"
         },
         "errors": {
           "marriageType": {
-            "required": "[CY] Please answer this question",
-            "invalid": "[CY] Please select type of divorce"
+            "required": "Atebwch y cwestiwn hwn ",
+            "invalid": "Dewiswch y math o ysgariad"
           },
           "divorceWho": {
-            "required": "[CY] Please answer this question",
-            "invalid": "[CY] Please select who to divorce"
+            "required": "Atebwch y cwestiwn hwn",
+            "invalid": "Dewiswch pwy i’w ysgaru"
           }
         }
       }

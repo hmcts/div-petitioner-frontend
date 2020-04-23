@@ -76,23 +76,23 @@
     "cy": {
       "translation": {
         "content": {
-          "enterPostcodeLink": "[CY] Enter postcode to select address",
-          "enterManualLink": "[CY] I can’t enter a UK postcode",
-          "findAddress": "[CY] Find address",
-          "enterPostcode": "[CY] Enter a UK postcode",
-          "address": "[CY] Address",
-          "selectAnAddress": "[CY] Select an address",
-          "selectAddress": "[CY] Select address",
-          "pickAddress": "[CY] Pick an address",
-          "buildingAndStreet": "[CY] Building and Street",
-          "streetLine2": "[CY] Street line 2",
-          "townOrCity": "[CY] Town or city",
-          "county": "[CY] County",
-          "optional": "[CY] optional",
-          "postcode": "[CY] Postcode",
-          "fullAddress": "[CY] Enter full address",
-          "adressesFound": "[CY] addresses found",
-          "updateAddress": "[CY] Update address"
+          "enterPostcodeLink": "Rhowch y cod post i ddewis cyfeiriad",
+          "enterManualLink": "Nid oes gennyf god post yn y DU",
+          "findAddress": "Dod o hyd i gyfeiriad",
+          "enterPostcode": "Rhowch god post yn y DU",
+          "address": "Cyfeiriad",
+          "selectAnAddress": "Dewiswch gyfeiriad",
+          "selectAddress": "Dewiswch gyfeiriad",
+          "pickAddress": "Dewis cyfeiriad",
+          "buildingAndStreet": "Adeilad a stryd",
+          "streetLine2": "Stryd llinell 2",
+          "townOrCity": "Tref neu ddinas",
+          "county": "Sir",
+          "optional": "dewisol",
+          "postcode": "Cod post",
+          "fullAddress": "Rhowch y cyfeiriad llawn",
+          "adressesFound": "Cafwyd hyd i’r cyfeiriadau",
+          "updateAddress": "Diweddaru cyfeiriad"
         },
         "errors": {
           "addressType": {
@@ -100,47 +100,47 @@
             "invalid": ""
           },
           "postcode": {
-            "required": "[CY] Enter a postcode",
-            "invalid": "[CY] Please enter a valid postcode"
+            "required": "Rhowch god post",
+            "invalid": "Rhowch god post dilys"
           },
           "postcodeError": {
-            "required": "[CY] Sorry, the postcode look-up service is not working. Please enter the address manually",
-            "invalid": "[CY] Sorry, the postcode look-up service is not working. Please enter the address manually"
+            "required": "Nid yw’r gwasanaeth cael hyd i god post yn gweithio ar hyn o bryd. Teipiwch y cyfeiriad fesul llinell",
+            "invalid": "Nid yw’r gwasanaeth cael hyd i god post yn gweithio ar hyn o bryd. Teipiwch y cyfeiriad fesul llinell"
           },
           "postcodeManual": {
-            "required": "[CY] Please enter a postcode",
-            "invalid": "[CY] Please enter a valid postcode"
+            "required": "Rhowch god post",
+            "invalid": "Rhowch god post dilys"
           },
           "street1": {
-            "required": "[CY] Enter the first line of your address",
-            "invalid": "[CY] Please enter a building number"
+            "required": "Rhowch linell gyntaf y cyfeiriad",
+            "invalid": "Rhowch rif adeilad"
           },
           "street2": {
-            "required": "[CY] Please enter a street",
-            "invalid": "[CY] Please enter a street"
+            "required": "Rhowch enw stryd",
+            "invalid": "Rhowch enw stryd"
           },
           "town": {
-            "required": "[CY] Enter a town or city",
-            "invalid": "[CY] Please enter a town"
+            "required": "Rhowch enw tref neu ddinas",
+            "invalid": "Rhowch enw tref"
           },
           "county": {
-            "invalid": "[CY] Please enter a county"
+            "invalid": "Rhowch enw sir"
           },
           "address": {
-            "required": "[CY] No addresses found. Enter a postcode to search again",
-            "invalid": "[CY] Please enter a valid address"
+            "required": "Heb gael hyd i gyfeiriad. Teipiwch god post i chwilio eto",
+            "invalid": "Rhowch gyfeiriad dilys"
           },
           "addressManual": {
-            "required": "[CY] Please enter an address",
-            "invalid": "[CY] Please enter a valid address"
+            "required": "Rhowch gyfeiriad",
+            "invalid": "Rhowch gyfeiriad dilys"
           },
           "selectAddressIndex": {
-            "invalid": "[CY] Please select an address",
-            "required": "[CY] Please enter an address"
+            "invalid": "Dewiswch gyfeiriad",
+            "required": "Rhowch gyfeiriad"
           },
           "addressConfirmed": {
-            "required": "[CY] Please enter an address",
-            "invalid": "[CY] Please enter a valid address"
+            "required": "Rhowch gyfeiriad",
+            "invalid": "Rhowch gyfeiriad dilys"
           }
         }
       }

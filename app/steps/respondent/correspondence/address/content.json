@@ -11,7 +11,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Where should your {{divorceWho}}'s divorce papers be sent?"
+          "question": "I ble y dylid anfon papurau ysgariad eich {{divorceWho}}?"
         }
       }
     }

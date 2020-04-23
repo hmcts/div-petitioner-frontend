@@ -13,9 +13,9 @@
     "cy": {
       "translation": {
         "content": {
-          "heading": "[CY] Sorry, you can&#39;t use this service yet",
-          "title": "[CY] You need your original marriage certificate or a certified copy to use this service.",
-          "text": "[CY] You can <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">order a certified copy online</a> if you got married in England or Wales."
+          "heading": " Yn anffodus, ni allwch&#39; ddefnyddio'r gwasanaeth hwn eto",
+          "title": "Mae angen eich tystysgrif priodas wreiddiol neu gopi ardystiedig ohoni i ddefnyddio’r gwasanaeth hwn.",
+          "text": "Gallwch<a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\">Archebu copi ardystiedig ar-lein</a> os mai yng Nghymru neu Loegr y priodasoch."
         }
       }
     }

@@ -35,30 +35,30 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] How the court will contact you",
-          "byEmail": "[CY] By email",
-          "communicateParagraph1": "[CY] You need to agree to receive emails about the divorce to use the online service. Your email address will not be shared with your {{divorceWho}}.",
-          "communicateParagraph2": "[CY] Your emails will be sent to:",
-          "communicateParagraph3": "[CY] Provide a phone number to let court staff contact you more quickly. Your phone number will not be shared with your {{divorceWho}}.",
-          "email": "[CY] Your email address",
-          "byPhone": "[CY] By phone",
-          "byPost": "[CY] By post",
-          "petitionerPhoneNumber": "[CY] Enter your phone number (optional)",
-          "petitionerConsent": "[CY] I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email.",
-          "somePost": "[CY] You may need to receive some correspondence by post.",
-          "contactDetailsNotShare": "[CY] Your address will not be shared with your {{divorceWho}} as you've asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
-          "contactDetailsShare": "[CY] Your address will be shared with your {{divorceWho}}  as you’ve not asked for it to be kept private. If you use adultery as your reason for divorce, this address will also be shared with the co-respondent (if you choose to name them)."
+          "question": " Sut fydd y llys yn cysylltu â chi?",
+          "byEmail": "Trwy e-bost:",
+          "communicateParagraph1": "Bydd angen ichi gytuno i dderbyn negeseuon e-bost am yr ysgariad i ddefnyddio’r gwasanaeth ar-lein. Ni fyddwn yn rhannu eich cyfeiriad e-bost gyda’ch {{divorceWho}}.",
+          "communicateParagraph2": "Anfonir eich negeseuon e-bost i:",
+          "communicateParagraph3": "Darparwch rif ffôn er mwyn i staff y llys allu cysylltu â chi yn gynt. Ni fyddwn yn rhannu eich rhif ffôn gyda’ch {{divorceWho}}.",
+          "email": "Eich cyfeiriad e-bost",
+          "byPhone": "Ffôn:",
+          "byPost": "Drwy’r post",
+          "petitionerPhoneNumber": "Rhowch eich rhif ffôn (dewisol)",
+          "petitionerConsent": "Rwy’n cydsynio i’r ganolfan ysgaru anfon hysbysiadau ataf a chyflwyno dogfennau’r llys imi drwy e-bost.",
+          "somePost": "Efallai y bydd angen ichi dderbyn peth gohebiaeth drwy’r post.",
+          "contactDetailsNotShare": "Ni fyddwn yn rhannu eich cyfeiriad gyda’ch {{divorceWho}} gan eich bod wedi gofyn inni ei gadw’n breifat. Os ydych yn defnyddio godineb yn rheswm dros ysgaru, ni fyddwn yn rhannu’r cyfeiriad gyda’r cyd-atebydd (os byddwch yn dewis ei (h)enwi).",
+          "contactDetailsShare": "Byddwn yn rhannu eich cyfeiriad gyda’ch {{divorceWho}} gan nad ydych wedi gofyn inni ei gadw’n breifat. Os ydych yn defnyddio godineb yn rheswm dros ysgaru, byddwn yn rhannu’r cyfeiriad gyda’r cyd-atebydd hefyd (os byddwch yn dewis ei (h)enwi)."
         },
         "checkYourAnswersContent": {
-          "email": "[CY] Your email address",
-          "petitionerPhoneNumber": "[CY] Your phone number"
+          "email": "Eich cyfeiriad e-bost",
+          "petitionerPhoneNumber": "Eich rhif ffôn"
         },
         "errors": {
           "petitionerPhoneNumber": {
-            "invalid": "[CY] Enter a valid telephone number. Telephone number must be a minimum length of 9 and can only contain the numbers 0-9 and the symbols +, - , ( , ) , ."
+            "invalid": "Rhowch rif ffôn dilys. Rhaid i rifau ffôn gynnwys o leiaf 9 rhif ac nid ddylent gynnwys unrhyw symbolau ac eithrio’r rhifau 0-9 a’r symbolau +, - , ( , ) , ."
           },
           "petitionerConsent": {
-            "required": "[CY] You must agree to receive notifications and court documents by email to use this service."
+            "required": "Rhaid ichi gydsynio i dderbyn hysbysiadau a dogfennau’r llys drwy e-bost i ddefnyddio’r gwasanaeth hwn."
           }
         }
       }

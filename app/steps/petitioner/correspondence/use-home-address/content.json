@@ -18,13 +18,13 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you want your divorce papers sent to this address?",
-          "yes": "[CY] Yes, use this address",
-          "no": "[CY] No, add a different address"
+          "question": "Ydych chi eisiau inni anfon eich papurau ysgariad i’r cyfeiriad hwn?",
+          "yes": "Oes. Defnyddio’r cyfeiriad hwn",
+          "no": "Nac oes. Ychwanegu cyfeiriad gwahanol"
         },
         "errors": {
           "petitionerCorrespondenceUseHomeAddress": {
-            "required": "[CY] Select no if you want your divorce papers sent to a different address"
+            "required": "Dewiswch nac oes os ydych eisiau inni anfon eich papurau ysgariad i gyfeiriad gwahanol"
           }
         }
       }

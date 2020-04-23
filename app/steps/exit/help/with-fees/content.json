@@ -13,9 +13,9 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Apply for Help with Fees before you continue",
-          "reason": "[CY] You should <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\">apply for Help with Fees</a> before you continue with your divorce application. When applying, use form number 'D8' when asked which court fee you need help with.",
-          "advice": "[CY] You’ll get a HWF reference number to enter here."
+          "title": " Gwneud cais am Help i Dalu Ffioedd cyn ichi fynd ymlaen",
+          "reason": " Dylech <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\">Wneud cais am gymorth i dalu ffioedd</a> cyn ichi fynd ymlaen â’ch cais am ysgariad. Pan fyddwch yn gwneud cais, defnyddiwch ffurflen rhif 'D8' pan ofynnir ichi pa ffi yr ydych eisiau cael cymorth i’w thalu.",
+          "advice": " Byddwch yn cael cyfeirnod HWF i’w roi yma."
         }
       }
     }

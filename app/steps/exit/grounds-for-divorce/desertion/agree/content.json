@@ -13,9 +13,9 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] You can&#39;t use desertion as your reason for divorce",
-          "reason": "[CY] For desertion to have taken place your {{ divorceWho }} must have left without your consent.",
-          "proceed": "[CY] If you want to proceed with your divorce application, you must <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a>."
+          "title": "Ni allwch&#39; ddefnyddio’r ffaith fod eich gwr/gwraig wedi gadael yn rheswm dros ysgaru",
+          "reason": "I ddefnyddio’r ffaith fod eich gwr/gwraig wedi gadael yn rheswm dros ysgaru  mae’n rhaid i’ch {{ divorceWho }} fod wedi gadael heb eich cydsyniad.",
+          "proceed": " Os ydych am fwrw ymlaen gyda’ch cais am ysgariad, mae’n rhaid ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\" >ddewis ffaith arall sy’n berthnasol i chi</a>."
         }
       }
     }

@@ -24,19 +24,19 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you have a Help with Fees reference number?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No",
-          "reference": "[CY] Enter your reference number:"
+          "question": "A oes gennych chi gyfeirnod Help i Dalu Ffioedd?",
+          "yes": "Oes",
+          "no": "Nac oes",
+          "reference": "Rhowch eich cyfeirnod:"
         },
         "errors": {
           "helpWithFeesAppliedForFees": {
-            "required": "[CY] Select yes if you have a help with fees reference number",
-            "invalid": "[CY] Please select an answer"
+            "required": "Dewiswch Oes os oes gennych chi gyfeirnod help i dalu ffioedd",
+            "invalid": "Dewiswch ateb"
           },
           "helpWithFeesReferenceNumber": {
-            "required": "[CY] Enter your help with fees reference number",
-            "invalid": "[CY] Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
+            "required": "Rhowch eich cyfeirnod help i dalu ffioedd",
+            "invalid": "Rhowch gyfeirnod help i dalu ffioedd dilys e.e.: HWF-A1B-23C"
           }
         }
       }

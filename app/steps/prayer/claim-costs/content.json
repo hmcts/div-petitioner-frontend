@@ -38,33 +38,33 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you want to apply to claim your divorce costs?",
-          "introWhenClaimingAdultery": "[CY] You can ask the court to order your {{ divorceWho }}, and/or the person with whom the adultery was committed, to pay some or all of the divorce costs.",
-          "introWhenNotClaimingAdultery": "[CY] You can ask the court to order your {{ divorceWho }} to pay some or all of the divorce costs.",
-          "infoAboutFees": "[CY] This could include all the fees you have to pay during the divorce, such as application fees, solicitors fees, and additional court fees.",
-          "warning5YearsSeparation": "[CY] The court does not normally make a costs order where the application is based on 5 years separation.",
-          "whoCosts": "[CY] Who do you want to claim the costs from?",
-          "your": "[CY] Your",
-          "theCorespondent": "[CY] {{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} (the co-respondent)",
-          "youHaveToPayFeeNow": "[CY] The court will make a judgement on who should pay, and how much, at a later stage in the divorce.",
-          "youHaveToPayFeeAppNow": "[CY] You'll have to pay your application fee now. ",
-          "warning": "[CY] Warning",
-          "no": "[CY] No",
-          "yes": "[CY] Yes"
+          "question": " A ydych am wneud cais i hawlio costau’r ysgariad?",
+          "introWhenClaimingAdultery": "Gallwch ofyn i'r llys orchymyn i’ch {{ divorceWho }} a/neu'r unigolyn y cyflawnodd odineb gydag ef/hi, dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
+          "introWhenNotClaimingAdultery": "Gallwch ofyn i’r llys orchymyn i’ch {{ divorceWho }} dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
+          "infoAboutFees": "Gallai hyn gynnwys yr holl ffioedd sy’n rhaid ichi eu talu yn ystod yr ysgariad, megis ffioedd gwneud cais, ffioedd cyfreithiwr, ac unrhyw ffioedd ychwanegol i’r llys.",
+          "warning5YearsSeparation": "Fel rheol ni fydd y llys yn gwneud gorchymyn costau pan fo’r cais yn seiliedig ar fyw ar wahân ers 5 mlynedd.",
+          "whoCosts": "Gan bwy ydych chi am hawlio costau?",
+          "your": "Eich",
+          "theCorespondent": "{{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} (y cyd-atebydd)",
+          "youHaveToPayFeeNow": "Bydd y llys yn dyfarnu pwy ddylai dalu, a faint y dylai dalu, yn nes ymlaen yn ystod yr ysgariad.",
+          "youHaveToPayFeeAppNow": "Mae’n rhaid i chi dalu’r ffi am wneud cais nawr. ",
+          "warning": "Rhybudd",
+          "no": "Nac ydym",
+          "yes": "Ydym"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Applying to claim the divorce costs?"
+          "question": "A ydych yn gwneud cais i hawlio costau’r ysgariad?"
         },
         "errors": {
           "claimsCosts": {
-            "required": "[CY] Select yes if you want to claim costs",
-            "invalid": "[CY] Select yes if you want to claim costs"
+            "required": "Dewiswch ydw os ydych am hawlio’r costau",
+            "invalid": "Dewiswch ydw os ydych am hawlio’r costau"
           },
           "claimsCostsFrom": {
-            "invalid": "[CY] Select who you'd like to claim costs from"
+            "invalid": "Dewiswch pwy yr ydych am hawlio’r costau ganddo/ganddi"
           },
           "reasonForDivorceAdulteryIsNamed": {
-            "invalid": "[CY] Unable to determine if adultery is the reason for divorce"
+            "invalid": " Methu penderfynu ai godineb yw’r rheswm dros ysgaru"
           }
         }
       }

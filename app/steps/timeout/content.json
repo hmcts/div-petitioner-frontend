@@ -13,9 +13,9 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] You’ve been signed out to protect your privacy",
-          "timeout": "[CY] Your application was saved and closed because it was inactive for more than 60 minutes.",
-          "signIn": "[CY] <a class=\"govuk-link\" href=\"/index\">Sign in</a> to return to your application."
+          "title": "Rydych wedi cael eich allgofnodi i amddiffyn eich preifatrwydd",
+          "timeout": "Mae eich cais wedi ei arbed a’i gadw am na fu unrhyw newid iddo ers 60 munud.",
+          "signIn": "<a class=\"govuk-link\" href=\"/index\" >Mewngofnodwch</a> i ddychwelyd i'r cais."
         }
       }
     }

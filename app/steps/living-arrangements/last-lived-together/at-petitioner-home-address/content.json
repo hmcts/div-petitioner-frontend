@@ -19,14 +19,14 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Did you last live together at this address?",
-          "yes": "[CY] Yes, at this address",
-          "no": "[CY] No, at another address",
-          "never": "[CY] No, we&#39;ve never lived together"
+          "question": "A’i yn y cyfeiriad hwn wnaethoch chi fyw gyda'ch gilydd ddiwethaf?",
+          "yes": "Ie, yn y cyfeiriad hwn",
+          "no": "Na, mewn cyfeiriad arall",
+          "never": "Na, nid ydym &#39; wedi byw gyda’n gilydd erioed"
         },
         "errors": {
           "livingArrangementsLastLivedTogether": {
-            "required": "[CY] Select yes if you last lived together at this address"
+            "required": "Dewiswch do os mai yn y cyfeiriad hwn wnaethoch chi fyw gyda'ch gilydd ddiwethaf?"
           }
         }
       }

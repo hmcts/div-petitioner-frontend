@@ -13,9 +13,9 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "[CY] Your application has been removed",
-          "futureApply": "[CY] You will need to enter all your information again and pay the full fee if you apply again in future.",
-          "newApplication": "[CY] Start a new application"
+          "title": "Mae eich cais wedi ei ddileu",
+          "futureApply": "Os byddwch yn gwneud cais eto yn y dyfodol, bydd yn rhaid ichi gyflwyno’r holl wybodaeth eto a thalu ffi lawn am gais newydd.",
+          "newApplication":  "Dechrau cais newydd"
         }
       }
     }

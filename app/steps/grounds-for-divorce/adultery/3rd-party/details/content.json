@@ -28,23 +28,23 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] What is their name?",
-          "description": "[CY] Enter the full name of the person you believe your {{ divorceWho }} committed adultery with (legally known as the 'co-respondent').",
-          "reasonForDivorceAdultery3rdPartyFirstName": "[CY] First names",
-          "middleNames": "[CY] Include all middle names here",
-          "reasonForDivorceAdultery3rdPartyLastName": "[CY] Last names"
+          "question": "Beth yw ei (h)enw?",
+          "description": "Rhowch enw llawn yr unigolyn yr ydych yn credu bod eich {{ divorceWho }} wedi godinebu ag ef/hi (gelwir yr unigolyn yn ‘gyd-atebydd’ yn iaith y gyfraith).",
+          "reasonForDivorceAdultery3rdPartyFirstName": "Enwau cyntaf",
+          "middleNames": "Rhowch bob enw canol yma",
+          "reasonForDivorceAdultery3rdPartyLastName": "Enwau olaf"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Name of the person with whom the adultery was committed"
+          "question": "Enw’r unigolyn y cyflawnwyd y godineb gydag ef/hi?"
         },
         "errors": {
           "reasonForDivorceAdultery3rdPartyFirstName": {
-            "required": "[CY] Enter the co-respondent's first names",
-            "invalid": "[CY] First name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Rhowch enw cyntaf y cyd-atebydd",
+            "invalid": "Ni all yr enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "reasonForDivorceAdultery3rdPartyLastName": {
-            "required": "[CY] Enter the co-respondent's last names",
-            "invalid": "[CY] Last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Rhowch enwau olaf y cyd-atebydd",
+            "invalid": "Ni all yr enw olaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

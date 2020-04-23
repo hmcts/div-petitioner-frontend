@@ -43,38 +43,38 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Your account of the adultery",
-          "description": "[CY] Provide the following information about the adultery. If you don't know any of this information, say that you don't know and explain why.",
-          "remember": "[CY] Your {{ divorceWho }}  will be sent a copy of your divorce application, so you may want to avoid writing anything that will cause conflict between you. You can discuss your statement with your {{ divorceWho }} if you want to.",
-          "rejected": "[CY] Your application will be rejected if you don’t provide enough information to convince the court that your {{ divorceWho }} committed adultery.",
-          "whatDoYouKnow": "[CY] What do you know about the adultery?",
-          "whatElseDoYouKnow": "[CY] What else do you know about the adultery?",
-          "whereDidAdulteryHappen": "[CY] Where did the adultery happen?",
-          "whenDidAdulteryHappen": "[CY] When did the adultery happen?"
+          "question": "Eich safbwynt chi o ran y godineb",
+          "description": "Darparwch yr wybodaeth ganlynol ynglyn â’r godineb. Os nad ydych yn gwybod dim am hynny, dywedwch nad ydych yn gwybod ac eglurwch pam.",
+          "remember": "Anfonir copi o’ch cais am ysgariad at eich {{ divorceWho }}, felly efallai y byddwch am osgoi defnyddio iaith a allai achosi gwrthdaro rhyngoch. Gallwch drafod eich datganiad gyda’ch{{ divorceWho }} os ydych yn dymuno gwneud hynny.",
+          "rejected": "Gwrthodir eich cais os na fyddwch yn darparu digon o wybodaeth i argyhoeddi’r llys fod eich {{ divorceWho }} wedi godinebu.",
+          "whatDoYouKnow": "Beth wyddoch chi am y godineb?",
+          "whatElseDoYouKnow": "Beth arall wyddoch chi am y godineb?",
+          "whereDidAdulteryHappen": "Lle wnaeth y godineb ddigwydd?",
+          "whenDidAdulteryHappen": "Pryd wnaeth y godineb ddigwydd?"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] What you know of the adultery"
+          "question": "Eglurwch beth wyddoch chi am y godineb"
         },
         "errors": {
           "reasonForDivorceAdulteryDetails": {
-            "required": "[CY] Enter what you believe you know about the adultery",
-            "invalid": "[CY] Please answer this question"
+            "required": "Nodwch beth yr ydych yn credu yr ydych yn ei wybod am y godineb",
+            "invalid": "Atebwch y cwestiwn hwn os gwelwch yn dda"
           },
           "reasonForDivorceAdulteryWhenDetails": {
-            "required": "[CY] Enter when you believe the adultery happened",
-            "invalid": "[CY] Please answer this question"
+            "required": "Nodwch pryd yr ydych yn credu y digwyddodd y godineb",
+            "invalid": "Atebwch y cwestiwn hwn os gwelwch yn dda"
           },
           "reasonForDivorceAdulteryWhereDetails": {
-            "required": "[CY] Enter where you believe the adultery happened",
-            "invalid": "[CY] Please answer this question"
+            "required": "Nodwch lle yr ydych yn credu y digwyddodd y godineb",
+            "invalid": "Atebwch y cwestiwn hwn os gwelwch yn dda"
           },
           "reasonForDivorceAdulteryKnowWhen": {
-            "required": "[CY] Please answer this question",
-            "invalid": "[CY] Please answer this question"
+            "required": "Atebwch y cwestiwn hwn os gwelwch yn dda",
+            "invalid": "Atebwch y cwestiwn hwn os gwelwch yn dda"
           },
           "reasonForDivorceAdulteryKnowWhere": {
-            "required": "[CY] Please answer this question",
-            "invalid": "[CY] Please answer this question"
+            "required": "Atebwch y cwestiwn hwn os gwelwch yn dda",
+            "invalid": "Atebwch y cwestiwn hwn os gwelwch yn dda"
           }
         }
       }

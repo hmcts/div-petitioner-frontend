@@ -42,37 +42,37 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] When did your {{ divorceWho }} leave?",
-          "dateHint": "[CY] For example, 31 3 2006",
-          "day": "[CY] Day",
-          "month": "[CY] Month",
-          "year": "[CY] Year"
+          "question": "Pa bryd wnaeth eich {{ divorceWho }} adael?",
+          "dateHint": "Er enghraifft, 31 3 2006",
+          "day": "Diwrnod",
+          "month": "Mis",
+          "year": "Blwyddyn"
         },
         "checkYourAnswersContent": {
-          "question": "[CY] Date your {{ divorceWho }} deserted you"
+          "question": "Y dyddiad y gwnaeth eich {{ divorceWho }} eich gadael"
         },
         "errors": {
           "reasonForDivorceDesertionDay": {
-            "required": "[CY] Please enter day",
-            "invalid": "[CY] Please enter day"
+            "required": "Rhowch y diwrnod",
+            "invalid": "Rhowch y diwrnod"
           },
           "reasonForDivorceDesertionMonth": {
-            "required": "[CY] Please enter month",
-            "invalid": "[CY] Please enter month"
+            "required": "Rhowch y mis",
+            "invalid": "Rhowch y mis"
           },
           "reasonForDivorceDesertionYear": {
-            "required": "[CY] Please enter year",
-            "invalid": "[CY] Please enter year"
+            "required": "Rhowch y flwyddyn",
+            "invalid": "Rhowch y flwyddyn"
           },
           "reasonForDivorceDesertionBeforeMarriage": {
-            "invalid": "[CY] Date your {{ divorceWho }} left cannot be before you got married"
+            "invalid": "Ni all y dyddiad y gwnaeth eich {{ divorceWho }} adael fod cyn ichi briodi"
           },
           "reasonForDivorceDesertionDateInFuture": {
-            "invalid": "[CY] Enter a desertion date that is in the past"
+            "invalid": "Rhowch ddyddiad gwahanu yn y gorffennol"
           },
           "reasonForDivorceDesertionDate": {
-            "required": "[CY] Enter the date when your {{ divorceWho }} left",
-            "invalid": "[CY] Enter a valid date"
+            "required": "Rhowch y dyddiad y gwnaeth eich {{ divorceWho }} adael",
+            "invalid": "Nodwch ddyddiad dilys"
           }
         }
       }

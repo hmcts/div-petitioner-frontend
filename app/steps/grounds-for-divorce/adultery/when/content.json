@@ -19,14 +19,14 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Do you know when the adultery took place?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "question": "Ydych chi'n gwybod pryd digwyddodd y godineb?",
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "errors": {
           "reasonForDivorceAdulteryKnowWhen": {
-            "required": "[CY] Select yes if you know when the adultery happened",
-            "invalid": "[CY] Select yes if you know when the adultery happened"
+            "required": "Dewiswch ydw os ydych yn gwybod pryd y digwyddodd y godineb",
+            "invalid": "Dewiswch ydw os ydych yn gwybod pryd y digwyddodd y godineb"
           }
         }
       }

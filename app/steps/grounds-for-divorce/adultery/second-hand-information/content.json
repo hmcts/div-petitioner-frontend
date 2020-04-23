@@ -25,20 +25,20 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Has any of the information about the adultery come from another person?",
-          "description": "[CY] The court needs to know if any of this information is second hand.",
-          "yes": "[CY] Yes",
-          "no": "[CY] No",
-          "informationDetailsQuestion": "[CY] Which information was given to you?"
+          "question": "A gawsoch chi wybod unrhyw beth am y godineb gan rywun arall?",
+          "description": "Mae’r llys angen gwybod os oes unrhyw ran o’r wybodaeth hon yn ail-law.",
+          "yes": "Ydym",
+          "no": "Nac ydym",
+          "informationDetailsQuestion": "Pa wybodaeth a roddwyd ichi?"
         },
         "errors": {
           "reasonForDivorceAdulterySecondHandInfo": {
-            "required": "[CY] Select whether you found out these details yourself, or if any of them came from another person.",
-            "invalid": "[CY] Select whether you found out these details yourself, or if any of them came from another person."
+            "required": "Ai chi eich hun ddaeth i wybod am y manylion hyn, ynteu a glywsoch chi’r manylion gan rywun arall?.",
+            "invalid": "Ai chi eich hun ddaeth i wybod am y manylion hyn, ynteu a glywsoch chi’r manylion gan rywun arall?"
           },
           "reasonForDivorceAdulterySecondHandInfoDetails": {
-            "required": "[CY] Provide details of which information was given to you by another person.",
-            "invalid": "[CY] Provide details of which information was given to you by another person."
+            "required": "Eglurwch pa wybodaeth a roddwyd ichi gan rywun arall.",
+            "invalid": "Eglurwch pa wybodaeth a roddwyd ichi gan rywun arall."
           }
         }
       }

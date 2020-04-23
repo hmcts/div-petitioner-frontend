@@ -19,14 +19,14 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Did you marry your {{ divorceWho }} in the UK?",
-          "definition": "[CY] The UK is made up of England, Scotland, Wales and Northern Ireland.",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "question": "A wnaethoch chi briodi eich {{ divorceWho }} yn y DU?",
+          "definition": "Mae’r DU yn cynnwys Cymru, Lloegr, Yr Alban a Gogledd Iwerddon.",
+          "yes": "Ydym",
+          "no": "Nac ydym"
         },
         "errors": {
           "marriedInUk": {
-            "required": "[CY] Select yes if you married your {{ divorceWho }} in the UK."
+            "required": " Dewiswch do os gwnaethoch chi briodi eich {{ divorceWho }} yn y DU."
           }
         }
       }

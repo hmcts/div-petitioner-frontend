@@ -26,21 +26,21 @@
     "cy": {
       "translation": {
         "content": {
-          "heading": "[CY] Check if you can get a divorce in England and Wales",
-          "connection": "[CY] You must have some connection to England or Wales for the court to have the jurisdiction (the legal power) to grant you a divorce.",
-          "task": "[CY] Answer the following questions to find out your connections.",
-          "petitioner": "[CY] Is your life mainly based in England or Wales?",
-          "info": "[CY] This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
-          "respondent": "[CY] Is your {{ divorceWho }}'s life mainly based in England or Wales?",
-          "yes": "[CY] Yes",
-          "no": "[CY] No"
+          "heading": "Gwiriwch i weld a yw’n bosib i chi gael ysgariad yng Nghymru a Lloegr",
+          "connection": "Mae’n rhaid fod gennych ryw fath o gysylltiad â Chymru neu Loegr er mwyn i'r llys gael yr awdurdodaeth (y pwer cyfreithiol) i roi caniatâd i chi gael ysgariad.",
+          "task": "Atebwch y cwestiynau canlynol i weld beth yw eich cysylltiadau.",
+          "petitioner": "A ydych chi’n treulio’r rhan fwyaf o’ch amser yng Nghymru neu Loegr?",
+          "info": "Gall hyn gynnwys gweithio, bod yn berchen ar eiddo, bod â phlant mewn ysgol, a bod eich prif fywyd teuluol yng Nghymru neu Loegr.",
+          "respondent": "Ydy eich {{ divorceWho }} yn treulio’r rhan fwyaf o’i amser yng Nghymru neu Loegr?",
+          "yes": "Ydy",
+          "no": "Nac ydy"
         },
         "errors": {
           "jurisdictionPetitionerResidence": {
-            "required": "[CY] Select yes if your life is mainly based in England or Wales"
+            "required": "Dewiswch ydy os ydych yn treulio’r rhan fwyaf o’ch amser yng Nghymru neu Loegr?"
           },
           "jurisdictionRespondentResidence": {
-            "required": "[CY] Select yes if your {{ divorceWho }}'s life is mainly based in England or Wales"
+            "required": "Dewiswch ydy os ydy eich {{ divorceWho }} yn treulio’r rhan fwyaf o’i (h)amser yng Nghymru neu Loegr"
           }
         }
       }

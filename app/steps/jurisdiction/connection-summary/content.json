@@ -30,25 +30,25 @@
     "cy": {
       "translation": {
         "content": {
-          "heading": "[CY] You can use English or Welsh courts to get a divorce",
-          "description": "[CY] Your answers indicate that you can apply for a divorce in England and Wales because:",
-          "reason-A": "[CY] both you and your {{divorceWho}} are habitually resident",
-          "reason-B": "[CY] you and your {{divorceWho}} were both last habitually resident and one of you still lives here",
-          "reason-C": "[CY] your {{divorceWho}} is habitually resident",
-          "reason-D": "[CY] you’re habitually resident and have lived here for at least 12 months",
-          "reason-E": "[CY] you’re domiciled and habitually resident and have lived here for at least 6 months",
-          "reason-F": "[CY] both you and your {{divorceWho}} are domiciled",
-          "reason-G": "[CY] the courts of England and Wales have jurisdiction on a residual basis",
-          "question": "[CY] Do you want to change your answers?",
-          "clarification": "[CY] You only need to do this if your {{divorceWho}} may disagree with these connections.",
-          "confident": "[CY] I'm confident these connections are right",
-          "needInfo": "[CY] I'm still not sure, and I want to change my answers",
-          "showAll": "[CY] Show me all the connections, I‘ll choose myself",
-          "connectionSummaryTitle": "[CY] Connection Summary"
+          "heading": "Gallwch ddefnyddio llys yng Nghymru neu Loegr i gael ysgariad",
+          "description": "Mae eich atebion yn dangos y gallwch wneud cais am ysgariad yng Nghymru a Lloegr oherwydd:",
+          "reason-A": "eich bod chi a’ch {{divorceWho}} yn preswylio’n arferol yng Nghymru neu Loegr",
+          "reason-B": "eich bod chi a’ch {{divorceWho}} yn preswylio’n arferol yma ddiwethaf ac mae un ohonoch yn byw yma o hyd",
+          "reason-C": "bod eich {{divorceWho}} yn preswylio’n arferol yma",
+          "reason-D": "eich bod yn preswylio’n arferol yng Nghymru neu Loegr ac wedi byw yma am o leiaf blwyddyn",
+          "reason-E": "bod eich domisil yng Nghymru neu Loegr, ac rydych yn preswylio yno’n arferol ac wedi byw yno am o leiaf chwe mis",
+          "reason-F": "eich bod chi a’ch {{divorceWho}} â’ch domisil yng Nghymru neu Loegr",
+          "reason-G": "bod gan lysoedd Cymru a Lloegr awdurdodaeth ar sail weddillol",
+          "question": "Ydych chi eisiau newid eich atebion?",
+          "clarification": "Nid oes angen ichi wneud hyn ond os gallai eich {{divorceWho}} anghytuno â’r cysylltiadau hyn.",
+          "confident": "Rwy’n hyderus fod y cysylltiadau hyn yn gywir",
+          "needInfo": "Nid wyf yn siwr ac rwyf eisiau newid fy atebion",
+          "showAll": "Dangoswch yr holl gysylltiadau imi gael dewis",
+          "connectionSummaryTitle":"Crynodeb o’r cysylltiadau"
         },
         "errors": {
           "connectionSummary": {
-            "required": "[CY] Select yes if you're confident these connections are right"
+            "required": "Dewiswch ydw os ydych yn siwr bod y cysylltiadau hyn yn gywir"
           }
         }
       }

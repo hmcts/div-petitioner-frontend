@@ -15,7 +15,7 @@
           "petitionerPhoneNumber": "Enter your phone number (optional)",
           "petitionerConsent": "I agree that the divorce centre can send me notifications and deliver (serve) court documents to me by email.",
           "somePost": "You may need to receive some correspondence by post.",
-          "contactDetailsNotShare": "Your address will not be shared with your {{divorceWho}} as you've asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
+          "contactDetailsNotShare": "Your address will not be shared with your {{divorceWho}} as you’ve asked for it to be kept private. If you use adultery as your reason for divorce, this address will also not be shared with the co-respondent (if you choose to name them).",
           "contactDetailsShare": "Your address will be shared with your {{divorceWho}}  as you’ve not asked for it to be kept private. If you use adultery as your reason for divorce, this address will also be shared with the co-respondent (if you choose to name them)."
         },
         "checkYourAnswersContent": {

@@ -7,7 +7,7 @@
           "question": "Did you last live together at this address?",
           "yes": "Yes, at this address",
           "no": "No, at another address",
-          "never": "No, we&#39;ve never lived together"
+          "never": "No, we’ve never lived together"
         },
         "errors": {
           "livingArrangementsLastLivedTogether": {
@@ -19,14 +19,14 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "A’i yn y cyfeiriad hwn wnaethoch chi fyw gyda'ch gilydd ddiwethaf?",
+          "question": "A’i yn y cyfeiriad hwn wnaethoch chi fyw gyda’ch gilydd ddiwethaf?",
           "yes": "Ie, yn y cyfeiriad hwn",
           "no": "Na, mewn cyfeiriad arall",
-          "never": "Na, nid ydym &#39; wedi byw gyda’n gilydd erioed"
+          "never": "Na, nid ydym wedi byw gyda’n gilydd erioed"
         },
         "errors": {
           "livingArrangementsLastLivedTogether": {
-            "required": "Dewiswch do os mai yn y cyfeiriad hwn wnaethoch chi fyw gyda'ch gilydd ddiwethaf?"
+            "required": "Dewiswch do os mai yn y cyfeiriad hwn wnaethoch chi fyw gyda’ch gilydd ddiwethaf?"
           }
         }
       }

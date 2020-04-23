@@ -27,7 +27,7 @@
           "question": "A yw eich {{ divorceWho }} wedi cytuno i ysgaru?",
           "yes": {
             "label": "Do",
-            "additionalInfo": "Bydd y llys yn gofyn i'ch {{ divorceWho }} a yw’n cytuno i gael ysgariad. Os ydych eisoes wedi cael cydsyniad ysgrifenedig ganddo/ganddi, gallwch lwytho llun o’r ddogfen yn nes ymlaen wrth gwblhau’r cais hwn."
+            "additionalInfo": "Bydd y llys yn gofyn i’ch {{ divorceWho }} a yw’n cytuno i gael ysgariad. Os ydych eisoes wedi cael cydsyniad ysgrifenedig ganddo/ganddi, gallwch lwytho llun o’r ddogfen yn nes ymlaen wrth gwblhau’r cais hwn."
           },
           "no": {
             "label": "Nac oes",

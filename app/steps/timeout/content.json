@@ -15,7 +15,7 @@
         "content": {
           "title": "Rydych wedi cael eich allgofnodi i amddiffyn eich preifatrwydd",
           "timeout": "Mae eich cais wedi ei arbed a’i gadw am na fu unrhyw newid iddo ers 60 munud.",
-          "signIn": "<a class=\"govuk-link\" href=\"/index\" >Mewngofnodwch</a> i ddychwelyd i'r cais."
+          "signIn": "<a class=\"govuk-link\" href=\"/index\" >Mewngofnodwch</a> i ddychwelyd i’r cais."
         }
       }
     }

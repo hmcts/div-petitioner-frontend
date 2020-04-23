@@ -5,7 +5,7 @@
       "translation": {
         "content": {
           "question": "Do you have an address for your husband/wife?",
-          "line1": "You must provide either a residential address or their solicitor's address. This can be a UK or international address.",
+          "line1": "You must provide either a residential address or their solicitor’s address. This can be a UK or international address.",
           "line2": "The court needs this so that it can send your husband/wife their divorce papers.",
           "yes": "Yes",
           "no": "No"

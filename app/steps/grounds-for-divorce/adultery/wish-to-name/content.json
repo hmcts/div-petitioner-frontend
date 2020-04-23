@@ -5,9 +5,9 @@
       "translation": {
         "content": {
           "question": "Do you want to name the person you believe your {{ divorceWho }} committed adultery with?",
-          "noBenefit": "You don't have to name this person, and naming them usually doesn't benefit an application for divorce.",
+          "noBenefit": "You don’t have to name this person, and naming them usually doesn’t benefit an application for divorce.",
           "provideAddress": "If you do name them you must provide their full name and address so that they can respond.",
-          "delayed": "Your divorce will take longer and could cost more if they don't respond.",
+          "delayed": "Your divorce will take longer and could cost more if they don’t respond.",
           "costs": "You can ask the court to order them to pay some or all of your divorce costs.",
           "mustProvideAddress": "You must provide their full name and address so the court can send them a copy of your divorce application.",
           "warning": "Warning",
@@ -29,8 +29,8 @@
           "noBenefit": "Nid oes raid ichi enwi’r unigolyn, ac fel rheol ni fydd gwneud hynny’n cynorthwyo cais am ysgariad.",
           "provideAddress": "Os byddwch yn enwi’r unigolyn, mae’n rhaid ichi ddarparu enw a chyfeiriad llawn yr unigolyn er mwyn iddo/iddi ymateb.",
           "delayed": "Bydd eich ysgariad yn cymryd mwy o amser a gallai gostio mwy os na fydd yn ymateb.",
-          "costs": "Gallwch ofyn i'r llys orchymyn iddo/iddi dalu rhywfaint o gostau eich ysgariad neu holl gostau eich ysgariad.",
-          "mustProvideAddress": "Rhaid ichi ddarparu enw a chyfeiriad llawn yr unigolyn er mwyn i’r llys allu anfon copi o'ch cais am ysgariad ato/ati.",
+          "costs": "Gallwch ofyn i’r llys orchymyn iddo/iddi dalu rhywfaint o gostau eich ysgariad neu holl gostau eich ysgariad.",
+          "mustProvideAddress": "Rhaid ichi ddarparu enw a chyfeiriad llawn yr unigolyn er mwyn i’r llys allu anfon copi o’ch cais am ysgariad ato/ati.",
           "warning": "Rhybudd",
           "yes": "Ydw",
           "no": "Nac ydw"

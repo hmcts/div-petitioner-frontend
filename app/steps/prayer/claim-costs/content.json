@@ -13,7 +13,7 @@
           "your": "Your",
           "theCorespondent": "{{ reasonForDivorceAdultery3rdPartyFirstName }} {{ reasonForDivorceAdultery3rdPartyLastName }} (the co-respondent)",
           "youHaveToPayFeeNow": "The court will make a judgement on who should pay, and how much, at a later stage in the divorce.",
-          "youHaveToPayFeeAppNow": "You'll have to pay your application fee now. ",
+          "youHaveToPayFeeAppNow": "You’ll have to pay your application fee now. ",
           "warning": "Warning",
           "no": "No",
           "yes": "Yes"
@@ -27,7 +27,7 @@
             "invalid": "Select yes if you want to claim costs"
           },
           "claimsCostsFrom": {
-            "invalid": "Select who you'd like to claim costs from"
+            "invalid": "Select who you’d like to claim costs from"
           },
           "reasonForDivorceAdulteryIsNamed": {
             "invalid": "Unable to determine if adultery is the reason for divorce"
@@ -39,7 +39,7 @@
       "translation": {
         "content": {
           "question": " A ydych am wneud cais i hawlio costau’r ysgariad?",
-          "introWhenClaimingAdultery": "Gallwch ofyn i'r llys orchymyn i’ch {{ divorceWho }} a/neu'r unigolyn y cyflawnodd odineb gydag ef/hi, dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
+          "introWhenClaimingAdultery": "Gallwch ofyn i’r llys orchymyn i’ch {{ divorceWho }} a/neu’r unigolyn y cyflawnodd odineb gydag ef/hi, dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
           "introWhenNotClaimingAdultery": "Gallwch ofyn i’r llys orchymyn i’ch {{ divorceWho }} dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
           "infoAboutFees": "Gallai hyn gynnwys yr holl ffioedd sy’n rhaid ichi eu talu yn ystod yr ysgariad, megis ffioedd gwneud cais, ffioedd cyfreithiwr, ac unrhyw ffioedd ychwanegol i’r llys.",
           "warning5YearsSeparation": "Fel rheol ni fydd y llys yn gwneud gorchymyn costau pan fo’r cais yn seiliedig ar fyw ar wahân ers 5 mlynedd.",

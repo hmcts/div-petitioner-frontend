@@ -15,11 +15,11 @@
         },
         "errors": {
           "reasonForDivorceAdultery3rdPartyFirstName": {
-            "required": "Enter the co-respondent's first names",
+            "required": "Enter the co-respondent’s first names",
             "invalid": "First name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "reasonForDivorceAdultery3rdPartyLastName": {
-            "required": "Enter the co-respondent's last names",
+            "required": "Enter the co-respondent’s last names",
             "invalid": "Last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }

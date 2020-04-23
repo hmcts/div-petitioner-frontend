@@ -4,13 +4,13 @@
     "en": {
       "translation": {
         "content": {
-          "question": "Do you know your {{ divorceWho }}&#39;s home address?",
+          "question": "Do you know your {{ divorceWho }}’s home address?",
           "yes": "Yes",
           "no": "No"
         },
         "errors": {
           "respondentKnowsHomeAddress": {
-            "required": "Select yes if you know your {{ divorceWho }}&#39;s home address"
+            "required": "Select yes if you know your {{ divorceWho }}’s home address"
           }
         }
       }
@@ -18,13 +18,13 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "A ydych yn gwybod beth yw cyfeiriad cartref eich {{ divorceWho }}&#39;?",
+          "question": "A ydych yn gwybod beth yw cyfeiriad cartref eich {{ divorceWho }}?",
           "yes": "Ydw",
           "no": "Nac ydw"
         },
         "errors": {
           "respondentKnowsHomeAddress": {
-            "required": "Dewiswch ydw os ydych yn gwybod beth yw cyfeiriad cartref eich {{ divorceWho }}&#39;"
+            "required": "Dewiswch ydw os ydych yn gwybod beth yw cyfeiriad cartref eich {{ divorceWho }}"
           }
         }
       }

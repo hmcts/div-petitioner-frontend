@@ -5,7 +5,7 @@
       "translation": {
         "content": {
           "question": "Did your {{ divorceWho }} leave without your agreement?",
-          "questionHint": "You can only use desertion as a reason for divorce if you didn&#39;t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
+          "questionHint": "You can only use desertion as a reason for divorce if you didn’t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
           "yes": "Yes, they left without my agreement",
           "no": "No, I agreed that they should go"
         },
@@ -20,7 +20,7 @@
       "translation": {
         "content": {
           "question": "A wnaeth eich {{ divorceWho }} adael heb ichi gydsynio?",
-          "questionHint": "Ni allwch ddefnyddio gadael yn rheswm dros ysgaru ond os nad oeddech&#39; yn cydsynio i’ch {{ divorceWho }} eich gadael. Er enghraifft, os gwnaeth eich gadael, neu os cymerodd swydd dramor heb ichi gytuno.",
+          "questionHint": "Ni allwch ddefnyddio gadael yn rheswm dros ysgaru ond os nad oeddech yn cydsynio i’ch {{ divorceWho }} eich gadael. Er enghraifft, os gwnaeth eich gadael, neu os cymerodd swydd dramor heb ichi gytuno.",
           "yes": "Do, gadawodd heb imi gytuno i hynny",
           "no": "Naddo, cytunais y dylai fynd"
         },

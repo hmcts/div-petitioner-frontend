@@ -6,9 +6,9 @@
         "content": {
           "question": "Upload your documents",
           "uploadDigitalPhoto": "You need to upload a digital photo of the following documents:",
-          "marriageCertificateContent": "your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\" aria-label=\"Certified copy link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified copy</a>",
-          "translationContent": "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Certifying a document link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified English translation</a> of your marriage certificate",
-          "nameChangeContent": "proof of your name change, for example a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Change name deed poll link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
+          "marriageCertificateContent": "your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\" aria-label=\"Certified copy link, This will open a new tab. You’ll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified copy</a>",
+          "translationContent": "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Certifying a document link, This will open a new tab. You’ll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">certified English translation</a> of your marriage certificate",
+          "nameChangeContent": "proof of your name change, for example a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Change name deed poll link, This will open a new tab. You’ll need to return to this tab and continue with your application within 60 minutes so you don’t lose your progress.\">deed poll</a>. Upload proof of each change if you’ve done it more than once since you got married",
           "camera": "You can use your phone to do this now if it has a camera.",
           "howToTake": "How to take the picture",
           "howToTakeInfo1": "Place your certificate on a flat service in a well lit room. Use a flash if you need to.",
@@ -18,10 +18,10 @@
           "limitations": "The image must be of the entire document and has to be readable by court staff. You can upload most types of image (up to 10MB).",
           "otherDocuments": "You can also upload other documents that you need to send.",
           "uploadedFiles": "Uploaded files",
-          "cantUpload": "If you can't upload your documents",
-          "continue": "Continue with your application. When you're finished you'll be given a reference number and the court's address.",
+          "cantUpload": "If you can’t upload your documents",
+          "continue": "Continue with your application. When you’re finished you’ll be given a reference number and the court’s address.",
           "emailOrPost": "You can email or post your documents to the court.",
-          "keptAndReturned": "You need to send the original marriage certificate or a certified copy if you're sending it by post. Do not send a photocopy. Your certificate will be kept and won't be returned to you.",
+          "keptAndReturned": "You need to send the original marriage certificate or a certified copy if you’re sending it by post. Do not send a photocopy. Your certificate will be kept and won’t be returned to you.",
           "noFiles": "No files uploaded",
           "remove": "Remove",
           "clickToChooseFile": "Choose a file or take a photo",
@@ -71,19 +71,19 @@
           "question": "Llwytho eich dogfennau",
           "uploadDigitalPhoto": "Mae angen ichi lwytho llun digidol o’r dogfennau canlynol:",
           "marriageCertificateContent": "eich tystysgrif priodas wreiddiol neu <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\" target=\"_blank\" aria-label=\"Dolen i wybodaeth am gopi ardystiedig, Bydd hon yn agor mewn ffenestr newydd. Bydd angen ichi ddod yn ôl at y tab hwn a pharhau â’ch cais o fewn 60 munud fel na fyddwch yn colli’r gwaith yr ydych wedi ei wneud eisoes.\">copi ardystiedig</a>",
-          "translationContent" : "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Dolen i wybodaeth am ardystio dogfen, Bydd hon yn agor mewn ffenestr newydd. Bydd angen ichi ddod yn ôl at y tab hwn a pharhau â’ch cais o fewn 60 munud fel na fyddwch yn colli’r gwaith yr ydych wedi ei wneud eisoes.\">cyfieithiad Saesneg ardystiedig</a> o’ch tystysgrif priodas",
-          "nameChangeContent" : "prawf o’ch newid enw, er enghraifft a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Dolen i wybodaeth am weithredoedd newid enw, Bydd hon yn agor mewn ffenestr newydd. Bydd angen ichi ddod yn ôl at y tab hwn a pharhau â’ch cais o fewn 60 munud fel na fyddwch yn colli’r gwaith yr ydych wedi ei wneud eisoes.\">gweithred newid enw</a>. Dylid cynnwys prawf o bob newid enw os ydych wedi newid eich enw fwy nag unwaith ers ichi briodi",
+          "translationContent": "a <a class=\"govuk-link\" href=\"https://www.gov.uk/certifying-a-document\" target=\"_blank\" aria-label=\"Dolen i wybodaeth am ardystio dogfen, Bydd hon yn agor mewn ffenestr newydd. Bydd angen ichi ddod yn ôl at y tab hwn a pharhau â’ch cais o fewn 60 munud fel na fyddwch yn colli’r gwaith yr ydych wedi ei wneud eisoes.\">cyfieithiad Saesneg ardystiedig</a> o’ch tystysgrif priodas",
+          "nameChangeContent": "prawf o’ch newid enw, er enghraifft a <a class=\"govuk-link\" href=\"https://www.gov.uk/change-name-deed-poll/overview\" target=\"_blank\" aria-label=\"Dolen i wybodaeth am weithredoedd newid enw, Bydd hon yn agor mewn ffenestr newydd. Bydd angen ichi ddod yn ôl at y tab hwn a pharhau â’ch cais o fewn 60 munud fel na fyddwch yn colli’r gwaith yr ydych wedi ei wneud eisoes.\">gweithred newid enw</a>. Dylid cynnwys prawf o bob newid enw os ydych wedi newid eich enw fwy nag unwaith ers ichi briodi",
           "camera": "Gallwch ddefnyddio’ch ffôn symudol i wneud hyn nawr os oes ganddo gamera.",
-          "howToTake": "Sut i dynnu'r llun",
+          "howToTake": "Sut i dynnu’r llun",
           "howToTakeInfo1": "Rhowch eich tystysgrif ar rywbeth gwastad mewn ystafell sydd â digon o olau. Defnyddiwch fflach y camera os bydd angen.",
-          "howToTakeInfo2": "Tynnwch lun da o'r dystysgrif gyfan. Dylech allu gweld corneli'r ddogfen.",
+          "howToTakeInfo2": "Tynnwch lun da o’r dystysgrif gyfan. Dylech allu gweld corneli’r ddogfen.",
           "howToTakeInfo3": "Gwiriwch fod y llun yn glir. Rhaid ichi allu darllen yr holl ddogfen, yn cynnwys unrhyw lawysgrifen. Gwnewch y llun yn fwy os byddwch angen gwirio hyn.",
           "howToTakeInfo4": "Anfonwch y llun i’r ddyfais hon (e.e. drwy e-bost) a’i gadw.",
-          "limitations": "Rhaid i'r llun ddangos y ddogfen gyfan a bod yn ddigon clir i staff y llys ei darllen. Gallwch lwytho’r rhan fwyaf o fathau o ddelweddau (hyd at 10MB).",
+          "limitations": "Rhaid i’r llun ddangos y ddogfen gyfan a bod yn ddigon clir i staff y llys ei darllen. Gallwch lwytho’r rhan fwyaf o fathau o ddelweddau (hyd at 10MB).",
           "otherDocuments": "Gallwch lwytho dogfennau eraill y bydd eu hangen arnoch hefyd.",
           "uploadedFiles": "Ffeiliau sydd wedi cael eu llwytho",
           "cantUpload": " Os nad ydych yn gallu llwytho eich dogfennau",
-          "continue": "Parhau â'ch cais. Pan fyddwch wedi gorffen, byddwch yn cael cyfeirnod a chyfeiriad y llys.",
+          "continue": "Parhau â’ch cais. Pan fyddwch wedi gorffen, byddwch yn cael cyfeirnod a chyfeiriad y llys.",
           "emailOrPost": "Gallwch e-bostio neu bostio eich dogfennau i’r llys.",
           "keptAndReturned": "Mae angen ichi anfon y dystysgrif priodas wreiddiol neu gopi ardystiedig os ydych yn ei hanfon drwy’r post. Peidiwch ag anfon llungopi. Bydd y llys yn cadw eich tystysgrif ac ni fyddwn yn ei dychwelyd atoch.",
           "noFiles": "Nid oes ffeiliau wedi cael eu llwytho",
@@ -93,38 +93,38 @@
           "dragAndDrop": "Llusgwch a gollyngwch ffeiliau yma",
           "selectFiles": "Dewiswch ffeiliau i’w llwytho",
           "upload": "Llwytho",
-          "fileToBig": "Mae’r ffeil yn rhy fawr ac yn fwy na'r 10mb a ganiateir. Gwnewch y ffeil yn llai a rhowch gynnig arall arni.",
+          "fileToBig": "Mae’r ffeil yn rhy fawr ac yn fwy na’r 10mb a ganiateir. Gwnewch y ffeil yn llai a rhowch gynnig arall arni.",
           "dictMaxFilesExceeded": "Gallwch lwytho hyd at 10 ffeil.",
           "uploading": "Ffeil yn cael ei llwytho",
           "pendingUpload": "Ffeil ar fin cael ei llwytho",
           "hide": "Cuddio",
-          "errorUnknown" : "Mae’n ddrwg gennym, ond roedd problem wrth lwytho'r ffeil hon. Rhowch gynnig arall arni yn hwyrach ymlaen.",
-          "errorFileSizeTooLarge" : "Mae’r ffeil yn rhy fawr ac yn fwy na'r 10mb a ganiateir. Gwnewch y ffeil yn llai a rhowch gynnig arall arni.",
-          "errorFileTypeInvalid" : "Rhaid i'r ffeil fod ar ffurf jpg, bmp, tiff, png neu PDF.",
-          "errorMaximumFilesExceeded" : "Gallwch lwytho hyd at 10 ffeil.",
-          "errorVirusFoundInFile": "Mae'r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
+          "errorUnknown": "Mae’n ddrwg gennym, ond roedd problem wrth lwytho’r ffeil hon. Rhowch gynnig arall arni yn hwyrach ymlaen.",
+          "errorFileSizeTooLarge": "Mae’r ffeil yn rhy fawr ac yn fwy na’r 10mb a ganiateir. Gwnewch y ffeil yn llai a rhowch gynnig arall arni.",
+          "errorFileTypeInvalid": "Rhaid i’r ffeil fod ar ffurf jpg, bmp, tiff, png neu PDF.",
+          "errorMaximumFilesExceeded": "Gallwch lwytho hyd at 10 ffeil.",
+          "errorVirusFoundInFile": "Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
         },
         "checkYourAnswersContent": {
           "question": " Dogfennau sydd wedi eu llwytho"
         },
         "errors": {
           "marriageCertificateFiles": {
-            "invalid" : " Mae’r ffeiliau yr ydych wedi eu llwytho yn annilys."
+            "invalid": " Mae’r ffeiliau yr ydych wedi eu llwytho yn annilys."
           },
           "errorUnknown": {
-            "invalid" : "Mae’n ddrwg gennym, ond roedd problem wrth lwytho'r ffeil hon. Rhowch gynnig arall arni yn hwyrach ymlaen."
+            "invalid": "Mae’n ddrwg gennym, ond roedd problem wrth lwytho’r ffeil hon. Rhowch gynnig arall arni yn hwyrach ymlaen."
           },
           "errorFileSizeTooLarge": {
-            "invalid" : "Mae’r ffeil yn rhy fawr ac yn fwy na'r 10mb a ganiateir. Gwnewch y ffeil yn llai a rhowch gynnig arall arni."
+            "invalid": "Mae’r ffeil yn rhy fawr ac yn fwy na’r 10mb a ganiateir. Gwnewch y ffeil yn llai a rhowch gynnig arall arni."
           },
           "errorFileTypeInvalid": {
-            "invalid" : "Rhaid i'r ffeil fod ar ffurf jpg, bmp, tiff, png neu PDF."
+            "invalid": "Rhaid i’r ffeil fod ar ffurf jpg, bmp, tiff, png neu PDF."
           },
           "errorMaximumFilesExceeded": {
-            "invalid" : " Gallwch lwytho hyd at 10 ffeil."
+            "invalid": " Gallwch lwytho hyd at 10 ffeil."
           },
           "errorVirusFoundInFile": {
-            "invalid" : " Mae'r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
+            "invalid": " Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
           }
         }
       }

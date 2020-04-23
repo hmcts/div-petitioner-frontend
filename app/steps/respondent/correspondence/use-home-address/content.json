@@ -4,7 +4,7 @@
     "en": {
       "translation": {
         "content": {
-          "question": "Is this where your {{ divorceWho }}'s divorce papers should be sent?",
+          "question": "Is this where your {{ divorceWho }}’s divorce papers should be sent?",
           "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
           "yes": "Yes, use this address",
           "no": "No, send them to a different address"
@@ -14,7 +14,7 @@
         },
         "errors": {
           "respondentCorrespondenceUseHomeAddress": {
-            "required": "Select whether you want your {{ divorceWho }}'s divorce papers sent to this address"
+            "required": "Select whether you want your {{ divorceWho }}’s divorce papers sent to this address"
           }
         }
       }

@@ -15,14 +15,14 @@
           "reason-G": "the courts of England and Wales have jurisdiction on a residual basis",
           "question": "Do you want to change your answers?",
           "clarification": "You only need to do this if your {{divorceWho}} may disagree with these connections.",
-          "confident": "I'm confident these connections are right",
-          "needInfo": "I'm still not sure, and I want to change my answers",
+          "confident": "I’m confident these connections are right",
+          "needInfo": "I’m still not sure, and I want to change my answers",
           "showAll": "Show me all the connections, I‘ll choose myself",
           "connectionSummaryTitle": "Connection Summary"
         },
         "errors": {
           "connectionSummary": {
-            "required": "Select yes if you're confident these connections are right"
+            "required": "Select yes if you’re confident these connections are right"
           }
         }
       }
@@ -44,7 +44,7 @@
           "confident": "Rwy’n hyderus fod y cysylltiadau hyn yn gywir",
           "needInfo": "Nid wyf yn siwr ac rwyf eisiau newid fy atebion",
           "showAll": "Dangoswch yr holl gysylltiadau imi gael dewis",
-          "connectionSummaryTitle":"Crynodeb o’r cysylltiadau"
+          "connectionSummaryTitle": "Crynodeb o’r cysylltiadau"
         },
         "errors": {
           "connectionSummary": {

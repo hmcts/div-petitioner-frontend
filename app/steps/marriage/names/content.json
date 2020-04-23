@@ -9,12 +9,12 @@
           "firstName": "First name(s)",
           "lastName": "Last name(s)",
           "middleNames": "Include all middle names here",
-          "respondentName": "Provide {{ divorceWho }}&#39;s full name",
-          "respondentFirstName": "{{ divorceWho }}&#39;s first name(s)",
-          "respondentLastName": "{{ divorceWho }}&#39;s last name(s)"
+          "respondentName": "Provide {{ divorceWho }}’s full name",
+          "respondentFirstName": "{{ divorceWho }}’s first name(s)",
+          "respondentLastName": "{{ divorceWho }}’s last name(s)"
         },
         "checkYourAnswersContent": {
-          "respondentName": "Your {{ divorceWho }}&#39;s current name",
+          "respondentName": "Your {{ divorceWho }}’s current name",
           "yourName": "Your current name"
         },
         "errors": {
@@ -27,12 +27,12 @@
             "invalid": "Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "respondentFirstName" : {
-            "required": "Enter your {{ divorceWho }}&#39;s first name(s)",
-            "invalid": "Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your {{ divorceWho }}’s first name(s)",
+            "invalid": "Your {{ divorceWho }}’s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "respondentLastName" : {
-            "required": "Enter your {{ divorceWho }}&#39;s last name(s)",
-            "invalid": "Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+            "required": "Enter your {{ divorceWho }}’s last name(s)",
+            "invalid": "Your {{ divorceWho }}’s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
           }
         }
       }
@@ -45,30 +45,30 @@
           "firstName": "Enw(au) cyntaf",
           "lastName": "Cyfenw(au)",
           "middleNames": "Rhowch bob enw canol yma",
-          "respondentName": "Rhowch enw llawn {{ divorceWho }}&#39;",
-          "respondentFirstName": "Enw(au) cyntaf {{ divorceWho }}&#39;",
-          "respondentLastName": "Enw(au) olaf {{ divorceWho }}&#39;s"
+          "respondentName": "Rhowch enw llawn {{ divorceWho }}",
+          "respondentFirstName": "Enw(au) cyntaf {{ divorceWho }}",
+          "respondentLastName": "Enw(au) olaf {{ divorceWho }}"
         },
         "checkYourAnswersContent": {
-          "respondentName": "Enw cyfredol eich{{ divorceWho }}&#39;",
+          "respondentName": "Enw cyfredol eich{{ divorceWho }}",
           "yourName": "Eich enw cyfredol"
         },
         "errors": {
           "petitionerFirstName": {
-            "required" : " Nodwch eich enw(au) cyntaf",
-            "invalid" : " Ni all eich enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": " Nodwch eich enw(au) cyntaf",
+            "invalid": " Ni all eich enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "petitionerLastName": {
-            "required" : "Nodwch eich enw(au) olaf",
-            "invalid" : "Ni all eich cyfenw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": "Nodwch eich enw(au) olaf",
+            "invalid": "Ni all eich cyfenw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "respondentFirstName" : {
-            "required" : " Rhowch enw(au) cyntaf eich {{ divorceWho }}&#39;",
-            "invalid" : " Ni all enw cyntaf eich{{ divorceWho }}&#39;s gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": " Rhowch enw(au) cyntaf eich {{ divorceWho }}",
+            "invalid": " Ni all enw cyntaf eich{{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "respondentLastName" : {
-            "required" : " Rhowch enw(au) olaf eich  {{ divorceWho }}&#39;",
-            "invalid" : " Ni all enw olaf eich {{ divorceWho }}&#39; gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": " Rhowch enw(au) olaf eich  {{ divorceWho }}",
+            "invalid": " Ni all enw olaf eich {{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

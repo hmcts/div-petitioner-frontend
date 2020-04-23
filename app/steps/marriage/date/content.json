@@ -12,14 +12,14 @@
           "year": "Year",
           "duration": "Married for less than 2 years?",
           "facts": "Later in this application, you’ll be asked to choose a reason for the breakdown of your marriage from a list of 5 options.",
-          "options": "You won’t be shown the following options if you haven't been married for long enough to use them.",
+          "options": "You won’t be shown the following options if you haven’t been married for long enough to use them.",
           "separated2YearsTitle": "Separated for 2 years with consent",
-          "separated2YearsDescription": "Your {{ divorceWho }} agrees to a divorce and you&#39;ve been separated for the past 2 years or more",
+          "separated2YearsDescription": "Your {{ divorceWho }} agrees to a divorce and you’ve been separated for the past 2 years or more",
           "separated5YearsTitle": "Separated for 5 years",
-          "separated5YearsDescription": "You&#39;ve been separated from your {{ divorceWho }} for the past 5 years or more",
+          "separated5YearsDescription": "You’ve been separated from your {{ divorceWho }} for the past 5 years or more",
           "desertionTitle": "Desertion",
           "desertionDescription": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-          "stillCanUse": "You'll be able to select <strong>behaviour</strong> and <strong>adultery</strong>, as long as you've been married for more than a year."
+          "stillCanUse": "You’ll be able to select <strong>behaviour</strong> and <strong>adultery</strong>, as long as you’ve been married for more than a year."
         },
         "checkYourAnswersContent": {
           "question": "Date of marriage"
@@ -63,9 +63,9 @@
           "facts": "Yn nes ymlaen yn y cais hwn, gofynnir ichi ddewis rheswm, o blith 5 opsiwn, pam y bu i’ch priodas chwalu.",
           "options": "Ni fydd yr opsiynau canlynol yn ymddangos os nad ydych wedi priodi ers digon o amser i’w defnyddio.",
           "separated2YearsTitle": "Wedi gwahanu am 2 flynedd drwy gytundeb",
-          "separated2YearsDescription": "Mae eich{{ divorceWho }} yn cytuno i ysgaru ac rydych &#39; wedi gwahanu ers 2 flynedd neu fwy",
+          "separated2YearsDescription": "Mae eich{{ divorceWho }} yn cytuno i ysgaru ac rydych wedi gwahanu ers 2 flynedd neu fwy",
           "separated5YearsTitle": "Wedi gwahanu ers 5 mlynedd",
-          "separated5YearsDescription": "Rydych &#39; wedi gwahanu oddi wrth eich {{ divorceWho }} ers 5 mlynedd neu fwy",
+          "separated5YearsDescription": "Rydych wedi gwahanu oddi wrth eich {{ divorceWho }} ers 5 mlynedd neu fwy",
           "desertionTitle": "Gadael",
           "desertionDescription": "Mae eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd",
           "stillCanUse": "Byddwch yn gallu dewis <strong>ymddygiad</strong> a <strong>godineb</strong>, cyhyd â’ch bod wedi priodi ers mwy na blwyddyn."

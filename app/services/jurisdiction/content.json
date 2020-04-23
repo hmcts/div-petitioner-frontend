@@ -4,9 +4,9 @@
     "en": {
       "translation": {
         "content": {
-          "how-your-connected": "How you're connected to England and Wales",
+          "how-your-connected": "How you’re connected to England and Wales",
           "see-you-legal-connections": "See the legal versions",
-          "connections": "How you're legally connected to England and Wales",
+          "connections": "How you’re legally connected to England and Wales",
           "connectionA": "My {{ divorceWho }} and I are both habitually resident in England and Wales",
           "connectionB": "My {{ divorceWho }} and I were both last habitually resident in England and Wales and one of us still lives there",
           "connectionC": "My {{ divorceWho }} is habitually resident in England and Wales",

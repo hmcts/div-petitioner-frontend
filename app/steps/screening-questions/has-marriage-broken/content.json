@@ -4,7 +4,7 @@
     "en": {
       "translation": {
         "content": {
-          "question": "Has your marriage broken down irretrievably (it can&#39;t be saved)?",
+          "question": "Has your marriage broken down irretrievably (it can’t be saved)?",
           "line1": "You can only get a divorce on the ground that your marriage has broken down irretrievably.",
           "yes": "Yes",
           "no": "No",
@@ -23,7 +23,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "A ydy’ch priodas wedi chwalu’n anadferadwy (ni ellir&#39; ei hachub)? ",
+          "question": "A ydy’ch priodas wedi chwalu’n anadferadwy (ni ellir ei hachub)? ",
           "line1": "Ni allwch gael ysgariad ond ar y sail bod y briodas wedi chwalu’n anadferadwy.",
           "yes": "Ydym",
           "no": "Nac ydym",

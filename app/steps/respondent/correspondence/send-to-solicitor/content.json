@@ -4,12 +4,12 @@
     "en": {
       "translation": {
         "content": {
-          "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
+          "question": "Where should your {{ divorceWho }}’s divorce papers be sent?",
           "correspondence": "To a different address"
         },
         "errors": {
           "respondentSolicitorRepresented": {
-            "required": "Select where your {{ divorceWho }}'s divorce papers should be sent"
+            "required": "Select where your {{ divorceWho }}’s divorce papers should be sent"
           }
         }
       }

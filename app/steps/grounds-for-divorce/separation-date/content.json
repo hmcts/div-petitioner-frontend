@@ -46,7 +46,7 @@
       "translation": {
         "content": {
           "question": "Pa bryd wnaethoch chi wahanu oddi wrth eich {{ divorceWho }}?",
-          "dateHint" : "Er enghraifft, 31 3 1980",
+          "dateHint": "Er enghraifft, 31 3 1980",
           "day": "Diwrnod",
           "month": "Mis",
           "year": "Blwyddyn"

@@ -7,7 +7,7 @@
           "question": "Does your {{ divorceWho }} still live at this address?",
           "yes": "Yes",
           "no": "No, they live at another address",
-          "unknown": "No, and I don't know where they live"
+          "unknown": "No, and I don’t know where they live"
         },
         "errors": {
           "respondentLivesAtLastAddress": {

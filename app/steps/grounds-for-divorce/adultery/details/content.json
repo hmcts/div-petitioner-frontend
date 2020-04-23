@@ -5,7 +5,7 @@
       "translation": {
         "content": {
           "question": "Your account of the adultery",
-          "description": "Provide the following information about the adultery. If you don't know any of this information, say that you don't know and explain why.",
+          "description": "Provide the following information about the adultery. If you don’t know any of this information, say that you don’t know and explain why.",
           "remember": "Your {{ divorceWho }}  will be sent a copy of your divorce application, so you may want to avoid writing anything that will cause conflict between you. You can discuss your statement with your {{ divorceWho }} if you want to.",
           "rejected": "Your application will be rejected if you don’t provide enough information to convince the court that your {{ divorceWho }} committed adultery.",
           "whatDoYouKnow": "What do you know about the adultery?",

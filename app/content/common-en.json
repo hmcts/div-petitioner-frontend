@@ -4,7 +4,7 @@
     "en": {
       "translation": {
         "phase": "Beta",
-        "feedback": "This is a new service – your <a class=\"govuk-link\" aria-label=\"Feedback link, This will open a new tab. You'll need to return to this tab and continue with your application within 60 mins so you don’t lose your progress.\" href=\"{{smartSurveyFeedbackUrl}}?pageurl={{ pageUrl }}\" target=\"_blank\">feedback</a> will help us to improve it.",
+        "feedback": "This is a new service – your <a class=\"govuk-link\" aria-label=\"Feedback link, This will open a new tab. You’ll need to return to this tab and continue with your application within 60 mins so you don’t lose your progress.\" href=\"{{smartSurveyFeedbackUrl}}?pageurl={{ pageUrl }}\" target=\"_blank\">feedback</a> will help us to improve it.",
         "languageToggle": "<a href=\"?locale=cy\" class=\"govuk-link language\">Cymraeg</a>",
         "serviceName": "Apply for a divorce",
         "back": "Back",

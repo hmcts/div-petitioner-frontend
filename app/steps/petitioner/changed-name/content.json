@@ -5,14 +5,14 @@
       "translation": {
         "content": {
           "question": "Have you changed your name since you got married?",
-          "weddingDayName": "The court needs to know if you changed your name when you got married, or if you've changed it since.",
+          "weddingDayName": "The court needs to know if you changed your name when you got married, or if you’ve changed it since.",
           "howChangeName": "How did you change your name?",
           "marriageCertificate": "Marriage Certificate",
           "deedPoll": "Deed poll or statutory declaration",
-          "postACopy": "You'll need to send a copy to the court. You can upload a digital photo or scan at the end of this application or you can send it by post.",
+          "postACopy": "You’ll need to send a copy to the court. You can upload a digital photo or scan at the end of this application or you can send it by post.",
           "other": "Other",
           "detailsTitle": "Provide details of how you changed your name",
-          "detailsDocuments": "You'll need to send the document proving you changed your name to the court. You can upload a digital photo or scan at the end of this application or you can send it by post. If you don't have any documents showing how you changed your name, explain why here.",
+          "detailsDocuments": "You’ll need to send the document proving you changed your name to the court. You can upload a digital photo or scan at the end of this application or you can send it by post. If you don’t have any documents showing how you changed your name, explain why here.",
           "yes": "Yes",
           "no": "No"
         },
@@ -56,15 +56,15 @@
         },
         "errors": {
           "petitionerNameDifferentToMarriageCertificate": {
-            "required" : "Dewiswch do os ydych wedi newid eich enw",
-            "invalid" : "Dewiswch do os ydych wedi newid eich enw"
+            "required": "Dewiswch do os ydych wedi newid eich enw",
+            "invalid": "Dewiswch do os ydych wedi newid eich enw"
           },
           "petitionerNameChangedHow": {
-            "required" : "Dewiswch sut wnaethoch chi newid eich enw",
-            "invalid" : "Dewiswch sut wnaethoch chi newid eich enw"
+            "required": "Dewiswch sut wnaethoch chi newid eich enw",
+            "invalid": "Dewiswch sut wnaethoch chi newid eich enw"
           },
           "petitionerNameChangedHowOtherDetails": {
-            "invalid" : " Ni all y manylion gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "invalid": " Ni all y manylion gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

@@ -6,14 +6,14 @@
         "content": {
           "title": "When you separated",
           "info1": "You need to provide the following dates related to your separation. The court will use the most recent date as the date that you separated.",
-          "info2": "Use the same date for both if they happened on the same day. If you're not sure of the exact dates, use the closest dates that you remember.",
+          "info2": "Use the same date for both if they happened on the same day. If you’re not sure of the exact dates, use the closest dates that you remember.",
           "dateHint": "For example, 31 3 1980",
           "question1": {
             "text": "When did you first decide that the marriage was over?"
           },
           "question2": {
             "text": "When did you start living apart?",
-            "info": "You can both live in the same property and be considered by the court to be living apart, as long as you're living separate lives. For example, you don’t eat, sleep, or socialise together."
+            "info": "You can both live in the same property and be considered by the court to be living apart, as long as you’re living separate lives. For example, you don’t eat, sleep, or socialise together."
           },
           "day": "Day",
           "month": "Month",
@@ -79,13 +79,13 @@
           "title": "Pryd y gwnaethoch wahanu",
           "info1": "Mae angen ichi ddarparu’r dyddiadau canlynol ynglyn â’r gwahanu. Bydd y llys yn defnyddio’r dyddiad diweddaraf fel y dyddiad y gwnaethoch wahanu.",
           "info2": "Defnyddiwch yr un dyddiad ar gyfer y ddau os digwyddodd y ddau ar yr un diwrnod. Os nad ydych yn siwr o’r union ddyddiad, defnyddiwch y dyddiad agosaf rydych yn ei gofio.",
-          "dateHint" : "Er enghraifft, 31 3 1980",
+          "dateHint": "Er enghraifft, 31 3 1980",
           "question1": {
             "text": "Pa bryd wnaethoch chi benderfynu gyntaf fod y briodas wedi dod i ben?"
           },
           "question2": {
             "text": "Pa bryd wnaethoch chi ddechrau byw ar wahân?",
-            "info": "Mae’n bosib i’r llys ystyried eich bod yn byw ar wahân er eich bod yn byw yn yr un cyfeiriad, cyn belled â’ch bod chi'n byw’n annibynnol. Er enghraifft, nid ydych yn bwyta, yn cysgu neu’n cymdeithasu gyda’ch gilydd."
+            "info": "Mae’n bosib i’r llys ystyried eich bod yn byw ar wahân er eich bod yn byw yn yr un cyfeiriad, cyn belled â’ch bod chi’n byw’n annibynnol. Er enghraifft, nid ydych yn bwyta, yn cysgu neu’n cymdeithasu gyda’ch gilydd."
           },
           "day": "Diwrnod",
           "month": "Mis",

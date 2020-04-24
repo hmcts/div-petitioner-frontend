@@ -5,7 +5,7 @@ This repo is for the frontend part of the journey that the petitioner will go th
 ## Setup
 
 **Building locally**
-You need to have Yarn and Redis installed. This can be done with brew as follows:
+You need to have Yarn and Redis installed. This can be done with brew as follows :
 ```
 brew install yarn
 brew install redis

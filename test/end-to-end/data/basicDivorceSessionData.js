@@ -1280,6 +1280,7 @@ module.exports = {
   legalProceedings: 'Yes',
   legalProceedingsRelated: ['children'],
   legalProceedingsDetails: 'The legal proceeding details',
+  language: 'en',
   financialOrder: 'Yes',
   financialOrderFor: [
     'petitioner',

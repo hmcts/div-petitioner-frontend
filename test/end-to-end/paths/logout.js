@@ -4,7 +4,7 @@ const parseBool = require('app/core/utils/parseBool');
 
 Feature('Logout Session').retry(3);
 
-Scenario('Logount on Save and close', function (I) {
+Scenario('Logout on Save and close', function (I) {
   I.amOnLoadedPage('/index');
 
   I.startApplication();

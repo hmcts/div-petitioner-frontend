@@ -5,7 +5,6 @@ const config = require('config');
 Feature('Basic divorce path');
 
 Scenario('Get a divorce', async function(I) {
-
   I.amOnPage('/index');
   I.startApplication();
   I.wait(1);

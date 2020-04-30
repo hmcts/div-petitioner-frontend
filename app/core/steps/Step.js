@@ -147,6 +147,9 @@ module.exports = class Step {
 
   * getRequest(req, res) {
     const { session } = req;
+    if (req.query && req.query.locale && CONF.languages.includes(req.query.locale)) {
+      req.session.language = req.query.locale;
+    }
     const language = req.session.language;
 
     //  extract data from the request

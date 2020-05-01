@@ -1,0 +1,43 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you require your Divorce documents in English and Welsh (emails, letters, texts, certificates)?",
+          "line1": "If you don't need your document to be translated to Welsh language, please choose No.",
+          "yes": "Yes",
+          "no": "No",
+          "marriageBrokenDownNo": "All documents will be in English.",
+          "cookie": "This service uses cookies to make the site simpler.",
+          "cookieLink": "Find out more about cookies",
+          "warning": "Warning"
+        },
+        "errors": {
+          "screenHasMarriageBroken": {
+            "required": "Select yes if your marriage has broken down irretrievably"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "A ydy’ch priodas wedi chwalu’n anadferadwy (ni ellir ei hachub)? ",
+          "line1": "Ni allwch gael ysgariad ond ar y sail bod y briodas wedi chwalu’n anadferadwy.",
+          "yes": "Ydym",
+          "no": "Nac ydym",
+          "marriageBrokenDownNo": "Yr unig reswm cyfreithiol dros gael ysgariad yng Nghymru a Lloegr yw bod y briodas wedi chwalu’n anadferadwy.",
+          "cookie": "Mae’r gwasanaeth hwn yn defnyddio cwcis i wneud y safle hwn yn symlach i’w ddefnyddio.",
+          "cookieLink": "Mwy o wybodaeth am gwcis",
+          "warning": "Rhybudd"
+        },
+        "errors": {
+          "screenHasMarriageBroken": {
+            "required": "Dewiswch do os yw eich priodas wedi chwalu’n anadferadwy"
+          }
+        }
+      }
+    }
+  }
+}

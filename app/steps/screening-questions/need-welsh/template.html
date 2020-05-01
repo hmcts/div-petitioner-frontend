@@ -23,18 +23,18 @@
 
     {{ yesNoRadioHeading(
         legend = content.question,
-        name = 'screenHasMarriageBroken',
-        field = fields.screenHasMarriageBroken,
+        name = 'screenNeedWelsh',
+        field = fields.screenNeedWelsh,
         yes = content.yes,
         no = content.no,
         targetYes = '',
-        targetNo = 'marriage-broken-down-no',
+        targetNo = 'need-welsh-no',
         screenReader = content.question
     ) }}
 
-    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="marriage-broken-down-no">
+    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="need-welsh-no">
       {{ govukWarningText({
-          text: content.marriageBrokenDownNo | safe,
+          text: content.needWelshNo | safe,
           iconFallbackText: content.warning
       }) }}
     </div>

@@ -4,7 +4,7 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 const commonContent = require('app/content/common-en');
 
-const modulePath = 'app/steps/screening-questions/has-marriage-broken';
+const modulePath = 'app/steps/screening-questions/need-welsh';
 
 const content = require(`${modulePath}/content`);
 
@@ -17,7 +17,7 @@ describe(modulePath, () => {
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.ScreeningQuestionsMarriageBroken;
+    underTest = s.steps.ScreeningQuestionsNeedWelsh;
   });
 
   afterEach(() => {
@@ -41,14 +41,14 @@ describe(modulePath, () => {
     });
 
     it('redirects to the next page', done => {
-      const context = { screenHasMarriageBroken: 'Yes' };
+      const context = { screenNeedWelsh: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.ScreeningQuestionsRespondentAddress);
     });
 
     it('redirects to the exit page', done => {
-      const context = { screenHasMarriageBroken: 'No' };
+      const context = { screenNeedWelsh: 'No' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.ExitMarriageBroken);

@@ -1,14 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "has-marriage-broken",
+  "id": "need-welsh",
   "type": "object",
   "properties": {
-    "screenHasMarriageBroken": {
+    "screenNeedWelsh": {
         "type": "string",
         "enum": ["Yes", "No"]
     }
   },
   "required": [
-    "screenHasMarriageBroken"
+    "screenNeedWelsh"
   ]
 }

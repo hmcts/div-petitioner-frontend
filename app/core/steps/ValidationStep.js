@@ -158,7 +158,6 @@ module.exports = class ValidationStep extends Step {
 
   * postRequest(req, res) {
     let { session } = req;
-
     // clone session for applying stale data checks later
     const previousSession = cloneDeep(session);
 
@@ -172,6 +171,12 @@ module.exports = class ValidationStep extends Step {
       session = this.applyCtxToSession(ctx, session);
       session = staleDataManager.removeStaleData(previousSession, session);
       const nextStepUrl = yield this.getNextStep(ctx, session);
+
+      if (req.body.hasOwnProperty('screenNeedWelsh')) {
+        if (req.body.screenNeedWelsh === 'Yes') {
+          req.session.needwelsh = true;
+        }
+      }
 
       res.redirect(nextStepUrl);
     }

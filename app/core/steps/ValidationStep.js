@@ -172,9 +172,11 @@ module.exports = class ValidationStep extends Step {
       session = staleDataManager.removeStaleData(previousSession, session);
       const nextStepUrl = yield this.getNextStep(ctx, session);
 
-      if (req.body.hasOwnProperty('screenNeedWelsh')) {
-        if (req.body.screenNeedWelsh === 'Yes') {
-          req.session.needwelsh = true;
+      if (req.body) {
+        if (req.body.hasOwnProperty('screenNeedWelsh')) {
+          if (req.body.screenNeedWelsh === 'Yes') {
+            req.session.needwelsh = 'Yes';
+          }
         }
       }
 

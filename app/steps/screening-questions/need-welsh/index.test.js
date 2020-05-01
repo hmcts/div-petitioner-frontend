@@ -44,14 +44,14 @@ describe(modulePath, () => {
       const context = { screenNeedWelsh: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
-        s.steps.ScreeningQuestionsRespondentAddress);
+        s.steps.ScreeningQuestionsMarriageBroken);
     });
 
     it('redirects to the exit page', done => {
       const context = { screenNeedWelsh: 'No' };
 
       testRedirect(done, agent, underTest, context,
-        s.steps.ExitMarriageBroken);
+        s.steps.ScreeningQuestionsMarriageBroken);
     });
   });
 });

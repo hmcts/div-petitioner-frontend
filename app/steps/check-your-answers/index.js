@@ -130,13 +130,13 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     stepCtx = step.checkYourAnswersInterceptor(stepCtx, session);
 
     const checkYourAnswersContent = this.generateContent(
-      stepCtx, session
+      stepCtx, session, session.language
     );
 
     // generate content
-    const content = step.generateContent(stepCtx, session);
+    const content = step.generateContent(stepCtx, session, session.language);
     const checkYourAnswersSpecificContent = step.generateCheckYourAnswersContent( // eslint-disable-line max-len
-      stepCtx, session
+      stepCtx, session, session.language
     );
     Object.assign(
       content,

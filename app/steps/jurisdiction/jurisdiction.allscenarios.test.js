@@ -268,6 +268,7 @@ describe.skip(`${modulePath} - Test every possible scenario`, () => {
       jurisdictionPath: [],
       screenHasRespondentAddress: 'Yes',
       screenHasMarriageCert: 'Yes',
+      screenNeedWelsh: 'Yes',
       screenHasMarriageBroken: 'Yes',
       helpWithFeesNeedHelp: 'No',
       marriageDateDay: 10,

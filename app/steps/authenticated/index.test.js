@@ -55,7 +55,7 @@ describe(modulePath, () => {
       const context = {};
 
       testRedirect(done, agent, underTest, context,
-        s.steps.ScreeningQuestionsMarriageBroken);
+        s.steps.ScreeningQuestionsNeedWelsh);
     });
   });
 

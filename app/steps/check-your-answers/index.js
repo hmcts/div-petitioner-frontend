@@ -268,7 +268,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
 
     // Append the languagePreference flag to the session before submitting it
     req.session.languagePreferenceWelsh = 'No';
-    if (req.session.language === 'cy') {
+    if (req.session.needWelsh === 'Yes') {
       req.session.languagePreferenceWelsh = 'Yes';
     }
 

@@ -824,7 +824,7 @@ describe(modulePath, () => {
 
     context('languagePreferenceWelsh - EN to No', () => {
       beforeEach(done => {
-        session = { language: 'en' };
+        session = { needWelsh: 'No' };
         withSession(done, agent, session);
       });
 
@@ -845,7 +845,7 @@ describe(modulePath, () => {
 
     context('languagePreferenceWelsh - CY to Yes', () => {
       beforeEach(done => {
-        session = { language: 'cy' };
+        session = { needWelsh: 'Yes' };
         withSession(done, agent, session);
       });
 

@@ -67,7 +67,8 @@ describe(modulePath, () => {
           idamLoginUrl: confIdam.idamLoginUrl,
           idamSecret: confIdam.idamSecret,
           idamClientID: confIdam.idamClientID,
-          redirectUri
+          redirectUri,
+          language: 'en'
         };
 
         sinon.assert.calledWith(idamExpressMiddleware.authenticate, idamArgs);

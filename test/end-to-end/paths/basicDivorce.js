@@ -9,6 +9,7 @@ Scenario('Get a divorce', async function(I) {
   I.amOnPage('/index');
   I.startApplication();
   I.wait(1);
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();

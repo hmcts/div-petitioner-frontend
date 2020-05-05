@@ -3,6 +3,7 @@ Feature('New Jurisdiction Journeys').retry(3);
 Before((I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();

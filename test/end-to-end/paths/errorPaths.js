@@ -4,6 +4,7 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/nonExistentURL');
   I.see('Page not found', 'h1');

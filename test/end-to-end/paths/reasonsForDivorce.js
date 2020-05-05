@@ -28,6 +28,7 @@ Scenario('Unreasonable behaviour - with added examples', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -44,6 +45,7 @@ Scenario('Adultery, with details', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -64,6 +66,7 @@ Scenario('2 years separation', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -82,6 +85,7 @@ Scenario('5 years separation', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -98,6 +102,7 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -115,6 +120,7 @@ Scenario('Exit if 5 years separation chosen but actual living apart date is less
 
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -135,6 +141,7 @@ Scenario('Deserted without agreement', function*(I) {
   // to test CYA content the application must be complete and valid
   I.amOnLoadedPage('/index');
   I.startApplication();
+  I.needWelsh();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();

@@ -21,7 +21,7 @@
     "test:a11y": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/accessibility/ --reporter spec --recursive --timeout 15000 --exit",
     "test:mutation": "./bin/run-mutation-tests.sh",
     "test:stryker": "NODE_ENV=testing NODE_PATH=. stryker run ",
-    "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner",
+    "sonar-scan": "node_modules/sonar-scanner/bin/sonar-scanner -Dsonar.cpd.exclusions=app/**/template.html",
     "test:smoke": "./bin/run-smoke-tests.sh",
     "test:functional": "./bin/run-functional-tests.sh",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",

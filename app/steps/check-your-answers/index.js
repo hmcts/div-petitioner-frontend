@@ -249,7 +249,11 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     if (!cookies || !cookies['connect.sid']) {
       logger.errorWithReq(req, 'malformed_request', 'Malformed request to Submit step');
       const step = this.steps.Error400;
-      const content = step.generateContent();
+      const content = step.generateContent(
+        {},
+        req.session,
+        req.session.language
+      );
       res.status(statusCodes.BAD_REQUEST);
       res.render(step.template, { content });
       return;

@@ -191,10 +191,24 @@
   resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.3.10.tgz#e72c521c3aeeecb5ebf59142f419eae86425a88c"
   integrity sha512-HjkHEGlDyckD5GBxa4dd8XtcuAn2GFR8NGicqTx/SnFTFcKgVvgd/xbs4uSbqM7csxE23fnnBdtl4e4H/hm2Jw==
 
-"@hmcts/div-idam-express-middleware@^6.5.0", "@hmcts/div-idam-express-middleware@^6.6.0":
+"@hmcts/div-idam-express-middleware@^6.5.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.6.0.tgz#2126b94221f4430ecda52152a5523173d838bb74"
   integrity sha512-XxVKqJJDNr+rwKibA+8dOkmRqPJFzDtSTUQS5AKJEjSVA8LOTZPywSNxLxTivc+VJh/GCERY75b8CTKAl1vv3Q==
+  dependencies:
+    "@hmcts/nodejs-logging" "^3.0.0"
+    diff "^3.5.0"
+    jwt-decode "^2.2.0"
+    mem "^4.0.0"
+    request "^2.88.0"
+    request-promise-core "^1.1.2"
+    request-promise-native "^1.0.5"
+    uuid "^3.1.0"
+
+"@hmcts/div-idam-express-middleware@^6.6.2":
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.6.2.tgz#0f1f03567463fc849b8a1c1877351d79242370e9"
+  integrity sha512-y3RG9B2CDAWTQLWRLKVRcSXIWWSt2NP4JsMBZPzPdYvh6LSmi58oRzvrdSg2dGgR6TLCiHoWmbTvUgJUsY+sGw==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     diff "^3.5.0"

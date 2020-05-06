@@ -9,4 +9,4 @@ function languagePreference() {
   I.navByClick('Continue');
 }
 
-module.exports = { needWelsh: languagePreference };
+module.exports = { languagePreference: languagePreference };

@@ -52,7 +52,7 @@ describe(modulePath, () => {
       const context = {};
 
       testRedirect(done, agent, underTest, context,
-        s.steps.ScreeningQuestionsNeedWelsh);
+        s.steps.ScreeningQuestionsLanguagePreference);
     });
 
     it('should set up the current host as the redirect uri for idam', done => {

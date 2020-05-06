@@ -3,7 +3,7 @@ Feature('Entering address').retry(3);
 Scenario('Enter address using postcode', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.needWelsh();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressUsingPostcode('/petitioner-respondent/address');
@@ -13,7 +13,7 @@ Scenario('Enter address using postcode', (I) => {
 Scenario('Enter address using address outside the UK', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.needWelsh();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressManually('/petitioner-respondent/address');

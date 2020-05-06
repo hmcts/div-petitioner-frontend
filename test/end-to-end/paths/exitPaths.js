@@ -4,7 +4,7 @@ Scenario('Reaching the have marriage certificate exit page', (I) => {
 
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.needWelsh();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveNoMarriageCert();

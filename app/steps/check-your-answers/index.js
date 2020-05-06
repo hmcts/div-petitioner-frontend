@@ -266,12 +266,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       }
     });
 
-    // Append the languagePreference flag to the session before submitting it
-    req.session.languagePreferenceWelsh = 'No';
-    if (req.session.needWelsh === 'Yes') {
-      req.session.languagePreferenceWelsh = 'Yes';
-    }
-
     // Get user token.
     let authToken = '';
     if (parseBool(CONF.features.idam)) {

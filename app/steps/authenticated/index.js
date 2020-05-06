@@ -36,7 +36,7 @@ module.exports = class Authenticated extends Step {
   }
 
   get nextStep() {
-    return this.steps.ScreeningQuestionsNeedWelsh;
+    return this.steps.ScreeningQuestionsLanguagePreference;
   }
 
   get middleware() {

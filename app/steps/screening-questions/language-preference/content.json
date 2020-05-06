@@ -8,7 +8,7 @@
           "line1": "If you don't need your document to be translated to Welsh language, please choose No.",
           "yes": "Yes",
           "no": "No",
-          "needWelshNo": "All documents will be in English.",
+          "languagePreferenceWelshNo": "All documents will be in English.",
           "cookie": "This service uses cookies to make the site simpler.",
           "cookieLink": "Find out more about cookies",
           "warning": "Warning"
@@ -27,7 +27,7 @@
           "line1": "[CY]If you don't need your document to be translated to Welsh language, please choose No.",
           "yes": "Ydym",
           "no": "Nac ydym",
-          "needWelshNo": "[CY]All documents will be in English.",
+          "languagePreferenceWelshNo": "[CY]All documents will be in English.",
           "cookie": "Mae’r gwasanaeth hwn yn defnyddio cwcis i wneud y safle hwn yn symlach i’w ddefnyddio.",
           "cookieLink": "Mwy o wybodaeth am gwcis",
           "warning": "Rhybudd"

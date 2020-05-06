@@ -17,7 +17,7 @@ describe(modulePath, () => {
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.ScreeningQuestionsNeedWelsh;
+    underTest = s.steps.ScreeningQuestionsLanguagePreference;
   });
 
   afterEach(() => {

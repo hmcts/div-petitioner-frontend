@@ -175,7 +175,7 @@ module.exports = class ValidationStep extends Step {
       if (req.body) {
         if (req.body.hasOwnProperty('languagePreferenceWelsh')) {
           if (req.body.languagePreferenceWelsh === 'Yes') {
-            req.session.needWelsh = 'Yes';
+            req.session.languagePreferenceWelsh = 'Yes';
           }
         }
       }

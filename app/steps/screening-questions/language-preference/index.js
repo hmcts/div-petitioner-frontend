@@ -1,6 +1,6 @@
 const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep');
 
-module.exports = class ScreeningQuestionsNeedWelsh extends ScreeningValidationStep {
+module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningValidationStep {
   get url() {
     return '/screening-questions/language-preference';
   }

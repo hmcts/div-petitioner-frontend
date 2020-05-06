@@ -14,7 +14,7 @@
           "warning": "Warning"
         },
         "errors": {
-          "screenNeedWelsh": {
+          "languagePreferenceWelsh": {
             "required": "Select yes if you need your documents to be translated to Welsh."
           }
         }
@@ -33,7 +33,7 @@
           "warning": "Rhybudd"
         },
         "errors": {
-          "screenNeedWelsh": {
+          "languagePreferenceWelsh": {
             "required": "Dewiswch do os yw eich priodas wedi chwalu’n anadferadwy"
           }
         }

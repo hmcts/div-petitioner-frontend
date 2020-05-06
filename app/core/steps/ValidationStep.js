@@ -173,8 +173,8 @@ module.exports = class ValidationStep extends Step {
       const nextStepUrl = yield this.getNextStep(ctx, session);
 
       if (req.body) {
-        if (req.body.hasOwnProperty('screenNeedWelsh')) {
-          if (req.body.screenNeedWelsh === 'Yes') {
+        if (req.body.hasOwnProperty('languagePreferenceWelsh')) {
+          if (req.body.languagePreferenceWelsh === 'Yes') {
             req.session.needWelsh = 'Yes';
           }
         }

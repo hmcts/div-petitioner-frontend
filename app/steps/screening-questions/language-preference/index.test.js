@@ -4,7 +4,7 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 const commonContent = require('app/content/common-en');
 
-const modulePath = 'app/steps/screening-questions/need-welsh';
+const modulePath = 'app/steps/screening-questions/language-preference';
 
 const content = require(`${modulePath}/content`);
 
@@ -41,14 +41,14 @@ describe(modulePath, () => {
     });
 
     it('redirects to the next page', done => {
-      const context = { screenNeedWelsh: 'Yes' };
+      const context = { languagePreferenceWelsh: 'Yes' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.ScreeningQuestionsMarriageBroken);
     });
 
     it('redirects to the exit page', done => {
-      const context = { screenNeedWelsh: 'No' };
+      const context = { languagePreferenceWelsh: 'No' };
 
       testRedirect(done, agent, underTest, context,
         s.steps.ScreeningQuestionsMarriageBroken);

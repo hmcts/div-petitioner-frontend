@@ -23,16 +23,16 @@
 
     {{ yesNoRadioHeading(
         legend = content.question,
-        name = 'screenNeedWelsh',
-        field = fields.screenNeedWelsh,
+        name = 'languagePreferenceWelsh',
+        field = fields.languagePreferenceWelsh,
         yes = content.yes,
         no = content.no,
         targetYes = '',
-        targetNo = 'need-welsh-no',
+        targetNo = 'language-preference-no',
         screenReader = content.question
     ) }}
 
-    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="need-welsh-no">
+    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="language-preference-no">
       {{ govukWarningText({
           text: content.needWelshNo | safe,
           iconFallbackText: content.warning

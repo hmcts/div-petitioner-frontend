@@ -1,14 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "need-welsh",
+  "id": "language-preference",
   "type": "object",
   "properties": {
-    "screenNeedWelsh": {
+    "languagePreferenceWelsh": {
         "type": "string",
         "enum": ["Yes", "No"]
     }
   },
   "required": [
-    "screenNeedWelsh"
+    "languagePreferenceWelsh"
   ]
 }

@@ -2,11 +2,11 @@ const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep'
 
 module.exports = class ScreeningQuestionsNeedWelsh extends ScreeningValidationStep {
   get url() {
-    return '/screening-questions/need-welsh';
+    return '/screening-questions/language-preference';
   }
   get nextStep() {
     return {
-      screenNeedWelsh: {
+      languagePreferenceWelsh: {
         Yes: this.steps.ScreeningQuestionsMarriageBroken,
         No: this.steps.ScreeningQuestionsMarriageBroken
       }

@@ -89,7 +89,7 @@ module.exports = {
   'reasonForDivorceEnableAdultery': true,
   'legalProceedingsDetails': 'The legal proceeding details',
   'reasonForDivorceShowFiveYearsSeparation': true,
-  'screenNeedWelsh': 'Yes',
+  'languagePreferenceWelsh': 'Yes',
   'screenHasMarriageBroken': 'Yes',
   'petitionerEmail': 'simulate-delivered@notifications.service.gov.uk',
   'reasonForDivorce': 'unreasonable-behaviour',

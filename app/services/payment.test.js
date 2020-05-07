@@ -261,13 +261,17 @@ describe(modulePath, () => {
 
   describe('#queryAllPayments', () => {
     let client = null;
-    const req = {};
+    const req = {
+      session: {
+        language: 'cy'
+      }
+    };
     const user = { bearerToken: '123' };
     const serviceToken = 'someServiceToken';
 
     beforeEach(() => {
       sinon.stub(request, 'get').withArgs({
-        uri: 'http://localhost:4401/payments?ccd_case_number=1111222233334444',
+        uri: 'http://localhost:4401/payments?ccd_case_number=1111222233334444&language=CY',
         headers: {
           Authorization: `Bearer ${user.bearerToken}`,
           ServiceAuthorization: `Bearer ${serviceToken}`

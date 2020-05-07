@@ -7,7 +7,7 @@
           "title": "There is a problem with your application",
           "info": "You need to contact us about your divorce application.",
           "contactTitle": "Contact Us",
-          "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}})",
           "contactEmail": "Email: {{courtEmail}}"
         }
       }
@@ -18,7 +18,7 @@
           "title": "Mae yna broblem gyda’ch cais",
           "info": "Mae angen ichi gysylltu â ni i drafod eich cais am ysgariad.",
           "contactTitle": "Cysylltu â ni",
-          "contactPhone": "Rhif ffôn: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+          "contactPhone": "Rhif ffôn: {{courtPhoneNumberCy}} ({{courtOpeningHourCy}})",
           "contactEmail": "E-bost: {{courtEmail}}"
         }
       }

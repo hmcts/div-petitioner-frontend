@@ -231,12 +231,20 @@ variable "survey_feedback_done_url" {
   default = "https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant"
 }
 
-variable "court_phone_number" {
+variable "court_phone_number_en" {
   default = "0300 303 0642"
 }
 
-variable "court_opening_hours" {
+variable "court_phone_number_cy" {
+  default = "0300 303 5171"
+}
+
+variable "court_opening_hours_en" {
   default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
+}
+
+variable "court_opening_hours_cy" {
+  default = "Dydd Llun i ddydd Gwener, 8.30am - 5pm"
 }
 
 variable "court_email" {

@@ -53,7 +53,7 @@
       </div>
 
       {% if session.refusalRejectionReason|length %}
-        <p class="govuk-body">{{ content.emailConfirmation | safe }} <strong>{{ session.petitionerEmail }}</stong></p>
+        <p class="govuk-body">{{ content.emailConfirmation | safe }} <strong> {{ session.petitionerEmail }} </strong> </p>
 
         <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatHappensNext | safe}}</h2>
 
@@ -166,6 +166,7 @@
       <p class="govuk-body">
         {{content.getHelpDescription | safe}}
       </p>
+     {% if session.language ==='en' %}
       <p class="govuk-body">
         {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
       </p>
@@ -173,8 +174,21 @@
         {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}
       </p>
       <p class="govuk-body">
-        {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}
+       {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}
       </p>
+      {% else %}
+      <p class="govuk-body">
+        [CY]divorcecase@justice.gov.uk
+      </p>
+      <p class="govuk-body">
+        [CY] 0300 303 5171
+      </p>
+      <p class="govuk-body">
+        [CY] Dydd Llun i ddydd Gwener, 8.30am - 5pm
+
+      </p>
+      {% endif %}
+
 
       {% if session.helpWithFeesReferenceNumber %}
         <h2 class="govuk-heading-m">{{content.helpWithFees | safe}}</h2>
@@ -212,7 +226,7 @@
   <aside class="govuk-related-items" role="complementary">
 
     <h3 class="govuk-heading-m">{{ content.help }}</h3>
-
+{% if session.language == 'en' %}
     <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
         <li>
             <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
@@ -236,9 +250,33 @@
             {{ session.allocatedCourt.courtCity | safe }} <br/> {{ session.allocatedCourt.postCode | safe }}
         </li>
     </ul>
+    {% else %}
+    <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
+      <li>
+        <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
+        <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
+      </li>
+      <li>
+        <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
+        [CY] 0300 303 5171 <br>
+        [CY] Dydd Llun i ddydd Gwener, 8.30am - 5pm <br>
+      </li>
+      <li>
+        {% if session.allocatedCourt.serviceCentreName %}
+       [CY] Courts and Tribunals Service Center <br/> {{ content.careOf | safe }}
+        {% endif %}
+        {{ session.allocatedCourt.divorceCentre | safe }} <br/>
+        {% if session.allocatedCourt.poBox %}
+        {{ session.allocatedCourt.poBox | safe }} <br/>
+        {% else %}
+        {{ session.allocatedCourt.divorceCentreAddressName | safe }} <br/> {{ session.allocatedCourt.street | safe }} <br/>
+        {% endif %}
+        {{ session.allocatedCourt.courtCity | safe }} <br/> {{ session.allocatedCourt.postCode | safe }}
+      </li>
+    </ul>
+{% endif %}
 
     <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
-
     <nav role="navigation" aria-labelledby="subsection-title">
       <ul class="govuk-list govuk-body govuk-!-font-size-16">
         <li>{{ content.howRespondsLink | safe }}</li>

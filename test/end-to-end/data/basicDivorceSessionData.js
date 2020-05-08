@@ -9,6 +9,7 @@ module.exports = {
   },
   csrfSecret: 'XXXXXXXX',
   expires: 99999999,
+  languagePreferenceWelsh: 'Yes',
   screenHasMarriageBroken: 'Yes',
   screenHasRespondentAddress: 'Yes',
   screenHasMarriageCert: 'Yes',

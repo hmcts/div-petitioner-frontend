@@ -186,10 +186,10 @@
     lodash.mergewith "^4.6.2"
     webdriverio "^5.15.2"
 
-"@hmcts/ctsc-web-chat@^0.3.9":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.3.10.tgz#e72c521c3aeeecb5ebf59142f419eae86425a88c"
-  integrity sha512-HjkHEGlDyckD5GBxa4dd8XtcuAn2GFR8NGicqTx/SnFTFcKgVvgd/xbs4uSbqM7csxE23fnnBdtl4e4H/hm2Jw==
+"@hmcts/ctsc-web-chat@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@hmcts/ctsc-web-chat/-/ctsc-web-chat-0.3.11.tgz#b8af565e1cf6c251763843c842a95ece92aa7fea"
+  integrity sha512-w/+k+C0KeD50H3YfSdGMwGV8vHqjMtgoD1EanajWRRARR7ihr8BWh81xbRcoAw0koF2xsYFUJfCbmgKvSeclVQ==
 
 "@hmcts/div-idam-express-middleware@^6.5.0":
   version "6.6.0"

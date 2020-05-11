@@ -4,236 +4,287 @@
 {% block back %}{% endblock %}
 
 {% block two_thirds %}
+  {% set title = content.title %}
+  {% if session.refusalRejectionReason|length %}
+    {% set title = content.amendedApplictionTitle %}
+  {% endif %}
 
-      {% set title = content.title %}
-      {% if session.refusalRejectionReason|length %}
-        {% set title = content.amendedApplictionTitle %}
-      {% endif %}
+  <div class="govuk-panel govuk-panel--confirmation">
+    <h1 class="govuk-panel__title govuk-!-margin-bottom-2">{{ title | safe}}</h1>
+    <p class="govuk-panel__body govuk-!-margin-0">
+      <span class="govuk-!-font-size-19">{{ content.caseReferenceNumber | safe }}</span><br/>
+      <strong class="govuk-body-reference-number" aria-label="{{ session.caseId | a11yCharSeparator | safe }}">
+        {{ session.caseId | insertHyphens | safe }}
+      </strong>
+    </p>
+  </div>
 
-      <div class="govuk-panel govuk-panel--confirmation">
-        <h1 class="govuk-panel__title govuk-!-margin-bottom-2">{{ title | safe}}</h1>
-        <p class="govuk-panel__body govuk-!-margin-0">
-          <span class="govuk-!-font-size-19">{{ content.caseReferenceNumber | safe }}</span>
-          <br/>
-          <strong class="govuk-body-reference-number" aria-label="{{ session.caseId | a11yCharSeparator | safe }}">
-            {{ session.caseId | insertHyphens | safe }}
-          </strong>
-        </p>
-      </div>
+  {% if fields.paymentCompleted.value %}
+    <p class="govuk-body">{{ content.paymentSuccessful | safe }}</p>
+  {% endif %}
 
-      {% if fields.paymentCompleted.value %}
-        <p class="govuk-body">{{ content.paymentSuccessful | safe }}</p>
-      {% endif %}
+  {# Email notification copy will be added only when notifications is implemented #}
 
-      {# Email notification copy will be added only when notifications is implemented #}
+  <div class="progress">
+    <ol class="progress__list">
+      <li class="progress__item progress__item--complete">
+        <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
+        <span class="progress__label">{{ content.youApply }}</span>
+        <span class="visually-hidden">{{ content.thisIsComplete }}</span>
+      </li>
+      <li class="progress__item progress__item--current">
+        <i class="progress__icon"></i>
+        <span class="progress__label">{{ content.yourRespondes }}</span>
+        <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
+      </li>
+      <li class="progress__item">
+        <i class="progress__icon"></i>
+        <span class="progress__label">{{ content.continueDivorce }}</span>
+        <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
+      </li>
+      <li class="progress__item">
+        <i class="progress__icon"></i>
+        <span class="progress__label">{{ content.divorceFinalised }}</span>
+        <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
+      </li>
+    </ol>
+  </div>
 
-      <div class="progress">
-        <ol class="progress__list">
-          <li class="progress__item progress__item--complete">
-            <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
-            <span class="progress__label">{{ content.youApply }}</span>
-            <span class="visually-hidden">{{ content.thisIsComplete }}</span>
-          </li>
-          <li class="progress__item progress__item--current">
-            <i class="progress__icon"></i>
-            <span class="progress__label">{{ content.yourRespondes }}</span>
-            <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-          </li>
-          <li class="progress__item">
-            <i class="progress__icon"></i>
-            <span class="progress__label">{{ content.continueDivorce }}</span>
-            <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-          </li>
-          <li class="progress__item">
-            <i class="progress__icon"></i>
-            <span class="progress__label">{{ content.divorceFinalised }}</span>
-            <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-          </li>
-        </ol>
-      </div>
+  {% if session.refusalRejectionReason|length %}
+    <p class="govuk-body">{{ content.emailConfirmation | safe }} <strong> {{ session.petitionerEmail }} </strong></p>
+    <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatHappensNext | safe}}</h2>
 
-      {% if session.refusalRejectionReason|length %}
-        <p class="govuk-body">{{ content.emailConfirmation | safe }} <strong> {{ session.petitionerEmail }} </strong> </p>
+    {% if (session.marriageCertificateFiles | length === 0) %}
+      <ul class="govuk-list govuk-list--number">
+        <li>
+          <p class="govuk-body govuk-!-font-weight-bold">{{ content.amendedPostDocsResponse }}</p>
+          <p class="govuk-body">{{ content.amendedPostDocsSubmitDocuments }}</p>
+          <p class="govuk-body">{{ content.amendedPostDocsOriginalDocs }}</p>
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatHappensNext | safe}}</h2>
-
-        {% if (session.marriageCertificateFiles | length === 0) %}
-          <ul class="govuk-list govuk-list--number">
-            <li>
-              <p class="govuk-body govuk-!-font-weight-bold">{{ content.amendedPostDocsResponse }}</p>
-              <p class="govuk-body">{{ content.amendedPostDocsSubmitDocuments }}</p>
-              <p class="govuk-body">{{ content.amendedPostDocsOriginalDocs }}</p>
-
-              <p class="govuk-body">
-                <strong>
+          {% if session.language == "en" %}
+            <p class="govuk-body">
+              <strong>
                 {% if session.allocatedCourt.serviceCentreName %}
-                  {{ session.allocatedCourt.serviceCentreName | safe }} <br/> {{ content.careOf | safe }}
+                  {{ session.allocatedCourt.serviceCentreName | safe }}<br/>
+                  {{ content.careOf | safe }}
                 {% endif %}
-                </strong>
-                {{ session.allocatedCourt.divorceCentre | safe }} <br/>
-                {% if session.allocatedCourt.poBox %}
-                  {{ session.allocatedCourt.poBox | safe }} <br/>
-                {% else %}
-                  {{ session.allocatedCourt.divorceCentreAddressName | safe }} <br/> {{ session.allocatedCourt.street | safe }} <br/>
-                {% endif %}
-                {{ session.allocatedCourt.courtCity | safe }} <br/> {{ session.allocatedCourt.postCode | safe }}
-              </p>
+              </strong>
+              {{ session.allocatedCourt.divorceCentre | safe }}<br/>
+              {% if session.allocatedCourt.poBox %}
+                {{ session.allocatedCourt.poBox | safe }}<br/>
+              {% else %}
+                {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
+                {{ session.allocatedCourt.street | safe }} <br/>
+              {% endif %}
+              {{ session.allocatedCourt.courtCity | safe }}<br/>
+              {{ session.allocatedCourt.postCode | safe }}
+            </p>
+          {% else %}
+            <p class="govuk-body">
+              <strong>
+                {{ common.serviceCenterNameCy | safe }}<br/>
+              </strong>
+              {{ common.serviceCenterPoBoxCy | safe }}<br/>
+              {{ common.serviceCenterCityCy | safe }}<br/>
+              {{ common.serviceCenterPostcodeCy | safe }}
+            </p>
+          {% endif %}
 
-              {{
-                govukWarningText({
-                  text: content.amendedPostDocsReferenceNumber,
-                  iconFallbackText: content.amendedPostDocsWarning
-                })
-              }}
-            </li>
-            <li>
-              <p class="govuk-body govuk-!-font-weight-bold">{{ content.amendedPostDocsCheckResponse }}</p>
-              <p class="govuk-body">{{ content.amendedCourtCheck | safe }}</p>
-              <p class="govuk-body">{{ content.amendedAmendedApplication | safe }}</p>
-              <p class="govuk-body">{{ content.amendedUsedAdultery | safe }}</p>
-              <p class="govuk-body">{{ content.amendedContactUs | safe }}</p>
-            </li>
-          </ul>
-        {% else %}
+          {{govukWarningText({
+              text: content.amendedPostDocsReferenceNumber,
+              iconFallbackText: content.amendedPostDocsWarning
+          })}}
+        </li>
+        <li>
+          <p class="govuk-body govuk-!-font-weight-bold">{{ content.amendedPostDocsCheckResponse }}</p>
           <p class="govuk-body">{{ content.amendedCourtCheck | safe }}</p>
           <p class="govuk-body">{{ content.amendedAmendedApplication | safe }}</p>
           <p class="govuk-body">{{ content.amendedUsedAdultery | safe }}</p>
           <p class="govuk-body">{{ content.amendedContactUs | safe }}</p>
-        {% endif %}
-      {% else %}
-      {% if (session.marriageCertificateFiles | length === 0) %}
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
+        </li>
+      </ul>
+    {% else %}
+      <p class="govuk-body">{{ content.amendedCourtCheck | safe }}</p>
+      <p class="govuk-body">{{ content.amendedAmendedApplication | safe }}</p>
+      <p class="govuk-body">{{ content.amendedUsedAdultery | safe }}</p>
+      <p class="govuk-body">{{ content.amendedContactUs | safe }}</p>
+    {% endif %}
+  {% else %}
+    {% if (session.marriageCertificateFiles | length === 0) %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
 
-        <h3 class="govuk-heading-s">{{content.whatToDoNowReferenceNumber | safe}}</h3>
-        {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}
-          <p class="govuk-body">{{content.whatToDoNowOrigCertOnly | safe}}</p>
-        {% endif %}
-        {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
-          <p class="govuk-body">{{content.whatToDoNowRefNumText | safe}}</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>{{content.whatToDoNowOrigCert | safe}}</li>
-
+      <h3 class="govuk-heading-s">{{content.whatToDoNowReferenceNumber | safe}}</h3>
+      {% if session.petitionerNameDifferentToMarriageCertificate === 'No' and session.marriedInUk === 'Yes' %}
+        <p class="govuk-body">{{content.whatToDoNowOrigCertOnly | safe}}</p>
+      {% endif %}
+      {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
+        <p class="govuk-body">{{content.whatToDoNowRefNumText | safe}}</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>{{content.whatToDoNowOrigCert | safe}}</li>
           {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' %}
             <li>{{content.whatToDoNowNameChange | safe}}</li>
           {% endif %}
           {% if session.certifiedTranslation === 'Yes' %}
             <li>{{content.whatToDoNowCertTrans | safe}}</li>
           {% endif %}
-          </ul>
-        {% endif %}
-        {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
-          <p class="govuk-body">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
-        {% endif %}
-        <h3 class="govuk-heading-s">{{content.whatToDoNowPostHeading | safe}}</h3>
-        <p class="govuk-body">{{content.whatToDoNowPostText | safe}}</p>
-          <address class="govuk-body govuk-!-font-weight-bold">
-            {% if session.allocatedCourt.serviceCentreName %}
-              {{ session.allocatedCourt.serviceCentreName | safe }} <br/> {{ content.careOf | safe }}
-            {% endif %}
-            {{ session.allocatedCourt.divorceCentre | safe }} <br/>
-            {% if session.allocatedCourt.poBox %}
-              {{ session.allocatedCourt.poBox | safe }} <br/>
-            {% else %}
-              {{ session.allocatedCourt.divorceCentreAddressName | safe }} <br/> {{ session.allocatedCourt.street | safe }} <br/>
-            {% endif %}
-            {{ session.allocatedCourt.courtCity | safe }} <br/> {{ session.allocatedCourt.postCode | safe }}
-          </address>
-
-          <p class="govuk-body">{{ content.certificateKept | safe }} </p>
-
-          <h3 class="govuk-heading-s">{{content.sendEmail | safe}}</h3>
-          <p class="govuk-body">{{ content.email | safe }} </p>
-          <p class="govuk-body">{{ content.emailTo | safe }} </p>
-
-          <span class="govuk-body govuk-!-font-weight-bold">
-            {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
-          </span>
+        </ul>
       {% endif %}
-
-
-      <h2 class="govuk-heading-m">{{content.whatHappensNext | safe}}</h2>
-      <p class="govuk-body">{{content.courtWillCheck | safe}}</p>
-      <p class="govuk-body">{{content.youCanFindMore | safe}}</p>
-      <p class="govuk-body">{{content.contactTheCourt | safe}}</p>
+      {% if session.petitionerNameDifferentToMarriageCertificate === 'Yes' or session.certifiedTranslation === 'Yes' %}
+        <p class="govuk-body">{{content.whatToDoNowRefNumPrtScr | safe}}</p>
       {% endif %}
-
-      <h2 class="govuk-heading-m">{{content.helpImproveService | safe}}</h2>
-      <p class="govuk-body">
-        {{content.improveServiceContent | safe}}
-      </p>
-
-      <h2 class="govuk-heading-m">{{content.getHelp | safe}}</h2>
-      <p class="govuk-body">
-        {{content.getHelpDescription | safe}}
-      </p>
-      <p class="govuk-body">
-        {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
-      </p>
-      <p class="govuk-body">
-        {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}
-      </p>
-      <p class="govuk-body">
-       {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}
-      </p>
-
-      {% if session.helpWithFeesReferenceNumber %}
-        <h2 class="govuk-heading-m">{{content.helpWithFees | safe}}</h2>
-        <p class="govuk-body">
-          {{content.courtCheckApp | safe}}
-        </p>
-        <p class="govuk-body">
-          {{content.youWillBeContacted | safe}}
-        </p>
-      {% endif %}
-
-      {% if session.refusalRejectionReason|length === 0 %}
-      <h2 class="govuk-heading-m">{{content.dividingMoney | safe}}</h2>
-      {% if session.financialOrder === 'Yes' %}
-        <p class="govuk-body">
-          {{content.startFinancialProceedings1 | safe}}
-        </p>
-        <p class="govuk-body">
-          {{content.startFinancialProceedings2 | safe}}
-        </p>
+      <h3 class="govuk-heading-s">{{content.whatToDoNowPostHeading | safe}}</h3>
+      <p class="govuk-body">{{content.whatToDoNowPostText | safe}}</p>
+      {% if session.language == "en" %}
+        <address class="govuk-body govuk-!-font-weight-bold">
+          {% if session.allocatedCourt.serviceCentreName %}
+            {{ session.allocatedCourt.serviceCentreName | safe }}<br/>
+            {{ content.careOf | safe }}
+          {% endif %}
+          {{ session.allocatedCourt.divorceCentre | safe }}<br/>
+          {% if session.allocatedCourt.poBox %}
+            {{ session.allocatedCourt.poBox | safe }}<br/>
+          {% else %}
+            {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
+            {{ session.allocatedCourt.street | safe }}<br/>
+          {% endif %}
+          {{ session.allocatedCourt.courtCity | safe }}<br/>
+          {{ session.allocatedCourt.postCode | safe }}
+        </address>
       {% else %}
-        <p class="govuk-body">
-          {{content.consentOrder | safe}}
-        </p>
-        <p class="govuk-body">
-          {{content.settle | safe}}
-        </p>
-      {% endif %}
+        <address class="govuk-body govuk-!-font-weight-bold">
+          {{ common.serviceCenterNameCy | safe }}<br/>
+          {{ common.serviceCenterPoBoxCy | safe }}<br/>
+          {{ common.serviceCenterCityCy | safe }}<br/>
+          {{ common.serviceCenterPostcodeCy | safe }}
+        </address>
       {% endif %}
 
+      <p class="govuk-body">{{ content.certificateKept | safe }}</p>
+
+      <h3 class="govuk-heading-s">{{content.sendEmail | safe}}</h3>
+      <p class="govuk-body">{{ content.email | safe }}</p>
+      <p class="govuk-body">{{ content.emailTo | safe }}</p>
+
+      {% if session.language == "en" %}
+        <span class="govuk-body govuk-!-font-weight-bold">
+          {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
+        </span>
+      {% else %}
+        <span class="govuk-body govuk-!-font-weight-bold">
+          {{ common.serviceCenterEmailCy | safe if common.serviceCenterEmailCy }}
+        </span>
+      {% endif %}
+    {% endif %}
+
+    <h2 class="govuk-heading-m">{{content.whatHappensNext | safe}}</h2>
+    <p class="govuk-body">{{content.courtWillCheck | safe}}</p>
+    <p class="govuk-body">{{content.youCanFindMore | safe}}</p>
+    <p class="govuk-body">{{content.contactTheCourt | safe}}</p>
+  {% endif %}
+
+  <h2 class="govuk-heading-m">{{content.helpImproveService | safe}}</h2>
+  <p class="govuk-body">
+    {{content.improveServiceContent | safe}}
+  </p>
+
+  <h2 class="govuk-heading-m">{{content.getHelp | safe}}</h2>
+  <p class="govuk-body">
+    {{content.getHelpDescription | safe}}
+  </p>
+  {% if session.language == "en" %}
+    <p class="govuk-body">
+      {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
+    </p>
+    <p class="govuk-body">
+      {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}
+    </p>
+    <p class="govuk-body">
+     {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}
+    </p>
+  {% else %}
+    <p class="govuk-body">
+      {{ common.serviceCenterEmailCy | safe if common.serviceCenterEmailCy }}
+    </p>
+    <p class="govuk-body">
+      {{ common.serviceCenterPhoneNumberCy | safe if common.serviceCenterPhoneNumberCy }}
+    </p>
+    <p class="govuk-body">
+      {{ common.serviceCenterOpeningHoursCy | safe if common.serviceCenterOpeningHoursCy }}
+    </p>
+  {% endif %}
+
+  {% if session.helpWithFeesReferenceNumber %}
+    <h2 class="govuk-heading-m">{{content.helpWithFees | safe}}</h2>
+    <p class="govuk-body">
+      {{content.courtCheckApp | safe}}
+    </p>
+    <p class="govuk-body">
+      {{content.youWillBeContacted | safe}}
+    </p>
+  {% endif %}
+
+  {% if session.refusalRejectionReason|length === 0 %}
+    <h2 class="govuk-heading-m">{{content.dividingMoney | safe}}</h2>
+    {% if session.financialOrder === 'Yes' %}
+      <p class="govuk-body">
+        {{content.startFinancialProceedings1 | safe}}
+      </p>
+      <p class="govuk-body">
+        {{content.startFinancialProceedings2 | safe}}
+      </p>
+    {% else %}
+      <p class="govuk-body">
+        {{content.consentOrder | safe}}
+      </p>
+      <p class="govuk-body">
+        {{content.settle | safe}}
+      </p>
+    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {% block one_third %}
-
   <aside class="govuk-related-items" role="complementary">
-
     <h3 class="govuk-heading-m">{{ content.help }}</h3>
     <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
+      <li>
+        <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
+        <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
+      </li>
+      <li>
+        <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
+        {% if session.language == "en" %}
+          {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
+          {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
+        {% else %}
+          {{ common.serviceCenterPhoneNumberCy | safe if common.serviceCenterPhoneNumberCy }}<br>
+          {{ common.serviceCenterOpeningHoursCy | safe if common.serviceCenterOpeningHoursCy }}<br>
+        {% endif %}
+      </li>
+      {% if session.language == "en" %}
         <li>
-            <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
-            <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
+          {% if session.allocatedCourt.serviceCentreName %}
+            {{ session.allocatedCourt.serviceCentreName | safe }}<br/>
+            {{ content.careOf | safe }}
+          {% endif %}
+          {{ session.allocatedCourt.divorceCentre | safe }}<br/>
+          {% if session.allocatedCourt.poBox %}
+            {{ session.allocatedCourt.poBox | safe }}<br/>
+          {% else %}
+            {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
+            {{ session.allocatedCourt.street | safe }}<br/>
+          {% endif %}
+          {{ session.allocatedCourt.courtCity | safe }}<br/>
+          {{ session.allocatedCourt.postCode | safe }}
         </li>
+      {% else %}
         <li>
-            <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
-            {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }} <br>
-            {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }} <br>
+          {{ common.serviceCenterNameCy | safe }}<br/>
+          {{ common.serviceCenterPoBoxCy | safe }}<br/>
+          {{ common.serviceCenterCityCy | safe }}<br/>
+          {{ common.serviceCenterPostcodeCy | safe }}
         </li>
-        <li>
-            {% if session.allocatedCourt.serviceCentreName %}
-              {{ session.allocatedCourt.serviceCentreName | safe }} <br/> {{ content.careOf | safe }}
-            {% endif %}
-            {{ session.allocatedCourt.divorceCentre | safe }} <br/>
-            {% if session.allocatedCourt.poBox %}
-              {{ session.allocatedCourt.poBox | safe }} <br/>
-            {% else %}
-              {{ session.allocatedCourt.divorceCentreAddressName | safe }} <br/> {{ session.allocatedCourt.street | safe }} <br/>
-            {% endif %}
-            {{ session.allocatedCourt.courtCity | safe }} <br/> {{ session.allocatedCourt.postCode | safe }}
-        </li>
+      {% endif %}
     </ul>
 
     <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
@@ -246,7 +297,5 @@
         <li>{{ content.moneyAndPropertyLink | safe }}</li>
      </ul>
     </nav>
-
-</aside>
-
+  </aside>
 {% endblock %}

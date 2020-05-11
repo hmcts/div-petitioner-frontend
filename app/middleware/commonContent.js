@@ -28,7 +28,14 @@ function commonContentMiddleware(req, res, next) {
           courtPhoneNumberCy: CONF.commonProps.courtPhoneNumberCy,
           courtOpeningHourEn: CONF.commonProps.courtOpeningHourEn,
           courtOpeningHourCy: CONF.commonProps.courtOpeningHourCy,
-          courtEmail: CONF.commonProps.courtEmail
+          courtEmail: CONF.commonProps.courtEmail,
+          serviceCenterNameCy: CONF.commonProps.COURT_SERVICE_CENTRE_NAME_CY,
+          serviceCenterCityCy: CONF.commonProps.COURT_SERVICE_CENTRE_CITY_CY,
+          serviceCenterPoBoxCy: CONF.commonProps.COURT_SERVICE_CENTRE_POBOX_CY,
+          serviceCenterPostcodeCy: CONF.commonProps.COURT_SERVICE_CENTRE_POSTCODE_CY,
+          serviceCenterEmailCy: CONF.commonProps.COURT_SERVICE_CENTRE_EMAIL_CY,
+          serviceCenterOpeningHoursCy: CONF.commonProps.COURT_SERVICE_CENTRE_OPENINGHOURS_CY,
+          serviceCenterPhoneNumberCy: CONF.commonProps.COURT_SERVICE_CENTRE_PHONENUMBER_CY
         });
       }
       return '';

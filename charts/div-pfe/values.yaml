@@ -48,17 +48,34 @@ nodejs:
 
         # Court Details
         COURT_EMAIL: "contactdivorce@justice.gov.uk"
+
         COURT_OPENINGHOURS_EN: "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
         COURT_OPENINGHOURS_CY: "Dydd Llun i ddydd Gwener, 8.30am - 5pm"
+
         COURT_PHONENUMBER_EN: "0300 303 0642"
         COURT_PHONENUMBER_CY: "0300 303 5171"
-        COURT_SERVICE_CENTRE_NAME: "HMCTS Digital Divorce"
-        COURT_SERVICE_CENTRE_CITY: "Harlow"
-        COURT_SERVICE_CENTRE_POBOX: "PO Box 12706"
-        COURT_SERVICE_CENTRE_POSTCODE: "CM20 9QT"
-        COURT_SERVICE_CENTRE_EMAIL: "divorcecase@justice.gov.uk"
-        COURT_SERVICE_CENTRE_OPENINGHOURS: "Telephone Enquiries from: 8.30am to 5pm"
-        COURT_SERVICE_CENTRE_PHONENUMBER: "0300 303 0642"
+
+        COURT_SERVICE_CENTRE_NAME_EN: "HMCTS Digital Divorce"
+        COURT_SERVICE_CENTRE_NAME_CY: "Uned yr Iaith Gymraeg, Canolfan Gyfianwnder Caernarfon"
+
+        COURT_SERVICE_CENTRE_CITY_EN: "Harlow"
+        COURT_SERVICE_CENTRE_CITY_CY: "Gwynedd"
+
+        COURT_SERVICE_CENTRE_POBOX_EN: "PO Box 12706"
+        COURT_SERVICE_CENTRE_POBOX_CY: "Caernarfon"
+
+        COURT_SERVICE_CENTRE_POSTCODE_EN: "CM20 9QT"
+        COURT_SERVICE_CENTRE_POSTCODE_CY: "LL55 2DF"
+
+        COURT_SERVICE_CENTRE_EMAIL_EN: "divorcecase@justice.gov.uk"
+        COURT_SERVICE_CENTRE_EMAIL_CY: "ymholiadaucymraeg@justice.gov.uk"
+
+        COURT_SERVICE_CENTRE_OPENINGHOURS_EN: "Telephone Enquiries from: 8.30am to 5pm"
+        COURT_SERVICE_CENTRE_OPENINGHOURS_CY: "Ymholiadau ffôn: Dydd Llun i ddydd Gwener, 8.30am - 5pm"
+
+        COURT_SERVICE_CENTRE_PHONENUMBER_EN: "0300 303 0642"
+        COURT_SERVICE_CENTRE_PHONENUMBER_CY: "0300 303 5171"
+
         COURT_SERVICE_CENTRE_SITEID: "CTSC"
         SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"
 

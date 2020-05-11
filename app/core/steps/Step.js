@@ -100,7 +100,7 @@ module.exports = class Step {
 
     const contentCtx = Object.assign({}, session, ctx, this.commonProps);
 
-    if (lang === 'cy') {
+    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
       contentCtx.divorceWho = this.i18next.t(common[contentCtx.divorceWho]);
     }
 

@@ -88,7 +88,7 @@
           "desertionSummary": "Mae eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd yn ôl",
           "desertionExclusion": "Os yw eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd yn ôl",
           "noneApply": "Nid yw’r un o’r rhain yn berthnasol i fy sefyllfa",
-          "finalPossibilities": "Os na allwch ddefnyddio unrhyw un o’r rhesymau uchod, efallai y bydd modd ichi gael <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+          "finalPossibilities": "Os na allwch ddefnyddio unrhyw un o’r rhesymau uchod, efallai y bydd modd ichi gael <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">ymwahaniad cyfreithiol</a> neu <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">ddirymu eich priodas</a>.",
           "alternativelyInFuture": "Fel arall, yn y dyfodol efallai y bydd modd ichi ddefnyddio’r canlynol",
           "warning": "Rhybudd"
         },

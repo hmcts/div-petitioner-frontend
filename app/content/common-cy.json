@@ -34,7 +34,11 @@
         "privacyPolicy": "Polisi Preifatrwydd",
         "termsAndConditions": "Telerau ac Amodau",
         "husband": "gŵr",
-        "wife": "gwraig"
+        "wife": "gwraig",
+        "months": [
+          "Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
+          "Gorffennaf", "Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"
+        ]
       }
     }
   }

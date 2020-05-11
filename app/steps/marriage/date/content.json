@@ -71,7 +71,7 @@
           "stillCanUse": "Byddwch yn gallu dewis <strong>ymddygiad</strong> a <strong>godineb</strong>, cyhyd â’ch bod wedi priodi ers mwy na blwyddyn."
         },
         "checkYourAnswersContent": {
-          "question": " Dyddiad y briodas"
+          "question": "Dyddiad y briodas"
         },
         "errors": {
           "marriageDateDay": {

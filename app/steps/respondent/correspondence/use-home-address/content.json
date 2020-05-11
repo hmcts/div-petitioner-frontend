@@ -25,8 +25,7 @@
           "question": "Ai i’r fan hon y dylid anfon papurau ysgariad eich {{ divorceWho }}?",
           "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
           "yes": "Ydy, defnyddiwch y cyfeiriad hwn",
-          "no": "Na, dylid eu hanfon i gyfeiriad arall",
-          "solicitor": "Na, dylid eu hanfon at ei gyfreithiwr/chyfreithiwr"
+          "no": "Na, dylid eu hanfon i gyfeiriad arall"
         },
         "checkYourAnswersContent": {
           "yes": "Ydw"

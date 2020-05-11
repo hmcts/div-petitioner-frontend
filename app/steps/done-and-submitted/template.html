@@ -166,7 +166,6 @@
       <p class="govuk-body">
         {{content.getHelpDescription | safe}}
       </p>
-     {% if session.language ==='en' %}
       <p class="govuk-body">
         {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
       </p>
@@ -176,19 +175,6 @@
       <p class="govuk-body">
        {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}
       </p>
-      {% else %}
-      <p class="govuk-body">
-        [CY]divorcecase@justice.gov.uk
-      </p>
-      <p class="govuk-body">
-        [CY] 0300 303 5171
-      </p>
-      <p class="govuk-body">
-        [CY] Dydd Llun i ddydd Gwener, 8.30am - 5pm
-
-      </p>
-      {% endif %}
-
 
       {% if session.helpWithFeesReferenceNumber %}
         <h2 class="govuk-heading-m">{{content.helpWithFees | safe}}</h2>

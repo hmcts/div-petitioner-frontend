@@ -167,7 +167,12 @@ module.exports = class Step {
     // let errors = null;
     // let fields = null;
     //  fetch all the content from the content files
-    res.locals.content = this.generateContent(ctx, session, language, res.locals.common);
+    res.locals.content = this.generateContent(
+      ctx,
+      session,
+      language,
+      res.locals.common
+    );
 
     if (!res.locals.fields) {
       //  map the context into data fields for use in templates and macros

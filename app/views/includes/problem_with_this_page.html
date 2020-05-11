@@ -12,10 +12,6 @@
         <p class="govuk-body">{{ common.emailIfProblems | safe }}<br>{{ common.responseTime }}</p>
 
         <p class="govuk-heading-s govuk-!-margin-bottom-1" >{{ common.phoneTitle | safe }}</p>
-      {% if session.language=='en' %}
         <p class="govuk-body">{{ common.phoneToCallIfProblems | safe }}</p>
-      {% else %}
-      <p class="govuk-body">0300 303 5171 <br>[CY] Monday To Friday, 8am to 8 pm, Saturday 8am to 2pm.</p>
-      {% endif %}
     </div>
 </details>

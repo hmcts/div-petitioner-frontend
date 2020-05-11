@@ -93,12 +93,16 @@ module.exports = class Step {
     return true;
   }
 
-  generateContent(ctx, session, lang = 'en') {
+  generateContent(ctx, session, lang = 'en', common) {
     if (!this.content || !this.content.resources) {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }
 
     const contentCtx = Object.assign({}, session, ctx, this.commonProps);
+
+    if (lang === 'cy') {
+      contentCtx.divorceWho = this.i18next.t(common[contentCtx.divorceWho]);
+    }
 
     this.i18next.changeLanguage(lang);
 
@@ -163,7 +167,7 @@ module.exports = class Step {
     // let errors = null;
     // let fields = null;
     //  fetch all the content from the content files
-    res.locals.content = this.generateContent(ctx, session, language);
+    res.locals.content = this.generateContent(ctx, session, language, res.locals.common);
 
     if (!res.locals.fields) {
       //  map the context into data fields for use in templates and macros

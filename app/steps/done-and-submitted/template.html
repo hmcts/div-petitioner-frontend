@@ -65,8 +65,7 @@
             <p class="govuk-body">
               <strong>
                 {% if session.allocatedCourt.serviceCentreName %}
-                  {{ session.allocatedCourt.serviceCentreName | safe }}<br/>
-                  {{ content.careOf | safe }}
+                  {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
                 {% endif %}
               </strong>
               {{ session.allocatedCourt.divorceCentre | safe }}<br/>
@@ -137,8 +136,7 @@
       {% if session.language == "en" %}
         <address class="govuk-body govuk-!-font-weight-bold">
           {% if session.allocatedCourt.serviceCentreName %}
-            {{ session.allocatedCourt.serviceCentreName | safe }}<br/>
-            {{ content.careOf | safe }}
+            {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
           {% endif %}
           {{ session.allocatedCourt.divorceCentre | safe }}<br/>
           {% if session.allocatedCourt.poBox %}
@@ -264,8 +262,7 @@
       {% if session.language == "en" %}
         <li>
           {% if session.allocatedCourt.serviceCentreName %}
-            {{ session.allocatedCourt.serviceCentreName | safe }}<br/>
-            {{ content.careOf | safe }}
+            {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
           {% endif %}
           {{ session.allocatedCourt.divorceCentre | safe }}<br/>
           {% if session.allocatedCourt.poBox %}

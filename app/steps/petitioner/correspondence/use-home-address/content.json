@@ -6,7 +6,9 @@
         "content": {
           "question": "Do you want your divorce papers sent to this address?",
           "yes": "Yes, use this address",
-          "no": "No, add a different address"
+          "no": "No, add a different address",
+          "Yes": "Yes",
+          "No": "No"
         },
         "errors": {
           "petitionerCorrespondenceUseHomeAddress": {
@@ -20,7 +22,9 @@
         "content": {
           "question": "Ydych chi eisiau inni anfon eich papurau ysgariad i’r cyfeiriad hwn?",
           "yes": "Oes. Defnyddio’r cyfeiriad hwn",
-          "no": "Nac oes. Ychwanegu cyfeiriad gwahanol"
+          "no": "Nac oes. Ychwanegu cyfeiriad gwahanol",
+          "Yes": "Oes",
+          "No": "Nac oes"
         },
         "errors": {
           "petitionerCorrespondenceUseHomeAddress": {

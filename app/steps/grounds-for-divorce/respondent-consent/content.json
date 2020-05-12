@@ -12,7 +12,9 @@
           "no": {
             "label": "No",
             "additionalInfo": "You can continue using this reason for divorce, but be aware your {{ divorceWho }} will be asked if they agree to a divorce. If they don’t, you’ll have to pay a fee to change your application."
-          }
+          },
+          "Yes": "Yes",
+          "No": "No"
         },
         "errors": {
           "reasonForDivorceRespondentConsent": {
@@ -32,7 +34,9 @@
           "no": {
             "label": "Nac oes",
             "additionalInfo": "Gallwch barhau i ddefnyddio’r rheswm hwn dros ysgaru, ond dylech fod yn ymwybodol y gofynnir i’ch {{ divorceWho }} a yw’n cytuno i ysgaru. Os nad yw’n cytuno, bydd yn rhaid ichi dalu ffi i newid eich cais."
-          }
+          },
+          "Yes": "Do",
+          "No": "Nac oes"
         },
         "errors": {
           "reasonForDivorceRespondentConsent": {

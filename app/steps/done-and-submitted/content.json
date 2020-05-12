@@ -66,12 +66,12 @@
           "amendedPostDocsWarning": "Warning",
           "amendedPostDocsReferenceNumber": "You must write your reference number on each document.",
           "amendedPostDocsCheckResponse": "The court will check your response",
-          "serviceCenterName": "HMCTS Digital Divorce",
-          "serviceCenterPoBox": "PO Box 12706",
-          "serviceCenterCity": "Harlow",
-          "serviceCenterPostcode": "CM20 9QT",
-          "serviceCenterPhoneNumber": "0300 303 0642",
-          "serviceCenterOpeningHours": "Telephone Enquiries from: 8.30am to 5pm"
+          "serviceCenterName": "{{serviceCenterNameEn}}",
+          "serviceCenterPoBox": "{{serviceCenterPoBoxEn}}",
+          "serviceCenterCity": "{{serviceCenterCityEn}}",
+          "serviceCenterPostcode": "{{serviceCenterPostcodeEn}}",
+          "serviceCenterPhoneNumber": "{{serviceCenterPhoneNumberEn}}",
+          "serviceCenterOpeningHours": "{{serviceCenterOpeningHoursEn}}"
         },
         "errors": {}
       }

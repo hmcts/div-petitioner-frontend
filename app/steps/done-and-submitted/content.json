@@ -66,12 +66,12 @@
           "amendedPostDocsWarning": "Warning",
           "amendedPostDocsReferenceNumber": "You must write your reference number on each document.",
           "amendedPostDocsCheckResponse": "The court will check your response",
-          "serviceCenterName": "{{serviceCenterNameEn}}",
-          "serviceCenterPoBox": "{{serviceCenterPoBoxEn}}",
-          "serviceCenterCity": "{{serviceCenterCityEn}}",
-          "serviceCenterPostcode": "{{serviceCenterPostcodeEn}}",
-          "serviceCenterPhoneNumber": "{{serviceCenterPhoneNumberEn}}",
-          "serviceCenterOpeningHours": "{{serviceCenterOpeningHoursEn}}"
+          "serviceCenterName": "HMCTS Digital Divorce",
+          "serviceCenterPoBox": "PO Box 12706",
+          "serviceCenterCity": "Harlow",
+          "serviceCenterPostcode": "CM20 9QT",
+          "serviceCenterPhoneNumber": "0300 303 0642",
+          "serviceCenterOpeningHours": "Telephone Enquiries from: 8.30am to 5pm"
         },
         "errors": {}
       }
@@ -141,12 +141,12 @@
           "amendedPostDocsWarning": "Rhybudd",
           "amendedPostDocsReferenceNumber": "Mae’n rhaid ichi ysgrifennu eich cyfeirnod ar bob dogfen.",
           "amendedPostDocsCheckResponse": "Bydd y llys yn gwirio eich ymateb",
-          "serviceCenterName": "{{serviceCenterNameCy}}",
-          "serviceCenterPoBox": "{{serviceCenterPoBoxCy}}",
-          "serviceCenterCity": "{{serviceCenterCityCy}}",
-          "serviceCenterPostcode": "{{serviceCenterPostcodeCy}}",
-          "serviceCenterPhoneNumber": "{{serviceCenterPhoneNumberCy}}",
-          "serviceCenterOpeningHours": "{{serviceCenterOpeningHoursCy}}"
+          "serviceCenterName": "Uned yr Iaith Gymraeg, Canolfan Gyfianwnder Caernarfon",
+          "serviceCenterPoBox": "Caernarfon",
+          "serviceCenterCity": "Gwynedd",
+          "serviceCenterPostcode": "LL55 2DF",
+          "serviceCenterPhoneNumber": "0300 303 5171",
+          "serviceCenterOpeningHours": "Ymholiadau ffôn: Dydd Llun i ddydd Gwener, 8.30am - 5pm"
         },
         "errors": {}
       }

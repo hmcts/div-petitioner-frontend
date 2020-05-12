@@ -29,13 +29,13 @@ function commonContentMiddleware(req, res, next) {
           courtOpeningHourEn: CONF.commonProps.courtOpeningHourEn,
           courtOpeningHourCy: CONF.commonProps.courtOpeningHourCy,
           courtEmail: CONF.commonProps.courtEmail,
-          serviceCenterNameCy: CONF.commonProps.COURT_SERVICE_CENTRE_NAME_CY,
-          serviceCenterCityCy: CONF.commonProps.COURT_SERVICE_CENTRE_CITY_CY,
-          serviceCenterPoBoxCy: CONF.commonProps.COURT_SERVICE_CENTRE_POBOX_CY,
-          serviceCenterPostcodeCy: CONF.commonProps.COURT_SERVICE_CENTRE_POSTCODE_CY,
-          serviceCenterEmailCy: CONF.commonProps.COURT_SERVICE_CENTRE_EMAIL_CY,
-          serviceCenterOpeningHoursCy: CONF.commonProps.COURT_SERVICE_CENTRE_OPENINGHOURS_CY,
-          serviceCenterPhoneNumberCy: CONF.commonProps.COURT_SERVICE_CENTRE_PHONENUMBER_CY
+          serviceCenterNameCy: CONF.commonProps.serviceCentreNameCy,
+          serviceCenterCityCy: CONF.commonProps.serviceCentreCityCy,
+          serviceCenterPoBoxCy: CONF.commonProps.serviceCentrePoBoxCy,
+          serviceCenterPostcodeCy: CONF.commonProps.serviceCentrePostcodeCy,
+          serviceCenterEmailCy: CONF.commonProps.serviceCentreEmailCy,
+          serviceCenterOpeningHoursCy: CONF.commonProps.serviceCentreOpeningHoursCy,
+          serviceCenterPhoneNumberCy: CONF.commonProps.serviceCentrePhoneNumberCy
         });
       }
       return '';

@@ -81,11 +81,11 @@
           {% else %}
             <p class="govuk-body">
               <strong>
-                {{ common.serviceCenterNameCy | safe }}<br/>
+                {{ content.serviceCenterName | safe }}<br/>
               </strong>
-              {{ common.serviceCenterPoBoxCy | safe }}<br/>
-              {{ common.serviceCenterCityCy | safe }}<br/>
-              {{ common.serviceCenterPostcodeCy | safe }}
+              {{ content.serviceCenterPoBox | safe }}<br/>
+              {{ content.serviceCenterCity | safe }}<br/>
+              {{ content.serviceCenterPostcode | safe }}
             </p>
           {% endif %}
 
@@ -150,10 +150,10 @@
         </address>
       {% else %}
         <address class="govuk-body govuk-!-font-weight-bold">
-          {{ common.serviceCenterNameCy | safe }}<br/>
-          {{ common.serviceCenterPoBoxCy | safe }}<br/>
-          {{ common.serviceCenterCityCy | safe }}<br/>
-          {{ common.serviceCenterPostcodeCy | safe }}
+          {{ content.serviceCenterName | safe }}<br/>
+          {{ content.serviceCenterPoBox | safe }}<br/>
+          {{ content.serviceCenterCity | safe }}<br/>
+          {{ content.serviceCenterPostcode | safe }}
         </address>
       {% endif %}
 
@@ -169,7 +169,7 @@
         </span>
       {% else %}
         <span class="govuk-body govuk-!-font-weight-bold">
-          {{ common.serviceCenterEmailCy | safe if common.serviceCenterEmailCy }}
+          {{ content.serviceCenterEmail | safe }}
         </span>
       {% endif %}
     {% endif %}
@@ -201,13 +201,13 @@
     </p>
   {% else %}
     <p class="govuk-body">
-      {{ common.serviceCenterEmailCy | safe if common.serviceCenterEmailCy }}
+      {{ content.serviceCenterEmail | safe }}
     </p>
     <p class="govuk-body">
-      {{ common.serviceCenterPhoneNumberCy | safe if common.serviceCenterPhoneNumberCy }}
+      {{ content.serviceCenterPhoneNumber | safe }}
     </p>
     <p class="govuk-body">
-      {{ common.serviceCenterOpeningHoursCy | safe if common.serviceCenterOpeningHoursCy }}
+      {{ content.serviceCenterOpeningHours | safe }}
     </p>
   {% endif %}
 
@@ -255,8 +255,8 @@
           {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
           {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
         {% else %}
-          {{ common.serviceCenterPhoneNumberCy | safe if common.serviceCenterPhoneNumberCy }}<br>
-          {{ common.serviceCenterOpeningHoursCy | safe if common.serviceCenterOpeningHoursCy }}<br>
+          {{ content.serviceCenterPhoneNumber | safe }}<br>
+          {{ content.serviceCenterOpeningHours | safe }}<br>
         {% endif %}
       </li>
       {% if session.language == "en" %}
@@ -276,10 +276,10 @@
         </li>
       {% else %}
         <li>
-          {{ common.serviceCenterNameCy | safe }}<br/>
-          {{ common.serviceCenterPoBoxCy | safe }}<br/>
-          {{ common.serviceCenterCityCy | safe }}<br/>
-          {{ common.serviceCenterPostcodeCy | safe }}
+          {{ content.serviceCenterName | safe }}<br/>
+          {{ content.serviceCenterPoBox | safe }}<br/>
+          {{ content.serviceCenterCity | safe }}<br/>
+          {{ content.serviceCenterPostcode | safe }}
         </li>
       {% endif %}
     </ul>

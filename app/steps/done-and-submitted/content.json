@@ -65,7 +65,13 @@
           "amendedPostDocsOriginalDocs": "Post all your original documents to:",
           "amendedPostDocsWarning": "Warning",
           "amendedPostDocsReferenceNumber": "You must write your reference number on each document.",
-          "amendedPostDocsCheckResponse": "The court will check your response"
+          "amendedPostDocsCheckResponse": "The court will check your response",
+          "serviceCenterName": "{{serviceCenterNameEn}}",
+          "serviceCenterPoBox": "{{serviceCenterPoBoxEn}}",
+          "serviceCenterCity": "{{serviceCenterCityEn}}",
+          "serviceCenterPostcode": "{{serviceCenterPostcodeEn}}",
+          "serviceCenterPhoneNumber": "{{serviceCenterPhoneNumberEn}}",
+          "serviceCenterOpeningHours": "{{serviceCenterOpeningHoursEn}}"
         },
         "errors": {}
       }
@@ -134,7 +140,13 @@
           "amendedPostDocsOriginalDocs": "Postiwch eich dogfennau gwreiddiol i:",
           "amendedPostDocsWarning": "Rhybudd",
           "amendedPostDocsReferenceNumber": "Mae’n rhaid ichi ysgrifennu eich cyfeirnod ar bob dogfen.",
-          "amendedPostDocsCheckResponse": "Bydd y llys yn gwirio eich ymateb"
+          "amendedPostDocsCheckResponse": "Bydd y llys yn gwirio eich ymateb",
+          "serviceCenterName": "{{serviceCenterNameCy}}",
+          "serviceCenterPoBox": "{{serviceCenterPoBoxCy}}",
+          "serviceCenterCity": "{{serviceCenterCityCy}}",
+          "serviceCenterPostcode": "{{serviceCenterPostcodeCy}}",
+          "serviceCenterPhoneNumber": "{{serviceCenterPhoneNumberCy}}",
+          "serviceCenterOpeningHours": "{{serviceCenterOpeningHoursCy}}"
         },
         "errors": {}
       }

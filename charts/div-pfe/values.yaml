@@ -94,6 +94,7 @@ nodejs:
                 - frontend-secret
                 - pfe-redis-connection-string
                 - AppInsightsInstrumentationKey
+                - launchdarkly-key
 
 redis:
     cluster:

@@ -29,7 +29,7 @@ const idam = require('app/services/idam');
 const featureToggles = require('app/routes/featureToggles');
 const signOutRoute = require('app/routes/sign-out');
 const parseBool = require('app/core/utils/parseBool');
-const LaunchDarkly = require('app/core/utils/launch-darkly');
+const LaunchDarkly = require('launchdarkly-node-server-sdk');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -150,9 +150,13 @@ exports.init = listenForConnections => {
 
   app.use((req, res, next) => {
     if (['test', 'testing'].includes(app.get('env'))) {
-      res.locals.launchDarkly = new LaunchDarkly({ offline: true }).getInstance();
+      res.locals.launchDarkly = {
+        client: LaunchDarkly.init(CONF.featureToggles.launchDarklyKey, { offline: true })
+      };
     } else {
-      res.locals.launchDarkly = new LaunchDarkly({ diagnosticOptOut: true }).getInstance();
+      res.locals.launchDarkly = {
+        client: LaunchDarkly.init(CONF.featureToggles.launchDarklyKey, { diagnosticOptOut: true })
+      };
     }
 
     next();

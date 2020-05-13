@@ -166,3 +166,12 @@ ccd:
     - 'serviceCentre'
 
 languages: ['en', 'cy']
+
+featureToggles:
+  launchDarklyKey: 'SDK_KEY'
+  launchDarklyUser:
+    firstName: 'Divorce'
+    lastName: 'Frontend'
+    key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
+  ft_welsh: 'divorce-welsh'
+  appwideToggles: ['ft_welsh']

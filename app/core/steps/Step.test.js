@@ -236,7 +236,7 @@ describe(modulePath, () => {
       co(function* generator() {
         yield stepInstance.getRequest(req, res);
         expect(res.locals.session).to.eql(req.session);
-        expect(Object.keys(res.locals.fields)).to.eql(['foo', 'bar']);
+        expect(Object.keys(res.locals.fields)).to.eql(['foo', 'bar', 'featureToggles']);
         expect(res.locals.content).to.eql({ test: 'content.test' });
       }).then(done, done);
     });

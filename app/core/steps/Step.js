@@ -6,6 +6,7 @@ const { Router } = require('express');
 const walkMap = require('app/core/utils/treeWalker');
 const statusCodes = require('http-status-codes');
 const co = require('co');
+const FeatureToggle = require('app/core/utils/featureToggle');
 const logger = require('app/services/logger').logger(__filename);
 
 const defualtNext = () => {};
@@ -158,6 +159,7 @@ module.exports = class Step {
 
     //  extract data from the request
     let ctx = this.populateWithPreExistingData(session);
+    ctx = FeatureToggle.appwideToggles(req, ctx, CONF.featureToggles.appwideToggles);
 
     //  intercept the request and process any incoming data
     //  here we can set data on the context before we validate

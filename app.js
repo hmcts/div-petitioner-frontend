@@ -26,8 +26,10 @@ const httpStatus = require('http-status-codes');
 const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
+const featureToggles = require('app/routes/featureToggles');
 const signOutRoute = require('app/routes/sign-out');
 const parseBool = require('app/core/utils/parseBool');
+const LaunchDarkly = require('app/core/utils/launch-darkly');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -147,6 +149,16 @@ exports.init = listenForConnections => {
   app.use(sessions.prod());
 
   app.use((req, res, next) => {
+    if (['test', 'testing'].includes(app.get('env'))) {
+      res.locals.launchDarkly = new LaunchDarkly({ offline: true }).getInstance();
+    } else {
+      res.locals.launchDarkly = new LaunchDarkly({ diagnosticOptOut: true }).getInstance();
+    }
+
+    next();
+  });
+
+  app.use((req, res, next) => {
     if (!req.session.language) {
       req.session.language = 'en';
     }
@@ -185,6 +197,10 @@ exports.init = listenForConnections => {
   app.get('/', (req, res) => {
     res.redirect('/index');
   });
+
+
+  // feature toggles routes
+  app.use(featureToggles);
 
   // sign out route
   signOutRoute(app);

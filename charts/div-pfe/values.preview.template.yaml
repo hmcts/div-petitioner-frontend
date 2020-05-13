@@ -21,6 +21,8 @@ nodejs:
                 - idam-secret
                 - os-places-token
                 - frontend-secret
+                - launchdarkly-key
+
     # Don't modify below here
     image: ${IMAGE_NAME}
     ingressHost: ${SERVICE_FQDN}

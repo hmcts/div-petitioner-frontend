@@ -38,7 +38,7 @@ describe('FeatureToggle', () => {
       featureToggle.checkToggle(params); // Checking a second call to LaunchDarkly doesn't hang
 
       setTimeout(() => {
-        // expect(params.callbackFn.calledTwice).to.equal(true);
+        expect(params.callbackFn.calledTwice).to.equal(true);
         expect(params.callbackFn.calledWith({
           req: params.req,
           res: params.res,
@@ -72,73 +72,6 @@ describe('FeatureToggle', () => {
 
       expect(params.next.calledOnce).to.equal(true);
 
-      done();
-    });
-  });
-
-  describe('togglePage()', () => {
-    it('should call next() when isEnabled is set to true', done => {
-      const params = {
-        isEnabled: true,
-        res: {},
-        next: sinon.spy()
-      };
-      const featureToggle = new FeatureToggle();
-
-      featureToggle.togglePage(params);
-
-      expect(params.next.calledOnce).to.equal(true);
-      expect(params.next.calledWith()).to.equal(true);
-      done();
-    });
-
-    it('should redirect to the specified page when isEnabled is set to false', done => {
-      const params = {
-        isEnabled: false,
-        res: { redirect: sinon.spy() },
-        next: {},
-        redirectPage: '/applicant-phone'
-      };
-      const featureToggle = new FeatureToggle();
-
-      featureToggle.togglePage(params);
-
-      expect(params.res.redirect.calledOnce).to.equal(true);
-      expect(params.res.redirect.calledWith('/applicant-phone')).to.equal(true);
-      done();
-    });
-  });
-
-  describe('toggleExistingPage()', () => {
-    it('should call next() when isEnabled is set to false', done => {
-      const params = {
-        isEnabled: false,
-        res: {},
-        next: sinon.spy()
-      };
-      const featureToggle = new FeatureToggle();
-
-      featureToggle.toggleExistingPage(params);
-
-      expect(params.next.calledOnce).to.equal(true);
-      expect(params.next.calledWith()).to.equal(true);
-      done();
-    });
-
-    it('should redirect to the specified page when isEnabled is set to true', done => {
-      const params = {
-        req: { session: { form: {} } },
-        isEnabled: true,
-        res: { redirect: sinon.spy() },
-        next: {},
-        redirectPage: '/screening-questions/language-preference'
-      };
-      const featureToggle = new FeatureToggle();
-
-      featureToggle.toggleExistingPage(params);
-
-      expect(params.res.redirect.calledOnce).to.equal(true);
-      expect(params.res.redirect.calledWith('/screening-questions/language-preference')).to.equal(true);
       done();
     });
   });

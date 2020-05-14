@@ -20,15 +20,9 @@ class FeatureToggle {
     const featureToggleKey = CONF.featureToggles[params.featureToggleKey];
     const ldUser = CONF.featureToggles.launchDarklyUser;
 
-    let ldDefaultValue = false;
-
-    if (params.launchDarkly.ftValue && params.launchDarkly.ftValue[params.featureToggleKey]) {
-      ldDefaultValue = params.launchDarkly.ftValue[params.featureToggleKey];
-    }
-
     try {
       this.onceReady(params.launchDarkly, () => {
-        params.launchDarkly.client.variation(featureToggleKey, ldUser, ldDefaultValue, (error, showFeature) => {
+        params.launchDarkly.client.variation(featureToggleKey, ldUser, false, (error, showFeature) => {
           if (error) {
             params.next();
           } else {
@@ -57,22 +51,6 @@ class FeatureToggle {
         ld.ready = true;
         callbackFn();
       });
-    }
-  }
-
-  togglePage(params) {
-    if (params.isEnabled) {
-      params.next();
-    } else {
-      params.res.redirect(params.redirectPage);
-    }
-  }
-
-  toggleExistingPage(params) {
-    if (params.isEnabled) {
-      params.res.redirect(params.redirectPage);
-    } else {
-      params.next();
     }
   }
 

@@ -73,6 +73,7 @@
     "global-require": "off",
     "line-comment-position": "off",
     "no-throw-literal": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "consistent-return": "off"
   }
 }

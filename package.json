@@ -146,7 +146,7 @@
     "proxyquire": "^1.8.0",
     "puppeteer": "^1.6.0",
     "randomstring": "^1.1.5",
-    "rewire": "^2.5.2",
+    "rewire": "^4.0.1",
     "sinon": "^2.3.4",
     "sinon-chai": "^2.8.0",
     "sinon-stub-promise": "^4.0.0",

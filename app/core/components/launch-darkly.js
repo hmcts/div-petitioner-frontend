@@ -18,7 +18,7 @@ class LaunchDarkly {
       return this.client.variation(...params);
     }
 
-    this.client.once('ready', () => {
+    return this.client.once('ready', () => {
       this.ready = true;
       return this.client.variation(...params);
     });
@@ -31,25 +31,27 @@ class LaunchDarkly {
 
 class Singleton {
   constructor(options = {}, ftValue = {}) {
-    if (!Singleton.instance) {
-      Singleton.instance = new LaunchDarkly(options, ftValue);
+    if (!this.instance) {
+      this.instance = new LaunchDarkly(options, ftValue);
 
       process.on('SIGINT', () => {
-        return this.close;
+        return this.close();
       });
       process.on('exit', () => {
-        return this.close;
+        return this.close();
       });
     }
   }
 
   getInstance() {
-    return Singleton.instance;
+    return this.instance;
   }
 
   close() {
-    Singleton.instance.close();
-    Singleton.instance = null;
+    if (this.instance) {
+      this.instance.close();
+      delete this.instance;
+    }
   }
 }
 

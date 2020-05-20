@@ -236,10 +236,10 @@
     request-promise-native "^1.0.7"
     socks5-https-client "^1.2.1"
 
-"@hmcts/div-pay-client@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/div-pay-client/-/div-pay-client-7.0.0.tgz#9f7ef6e7462a9417465125ae174d1e7e247cddbf"
-  integrity sha512-GXbCPZK//P9Id6qPOX/5axgi++c8qhy3vl+d8US+2J6WsdcPlk1TW68iYrb7sGCnuN3f34+EcU7PVh0dU0rKbw==
+"@hmcts/div-pay-client@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-pay-client/-/div-pay-client-7.0.1.tgz#0065ff64c6db0b5fe1e482cc9d566d326232d69f"
+  integrity sha512-7eaw36ow6966f8Vd1XRIBg0Q41RjfZHu783L9k/Lup054V9HdOW29egPc3U/Jko4nVilHqEEEdDIi+AwzH94QQ==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
     lodash "^4.17.15"

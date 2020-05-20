@@ -156,7 +156,7 @@ module.exports = class PayOnline extends Step {
       .then(() => {
         return payment.create(
           req, user, generatedServiceToken, caseId, siteId, feeCode,
-          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
+          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl, req.session.language);
       })
 
       // Store payment info in session and update the submitted application.

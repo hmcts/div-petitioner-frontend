@@ -15,9 +15,9 @@ const service = {
    * @returns {Promise}
    */
   create: (req, user, serviceToken, caseReference, siteId, feeCode,
-    feeVersion, amountInput, description, returnUrl, serviceCallbackUrl) => {
+    feeVersion, amountInput, description, returnUrl, serviceCallbackUrl, language) => {
     return client.create(user, serviceToken, caseReference, siteId, feeCode,
-      feeVersion, amountInput, description, returnUrl, serviceCallbackUrl)
+      feeVersion, amountInput, description, returnUrl, serviceCallbackUrl, language)
       .then(response => {
         const { id, amount, status, reference, date_created } = response; // eslint-disable-line camelcase
         const nextUrl = get(response, '_links.next_url.href');
@@ -72,10 +72,8 @@ const service = {
    * @returns {Promise}
    */
   queryAllPayments: (req, user, serviceToken, caseId) => {
-    logger.infoWithReq(req, 'payment_url', `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${caseId}&language=${req.session.language === 'en' ? '' : req.session.language.toUpperCase()}`);
-
     return request.get({
-      uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${caseId}&language=${req.session.language === 'en' ? '' : req.session.language.toUpperCase()}`,
+      uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${caseId}`,
       headers: {
         Authorization: `Bearer ${user.bearerToken}`,
         ServiceAuthorization: `Bearer ${serviceToken}`

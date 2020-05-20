@@ -267,7 +267,7 @@ describe(modulePath, () => {
 
     beforeEach(() => {
       sinon.stub(request, 'get').withArgs({
-        uri: 'http://localhost:4401/payments?ccd_case_number=1111222233334444&language=CY',
+        uri: 'http://localhost:4401/payments?ccd_case_number=1111222233334444',
         headers: {
           Authorization: `Bearer ${user.bearerToken}`,
           ServiceAuthorization: `Bearer ${serviceToken}`

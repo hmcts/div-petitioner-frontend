@@ -72,6 +72,8 @@ const service = {
    * @returns {Promise}
    */
   queryAllPayments: (req, user, serviceToken, caseId) => {
+    logger.infoWithReq(req, 'payment_url', `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${caseId}&language=${req.session.language === 'en' ? '' : req.session.language.toUpperCase()}`);
+
     return request.get({
       uri: `${CONF.services.payment.baseUrl}/payments?ccd_case_number=${caseId}&language=${req.session.language === 'en' ? '' : req.session.language.toUpperCase()}`,
       headers: {

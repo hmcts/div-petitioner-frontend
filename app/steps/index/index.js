@@ -7,8 +7,15 @@ module.exports = class Index extends Step {
     return '/index';
   }
 
-  get nextStep() {
-    return this.steps.ScreeningQuestionsLanguagePreference;
+  nextStep(session) {
+    if (session.featureToggles.ft_welsh) {
+      return this.steps.ScreeningQuestionsLanguagePreference;
+    }
+    return this.steps.ScreeningQuestionsMarriageBroken;
+  }
+
+  next(ctx, session) {
+    return this.nextStep(session);
   }
 
   get middleware() {
@@ -24,7 +31,7 @@ module.exports = class Index extends Step {
   }
 
   handler(req, res, next) {
-    res.redirect(this.next().url);
+    res.redirect(this.next(req.session).url);
     next();
   }
 };

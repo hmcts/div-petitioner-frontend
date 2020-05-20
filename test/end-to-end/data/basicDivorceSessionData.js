@@ -1293,5 +1293,8 @@ module.exports = {
   claimsCostsAppliedForFees: true,
   reasonForDivorceClaiming5YearSeparation: false,
   reasonForDivorceClaimingAdultery: false,
-  marriageCertificateFiles: []
+  marriageCertificateFiles: [],
+  featureToggles: {
+    ft_welsh: false
+  }
 };

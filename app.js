@@ -174,7 +174,6 @@ exports.init = listenForConnections => {
   app.get('/', (req, res) => {
     res.redirect('/index');
   });
-
   // sign out route
   signOutRoute(app);
 

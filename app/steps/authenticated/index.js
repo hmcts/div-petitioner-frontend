@@ -37,7 +37,7 @@ module.exports = class Authenticated extends Step {
   }
 
   nextStep(session) {
-    if (session.featureToggles.ft_welsh) {
+    if (session && session.featureToggles.ft_welsh) {
       return this.steps.ScreeningQuestionsLanguagePreference;
     }
     return this.steps.ScreeningQuestionsMarriageBroken;

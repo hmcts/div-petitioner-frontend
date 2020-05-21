@@ -6,7 +6,7 @@ const idamMock = require('test/mocks/idam');
 const modulePath = 'app/steps/screening-questions/has-respondent-address';
 
 const content = require(`${modulePath}/content`);
-const commonContent = require('app/content/common-en');
+const commonContent = require('app/content/common');
 
 let s = {};
 let agent = {};

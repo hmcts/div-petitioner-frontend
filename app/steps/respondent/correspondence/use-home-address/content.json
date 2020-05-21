@@ -1,41 +1,29 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Is this where your {{ divorceWho }}’s divorce papers should be sent?",
-          "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
-          "yes": "Yes, use this address",
-          "no": "No, send them to a different address"
-        },
-        "checkYourAnswersContent": {
-          "yes": "Yes"
-        },
-        "errors": {
-          "respondentCorrespondenceUseHomeAddress": {
-            "required": "Select whether you want your {{ divorceWho }}’s divorce papers sent to this address"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Is this where your {{ divorceWho }}'s divorce papers should be sent?",
+                    "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
+                    "yes": "Yes, use this address",
+                    "no": "No, send them to a different address"
+                },
+
+                "checkYourAnswersContent": {
+                    "yes": "Yes"
+                },
+
+                "errors": {
+                    "respondentCorrespondenceUseHomeAddress": {
+                        "required": "Select whether you want your {{ divorceWho }}'s divorce papers sent to this address"
+                    }
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Ai i’r fan hon y dylid anfon papurau ysgariad eich {{ divorceWho }}?",
-          "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
-          "yes": "Ydy, defnyddiwch y cyfeiriad hwn",
-          "no": "Na, dylid eu hanfon i gyfeiriad arall"
-        },
-        "checkYourAnswersContent": {
-          "yes": "Ydw"
-        },
-        "errors": {
-          "respondentCorrespondenceUseHomeAddress": {
-            "required": "Dewiswch a ydych chi eisiau inni anfon papurau ysgariad eich {{ divorceWho }} i’r cyfeiriad hwn?"
-          }
-        }
-      }
     }
-  }
 }
+
+

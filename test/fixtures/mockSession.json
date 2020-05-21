@@ -1,5 +1,4 @@
 {
-  "languagePreferenceWelsh": "Yes",
   "screenHasMarriageBroken": "Yes",
   "screenHasRespondentAddress": "Yes",
   "screenHasMarriageCert": "Yes",
@@ -192,7 +191,6 @@
   "jurisdictionLastTwelveMonths": "Yes",
   "jurisdictionPetitionerDomicile": "Yes",
   "jurisdictionPetitionerResidence": "Yes",
-  "language": "en",
   "jurisdictionRespondentDomicile": "Yes",
   "jurisdictionRespondentResidence": "Yes",
   "jurisdictionLastSixMonths": "Yes",

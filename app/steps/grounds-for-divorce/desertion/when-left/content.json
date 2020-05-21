@@ -1,81 +1,43 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "When did your {{ divorceWho }} leave?",
-          "dateHint": "For example, 31 3 2006",
-          "day": "Day",
-          "month": "Month",
-          "year": "Year"
-        },
-        "checkYourAnswersContent": {
-          "question": "Date your {{ divorceWho }} deserted you"
-        },
-        "errors": {
-          "reasonForDivorceDesertionDay": {
-            "required": "Please enter day",
-            "invalid": "Please enter day"
-          },
-          "reasonForDivorceDesertionMonth": {
-            "required": "Please enter month",
-            "invalid": "Please enter month"
-          },
-          "reasonForDivorceDesertionYear": {
-            "required": "Please enter year",
-            "invalid": "Please enter year"
-          },
-          "reasonForDivorceDesertionBeforeMarriage": {
-            "invalid": "Date your {{ divorceWho }} left cannot be before you got married"
-          },
-          "reasonForDivorceDesertionDateInFuture": {
-            "invalid": "Enter a desertion date that is in the past"
-          },
-          "reasonForDivorceDesertionDate": {
-            "required": "Enter the date when your {{ divorceWho }} left",
-            "invalid": "Enter a valid date"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "When did your {{ divorceWho }} leave?",
+                    "dateHint": "For example, 31 3 2006",
+                    "day": "Day",
+                    "month": "Month",
+                    "year": "Year"
+                },
+                "checkYourAnswersContent": {
+                    "question": "Date your {{ divorceWho }} deserted you"
+                },
+                "errors": {
+                    "reasonForDivorceDesertionDay": {
+                        "required": "Please enter day",
+                        "invalid": "Please enter day"
+                    },
+                    "reasonForDivorceDesertionMonth": {
+                        "required": "Please enter month",
+                        "invalid": "Please enter month"
+                    },
+                    "reasonForDivorceDesertionYear": {
+                        "required": "Please enter year",
+                        "invalid": "Please enter year"
+                    },
+                    "reasonForDivorceDesertionBeforeMarriage": {
+                        "invalid": "Date your {{ divorceWho }} left cannot be before you got married"
+                    },
+                    "reasonForDivorceDesertionDateInFuture": {
+                        "invalid": "Enter a desertion date that is in the past"
+                    },
+                    "reasonForDivorceDesertionDate": {
+                        "required": "Enter the date when your {{ divorceWho }} left",
+                        "invalid": "Enter a valid date"
+                    }
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Pa bryd wnaeth eich {{ divorceWho }} adael?",
-          "dateHint": "Er enghraifft, 31 3 2006",
-          "day": "Diwrnod",
-          "month": "Mis",
-          "year": "Blwyddyn"
-        },
-        "checkYourAnswersContent": {
-          "question": "Y dyddiad y gwnaeth eich {{ divorceWho }} eich gadael"
-        },
-        "errors": {
-          "reasonForDivorceDesertionDay": {
-            "required": "Rhowch y diwrnod",
-            "invalid": "Rhowch y diwrnod"
-          },
-          "reasonForDivorceDesertionMonth": {
-            "required": "Rhowch y mis",
-            "invalid": "Rhowch y mis"
-          },
-          "reasonForDivorceDesertionYear": {
-            "required": "Rhowch y flwyddyn",
-            "invalid": "Rhowch y flwyddyn"
-          },
-          "reasonForDivorceDesertionBeforeMarriage": {
-            "invalid": "Ni all y dyddiad y gwnaeth eich {{ divorceWho }} adael fod cyn ichi briodi"
-          },
-          "reasonForDivorceDesertionDateInFuture": {
-            "invalid": "Rhowch ddyddiad gwahanu yn y gorffennol"
-          },
-          "reasonForDivorceDesertionDate": {
-            "required": "Rhowch y dyddiad y gwnaeth eich {{ divorceWho }} adael",
-            "invalid": "Nodwch ddyddiad dilys"
-          }
-        }
-      }
     }
-  }
 }

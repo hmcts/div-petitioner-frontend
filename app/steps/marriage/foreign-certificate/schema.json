@@ -4,10 +4,10 @@
   "type": "object",
   "properties": {
     "countryName" : {
-      "type": "string"
+      "type" : "string"
     },
     "placeOfMarriage" : {
-      "type": "string"
+      "type" : "string"
     }
   },
   "required": [

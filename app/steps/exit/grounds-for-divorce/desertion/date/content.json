@@ -1,23 +1,14 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "You can’t use desertion as your reason for divorce",
-          "reason": "Your {{ divorceWho }} must have deserted you for at least 2 years for you to use it as your reason for divorce.",
-          "proceed": "If you want to proceed with your divorce application, you must <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a>."
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "You can&#39;t use desertion as your reason for divorce",
+                    "reason": "Your {{ divorceWho }} must have deserted you for at least 2 years for you to use it as your reason for divorce.",
+                    "proceed": "If you want to proceed with your divorce application, you must <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another fact which applies to you</a>."
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Ni allwch ddefnyddio’r ffaith fod eich gwr/gwraig wedi gadael yn rheswm dros ysgaru",
-          "reason": "Mae’n rhaid i’ch {{ divorceWho }} fod wedi eich gadael ers o leiaf 2 flynedd ichi ddefnyddio hynny’n rheswm dros ysgaru.",
-          "proceed": "Os ydych am fwrw ymlaen gyda’ch cais am ysgariad, mae’n rhaid ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">ddewis ffaith arall sy’n berthnasol i chi</a>."
-        }
-      }
     }
-  }
 }

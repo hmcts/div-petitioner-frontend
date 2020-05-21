@@ -1,29 +1,17 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "Application submitted",
-          "info": "Your application has now been submitted.",
-          "info2": "You can contact us if you need help with your divorce application.",
-          "contactTitle": "Contact Us",
-          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}})",
-          "contactEmail": "Email: {{courtEmail}}"
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "Application submitted",
+                    "info": "Your application has now been submitted.",
+                    "info2": "You can contact us if you need help with your divorce application.",
+                    "contactTitle": "Contact Us",
+                    "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
+                    "contactEmail": "Email: {{courtEmail}}"
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Cyflwynwyd y cais",
-          "info": "Mae eich cais wedi ei gyflwyno.",
-          "info2": "Gallwch gysylltu â ni os ydych eisiau cymorth gyda’ch cais am ysgariad.",
-          "contactTitle": "Cysylltwch â ni",
-          "contactPhone": "Rhif ffôn: {{courtPhoneNumberCy}} ({{courtOpeningHourCy}})",
-          "contactEmail": "E-bost: {{courtEmail}}"
-        }
-      }
     }
-  }
 }

@@ -4,12 +4,11 @@ const parseBool = require('app/core/utils/parseBool');
 
 Feature('Logout Session').retry(3);
 
-Scenario('Logout on Save and close', function (I) {
+Scenario('Logount on Save and close', function (I) {
   I.amOnLoadedPage('/index');
 
   I.startApplication();
 
-  // I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
@@ -31,7 +30,6 @@ Scenario('Logout on Sign Out', function (I) {
 
   I.startApplication();
 
-  // I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
@@ -42,6 +40,5 @@ Scenario('Logout on Sign Out', function (I) {
   I.see('Sign in');
 
   I.startApplication();
-  // I.languagePreference();
   I.haveBrokenMarriage();
 });

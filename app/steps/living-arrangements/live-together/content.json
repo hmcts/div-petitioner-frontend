@@ -1,33 +1,22 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Do you and your {{ divorceWho }} live at the same address?",
-          "yes": "Yes",
-          "no": "No"
-        },
-        "errors": {
-          "livingArrangementsLiveTogether": {
-            "required": "Select yes if you and your {{ divorceWho }} live at the same address"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you and your {{ divorceWho }} live at the same address?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+                    "livingArrangementsLiveTogether": {
+                        "required": "Select yes if you and your {{ divorceWho }} live at the same address"
+                    }
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": " Ydych chi a’ch {{ divorceWho }} yn byw yn yr un cyfeiriad?",
-          "yes": "Ydym",
-          "no": "Nac ydym"
-        },
-        "errors": {
-          "livingArrangementsLiveTogether": {
-            "required": " Dewiswch ydym os ydych chi a’ch {{ divorceWho }} yn byw yn yr un cyfeiriad"
-          }
-        }
-      }
     }
-  }
 }

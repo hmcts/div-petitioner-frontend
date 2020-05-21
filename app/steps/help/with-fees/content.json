@@ -1,45 +1,30 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Do you have a Help with Fees reference number?",
-          "yes": "Yes",
-          "no": "No",
-          "reference": "Enter your reference number:"
-        },
-        "errors": {
-          "helpWithFeesAppliedForFees": {
-            "required": "Select yes if you have a help with fees reference number",
-            "invalid": "Please select an answer"
-          },
-          "helpWithFeesReferenceNumber": {
-            "required": "Enter your help with fees reference number",
-            "invalid": "Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you have a Help with Fees reference number?",
+                    "yes": "Yes",
+                    "no": "No",
+                    "reference": "Enter your reference number:"
+                },
+
+                "errors": {
+
+                    "helpWithFeesAppliedForFees": {
+                        "required": "Select yes if you have a help with fees reference number",
+                        "invalid": "Please select an answer"
+                    },
+                    "helpWithFeesReferenceNumber": {
+                        "required": "Enter your help with fees reference number",
+                        "invalid": "Enter a valid help with fees reference number, e.g: HWF-A1B-23C"
+                    }
+
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "A oes gennych chi gyfeirnod Help i Dalu Ffioedd?",
-          "yes": "Oes",
-          "no": "Nac oes",
-          "reference": "Rhowch eich cyfeirnod:"
-        },
-        "errors": {
-          "helpWithFeesAppliedForFees": {
-            "required": "Dewiswch Oes os oes gennych chi gyfeirnod help i dalu ffioedd",
-            "invalid": "Dewiswch ateb"
-          },
-          "helpWithFeesReferenceNumber": {
-            "required": "Rhowch eich cyfeirnod help i dalu ffioedd",
-            "invalid": "Rhowch gyfeirnod help i dalu ffioedd dilys e.e.: HWF-A1B-23C"
-          }
-        }
-      }
     }
-  }
 }

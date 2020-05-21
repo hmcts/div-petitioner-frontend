@@ -1,19 +1,13 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "What is your home address?"
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "What is your home address?"
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Beth yw eich cyfeiriad cartref?"
-        }
-      }
     }
-  }
 }

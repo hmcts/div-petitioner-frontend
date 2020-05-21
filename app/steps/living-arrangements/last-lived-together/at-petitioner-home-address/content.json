@@ -1,41 +1,23 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Did you last live together at this address?",
-          "yes": "Yes, at this address",
-          "no": "No, at another address",
-          "never": "No, we’ve never lived together",
-          "Yes": "Yes",
-          "No": "No",
-          "Never": "Never"
-        },
-        "errors": {
-          "livingArrangementsLastLivedTogether": {
-            "required": "Select yes if you last lived together at this address"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Did you last live together at this address?",
+                    "yes": "Yes, at this address",
+                    "no": "No, at another address",
+                    "never": "No, we&#39;ve never lived together"
+                },
+
+                "errors": {
+                    "livingArrangementsLastLivedTogether": {
+                        "required": "Select yes if you last lived together at this address"
+                    }
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "A’i yn y cyfeiriad hwn wnaethoch chi fyw gyda’ch gilydd ddiwethaf?",
-          "yes": "Ie, yn y cyfeiriad hwn",
-          "no": "Na, mewn cyfeiriad arall",
-          "never": "Na, nid ydym wedi byw gyda’n gilydd erioed",
-          "Yes": "Ie",
-          "No": "Na",
-          "Never": "Erioed"
-        },
-        "errors": {
-          "livingArrangementsLastLivedTogether": {
-            "required": "Dewiswch do os mai yn y cyfeiriad hwn wnaethoch chi fyw gyda’ch gilydd ddiwethaf?"
-          }
-        }
-      }
     }
-  }
 }

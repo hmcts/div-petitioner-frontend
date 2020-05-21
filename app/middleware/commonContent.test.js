@@ -3,7 +3,7 @@ const commonContent = require('app/middleware/commonContent');
 
 const test = block => {
   return done => {
-    const req = { session: { language: 'en' } };
+    const req = {};
     const res = { locals: {} };
     const next = () => {
       block(req, res);

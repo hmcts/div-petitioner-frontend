@@ -48,7 +48,8 @@
     </div>
 {% endmacro %}
 
-{% macro date(dayField, dayName = 'day', dayLabel = 'Day', monthField, monthName = 'month', monthLabel = 'Month', yearField, yearName = 'year', yearLabel = 'Year', dateField, label = '', hint = '', legend = '', hiddenLegend = '', id, additionalErrors = [], index = 1) %}
+{% macro date(dayField, dayName = 'day', monthField, monthName = 'month',yearField, yearName = 'year',dateField,label = '',hint = '', legend = '',hiddenLegend  = '', id, additionalErrors = [], index = 1) %}
+
     {% set hasError = dateField.error or dayField.error or monthField.error or yearField.error %}
 
     {% for i in range(0, additionalErrors.length) -%}
@@ -87,21 +88,21 @@
 
             <div class="govuk-date-input__item govuk-form-group-day ">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="{{ dayName }}">{{ dayLabel }}</label>
+                <label class="govuk-label govuk-date-input__label" for="{{ dayName }}">Day</label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2 {{ 'govuk-input--error' if dayField.error}}" id="{{ dayName }}"
                        name="{{ dayName }}" value="{{ dayField.value }}" maxlength="2">
                </div>
             </div>
             <div class="govuk-date-input__item govuk-form-group-month ">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="{{ monthName }}">{{ monthLabel }}</label>
+                <label class="govuk-label govuk-date-input__label" for="{{ monthName }}">Month</label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2  {{ 'govuk-input--error' if monthField.error }}" id="{{ monthName }}"
                        name="{{ monthName }}" value="{{ monthField.value }}" maxlength="2">
                </div>
             </div>
             <div class="govuk-date-input__item govuk-form-group-year ">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="{{ yearName }}">{{ yearLabel }}</label>
+                <label class="govuk-label govuk-date-input__label" for="{{ yearName }}">Year</label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4 {{ 'govuk-input--error' if yearField.error}}" id="{{ yearName }}"
                        name="{{ yearName }}" value="{{ yearField.value }}" maxlength="4">
                </div>

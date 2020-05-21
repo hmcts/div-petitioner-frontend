@@ -6,7 +6,7 @@ Feature('Payment method').retry(3);
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  // I.seeCurrentUrlEquals('/screening-questions/language-preference');
+  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
   I.amOnLoadedPage('/pay/help/need-help');
   I.waitForText(payHelpContent.question);
   I.see(payHelpFeeContent);
@@ -24,6 +24,7 @@ Scenario('Card payment online', async function (I) {
   I.payOnPaymentPage(isPaymentOnStub);
   I.amDoneAndSubmitted();
 });
+
 
 Scenario('Card payment online failure', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');

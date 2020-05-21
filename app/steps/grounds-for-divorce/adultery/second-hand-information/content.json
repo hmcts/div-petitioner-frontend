@@ -21,27 +21,6 @@
           }
         }
       }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "A gawsoch chi wybod unrhyw beth am y godineb gan rywun arall?",
-          "description": "Mae’r llys angen gwybod os oes unrhyw ran o’r wybodaeth hon yn ail-law.",
-          "yes": "Ydym",
-          "no": "Nac ydym",
-          "informationDetailsQuestion": "Pa wybodaeth a roddwyd ichi?"
-        },
-        "errors": {
-          "reasonForDivorceAdulterySecondHandInfo": {
-            "required": "Ai chi eich hun ddaeth i wybod am y manylion hyn, ynteu a glywsoch chi’r manylion gan rywun arall?.",
-            "invalid": "Ai chi eich hun ddaeth i wybod am y manylion hyn, ynteu a glywsoch chi’r manylion gan rywun arall?"
-          },
-          "reasonForDivorceAdulterySecondHandInfoDetails": {
-            "required": "Eglurwch pa wybodaeth a roddwyd ichi gan rywun arall.",
-            "invalid": "Eglurwch pa wybodaeth a roddwyd ichi gan rywun arall."
-          }
-        }
-      }
     }
   }
 }

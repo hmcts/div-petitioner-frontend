@@ -2,7 +2,7 @@ const request = require('supertest');
 const { testContent, testErrors, testRedirect, testNonExistence } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const commonContent = require('app/content/common-en');
+const commonContent = require('app/content/common');
 
 const modulePath = 'app/steps/screening-questions/has-marriage-broken';
 

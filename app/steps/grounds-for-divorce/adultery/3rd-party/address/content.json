@@ -1,19 +1,13 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "What is their address?"
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "What is their address?"
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Beth yw ei gyfeiriad/ei chyfeiriad?"
-        }
-      }
     }
-  }
 }

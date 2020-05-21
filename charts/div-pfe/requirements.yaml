@@ -3,7 +3,7 @@ dependencies:
      version: ~1.8.0
      repository: '@hmctspublic'
    - name: redis
-     version: 10.5.7
+     version: 5.1.2
      repository: '@stable'
      tags:
       - pr

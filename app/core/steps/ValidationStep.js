@@ -158,6 +158,7 @@ module.exports = class ValidationStep extends Step {
 
   * postRequest(req, res) {
     let { session } = req;
+
     // clone session for applying stale data checks later
     const previousSession = cloneDeep(session);
 
@@ -171,14 +172,6 @@ module.exports = class ValidationStep extends Step {
       session = this.applyCtxToSession(ctx, session);
       session = staleDataManager.removeStaleData(previousSession, session);
       const nextStepUrl = yield this.getNextStep(ctx, session);
-
-      if (req.body) {
-        if (req.body.hasOwnProperty('languagePreferenceWelsh')) {
-          if (req.body.languagePreferenceWelsh === 'Yes') {
-            req.session.languagePreferenceWelsh = 'Yes';
-          }
-        }
-      }
 
       res.redirect(nextStepUrl);
     }
@@ -288,7 +281,7 @@ module.exports = class ValidationStep extends Step {
 
     this.i18next.changeLanguage(lang);
 
-    const translatedContent = this.content.resources[lang].translation;
+    const translatedContent = this.content.resources.en.translation;
 
     return walkMap(translatedContent.checkYourAnswersContent, path => {
       return this.i18next.t(`checkYourAnswersContent.${path}`, contentCtx);

@@ -7,6 +7,25 @@
   {{ common.serviceName }}{{ ' - ' if title }}{{ title | safe if title }} - GOV.UK
 {% endblock %}
 
+{% set footerLinks = [
+    {
+        href: "/cookie",
+        text: "Cookies"
+    },
+    {
+        href: "/terms-and-conditions",
+        text: "Terms and conditions"
+    },
+    {
+        href: "/privacy-policy",
+        text: "Privacy Policy"
+    },
+    {
+        href: "/accessibility-statement",
+        text: "Accessibility Statement"
+    }
+] %}
+
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
@@ -41,13 +60,7 @@
     <img src="/noJS.png" alt="1px" width="1" height="1" style="display: none;" />
   </noscript>
   {% block breadcrumbs %}
-    {% set html %}
-      {{ common.feedback | safe }}
-
-      {% if fields.featureToggles.value.ft_welsh == "true" %}
-        {{ common.languageToggle | safe }}
-      {% endif %}
-    {% endset %}
+    {% set html %}{{common.feedback | safe}}{% endset %}
     {{ govukPhaseBanner({
         tag: {
             text: common.phase
@@ -55,7 +68,7 @@
         html: html
     }) }}
     {% block back %}
-    <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
+    <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">Back</a>
     {% endblock %}
   {% endblock %}
 {%- endblock %}
@@ -82,19 +95,19 @@
       items: [
         {
           href: "/cookie",
-          text: common.cookies
-        },
-        {
-          href: "/privacy-policy",
-          text: common.privacyPolicy
-        },
-        {
-          href: "/accessibility-statement",
-          text: common.accessibility
+          text: "Cookies"
         },
         {
           href: "/terms-and-conditions",
-          text: common.termsAndConditions
+          text: "Terms and conditions"
+        },
+        {
+          href: "/privacy-policy",
+          text: "Privacy Policy"
+        },
+        {
+          href: "/accessibility-statement",
+          text: "Accessibility Statement"
         }
       ]
     }

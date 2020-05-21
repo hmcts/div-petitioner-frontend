@@ -63,11 +63,11 @@ describe(modulePath, () => {
     });
   });
 
+
   describe('New Application', () => {
     it('renders the content from the content file', done => {
-      const excludeKeys = ['paymentDescription'];
       const dataContent = { feeToBePaid: '550' };
-      testContent(done, agent, underTest, content, dataContent, excludeKeys);
+      testContent(done, agent, underTest, content, dataContent);
     });
   });
 
@@ -81,9 +81,8 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['paymentDescription'];
       const dataContent = { feeToBePaid: '95' };
-      testContent(done, agent, underTest, content, dataContent, excludeKeys);
+      testContent(done, agent, underTest, content, dataContent);
     });
   });
 

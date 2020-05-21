@@ -1,35 +1,21 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Did you marry your {{ divorceWho }} in the UK?",
-          "definition": "The UK is made up of England, Scotland, Wales and Northern Ireland.",
-          "yes": "Yes",
-          "no": "No"
-        },
-        "errors": {
-          "marriedInUk": {
-            "required": "Select yes if you married your {{ divorceWho }} in the UK."
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Did you marry your {{ divorceWho }} in the UK?",
+                    "definition": "The UK is made up of England, Scotland, Wales and Northern Ireland.",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+                    "marriedInUk": {
+                        "required": "Select yes if you married your {{ divorceWho }} in the UK."
+                    }
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "A wnaethoch chi briodi eich {{ divorceWho }} yn y DU?",
-          "definition": "Mae’r DU yn cynnwys Cymru, Lloegr, Yr Alban a Gogledd Iwerddon.",
-          "yes": "Ydym",
-          "no": "Nac ydym"
-        },
-        "errors": {
-          "marriedInUk": {
-            "required": "Dewiswch do os gwnaethoch chi briodi eich {{ divorceWho }} yn y DU."
-          }
-        }
-      }
     }
-  }
 }

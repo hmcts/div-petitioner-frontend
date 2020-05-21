@@ -1,85 +1,45 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "sepQues": "Have you lived apart for the entire time since you separated?",
-          "desQues": "Have you lived apart from your {{ divorceWho }} for the entire time since they deserted you?",
-          "info1": "You can both live in the same property and be considered by the court to be living apart, as long as you’re living separate lives. For example, you don’t eat, sleep, or socialise together.",
-          "info2": "You can contact the court if you’re not sure if this applies to you.",
-          "yes": "Yes",
-          "no": "No",
-          "question": {
-            "text": "Have you lived together for more than ",
-            "6months": "6 months",
-            "weeks": "weeks",
-            "week": "week",
-            "and": "and",
-            "day": "day",
-            "days": "days",
-            "since": "since",
-            "exactDate": "is the date exactly",
-            "mark": "?",
-            "yearsAndMonths": "years and 6 months in the past. If you have lived together for more than 6 months (over one or more periods) since that date, then you can’t use this reason for divorce at this time.",
-            "livedMore": "If you have lived together for more than ",
-            "needNotToUse": "you won’t have been separated for long enough to use the {{ sepYears }} years separation reason for divorce at this time."
-          },
-          "howThisAffects": "How this affects your separation period",
-          "mustSpentYr": "You must have spent the past {{ sepYears }} years living apart to use this reason for divorce.",
-          "onlyUpTo6Months": "You are allowed to have spent some time living together, but only for up to 6 months (over one or more periods) and this time doesn’t count towards the {{ sepYears }} year period. You’ll need to have lived apart for longer to make up any time that you spent living together.",
-          "ifMoreThan6Months": "If you lived together for more than 6 months since {{ referenceDate }}, then you can’t satisfy the rules to use this reason for divorce. You will therefore need to use a different reason, or wait until you have been separated for long enough.",
-          "ifLessThan6Months": "There are {{ livingTogetherDays }} days between your separation date ({{ mostRecentSeparationDate }}) and the date exactly {{ sepYears }} years in the past. If you lived together for more than this, then you can’t satisfy the rules to use this reason for divorce and will need to use a different reason, or wait until you have been separated for long enough."
-        },
-        "errors": {
-          "livedApartEntireTime": {
-            "required": "Select yes if you lived apart for the entire time since you separated?"
-          },
-          "livedTogetherMoreTimeThanPermitted": {
-            "required": "Select yes if you lived together for more than 6 months since {{ referenceDate }}?"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "sepQues": "Have you lived apart for the entire time since you separated?",
+                    "desQues": "Have you lived apart from your {{ divorceWho }} for the entire time since they deserted you?",
+                    "info1": "You can both live in the same property and be considered by the court to be living apart, as long as you're living separate lives. For example, you don’t eat, sleep, or socialise together.",
+                    "info2": "You can contact the court if you’re not sure if this applies to you.",
+                    "yes": "Yes",
+                    "no": "No",
+                    "question": {
+                        "text": "Have you lived together for more than ",
+                        "6months": "6 months",
+                        "weeks": "weeks",
+                        "week": "week",
+                        "and": "and",
+                        "day": "day",
+                        "days": "days",
+                        "since": "since",
+                        "exactDate": "is the date exactly",
+                        "mark": "?",
+                        "yearsAndMonths": "years and 6 months in the past. If you have lived together for more than 6 months (over one or more periods) since that date, then you can't use this reason for divorce at this time.",
+                        "livedMore":"If you have lived together for more than ",
+                        "needNotToUse": "you won’t have been separated for long enough to use the {{ sepYears }} years separation reason for divorce at this time."
+                    },
+                    "howThisAffects": "How this affects your separation period",
+                    "mustSpentYr": "You must have spent the past {{ sepYears }} years living apart to use this reason for divorce.",
+                    "onlyUpTo6Months": "You are allowed to have spent some time living together, but only for up to 6 months (over one or more periods) and this time doesn’t count towards the {{ sepYears }} year period. You’ll need to have lived apart for longer to make up any time that you spent living together.",
+                    "ifMoreThan6Months": "If you lived together for more than 6 months since {{ referenceDate }}, then you can't satisfy the rules to use this reason for divorce. You will therefore need to use a different reason, or wait until you have been separated for long enough.",
+                    "ifLessThan6Months": "There are {{ livingTogetherDays }} days between your separation date ({{ mostRecentSeparationDate }}) and the date exactly {{ sepYears }} years in the past. If you lived together for more than this, then you can't satisfy the rules to use this reason for divorce and will need to use a different reason, or wait until you have been separated for long enough."
+                },
+                "errors": {
+                    "livedApartEntireTime": {
+                        "required": "Select yes if you lived apart for the entire time since you separated?"
+                    },
+                    "livedTogetherMoreTimeThanPermitted": {
+                        "required": "Select yes if you lived together for more than 6 months since {{ referenceDate }}?"
+                    }
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "sepQues": "A ydych wedi byw ar wahân yr holl amser ers ichi wahanu?",
-          "desQues": "A ydych wedi byw ar wahân i’ch {{ divorceWho }} ers iddo/iddi eich gadael?",
-          "info1": "Mae’n bosib i’r llys ystyried eich bod yn byw ar wahân er eich bod yn byw yn yr un cyfeiriad, cyn belled â’ch bod chi’n byw’n annibynnol. Er enghraifft, nid ydych yn bwyta, yn cysgu neu’n cymdeithasu gyda’ch gilydd.",
-          "info2": "Gallwch gysylltu â’r llys os nad ydych chi’n siwr a yw hyn yn berthnasol.",
-          "yes": "Oes",
-          "no": "Nac oes",
-          "question": {
-            "text": "A ydych wedi byw gyda’ch gilydd am fwy na ",
-            "6months": "6 mis",
-            "weeks": "wythnos",
-            "week": "wythnos",
-            "and": "a",
-            "day": "diwrnod",
-            "days": "diwrnod",
-            "since": "ers",
-            "exactDate": "yw’r union ddyddiad",
-            "mark": "?",
-            "yearsAndMonths": "blynedd a 6 mis yn y gorffennol. Os ydych wedi byw gyda’ch gilydd am fwy na 6 mis (mewn un cyfnod neu dros gyfnodau gwahanol) ers y dyddiad hwnnw, ni allwch ddefnyddio’r rheswm hwn dros ysgaru ar hyn o bryd.",
-            "livedMore": "Os ydych wedi byw gyda’ch gilydd am fwy na ",
-            "needNotToUse": "Ni fyddwch wedi gwahanu am gyfnod digon hir i ddefnyddio gwahanu ers {{ sepYears }} o flynyddoedd yn rheswm dros ysgaru y tro hwn."
-          },
-          "howThisAffects": "Sut mae hyn yn effeithio ar y cyfnod y buoch yn byw ar wahân?",
-          "mustSpentYr": "Mae’n rhaid ichi fod wedi treulio’r {{ sepYears }} blynedd diwethaf yn byw ar wahân, i allu defnyddio’r rheswm hwn dros gael ysgariad.",
-          "onlyUpTo6Months": "Mae gennych hawl i fod wedi treulio rhywfaint o amser yn byw gyda’ch gilydd , ond dim ond hyd at 6 mis (mewn un cyfnod neu dros nifer o gyfnodau) ac nid yw’r amser hwn yn cyfrif tuag at y cyfnod o {{ sepYears }} blynedd. Mae’n rhaid eich bod wedi byw ar wahân am fwy o amser i wneud i fyny am yr amser y bu ichi  fyw gyda’i gilydd.",
-          "ifMoreThan6Months": "Os buoch yn byw gyda’ch gilydd am fwy na 6 mis ers {{ referenceDate }}, nid ydych yn bodloni’r rheolau hyn ac ni allwch ddefnyddio’r rheswm hwn dros ysgaru. Gan hynny bydd angen ichi ddefnyddio rheswm arall, neu aros nes byddwch wedi gwahanu am ddigon o amser.",
-          "ifLessThan6Months": "Mae {{ livingTogetherDays }} diwrnod rhwng y dyddiad pan wnaethoch wahanu ({{ mostRecentSeparationDate }}) a’r dyddiad sydd union {{ sepYears }} blynedd yn y gorffennol. Os buoch yn byw gyda’ch gilydd am fwy na hyn, nid ydych yn bodloni’r rheolau ac ni allwch ddefnyddio’r rheswm hwn dros ysgaru a bydd yn rhaid ichi ddefnyddio rheswm arall neu aros nes byddwch wedi gwahanu am gyfnod digonol."
-        },
-        "errors": {
-          "livedApartEntireTime": {
-            "required": "Dewiswch do os ydych wedi byw ar wahân yr holl amser ers ichi wahanu?"
-          },
-          "livedTogetherMoreTimeThanPermitted": {
-            "required": "Dewiswch do os ydych wedi byw gyda’ch gilydd am fwy na 6 mis ers {{ referenceDate }}?"
-          }
-        }
-      }
     }
-  }
 }

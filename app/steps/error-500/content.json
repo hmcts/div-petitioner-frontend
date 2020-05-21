@@ -1,21 +1,13 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "Sorry, we’re having technical problems",
-          "info": "Please try again in a few minutes"
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "Sorry, we're having technical problems",
+                    "info": "Please try again in a few minutes"
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Yn anffodus, rydym yn cael problemau technegol",
-          "info": "Rhowch gynnig arall arni ymhen ychydig funudau"
-        }
-      }
     }
-  }
 }

@@ -1,25 +1,15 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "heading": "Sorry, you can’t use this service",
-          "legalGround": "The only legal ground for divorce in England and Wales is if your marriage has broken down irretrievably.",
-          "confirm": "You need to confirm this before the court can consider granting you a divorce.",
-          "notSure": "If you’re not sure about getting a divorce, you may want to consider other options. Relationship advice and counselling is available from private therapists and charities such as <a class=\"govuk-link\" href=\"https://www.relate.org.uk/relationship-help/help-relationships\" target=\"_blank\">Relate</a>."
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "heading": "Sorry, you can't use this service",
+                    "legalGround":  "The only legal ground for divorce in England and Wales is if your marriage has broken down irretrievably.",
+                    "confirm":  "You need to confirm this before the court can consider granting you a divorce.",
+                    "notSure":  "If you’re not sure about getting a divorce, you may want to consider other options. Relationship advice and counselling is available from private therapists and charities such as <a class=\"govuk-link\" href=\"https://www.relate.org.uk/relationship-help/help-relationships\" target=\"_blank\">Relate</a>."
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "heading": "Yn anffodus, ni allwch ddefnyddio’r gwasanaeth hwn",
-          "legalGround": "Yr unig reswm cyfreithiol dros gael ysgariad yng Nghymru a Lloegr yw bod y briodas wedi chwalu’n gyfan gwbl.",
-          "confirm": "Mae angen ichi gadarnhau hyn cyn y gall y llys ystyried rhoi ysgariad ichi.",
-          "notSure": "Os nad ydych yn sicr eich bod eisiau ysgariad, efallai y byddai’n syniad ichi ystyried opsiynau eraill. Mae cyngor a chwnsela ar gael gan therapyddion preifat ac elusennau fel <a class=\"govuk-link\" href=\"https://www.relate.org.uk/relationship-help/help-relationships\" target=\"_blank\" >Relate</a>."
-        }
-      }
     }
-  }
 }

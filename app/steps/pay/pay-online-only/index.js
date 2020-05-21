@@ -100,6 +100,9 @@ module.exports = class PayOnline extends Step {
     const feeCode = CONF.commonProps[feeType(req)].feeCode;
     const feeVersion = CONF.commonProps[feeType(req)].version;
     const feeDescription = this.content.resources[req.session.language].translation.content.paymentDescription;
+    logger.infoWithReq(req, 'payments_language', 'Invoking Payments in: ', req.session.language);
+    logger.infoWithReq(req, 'payments_description', 'Payment description: ', feeDescription);
+
     // Amount is specified in pound sterling.
     const amount = parseInt(
       CONF.commonProps[feeType(req)].amount

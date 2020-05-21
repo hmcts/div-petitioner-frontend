@@ -99,7 +99,7 @@ module.exports = class PayOnline extends Step {
 
     const feeCode = CONF.commonProps[feeType(req)].feeCode;
     const feeVersion = CONF.commonProps[feeType(req)].version;
-    const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
+    const feeDescription = this.content.resources[req.session.language].translation.content.paymentDescription;
     // Amount is specified in pound sterling.
     const amount = parseInt(
       CONF.commonProps[feeType(req)].amount

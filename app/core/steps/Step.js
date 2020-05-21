@@ -6,7 +6,6 @@ const { Router } = require('express');
 const walkMap = require('app/core/utils/treeWalker');
 const statusCodes = require('http-status-codes');
 const co = require('co');
-const FeatureToggle = require('app/core/utils/featureToggle');
 const logger = require('app/services/logger').logger(__filename);
 
 const defualtNext = () => {};
@@ -94,20 +93,16 @@ module.exports = class Step {
     return true;
   }
 
-  generateContent(ctx, session, lang = 'en', common) {
+  generateContent(ctx, session, lang = 'en') {
     if (!this.content || !this.content.resources) {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }
 
     const contentCtx = Object.assign({}, session, ctx, this.commonProps);
 
-    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
-      contentCtx.divorceWho = this.i18next.t(common[contentCtx.divorceWho]);
-    }
-
     this.i18next.changeLanguage(lang);
 
-    return walkMap(this.content.resources[lang].translation.content, path => {
+    return walkMap(this.content.resources.en.translation.content, path => {
       return this.i18next.t(`content.${path}`, contentCtx);
     });
   }
@@ -152,14 +147,9 @@ module.exports = class Step {
 
   * getRequest(req, res) {
     const { session } = req;
-    if (req.query && req.query.locale && CONF.languages.includes(req.query.locale)) {
-      req.session.language = req.query.locale;
-    }
-    const language = req.session.language;
 
     //  extract data from the request
     let ctx = this.populateWithPreExistingData(session);
-    ctx = FeatureToggle.appwideToggles(req, ctx, CONF.featureToggles.appwideToggles);
 
     //  intercept the request and process any incoming data
     //  here we can set data on the context before we validate
@@ -169,12 +159,7 @@ module.exports = class Step {
     // let errors = null;
     // let fields = null;
     //  fetch all the content from the content files
-    res.locals.content = this.generateContent(
-      ctx,
-      session,
-      language,
-      res.locals.common
-    );
+    res.locals.content = this.generateContent(ctx, session);
 
     if (!res.locals.fields) {
       //  map the context into data fields for use in templates and macros

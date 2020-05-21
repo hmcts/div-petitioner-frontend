@@ -4,15 +4,7 @@ This repo is for the frontend part of the journey that the petitioner will go th
 
 ## Setup
 
-**Config**
-
-For development only config, rename the `config/dev_template.yaml` file to `config/dev.yaml`. Running the app with the node environment set to `dev` will ensure this file is used.
-This file is not version controlled so any config here will not be pushed to git.
-
-As an example, if you want to use LanuchDarkly locally, place the SDK Key in this file. You can keep the key there as this file is not version controlled.
-
 **Building locally**
-
 You need to have Yarn and Redis installed. This can be done with brew as follows:
 ```
 brew install yarn
@@ -59,8 +51,7 @@ This should open a browser window for you to login, use your HMCTS account
 
 After logging in run the following command:
 ```
-az acr login --name hmctspublic --subscription DCD-CNP-Prod
-az acr login --name hmctsprivate --subscription DCD-CNP-Prod
+az acr login --name hmcts --subscription <ask the team for the secret>
 ```
 
 To build the docker containers afresh:

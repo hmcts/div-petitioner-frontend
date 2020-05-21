@@ -29,8 +29,7 @@
             "error", "never"
         ],
         "eqeqeq": "error",
-        "indent": ["error", 2],
-        "consistent-return": "off"
+        "indent": ["error", 2]
     },
     "globals": {
         "actor": true,

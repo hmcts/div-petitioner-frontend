@@ -1,97 +1,56 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "Other court cases related to your marriage, property or children",
-          "courtNeedsToKnow": "The court needs to know if there are, or have ever been, any other legal proceedings related to your marriage, property or children.",
-          "onGoingProceedings": "This includes any proceedings that are still ongoing, have finished or which have been abandoned.",
-          "includeProceedings": "Include proceedings that are between you and your {{ divorceWho }}, and between yourselves and third parties.",
-          "question": "Have you ever been involved in any court cases relating to your marriage, property or children?",
-          "yes": "Yes",
-          "no": "No",
-          "furtherDetails": "Provide further details",
-          "youShouldInclude": "You should try to include:",
-          "caseNumbers": "case numbers",
-          "stillOngoing": "if they’re still ongoing or if they’ve finished",
-          "proceedingAreAbout": "what they’re about",
-          "namesInvolved": "names of those involved",
-          "courtNames": "name of the court and the country it’s in",
-          "datesBegan": "dates that the proceedings began and of any future hearings",
-          "orderDetails": "details of any orders that were made",
-          "proceedingsRelated": "The proceedings are related to our:",
-          "marriage": "marriage",
-          "children": "children",
-          "property": "property",
-          "caseDetailsInputTitle": "Enter details"
-        },
-        "checkYourAnswersContent": {
-          "question": "Other court cases?",
-          "proceedingsRelated": "There have been other court cases related to our ",
-          "no": "None"
-        },
-        "errors": {
-          "legalProceedings": {
-            "required": "Select yes if there are other legal proceedings",
-            "invalid": "Select yes if there are other legal proceedings"
-          },
-          "legalProceedingsRelated": {
-            "required": "Select what the proceedings relate to, e.g. the marriage",
-            "invalid": "Select what the proceedings relate to, e.g. the marriage"
-          },
-          "legalProceedingsDetails": {
-            "required": "Enter the details of the proceedings",
-            "invalid": "Enter the details of the proceedings"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Other court cases related to your marriage, property or children",
+                    "courtNeedsToKnow": "The court needs to know if there are, or have ever been, any other legal proceedings related to your marriage, property or children.",
+                    "onGoingProceedings": "This includes any proceedings that are still ongoing, have finished or which have been abandoned.",
+                    "includeProceedings": "Include proceedings that are between you and your {{ divorceWho }}, and between yourselves and third parties.",
+                    "question": "Have you ever been involved in any court cases relating to your marriage, property or children?",
+                    "yes": "Yes",
+                    "no": "No",
+                    "furtherDetails": "Provide further details",
+                    "youShouldInclude": "You should try to include:",
+                    "caseNumbers": "case numbers",
+                    "stillOngoing": "if they're still ongoing or if they've finished",
+                    "proceedingAreAbout": "what they're about",
+                    "namesInvolved": "names of those involved",
+                    "courtNames": "name of the court and the country it's in",
+                    "datesBegan": "dates that the proceedings began and of any future hearings",
+                    "orderDetails": "details of any orders that were made",
+                    "proceedingsRelated": "The proceedings are related to our:",
+                    "marriage": "marriage",
+                    "children": "children",
+                    "property": "property",
+                    "caseDetailsInputTitle": "Enter details"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Other court cases?",
+                    "proceedingsRelated": "There have been other court cases related to our ",
+                    "no": "None"
+                },
+
+                "errors": {
+                    "legalProceedings": {
+                        "required": "Select yes if there are other legal proceedings",
+                        "invalid": "Select yes if there are other legal proceedings"
+                    },
+                    "legalProceedingsRelated": {
+                        "required": "Select what the proceedings relate to, e.g. the marriage",
+                        "invalid": "Select what the proceedings relate to, e.g. the marriage"
+                    },
+                    "legalProceedingsDetails": {
+                        "required": "Enter the details of the proceedings",
+                        "invalid": "Enter the details of the proceedings"
+                    }
+
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": " Achosion llys eraill sy’n ymwneud â’ch priodas, eich eiddo neu eich plant",
-          "courtNeedsToKnow": " Mae’r llys angen gwybod a oes, neu a fu erioed, unrhyw achosion cyfreithiol eraill yn ymwneud â’ch priodas, eich eiddo neu eich plant.",
-          "onGoingProceedings": " Mae hyn yn cynnwys unrhyw achosion sy’n dal i fynd ymlaen, achosion sydd wedi gorffen neu achosion y rhoddwyd y gorau iddynt.",
-          "includeProceedings": " Dylech gynnwys achosion sydd rhyngoch chi a’ch {{ divorceWho }}, ac achosion rhyngoch chi eich dau a thrydydd parti.",
-          "question": "Ydych chi erioed wedi bod yn rhan o unrhyw achos llys sy’n ymwneud â’ch priodas, eich eiddo neu eich plant?",
-          "yes": "Do",
-          "no": "Naddo",
-          "furtherDetails": "Rhowch fwy o fanylion",
-          "youShouldInclude": " Dylech geisio cynnwys:",
-          "caseNumbers": "rhifau’r achos",
-          "stillOngoing": "a yw’r achos yn dal i fynd ymlaen neu a yw wedi gorffen",
-          "proceedingAreAbout": " testun yr achos",
-          "namesInvolved": "enwau’r rhai oedd yn rhan o’r achos",
-          "courtNames": "enw’r llys a’r wlad lle cynhelir yr achos",
-          "datesBegan": "dyddiad cychwyn yr achos a dyddiad unrhyw wrandawiad yn y dyfodol",
-          "orderDetails": "manylion unrhyw orchmynion a wnaed",
-          "proceedingsRelated": "Mae’r achos ynglyn â’n:",
-          "marriage": "priodas",
-          "children": "plant",
-          "property": "eiddo",
-          "caseDetailsInputTitle": "Rhowch fanylion"
-        },
-        "checkYourAnswersContent": {
-          "question": "Achosion llys eraill?",
-          "proceedingsRelated": "Bu achosion llys eraill ynglyn â’n ",
-          "no": "Dim"
-        },
-        "errors": {
-          "legalProceedings": {
-            "required": "Dewiswch do os oes achos llys arall",
-            "invalid": "Dewiswch do os oes achos llys arall"
-          },
-          "legalProceedingsRelated": {
-            "required": "Ynglyn â beth mae’r achos, y briodas, er enghraifft",
-            "invalid": "Ynglyn â beth mae’r achos, y briodas, er enghraifft"
-          },
-          "legalProceedingsDetails": {
-            "required": "Rhowch fanylion yr achos",
-            "invalid": "Rhowch fanylion yr achos"
-          }
-        }
-      }
     }
-  }
 }

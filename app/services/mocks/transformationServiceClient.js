@@ -14,7 +14,6 @@ const failure = {
 };
 
 const mockSession = {
-  languagePreferenceWelsh: 'Yes',
   screenHasMarriageBroken: 'Yes',
   screenHasRespondentAddress: 'Yes',
   screenHasMarriageCert: 'Yes',

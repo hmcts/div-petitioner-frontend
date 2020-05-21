@@ -7,7 +7,7 @@ const {
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const contentJurisdiction = require('app/content/commonJurisdiction-en');
+const contentJurisdiction = require('app/content/commonJurisdiction');
 
 const modulePath = 'app/steps/jurisdiction/connection-summary';
 

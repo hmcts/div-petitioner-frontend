@@ -1,33 +1,23 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Have you been living in England or Wales for the last 12 months?",
-          "yes": "Yes",
-          "no": "No"
-        },
-        "errors": {
-          "jurisdictionLastTwelveMonths": {
-            "required": "Select yes if you have been living in England or Wales for the last 12 months"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+
+                    "question": "Have you been living in England or Wales for the last 12 months?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "errors": {
+
+                    "jurisdictionLastTwelveMonths": {
+
+                        "required": "Select yes if you have been living in England or Wales for the last 12 months"
+                    }
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Ydych chi wedi bod yn byw yng Nghymru neu Loegr yn y 12 mis diwethaf?",
-          "yes": "Do",
-          "no": "Naddo"
-        },
-        "errors": {
-          "jurisdictionLastTwelveMonths": {
-            "required": "Dewiswch Do os ydych chi wedi bod yn byw yng Nghymru neu Loegr yn ystod y 12 mis diwethaf"
-          }
-        }
-      }
     }
-  }
 }

@@ -1,35 +1,23 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Do you know when the adultery took place?",
-          "yes": "Yes",
-          "no": "No"
-        },
-        "errors": {
-          "reasonForDivorceAdulteryKnowWhen": {
-            "required": "Select yes if you know when the adultery happened",
-            "invalid": "Select yes if you know when the adultery happened"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "Do you know when the adultery took place?",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+
+                "errors": {
+                    "reasonForDivorceAdulteryKnowWhen": {
+                        "required": "Select yes if you know when the adultery happened",
+                        "invalid": "Select yes if you know when the adultery happened"
+                    }
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Ydych chi’n gwybod pryd digwyddodd y godineb?",
-          "yes": "Ydw",
-          "no": "Nac ydw"
-        },
-        "errors": {
-          "reasonForDivorceAdulteryKnowWhen": {
-            "required": "Dewiswch ydw os ydych yn gwybod pryd y digwyddodd y godineb",
-            "invalid": "Dewiswch ydw os ydych yn gwybod pryd y digwyddodd y godineb"
-          }
-        }
-      }
     }
-  }
 }

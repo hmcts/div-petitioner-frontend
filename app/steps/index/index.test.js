@@ -48,19 +48,17 @@ describe(modulePath, () => {
       withSession(done, agent);
     });
 
-    // it('should immediately redirect to the need welsh question step page if authenticated', done => {
-    it('should immediately redirect to the has marriage broken question step page if authenticated', done => {
+    it('should immediately redirect to the has marriage broken step page if authenticated', done => {
       const context = {};
 
       testRedirect(done, agent, underTest, context,
-        // s.steps.ScreeningQuestionsLanguagePreference);
         s.steps.ScreeningQuestionsMarriageBroken);
     });
 
     it('should set up the current host as the redirect uri for idam', done => {
       testCustom(done, agent, underTest, [], response => {
         const hostName = response.request.host.split(':')[0];
-        const redirectUri = `https://${response.request.host}/authenticated`;
+        const redirectUri = response.request.protocol.concat('//', response.request.host, '/authenticated');
         const confIdam = config.idamArgs;
         const idamArgs = {
           hostName,
@@ -69,8 +67,7 @@ describe(modulePath, () => {
           idamLoginUrl: confIdam.idamLoginUrl,
           idamSecret: confIdam.idamSecret,
           idamClientID: confIdam.idamClientID,
-          redirectUri,
-          language: 'en'
+          redirectUri
         };
 
         sinon.assert.calledWith(idamExpressMiddleware.authenticate, idamArgs);

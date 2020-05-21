@@ -1,21 +1,13 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "We’re confirming your payment",
-          "body": "A payment session is in progress or was recently completed. This page is displayed to prevent multiple payment attempts. Please check back after 90 minutes to see if your payment has been successful."
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "We're confirming your payment",
+                    "body": "A payment session is in progress or was recently completed. This page is displayed to prevent multiple payment attempts. Please check back after 90 minutes to see if your payment has been successful."
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Rydym yn cadarnhau eich taliad",
-          "body": "Mae taliad yn cael ei wneud ar hyn o bryd neu cwblhawyd taliad yn ddiweddar. Pwrpas dangos y dudalen hon ydy eich atal rhag ceisio talu dro ar ôl tro. Ar ôl 90 munud, gwiriwch fod y taliad wedi ei gwblhau."
-        }
-      }
     }
-  }
 }

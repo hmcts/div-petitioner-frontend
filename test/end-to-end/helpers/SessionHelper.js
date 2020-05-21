@@ -73,7 +73,6 @@ class SessionHelper extends codecept_helper {
     const connectSidCookie = await helper.grabCookie('connect.sid');
     const authTokenCookie = await helper.grabCookie('__auth-token');
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);
-    session.featureToggles.ft_welsh = false;
 
     let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 
@@ -88,7 +87,6 @@ class SessionHelper extends codecept_helper {
     expectedSession.expires                                     = actualSession.expires;
     expectedSession.cookie.domain                               = actualSession.cookie.domain;
     expectedSession.marriageCertificateFiles[0]                 = actualSession.marriageCertificateFiles[0];
-    expectedSession.featureToggles                              = actualSession.featureToggles;
 
     if (!testingLocally) {
       expectedSession.fetchedDraft                              = actualSession.fetchedDraft;

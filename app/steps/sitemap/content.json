@@ -1,21 +1,18 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "Sitemap"
-        },
-        "errors": {}
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Map o’r Safle"
-        },
-        "errors": {}
-      }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "title": "Sitemap"
+                },
+
+                "errors": {
+
+                }
+
+            }
+        }
     }
-  }
 }

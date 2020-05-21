@@ -1,43 +1,30 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "heading": "Were you both last habitually resident in England or Wales and does one of you still live here?",
-          "description": "For this to apply to you, England or Wales must be where you were both last habitually resident at the same time (but not necessarily as a couple) and one of you must still live here.",
-          "connection": "Read more about habitual residence",
-          "connectionText1": "If your life is mainly based in England or Wales then you’re what is legally known as 'habitually resident'.",
-          "connectionText2": "This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
-          "connectionText3": "These examples aren’t a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
-          "yes": "Yes",
-          "no": "No"
-        },
-        "errors": {
-          "jurisdictionLastHabitualResident": {
-            "required": "Select yes if you were both last habitually resident in England or Wales and one of you still lives here"
-          }
+    "lng": "en",
+    "resources": {
+
+        "en": {
+
+            "translation": {
+
+                "content": {
+
+                    "heading": "Were you both last habitually resident in England or Wales and does one of you still live here?",
+                    "description": "For this to apply to you, England or Wales must be where you were both last habitually resident at the same time (but not necessarily as a couple) and one of you must still live here.",
+                    "connection": "Read more about habitual residence",
+                    "connectionText1":"If your life is mainly based in England or Wales then you're what is legally known as 'habitually resident'.",
+                    "connectionText2":"This may include working, owning property, having children in school, and your main family life taking place in England or Wales.",
+                    "connectionText3":"These examples aren't a complete list of what makes up habitual residence, and just because some of them apply to you doesn’t mean you’re habitually resident. If you’re not sure, you should get legal advice.",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "errors": {
+
+                    "jurisdictionLastHabitualResident": {
+
+                        "required": "Select yes if you were both last habitually resident in England or Wales and one of you still lives here"
+                    }
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "heading": "A oedd y ddau ohonoch yn preswylio’n arferol ddiwethaf yng Nghymru neu Loegr ac a yw un ohonoch yn byw yma o hyd?",
-          "description": "I hyn fod yn berthnasol i chi, mae’n rhaid eich bod wedi preswylio’n arferol ddiwethaf yng Nghymru neu Loegr ar yr un pryd (ond nid o reidrwydd fel cwpl) a bod un ohonoch yn byw yma o hyd.",
-          "connection": "Darllenwch fwy am breswylio’n arferol",
-          "connectionText1": "Os ydych chi’n treulio’r ran fwyaf o’ch amser yng Nghymru a Lloegr, rydych yn preswylio’n arferol yno yn ôl y gyfraith.",
-          "connectionText2": "Mae’n bosib i hyn gynnwys gweithio, bod yn berchen ar eiddo, bod â phlant mewn ysgol, a bod eich prif fywyd teuluol yng Nghymru neu Lloegr.",
-          "connectionText3": "Nid yw’r enghreifftiau uchod yn rhestr gynhwysfawr o amgylchiadau sy’n enghreifftio preswylfa arferol, ac er y gallai rhai ohonynt fod yn berthnasol ichi, nid yw hynny o reidrwydd yn golygu eich bod yn preswylio’n arferol yng Nghymru neu Loegr. Os nad ydych yn siwr , dylech ofyn am gyngor cyfreithiol.",
-          "yes": "Ydy",
-          "no": "Nac ydi"
-        },
-        "errors": {
-          "jurisdictionLastHabitualResident": {
-            "required": "Dewiswch ydy os oedd y ddau ohonoch yn preswylio’n arferol ddiwethaf yng Nghymru neu Loegr a bod un ohonoch yn byw yma o hyd"
-          }
-        }
-      }
     }
-  }
 }

@@ -1,47 +1,30 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "Do you need your address kept private from your {{ divorceWho }}?",
-          "divorcePetitionCopy": "A copy of your divorce application will be sent to your {{ divorceWho }}. If you don’t want them to know your address you should ask the court to keep it private.",
-          "adultery": "If you use adultery as your reason for divorce and you choose to name the co-respondent, they’ll also get a copy.",
-          "sameProperty": "You can’t keep your address private if you live in the same property as your {{ divorceWho }}.",
-          "share": "I don’t need my address kept private",
-          "keep": "Keep my address private"
-        },
-        "checkYourAnswersContent": {
-          "question": "How your address can be shared"
-        },
-        "errors": {
-          "petitionerContactDetailsConfidential": {
-            "required": "Select 'Keep my address private' if you want your address kept confidential",
-            "invalid": "Select 'Keep my address private' if you want your address kept confidential"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "question": "Do you need your address kept private from your {{ divorceWho }}?",
+                    "divorcePetitionCopy": "A copy of your divorce application will be sent to your {{ divorceWho }}. If you don’t want them to know your address you should ask the court to keep it private.",
+                    "adultery":"If you use adultery as your reason for divorce and you choose to name the co-respondent, they'll also get a copy.",
+                    "sameProperty": "You can’t keep your address private if you live in the same property as your {{ divorceWho }}.",
+                    "share": "I don't need my address kept private",
+                    "keep": "Keep my address private"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "How your address can be shared"
+                },
+
+                "errors": {
+                    "petitionerContactDetailsConfidential": {
+                        "required": "Select 'Keep my address private' if you want your address kept confidential",
+                        "invalid": "Select 'Keep my address private' if you want your address kept confidential"
+                    }
+
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": " Ydych chi eisiau i’ch manylion gael eu cadw’n breifat oddi wrth eich {{ divorceWho }}?",
-          "divorcePetitionCopy": "Anfonir copi o’ch cais am ysgariad at eich {{ divorceWho }}. Os nad ydych am iddo/iddi wybod eich cyfeiriad dylech ofyn i’r llys gadw’r cyfeiriad yn breifat.",
-          "adultery": "Os ydych yn defnyddio godineb yn rheswm dros ysgaru a’ch bod yn dewis enwi cyd-atebydd, bydd y cyd-atebydd hefyd yn cael copi.",
-          "sameProperty": "Ni ellir cadw eich cyfeiriad yn breifat os ydych yn byw yn yr un eiddo a’ch {{ divorceWho }}.",
-          "share": "Nid oes angen cadw fy nghyfeiriad yn breifat",
-          "keep": "Cadw fy nghyfeiriad yn breifat"
-        },
-        "checkYourAnswersContent": {
-          "question": "Sut y gellir rhannu eich cyfeiriad"
-        },
-        "errors": {
-          "petitionerContactDetailsConfidential": {
-            "required": "Dewiswch 'Cadw fy nghyfeiriad yn breifat' os ydych am inni gadw eich cyfeiriad yn gyfrinachol",
-            "invalid": "Dewiswch 'Cadw fy nghyfeiriad yn breifat' os ydych am inni gadw eich cyfeiriad yn gyfrinachol"
-          }
-        }
-      }
     }
-  }
 }

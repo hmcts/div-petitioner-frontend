@@ -15,9 +15,9 @@ const service = {
    * @returns {Promise}
    */
   create: (req, user, serviceToken, caseReference, siteId, feeCode,
-    feeVersion, amountInput, description, returnUrl, serviceCallbackUrl, language) => {
+    feeVersion, amountInput, description, returnUrl, serviceCallbackUrl) => {
     return client.create(user, serviceToken, caseReference, siteId, feeCode,
-      feeVersion, amountInput, description, returnUrl, serviceCallbackUrl, language)
+      feeVersion, amountInput, description, returnUrl, serviceCallbackUrl)
       .then(response => {
         const { id, amount, status, reference, date_created } = response; // eslint-disable-line camelcase
         const nextUrl = get(response, '_links.next_url.href');

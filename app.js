@@ -26,7 +26,6 @@ const httpStatus = require('http-status-codes');
 const logging = require('app/services/logger');
 const events = require('events');
 const idam = require('app/services/idam');
-const featureToggles = require('app/routes/featureToggles');
 const signOutRoute = require('app/routes/sign-out');
 const parseBool = require('app/core/utils/parseBool');
 
@@ -147,23 +146,6 @@ exports.init = listenForConnections => {
   app.set('trust proxy', 1);
   app.use(sessions.prod());
 
-  app.use((req, res, next) => {
-    res.locals.launchDarkly = {};
-
-    next();
-  });
-
-  app.use((req, res, next) => {
-    if (!req.session.language) {
-      req.session.language = 'en';
-    }
-    if (req.query && req.query.locale && CONF.languages.includes(req.query.locale)) {
-      req.session.language = req.query.locale;
-    }
-
-    next();
-  });
-
   if (parseBool(CONF.rateLimiter.enabled)) {
     app.use(rateLimiter(app));
   }
@@ -192,10 +174,6 @@ exports.init = listenForConnections => {
   app.get('/', (req, res) => {
     res.redirect('/index');
   });
-
-
-  // feature toggles routes
-  app.use(featureToggles);
 
   // sign out route
   signOutRoute(app);

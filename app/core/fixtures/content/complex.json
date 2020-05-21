@@ -1,51 +1,32 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "What do you want to do?",
-          "apply": "Apply for a divorce from my:",
-          "marriage": "Marriage",
-          "sameSexMarriage": "Same sex marriage",
-          "husband": "My husband",
-          "wife": "My wife",
-          "formerPartner": "My former partner"
-        },
-        "errors": {
-          "marriageType": {
-            "required": "Please answer this question",
-            "invalid": "Please select type of divorce"
-          },
-          "divorceWho": {
-            "required": "Please answer this question",
-            "invalid": "Please select who to divorce"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "What do you want to do?",
+                    "apply": "Apply for a divorce from my:",
+                    "marriage": "Marriage",
+                    "sameSexMarriage": "Same sex marriage",
+                    "husband": "My husband",
+                    "wife": "My wife",
+                    "formerPartner": "My former partner"
+                },
+
+                "errors": {
+
+                    "marriageType": {
+                        "required": "Please answer this question",
+                        "invalid": "Please select type of divorce"
+                    },
+
+                    "divorceWho": {
+                        "required": "Please answer this question",
+                        "invalid": "Please select who to divorce"
+                    }
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Beth ydych chi eisiau ei wneud?",
-          "apply": "Gwneud cais am ysgariad oddi wrth fy:",
-          "marriage": "Wedi priodi",
-          "sameSexMarriage": "Priodas gyfunryw",
-          "husband": "Fy ngwr",
-          "wife": "Fy ngwraig",
-          "formerPartner": "Fy nghynbartner"
-        },
-        "errors": {
-          "marriageType": {
-            "required": "Atebwch y cwestiwn hwn ",
-            "invalid": "Dewiswch y math o ysgariad"
-          },
-          "divorceWho": {
-            "required": "Atebwch y cwestiwn hwn",
-            "invalid": "Dewiswch pwy i’w ysgaru"
-          }
-        }
-      }
     }
-  }
 }

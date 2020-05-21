@@ -9,7 +9,6 @@ module.exports = {
   },
   csrfSecret: 'XXXXXXXX',
   expires: 99999999,
-  // languagePreferenceWelsh: 'Yes',
   screenHasMarriageBroken: 'Yes',
   screenHasRespondentAddress: 'Yes',
   screenHasMarriageCert: 'Yes',
@@ -1281,7 +1280,6 @@ module.exports = {
   legalProceedings: 'Yes',
   legalProceedingsRelated: ['children'],
   legalProceedingsDetails: 'The legal proceeding details',
-  language: 'en',
   financialOrder: 'Yes',
   financialOrderFor: [
     'petitioner',
@@ -1293,8 +1291,5 @@ module.exports = {
   claimsCostsAppliedForFees: true,
   reasonForDivorceClaiming5YearSeparation: false,
   reasonForDivorceClaimingAdultery: false,
-  marriageCertificateFiles: [],
-  featureToggles: {
-    ft_welsh: false
-  }
+  marriageCertificateFiles: []
 };

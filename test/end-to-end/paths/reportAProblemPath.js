@@ -1,8 +1,8 @@
 const config = require('config');
-const commonContent = require('app/content/common-en').resources.en.translation;
+const commonContent = require('app/content/common').resources.en.translation;
 
-const phone = config.get('commonProps.courtPhoneNumberEn');
-const hours = config.get('commonProps.courtOpeningHourEn');
+const phone = config.get('commonProps.courtPhoneNumber');
+const hours = config.get('commonProps.courtOpeningHour');
 
 Feature('Report A Problem Handling').retry(3);
 

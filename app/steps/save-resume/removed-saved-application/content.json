@@ -1,23 +1,14 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "title": "Your application has been removed",
-          "futureApply": "You will need to enter all your information again and pay the full fee if you apply again in future.",
-          "newApplication": "Start a new application"
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+                "content": {
+                    "title": "Your application has been removed",
+                    "futureApply": "You will need to enter all your information again and pay the full fee if you apply again in future.",
+                    "newApplication":  "Start a new application"
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "title": "Mae eich cais wedi ei ddileu",
-          "futureApply": "Os byddwch yn gwneud cais eto yn y dyfodol, bydd yn rhaid ichi gyflwyno’r holl wybodaeth eto a thalu ffi lawn am gais newydd.",
-          "newApplication":  "Dechrau cais newydd"
-        }
-      }
     }
-  }
 }

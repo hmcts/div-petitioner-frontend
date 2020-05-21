@@ -1,87 +1,52 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "When did you separate from your {{ divorceWho }}?",
-          "dateHint": "For example, 31 3 1980",
-          "day": "Day",
-          "month": "Month",
-          "year": "Year"
-        },
-        "checkYourAnswersContent": {
-          "question": "Separation date"
-        },
-        "errors": {
-          "reasonForDivorceSeperationDay": {
-            "required": "Enter the day for your separation date",
-            "invalid": "Enter a valid day for your separation date"
-          },
-          "reasonForDivorceSeperationMonth": {
-            "required": "Enter the month for your separation date",
-            "invalid": "Enter a valid month for your separation date"
-          },
-          "reasonForDivorceSeperationYear": {
-            "required": "Enter the year for your separation date",
-            "invalid": "Enter a valid year for your separation date"
-          },
-          "reasonForDivorceSeperationDate": {
-            "required": "Enter the date that you separated from your {{ divorceWho }}",
-            "invalid": "Enter a valid date"
-          },
-          "reasonForDivorceSeperationDateInFuture": {
-            "invalid": "Enter a separation date that is in the past"
-          },
-          "reasonForDivorceSeperationDateBeforeMarriageDate": {
-            "invalid": "Enter a separation date that is after your marriage date"
-          },
-          "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": {
-            "required": "Enter the date that you separated from your {{ divorceWho }}"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "When did you separate from your {{ divorceWho }}?",
+                    "dateHint" : "For example, 31 3 1980",
+                    "day": "Day",
+                    "month": "Month",
+                    "year": "Year"
+                },
+
+                "checkYourAnswersContent": {
+                    "question": "Separation date"
+                },
+
+                "errors": {
+
+                    "reasonForDivorceSeperationDay": {
+                        "required": "Enter the day for your separation date",
+                        "invalid": "Enter a valid day for your separation date"
+                    },
+                    "reasonForDivorceSeperationMonth": {
+                        "required": "Enter the month for your separation date",
+                        "invalid": "Enter a valid month for your separation date"
+                    },
+                    "reasonForDivorceSeperationYear": {
+                        "required": "Enter the year for your separation date",
+                        "invalid": "Enter a valid year for your separation date"
+                    },
+                    "reasonForDivorceSeperationDate": {
+                        "required": "Enter the date that you separated from your {{ divorceWho }}",
+                        "invalid": "Enter a valid date"
+                    },
+                    "reasonForDivorceSeperationDateInFuture": {
+                        "invalid": "Enter a separation date that is in the past"
+                    },
+                    "reasonForDivorceSeperationDateBeforeMarriageDate": {
+                        "invalid": "Enter a separation date that is after your marriage date"
+                    },
+                    "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": {
+                        "required": "Enter the date that you separated from your {{ divorceWho }}"
+                    }
+
+                }
+
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Pa bryd wnaethoch chi wahanu oddi wrth eich {{ divorceWho }}?",
-          "dateHint": "Er enghraifft, 31 3 1980",
-          "day": "Diwrnod",
-          "month": "Mis",
-          "year": "Blwyddyn"
-        },
-        "checkYourAnswersContent": {
-          "question": "Dyddiad gwahanu"
-        },
-        "errors": {
-          "reasonForDivorceSeperationDay": {
-            "required": "Nodwch y diwrnod gwnaethoch wahanu",
-            "invalid": "Nodwch ddiwrnod dilys ar gyfer y dyddiad gwahanu"
-          },
-          "reasonForDivorceSeperationMonth": {
-            "required": "Nodwch y mis y gwnaethoch wahanu",
-            "invalid": "Nodwch fis dilys ar gyfer y dyddiad gwahanu"
-          },
-          "reasonForDivorceSeperationYear": {
-            "required": "Nodwch y flwyddyn y gwnaethoch wahanu",
-            "invalid": "Nodwch flwyddyn ddilys ar gyfer y dyddiad gwahanu"
-          },
-          "reasonForDivorceSeperationDate": {
-            "required": "Nodwch y dyddiad y gwnaethoch wahanu oddi wrth eich {{ divorceWho }}",
-            "invalid": "Nodwch ddyddiad dilys"
-          },
-          "reasonForDivorceSeperationDateInFuture": {
-            "invalid": "Nodwch ddyddiad gwahanu yn y gorffennol"
-          },
-          "reasonForDivorceSeperationDateBeforeMarriageDate": {
-            "invalid": "Nodwch ddyddiad gwahanu sydd ar ôl ichi briodi"
-          },
-          "reasonForDivorceSeperationDateIsSameOrAfterLimitDate": {
-            "required": "Nodwch y dyddiad y gwnaethoch wahanu oddi wrth eich {{ divorceWho }}"
-          }
-        }
-      }
     }
-  }
 }

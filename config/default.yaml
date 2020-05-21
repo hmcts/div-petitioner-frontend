@@ -82,8 +82,8 @@ commonProps:
   financialOrderApplicationFee: 255
   smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
-  courtPhoneNumberEn: '0300 303 0642'
-  courtOpeningHourEn: 'Monday to Friday, 8am to 8pm, Saturday 8am to 2pm'
+  courtPhoneNumber: '0000 111 2220'
+  courtOpeningHour: 'Monday to Friday, 8am to 8pm, Saturday 8am to 2pm'
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 
 features:
@@ -98,7 +98,7 @@ idamArgs:
   indexUrl: '/index'
   idamApiUrl: 'http://localhost:8001'
   idamLoginUrl: 'https://localhost:3000/authenticated'
-  idamSecret: 'divorce_secret'
+  idamSecret: '123456'
   idamClientID: 'divorce'
 
 evidenceManagmentClient:
@@ -164,15 +164,3 @@ ccd:
     - 'AwaitingPayment'
   courts:
     - 'serviceCentre'
-
-languages: ['en', 'cy']
-
-featureToggles:
-  enabled: true
-  launchDarklyKey: 'SDK_KEY'
-  launchDarklyUser:
-    firstName: 'Divorce'
-    lastName: 'Frontend'
-    key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
-  ft_welsh: 'divorce-welsh'
-  appwideToggles: ['ft_welsh']

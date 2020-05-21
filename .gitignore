@@ -29,4 +29,3 @@ functional-output
 local*.yaml
 .scannerwork/
 config/local*
-/config/development.yaml

@@ -1,65 +1,40 @@
 {
-  "lng": "en",
-  "resources": {
-    "en": {
-      "translation": {
-        "content": {
-          "question": "How are your names displayed on the marriage certificate?",
-          "questionTrans": "How are your names displayed on the marriage certificate translation?",
-          "copy": "These will be the names you both used before you were married, such as maiden names.",
-          "hint": "Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
-          "hintTrans": "Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
-          "marriagePetitionerName": "Provide your full name on the certificate",
-          "marriagePetitionerNameTrans": "Provide your full name on the translation",
-          "marriageRespondentName": "Provide your {{ divorceWho }}’s full name on the certificate",
-          "marriageRespondentNameTrans": "Provide your {{ divorceWho }}’s full name on the translation",
-          "marriageNameHint": "Include all the text related to the name"
-        },
-        "checkYourAnswersContent": {
-          "marriageRespondentName": "Your {{ divorceWho }}’s name on the marriage certificate",
-          "marriagePetitionerName": "Your name on the marriage certificate"
-        },
-        "errors": {
-          "marriagePetitionerName": {
-            "required": "Enter your full name as it appears on your marriage certificate",
-            "invalid": "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
-          },
-          "marriageRespondentName": {
-            "required": "Enter your {{ divorceWho }}’s full name as it appears on your marriage certificate",
-            "invalid": "Your {{ divorceWho }}’s name can only contain the letters a to z, spaces, hyphens and apostrophes"
-          }
+    "lng": "en",
+    "resources": {
+        "en": {
+            "translation": {
+
+                "content": {
+                    "question": "How are your names displayed on the marriage certificate?",
+                    "questionTrans": "How are your names displayed on the marriage certificate translation?",
+                    "copy": "These will be the names you both used before you were married, such as maiden names.",
+                    "hint": "Copy the certificate exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+                    "hintTrans": "Copy the translation exactly. For example, if it says “Sarah Brown (formerly known as Sarah Smith)” then enter that.",
+                    "marriagePetitionerName": "Provide your full name on the certificate",
+                    "marriagePetitionerNameTrans": "Provide your full name on the translation",
+                    "marriageRespondentName": "Provide your {{ divorceWho }}&#39;s full name on the certificate",
+                    "marriageRespondentNameTrans": "Provide your {{ divorceWho }}&#39;s full name on the translation",
+                    "marriageNameHint": "Include all the text related to the name"
+                },
+
+                "checkYourAnswersContent": {
+                    "marriageRespondentName": "Your {{ divorceWho }}&#39;s name on the marriage certificate",
+                    "marriagePetitionerName": "Your name on the marriage certificate"
+                },
+
+                "errors": {
+                    "marriagePetitionerName": {
+                      "required" : "Enter your full name as it appears on your marriage certificate",
+                      "invalid" : "Your name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    },
+
+                    "marriageRespondentName": {
+                      "required" : "Enter your {{ divorceWho }}&#39;s full name as it appears on your marriage certificate",
+                      "invalid" : "Your {{ divorceWho }}&#39;s name can only contain the letters a to z, spaces, hyphens and apostrophes"
+                    }
+
+                }
+            }
         }
-      }
-    },
-    "cy": {
-      "translation": {
-        "content": {
-          "question": "Sut mae eich enwau yn ymddangos ar y dystysgrif priodas?",
-          "questionTrans": "Sut mae eich enwau yn ymddangos ar y cyfieithiad o’r dystysgrif priodas?",
-          "copy": "Dyna’r enwau yr oeddech yn eu defnyddio cyn ichi briodi (enw morwynol).",
-          "hint": "Dylid copïo’r dystysgrif yn gywir. Er enghraifft, os yw’n dweud â€œSarah Brown (a elwid yn flaenorol yn Sarah Smith)â€ yna dylid ei gopïo felly.",
-          "hintTrans": "Dylid copïo’r cyfieithiad yn gywir. Er enghraifft, os yw’n dweud â€œSarah Brown (a elwid yn flaenorol yn Sarah Smith)â€ yna dylid ei gopïo felly.",
-          "marriagePetitionerName": "Rhowch eich enw llawn fel mae’n ymddangos ar y dystysgrif",
-          "marriagePetitionerNameTrans": "Rhowch eich enw llawn fel mae’n ymddangos yn y cyfieithiad",
-          "marriageRespondentName": "Rhowch enw llawn eich {{ divorceWho }} fel mae’n ymddangos ar y dystysgrif",
-          "marriageRespondentNameTrans": "Rhowch enw llawn eich {{ divorceWho }} fel mae’n ymddangos yn y cyfieithiad",
-          "marriageNameHint": "Dylid cynnwys testun eich enw yn llawn"
-        },
-        "checkYourAnswersContent": {
-          "marriageRespondentName": "Enw eich {{ divorceWho }} ar y dystysgrif priodas",
-          "marriagePetitionerName": "Eich enw ar y dystysgrif priodas"
-        },
-        "errors": {
-          "marriagePetitionerName": {
-            "required": "Rhowch eich enw yn llawn fel mae’n ymddangos ar eich tystysgrif priodas",
-            "invalid": "Ni all eich enw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
-          },
-          "marriageRespondentName": {
-            "required": "Nodwch enw llawn eich {{ divorceWho }} fel mae’n ymddangos ar eich tystysgrif priodas",
-            "invalid": "Ni all enw eich {{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
-          }
-        }
-      }
     }
-  }
 }

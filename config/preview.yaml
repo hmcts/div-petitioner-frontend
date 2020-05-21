@@ -11,6 +11,3 @@ session:
 
 features:
   idam: true
-
-featureToggles:
-  enabled: false

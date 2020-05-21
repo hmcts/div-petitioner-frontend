@@ -1,35 +1,54 @@
 {
   "lng": "en",
   "resources": {
-
     "en": {
-
       "translation": {
-
         "content": {
-
           "heading": "Your domicile",
           "paragraph1": "Your domicile is usually the place in which you were born, regard as your permanent home and to which you have the closest ties.",
           "paragraph2": "However, domicile can be more complex, for example if you or your parents have moved countries in the past.",
           "help": "Read more about domicile",
           "helpText1": "You should select yes if either of the following types of domicile in England or Wales apply.",
-          "helpText2": "When you're born, you acquire a <strong>domicile of origin</strong>.  This is usually: <ul class='govuk-list govuk-list--bullet' style='margin-top: 15px; margin-bottom: 15px;'> <li>the country your father was domiciled in if your parents were married</li> <li>the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born</li> </ul>",
+          "helpText2": "When you’re born, you acquire a <strong>domicile of origin</strong>.  This is usually: <ul class=\"govuk-list govuk-list--bullet\" style=\"margin-top: 15px; margin-bottom: 15px;\"> <li>the country your father was domiciled in if your parents were married</li> <li>the country your mother was domiciled in if your parents were unmarried, or your father had died before you were born</li> </ul>",
           "helpText3": "If you leave your domicile of origin and settle in another country as an adult, the new country may become your <strong>domicile of choice</strong>.",
-          "helpText4": "If you're not sure about your domicile you should get legal advice.",
+          "helpText4": "If you’re not sure about your domicile you should get legal advice.",
           "petitioner": "Is your domicile in England or Wales?",
-          "respondent": "Is your {{ divorceWho }}'s domicile in England or Wales?",
+          "respondent": "Is your {{ divorceWho }}’s domicile in England or Wales?",
           "yes": "Yes",
           "no": "No"
         },
         "errors": {
-
           "jurisdictionPetitionerDomicile": {
-
             "required": "Select yes if you are domiciled in England or Wales"
           },
           "jurisdictionRespondentDomicile": {
-
             "required": "Select yes if your {{ divorceWho }} is domiciled in England or Wales"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "heading": "Eich domisil",
+          "paragraph1": "Eich domisil, fel arfer, yw’r lle y cawsoch eich geni, y lle yr ydych yn meddwl amdano fel eich cartref parhaol a’r lle mae eich teulu a’ch ffrindiau agosaf yn byw.",
+          "paragraph2": "Ond, mae’n bosib i’ch domisil fod yn fwy cymhleth, er enghraifft os ydych chi neu eich rhieni wedi symud o un wlad i’r llall yn y gorffennol.",
+          "help": "Darllenwch fwy am ddomisil",
+          "helpText1": "Dylech ddewis Ydy os oes gennych un o’r ddau fath o ddomisil yng Nghymru neu Loegr yn berthnasol.",
+          "helpText2": "Pan rydych yn cael eich geni, rydych yn cael <strong>mamwlad</strong>.  Fel arfer, eich: <ul class=\"govuk-list govuk-list--bullet\" style=\"margin-top: 15px; margin-bottom: 15px;\"> <li>yw’r wlad yr oedd eich tad â’i ddomisil ynddi os oedd eich rhieni’n briod</li> <li> y wlad yr oedd eich mam â’i domisil ynddi os nad oedd yn briod, neu os oedd eich tad wedi marw cyn eich geni</li> </ul> ",
+          "helpText3": "Os byddwch yn gadael eich mamwlad ac yn ymsefydlu mewn gwlad arall fel oedolyn, efallai y daw’r wlad honno yn <strong>ddomisil drwy ddewis</strong> ichi.",
+          "helpText4": "Os nad ydych chi’n siwr am eich domisil, dylech ofyn am gyngor cyfreithiol.",
+          "petitioner": "A yw eich domisil yng Nghymru neu Loegr?",
+          "respondent": "A yw domisil eich {{ divorceWho }} yng Nghymru neu Loegr?",
+          "yes": "Ydy",
+          "no": "Nac ydy"
+        },
+        "errors": {
+          "jurisdictionPetitionerDomicile": {
+            "required": "Dewiswch ydy os yw eich domisil yng Nghymru neu Loegr"
+          },
+          "jurisdictionRespondentDomicile": {
+            "required": "Dewiswch ydy os yw domisil eich {{ divorceWho }} yng Nghymru neu Loegr?"
           }
         }
       }

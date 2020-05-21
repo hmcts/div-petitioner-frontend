@@ -16,7 +16,7 @@ const ExitStep = require('app/core/steps/ExitStep');
 const modulePath = 'app/steps/check-your-answers';
 
 const content = require(`${modulePath}/content`);
-const commonContent = require('app/content/common');
+const commonContent = require('app/content/common-en');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 
 const contentStrings = content.resources.en.translation.content;
@@ -780,7 +780,8 @@ describe(modulePath, () => {
         submit: true,
         cookie: {},
         expires: Date.now(),
-        reasonForDivorce: 'unreasonable-behaviour'
+        reasonForDivorce: 'unreasonable-behaviour',
+        language: 'en'
       };
       withSession(done, agent, session);
     });

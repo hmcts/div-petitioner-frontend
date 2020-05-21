@@ -1,20 +1,37 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Do you want your divorce papers sent to this address?",
-                    "yes": "Yes, use this address",
-                    "no": "No, add a different address"
-                },
-
-                "errors": {
-                    "petitionerCorrespondenceUseHomeAddress": {
-                        "required": "Select no if you want your divorce papers sent to a different address"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you want your divorce papers sent to this address?",
+          "yes": "Yes, use this address",
+          "no": "No, add a different address",
+          "Yes": "Yes",
+          "No": "No"
+        },
+        "errors": {
+          "petitionerCorrespondenceUseHomeAddress": {
+            "required": "Select no if you want your divorce papers sent to a different address"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Ydych chi eisiau inni anfon eich papurau ysgariad i’r cyfeiriad hwn?",
+          "yes": "Oes. Defnyddio’r cyfeiriad hwn",
+          "no": "Nac oes. Ychwanegu cyfeiriad gwahanol",
+          "Yes": "Oes",
+          "No": "Nac oes"
+        },
+        "errors": {
+          "petitionerCorrespondenceUseHomeAddress": {
+            "required": "Dewiswch nac oes os ydych eisiau inni anfon eich papurau ysgariad i gyfeiriad gwahanol"
+          }
+        }
+      }
     }
+  }
 }

@@ -3,13 +3,7 @@
     {{ content.question | safe }}
   </td>
   <td class="govuk-table__cell">
-    {% if fields.respondentCorrespondenceUseHomeAddress.value === 'Yes' %}
-      {{ content.yes | safe }}
-    {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'No' %}
-      {{ content.no | safe }}
-    {% elseif fields.respondentCorrespondenceUseHomeAddress.value === 'Solicitor' %}
-      {{ content.solicitor | safe }}
-    {% endif %}
+    {{ content[fields.respondentCorrespondenceUseHomeAddress.value | lower]| safe }}
     {% if fields.respondentCorrespondenceDisplayAddress.value %}
       <span class="address">{{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}</span>
     {% endif %}

@@ -1,31 +1,47 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Do you have your marriage certificate?",
-                    "originalCertificate": "This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can't use a photocopy.",
-                    "court": "You'll need to post this to the court with your printed application."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Do you have your marriage certificate?"
-                },
-
-                "errors": {
-
-                    "hasMarriageCert": {
-                        "required": "Please answer this question",
-                        "invalid": "Please select an answer"
-                    },
-                    "petitionerFirstName": {
-                        "required": "Please enter first name"
-                    }
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you have your marriage certificate?",
+          "originalCertificate": "This must be your original marriage certificate or a <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\">certified copy</a>. You can’t use a photocopy.",
+          "court": "You’ll need to post this to the court with your printed application."
+        },
+        "checkYourAnswersContent": {
+          "question": "Do you have your marriage certificate?"
+        },
+        "errors": {
+          "hasMarriageCert": {
+            "required": "Please answer this question",
+            "invalid": "Please select an answer"
+          },
+          "petitionerFirstName": {
+            "required": "Please enter first name"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "A yw eich tystysgrif priodas yn eich meddiant?",
+          "originalCertificate": " Rhaid mai eich tystysgrif priodas wreiddiol yw hon neu gopi swyddogol ohoni <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\" >Copi ardystiedig</a>. Ni ellir defnyddio llungopi.",
+          "court": "Bydd angen ichi bostio hon i’r llys gyda’ch cais."
+        },
+        "checkYourAnswersContent": {
+          "question": "A yw eich tystysgrif priodas yn eich meddiant?"
+        },
+        "errors": {
+          "hasMarriageCert": {
+            "required": "Atebwch y cwestiwn hwn",
+            "invalid": "Dewiswch ateb"
+          },
+          "petitionerFirstName": {
+            "required": "Rhowch enw cyntaf"
+          }
+        }
+      }
     }
+  }
 }

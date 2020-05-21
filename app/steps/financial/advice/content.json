@@ -1,21 +1,31 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "title": "Applying for a financial order",
-                    "formallyStartFinancialProceedings": "To formally start financial proceedings, you&#39;ll also need to complete another form (known as Form A) and pay another fee.",
-                    "sendFormA": "You can send Form A at the same time as you apply for your divorce, or at any time after that. However, the court won&#39;t start processing your request for a financial order until you submit Form A and pay the fee.",
-                    "linkToMoreGuidance": "You&#39;ll be given a link to more guidance on financial orders and Form A when you finish your divorce application."
-                },
-
-                "checkYourAnswersContent": {
-                    "title": "Applying for a financial order?"
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Applying for a financial order",
+          "formallyStartFinancialProceedings": "To formally start financial proceedings, you’ll also need to complete another form (known as Form A) and pay another fee.",
+          "sendFormA": "You can send Form A at the same time as you apply for your divorce, or at any time after that. However, the court won’t start processing your request for a financial order until you submit Form A and pay the fee.",
+          "linkToMoreGuidance": "You’ll be given a link to more guidance on financial orders and Form A when you finish your divorce application."
+        },
+        "checkYourAnswersContent": {
+          "title": "Applying for a financial order?"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Gwneud cais am orchymyn ariannol",
+          "formallyStartFinancialProceedings": "I gychwyn achos ariannol yn ffurfiol, bydd hefyd angen ichi lenwi ffurflen arall (a elwir yn Ffurflen A) a thalu ffi arall.",
+          "sendFormA": "Gallwch anfon Ffurflen A yr un pryd ag y byddwch yn gwneud cais am ysgariad, neu ar unrhyw adeg wedi hynny. Fodd bynnag, ni fydd y llys yn dechrau prosesu eich cais am orchymyn ariannol nes byddwch yn cyflwyno Ffurflen A ac yn talu’r ffi.",
+          "linkToMoreGuidance": "Byddwch yn cael dolen yn arwain at ragor o gyfarwyddyd ynglyn â gorchmynion ariannol a Ffurflen A wedi ichi gwblhau eich cais am ysgariad."
+        },
+        "checkYourAnswersContent": {
+          "title": "Gwneud cais am orchymyn ariannol"
+        }
+      }
     }
+  }
 }

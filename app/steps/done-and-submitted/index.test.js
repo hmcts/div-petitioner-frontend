@@ -359,7 +359,7 @@ describe(modulePath, () => {
 
     describe('should show allocated court\'s post address', () => {
       const careOfText = ' c/o';
-      const htmlLineBreak = ' <br/>';
+      const htmlLineBreak = '<br/>';
 
       const contentRenderingTest = done => {
         excludeKeys.push('whatToDoNowRefNumText');
@@ -374,6 +374,7 @@ describe(modulePath, () => {
       context('for service centre', () => {
         beforeEach(done => {
           session = {
+            language: 'en',
             marriageCertificateFiles: [],
             petitionerNameDifferentToMarriageCertificate: 'No',
             marriedInUk: 'Yes',
@@ -388,7 +389,8 @@ describe(modulePath, () => {
 
         it('should render post address correctly', done => {
           testMultipleValuesExistence(done, agent, underTest, [
-            serviceCentreCourt.serviceCentreName + htmlLineBreak + careOfText,
+            serviceCentreCourt.serviceCentreName + htmlLineBreak,
+            careOfText,
             serviceCentreCourt.divorceCentre + htmlLineBreak,
             serviceCentreCourt.poBox + htmlLineBreak,
             serviceCentreCourt.courtCity + htmlLineBreak,
@@ -400,6 +402,7 @@ describe(modulePath, () => {
       context('for court with PO Box', () => {
         beforeEach(done => {
           session = {
+            language: 'en',
             marriageCertificateFiles: [],
             petitionerNameDifferentToMarriageCertificate: 'No',
             marriedInUk: 'Yes',

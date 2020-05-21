@@ -6,7 +6,7 @@ const { expect } = require('test/util/chai');
 const modulePath = 'app/steps/save-resume/confirm-remove-saved-application';
 
 const content = require(`${modulePath}/content`);
-const commonContent = require('app/content/common');
+const commonContent = require('app/content/common-en');
 
 let s = {};
 let agent = {};

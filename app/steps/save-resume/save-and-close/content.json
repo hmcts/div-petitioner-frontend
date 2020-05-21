@@ -1,15 +1,23 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "title": "Your application has been saved",
-                    "link": "A link to your application has been sent to:",
-                    "time": "Your application will be saved for 6 months"
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Your application has been saved",
+          "link": "A link to your application has been sent to:",
+          "time": "Your application will be saved for 6 months"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Mae eich cais wedi cael ei gadw",
+          "link": "Anfonwyd dolen sy’n arwain at eich cais i:",
+          "time": "Cedwir eich cais am 6 mis"
+        }
+      }
     }
+  }
 }

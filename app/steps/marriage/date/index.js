@@ -73,7 +73,10 @@ module.exports = class MarriageDate extends ValidationStep {
     return [isValid, errors];
   }
 
-  checkYourAnswersInterceptor(ctx) {
+  checkYourAnswersInterceptor(ctx, session) {
+    const months = require(`app/content/common-${session.language}`).resources[session.language].translation.months;
+
+    moment.updateLocale(session.language, { months });
     const marriageDate = moment(`${ctx.marriageDateDay}/${ctx.marriageDateMonth}/${ctx.marriageDateYear}`, DATE_FORMAT);
     ctx.marriageDate = marriageDate.format('Do MMMM YYYY');
     return ctx;

@@ -1,21 +1,27 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "title": "You haven&#39;t been married for long enough to get a divorce",
-                    "reason": "In England and Wales you can only divorce after at least one year of marriage.",
-                    "seperation": "You can <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">apply for a legal separation</a> if you&#39;ve been married for less than a year.",
-                    "annul": "You may also be able to <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>."
-                },
-
-                "errors": {
-
-                }
-
-            }
-        }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "You haven’t been married for long enough to get a divorce",
+          "reason": "In England and Wales you can only divorce after at least one year of marriage.",
+          "seperation": "You can <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">apply for a legal separation</a> if you’ve been married for less than a year.",
+          "annul": "You may also be able to <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>."
+        },
+        "errors": {}
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Nid ydych wedi bod yn briod yn ddigon hir i gael ysgariad",
+          "reason": "Yng Nghymru a Lloegr ni allwch ysgaru oni bai eich bod wedi bod yn briod am o leiaf blwyddyn.",
+          "seperation": "Gallwch<a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">Wneud cais i wahanu’n gyfreithiol</a> os ydych wedi bod yn briod am lai na blwyddyn.",
+          "annul": " Efallai y byddwch hefyd yn gallu <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">Diddymu eich priodas</a>."
+        },
+        "errors": {}
+      }
     }
+  }
 }

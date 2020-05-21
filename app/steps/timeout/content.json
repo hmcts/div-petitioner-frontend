@@ -1,14 +1,23 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "You’ve been signed out to protect your privacy",
-                    "timeout": "Your application was saved and closed because it was inactive for more than 60 minutes.",
-                    "signIn": "<a class=\"govuk-link\" href=\"/index\">Sign in</a> to return to your application."
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "You’ve been signed out to protect your privacy",
+          "timeout": "Your application was saved and closed because it was inactive for more than 60 minutes.",
+          "signIn": "<a class=\"govuk-link\" href=\"/index\">Sign in</a> to return to your application."
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Rydych wedi cael eich allgofnodi i amddiffyn eich preifatrwydd",
+          "timeout": "Mae eich cais wedi ei arbed a’i gadw am na fu unrhyw newid iddo ers 60 munud.",
+          "signIn": "<a class=\"govuk-link\" href=\"/index\" >Mewngofnodwch</a> i ddychwelyd i’r cais."
+        }
+      }
     }
+  }
 }

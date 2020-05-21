@@ -261,7 +261,7 @@ describe(modulePath, () => {
 
   describe('#queryAllPayments', () => {
     let client = null;
-    const req = {};
+    const req = { session: { language: 'cy' } };
     const user = { bearerToken: '123' };
     const serviceToken = 'someServiceToken';
 

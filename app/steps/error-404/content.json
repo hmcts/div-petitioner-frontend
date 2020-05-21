@@ -1,16 +1,27 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "Page not found",
-                    "info": "This could be because you’ve followed a broken or outdated link, or because there’s an error on our site.",
-                    "youCan": "You can either:",
-                    "goBack": "go back to the previous page",
-                    "signIn": "sign in again"
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Page not found",
+          "info": "This could be because you’ve followed a broken or outdated link, or because there’s an error on our site.",
+          "youCan": "You can either:",
+          "goBack": "go back to the previous page",
+          "signIn": "sign in again"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Ni ellir dod o hyd i’r dudalen",
+          "info": "Efallai eich bod wedi defnyddio dolen nad yw’n gweithio neu hen ddolen, neu bod yna nam ar ein safle.",
+          "youCan": "Gallwch:",
+          "goBack": "fynd yn ôl i’r dudalen flaenorol",
+          "signIn": "mewngofnodi eto"
+        }
+      }
     }
+  }
 }

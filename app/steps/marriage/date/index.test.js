@@ -140,7 +140,7 @@ describe(modulePath, () => {
 
   describe('Check Your Answers', () => {
     it('renders the cya template', done => {
-      testCYATemplate(done, stepUnderTest);
+      testCYATemplate(done, stepUnderTest, {}, { language: 'en' });
     });
 
     it('renders the marriage date', done => {
@@ -156,7 +156,7 @@ describe(modulePath, () => {
       };
 
       testExistenceCYA(done, stepUnderTest, content,
-        contentToExist, valuesToExist, context);
+        contentToExist, valuesToExist, context, { language: 'en' });
     });
   });
 });

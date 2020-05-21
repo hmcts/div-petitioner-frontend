@@ -4,8 +4,8 @@ const CONF = require('config');
 const confIdam = CONF.idamArgs;
 
 const PUBLIC_HOSTNAME = CONF.public.hostname;
-const PUBLIC_PROTOCOL = CONF.public.protocol;
-const redirectUri = `${PUBLIC_PROTOCOL}://${PUBLIC_HOSTNAME}/authenticated`;
+// const PUBLIC_PROTOCOL = CONF.public.protocol;
+const redirectUri = `https://${PUBLIC_HOSTNAME}/authenticated`;
 
 const landingPageUrl = PUBLIC_HOSTNAME ? redirectUri : confIdam.redirectUri;
 
@@ -20,11 +20,12 @@ const idamArgs = {
 
 module.exports = {
 
-  authenticate: (protocol, host, path) => {
+  authenticate: (protocol, host, path, language = 'en') => {
     if (host) {
       // get the hostname part of the host string
       idamArgs.hostName = host.split(':')[0];
       idamArgs.redirectUri = protocol.concat('://', host, path);
+      idamArgs.language = language;
     }
     return idamExpressMiddleware.authenticate(idamArgs);
   },

@@ -1,46 +1,77 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Enter your current names",
-                    "yourName": "Provide your full name",
-                    "firstName": "First name(s)",
-                    "lastName": "Last name(s)",
-                    "middleNames": "Include all middle names here",
-                    "respondentName": "Provide {{ divorceWho }}&#39;s full name",
-                    "respondentFirstName": "{{ divorceWho }}&#39;s first name(s)",
-                    "respondentLastName": "{{ divorceWho }}&#39;s last name(s)"
-                },
-
-                "checkYourAnswersContent": {
-                    "respondentName": "Your {{ divorceWho }}&#39;s current name",
-                    "yourName": "Your current name"
-                },
-
-                "errors": {
-                    "petitionerFirstName": {
-                      "required" : "Enter your first name(s)",
-                      "invalid" : "Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    },
-
-                    "petitionerLastName": {
-                      "required" : "Enter your last name(s)",
-                      "invalid" : "Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    },
-
-                    "respondentFirstName" : {
-                      "required" : "Enter your {{ divorceWho }}&#39;s first name(s)",
-                      "invalid" : "Your {{ divorceWho }}&#39;s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    },
-                    "respondentLastName" : {
-                      "required" : "Enter your {{ divorceWho }}&#39;s last name(s)",
-                      "invalid" : "Your {{ divorceWho }}&#39;s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Enter your current names",
+          "yourName": "Provide your full name",
+          "firstName": "First name(s)",
+          "lastName": "Last name(s)",
+          "middleNames": "Include all middle names here",
+          "respondentName": "Provide {{ divorceWho }}’s full name",
+          "respondentFirstName": "{{ divorceWho }}’s first name(s)",
+          "respondentLastName": "{{ divorceWho }}’s last name(s)"
+        },
+        "checkYourAnswersContent": {
+          "respondentName": "Your {{ divorceWho }}’s current name",
+          "yourName": "Your current name"
+        },
+        "errors": {
+          "petitionerFirstName": {
+            "required": "Enter your first name(s)",
+            "invalid": "Your first name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "petitionerLastName": {
+            "required": "Enter your last name(s)",
+            "invalid": "Your last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "respondentFirstName" : {
+            "required": "Enter your {{ divorceWho }}’s first name(s)",
+            "invalid": "Your {{ divorceWho }}’s first name  can only contain the letters a to z, spaces, hyphens and apostrophes"
+          },
+          "respondentLastName" : {
+            "required": "Enter your {{ divorceWho }}’s last name(s)",
+            "invalid": "Your {{ divorceWho }}’s last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Nodwch eich enwau cyfredol",
+          "yourName": "Nodwch eich enw llawn",
+          "firstName": "Enw(au) cyntaf",
+          "lastName": "Cyfenw(au)",
+          "middleNames": "Rhowch bob enw canol yma",
+          "respondentName": "Rhowch enw llawn {{ divorceWho }}",
+          "respondentFirstName": "Enw(au) cyntaf {{ divorceWho }}",
+          "respondentLastName": "Enw(au) olaf {{ divorceWho }}"
+        },
+        "checkYourAnswersContent": {
+          "respondentName": "Enw cyfredol eich{{ divorceWho }}",
+          "yourName": "Eich enw cyfredol"
+        },
+        "errors": {
+          "petitionerFirstName": {
+            "required": " Nodwch eich enw(au) cyntaf",
+            "invalid": " Ni all eich enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+          },
+          "petitionerLastName": {
+            "required": "Nodwch eich enw(au) olaf",
+            "invalid": "Ni all eich cyfenw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+          },
+          "respondentFirstName" : {
+            "required": " Rhowch enw(au) cyntaf eich {{ divorceWho }}",
+            "invalid": " Ni all enw cyntaf eich{{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+          },
+          "respondentLastName" : {
+            "required": " Rhowch enw(au) olaf eich  {{ divorceWho }}",
+            "invalid": " Ni all enw olaf eich {{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+          }
+        }
+      }
     }
+  }
 }

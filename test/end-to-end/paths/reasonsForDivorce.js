@@ -25,10 +25,9 @@ const tenYearsAgoFormatted = {
 Feature('Reasons for divorce').retry(3);
 
 Scenario('Unreasonable behaviour - with added examples', (I) => {
-
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -42,10 +41,9 @@ Scenario('Unreasonable behaviour - with added examples', (I) => {
 });
 
 Scenario('Adultery, with details', (I) => {
-
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -63,10 +61,9 @@ Scenario('Adultery, with details', (I) => {
 });
 
 Scenario('2 years separation', (I) => {
-
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -77,15 +74,13 @@ Scenario('2 years separation', (I) => {
   I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.selectLivingApartTime();
-
   I.enterLegalProceedings();
 });
 
 Scenario('5 years separation', (I) => {
-
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -99,10 +94,9 @@ Scenario('5 years separation', (I) => {
 });
 
 Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
-
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -117,10 +111,9 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
 });
 
 Scenario('Exit if 5 years separation chosen but actual living apart date is less', (I) => {
-
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
@@ -136,12 +129,11 @@ Scenario('Exit if 5 years separation chosen but actual living apart date is less
 
 
 Scenario('Deserted without agreement', function*(I) {
-
   // Fill out all of the application
   // to test CYA content the application must be complete and valid
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();

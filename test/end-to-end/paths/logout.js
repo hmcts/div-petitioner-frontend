@@ -9,7 +9,7 @@ Scenario('Logout on Save and close', function (I) {
 
   I.startApplication();
 
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
@@ -31,7 +31,7 @@ Scenario('Logout on Sign Out', function (I) {
 
   I.startApplication();
 
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
@@ -42,6 +42,6 @@ Scenario('Logout on Sign Out', function (I) {
   I.see('Sign in');
 
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
 });

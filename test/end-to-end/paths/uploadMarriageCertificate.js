@@ -5,7 +5,7 @@ Feature('Upload Marriage Certificate').retry(3);
 Scenario('Test upload', async function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -15,7 +15,7 @@ Scenario('Test upload', async function (I) {
 Scenario('Test remove marriage Certificate', async function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -25,7 +25,7 @@ Scenario('Test remove marriage Certificate', async function (I) {
 Scenario('Test ability validate document type', async function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  I.languagePreference();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
 

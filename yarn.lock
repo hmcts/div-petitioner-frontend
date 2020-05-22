@@ -151,6 +151,20 @@
     request-promise-native "^1.0.5"
     uuid "^3.1.0"
 
+"@hmcts/div-idam-express-middleware@^6.6.2":
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-express-middleware/-/div-idam-express-middleware-6.6.2.tgz#0f1f03567463fc849b8a1c1877351d79242370e9"
+  integrity sha512-y3RG9B2CDAWTQLWRLKVRcSXIWWSt2NP4JsMBZPzPdYvh6LSmi58oRzvrdSg2dGgR6TLCiHoWmbTvUgJUsY+sGw==
+  dependencies:
+    "@hmcts/nodejs-logging" "^3.0.0"
+    diff "^3.5.0"
+    jwt-decode "^2.2.0"
+    mem "^4.0.0"
+    request "^2.88.0"
+    request-promise-core "^1.1.2"
+    request-promise-native "^1.0.5"
+    uuid "^3.1.0"
+
 "@hmcts/div-idam-test-harness@^1.5.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@hmcts/div-idam-test-harness/-/div-idam-test-harness-1.6.0.tgz#76f83194a6543b349f007799eeb8224e210a5258"

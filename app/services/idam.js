@@ -29,8 +29,8 @@ module.exports = {
       idamArgs.language = language;
     }
     idamArgs.language = language;
-    // idamArgs.redirectUri = `${idamArgs.redirectUri}?lng=${language}`;
-    logger.infoWithReq({}, 'idam_return_uri', 'IdAM return URI: ', `${idamArgs.redirectUri}?lng=${language}`);
+    idamArgs.redirectUri = `${idamArgs.redirectUri}%3Flng=${language}`;
+    logger.infoWithReq({}, 'idam_return_uri', 'IdAM return URI: ', `${idamArgs.redirectUri}`);
 
     return idamExpressMiddleware.authenticate(idamArgs);
   },

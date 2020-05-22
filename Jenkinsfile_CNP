@@ -13,8 +13,8 @@ def secrets = [
     secret('redis-secret', 'SESSION_ENCRYPTION_SECRET'),
     secret('idam-secret', 'IDAM_SECRET'),
     secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
-    secret('frontend-secret', 'MICROSERVICE_KEY')
-    secret('launchdarkly-key', 'LAUNCHDARKLY_KEY'),
+    secret('frontend-secret', 'MICROSERVICE_KEY'),
+    secret('launchdarkly-key', 'LAUNCHDARKLY_KEY')
   ]
 ]
 

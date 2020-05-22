@@ -1,26 +1,37 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Are you sure you want to delete your application?",
-                    "deleted": "All information you have provided will be deleted. If you apply again in future, you will have to pay the full fee for a new application.",
-                    "userAccount": "Your user account (which includes your email address and your password) will not be deleted. If you want your account to be deleted please contact the Divorce Centre.",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-
-                "errors": {
-
-                    "deleteApplication": {
-                        "required": "Select yes if you want to delete your application"
-                    }
-
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Are you sure you want to delete your application?",
+          "deleted": "All information you have provided will be deleted. If you apply again in future, you will have to pay the full fee for a new application.",
+          "userAccount": "Your user account (which includes your email address and your password) will not be deleted. If you want your account to be deleted please contact the Divorce Centre.",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "errors": {
+          "deleteApplication": {
+            "required": "Select yes if you want to delete your application"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Ydych chi’n siwr eich bod eisiau dileu eich cais?",
+          "deleted": "Byddwn yn dileu’r holl wybodaeth a ddarparwyd gennych. Os byddwch yn gwneud cais eto yn y dyfodol, bydd yn rhaid ichi dalu ffi lawn am gais newydd.",
+          "userAccount": "Ni fyddwn yn dileu’r cyfrif defnyddiwr (sy’n cynnwys eich cyfeiriad e-bost a’ch cyfrinair). Cysylltwch â’r Ganolfan Ysgaru os ydych eisiau inni ddileu eich cyfrif.",
+          "yes": "Ydym",
+          "no": "Nac ydym"
+        },
+        "errors": {
+          "deleteApplication": {
+            "required": "Dewiswch oes os ydych eisiau dileu eich cais"
+          }
+        }
+      }
     }
+  }
 }

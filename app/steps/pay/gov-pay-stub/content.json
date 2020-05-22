@@ -15,6 +15,21 @@
           }
         }
       }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Canlyniad y ffug daliad",
+          "success": "Llwyddiant",
+          "failure": " Aflwyddiant"
+        },
+        "errors": {
+          "mockedOutcome": {
+            "required": "Dewiswch y canlyniad a ddymunir",
+            "invalid": "Dewiswch ganlyniad o blith yr opsiynau sydd ar gael uchod"
+          }
+        }
+      }
     }
   }
 }

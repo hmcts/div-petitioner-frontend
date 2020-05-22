@@ -1,29 +1,41 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Do you want help paying your fee?",
-                    "explanation": "If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Applied for help with fees?"
-                },
-
-                "errors": {
-
-                    "helpWithFeesNeedHelp": {
-                        "required": "Select yes if you want help with fees"
-                    }
-
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you want help paying your fee?",
+          "explanation": "If you have little or no savings, are on certain benefits or have a low income you may be able to get help with paying the <strong>£{{ feeToBePaid }}</strong> fee.",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "checkYourAnswersContent": {
+          "question": "Applied for help with fees?"
+        },
+        "errors": {
+          "helpWithFeesNeedHelp": {
+            "required": "Select yes if you want help with fees"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Ydych chi eisiau help i dalu eich ffi?",
+          "explanation": "Os nad oes gennych gynilon neu os nad oes gennych ond ychydig o gynilon, os ydych yn cael budd-daliadau penodol neu os yw eich incwm yn isel efallai y byddwch yn gallu cael help i dalu’r <strong>Â£{{ feeToBePaid }}</strong> ffi.",
+          "yes": "Do",
+          "no": "Nac oes"
+        },
+        "checkYourAnswersContent": {
+          "question": "A ydych chi wedi gwneud cais am help i dalu ffioedd?"
+        },
+        "errors": {
+          "helpWithFeesNeedHelp": {
+            "required": "Dewiswch ydw os oes arnoch chi eisiau help i dalu ffioedd"
+          }
+        }
+      }
     }
+  }
 }

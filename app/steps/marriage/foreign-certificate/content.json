@@ -3,7 +3,6 @@
   "resources": {
     "en": {
       "translation": {
-
         "content": {
           "question": "Where you got married",
           "countryOfMarriage": "In which country did you get married?",
@@ -13,20 +12,43 @@
           "wordsOfTranslation": "Copy the words on the translation of your marriage certificate exactly",
           "copyPlaceOfMarriage": "Copy the place of marriage from your marriage certificate exactly"
         },
-
         "checkYourAnswersContent": {
           "countryName": "Country in which you got married",
-          "placeOfMarriageFromCertificate": "Place of marriage as it's displayed on your marriage certificate",
-          "placeOfMarriageFromTranslation": "Place of marriage as it's displayed on the translation"
+          "placeOfMarriageFromCertificate": "Place of marriage as it’s displayed on your marriage certificate",
+          "placeOfMarriageFromTranslation": "Place of marriage as it’s displayed on the translation"
         },
-
         "errors": {
           "countryName": {
-            "required" : "Enter the country in which you got married"
+            "required": "Enter the country in which you got married"
           },
-
           "placeOfMarriage": {
-            "required" : "Enter the place you got married as it is displayed on your marriage certificate"
+            "required": "Enter the place you got married as it is displayed on your marriage certificate"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": " Enw’r lle y gwnaethoch briodi",
+          "countryOfMarriage": "Ym mha wlad y gwnaethoch briodi?",
+          "countryName": "Rhowch enw’r wlad",
+          "placeOfMarriageTranslation": "Sut mae enw’r lle y gwnaethoch briodi yn ymddangos yn y cyfieithiad o’ch tystysgrif priodas?",
+          "placeOfMarriage": "Sut mae enw’r lle y gwnaethoch briodi yn ymddangos ar eich tystysgrif priodas?",
+          "wordsOfTranslation": "Copïwch y geiriau yn y cyfieithiad o’ch tystysgrif priodas yn gywir",
+          "copyPlaceOfMarriage": "Copïwch enw’r lle y gwnaethoch briodi ar eich tystysgrif priodas yn gywir"
+        },
+        "checkYourAnswersContent": {
+          "countryName": "Y wlad lle y gwnaethoch briodi",
+          "placeOfMarriageFromCertificate": "Enw’r lle y gwnaethoch briodi fel y’i ceir ar eich tystysgrif priodas",
+          "placeOfMarriageFromTranslation": "Enw’r lle y gwnaethoch briodi fel y’i ceir yn y cyfieithiad"
+        },
+        "errors": {
+          "countryName": {
+            "required": " Nodwch enw’r wlad lle y gwnaethoch briodi"
+          },
+          "placeOfMarriage": {
+            "required": " Nodwch enw’r lle y gwnaethoch briodi fel y’i ceir ar eich tystysgrif priodas"
           }
         }
       }

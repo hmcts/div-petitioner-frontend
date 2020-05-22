@@ -1,78 +1,149 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "When you separated",
-                    "info1": "You need to provide the following dates related to your separation. The court will use the most recent date as the date that you separated.",
-                    "info2": "Use the same date for both if they happened on the same day. If you're not sure of the exact dates, use the closest dates that you remember.",
-                    "dateHint" : "For example, 31 3 1980",
-                    "question1": {
-                        "text": "When did you first decide that the marriage was over?"
-                    },
-                    "question2": {
-                        "text": "When did you start living apart?",
-                        "info": "You can both live in the same property and be considered by the court to be living apart, as long as you're living separate lives. For example, you don’t eat, sleep, or socialise together."
-                    },
-                    "day": "Day",
-                    "month": "Month",
-                    "year": "Year"
-                },
-
-                "errors": {
-                    "reasonForDivorceDecisionDay": {
-                        "required": "Enter the day that you decided that the marriage was over.",
-                        "invalid": "Enter a valid day for when you first decided that the marriage was over (a number between 1 and 31)."
-                    },
-                    "reasonForDivorceDecisionMonth": {
-                        "required": "Enter the month that you decided that the marriage was over.",
-                        "invalid": "Enter a valid month for when you first decided that the marriage was over (a number between 1 and 12) ."
-                    },
-                    "reasonForDivorceDecisionYear": {
-                        "required": "Enter the year that you decided that the marriage was over.",
-                        "invalid": "Enter a valid year for when you first decided that the marriage was over (for example, 2010)."
-                    },
-                    "reasonForDivorceDecisionDate": {
-                        "required": "Enter the date that you decided that the marriage was over.",
-                        "invalid": "Enter a valid date for when you first decided that the marriage was over (for example, 11 12 2010)."
-                    },
-                    "reasonForDivorceDecisionDateInFuture": {
-                        "invalid": "Enter a date that is in the past."
-                    },
-                    "reasonForDivorceDecisionDateBeforeMarriageDate": {
-                        "invalid": "Enter a date that is after your marriage date."
-                    },
-                    "reasonForDivorceDecisionDateIsSameOrAfterLimitDate": {
-                        "required": "Enter the date for when you first decided the marriage was over."
-                    },
-                    "reasonForDivorceLivingApartDay": {
-                        "required": "Enter the day that you started living apart.",
-                        "invalid": "Enter a valid day for when you started living apart (a number between 1 and 31)."
-                    },
-                    "reasonForDivorceLivingApartMonth": {
-                        "required": "Enter the month that you started living apart.",
-                        "invalid": "Enter a valid month for when you started living apart (a number between 1 and 12)."
-                    },
-                    "reasonForDivorceLivingApartYear": {
-                        "required": "Enter the year that you started living apart.",
-                        "invalid": "Enter a valid year for when you started living apart  (for example, 2010)."
-                    },
-                    "reasonForDivorceLivingApartDate": {
-                        "required": "Enter the date that you started living apart from your {{ divorceWho }}.",
-                        "invalid": "Enter a valid date for when you started living apart (for example, 11 12 2010)."
-                    },
-                    "reasonForDivorceLivingApartDateInFuture": {
-                        "invalid": "Enter a date that is in the past."
-                    },
-                    "reasonForDivorceLivingApartDateBeforeMarriageDate": {
-                        "invalid": "Enter a date that is after your marriage date."
-                    },
-                    "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate": {
-                        "required": "Enter the date that you started living apart from your {{ divorceWho }}."
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "When you separated",
+          "info1": "You need to provide the following dates related to your separation. The court will use the most recent date as the date that you separated.",
+          "info2": "Use the same date for both if they happened on the same day. If you’re not sure of the exact dates, use the closest dates that you remember.",
+          "dateHint": "For example, 31 3 1980",
+          "question1": {
+            "text": "When did you first decide that the marriage was over?"
+          },
+          "question2": {
+            "text": "When did you start living apart?",
+            "info": "You can both live in the same property and be considered by the court to be living apart, as long as you’re living separate lives. For example, you don’t eat, sleep, or socialise together."
+          },
+          "day": "Day",
+          "month": "Month",
+          "year": "Year"
+        },
+        "errors": {
+          "reasonForDivorceDecisionDay": {
+            "required": "Enter the day that you decided that the marriage was over.",
+            "invalid": "Enter a valid day for when you first decided that the marriage was over (a number between 1 and 31)."
+          },
+          "reasonForDivorceDecisionMonth": {
+            "required": "Enter the month that you decided that the marriage was over.",
+            "invalid": "Enter a valid month for when you first decided that the marriage was over (a number between 1 and 12) ."
+          },
+          "reasonForDivorceDecisionYear": {
+            "required": "Enter the year that you decided that the marriage was over.",
+            "invalid": "Enter a valid year for when you first decided that the marriage was over (for example, 2010)."
+          },
+          "reasonForDivorceDecisionDate": {
+            "required": "Enter the date that you decided that the marriage was over.",
+            "invalid": "Enter a valid date for when you first decided that the marriage was over (for example, 11 12 2010)."
+          },
+          "reasonForDivorceDecisionDateInFuture": {
+            "invalid": "Enter a date that is in the past."
+          },
+          "reasonForDivorceDecisionDateBeforeMarriageDate": {
+            "invalid": "Enter a date that is after your marriage date."
+          },
+          "reasonForDivorceDecisionDateIsSameOrAfterLimitDate": {
+            "required": "Enter the date for when you first decided the marriage was over."
+          },
+          "reasonForDivorceLivingApartDay": {
+            "required": "Enter the day that you started living apart.",
+            "invalid": "Enter a valid day for when you started living apart (a number between 1 and 31)."
+          },
+          "reasonForDivorceLivingApartMonth": {
+            "required": "Enter the month that you started living apart.",
+            "invalid": "Enter a valid month for when you started living apart (a number between 1 and 12)."
+          },
+          "reasonForDivorceLivingApartYear": {
+            "required": "Enter the year that you started living apart.",
+            "invalid": "Enter a valid year for when you started living apart  (for example, 2010)."
+          },
+          "reasonForDivorceLivingApartDate": {
+            "required": "Enter the date that you started living apart from your {{ divorceWho }}.",
+            "invalid": "Enter a valid date for when you started living apart (for example, 11 12 2010)."
+          },
+          "reasonForDivorceLivingApartDateInFuture": {
+            "invalid": "Enter a date that is in the past."
+          },
+          "reasonForDivorceLivingApartDateBeforeMarriageDate": {
+            "invalid": "Enter a date that is after your marriage date."
+          },
+          "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate": {
+            "required": "Enter the date that you started living apart from your {{ divorceWho }}."
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Pryd y gwnaethoch wahanu",
+          "info1": "Mae angen ichi ddarparu’r dyddiadau canlynol ynglyn â’r gwahanu. Bydd y llys yn defnyddio’r dyddiad diweddaraf fel y dyddiad y gwnaethoch wahanu.",
+          "info2": "Defnyddiwch yr un dyddiad ar gyfer y ddau os digwyddodd y ddau ar yr un diwrnod. Os nad ydych yn siwr o’r union ddyddiad, defnyddiwch y dyddiad agosaf rydych yn ei gofio.",
+          "dateHint": "Er enghraifft, 31 3 1980",
+          "question1": {
+            "text": "Pa bryd wnaethoch chi benderfynu gyntaf fod y briodas wedi dod i ben?"
+          },
+          "question2": {
+            "text": "Pa bryd wnaethoch chi ddechrau byw ar wahân?",
+            "info": "Mae’n bosib i’r llys ystyried eich bod yn byw ar wahân er eich bod yn byw yn yr un cyfeiriad, cyn belled â’ch bod chi’n byw’n annibynnol. Er enghraifft, nid ydych yn bwyta, yn cysgu neu’n cymdeithasu gyda’ch gilydd."
+          },
+          "day": "Diwrnod",
+          "month": "Mis",
+          "year": "Blwyddyn"
+        },
+        "errors": {
+          "reasonForDivorceDecisionDay": {
+            "required": "Nodwch y diwrnod y gwnaethoch benderfynu bod y briodas wedi dod i ben.",
+            "invalid": "Nodwch ddiwrnod dilys pan wnaethoch benderfynu bod y briodas wedi dod i ben (rhif rhwng 1 a 31)."
+          },
+          "reasonForDivorceDecisionMonth": {
+            "required": "Nodwch y mis y gwnaethoch benderfynu bod y briodas wedi dod i ben.",
+            "invalid": "Nodwch fis dilys pan wnaethoch benderfynu bod y briodas wedi dod i ben (rhif rhwng 1 a 12)."
+          },
+          "reasonForDivorceDecisionYear": {
+            "required": "Nodwch y flwyddyn y gwnaethoch benderfynu bod y briodas wedi dod i ben.",
+            "invalid": "Nodwch flwyddyn ddilys pan y gwnaethoch benderfynu gyntaf bod y briodas wedi dod i ben (er enghraifft 2010)."
+          },
+          "reasonForDivorceDecisionDate": {
+            "required": "Nodwch y dydd y gwnaethoch benderfynu bod y briodas wedi dod i ben.",
+            "invalid": "Nodwch ddyddiad dilys pan wnaethoch benderfynu bod y briodas wedi dod i ben (er enghraifft 11 12 2010)."
+          },
+          "reasonForDivorceDecisionDateInFuture": {
+            "invalid": "Nodwch ddyddiad yn y gorffennol."
+          },
+          "reasonForDivorceDecisionDateBeforeMarriageDate": {
+            "invalid": "Nodwch ddyddiad sydd ar ôl dyddiad eich priodas."
+          },
+          "reasonForDivorceDecisionDateIsSameOrAfterLimitDate": {
+            "required": "Nodwch y dydd y gwnaethoch benderfynu gyntaf fod y briodas wedi dod i ben."
+          },
+          "reasonForDivorceLivingApartDay": {
+            "required": "Nodwch y diwrnod y gwnaethoch ddechrau byw ar wahân.",
+            "invalid": "Nodwch ddiwrnod dilys pan y gwnaethoch ddechrau byw ar wahân (rhif rhwng 1 a 31)."
+          },
+          "reasonForDivorceLivingApartMonth": {
+            "required": "Nodwch y mis y gwnaethoch ddechrau byw ar wahân.",
+            "invalid": "Nodwch fis dilys pan wnaethoch ddechrau byw ar wahân (rhif rhwng 1 a 12)."
+          },
+          "reasonForDivorceLivingApartYear": {
+            "required": "Nodwch y flwyddyn y gwnaethoch ddechrau byw ar wahân.",
+            "invalid": "Nodwch flwyddyn ddilys pan wnaethoch ddechrau byw ar wahân (er enghraifft, 2010)."
+          },
+          "reasonForDivorceLivingApartDate": {
+            "required": "Nodwch y dyddiad y gwnaethoch wahanu oddi wrth eich {{ divorceWho }}.",
+            "invalid": "Nodwch ddyddiad dilys pan y gwnaethoch ddechrau byw ar wahân (er enghraifft 11 12 2010)."
+          },
+          "reasonForDivorceLivingApartDateInFuture": {
+            "invalid": "Nodwch ddyddiad yn y gorffennol."
+          },
+          "reasonForDivorceLivingApartDateBeforeMarriageDate": {
+            "invalid": "Nodwch ddyddiad sydd ar ôl dyddiad eich priodas."
+          },
+          "reasonForDivorceLivingApartDateIsSameOrAfterLimitDate": {
+            "required": "Nodwch y dyddiad y gwnaethoch wahanu oddi wrth eich {{ divorceWho }}."
+          }
+        }
+      }
     }
+  }
 }

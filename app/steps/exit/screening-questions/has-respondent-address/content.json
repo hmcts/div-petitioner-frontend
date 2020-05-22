@@ -1,16 +1,25 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "heading": "Sorry, you can&#39;t use this service yet",
-                    "title": "You need an address for your husband/wife to use this service.",
-                    "text1": "You can still <a class=\"govuk-link\" href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115\" target=\"_blank\">apply for a divorce using the paper D8 form.</a>",
-                    "text2": "Read the guidance on <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce-missing-husband-wife\" target=\"_blank\">divorcing someone when you don&#39;t know where they are</a>."
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "heading": "Sorry, you can’t use this service yet",
+          "title": "You need an address for your husband/wife to use this service.",
+          "text1": "You can still <a class=\"govuk-link\" href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115\" target=\"_blank\">apply for a divorce using the paper D8 form.</a>",
+          "text2": "Read the guidance on <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce-missing-husband-wife\" target=\"_blank\">divorcing someone when you don’t know where they are</a>."
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "heading": "Yn anffodus, ni allwch ddefnyddio’r gwasanaeth hwn eto",
+          "title": "Mae angen cyfeiriad ar gyfer eich gwr/gwraig i ddefnyddio’r gwasanaeth hwn.",
+          "text1": "Gallwch<a class=\"govuk-link\" href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1115\" target=\"_blank\">Wneud cais am ysgariad gan ddefnyddio’r ffurflen bapur D8.</a>",
+          "text2": " Darllenwch y cyfarwyddiadau ar <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce-missing-husband-wife\" target=\"_blank\">ysgaru oddi wrth rywun pan nad ydych yn gwybod ble maent </a>."
+        }
+      }
     }
+  }
 }

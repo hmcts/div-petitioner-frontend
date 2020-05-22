@@ -1,58 +1,107 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "woman": "woman",
-                    "man" : "man",
-                    "question": "Choose a reason for your divorce",
-                    "explanation": "You must choose one of the following reasons (legally known as the &#39;facts&#39;) for your divorce.",
-                    "hasNoMarriageDate": "No marriage date",
-                    "separatedDetails": "What if we lived together after we separated?",
-                    "sameResidenceHeading": "Living in the same residence while separated",
-                    "sameResidenceSummary": "You can still live in the same residence while separated, as long you&#39;re not living together as a couple, for example, you don&#39;t eat, sleep or cook together.",
-                    "asACoupleHeading": "Living together as a couple after separating",
-                    "asACoupleSummary1": "If you have lived together as a couple after separating, you can&#39;t use the",
-                    "asACoupleSummary2": "facts if it was for more than 6 months, during or after the separation period. This can have been either in a single period or over several periods.",
-                    "asACoupleSummary3": "Any time you spent living as a couple doesn&#39;t count towards the separation period, and you&#39;ll need to make up any time you were together before you apply for a divorce.",
-                    "2Years": "Living together as a couple after separating",
-                    "5Years": "2 years separation with consent, 5 years separation and desertion",
-                    "chooseAReason": "Choose one of the following reasons:",
-                    "unreasonableBehaviourHeading": "Behaviour",
-                    "unreasonableBehaviourSummary": "Your {{ divorceWho }} has behaved in such a way that you can&#39;t reasonably be expected to live with them any more",
-                    "unreasonableBehaviourWarning": "You&#39;ll be asked to provide examples of the behaviour. If you have lived together as a couple for a period or periods totalling more than 6 months since the most recent incident you rely on, the court may take that into account in its decision on whether to grant you a divorce.",
-                    "adulteryHeading": "Adultery",
-                    "adulterySummary1": "Your {{ divorceWho }} has committed adultery with a",
-                    "adulterySummary2": "and you find it intolerable (unbearable) to live with them. Adultery can only be used if it was with a member of the opposite sex",
-                    "adulteryWarning": "You can still use this reason if you continued to live together as a married couple afterwards; eg you still ate, slept, and cooked together. However, this can only have been for up to 6 months after you found out about the adultery - you&#39;ll have to choose another reason if it&#39;s more.",
-                    "2YearsSeparationHeading": "Separated for 2 years with consent",
-                    "2YearsSeparationSummary": " Your {{ divorceWho }} agrees to a divorce and you&#39;ve been separated for the past 2 years",
-                    "2YearsSeparationWarning": "The court will ask your {{ divorceWho }} if they agree to a divorce. If they don&#39;t agree, your application will be rejected and you&#39;ll need to choose another reason.",
-                    "2YearsSeparationExclusion": "if you&#39;ve been separated for the 2 year period immediately before the divorce application, and your {{ divorceWho }} agrees to a divorce",
-                    "5YearsSeparationHeading": "Separated for 5 years",
-                    "5YearsSeparationSummary": "You&#39;ve been separated from your {{ divorceWho }} for the past 5 years",
-                    "5YearsSeparationExclusion": "if you&#39;ve been separated for the 5 year period immediately before the divorce application",
-                    "desertionHeading": "Desertion",
-                    "desertionSummary": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-                    "desertionExclusion": "if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-                    "noneApply" : "None of these apply to my situation",
-                    "finalPossibilities" : "If you can&#39;t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
-                    "alternativelyInFuture" : "Alternatively, in future you may be able to use the following",
-                    "warning": "Warning"
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Reason for divorce"
-                },
-
-                "errors": {
-                    "reasonForDivorce": {
-                        "required": "Select a reason",
-                        "invalid": "Select a reason"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "woman": "woman",
+          "man": "man",
+          "question": "Choose a reason for your divorce",
+          "explanation": "You must choose one of the following reasons (legally known as the 'facts') for your divorce.",
+          "hasNoMarriageDate": "No marriage date",
+          "separatedDetails": "What if we lived together after we separated?",
+          "sameResidenceHeading": "Living in the same residence while separated",
+          "sameResidenceSummary": "You can still live in the same residence while separated, as long you’re not living together as a couple, for example, you don’t eat, sleep or cook together.",
+          "asACoupleHeading": "Living together as a couple after separating",
+          "asACoupleSummary1": "If you have lived together as a couple after separating, you can’t use the",
+          "asACoupleSummary2": "facts if it was for more than 6 months, during or after the separation period. This can have been either in a single period or over several periods.",
+          "asACoupleSummary3": "Any time you spent living as a couple doesn’t count towards the separation period, and you’ll need to make up any time you were together before you apply for a divorce.",
+          "2Years": "Living together as a couple after separating",
+          "5Years": "2 years separation with consent, 5 years separation and desertion",
+          "chooseAReason": "Choose one of the following reasons:",
+          "unreasonableBehaviourHeading": "Behaviour",
+          "unreasonableBehaviourSummary": "Your {{ divorceWho }} has behaved in such a way that you can’t reasonably be expected to live with them any more",
+          "unreasonableBehaviourWarning": "You’ll be asked to provide examples of the behaviour. If you have lived together as a couple for a period or periods totalling more than 6 months since the most recent incident you rely on, the court may take that into account in its decision on whether to grant you a divorce.",
+          "adulteryHeading": "Adultery",
+          "adulterySummary1": "Your {{ divorceWho }} has committed adultery with a",
+          "adulterySummary2": "and you find it intolerable (unbearable) to live with them. Adultery can only be used if it was with a member of the opposite sex",
+          "adulteryWarning": "You can still use this reason if you continued to live together as a married couple afterwards; eg you still ate, slept, and cooked together. However, this can only have been for up to 6 months after you found out about the adultery - you’ll have to choose another reason if it’s more.",
+          "2YearsSeparationHeading": "Separated for 2 years with consent",
+          "2YearsSeparationSummary": "Your {{ divorceWho }} agrees to a divorce and you’ve been separated for the past 2 years",
+          "2YearsSeparationWarning": "The court will ask your {{ divorceWho }} if they agree to a divorce. If they don’t agree, your application will be rejected and you’ll need to choose another reason.",
+          "2YearsSeparationExclusion": "if you’ve been separated for the 2 year period immediately before the divorce application, and your {{ divorceWho }} agrees to a divorce",
+          "5YearsSeparationHeading": "Separated for 5 years",
+          "5YearsSeparationSummary": "You’ve been separated from your {{ divorceWho }} for the past 5 years",
+          "5YearsSeparationExclusion": "if you’ve been separated for the 5 year period immediately before the divorce application",
+          "desertionHeading": "Desertion",
+          "desertionSummary": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
+          "desertionExclusion": "if your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
+          "noneApply": "None of these apply to my situation",
+          "finalPossibilities": "If you can’t use any of the above reasons, you may be able to get a <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">legal separation</a> or <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">annul your marriage</a>.",
+          "alternativelyInFuture": "Alternatively, in future you may be able to use the following",
+          "warning": "Warning"
+        },
+        "checkYourAnswersContent": {
+          "question": "Reason for divorce"
+        },
+        "errors": {
+          "reasonForDivorce": {
+            "required": "Select a reason",
+            "invalid": "Select a reason"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "woman": "Dynes",
+          "man": "Dyn",
+          "question": "Dewiswch reswm dros eich ysgariad",
+          "explanation": "Rhaid i chi ddewis un o’r rhesymau canlynol dros eich ysgariad (a elwir yn gyfreithiol yn ‘ffeithiau’).",
+          "hasNoMarriageDate": "Dim dyddiad priodi",
+          "separatedDetails": "Beth os ydym ni wedi byw gyda’n gilydd ar ôl i ni wahanu?",
+          "sameResidenceHeading": "Byw yn yr un ty ac wedi gwahanu",
+          "sameResidenceSummary": "Mae’n iawn i chi ddal i fyw yn yr un ty ar ôl gwahanu, cyn belled nad ydych yn byw efo’ch gilydd fel cwpl ac nad ydych, er enghraifft, yn bwyta, cysgu na choginio efo’ch gilydd.",
+          "asACoupleHeading": "Byw efo’ch gilydd fel cwpl ar ôl gwahanu",
+          "asACoupleSummary1": "Os ydych wedi byw gyda’ch gilydd fel cwpl ar ôl gwahanu gallwch ddefnyddio’r",
+          "asACoupleSummary2": "ffeithiau os oedd hynny am fwy na 6 mis, yn ystod y cyfnod gwahanu neu ar ôl hynny. Mae hyn yn gallu bod yn un cyfnod, neu dros sawl cyfnod.",
+          "asACoupleSummary3": "Nid yw unrhyw gyfnod y gwnaethoch ei dreulio fel cwpl yn cyfrif fel rhan o’r cyfnod gwahanu, a bydd angen ichi wneud iawn am unrhyw amser y buoch gyda’ch gilydd cyn ichi wneud cais am ysgariad.",
+          "2Years": "Byw efo’ch gilydd fel cwpl ar ôl gwahanu",
+          "5Years": "2 flynedd ar wahân gyda chydsyniad, 5 mlynedd ar wahân a gadael",
+          "chooseAReason": "Dewiswch un o’r rhesymau canlynol:",
+          "unreasonableBehaviourHeading": "Ymddygiad",
+          "unreasonableBehaviourSummary": "Mae eich {{ divorceWho }} wedi ymddwyn mewn ffordd lle nad oes disgwyl, yn rhesymol, i chi allu byw gydag ef/hi ddim mwy",
+          "unreasonableBehaviourWarning": "Gofynnir ichi  ddarparu enghreifftiau o’u hymddygiad. Os ydych wedi byw gyda’ch gilydd fel cwpwl am gyfnod neu gyfnodau o fwy na 6 mis ers y digwyddiad diweddaraf yr ydych yn dibynnu arno, efallai y bydd y llys yn cymryd hynny i ystyriaeth wrth benderfynu a ddylid caniatáu ysgariad.",
+          "adulteryHeading": "Godineb",
+          "adulterySummary1": "Mae eich {{ divorceWho }} wedi godinebu gyda",
+          "adulterySummary2": "ac nid ydych yn gallu dioddef byw gydag ef/hi. Ni ellir defnyddio godineb yn rheswm ond yn achos rhywun nad yw o’r un rhyw",
+          "adulteryWarning": "Gallwch ddefnyddio’r rheswm hwn o hyd os gwnaethoch barhau i fyw gyda’ch gilydd fel cwpl priod wedyn; hynny yw roeddech yn dal i gysgu, bwyta a choginio gyda’ch gilydd. Fodd bynnag, ni all hyn fod am fwy na 6 mis ar ôl ichi gael gwybod am y godineb - bydd yn rhaid ichi ddewis rheswm arall os oedd y cyfnod yn hwy na hynny.",
+          "2YearsSeparationHeading": "Wedi gwahanu am 2 flynedd drwy gytundeb",
+          "2YearsSeparationSummary": "Mae eich{{ divorceWho }} yn cytuno i ysgaru ac rydych wedi gwahanu ers 2 flynedd",
+          "2YearsSeparationWarning": "Bydd y llys yn gofyn i’ch {{ divorceWho }} a yw’n cytuno i gael ysgariad. Os nad yw’n cytuno, bydd eich cais yn cael ei wrthod  a bydd angen ichi ddewis rheswm arall.",
+          "2YearsSeparationExclusion": "Os ydych wedi gwahanu ers cyfnod o 2 flynedd yn union cyn y cais am ysgariad, a bod eich {{ divorceWho }} yn cytuno i ysgaru",
+          "5YearsSeparationHeading": "Wedi gwahanu ers 5 mlynedd",
+          "5YearsSeparationSummary": "Rydych wedi gwahanu oddi wrth eich {{ divorceWho }} ers 5 mlynedd",
+          "5YearsSeparationExclusion": "Os ydych wedi gwahanu ers cyfnod o 5 mlynedd yn union cyn y cais am ysgariad",
+          "desertionHeading": "Gadael",
+          "desertionSummary": "Mae eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd yn ôl",
+          "desertionExclusion": "Os yw eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd yn ôl",
+          "noneApply": "Nid yw’r un o’r rhain yn berthnasol i fy sefyllfa",
+          "finalPossibilities": "Os na allwch ddefnyddio unrhyw un o’r rhesymau uchod, efallai y bydd modd ichi gael <a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">ymwahaniad cyfreithiol</a> neu <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">ddirymu eich priodas</a>.",
+          "alternativelyInFuture": "Fel arall, yn y dyfodol efallai y bydd modd ichi ddefnyddio’r canlynol",
+          "warning": "Rhybudd"
+        },
+        "checkYourAnswersContent": {
+          "question": "Rheswm dros ysgaru"
+        },
+        "errors": {
+          "reasonForDivorce": {
+            "required": "Dewis rheswm",
+            "invalid": "Dewis rheswm"
+          }
+        }
+      }
     }
+  }
 }

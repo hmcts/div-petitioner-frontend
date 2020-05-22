@@ -1,20 +1,35 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Do you know where the adultery took place?",
-                    "yes": "Yes",
-                    "no": "No"
-                },
-                "errors": {
-                    "reasonForDivorceAdulteryKnowWhere": {
-                        "required": "Select yes if you know where the adultery happened",
-                        "invalid": "Select yes if you know where the adultery happened"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Do you know where the adultery took place?",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "errors": {
+          "reasonForDivorceAdulteryKnowWhere": {
+            "required": "Select yes if you know where the adultery happened",
+            "invalid": "Select yes if you know where the adultery happened"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Ydych chi’n gwybod lle y digwyddodd y godineb?",
+          "yes": "Ydw",
+          "no": "Nac ydw"
+        },
+        "errors": {
+          "reasonForDivorceAdulteryKnowWhere": {
+            "required": "Dewiswch ydw os ydych yn gwybod lle y digwyddodd y godineb",
+            "invalid": "Dewiswch ydw os ydych yn gwybod lle y digwyddodd y godineb"
+          }
+        }
+      }
     }
+  }
 }

@@ -1,18 +1,27 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "What is your home address?",
-                    "confidentialAddressMessage": "Your home address will be kept confidential from your {{ divorceWho }}."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Your home address"
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "What is your home address?",
+          "confidentialAddressMessage": "Your home address will be kept confidential from your {{ divorceWho }}."
+        },
+        "checkYourAnswersContent": {
+          "question": "Your home address"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Beth yw eich cyfeiriad cartref?",
+          "confidentialAddressMessage": "Cedwir eich cyfeiriad cartref yn gyfrinachol oddi wrth eich {{ divorceWho }}."
+        },
+        "checkYourAnswersContent": {
+          "question": "Eich cyfeiriad cartref"
+        }
+      }
     }
+  }
 }

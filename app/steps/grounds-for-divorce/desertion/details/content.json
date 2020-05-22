@@ -1,24 +1,39 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Describe how your {{ divorceWho }} deserted you",
-                    "describe": "Give a short summary of the circumstances surrounding the desertion"
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Description of the desertion"
-                },
-
-                "errors": {
-                    "reasonForDivorceDesertionDetails": {
-                        "required": "Enter a description of how your {{ divorceWho }} deserted you",
-                        "invalid": "Enter a valid description of how your {{ divorceWho }} deserted you. Maximum 20000 characters"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Describe how your {{ divorceWho }} deserted you",
+          "describe": "Give a short summary of the circumstances surrounding the desertion"
+        },
+        "checkYourAnswersContent": {
+          "question": "Description of the desertion"
+        },
+        "errors": {
+          "reasonForDivorceDesertionDetails": {
+            "required": "Enter a description of how your {{ divorceWho }} deserted you",
+            "invalid": "Enter a valid description of how your {{ divorceWho }} deserted you. Maximum 20000 characters"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Eglurwch sut y gwnaeth eich {{ divorceWho }} eich gadael",
+          "describe": "Rhowch grynodeb byr o’r amgylchiadau "
+        },
+        "checkYourAnswersContent": {
+          "question": "Disgrifiad o’r amgylchiadau"
+        },
+        "errors": {
+          "reasonForDivorceDesertionDetails": {
+            "required": "Eglurwch sut y gwnaeth eich {{ divorceWho }} eich gadael",
+            "invalid": "Rhowch eglurhad dilys ynglyn â sut y gwnaeth eich {{ divorceWho }} eich gadael. Peidiwch â defnyddio mwy na 20000 o eiriau"
+          }
+        }
+      }
     }
+  }
 }

@@ -11,3 +11,6 @@ session:
 
 features:
   idam: false
+
+featureToggles:
+  enabled: false

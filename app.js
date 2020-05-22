@@ -157,8 +157,8 @@ exports.init = listenForConnections => {
     if (!req.session.language) {
       req.session.language = 'en';
     }
-    if (req.query && req.query.locale && CONF.languages.includes(req.query.locale)) {
-      req.session.language = req.query.locale;
+    if (req.query && req.query.lng && CONF.languages.includes(req.query.lng)) {
+      req.session.language = req.query.lng;
     }
 
     next();

@@ -38,6 +38,10 @@ resource "azurerm_key_vault_secret" "redis_connection_string" {
   key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
 }
 
+data "azurerm_key_vault_secret" "launchdarkly_key" {
+  name      = "launchdarkly-key"
+  key_vault_id = "${data.azurerm_key_vault.div_key_vault.id}"
+}
 
 locals {
   aseName                             = "core-compute-${var.env}"
@@ -224,5 +228,7 @@ module "frontend" {
     WEBCHAT_BUTTON_NO_AGENTS = "${var.webchat_button_no_agents}"
     WEBCHAT_BUTTON_AGENTS_BUSY = "${var.webchat_button_agents_busy}"
     WEBCHAT_BUTTON_SERVICE_CLOSED = "${var.webchat_button_service_closed}"
+
+    LAUNCHDARKLY_KEY = "${data.azurerm_key_vault_secret.launchdarkly_key.value}"
   }
 }

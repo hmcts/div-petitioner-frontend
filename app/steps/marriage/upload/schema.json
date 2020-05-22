@@ -11,23 +11,23 @@
       "ignoreParser": "true"
     },
     "errorUnknown": {
-      "type" : "string",
+      "type": "string",
       "enum": ["valid"]
     },
     "errorFileSizeTooLarge": {
-      "type" : "string",
+      "type": "string",
       "enum": ["valid"]
     },
     "errorFileTypeInvalid": {
-      "type" : "string",
+      "type": "string",
       "enum": ["valid"]
     },
     "errorMaximumFilesExceeded": {
-      "type" : "string",
+      "type": "string",
       "enum": ["valid"]
     },
     "errorVirusFoundInFile": {
-      "type" : "string",
+      "type": "string",
       "enum": ["valid"]
     }
   }

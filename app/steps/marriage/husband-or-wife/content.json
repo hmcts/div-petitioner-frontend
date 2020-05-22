@@ -1,30 +1,49 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "Who are you divorcing?",
-                    "husband": "Your husband",
-                    "wife": "Your wife",
-                    "marriageIsSameSexCouple": "Select the following if it applies to you:",
-                    "marriageIsSameSexCoupleText": "We were a same-sex couple when we got married."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Who you're divorcing",
-                    "marriageIsSameSexCoupleText": "Type of relationship",
-                    "Yes": "Same sex",
-                    "No": "Opposite sex"
-                },
-
-                "errors": {
-                    "divorceWho": {
-                        "required": "Select who you are divorcing"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Who are you divorcing?",
+          "husband": "Your husband",
+          "wife": "Your wife",
+          "marriageIsSameSexCouple": "Select the following if it applies to you:",
+          "marriageIsSameSexCoupleText": "We were a same-sex couple when we got married."
+        },
+        "checkYourAnswersContent": {
+          "question": "Who you’re divorcing",
+          "marriageIsSameSexCoupleText": "Type of relationship",
+          "Yes": "Same sex",
+          "No": "Opposite sex"
+        },
+        "errors": {
+          "divorceWho": {
+            "required": "Select who you are divorcing"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": " Pwy ydych chi’n ysgaru oddi wrtho/wrthi?",
+          "husband": "Eich gwr",
+          "wife": "Eich gwraig",
+          "marriageIsSameSexCouple": "Dewiswch y canlynol os yw’n berthnasol i chi:",
+          "marriageIsSameSexCoupleText": "Roeddem yn gwpl o’r un rhyw pan briodasom."
+        },
+        "checkYourAnswersContent": {
+          "question": "Yr un yr ydych yn ysgaru oddi wrtho/wrthi",
+          "marriageIsSameSexCoupleText": "Math o berthynas",
+          "Yes": "Cyfunryw",
+          "No": "Y rhyw arall"
+        },
+        "errors": {
+          "divorceWho": {
+            "required": " Dewiswch yr un yr ydych am ysgaru oddi wrth/wrthi"
+          }
+        }
+      }
     }
+  }
 }

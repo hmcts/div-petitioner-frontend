@@ -1,20 +1,35 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Did your {{ divorceWho }} leave without your agreement?",
-                    "questionHint": "You can only use desertion as a reason for divorce if you didn&#39;t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
-                    "yes": "Yes, they left without my agreement",
-                    "no": "No, I agreed that they should go"
-                },
-                "errors": {
-                    "reasonForDivorceDesertionAgreed": {
-                        "required": "Select yes if you agreed to your {{ divorceWho }} leaving"
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Did your {{ divorceWho }} leave without your agreement?",
+          "questionHint": "You can only use desertion as a reason for divorce if you didn’t agree to your {{ divorceWho }} leaving you. For example, if they abandoned you, or took a job abroad without your agreement.",
+          "yes": "Yes, they left without my agreement",
+          "no": "No, I agreed that they should go"
+        },
+        "errors": {
+          "reasonForDivorceDesertionAgreed": {
+            "required": "Select yes if you agreed to your {{ divorceWho }} leaving"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "A wnaeth eich {{ divorceWho }} adael heb ichi gydsynio?",
+          "questionHint": "Ni allwch ddefnyddio gadael yn rheswm dros ysgaru ond os nad oeddech yn cydsynio i’ch {{ divorceWho }} eich gadael. Er enghraifft, os gwnaeth eich gadael, neu os cymerodd swydd dramor heb ichi gytuno.",
+          "yes": "Do, gadawodd heb imi gytuno i hynny",
+          "no": "Naddo, cytunais y dylai fynd"
+        },
+        "errors": {
+          "reasonForDivorceDesertionAgreed": {
+            "required": "Dewiswch do os gwnaethoch gytuno i’ch {{ divorceWho }} adael"
+          }
+        }
+      }
     }
+  }
 }

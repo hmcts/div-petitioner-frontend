@@ -122,14 +122,27 @@ describe(modulePath, () => {
     it('should return the correctly interpolated content', () => {
       const step = new Step({}, 'screening-questions', null, fixtures.content.interpolate);
 
-      const ctx = { divorceWho: 'Husband' };
+      const ctx = { divorceWho: 'husband' };
       const session = { 'screening-questions': { respondent: 'Other person' } };
 
       const content = step.generateContent(ctx, session);
 
       expect(content).to.deep.equal({
-        question: 'Do you have an address for your Husband?',
+        question: 'Do you have an address for your husband?',
         answer: 'Yes, I do have an address for my Other person'
+      });
+    });
+
+    it('should return the correctly interpolated content for Welsh', () => {
+      const step = new Step({}, 'screening-questions', null, fixtures.content.interpolate);
+      const ctx = { divorceWho: 'husband' };
+      const session = { language: 'cy', 'screening-questions': { respondent: 'Other person' } };
+
+      const content = step.generateContent(ctx, session, 'cy');
+
+      expect(content).to.deep.equal({
+        question: 'A oes gennych gyfeiriad ar gyfer eich husband?',
+        answer: 'Oes, mae gennyf gyfeiriad ar gyfer fy Other person'
       });
     });
   });
@@ -223,7 +236,7 @@ describe(modulePath, () => {
       co(function* generator() {
         yield stepInstance.getRequest(req, res);
         expect(res.locals.session).to.eql(req.session);
-        expect(Object.keys(res.locals.fields)).to.eql(['foo', 'bar']);
+        expect(Object.keys(res.locals.fields)).to.eql(['foo', 'bar', 'featureToggles']);
         expect(res.locals.content).to.eql({ test: 'content.test' });
       }).then(done, done);
     });

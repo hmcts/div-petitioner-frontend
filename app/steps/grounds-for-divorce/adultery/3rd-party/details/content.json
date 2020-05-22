@@ -10,19 +10,41 @@
           "middleNames": "Include all middle names here",
           "reasonForDivorceAdultery3rdPartyLastName": "Last names"
         },
-
         "checkYourAnswersContent": {
-            "question": "Name of the person with whom the adultery was committed"
+          "question": "Name of the person with whom the adultery was committed"
         },
-
         "errors": {
           "reasonForDivorceAdultery3rdPartyFirstName": {
-            "required": "Enter the co-respondent's first names",
+            "required": "Enter the co-respondent’s first names",
             "invalid": "First name can only contain the letters a to z, spaces, hyphens and apostrophes"
           },
           "reasonForDivorceAdultery3rdPartyLastName": {
-            "required": "Enter the co-respondent's last names",
+            "required": "Enter the co-respondent’s last names",
             "invalid": "Last name can only contain the letters a to z, spaces, hyphens and apostrophes"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Beth yw ei (h)enw?",
+          "description": "Rhowch enw llawn yr unigolyn yr ydych yn credu bod eich {{ divorceWho }} wedi godinebu ag ef/hi (gelwir yr unigolyn yn ‘gyd-atebydd’ yn iaith y gyfraith).",
+          "reasonForDivorceAdultery3rdPartyFirstName": "Enwau cyntaf",
+          "middleNames": "Rhowch bob enw canol yma",
+          "reasonForDivorceAdultery3rdPartyLastName": "Enwau olaf"
+        },
+        "checkYourAnswersContent": {
+          "question": "Enw’r unigolyn y cyflawnwyd y godineb gydag ef/hi?"
+        },
+        "errors": {
+          "reasonForDivorceAdultery3rdPartyFirstName": {
+            "required": "Rhowch enw cyntaf y cyd-atebydd",
+            "invalid": "Ni all yr enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+          },
+          "reasonForDivorceAdultery3rdPartyLastName": {
+            "required": "Rhowch enwau olaf y cyd-atebydd",
+            "invalid": "Ni all yr enw olaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

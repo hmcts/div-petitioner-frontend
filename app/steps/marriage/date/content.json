@@ -1,59 +1,103 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-
-                "content": {
-                    "question": "When did you get married?",
-                    "useTheDate": "Use the date on your marriage certificate",
-                    "exampleDate": "For example, 31 3 2002",
-                    "day": "Day",
-                    "month": "Month",
-                    "year": "Year",
-                    "duration": "Married for less than 2 years?",
-                    "facts": "Later in this application, you’ll be asked to choose a reason for the breakdown of your marriage from a list of 5 options.",
-                    "options": "You won’t be shown the following options if you haven't been married for long enough to use them.",
-                    "separated2YearsTitle": "Separated for 2 years with consent",
-                    "separated2YearsDescription": "Your {{ divorceWho }} agrees to a divorce and you&#39;ve been separated for the past 2 years or more",
-                    "separated5YearsTitle": "Separated for 5 years",
-                    "separated5YearsDescription": "You&#39;ve been separated from your {{ divorceWho }} for the past 5 years or more",
-                    "desertionTitle": "Desertion",
-                    "desertionDescription": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
-                    "stillCanUse": "You'll be able to select <strong>behaviour</strong> and <strong>adultery</strong>, as long as you've been married for more than a year."
-                },
-
-                "checkYourAnswersContent": {
-                    "question": "Date of marriage"
-                },
-
-                "errors": {
-
-                    "marriageDateDay": {
-                        "required": "Enter the day for your marriage date",
-                        "invalid": "Enter a valid day for your marriage date"
-                    },
-                    "marriageDateMonth": {
-                        "required": "Enter the month for your marriage date",
-                        "invalid": "Enter a valid month for your marriage date"
-                    },
-                    "marriageDateYear": {
-                        "required": "Enter the year for your marriage date",
-                        "invalid": "Enter a valid year for your marriage date"
-                    },
-                    "marriageDate": {
-                        "required": "Enter your marriage date",
-                        "invalid": "Enter a valid date"
-                    },
-                    "marriageDateIsFuture": {
-                        "invalid": "Enter a marriage date that is in the past"
-                    },
-                    "marriageDateMoreThan100": {
-                        "invalid": "Enter a marriage date that is less than a 100 years ago"
-                    }
-                }
-
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "When did you get married?",
+          "useTheDate": "Use the date on your marriage certificate",
+          "exampleDate": "For example, 31 3 2002",
+          "day": "Day",
+          "month": "Month",
+          "year": "Year",
+          "duration": "Married for less than 2 years?",
+          "facts": "Later in this application, you’ll be asked to choose a reason for the breakdown of your marriage from a list of 5 options.",
+          "options": "You won’t be shown the following options if you haven’t been married for long enough to use them.",
+          "separated2YearsTitle": "Separated for 2 years with consent",
+          "separated2YearsDescription": "Your {{ divorceWho }} agrees to a divorce and you’ve been separated for the past 2 years or more",
+          "separated5YearsTitle": "Separated for 5 years",
+          "separated5YearsDescription": "You’ve been separated from your {{ divorceWho }} for the past 5 years or more",
+          "desertionTitle": "Desertion",
+          "desertionDescription": "Your {{ divorceWho }} abandoned you (left without your agreement) more than 2 years ago",
+          "stillCanUse": "You’ll be able to select <strong>behaviour</strong> and <strong>adultery</strong>, as long as you’ve been married for more than a year."
+        },
+        "checkYourAnswersContent": {
+          "question": "Date of marriage"
+        },
+        "errors": {
+          "marriageDateDay": {
+            "required": "Enter the day for your marriage date",
+            "invalid": "Enter a valid day for your marriage date"
+          },
+          "marriageDateMonth": {
+            "required": "Enter the month for your marriage date",
+            "invalid": "Enter a valid month for your marriage date"
+          },
+          "marriageDateYear": {
+            "required": "Enter the year for your marriage date",
+            "invalid": "Enter a valid year for your marriage date"
+          },
+          "marriageDate": {
+            "required": "Enter your marriage date",
+            "invalid": "Enter a valid date"
+          },
+          "marriageDateIsFuture": {
+            "invalid": "Enter a marriage date that is in the past"
+          },
+          "marriageDateMoreThan100": {
+            "invalid": "Enter a marriage date that is less than a 100 years ago"
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Pryd wnaethoch briodi?",
+          "useTheDate": "Defnyddiwch y dyddiad sydd ar eich tystysgrif priodas",
+          "exampleDate": "Er enghraifft, 31 3 2002",
+          "day": "Diwrnod",
+          "month": "Mis",
+          "year": "Blwyddyn",
+          "duration": "Wedi priodi am lai na 2 flynedd?",
+          "facts": "Yn nes ymlaen yn y cais hwn, gofynnir ichi ddewis rheswm, o blith 5 opsiwn, pam y bu i’ch priodas chwalu.",
+          "options": "Ni fydd yr opsiynau canlynol yn ymddangos os nad ydych wedi priodi ers digon o amser i’w defnyddio.",
+          "separated2YearsTitle": "Wedi gwahanu am 2 flynedd drwy gytundeb",
+          "separated2YearsDescription": "Mae eich{{ divorceWho }} yn cytuno i ysgaru ac rydych wedi gwahanu ers 2 flynedd neu fwy",
+          "separated5YearsTitle": "Wedi gwahanu ers 5 mlynedd",
+          "separated5YearsDescription": "Rydych wedi gwahanu oddi wrth eich {{ divorceWho }} ers 5 mlynedd neu fwy",
+          "desertionTitle": "Gadael",
+          "desertionDescription": "Mae eich {{ divorceWho }} wedi eich gadael (heb i chi gytuno) ers mwy na 2 flynedd",
+          "stillCanUse": "Byddwch yn gallu dewis <strong>ymddygiad</strong> a <strong>godineb</strong>, cyhyd â’ch bod wedi priodi ers mwy na blwyddyn."
+        },
+        "checkYourAnswersContent": {
+          "question": "Dyddiad y briodas"
+        },
+        "errors": {
+          "marriageDateDay": {
+            "required": "Nodwch ddiwrnod ar gyfer dyddiad eich priodas",
+            "invalid": "Nodwch ddiwrnod dilys ar gyfer dyddiad eich priodas"
+          },
+          "marriageDateMonth": {
+            "required": " Nodwch fis ar gyfer dyddiad eich priodas",
+            "invalid": " Nodwch fis dilys ar gyfer dyddiad eich priodas"
+          },
+          "marriageDateYear": {
+            "required": "Nodwch flwyddyn ar gyfer dyddiad eich priodas",
+            "invalid": "Nodwch flwyddyn ddilys ar gyfer dyddiad eich priodas"
+          },
+          "marriageDate": {
+            "required": "Nodwch ddyddiad eich priodas",
+            "invalid": "Nodwch ddyddiad dilys"
+          },
+          "marriageDateIsFuture": {
+            "invalid": " Nodwch ddyddiad priodas yn y gorffennol"
+          },
+          "marriageDateMoreThan100": {
+            "invalid": " Nodwch ddyddiad priodas sydd lai na 100 mlynedd yn ôl"
+          }
+        }
+      }
     }
+  }
 }

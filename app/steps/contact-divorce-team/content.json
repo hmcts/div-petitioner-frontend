@@ -1,16 +1,27 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "There is a problem with your application",
-                    "info": "You need to contact us about your divorce application.",
-                    "contactTitle": "Contact Us",
-                    "contactPhone": "Phone: {{courtPhoneNumber}} ({{courtOpeningHour}})",
-                    "contactEmail": "Email: {{courtEmail}}"
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "There is a problem with your application",
+          "info": "You need to contact us about your divorce application.",
+          "contactTitle": "Contact Us",
+          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}})",
+          "contactEmail": "Email: {{courtEmail}}"
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Mae yna broblem gyda’ch cais",
+          "info": "Mae angen ichi gysylltu â ni i drafod eich cais am ysgariad.",
+          "contactTitle": "Cysylltu â ni",
+          "contactPhone": "Rhif ffôn: {{courtPhoneNumberCy}} ({{courtOpeningHourCy}})",
+          "contactEmail": "E-bost: {{courtEmail}}"
+        }
+      }
     }
+  }
 }

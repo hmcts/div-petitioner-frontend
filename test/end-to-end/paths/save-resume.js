@@ -9,6 +9,7 @@ Scenario('See the check your answers page if session restored from draft petitio
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
+    // I.languagePreference();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();
@@ -39,6 +40,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
+    // I.languagePreference();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();
@@ -64,6 +66,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
 Scenario('Save and close', function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
+  // I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
@@ -83,6 +86,7 @@ Scenario('Delete application from draft petition store', function (I) {
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
+    // I.languagePreference();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();
@@ -104,7 +108,7 @@ Scenario('Delete application from draft petition store', function (I) {
   const ignoreIdam = true;
   I.amOnLoadedPage('/index');
   I.startApplication(ignoreIdam);
-  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+  // I.seeCurrentUrlEquals('/screening-questions/language-preference');
 });
 
 Scenario('I delete my amend petition from draft store', function (I) {
@@ -112,6 +116,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
+    // I.languagePreference();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();
@@ -136,6 +141,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
+    // I.languagePreference();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();
@@ -161,6 +167,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
+    // I.languagePreference();
     I.haveBrokenMarriage();
     I.haveRespondentAddress();
     I.haveMarriageCert();

@@ -130,13 +130,13 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     stepCtx = step.checkYourAnswersInterceptor(stepCtx, session);
 
     const checkYourAnswersContent = this.generateContent(
-      stepCtx, session
+      stepCtx, session, session.language
     );
 
     // generate content
-    const content = step.generateContent(stepCtx, session);
+    const content = step.generateContent(stepCtx, session, session.language);
     const checkYourAnswersSpecificContent = step.generateCheckYourAnswersContent( // eslint-disable-line max-len
-      stepCtx, session
+      stepCtx, session, session.language
     );
     Object.assign(
       content,
@@ -249,7 +249,11 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     if (!cookies || !cookies['connect.sid']) {
       logger.errorWithReq(req, 'malformed_request', 'Malformed request to Submit step');
       const step = this.steps.Error400;
-      const content = step.generateContent();
+      const content = step.generateContent(
+        {},
+        req.session,
+        req.session.language
+      );
       res.status(statusCodes.BAD_REQUEST);
       res.render(step.template, { content });
       return;
@@ -264,8 +268,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
           .buildAddressBaseUk(element.addresses[element
             .selectAddressIndex]);
       }
-    }
-    );
+    });
 
     // Get user token.
     let authToken = '';

@@ -1,25 +1,49 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "question": "Has your {{ divorceWho }} given their consent to a divorce (agreed to it)?",
-                    "yes": {
-                        "label": "Yes",
-                        "additionalInfo": "The court will contact your {{ divorceWho }} and ask them if they agree to a divorce. If you already have their written consent, you have the option of uploading a picture of it later in this application."
-                    },
-                    "no": {
-                        "label": "No",
-                        "additionalInfo": "You can continue using this reason for divorce, but be aware your {{ divorceWho }} will be asked if they agree to a divorce. If they don’t, you’ll have to pay a fee to change your application."
-                    }
-                },
-                "errors": {
-                    "reasonForDivorceRespondentConsent": {
-                        "required": "Select whether your {{ divorceWho }} has given written consent to a divorce or not."
-                    }
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Has your {{ divorceWho }} given their consent to a divorce (agreed to it)?",
+          "yes": {
+            "label": "Yes",
+            "additionalInfo": "The court will contact your {{ divorceWho }} and ask them if they agree to a divorce. If you already have their written consent, you have the option of uploading a picture of it later in this application."
+          },
+          "no": {
+            "label": "No",
+            "additionalInfo": "You can continue using this reason for divorce, but be aware your {{ divorceWho }} will be asked if they agree to a divorce. If they don’t, you’ll have to pay a fee to change your application."
+          },
+          "Yes": "Yes",
+          "No": "No"
+        },
+        "errors": {
+          "reasonForDivorceRespondentConsent": {
+            "required": "Select whether your {{ divorceWho }} has given written consent to a divorce or not."
+          }
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "A yw eich {{ divorceWho }} wedi cytuno i ysgaru?",
+          "yes": {
+            "label": "Do",
+            "additionalInfo": "Bydd y llys yn gofyn i’ch {{ divorceWho }} a yw’n cytuno i gael ysgariad. Os ydych eisoes wedi cael cydsyniad ysgrifenedig ganddo/ganddi, gallwch lwytho llun o’r ddogfen yn nes ymlaen wrth gwblhau’r cais hwn."
+          },
+          "no": {
+            "label": "Nac oes",
+            "additionalInfo": "Gallwch barhau i ddefnyddio’r rheswm hwn dros ysgaru, ond dylech fod yn ymwybodol y gofynnir i’ch {{ divorceWho }} a yw’n cytuno i ysgaru. Os nad yw’n cytuno, bydd yn rhaid ichi dalu ffi i newid eich cais."
+          },
+          "Yes": "Do",
+          "No": "Nac oes"
+        },
+        "errors": {
+          "reasonForDivorceRespondentConsent": {
+            "required": "A yw eich {{ divorceWho }} wedi cydsynio’n ysgrifenedig i ysgaru ai peidio?"
+          }
+        }
+      }
     }
+  }
 }

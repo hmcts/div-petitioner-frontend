@@ -99,7 +99,9 @@ module.exports = class PayOnline extends Step {
 
     const feeCode = CONF.commonProps[feeType(req)].feeCode;
     const feeVersion = CONF.commonProps[feeType(req)].version;
-    const feeDescription = 'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.';
+    const feeDescription = this.content.resources[req.session.language].translation.content.paymentDescription;
+    logger.infoWithReq(req, 'payments_description', `Payment description (${req.session.language}): `, feeDescription);
+
     // Amount is specified in pound sterling.
     const amount = parseInt(
       CONF.commonProps[feeType(req)].amount
@@ -156,7 +158,7 @@ module.exports = class PayOnline extends Step {
       .then(() => {
         return payment.create(
           req, user, generatedServiceToken, caseId, siteId, feeCode,
-          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl);
+          feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl, req.session.language);
       })
 
       // Store payment info in session and update the submitted application.

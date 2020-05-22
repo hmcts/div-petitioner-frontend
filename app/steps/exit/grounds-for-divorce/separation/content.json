@@ -1,14 +1,23 @@
 {
-    "lng": "en",
-    "resources": {
-        "en": {
-            "translation": {
-                "content": {
-                    "title": "You can&#39;t use this reason for divorce",
-                    "reason": "You must have been separated for at least {{ limitYears }} years to use this reason for divorce.",
-                    "proceed": "If you want to proceed with your application, you need to <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
-                }
-            }
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "You can’t use this reason for divorce",
+          "reason": "You must have been separated for at least {{ limitYears }} years to use this reason for divorce.",
+          "proceed": "If you want to proceed with your application, you need to <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">choose another reason</a>."
         }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Ni ellir defnyddio hwn yn rheswm dros ysgaru",
+          "reason": "Mae’n rhaid ichi fod wedi gwahanu ers o leiaf {{ limitYears }} blwyddyn i ddefnyddio’r rheswm hwn dros ysgaru.",
+          "proceed": " Os ydych am fwrw ymlaen gyda’ch cais, mae angen ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\" >ddewis rheswm arall</a>."
+        }
+      }
     }
+  }
 }

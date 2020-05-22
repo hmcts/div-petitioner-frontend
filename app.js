@@ -153,6 +153,7 @@ exports.init = listenForConnections => {
     next();
   });
 
+
   app.use((req, res, next) => {
     if (!req.session.language) {
       req.session.language = 'en';

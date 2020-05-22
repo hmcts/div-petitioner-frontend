@@ -1,5 +1,6 @@
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const CONF = require('config');
+const logger = require('app/services/logger').logger(__filename);
 
 const confIdam = CONF.idamArgs;
 
@@ -28,7 +29,8 @@ module.exports = {
       idamArgs.language = language;
     }
     idamArgs.language = language;
-    idamArgs.redirectUri = `${idamArgs.redirectUri}?lng=${language}`;
+    // idamArgs.redirectUri = `${idamArgs.redirectUri}?lng=${language}`;
+    logger.infoWithReq({}, 'idam_return_uri', 'IdAM return URI: ', `${idamArgs.redirectUri}?lng=${language}`);
 
     return idamExpressMiddleware.authenticate(idamArgs);
   },

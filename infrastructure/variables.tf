@@ -234,6 +234,7 @@ variable "survey_feedback_done_url" {
 variable "court_phone_number_en" {
   default = "0300 303 0642"
 }
+
 variable "court_phone_number_cy" {
   default = "0300 303 5171"
 }
@@ -241,6 +242,7 @@ variable "court_phone_number_cy" {
 variable "court_opening_hours_en" {
   default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
 }
+
 variable "court_opening_hours_cy" {
   default = "Dydd Llun i ddydd Gwener, 8.30am - 5pm"
 }
@@ -252,6 +254,7 @@ variable "court_email" {
 variable "court_service_centre_name_en" {
   default = "HMCTS Digital Divorce"
 }
+
 variable "court_service_centre_name_cy" {
   default = "Uned yr Iaith Gymraeg, Canolfan Gyfianwnder Caernarfon"
 }
@@ -259,6 +262,7 @@ variable "court_service_centre_name_cy" {
 variable "court_service_centre_city_en" {
   default = "Harlow"
 }
+
 variable "court_service_centre_city_cy" {
   default = "Gwynedd"
 }
@@ -266,6 +270,7 @@ variable "court_service_centre_city_cy" {
 variable "court_service_centre_pobox_en" {
   default = "PO Box 12706"
 }
+
 variable "court_service_centre_pobox_cy" {
   default = "Caernarfon"
 }
@@ -273,6 +278,7 @@ variable "court_service_centre_pobox_cy" {
 variable "court_service_centre_postcode_en" {
   default = "CM20 9QT"
 }
+
 variable "court_service_centre_postcode_cy" {
   default = "LL55 2DF"
 }
@@ -280,6 +286,7 @@ variable "court_service_centre_postcode_cy" {
 variable "court_service_centre_email_en" {
   default = "divorcecase@justice.gov.uk"
 }
+
 variable "court_service_centre_email_cy" {
   default = "ymholiadaucymraeg@justice.gov.uk"
 }
@@ -287,6 +294,7 @@ variable "court_service_centre_email_cy" {
 variable "court_service_centre_opening_hours_en" {
   default = "Telephone Enquiries from: 8.30am to 5pm"
 }
+
 variable "court_service_centre_opening_hours_cy" {
   default = "Ymholiadau ffôn: Dydd Llun i ddydd Gwener, 8.30am - 5pm"
 }
@@ -294,6 +302,7 @@ variable "court_service_centre_opening_hours_cy" {
 variable "court_service_centre_phone_number_en" {
   default = "0300 303 0642"
 }
+
 variable "court_service_centre_phone_number_cy" {
   default = "0300 303 5171"
 }
@@ -315,27 +324,27 @@ variable "feature_webchat" {
 }
 
 variable "webchat_chat_id" {
-  type = "string"
+  type    = "string"
   default = "3833071605d5d4518036a09.30917386"
 }
 
 variable "webchat_tenant" {
-  type = "string"
+  type    = "string"
   default = "aG1jdHNzdGFnaW5nMDE"
 }
 
 variable "webchat_button_no_agents" {
-  type = "string"
+  type    = "string"
   default = "7732814745cac6f4603c4d1.53357933"
 }
 
 variable "webchat_button_agents_busy" {
-  type = "string"
+  type    = "string"
   default = "2042157415cc19c95669039.65793052"
 }
 
 variable "webchat_button_service_closed" {
-  type = "string"
+  type    = "string"
   default = "20199488815cc1a89e0861d5.73103009"
 }
 

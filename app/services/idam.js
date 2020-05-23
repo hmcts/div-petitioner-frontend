@@ -28,7 +28,7 @@ module.exports = {
       idamArgs.redirectUri = protocol.concat('://', host, path);
     }
     idamArgs.language = language;
-    idamArgs.redirectUri = `${idamArgs.redirectUri}%3Flng=${language}`;
+    idamArgs.redirectUri = `${idamArgs.redirectUri}%3Flng%3D${language}`;
     logger.infoWithReq({}, 'idam_return_uri', 'IdAM return URI: ', `${idamArgs.redirectUri}`);
 
     return idamExpressMiddleware.authenticate(idamArgs);

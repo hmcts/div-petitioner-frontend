@@ -82,6 +82,12 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       delete session.saveAndResumeUrl;
     }
 
+    if (clonedCtx.featureToggles) {
+      forEach(clonedCtx.featureToggles, (toggleValue, toggleKey) => {
+        clonedCtx.featureToggles[toggleKey] = toggleValue.toString();
+      });
+    }
+
     return clonedCtx;
   }
 

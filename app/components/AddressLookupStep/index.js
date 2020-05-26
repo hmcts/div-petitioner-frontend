@@ -7,7 +7,6 @@ const requestHandler = require('app/core/helpers/parseRequest');
 const addressContent = require('./content');
 const schema = require('./schema');
 
-
 const addressTypes = requireDirectory(module, 'addressTypes', { exclude: /.test.js/ });
 const addressHelpers = require('./helpers/addressHelpers');
 

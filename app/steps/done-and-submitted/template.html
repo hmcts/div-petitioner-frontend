@@ -1,27 +1,21 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
+{% from "phase-banner/macro.njk" import govukPhaseBanner %}
+
 {% extends "layout.html" %}
 
 {% block back %}{% endblock %}
 
-{% block beforeContent -%}
-  <noscript>
-    <img src="/noJS.png" alt="1px" width="1" height="1" style="display: none;" />
-  </noscript>
-  {% block breadcrumbs %}
-    {% set html %}
-      {{ common.feedback | safe }}
-    {% endset %}
-    {{ govukPhaseBanner({
-      tag: {
-        text: common.phase
-      },
-      html: html
-    }) }}
-    {% block back %}
-      <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
-    {% endblock %}
-  {% endblock %}
-{%- endblock %}
+{% block breadcrumbs %}
+  {% set html %}
+    {{ common.feedback | safe }}
+  {% endset %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: common.phase
+    },
+    html: html
+  }) }}
+{% endblock %}
 
 {% block two_thirds %}
   {% set title = content.title %}

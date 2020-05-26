@@ -60,7 +60,7 @@ describe(modulePath, () => {
     it('should set up the current host as the redirect uri for idam', done => {
       testCustom(done, agent, underTest, [], response => {
         const hostName = response.request.host.split(':')[0];
-        const redirectUri = `https://${response.request.host}/authenticated%3Flng%3Den`;
+        const redirectUri = `https://${response.request.host}/authenticated?lng=en`;
         const confIdam = config.idamArgs;
         const idamArgs = {
           hostName,

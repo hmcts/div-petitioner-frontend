@@ -354,7 +354,11 @@ module.exports = {
         'LONDON'
       ],
       postcode: 'SW9 9PE'
-    }
+    },
+    featureToggles: {
+      ft_welsh: 'false'
+    },
+    language: 'en'
   },
   petitionerCorrespondenceUseHomeAddress: 'Yes',
   petitionerCorrespondenceAddress: {
@@ -658,7 +662,11 @@ module.exports = {
         'LONDON'
       ],
       postcode: 'SW9 9PE'
-    }
+    },
+    featureToggles: {
+      ft_welsh: 'false'
+    },
+    language: 'en'
   },
   livingArrangementsLiveTogether: 'Yes',
   respondentHomeAddress: {
@@ -962,7 +970,11 @@ module.exports = {
         'LONDON'
       ],
       postcode: 'SW9 9PE'
-    }
+    },
+    featureToggles: {
+      ft_welsh: 'false'
+    },
+    language: 'en'
   },
   respondentCorrespondenceUseHomeAddress: 'No',
   respondentCorrespondenceAddress: {
@@ -1266,7 +1278,11 @@ module.exports = {
         'LONDON'
       ],
       postcode: 'SW9 9PE'
-    }
+    },
+    featureToggles: {
+      ft_welsh: 'false'
+    },
+    language: 'en'
   },
   reasonForDivorce: 'unreasonable-behaviour',
   reasonForDivorceHasMarriageDate: true,

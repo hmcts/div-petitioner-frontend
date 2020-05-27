@@ -18,15 +18,16 @@ Scenario('Redirects to login page or cookie error page based on build if start a
   //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
   I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
 
-  let previewUrl = await I.grabCurrentUrl();
-  let splitPath = previewUrl.split('-')[5];
-  let urlContainsPreview = splitPath.split('.');
+  // let previewUrl = await I.grabCurrentUrl();
+  // let splitPath = previewUrl.split('-')[5];
+  // let urlContainsPreview = splitPath.split('.');
 
-  if(urlContainsPreview[0] === 'preview'){
-    I.seeCurrentUrlEquals('/cookie-error');
-  }
-  else{I.seeInCurrentUrl('/login?');}
-
+  // if(urlContainsPreview[0] === 'preview'){
+  //   I.seeCurrentUrlEquals('/cookie-error');
+  // }
+  // else{
+  //   I.seeInCurrentUrl('/login?');
+  // }
 });
 
 Scenario('check cookie error page exists', (I) => {

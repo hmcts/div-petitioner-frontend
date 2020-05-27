@@ -2,11 +2,15 @@
 
 const CONF = require('config');
 const launchDarkly = require('launchdarkly-node-server-sdk');
+const logger = require('app/services/logger').logger(__filename);
 
 class LaunchDarkly {
   constructor() {
     this.ready = false;
     const options = CONF.featureToggles.enabled ? { diagnosticOptOut: true } : { offline: true };
+
+    logger.infoWithReq(null, 'launchdarkly_key', 'LaunchDarkly Key: ', CONF.featureToggles.launchDarklyKey);
+
     this.client = launchDarkly.init(CONF.featureToggles.launchDarklyKey, options);
     this.client.once('ready', () => {
       this.ready = true;

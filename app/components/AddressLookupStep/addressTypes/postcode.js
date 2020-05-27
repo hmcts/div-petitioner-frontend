@@ -134,6 +134,11 @@ module.exports = {
         }
       }
     }
+    ctx.featureToggles = {};
+    forEach(session.featureToggles, (toggleValue, toggleKey) => {
+      ctx.featureToggles[toggleKey] = toggleValue.toString();
+    });
+    ctx.language = session.language;
     return ctx;
   },
 

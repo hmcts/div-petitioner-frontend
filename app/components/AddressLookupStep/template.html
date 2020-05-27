@@ -2,8 +2,6 @@
 {% from "common/errors.html" import errorsFor %}
 {% import "common/components/findAddressComponent.html" as findAddressComponent %}
 
-
-
 {% block two_thirds %}
   <h1 class="govuk-heading-l">
       {{content.question | safe}}
@@ -33,7 +31,6 @@
   {% endif %}
 
   {% if fields.addressType.value == 'manual' %}
-
     <form method="POST" accept-charset="utf-8" class="form" id="address-manual"
           enctype="application/x-www-form-urlencoded" autocomplete="off">
       <input type="hidden" name="_csrf" value="{{csrfToken}}">
@@ -56,10 +53,7 @@
       </fieldset>
       {% include "includes/save_and_close.html" %}
     </form>
-
-
   {% else %}
-
     <form method="POST" accept-charset="utf-8" class="form" id="postcode-lookup"
           enctype="application/x-www-form-urlencoded" autocomplete="off">
       <input type="hidden" name="_csrf" value="{{csrfToken}}">

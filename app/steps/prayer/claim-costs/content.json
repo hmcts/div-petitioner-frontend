@@ -38,7 +38,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": " A ydych am wneud cais i hawlio costau’r ysgariad?",
+          "question": "A ydych am wneud cais i hawlio costau’r ysgariad?",
           "introWhenClaimingAdultery": "Gallwch ofyn i’r llys orchymyn i’ch {{ divorceWho }} a/neu’r unigolyn y cyflawnodd odineb gydag ef/hi, dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
           "introWhenNotClaimingAdultery": "Gallwch ofyn i’r llys orchymyn i’ch {{ divorceWho }} dalu rhywfaint o gostau’r ysgariad neu holl gostau’r ysgariad.",
           "infoAboutFees": "Gallai hyn gynnwys yr holl ffioedd sy’n rhaid ichi eu talu yn ystod yr ysgariad, megis ffioedd gwneud cais, ffioedd cyfreithiwr, ac unrhyw ffioedd ychwanegol i’r llys.",
@@ -64,7 +64,7 @@
             "invalid": "Dewiswch pwy yr ydych am hawlio’r costau ganddo/ganddi"
           },
           "reasonForDivorceAdulteryIsNamed": {
-            "invalid": " Methu penderfynu ai godineb yw’r rheswm dros ysgaru"
+            "invalid": "Methu penderfynu ai godineb yw’r rheswm dros ysgaru"
           }
         }
       }

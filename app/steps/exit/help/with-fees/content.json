@@ -13,9 +13,9 @@
     "cy": {
       "translation": {
         "content": {
-          "title": " Gwneud cais am Help i Dalu Ffioedd cyn ichi fynd ymlaen",
-          "reason": " Dylech <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\">Wneud cais am gymorth i dalu ffioedd</a> cyn ichi fynd ymlaen â’ch cais am ysgariad. Pan fyddwch yn gwneud cais, defnyddiwch ffurflen rhif 'D8' pan ofynnir ichi pa ffi yr ydych eisiau cael cymorth i’w thalu.",
-          "advice": " Byddwch yn cael cyfeirnod HWF i’w roi yma."
+          "title": "Gwneud cais am Help i Dalu Ffioedd cyn ichi fynd ymlaen",
+          "reason": "Dylech <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\">Wneud cais am gymorth i dalu ffioedd</a> cyn ichi fynd ymlaen â’ch cais am ysgariad. Pan fyddwch yn gwneud cais, defnyddiwch ffurflen rhif 'D8' pan ofynnir ichi pa ffi yr ydych eisiau cael cymorth i’w thalu.",
+          "advice": "Byddwch yn cael cyfeirnod HWF i’w roi yma."
         }
       }
     }

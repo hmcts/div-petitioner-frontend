@@ -30,7 +30,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": " Enw’r lle y gwnaethoch briodi",
+          "question": "Enw’r lle y gwnaethoch briodi",
           "countryOfMarriage": "Ym mha wlad y gwnaethoch briodi?",
           "countryName": "Rhowch enw’r wlad",
           "placeOfMarriageTranslation": "Sut mae enw’r lle y gwnaethoch briodi yn ymddangos yn y cyfieithiad o’ch tystysgrif priodas?",
@@ -45,10 +45,10 @@
         },
         "errors": {
           "countryName": {
-            "required": " Nodwch enw’r wlad lle y gwnaethoch briodi"
+            "required": "Nodwch enw’r wlad lle y gwnaethoch briodi"
           },
           "placeOfMarriage": {
-            "required": " Nodwch enw’r lle y gwnaethoch briodi fel y’i ceir ar eich tystysgrif priodas"
+            "required": "Nodwch enw’r lle y gwnaethoch briodi fel y’i ceir ar eich tystysgrif priodas"
           }
         }
       }

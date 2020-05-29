@@ -35,7 +35,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": " Sut fydd y llys yn cysylltu â chi?",
+          "question": "Sut fydd y llys yn cysylltu â chi?",
           "byEmail": "Trwy e-bost:",
           "communicateParagraph1": "Bydd angen ichi gytuno i dderbyn negeseuon e-bost am yr ysgariad i ddefnyddio’r gwasanaeth ar-lein. Ni fyddwn yn rhannu eich cyfeiriad e-bost gyda’ch {{divorceWho}}.",
           "communicateParagraph2": "Anfonir eich negeseuon e-bost i:",

@@ -55,20 +55,20 @@
         },
         "errors": {
           "petitionerFirstName": {
-            "required": " Nodwch eich enw(au) cyntaf",
-            "invalid": " Ni all eich enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": "Nodwch eich enw(au) cyntaf",
+            "invalid": "Ni all eich enw cyntaf gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "petitionerLastName": {
             "required": "Nodwch eich enw(au) olaf",
             "invalid": "Ni all eich cyfenw gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "respondentFirstName" : {
-            "required": " Rhowch enw(au) cyntaf eich {{ divorceWho }}",
-            "invalid": " Ni all enw cyntaf eich{{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": "Rhowch enw(au) cyntaf eich {{ divorceWho }}",
+            "invalid": "Ni all enw cyntaf eich{{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           },
           "respondentLastName" : {
-            "required": " Rhowch enw(au) olaf eich  {{ divorceWho }}",
-            "invalid": " Ni all enw olaf eich {{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
+            "required": "Rhowch enw(au) olaf eich  {{ divorceWho }}",
+            "invalid": "Ni all enw olaf eich {{ divorceWho }} gynnwys ond y llythrennau o a i z, bylchau, cysylltnodau a chollnodau"
           }
         }
       }

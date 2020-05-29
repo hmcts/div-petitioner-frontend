@@ -21,7 +21,7 @@
         "content": {
           "title": "Canlyniad y ffug daliad",
           "success": "Llwyddiant",
-          "failure": " Aflwyddiant"
+          "failure": "Aflwyddiant"
         },
         "errors": {
           "mockedOutcome": {

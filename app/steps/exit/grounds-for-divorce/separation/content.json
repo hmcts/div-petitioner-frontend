@@ -15,7 +15,7 @@
         "content": {
           "title": "Ni ellir defnyddio hwn yn rheswm dros ysgaru",
           "reason": "Mae’n rhaid ichi fod wedi gwahanu ers o leiaf {{ limitYears }} blwyddyn i ddefnyddio’r rheswm hwn dros ysgaru.",
-          "proceed": " Os ydych am fwrw ymlaen gyda’ch cais, mae angen ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\" >ddewis rheswm arall</a>."
+          "proceed": "Os ydych am fwrw ymlaen gyda’ch cais, mae angen ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\" >ddewis rheswm arall</a>."
         }
       }
     }

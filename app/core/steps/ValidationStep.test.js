@@ -548,11 +548,31 @@ describe(modulePath, () => {
     });
 
     it('should return the correctly interpolated content', () => {
+      const commonContent = require('app/content/common-en').resources.en.translation;
+
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
-      const content = underTest.generateCheckYourAnswersContent();
+
+      const ctx = { divorceWho: 'husband' };
+      const session = { language: 'en', 'screening-questions': { respondent: 'Other person' } };
+
+      const content = underTest.generateCheckYourAnswersContent(ctx, session, 'en', commonContent);
 
       expect(content.hasOwnProperty('question')).to.eql(true);
       expect(content.question).to.eql('Do you have your marriage certificate?');
+    });
+
+    it('should return the correctly interpolated content for Welsh', () => {
+      const commonContent = require('app/content/common-cy').resources.cy.translation;
+
+      underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
+
+      const ctx = { divorceWho: 'husband' };
+      const session = { language: 'cy', 'screening-questions': { respondent: 'Other person' } };
+
+      const content = underTest.generateCheckYourAnswersContent(ctx, session, 'cy', commonContent);
+
+      expect(content.hasOwnProperty('question')).to.eql(true);
+      expect(content.question).to.eql('A yw eich tystysgrif priodas yn eich meddiant?');
     });
   });
 

@@ -267,18 +267,6 @@
         <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
         {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
         {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
-
-{#        {% if session.languagePreferenceWelsh == "No" %}#}
-{#          {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>#}
-{#          {% if session.language == "en" %}#}
-{#            {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>#}
-{#          {% else %}#}
-{#            {{ _________________________________________ }}#}
-{#          {% endif %}#}
-{#        {% else %}#}
-{#          {{ content.cyServiceCenterPhoneNumber | safe }}<br>#}
-{#          {{ content.cyServiceCenterOpeningHours | safe }}<br>#}
-{#        {% endif %}#}
       </li>
 
       <li>
@@ -294,26 +282,6 @@
         {% endif %}
         {{ session.allocatedCourt.courtCity | safe }}<br/>
         {{ session.allocatedCourt.postCode | safe }}
-
-{#        {% if session.languagePreferenceWelsh == "No" %}#}
-{#          {% if session.allocatedCourt.serviceCentreName %}#}
-{#            {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}#}
-{#          {% endif %}#}
-{#          {{ session.allocatedCourt.divorceCentre | safe }}<br/>#}
-{#          {% if session.allocatedCourt.poBox %}#}
-{#            {{ session.allocatedCourt.poBox | safe }}<br/>#}
-{#          {% else %}#}
-{#            {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>#}
-{#            {{ session.allocatedCourt.street | safe }}<br/>#}
-{#          {% endif %}#}
-{#          {{ session.allocatedCourt.courtCity | safe }}<br/>#}
-{#          {{ session.allocatedCourt.postCode | safe }}#}
-{#        {% else %}#}
-{#          {{ content.cyServiceCenterName | safe }}<br/>#}
-{#          {{ content.cyServiceCenterPoBox | safe }}<br/>#}
-{#          {{ content.cyServiceCenterCity | safe }}<br/>#}
-{#          {{ content.cyServiceCenterPostcode | safe }}#}
-{#        {% endif %}#}
       </li>
     </ul>
 

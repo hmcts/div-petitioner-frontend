@@ -6,7 +6,7 @@
         "content": {
           "title": "You need to pay the fee",
           "info": "Your application has been submitted, but won’t be processed until you have paid the fee.",
-          "pay": "If you need to make any changes to your application you’ll need to contact the divorce centre on {{courtPhoneNumberEn}} (from {{courtOpeningHourEn}})."
+          "pay": "If you need to make any changes to your application you’ll need to contact the divorce centre on {{courtPhoneNumber}} (from {{courtOpeningHour}})."
         }
       }
     },
@@ -15,7 +15,7 @@
         "content": {
           "title": "Mae angen ichi dalu’r ffi",
           "info": "Mae eich cais wedi ei gyflwyno ond ni fydd yn cael ei brosesu nes ichi dalu’r ffi.",
-          "pay": "Os ydych angen gwneud unrhyw newidiadau i’ch cais bydd gofyn ichi gysylltu â’r ganolfan ysgaru ar {{courtPhoneNumberCy}} (ar ôl {{courtOpeningHourCy}})."
+          "pay": "Os ydych angen gwneud unrhyw newidiadau i’ch cais bydd gofyn ichi gysylltu â’r ganolfan ysgaru ar {{courtPhoneNumber}} (ar ôl {{courtOpeningHour}})."
         }
       }
     }

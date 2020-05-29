@@ -231,71 +231,16 @@ variable "survey_feedback_done_url" {
   default = "https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant"
 }
 
-variable "court_phone_number_en" {
+variable "court_phone_number" {
   default = "0300 303 0642"
 }
-variable "court_phone_number_cy" {
-  default = "0300 303 5171"
-}
 
-variable "court_opening_hours_en" {
+variable "court_opening_hours" {
   default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
-}
-variable "court_opening_hours_cy" {
-  default = "Dydd Llun i ddydd Gwener, 8.30am - 5pm"
 }
 
 variable "court_email" {
   default = "contactdivorce@justice.gov.uk"
-}
-
-variable "court_service_centre_name_en" {
-  default = "HMCTS Digital Divorce"
-}
-variable "court_service_centre_name_cy" {
-  default = "Uned yr Iaith Gymraeg, Canolfan Gyfianwnder Caernarfon"
-}
-
-variable "court_service_centre_city_en" {
-  default = "Harlow"
-}
-variable "court_service_centre_city_cy" {
-  default = "Gwynedd"
-}
-
-variable "court_service_centre_pobox_en" {
-  default = "PO Box 12706"
-}
-variable "court_service_centre_pobox_cy" {
-  default = "Caernarfon"
-}
-
-variable "court_service_centre_postcode_en" {
-  default = "CM20 9QT"
-}
-variable "court_service_centre_postcode_cy" {
-  default = "LL55 2DF"
-}
-
-variable "court_service_centre_email_en" {
-  default = "divorcecase@justice.gov.uk"
-}
-variable "court_service_centre_email_cy" {
-  default = "ymholiadaucymraeg@justice.gov.uk"
-}
-
-variable "court_service_centre_opening_hours_en" {
-  default = "Telephone Enquiries from: 8.30am to 5pm"
-}
-variable "court_service_centre_opening_hours_cy" {
-  default = "Ymholiadau ffôn: Dydd Llun i ddydd Gwener, 8.30am - 5pm"
-}
-
-variable "court_service_centre_phone_number_en" {
-  default = "0300 303 0642"
-}
-variable "court_service_centre_phone_number_cy" {
-  default = "0300 303 5171"
 }
 
 variable "common_tags" {

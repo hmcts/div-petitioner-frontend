@@ -24,18 +24,9 @@ function commonContentMiddleware(req, res, next) {
         return target.t(key, {
           pageUrl: req.baseUrl,
           smartSurveyFeedbackUrl: CONF.commonProps.smartSurveyFeedbackUrl,
-          courtPhoneNumberEn: CONF.commonProps.courtPhoneNumberEn,
-          courtPhoneNumberCy: CONF.commonProps.courtPhoneNumberCy,
-          courtOpeningHourEn: CONF.commonProps.courtOpeningHourEn,
-          courtOpeningHourCy: CONF.commonProps.courtOpeningHourCy,
-          courtEmail: CONF.commonProps.courtEmail,
-          serviceCenterNameCy: CONF.commonProps.serviceCentreNameCy,
-          serviceCenterCityCy: CONF.commonProps.serviceCentreCityCy,
-          serviceCenterPoBoxCy: CONF.commonProps.serviceCentrePoBoxCy,
-          serviceCenterPostcodeCy: CONF.commonProps.serviceCentrePostcodeCy,
-          serviceCenterEmailCy: CONF.commonProps.serviceCentreEmailCy,
-          serviceCenterOpeningHoursCy: CONF.commonProps.serviceCentreOpeningHoursCy,
-          serviceCenterPhoneNumberCy: CONF.commonProps.serviceCentrePhoneNumberCy
+          courtPhoneNumber: CONF.commonProps.courtPhoneNumber,
+          courtOpeningHour: CONF.commonProps.courtOpeningHour,
+          courtEmail: CONF.commonProps.courtEmail
         });
       }
       return '';

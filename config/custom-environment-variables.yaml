@@ -52,25 +52,9 @@ evidenceManagmentClient:
 commonProps:
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
   smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
-  courtPhoneNumberEn: COURT_PHONENUMBER_EN
-  courtPhoneNumberCy: COURT_PHONENUMBER_CY
-  courtOpeningHourEn: COURT_OPENINGHOURS_EN
-  courtOpeningHourCy: COURT_OPENINGHOURS_CY
+  courtPhoneNumber: COURT_PHONENUMBER
+  courtOpeningHour: COURT_OPENINGHOURS
   courtEmail: COURT_EMAIL
-  serviceCentreNameEn: COURT_SERVICE_CENTRE_NAME_EN
-  serviceCentreNameCy: COURT_SERVICE_CENTRE_NAME_CY
-  serviceCentreCityEn: COURT_SERVICE_CENTRE_CITY_EN
-  serviceCentreCityCy: COURT_SERVICE_CENTRE_CITY_CY
-  serviceCentrePoBoxEn: COURT_SERVICE_CENTRE_POBOX_EN
-  serviceCentrePoBoxCy: COURT_SERVICE_CENTRE_POBOX_CY
-  serviceCentrePostcodeEn: COURT_SERVICE_CENTRE_POSTCODE_EN
-  serviceCentrePostcodeCy: COURT_SERVICE_CENTRE_POSTCODE_CY
-  serviceCentreEmailEn: COURT_SERVICE_CENTRE_EMAIL_EN
-  serviceCentreEmailCy: COURT_SERVICE_CENTRE_EMAIL_CY
-  serviceCentreOpeningHoursEn: COURT_SERVICE_CENTRE_OPENINGHOURS_EN
-  serviceCentreOpeningHoursCy: COURT_SERVICE_CENTRE_OPENINGHOURS_CY
-  serviceCentrePhoneNumberEn: COURT_SERVICE_CENTRE_PHONENUMBER_EN
-  serviceCentrePhoneNumberCy: COURT_SERVICE_CENTRE_PHONENUMBER_CY
 
 ssl:
   hpkp:

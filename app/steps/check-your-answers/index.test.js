@@ -386,7 +386,7 @@ describe(modulePath, () => {
     let ctx = {}, step = {};
 
     beforeEach(() => {
-      session = { chicken: 'gangnam style', initialised: true };
+      session = { chicken: 'gangnam style', initialised: true, language: 'en' };
 
       ctx = {
         prop1: 'prop1',
@@ -517,7 +517,7 @@ describe(modulePath, () => {
     let ctx = {}, step1 = {}, step2 = {};
 
     beforeEach(() => {
-      session = { chicken: 'gangnam style', initialised: true };
+      session = { chicken: 'gangnam style', initialised: true, language: 'en' };
 
       ctx = {
         prop1: 'prop1',

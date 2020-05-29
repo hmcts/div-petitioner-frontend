@@ -279,7 +279,7 @@ module.exports = class ValidationStep extends Step {
     return 'app/views/common/components/defaultCheckYouAnswersTemplate.html';
   }
 
-  generateCheckYourAnswersContent(ctx = {}, session = {}, lang = 'en') {
+  generateCheckYourAnswersContent(ctx = {}, session = {}, lang = 'en', common) {
     if (!this.content || !this.content.resources) {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }
@@ -287,6 +287,10 @@ module.exports = class ValidationStep extends Step {
     const contentCtx = Object.assign({}, session, ctx, this.commonProps);
 
     this.i18next.changeLanguage(lang);
+
+    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
+      contentCtx.divorceWho = common[contentCtx.divorceWho];
+    }
 
     const translatedContent = this.content.resources[lang].translation;
 

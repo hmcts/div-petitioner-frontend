@@ -101,11 +101,11 @@ module.exports = class Step {
 
     const contentCtx = Object.assign({}, session, ctx, this.commonProps);
 
-    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
-      contentCtx.divorceWho = this.i18next.t(common[contentCtx.divorceWho]);
-    }
-
     this.i18next.changeLanguage(lang);
+
+    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
+      contentCtx.divorceWho = common[contentCtx.divorceWho];
+    }
 
     return walkMap(this.content.resources[lang].translation.content, path => {
       return this.i18next.t(`content.${path}`, contentCtx);

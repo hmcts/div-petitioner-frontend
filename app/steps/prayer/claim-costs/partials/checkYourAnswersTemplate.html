@@ -9,7 +9,7 @@
     <td class="govuk-table__cell">
       {%- for claimsCostsFrom in fields.claimsCostsFrom.value -%}
         {% if claimsCostsFrom === "respondent" %}
-          {{ content.your }} {{ session.divorceWho }} <br/>
+          {{ content.your }} {{ fields.divorceWhoTranslated.value }} <br/>
         {% elseif claimsCostsFrom === "correspondent" %}
           {{ content.theCorespondent | safe }}
         {% endif %}

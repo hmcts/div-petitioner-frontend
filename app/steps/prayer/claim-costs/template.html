@@ -69,7 +69,7 @@
         <div class="govuk-checkboxes__item">
           <input class="govuk-checkboxes__input" id="respondent" name="claimsCostsFrom[]" type="checkbox" value="respondent" {% for claimsCostsFrom in fields.claimsCostsFrom.value %}{{ 'checked' if claimsCostsFrom === 'respondent' }}{% endfor %}>
           <label class="govuk-label govuk-checkboxes__label" for="respondent">
-            {{ content.your }} {{ session.divorceWho }}
+            {{ content.your }} {{ fields.divorceWhoTranslated.value }}
           </label>
         </div>
 

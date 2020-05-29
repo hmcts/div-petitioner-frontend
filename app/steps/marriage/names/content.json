@@ -50,7 +50,7 @@
           "respondentLastName": "Enw(au) olaf {{ divorceWho }}"
         },
         "checkYourAnswersContent": {
-          "respondentName": "Enw cyfredol eich{{ divorceWho }}",
+          "respondentName": "Enw cyfredol eich {{ divorceWho }}",
           "yourName": "Eich enw cyfredol"
         },
         "errors": {

@@ -105,11 +105,11 @@
           "errorVirusFoundInFile": "Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
         },
         "checkYourAnswersContent": {
-          "question": " Dogfennau sydd wedi eu llwytho"
+          "question": "Dogfennau sydd wedi eu llwytho"
         },
         "errors": {
           "marriageCertificateFiles": {
-            "invalid": " Mae’r ffeiliau yr ydych wedi eu llwytho yn annilys."
+            "invalid": "Mae’r ffeiliau yr ydych wedi eu llwytho yn annilys."
           },
           "errorUnknown": {
             "invalid": "Mae’n ddrwg gennym, ond roedd problem wrth lwytho’r ffeil hon. Rhowch gynnig arall arni yn hwyrach ymlaen."
@@ -121,10 +121,10 @@
             "invalid": "Rhaid i’r ffeil fod ar ffurf jpg, bmp, tiff, png neu PDF."
           },
           "errorMaximumFilesExceeded": {
-            "invalid": " Gallwch lwytho hyd at 10 ffeil."
+            "invalid": "Gallwch lwytho hyd at 10 ffeil."
           },
           "errorVirusFoundInFile": {
-            "invalid": " Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
+            "invalid": "Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
           }
         }
       }

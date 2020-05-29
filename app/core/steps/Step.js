@@ -94,7 +94,7 @@ module.exports = class Step {
     return true;
   }
 
-  generateContent(ctx, session, lang = 'en', common) {
+  generateContent(ctx, session, lang = 'en', common = {}) {
     if (!this.content || !this.content.resources) {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }

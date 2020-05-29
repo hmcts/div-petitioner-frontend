@@ -265,37 +265,56 @@
       </li>
       <li>
         <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
-        {% if session.language == "en" %}
-          {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
-          {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
-        {% else %}
-          {{ content.serviceCenterPhoneNumber | safe }}<br>
-          {{ content.serviceCenterOpeningHours | safe }}<br>
-        {% endif %}
+        {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
+        {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
+
+{#        {% if session.languagePreferenceWelsh == "No" %}#}
+{#          {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>#}
+{#          {% if session.language == "en" %}#}
+{#            {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>#}
+{#          {% else %}#}
+{#            {{ _________________________________________ }}#}
+{#          {% endif %}#}
+{#        {% else %}#}
+{#          {{ content.cyServiceCenterPhoneNumber | safe }}<br>#}
+{#          {{ content.cyServiceCenterOpeningHours | safe }}<br>#}
+{#        {% endif %}#}
       </li>
-      {% if session.language == "en" %}
-        <li>
-          {% if session.allocatedCourt.serviceCentreName %}
-            {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
-          {% endif %}
-          {{ session.allocatedCourt.divorceCentre | safe }}<br/>
-          {% if session.allocatedCourt.poBox %}
-            {{ session.allocatedCourt.poBox | safe }}<br/>
-          {% else %}
-            {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
-            {{ session.allocatedCourt.street | safe }}<br/>
-          {% endif %}
-          {{ session.allocatedCourt.courtCity | safe }}<br/>
-          {{ session.allocatedCourt.postCode | safe }}
-        </li>
-      {% else %}
-        <li>
-          {{ content.serviceCenterName | safe }}<br/>
-          {{ content.serviceCenterPoBox | safe }}<br/>
-          {{ content.serviceCenterCity | safe }}<br/>
-          {{ content.serviceCenterPostcode | safe }}
-        </li>
-      {% endif %}
+
+      <li>
+        {% if session.allocatedCourt.serviceCentreName %}
+          {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
+        {% endif %}
+        {{ session.allocatedCourt.divorceCentre | safe }}<br/>
+        {% if session.allocatedCourt.poBox %}
+          {{ session.allocatedCourt.poBox | safe }}<br/>
+        {% else %}
+          {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
+          {{ session.allocatedCourt.street | safe }}<br/>
+        {% endif %}
+        {{ session.allocatedCourt.courtCity | safe }}<br/>
+        {{ session.allocatedCourt.postCode | safe }}
+
+{#        {% if session.languagePreferenceWelsh == "No" %}#}
+{#          {% if session.allocatedCourt.serviceCentreName %}#}
+{#            {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}#}
+{#          {% endif %}#}
+{#          {{ session.allocatedCourt.divorceCentre | safe }}<br/>#}
+{#          {% if session.allocatedCourt.poBox %}#}
+{#            {{ session.allocatedCourt.poBox | safe }}<br/>#}
+{#          {% else %}#}
+{#            {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>#}
+{#            {{ session.allocatedCourt.street | safe }}<br/>#}
+{#          {% endif %}#}
+{#          {{ session.allocatedCourt.courtCity | safe }}<br/>#}
+{#          {{ session.allocatedCourt.postCode | safe }}#}
+{#        {% else %}#}
+{#          {{ content.cyServiceCenterName | safe }}<br/>#}
+{#          {{ content.cyServiceCenterPoBox | safe }}<br/>#}
+{#          {{ content.cyServiceCenterCity | safe }}<br/>#}
+{#          {{ content.cyServiceCenterPostcode | safe }}#}
+{#        {% endif %}#}
+      </li>
     </ul>
 
     <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>

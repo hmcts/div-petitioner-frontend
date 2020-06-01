@@ -121,6 +121,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   * getStepCheckYourAnswersTemplate(step, session) {
+    const commonContent = require(`app/content/common-${session.language}`).resources[session.language].translation;
+
     // generate the context for the step
     let stepCtx = step.populateWithPreExistingData(session);
 
@@ -140,9 +142,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     );
 
     // generate content
-    const content = step.generateContent(stepCtx, session, session.language);
+    const content = step.generateContent(stepCtx, session, session.language, commonContent);
     const checkYourAnswersSpecificContent = step.generateCheckYourAnswersContent( // eslint-disable-line max-len
-      stepCtx, session, session.language
+      stepCtx, session, session.language, commonContent
     );
     Object.assign(
       content,

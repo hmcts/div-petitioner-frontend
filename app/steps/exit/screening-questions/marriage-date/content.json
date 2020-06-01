@@ -18,7 +18,7 @@
           "title": "Nid ydych wedi bod yn briod yn ddigon hir i gael ysgariad",
           "reason": "Yng Nghymru a Lloegr ni allwch ysgaru oni bai eich bod wedi bod yn briod am o leiaf blwyddyn.",
           "seperation": "Gallwch<a class=\"govuk-link\" href=\"https://www.gov.uk/legal-separation\" target=\"_blank\">Wneud cais i wahanu’n gyfreithiol</a> os ydych wedi bod yn briod am lai na blwyddyn.",
-          "annul": " Efallai y byddwch hefyd yn gallu <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">Diddymu eich priodas</a>."
+          "annul": "Efallai y byddwch hefyd yn gallu <a class=\"govuk-link\" href=\"https://www.gov.uk/how-to-annul-marriage\" target=\"_blank\">Diddymu eich priodas</a>."
         },
         "errors": {}
       }

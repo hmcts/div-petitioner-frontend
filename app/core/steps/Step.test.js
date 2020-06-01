@@ -134,14 +134,16 @@ describe(modulePath, () => {
     });
 
     it('should return the correctly interpolated content for Welsh', () => {
+      const commonContent = require('app/content/common-cy').resources.cy.translation;
+
       const step = new Step({}, 'screening-questions', null, fixtures.content.interpolate);
       const ctx = { divorceWho: 'husband' };
       const session = { language: 'cy', 'screening-questions': { respondent: 'Other person' } };
 
-      const content = step.generateContent(ctx, session, 'cy');
+      const content = step.generateContent(ctx, session, 'cy', commonContent);
 
       expect(content).to.deep.equal({
-        question: 'A oes gennych gyfeiriad ar gyfer eich husband?',
+        question: 'A oes gennych gyfeiriad ar gyfer eich gŵr?',
         answer: 'Oes, mae gennyf gyfeiriad ar gyfer fy Other person'
       });
     });
@@ -406,6 +408,7 @@ describe(modulePath, () => {
         .expect(statusCodes.OK, { status: 'ok', url: newStep.url }, done);
     });
   });
+
   describe('#middleware', () => {
     it('are executed before the request handler', done => {
       const fooAdder = (req, res, next) => {
@@ -455,6 +458,7 @@ describe(modulePath, () => {
         .expect(statusCodes.OK, { url: '/step' }, done);
     });
   });
+
   describe('#postMiddleware', () => {
     it('are executed before the request handler', done => {
       const two = 2;

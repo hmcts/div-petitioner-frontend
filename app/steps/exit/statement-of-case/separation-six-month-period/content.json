@@ -20,7 +20,7 @@
           "title": "Mae angen ichi newid eich cais",
           "reason": "Mae’n rhaid i chi a’ch {{ divorceWho }}  fod wedi byw ar wahân yn ystod y {{ limitYears }}  blynedd diwethaf ichi ddefnyddio’r rheswm hwn dros ysgaru.",
           "allowed": "Mae gennych hawl i fod wedi treulio rhywfaint o amser yn byw gyda’ch gilydd, ond dim ond hyd at 6 mis (mewn un cyfnod neu dros nifer o gyfnodau) ac nid yw’r amser hwn yn cyfrif tuag at y cyfnod o {{ limitYears }} blynedd o fyw ar wahân. Mae’n rhaid eich bod wedi byw ar wahân am fwy o amser i wneud i fyny am yr amser y bu ichi  fyw gyda’i gilydd.",
-          "proceed": " Os ydych am fwrw ymlaen gyda’ch cais am ysgariad, mae’n rhaid ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">ddewis ffaith arall sy’n berthnasol ichi </a> neu aros nes byddwch wedi byw ar wahân yn ddigon hir.",
+          "proceed": "Os ydych am fwrw ymlaen gyda’ch cais am ysgariad, mae’n rhaid ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\">ddewis ffaith arall sy’n berthnasol ichi </a> neu aros nes byddwch wedi byw ar wahân yn ddigon hir.",
           "exactDate": "yw’r union ddyddiad",
           "yearsAndMonths": "blynedd a 6 mis yn y gorffennol.",
           "livedTogetherMore6Months": "Gan eich bod wedi byw gyda’ch gilydd am fwy na 6 mis ers hynny, ni allwch ddefnyddio’r rheswm hwn dros ysgaru ar hyn o bryd."

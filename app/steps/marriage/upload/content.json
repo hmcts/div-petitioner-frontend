@@ -82,7 +82,7 @@
           "limitations": "Rhaid i’r llun ddangos y ddogfen gyfan a bod yn ddigon clir i staff y llys ei darllen. Gallwch lwytho’r rhan fwyaf o fathau o ddelweddau (hyd at 10MB).",
           "otherDocuments": "Gallwch lwytho dogfennau eraill y bydd eu hangen arnoch hefyd.",
           "uploadedFiles": "Ffeiliau sydd wedi cael eu llwytho",
-          "cantUpload": " Os nad ydych yn gallu llwytho eich dogfennau",
+          "cantUpload": "Os nad ydych yn gallu llwytho eich dogfennau",
           "continue": "Parhau â’ch cais. Pan fyddwch wedi gorffen, byddwch yn cael cyfeirnod a chyfeiriad y llys.",
           "emailOrPost": "Gallwch e-bostio neu bostio eich dogfennau i’r llys.",
           "keptAndReturned": "Mae angen ichi anfon y dystysgrif priodas wreiddiol neu gopi ardystiedig os ydych yn ei hanfon drwy’r post. Peidiwch ag anfon llungopi. Bydd y llys yn cadw eich tystysgrif ac ni fyddwn yn ei dychwelyd atoch.",
@@ -105,11 +105,11 @@
           "errorVirusFoundInFile": "Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
         },
         "checkYourAnswersContent": {
-          "question": " Dogfennau sydd wedi eu llwytho"
+          "question": "Dogfennau sydd wedi eu llwytho"
         },
         "errors": {
           "marriageCertificateFiles": {
-            "invalid": " Mae’r ffeiliau yr ydych wedi eu llwytho yn annilys."
+            "invalid": "Mae’r ffeiliau yr ydych wedi eu llwytho yn annilys."
           },
           "errorUnknown": {
             "invalid": "Mae’n ddrwg gennym, ond roedd problem wrth lwytho’r ffeil hon. Rhowch gynnig arall arni yn hwyrach ymlaen."
@@ -121,10 +121,10 @@
             "invalid": "Rhaid i’r ffeil fod ar ffurf jpg, bmp, tiff, png neu PDF."
           },
           "errorMaximumFilesExceeded": {
-            "invalid": " Gallwch lwytho hyd at 10 ffeil."
+            "invalid": "Gallwch lwytho hyd at 10 ffeil."
           },
           "errorVirusFoundInFile": {
-            "invalid": " Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
+            "invalid": "Mae’r ffeil hon wedi methu gwiriad firws. Rhowch gynnig arall arni gyda ffeil wahanol."
           }
         }
       }

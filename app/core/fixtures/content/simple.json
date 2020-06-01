@@ -26,7 +26,7 @@
       "translation": {
         "content": {
           "question": "A yw eich tystysgrif priodas yn eich meddiant?",
-          "originalCertificate": " Rhaid mai eich tystysgrif priodas wreiddiol yw hon neu gopi swyddogol ohoni <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\" >Copi ardystiedig</a>. Ni ellir defnyddio llungopi.",
+          "originalCertificate": "Rhaid mai eich tystysgrif priodas wreiddiol yw hon neu gopi swyddogol ohoni <a class=\"govuk-link\" href=\"https://www.gov.uk/order-copy-birth-death-marriage-certificate\"target=\"_blank\" >Copi ardystiedig</a>. Ni ellir defnyddio llungopi.",
           "court": "Bydd angen ichi bostio hon i’r llys gyda’ch cais."
         },
         "checkYourAnswersContent": {

@@ -338,14 +338,12 @@ describe(modulePath, () => {
         'your'
       ];
 
-      const valuesToExist = [
-        'claimsCosts',
-        'divorceWho'
-      ];
+      const valuesToExist = ['claimsCosts'];
 
       const context = {
         claimsCosts: 'No',
-        claimsCostsFrom: ['respondent']
+        claimsCostsFrom: ['respondent'],
+        divorceWhoTranslated: 'wife'
       };
 
       const session = {

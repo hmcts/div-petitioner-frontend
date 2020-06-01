@@ -38,7 +38,6 @@ module.exports = class ClaimCosts extends ValidationStep {
     });
   }
 
-
   validate(ctx) {
     const [isValid, errors] = super.validate(ctx);
 
@@ -61,10 +60,13 @@ module.exports = class ClaimCosts extends ValidationStep {
   }
 
   interceptor(ctx, session) {
+    const commonContent = require(`app/content/common-${session.language}`).resources[session.language].translation;
+
     ctx.claimsCostsAppliedForFees = session.helpWithFeesNeedHelp === 'Yes';
     ctx.reasonForDivorceClaiming5YearSeparation = session.reasonForDivorce === 'separation-5-years';
     ctx.reasonForDivorceClaimingAdultery = session.reasonForDivorce === 'adultery';
     ctx.helpWithFeesReferenceNumber = session.helpWithFeesReferenceNumber;
+    ctx.divorceWhoTranslated = commonContent[session.divorceWho];
     if (session.reasonForDivorce === 'adultery' && session.reasonForDivorceAdulteryWishToName === 'Yes') {
       ctx.reasonForDivorceAdulteryIsNamed = 'Yes';
     } else {
@@ -77,6 +79,7 @@ module.exports = class ClaimCosts extends ValidationStep {
   action(ctx, session) {
     if (ctx.claimsCosts === 'No') {
       delete ctx.claimsCostsFrom;
+      delete ctx.divorceWhoTranslated;
       delete session.claimsCostsFrom;
     } else if (ctx.reasonForDivorceAdulteryIsNamed === 'No') {
       ctx.claimsCostsFrom = ['respondent'];

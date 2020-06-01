@@ -94,18 +94,18 @@ module.exports = class Step {
     return true;
   }
 
-  generateContent(ctx, session, lang = 'en', common) {
+  generateContent(ctx, session, lang = 'en', common = {}) {
     if (!this.content || !this.content.resources) {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }
 
     const contentCtx = Object.assign({}, session, ctx, this.commonProps);
 
-    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
-      contentCtx.divorceWho = this.i18next.t(common[contentCtx.divorceWho]);
-    }
-
     this.i18next.changeLanguage(lang);
+
+    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
+      contentCtx.divorceWho = common[contentCtx.divorceWho];
+    }
 
     return walkMap(this.content.resources[lang].translation.content, path => {
       return this.i18next.t(`content.${path}`, contentCtx);

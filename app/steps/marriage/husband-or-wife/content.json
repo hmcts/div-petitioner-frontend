@@ -26,7 +26,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": " Pwy ydych chi’n ysgaru oddi wrtho/wrthi?",
+          "question": "Pwy ydych chi’n ysgaru oddi wrtho/wrthi?",
           "husband": "Eich gwr",
           "wife": "Eich gwraig",
           "marriageIsSameSexCouple": "Dewiswch y canlynol os yw’n berthnasol i chi:",
@@ -40,7 +40,7 @@
         },
         "errors": {
           "divorceWho": {
-            "required": " Dewiswch yr un yr ydych am ysgaru oddi wrth/wrthi"
+            "required": "Dewiswch yr un yr ydych am ysgaru oddi wrth/wrthi"
           }
         }
       }

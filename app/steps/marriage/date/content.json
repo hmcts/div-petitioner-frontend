@@ -79,8 +79,8 @@
             "invalid": "Nodwch ddiwrnod dilys ar gyfer dyddiad eich priodas"
           },
           "marriageDateMonth": {
-            "required": " Nodwch fis ar gyfer dyddiad eich priodas",
-            "invalid": " Nodwch fis dilys ar gyfer dyddiad eich priodas"
+            "required": "Nodwch fis ar gyfer dyddiad eich priodas",
+            "invalid": "Nodwch fis dilys ar gyfer dyddiad eich priodas"
           },
           "marriageDateYear": {
             "required": "Nodwch flwyddyn ar gyfer dyddiad eich priodas",
@@ -91,10 +91,10 @@
             "invalid": "Nodwch ddyddiad dilys"
           },
           "marriageDateIsFuture": {
-            "invalid": " Nodwch ddyddiad priodas yn y gorffennol"
+            "invalid": "Nodwch ddyddiad priodas yn y gorffennol"
           },
           "marriageDateMoreThan100": {
-            "invalid": " Nodwch ddyddiad priodas sydd lai na 100 mlynedd yn ôl"
+            "invalid": "Nodwch ddyddiad priodas sydd lai na 100 mlynedd yn ôl"
           }
         }
       }

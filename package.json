@@ -40,7 +40,7 @@
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/div-pay-client": "^7.0.1",
     "@hmcts/div-service-auth-provider-client": "^3.0.1",
-    "@hmcts/nodejs-healthcheck": "^1.5.1",
+    "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/nodejs-logging": "^3.0.1",
     "@hmcts/properties-volume": "^0.0.9",
     "add": "^2.0.6",

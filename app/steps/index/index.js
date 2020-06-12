@@ -15,7 +15,7 @@ module.exports = class Index extends Step {
     return this.steps.ScreeningQuestionsMarriageBroken;
   }
 
-  next(session) {
+  next(ctx, session) {
     return this.nextStep(session);
   }
 
@@ -33,7 +33,7 @@ module.exports = class Index extends Step {
 
   handler(req, res, next) {
     logger.infoWithReq(req, 'welsh_ft_redirection', `Welsh FT is: ${req.session.featureToggles.ft_welsh} - Redirecting to: ${req.session.featureToggles.ft_welsh ? 'ScreeningQuestionsLanguagePreference' : 'ScreeningQuestionsMarriageBroken'}`);
-    res.redirect(this.next(req.session).url);
+    res.redirect(this.next({}, req.session).url);
     next();
   }
 };

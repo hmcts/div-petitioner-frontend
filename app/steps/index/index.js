@@ -15,7 +15,7 @@ module.exports = class Index extends Step {
     return this.steps.ScreeningQuestionsMarriageBroken;
   }
 
-  next(ctx, session) {
+  next(session) {
     return this.nextStep(session);
   }
 

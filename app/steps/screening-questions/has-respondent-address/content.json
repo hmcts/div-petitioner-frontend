@@ -24,8 +24,8 @@
           "question": "A oes gennych chi gyfeiriad ar gyfer eich gwr/gwraig",
           "line1": "Rhaid ichi ddarparu naill ai gyfeiriad preswyl neu gyfeiriad ei gyfreithiwr/chyfreithiwr. Gall hwn fod yn gyfeiriad yn y DU neu’n gyfeiriad rhyngwladol.",
           "line2": "Mae’r llys angen hyn fel y gellir anfon y papurau ysgariad at eich gwr/gwraig.",
-          "yes": "Ydym",
-          "no": "Nac ydym"
+          "yes": "Oes",
+          "no": "Nac oes"
         },
         "errors": {
           "screenHasRespondentAddress": {

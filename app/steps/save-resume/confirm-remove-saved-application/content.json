@@ -23,8 +23,8 @@
           "question": "Ydych chi’n siwr eich bod eisiau dileu eich cais?",
           "deleted": "Byddwn yn dileu’r holl wybodaeth a ddarparwyd gennych. Os byddwch yn gwneud cais eto yn y dyfodol, bydd yn rhaid ichi dalu ffi lawn am gais newydd.",
           "userAccount": "Ni fyddwn yn dileu’r cyfrif defnyddiwr (sy’n cynnwys eich cyfeiriad e-bost a’ch cyfrinair). Cysylltwch â’r Ganolfan Ysgaru os ydych eisiau inni ddileu eich cyfrif.",
-          "yes": "Ydym",
-          "no": "Nac ydym"
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "errors": {
           "deleteApplication": {

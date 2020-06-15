@@ -48,8 +48,8 @@
           "desQues": "A ydych wedi byw ar wahân i’ch {{ divorceWho }} ers iddo/iddi eich gadael?",
           "info1": "Mae’n bosib i’r llys ystyried eich bod yn byw ar wahân er eich bod yn byw yn yr un cyfeiriad, cyn belled â’ch bod chi’n byw’n annibynnol. Er enghraifft, nid ydych yn bwyta, yn cysgu neu’n cymdeithasu gyda’ch gilydd.",
           "info2": "Gallwch gysylltu â’r llys os nad ydych chi’n siwr a yw hyn yn berthnasol.",
-          "yes": "Oes",
-          "no": "Nac oes",
+          "yes": "Do",
+          "no": "Naddo",
           "question": {
             "text": "A ydych wedi byw gyda’ch gilydd am fwy na ",
             "6months": "6 mis",

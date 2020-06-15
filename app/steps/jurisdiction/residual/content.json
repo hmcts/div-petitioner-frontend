@@ -41,8 +41,8 @@
           "residualTextOposite2": "Fel rheol, i fod yn gymwys ar gyfer awdurdodaeth weddillol, rhaid i chi neu eich {{ divorceWho }} fod â’ch domisil yng Nghymru neu Loegr, ac ni all yr un ohonoch fod yn ddinesydd gwlad arall yn yr UE (ac eithrio Denmarc) na phreswylio’n arferol mewn gwlad arall yn yr UE (ac eithrio Denmarc).",
           "residualTextOposite3": "Fodd bynnag, gall awdurdodaeth weddillol fod yn fwy cymhleth. Os nad ydych chi’n siwr a yw hyn yn berthnasol i chi, dylech ofyn am gyngor cyfreithiol.",
           "question": "A ydych chi’n gymwys ar gyfer awdurdodaeth weddillol?",
-          "yes": "Oes",
-          "no": "Nac oes"
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "errors": {
           "residualJurisdictionEligible": {

@@ -49,8 +49,8 @@
           "youHaveToPayFeeNow": "Bydd y llys yn dyfarnu pwy ddylai dalu, a faint y dylai dalu, yn nes ymlaen yn ystod yr ysgariad.",
           "youHaveToPayFeeAppNow": "Mae’n rhaid i chi dalu’r ffi am wneud cais nawr. ",
           "warning": "Rhybudd",
-          "no": "Nac ydym",
-          "yes": "Ydym"
+          "no": "Nac ydw",
+          "yes": "Ydw"
         },
         "checkYourAnswersContent": {
           "question": "A ydych yn gwneud cais i hawlio costau’r ysgariad?"

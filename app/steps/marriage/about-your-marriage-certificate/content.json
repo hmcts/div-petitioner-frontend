@@ -32,8 +32,8 @@
           "help": "Cymorth gyda thystysgrifau priodas tramor",
           "helpText1": "Os yw eich tystysgrif yn cynnwys fersiwn Saesneg yn rhan o’r dystysgrif wreiddiol, dewiswch ‘ydy’.",
           "helpText2": "Os oes gennych gyfieithiad Saesneg sy’n ddogfen ar wahân, dewiswch ‘nac ydy’.",
-          "yes": "Ydym",
-          "no": "Nac ydym",
+          "yes": "Ydy",
+          "no": "Nac ydy",
           "certifiedTranslation": "A oes gennych gyfieithiad ardystiedig o’ch tystysgrif priodas?",
           "cyaCertifiedTranslation": "A oes gennych gyfieithiad o’ch tystysgrif priodas?",
           "certifiedDescription": "Rhaid i’r cyfieithydd neu notari cyhoeddus gadarnhau cywirdeb y cyfieithiad."

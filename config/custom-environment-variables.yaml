@@ -40,6 +40,9 @@ services:
     buttonNoAgents: WEBCHAT_BUTTON_NO_AGENTS
     buttonAgentsBusy: WEBCHAT_BUTTON_AGENTS_BUSY
     buttonServiceClosed: WEBCHAT_BUTTON_SERVICE_CLOSED
+  equalityAndDiversity:
+    url: EQUALITY_URL
+    tokenKey: DIV_TOKEN_KEY
 
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET

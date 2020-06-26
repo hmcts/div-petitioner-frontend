@@ -18,8 +18,8 @@
 {% endblock %}
 
 {% block form %}
-
-    <p class="govuk-body"> {{ content.line1 | safe }}</p>
+  <p class="govuk-body"> {{ content.line1 | safe }}</p>
+  <p class="govuk-body"> {{ content.line2 | safe }}</p>
 
     {{ yesNoRadioHeading(
         legend = content.question,

@@ -9,7 +9,7 @@ module.exports = {
   },
   csrfSecret: 'XXXXXXXX',
   expires: 99999999,
-  // languagePreferenceWelsh: 'Yes',
+  languagePreferenceWelsh: 'Yes',
   divorceWhoTranslated: 'husband',
   screenHasMarriageBroken: 'Yes',
   screenHasRespondentAddress: 'Yes',

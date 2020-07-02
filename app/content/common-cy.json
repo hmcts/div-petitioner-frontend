@@ -35,6 +35,8 @@
         "termsAndConditions": "Telerau ac Amodau",
         "husband": "gŵr",
         "wife": "gwraig",
+        "withHim": "gydag ef",
+        "withHer": "gyda hi",
         "months": [
           "Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
           "Gorffennaf", "Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"

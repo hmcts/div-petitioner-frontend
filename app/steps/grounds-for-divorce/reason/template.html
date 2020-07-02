@@ -93,7 +93,7 @@
                         {{ content.adulteryHeading | safe }}<br>
 
                     <span class="govuk-body">
-                        {{ content.adulterySummary1 | safe }} {% if husbandOrWife() == 'wife' %} {{content.man}} {% else %} {{content.woman}} {% endif %} {{ content.adulterySummary2 | safe }}
+                        {{ content.adulterySummary1 | safe }} {% if husbandOrWife() == 'wife' %} {{ content.man | lower | safe }} {% else %} {{ content.woman | lower | safe }} {% endif %} {{ content.adulterySummary2 | safe }}
                     </span>
                 </label>
 

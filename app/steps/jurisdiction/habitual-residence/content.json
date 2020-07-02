@@ -32,8 +32,8 @@
           "petitioner": "A ydych chi’n treulio’r rhan fwyaf o’ch amser yng Nghymru neu Loegr?",
           "info": "Gall hyn gynnwys gweithio, bod yn berchen ar eiddo, bod â phlant mewn ysgol, a bod eich prif fywyd teuluol yng Nghymru neu Loegr.",
           "respondent": "Ydy eich {{ divorceWho }} yn treulio’r rhan fwyaf o’i amser yng Nghymru neu Loegr?",
-          "yes": "Ydy",
-          "no": "Nac ydy"
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "errors": {
           "jurisdictionPetitionerResidence": {

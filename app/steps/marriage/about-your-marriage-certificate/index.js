@@ -27,6 +27,8 @@ module.exports = class AboutYourMarriageCertificate extends ValidationStep {
       if (session.marriedInUk === 'Yes') {
         remove('certificateInEnglish');
         remove('certifiedTranslation');
+
+        session.petitionerPcqId = '2e23d0fa-6b24-47cb-b402-2a7837821d41';
       }
     });
 

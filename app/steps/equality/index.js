@@ -7,6 +7,15 @@ module.exports = class Equality extends Step {
     return '/equality-and-diversity';
   }
 
+  get nextStep() {
+    return this.steps.CheckYourAnswers;
+  }
+
+  // disable check your answers
+  get checkYourAnswersTemplate() {
+    return false;
+  }
+
   static get returnPath() {
     return '/check-your-answers';
   }
@@ -19,7 +28,7 @@ module.exports = class Equality extends Step {
       // ccdCaseId: session.form.ccdCase.id,
       partyId: 'todo',
       returnUrl: req.headers.host + Equality.returnPath,
-      language: 'en'
+      language: req.session.language
     };
 
     params.token = createToken(params);

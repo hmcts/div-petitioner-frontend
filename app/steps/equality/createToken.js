@@ -17,6 +17,10 @@ const createToken = params => {
   if (tokenKey) {
     logger.infoWithReq(null, 'createToken', `Using ${tokenKey === 'DIV_TOKEN_KEY' ? 'local' : 'Azure KV'} secret for PCQ token key`);
     const key = crypto.scryptSync(tokenKey, 'salt', keyLen);
+    // Convert all params to string before encrypting
+    Object.keys(params).forEach(p => {
+      params[p] = String(params[p]);
+    });
     const strParams = JSON.stringify(params);
     const cipher = crypto.createCipheriv(algorithm, key, iv);
     encrypted = cipher.update(strParams, 'utf8', 'hex');

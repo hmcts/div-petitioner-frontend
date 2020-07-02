@@ -13,6 +13,8 @@ nodejs:
         FEATURE_STRATEGIC_PAY: "false"
         REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis-master:6379"
         PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
+        CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-pr-878.service.core-compute-preview.internal"
+
     keyVaults:
         div:
             secrets:

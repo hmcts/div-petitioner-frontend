@@ -13,12 +13,12 @@ const pcqDown = params => {
 };
 
 const completeEqualityTask = params => {
-  if (params.isEnabled && !get(params.req.session, 'pcqId', false)) {
+  if (params.isEnabled && !get(params.req.session, 'petitionerPcqId', false)) {
     const uri = `${CONF.services.equalityAndDiversity.url}/health`;
     request.get({ uri, json: true })
       .then(json => {
         if (json.status && json.status === 'UP') {
-          params.req.session.pcqId = uuidv4();
+          params.req.session.petitionerPcqId = uuidv4();
 
           // Need to post pcqId to ccd here
 

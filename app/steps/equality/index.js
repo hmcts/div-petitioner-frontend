@@ -24,11 +24,11 @@ module.exports = class Equality extends Step {
     const params = {
       serviceId: 'DIVORCE',
       actor: 'PETITIONER',
-      pcqId: req.session.pcqId,
-      // ccdCaseId: session.form.ccdCase.id,
-      partyId: 'todo',
+      pcqId: req.session.petitionerPcqId,
+      ccdCaseId: req.session.caseId,
+      partyId: req.session.petitionerEmail,
       returnUrl: req.headers.host + Equality.returnPath,
-      language: req.session.language
+      language: req.session.language || 'en'
     };
 
     params.token = createToken(params);

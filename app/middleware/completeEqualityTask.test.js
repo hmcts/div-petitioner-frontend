@@ -76,7 +76,7 @@ describe(modulePath, () => {
       .get('/health')
       .reply(httpStatus.OK, { status: 'UP' });
 
-    params.req.session.pcqId = 'abc123';
+    params.req.session.petitionerPcqId = 'abc123';
 
     completeEqualityTask(params);
     testPcqSkipped(done);

@@ -24,7 +24,7 @@ describe(modulePath, () => {
           petitionerPcqId: 'pcqId-abc123',
           language: 'en'
         },
-        idam: { userDetails: { id: 'test@test.com' }}
+        idam: { userDetails: { id: 'test@test.com' } }
       };
       res.redirect = sinon.spy();
     });

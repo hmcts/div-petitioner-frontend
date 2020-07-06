@@ -23,6 +23,7 @@ nodejs:
                 - os-places-token
                 - frontend-secret
                 - launchdarkly-key
+                - pcq-token-key
 
     # Don't modify below here
     image: ${IMAGE_NAME}

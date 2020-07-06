@@ -22,9 +22,9 @@ describe(modulePath, () => {
         headers: { host: 'localhost' },
         session: {
           petitionerPcqId: 'pcqId-abc123',
+          petitionerEmail: 'test@test.com',
           language: 'en'
-        },
-        idam: { userDetails: { id: 'test@test.com' } }
+        }
       };
       res.redirect = sinon.spy();
     });

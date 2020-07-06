@@ -25,7 +25,7 @@ module.exports = class Equality extends Step {
       serviceId: 'DIVORCE',
       actor: 'PETITIONER',
       pcqId: req.session.petitionerPcqId,
-      partyId: req.idam.userDetails.id,
+      partyId: req.session.petitionerEmail,
       returnUrl: req.headers.host + Equality.returnPath,
       language: req.session.language || 'en'
     };

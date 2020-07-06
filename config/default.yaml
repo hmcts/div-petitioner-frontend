@@ -181,5 +181,5 @@ featureToggles:
     lastName: 'Frontend'
     key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
   ft_welsh: 'divorce-welsh'
-  ft_pcq: 'divorce-pcq'
+  ft_pcq: 'petitioner-pcq'
   appwideToggles: ['ft_welsh']

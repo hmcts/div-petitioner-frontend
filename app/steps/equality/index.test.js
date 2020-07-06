@@ -22,10 +22,9 @@ describe(modulePath, () => {
         headers: { host: 'localhost' },
         session: {
           petitionerPcqId: 'pcqId-abc123',
-          caseId: 'caseId-abc123',
-          petitionerEmail: 'test@test.com',
           language: 'en'
-        }
+        },
+        idam: { userDetails: { id: 'test@test.com' }}
       };
       res.redirect = sinon.spy();
     });
@@ -33,7 +32,7 @@ describe(modulePath, () => {
     it('returns the correct url', () => {
       equality.handler(req, res);
       expect(res.redirect.getCall(0).args[0]).to.satisfy(str => {
-        return str.startsWith(`${pcqUrl}/service-endpoint?serviceId=DIVORCE&actor=PETITIONER&pcqId=pcqId-abc123&ccdCaseId=caseId-abc123&partyId=test@test.com&returnUrl=localhost/check-your-answers&language=en&token=`);
+        return str.startsWith(`${pcqUrl}/service-endpoint?serviceId=DIVORCE&actor=PETITIONER&pcqId=pcqId-abc123&partyId=test@test.com&returnUrl=localhost/check-your-answers&language=en&token=`);
       });
     });
   });

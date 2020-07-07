@@ -47,8 +47,8 @@
           "other": "Arall",
           "detailsTitle": "Darparwch fanylion sy’n dangos sut wnaethoch chi newid eich enw",
           "detailsDocuments": "Bydd angen ichi anfon y ddogfen sy’n profi eich bod wedi newid eich enw i’r llys. Gallwch lwytho llun digidol neu lun wedi ei sganio ar derfyn y cais hwn neu gallwch anfon llun drwy’r post. Os nad oes gennych ddogfen sy’n egluro sut y gwnaethoch newid eich enw, eglurwch hynny yma.",
-          "yes": "Ydym",
-          "no": "Nac ydym"
+          "yes": "Do",
+          "no": "Naddo"
         },
         "checkYourAnswersContent": {
           "nameChangeProof": "Prawf eich bod wedi newid eich enw",

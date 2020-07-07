@@ -236,7 +236,7 @@ variable "court_phone_number_en" {
 }
 
 variable "court_phone_number_cy" {
-  default = "0300 303 0642"
+  default = "0300 303 5171"
 }
 
 variable "court_opening_hours_en" {
@@ -244,7 +244,7 @@ variable "court_opening_hours_en" {
 }
 
 variable "court_opening_hours_cy" {
-  default = "Dydd Llun i ddydd Gwener, 8am i 8pm, dydd Sadwrn 8am i 2pm"
+  default = "Dydd Llun i ddydd Gwener, 8:30am - 5pm"
 }
 
 variable "court_email" {

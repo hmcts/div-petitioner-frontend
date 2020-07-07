@@ -1,5 +1,5 @@
 provider "azurerm" {
-  version = "1.22.1"
+  version = "1.44.0"
 }
 
 data "azurerm_key_vault" "div_key_vault" {

@@ -11,13 +11,13 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
 });
 
-Scenario('Redirects to cookie error page if start application with no cookies', async (I) => {
+Scenario('Redirects to login page if start application with no cookies', async (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();
   //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
   I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
-  I.seeCurrentUrlEquals('/cookie-error');
+  I.seeInCurrentUrl('/login?');
 });
 
 Scenario('check cookie error page exists', (I) => {

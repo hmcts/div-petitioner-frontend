@@ -1,6 +1,6 @@
 const modulePath = 'app/core/utils/caseState';
 
-const { caseInState, caseStates } = require(modulePath);
+const { isAwaitingAmendCase } = require(modulePath);
 
 const { expect } = require('test/util/chai');
 
@@ -9,20 +9,20 @@ describe(modulePath, () => {
     const session = {
       state: 'AwaitingAmendCase'
     };
-    expect(true, caseInState(session, caseStates.AwaitingAmendCase));
+    expect(true, isAwaitingAmendCase(session));
   });
 
   it('should return false when case state does not exists', () => {
     const session = {
       helpWithFeesNeedHelp: 'Yes'
     };
-    expect(false, caseInState(session, caseStates.AwaitingAmendCase));
+    expect(false, isAwaitingAmendCase(session));
   });
 
   it('should return false when case state exists but is empty', () => {
     const session = {
       state: ''
     };
-    expect(false, caseInState(session, caseStates.AwaitingAmendCase));
+    expect(false, isAwaitingAmendCase(session));
   });
 });

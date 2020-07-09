@@ -1,5 +1,6 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "common/document-list.njk" import documentList %}
 
 {% extends "layout.html" %}
 
@@ -19,7 +20,6 @@ html: html
 
 {% block two_thirds %}
 {% set title = content.title %}
-{% set showDocument = true %}
 
   <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
   <p class="govuk-body-s">
@@ -63,7 +63,7 @@ html: html
   <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
 
-  {% if showDocument === true %}
+  {% if (session.d8Documents.length > 0) %}
   <div class="govuk-body govuk-!-margin-top-7 govuk-!-margin-bottom-7">
     <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -86,7 +86,6 @@ html: html
 {% endblock %}
 
 {% block one_third %}
-{% set showDocument = true %}
 <aside class="govuk-related-items" role="complementary">
   <h3 class="govuk-heading-m">{{ content.help }}</h3>
   <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
@@ -117,15 +116,9 @@ html: html
     </li>
   </ul>
 
-  {% if showDocument %}
-  <h3 class="govuk-heading-m">{{content.downloadDocumentHeading}}</h3>
-  <nav role="navigation" aria-labelledby="subsection-title" class="document-download-list">
-    <ul class="govuk-list govuk-body govuk-!-font-size-16"><li>
-      <a class="govuk-link" href="/document-download/d8petition1594290020676943.pdf" aria-label="This link will download the file Divorce application PDF">
-        <span class="govuk-download__icon" aria-hidden="true"><span class="visually-hidden">Download</span></span>Divorce application (PDF)
-      </a>
-    </li></ul>
-  </nav>
+  {% if (session.d8Documents.length > 0) %}
+    <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
+    {{ documentList(session.d8Documents) }}
   {% endif %}
 
   <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>

@@ -1,0 +1,142 @@
+{% from "warning-text/macro.njk" import govukWarningText %}
+{% from "phase-banner/macro.njk" import govukPhaseBanner %}
+
+{% extends "layout.html" %}
+
+{% block back %}{% endblock %}
+
+{% block breadcrumbs %}
+{% set html %}
+{{ common.feedback | safe }}
+{% endset %}
+{{ govukPhaseBanner({
+tag: {
+text: common.phase
+},
+html: html
+}) }}
+{% endblock %}
+
+{% block two_thirds %}
+{% set title = content.title %}
+{% set showDocument = true %}
+
+  <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
+  <p class="govuk-body-s">
+    <strong class="govuk-!-font-size-16">Case number:</strong>&nbsp;&nbsp;&nbsp;
+    {{ session.caseId | insertHyphens | safe }}
+    <br>
+    <strong class="govuk-!-font-size-16">Name:</strong> &nbsp;&nbsp;&nbsp;
+    {{ session.petitionerFirstName | safe }}
+    {{ session.petitionerLastName | safe }}
+  </p>
+
+<div class="progress">
+  <ol class="progress__list">
+    <li class="progress__item progress__item--complete">
+      <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
+      <span class="progress__label">{{ content.youApply }}</span>
+      <span class="visually-hidden">{{ content.thisIsComplete }}</span>
+    </li>
+    <li class="progress__item progress__item--current">
+      <i class="progress__icon"></i>
+      <span class="progress__label">{{ content.yourRespondes }}</span>
+      <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
+    </li>
+    <li class="progress__item">
+      <i class="progress__icon"></i>
+      <span class="progress__label">{{ content.continueDivorce }}</span>
+      <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
+    </li>
+    <li class="progress__item">
+      <i class="progress__icon"></i>
+      <span class="progress__label">{{ content.divorceFinalised }}</span>
+      <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
+    </li>
+  </ol>
+</div>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
+<div class="govuk-body">
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara1 | safe}}</p>
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara2 | safe}}</p>
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
+
+  {% if showDocument === true %}
+  <div class="govuk-body govuk-!-margin-top-7 govuk-!-margin-bottom-7">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        {{content.downloadWarning | safe}}
+      </strong>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="govuk-body">
+  <button class="govuk-button" data-module="govuk-button">
+    {{content.continueBtnText | safe}}
+  </button>
+</div>
+
+{% endblock %}
+
+{% block one_third %}
+{% set showDocument = true %}
+<aside class="govuk-related-items" role="complementary">
+  <h3 class="govuk-heading-m">{{ content.help }}</h3>
+  <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
+    <li>
+      <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
+      <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{
+        session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
+    </li>
+    <li>
+      <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
+      {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
+      {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
+    </li>
+
+    <li>
+      {% if session.allocatedCourt.serviceCentreName %}
+      {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
+      {% endif %}
+      {{ session.allocatedCourt.divorceCentre | safe }}<br/>
+      {% if session.allocatedCourt.poBox %}
+      {{ session.allocatedCourt.poBox | safe }}<br/>
+      {% else %}
+      {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
+      {{ session.allocatedCourt.street | safe }}<br/>
+      {% endif %}
+      {{ session.allocatedCourt.courtCity | safe }}<br/>
+      {{ session.allocatedCourt.postCode | safe }}
+    </li>
+  </ul>
+
+  {% if showDocument %}
+  <h3 class="govuk-heading-m">{{content.downloadDocumentHeading}}</h3>
+  <nav role="navigation" aria-labelledby="subsection-title" class="document-download-list">
+    <ul class="govuk-list govuk-body govuk-!-font-size-16"><li>
+      <a class="govuk-link" href="/document-download/d8petition1594290020676943.pdf" aria-label="This link will download the file Divorce application PDF">
+        <span class="govuk-download__icon" aria-hidden="true"><span class="visually-hidden">Download</span></span>Divorce application (PDF)
+      </a>
+    </li></ul>
+  </nav>
+  {% endif %}
+
+  <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-body govuk-!-font-size-16">
+      <li>{{ content.howRespondsLink | safe }}</li>
+      <li>{{ content.decreeNisiLink | safe }}</li>
+      <li>{{ content.decreeAbsoluteLink | safe }}</li>
+      <li>{{ content.childrenAndDivorceLink | safe }}</li>
+      <li>{{ content.moneyAndPropertyLink | safe }}</li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

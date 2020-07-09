@@ -21,16 +21,16 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "A oes gennych chi gyfeiriad ar gyfer eich gwr/gwraig",
+          "question": "A oes gennych chi gyfeiriad ar gyfer eich gŵr/gwraig",
           "line1": "Rhaid ichi ddarparu naill ai gyfeiriad preswyl neu gyfeiriad ei gyfreithiwr/chyfreithiwr. Gall hwn fod yn gyfeiriad yn y DU neu’n gyfeiriad rhyngwladol.",
-          "line2": "Mae’r llys angen hyn fel y gellir anfon y papurau ysgariad at eich gwr/gwraig.",
+          "line2": "Mae’r llys angen hyn fel y gellir anfon y papurau ysgariad at eich gŵr/gwraig.",
           "yes": "Oes",
           "no": "Nac oes"
         },
         "errors": {
           "screenHasRespondentAddress": {
-            "required": "Dewiswch oes os oes gennych chi gyfeiriad ar gyfer eich gwr/gwraig",
-            "invalid": "Dewiswch oes os oes gennych chi gyfeiriad ar gyfer eich gwr/gwraig"
+            "required": "Dewiswch oes os oes gennych chi gyfeiriad ar gyfer eich gŵr/gwraig",
+            "invalid": "Dewiswch oes os oes gennych chi gyfeiriad ar gyfer eich gŵr/gwraig"
           }
         }
       }

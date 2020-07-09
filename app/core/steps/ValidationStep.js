@@ -290,6 +290,7 @@ module.exports = class ValidationStep extends Step {
 
     if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
       contentCtx.divorceWho = common[contentCtx.divorceWho];
+      contentCtx.divorceWithWhom = contentCtx.divorceWho === 'husband' ? common.withHim : common.withHer;
     }
 
     const translatedContent = this.content.resources[lang].translation;

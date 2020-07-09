@@ -34,7 +34,7 @@
           "examples": "Defnyddiwch hynny o enghreifftiau ag y mae arnoch eisiau eu defnyddio, cyn belled â bod hynny’n ddigon i fodloni’r llys na ellir disgwyl yn rhesymol ichi fyw gyda’ch {{ divorceWho }}.",
           "warning": "Anfonir copi o’ch cais am ysgariad at eich {{ divorceWho }}, felly efallai y byddwch am osgoi defnyddio iaith a fyddai’n achosi gwrthdaro rhyngoch. Gallwch drafod eich enghreifftiau gyda’ch {{ divorceWho }} os oes arnoch eisiau gwneud hynny.",
           "describe": "Enghraifft",
-          "my": "Fy {{ divorceWho }} ...",
+          "my": "Mae fy n{{ divorceWho }} ...",
           "addAnother": "+ Ychwanegwch enghraifft arall"
         },
         "checkYourAnswersContent": {

@@ -294,15 +294,4 @@ module.exports = class ValidationStep extends Step {
       return this.i18next.t(`checkYourAnswersContent.${path}`, contentCtx);
     });
   }
-
-  getContentCtx(ctx, session, lang, common) {
-    const contentCtx = Object.assign({}, session, ctx, this.commonProps);
-
-    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
-      contentCtx.divorceWho = common[contentCtx.divorceWho];
-      contentCtx.divorceWithWhom = contentCtx.divorceWho === 'husband' ? common.withHim : common.withHer;
-    }
-
-    return contentCtx;
-  }
 };

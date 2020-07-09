@@ -574,21 +574,6 @@ describe(modulePath, () => {
       expect(content.hasOwnProperty('question')).to.eql(true);
       expect(content.question).to.eql('A yw eich tystysgrif priodas yn eich meddiant?');
     });
-
-    it('should generate the correct content ctx', () => {
-      const commonContent = require('app/content/common-cy').resources.cy.translation;
-
-      const step = new Step({}, 'screening-questions', null, fixtures.content.interpolate);
-      const ctx = { divorceWho: 'husband' };
-      const session = { language: 'cy', 'screening-questions': { respondent: 'Other person' } };
-
-      const contentCtx = step.getContentCtx(ctx, session, 'cy', commonContent);
-
-      expect(contentCtx).to.include({
-        divorceWho: 'gŵr',
-        divorceWithWhom: 'gyda hi'
-      });
-    });
   });
 
   describe('#constructor()', () => {

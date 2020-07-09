@@ -1,5 +1,5 @@
 provider "azurerm" {
-  version = "1.22.1"
+  version = "1.44.0"
 }
 
 data "azurerm_key_vault" "div_key_vault" {
@@ -186,8 +186,10 @@ module "frontend" {
     // Common Court Content
     SMARTSURVEY_FEEDBACK_URL             = "${var.survey_feedback_url}"
     SMARTSURVEY_FEEDBACK_DONE_URL        = "${var.survey_feedback_done_url}"
-    COURT_PHONENUMBER                    = "${var.court_phone_number}"
-    COURT_OPENINGHOURS                   = "${var.court_opening_hours}"
+    COURT_PHONENUMBER_EN                 = "${var.court_phone_number_en}"
+    COURT_PHONENUMBER_CY                 = "${var.court_phone_number_cy}"
+    COURT_OPENINGHOURS_EN                = "${var.court_opening_hours_en}"
+    COURT_OPENINGHOURS_CY                = "${var.court_opening_hours_cy}"
     COURT_EMAIL                          = "${var.court_email}"
 
     // HPKP

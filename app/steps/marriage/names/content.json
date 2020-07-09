@@ -45,9 +45,9 @@
           "firstName": "Enw(au) cyntaf",
           "lastName": "Cyfenw(au)",
           "middleNames": "Rhowch bob enw canol yma",
-          "respondentName": "Rhowch enw llawn {{ divorceWho }}",
-          "respondentFirstName": "Enw(au) cyntaf {{ divorceWho }}",
-          "respondentLastName": "Enw(au) olaf {{ divorceWho }}"
+          "respondentName": "Nodwch enw llawn eich {{ divorceWho }}",
+          "respondentFirstName": "Enw(au) cyntaf eich {{ divorceWho }}",
+          "respondentLastName": "Cyfenw(au) eich {{ divorceWho }}"
         },
         "checkYourAnswersContent": {
           "respondentName": "Enw cyfredol eich {{ divorceWho }}",

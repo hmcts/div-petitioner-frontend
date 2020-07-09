@@ -26,7 +26,7 @@
       "translation": {
         "content": {
           "question": "Ydych chi eisiau i’ch manylion gael eu cadw’n breifat oddi wrth eich {{ divorceWho }}?",
-          "divorcePetitionCopy": "Anfonir copi o’ch cais am ysgariad at eich {{ divorceWho }}. Os nad ydych am iddo/iddi wybod eich cyfeiriad dylech ofyn i’r llys gadw’r cyfeiriad yn breifat.",
+          "divorcePetitionCopy": "Anfonir copi o’ch cais am ysgariad at eich {{ divorceWho }}. Os nad ydych am eich {{ divorceWho }} wybod eich cyfeiriad dylech ofyn i’r llys gadw’r cyfeiriad yn breifat.",
           "adultery": "Os ydych yn defnyddio godineb yn rheswm dros ysgaru a’ch bod yn dewis enwi cyd-atebydd, bydd y cyd-atebydd hefyd yn cael copi.",
           "sameProperty": "Ni ellir cadw eich cyfeiriad yn breifat os ydych yn byw yn yr un eiddo a’ch {{ divorceWho }}.",
           "share": "Nid oes angen cadw fy nghyfeiriad yn breifat",

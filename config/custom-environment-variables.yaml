@@ -55,8 +55,10 @@ evidenceManagmentClient:
 commonProps:
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL
   smartSurveyFeedbackDonePageUrl: SMARTSURVEY_FEEDBACK_DONE_URL
-  courtPhoneNumber: COURT_PHONENUMBER
-  courtOpeningHour: COURT_OPENINGHOURS
+  courtPhoneNumberEn: COURT_PHONENUMBER_EN
+  courtPhoneNumberCy: COURT_PHONENUMBER_CY
+  courtOpeningHourEn: COURT_OPENINGHOURS_EN
+  courtOpeningHourCy: COURT_OPENINGHOURS_CY
   courtEmail: COURT_EMAIL
 
 ssl:

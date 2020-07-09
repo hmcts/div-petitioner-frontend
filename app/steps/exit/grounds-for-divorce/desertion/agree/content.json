@@ -13,8 +13,8 @@
     "cy": {
       "translation": {
         "content": {
-          "title": "Ni allwch ddefnyddio’r ffaith fod eich gwr/gwraig wedi gadael yn rheswm dros ysgaru",
-          "reason": "I ddefnyddio’r ffaith fod eich gwr/gwraig wedi gadael yn rheswm dros ysgaru  mae’n rhaid i’ch {{ divorceWho }} fod wedi gadael heb eich cydsyniad.",
+          "title": "Ni allwch ddefnyddio’r ffaith fod eich gŵr/gwraig wedi gadael yn rheswm dros ysgaru",
+          "reason": "I ddefnyddio’r ffaith fod eich gŵr/gwraig wedi gadael yn rheswm dros ysgaru  mae’n rhaid i’ch {{ divorceWho }} fod wedi gadael heb eich cydsyniad.",
           "proceed": "Os ydych am fwrw ymlaen gyda’ch cais am ysgariad, mae’n rhaid ichi <a class=\"govuk-link\" href=\"/about-divorce/reason-for-divorce/reason\" >ddewis ffaith arall sy’n berthnasol i chi</a>."
         }
       }

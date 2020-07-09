@@ -24,8 +24,10 @@ function commonContentMiddleware(req, res, next) {
         return target.t(key, {
           pageUrl: req.baseUrl,
           smartSurveyFeedbackUrl: CONF.commonProps.smartSurveyFeedbackUrl,
-          courtPhoneNumber: CONF.commonProps.courtPhoneNumber,
-          courtOpeningHour: CONF.commonProps.courtOpeningHour,
+          courtPhoneNumberEn: CONF.commonProps.courtPhoneNumberEn,
+          courtPhoneNumberCy: CONF.commonProps.courtPhoneNumberCy,
+          courtOpeningHourEn: CONF.commonProps.courtOpeningHourEn,
+          courtOpeningHourCy: CONF.commonProps.courtOpeningHourCy,
           courtEmail: CONF.commonProps.courtEmail
         });
       }

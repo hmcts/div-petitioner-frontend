@@ -15,7 +15,7 @@
         "errorSummaryHeading": "Roedd yna broblem",
         "problemWithThisPage": "Cysylltwch â ni am gymorth",
         "phoneTitle": "Rhif ffôn",
-        "phoneToCallIfProblems": "{{courtPhoneNumber}}<br>{{courtOpeningHour}}.",
+        "phoneToCallIfProblems": "{{courtPhoneNumberCy}}<br>{{courtOpeningHourCy}}.",
         "emailTitle": "Anfonwch neges atom:",
         "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:divorcecase@justice.gov.uk\" aria-label=\"Anfonwch neges atom i ymholiadaucymraeg@justice.gov.uk, mae’r ddolen hon yn agor neges e-bost newydd.\" >Anfonwch neges atom</a>",
         "responseTime": "Rydym yn amcanu ymateb o fewn 5 diwrnod gwaith",
@@ -35,6 +35,8 @@
         "termsAndConditions": "Telerau ac Amodau",
         "husband": "gŵr",
         "wife": "gwraig",
+        "withHim": "gydag ef",
+        "withHer": "gyda hi",
         "months": [
           "Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
           "Gorffennaf", "Awst", "Medi", "Hydref", "Tachwedd", "Rhagfyr"

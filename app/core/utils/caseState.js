@@ -1,17 +1,17 @@
-const { isEmpty, isEqual } = require('lodash');
+const { isEmpty, isEqual, get } = require('lodash');
 
 const caseStates = {
   AwaitingAmendCase: 'AwaitingAmendCase'
 };
 
-const caseInState = (sessionData, caseState) => {
-  if (isEmpty(caseState) || isEmpty(sessionData.state)) {
+const isAwaitingAmendCase = sessionData => {
+  const state = get(sessionData, 'state');
+  if (isEmpty(state)) {
     return false;
   }
-  return isEqual(sessionData.state, caseState);
+  return isEqual(state, caseStates.AwaitingAmendCase);
 };
 
 module.exports = {
-  caseInState,
-  caseStates
+  isAwaitingAmendCase
 };

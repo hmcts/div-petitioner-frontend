@@ -38,12 +38,12 @@ module.exports = class Authenticated extends Step {
   }
 
   nextStep(session) {
-    if (session && session.featureToggles.ft_welsh) {
-      return this.steps.ScreeningQuestionsLanguagePreference;
-    }
-
     if (isAwaitingAmendCase(session)) {
       return this.steps.AwaitingAmend;
+    }
+
+    if (session && session.featureToggles.ft_welsh) {
+      return this.steps.ScreeningQuestionsLanguagePreference;
     }
 
     return this.steps.ScreeningQuestionsMarriageBroken;

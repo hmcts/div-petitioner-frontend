@@ -1,6 +1,7 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
-{% from "common/document-list.njk" import documentList %}
+{% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
+{% from "common/document-list.njk" import documentList, d8petitionDocumentInfo %}
 
 {% extends "layout.html" %}
 
@@ -26,35 +27,29 @@ html: html
     <strong class="govuk-!-font-size-16">Case number:</strong>&nbsp;&nbsp;&nbsp;
     {{ session.caseId | insertHyphens | safe }}
     <br>
-    <strong class="govuk-!-font-size-16">Name:</strong> &nbsp;&nbsp;&nbsp;
+    <strong class="govuk-!-font-size-16">Name:</strong>
     {{ session.petitionerFirstName | safe }}
     {{ session.petitionerLastName | safe }}
   </p>
 
-<div class="progress">
-  <ol class="progress__list">
-    <li class="progress__item progress__item--complete">
-      <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
-      <span class="progress__label">{{ content.youApply }}</span>
-      <span class="visually-hidden">{{ content.thisIsComplete }}</span>
-    </li>
-    <li class="progress__item progress__item--current">
-      <i class="progress__icon"></i>
-      <span class="progress__label">{{ content.yourRespondes }}</span>
-      <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-    </li>
-    <li class="progress__item">
-      <i class="progress__icon"></i>
-      <span class="progress__label">{{ content.continueDivorce }}</span>
-      <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-    </li>
-    <li class="progress__item">
-      <i class="progress__icon"></i>
-      <span class="progress__label">{{ content.divorceFinalised }}</span>
-      <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-    </li>
-  </ol>
-</div>
+{{ hmctsProgressBar({
+  items: [
+     {
+      label: { text: content.youApply },
+      complete: true
+     },
+     {
+      label: { text: content.yourRespondes },
+      active: true
+      },
+     {
+      label: { text: content.continueDivorce }
+     },
+     {
+      label: { text: content.divorceFinalised }
+      }
+     ]
+   }) }}
 
 <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
 <div class="govuk-body">
@@ -64,15 +59,7 @@ html: html
   <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
 
   {% if (session.d8Documents.length > 0) %}
-  <div class="govuk-body govuk-!-margin-top-7 govuk-!-margin-bottom-7">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        {{content.downloadWarning | safe}}
-      </strong>
-    </div>
-  </div>
+     {{ d8petitionDocumentInfo(session.d8Documents, content) }}
   {% endif %}
 
 </div>
@@ -90,7 +77,7 @@ html: html
   <h3 class="govuk-heading-m">{{ content.help }}</h3>
   <ul class="govuk-list govuk-body govuk-!-font-size-16 help">
     <li>
-      <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.emailHeading }}</h4>
+      <h4 class="govuk-heading-xs govuk-!-margin-0 go">{{ content.emailHeading }}</h4>
       <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{
         session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
     </li>

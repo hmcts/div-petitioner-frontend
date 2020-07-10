@@ -1,7 +1,7 @@
 <tr class="govuk-table__row">
   <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">{{ content[fields.financialOrder.value | lower] | safe }}</td>
-  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {%- if fields.financialOrder.value === "Yes" -%}
   <tr class="govuk-table__row">
@@ -11,6 +11,6 @@
         {{ content[financialOrderFor] | safe }}<br/>
       {%- endfor -%}
     </td>
-    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whoItsFor | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.whoItsFor | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
 {%- endif -%}

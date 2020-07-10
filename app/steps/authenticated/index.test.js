@@ -61,6 +61,23 @@ describe(modulePath, () => {
     });
   });
 
+  describe('Awaiting Amend Case state', () => {
+    const session = clone(mockSession);
+    session.state = 'AwaitingAmendCase';
+
+    beforeEach(done => {
+      const thousand = 1000;
+      session.expires = Date.now() + thousand;
+      withSession(done, agent, session);
+    });
+
+    it('#authenticated: should immediately redirect to the awaiting amend case step page', done => {
+      const context = {};
+      testRedirect(done, agent, underTest, context, s.steps.AwaitingAmend);
+    });
+  });
+
+
   describe('idam on', () => {
     it('redirects to the landing page', done => {
       const context = {};

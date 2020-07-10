@@ -55,7 +55,7 @@ const redirectToNextUnansweredQuestion = function* (req, res, next) {
 const redirectToNextPage = (req, res, next) => {
   const { session } = req;
 
-  if (session.hasOwnProperty('previousCaseId')) {
+  if (session.hasOwnProperty('previousCaseId') && session.helpWithFeesAppliedForFees !== 'No') {
     return co(redirectToNextUnansweredQuestion(req, res, next))
       .catch(error => {
         logger.errorWithReq(req, 'redirect_to_next_unanswered_step_error', 'Error finding and redirecting to next step', error.message);

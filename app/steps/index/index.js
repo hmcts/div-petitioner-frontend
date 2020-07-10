@@ -1,6 +1,7 @@
 const Step = require('app/core/steps/Step');
 const { authenticate } = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
+const { isAwaitingAmendCase } = require('app/core/utils/caseState');
 const logger = require('app/services/logger').logger(__filename);
 
 module.exports = class Index extends Step {
@@ -9,6 +10,10 @@ module.exports = class Index extends Step {
   }
 
   nextStep(session) {
+    if (isAwaitingAmendCase(session)) {
+      return this.steps.AwaitingAmend;
+    }
+
     if (session && session.featureToggles.ft_welsh) {
       return this.steps.ScreeningQuestionsLanguagePreference;
     }

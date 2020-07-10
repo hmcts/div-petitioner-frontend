@@ -12,9 +12,4 @@ module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningVal
       }
     };
   }
-
-  // disable check your answers
-  get checkYourAnswersTemplate() {
-    return false;
-  }
 };

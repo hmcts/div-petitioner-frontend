@@ -5,7 +5,7 @@
       <th class="govuk-table__cell" scope="row">{{ content.sepQues | safe }}</th>
     {% endif %}
   <td class="govuk-table__cell">{{ content[fields.livedApartEntireTime.value | lower] | safe }}</td>
-  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.sepQues | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.livedTogetherMoreTimeThanPermitted.value %}
 <tr class="govuk-table__row">
@@ -45,6 +45,6 @@
     {{ content.question.mark }}
   </td>
   <td class="govuk-table__cell">{{ content[fields.livedTogetherMoreTimeThanPermitted.value | lower] | safe }}</td>
-  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question.text | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question.text | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% endif %}

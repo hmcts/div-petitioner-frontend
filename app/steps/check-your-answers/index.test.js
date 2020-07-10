@@ -117,6 +117,9 @@ describe(modulePath, () => {
     beforeEach(done => {
       session = clone(mockSession);
       session.saveAndResumeUrl = '/some-next-step-url';
+      session.featureToggles = {
+        ft_welsh: true
+      };
       withSession(done, agent, session);
     });
 
@@ -670,7 +673,7 @@ describe(modulePath, () => {
 
   describe('#postRequest', () => {
     beforeEach(() => {
-      req = { body: {}, method: 'POST', session: {}, headers: {} };
+      req = { body: {}, method: 'POST', session: { featureToggles: {} }, headers: {} };
       res = {
         redirect: sinon.stub(),
         sendStatus: sinon.stub()

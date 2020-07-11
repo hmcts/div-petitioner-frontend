@@ -8,5 +8,5 @@
       <span class="address">{{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}</span>
     {% endif %}
   </td>
-  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

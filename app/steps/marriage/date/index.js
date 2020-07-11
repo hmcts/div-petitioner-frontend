@@ -12,6 +12,7 @@ module.exports = class MarriageDate extends ValidationStep {
   get url() {
     return '/about-your-marriage/date-of-marriage-certificate';
   }
+
   get nextStep() {
     return {
       marriageCanDivorce: {

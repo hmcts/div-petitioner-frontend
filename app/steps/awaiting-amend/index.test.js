@@ -4,6 +4,7 @@ const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect } = require('test/util/chai');
 const serviceCentreCourt = require('test/examples/courts/serviceCentre');
+const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession.json');
 
 const modulePath = 'app/steps/awaiting-amend';
 
@@ -25,8 +26,16 @@ describe(modulePath, () => {
   });
 
   describe('renders content', () => {
+    let session = {};
+    beforeEach(done => {
+      session = mockAwaitingAmendSession;
+      const thousand = 1000;
+      session.expires = Date.now() + thousand;
+      withSession(done, agent, session);
+    });
+
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content);
+      testContent(done, agent, underTest, content, session);
     });
   });
 

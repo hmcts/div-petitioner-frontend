@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testCustom } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect } = require('test/util/chai');
@@ -22,6 +22,12 @@ describe(modulePath, () => {
     appInstance = server.init();
     agent = request.agent(appInstance.app);
     underTest = appInstance.steps.AwaitingAmend;
+  });
+
+  describe('renders content', () => {
+    it('renders the content from the content file', done => {
+      testContent(done, agent, underTest, content);
+    });
   });
 
   describe('should show awaiting amends info', () => {

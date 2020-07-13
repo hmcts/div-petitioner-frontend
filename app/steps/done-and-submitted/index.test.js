@@ -578,4 +578,24 @@ describe(modulePath, () => {
         contentStrings.amendedCourtCheck);
     });
   });
+
+  describe('should populate text content correctly', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {};
+
+      withSession(done, agent, session);
+    });
+
+    it('display `Get Help description` text', done => {
+      testContent(done, agent, underTest,
+        contentStrings.getHelpDescription);
+    });
+
+    it('display link for `How To Respond`', done => {
+      testContent(done, agent, underTest,
+        contentStrings.howToRespondLink);
+    });
+  });
 });

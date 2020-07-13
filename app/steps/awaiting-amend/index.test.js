@@ -11,7 +11,7 @@ const content = require(`${modulePath}/content`);
 
 const contentStrings = content.resources.en.translation.content;
 
-let s = {};
+let appInstance = {};
 let agent = {};
 let underTest = {};
 
@@ -19,9 +19,9 @@ describe(modulePath, () => {
   const allocatedCourt = serviceCentreCourt;
 
   beforeEach(() => {
-    s = server.init();
-    agent = request.agent(s.app);
-    underTest = s.steps.AwaitingAmend;
+    appInstance = server.init();
+    agent = request.agent(appInstance.app);
+    underTest = appInstance.steps.AwaitingAmend;
   });
 
   describe('should show awaiting amends info', () => {

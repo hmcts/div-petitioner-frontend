@@ -51,6 +51,7 @@ module.exports = {
   marriagePetitionerName: 'John Doe',
   marriageRespondentName: 'Jenny Benny',
   petitionerNameDifferentToMarriageCertificate: 'Yes',
+  petitionerPcqId: 'is_in_session',
   petitionerNameChangedHow: ['marriageCertificate'],
   petitionerPhoneNumber: '01234567890',
   petitionerConsent: 'Yes',

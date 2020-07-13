@@ -2,7 +2,7 @@
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
 {% from "common/components/awaitingAmendsComponent.html" import documentList %}
-{% extends "question.html" %}
+{% extends "layout.html" %}
 
 {% block back %}{% endblock %}
 
@@ -18,9 +18,9 @@ html: html
 }) }}
 {% endblock %}
 
+{% block two_thirds %}
 {% set title = content.title %}
 
-{% block question %}
 <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
 <p class="govuk-body">
   <strong>Case number:</strong>&nbsp;&nbsp;&nbsp;
@@ -52,7 +52,6 @@ label: { text: content.divorceFinalised }
 
 <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
 <div class="govuk-body">
-  <em class="icon icon-file-download"></em>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara1 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara2 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
@@ -73,9 +72,6 @@ label: { text: content.divorceFinalised }
   </button>
 </div>
 
-{% block submitbutton %}{% endblock %}
-{% block saveAndClose %}{% endblock %}
-
 {% endblock %}
 
 {% block one_third %}
@@ -94,25 +90,25 @@ label: { text: content.divorceFinalised }
     </li>
 
     <li>
-      {%- if session.allocatedCourt.serviceCentreName -%}
+      {% if session.allocatedCourt.serviceCentreName %}
       {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
-      {%- endif -%}
+      {% endif %}
       {{ session.allocatedCourt.divorceCentre | safe }}<br/>
-      {%- if session.allocatedCourt.poBox -%}
+      {% if session.allocatedCourt.poBox %}
       {{ session.allocatedCourt.poBox | safe }}<br/>
-      {%- else -%}
+      {% else %}
       {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
       {{ session.allocatedCourt.street | safe }}<br/>
-      {%- endif -%}
+      {% endif %}
       {{ session.allocatedCourt.courtCity | safe }}<br/>
       {{ session.allocatedCourt.postCode | safe }}
     </li>
   </ul>
 
-  {%- if (session.d8Documents.length > 0) -%}
-  <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
-  {{ documentList(session.d8Documents) }}
-  {%- endif -%}
+  {% if (session.d8Documents.length > 0) %}
+    <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
+    {{ documentList(session.d8Documents) }}
+  {% endif %}
 
   <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
   <nav role="navigation" aria-labelledby="subsection-title">

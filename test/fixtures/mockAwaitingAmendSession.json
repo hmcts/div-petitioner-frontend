@@ -1,0 +1,30 @@
+{
+  "state": "AwaitingAmendCase",
+  "caseId": "1591627943615123",
+  "petitionerFirstName": "John",
+  "petitionerLastName": "Smith",
+  "divorceWho": "wife",
+  "allocatedCourt": {
+    "courtId": "eastMidlands",
+    "divorceCentre": "East Midlands Regional Divorce Centre",
+    "courtCity": "Nottingham",
+    "poBox": "PO Box 10447",
+    "postCode": "NG2 9QN",
+    "openingHours": "Telephone Enquiries from: 8.30am to 5pm",
+    "email": "eastmidlandsdivorce@hmcts.gsi.gov.uk",
+    "phoneNumber": "0300 303 0642",
+    "siteId": "AA01"
+  },
+  "d8Documents": [
+    {
+      "createdBy": 12661,
+      "createdOn": "2017-12-11",
+      "lastModifiedBy": 12661,
+      "modifiedOn": "2017-12-11",
+      "fileName": "d8petition1594290020676943.pdf",
+      "fileUrl": "http://localhost:5006/documents/560f4bd1-fcf2-4dc5-80d1-d7e00d861655",
+      "mimeType": "application/pdf",
+      "status": "OK"
+    }
+  ]
+}

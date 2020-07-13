@@ -91,6 +91,7 @@ exports.init = listenForConnections => {
   app.use(favicon(path.join(__dirname, 'public', manifest.STATIC_ASSET_PATH, 'images', 'favicon.ico')));
 
   app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')));
+  app.use('/hmcts-assets', express.static(path.join(__dirname, '/node_modules/@hmcts/frontend/assets')));
 
   // Application settings
   app.set('view engine', 'html');

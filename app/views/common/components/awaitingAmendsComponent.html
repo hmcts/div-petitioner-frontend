@@ -22,19 +22,3 @@
     </nav>
   {%- endif -%}
 {% endmacro %}
-
-{% macro d8petitionDocumentInfo(documents, content) %}
- {%- for document in documents -%}
-  {% if document.fileName.startsWith('d8petition') %}
-    <div class="govuk-body govuk-!-margin-top-7 govuk-!-margin-bottom-7">
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          {{content.downloadWarning | safe}}
-        </strong>
-      </div>
-    </div>
-  {% endif %}
- {%- endfor -%}
-{% endmacro %}

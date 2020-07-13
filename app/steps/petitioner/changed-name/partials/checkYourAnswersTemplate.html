@@ -1,7 +1,7 @@
 <tr class="govuk-table__row">
   <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">{{ content[fields.petitionerNameDifferentToMarriageCertificate.value | lower] | safe }}</td>
-  <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+  <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>
 {% if fields.petitionerNameDifferentToMarriageCertificate.value === 'Yes' %}
   <tr class="govuk-table__row">
@@ -11,13 +11,13 @@
         {{ content[how] | safe }} <br/>
       {%- endfor -%}
     </td>
-    <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.nameChangeProof | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+    <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.nameChangeProof | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
   </tr>
   {% if fields.petitionerNameChangedHowOtherDetails.value !== '' and fields.petitionerNameChangedHowOtherDetails.value.length > 0 %}
     <tr class="govuk-table__row">
       <td class="govuk-table__cell">{{ content.howChangeName | safe}}</td>
       <td class="govuk-table__cell">{{ fields.petitionerNameChangedHowOtherDetails.value }}</td>
-      <td class="govuk-table__cell"><a class="govuk-link" aria-label="{{ content.change }} {{ content.howChangeName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+      <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.howChangeName | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
     </tr>
   {% endif %}
 {% endif %}

@@ -13,7 +13,6 @@ module.exports = class Index extends Step {
     if (isAwaitingAmendCase(session)) {
       return this.steps.AwaitingAmend;
     }
-
     if (session && session.featureToggles.ft_welsh) {
       return this.steps.ScreeningQuestionsLanguagePreference;
     }

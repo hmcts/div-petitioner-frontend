@@ -1,9 +1,8 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
-{% from "common/components/awaitingAmendsComponent.html" import documentList, d8petitionDocumentInfo %}
-
-{% extends "layout.html" %}
+{% from "common/components/awaitingAmendsComponent.html" import documentList %}
+{% extends "question.html" %}
 
 {% block back %}{% endblock %}
 
@@ -19,48 +18,52 @@ html: html
 }) }}
 {% endblock %}
 
-{% block two_thirds %}
 {% set title = content.title %}
 
-  <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
-  <p class="govuk-body-s">
-    <strong class="govuk-!-font-size-16">Case number:</strong>&nbsp;&nbsp;&nbsp;
-    {{ session.caseId | insertHyphens | safe }}
-    <br>
-    <strong class="govuk-!-font-size-16">Name:</strong>
-    {{ session.petitionerFirstName | safe }}
-    {{ session.petitionerLastName | safe }}
-  </p>
+{% block question %}
+<h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
+<p class="govuk-body">
+  <strong>Case number:</strong>&nbsp;&nbsp;&nbsp;
+  {{ session.caseId | insertHyphens | safe }}
+  <br>
+  <strong>Name:</strong>
+  {{ session.petitionerFirstName | safe }}
+  {{ session.petitionerLastName | safe }}
+</p>
 
 {{ hmctsProgressBar({
-  items: [
-     {
-      label: { text: content.youApply },
-      complete: true
-     },
-     {
-      label: { text: content.yourRespondes },
-      active: true
-      },
-     {
-      label: { text: content.continueDivorce }
-     },
-     {
-      label: { text: content.divorceFinalised }
-      }
-     ]
-   }) }}
+items: [
+{
+label: { text: content.youApply },
+complete: true
+},
+{
+label: { text: content.yourRespondes },
+active: true
+},
+{
+label: { text: content.continueDivorce }
+},
+{
+label: { text: content.divorceFinalised }
+}
+]
+}) }}
 
 <h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.whatToDoNow | safe}}</h2>
 <div class="govuk-body">
+  <em class="icon icon-file-download"></em>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara1 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara2 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
 
-  {% if (session.d8Documents.length > 0) %}
-     {{ d8petitionDocumentInfo(session.d8Documents, content) }}
-  {% endif %}
+  {%- if (session.d8Documents.length > 0) -%}
+  {{ govukWarningText({
+  text: content.downloadWarning | safe,
+  iconFallbackText: content.warning
+  }) }}
+  {%- endif -%}
 
 </div>
 
@@ -69,6 +72,9 @@ html: html
     {{content.continueBtnText | safe}}
   </button>
 </div>
+
+{% block submitbutton %}{% endblock %}
+{% block saveAndClose %}{% endblock %}
 
 {% endblock %}
 
@@ -88,25 +94,25 @@ html: html
     </li>
 
     <li>
-      {% if session.allocatedCourt.serviceCentreName %}
+      {%- if session.allocatedCourt.serviceCentreName -%}
       {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
-      {% endif %}
+      {%- endif -%}
       {{ session.allocatedCourt.divorceCentre | safe }}<br/>
-      {% if session.allocatedCourt.poBox %}
+      {%- if session.allocatedCourt.poBox -%}
       {{ session.allocatedCourt.poBox | safe }}<br/>
-      {% else %}
+      {%- else -%}
       {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
       {{ session.allocatedCourt.street | safe }}<br/>
-      {% endif %}
+      {%- endif -%}
       {{ session.allocatedCourt.courtCity | safe }}<br/>
       {{ session.allocatedCourt.postCode | safe }}
     </li>
   </ul>
 
-  {% if (session.d8Documents.length > 0) %}
-    <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
-    {{ documentList(session.d8Documents) }}
-  {% endif %}
+  {%- if (session.d8Documents.length > 0) -%}
+  <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
+  {{ documentList(session.d8Documents) }}
+  {%- endif -%}
 
   <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
   <nav role="navigation" aria-labelledby="subsection-title">

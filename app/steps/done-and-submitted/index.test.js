@@ -589,13 +589,13 @@ describe(modulePath, () => {
 
 
     it('display `Get Help description` text', done => {
-      testContent(done, agent, underTest,
-        contentStrings.getHelpDescription, session);
+      testExistence(done, agent, underTest,
+        contentStrings.getHelpDescription);
     });
 
     it('display link for `How To Respond`', done => {
-      testContent(done, agent, underTest,
-        contentStrings.howToRespondLink, session);
+      testExistence(done, agent, underTest,
+        contentStrings.howToRespondLink);
     });
   });
 });

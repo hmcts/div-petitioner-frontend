@@ -580,22 +580,22 @@ describe(modulePath, () => {
   });
 
   describe('should populate text content correctly', () => {
-    let session = {};
-
+    const session = {};
     beforeEach(done => {
-      session = {};
-
+      const oneSecond = 1000;
+      session.expires = Date.now() + oneSecond;
       withSession(done, agent, session);
     });
 
+
     it('display `Get Help description` text', done => {
       testContent(done, agent, underTest,
-        contentStrings.getHelpDescription);
+        contentStrings.getHelpDescription, session);
     });
 
     it('display link for `How To Respond`', done => {
       testContent(done, agent, underTest,
-        contentStrings.howToRespondLink);
+        contentStrings.howToRespondLink, session);
     });
   });
 });

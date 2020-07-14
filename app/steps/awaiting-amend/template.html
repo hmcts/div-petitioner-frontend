@@ -22,13 +22,15 @@ html: html
 {% set title = content.title %}
 
 <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
-<p class="govuk-body">
-  <strong>Case number:</strong>&nbsp;&nbsp;&nbsp;
+<p class="govuk-body govuk-!-margin-bottom-7">
+  <strong>Case number:</strong>
   {{ session.caseId | insertHyphens | safe }}
   <br>
   <strong>Name:</strong>
-  {{ session.petitionerFirstName | safe }}
-  {{ session.petitionerLastName | safe }}
+  <span>
+    {{ session.petitionerFirstName | safe }}
+    {{ session.petitionerLastName | safe }}
+  </span>
 </p>
 
 {{ hmctsProgressBar({
@@ -57,12 +59,12 @@ label: { text: content.divorceFinalised }
   <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
 
-  {%- if (session.d8Documents.length > 0) -%}
+  {% if session.d8 and session.d8.length %}
   {{ govukWarningText({
   text: content.downloadWarning | safe,
   iconFallbackText: content.warning
   }) }}
-  {%- endif -%}
+  {% endif %}
 
 </div>
 
@@ -81,33 +83,33 @@ label: { text: content.divorceFinalised }
     <li>
       <h4 class="govuk-heading-xs govuk-!-margin-0 go">{{ content.emailHeading }}</h4>
       <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{
-        session.allocatedCourt.email | safe if session.allocatedCourt.email }}</a><br>
+        session.court.serviceCentre.email | safe if session.court.serviceCentre.email }}</a><br>
     </li>
     <li>
       <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
-      {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
-      {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
+      {{ session.court.serviceCentre.phoneNumber | safe if session.court.serviceCentre.phoneNumber }}<br>
+      {{ session.court.serviceCentre.openingHours | safe if session.court.serviceCentre.openingHours }}<br>
     </li>
 
     <li>
-      {% if session.allocatedCourt.serviceCentreName %}
-      {{ session.allocatedCourt.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
+      {% if session.court.serviceCentre %}
+      {{ session.court.serviceCentre.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
       {% endif %}
-      {{ session.allocatedCourt.divorceCentre | safe }}<br/>
-      {% if session.allocatedCourt.poBox %}
-      {{ session.allocatedCourt.poBox | safe }}<br/>
+      {{ session.court.serviceCentre.divorceCentre | safe }}<br/>
+      {% if session.court.serviceCentre.poBox %}
+      {{ session.court.serviceCentre.poBox | safe }}<br/>
       {% else %}
-      {{ session.allocatedCourt.divorceCentreAddressName | safe }}<br/>
-      {{ session.allocatedCourt.street | safe }}<br/>
+      {{ session.court.serviceCentre.divorceCentre | safe }}<br/>
+      {{ session.court.serviceCentre.street | safe }}<br/>
       {% endif %}
-      {{ session.allocatedCourt.courtCity | safe }}<br/>
-      {{ session.allocatedCourt.postCode | safe }}
+      {{ session.court.serviceCentre.courtCity | safe }}<br/>
+      {{ session.court.serviceCentre.postCode | safe }}
     </li>
   </ul>
 
-  {% if (session.d8Documents.length > 0) %}
+  {% if session.d8 and session.d8.length %}
     <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
-    {{ documentList(session.d8Documents) }}
+    {{ documentList(session.d8) }}
   {% endif %}
 
   <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>

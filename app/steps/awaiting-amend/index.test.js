@@ -3,8 +3,7 @@ const { testContent, testExistence, testCustom } = require('test/util/assertions
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect } = require('test/util/chai');
-const serviceCentreCourt = require('test/examples/courts/serviceCentre');
-const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession.json');
+const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
 
 const modulePath = 'app/steps/awaiting-amend';
 
@@ -17,8 +16,6 @@ let agent = {};
 let underTest = {};
 
 describe(modulePath, () => {
-  const allocatedCourt = serviceCentreCourt;
-
   beforeEach(() => {
     appInstance = server.init();
     agent = request.agent(appInstance.app);
@@ -29,8 +26,8 @@ describe(modulePath, () => {
     let session = {};
     beforeEach(done => {
       session = mockAwaitingAmendSession;
-      const thousand = 1000;
-      session.expires = Date.now() + thousand;
+      const oneSecond = 1000;
+      session.expires = Date.now() + oneSecond;
       withSession(done, agent, session);
     });
 
@@ -62,18 +59,10 @@ describe(modulePath, () => {
   });
 
   describe('should display allocated court info', () => {
-    let session = {};
+    const session = mockAwaitingAmendSession;
+    const allocatedCourt = session.court.serviceCentre;
 
     beforeEach(done => {
-      session = {
-        reasonForDivorce: 'adultery',
-        petitionerNameDifferentToMarriageCertificate: 'No',
-        divorceWho: 'husband',
-        reasonForDivorceAdulteryWishToName: 'Yes',
-        financialOrder: 'No',
-        allocatedCourt
-      };
-
       withSession(done, agent, session);
     });
 

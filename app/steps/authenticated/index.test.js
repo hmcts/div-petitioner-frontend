@@ -30,7 +30,6 @@ describe(modulePath, () => {
     underTest = s.steps.Authenticated;
   });
 
-
   afterEach(() => {
     idamMock.restore();
     idam.landingPage.restore();
@@ -76,7 +75,6 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context, s.steps.AwaitingAmend);
     });
   });
-
 
   describe('idam on', () => {
     it('redirects to the landing page', done => {

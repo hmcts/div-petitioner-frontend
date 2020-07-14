@@ -177,4 +177,5 @@ featureToggles:
     lastName: 'Frontend'
     key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
   ft_welsh: 'divorce-welsh'
+  ft_awaiting_amend: 'divorce-amended-application'
   appwideToggles: ['ft_welsh']

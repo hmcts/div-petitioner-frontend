@@ -85,8 +85,8 @@ describe(modulePath, () => {
     session.state = 'AwaitingAmendCase';
 
     beforeEach(done => {
-      const thousand = 1000;
-      session.expires = Date.now() + thousand;
+      const oneSecond = 1000;
+      session.expires = Date.now() + oneSecond;
       withSession(done, agent, session);
     });
 

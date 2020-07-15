@@ -20,8 +20,6 @@ const completeEqualityTask = params => {
         if (json.status && json.status === 'UP') {
           params.req.session.petitionerPcqId = uuidv4();
 
-          // Need to post pcqId to ccd here
-
           return params.next();
         }
         logger.errorWithReq(params.req, 'complete_equality_task', 'PCQ service is DOWN');

@@ -52,10 +52,8 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
   submitApplication(req, res) {
     if (req.session.submissionStarted) {
-      res.redirect(this.steps.ApplicationSubmitted.url);
-      return;
+      return res.redirect(this.steps.ApplicationSubmitted.url);
     }
-
     req.session.state = 'amendCase';
     return res.redirect(BASE_PATH);
   }

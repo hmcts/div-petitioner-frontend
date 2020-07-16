@@ -2,7 +2,7 @@
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
 {% from "common/components/awaitingAmendsComponent.html" import documentList %}
-{% extends "layout.html" %}
+{% extends "question.html" %}
 
 {% block back %}{% endblock %}
 
@@ -18,9 +18,8 @@ html: html
 }) }}
 {% endblock %}
 
-{% block two_thirds %}
 {% set title = content.title %}
-
+{% block question %}
 <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
 <p class="govuk-body govuk-!-margin-bottom-7">
   <strong>Case number:</strong>
@@ -66,12 +65,7 @@ label: { text: content.divorceFinalised }
   }) }}
   {% endif %}
 
-</div>
-
-<div class="govuk-body">
-  <button class="govuk-button" data-module="govuk-button">
-    {{content.continueBtnText | safe}}
-  </button>
+  {% block saveAndClose %}{% endblock %}
 </div>
 
 {% endblock %}

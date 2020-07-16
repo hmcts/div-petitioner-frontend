@@ -9,6 +9,7 @@ const handleCcdCase = (req, res, next) => {
   const session = req.session;
   switch (session.state) {
   case 'AwaitingPayment':
+  case 'amendCase':
     if (session.currentPaymentReference) {
       return paymentStatusService
         .checkAndUpdatePaymentStatus(req)
@@ -21,7 +22,7 @@ const handleCcdCase = (req, res, next) => {
             return res.redirect(url);
           }
         )
-        // Log any errors occurred and end up on the error page.
+      // Log any errors occurred and end up on the error page.
         .catch(error => {
           logger.errorWithReq(req, 'payment_status_error', 'Error checking/updating payment status', error.message);
           return res.redirect('/generic-error');

@@ -10,7 +10,7 @@ module.exports = class Index extends Step {
   }
 
   nextStep(session) {
-    if (session.featureToggles.ft_awaiting_amend && isAwaitingAmendCase(session)) {
+    if (isAwaitingAmendCase(session)) {
       return this.steps.AwaitingAmend;
     }
 

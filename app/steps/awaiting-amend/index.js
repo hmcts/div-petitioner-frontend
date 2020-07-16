@@ -31,7 +31,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
     const hasBeenPostedWithoutSubmitButton = body && !body.hasOwnProperty('submit');
 
     if (hasBeenPostedWithoutSubmitButton) {
-      return yield super.postRequest(req, res);
+      return res.redirect(BASE_PATH);
     }
 
     const { session } = req;
@@ -43,6 +43,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
     if (isValid) {
       // apply ctx to session (this adds confirmPrayer to session before submission)
       req.session = this.applyCtxToSession(ctx, session);
+
       // if application is valid submit it
       return this.submitApplication(req, res);
     }
@@ -52,9 +53,12 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
   submitApplication(req, res) {
     if (req.session.submissionStarted) {
-      return res.redirect(this.steps.ApplicationSubmitted.url);
+      return res.redirect(BASE_PATH);
     }
+
+    req.session.submissionStarted = true;
     req.session.state = 'amendCase';
+
     return res.redirect(BASE_PATH);
   }
 };

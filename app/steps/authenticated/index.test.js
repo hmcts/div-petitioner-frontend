@@ -61,7 +61,7 @@ describe(modulePath, () => {
   });
 
   describe('Awaiting Amend Case state', () => {
-    it('redirects to the amend landing page', done => {
+    it('redirects to the amend landing page when toggle is on', done => {
       const context = {};
       const featureTest = featureToggleConfig
         .when('idam', true, testRedirect, agent, underTest, context, s.steps.AwaitingAmend);

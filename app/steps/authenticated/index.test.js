@@ -61,18 +61,32 @@ describe(modulePath, () => {
   });
 
   describe('Awaiting Amend Case state', () => {
-    const session = clone(mockSession);
-    session.state = 'AwaitingAmendCase';
+    it('redirects to the amend landing page', done => {
+      const context = {};
+      const featureTest = featureToggleConfig
+        .when('idam', true, testRedirect, agent, underTest, context, s.steps.AwaitingAmend);
 
-    beforeEach(done => {
-      const thousand = 1000;
-      session.expires = Date.now() + thousand;
-      withSession(done, agent, session);
+      featureTest(() => {
+        getSession(agent)
+          .then(() => {
+            expect(landingPageStub.calledOnce).to.eql(true);
+          })
+          .then(done, done);
+      });
     });
 
-    it('#authenticated: should immediately redirect to the awaiting amend case step page', done => {
+    it('does not redirects to the amend landing page when toggle is off', done => {
       const context = {};
-      testRedirect(done, agent, underTest, context, s.steps.AwaitingAmend);
+      const featureTest = featureToggleConfig
+        .when('idam', false, testRedirect, agent, underTest, context, s.steps.AwaitingAmend);
+
+      featureTest(() => {
+        getSession(agent)
+          .then(() => {
+            expect(landingPageStub.calledOnce).to.eql(false);
+          })
+          .then(done, done);
+      });
     });
   });
 

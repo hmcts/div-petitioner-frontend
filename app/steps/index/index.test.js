@@ -2,8 +2,6 @@ const request = require('supertest');
 const { testRedirect, testCustom } = require('test/util/assertions');
 const config = require('config');
 const server = require('app');
-const { mockSession } = require('test/fixtures');
-const { clone } = require('lodash');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const { expect, sinon } = require('test/util/chai');
@@ -77,22 +75,6 @@ describe(modulePath, () => {
 
         sinon.assert.calledWith(idamExpressMiddleware.authenticate, idamArgs);
       });
-    });
-  });
-
-  describe('Awaiting Amend Case state', () => {
-    const session = clone(mockSession);
-    session.state = 'AwaitingAmendCase';
-
-    beforeEach(done => {
-      const oneSecond = 1000;
-      session.expires = Date.now() + oneSecond;
-      withSession(done, agent, session);
-    });
-
-    it('#index: should immediately redirect to the awaiting amend case step page', done => {
-      const context = {};
-      testRedirect(done, agent, underTest, context, s.steps.AwaitingAmend);
     });
   });
 });

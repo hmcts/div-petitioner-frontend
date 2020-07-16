@@ -170,6 +170,7 @@ apps:
 ccd:
   d8States:
     - 'AwaitingPayment'
+    - 'amendCase'
   courts:
     - 'serviceCentre'
 
@@ -177,7 +178,7 @@ languages: ['en', 'cy']
 
 featureToggles:
   enabled: true
-  launchDarklyKey: 'SDK_KEY'
+  launchDarklyKey: 'sdk-c7dde30a-a551-41ab-bd67-f0ccd5a705de'
   launchDarklyUser:
     firstName: 'Divorce'
     lastName: 'Frontend'

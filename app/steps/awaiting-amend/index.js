@@ -9,7 +9,7 @@ const BASE_PATH = '/';
 
 module.exports = class AwaitingAmend extends ValidationStep {
   get url() {
-    return '/awaiting-amend/amend-case';
+    return '/awaiting-amend-case';
   }
 
   get middleware() {

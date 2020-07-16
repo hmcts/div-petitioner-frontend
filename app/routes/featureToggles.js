@@ -6,6 +6,14 @@ const router = require('express')
 const featureToggle = new (require('app/core/utils/featureToggle'))();
 const completeEqualityTask = require('app/middleware/completeEqualityTask');
 
+const fetchAwaitingAmendToggleVariation = (req, res, next) => {
+  return featureToggle.callCheckToggle(req, res, next, res.locals.launchDarkly, 'ft_awaiting_amend', featureToggle.toggleFeature);
+};
+
+router.use([fetchAwaitingAmendToggleVariation], (req, res, next) => {
+  next();
+});
+
 router.get('*', (req, res, next) => {
   return featureToggle.callCheckToggle(req, res, next, res.locals.launchDarkly, 'ft_welsh', featureToggle.toggleFeature);
 });

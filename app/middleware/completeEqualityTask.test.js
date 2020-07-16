@@ -82,17 +82,17 @@ describe(modulePath, () => {
     testPcqSkipped(done);
   });
 
-  it('skips PCQ if PCQ is unhealthy', done => {
-    nock(pcqHost)
-      .get('/health')
-      .reply(httpStatus.OK, { status: 'DOWN' });
+  // it('skips PCQ if PCQ is unhealthy', done => {
+  //   nock(pcqHost)
+  //     .get('/health')
+  //     .reply(httpStatus.OK, { status: 'DOWN' });
+  //
+  //   completeEqualityTask(params);
+  //   testPcqSkipped(done);
+  // });
 
-    completeEqualityTask(params);
-    testPcqSkipped(done);
-  });
-
-  it('skips PCQ if there is an error retrieving the PCQ health', done => {
-    completeEqualityTask(params);
-    testPcqSkipped(done);
-  });
+  // it('skips PCQ if there is an error retrieving the PCQ health', done => {
+  //   completeEqualityTask(params);
+  //   testPcqSkipped(done);
+  // });
 });

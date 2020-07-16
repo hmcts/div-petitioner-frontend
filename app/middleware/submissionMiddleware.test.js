@@ -55,6 +55,14 @@ describe(modulePath, () => {
       expect(res.redirect.calledWith(APPLICATION_SUBMITTED_PATH)).to.eql(true);
       expect(next.calledOnce).to.eql(false);
     });
+    it('redirects to /application-submitted if application has been submitted and is in "amendCase"', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'amendCase';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(APPLICATION_SUBMITTED_PATH)).to.eql(true);
+      expect(next.calledOnce).to.eql(false);
+    });
     it('redirects to /done-and-submitted if application has been submitted and is not "AwaitingPayment" or "Rejected"', () => {
       req.session.caseId = 'someid';
       req.session.state = 'randomstate';

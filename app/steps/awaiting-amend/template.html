@@ -1,8 +1,9 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
-{% from "common/components/awaitingAmendsComponent.html" import documentList %}
-{% extends "question.html" %}
+{% from "common/components/awaitingAmendsComponent.html" import documentList, nextStep %}
+
+{% extends "layout.html" %}
 
 {% block back %}{% endblock %}
 
@@ -18,18 +19,16 @@ html: html
 }) }}
 {% endblock %}
 
+{% block two_thirds %}
 {% set title = content.title %}
-{% block question %}
-<h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
-<p class="govuk-body govuk-!-margin-bottom-7">
-  <strong>Case number:</strong>
-  {{ session.caseId | insertHyphens | safe }}
-  <br>
-  <strong>Name:</strong>
-  <span>
-    {{ session.petitionerFirstName | safe }}
-    {{ session.petitionerLastName | safe }}
-  </span>
+  <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
+  <p class="govuk-body-s govuk-!-margin-bottom-6">
+    <strong class="govuk-!-font-size-16">Case number:</strong>
+    <span>{{ session.caseId | insertHyphens | safe }}</span>
+    <br>
+    <strong class="govuk-!-font-size-16">Name:</strong>
+    <span>{{ session.petitionerFirstName | safe }}
+      {{ session.petitionerLastName | safe }}</span>
 </p>
 
 {{ hmctsProgressBar({
@@ -65,8 +64,9 @@ label: { text: content.divorceFinalised }
   }) }}
   {% endif %}
 
-  {% block saveAndClose %}{% endblock %}
 </div>
+
+{{ nextStep(content.continueBtnText, csrfToken) }}
 
 {% endblock %}
 

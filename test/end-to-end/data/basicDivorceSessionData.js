@@ -1317,6 +1317,7 @@ module.exports = {
   reasonForDivorceClaimingAdultery: false,
   marriageCertificateFiles: [],
   featureToggles: {
+    ft_awaiting_amend: true,
     ft_welsh: true
   }
 };

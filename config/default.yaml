@@ -178,7 +178,7 @@ languages: ['en', 'cy']
 
 featureToggles:
   enabled: true
-  launchDarklyKey: 'sdk-c7dde30a-a551-41ab-bd67-f0ccd5a705de'
+  launchDarklyKey: 'SDK_KEY'
   launchDarklyUser:
     firstName: 'Divorce'
     lastName: 'Frontend'

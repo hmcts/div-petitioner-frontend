@@ -155,9 +155,9 @@ describe(modulePath, () => {
       });
     });
 
-    it('when continue button is clicked sets state to amendCase on post', done => {
+    it('when continue button is clicked sets state to AmendPetition on post', done => {
       underTest.submitApplication(req, res);
-      expect(req.session.state).to.equal('amendCase');
+      expect(req.session.state).to.equal('AmendPetition');
       done();
     });
   });

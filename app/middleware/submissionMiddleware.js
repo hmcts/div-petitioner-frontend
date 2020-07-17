@@ -9,7 +9,6 @@ const handleCcdCase = (req, res, next) => {
   const session = req.session;
   switch (session.state) {
   case 'AwaitingPayment':
-  case 'amendCase':
     if (session.currentPaymentReference) {
       return paymentStatusService
         .checkAndUpdatePaymentStatus(req)

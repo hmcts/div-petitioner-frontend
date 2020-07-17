@@ -123,43 +123,42 @@ describe(modulePath, () => {
       }, 'post', true, postBody);
     });
   });
-});
 
-describe('#submitApplication', () => {
-  let req = {};
-  let res = {};
+  describe('#submitApplication', () => {
+    let req = {};
+    let res = {};
 
-  beforeEach(() => {
-    req = {
-      body: {}, method: 'POST', session: { featureToggles: {}, submit: true, state: 'AwaitingAmendCase' },
-      headers: {}
-    };
-    res = {
-      redirect: sinon.stub(),
-      sendStatus: sinon.stub()
-    };
-  });
+    beforeEach(() => {
+      req = {
+        body: {}, method: 'POST', session: { featureToggles: {}, submit: true, state: 'AwaitingAmendCase' },
+        headers: {}
+      };
+      res = {
+        redirect: sinon.stub(),
+        sendStatus: sinon.stub()
+      };
+    });
 
-  afterEach(() => {
-    req = {};
-    res = {};
-  });
+    afterEach(() => {
+      req = {};
+      res = {};
+    });
 
-  it('When continue button is clicked should call submitApplication', done => {
-    co(function* generator() {
-      const submitApplication = sinon.stub(underTest, 'submitApplication');
-      req.body.submit = true;
-      yield underTest.postRequest(req, res);
-      sinon.assert.calledOnce(submitApplication);
-      underTest.submitApplication.restore();
+    it('when continue button is clicked should call submitApplication', done => {
+      co(function* generator() {
+        const submitApplication = sinon.stub(underTest, 'submitApplication');
+        req.body.submit = true;
+        yield underTest.postRequest(req, res);
+        sinon.assert.calledOnce(submitApplication);
+        underTest.submitApplication.restore();
+        done();
+      });
+    });
+
+    it('when continue button is clicked sets state to amendCase on post', done => {
+      underTest.submitApplication(req, res);
+      expect(req.session.state).to.equal('amendCase');
       done();
     });
-  });
-
-  it('When continue button is clicked sets state to amendCase on post', done => {
-    underTest.submitApplication(req, res);
-    expect(req.session.state).to.equal('amendCase');
-    expect(req.session.submissionStarted).to.equal(true);
-    done();
   });
 });

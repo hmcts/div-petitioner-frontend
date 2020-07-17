@@ -357,6 +357,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
     language: 'en'
@@ -665,6 +666,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
     language: 'en'
@@ -973,6 +975,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
     language: 'en'
@@ -1281,6 +1284,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
     language: 'en'

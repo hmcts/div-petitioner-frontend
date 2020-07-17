@@ -34,31 +34,18 @@ module.exports = class AwaitingAmend extends ValidationStep {
       return res.redirect(BASE_PATH);
     }
 
-    const { session } = req;
     const ctx = yield this.parseCtx(req);
-
-    //  then test whether the request is valid
-    const [isValid] = this.validate(ctx, session);
+    const [isValid] = this.validate(ctx, req.session);
 
     if (isValid) {
-      // apply ctx to session (this adds confirmPrayer to session before submission)
-      req.session = this.applyCtxToSession(ctx, session);
-
-      // if application is valid submit it
+      req.session = this.applyCtxToSession(ctx, req.session);
       return this.submitApplication(req, res);
     }
-
     return yield super.postRequest(req, res);
   }
 
   submitApplication(req, res) {
-    if (req.session.submissionStarted) {
-      return res.redirect(BASE_PATH);
-    }
-
-    req.session.submissionStarted = true;
     req.session.state = 'amendCase';
-
     return res.redirect(BASE_PATH);
   }
 };

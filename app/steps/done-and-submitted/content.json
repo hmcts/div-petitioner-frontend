@@ -27,7 +27,7 @@
           "youCanFindMore": "Your {{divorceWho}} will also receive a copy of the application and a form to return. If you have used adultery as your reason for divorce, and named the person that your {{divorceWho}} committed adultery with, they will also get a copy and a form to return.",
           "contactTheCourt": "Contact the divorce centre if you don’t hear anything back after 3 weeks.",
           "getHelp": "If you need help",
-          "getHelpDescription": "You can contact the divorce centre if you need help with your application. Court staff can’t give you legal advice, and you should speak to a solicitor or legal adviser if you need help with that.",
+          "getHelpDescription": "You can contact the divorce centre if you need help with your application. Court staff can’t give you legal advice, and you should speak to a <a class=\"govuk-link\" href=\"https://www.gov.uk/find-a-legal-adviser\" target=\"_blank\" aria-label=\"Find a legal adviser link, This will open a new tab.\"> solicitor or legal adviser if you need help with that.",
           "helpWithFees": "Help with fees",
           "courtCheckApp": "How much financial help you get with your fee depends on your individual circumstances. Court staff will check if your help with fees application has been successful, and if you still need to pay anything.",
           "youWillBeContacted": "You’ll be contacted if you need to pay anything.",

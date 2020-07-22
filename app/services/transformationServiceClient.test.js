@@ -120,4 +120,20 @@ describe(modulePath, () => {
       });
     });
   });
+
+  describe('#amend', () => {
+    it('sends the user token and the case id along with the request', () => {
+      // Arrange.
+      const userToken = 'user.token';
+      const caseId = '1234';
+      // Act.
+      client.amend(userToken, caseId);
+      // Assert.
+      expect(request.put.args[0][0]).to.eql({
+        uri: `${options.baseUrl}/amend-petition/${caseId}`,
+        headers: { Authorization: `Bearer ${userToken}` },
+        json: true
+      });
+    });
+  });
 });

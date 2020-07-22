@@ -170,6 +170,7 @@ apps:
 ccd:
   d8States:
     - 'AwaitingPayment'
+    - 'AwaitingAmendCase'
   courts:
     - 'serviceCentre'
 

@@ -5,6 +5,8 @@ const server = require('app');
 const co = require('co');
 const { expect, sinon } = require('test/util/chai');
 const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
+const submission = require('app/services/submission');
+const stepsHelper = require('app/core/helpers/steps');
 
 const modulePath = 'app/steps/awaiting-amend';
 
@@ -127,21 +129,34 @@ describe(modulePath, () => {
   describe('#submitApplication', () => {
     let req = {};
     let res = {};
+    let amend = {};
 
     beforeEach(() => {
       req = {
-        body: {}, method: 'POST', session: { featureToggles: {}, submit: true, state: 'AwaitingAmendCase' },
+        body: {},
+        method: 'POST',
+        session: { featureToggles: {}, submit: true, state: 'AwaitingAmendCase', caseId: '123' },
+        cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' },
         headers: {}
       };
       res = {
         redirect: sinon.stub(),
         sendStatus: sinon.stub()
       };
+      amend = sinon.stub().resolves({
+        error: null,
+        status: 'success',
+        caseId: '1234567890'
+      });
+      sinon.stub(submission, 'setup').returns({ amend });
+      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns(appInstance.steps.WithFees);
     });
 
     afterEach(() => {
       req = {};
       res = {};
+      submission.setup.restore();
+      stepsHelper.findNextUnAnsweredStep.restore();
     });
 
     it('when continue button is clicked should call submitApplication', done => {
@@ -155,9 +170,10 @@ describe(modulePath, () => {
       });
     });
 
-    it('when continue button is clicked sets state to AmendPetition on post', done => {
+    it('when continue button is clicked should request amend and redirect to next unanswered page', done => {
       underTest.submitApplication(req, res);
-      expect(req.session.state).to.equal('AmendPetition');
+      sinon.assert.calledOnce(amend);
+      expect(res.redirect.calledWith(appInstance.steps.WithFees.url)).to.eql(true);
       done();
     });
   });

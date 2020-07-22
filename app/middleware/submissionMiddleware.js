@@ -4,6 +4,7 @@ const paymentStatusService = require('app/steps/pay/card-payment-status/paymentS
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
+const AWAITING_AMEND_CASE = '/awaiting-amend-case';
 
 const handleCcdCase = (req, res, next) => {
   const session = req.session;
@@ -35,6 +36,9 @@ const handleCcdCase = (req, res, next) => {
   case 'MultipleRejectedCases':
     logger.infoWithReq(req, 'multiple_cases_rejected', 'Multiple cases rejected');
     return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
+  case 'AwaitingAmendCase':
+    logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
+    return res.redirect(AWAITING_AMEND_CASE);
   default:
     logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);

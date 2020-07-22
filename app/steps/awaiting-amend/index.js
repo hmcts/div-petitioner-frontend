@@ -4,6 +4,9 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
+const submissionService = require('app/services/submission');
+const stepsHelper = require('app/core/helpers/steps');
+const logger = require('app/services/logger').logger(__filename);
 
 const BASE_PATH = '/';
 
@@ -27,6 +30,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
   }
 
   * postRequest(req, res) {
+    logger.infoWithReq(req, 'status_amend', 'Request for amending case', req);
     const { body } = req;
     const hasBeenPostedWithoutSubmitButton = body && !body.hasOwnProperty('submit');
 
@@ -35,6 +39,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
     }
 
     const ctx = yield this.parseCtx(req);
+    logger.infoWithReq(req, 'status_amend', 'Request for amending case', ctx);
     const [isValid] = this.validate(ctx, req.session);
 
     if (isValid) {
@@ -45,7 +50,13 @@ module.exports = class AwaitingAmend extends ValidationStep {
   }
 
   submitApplication(req, res) {
-    req.session.state = 'AmendPetition';
-    return res.redirect(BASE_PATH);
+    const authToken = req.cookies['__auth-token'];
+    logger.infoWithReq(req, 'status_amend', 'Request for amending case', authToken);
+    logger.infoWithReq(req, 'status_amend', 'Request for amending case', req.session);
+    const submission = submissionService.setup();
+    submission.amend(req, authToken, req.session.caseId);
+
+    const unAnsweredStep = stepsHelper.findNextUnAnsweredStep(this, req.session);
+    return res.redirect(unAnsweredStep.url);
   }
 };

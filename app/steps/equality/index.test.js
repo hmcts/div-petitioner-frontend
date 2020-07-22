@@ -22,7 +22,7 @@ describe(modulePath, () => {
         headers: { host: 'localhost' },
         session: {
           petitionerPcqId: 'pcqId-abc123',
-          petitionerEmail: 'test@test.com',
+          petitionerEmail: 'test+test@test.com',
           language: 'en'
         }
       };
@@ -32,7 +32,7 @@ describe(modulePath, () => {
     it('returns the correct url', () => {
       equality.handler(req, res);
       expect(res.redirect.getCall(0).args[0]).to.satisfy(str => {
-        return str.startsWith(`${pcqUrl}/service-endpoint?serviceId=DIVORCE&actor=PETITIONER&pcqId=pcqId-abc123&partyId=test@test.com&returnUrl=localhost/check-your-answers&language=en&token=`);
+        return str.startsWith(`${pcqUrl}/service-endpoint?serviceId=DIVORCE&actor=PETITIONER&pcqId=pcqId-abc123&partyId=test%2Btest%40test.com&returnUrl=localhost/check-your-answers&language=en&token=`);
       });
     });
   });

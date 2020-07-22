@@ -32,6 +32,9 @@ module.exports = class Equality extends Step {
 
     params.token = createToken(params);
 
+    // Encode partyId
+    params.partyId = encodeURIComponent(params.partyId);
+
     const qs = Object.keys(params)
       .map(key => {
         return `${key}=${params[key]}`;

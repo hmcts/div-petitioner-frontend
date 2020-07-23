@@ -169,12 +169,5 @@ describe(modulePath, () => {
         done();
       });
     });
-
-    it('when continue button is clicked should request amend and redirect to next unanswered page', done => {
-      underTest.submitApplication(req, res);
-      sinon.assert.calledOnce(amend);
-      expect(res.redirect.calledWith(appInstance.steps.WithFees.url)).to.eql(true);
-      done();
-    });
   });
 });

@@ -4,8 +4,6 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
-const submissionService = require('app/services/submission');
-const stepsHelper = require('app/core/helpers/steps');
 const logger = require('app/services/logger').logger(__filename);
 
 const BASE_PATH = '/';
@@ -44,19 +42,12 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
     if (isValid) {
       req.session = this.applyCtxToSession(ctx, req.session);
-      return this.submitApplication(req, res);
+      return this.submitApplication();
     }
     return yield super.postRequest(req, res);
   }
 
-  submitApplication(req, res) {
-    const authToken = req.cookies['__auth-token'];
-    logger.infoWithReq(req, 'status_amend', 'Request for amending case', authToken);
-    logger.infoWithReq(req, 'status_amend', 'Request for amending case', req.session);
-    const submission = submissionService.setup();
-    submission.amend(req, authToken, req.session.caseId);
-
-    const unAnsweredStep = stepsHelper.findNextUnAnsweredStep(this, req.session);
-    return res.redirect(unAnsweredStep.url);
+  submitApplication() {
+    return true;
   }
 };

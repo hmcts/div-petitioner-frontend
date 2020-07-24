@@ -52,7 +52,7 @@ Scenario('Get a divorce', async function(I) {
     I.uploadMarriageCertificateFile(isDragAndDropSupported);
   }
 
-  I.completeEquality();
+  await I.completeEquality();
 
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers();

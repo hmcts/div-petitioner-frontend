@@ -1,14 +1,19 @@
 // Change this to start-page once PCQ-Divorce is in AAT
-const pagePath = 'https://pcq.aat.platform.hmcts.net/offline';
+const pcqAAT = 'https://pcq.aat.platform.hmcts.net';
+const pagePath = `${pcqAAT}/offline`;
 
-function completeEquality() {
-
+async function completeEquality() {
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  // Wait for page to load
+  I.wait(3);
+  const url = await I.grabCurrentUrl();
 
-  I.navByClick('Continue');
+  if (url.startsWith(pcqAAT)) {
+    I.seeCurrentUrlEquals(pagePath);
+
+    I.navByClick('Continue');
+  }
 }
 
 module.exports = { completeEquality };

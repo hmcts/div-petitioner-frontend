@@ -36,17 +36,6 @@ const service = {
         logger.errorWithReq(req, 'ccd_update_error', 'Error updating case in CCD', args.caseId, error.message);
         throw error;
       });
-  },
-
-  amend: (req, ...args) => {
-    return client.amend(...args)
-      .then(response => {
-        return response;
-      })
-      .catch(error => {
-        logger.errorWithReq(req, 'ccd_amend_error', 'Error amending case in CCD', args.caseId, error.message);
-        throw error;
-      });
   }
 };
 

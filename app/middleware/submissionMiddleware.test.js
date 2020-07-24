@@ -10,6 +10,7 @@ const submissionService = require('app/services/submission');
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
+const AWAITING_AMEND_CASE = '/awaiting-amend-case';
 
 let req = {};
 let res = {};
@@ -61,6 +62,13 @@ describe(modulePath, () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+    });
+    it('redirects to /awaiting-amend-case if application has been submitted and is in "AwaitingAmendCase"', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingAmendCase';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(AWAITING_AMEND_CASE)).to.eql(true);
     });
     it('calls next if application has been submitted and is "Rejected"', () => {
       req.session.caseId = 'someid';

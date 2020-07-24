@@ -39,6 +39,7 @@ nodejs:
         IDAM_CLIENT_ID: "divorce"
 
         EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT: "/emclientapi/version/1/upload"
+        EVIDENCE_MANAGEMENT_CLIENT_API_DOWNLOAD_ENDPOINT: "/emclientapi/version/1/download"
         NODE_ENV: "production"
         NODE_PATH: "."
         POST_CODE_URL: "https://api.ordnancesurvey.co.uk/places/v1"

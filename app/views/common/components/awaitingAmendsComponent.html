@@ -9,14 +9,12 @@
     <nav role="navigation" aria-labelledby="subsection-title" class="document-download-list">
       <ul class="govuk-list govuk-body govuk-!-font-size-16">
         {%- for document in documents -%}
-          {% if document.fileName.startsWith('d8petition') %}
             <li>
-              <a class="govuk-link" href="{{ document.fileUrl }}/{{ document.fileName }}" aria-label="This link will download the file {{ document.fileName }} as PDF">
+              <a class="govuk-link" href="{{ document.uri }}" aria-label="This link will download the file {{ document.fileName }} as PDF">
                 <span class="govuk-download__icon" aria-hidden="true">
                 <span class="visually-hidden">Download</span></span>Divorce application (PDF)
               </a>
             </li>
-          {% endif %}
         {%- endfor -%}
       </ul>
     </nav>

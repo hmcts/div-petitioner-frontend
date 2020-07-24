@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "@hmcts/ctsc-web-chat": "^0.3.11",
+    "@hmcts/div-document-express-handler": "^1.1.0",
     "@hmcts/div-idam-express-middleware": "^6.6.2",
     "@hmcts/div-pay-client": "^7.0.1",
     "@hmcts/div-service-auth-provider-client": "^3.0.1",

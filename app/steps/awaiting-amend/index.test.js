@@ -50,6 +50,57 @@ describe(modulePath, () => {
     it('renders the content from the content file', done => {
       testContent(done, agent, underTest, content, amendSession);
     });
+
+    it('displays link for `How To Respond`', done => {
+      testExistence(done, agent, underTest,
+        contentStrings.howToRespondLink);
+    });
+  });
+
+  describe('renders document', () => {
+    const amendSession = mockAwaitingAmendSession;
+
+    beforeEach(done => {
+      session.d8 = [
+        {
+          id: '401ab79e-34cb-4570-9f2f-4cf9357m4st3r',
+          createdBy: 0,
+          createdOn: null,
+          lastModifiedBy: 0,
+          modifiedOn: null,
+          fileName: 'd8petition1554740111371638.pdf',
+          // eslint-disable-next-line max-len
+          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
+          mimeType: null,
+          status: null
+        },
+        {
+          id: '401ab79e-34cb-4570-9f2f-4cf9357m4st3r',
+          createdBy: 0,
+          createdOn: null,
+          lastModifiedBy: 0,
+          modifiedOn: null,
+          fileName: 'somethingNotD81554740111371638.pdf',
+          // eslint-disable-next-line max-len
+          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
+          mimeType: null,
+          status: null
+        }
+      ];
+      withSession(done, agent, amendSession);
+    });
+
+    afterEach(() => {
+      session = {};
+    });
+
+    it('returns the correct file', () => {
+      const fileTypes = underTest.getDownloadableFiles(session).map(file => {
+        return file.type;
+      });
+
+      expect(fileTypes).to.eql(['dpetition']); // for d8petition. Numbers are removed from file type by document handler
+    });
   });
 
   describe('should show awaiting amends info', () => {

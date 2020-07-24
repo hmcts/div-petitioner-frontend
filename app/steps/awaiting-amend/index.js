@@ -5,6 +5,8 @@ const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const logger = require('app/services/logger').logger(__filename);
+const config = require('config');
+const { createUris } = require('@hmcts/div-document-express-handler');
 
 const BASE_PATH = '/';
 
@@ -25,6 +27,20 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
   get postMiddleware() {
     return [];
+  }
+
+  interceptor(ctx, session) {
+    session.downloadableFiles = this.getDownloadableFiles(session);
+    return ctx;
+  }
+
+  getDownloadableFiles(session) {
+    const docConfig = {
+      documentNamePath: config.document.documentNamePath,
+      documentWhiteList: config.document.filesWhiteList
+    };
+
+    return createUris(session.d8, docConfig);
   }
 
   * postRequest(req, res) {

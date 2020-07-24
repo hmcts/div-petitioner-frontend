@@ -57,7 +57,7 @@ label: { text: content.divorceFinalised }
   <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
 
-  {% if session.d8 and session.d8.length %}
+  {% if (session.downloadableFiles.length > 0) %}
   {{ govukWarningText({
   text: content.downloadWarning | safe,
   iconFallbackText: content.warning
@@ -101,15 +101,15 @@ label: { text: content.divorceFinalised }
     </li>
   </ul>
 
-  {% if session.d8 and session.d8.length %}
+  {% if (session.downloadableFiles.length > 0) %}
     <h3 class="govuk-heading-m">{{ content.downloadDocumentHeading }}</h3>
-    {{ documentList(session.d8) }}
+    {{ documentList(session.downloadableFiles) }}
   {% endif %}
 
   <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-body govuk-!-font-size-16">
-      <li>{{ content.howRespondsLink | safe }}</li>
+      <li>{{ content.howToRespondLink | safe }}</li>
       <li>{{ content.decreeNisiLink | safe }}</li>
       <li>{{ content.decreeAbsoluteLink | safe }}</li>
       <li>{{ content.childrenAndDivorceLink | safe }}</li>

@@ -24,7 +24,7 @@
           "downloadWarning" : "Download and save your current Divorce application. You won’t be able to access any of these documents online after you have changed your application.",
           "continueBtnText": "Continue",
           "guidanceHeading": "Guidance on GOV.UK",
-          "howRespondsLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ case.divorceWho }} responds</a>",
+          "howToRespondLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-divorce-application\" target=\"_blank\" aria-label=\"How to respond to a divorce application link, This link will open in a new tab.\">How to respond to a divorce application</a>",
           "decreeNisiLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Decree nisi link, This link will open in a new tab.\">Decree nisi</a>",
           "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
           "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",

@@ -29,6 +29,7 @@ const idam = require('app/services/idam');
 const featureToggles = require('app/routes/featureToggles');
 const signOutRoute = require('app/routes/sign-out');
 const parseBool = require('app/core/utils/parseBool');
+const { initDocumentHandlerFor } = require('app/services/documentHandler');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -44,6 +45,8 @@ const logger = logging.logger(__filename);
 
 exports.init = listenForConnections => {
   const app = express();
+
+  initDocumentHandlerFor(app);
 
   app.use(helmet());
 

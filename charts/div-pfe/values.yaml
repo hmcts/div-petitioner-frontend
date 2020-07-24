@@ -71,6 +71,7 @@ nodejs:
                 - pfe-redis-connection-string
                 - AppInsightsInstrumentationKey
                 - launchdarkly-key
+                - pcq-token-key
 
 redis:
     cluster:

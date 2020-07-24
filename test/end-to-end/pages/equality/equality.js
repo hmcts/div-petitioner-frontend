@@ -11,7 +11,8 @@ async function completeEquality() {
   if (url.startsWith(pcqAAT)) {
     I.seeCurrentUrlEquals(pagePath);
 
-    I.navByClick('I don\'t want to answer these questions');
+    await I.navByClick('I don\'t want to answer these questions');
+    I.wait(5);
   }
 }
 

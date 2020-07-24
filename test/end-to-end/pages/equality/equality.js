@@ -1,6 +1,5 @@
-// Change this to start-page once PCQ-Divorce is in AAT
 const pcqAAT = 'https://pcq.aat.platform.hmcts.net';
-const pagePath = `${pcqAAT}/offline`;
+const pagePath = `${pcqAAT}/start-page`;
 
 async function completeEquality() {
   const I = this;
@@ -12,7 +11,7 @@ async function completeEquality() {
   if (url.startsWith(pcqAAT)) {
     I.seeCurrentUrlEquals(pagePath);
 
-    I.navByClick('Continue');
+    I.navByClick('I don\'t want to answer these questions');
   }
 }
 

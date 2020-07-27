@@ -60,36 +60,6 @@ describe(modulePath, () => {
     });
   });
 
-  describe('Awaiting Amend Case state', () => {
-    it('redirects to the amend landing page when toggle is on', done => {
-      const context = {};
-      const featureTest = featureToggleConfig
-        .when('idam', true, testRedirect, agent, underTest, context, s.steps.AwaitingAmend);
-
-      featureTest(() => {
-        getSession(agent)
-          .then(() => {
-            expect(landingPageStub.calledOnce).to.eql(true);
-          })
-          .then(done, done);
-      });
-    });
-
-    it('does not redirects to the amend landing page when toggle is off', done => {
-      const context = {};
-      const featureTest = featureToggleConfig
-        .when('idam', false, testRedirect, agent, underTest, context, s.steps.AwaitingAmend);
-
-      featureTest(() => {
-        getSession(agent)
-          .then(() => {
-            expect(landingPageStub.calledOnce).to.eql(false);
-          })
-          .then(done, done);
-      });
-    });
-  });
-
   describe('idam on', () => {
     it('redirects to the landing page', done => {
       const context = {};

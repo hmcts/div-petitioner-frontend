@@ -34,7 +34,7 @@ idamArgs:
   idamLoginUrl: 'https://idam-web-public.aat.platform.hmcts.net/login'
   idamSecret: # Defined by IDAM_SECRET in env
 
-evidenceManagmentClient:
+evidenceManagementClient:
   url: 'http://div-emca-aat.service.core-compute-aat.internal'
   health: 'http://div-emca-aat.service.core-compute-aat.internal/health'
 

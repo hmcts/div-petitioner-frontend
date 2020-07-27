@@ -5,7 +5,7 @@ const logger = require('app/services/logger').logger(__filename);
 const errors = require('app/resources/errors');
 const fileManagment = require('app/services/fileManagement');
 
-const evidenceManagmentClientUploadUrl = `${CONF.evidenceManagmentClient.url}${CONF.evidenceManagmentClient.uploadEndpoint}`;
+const evidenceManagementClientUploadUrl = `${CONF.evidenceManagementClient.url}${CONF.evidenceManagementClient.uploadEndpoint}`;
 const defaultEMCErrorMessage = 'Error uploading to evidence management client';
 
 const mockFileResponse = (file = { name: 'image.jpg' }) => {
@@ -38,11 +38,11 @@ const handleResponse = (req, body, resolve, reject) => {
 const sendFile = (req, file, options = { token: 'token' }) => {
   return new Promise((resolve, reject) => {
     // return mock if no client API available
-    if (!CONF.evidenceManagmentClient.url) {
+    if (!CONF.evidenceManagementClient.url) {
       return handleResponse(req, mockFileResponse(file), resolve, reject);
     }
     return superagent
-      .post(evidenceManagmentClientUploadUrl)
+      .post(evidenceManagementClientUploadUrl)
       .set({ Authorization: options.token })
       .set('enctype', 'multipart/form-data')
       .attach('file', file.path, file.name)

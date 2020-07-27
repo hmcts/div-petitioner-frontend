@@ -1,5 +1,6 @@
 const logger = require('app/services/logger').logger(__filename);
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
+const { isToggleOnAwaitingAmend } = require('app/core/utils/checkToggle');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
@@ -37,8 +38,12 @@ const handleCcdCase = (req, res, next) => {
     logger.infoWithReq(req, 'multiple_cases_rejected', 'Multiple cases rejected');
     return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
   case 'AwaitingAmendCase':
-    logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
-    return res.redirect(AWAITING_AMEND_CASE);
+    if (isToggleOnAwaitingAmend(session)) {
+      logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
+      return res.redirect(AWAITING_AMEND_CASE);
+    }
+    logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
+    return res.redirect(DONE_AND_SUBMITTED);
   default:
     logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);

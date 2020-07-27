@@ -4,7 +4,6 @@ const CONF = require('config');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const initSession = require('app/middleware/initSession');
 const parseBool = require('app/core/utils/parseBool');
-const { isAwaitingAmendCase } = require('app/core/utils/caseState');
 const logger = require('app/services/logger').logger(__filename);
 
 const runNext = (req, res, next) => {
@@ -38,14 +37,9 @@ module.exports = class Authenticated extends Step {
   }
 
   nextStep(session) {
-    if (isAwaitingAmendCase(session)) {
-      return this.steps.AwaitingAmend;
-    }
-
     if (session && session.featureToggles.ft_welsh) {
       return this.steps.ScreeningQuestionsLanguagePreference;
     }
-
     return this.steps.ScreeningQuestionsMarriageBroken;
   }
 

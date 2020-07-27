@@ -63,12 +63,20 @@ describe(modulePath, () => {
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
     });
-    it('redirects to /awaiting-amend-case if application has been submitted and is in "AwaitingAmendCase"', () => {
+    it('redirects to /awaiting-amend-case if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {
       req.session.caseId = 'someid';
       req.session.state = 'AwaitingAmendCase';
+      req.session.featureToggles = { ft_awaiting_amend: true };
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(AWAITING_AMEND_CASE)).to.eql(true);
+    });
+    it('does not redirect to /awaiting-amend-case if application has been submitted and is in "AwaitingAmendCase" and toggle is off', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingAmendCase';
+      req.session.featureToggles = { ft_awaiting_amend: false };
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledWith(AWAITING_AMEND_CASE)).to.eql(false);
     });
     it('calls next if application has been submitted and is "Rejected"', () => {
       req.session.caseId = 'someid';

@@ -61,6 +61,7 @@ const saveToDraftStore = (options = {}, userToken = '', body = {}, sendEmail = f
 
   return request.put({ uri, body, headers, json: true });
 };
+
 const client = {
   /**
    * Create a transformation client

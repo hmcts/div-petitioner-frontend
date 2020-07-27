@@ -109,7 +109,7 @@ idamArgs:
   idamSecret: 'divorce_secret'
   idamClientID: 'divorce'
 
-evidenceManagmentClient:
+evidenceManagementClient:
   url: http://localhost:4009
   health: http://localhost:4009/status/health
   uploadEndpoint: /emclientapi/version/1/uploadFiles

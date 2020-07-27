@@ -7,7 +7,7 @@ const documentWhiteList = config.document.documentWhiteList;
 const initDocumentHandlerFor = app => {
   const middleware = [ idam.protect() ];
   const args = {
-    documentServiceUrl: `${config.evidenceManagmentClient.url}${config.evidenceManagmentClient.downloadEndpoint}`,
+    documentServiceUrl: `${config.evidenceManagementClient.url}${config.evidenceManagementClient.downloadEndpoint}`,
     sessionFileCollectionsPaths: [config.document.sessionPath],
     documentNamePath: config.document.documentNamePath,
     documentWhiteList

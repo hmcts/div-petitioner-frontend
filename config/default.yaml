@@ -190,7 +190,7 @@ featureToggles:
   appwideToggles: ['ft_welsh']
 
 document:
-  sessionPath: 'case.data.d8'
+  sessionPath: 'd8'
   documentNamePath: 'fileName'
   filesWhiteList:
     - 'd8petition'

@@ -46,8 +46,6 @@ const logger = logging.logger(__filename);
 exports.init = listenForConnections => {
   const app = express();
 
-  initDocumentHandlerFor(app);
-
   app.use(helmet());
 
   app.use(logging.accessLogger());
@@ -242,6 +240,8 @@ exports.init = listenForConnections => {
   app.get('/noJS.png', (req, res) => {
     res.send('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
   });
+
+  initDocumentHandlerFor(app);
 
   if (CONF.environment !== 'testing') {
     // redirect user if page not found

@@ -59,6 +59,12 @@ services:
     buttonNoAgents: 7732814745cac6f4603c4d1.53357933
     buttonAgentsBusy: 2042157415cc19c95669039.65793052
     buttonServiceClosed: 20199488815cc1a89e0861d5.73103009
+  equalityAndDiversity:
+    name: 'Equality and Diversity Service'
+    url: 'http://localhost:4000'
+    path: '/service-endpoint'
+    port: 4000
+    tokenKey: 'SERVICE_TOKEN_KEY'
 
 defaultEnvironmentNodeEnv: 'development'
 
@@ -177,4 +183,5 @@ featureToggles:
     lastName: 'Frontend'
     key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
   ft_welsh: 'divorce-welsh'
+  ft_pcq: 'petitioner-pcq'
   appwideToggles: ['ft_welsh']

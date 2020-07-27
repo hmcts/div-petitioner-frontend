@@ -18,6 +18,7 @@ const setup = () => {
     setSecret('secrets.div.frontend-secret', 'services.serviceAuthProvider.microserviceKey');
     setSecret('secrets.div.AppInsightsInstrumentationKey', 'applicationInsights.instrumentationKey');
     setSecret('secrets.div.launchdarkly-key', 'featureToggles.launchDarklyKey');
+    setSecret('secrets.div.pcq-token-key', 'services.equalityAndDiversity.tokenKey');
   }
 };
 

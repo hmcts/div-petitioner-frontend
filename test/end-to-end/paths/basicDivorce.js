@@ -51,6 +51,9 @@ Scenario('Get a divorce', async function(I) {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
     I.uploadMarriageCertificateFile(isDragAndDropSupported);
   }
+
+  await I.completeEquality();
+
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers();
   } else{

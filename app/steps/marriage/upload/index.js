@@ -7,7 +7,7 @@ module.exports = class UploadMarriageCertificate extends ValidationStep {
   }
 
   get nextStep() {
-    return this.steps.CheckYourAnswers;
+    return this.steps.Equality;
   }
 
   get middleware() {

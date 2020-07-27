@@ -217,9 +217,9 @@ describe(modulePath, () => {
       withSession(done, agent, _session);
     });
 
-    it('redirects to the check your answers page', done => {
+    it('redirects to the equality and diversity page', done => {
       testRedirect(done, agent, underTest, { submit: true },
-        s.steps.CheckYourAnswers);
+        s.steps.Equality);
     });
   });
 
@@ -247,9 +247,9 @@ describe(modulePath, () => {
       withSession(done, agent, _session);
     });
 
-    it('redirects to the check your answers page when need help with fees', done => {
+    it('redirects to the equality and diversity page when need help with fees', done => {
       testRedirect(done, agent, underTest,
-        { submit: true }, s.steps.CheckYourAnswers);
+        { submit: true }, s.steps.Equality);
     });
   });
 });

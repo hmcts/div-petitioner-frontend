@@ -27,6 +27,9 @@ describe(modulePath, () => {
     appInstance = server.init();
     agent = request.agent(appInstance.app);
     underTest = appInstance.steps.AwaitingAmend;
+    postBody = {
+      submit: true
+    };
   });
 
   afterEach(() => {
@@ -154,26 +157,63 @@ describe(modulePath, () => {
     });
   });
 
-  describe('#submitApplication', () => {
-    beforeEach(done => {
-      session = {
-        submissionStarted: true,
-        state: 'AwaitingAmendCase',
-        submit: true,
-        cookie: {},
-        expires: Date.now()
+  describe('#postRequest', () => {
+    let req = {};
+    let res = {};
+    beforeEach(() => {
+      req = {
+        body: {},
+        method: 'POST',
+        session: { featureToggles: {}, state: 'AwaitingAmendCase', caseId: '123' },
+        cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' },
+        headers: {}
       };
-      withSession(done, agent, session);
+      res = {
+        redirect: sinon.stub(),
+        sendStatus: sinon.stub()
+      };
+
+      sinon.stub(underTest, 'validate').returns([true]);
+      sinon.stub(underTest, 'submitApplication');
+      sinon.stub(underTest, 'parseCtx').resolves();
     });
 
     afterEach(() => {
-      session = {};
+      req = {};
+      res = {};
+      underTest.submitApplication.restore();
+      underTest.validate.restore();
+      underTest.parseCtx.restore();
     });
 
-    it('redirects to base path when duplicate submission', done => {
+    it('redirects to base path when submitted without button', done => {
+      postBody = {};
       testCustom(done, agent, underTest, [], response => {
         expect(response.res.headers.location).to.equal(BASE_PATH);
       }, 'post', true, postBody);
+    });
+
+    it('runs submit application if submission is valid', done => {
+      co(function* generator() {
+        req.body.submit = true;
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledOnce).to.equal(true);
+        expect(underTest.validate.calledOnce).to.equal(true);
+        expect(underTest.submitApplication.calledOnce).to.equal(true);
+        done();
+      });
+    });
+
+    it('does not submit application if invalid', done => {
+      co(function* generator() {
+        req.body.submit = true;
+        underTest.validate.returns([false]);
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledTwice).to.equal(true);
+        expect(underTest.validate.calledTwice).to.equal(true);
+        expect(underTest.submitApplication.called).to.equal(false);
+        done();
+      });
     });
   });
 
@@ -222,19 +262,19 @@ describe(modulePath, () => {
     });
 
     it('when continue button is clicked should request amend and redirect to next unanswered page', done => {
-      underTest.submitApplication(req, res);
-      sinon.assert.calledOnce(amend);
-      expect(res.redirect.calledWith(appInstance.steps.WithFees.url)).to.eql(true);
-      done();
+      testCustom(done, agent, underTest, [], response => {
+        expect(amend.calledOnce).to.equal(true);
+        expect(response.res.headers.location).to.equal(appInstance.steps.WithFees.url);
+      }, 'post', true, postBody);
     });
 
     it('when continue button is clicked and request to amend returns an error should redirect to generic error page', done => {
       amend.rejects();
 
-      underTest.submitApplication(req, res);
-      sinon.assert.calledOnce(amend);
-      expect(res.redirect.calledWith(appInstance.steps.GenericError.url)).to.eql(true);
-      done();
+      testCustom(done, agent, underTest, [], response => {
+        expect(amend.calledOnce).to.equal(true);
+        expect(response.res.headers.location).to.equal(appInstance.steps.GenericError.url);
+      }, 'post', true, postBody);
     });
   });
 });

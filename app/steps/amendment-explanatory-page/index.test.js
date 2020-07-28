@@ -220,5 +220,21 @@ describe(modulePath, () => {
         done();
       });
     });
+
+    it('when continue button is clicked should request amend and redirect to next unanswered page', done => {
+      underTest.submitApplication(req, res);
+      sinon.assert.calledOnce(amend);
+      expect(res.redirect.calledWith(appInstance.steps.WithFees.url)).to.eql(true);
+      done();
+    });
+
+    it('when continue button is clicked and request to amend returns an error should redirect to generic error page', done => {
+      amend.rejects();
+
+      underTest.submitApplication(req, res);
+      sinon.assert.calledOnce(amend);
+      expect(res.redirect.calledWith(appInstance.steps.GenericError.url)).to.eql(true);
+      done();
+    });
   });
 });

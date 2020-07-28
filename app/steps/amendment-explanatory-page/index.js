@@ -7,6 +7,8 @@ const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMi
 const logger = require('app/services/logger').logger(__filename);
 const config = require('config');
 const { createUris } = require('@hmcts/div-document-express-handler');
+const submissionService = require('app/services/submission');
+const stepsHelper = require('app/core/helpers/steps');
 
 const BASE_PATH = '/';
 
@@ -58,12 +60,23 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
     if (isValid) {
       req.session = this.applyCtxToSession(ctx, req.session);
-      return this.submitApplication();
+      return this.submitApplication(req, res);
     }
     return yield super.postRequest(req, res);
   }
 
-  submitApplication() {
-    return true;
+  submitApplication(req, res) {
+    const authToken = req.cookies['__auth-token'];
+    const submission = submissionService.setup();
+    submission.amend(req, authToken, req.session.caseId)
+      .then(response => {
+        logger.infoWithReq(req, 'amendment_success', 'Case amended successfully', response);
+        const unAnsweredStep = stepsHelper.findNextUnAnsweredStep(this, req.session);
+        return res.redirect(unAnsweredStep.url);
+      })
+      .catch(error => {
+        logger.errorWithReq(req, 'amendment_error', 'Error during amendment step', error.message);
+        res.redirect('/generic-error');
+      });
   }
 };

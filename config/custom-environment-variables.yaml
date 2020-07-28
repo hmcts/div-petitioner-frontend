@@ -47,10 +47,11 @@ services:
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET
 
-evidenceManagmentClient:
+evidenceManagementClient:
   health: EVIDENCE_MANAGEMENT_CLIENT_API_HEALTHCHECK_URL
   url: EVIDENCE_MANAGEMENT_CLIENT_API_URL
   uploadEndpoint: EVIDENCE_MANAGEMENT_CLIENT_API_UPLOAD_ENDPOINT
+  downloadEndpoint: EVIDENCE_MANAGEMENT_CLIENT_API_DOWNLOAD_ENDPOINT
 
 commonProps:
   smartSurveyFeedbackUrl: SMARTSURVEY_FEEDBACK_URL

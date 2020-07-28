@@ -10,6 +10,7 @@ const submissionService = require('app/services/submission');
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
+const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
 
 let req = {};
 let res = {};
@@ -61,6 +62,21 @@ describe(modulePath, () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+    });
+    it('redirects to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingAmendCase';
+      req.session.featureToggles = { ft_awaiting_amend: true };
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(AMENDMENT_EXPLANATORY_PAGE)).to.eql(true);
+    });
+    it('does not redirect to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is off', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingAmendCase';
+      req.session.featureToggles = { ft_awaiting_amend: false };
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledWith(AMENDMENT_EXPLANATORY_PAGE)).to.eql(false);
     });
     it('calls next if application has been submitted and is "Rejected"', () => {
       req.session.caseId = 'someid';

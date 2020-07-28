@@ -1,0 +1,31 @@
+{#
+  documentList
+    documents     - (required) An array of documents
+    content       - (required) An object of content for each document type
+  renders a downloadable document link only if the d8petition exists in list
+#}
+{% macro documentList(documents) %}
+  {%- if documents and documents.length -%}
+    <nav role="navigation" aria-labelledby="subsection-title" class="document-download-list">
+      <ul class="govuk-list govuk-body govuk-!-font-size-16">
+        {%- for document in documents -%}
+            <li>
+              <a class="govuk-link" href="{{ document.uri }}" aria-label="This link will download the file {{ document.fileName }} as PDF">
+                <span class="govuk-download__icon" aria-hidden="true">
+                <span class="visually-hidden">Download</span></span>Divorce application (PDF)
+              </a>
+            </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+{% endmacro %}
+
+{% macro nextStep(value, csrfToken) %}
+<form method="POST" accept-charset="utf-8" class="form" id="form"
+      enctype="application/x-www-form-urlencoded"
+      autocomplete="off">
+  <input type="hidden" name="_csrf" value="{{csrfToken}}">
+  <input class="govuk-button" type="submit" name="submit" value="{{value}}">
+</form>
+{% endmacro %}

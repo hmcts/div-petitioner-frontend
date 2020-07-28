@@ -1,6 +1,6 @@
 const httpStatus = require('http-status-codes');
 const logger = require('app/services/logger').logger(__filename);
-const evidenceManagmentService = require('app/services/evidenceManagmentService');
+const evidenceManagmentService = require('app/services/evidenceManagementService');
 const { map } = require('lodash');
 const fileManagment = require('app/services/fileManagement');
 const errors = require('app/resources/errors');

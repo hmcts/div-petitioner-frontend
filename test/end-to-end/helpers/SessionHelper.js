@@ -75,6 +75,7 @@ class SessionHelper extends codecept_helper {
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);
     session.featureToggles.ft_welsh = true;
     session.petitionerPcqId = 'is_in_session';
+    session.featureToggles.ft_awaiting_amend = true;
 
     let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 

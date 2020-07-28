@@ -109,10 +109,11 @@ idamArgs:
   idamSecret: 'divorce_secret'
   idamClientID: 'divorce'
 
-evidenceManagmentClient:
+evidenceManagementClient:
   url: http://localhost:4009
   health: http://localhost:4009/status/health
   uploadEndpoint: /emclientapi/version/1/uploadFiles
+  downloadEndpoint: /emclientapi/version/1/download
 
 logging:
   tags:
@@ -170,6 +171,7 @@ apps:
 ccd:
   d8States:
     - 'AwaitingPayment'
+    - 'AwaitingAmendCase'
   courts:
     - 'serviceCentre'
 
@@ -184,4 +186,11 @@ featureToggles:
     key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
   ft_welsh: 'divorce-welsh'
   ft_pcq: 'petitioner-pcq'
+  ft_awaiting_amend: 'divorce-amended-application'
   appwideToggles: ['ft_welsh']
+
+document:
+  sessionPath: 'd8'
+  documentNamePath: 'fileName'
+  filesWhiteList:
+    - 'd8petition'

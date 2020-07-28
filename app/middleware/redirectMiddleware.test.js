@@ -49,7 +49,15 @@ describe(modulePath, () => {
       expect(next.calledOnce).to.eql(true);
     });
 
-    it('should call redirect to DN if the state is not AwaitingPayment', () => {
+    it('should call next when the state is AwaitingAmendCase', () => {
+      req.session.state = 'AwaitingAmendCase';
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce).to.eql(true);
+    });
+
+    it('should call redirect to DN if the state is not AwaitingPayment and not AwaitingAmendCase', () => {
       req.session.state = 'AwaitingDecreeNisi';
 
       redirectMiddleware.redirectOnCondition(req, res, next);

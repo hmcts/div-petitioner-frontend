@@ -1,5 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const evidenceManagmentMiddleware = require('app/middleware/evidenceManagmentMiddleware');
+const evidenceManagmentMiddleware = require('app/middleware/evidenceManagementMiddleware');
 
 module.exports = class UploadMarriageCertificate extends ValidationStep {
   get url() {

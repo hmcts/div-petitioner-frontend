@@ -1,9 +1,11 @@
 const logger = require('app/services/logger').logger(__filename);
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
+const { isToggleOnAwaitingAmend } = require('app/core/utils/checkToggle');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
+const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
 
 const handleCcdCase = (req, res, next) => {
   const session = req.session;
@@ -21,7 +23,7 @@ const handleCcdCase = (req, res, next) => {
             return res.redirect(url);
           }
         )
-        // Log any errors occurred and end up on the error page.
+      // Log any errors occurred and end up on the error page.
         .catch(error => {
           logger.errorWithReq(req, 'payment_status_error', 'Error checking/updating payment status', error.message);
           return res.redirect('/generic-error');
@@ -35,6 +37,13 @@ const handleCcdCase = (req, res, next) => {
   case 'MultipleRejectedCases':
     logger.infoWithReq(req, 'multiple_cases_rejected', 'Multiple cases rejected');
     return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
+  case 'AwaitingAmendCase':
+    if (isToggleOnAwaitingAmend(session)) {
+      logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
+      return res.redirect(AMENDMENT_EXPLANATORY_PAGE);
+    }
+    logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
+    return res.redirect(DONE_AND_SUBMITTED);
   default:
     logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);

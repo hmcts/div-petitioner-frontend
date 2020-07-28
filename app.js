@@ -29,6 +29,7 @@ const idam = require('app/services/idam');
 const featureToggles = require('app/routes/featureToggles');
 const signOutRoute = require('app/routes/sign-out');
 const parseBool = require('app/core/utils/parseBool');
+const { initDocumentHandlerFor } = require('app/services/documentHandler');
 
 // Prevent node warnings re: MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = Infinity;
@@ -91,6 +92,7 @@ exports.init = listenForConnections => {
   app.use(favicon(path.join(__dirname, 'public', manifest.STATIC_ASSET_PATH, 'images', 'favicon.ico')));
 
   app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')));
+  app.use('/hmcts-assets', express.static(path.join(__dirname, '/node_modules/@hmcts/frontend/assets')));
 
   // Application settings
   app.set('view engine', 'html');
@@ -99,7 +101,9 @@ exports.init = listenForConnections => {
     `${__dirname}/app/components`,
     `${__dirname}/app/views`,
     `${__dirname}/node_modules/govuk-frontend`,
-    `${__dirname}/node_modules/govuk-frontend/components`
+    `${__dirname}/node_modules/govuk-frontend/components`,
+    `${__dirname}/node_modules/@hmcts/frontend`,
+    `${__dirname}/node_modules/@hmcts/frontend/components`
   ]);
 
 
@@ -236,6 +240,8 @@ exports.init = listenForConnections => {
   app.get('/noJS.png', (req, res) => {
     res.send('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
   });
+
+  initDocumentHandlerFor(app);
 
   if (CONF.environment !== 'testing') {
     // redirect user if page not found

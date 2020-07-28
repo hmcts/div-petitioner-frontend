@@ -43,7 +43,7 @@ const setup = app => {
       'idam-api': healthcheck.web(`${config.idamArgs.idamApiUrl}/health`,
         healthOptions('Health check failed on idam-api:')
       ),
-      'evidence-management-client': healthcheck.web(`${config.evidenceManagmentClient.url}/health`,
+      'evidence-management-client': healthcheck.web(`${config.evidenceManagementClient.url}/health`,
         healthOptions('Health check failed on evidence-management-client:')
       ),
       'case-orchestration-service': healthcheck.web(`${config.services.transformation.baseUrl}/health`,

@@ -183,6 +183,10 @@ variable "evidence_management_client_api_upload_endpoint" {
   default = "/emclientapi/version/1/upload"
 }
 
+variable "evidence_management_download_endpoint" {
+  default = "/emclientapi/version/1/download"
+}
+
 variable "payment_service_url" {
   type = "string"
 }

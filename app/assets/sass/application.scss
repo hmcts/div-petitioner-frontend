@@ -10,6 +10,7 @@
 }
 
 @import '~govuk-frontend/all';
+@import '~@hmcts/frontend/all';
 
 @import 'file-upload';
 @import 'jurisdiction-concepts';
@@ -264,4 +265,16 @@ input.link{
 
 .govuk-related-items .govuk-heading-s {
   @include govuk-responsive-margin(1, "bottom");
+}
+
+.govuk-download__icon {
+  display: inline-block;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 15px;
+  vertical-align: middle;
+  margin-right: 13px;
+  background-size: 100%;
+  background-image: url("../images/icon-file-download.png");
 }

@@ -30,7 +30,6 @@ describe(modulePath, () => {
     underTest = s.steps.Authenticated;
   });
 
-
   afterEach(() => {
     idamMock.restore();
     idam.landingPage.restore();

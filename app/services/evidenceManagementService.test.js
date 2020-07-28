@@ -8,7 +8,7 @@ const CONF = require('config');
 
 sinonStubPromise(sinon);
 
-const modulePath = 'app/services/evidenceManagmentService';
+const modulePath = 'app/services/evidenceManagementService';
 
 const evidenceManagmentService = require(modulePath);
 

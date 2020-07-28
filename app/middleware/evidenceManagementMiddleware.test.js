@@ -1,13 +1,13 @@
 /* eslint-disable max-nested-callbacks */
 const { expect, sinon } = require('test/util/chai');
 const sinonStubPromise = require('sinon-stub-promise');
-const evidenceManagmentService = require('app/services/evidenceManagmentService');
+const evidenceManagmentService = require('app/services/evidenceManagementService');
 const httpStatus = require('http-status-codes');
 const fileManagement = require('app/services/fileManagement');
 
 sinonStubPromise(sinon);
 
-const modulePath = 'app/middleware/evidenceManagmentMiddleware';
+const modulePath = 'app/middleware/evidenceManagementMiddleware';
 
 const evidenceManagmentMiddleware = require(modulePath);
 

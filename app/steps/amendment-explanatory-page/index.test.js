@@ -8,7 +8,7 @@ const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession
 const submission = require('app/services/submission');
 const stepsHelper = require('app/core/helpers/steps');
 
-const modulePath = 'app/steps/awaiting-amend';
+const modulePath = 'app/steps/amendment-explanatory-page';
 
 const content = require(`${modulePath}/content`);
 

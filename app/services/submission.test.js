@@ -28,6 +28,15 @@ describe(modulePath, () => {
       status: 'success'
     }
   };
+  const amendSuccess = {
+    status: 200,
+    statusCode: 200,
+    body: {
+      caseId: '1234567890',
+      error: null,
+      status: 'success'
+    }
+  };
 
   describe('module', () => {
     context('microservice key is set', () => {
@@ -229,6 +238,62 @@ describe(modulePath, () => {
       client = underTest.setup();
       // Act.
       client.update()
+        .then(() => {
+          done(new Error('Promise not expected to resolve'));
+        })
+        .catch(output => {
+          // Assert.
+          expect(output).to.equal(error);
+          done();
+        });
+    });
+  });
+
+  describe('#amend', () => {
+    let client = null;
+
+    beforeEach(() => {
+      sinon.stub(mockedClient, 'amend').resolves(amendSuccess);
+      client = underTest.setup();
+    });
+
+    afterEach(() => {
+      mockedClient.amend.restore();
+    });
+
+    it('forwards the call to the client', done => {
+      // Act.
+      client.amend()
+        .then(() => {
+          // Assert.
+          expect(mockedClient.amend.calledOnce).to.equal(true);
+          done();
+        })
+        .catch(error => {
+          done(error);
+        });
+    });
+
+    it('resolves sending required data of the response', done => {
+      // Act.
+      client.amend()
+        .then(output => {
+          // Assert.
+          expect(output).to.eql(amendSuccess);
+          done();
+        })
+        .catch(error => {
+          done(error);
+        });
+    });
+
+    it('rejects if something goes wrong', done => {
+      // Arrange.
+      const error = new Error('Something went wrong');
+      mockedClient.amend.rejects(error);
+      client = underTest.setup();
+      // Act.
+      client.amend()
         .then(() => {
           done(new Error('Promise not expected to resolve'));
         })

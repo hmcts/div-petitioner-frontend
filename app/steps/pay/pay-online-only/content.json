@@ -17,7 +17,7 @@
       "translation": {
         "content": {
           "question": "Taliad",
-          "applicationFee": "Â£{{ feeToBePaid }} yw’r ffi am wneud cais. Gall unrhyw wneud y taliad gyda cherdyn debyd neu gerdyn credyd dilys.",
+          "applicationFee": "£{{ feeToBePaid }} yw’r ffi am wneud cais. Gall unrhyw wneud y taliad gyda cherdyn debyd neu gerdyn credyd dilys.",
           "noRefund": "Peidiwch â mynd ymlaen os nad ydych yn siwr eich bod am wneud cais. Nid oes modd ichi gael ad-daliad wedi i’r cais gael ei gyflwyno (anfon allan).",
           "claimingCosts": "Os ydych yn hawlio costau’r ysgariad gan eich {{ divorceWho }}, gellir cynnwys y ffi honno mewn unrhyw orchymyn costau a wna’r llys.",
           "save": "Dylech arbed a chau’r dudalen hon os na allwch dalu’r ffi ar hyn o bryd. Ni fydd eich cais yn cael ei brosesu nes ichi dalu’r ffi.",

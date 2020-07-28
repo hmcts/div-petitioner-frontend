@@ -21,8 +21,8 @@
         "content": {
           "question": "A wnaethoch chi briodi eich {{ divorceWho }} yn y DU?",
           "definition": "Mae’r DU yn cynnwys Cymru, Lloegr, Yr Alban a Gogledd Iwerddon.",
-          "yes": "Ydym",
-          "no": "Nac ydym"
+          "yes": "Do",
+          "no": "Naddo"
         },
         "errors": {
           "marriedInUk": {

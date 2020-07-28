@@ -29,8 +29,8 @@
           "connectionText1": "Os ydych chi’n treulio’r ran fwyaf o’ch amser yng Nghymru a Lloegr, rydych yn preswylio’n arferol yno yn ôl y gyfraith.",
           "connectionText2": "Mae’n bosib i hyn gynnwys gweithio, bod yn berchen ar eiddo, bod â phlant mewn ysgol, a bod eich prif fywyd teuluol yng Nghymru neu Lloegr.",
           "connectionText3": "Nid yw’r enghreifftiau uchod yn rhestr gynhwysfawr o amgylchiadau sy’n enghreifftio preswylfa arferol, ac er y gallai rhai ohonynt fod yn berthnasol ichi, nid yw hynny o reidrwydd yn golygu eich bod yn preswylio’n arferol yng Nghymru neu Loegr. Os nad ydych yn siwr , dylech ofyn am gyngor cyfreithiol.",
-          "yes": "Ydy",
-          "no": "Nac ydi"
+          "yes": "Oeddwn",
+          "no": "Nac oeddwn"
         },
         "errors": {
           "jurisdictionLastHabitualResident": {

@@ -25,8 +25,8 @@
         "content": {
           "question": "A ydy’ch priodas wedi chwalu’n anadferadwy (ni ellir ei hachub)? ",
           "line1": "Ni allwch gael ysgariad ond ar y sail bod y briodas wedi chwalu’n anadferadwy.",
-          "yes": "Ydym",
-          "no": "Nac ydym",
+          "yes": "Do",
+          "no": "Naddo",
           "marriageBrokenDownNo": "Yr unig reswm cyfreithiol dros gael ysgariad yng Nghymru a Lloegr yw bod y briodas wedi chwalu’n anadferadwy.",
           "cookie": "Mae’r gwasanaeth hwn yn defnyddio cwcis i wneud y safle hwn yn symlach i’w ddefnyddio.",
           "cookieLink": "Mwy o wybodaeth am gwcis",

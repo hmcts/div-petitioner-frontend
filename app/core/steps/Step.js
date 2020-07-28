@@ -99,17 +99,24 @@ module.exports = class Step {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }
 
-    const contentCtx = Object.assign({}, session, ctx, this.commonProps);
-
     this.i18next.changeLanguage(lang);
 
-    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
-      contentCtx.divorceWho = common[contentCtx.divorceWho];
-    }
+    const contentCtx = this.getContentCtx(ctx, session, lang, common);
 
     return walkMap(this.content.resources[lang].translation.content, path => {
       return this.i18next.t(`content.${path}`, contentCtx);
     });
+  }
+
+  getContentCtx(ctx, session, lang, common) {
+    const contentCtx = Object.assign({}, session, ctx, this.commonProps);
+
+    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
+      contentCtx.divorceWho = common[contentCtx.divorceWho];
+      contentCtx.divorceWithWhom = contentCtx.divorceWho === 'husband' ? common.withHim : common.withHer;
+    }
+
+    return contentCtx;
   }
 
   generateFields(ctx, session) { // eslint-disable-line no-unused-vars

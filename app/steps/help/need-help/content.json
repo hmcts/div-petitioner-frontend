@@ -23,9 +23,9 @@
       "translation": {
         "content": {
           "question": "Ydych chi eisiau help i dalu eich ffi?",
-          "explanation": "Os nad oes gennych gynilon neu os nad oes gennych ond ychydig o gynilon, os ydych yn cael budd-daliadau penodol neu os yw eich incwm yn isel efallai y byddwch yn gallu cael help i dalu’r <strong>Â£{{ feeToBePaid }}</strong> ffi.",
-          "yes": "Do",
-          "no": "Nac oes"
+          "explanation": "Os nad oes gennych gynilon neu os nad oes gennych ond ychydig o gynilon, os ydych yn cael budd-daliadau penodol neu os yw eich incwm yn isel efallai y byddwch yn gallu cael help i dalu’r ffi o <strong>£{{ feeToBePaid }}</strong>.",
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "checkYourAnswersContent": {
           "question": "A ydych chi wedi gwneud cais am help i dalu ffioedd?"

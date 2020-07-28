@@ -284,13 +284,9 @@ module.exports = class ValidationStep extends Step {
       throw new ReferenceError(`Step ${this.name} has no content.json in it's resource folder`);
     }
 
-    const contentCtx = Object.assign({}, session, ctx, this.commonProps);
-
     this.i18next.changeLanguage(lang);
 
-    if (lang !== 'en' && contentCtx.divorceWho && common && common[contentCtx.divorceWho]) {
-      contentCtx.divorceWho = common[contentCtx.divorceWho];
-    }
+    const contentCtx = this.getContentCtx(ctx, session, lang, common);
 
     const translatedContent = this.content.resources[lang].translation;
 

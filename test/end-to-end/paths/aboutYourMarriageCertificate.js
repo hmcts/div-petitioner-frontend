@@ -5,7 +5,7 @@ Feature('Foreign Marriage Certificates - Certificate Language').retry(3);
 Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  // I.languagePreference();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.checkOption(content.yes);
@@ -16,7 +16,7 @@ Scenario('Marriage certificate in English, answered Yes', (I) => {
 Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  // I.languagePreference();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.click('#certificateInEnglish_No');
@@ -29,7 +29,7 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
 Scenario('Marriage certificate not in English, answered No', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  // I.languagePreference();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.click('#certificateInEnglish_No');
@@ -41,7 +41,7 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
 Scenario('@overnight: Married in UK, not answered', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
-  // I.languagePreference();
+  I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.navByClick('Continue');

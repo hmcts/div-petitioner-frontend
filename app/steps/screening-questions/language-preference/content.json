@@ -5,7 +5,8 @@
       "translation": {
         "content": {
           "question": "Do you require your Divorce documents in English and Welsh (emails, letters, texts, certificates)?",
-          "line1": "If you don’t need your document to be translated to Welsh language, please choose No.",
+          "line1": "If you don’t need your documents to be in the Welsh language, please choose ‘No’.",
+          "line2": "Select ‘Yes’ if you need your documents to be in the Welsh language.",
           "yes": "Yes",
           "no": "No",
           "languagePreferenceWelshNo": "All documents will be in English.",
@@ -24,7 +25,8 @@
       "translation": {
         "content": {
           "question": "A ydy’ch priodas wedi chwalu’n anadferadwy (ni ellir ei hachub)? ",
-          "line1": "Os nad ydych eisiau i’ch dogfennau gael eu cyfieithu i’r Gymraeg, dewiswch ‘Na’.",
+          "line1": "Os nad ydych eisiau i’ch dogfennau fod yn Gymraeg, dewiswch ‘Nac ydw’.",
+          "line2": "Dewiswch ‘Ydw’ os ydych eisiau i’ch dogfennau fod yn Gymraeg.",
           "yes": "Ydym",
           "no": "Nac ydym",
           "languagePreferenceWelshNo": "Bydd yr holl ddogfennau yn Saesneg.",

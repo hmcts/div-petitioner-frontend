@@ -13,6 +13,7 @@ nodejs:
         FEATURE_STRATEGIC_PAY: "false"
         REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis-master:6379"
         PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
+        EQUALITY_URL: "https://pcq.aat.platform.hmcts.net"
     keyVaults:
         div:
             secrets:
@@ -22,6 +23,7 @@ nodejs:
                 - os-places-token
                 - frontend-secret
                 - launchdarkly-key
+                - pcq-token-key
 
     # Don't modify below here
     image: ${IMAGE_NAME}

@@ -9,7 +9,7 @@ module.exports = {
   },
   csrfSecret: 'XXXXXXXX',
   expires: 99999999,
-  // languagePreferenceWelsh: 'Yes',
+  languagePreferenceWelsh: 'Yes',
   divorceWhoTranslated: 'husband',
   screenHasMarriageBroken: 'Yes',
   screenHasRespondentAddress: 'Yes',
@@ -51,6 +51,7 @@ module.exports = {
   marriagePetitionerName: 'John Doe',
   marriageRespondentName: 'Jenny Benny',
   petitionerNameDifferentToMarriageCertificate: 'Yes',
+  petitionerPcqId: 'is_in_session',
   petitionerNameChangedHow: ['marriageCertificate'],
   petitionerPhoneNumber: '01234567890',
   petitionerConsent: 'Yes',
@@ -357,7 +358,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_welsh: 'false'
+      ft_welsh: 'true'
     },
     language: 'en'
   },
@@ -665,7 +666,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_welsh: 'false'
+      ft_welsh: 'true'
     },
     language: 'en'
   },
@@ -973,7 +974,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_welsh: 'false'
+      ft_welsh: 'true'
     },
     language: 'en'
   },
@@ -1281,7 +1282,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_welsh: 'false'
+      ft_welsh: 'true'
     },
     language: 'en'
   },
@@ -1312,6 +1313,6 @@ module.exports = {
   reasonForDivorceClaimingAdultery: false,
   marriageCertificateFiles: [],
   featureToggles: {
-    ft_welsh: false
+    ft_welsh: true
   }
 };

@@ -6,7 +6,6 @@ const co = require('co');
 const { expect, sinon } = require('test/util/chai');
 const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
 const submission = require('app/services/submission');
-const stepsHelper = require('app/core/helpers/steps');
 
 const modulePath = 'app/steps/amendment-explanatory-page';
 
@@ -240,14 +239,12 @@ describe(modulePath, () => {
         caseId: '1234567890'
       });
       sinon.stub(submission, 'setup').returns({ amend });
-      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns(appInstance.steps.WithFees);
     });
 
     afterEach(() => {
       req = {};
       res = {};
       submission.setup.restore();
-      stepsHelper.findNextUnAnsweredStep.restore();
     });
 
     it('when continue button is clicked should call submitApplication', done => {
@@ -264,7 +261,7 @@ describe(modulePath, () => {
     it('when continue button is clicked should request amend and redirect to next unanswered page', done => {
       testCustom(done, agent, underTest, [], response => {
         expect(amend.calledOnce).to.equal(true);
-        expect(response.res.headers.location).to.equal(appInstance.steps.WithFees.url);
+        expect(response.res.headers.location).to.equal(appInstance.steps.NeedHelpWithFees.url);
       }, 'post', true, postBody);
     });
 

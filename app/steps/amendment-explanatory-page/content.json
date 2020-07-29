@@ -56,7 +56,7 @@
           "downloadWarning" : "[CY] Download and save your current Divorce application. You won’t be able to access any of these documents online after you have changed your application.",
           "continueBtnText": "[CY] Continue",
           "guidanceHeading": "[CY] Guidance on GOV.UK",
-          "howRespondsLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ case.divorceWho }} responds</a>",
+          "howToRespondLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ case.divorceWho }} responds</a>",
           "decreeNisiLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Decree nisi link, This link will open in a new tab.\">Decree nisi</a>",
           "decreeAbsoluteLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
           "childrenAndDivorceLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",

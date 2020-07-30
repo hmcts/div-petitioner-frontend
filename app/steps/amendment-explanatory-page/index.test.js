@@ -2,7 +2,6 @@ const request = require('supertest');
 const { testContent, testExistence, testCustom } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
-const co = require('co');
 const { expect, sinon } = require('test/util/chai');
 const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
 const mockAmendedSession = require('test/fixtures/mockAmendedSession');
@@ -173,17 +172,13 @@ describe(modulePath, () => {
         sendStatus: sinon.stub()
       };
 
-      sinon.stub(underTest, 'validate').returns([true]);
       sinon.stub(underTest, 'submitApplication');
-      sinon.stub(underTest, 'parseCtx').resolves();
     });
 
     afterEach(() => {
       req = {};
       res = {};
       underTest.submitApplication.restore();
-      underTest.validate.restore();
-      underTest.parseCtx.restore();
     });
 
     it('redirects to base path when submitted without button', done => {
@@ -193,27 +188,33 @@ describe(modulePath, () => {
       }, 'post', true, postBody);
     });
 
-    it('runs submit application if submission is valid', done => {
-      co(function* generator() {
-        req.body.submit = true;
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledOnce).to.equal(true);
-        expect(underTest.validate.calledOnce).to.equal(true);
-        expect(underTest.submitApplication.calledOnce).to.equal(true);
-        done();
-      });
+    it('runs submit application if submission is valid', async () => {
+      req.body.submit = true;
+      await underTest.postRequest(req, res);
+      expect(underTest.submitApplication.calledOnce).to.equal(true);
     });
 
-    it('does not submit application if invalid', done => {
-      co(function* generator() {
-        req.body.submit = true;
-        underTest.validate.returns([false]);
-        yield underTest.postRequest(req, res);
-        expect(underTest.parseCtx.calledTwice).to.equal(true);
-        expect(underTest.validate.calledTwice).to.equal(true);
-        expect(underTest.submitApplication.called).to.equal(false);
-        done();
+    it('does not submit application if invalid', async () => {
+      await underTest.postRequest(req, res);
+      expect(underTest.submitApplication.called).to.equal(false);
+    });
+
+    it('return required properties from old session', () => {
+      Object.assign(req.session, {
+        csrfSecret: 'csrfSecret',
+        fetchedDraft: true,
+        expires: Date.now(),
+        someOther: 'someOther',
+        cookie: 'cookie'
       });
+
+      const values = underTest.getRetainedPropertiesAfterNewSessionCreated(req);
+
+      expect(values).to.have.property('csrfSecret');
+      expect(values).to.have.property('fetchedDraft');
+      expect(values).to.have.property('expires');
+      expect(values).to.have.property('cookie');
+      expect(values).to.not.have.property('someOther');
     });
   });
 
@@ -244,15 +245,14 @@ describe(modulePath, () => {
       submission.setup.restore();
     });
 
-    it('when continue button is clicked should call submitApplication', done => {
-      co(function* generator() {
-        const submitApplication = sinon.stub(underTest, 'submitApplication');
-        req.body.submit = true;
-        yield underTest.postRequest(req, res);
-        sinon.assert.calledOnce(submitApplication);
-        underTest.submitApplication.restore();
-        done();
-      });
+    it('when continue button is clicked should call submitApplication', async () => {
+      const submitApplication = sinon.stub(underTest, 'submitApplication');
+      req.body.submit = true;
+
+      await underTest.postRequest(req, res);
+
+      sinon.assert.calledOnce(submitApplication);
+      underTest.submitApplication.restore();
     });
 
     it('when continue button is clicked should request amend and redirect to next unanswered page', done => {

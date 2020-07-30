@@ -5,6 +5,7 @@ const server = require('app');
 const co = require('co');
 const { expect, sinon } = require('test/util/chai');
 const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
+const mockAmendedSession = require('test/fixtures/mockAmendedSession');
 const submission = require('app/services/submission');
 
 const modulePath = 'app/steps/amendment-explanatory-page';
@@ -164,7 +165,7 @@ describe(modulePath, () => {
         body: {},
         method: 'POST',
         session: { featureToggles: {}, state: 'AwaitingAmendCase', caseId: '123' },
-        cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' },
+        cookies: { '__auth-token': 'fake.token' },
         headers: {}
       };
       res = {
@@ -226,18 +227,14 @@ describe(modulePath, () => {
         body: {},
         method: 'POST',
         session: { featureToggles: {}, submit: true, state: 'AwaitingAmendCase', caseId: '123' },
-        cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' },
+        cookies: { '__auth-token': 'fake.token' },
         headers: {}
       };
       res = {
         redirect: sinon.stub(),
         sendStatus: sinon.stub()
       };
-      amend = sinon.stub().resolves({
-        error: null,
-        status: 'success',
-        caseId: '1234567890'
-      });
+      amend = sinon.stub().resolves(mockAmendedSession);
       sinon.stub(submission, 'setup').returns({ amend });
     });
 

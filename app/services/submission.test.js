@@ -262,10 +262,8 @@ describe(modulePath, () => {
     });
 
     it('forwards the call to the client', done => {
-      // Act.
       client.amend()
         .then(() => {
-          // Assert.
           expect(mockedClient.amend.calledOnce).to.equal(true);
           done();
         })
@@ -275,10 +273,8 @@ describe(modulePath, () => {
     });
 
     it('resolves sending required data of the response', done => {
-      // Act.
       client.amend()
         .then(output => {
-          // Assert.
           expect(output).to.eql(amendSuccess);
           done();
         })
@@ -288,17 +284,14 @@ describe(modulePath, () => {
     });
 
     it('rejects if something goes wrong', done => {
-      // Arrange.
       const error = new Error('Something went wrong');
       mockedClient.amend.rejects(error);
       client = underTest.setup();
-      // Act.
       client.amend()
         .then(() => {
           done(new Error('Promise not expected to resolve'));
         })
         .catch(output => {
-          // Assert.
           expect(output).to.equal(error);
           done();
         });

@@ -18,7 +18,7 @@ module.exports = class AwaitingAmend extends Step {
   }
 
   get nextStep() {
-    return this.steps.NeedHelpWithFees;
+    return this.steps.Index;
   }
 
   get middleware() {
@@ -74,7 +74,7 @@ module.exports = class AwaitingAmend extends Step {
 
         req.session.regenerate(() => {
           Object.assign(req.session, response, retainedProps, { state: null });
-          redirectToNextPage(req, res);
+          res.redirect(this.nextStep.url);
         });
       })
       .catch(error => {

@@ -252,10 +252,10 @@ describe(modulePath, () => {
       underTest.submitApplication.restore();
     });
 
-    it('when continue button is clicked should request amend and redirect to next unanswered page', done => {
+    it('when continue button is clicked should request amend and redirect to Index', done => {
       testCustom(done, agent, underTest, [], response => {
         expect(amend.calledOnce).to.equal(true);
-        expect(response.res.headers.location).to.equal(appInstance.steps.NeedHelpWithFees.url);
+        expect(response.res.headers.location).to.equal(appInstance.steps.Index.url);
       }, 'post', true, postBody);
     });
 

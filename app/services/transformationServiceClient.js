@@ -62,6 +62,13 @@ const saveToDraftStore = (options = {}, userToken = '', body = {}, sendEmail = f
   return request.put({ uri, body, headers, json: true });
 };
 
+const amend = (options = {}, userToken = '', caseId = '') => {
+  const uri = `${options.baseUrl}/amend-petition/${caseId}`;
+  const headers = { Authorization: `Bearer ${userToken}` };
+
+  return request.put({ uri, headers, json: true });
+};
+
 const client = {
   /**
    * Create a transformation client
@@ -95,6 +102,10 @@ const client = {
 
       removeFromDraftStore: (...args) => {
         return removeFromDraftStore(options, ...args);
+      },
+
+      amend: (...args) => {
+        return amend(options, ...args);
       }
     };
   }

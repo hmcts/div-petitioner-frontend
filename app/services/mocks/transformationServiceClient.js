@@ -75,6 +75,16 @@ const mockedService = {
     });
   },
 
+  amend: (options, userToken, caseId, outcome = true) => {
+    return new Promise((resolve, reject) => {
+      if (outcome) {
+        resolve();
+      } else {
+        reject(Error());
+      }
+    });
+  },
+
   mockSession
 };
 

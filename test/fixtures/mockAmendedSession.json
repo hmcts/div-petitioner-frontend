@@ -1,0 +1,135 @@
+{
+  "expires": 0,
+  "caseReference": "LV17D80000",
+  "screenHasMarriageBroken": "Yes",
+  "screenHasRespondentAddress": "Yes",
+  "screenHasMarriageCert": "Yes",
+  "divorceWho": "wife",
+  "marriageIsSameSexCouple": "No",
+  "marriageDateDay": 25,
+  "marriageDateMonth": 11,
+  "marriageDateYear": 1999,
+  "marriageDate": "1999-11-25T00:00:00.000+0000",
+  "marriageCanDivorce": "true",
+  "marriedInUk": "Yes",
+  "placeOfMarriage": "United Kingdom",
+  "jurisdictionPath": [
+    "JurisdictionHabitualResidence",
+    "JurisdictionInterstitial"
+  ],
+  "jurisdictionConnection": [
+    "A",
+    "C"
+  ],
+  "connections": {
+    "A": "The Petitioner and the Respondent are habitually resident in England and Wales",
+    "B": null,
+    "C": "The Respondent is habitually resident in England and Wales",
+    "D": null,
+    "E": null,
+    "F": null,
+    "G": null
+  },
+  "jurisdictionPetitionerResidence": "Yes",
+  "jurisdictionRespondentResidence": "Yes",
+  "jurisdictionConfidentLegal": "Yes",
+  "petitionerContactDetailsConfidential": "share",
+  "petitionerFirstName": "Kyla",
+  "petitionerLastName": "Garrison",
+  "respondentFirstName": "Barbara",
+  "respondentLastName": "Conrad",
+  "marriagePetitionerName": "Hammett Mathews",
+  "marriageRespondentName": "Fritz Chaney",
+  "petitionerNameDifferentToMarriageCertificate": "No",
+  "petitionerEmail": "petitioner2107-awaiting-amend@mailinator.com",
+  "petitionerHomeAddress": {
+    "addressType": "postcode",
+    "postcode": "B1 1LS",
+    "street1": null,
+    "street2": null,
+    "town": null,
+    "postcodeManual": null,
+    "addressConfirmed": "true",
+    "addressAbroad": null,
+    "validPostcode": true,
+    "postcodeError": "false",
+    "url": null,
+    "address": [
+      "APARTMENT 1, WESTSIDE ONE",
+      "22, SUFFOLK STREET QUEENSWAY",
+      "BIRMINGHAM",
+      "B1 1LS"
+    ]
+  },
+  "petitionerCorrespondenceUseHomeAddress": "Yes",
+  "petitionerCorrespondenceAddress": {
+    "addressType": "postcode",
+    "postcode": "B1 1LS",
+    "street1": null,
+    "street2": null,
+    "town": null,
+    "postcodeManual": null,
+    "addressConfirmed": "true",
+    "addressAbroad": null,
+    "validPostcode": true,
+    "postcodeError": "false",
+    "url": null,
+    "address": [
+      "APARTMENT 1, WESTSIDE ONE",
+      "22, SUFFOLK STREET QUEENSWAY",
+      "BIRMINGHAM",
+      "B1 1LS"
+    ]
+  },
+  "livingArrangementsLiveTogether": "Yes",
+  "respondentHomeAddress": {
+    "addressType": "postcode",
+    "postcode": "B1 1LS",
+    "street1": null,
+    "street2": null,
+    "town": null,
+    "postcodeManual": null,
+    "addressConfirmed": "true",
+    "addressAbroad": null,
+    "validPostcode": true,
+    "postcodeError": "false",
+    "url": null,
+    "address": [
+      "APARTMENT 1, WESTSIDE ONE",
+      "22, SUFFOLK STREET QUEENSWAY",
+      "BIRMINGHAM",
+      "B1 1LS"
+    ]
+  },
+  "respondentCorrespondenceUseHomeAddress": "Yes",
+  "respondentCorrespondenceAddress": {
+    "addressType": "postcode",
+    "postcode": "B1 1LS",
+    "street1": null,
+    "street2": null,
+    "town": null,
+    "postcodeManual": null,
+    "addressConfirmed": "true",
+    "addressAbroad": null,
+    "validPostcode": true,
+    "postcodeError": "false",
+    "url": null,
+    "address": [
+      "APARTMENT 1, WESTSIDE ONE",
+      "22, SUFFOLK STREET QUEENSWAY",
+      "BIRMINGHAM",
+      "B1 1LS"
+    ]
+  },
+  "legalProceedings": "No",
+  "financialOrder": "No",
+  "courts": "serviceCentre",
+  "petitionerConsent": "Yes",
+  "respondentContactDetailsConfidential": "share",
+  "previousIssueDate": "2020-07-29T00:00:00.000+0000",
+  "languagePreferenceWelsh": "No",
+  "previousCaseId": "1595346008897551",
+  "previousReasonsForDivorce": [
+    "unreasonable-behaviour"
+  ]
+}

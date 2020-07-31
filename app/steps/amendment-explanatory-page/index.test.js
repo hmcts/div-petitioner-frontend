@@ -5,8 +5,8 @@ const server = require('app');
 const co = require('co');
 const { expect, sinon } = require('test/util/chai');
 const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
+const mockAmendedSession = require('test/fixtures/mockAmendedSession');
 const submission = require('app/services/submission');
-const stepsHelper = require('app/core/helpers/steps');
 
 const modulePath = 'app/steps/amendment-explanatory-page';
 
@@ -27,6 +27,9 @@ describe(modulePath, () => {
     appInstance = server.init();
     agent = request.agent(appInstance.app);
     underTest = appInstance.steps.AwaitingAmend;
+    postBody = {
+      submit: true
+    };
   });
 
   afterEach(() => {
@@ -154,26 +157,63 @@ describe(modulePath, () => {
     });
   });
 
-  describe('#submitApplication', () => {
-    beforeEach(done => {
-      session = {
-        submissionStarted: true,
-        state: 'AwaitingAmendCase',
-        submit: true,
-        cookie: {},
-        expires: Date.now()
+  describe('#postRequest', () => {
+    let req = {};
+    let res = {};
+    beforeEach(() => {
+      req = {
+        body: {},
+        method: 'POST',
+        session: { featureToggles: {}, state: 'AwaitingAmendCase', caseId: '123' },
+        cookies: { '__auth-token': 'fake.token' },
+        headers: {}
       };
-      withSession(done, agent, session);
+      res = {
+        redirect: sinon.stub(),
+        sendStatus: sinon.stub()
+      };
+
+      sinon.stub(underTest, 'validate').returns([true]);
+      sinon.stub(underTest, 'submitApplication');
+      sinon.stub(underTest, 'parseCtx').resolves();
     });
 
     afterEach(() => {
-      session = {};
+      req = {};
+      res = {};
+      underTest.submitApplication.restore();
+      underTest.validate.restore();
+      underTest.parseCtx.restore();
     });
 
-    it('redirects to base path when duplicate submission', done => {
+    it('redirects to base path when submitted without button', done => {
+      postBody = {};
       testCustom(done, agent, underTest, [], response => {
         expect(response.res.headers.location).to.equal(BASE_PATH);
       }, 'post', true, postBody);
+    });
+
+    it('runs submit application if submission is valid', done => {
+      co(function* generator() {
+        req.body.submit = true;
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledOnce).to.equal(true);
+        expect(underTest.validate.calledOnce).to.equal(true);
+        expect(underTest.submitApplication.calledOnce).to.equal(true);
+        done();
+      });
+    });
+
+    it('does not submit application if invalid', done => {
+      co(function* generator() {
+        req.body.submit = true;
+        underTest.validate.returns([false]);
+        yield underTest.postRequest(req, res);
+        expect(underTest.parseCtx.calledTwice).to.equal(true);
+        expect(underTest.validate.calledTwice).to.equal(true);
+        expect(underTest.submitApplication.called).to.equal(false);
+        done();
+      });
     });
   });
 
@@ -187,27 +227,21 @@ describe(modulePath, () => {
         body: {},
         method: 'POST',
         session: { featureToggles: {}, submit: true, state: 'AwaitingAmendCase', caseId: '123' },
-        cookies: { '__auth-token': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpZCI6IjEwIn0.sX3u4V8vPF6brlIfF6-k5JxZNI_Yjz__kfHnG9MyOu4' },
+        cookies: { '__auth-token': 'fake.token' },
         headers: {}
       };
       res = {
         redirect: sinon.stub(),
         sendStatus: sinon.stub()
       };
-      amend = sinon.stub().resolves({
-        error: null,
-        status: 'success',
-        caseId: '1234567890'
-      });
+      amend = sinon.stub().resolves(mockAmendedSession);
       sinon.stub(submission, 'setup').returns({ amend });
-      sinon.stub(stepsHelper, 'findNextUnAnsweredStep').returns(appInstance.steps.WithFees);
     });
 
     afterEach(() => {
       req = {};
       res = {};
       submission.setup.restore();
-      stepsHelper.findNextUnAnsweredStep.restore();
     });
 
     it('when continue button is clicked should call submitApplication', done => {
@@ -219,6 +253,22 @@ describe(modulePath, () => {
         underTest.submitApplication.restore();
         done();
       });
+    });
+
+    it('when continue button is clicked should request amend and redirect to Index', done => {
+      testCustom(done, agent, underTest, [], response => {
+        expect(amend.calledOnce).to.equal(true);
+        expect(response.res.headers.location).to.equal(appInstance.steps.Index.url);
+      }, 'post', true, postBody);
+    });
+
+    it('when continue button is clicked and request to amend returns an error should redirect to generic error page', done => {
+      amend.rejects();
+
+      testCustom(done, agent, underTest, [], response => {
+        expect(amend.calledOnce).to.equal(true);
+        expect(response.res.headers.location).to.equal(appInstance.steps.GenericError.url);
+      }, 'post', true, postBody);
     });
   });
 });

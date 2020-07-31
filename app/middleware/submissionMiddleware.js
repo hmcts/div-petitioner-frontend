@@ -5,6 +5,7 @@ const { isToggleOnAwaitingAmend } = require('app/core/utils/checkToggle');
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
+const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
 const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
 
 const handleCcdCase = (req, res, next) => {
@@ -42,8 +43,7 @@ const handleCcdCase = (req, res, next) => {
       logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
       return res.redirect(AMENDMENT_EXPLANATORY_PAGE);
     }
-    logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
-    return res.redirect(DONE_AND_SUBMITTED);
+    return res.redirect(CONTACT_DIVORCE_TEAM_PATH);
   default:
     logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);

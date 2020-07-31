@@ -164,7 +164,8 @@
     "supertest": "^4.0.2",
     "timekeeper": "^2.1.2",
     "unirest": "^0.6.0",
-    "webdriverio": "^4.14.4"
+    "webdriverio": "^4.14.4",
+    "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {
     "assign-deep": ">=1.0.1",

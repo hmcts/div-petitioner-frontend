@@ -4,7 +4,6 @@ const sessionTimeout = require('app/middleware/sessionTimeout');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
-const { redirectToNextPage } = require('app/middleware/draftPetitionStoreMiddleware');
 const logger = require('app/services/logger').logger(__filename);
 const config = require('config');
 const { createUris } = require('@hmcts/div-document-express-handler');
@@ -18,7 +17,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
   }
 
   get nextStep() {
-    return this.steps.NeedHelpWithFees;
+    return this.steps.ScreeningQuestionsLanguagePreference;
   }
 
   get middleware() {
@@ -80,7 +79,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
         req.session.regenerate(() => {
           Object.assign(req.session, response, retainedProps, { state: null });
-          redirectToNextPage(req, res);
+          res.redirect(this.steps.Index.url);
         });
       })
       .catch(error => {

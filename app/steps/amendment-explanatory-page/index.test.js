@@ -208,13 +208,10 @@ describe(modulePath, () => {
         cookie: 'cookie'
       });
 
-      const values = underTest.getRetainedPropertiesAfterNewSessionCreated(req);
+      const values = underTest.getRetainedSessionProperties(req);
 
-      expect(values).to.have.property('csrfSecret');
-      expect(values).to.have.property('fetchedDraft');
-      expect(values).to.have.property('expires');
-      expect(values).to.have.property('cookie');
       expect(values).to.not.have.property('someOther');
+      expect(values).to.have.all.keys('csrfSecret', 'fetchedDraft', 'expires', 'cookie', 'featureToggles');
     });
   });
 

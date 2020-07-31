@@ -70,7 +70,7 @@ module.exports = class AwaitingAmend extends Step {
         const { previousCaseId, caseReference } = response;
         logger.infoWithReq(req, 'amendment_success', 'Case amended successfully', { previousCaseId, caseReference });
 
-        const retainedProps = this.getRetainedPropertiesAfterNewSessionCreated(req);
+        const retainedProps = this.getRetainedSessionProperties(req);
 
         req.session.regenerate(() => {
           Object.assign(req.session, response, retainedProps, { state: null });
@@ -83,7 +83,7 @@ module.exports = class AwaitingAmend extends Step {
       });
   }
 
-  getRetainedPropertiesAfterNewSessionCreated(req) {
+  getRetainedSessionProperties(req) {
     return {
       cookie: req.session.cookie,
       csrfSecret: req.session.csrfSecret,

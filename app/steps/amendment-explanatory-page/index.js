@@ -1,4 +1,4 @@
-const ValidationStep = require('app/core/steps/ValidationStep');
+const Step = require('app/core/steps/Step');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
@@ -11,7 +11,7 @@ const submissionService = require('app/services/submission');
 
 const BASE_PATH = '/';
 
-module.exports = class AwaitingAmend extends ValidationStep {
+module.exports = class AwaitingAmend extends Step {
   get url() {
     return '/amendment-explanatory-page';
   }
@@ -48,7 +48,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
     return createUris(session.d8, docConfig);
   }
 
-  * postRequest(req, res) {
+  postRequest(req, res) {
     const { body } = req;
     const hasBeenPostedWithoutSubmitButton = body && !body.hasOwnProperty('submit');
 
@@ -56,15 +56,8 @@ module.exports = class AwaitingAmend extends ValidationStep {
       return res.redirect(BASE_PATH);
     }
 
-    const ctx = yield this.parseCtx(req);
-    logger.infoWithReq(req, 'status_amend', 'Request for amending case', ctx);
-    const [isValid] = this.validate(ctx, req.session);
-
-    if (isValid) {
-      req.session = this.applyCtxToSession(ctx, req.session);
-      return this.submitApplication(req, res);
-    }
-    return yield super.postRequest(req, res);
+    logger.infoWithReq(req, 'status_amend', 'Request for amending case', req.session.caseId);
+    return this.submitApplication(req, res);
   }
 
   submitApplication(req, res) {
@@ -73,13 +66,14 @@ module.exports = class AwaitingAmend extends ValidationStep {
 
     return submission.amend(req, authToken, req.session.caseId)
       .then(response => {
-        logger.infoWithReq(req, 'amendment_success', 'Case amended successfully', response);
+        const { previousCaseId, caseReference } = response;
+        logger.infoWithReq(req, 'amendment_success', 'Case amended successfully', { previousCaseId, caseReference });
 
-        const retainedProps = this.retainedAfterNewSessionCreated(req);
+        const retainedProps = this.getRetainedSessionProperties(req);
 
         req.session.regenerate(() => {
           Object.assign(req.session, response, retainedProps, { state: null });
-          res.redirect(this.steps.Index.url);
+          res.redirect(this.nextStep.url);
         });
       })
       .catch(error => {
@@ -88,7 +82,7 @@ module.exports = class AwaitingAmend extends ValidationStep {
       });
   }
 
-  retainedAfterNewSessionCreated(req) {
+  getRetainedSessionProperties(req) {
     return {
       cookie: req.session.cookie,
       csrfSecret: req.session.csrfSecret,

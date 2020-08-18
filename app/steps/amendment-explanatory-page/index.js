@@ -72,7 +72,7 @@ module.exports = class AwaitingAmend extends Step {
         const retainedProps = this.getRetainedSessionProperties(req);
 
         req.session.regenerate(() => {
-          Object.assign(req.session, response, retainedProps, { state: null });
+          Object.assign(req.session, response, retainedProps, { state: null, reasonsForDivorceShowAll: true });
           res.redirect(this.nextStep.url);
         });
       })

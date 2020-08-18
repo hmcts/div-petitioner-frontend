@@ -63,12 +63,16 @@ module.exports = class ReasonForDivorce extends ValidationStep {
 
   interceptor(ctx, session) {
     //  no marriage date - display nothing
-    //  1 -2 years - adultery, unreasonable behaviour
-    //  2 -5 years - adultery, unreasonable behaviour, 2 year separation, desertion
+    //  1 - 2 years - adultery, unreasonable behaviour
+    //  2 - 5 years - adultery, unreasonable behaviour, 2 year separation, desertion
     //  > 5 years - adultery, unreasonable behaviour, 2 year separation, desertion, 5 year separation
 
     const marriageDate = session.marriageDate;
-    const ignoreDivorceReasons = session.previousReasonsForDivorce;
+    let ignoreDivorceReasons = session.previousReasonsForDivorce;
+
+    if (this.showAllReasonsForDivorce(session)) {
+      ignoreDivorceReasons = [];
+    }
 
     ctx.reasonForDivorceHasMarriageDate = false;
     ctx.reasonForDivorceShowAdultery = false;
@@ -109,7 +113,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
           ctx.reasonForDivorceShowFiveYearsSeparation = false;
           break;
         default:
-          logger.errorWithReq(session.req, 'unkown_reason', `Unknown reason for divorce found: ${reason}`);
+          logger.errorWithReq(session.req, 'unknown_reason', `Unknown reason for divorce found: ${reason}`);
         }
       });
     }
@@ -137,5 +141,9 @@ module.exports = class ReasonForDivorce extends ValidationStep {
       ...super.middleware,
       checkMarriageDate
     ];
+  }
+
+  showAllReasonsForDivorce(session) {
+    return session.reasonsForDivorceShowAll === true;
   }
 };

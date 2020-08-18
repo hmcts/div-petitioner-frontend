@@ -585,4 +585,28 @@ describe(modulePath, () => {
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
   });
+
+  describe('if reasonsForDivorceShowAll exist', () => {
+    let session = {};
+
+    beforeEach(() => {
+      session = {
+        divorceWho: 'wife',
+        marriageDate: '2000-01-01T00:00:00.000Z',
+        previousReasonsForDivorce: ['unreasonable-behaviour'],
+        reasonsForDivorceShowAll: true
+      };
+    });
+
+    it('Should return true', () => {
+      const returnValue = underTest.showAllReasonsForDivorce(session);
+      expect(returnValue).to.equal(true);
+    });
+
+    it('Should return false', () => {
+      delete session.reasonsForDivorceShowAll;
+      const returnValue = underTest.showAllReasonsForDivorce(session);
+      expect(returnValue).to.equal(false);
+    });
+  });
 });

@@ -1,4 +1,5 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
+{% from "radios/macro.njk" import govukRadios %}
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 
@@ -23,20 +24,26 @@
 
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.languagePreferenceWelsh.error }}">
       <fieldset id="languagePreferenceWelsh" class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+        <legend class="govuk-fieldset__legend--l visually-hidden">{{ content.question | safe }}</legend>
         {{ errorsFor(fields.fields.languagePreferenceWelsh) }}
-        {{ radioButton(
-            value = 'No',
-            label = content.no,
-            name = 'languagePreferenceWelsh',
-            field = fields.languagePreferenceWelsh
-        ) }}
-        {{ radioButton(
-            value = 'Yes',
-            label = content.yes,
-            name = 'languagePreferenceWelsh',
-            field = fields.languagePreferenceWelsh
-        ) }}
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: 'languagePreferenceWelsh',
+          name: 'languagePreferenceWelsh',
+          items: [
+            {
+              value: "Yes",
+              text: content.no,
+              name: 'languagePreferenceWelsh',
+              checked: true
+            },
+            {
+              value: "No",
+              text: content.yes,
+              name: 'languagePreferenceWelsh'
+            }
+          ]
+        }) }}
       </fieldset>
     </div>
 

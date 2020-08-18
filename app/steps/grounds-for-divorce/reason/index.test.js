@@ -493,7 +493,6 @@ describe(modulePath, () => {
     });
   });
 
-
   describe('if previousReasonForDivorce is separation-2-years', () => {
     let session = {};
 
@@ -552,7 +551,6 @@ describe(modulePath, () => {
     });
   });
 
-
   describe('if previousReasonForDivorce is separation-5-years', () => {
     let session = {};
 
@@ -586,8 +584,9 @@ describe(modulePath, () => {
     });
   });
 
-  describe('if reasonsForDivorceShowAll exist', () => {
+  describe('reasonForDivorce functionality', () => {
     let session = {};
+    let ctx = {};
 
     beforeEach(() => {
       session = {
@@ -597,16 +596,38 @@ describe(modulePath, () => {
         reasonsForDivorceShowAll: true
       };
     });
+    afterEach(() => {
+      ctx = {};
+    });
 
-    it('Should return true', () => {
+    it('Should return true if reasonsForDivorceShowAll exists', () => {
       const returnValue = underTest.showAllReasonsForDivorce(session);
       expect(returnValue).to.equal(true);
     });
 
-    it('Should return false', () => {
+    it('Should return false if reasonsForDivorceShowAll does not exists', () => {
       delete session.reasonsForDivorceShowAll;
       const returnValue = underTest.showAllReasonsForDivorce(session);
       expect(returnValue).to.equal(false);
+    });
+
+    it('Should not show unreasonable behaviour reasonsForDivorceShowAll does not exist', () => {
+      delete session.reasonsForDivorceShowAll;
+      underTest.interceptor(ctx, session);
+      expect(ctx.reasonForDivorceShowAdultery).to.equal(true);
+      expect(ctx.reasonForDivorceShowUnreasonableBehaviour).to.equal(false);
+      expect(ctx.reasonForDivorceShowDesertion).to.equal(true);
+      expect(ctx.reasonForDivorceShowTwoYearsSeparation).to.equal(true);
+      expect(ctx.reasonForDivorceShowFiveYearsSeparation).to.equal(true);
+    });
+
+    it('Should show unreasonable behaviour if reasonsForDivorceShowAll exist', () => {
+      underTest.interceptor(ctx, session);
+      expect(ctx.reasonForDivorceShowAdultery).to.equal(true);
+      expect(ctx.reasonForDivorceShowUnreasonableBehaviour).to.equal(true);
+      expect(ctx.reasonForDivorceShowDesertion).to.equal(true);
+      expect(ctx.reasonForDivorceShowTwoYearsSeparation).to.equal(true);
+      expect(ctx.reasonForDivorceShowFiveYearsSeparation).to.equal(true);
     });
   });
 });

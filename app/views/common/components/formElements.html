@@ -144,7 +144,7 @@
     </div>
 {% endmacro %}
 
-{% macro radioButton(value, label, name, field, dataTarget = '', screenReader = '', defaultChecked) %}
+{% macro radioButton(value, label, name, field, dataTarget = '', screenReader = '', defaultChecked=false) %}
    <div class="govuk-radios__item" data-target="{{ dataTarget }}">
       <input class="govuk-radios__input" id="{{ name }}_{{ value }}" type="radio" name="{{ name }}"
                value="{{ value }}" {{ 'checked=checked ' if (field.value === value) or (defaultChecked === true) }}  >

@@ -85,6 +85,14 @@ commonProps:
     feeCode: 'FEE0269'
     version: 1
     amount: 95.00
+  enforcementFee:
+    feeCode: 'FEE0448'
+    version: 1
+    amount: 110.00
+  appWithoutNoticeFee:
+    feeCode: 'FEE0228'
+    version: 1
+    amount: 50.00
   financialOrderApplicationFee: 255
   smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
@@ -172,6 +180,7 @@ ccd:
   d8States:
     - 'AwaitingPayment'
     - 'AwaitingAmendCase'
+    - 'ServiceApplicationNotApproved'
   courts:
     - 'serviceCentre'
 
@@ -194,3 +203,6 @@ document:
   documentNamePath: 'fileName'
   filesWhiteList:
     - 'd8petition'
+    - 'dispenseWithServiceRefused'
+    - 'deemedServiceRefused'
+    - 'generalOrder'

@@ -60,7 +60,8 @@
     "PaymentSiteId": "AA07"
   },
   "marriageDate": "2000-01-01T00:00:00.000+0000",
-  "state": "AwaitingAmendCase",
+  "state": "ServiceApplicationNotApproved",
+  "serviceApplicationType":"deemed",
   "screenHasRespondentAddress": "Yes",
   "connections": {
     "A": "The Petitioner and the Respondent are habitually resident in England and Wales",
@@ -166,17 +167,6 @@
   ],
   "d8": [
     {
-      "id": "401ab79e-34cb-4570-9f2f-4cf9357m4st3r",
-      "createdBy": 0,
-      "createdOn": null,
-      "lastModifiedBy": 0,
-      "modifiedOn": null,
-      "fileName": "somethingNotWhiteListedD81554740111371638.pdf",
-      "fileUrl": "http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f",
-      "mimeType": null,
-      "status": null
-    },
-    {
       "id": "0ecc2507-1acf-46ae-b0d8-2d7c032fc145",
       "createdBy": 0,
       "createdOn": null,
@@ -194,6 +184,50 @@
       "lastModifiedBy": 0,
       "modifiedOn": null,
       "fileName": "generalOrder2020-08-09.pdf",
+      "fileUrl": "http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "mimeType": null,
+      "status": null
+    },
+    {
+      "id": "27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "createdBy": 0,
+      "createdOn": null,
+      "lastModifiedBy": 0,
+      "modifiedOn": null,
+      "fileName": "deemedServiceRefused2020-09-09.pdf",
+      "fileUrl": "http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "mimeType": null,
+      "status": null
+    },
+    {
+      "id": "27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "createdBy": 0,
+      "createdOn": null,
+      "lastModifiedBy": 0,
+      "modifiedOn": null,
+      "fileName": "d8petition124.pdf",
+      "fileUrl": "http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "mimeType": null,
+      "status": null
+    },
+    {
+      "id": "27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "createdBy": 0,
+      "createdOn": null,
+      "lastModifiedBy": 0,
+      "modifiedOn": null,
+      "fileName": "deemedServiceRefused2020-10-09.pdf",
+      "fileUrl": "http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "mimeType": null,
+      "status": null
+    },
+    {
+      "id": "27387e86-7fb8-4b72-8786-64ea22cb746d",
+      "createdBy": 0,
+      "createdOn": null,
+      "lastModifiedBy": 0,
+      "modifiedOn": null,
+      "fileName": "generalOrder2020-09-09.pdf",
       "fileUrl": "http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d",
       "mimeType": null,
       "status": null
@@ -255,5 +289,6 @@
   "marriedInUk": "Yes",
   "marriageDateMonth": 1,
   "createdDate": "2020-07-08T00:00:00.000+0000",
-  "marriageCanDivorce": "true"
+  "marriageCanDivorce": "true",
+  "language": "en"
 }

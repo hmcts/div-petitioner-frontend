@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { testContent, testExistence, testCustom } = require('test/util/assertions');
+const { getTemplateFileLabel } = require('test/util/helpers');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect, sinon } = require('test/util/chai');
@@ -19,7 +20,13 @@ let underTest = {};
 
 const BASE_PATH = '/';
 let session = {};
+let serviceCentre = {};
 let postBody = {};
+
+const buildAwaitingAmendSession = () => {
+  const oneSecond = 1000;
+  return Object.assign({}, mockAwaitingAmendSession, { expires: Date.now() + oneSecond });
+};
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -36,13 +43,10 @@ describe(modulePath, () => {
     postBody = {};
   });
 
-  describe('renders content', () => {
-    const amendSession = mockAwaitingAmendSession;
-
+  describe('Template Rendering', () => {
     beforeEach(done => {
-      const oneSecond = 1000;
-      session.expires = Date.now() + oneSecond;
-      withSession(done, agent, amendSession);
+      session = buildAwaitingAmendSession();
+      withSession(done, agent, session);
     });
 
     afterEach(() => {
@@ -50,63 +54,94 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content, amendSession);
+      const exclude = [
+        'files.respondentAnswers',
+        'files.coRespondentAnswers',
+        'files.certificateOfEntitlement',
+        'files.costsOrder',
+        'files.dnAnswers',
+        'files.clarificationDnRefusalOrder',
+        'files.rejectionDnRefusalOrder',
+        'files.deemedAsServedGranted',
+        'files.dispenseWithServiceGranted',
+        'files.deemedServiceRefused',
+        'files.dispenseWithServiceRefused'
+      ];
+      testContent(done, agent, underTest, content, session, exclude);
     });
 
     it('displays link for `How To Respond`', done => {
       testExistence(done, agent, underTest,
         contentStrings.howToRespondLink);
     });
+
+    it('should have one \'dpetition\' label in template view', done => {
+      const dpetitionFileLabel = getTemplateFileLabel(content, 'dpetition');
+      testExistence(done, agent, underTest, dpetitionFileLabel);
+    });
+
+    it('should have one \'General Order\' label in template view', done => {
+      const generalOrderFileLabel = getTemplateFileLabel(content, 'generalOrder');
+      testExistence(done, agent, underTest, generalOrderFileLabel);
+    });
   });
 
-  describe('renders document', () => {
-    const amendSession = mockAwaitingAmendSession;
-
+  describe('Document Rendering', () => {
     beforeEach(done => {
-      session.d8 = [
-        {
-          id: '401ab79e-34cb-4570-9f2f-4cf9357m4st3r',
-          createdBy: 0,
-          createdOn: null,
-          lastModifiedBy: 0,
-          modifiedOn: null,
-          fileName: 'd8petition1554740111371638.pdf',
-          // eslint-disable-next-line max-len
-          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
-          mimeType: null,
-          status: null
-        },
-        {
-          id: '401ab79e-34cb-4570-9f2f-4cf9357m4st3r',
-          createdBy: 0,
-          createdOn: null,
-          lastModifiedBy: 0,
-          modifiedOn: null,
-          fileName: 'somethingNotD81554740111371638.pdf',
-          // eslint-disable-next-line max-len
-          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
-          mimeType: null,
-          status: null
-        }
-      ];
-      withSession(done, agent, amendSession);
+      session = buildAwaitingAmendSession();
+      withSession(done, agent, session);
     });
 
     afterEach(() => {
       session = {};
     });
 
-    it('returns the correct file', () => {
+    it('should return the correct list of files', () => {
+      const expectedDocumentsSize = 2;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
       });
 
-      expect(fileTypes).to.eql(['dpetition']); // for d8petition. Numbers are removed from file type by document handler
+      expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
+      expect(fileTypes).to.include('dpetition');
+      expect(fileTypes).to.include('generalOrder');
+    });
+
+    it('should return only one file', () => {
+      const expectedDocumentsSize = 1;
+      session.d8 = [
+        {
+          id: '0ecc2507-1acf-46ae-b0d8-2d7c032fc145',
+          createdBy: 0,
+          createdOn: null,
+          lastModifiedBy: 0,
+          modifiedOn: null,
+          fileName: 'd8petition1594218147343642.pdf',
+          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/0ecc2507-1acf-46ae-b0d8-2d7c032fc145',
+          mimeType: null,
+          status: null
+        }
+      ];
+      const fileTypes = underTest.getDownloadableFiles(session).map(file => {
+        return file.type;
+      });
+
+      expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
+      expect(fileTypes).to.include('dpetition');
     });
   });
 
-  describe('should show awaiting amends info', () => {
-    it('contains main heading', done => {
+  describe('Awaiting amends info', () => {
+    beforeEach(done => {
+      session = buildAwaitingAmendSession();
+      withSession(done, agent, session);
+    });
+
+    afterEach(() => {
+      session = {};
+    });
+
+    it('should contains main heading', done => {
       testExistence(done, agent, underTest, contentStrings.mainHeading);
     });
 
@@ -123,36 +158,35 @@ describe(modulePath, () => {
     });
 
     it('contains paragraph 4', done => {
-      testExistence(done, agent, underTest, contentStrings.amendedApplicationInfoPara4);
+      testExistence(done, agent, underTest, contentStrings.amendedApplicationInfoPara4, { divorceWho: 'wife' });
     });
   });
 
-  describe('should display allocated court info', () => {
-    const amendSession = mockAwaitingAmendSession;
-    const allocatedCourt = amendSession.court.serviceCentre;
-
+  describe('should display service center info', () => {
     beforeEach(done => {
-      withSession(done, agent, amendSession);
+      session = buildAwaitingAmendSession();
+      serviceCentre = session.court.serviceCentre;
+      withSession(done, agent, session);
     });
 
     afterEach(() => {
       session = {};
     });
 
-    it('contains allocated court e-mail once', done => {
+    it('contains serviceCentre court e-mail once', done => {
       testCustom(done, agent, underTest, [], response => {
         const timesEmailShouldAppearOnPage = 1;
-        const emailOccurrencesInPage = response.text.match(new RegExp(allocatedCourt.email, 'g')).length;
+        const emailOccurrencesInPage = response.text.match(new RegExp(serviceCentre.email, 'g')).length;
         expect(emailOccurrencesInPage).to.equal(timesEmailShouldAppearOnPage);
       });
     });
 
-    it('contains allocated court phone number', done => {
-      testExistence(done, agent, underTest, allocatedCourt.phoneNumber);
+    it('contains serviceCentre phone number', done => {
+      testExistence(done, agent, underTest, serviceCentre.phoneNumber);
     });
 
-    it('contains allocated court opening hours', done => {
-      testExistence(done, agent, underTest, allocatedCourt.openingHours);
+    it('contains serviceCentre opening hours', done => {
+      testExistence(done, agent, underTest, serviceCentre.openingHours);
     });
   });
 

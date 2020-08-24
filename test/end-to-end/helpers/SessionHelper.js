@@ -3,13 +3,15 @@ const { assert } = require('chai');
 const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData');
 const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession');
 const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
+const serviceApplicationNotApprovedSession = require('test/end-to-end/data/serviceApplicationNotApprovedSession');
 const Tokens = require('csrf');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const availableSessions = {
   basicDivorceSessionData,
   amendPetitionSession,
-  amendPetitionSessionWithConfirmation
+  amendPetitionSessionWithConfirmation,
+  serviceApplicationNotApprovedSession
 };
 
 class SessionHelper extends codecept_helper {

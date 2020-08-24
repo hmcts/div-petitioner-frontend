@@ -1,0 +1,158 @@
+{% from "phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "common/components/customPageComponents.html" import documentList %}
+
+{% extends "layout.html" %}
+
+{% block back %}{% endblock %}
+{% set title = content.title %}
+{% block breadcrumbs %}
+
+{% set html %}
+{{ common.feedback | safe }}
+{% endset %}
+
+{{ govukPhaseBanner({
+  tag: {
+  text: common.phase
+  },
+  html: html
+  })
+}}
+{% endblock %}
+
+{% block two_thirds %}
+<div class="govuk-body">
+  <h1 class="govuk-heading-l">{{ content.mainHeading | safe}}</h1>
+
+  <p class="govuk-body">{{ content.serviceRefusalInfo | safe }}</p>
+  <p class="govuk-body">{{ content.infoToContactRespondent | safe }}</p>
+  <p class="govuk-body">{{ content.noResponseOptions | safe }}</p>
+  <h2 class="govuk-heading-m">{{ content.whichSituation }}</h2>
+
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.haveAnotherAddress.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text  govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.haveAnotherAddress.provideAddress }}</p>
+      <p class="govuk-body">{{ content.haveAnotherAddress.noExtraPay }}</p>
+    </div>
+  </details>
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.sendToWorkAddress.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.sendToWorkAddress.askToSendApp }}</p>
+      <p class="govuk-body"><strong>{{ content.howToApply }}</strong> {{ content.fill }} {{ content.applyD11 | safe }} {{
+        content.printAndSend }}</p>
+      <p class="govuk-body"><strong>{{ content.howToPay }}</strong> {{ content.howToPayContent }}</p>
+      <p class="govuk-body">{{ content.getNewRefNumb | safe }}</p>
+      <p class="govuk-body">{{ content.extraCosts }}</p>
+    </div>
+  </details>
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.needToSearchRecords.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.needToSearchRecords.canApplyIfRespLivesInEngWales }}</p>
+      <p class="govuk-body"><strong>{{ content.howToApply }}</strong> {{ content.needToSearchRecords.applyViaSearchRecords
+        }}</p>
+      <p class="govuk-body"><strong>{{ content.howToPay }}</strong> {{ content.howToPayContent }}</p>
+      <p class="govuk-body">{{ content.getNewRefNumb | safe }}</p>
+      <p class="govuk-body">{{ content.extraCosts }}</p>
+    </div>
+  </details>
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.sendEmailToResp.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.sendEmailToResp.appToEmail }}</p>
+      <p class="govuk-body"><strong>{{ content.howToApply }}</strong> {{ content.fill }} {{ content.applyD11 | safe }} {{
+        content.printAndSend }}</p>
+      <p class="govuk-body"><strong>{{ content.howToPay }}</strong> {{ content.howToPayContent }}</p>
+      <p class="govuk-body">{{ content.getNewRefNumb | safe }}</p>
+      <p class="govuk-body">{{ content.extraCosts }}</p>
+    </div>
+  </details>
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.believeRespChoseNotToRespond.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.believeRespChoseNotToRespond.deliverPapersDirectlyToResp }}</p>
+      <p class="govuk-body">{{ content.believeRespChoseNotToRespond.optionsToDeliver }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.believeRespChoseNotToRespond.privateHireToDeliver }}</li>
+        <li>{{ content.believeRespChoseNotToRespond.courtEmpToDeliver }}</li>
+      </ul>
+      <p class="govuk-body"><strong>{{ content.believeRespChoseNotToRespond.processServers }}</strong></p>
+      <p class="govuk-body">{{ content.believeRespChoseNotToRespond.processServerDetails }}</p>
+      <p class="govuk-body"><strong>{{ content.believeRespChoseNotToRespond.courtBailiff }}</strong></p>
+      <p class="govuk-body"><strong>{{ content.believeRespChoseNotToRespond.courtBailiffCovid19 }}</strong></p>
+      <p class="govuk-body">{{ content.believeRespChoseNotToRespond.courtBailiffDetails1 }}</p>
+      <p class="govuk-body">{{ content.believeRespChoseNotToRespond.courtBailiffDetails2 }}</p>
+      <p class="govuk-body"><strong>{{ content.howToApply }}</strong> {{ content.fill }} {{
+        content.believeRespChoseNotToRespond.formD89 | safe }}</p>
+      <p class="govuk-body">{{ content.believeRespChoseNotToRespond.moreToSend }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.believeRespChoseNotToRespond.respPhoto }}</li>
+        <li>{{ content.believeRespChoseNotToRespond.divorceAppCopy }}</li>
+      </ul>
+      <p class="govuk-body"><strong>{{ content.howToPay }}</strong> {{ content.howToPayBailiffContent }}</p>
+      <p class="govuk-body">{{ content.getNewRefNumb | safe }}</p>
+      <p class="govuk-body">{{ content.extraCosts }}</p>
+    </div>
+  </details>
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.evidenceRespWontRespond.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.evidenceRespWontRespond.canApplyForDeemedServ }}</p>
+      <p class="govuk-body">{{ content.evidenceRespWontRespond.needToProve }}</p>
+      <p class="govuk-body"><strong>{{ content.howToApply }}</strong> {{ content.fill }} {{ content.applyD11 | safe }} {{
+        content.evidenceRespWontRespond.applyAndSendDocs }}</p>
+      <p class="govuk-body"><strong>{{ content.howToPay }}</strong> {{ content.howToPayContent }}</p>
+      <p class="govuk-body">{{ content.getNewRefNumb | safe }}</p>
+      <p class="govuk-body">{{ content.extraCosts }}</p>
+    </div>
+  </details>
+  <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">{{ content.doneWithAllWaysOfDelivering.linkSummary }}</span>
+    </summary>
+
+    <div class="govuk-details__text govuk-!-font-size-19" aria-hidden="true">
+      <p class="govuk-body">{{ content.doneWithAllWaysOfDelivering.askForDispenseWithService }}</p>
+      <p class="govuk-body">{{ content.doneWithAllWaysOfDelivering.allInCourtHands }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ content.doneWithAllWaysOfDelivering.relatives }}</li>
+        <li>{{ content.doneWithAllWaysOfDelivering.friends }}</li>
+        <li>{{ content.doneWithAllWaysOfDelivering.lastEmployer }}</li>
+        <li>{{ content.doneWithAllWaysOfDelivering.tradePlace }}</li>
+      </ul>
+      <p class="govuk-body">{{ content.doneWithAllWaysOfDelivering.searchInGovtDB }}</p>
+      <p class="govuk-body"><strong>{{ content.howToApply }}</strong> {{ content.fill }} {{ content.applyD11 | safe }} {{
+        content.doneWithAllWaysOfDelivering.and }} {{ content.doneWithAllWaysOfDelivering.applyD13bLink | safe }} {{
+        content.doneWithAllWaysOfDelivering.applyD11AndD13bContent }}</p>
+      <p class="govuk-body"><strong>{{ content.howToPay }}</strong> {{ content.howToPayContent }}</p>
+      <p class="govuk-body">{{ content.getNewRefNumb | safe }}</p>
+      <p class="govuk-body">{{ content.extraCosts }}</p>
+    </div>
+  </details>
+
+</div>
+{% endblock %}
+
+{% block one_third %}
+ {% include "includes/sideMenu.html" %}
+{% endblock %}

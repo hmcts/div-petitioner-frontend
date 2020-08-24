@@ -11,7 +11,9 @@ const twentyFourHours = 86400;
 
 const feeTypes = {
   applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee'
+  amendFee: 'amend-fee',
+  enforcementFee: 'enforcement-fee',
+  appWithoutNoticeFee: 'application-without-notice-fee'
 };
 
 // redisClient is a let so it can be rewired in tests
@@ -61,7 +63,6 @@ const updateApplicationFeeMiddleware = (req, res, next) => {
     });
 };
 
-
 const updateAmendFeeMiddleware = (req, res, next) => {
   redisClient.get('commonProps.amendFee')
     .then(response => {
@@ -80,5 +81,42 @@ const updateAmendFeeMiddleware = (req, res, next) => {
     });
 };
 
+const updateAppWithoutNoticeFeeMiddleware = (req, res, next) => {
+  redisClient.get('commonProps.appWithoutNoticeFee')
+    .then(response => {
+      if (response) {
+        CONF.commonProps.enforcementFee = JSON.parse(response);
+        return Promise.resolve();
+      }
+      return getFeeFromFeesAndPayments(req, 'appWithoutNoticeFee');
+    })
+    .then(next)
+    .catch(error => {
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving appWithoutNoticeFee', error.message);
+      res.redirect('/generic-error');
+    });
+};
 
-module.exports = { updateApplicationFeeMiddleware, updateAmendFeeMiddleware };
+const updateEnforcementFeeMiddleware = (req, res, next) => {
+  redisClient.get('commonProps.enforcementFee')
+    .then(response => {
+      if (response) {
+        CONF.commonProps.enforcementFee = JSON.parse(response);
+        return Promise.resolve();
+      }
+      return getFeeFromFeesAndPayments(req, 'enforcementFee');
+    })
+    .then(next)
+    .catch(error => {
+      logger.errorWithReq(req, 'fees_error', 'Error retrieving enforcementFee', error.message);
+      res.redirect('/generic-error');
+    });
+};
+
+
+module.exports = {
+  updateApplicationFeeMiddleware,
+  updateAmendFeeMiddleware,
+  updateEnforcementFeeMiddleware,
+  updateAppWithoutNoticeFeeMiddleware
+};

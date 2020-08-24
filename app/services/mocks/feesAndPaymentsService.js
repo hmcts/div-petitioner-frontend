@@ -1,6 +1,8 @@
 const feeTypes = {
   applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee'
+  amendFee: 'amend-fee',
+  enforcementFee: 'enforcement-fee',
+  appWithoutNoticeFee: 'application-without-notice-fee'
 };
 
 const mockFeeResponse = (feeType = '') => {
@@ -10,7 +12,20 @@ const mockFeeResponse = (feeType = '') => {
       version: 1,
       amount: 95
     };
+  } else if (feeType === feeTypes.enforcementFee) {
+    return {
+      feeCode: 'FEE0448',
+      version: 1,
+      amount: 110
+    };
+  } else if (feeType === feeTypes.appWithoutNoticeFee) {
+    return {
+      feeCode: 'FEE0228',
+      version: 1,
+      amount: 50
+    };
   }
+
   return {
     feeCode: 'FEE0002',
     version: 4,

@@ -33,7 +33,7 @@ describe(modulePath, () => {
         feeToResendApplication: '50',
         refusalDocument: 'doc',
         refusalDocumentUrl: 'http://url.co',
-        enforcementFee: '110',
+        feeToEnforce: '110',
         serviceApplicationTypeLabel: 'label'
       });
       withSession(done, agent, session);

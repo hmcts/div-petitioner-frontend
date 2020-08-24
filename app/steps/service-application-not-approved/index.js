@@ -44,7 +44,7 @@ module.exports = class SaNotApproved extends Step {
 
   setFeesInfo(ctx) {
     ctx.feeToResendApplication = this.getFeeToResendApplication();
-    ctx.enforcementFee = this.getEnforcementFee();
+    ctx.feeToEnforce = this.getEnforcementFee();
   }
 
   setDocumentInfo(session, ctx) {

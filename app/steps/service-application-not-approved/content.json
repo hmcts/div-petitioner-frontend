@@ -30,7 +30,7 @@
             "appToEmail": "You can ask for the application to be delivered by email."
           },
           "believeRespChoseNotToRespond": {
-            "linkSummary": "I believe my {{ divorceWho }} lives at that address, but chose not to respond (£{{ enforcementFee }})",
+            "linkSummary": "I believe my {{ divorceWho }} lives at that address, but chose not to respond (£{{ feeToEnforce }})",
             "deliverPapersDirectlyToResp": "If you think that your {{ divorceWho }} is deliberately not responding you can pay a professional to deliver (serve) the divorce papers directly to them.",
             "optionsToDeliver": "You can do this by using either a:",
             "privateHireToDeliver": "Process server (a privately hired professional)",

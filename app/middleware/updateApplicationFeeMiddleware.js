@@ -85,7 +85,7 @@ const updateAppWithoutNoticeFeeMiddleware = (req, res, next) => {
   redisClient.get('commonProps.appWithoutNoticeFee')
     .then(response => {
       if (response) {
-        CONF.commonProps.enforcementFee = JSON.parse(response);
+        CONF.commonProps.appWithoutNoticeFee = JSON.parse(response);
         return Promise.resolve();
       }
       return getFeeFromFeesAndPayments(req, 'appWithoutNoticeFee');

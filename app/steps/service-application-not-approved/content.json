@@ -6,7 +6,7 @@
         "content": {
           "title": "Your service application has been refused",
           "mainHeading": "Your {{ serviceApplicationTypeLabel }} application has been refused",
-          "serviceRefusalInfo": "The court has refused your application for {{ serviceApplicationTypeLabel }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" href=\"{{ refusalDocumentUrl }}\" target=\"_blank\" aria-label=\"This link will download the file\" id=\"refusal-document\" >{{ refusalDocument }} (PDF)</a>.",
+          "serviceRefusalInfo": "The court has refused your application for {{ serviceApplicationTypeLabel }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{refusalDocumentUrl}}\" target=\"_blank\">{{ refusalDocument }} (PDF)</a>.",
           "infoToContactRespondent": "If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
           "noResponseOptions": "If there’s still no response using the original address, you have the following options available to you.",
           "whichSituation": "Which situation applies to you?",

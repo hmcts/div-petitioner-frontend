@@ -17,13 +17,6 @@ module.exports = class SaNotApproved extends Step {
     return '/service-application-not-approved';
   }
 
-  get ignorePa11yWarnings() {
-    return [
-      // A11y thinks link to download document is empty href
-      'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoHref'
-    ];
-  }
-
   get middleware() {
     return [
       idamProtect,

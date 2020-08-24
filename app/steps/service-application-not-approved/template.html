@@ -24,10 +24,7 @@ html: html
 {% set title = content.title %}
 <div class="govuk-body">
   <h1 class="govuk-heading-l">{{ content.mainHeading | safe}}</h1>
-  <p class="govuk-body">
-    {{ content.serviceRefusalInfo | safe }}
-    You can read the court’s reasons for this in the <a class="govuk-link" href="{{ refusalDocumentUrl }}" target="_blank" aria-label="This link will download the file" id="refusal-document" >{{ refusalDocument }} (PDF)</a>.
-  </p>
+  <p class="govuk-body">{{ content.serviceRefusalInfo | safe }}</p>
   <p class="govuk-body">{{ content.infoToContactRespondent | safe }}</p>
   <p class="govuk-body">{{ content.noResponseOptions | safe }}</p>
 

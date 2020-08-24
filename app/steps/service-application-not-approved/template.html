@@ -4,31 +4,28 @@
 {% extends "layout.html" %}
 
 {% block back %}{% endblock %}
-{% set title = content.title %}
 {% block breadcrumbs %}
-
 {% set html %}
 {{ common.feedback | safe }}
 {% endset %}
-
 {{ govukPhaseBanner({
-  tag: {
-  text: common.phase
-  },
-  html: html
-  })
+tag: {
+text: common.phase
+},
+html: html
+})
 }}
 {% endblock %}
 
 {% block two_thirds %}
+{% set title = content.title %}
 <div class="govuk-body">
   <h1 class="govuk-heading-l">{{ content.mainHeading | safe}}</h1>
-
   <p class="govuk-body">{{ content.serviceRefusalInfo | safe }}</p>
   <p class="govuk-body">{{ content.infoToContactRespondent | safe }}</p>
   <p class="govuk-body">{{ content.noResponseOptions | safe }}</p>
-  <h2 class="govuk-heading-m">{{ content.whichSituation }}</h2>
 
+  <h2 class="govuk-heading-m">{{ content.whichSituation }}</h2>
   <details class="govuk-details govuk-!-font-size-16 govuk-!-margin-bottom-2" data-module="govuk-details">
     <summary class="govuk-details__summary">
       <span class="govuk-details__summary-text">{{ content.haveAnotherAddress.linkSummary }}</span>

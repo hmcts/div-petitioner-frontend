@@ -17,13 +17,6 @@ module.exports = class SaNotApproved extends Step {
     return '/service-application-not-approved';
   }
 
-  get ignorePa11yWarnings() {
-    return [
-      // Paragraph with 2 links in it but it's not semantically a list
-      'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48'
-    ];
-  }
-
   get middleware() {
     return [
       idamProtect,

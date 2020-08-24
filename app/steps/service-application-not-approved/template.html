@@ -4,10 +4,13 @@
 {% extends "layout.html" %}
 
 {% block back %}{% endblock %}
+
 {% block breadcrumbs %}
+
 {% set html %}
 {{ common.feedback | safe }}
 {% endset %}
+
 {{ govukPhaseBanner({
 tag: {
 text: common.phase

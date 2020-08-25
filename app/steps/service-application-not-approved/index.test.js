@@ -190,9 +190,7 @@ describe(modulePath, () => {
       });
 
       it('should return empty string if no refusal document found', () => {
-        const noDocumentSession = Object.assign(session);
-        noDocumentSession.d8 = [];
-        noDocumentSession.downloadableFiles = underTest.getDownloadableFiles(noDocumentSession);
+        const noDocumentSession = { downloadableFiles: [], serviceApplicationType: 'deemed' };
 
         const { type, uri } = underTest.getServiceRefusalDocument(noDocumentSession);
         expect(type).to.eql('');

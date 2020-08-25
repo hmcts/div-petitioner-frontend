@@ -13,7 +13,7 @@ const refusalFiles = {
   DispenseWithServiceRefused: 'Dispensed service refusal'
 };
 
-module.exports = class SaNotApproved extends Step {
+module.exports = class ServiceApplicationNotApproved extends Step {
   get url() {
     return '/service-application-not-approved';
   }
@@ -72,14 +72,13 @@ module.exports = class SaNotApproved extends Step {
     return session.serviceApplicationType === 'deemed' ? '\'deemed service\'' : '\'dispensed with service\'';
   }
 
-  getServiceRefusalDocument(session) {
+  getServiceRefusalDocument({ downloadableFiles, serviceApplicationType }) {
     let refusalDocument = { type: '', uri: '' };
-    const documents = this.getDownloadableFiles(session);
 
-    documents.forEach(document => {
-      const serviceApplicationType = toLower(session.serviceApplicationType);
+    downloadableFiles.forEach(document => {
+      const applicationType = toLower(serviceApplicationType);
       const type = toLower(document.type);
-      if (type.startsWith(serviceApplicationType)) {
+      if (type.startsWith(applicationType)) {
         refusalDocument = document;
       }
     });

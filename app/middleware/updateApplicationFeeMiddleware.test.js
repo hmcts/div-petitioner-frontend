@@ -1,7 +1,8 @@
 const { expect, sinon } = require('test/util/chai');
 const rewire = require('rewire');
 const CONF = require('config');
-const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService.js');
+const { feeTypes } = require('app/services/feesAndPaymentsService');
+const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService');
 
 const modulePath = 'app/middleware/updateApplicationFeeMiddleware';
 const underTest = rewire(modulePath);
@@ -10,13 +11,6 @@ let req = {};
 let res = {};
 const ioRedisClient = {};
 const twentyFourHours = 86400;
-
-const feeTypes = {
-  applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee',
-  enforcementFee: 'enforcement-fee',
-  appWithoutNoticeFee: 'application-without-notice-fee'
-};
 
 describe(modulePath, () => {
   describe('#updateApplicationFeeMiddleware', () => {

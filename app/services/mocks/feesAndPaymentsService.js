@@ -1,9 +1,4 @@
-const feeTypes = {
-  applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee',
-  enforcementFee: 'enforcement-fee',
-  appWithoutNoticeFee: 'application-without-notice-fee'
-};
+const { feeTypes } = require('../feesAndPaymentsService');
 
 const mockFeeResponse = (feeType = '') => {
   if (feeType === feeTypes.amendFee) {

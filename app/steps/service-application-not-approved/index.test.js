@@ -20,7 +20,7 @@ describe(modulePath, () => {
   beforeEach(() => {
     appInstance = server.init();
     agent = request.agent(appInstance.app);
-    underTest = appInstance.steps.SaNotApproved;
+    underTest = appInstance.steps.ServiceApplicationNotApproved;
   });
 
   afterEach(() => {
@@ -173,9 +173,30 @@ describe(modulePath, () => {
         session = {};
       });
 
+      it('should return correct list of documents', () => {
+        const expectedListSize = 2;
+        const downloadableFiles = underTest.getDownloadableFiles(session);
+
+        expect(downloadableFiles).to.have.lengthOf(expectedListSize);
+        expect(downloadableFiles[0]).to.have.all.keys('uri', 'type', 'fileType');
+      });
+
       it('should return correct service refusal document for deemed', () => {
-        const { type } = underTest.getServiceRefusalDocument(session);
+        session.downloadableFiles = underTest.getDownloadableFiles(session);
+        const { type, uri } = underTest.getServiceRefusalDocument(session);
+
         expect(type).to.eq('DeemedServiceRefused');
+        expect(uri).to.have.string('DeemedServiceRefused.pdf');
+      });
+
+      it('should return empty string if no refusal document found', () => {
+        const noDocumentSession = Object.assign(session);
+        noDocumentSession.d8 = [];
+        noDocumentSession.downloadableFiles = underTest.getDownloadableFiles(noDocumentSession);
+
+        const { type, uri } = underTest.getServiceRefusalDocument(noDocumentSession);
+        expect(type).to.eql('');
+        expect(uri).to.eql('');
       });
     });
   });

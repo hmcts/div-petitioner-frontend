@@ -1,5 +1,6 @@
 const Step = require('app/core/steps/Step');
 const config = require('config');
+const { toLower } = require('lodash');
 const { createUris } = require('@hmcts/div-document-express-handler');
 const { updateAppWithoutNoticeFeeMiddleware,
   updateEnforcementFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
@@ -72,19 +73,17 @@ module.exports = class SaNotApproved extends Step {
   }
 
   getServiceRefusalDocument(session) {
+    let refusalDocument = { type: '', uri: '' };
     const documents = this.getDownloadableFiles(session);
-    const documentInfo = { type: null, uri: null };
 
     documents.forEach(document => {
-      const serviceApplicationType = this.getLowerCaseValue(session.serviceApplicationType);
-      const type = this.getLowerCaseValue(document.type);
-
+      const serviceApplicationType = toLower(session.serviceApplicationType);
+      const type = toLower(document.type);
       if (type.startsWith(serviceApplicationType)) {
-        documentInfo.type = document.type;
-        documentInfo.uri = document.fileUrl;
+        refusalDocument = document;
       }
     });
-    return documentInfo;
+    return refusalDocument;
   }
 
   getFeeToResendApplication() {
@@ -93,9 +92,5 @@ module.exports = class SaNotApproved extends Step {
 
   getEnforcementFee() {
     return config.commonProps.enforcementFee.amount;
-  }
-
-  getLowerCaseValue(value) {
-    return String(value).toLowerCase();
   }
 };

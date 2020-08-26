@@ -1,4 +1,4 @@
-const { feeTypes } = require('../feesAndPaymentsService');
+const feeTypes = require('app/services/feeTypes');
 
 const mockFeeResponse = (feeType = '') => {
   if (feeType === feeTypes.amendFee) {

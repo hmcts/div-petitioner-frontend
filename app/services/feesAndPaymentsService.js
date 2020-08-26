@@ -8,13 +8,4 @@ const getFee = feeType => {
   return request.get({ uri, json: true });
 };
 
-const feeTypes = {
-  applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee',
-  enforcementFee: 'enforcement-fee',
-  appWithoutNoticeFee: 'application-without-notice-fee'
-};
-
-const feeService = { getFee };
-
-module.exports = { feeService, feeTypes };
+module.exports = { getFee };

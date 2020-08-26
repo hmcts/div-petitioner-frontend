@@ -1,6 +1,7 @@
 const CONF = require('config');
-const { feeService: feesAndPaymentsRegisterService, feeTypes } = require('app/services/feesAndPaymentsService');
+const feesAndPaymentsRegisterService = require('app/services/feesAndPaymentsService');
 const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService');
+const feeTypes = require('app/services/feeTypes');
 
 const logger = require('app/services/logger').logger(__filename);
 const ioRedis = require('ioredis');

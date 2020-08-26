@@ -1,7 +1,7 @@
 const { expect, sinon } = require('test/util/chai');
 const rewire = require('rewire');
 const CONF = require('config');
-const { feeTypes } = require('app/services/feesAndPaymentsService');
+const feeTypes = require('app/services/feeTypes');
 const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService');
 
 const modulePath = 'app/middleware/updateApplicationFeeMiddleware';

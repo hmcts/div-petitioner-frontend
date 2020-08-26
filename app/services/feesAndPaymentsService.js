@@ -15,4 +15,6 @@ const feeTypes = {
   appWithoutNoticeFee: 'application-without-notice-fee'
 };
 
-module.exports = { getFee, feeTypes };
+const feeService = { getFee };
+
+module.exports = { feeService, feeTypes };

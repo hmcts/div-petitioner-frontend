@@ -1,6 +1,5 @@
 const CONF = require('config');
-const { toString } = require('lodash');
-const { getFee: feesAndPaymentsRegisterService, feeTypes } = require('app/services/feesAndPaymentsService');
+const { feeService: feesAndPaymentsRegisterService, feeTypes } = require('app/services/feesAndPaymentsService');
 const mockFeesAndPaymentsService = require('app/services/mocks/feesAndPaymentsService');
 
 const logger = require('app/services/logger').logger(__filename);
@@ -48,7 +47,7 @@ const processFeeRequest = (itemKey, feeType, req, res, next) => {
         CONF.commonProps[feeType] = JSON.parse(response);
         return Promise.resolve();
       }
-      return getFeeFromFeesAndPayments(req, toString(feeType));
+      return getFeeFromFeesAndPayments(req, `${feeType}`);
     })
     .then(next)
     .catch(error => {

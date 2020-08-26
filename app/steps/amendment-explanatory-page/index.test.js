@@ -50,6 +50,9 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
+      // excluding these properties so the interpolation can work.
+      // the reason why the files are listed in the content is to give the capability to display
+      // separate English or Welsh names as these files originally are generated with the English version
       const exclude = [
         'files.respondentAnswers',
         'files.coRespondentAnswers',

@@ -8,11 +8,6 @@ const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 
-const refusalFiles = {
-  DeemedServiceRefused: 'Deemed service refusal',
-  DispenseWithServiceRefused: 'Dispensed service refusal'
-};
-
 module.exports = class ServiceApplicationNotApproved extends Step {
   get url() {
     return '/service-application-not-approved';
@@ -25,6 +20,7 @@ module.exports = class ServiceApplicationNotApproved extends Step {
       'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.Placeholder'
     ];
   }
+
 
   get middleware() {
     return [
@@ -48,11 +44,11 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     ctx.feeToEnforce = this.getEnforcementFee();
   }
 
-  setDocumentInfo(session, ctx) {
+  setDocumentInfo(session) {
     session.downloadableFiles = this.getDownloadableFiles(session);
     const { type, uri } = this.getServiceRefusalDocument(session);
-    ctx.refusalDocument = refusalFiles[type];
-    ctx.refusalDocumentUrl = uri;
+    session.refusalDocument = type;
+    session.refusalDocumentUrl = uri;
   }
 
   setGeneralInfo(ctx, session) {

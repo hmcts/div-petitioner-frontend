@@ -23,8 +23,12 @@ html: html
 {% block two_thirds %}
 {% set title = content.title %}
 <div class="govuk-body">
-  <h1 class="govuk-heading-l">{{ content.mainHeading | safe}}</h1>
-  <p class="govuk-body">{{ content.serviceRefusalInfo | safe }}
+  <h1 class="govuk-heading-l">
+    Your {{ content.serviceName[session.serviceApplicationType] }} application has been refused
+  </h1>
+  <p class="govuk-body">
+    The court has refused your application for {{ content.serviceName[session.serviceApplicationType] }} that
+    your {{ session.divorceWho }} received the divorce application.
     You can read the court’s reasons for this in the
     <a class="govuk-link" aria-label="This link will download the file" href="{{ session.refusalDocumentUrl }}"
        target="_blank">{{ content.files[session.refusalDocument] }} (PDF)</a>.

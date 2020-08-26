@@ -33,8 +33,7 @@ describe(modulePath, () => {
         feeToResendApplication: '50',
         refusalDocument: 'doc',
         refusalDocumentUrl: 'http://url.co',
-        feeToEnforce: '110',
-        serviceApplicationTypeLabel: 'label'
+        feeToEnforce: '110'
       });
       withSession(done, agent, session);
     });
@@ -45,8 +44,8 @@ describe(modulePath, () => {
 
     it('should render the content from the content file', done => {
       const exclude = [
-        'mainHeading',
-        'serviceRefusalInfo',
+        'serviceName.deemed',
+        'serviceName.dispensed',
         'warning',
         'believeRespChoseNotToRespond.courtBailiffDetails2',
         'yourCourt',
@@ -147,22 +146,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('SaNotApproved', () => {
-    describe('#getServiceApplicationTypeLabel', () => {
-      const labels = {
-        deemed: '\'deemed service\'',
-        dispensed: '\'dispensed with service\''
-      };
-      it('should return deemed service label', () => {
-        session = { serviceApplicationType: 'deemed' };
-        expect(underTest.getServiceApplicationTypeLabel(session)).to.eq(labels.deemed);
-      });
-      it('should return dispensed service label', () => {
-        session = { serviceApplicationType: 'dispensed' };
-        expect(underTest.getServiceApplicationTypeLabel(session)).to.eq(labels.dispensed);
-      });
-    });
-
+  describe('ServiceApplicationNotApproved', () => {
     describe('#getServiceRefusalDocument', () => {
       beforeEach(done => {
         session = Object.assign({}, mockServiceRefusalSession);

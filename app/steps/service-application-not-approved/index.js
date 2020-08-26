@@ -33,7 +33,6 @@ module.exports = class ServiceApplicationNotApproved extends Step {
   }
 
   interceptor(ctx, session) {
-    this.setGeneralInfo(ctx, session);
     this.setDocumentInfo(session, ctx);
     this.setFeesInfo(ctx);
     return ctx;
@@ -51,10 +50,6 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     session.refusalDocumentUrl = uri;
   }
 
-  setGeneralInfo(ctx, session) {
-    ctx.serviceApplicationTypeLabel = this.getServiceApplicationTypeLabel(session);
-  }
-
   getDownloadableFiles(session) {
     const docConfig = {
       documentNamePath: config.document.documentNamePath,
@@ -64,9 +59,9 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     return createUris(session.d8, docConfig);
   }
 
-  getServiceApplicationTypeLabel(session) {
-    return session.serviceApplicationType === 'deemed' ? '\'deemed service\'' : '\'dispensed with service\'';
-  }
+  // getServiceApplicationTypeLabel(session) {
+  //   return session.serviceApplicationType === 'deemed' ? '\'deemed service\'' : '\'dispensed with service\'';
+  // }
 
   getServiceRefusalDocument({ downloadableFiles, serviceApplicationType }) {
     let refusalDocument = { type: '', uri: '' };

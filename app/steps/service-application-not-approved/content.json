@@ -5,7 +5,7 @@
       "translation": {
         "content": {
           "title": "Your service application has been refused",
-          "serviceName": {
+          "serviceApplicationLabel": {
             "deemed": "'deemed service'",
             "dispensed": "'dispensed with service'"
           },
@@ -115,7 +115,7 @@
       "translation": {
         "content": {
           "title": "[CY] Your application has been refused",
-          "serviceName": {
+          "serviceApplicationLabel": {
             "deemed": "[CY] 'deemed service'",
             "dispensed": "[CY] 'dispensed with service'"
           },

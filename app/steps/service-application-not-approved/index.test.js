@@ -44,8 +44,8 @@ describe(modulePath, () => {
 
     it('should render the content from the content file', done => {
       const exclude = [
-        'serviceName.deemed',
-        'serviceName.dispensed',
+        'serviceApplicationLabel.deemed',
+        'serviceApplicationLabel.dispensed',
         'warning',
         'believeRespChoseNotToRespond.courtBailiffDetails2',
         'yourCourt',

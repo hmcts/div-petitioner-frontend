@@ -5,6 +5,8 @@
       "translation": {
         "content": {
           "title": "Your service application has been refused",
+          "mainHeading": "Your {{ serviceName }} application has been refused",
+          "serviceRefusalInfo": "The court has refused your application for {{ serviceName }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocument }} (PDF)</a>.",
           "serviceApplicationLabel": {
             "deemed": "'deemed service'",
             "dispensed": "'dispensed with service'"
@@ -115,6 +117,8 @@
       "translation": {
         "content": {
           "title": "[CY] Your application has been refused",
+          "mainHeading": "[CY] Your {{ serviceName }} application has been refused",
+          "serviceRefusalInfo": "The court has refused your application for {{ serviceName }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocument }} (PDF)</a>.",
           "serviceApplicationLabel": {
             "deemed": "[CY] 'deemed service'",
             "dispensed": "[CY] 'dispensed with service'"

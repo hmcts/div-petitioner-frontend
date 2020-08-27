@@ -43,11 +43,12 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     ctx.feeToEnforce = this.getEnforcementFee();
   }
 
-  setDocumentInfo(session) {
+  setDocumentInfo(session, ctx) {
     session.downloadableFiles = this.getDownloadableFiles(session);
-    const { type, uri } = this.getServiceRefusalDocument(session);
-    session.refusalDocument = type;
-    session.refusalDocumentUrl = uri;
+    ctx.serviceName = this.getServiceName(session);
+    const { fileLabel, fileUri } = this.getServiceRefusalDocument(session);
+    ctx.refusalDocument = fileLabel;
+    ctx.refusalDocumentUri = fileUri;
   }
 
   getDownloadableFiles(session) {
@@ -59,21 +60,29 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     return createUris(session.d8, docConfig);
   }
 
-  // getServiceApplicationTypeLabel(session) {
-  //   return session.serviceApplicationType === 'deemed' ? '\'deemed service\'' : '\'dispensed with service\'';
-  // }
-
-  getServiceRefusalDocument({ downloadableFiles, serviceApplicationType }) {
-    let refusalDocument = { type: '', uri: '' };
+  getServiceRefusalDocument(session) {
+    const { serviceApplicationLabel } = this.getCurrentContent(session);
+    const { downloadableFiles, serviceApplicationType } = session;
+    const refusalDocument = { fileLabel: '', fileUri: '' };
 
     downloadableFiles.forEach(document => {
       const applicationType = toLower(serviceApplicationType);
-      const type = toLower(document.type);
-      if (type.startsWith(applicationType)) {
-        refusalDocument = document;
+      if (serviceApplicationLabel[applicationType]) {
+        refusalDocument.fileUri = document.uri;
+        refusalDocument.fileLabel = this.getRefusalDocumentLabel(session, document.type);
       }
     });
     return refusalDocument;
+  }
+
+  getRefusalDocumentLabel(session, type) {
+    const { files } = this.getCurrentContent(session);
+    return files[type];
+  }
+
+  getServiceName(session) {
+    const { serviceApplicationLabel } = this.getCurrentContent(session);
+    return serviceApplicationLabel[session.serviceApplicationType];
   }
 
   getFeeToResendApplication() {
@@ -82,5 +91,9 @@ module.exports = class ServiceApplicationNotApproved extends Step {
 
   getEnforcementFee() {
     return config.commonProps.enforcementFee.amount;
+  }
+
+  getCurrentContent(session) {
+    return this.content.resources[session.language].translation.content;
   }
 };

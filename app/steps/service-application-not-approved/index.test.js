@@ -3,7 +3,7 @@ const { testContent, testExistence, testCustom } = require('test/util/assertions
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
 const mockServiceRefusalSession = require('test/fixtures/mockServiceRefusalSession');
 
 const modulePath = 'app/steps/service-application-not-approved';
@@ -44,6 +44,8 @@ describe(modulePath, () => {
 
     it('should render the content from the content file', done => {
       const exclude = [
+        'mainHeading',
+        'serviceRefusalInfo',
         'serviceApplicationLabel.deemed',
         'serviceApplicationLabel.dispensed',
         'warning',
@@ -148,13 +150,18 @@ describe(modulePath, () => {
 
   describe('ServiceApplicationNotApproved', () => {
     describe('#getServiceRefusalDocument', () => {
+      let getCurrentContentStub = null;
       beforeEach(done => {
+        getCurrentContentStub = sinon.stub(underTest, 'getCurrentContent')
+          .returns(content.resources[mockServiceRefusalSession.language].translation.content);
+
         session = Object.assign({}, mockServiceRefusalSession);
         withSession(done, agent, session);
       });
 
       afterEach(() => {
         session = {};
+        getCurrentContentStub.restore();
       });
 
       it('should return correct list of documents', () => {
@@ -167,18 +174,18 @@ describe(modulePath, () => {
 
       it('should return correct service refusal document for deemed', () => {
         session.downloadableFiles = underTest.getDownloadableFiles(session);
-        const { type, uri } = underTest.getServiceRefusalDocument(session);
+        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
 
-        expect(type).to.eq('DeemedServiceRefused');
-        expect(uri).to.have.string('DeemedServiceRefused.pdf');
+        expect(fileLabel).to.eq('Deemed service refusal');
+        expect(fileUri).to.have.string('DeemedServiceRefused.pdf');
       });
 
       it('should return empty string if no refusal document found', () => {
-        const noDocumentSession = { downloadableFiles: [], serviceApplicationType: 'deemed' };
+        const noDocumentSession = { downloadableFiles: [], serviceApplicationType: 'deemed', language: 'en' };
 
-        const { type, uri } = underTest.getServiceRefusalDocument(noDocumentSession);
-        expect(type).to.eql('');
-        expect(uri).to.eql('');
+        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(noDocumentSession);
+        expect(fileLabel).to.eql('');
+        expect(fileUri).to.eql('');
       });
     });
   });

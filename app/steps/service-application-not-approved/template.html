@@ -22,25 +22,9 @@ html: html
 
 {% block two_thirds %}
 {% set title = content.title %}
-{% set applicationType = session.serviceApplicationType %}
-
-{% if applicationType === 'deemed' %}
-  {% set serviceName = content.serviceApplicationLabel.deemed %}
-{% elif applicationType === 'dispensed' %}
-  {% set serviceName = content.serviceApplicationLabel.dispensed %}
-{% endif %}
-
 <div class="govuk-body">
-  <h1 class="govuk-heading-l">
-    Your {{ serviceName }} application has been refused
-  </h1>
-  <p class="govuk-body">
-    The court has refused your application for {{ serviceName }} that
-    your {{ session.divorceWho }} received the divorce application.
-    You can read the court’s reasons for this in the
-      <a class="govuk-link" aria-label="This link will download the file" href="{{ session.refusalDocumentUrl }}"
-         target="_blank">{{ content.files[session.refusalDocument] }} (PDF)</a>.
-  </p>
+  <h1 class="govuk-heading-l">{{ content.mainHeading | safe}}</h1>
+  <p class="govuk-body">{{ content.serviceRefusalInfo | safe }}</p>
   <p class="govuk-body">{{ content.infoToContactRespondent | safe }}</p>
   <p class="govuk-body">{{ content.noResponseOptions | safe }}</p>
 

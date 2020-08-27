@@ -93,7 +93,7 @@ describe(modulePath, () => {
         mimeType: null,
         status: null
       });
-      const expectedDocumentsSize = 2;
+      const expectedDocumentsSize = 3;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
       });
@@ -165,7 +165,7 @@ describe(modulePath, () => {
       });
 
       it('should return correct list of documents', () => {
-        const expectedListSize = 2;
+        const expectedListSize = 3;
         const downloadableFiles = underTest.getDownloadableFiles(session);
 
         expect(downloadableFiles).to.have.lengthOf(expectedListSize);
@@ -177,7 +177,7 @@ describe(modulePath, () => {
         const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
 
         expect(fileLabel).to.eq('Deemed service refusal');
-        expect(fileUri).to.have.string('DeemedServiceRefused.pdf');
+        expect(fileUri).to.have.string('DeemedServiceRefused1594218147343643.pdf');
       });
 
       it('should return empty string if no refusal document found', () => {

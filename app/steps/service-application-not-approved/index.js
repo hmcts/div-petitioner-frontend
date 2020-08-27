@@ -1,12 +1,16 @@
 const Step = require('app/core/steps/Step');
 const config = require('config');
-const { toLower } = require('lodash');
 const { createUris } = require('@hmcts/div-document-express-handler');
 const { updateAppWithoutNoticeFeeMiddleware,
   updateEnforcementFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+
+const serviceApplicationFileTypeMap = {
+  deemed: 'DeemedServiceRefused',
+  dispensed: 'DispenseWithServiceRefused'
+};
 
 module.exports = class ServiceApplicationNotApproved extends Step {
   get url() {
@@ -61,18 +65,20 @@ module.exports = class ServiceApplicationNotApproved extends Step {
   }
 
   getServiceRefusalDocument(session) {
-    const { serviceApplicationLabel } = this.getCurrentContent(session);
     const { downloadableFiles, serviceApplicationType } = session;
-    const refusalDocument = { fileLabel: '', fileUri: '' };
+    const serviceApplicationFile = serviceApplicationFileTypeMap[serviceApplicationType];
+    const document = { fileLabel: '', fileUri: '' };
 
-    downloadableFiles.forEach(document => {
-      const applicationType = toLower(serviceApplicationType);
-      if (serviceApplicationLabel[applicationType]) {
-        refusalDocument.fileUri = document.uri;
-        refusalDocument.fileLabel = this.getRefusalDocumentLabel(session, document.type);
-      }
-    });
-    return refusalDocument;
+    downloadableFiles
+      .filter(file => {
+        return file.type === serviceApplicationFile;
+      })
+      .map(file => {
+        document.fileUri = file.uri;
+        document.fileLabel = this.getRefusalDocumentLabel(session, serviceApplicationFile);
+        return file;
+      });
+    return document;
   }
 
   getRefusalDocumentLabel(session, type) {

@@ -5,11 +5,11 @@
       "translation": {
         "content": {
           "title": "Your service application has been refused",
-          "mainHeading": "Your {{ serviceName }} application has been refused",
-          "serviceRefusalInfo": "The court has refused your application for {{ serviceName }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocument }} (PDF)</a>.",
+          "mainHeading": "Your '{{ serviceName }}' application has been refused",
+          "serviceRefusalInfo": "The court has refused your application for {{ serviceName }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
           "serviceApplicationLabel": {
-            "deemed": "'deemed service'",
-            "dispensed": "'dispensed with service'"
+            "deemed": "deemed service",
+            "dispensed": "dispensed with service"
           },
           "infoToContactRespondent": "If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
           "noResponseOptions": "If there’s still no response using the original address, you have the following options available to you.",
@@ -117,11 +117,11 @@
       "translation": {
         "content": {
           "title": "[CY] Your application has been refused",
-          "mainHeading": "[CY] Your {{ serviceName }} application has been refused",
-          "serviceRefusalInfo": "[CY] The court has refused your application for {{ serviceName }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocument }} (PDF)</a>.",
+          "mainHeading": "[CY] Your '{{ serviceName }}' application has been refused",
+          "serviceRefusalInfo": "[CY] The court has refused your application for {{ serviceName }} that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"[CY] This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
           "serviceApplicationLabel": {
-            "deemed": "[CY] 'deemed service'",
-            "dispensed": "[CY] 'dispensed with service'"
+            "deemed": "[CY] deemed service",
+            "dispensed": "[CY] dispensed with service"
           },
           "infoToContactRespondent": "[CY] If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
           "noResponseOptions": "Os na cheir ymateb o hyd gan ddefnyddio’r cyfeiriad gwreiddiol, mae gennych yr opsiynau canlynol, yn dibynnu ar eich sefyllfa.",

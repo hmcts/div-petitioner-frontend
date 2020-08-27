@@ -51,7 +51,7 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     session.downloadableFiles = this.getDownloadableFiles(session);
     ctx.serviceName = this.getServiceName(session);
     const { fileLabel, fileUri } = this.getServiceRefusalDocument(session);
-    ctx.refusalDocument = fileLabel;
+    ctx.refusalDocumentLabel = fileLabel;
     ctx.refusalDocumentUri = fileUri;
   }
 
@@ -67,18 +67,17 @@ module.exports = class ServiceApplicationNotApproved extends Step {
   getServiceRefusalDocument(session) {
     const { downloadableFiles, serviceApplicationType } = session;
     const serviceApplicationFile = serviceApplicationFileTypeMap[serviceApplicationType];
-    const document = { fileLabel: '', fileUri: '' };
 
-    downloadableFiles
+    return downloadableFiles
       .filter(file => {
         return file.type === serviceApplicationFile;
       })
       .map(file => {
-        document.fileUri = file.uri;
-        document.fileLabel = this.getRefusalDocumentLabel(session, serviceApplicationFile);
-        return file;
-      });
-    return document;
+        return {
+          fileUri: file.uri,
+          fileLabel: this.getRefusalDocumentLabel(session, serviceApplicationFile)
+        };
+      })[0];
   }
 
   getRefusalDocumentLabel(session, type) {

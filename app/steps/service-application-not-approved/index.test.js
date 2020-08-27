@@ -182,10 +182,9 @@ describe(modulePath, () => {
 
       it('should return empty string if no refusal document found', () => {
         const noDocumentSession = { downloadableFiles: [], serviceApplicationType: 'deemed', language: 'en' };
-
-        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(noDocumentSession);
-        expect(fileLabel).to.eql('');
-        expect(fileUri).to.eql('');
+        const document = underTest.getServiceRefusalDocument(noDocumentSession);
+        // eslint-disable-next-line no-unused-expressions
+        expect(document).to.be.undefined;
       });
     });
   });

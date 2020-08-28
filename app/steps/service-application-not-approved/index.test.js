@@ -45,7 +45,8 @@ describe(modulePath, () => {
     it('should render the content from the content file', done => {
       const exclude = [
         'mainHeading',
-        'serviceRefusalInfo',
+        'serviceRefusalInfo.deemed',
+        'serviceRefusalInfo.dispensed',
         'serviceApplicationLabel.deemed',
         'serviceApplicationLabel.dispensed',
         'warning',

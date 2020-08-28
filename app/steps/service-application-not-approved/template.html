@@ -24,7 +24,7 @@ html: html
 {% set title = content.title %}
 <div class="govuk-body">
   <h1 class="govuk-heading-l">{{ content.mainHeading | safe}}</h1>
-  <p class="govuk-body">{{ content.serviceRefusalInfo | safe }}</p>
+  <p class="govuk-body">{{ content.serviceRefusalInfo[session.serviceApplicationType] | safe }}</p>
   <p class="govuk-body">{{ content.infoToContactRespondent | safe }}</p>
   <p class="govuk-body">{{ content.noResponseOptions | safe }}</p>
 

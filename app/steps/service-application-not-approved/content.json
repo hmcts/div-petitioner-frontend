@@ -15,7 +15,7 @@
             "dispensed": "dispense with service"
           },
           "infoToContactRespondent": "If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
-          "noResponseOptions": "If there’s still no response using the original address, you have the following options available to you.",
+          "noResponseOptions": "If there’s still no response using the original address, you have the following options available to you, depending on your situation.",
           "whichSituation": "Which situation applies to you?",
           "warning": "Warning",
           "haveAnotherAddress": {
@@ -130,7 +130,7 @@
             "dispensed": "[CY] dispensed with service"
           },
           "infoToContactRespondent": "[CY] If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
-          "noResponseOptions": "Os na cheir ymateb o hyd gan ddefnyddio’r cyfeiriad gwreiddiol, mae gennych yr opsiynau canlynol, yn dibynnu ar eich sefyllfa.",
+          "noResponseOptions": "[CY] If there’s still no response using the original address, you have the following options available to you, depending on your situation.",
           "whichSituation": "Pa sefyllfa sy’n berthnasol i chi?",
           "warning": "Rhybudd",
           "haveAnotherAddress": {

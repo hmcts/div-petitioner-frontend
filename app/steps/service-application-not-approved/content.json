@@ -125,7 +125,7 @@
           "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
           "serviceApplicationLabel": {
             "deemed": "[CY] deemed service",
-            "dispensed": "[CY] dispensed with service"
+            "dispensed": "[CY] dispense with service"
           },
           "infoToContactRespondent": "[CY] If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
           "noResponseOptions": "[CY] If there’s still no response using the original address, you have the following options available to you, depending on your situation.",

@@ -124,7 +124,7 @@ exports.testContentWithHTMLEntities = (done, agent, underTest, content, session 
         if (text.indexOf(content) === -1) {
           missingContent.push(path);
           // eslint-disable-next-line no-console
-          console.log(`Value in (${path}) did not match was: (${content})`);// TODO review use
+          console.log(`Value in (${path}) did not match was: (${content})`);
         }
       }
     });

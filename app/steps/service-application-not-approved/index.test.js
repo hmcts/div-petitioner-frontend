@@ -28,13 +28,14 @@ describe(modulePath, () => {
   });
 
   describe('Template Rendering', () => {
+    let deemedDataContent = {};
+    let dispenseDataContent = {};
     const dataContent = {
       feeToResendApplication: '50',
       feeToEnforce: '110'
     };
 
     describe('Deemed service template', () => {
-      let deemedDataContent = {};
       beforeEach(done => {
         deemedDataContent = Object.assign(dataContent, { mainHeading: 'deemed service', serviceName: 'deemed service' });
         session = Object.assign({}, mockServiceRefusalSession);
@@ -66,7 +67,6 @@ describe(modulePath, () => {
     });
 
     describe('Dispense with service template', () => {
-      let dispenseDataContent = {};
       beforeEach(done => {
         dispenseDataContent = Object.assign(dataContent, { mainHeading: 'dispense with service', serviceName: 'dispense with service' });
         session = Object.assign({}, mockServiceRefusalSession, { serviceApplicationType: 'dispensed', d8: [] });

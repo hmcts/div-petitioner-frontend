@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testContent, testExistence, testCustom } = require('test/util/assertions');
+const { testExistence, testCustom, testContentWithHTMLEntities } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
@@ -28,44 +28,86 @@ describe(modulePath, () => {
   });
 
   describe('Template Rendering', () => {
-    beforeEach(done => {
-      session = Object.assign({}, mockServiceRefusalSession, {
-        feeToResendApplication: '50',
-        refusalDocument: 'doc',
-        refusalDocumentUrl: 'http://url.co',
-        feeToEnforce: '110'
+    const dataContent = {
+      feeToResendApplication: '50',
+      feeToEnforce: '110'
+    };
+
+    describe('Deemed service template', () => {
+      let deemedDataContent = {};
+      beforeEach(done => {
+        deemedDataContent = Object.assign(dataContent, { mainHeading: 'deemed service', serviceName: 'deemed service' });
+        session = Object.assign({}, mockServiceRefusalSession);
+        withSession(done, agent, session);
       });
-      withSession(done, agent, session);
+
+      afterEach(() => {
+        session = {};
+      });
+
+      it('should render the content from the content file for deemed service', done => {
+        const exclude = [
+          'serviceRefusalInfo.dispensed',
+          'refusalDocumentInfo',
+          'serviceApplicationLabel.dispensed',
+          'files.respondentAnswers',
+          'files.coRespondentAnswers',
+          'files.certificateOfEntitlement',
+          'files.costsOrder',
+          'files.dnAnswers',
+          'files.clarificationDnRefusalOrder',
+          'files.rejectionDnRefusalOrder',
+          'files.deemedAsServedGranted',
+          'files.dispenseWithServiceGranted',
+          'files.DispenseWithServiceRefused'
+        ];
+        testContentWithHTMLEntities(done, agent, underTest, content, session, exclude, deemedDataContent);
+      });
     });
 
-    afterEach(() => {
-      session = {};
-    });
+    describe('Dispense with service template', () => {
+      let dispenseDataContent = {};
+      beforeEach(done => {
+        dispenseDataContent = Object.assign(dataContent, { mainHeading: 'dispense with service', serviceName: 'dispense with service' });
+        session = Object.assign({}, mockServiceRefusalSession, { serviceApplicationType: 'dispensed', d8: [] });
+        session.d8 = [
+          {
+            id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+            createdBy: 0,
+            createdOn: null,
+            lastModifiedBy: 0,
+            modifiedOn: null,
+            fileName: 'DispenseWithServiceRefused.pdf',
+            fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
+            mimeType: null,
+            status: null
+          }
+        ];
+        withSession(done, agent, session);
+      });
 
-    it('should render the content from the content file', done => {
-      const exclude = [
-        'mainHeading',
-        'serviceRefusalInfo.deemed',
-        'serviceRefusalInfo.dispensed',
-        'serviceApplicationLabel.deemed',
-        'serviceApplicationLabel.dispensed',
-        'warning',
-        'believeRespChoseNotToRespond.courtBailiffDetails2',
-        'yourCourt',
-        'openTimes',
-        'solicitorLink',
-        'files.respondentAnswers',
-        'files.coRespondentAnswers',
-        'files.certificateOfEntitlement',
-        'files.costsOrder',
-        'files.dnAnswers',
-        'files.clarificationDnRefusalOrder',
-        'files.rejectionDnRefusalOrder',
-        'files.deemedAsServedGranted',
-        'files.dispenseWithServiceGranted',
-        'files.DispenseWithServiceRefused'
-      ];
-      testContent(done, agent, underTest, content, session, exclude);
+      afterEach(() => {
+        session = {};
+      });
+
+      it('should render the content from the content file for dispense with service', done => {
+        const exclude = [
+          'serviceRefusalInfo.deemed',
+          'refusalDocumentInfo',
+          'serviceApplicationLabel.deemed',
+          'files.respondentAnswers',
+          'files.coRespondentAnswers',
+          'files.certificateOfEntitlement',
+          'files.costsOrder',
+          'files.dnAnswers',
+          'files.clarificationDnRefusalOrder',
+          'files.rejectionDnRefusalOrder',
+          'files.deemedAsServedGranted',
+          'files.dispenseWithServiceGranted',
+          'files.DeemedServiceRefused'
+        ];
+        testContentWithHTMLEntities(done, agent, underTest, content, session, exclude, dispenseDataContent);
+      });
     });
   });
 
@@ -89,7 +131,6 @@ describe(modulePath, () => {
         lastModifiedBy: 0,
         modifiedOn: null,
         fileName: 'documentNotWhiteListed1554740111371638.pdf',
-        // eslint-disable-next-line max-len
         fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
         mimeType: null,
         status: null
@@ -179,6 +220,38 @@ describe(modulePath, () => {
 
         expect(fileLabel).to.eq('Deemed service refusal');
         expect(fileUri).to.have.string('DeemedServiceRefused1594218147343643.pdf');
+      });
+
+      it('should return correct service refusal document for dispense with service', () => {
+        session.serviceApplicationType = 'dispensed';
+        session.d8 = [
+          {
+            id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+            createdBy: 0,
+            createdOn: null,
+            lastModifiedBy: 0,
+            modifiedOn: null,
+            fileName: 'DispenseWithServiceRefused.pdf',
+            fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
+            mimeType: null,
+            status: null
+          }, {
+            id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+            createdBy: 0,
+            createdOn: null,
+            lastModifiedBy: 0,
+            modifiedOn: null,
+            fileName: 'd8petition1594218147343642.pdf',
+            fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb7463',
+            mimeType: null,
+            status: null
+          }
+        ];
+        session.downloadableFiles = underTest.getDownloadableFiles(session);
+        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
+
+        expect(fileLabel).to.eq('Dispensed service refusal');
+        expect(fileUri).to.have.string('DispenseWithServiceRefused.pdf');
       });
 
       it('should return empty string if no refusal document found', () => {

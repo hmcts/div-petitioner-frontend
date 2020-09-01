@@ -45,6 +45,20 @@ const getUrl = (agent, url) => {
     .expect('Content-type', /html/);
 };
 
+/**
+ * Converts html entities to visual form such as ', < and > e.g. &#39; -> to single quote '.
+ * This enables the matching with the interpolated text to pass without having to exclude certain properties
+ * in the content definition
+ *
+ * @param string e.g &#39;endorsement of service&#39;
+ * @returns {string} 'endorsement of service'
+ */
+const convertHtmlEntities = (string) => {
+  return (`${string}`).replace(/&#\d+;/gm,(value) => {
+    return String.fromCharCode(value.match(/\d+/gm)[0]);
+  });
+};
+
 exports.postData = (agent, url, data) => {
   const postForm = () => postToUrl(agent, url, data).expect(302);
   const returnUrl = (res) => res.headers.location;
@@ -89,6 +103,33 @@ exports.testContent = (done, agent, underTest, content, session = {}, excludeKey
     });
 
     expect(missingContent, 'The following content was not found in template').to.eql([]);
+  };
+
+  return createSession(agent)
+    .then(getPage)
+    .then(checkContent)
+    .then(done, done);
+};
+
+exports.testContentWithHTMLEntities = (done, agent, underTest, content, session = {}, excludeKeys = [], dataContent = {}) => {
+  const getPage = () => getUrl(agent, underTest.url);
+  const checkContent = (res) => {
+    const pageContent = Object.assign({}, session, CONF.commonProps, dataContent);
+    const text = convertHtmlEntities(res.text.toLowerCase());
+    const missingContent = [];
+
+    walkMap(content.resources.en.translation.content, (path, content) => {
+      if (!excludeKeys.includes(path)) {
+        content = interpolator.interpolate(content, pageContent).toLowerCase();
+        if (text.indexOf(content) === -1) {
+          missingContent.push(path);
+          // eslint-disable-next-line no-console
+          console.log(`Value in (${path}) did not match was: (${content})`);// TODO review use
+        }
+      }
+    });
+
+    expect(missingContent, 'The exact content for these entries was not matched in template').to.eql([]);
   };
 
   return createSession(agent)

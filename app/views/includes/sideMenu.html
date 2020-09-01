@@ -14,7 +14,8 @@
 
     <li>
       {% if session.court.serviceCentre %}
-      {{ session.court.serviceCentre.serviceCentreName | safe }}<br/> {{ content.careOf | safe }}
+      <h4 class="govuk-heading-xs govuk-!-margin-0">{{ session.court.serviceCentre.serviceCentreName | safe }}</h4>
+      {{ content.careOf | safe }}
       {% endif %}
       {{ session.court.serviceCentre.divorceCentre | safe }}<br/>
       {% if session.court.serviceCentre.poBox %}

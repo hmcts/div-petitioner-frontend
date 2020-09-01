@@ -7,9 +7,10 @@
           "title": "Your service application has been refused",
           "mainHeading": "Your '{{ serviceName }}' application has been refused",
           "serviceRefusalInfo":{
-            "deemed": "The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
-            "dispensed": "The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>."
+            "deemed": "The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
+            "dispensed": "The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
+          "refusalDocumentInfo": "You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
           "serviceApplicationLabel": {
             "deemed": "deemed service",
             "dispensed": "dispense with service"
@@ -17,7 +18,6 @@
           "infoToContactRespondent": "If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
           "noResponseOptions": "If there’s still no response using the original address, you have the following options available to you, depending on your situation.",
           "whichSituation": "Which situation applies to you?",
-          "warning": "Warning",
           "haveAnotherAddress": {
             "linkSummary": "I have another residential address or a solicitor’s address for my {{ divorceWho }} (no fee)",
             "provideAddress": "Contact the Courts and Tribunals Service Centre to provide a different address for your {{ divorceWho }}. This can be a UK or international address.",
@@ -82,13 +82,11 @@
           "getNewRefNumb": "If you’re eligible for help with fees you’ll need to apply again and <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\" aria-label=\"Get a new reference number link, This link will open in a new tab.\">get a new reference number</a>.",
           "extraCosts": "If you asked the court to order your {{ divorceWho }} to pay your costs, then these extra costs will also be taken into account.",
           "printAndSend": "Send the form to the Courts and Tribunals Service Centre.",
-          "yourCourt": "Your divorce centre",
           "help": "Getting help",
           "emailHeading": "Email",
           "phoneHeading": "Phone",
           "phoneNumber": "0300 303 0642",
           "divorceEmail": "divorcecase@justice.gov.uk",
-          "openTimes": "(Monday to Friday, 8am to 8pm, Saturday 8am to 2pm)",
           "careOf": "c/o ",
           "guidanceHeading": "Guidance on GOV.UK",
           "howToRespondLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ divorceWho }} responds</a>",
@@ -96,7 +94,6 @@
           "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
           "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",
           "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Money and property link, This link will open in a new tab.\">Money and property</a>",
-          "solicitorLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/find-a-legal-adviser\" target=\"_blank\" aria-label=\"This link will open in a new tab.\">solicitor or legal adviser</a>",
           "files": {
             "dpetition": "Divorce application",
             "respondentAnswers": "Respondent’s answers",
@@ -122,9 +119,10 @@
           "title": "[CY] Your application has been refused",
           "mainHeading": "[CY] Your '{{ serviceName }}' application has been refused",
           "serviceRefusalInfo": {
-            "deemed": "[CY] The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
-            "dispensed": "[CY] The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application. You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>."
+            "deemed": "[CY] The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
+            "dispensed": "[CY] The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
+          "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
           "serviceApplicationLabel": {
             "deemed": "[CY] deemed service",
             "dispensed": "[CY] dispensed with service"
@@ -132,7 +130,6 @@
           "infoToContactRespondent": "[CY] If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
           "noResponseOptions": "[CY] If there’s still no response using the original address, you have the following options available to you, depending on your situation.",
           "whichSituation": "Pa sefyllfa sy’n berthnasol i chi?",
-          "warning": "Rhybudd",
           "haveAnotherAddress": {
             "linkSummary": "Mae gen i gyfeiriad preswyl arall neu gyfeiriad arall ar gyfer cyfreithiwr fy {{ divorceWho }} (no fee)",
             "provideAddress": "Cysylltwch â’r Gwasanaeth Llysoedd a Thribiwnlysoedd i ddarparu cyfeiriad gwahanol ar gyfer eich {{ divorceWho }}. Gall hwn fod yn gyfeiriad yn y DU neu’n gyfeiriad rhyngwladol.",
@@ -197,13 +194,11 @@
           "getNewRefNumb": "Os ydych chi’n gymwys i gael help i dalu ffioedd llysoedd a thribiwnlysoedd, bydd angen ichi wneud cais arall a <a class=\"govuk-link\" href=\"https://www.gov.uk/help-i-dalu-ffioedd-llysoedd-a-thribiwnlysoedd\" target=\"_blank\" aria-label=\"Dolen i gael cyfeirnod newydd. Bydd y ddolen hon yn agor mewn tab newydd.\">chael cyfeirnod newydd</a>.",
           "extraCosts": " Os gofynnoch i’r llys orchymyn bod eich {{ divorceWho }} yn talu’ch costau, yna bydd y costau ychwanegol hyn hefyd yn cael eu hystyried.",
           "printAndSend": "Anfonwch y ffurflen i’r Gwasanaeth Llysoedd a Thribiwnlysoedd.",
-          "yourCourt": "Eich canolfan ysgaru",
           "help": "Cael cymorth",
           "emailHeading": "E-bost",
           "phoneHeading": "Ffôn",
           "phoneNumber": "0300 303 5171",
           "divorceEmail": "ymholiadaucymraeg@justice.gov.uk",
-          "openTimes": "(Dydd Llun i ddydd Gwener, 8.30am – 5pm)",
           "careOf": "dan ofal ",
           "guidanceHeading": "Canllawiau ar GOV.UK",
           "howToRespondLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Dolen i Ymateb i gais am ysgariad. Bydd y ddolen hon yn agor mewn tab newydd.\">Sut mae eich {{ divorceWho }} yn ymateb</a>",
@@ -211,7 +206,6 @@
           "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Dolen i wneud cais am Ddyfarniad Absoliwt. Bydd y ddolen hon yn agor mewn tab newydd.\">Dyfarniad Absoliwt</a>",
           "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Dolen i Plant ac ysgariad. Bydd y ddolen hon yn agor mewn tab newydd.\">Plant ac ysgariad</a>",
           "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Dolen i Arian ac eiddo. Bydd y ddolen hon yn agor mewn tab newydd.\">Arian ac eiddo</a>",
-          "solicitorLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/find-a-legal-adviser\" target=\"_blank\" aria-label=\"Bydd y ddolen hon yn agor mewn tab newydd.\">cyfreithiwr neu gynghorydd cyfreithiol</a>",
           "files": {
             "dpetition": "Cais am ysgariad",
             "respondentAnswers": "Atebion yr Atebydd",

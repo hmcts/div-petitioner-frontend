@@ -25,7 +25,6 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     ];
   }
 
-
   get middleware() {
     return [
       idamProtect,

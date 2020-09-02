@@ -1,5 +1,5 @@
 const CONF = require('config');
-const { forEach, get, isArray, isObject, clone } = require('lodash');
+const { forEach, get, isArray, isObject, clone, unescape } = require('lodash');
 const { expect } = require('test/util/chai');
 const walkMap = require('app/core/utils/treeWalker');
 const nunjucks = require('nunjucks');
@@ -45,20 +45,6 @@ const getUrl = (agent, url) => {
     .expect('Content-type', /html/);
 };
 
-/**
- * Converts html entities to visual form such as ', < and > e.g. &#39; -> to single quote '.
- * This enables the matching with the interpolated text to pass without having to exclude certain properties
- * in the content definition
- *
- * @param string e.g &#39;endorsement of service&#39;
- * @returns {string} 'endorsement of service'
- */
-const convertHtmlEntities = (string) => {
-  return (`${string}`).replace(/&#\d+;/gm,(value) => {
-    return String.fromCharCode(value.match(/\d+/gm)[0]);
-  });
-};
-
 exports.postData = (agent, url, data) => {
   const postForm = () => postToUrl(agent, url, data).expect(302);
   const returnUrl = (res) => res.headers.location;
@@ -86,36 +72,29 @@ exports.expectSessionValue = (fieldName, value, agent, done) => {
   };
 };
 
-exports.testContent = (done, agent, underTest, content, session = {}, excludeKeys = [], dataContent = {}) => {
+/**
+ * Utility for testing the content in the html that would be sent to the browser after interpolating with the provided
+ * session and content data.
+ *
+ * @param done Callback to call to signal the end of this function
+ * @param agent The server, an instance of the request server
+ * @param underTest The Step object under test
+ * @param content The content from the json file that has the placeholders in the form of {{xxx}}
+ * @param session The current session
+ * @param excludeKeys Properties in the json content file to be excluded when matching against the interpolated text
+ * @param dataContent  Property values that can be used to fill in the {{xxx}}. If not using excludedKeys, you would need to provide the value to use.
+ *                     Hint: it should be your expected value based on the session data you pass in
+ * @param hasEntities Enables conversion of the HTML entities &amp;, &lt;, &gt;, &quot;, and &#39; in string to their corresponding characters.
+ * @returns {*}
+ */
+exports.testContent = (done, agent, underTest, content, session = {}, excludeKeys = [], dataContent = {}, hasEntities = false) => {
   const getPage = () => getUrl(agent, underTest.url);
   const checkContent = (res) => {
     const pageContent = Object.assign({}, session, CONF.commonProps, dataContent);
-    const text = res.text.toLowerCase();
-    const missingContent = [];
-
-    walkMap(content.resources.en.translation.content, (path, content) => {
-      if (!excludeKeys.includes(path)) {
-        content = interpolator.interpolate(content, pageContent).toLowerCase();
-        if (text.indexOf(content) === -1) {
-          missingContent.push(path);
-        }
-      }
-    });
-
-    expect(missingContent, 'The following content was not found in template').to.eql([]);
-  };
-
-  return createSession(agent)
-    .then(getPage)
-    .then(checkContent)
-    .then(done, done);
-};
-
-exports.testContentWithHTMLEntities = (done, agent, underTest, content, session = {}, excludeKeys = [], dataContent = {}) => {
-  const getPage = () => getUrl(agent, underTest.url);
-  const checkContent = (res) => {
-    const pageContent = Object.assign({}, session, CONF.commonProps, dataContent);
-    const text = convertHtmlEntities(res.text.toLowerCase());
+    let text = res.text.toLowerCase();
+    if(hasEntities === true){
+      text = unescape(text);
+    }
     const missingContent = [];
 
     walkMap(content.resources.en.translation.content, (path, content) => {
@@ -129,7 +108,7 @@ exports.testContentWithHTMLEntities = (done, agent, underTest, content, session 
       }
     });
 
-    expect(missingContent, 'The exact content for these entries was not matched in template').to.eql([]);
+    expect(missingContent, 'The following content was not matched in template').to.eql([]);
   };
 
   return createSession(agent)

@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testExistence, testCustom, testContentWithHTMLEntities } = require('test/util/assertions');
+const { testContent, testExistence, testCustom } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
@@ -28,8 +28,6 @@ describe(modulePath, () => {
   });
 
   describe('Template Rendering', () => {
-    let deemedDataContent = {};
-    let dispenseDataContent = {};
     const dataContent = {
       feeToResendApplication: '50',
       feeToEnforce: '110'
@@ -37,7 +35,6 @@ describe(modulePath, () => {
 
     describe('Deemed service template', () => {
       beforeEach(done => {
-        deemedDataContent = Object.assign(dataContent, { mainHeading: 'deemed service', serviceName: 'deemed service' });
         session = Object.assign({}, mockServiceRefusalSession);
         withSession(done, agent, session);
       });
@@ -47,6 +44,7 @@ describe(modulePath, () => {
       });
 
       it('should render the content from the content file for deemed service', done => {
+        const deemedDataContent = Object.assign(dataContent, { serviceName: 'deemed service' });
         const exclude = [
           'serviceRefusalInfo.dispensed',
           'refusalDocumentInfo',
@@ -62,13 +60,12 @@ describe(modulePath, () => {
           'files.dispenseWithServiceGranted',
           'files.DispenseWithServiceRefused'
         ];
-        testContentWithHTMLEntities(done, agent, underTest, content, session, exclude, deemedDataContent);
+        testContent(done, agent, underTest, content, session, exclude, deemedDataContent, true);
       });
     });
 
     describe('Dispense with service template', () => {
       beforeEach(done => {
-        dispenseDataContent = Object.assign(dataContent, { mainHeading: 'dispense with service', serviceName: 'dispense with service' });
         session = Object.assign({}, mockServiceRefusalSession, { serviceApplicationType: 'dispensed', d8: [] });
         session.d8 = [
           {
@@ -91,6 +88,7 @@ describe(modulePath, () => {
       });
 
       it('should render the content from the content file for dispense with service', done => {
+        const dispenseDataContent = Object.assign(dataContent, { serviceName: 'dispense with service' });
         const exclude = [
           'serviceRefusalInfo.deemed',
           'refusalDocumentInfo',
@@ -106,7 +104,7 @@ describe(modulePath, () => {
           'files.dispenseWithServiceGranted',
           'files.DeemedServiceRefused'
         ];
-        testContentWithHTMLEntities(done, agent, underTest, content, session, exclude, dispenseDataContent);
+        testContent(done, agent, underTest, content, session, exclude, dispenseDataContent, true);
       });
     });
   });

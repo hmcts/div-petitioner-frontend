@@ -1,0 +1,229 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Your service application has been refused",
+          "mainHeading": "Your '{{ serviceName }}' application has been refused",
+          "serviceRefusalInfo":{
+            "deemed": "The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
+            "dispensed": "The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
+          },
+          "refusalDocumentInfo": "You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
+          "serviceApplicationLabel": {
+            "deemed": "deemed service",
+            "dispensed": "dispense with service"
+          },
+          "infoToContactRespondent": "If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
+          "noResponseOptions": "If there’s still no response using the original address, you have the following options available to you, depending on your situation.",
+          "whichSituation": "Which situation applies to you?",
+          "haveAnotherAddress": {
+            "linkSummary": "I have another residential address or a solicitor’s address for my {{ divorceWho }} (no fee)",
+            "provideAddress": "Contact the Courts and Tribunals Service Centre to provide a different address for your {{ divorceWho }}. This can be a UK or international address.",
+            "noExtraPay": "You don’t have to pay anything extra to have the application sent to a different address."
+          },
+          "sendToWorkAddress": {
+            "linkSummary": "I need to send the application to a non-residential address, eg a work address (£{{ feeToResendApplication }})",
+            "askToSendApp": "You can ask for the application to be sent to a non-residential address."
+          },
+          "needToSearchRecords": {
+            "linkSummary": "I need to search government records for my {{ divorceWho }}’s address (£{{ feeToResendApplication }})",
+            "canApplyIfRespLivesInEngWales": "You can apply for a search of government databases (eg the electoral role) for your {{ divorceWho }}’s address. Your {{ divorceWho }} must live in England or Wales.",
+            "applyViaSearchRecords": "Contact the service centre and ask for the form to be sent to you."
+          },
+          "sendEmailToResp": {
+            "linkSummary": "I need to send the application to my {{ divorceWho }}’s email address (£{{ feeToResendApplication }})",
+            "appToEmail": "You can ask for the application to be delivered by email."
+          },
+          "believeRespChoseNotToRespond": {
+            "linkSummary": "I believe my {{ divorceWho }} lives at that address, but chose not to respond (£{{ feeToEnforce }})",
+            "deliverPapersDirectlyToResp": "If you think that your {{ divorceWho }} is deliberately not responding you can pay a professional to deliver (serve) the divorce papers directly to them.",
+            "optionsToDeliver": "You can do this by using either a:",
+            "privateHireToDeliver": "Process server (a privately hired professional)",
+            "courtEmpToDeliver": "Court bailiff (an employee of the courts)",
+            "processServers": "Process servers",
+            "processServerDetails": "Contact a local solicitor who should be able to give you the contact details for a local company.",
+            "courtBailiff": "Court bailiffs",
+            "courtBailiffCovid19": "Given the current restrictions placed on bailiffs due to COVID-19 virus there has been potential concern about effecting personal service via bailiffs therefore can I please ask you to consider alternative service options as detailed on this landing page.",
+            "courtBailiffDetails1": "The bailiff service can only be used at addresses in England and Wales where delivery by post has already failed. If you have a new address for your {{ divorceWho }}, you’ll have to get it delivered by post before you can apply for the bailiff service.",
+            "courtBailiffDetails2": "If the bailiff succeeds in delivering the application, you’ll be given a letter as evidence that your {{ divorceWho }} has received the application. This is known as an 'endorsement of service'. If your {{ divorceWho }} doesn’t respond within 14 days of getting the application, you can use this letter to continue your divorce without their response.",
+            "formD89": "<a class=\"govuk-link\" href=\"https://www.gov.uk/government/publications/form-d89-request-for-personal-service-by-a-court-bailiff\" target=\"_blank\" aria-label=\"Form D89 link, This link will open in a new tab.\">form D89</a>. Send the form to the Courts and Tribunals Service Centre.",
+            "moreToSend": "You’ll also need to send the following:",
+            "respPhoto": "a photo of your {{ divorceWho }}",
+            "divorceAppCopy": "a copy of your divorce application"
+          },
+          "evidenceRespWontRespond": {
+            "linkSummary": "I have evidence that my {{ divorceWho }} received the application, but can’t or won’t respond (£{{ feeToResendApplication }})",
+            "canApplyForDeemedServ": "If you know your {{ divorceWho }} received the application, but can’t or won’t respond, you can apply to the court for a ‘deemed service’. This means that the court will decide that your {{ divorceWho }} has received the application, and that you can continue without their response.",
+            "needToProve": "You need to be able to prove that your {{ divorceWho }} received the application (eg, you have a text message from {{ divorceWho }} saying they received it).",
+            "applyAndSendDocs": "Send the form and documents to the Courts and Tribunals Service Centre."
+          },
+          "doneWithAllWaysOfDelivering": {
+            "linkSummary": "I’ve tried every possible way of delivering the application (£{{feeToResendApplication }})",
+            "askForDispenseWithService": "Under exceptional circumstances, you can ask the court to ‘dispense with service’ (decide your {{ divorceWho }} doesn’t have to be served the divorce application).",
+            "allInCourtHands": "It’s up to the court to decide whether to grant this. Before it can be considered, you’ll need to show that you’ve done everything you can to find them by contacting their:",
+            "relatives": "relatives (including children)",
+            "friends": "friends",
+            "lastEmployer": "last known employer",
+            "tradePlace": "trade union or professional organisation",
+            "searchInGovtDB": "You’ll also need to have tried to find their address by searching for it on government databases.",
+            "and": " and ",
+            "applyD13bLink": "<a class=\"govuk-link\" href=\"https://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1112\" target=\"_blank\" aria-label=\"Form D13b link, This link will open in a new tab.\">form D13b</a>.",
+            "applyD11AndD13bContent": "Send the forms to the Courts and Tribunals Service Centre."
+          },
+          "downloadDocumentsHeading": "Download your documents",
+          "howToApply": "How to apply:",
+          "fill": "Download and complete",
+          "applyD11": "<a class=\"govuk-link\" href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=98\" target=\"_blank\" aria-label=\"Form D11 link, This link will open in a new tab.\">form D11</a>.",
+          "howToPay": "How to pay:",
+          "howToPayContent": "Call the service centre to make the £{{ feeToResendApplication }} payment by card (Monday - Friday 8am to 8pm, Saturday 8am to 2pm) or include a cheque with your form.",
+          "howToPayBailiffContent": "Call the service centre to make the £{{ enforcementFee }} payment by card (Monday - Friday 8am to 8pm, Saturday 8am to 2pm) or include a cheque with your form.",
+          "getNewRefNumb": "If you’re eligible for help with fees you’ll need to apply again and <a class=\"govuk-link\" href=\"https://www.gov.uk/get-help-with-court-fees\" target=\"_blank\" aria-label=\"Get a new reference number link, This link will open in a new tab.\">get a new reference number</a>.",
+          "extraCosts": "If you asked the court to order your {{ divorceWho }} to pay your costs, then these extra costs will also be taken into account.",
+          "printAndSend": "Send the form to the Courts and Tribunals Service Centre.",
+          "help": "Getting help",
+          "emailHeading": "Email",
+          "phoneHeading": "Phone",
+          "phoneNumber": "0300 303 0642",
+          "divorceEmail": "divorcecase@justice.gov.uk",
+          "careOf": "c/o ",
+          "guidanceHeading": "Guidance on GOV.UK",
+          "howToRespondLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ divorceWho }} responds</a>",
+          "decreeNisiLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Decree nisi link, This link will open in a new tab.\">Decree nisi</a>",
+          "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
+          "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",
+          "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Money and property link, This link will open in a new tab.\">Money and property</a>",
+          "files": {
+            "dpetition": "Divorce application",
+            "respondentAnswers": "Respondent’s answers",
+            "coRespondentAnswers": "Co-Respondent’s answers",
+            "certificateOfEntitlement": "Certificate of Entitlement",
+            "costsOrder": "Cost Order",
+            "decreeNisi": "Decree Nisi",
+            "dnAnswers": "Decree Nisi answers",
+            "clarificationDnRefusalOrder": "Refusal Order",
+            "rejectionDnRefusalOrder": "Refusal Order",
+            "deemedAsServedGranted": "Deemed service order",
+            "dispenseWithServiceGranted": "Order to dispense",
+            "DeemedServiceRefused": "Deemed service refusal",
+            "DispenseWithServiceRefused": "Dispensed service refusal"
+          }
+        },
+        "errors": {}
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "[CY] Your application has been refused",
+          "mainHeading": "[CY] Your '{{ serviceName }}' application has been refused",
+          "serviceRefusalInfo": {
+            "deemed": "[CY] The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
+            "dispensed": "[CY] The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
+          },
+          "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
+          "serviceApplicationLabel": {
+            "deemed": "[CY] deemed service",
+            "dispensed": "[CY] dispense with service"
+          },
+          "infoToContactRespondent": "[CY] If you still can’t get in contact with your {{ divorceWho }}, you may want to consider asking their family, friends and workplace if they have a new address, and provide that to the court.",
+          "noResponseOptions": "[CY] If there’s still no response using the original address, you have the following options available to you, depending on your situation.",
+          "whichSituation": "Pa sefyllfa sy’n berthnasol i chi?",
+          "haveAnotherAddress": {
+            "linkSummary": "Mae gen i gyfeiriad preswyl arall neu gyfeiriad arall ar gyfer cyfreithiwr fy {{ divorceWho }} (no fee)",
+            "provideAddress": "Cysylltwch â’r Gwasanaeth Llysoedd a Thribiwnlysoedd i ddarparu cyfeiriad gwahanol ar gyfer eich {{ divorceWho }}. Gall hwn fod yn gyfeiriad yn y DU neu’n gyfeiriad rhyngwladol.",
+            "noExtraPay": "Nid oes rhaid ichi dalu mwy i anfon y cais i gyfeiriad gwahanol."
+          },
+          "sendToWorkAddress": {
+            "linkSummary": "Rwyf angen anfon y cais i gyfeiriad dibreswyl, e.e. cyfeiriad gwaith (£{{ feeToResendApplication }})",
+            "askToSendApp": "Gallwch ofyn i’r cais gael ei anfon i gyfeiriad dibreswyl."
+          },
+          "needToSearchRecords": {
+            "linkSummary": "Rwyf angen chwilio cofnodion y llywodraeth i ddod o hyd i gyfeiriad fy {{ divorceWho }} (£{{ feeToResendApplication }})",
+            "canApplyIfRespLivesInEngWales": "Gallwch wneud cais i chwilio cronfeydd data’r llywodraeth (e.e. y gofrestr etholwyr) i ddod o hyd i gyfeiriad eich {{ divorceWho }}. Mae’n rhaid bod eich {{ divorceWho }} yn byw yng Nghymru a Lloegr.",
+            "applyViaSearchRecords": "Cysylltwch â’r Gwasanaeth Llysoedd a Thribiwnlysoedd i ofyn iddynt anfon y ffurflen atoch. "
+          },
+          "sendEmailToResp": {
+            "linkSummary": "Rwyf angen anfon y cais i gyfeiriad e-bost fy {{ divorceWho }} (£{{ feeToResendApplication }})",
+            "appToEmail": "Gallwch ofyn i’r cais gael ei anfon drwy e-bost. "
+          },
+          "believeRespChoseNotToRespond": {
+            "linkSummary": "Credaf bod fy {{ divorceWho }} yn byw yn y cyfeiriad hwnnw, ond wedi penderfynu peidio ag ymateb (£{{ enforcementFee }})",
+            "deliverPapersDirectlyToResp": "Os ydych yn credu bod eich {{ divorceWho }} yn peidio ag ymateb yn fwriadol, gallwch dalu i unigolyn proffesiynol ddanfon (cyflwyno) y papurau ysgariad yn uniongyrchol iddynt.",
+            "optionsToDeliver": "Gallwch wneud hyn drwy naill ai ddefnyddio:",
+            "privateHireToDeliver": "Cyflwynydd proses (unigolyn proffesiynol sydd wedi’i gyflogi’n breifat)",
+            "courtEmpToDeliver": "Beili’r llys (gweithiwr y llys)",
+            "processServers": "Cyflwynwyr proses",
+            "processServerDetails": "Cysylltwch â chyfreithiwr lleol a ddylai allu rhoi manylion cyswllt cwmni lleol ichi.",
+            "courtBailiff": "Beilïaid y llys",
+            "courtBailiffCovid19": "O ystyried y cyfyngiadau presennol a roddir ar feiliaid yn sgil y feirws COVID-19 mae pryderon wedi eu codi o ran defnyddio beiliaid ar gyfer gwaith personol. Gofynnir yn garedig i chi i ystyried dulliau eraill o wasanaeth fel a welir ar y dudalen lanio hon.",
+            "courtBailiffDetails1": "Dim ond mewn cyfeiriadau yng Nghymru a Lloegr y gellir defnyddio’r gwasanaeth beili lle mae anfon y cais drwy’r post eisoes wedi methu. Os oes gennych gyfeiriad newydd ar gyfer eich {{ divorceWho }}, bydd rhaid anfon y cais drwy’r post i’r cyfeiriad hwnnw cyn y gallwch wneud cais am wasanaeth beili.",
+            "courtBailiffDetails2": "Os yw’r beili’n llwyddo i ddanfon y cais, fe gewch lythyr fel tystiolaeth bod eich {{ divorceWho }} wedi cael y cais.  Gelwir hyn yn 'ardystiad cyflwyno'. Os na fydd eich {{ divorceWho }} yn ymateb ymhen 14 diwrnod iddynt gael y cais, gallwch ddefnyddio’r llythyr hwn i barhau gyda’ch ysgariad heb eu hymateb.",
+            "formD89": "<a class=\"govuk-link\" href=\"https://www.gov.uk/government/publications/form-d89-request-for-personal-service-by-a-court-bailiff\" target=\"_blank\" aria-label=\"Dolen i Ffurflen D89, Bydd y ddolen hon yn agor mewn tab newydd.\">ffurflen D89</a>. Anfonwch y ffurflen i’r Gwasanaeth Llysoedd a Thribiwnlysoedd.",
+            "moreToSend": "Bydd angen ichi hefyd anfon y canlynol:",
+            "respPhoto": "llun o’ch {{ divorceWho }}",
+            "divorceAppCopy": "copi o’ch cais am ysgariad"
+          },
+          "evidenceRespWontRespond": {
+            "linkSummary": "Mae gen i dystiolaeth bod fy {{ divorceWho }} wedi cael y cais, ond ni all neu nid yw am ymateb (£{{ feeToResendApplication }})",
+            "canApplyForDeemedServ": "Os ydych yn gwybod bod eich {{ divorceWho }} wedi cael y cais, ond ni all neu nid yw am ymateb, gallwch wneud cais i’r llys am orchymyn 'cyflwyno tybiedig'. Golyga hyn y bydd y llys yn penderfynu bod eich {{ divorceWho }} wedi cael y cais, ac y gallwch barhau heb eu hymateb.",
+            "needToProve": "Bydd angen ichi allu profi bod eich {{ divorceWho }} wedi cael y cais (e.e. mae gennych neges testun gan {{ divorceWho }} yn dweud eu bod wedi’i gael).",
+            "applyAndSendDocs": "Anfonwch y ffurflen a’r dogfennau i’r Gwasanaeth Llysoedd a Thribiwnlysoedd."
+          },
+          "doneWithAllWaysOfDelivering": {
+            "linkSummary": "Rwyf wedi rhoi cynnig ar bob ffordd bosibl o ddanfon y cais (£{{feeToResendApplication }})",
+            "askForDispenseWithService": "O dan amgylchiadau arbennig, gallwch ofyn i’r llys 'hepgor cyflwyno' (penderfynu nad oes rhaid cyflwyno’r cais am ysgariad) i {{ divorceWho }}.",
+            "allInCourtHands": "Y llys fydd yn penderfynu a ddylid caniatáu hyn ai peidio.  Cyn gall y llys ystyried hyn, bydd angen ichi ddangos eich bod wedi gwneud popeth y gallwch i ddod o hyd iddynt drwy gysylltu â’u:",
+            "relatives": "perthnasau (gan gynnwys plant)",
+            "friends": "ffrindiau",
+            "lastEmployer": "cyflogwr hysbys diwethaf",
+            "tradePlace": "undeb llafur neu sefydliad proffesiynol",
+            "searchInGovtDB": "Bydd angen ichi hefyd fod wedi ceisio dod o hyd i’w cyfeiriad drwy chwilio amdano ar gronfeydd data’r llywodraeth.",
+            "and": " a/ac ",
+            "applyD13bLink": "<a class=\"govuk-link\" href=\"https://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=1112\" target=\"_blank\" aria-label=\"Dolen i Ffurflen D13b, Bydd y ddolen hon yn agor mewn tab newydd.\">ffurflen D13b</a>.",
+            "applyD11AndD13bContent": " Anfonwch y ffurflenni i’r Gwasanaeth Llysoedd a Thribiwnlysoedd."
+          },
+          "downloadDocumentsHeading" : "Lawrlwytho eich dogfennau",
+          "howToApply": "Sut i wneud cais:",
+          "fill": "Dylech lawrlwytho a llenwi",
+          "applyD11": "<a class=\"govuk-link\" href=\"http://hmctsformfinder.justice.gov.uk/HMCTS/GetForm.do?court_forms_id=98\" target=\"_blank\" aria-label=\"Dolen i Ffurflen D11, Bydd y ddolen hon yn agor mewn tab newydd.\">ffurflen D11</a>.",
+          "howToPay": "Sut i dalu:",
+          "howToPayContent": "Ffoniwch y Gwasanaeth Llysoedd a Thribiwnlysoedd i dalu’r ffi o £{{ feeToResendApplication }} gyda cherdyn (rhwng 8.30am - 5pm) neu fel arall anfonwch siec gyda’ch ffurflen.",
+          "howToPayBailiffContent": "Ffoniwch y Gwasanaeth Llysoedd a Thribiwnlysoedd i dalu’r ffi o £{{ enforcementFee }} gyda cherdyn (rhwng 8.30am - 5pm) neu fel arall anfonwch siec gyda’ch ffurflen.",
+          "getNewRefNumb": "Os ydych chi’n gymwys i gael help i dalu ffioedd llysoedd a thribiwnlysoedd, bydd angen ichi wneud cais arall a <a class=\"govuk-link\" href=\"https://www.gov.uk/help-i-dalu-ffioedd-llysoedd-a-thribiwnlysoedd\" target=\"_blank\" aria-label=\"Dolen i gael cyfeirnod newydd. Bydd y ddolen hon yn agor mewn tab newydd.\">chael cyfeirnod newydd</a>.",
+          "extraCosts": " Os gofynnoch i’r llys orchymyn bod eich {{ divorceWho }} yn talu’ch costau, yna bydd y costau ychwanegol hyn hefyd yn cael eu hystyried.",
+          "printAndSend": "Anfonwch y ffurflen i’r Gwasanaeth Llysoedd a Thribiwnlysoedd.",
+          "help": "Cael cymorth",
+          "emailHeading": "E-bost",
+          "phoneHeading": "Ffôn",
+          "phoneNumber": "0300 303 5171",
+          "divorceEmail": "ymholiadaucymraeg@justice.gov.uk",
+          "careOf": "dan ofal ",
+          "guidanceHeading": "Canllawiau ar GOV.UK",
+          "howToRespondLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Dolen i Ymateb i gais am ysgariad. Bydd y ddolen hon yn agor mewn tab newydd.\">Sut mae eich {{ divorceWho }} yn ymateb</a>",
+          "decreeNisiLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Dolen i wneud cais am Ddyfarniad Nisi. Bydd y ddolen hon yn agor mewn tab newydd.\">Dyfarniad Nisi</a>",
+          "decreeAbsoluteLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Dolen i wneud cais am Ddyfarniad Absoliwt. Bydd y ddolen hon yn agor mewn tab newydd.\">Dyfarniad Absoliwt</a>",
+          "childrenAndDivorceLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Dolen i Plant ac ysgariad. Bydd y ddolen hon yn agor mewn tab newydd.\">Plant ac ysgariad</a>",
+          "moneyAndPropertyLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Dolen i Arian ac eiddo. Bydd y ddolen hon yn agor mewn tab newydd.\">Arian ac eiddo</a>",
+          "files": {
+            "dpetition": "Cais am ysgariad",
+            "respondentAnswers": "Atebion yr Atebydd",
+            "coRespondentAnswers": "Atebion y Cyd-atebydd",
+            "certificateOfEntitlement": "Tystysgrif Hawl",
+            "costsOrder": "Gorchymyn Costau",
+            "decreeNisi": "Dyfarniad Nisi",
+            "dnAnswers": "Atebion y Dyfarniad Nisi",
+            "clarificationDnRefusalOrder": "Gorchymyn Gwrthod",
+            "rejectionDnRefusalOrder": "Gorchymyn Gwrthod",
+            "deemedAsServedGranted": "Deemed service order",
+            "dispenseWithServiceGranted": "Order to dispense",
+            "DeemedServiceRefused": "[CY] Deemed service refusal",
+            "DispenseWithServiceRefused": "[CY] Dispensed service refusal"
+          }
+        },
+        "errors": {}
+      }
+    }
+  }
+}

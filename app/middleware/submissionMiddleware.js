@@ -6,7 +6,8 @@ const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
-const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
+const AMENDMENT_EXPLANATORY_PATH = '/amendment-explanatory-page';
+const SERVICE_APPLICATION_NOT_APPROVED_PATH = '/service-application-not-approved';
 
 const handleCcdCase = (req, res, next) => {
   const session = req.session;
@@ -38,10 +39,13 @@ const handleCcdCase = (req, res, next) => {
   case 'MultipleRejectedCases':
     logger.infoWithReq(req, 'multiple_cases_rejected', 'Multiple cases rejected');
     return res.redirect(APPLICATION_MULTIPLE_REJECTED_CASES_PATH);
+  case 'ServiceApplicationNotApproved':
+    logger.infoWithReq(req, 'service_application_not_approved', 'Service Application not approved');
+    return res.redirect(SERVICE_APPLICATION_NOT_APPROVED_PATH);
   case 'AwaitingAmendCase':
     if (isToggleOnAwaitingAmend(session)) {
       logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
-      return res.redirect(AMENDMENT_EXPLANATORY_PAGE);
+      return res.redirect(AMENDMENT_EXPLANATORY_PATH);
     }
     return res.redirect(CONTACT_DIVORCE_TEAM_PATH);
   default:

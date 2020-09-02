@@ -1,0 +1,47 @@
+<aside class="govuk-related-items" role="complementary">
+  <h3 class="govuk-heading-m">{{ content.help }}</h3>
+  <ul class="govuk-list govuk-body govuk-!-font-size-19 help">
+    <li>
+      <h4 class="govuk-heading-xs govuk-!-margin-0 go">{{ content.emailHeading }}</h4>
+      <a class="govuk-link" href="mailto:{{ content.divorceEmail }}" aria-label="{{ content.email }} link">{{
+        session.court.serviceCentre.email | safe if session.court.serviceCentre.email }}</a><br>
+    </li>
+    <li>
+      <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
+      {{ session.court.serviceCentre.phoneNumber | safe if session.court.serviceCentre.phoneNumber }}<br>
+      {{ session.court.serviceCentre.openingHours | safe if session.court.serviceCentre.openingHours }}<br>
+    </li>
+
+    <li>
+      {% if session.court.serviceCentre %}
+      <h4 class="govuk-heading-xs govuk-!-margin-0">{{ session.court.serviceCentre.serviceCentreName | safe }}</h4>
+      {{ content.careOf | safe }}
+      {% endif %}
+      {{ session.court.serviceCentre.divorceCentre | safe }}<br/>
+      {% if session.court.serviceCentre.poBox %}
+      {{ session.court.serviceCentre.poBox | safe }}<br/>
+      {% else %}
+      {{ session.court.serviceCentre.divorceCentre | safe }}<br/>
+      {{ session.court.serviceCentre.street | safe }}<br/>
+      {% endif %}
+      {{ session.court.serviceCentre.courtCity | safe }}<br/>
+      {{ session.court.serviceCentre.postCode | safe }}
+    </li>
+  </ul>
+
+  {% if (session.downloadableFiles.length > 0) %}
+  <h3 class="govuk-heading-m">{{ content.downloadDocumentsHeading }}</h3>
+  {{ documentList(session.downloadableFiles, content.files) }}
+  {% endif %}
+
+  <h3 class="govuk-heading-m" id="subsection-title">{{ content.guidanceHeading }}</h3>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-body govuk-!-font-size-16">
+      <li>{{ content.howToRespondLink | safe }}</li>
+      <li>{{ content.decreeNisiLink | safe }}</li>
+      <li>{{ content.decreeAbsoluteLink | safe }}</li>
+      <li>{{ content.childrenAndDivorceLink | safe }}</li>
+      <li>{{ content.moneyAndPropertyLink | safe }}</li>
+    </ul>
+  </nav>
+</aside>

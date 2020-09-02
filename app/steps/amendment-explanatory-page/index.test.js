@@ -50,7 +50,20 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content, amendSession);
+      const exclude = [
+        'files.respondentAnswers',
+        'files.coRespondentAnswers',
+        'files.certificateOfEntitlement',
+        'files.costsOrder',
+        'files.dnAnswers',
+        'files.clarificationDnRefusalOrder',
+        'files.rejectionDnRefusalOrder',
+        'files.deemedAsServedGranted',
+        'files.dispenseWithServiceGranted',
+        'files.DeemedServiceRefused',
+        'files.DispenseWithServiceRefused'
+      ];
+      testContent(done, agent, underTest, content, amendSession, exclude);
     });
 
     it('displays link for `How To Respond`', done => {

@@ -11,7 +11,7 @@ const mockFeeResponse = (feeType = '') => {
     return {
       feeCode: 'FEE0448',
       version: 1,
-      amount: 110
+      amount: 45
     };
   } else if (feeType === feeTypes.appWithoutNoticeFee) {
     return {

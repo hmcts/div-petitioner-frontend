@@ -5,9 +5,8 @@ const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const logger = require('app/services/logger').logger(__filename);
-const config = require('config');
-const { createUris } = require('@hmcts/div-document-express-handler');
 const submissionService = require('app/services/submission');
+const { getDownloadableFiles } = require('app/core/utils/viewContent');
 
 const BASE_PATH = '/';
 
@@ -40,12 +39,7 @@ module.exports = class AwaitingAmend extends Step {
   }
 
   getDownloadableFiles(session) {
-    const docConfig = {
-      documentNamePath: config.document.documentNamePath,
-      documentWhiteList: config.document.filesWhiteList
-    };
-
-    return createUris(session.d8, docConfig);
+    return getDownloadableFiles(session);
   }
 
   postRequest(req, res) {

@@ -191,6 +191,7 @@ describe(modulePath, () => {
   describe('ServiceApplicationNotApproved', () => {
     describe('#getServiceRefusalDocument', () => {
       let getCurrentContentStub = null;
+
       beforeEach(done => {
         getCurrentContentStub = sinon.stub(underTest, 'getCurrentContent')
           .returns(content.resources[mockServiceRefusalSession.language].translation.content);

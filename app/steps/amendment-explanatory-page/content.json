@@ -19,7 +19,7 @@
           "amendedApplicationInfoPara1": "You recently got in touch with the divorce centre asking to change parts of your application. If you did not make this request please contact the courts immediately.",
           "amendedApplicationInfoPara2": "You’ll only be able to amend and resubmit your case as long as your husband of wife has not yet responded (acknowledgement of service).",
           "amendedApplicationInfoPara3": "The fee for an amended application is £95.",
-          "amendedApplicationInfoPara4": "Once the amended application has been submitted, it will be checked by the courts before being issued to the petitioner’s husband/wife so they can respond.",
+          "amendedApplicationInfoPara4": "Once the amended application has been submitted, it will be checked by the courts before being issued to the petitioner’s {{ divorceWho }} so they can respond.",
           "downloadDocumentsHeading": "Download your documents",
           "downloadWarning": "Download and save your current Divorce application. You won’t be able to access any of these documents online after you have changed your application.",
           "continueBtnText": "Continue",

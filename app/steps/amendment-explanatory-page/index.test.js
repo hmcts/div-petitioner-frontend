@@ -37,12 +37,11 @@ describe(modulePath, () => {
   });
 
   describe('renders content', () => {
-    const amendSession = mockAwaitingAmendSession;
-
     beforeEach(done => {
       const oneSecond = 1000;
+      session = mockAwaitingAmendSession;
       session.expires = Date.now() + oneSecond;
-      withSession(done, agent, amendSession);
+      withSession(done, agent, session);
     });
 
     afterEach(() => {
@@ -63,7 +62,7 @@ describe(modulePath, () => {
         'files.DeemedServiceRefused',
         'files.DispenseWithServiceRefused'
       ];
-      testContent(done, agent, underTest, content, amendSession, exclude);
+      testContent(done, agent, underTest, content, session, exclude);
     });
 
     it('displays link for `How To Respond`', done => {
@@ -118,8 +117,19 @@ describe(modulePath, () => {
     });
   });
 
-  describe('should show awaiting amends info', () => {
-    it('contains main heading', done => {
+  describe('Awaiting amends info', () => {
+    beforeEach(done => {
+      const oneSecond = 1000;
+      session = mockAwaitingAmendSession;
+      session.expires = Date.now() + oneSecond;
+      withSession(done, agent, session);
+    });
+
+    afterEach(() => {
+      session = {};
+    });
+
+    it('should contains main heading', done => {
       testExistence(done, agent, underTest, contentStrings.mainHeading);
     });
 
@@ -136,13 +146,13 @@ describe(modulePath, () => {
     });
 
     it('contains paragraph 4', done => {
-      testExistence(done, agent, underTest, contentStrings.amendedApplicationInfoPara4);
+      testExistence(done, agent, underTest, contentStrings.amendedApplicationInfoPara4, { divorceWho: 'wife' });
     });
   });
 
-  describe('should display allocated court info', () => {
+  describe('should display service center info', () => {
     const amendSession = mockAwaitingAmendSession;
-    const allocatedCourt = amendSession.court.serviceCentre;
+    const serviceCentre = amendSession.court.serviceCentre;
 
     beforeEach(done => {
       withSession(done, agent, amendSession);
@@ -152,20 +162,20 @@ describe(modulePath, () => {
       session = {};
     });
 
-    it('contains allocated court e-mail once', done => {
+    it('contains serviceCentre court e-mail once', done => {
       testCustom(done, agent, underTest, [], response => {
         const timesEmailShouldAppearOnPage = 1;
-        const emailOccurrencesInPage = response.text.match(new RegExp(allocatedCourt.email, 'g')).length;
+        const emailOccurrencesInPage = response.text.match(new RegExp(serviceCentre.email, 'g')).length;
         expect(emailOccurrencesInPage).to.equal(timesEmailShouldAppearOnPage);
       });
     });
 
-    it('contains allocated court phone number', done => {
-      testExistence(done, agent, underTest, allocatedCourt.phoneNumber);
+    it('contains serviceCentre phone number', done => {
+      testExistence(done, agent, underTest, serviceCentre.phoneNumber);
     });
 
-    it('contains allocated court opening hours', done => {
-      testExistence(done, agent, underTest, allocatedCourt.openingHours);
+    it('contains serviceCentre opening hours', done => {
+      testExistence(done, agent, underTest, serviceCentre.openingHours);
     });
   });
 

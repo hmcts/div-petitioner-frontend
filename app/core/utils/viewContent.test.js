@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const { remove } = require('lodash');
+const { filter } = require('lodash');
 
 const modulePath = 'app/core/utils/viewContent';
 const underTest = require(modulePath);
@@ -23,7 +23,7 @@ const sessionData = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'GeneralOrders.pdf',
+      fileName: 'GeneralOrder2020-09-09.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null
@@ -56,16 +56,17 @@ const sessionData = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'GeneralOrders.pdf',
+      fileName: 'GeneralOrder2020-03-09.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null
     }
   ]
 };
+
 const getOnlyFileType = (fileTypes, typeName) => {
-  return remove(fileTypes, fileType => {
-    return fileType !== typeName;
+  return filter(fileTypes, fileType => {
+    return fileType === typeName;
   });
 };
 
@@ -91,7 +92,7 @@ describe(`Suite: ${modulePath}`, () => {
 
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('DeemedServiceRefused');
-      expect(fileTypes).to.include('GeneralOrders');
+      expect(fileTypes).to.include('GeneralOrder');
       expect(fileTypes).to.not.include('documentNotWhiteListed');
     });
 
@@ -103,13 +104,13 @@ describe(`Suite: ${modulePath}`, () => {
         .map(file => {
           return file.type;
         });
-      const generalOrdersDocuments = getOnlyFileType(fileTypes, 'GeneralOrders');
+      const generalOrderDocuments = getOnlyFileType(fileTypes, 'GeneralOrder');
 
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('DeemedServiceRefused');
-      expect(fileTypes).to.include('GeneralOrders');
-      expect(generalOrdersDocuments).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
+      expect(fileTypes).to.include('GeneralOrder');
+      expect(generalOrderDocuments).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
     });
   });
 });

@@ -1,9 +1,11 @@
 const request = require('supertest');
-const { testContent, testExistence, testCustom } = require('test/util/assertions');
+const { testContent, testExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
 const { expect, sinon } = require('test/util/chai');
+
+const { fill } = require('lodash');
 const mockServiceRefusalSession = require('test/fixtures/mockServiceRefusalSession');
 
 const modulePath = 'app/steps/service-application-not-approved';
@@ -15,6 +17,10 @@ let agent = {};
 let underTest = {};
 
 let session = {};
+
+const getTemplateFileLabel = fileType => {
+  return content.resources.en.translation.content.files[fileType];
+};
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -62,6 +68,17 @@ describe(modulePath, () => {
         ];
         testContent(done, agent, underTest, content, session, exclude, deemedDataContent, true);
       });
+
+      it('should have one \'DeemedServiceRefused\' label in template view', done => {
+        const deemedServiceRefusedFileLabel = getTemplateFileLabel('DeemedServiceRefused');
+        testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
+      });
+
+      it('should have two \'GeneralOrder\' label in template view', done => {
+        const numberOfItems = 2;
+        const numberOfGeneralOrderFiles = fill(Array(numberOfItems), 'General Order');
+        testMultipleValuesExistence(done, agent, underTest, numberOfGeneralOrderFiles);
+      });
     });
 
     describe('Dispense with service template', () => {
@@ -75,6 +92,17 @@ describe(modulePath, () => {
             lastModifiedBy: 0,
             modifiedOn: null,
             fileName: 'DispenseWithServiceRefused.pdf',
+            fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
+            mimeType: null,
+            status: null
+          },
+          {
+            id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+            createdBy: 0,
+            createdOn: null,
+            lastModifiedBy: 0,
+            modifiedOn: null,
+            fileName: 'GeneralOrder2020-09-09.pdf',
             fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
             mimeType: null,
             status: null
@@ -106,6 +134,16 @@ describe(modulePath, () => {
         ];
         testContent(done, agent, underTest, content, session, exclude, dispenseDataContent, true);
       });
+
+      it('should have one \'DispenseWithServiceRefused\' label in template view', done => {
+        const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel('DispenseWithServiceRefused');
+        testExistence(done, agent, underTest, dispenseWithServiceRefusedFileLabel);
+      });
+
+      it('should have one \'GeneralOrder\' label in template view', done => {
+        const generalFileLabel = getTemplateFileLabel('GeneralOrder');
+        testExistence(done, agent, underTest, generalFileLabel);
+      });
     });
   });
 
@@ -133,7 +171,7 @@ describe(modulePath, () => {
         mimeType: null,
         status: null
       });
-      const expectedDocumentsSize = 3;
+      const expectedDocumentsSize = 5;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
       });
@@ -141,6 +179,7 @@ describe(modulePath, () => {
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('DeemedServiceRefused');
+      expect(fileTypes).to.include('GeneralOrder');
     });
   });
 
@@ -206,7 +245,7 @@ describe(modulePath, () => {
       });
 
       it('should return correct list of documents', () => {
-        const expectedListSize = 3;
+        const expectedListSize = 5;
         const downloadableFiles = underTest.getDownloadableFiles(session);
 
         expect(downloadableFiles).to.have.lengthOf(expectedListSize);

@@ -1,5 +1,5 @@
 const { expect } = require('test/util/chai');
-const { filter } = require('lodash');
+const { getOnlyFileType } = require('test/util/helpers');
 
 const modulePath = 'app/core/utils/viewContent';
 const underTest = require(modulePath);
@@ -62,12 +62,6 @@ const sessionData = {
       status: null
     }
   ]
-};
-
-const getOnlyFileType = (fileTypes, typeName) => {
-  return filter(fileTypes, fileType => {
-    return fileType === typeName;
-  });
 };
 
 const EMPTY_LIST_SIZE = 0;

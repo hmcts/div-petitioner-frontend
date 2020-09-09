@@ -13,6 +13,10 @@ const content = require(`${modulePath}/content`);
 
 const contentStrings = content.resources.en.translation.content;
 
+const getTemplateFileLabel = fileType => {
+  return content.resources.en.translation.content.files[fileType];
+};
+
 let appInstance = {};
 let agent = {};
 let underTest = {};
@@ -36,7 +40,7 @@ describe(modulePath, () => {
     postBody = {};
   });
 
-  describe('renders content', () => {
+  describe('Template Rendering', () => {
     beforeEach(done => {
       const oneSecond = 1000;
       session = mockAwaitingAmendSession;
@@ -69,51 +73,37 @@ describe(modulePath, () => {
       testExistence(done, agent, underTest,
         contentStrings.howToRespondLink);
     });
+
+    it('should have one \'dpetition\' label in template view', done => {
+      const dpetitionFileLabel = getTemplateFileLabel('dpetition');
+      testExistence(done, agent, underTest, dpetitionFileLabel);
+    });
+
+    it('should have one \'General Order\' label in template view', done => {
+      const generalOrderFileLabel = getTemplateFileLabel('GeneralOrder');
+      testExistence(done, agent, underTest, generalOrderFileLabel);
+    });
   });
 
-  describe('renders document', () => {
-    const amendSession = mockAwaitingAmendSession;
-
+  describe('Document Rendering', () => {
     beforeEach(done => {
-      session.d8 = [
-        {
-          id: '401ab79e-34cb-4570-9f2f-4cf9357m4st3r',
-          createdBy: 0,
-          createdOn: null,
-          lastModifiedBy: 0,
-          modifiedOn: null,
-          fileName: 'd8petition1554740111371638.pdf',
-          // eslint-disable-next-line max-len
-          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
-          mimeType: null,
-          status: null
-        },
-        {
-          id: '401ab79e-34cb-4570-9f2f-4cf9357m4st3r',
-          createdBy: 0,
-          createdOn: null,
-          lastModifiedBy: 0,
-          modifiedOn: null,
-          fileName: 'somethingNotD81554740111371638.pdf',
-          // eslint-disable-next-line max-len
-          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
-          mimeType: null,
-          status: null
-        }
-      ];
-      withSession(done, agent, amendSession);
+      session = mockAwaitingAmendSession;
+      withSession(done, agent, session);
     });
 
     afterEach(() => {
       session = {};
     });
 
-    it('returns the correct file', () => {
+    it('should return the correct files', () => {
+      const expectedDocumentsSize = 2;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
       });
 
-      expect(fileTypes).to.eql(['dpetition']); // for d8petition. Numbers are removed from file type by document handler
+      expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
+      expect(fileTypes).to.include('dpetition');
+      expect(fileTypes).to.include('GeneralOrder');
     });
   });
 

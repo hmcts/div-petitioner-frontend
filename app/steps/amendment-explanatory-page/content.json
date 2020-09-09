@@ -42,7 +42,8 @@
             "deemedAsServedGranted": "Deemed service order",
             "dispenseWithServiceGranted": "Order to dispense",
             "DeemedServiceRefused": "Deemed service refusal",
-            "DispenseWithServiceRefused": "Dispensed service refusal"
+            "DispenseWithServiceRefused": "Dispensed service refusal",
+            "GeneralOrder": "General Order"
           }
         },
         "errors": {}
@@ -89,7 +90,8 @@
             "deemedAsServedGranted": "[CY] Deemed service order",
             "dispenseWithServiceGranted": "[CY] Order to dispense",
             "DeemedServiceRefused": "[CY] Deemed service refusal",
-            "DispenseWithServiceRefused": "[CY] Dispensed service refusal"
+            "DispenseWithServiceRefused": "[CY] Dispensed service refusal",
+            "GeneralOrder": "[CY] General Order"
           },
           "errors": {}
         }

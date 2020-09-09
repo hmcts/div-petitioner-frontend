@@ -147,7 +147,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('Document rendering', () => {
+  describe('Document Rendering', () => {
     beforeEach(done => {
       const oneSecond = 1000;
       session = Object.assign({}, mockServiceRefusalSession);

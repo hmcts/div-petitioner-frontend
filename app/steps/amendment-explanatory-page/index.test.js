@@ -95,7 +95,7 @@ describe(modulePath, () => {
       session = {};
     });
 
-    it('should return the correct files', () => {
+    it('should return the correct list of files', () => {
       const expectedDocumentsSize = 2;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
@@ -104,6 +104,29 @@ describe(modulePath, () => {
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('GeneralOrder');
+    });
+
+    it('should return only one file', () => {
+      const expectedDocumentsSize = 1;
+      session.d8 = [
+        {
+          id: '0ecc2507-1acf-46ae-b0d8-2d7c032fc145',
+          createdBy: 0,
+          createdOn: null,
+          lastModifiedBy: 0,
+          modifiedOn: null,
+          fileName: 'd8petition1594218147343642.pdf',
+          fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/0ecc2507-1acf-46ae-b0d8-2d7c032fc145',
+          mimeType: null,
+          status: null
+        }
+      ];
+      const fileTypes = underTest.getDownloadableFiles(session).map(file => {
+        return file.type;
+      });
+
+      expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
+      expect(fileTypes).to.include('dpetition');
     });
   });
 

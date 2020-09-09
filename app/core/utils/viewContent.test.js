@@ -1,4 +1,5 @@
 const { expect } = require('test/util/chai');
+const { remove } = require('lodash');
 
 const modulePath = 'app/core/utils/viewContent';
 const underTest = require(modulePath);
@@ -13,6 +14,17 @@ const sessionData = {
       modifiedOn: null,
       fileName: 'd8petition1594218147343642.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/0ecc2507-1acf-46ae-b0d8-2d7c032fc145',
+      mimeType: null,
+      status: null
+    },
+    {
+      id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+      createdBy: 0,
+      createdOn: null,
+      lastModifiedBy: 0,
+      modifiedOn: null,
+      fileName: 'GeneralOrders.pdf',
+      fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null
     },
@@ -37,23 +49,24 @@ const sessionData = {
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/30acaa2f-84d7-4e27-adb3-69551560113f',
       mimeType: null,
       status: null
+    },
+    {
+      id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+      createdBy: 0,
+      createdOn: null,
+      lastModifiedBy: 0,
+      modifiedOn: null,
+      fileName: 'GeneralOrders.pdf',
+      fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
+      mimeType: null,
+      status: null
     }
-  ],
-  court: {
-    serviceCentre: {
-      identifiableCentreName: 'Courts and Tribunals Service Centre',
-      courtId: 'serviceCentre',
-      serviceCentreName: 'Courts and Tribunals Service Centre',
-      divorceCentre: 'HMCTS Digital Divorce',
-      poBox: 'PO Box 12706',
-      courtCity: 'Harlow',
-      postCode: 'CM20 9QT',
-      openingHours: 'Telephone Enquiries from: Monday - Friday 8am to 8pm, Saturday 8am to 2pm',
-      email: 'divorcecase@justice.gov.uk',
-      phoneNumber: '0300 303 0642',
-      siteId: 'AA07'
-    }
-  }
+  ]
+};
+const getOnlyFileType = (fileTypes, typeName) => {
+  return remove(fileTypes, fileType => {
+    return fileType !== typeName;
+  });
 };
 
 const EMPTY_LIST_SIZE = 0;
@@ -78,11 +91,13 @@ describe(`Suite: ${modulePath}`, () => {
 
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('DeemedServiceRefused');
+      expect(fileTypes).to.include('GeneralOrders');
       expect(fileTypes).to.not.include('documentNotWhiteListed');
     });
 
     it('should return multiple documents of specific type if available', () => {
-      const expectedDocumentsSize = 2;
+      const expectedDocumentsSize = 4;
+      const expectedGeneralOrderDocumentsSize = 2;
 
       const fileTypes = underTest.getDownloadableFiles(sessionData)
         .map(file => {
@@ -92,6 +107,8 @@ describe(`Suite: ${modulePath}`, () => {
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('DeemedServiceRefused');
+      expect(fileTypes).to.include('GeneralOrders');
+      expect(getOnlyFileType(fileTypes, 'GeneralOrders')).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
     });
   });
 });

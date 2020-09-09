@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { testContent, testExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
+const { getTemplateFileLabel } = require('test/util/helpers');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
@@ -17,10 +18,6 @@ let agent = {};
 let underTest = {};
 
 let session = {};
-
-const getTemplateFileLabel = fileType => {
-  return content.resources.en.translation.content.files[fileType];
-};
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -70,7 +67,7 @@ describe(modulePath, () => {
       });
 
       it('should have one \'DeemedServiceRefused\' label in template view', done => {
-        const deemedServiceRefusedFileLabel = getTemplateFileLabel('DeemedServiceRefused');
+        const deemedServiceRefusedFileLabel = getTemplateFileLabel(content, 'DeemedServiceRefused');
         testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
       });
 
@@ -136,12 +133,12 @@ describe(modulePath, () => {
       });
 
       it('should have one \'DispenseWithServiceRefused\' label in template view', done => {
-        const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel('DispenseWithServiceRefused');
+        const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel(content, 'DispenseWithServiceRefused');
         testExistence(done, agent, underTest, dispenseWithServiceRefusedFileLabel);
       });
 
       it('should have one \'GeneralOrder\' label in template view', done => {
-        const generalFileLabel = getTemplateFileLabel('GeneralOrder');
+        const generalFileLabel = getTemplateFileLabel(content, 'GeneralOrder');
         testExistence(done, agent, underTest, generalFileLabel);
       });
     });

@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { testContent, testExistence, testCustom } = require('test/util/assertions');
+const { getTemplateFileLabel } = require('test/util/helpers');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect, sinon } = require('test/util/chai');
@@ -13,16 +14,13 @@ const content = require(`${modulePath}/content`);
 
 const contentStrings = content.resources.en.translation.content;
 
-const getTemplateFileLabel = fileType => {
-  return content.resources.en.translation.content.files[fileType];
-};
-
 let appInstance = {};
 let agent = {};
 let underTest = {};
 
 const BASE_PATH = '/';
 let session = {};
+let serviceCentre = {};
 let postBody = {};
 
 describe(modulePath, () => {
@@ -43,7 +41,7 @@ describe(modulePath, () => {
   describe('Template Rendering', () => {
     beforeEach(done => {
       const oneSecond = 1000;
-      session = mockAwaitingAmendSession;
+      session = Object.assign({}, mockAwaitingAmendSession);
       session.expires = Date.now() + oneSecond;
       withSession(done, agent, session);
     });
@@ -75,19 +73,19 @@ describe(modulePath, () => {
     });
 
     it('should have one \'dpetition\' label in template view', done => {
-      const dpetitionFileLabel = getTemplateFileLabel('dpetition');
+      const dpetitionFileLabel = getTemplateFileLabel(content, 'dpetition');
       testExistence(done, agent, underTest, dpetitionFileLabel);
     });
 
     it('should have one \'General Order\' label in template view', done => {
-      const generalOrderFileLabel = getTemplateFileLabel('GeneralOrder');
+      const generalOrderFileLabel = getTemplateFileLabel(content, 'GeneralOrder');
       testExistence(done, agent, underTest, generalOrderFileLabel);
     });
   });
 
   describe('Document Rendering', () => {
     beforeEach(done => {
-      session = mockAwaitingAmendSession;
+      session = Object.assign({}, mockAwaitingAmendSession);
       withSession(done, agent, session);
     });
 
@@ -133,7 +131,7 @@ describe(modulePath, () => {
   describe('Awaiting amends info', () => {
     beforeEach(done => {
       const oneSecond = 1000;
-      session = mockAwaitingAmendSession;
+      session = Object.assign({}, mockAwaitingAmendSession);
       session.expires = Date.now() + oneSecond;
       withSession(done, agent, session);
     });
@@ -164,11 +162,10 @@ describe(modulePath, () => {
   });
 
   describe('should display service center info', () => {
-    const amendSession = mockAwaitingAmendSession;
-    const serviceCentre = amendSession.court.serviceCentre;
-
     beforeEach(done => {
-      withSession(done, agent, amendSession);
+      session = Object.assign({}, mockAwaitingAmendSession);
+      serviceCentre = session.court.serviceCentre;
+      withSession(done, agent, session);
     });
 
     afterEach(() => {

@@ -76,11 +76,15 @@ describe(`Suite: ${modulePath}`, () => {
   describe('Downloadable Documents', () => {
     it('should return an empty array when no d8 property exists', () => {
       const downloadableFiles = underTest.getDownloadableFiles({});
+      // eslint-disable-next-line no-unused-expressions
+      expect(downloadableFiles).not.to.be.undefined;
       expect(downloadableFiles).lengthOf(EMPTY_LIST_SIZE);
     });
 
     it('should return an empty array when no documents items exists', () => {
       const downloadableFiles = underTest.getDownloadableFiles({ d8: [] });
+      // eslint-disable-next-line no-unused-expressions
+      expect(downloadableFiles).not.to.be.undefined;
       expect(downloadableFiles).lengthOf(EMPTY_LIST_SIZE);
     });
 

@@ -15,7 +15,7 @@ const docConfig = {
  * whitelisted in the config would be returned.
  *
  * @param session Session data containing d8 property, an array of documents
- * @returns {*} List of generated documents
+ * @returns {*} List of generated documents or an empty if none
  */
 const getDownloadableFiles = session => {
   return createUris(session.d8, docConfig);

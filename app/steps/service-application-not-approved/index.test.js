@@ -19,6 +19,11 @@ let underTest = {};
 
 let session = {};
 
+const buildServiceRefusalSession = (extraData = {}) => {
+  const oneSecond = 1000;
+  return Object.assign({}, mockServiceRefusalSession, { expires: Date.now() + oneSecond }, extraData);
+};
+
 describe(modulePath, () => {
   beforeEach(() => {
     appInstance = server.init();
@@ -38,7 +43,7 @@ describe(modulePath, () => {
 
     describe('Deemed service template', () => {
       beforeEach(done => {
-        session = Object.assign({}, mockServiceRefusalSession);
+        session = buildServiceRefusalSession();
         withSession(done, agent, session);
       });
 
@@ -71,7 +76,7 @@ describe(modulePath, () => {
         testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
       });
 
-      it('should have two \'GeneralOrder\' label in template view', done => {
+      it('should have two \'GeneralOrder\' labels in template view', done => {
         const numberOfItems = 2;
         const numberOfGeneralOrderFiles = fill(Array(numberOfItems), 'General Order');
         testMultipleValuesExistence(done, agent, underTest, numberOfGeneralOrderFiles);
@@ -80,7 +85,7 @@ describe(modulePath, () => {
 
     describe('Dispense with service template', () => {
       beforeEach(done => {
-        session = Object.assign({}, mockServiceRefusalSession, { serviceApplicationType: 'dispensed', d8: [] });
+        session = buildServiceRefusalSession({ serviceApplicationType: 'dispensed', d8: [] });
         session.d8 = [
           {
             id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
@@ -146,9 +151,7 @@ describe(modulePath, () => {
 
   describe('Document Rendering', () => {
     beforeEach(done => {
-      const oneSecond = 1000;
-      session = Object.assign({}, mockServiceRefusalSession);
-      session.expires = Date.now() + oneSecond;
+      session = buildServiceRefusalSession();
       withSession(done, agent, session);
     });
 
@@ -184,7 +187,7 @@ describe(modulePath, () => {
     let allocatedCourt = {};
 
     beforeEach(done => {
-      session = Object.assign({}, mockServiceRefusalSession);
+      session = buildServiceRefusalSession();
       allocatedCourt = session.court.serviceCentre;
       withSession(done, agent, session);
     });
@@ -229,10 +232,10 @@ describe(modulePath, () => {
       let getCurrentContentStub = null;
 
       beforeEach(done => {
+        session = buildServiceRefusalSession();
         getCurrentContentStub = sinon.stub(underTest, 'getCurrentContent')
-          .returns(content.resources[mockServiceRefusalSession.language].translation.content);
+          .returns(content.resources[session.language].translation.content);
 
-        session = Object.assign({}, mockServiceRefusalSession);
         withSession(done, agent, session);
       });
 

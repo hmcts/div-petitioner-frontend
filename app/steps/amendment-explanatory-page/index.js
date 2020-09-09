@@ -6,7 +6,7 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const logger = require('app/services/logger').logger(__filename);
 const submissionService = require('app/services/submission');
-const { getDownloadableFiles } = require('app/core/utils/viewContent');
+const { getDownloadableFiles } = require('app/core/utils/viewHelper');
 
 const BASE_PATH = '/';
 

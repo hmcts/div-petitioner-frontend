@@ -1,7 +1,7 @@
 const { expect } = require('test/util/chai');
-const { filter } = require('lodash');
+const { getOnlyFileType } = require('test/util/helpers');
 
-const modulePath = 'app/core/utils/viewContent';
+const modulePath = 'app/core/utils/viewHelper';
 const underTest = require(modulePath);
 
 const sessionData = {
@@ -64,12 +64,6 @@ const sessionData = {
   ]
 };
 
-const getOnlyFileType = (fileTypes, typeName) => {
-  return filter(fileTypes, fileType => {
-    return fileType === typeName;
-  });
-};
-
 const EMPTY_LIST_SIZE = 0;
 
 describe(`Suite: ${modulePath}`, () => {
@@ -78,14 +72,14 @@ describe(`Suite: ${modulePath}`, () => {
       const downloadableFiles = underTest.getDownloadableFiles({});
       // eslint-disable-next-line no-unused-expressions
       expect(downloadableFiles).not.to.be.undefined;
-      expect(downloadableFiles).lengthOf(EMPTY_LIST_SIZE);
+      expect(downloadableFiles).to.have.lengthOf(EMPTY_LIST_SIZE);
     });
 
     it('should return an empty array when no documents items exists', () => {
       const downloadableFiles = underTest.getDownloadableFiles({ d8: [] });
       // eslint-disable-next-line no-unused-expressions
       expect(downloadableFiles).not.to.be.undefined;
-      expect(downloadableFiles).lengthOf(EMPTY_LIST_SIZE);
+      expect(downloadableFiles).to.have.lengthOf(EMPTY_LIST_SIZE);
     });
 
     it('should contain only whitelisted documents', () => {

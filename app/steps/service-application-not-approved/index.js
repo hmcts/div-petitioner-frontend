@@ -5,7 +5,7 @@ const { updateAppWithoutNoticeFeeMiddleware,
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
-const { getDownloadableFiles } = require('app/core/utils/viewContent');
+const { getDownloadableFiles } = require('app/core/utils/viewHelper');
 
 const serviceApplicationFileTypeMap = {
   deemed: 'DeemedServiceRefused',

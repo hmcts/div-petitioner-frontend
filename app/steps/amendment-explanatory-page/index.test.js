@@ -23,6 +23,11 @@ let session = {};
 let serviceCentre = {};
 let postBody = {};
 
+const buildAwaitingAmendSession = () => {
+  const oneSecond = 1000;
+  return Object.assign({}, mockAwaitingAmendSession, { expires: Date.now() + oneSecond });
+};
+
 describe(modulePath, () => {
   beforeEach(() => {
     appInstance = server.init();
@@ -40,9 +45,7 @@ describe(modulePath, () => {
 
   describe('Template Rendering', () => {
     beforeEach(done => {
-      const oneSecond = 1000;
-      session = Object.assign({}, mockAwaitingAmendSession);
-      session.expires = Date.now() + oneSecond;
+      session = buildAwaitingAmendSession();
       withSession(done, agent, session);
     });
 
@@ -85,7 +88,7 @@ describe(modulePath, () => {
 
   describe('Document Rendering', () => {
     beforeEach(done => {
-      session = Object.assign({}, mockAwaitingAmendSession);
+      session = buildAwaitingAmendSession();
       withSession(done, agent, session);
     });
 
@@ -130,9 +133,7 @@ describe(modulePath, () => {
 
   describe('Awaiting amends info', () => {
     beforeEach(done => {
-      const oneSecond = 1000;
-      session = Object.assign({}, mockAwaitingAmendSession);
-      session.expires = Date.now() + oneSecond;
+      session = buildAwaitingAmendSession();
       withSession(done, agent, session);
     });
 
@@ -163,7 +164,7 @@ describe(modulePath, () => {
 
   describe('should display service center info', () => {
     beforeEach(done => {
-      session = Object.assign({}, mockAwaitingAmendSession);
+      session = buildAwaitingAmendSession();
       serviceCentre = session.court.serviceCentre;
       withSession(done, agent, session);
     });

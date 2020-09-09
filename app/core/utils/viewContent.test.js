@@ -103,12 +103,13 @@ describe(`Suite: ${modulePath}`, () => {
         .map(file => {
           return file.type;
         });
+      const generalOrdersDocuments = getOnlyFileType(fileTypes, 'GeneralOrders');
 
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
       expect(fileTypes).to.include('DeemedServiceRefused');
       expect(fileTypes).to.include('GeneralOrders');
-      expect(getOnlyFileType(fileTypes, 'GeneralOrders')).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
+      expect(generalOrdersDocuments).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
     });
   });
 });

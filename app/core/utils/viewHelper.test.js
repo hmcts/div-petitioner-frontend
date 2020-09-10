@@ -23,7 +23,7 @@ const sessionData = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'GeneralOrder2020-09-09.pdf',
+      fileName: 'generalOrder2020-09-09.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null
@@ -34,7 +34,7 @@ const sessionData = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'DeemedServiceRefused1594218147343643.pdf',
+      fileName: 'deemedServiceRefused1594218147343643.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null
@@ -56,7 +56,7 @@ const sessionData = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'GeneralOrder2020-03-09.pdf',
+      fileName: 'generalOrder2020-03-09.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null
@@ -89,8 +89,8 @@ describe(`Suite: ${modulePath}`, () => {
         });
 
       expect(fileTypes).to.include('dpetition');
-      expect(fileTypes).to.include('DeemedServiceRefused');
-      expect(fileTypes).to.include('GeneralOrder');
+      expect(fileTypes).to.include('deemedServiceRefused');
+      expect(fileTypes).to.include('generalOrder');
       expect(fileTypes).to.not.include('documentNotWhiteListed');
     });
 
@@ -102,12 +102,12 @@ describe(`Suite: ${modulePath}`, () => {
         .map(file => {
           return file.type;
         });
-      const generalOrderDocuments = getOnlyFileType(fileTypes, 'GeneralOrder');
+      const generalOrderDocuments = getOnlyFileType(fileTypes, 'generalOrder');
 
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
-      expect(fileTypes).to.include('DeemedServiceRefused');
-      expect(fileTypes).to.include('GeneralOrder');
+      expect(fileTypes).to.include('deemedServiceRefused');
+      expect(fileTypes).to.include('generalOrder');
       expect(generalOrderDocuments).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
     });
   });

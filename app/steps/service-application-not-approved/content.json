@@ -106,9 +106,9 @@
             "rejectionDnRefusalOrder": "Refusal Order",
             "deemedAsServedGranted": "Deemed service order",
             "dispenseWithServiceGranted": "Order to dispense",
-            "DeemedServiceRefused": "Deemed service refusal",
-            "DispenseWithServiceRefused": "Dispensed service refusal",
-            "GeneralOrder": "General Order"
+            "deemedServiceRefused": "Deemed service refusal",
+            "dispenseWithServiceRefused": "Dispensed service refusal",
+            "generalOrder": "General Order"
           }
         },
         "errors": {}
@@ -219,9 +219,9 @@
             "rejectionDnRefusalOrder": "Gorchymyn Gwrthod",
             "deemedAsServedGranted": "[CY] Deemed service order",
             "dispenseWithServiceGranted": "[CY] Order to dispense",
-            "DeemedServiceRefused": "[CY] Deemed service refusal",
-            "DispenseWithServiceRefused": "[CY] Dispensed service refusal",
-            "GeneralOrder": "[CY] General Order"
+            "deemedServiceRefused": "[CY] Deemed service refusal",
+            "dispenseWithServiceRefused": "[CY] Dispensed service refusal",
+            "generalOrder": "[CY] General Order"
           }
         },
         "errors": {}

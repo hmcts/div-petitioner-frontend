@@ -16,7 +16,7 @@ module.exports = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'DeemedServiceRefused.pdf',
+      fileName: 'deemedServiceRefused.pdf',
       fileUrl: 'http://dm-store.aat',
       mimeType: null,
       status: null
@@ -27,7 +27,7 @@ module.exports = {
       createdOn: null,
       lastModifiedBy: 0,
       modifiedOn: null,
-      fileName: 'GeneralOrder2020-03-09.pdf',
+      fileName: 'generalOrder2020-03-09.pdf',
       fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
       mimeType: null,
       status: null

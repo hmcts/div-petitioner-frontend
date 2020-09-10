@@ -64,8 +64,8 @@ describe(modulePath, () => {
         'files.rejectionDnRefusalOrder',
         'files.deemedAsServedGranted',
         'files.dispenseWithServiceGranted',
-        'files.DeemedServiceRefused',
-        'files.DispenseWithServiceRefused'
+        'files.deemedServiceRefused',
+        'files.dispenseWithServiceRefused'
       ];
       testContent(done, agent, underTest, content, session, exclude);
     });
@@ -81,7 +81,7 @@ describe(modulePath, () => {
     });
 
     it('should have one \'General Order\' label in template view', done => {
-      const generalOrderFileLabel = getTemplateFileLabel(content, 'GeneralOrder');
+      const generalOrderFileLabel = getTemplateFileLabel(content, 'generalOrder');
       testExistence(done, agent, underTest, generalOrderFileLabel);
     });
   });
@@ -104,7 +104,7 @@ describe(modulePath, () => {
 
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
-      expect(fileTypes).to.include('GeneralOrder');
+      expect(fileTypes).to.include('generalOrder');
     });
 
     it('should return only one file', () => {

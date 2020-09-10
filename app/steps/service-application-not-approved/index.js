@@ -8,8 +8,8 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { getDownloadableFiles } = require('app/core/utils/viewHelper');
 
 const serviceApplicationFileTypeMap = {
-  deemed: 'DeemedServiceRefused',
-  dispensed: 'DispenseWithServiceRefused'
+  deemed: 'deemedServiceRefused',
+  dispensed: 'dispenseWithServiceRefused'
 };
 
 module.exports = class ServiceApplicationNotApproved extends Step {

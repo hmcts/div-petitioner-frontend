@@ -69,17 +69,17 @@ describe(modulePath, () => {
           'files.rejectionDnRefusalOrder',
           'files.deemedAsServedGranted',
           'files.dispenseWithServiceGranted',
-          'files.DispenseWithServiceRefused'
+          'files.dispenseWithServiceRefused'
         ];
         testContent(done, agent, underTest, content, session, exclude, deemedDataContent, true);
       });
 
-      it('should have one \'DeemedServiceRefused\' label in template view', done => {
-        const deemedServiceRefusedFileLabel = getTemplateFileLabel(content, 'DeemedServiceRefused');
+      it('should have one \'deemedServiceRefused\' label in template view', done => {
+        const deemedServiceRefusedFileLabel = getTemplateFileLabel(content, 'deemedServiceRefused');
         testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
       });
 
-      it('should have two \'GeneralOrder\' labels in template view', done => {
+      it('should have two \'generalOrder\' labels in template view', done => {
         // eslint-disable-next-line max-nested-callbacks
         testCustom(done, agent, underTest, [], response => {
           const numberOfItems = 2;
@@ -98,7 +98,7 @@ describe(modulePath, () => {
             createdOn: null,
             lastModifiedBy: 0,
             modifiedOn: null,
-            fileName: 'DispenseWithServiceRefused.pdf',
+            fileName: 'dispenseWithServiceRefused.pdf',
             fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
             mimeType: null,
             status: null
@@ -109,7 +109,7 @@ describe(modulePath, () => {
             createdOn: null,
             lastModifiedBy: 0,
             modifiedOn: null,
-            fileName: 'GeneralOrder2020-09-09.pdf',
+            fileName: 'generalOrder2020-09-09.pdf',
             fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
             mimeType: null,
             status: null
@@ -137,18 +137,18 @@ describe(modulePath, () => {
           'files.rejectionDnRefusalOrder',
           'files.deemedAsServedGranted',
           'files.dispenseWithServiceGranted',
-          'files.DeemedServiceRefused'
+          'files.deemedServiceRefused'
         ];
         testContent(done, agent, underTest, content, session, exclude, dispenseDataContent, true);
       });
 
-      it('should have one \'DispenseWithServiceRefused\' label in template view', done => {
-        const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel(content, 'DispenseWithServiceRefused');
+      it('should have one \'dispenseWithServiceRefused\' label in template view', done => {
+        const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel(content, 'dispenseWithServiceRefused');
         testExistence(done, agent, underTest, dispenseWithServiceRefusedFileLabel);
       });
 
-      it('should have one \'GeneralOrder\' label in template view', done => {
-        const generalFileLabel = getTemplateFileLabel(content, 'GeneralOrder');
+      it('should have one \'generalOrder\' label in template view', done => {
+        const generalFileLabel = getTemplateFileLabel(content, 'generalOrder');
         testExistence(done, agent, underTest, generalFileLabel);
       });
     });
@@ -183,8 +183,8 @@ describe(modulePath, () => {
 
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
-      expect(fileTypes).to.include('DeemedServiceRefused');
-      expect(fileTypes).to.include('GeneralOrder');
+      expect(fileTypes).to.include('deemedServiceRefused');
+      expect(fileTypes).to.include('generalOrder');
     });
   });
 
@@ -262,7 +262,7 @@ describe(modulePath, () => {
         const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
 
         expect(fileLabel).to.eq('Deemed service refusal');
-        expect(fileUri).to.have.string('DeemedServiceRefused1594218147343643.pdf');
+        expect(fileUri).to.have.string('deemedServiceRefused1594218147343643.pdf');
       });
 
       it('should return correct service refusal document for dispense with service', () => {
@@ -274,7 +274,7 @@ describe(modulePath, () => {
             createdOn: null,
             lastModifiedBy: 0,
             modifiedOn: null,
-            fileName: 'DispenseWithServiceRefused.pdf',
+            fileName: 'dispenseWithServiceRefused.pdf',
             fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
             mimeType: null,
             status: null
@@ -294,7 +294,7 @@ describe(modulePath, () => {
         const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
 
         expect(fileLabel).to.eq('Dispensed service refusal');
-        expect(fileUri).to.have.string('DispenseWithServiceRefused.pdf');
+        expect(fileUri).to.have.string('dispenseWithServiceRefused.pdf');
       });
 
       it('should return empty string if no refusal document found', () => {

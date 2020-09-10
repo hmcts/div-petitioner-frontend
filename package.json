@@ -181,7 +181,9 @@
     "minimist": "^1.2.5",
     "serialize-javascript": ">=2.1.1",
     "tunnel-agent": "^0.6.0",
-    "yargs-parser": "15.0.1"
+    "yargs-parser": "15.0.1",
+    "bl": ">=3.0.1",
+    "dot-prop": ">=5.1.1"
   },
   "nyc": {
     "report-dir": "coverage",

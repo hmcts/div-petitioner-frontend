@@ -1,12 +1,11 @@
 const request = require('supertest');
-const { testContent, testExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
+const { testContent, testExistence, testCustom } = require('test/util/assertions');
 const { getTemplateFileLabel } = require('test/util/helpers');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
 const { expect, sinon } = require('test/util/chai');
 
-const { fill } = require('lodash');
 const mockServiceRefusalSession = require('test/fixtures/mockServiceRefusalSession');
 
 const modulePath = 'app/steps/service-application-not-approved';
@@ -22,6 +21,10 @@ let session = {};
 const buildServiceRefusalSession = (extraData = {}) => {
   const oneSecond = 1000;
   return Object.assign({}, mockServiceRefusalSession, { expires: Date.now() + oneSecond }, extraData);
+};
+
+const getGeneralOrderOccurrencesInPage = response => {
+  return response.text.match(new RegExp('General Order (PDF)', 'g')).length;
 };
 
 describe(modulePath, () => {
@@ -77,9 +80,11 @@ describe(modulePath, () => {
       });
 
       it('should have two \'GeneralOrder\' labels in template view', done => {
-        const numberOfItems = 2;
-        const numberOfGeneralOrderFiles = fill(Array(numberOfItems), 'General Order');
-        testMultipleValuesExistence(done, agent, underTest, numberOfGeneralOrderFiles);
+        // eslint-disable-next-line max-nested-callbacks
+        testCustom(done, agent, underTest, [], response => {
+          const numberOfItems = 2;
+          expect(getGeneralOrderOccurrencesInPage(response)).to.equal(numberOfItems);
+        });
       });
     });
 

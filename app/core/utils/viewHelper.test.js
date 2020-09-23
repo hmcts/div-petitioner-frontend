@@ -4,6 +4,8 @@ const { getOnlyFileType } = require('test/util/helpers');
 const modulePath = 'app/core/utils/viewHelper';
 const underTest = require(modulePath);
 
+const content = require('test/fixtures/test-content.json');
+
 const sessionData = {
   d8: [
     {
@@ -109,6 +111,31 @@ describe(`Suite: ${modulePath}`, () => {
       expect(fileTypes).to.include('deemedServiceRefused');
       expect(fileTypes).to.include('generalOrder');
       expect(generalOrderDocuments).to.have.lengthOf(expectedGeneralOrderDocumentsSize);
+    });
+  });
+
+  describe('View content', () => {
+    const pageInstance = {};
+    before(() => {
+      pageInstance.content = content;
+    });
+
+    it('should return the correct EN content data', () => {
+      const session = { language: 'en' };
+      const { title } = underTest.getCurrentContent(pageInstance, session);
+      expect(title).to.equal('This is English');
+    });
+
+    it('should return the correct CY content data', () => {
+      const session = { language: 'cy' };
+      const { title } = underTest.getCurrentContent(pageInstance, session);
+      expect(title).to.equal('This is Welsh');
+    });
+
+    it('should return the EN content data as default', () => {
+      const session = { language: null };
+      const { title } = underTest.getCurrentContent(pageInstance, session);
+      expect(title).to.equal('This is English');
     });
   });
 });

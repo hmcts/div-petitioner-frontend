@@ -8,5 +8,6 @@
   "sessionKey",
   "saveAndResumeUrl",
   "fetchedDraft",
-  "language"
+  "language",
+  "reasonsForDivorceShowAll"
 ]

@@ -1,7 +1,4 @@
-const feeTypes = {
-  applicationFee: 'petition-issue-fee',
-  amendFee: 'amend-fee'
-};
+const feeTypes = require('app/services/feeTypes');
 
 const mockFeeResponse = (feeType = '') => {
   if (feeType === feeTypes.amendFee) {
@@ -10,7 +7,20 @@ const mockFeeResponse = (feeType = '') => {
       version: 1,
       amount: 95
     };
+  } else if (feeType === feeTypes.enforcementFee) {
+    return {
+      feeCode: 'FEE0448',
+      version: 1,
+      amount: 45
+    };
+  } else if (feeType === feeTypes.appWithoutNoticeFee) {
+    return {
+      feeCode: 'FEE0228',
+      version: 1,
+      amount: 50
+    };
   }
+
   return {
     feeCode: 'FEE0002',
     version: 4,

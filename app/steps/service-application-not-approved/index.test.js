@@ -23,8 +23,8 @@ const buildServiceRefusalSession = (extraData = {}) => {
   return Object.assign({}, mockServiceRefusalSession, { expires: Date.now() + oneSecond }, extraData);
 };
 
-const getGeneralOrderOccurrencesInPage = response => {
-  return response.text.match(new RegExp('General Order (PDF)', 'g')).length;
+const getOccurrencesInPage = (response, expectedText) => {
+  return response.text.match(new RegExp(expectedText, 'g')).length;
 };
 
 describe(modulePath, () => {
@@ -74,16 +74,24 @@ describe(modulePath, () => {
         testContent(done, agent, underTest, content, session, exclude, deemedDataContent, true);
       });
 
-      it('should have two \'deemedServiceRefused\' label in template view', done => {
+      it('should have \'deemedServiceRefused\' label in template view', done => {
         const deemedServiceRefusedFileLabel = getTemplateFileLabel(content, 'deemedServiceRefused');
         testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
+      });
+
+      it('should have two \'deemedServiceRefused\' labels in template view', done => {
+        // eslint-disable-next-line max-nested-callbacks
+        testCustom(done, agent, underTest, [], response => {
+          const numberOfItems = 2;
+          expect(getOccurrencesInPage(response, 'Deemed service refusal (PDF)')).to.equal(numberOfItems);
+        });
       });
 
       it('should have two \'generalOrder\' labels in template view', done => {
         // eslint-disable-next-line max-nested-callbacks
         testCustom(done, agent, underTest, [], response => {
           const numberOfItems = 2;
-          expect(getGeneralOrderOccurrencesInPage(response)).to.equal(numberOfItems);
+          expect(getOccurrencesInPage(response, 'General Order (PDF)')).to.equal(numberOfItems);
         });
       });
     });

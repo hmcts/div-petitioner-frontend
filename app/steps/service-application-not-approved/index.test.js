@@ -23,6 +23,17 @@ const buildServiceRefusalSession = (extraData = {}) => {
   return Object.assign({}, mockServiceRefusalSession, { expires: Date.now() + oneSecond }, extraData);
 };
 
+const multipleOccurringTypes = [
+  {
+    viewLabel: getTemplateFileLabel(content, 'deemedServiceRefused'),
+    count: 2
+  },
+  {
+    viewLabel: getTemplateFileLabel(content, 'generalOrder'),
+    count: 2
+  }
+];
+
 const getOccurrencesInPage = (response, expectedText) => {
   return response.text.match(new RegExp(expectedText, 'g')).length;
 };
@@ -79,19 +90,13 @@ describe(modulePath, () => {
         testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
       });
 
-      it('should have two \'deemedServiceRefused\' labels in template view', done => {
+      multipleOccurringTypes.forEach(item => {
         // eslint-disable-next-line max-nested-callbacks
-        testCustom(done, agent, underTest, [], response => {
-          const numberOfItems = 2;
-          expect(getOccurrencesInPage(response, 'Deemed service refusal (PDF)')).to.equal(numberOfItems);
-        });
-      });
-
-      it('should have two \'generalOrder\' labels in template view', done => {
-        // eslint-disable-next-line max-nested-callbacks
-        testCustom(done, agent, underTest, [], response => {
-          const numberOfItems = 2;
-          expect(getOccurrencesInPage(response, 'General Order (PDF)')).to.equal(numberOfItems);
+        it(`should have two '${item.viewLabel}' labels in template view`, done => {
+          // eslint-disable-next-line max-nested-callbacks
+          testCustom(done, agent, underTest, [], response => {
+            expect(getOccurrencesInPage(response, `${item.viewLabel} (PDF)`)).to.equal(item.count);
+          });
         });
       });
     });
@@ -241,7 +246,7 @@ describe(modulePath, () => {
   });
 
   describe('ServiceApplicationNotApproved', () => {
-    describe('#getServiceRefusalDocument', () => {
+    describe('Refusal documents', () => {
       beforeEach(done => {
         session = buildServiceRefusalSession();
         withSession(done, agent, session);
@@ -261,7 +266,6 @@ describe(modulePath, () => {
 
       it('should return correct service refusal label for deemed', () => {
         const fileLabel = underTest.getRefusalDocumentLabel(session);
-
         expect(fileLabel).to.eq('Deemed service refusal');
       });
 

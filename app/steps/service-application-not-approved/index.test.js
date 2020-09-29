@@ -26,11 +26,11 @@ const buildServiceRefusalSession = (extraData = {}) => {
 const multipleOccurringTypes = [
   {
     viewLabel: getTemplateFileLabel(content, 'deemedServiceRefused'),
-    count: 2
+    expectedCount: 2
   },
   {
     viewLabel: getTemplateFileLabel(content, 'generalOrder'),
-    count: 2
+    expectedCount: 2
   }
 ];
 
@@ -92,10 +92,10 @@ describe(modulePath, () => {
 
       multipleOccurringTypes.forEach(item => {
         // eslint-disable-next-line max-nested-callbacks
-        it(`should have two '${item.viewLabel}' labels in template view`, done => {
+        it(`should have two '${item.viewLabel} (PDF)' labels in template view`, done => {
           // eslint-disable-next-line max-nested-callbacks
           testCustom(done, agent, underTest, [], response => {
-            expect(getOccurrencesInPage(response, `${item.viewLabel} (PDF)`)).to.equal(item.count);
+            expect(getOccurrencesInPage(response, `${item.viewLabel} (PDF)`)).to.equal(item.expectedCount);
           });
         });
       });

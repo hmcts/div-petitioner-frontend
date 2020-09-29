@@ -4,7 +4,7 @@ const { getTemplateFileLabel } = require('test/util/helpers');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
-const { expect, sinon } = require('test/util/chai');
+const { expect } = require('test/util/chai');
 
 const mockServiceRefusalSession = require('test/fixtures/mockServiceRefusalSession');
 
@@ -74,7 +74,7 @@ describe(modulePath, () => {
         testContent(done, agent, underTest, content, session, exclude, deemedDataContent, true);
       });
 
-      it('should have one \'deemedServiceRefused\' label in template view', done => {
+      it('should have two \'deemedServiceRefused\' label in template view', done => {
         const deemedServiceRefusedFileLabel = getTemplateFileLabel(content, 'deemedServiceRefused');
         testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
       });
@@ -176,7 +176,7 @@ describe(modulePath, () => {
         mimeType: null,
         status: null
       });
-      const expectedDocumentsSize = 5;
+      const expectedDocumentsSize = 6;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
       });
@@ -234,35 +234,27 @@ describe(modulePath, () => {
 
   describe('ServiceApplicationNotApproved', () => {
     describe('#getServiceRefusalDocument', () => {
-      let getCurrentContentStub = null;
-
       beforeEach(done => {
         session = buildServiceRefusalSession();
-        getCurrentContentStub = sinon.stub(underTest, 'getCurrentContent')
-          .returns(content.resources[session.language].translation.content);
-
         withSession(done, agent, session);
       });
 
       afterEach(() => {
         session = {};
-        getCurrentContentStub.restore();
       });
 
       it('should return correct list of documents', () => {
-        const expectedListSize = 5;
+        const expectedListSize = 6;
         const downloadableFiles = underTest.getDownloadableFiles(session);
 
         expect(downloadableFiles).to.have.lengthOf(expectedListSize);
         expect(downloadableFiles[0]).to.have.all.keys('uri', 'type', 'fileType');
       });
 
-      it('should return correct service refusal document for deemed', () => {
-        session.downloadableFiles = underTest.getDownloadableFiles(session);
-        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
+      it('should return correct service refusal label for deemed', () => {
+        const fileLabel = underTest.getRefusalDocumentLabel(session);
 
         expect(fileLabel).to.eq('Deemed service refusal');
-        expect(fileUri).to.have.string('deemedServiceRefused1594218147343643.pdf');
       });
 
       it('should return correct service refusal document for dispense with service', () => {
@@ -291,17 +283,9 @@ describe(modulePath, () => {
           }
         ];
         session.downloadableFiles = underTest.getDownloadableFiles(session);
-        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
+        const fileLabel = underTest.getRefusalDocumentLabel(session);
 
         expect(fileLabel).to.eq('Dispensed service refusal');
-        expect(fileUri).to.have.string('dispenseWithServiceRefused.pdf');
-      });
-
-      it('should return empty string if no refusal document found', () => {
-        const noDocumentSession = { downloadableFiles: [], serviceApplicationType: 'deemed', language: 'en' };
-        const document = underTest.getServiceRefusalDocument(noDocumentSession);
-        // eslint-disable-next-line no-unused-expressions
-        expect(document).to.be.undefined;
       });
     });
   });

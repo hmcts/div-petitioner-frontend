@@ -1,6 +1,8 @@
 const { createUris } = require('@hmcts/div-document-express-handler');
 const config = require('config');
 
+const DEFAULT_LANGUAGE = 'en';
+
 const docConfig = {
   documentNamePath: config.document.documentNamePath,
   documentWhiteList: config.document.filesWhiteList
@@ -21,6 +23,18 @@ const getDownloadableFiles = session => {
   return createUris(session.d8, docConfig);
 };
 
+/**
+ * The current view content. This is essentially the content.json file but for the specific active language
+ * @param pageInstance The view object
+ * @param session
+ * @returns {{test: string}|{test: string}} The json content object
+ */
+const getCurrentContent = (pageInstance, session) => {
+  const language = session.language || DEFAULT_LANGUAGE;
+  return pageInstance.content.resources[language].translation.content;
+};
+
 module.exports = {
-  getDownloadableFiles
+  getDownloadableFiles,
+  getCurrentContent
 };

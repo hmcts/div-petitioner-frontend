@@ -203,5 +203,6 @@ document:
   documentNamePath: 'fileName'
   filesWhiteList:
     - 'd8petition'
-    - 'DispenseWithServiceRefused'
-    - 'DeemedServiceRefused'
+    - 'dispenseWithServiceRefused'
+    - 'deemedServiceRefused'
+    - 'generalOrder'

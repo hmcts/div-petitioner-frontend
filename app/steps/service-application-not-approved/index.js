@@ -1,15 +1,15 @@
 const Step = require('app/core/steps/Step');
 const config = require('config');
-const { createUris } = require('@hmcts/div-document-express-handler');
 const { updateAppWithoutNoticeFeeMiddleware,
   updateEnforcementFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { getDownloadableFiles } = require('app/core/utils/viewHelper');
 
 const serviceApplicationFileTypeMap = {
-  deemed: 'DeemedServiceRefused',
-  dispensed: 'DispenseWithServiceRefused'
+  deemed: 'deemedServiceRefused',
+  dispensed: 'dispenseWithServiceRefused'
 };
 
 module.exports = class ServiceApplicationNotApproved extends Step {
@@ -55,12 +55,7 @@ module.exports = class ServiceApplicationNotApproved extends Step {
   }
 
   getDownloadableFiles(session) {
-    const docConfig = {
-      documentNamePath: config.document.documentNamePath,
-      documentWhiteList: config.document.filesWhiteList
-    };
-
-    return createUris(session.d8, docConfig);
+    return getDownloadableFiles(session);
   }
 
   getServiceRefusalDocument(session) {

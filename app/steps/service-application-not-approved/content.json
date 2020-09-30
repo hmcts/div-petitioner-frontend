@@ -106,8 +106,9 @@
             "rejectionDnRefusalOrder": "Refusal Order",
             "deemedAsServedGranted": "Deemed service order",
             "dispenseWithServiceGranted": "Order to dispense",
-            "DeemedServiceRefused": "Deemed service refusal",
-            "DispenseWithServiceRefused": "Dispensed service refusal"
+            "deemedServiceRefused": "Deemed service refusal",
+            "dispenseWithServiceRefused": "Dispensed service refusal",
+            "generalOrder": "General Order"
           }
         },
         "errors": {}
@@ -216,10 +217,11 @@
             "dnAnswers": "Atebion y Dyfarniad Nisi",
             "clarificationDnRefusalOrder": "Gorchymyn Gwrthod",
             "rejectionDnRefusalOrder": "Gorchymyn Gwrthod",
-            "deemedAsServedGranted": "Deemed service order",
-            "dispenseWithServiceGranted": "Order to dispense",
-            "DeemedServiceRefused": "[CY] Deemed service refusal",
-            "DispenseWithServiceRefused": "[CY] Dispensed service refusal"
+            "deemedAsServedGranted": "[CY] Deemed service order",
+            "dispenseWithServiceGranted": "[CY] Order to dispense",
+            "deemedServiceRefused": "[CY] Deemed service refusal",
+            "dispenseWithServiceRefused": "[CY] Dispensed service refusal",
+            "generalOrder": "[CY] General Order"
           }
         },
         "errors": {}

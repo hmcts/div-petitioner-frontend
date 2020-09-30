@@ -10,7 +10,7 @@
             "deemed": "The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
             "dispensed": "The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
-          "refusalDocumentInfo": "You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'. </a>.",
+          "refusalDocumentInfo": "You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'.",
           "serviceApplicationLabel": {
             "deemed": "deemed service",
             "dispensed": "dispense with service"
@@ -123,7 +123,7 @@
             "deemed": "[CY] The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
             "dispensed": "[CY] The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
-          "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'</a>.",
+          "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'.",
           "serviceApplicationLabel": {
             "deemed": "[CY] deemed service",
             "dispensed": "[CY] dispense with service"

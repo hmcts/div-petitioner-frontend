@@ -1,5 +1,5 @@
 output "idam_api_url" {
-  value = "${var.idam_api_url}"
+  value = var.idam_api_url
 }
 
 output "case_orchestration_service_draft_url" {
@@ -7,5 +7,5 @@ output "case_orchestration_service_draft_url" {
 }
 
 output "feature_idam" {
-  value = "${var.feature_idam}"
+  value = var.feature_idam
 }

@@ -17,6 +17,18 @@
     webChat.classList.add('hidden');
   });
 
+  webChat.addEventListener('metrics', metrics => {
+    const metricsDetail = metrics.detail;
+    const status = metricsDetail.ContactCentreState;
+    if (status === 'Open') {
+      const ewt = metricsDetail.ewt;
+      const agentCount = metricsDetail.agentCount;
+      message.innerHTML = `Retrieved metrics: EWT = ${ewt}, available agents = ${agentCount}`;
+    } else {
+      button.replaceWith(`Contact centre is ${status} now`);
+    }
+  });
+
   if(isWebChatHidden && !webChat.classList.contains('hidden')){
     console.log('add hidden');
     webChat.classList.add('hidden');

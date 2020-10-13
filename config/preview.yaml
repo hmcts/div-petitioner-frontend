@@ -11,6 +11,7 @@ session:
 
 features:
   idam: true
+  antennaWebchat: true
 
 featureToggles:
   enabled: false

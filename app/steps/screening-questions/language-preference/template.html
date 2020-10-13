@@ -1,5 +1,5 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
-{% from "common/components/formElements.html" import yesNoRadioHeading %}
+{% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 
 {% block skipLink %}
@@ -21,16 +21,25 @@
   <p class="govuk-body"> {{ content.line1 | safe }}</p>
   <p class="govuk-body"> {{ content.line2 | safe }}</p>
 
-    {{ yesNoRadioHeading(
-        legend = content.question,
-        name = 'languagePreferenceWelsh',
-        field = fields.languagePreferenceWelsh,
-        yes = content.yes,
-        no = content.no,
-        targetYes = '',
-        targetNo = 'language-preference-no',
-        screenReader = content.question
-    ) }}
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.languagePreferenceWelsh.error }}">
+      <fieldset id="languagePreferenceWelsh" class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+        {{ errorsFor(fields.fields.languagePreferenceWelsh) }}
+        {{ radioButton(
+            value = 'No',
+            label = content.no,
+            name = 'languagePreferenceWelsh',
+            field = fields.languagePreferenceWelsh,
+            defaultChecked = true
+        ) }}
+        {{ radioButton(
+            value = 'Yes',
+            label = content.yes,
+            name = 'languagePreferenceWelsh',
+            field = fields.languagePreferenceWelsh
+        ) }}
+      </fieldset>
+    </div>
 
     <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="language-preference-no">
       {{ govukWarningText({

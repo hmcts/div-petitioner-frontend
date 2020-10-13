@@ -1,9 +1,11 @@
 const request = require('supertest');
 const { testContent, testExistence, testCustom } = require('test/util/assertions');
+const { getTemplateFileLabel } = require('test/util/helpers');
 const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
-const { expect, sinon } = require('test/util/chai');
+const { expect } = require('test/util/chai');
+
 const mockServiceRefusalSession = require('test/fixtures/mockServiceRefusalSession');
 
 const modulePath = 'app/steps/service-application-not-approved';
@@ -15,6 +17,26 @@ let agent = {};
 let underTest = {};
 
 let session = {};
+
+const buildServiceRefusalSession = (extraData = {}) => {
+  const oneSecond = 1000;
+  return Object.assign({}, mockServiceRefusalSession, { expires: Date.now() + oneSecond }, extraData);
+};
+
+const multipleOccurringTypes = [
+  {
+    viewLabel: getTemplateFileLabel(content, 'deemedServiceRefused'),
+    expectedCount: 2
+  },
+  {
+    viewLabel: getTemplateFileLabel(content, 'generalOrder'),
+    expectedCount: 2
+  }
+];
+
+const getOccurrencesInPage = (response, expectedText) => {
+  return response.text.match(new RegExp(expectedText, 'g')).length;
+};
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -35,7 +57,7 @@ describe(modulePath, () => {
 
     describe('Deemed service template', () => {
       beforeEach(done => {
-        session = Object.assign({}, mockServiceRefusalSession);
+        session = buildServiceRefusalSession();
         withSession(done, agent, session);
       });
 
@@ -58,15 +80,30 @@ describe(modulePath, () => {
           'files.rejectionDnRefusalOrder',
           'files.deemedAsServedGranted',
           'files.dispenseWithServiceGranted',
-          'files.DispenseWithServiceRefused'
+          'files.dispenseWithServiceRefused'
         ];
         testContent(done, agent, underTest, content, session, exclude, deemedDataContent, true);
+      });
+
+      it('should have \'deemedServiceRefused\' label in template view', done => {
+        const deemedServiceRefusedFileLabel = getTemplateFileLabel(content, 'deemedServiceRefused');
+        testExistence(done, agent, underTest, deemedServiceRefusedFileLabel);
+      });
+
+      multipleOccurringTypes.forEach(item => {
+        // eslint-disable-next-line max-nested-callbacks
+        it(`should have two '${item.viewLabel} (PDF)' labels in template view`, done => {
+          // eslint-disable-next-line max-nested-callbacks
+          testCustom(done, agent, underTest, [], response => {
+            expect(getOccurrencesInPage(response, `${item.viewLabel} (PDF)`)).to.equal(item.expectedCount);
+          });
+        });
       });
     });
 
     describe('Dispense with service template', () => {
       beforeEach(done => {
-        session = Object.assign({}, mockServiceRefusalSession, { serviceApplicationType: 'dispensed', d8: [] });
+        session = buildServiceRefusalSession({ serviceApplicationType: 'dispensed', d8: [] });
         session.d8 = [
           {
             id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
@@ -74,7 +111,18 @@ describe(modulePath, () => {
             createdOn: null,
             lastModifiedBy: 0,
             modifiedOn: null,
-            fileName: 'DispenseWithServiceRefused.pdf',
+            fileName: 'dispenseWithServiceRefused.pdf',
+            fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
+            mimeType: null,
+            status: null
+          },
+          {
+            id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+            createdBy: 0,
+            createdOn: null,
+            lastModifiedBy: 0,
+            modifiedOn: null,
+            fileName: 'generalOrder2020-09-09.pdf',
             fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
             mimeType: null,
             status: null
@@ -102,18 +150,26 @@ describe(modulePath, () => {
           'files.rejectionDnRefusalOrder',
           'files.deemedAsServedGranted',
           'files.dispenseWithServiceGranted',
-          'files.DeemedServiceRefused'
+          'files.deemedServiceRefused'
         ];
         testContent(done, agent, underTest, content, session, exclude, dispenseDataContent, true);
+      });
+
+      it('should have one \'dispenseWithServiceRefused\' label in template view', done => {
+        const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel(content, 'dispenseWithServiceRefused');
+        testExistence(done, agent, underTest, dispenseWithServiceRefusedFileLabel);
+      });
+
+      it('should have one \'generalOrder\' label in template view', done => {
+        const generalFileLabel = getTemplateFileLabel(content, 'generalOrder');
+        testExistence(done, agent, underTest, generalFileLabel);
       });
     });
   });
 
-  describe('Document rendering', () => {
+  describe('Document Rendering', () => {
     beforeEach(done => {
-      const oneSecond = 1000;
-      session = Object.assign({}, mockServiceRefusalSession);
-      session.expires = Date.now() + oneSecond;
+      session = buildServiceRefusalSession();
       withSession(done, agent, session);
     });
 
@@ -133,14 +189,15 @@ describe(modulePath, () => {
         mimeType: null,
         status: null
       });
-      const expectedDocumentsSize = 3;
+      const expectedDocumentsSize = 6;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
       });
 
       expect(fileTypes).to.have.lengthOf(expectedDocumentsSize);
       expect(fileTypes).to.include('dpetition');
-      expect(fileTypes).to.include('DeemedServiceRefused');
+      expect(fileTypes).to.include('deemedServiceRefused');
+      expect(fileTypes).to.include('generalOrder');
     });
   });
 
@@ -148,7 +205,7 @@ describe(modulePath, () => {
     let allocatedCourt = {};
 
     beforeEach(done => {
-      session = Object.assign({}, mockServiceRefusalSession);
+      session = buildServiceRefusalSession();
       allocatedCourt = session.court.serviceCentre;
       withSession(done, agent, session);
     });
@@ -189,35 +246,27 @@ describe(modulePath, () => {
   });
 
   describe('ServiceApplicationNotApproved', () => {
-    describe('#getServiceRefusalDocument', () => {
-      let getCurrentContentStub = null;
+    describe('Refusal documents', () => {
       beforeEach(done => {
-        getCurrentContentStub = sinon.stub(underTest, 'getCurrentContent')
-          .returns(content.resources[mockServiceRefusalSession.language].translation.content);
-
-        session = Object.assign({}, mockServiceRefusalSession);
+        session = buildServiceRefusalSession();
         withSession(done, agent, session);
       });
 
       afterEach(() => {
         session = {};
-        getCurrentContentStub.restore();
       });
 
       it('should return correct list of documents', () => {
-        const expectedListSize = 3;
+        const expectedListSize = 6;
         const downloadableFiles = underTest.getDownloadableFiles(session);
 
         expect(downloadableFiles).to.have.lengthOf(expectedListSize);
         expect(downloadableFiles[0]).to.have.all.keys('uri', 'type', 'fileType');
       });
 
-      it('should return correct service refusal document for deemed', () => {
-        session.downloadableFiles = underTest.getDownloadableFiles(session);
-        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
-
+      it('should return correct service refusal label for deemed', () => {
+        const fileLabel = underTest.getRefusalDocumentLabel(session);
         expect(fileLabel).to.eq('Deemed service refusal');
-        expect(fileUri).to.have.string('DeemedServiceRefused1594218147343643.pdf');
       });
 
       it('should return correct service refusal document for dispense with service', () => {
@@ -229,7 +278,7 @@ describe(modulePath, () => {
             createdOn: null,
             lastModifiedBy: 0,
             modifiedOn: null,
-            fileName: 'DispenseWithServiceRefused.pdf',
+            fileName: 'dispenseWithServiceRefused.pdf',
             fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
             mimeType: null,
             status: null
@@ -246,17 +295,9 @@ describe(modulePath, () => {
           }
         ];
         session.downloadableFiles = underTest.getDownloadableFiles(session);
-        const { fileLabel, fileUri } = underTest.getServiceRefusalDocument(session);
+        const fileLabel = underTest.getRefusalDocumentLabel(session);
 
         expect(fileLabel).to.eq('Dispensed service refusal');
-        expect(fileUri).to.have.string('DispenseWithServiceRefused.pdf');
-      });
-
-      it('should return empty string if no refusal document found', () => {
-        const noDocumentSession = { downloadableFiles: [], serviceApplicationType: 'deemed', language: 'en' };
-        const document = underTest.getServiceRefusalDocument(noDocumentSession);
-        // eslint-disable-next-line no-unused-expressions
-        expect(document).to.be.undefined;
       });
     });
   });

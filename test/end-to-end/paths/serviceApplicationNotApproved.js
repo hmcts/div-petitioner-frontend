@@ -14,6 +14,6 @@ Scenario('Service application not approved screen with expected information', as
   I.see(content.whichSituation);
 
   I.see('Deemed service refusal (PDF)', '.govuk-link');
+  I.see('General Order (PDF)', '.govuk-link');
   I.dontSee('Dispense with service refusal (PDF)', '.govuk-link');
-
 });

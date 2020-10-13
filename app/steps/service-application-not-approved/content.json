@@ -10,7 +10,7 @@
             "deemed": "The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
             "dispensed": "The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
-          "refusalDocumentInfo": "You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
+          "refusalDocumentInfo": "You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'.",
           "serviceApplicationLabel": {
             "deemed": "deemed service",
             "dispensed": "dispense with service"
@@ -106,8 +106,9 @@
             "rejectionDnRefusalOrder": "Refusal Order",
             "deemedAsServedGranted": "Deemed service order",
             "dispenseWithServiceGranted": "Order to dispense",
-            "DeemedServiceRefused": "Deemed service refusal",
-            "DispenseWithServiceRefused": "Dispensed service refusal"
+            "deemedServiceRefused": "Deemed service refusal",
+            "dispenseWithServiceRefused": "Dispensed service refusal",
+            "generalOrder": "General Order"
           }
         },
         "errors": {}
@@ -122,7 +123,7 @@
             "deemed": "[CY] The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
             "dispensed": "[CY] The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
-          "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the <a class=\"govuk-link\" aria-label=\"This link will download the file\" href=\"{{ refusalDocumentUri }}\" target=\"_blank\">{{ refusalDocumentLabel }} (PDF)</a>.",
+          "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'.",
           "serviceApplicationLabel": {
             "deemed": "[CY] deemed service",
             "dispensed": "[CY] dispense with service"
@@ -216,10 +217,11 @@
             "dnAnswers": "Atebion y Dyfarniad Nisi",
             "clarificationDnRefusalOrder": "Gorchymyn Gwrthod",
             "rejectionDnRefusalOrder": "Gorchymyn Gwrthod",
-            "deemedAsServedGranted": "Deemed service order",
-            "dispenseWithServiceGranted": "Order to dispense",
-            "DeemedServiceRefused": "[CY] Deemed service refusal",
-            "DispenseWithServiceRefused": "[CY] Dispensed service refusal"
+            "deemedAsServedGranted": "[CY] Deemed service order",
+            "dispenseWithServiceGranted": "[CY] Order to dispense",
+            "deemedServiceRefused": "[CY] Deemed service refusal",
+            "dispenseWithServiceRefused": "[CY] Dispensed service refusal",
+            "generalOrder": "[CY] General Order"
           }
         },
         "errors": {}

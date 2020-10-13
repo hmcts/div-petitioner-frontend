@@ -1,15 +1,15 @@
 const Step = require('app/core/steps/Step');
 const config = require('config');
-const { createUris } = require('@hmcts/div-document-express-handler');
 const { updateAppWithoutNoticeFeeMiddleware,
   updateEnforcementFeeMiddleware } = require('app/middleware/updateApplicationFeeMiddleware');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
+const { getDownloadableFiles, getCurrentContent } = require('app/core/utils/viewHelper');
 
 const serviceApplicationFileTypeMap = {
-  deemed: 'DeemedServiceRefused',
-  dispensed: 'DispenseWithServiceRefused'
+  deemed: 'deemedServiceRefused',
+  dispensed: 'dispenseWithServiceRefused'
 };
 
 module.exports = class ServiceApplicationNotApproved extends Step {
@@ -49,43 +49,22 @@ module.exports = class ServiceApplicationNotApproved extends Step {
   setDocumentInfo(session, ctx) {
     session.downloadableFiles = this.getDownloadableFiles(session);
     ctx.serviceName = this.getServiceName(session);
-    const { fileLabel, fileUri } = this.getServiceRefusalDocument(session);
-    ctx.refusalDocumentLabel = fileLabel;
-    ctx.refusalDocumentUri = fileUri;
+    ctx.refusalDocumentLabel = this.getRefusalDocumentLabel(session);
   }
 
   getDownloadableFiles(session) {
-    const docConfig = {
-      documentNamePath: config.document.documentNamePath,
-      documentWhiteList: config.document.filesWhiteList
-    };
-
-    return createUris(session.d8, docConfig);
+    return getDownloadableFiles(session);
   }
 
-  getServiceRefusalDocument(session) {
-    const { downloadableFiles, serviceApplicationType } = session;
+  getRefusalDocumentLabel(session) {
+    const { files } = getCurrentContent(this, session);
+    const { serviceApplicationType } = session;
     const serviceApplicationFile = serviceApplicationFileTypeMap[serviceApplicationType];
-
-    return downloadableFiles
-      .filter(file => {
-        return file.type === serviceApplicationFile;
-      })
-      .map(file => {
-        return {
-          fileUri: file.uri,
-          fileLabel: this.getRefusalDocumentLabel(session, serviceApplicationFile)
-        };
-      })[0];
-  }
-
-  getRefusalDocumentLabel(session, type) {
-    const { files } = this.getCurrentContent(session);
-    return files[type];
+    return files[serviceApplicationFile];
   }
 
   getServiceName(session) {
-    const { serviceApplicationLabel } = this.getCurrentContent(session);
+    const { serviceApplicationLabel } = getCurrentContent(this, session);
     return serviceApplicationLabel[session.serviceApplicationType];
   }
 
@@ -95,9 +74,5 @@ module.exports = class ServiceApplicationNotApproved extends Step {
 
   getEnforcementFee() {
     return config.commonProps.enforcementFee.amount;
-  }
-
-  getCurrentContent(session) {
-    return this.content.resources[session.language].translation.content;
   }
 };

@@ -60,10 +60,17 @@ exports.init = listenForConnections => {
         'www.google-analytics.com',
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net'
       ],
-      connectSrc: ['\'self\''],
-      mediaSrc: ['\'self\''],
+      connectSrc: [
+        '\'self\'',
+        'wss://webchat.ctsc.hmcts.net'
+      ],
+      mediaSrc: [
+        '\'self\'',
+        'https://webchat-client.ctsc.hmcts.net'
+      ],
       frameSrc: [
         '\'none\'',
         'vcc-eu4.8x8.com',
@@ -74,7 +81,8 @@ exports.init = listenForConnections => {
         'www.google-analytics.com',
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ]
     }
   }));
@@ -117,7 +125,7 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      features: { webchat: parseBool(CONF.features.webchat) }
+      features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
     }
   });
 

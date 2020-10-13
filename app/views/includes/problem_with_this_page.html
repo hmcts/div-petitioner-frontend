@@ -1,3 +1,5 @@
+
+
 <details class="govuk-details">
     <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text govuk-!-font-size-16">{{ common.problemWithThisPage | safe }}</span>
@@ -6,6 +8,22 @@
         {% if features.webchat and session.language == "en" %}
             <p class="govuk-heading-s govuk-!-margin-bottom-1" id="ctsc-web-chat-header">{{ common.webChatTitle | safe }}</p>
             <div id="ctsc-web-chat"></div>
+        {% endif %}
+
+        {% if features.antennaWebchat and session.language == "en" %}
+           <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
+           <web-chat class="hidden"
+                chat-title="HMCTS Web Chat"
+                chat-icon-url="https://webchat-client.ctsc.hmcts.net/chat-client/1/assets/icon.png"
+                url="webchat.ctsc.hmcts.net"
+                secure-connections="true"
+                api-version="1.0"
+                metrics-polling-interval="30"
+                Language="English"
+                Service="Divorce"
+                page-name="Divorce Petitioner Front End">
+           </web-chat>
+           <button class="chat-button">Talk to an Agent</button>
         {% endif %}
 
         <p class="govuk-heading-s govuk-!-margin-bottom-1" >{{ common.emailTitle | safe }}</p>

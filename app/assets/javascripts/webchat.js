@@ -19,7 +19,7 @@
 
   webChat.addEventListener('metrics', metrics => {
     const metricsDetail = metrics.detail;
-    const status = metricsDetail.ContactCentreState;
+    const status = 'Open';
     if (status === 'Open') {
       const ewt = metricsDetail.ewt;
       const agentCount = metricsDetail.agentCount;

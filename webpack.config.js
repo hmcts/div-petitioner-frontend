@@ -42,8 +42,7 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new CopyWebpackPlugin([
-      { from: './tmp/images', to: 'images' },
-      { from: './tmp/locale', to: 'locale' }
+      { from: './tmp/images', to: 'images' }
     ]),
     extractSass,
     function() {

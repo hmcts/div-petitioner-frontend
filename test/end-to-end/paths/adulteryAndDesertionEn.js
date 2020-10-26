@@ -1,5 +1,4 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
-const parseBool = require('app/core/utils/parseBool');
 const config = require('config');
 
 Feature('Other reasons for divorce').retry(3);
@@ -30,7 +29,7 @@ Scenario('Adultery, with details', async function(I) {
   I.enterCorrespondence();
   I.selectLivingTogetherInSameProperty();
   I.chooseRespondentServiceAddress();
-  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
+  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
   I.selectReasonForDivorce(content['adulteryHeading']);
   I.selectWishToName();
   I.enter3rdPartyDetails();
@@ -49,14 +48,10 @@ Scenario('Adultery, with details', async function(I) {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
     I.uploadMarriageCertificateFile(isDragAndDropSupported);
   }
-  await I.completeEquality();
-  if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
-  } else{
-    await I.checkMyAnswers();
-  }
+  await I.checkMyAnswers();
   I.amDoneAndSubmitted();
 }).retry(2);
+
 
 Scenario('Deserted without agreement', async function(I) {
   // Fill out all of the application
@@ -93,3 +88,4 @@ Scenario('Deserted without agreement', async function(I) {
   I.checkMyAnswers();
   I.confirmIWillPayOnline();
 }).retry(2);
+

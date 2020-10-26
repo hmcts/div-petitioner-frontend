@@ -48,7 +48,8 @@ Scenario('Adultery, with details', async function(I) {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
     I.uploadMarriageCertificateFile(isDragAndDropSupported);
   }
-  await I.checkMyAnswers();
+  await I.completeEquality();
+  I.checkMyAnswers();
   I.amDoneAndSubmitted();
 }).retry(2);
 

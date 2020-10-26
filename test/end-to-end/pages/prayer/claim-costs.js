@@ -12,7 +12,7 @@ function enterClaimCostsCorrespondent() {
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
   I.checkOption(content.yes);
-  I.checkOption(content.correspondent);
+  I.checkOption( '#correspondent');
   I.navByClick('Continue');
 }
 module.exports = { enterClaimCosts, enterClaimCostsCorrespondent };

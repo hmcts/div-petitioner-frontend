@@ -50,7 +50,7 @@ Before((I) => {
 });
 
 
-Scenario('Unreasonable behaviour E2E - with added examples', async function(I) {
+Scenario('Basic Divorce E2E - with added examples', async function(I) {
 
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample();
@@ -76,7 +76,7 @@ Scenario('Unreasonable behaviour E2E - with added examples', async function(I) {
   }
   I.amDoneAndSubmitted();
 
-}).retry(2).tag('@e2e');
+}).retry(2);
 
 Scenario('2 years separation E2E', async function(I) {
 
@@ -104,10 +104,10 @@ Scenario('2 years separation E2E', async function(I) {
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers();
   } else{
-    await I.checkMyAnswersAndValidateSession();
+    await I.checkMyAnswers();
   }
   I.amDoneAndSubmitted();
-}).retry(2).tag('@e2e');
+}).retry(2);
 
 Scenario('5 years separation E2E', async function(I) {
 
@@ -132,7 +132,7 @@ Scenario('5 years separation E2E', async function(I) {
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers();
   } else{
-    await I.checkMyAnswersAndValidateSession();
+    await I.checkMyAnswers();
   }
   I.amDoneAndSubmitted();
-}).retry(2).tag('@e2e');
+}).retry(2);

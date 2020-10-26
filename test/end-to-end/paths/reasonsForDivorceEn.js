@@ -17,7 +17,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Basic reasons for divorce').retry(3);
+Feature('Reasons for divorce E2E Tests...').retry(3);
 
 Before((I) => {
   I.amOnPage('/index');
@@ -50,7 +50,7 @@ Before((I) => {
 });
 
 
-Scenario('Unreasonable behaviour - with added examples', async function(I) {
+Scenario('Unreasonable behaviour E2E - with added examples', async function(I) {
 
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample();
@@ -78,7 +78,7 @@ Scenario('Unreasonable behaviour - with added examples', async function(I) {
 
 }).retry(2).tag('@e2e');
 
-Scenario('2 years separation', async function(I) {
+Scenario('2 years separation E2E', async function(I) {
 
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(content['2YearsSeparationHeading']);
@@ -109,7 +109,7 @@ Scenario('2 years separation', async function(I) {
   I.amDoneAndSubmitted();
 }).retry(2).tag('@e2e');
 
-Scenario('5 years separation', async function(I) {
+Scenario('5 years separation E2E', async function(I) {
 
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,

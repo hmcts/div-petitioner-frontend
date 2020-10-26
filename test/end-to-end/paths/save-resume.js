@@ -34,7 +34,7 @@ Scenario('See the check your answers page if session restored from draft petitio
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
 
-xScenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
+Scenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
   let cookie = '';
   I.amOnLoadedPage('/index');
 

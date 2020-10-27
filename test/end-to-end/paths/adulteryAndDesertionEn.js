@@ -87,6 +87,6 @@ Scenario('Deserted without agreement', async function(I) {
   await I.completeEquality();
   I.checkDesertionDateOnCYAPage();
   I.checkMyAnswers();
-  I.confirmIWillPayOnline();
+  await I.confirmIWillPayOnline();
 }).retry(2);
 

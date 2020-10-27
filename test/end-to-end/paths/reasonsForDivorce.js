@@ -78,9 +78,17 @@ Scenario('Basic Divorce E2E - with added examples', async function(I) {
   } else{
     await I.checkMyAnswersAndValidateSession();
   }
-  I.amDoneAndSubmitted();
 
-}).retry(2);
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    // eslint-disable-next-line no-console
+    console.log('Genereic Error');
+    I.checkGenericErrorPage();
+  }else {
+    I.amDoneAndSubmitted();
+  }
+
+}).tag('@functional3').retry(2);
 
 Scenario('2 years separation E2E', async function(I) {
 
@@ -110,8 +118,15 @@ Scenario('2 years separation E2E', async function(I) {
   } else{
     await I.checkMyAnswers();
   }
-  I.amDoneAndSubmitted();
-}).retry(2);
+
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    I.checkGenericErrorPage();
+  }else {
+    I.amDoneAndSubmitted();
+  }
+
+}).tag('@functional3').retry(2);
 
 Scenario('5 years separation E2E', async function(I) {
 
@@ -138,5 +153,12 @@ Scenario('5 years separation E2E', async function(I) {
   } else{
     await I.checkMyAnswers();
   }
-  I.amDoneAndSubmitted();
+
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    I.checkGenericErrorPage();
+  }else {
+    I.amDoneAndSubmitted();
+  }
+
 }).retry(2);

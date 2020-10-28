@@ -22,7 +22,7 @@ const tenYearsAgoFormatted = {
   year: tenYearsAgo.format('Y')
 };
 
-Feature('Exit paths for divorce').retry(3);
+Feature('Exit paths for divorce @functional').retry(3);
 
 Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
   I.amOnLoadedPage('/index');
@@ -41,7 +41,7 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
   I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
 });
 
-Scenario('Exit if 5 years separation chosen but actual living apart date is less', (I) => {
+Scenario('Exit if 5 years separation chosen but actual living apart date is less @functional', (I) => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();

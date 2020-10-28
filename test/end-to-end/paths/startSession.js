@@ -1,4 +1,4 @@
-Feature('Initiating Session').retry(3);
+Feature('Initiating Session @functional').retry(3);
 
 Scenario('Redirected to /index page when request a session-required page with no session cookies', (I) => {
 

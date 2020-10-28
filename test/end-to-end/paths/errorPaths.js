@@ -1,4 +1,4 @@
-Feature('Invalid Paths Handling').retry(3);
+Feature('Invalid Paths Handling @functional').retry(3);
 
 Scenario('Incorrect URLs are served a 404 page', (I) => {
 
@@ -27,7 +27,7 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
   }
   else{I.seeInCurrentUrl('/login?');}
 
-});
+}).retry(1);
 
 Scenario('check cookie error page exists', (I) => {
   I.amOnLoadedPage('/index');

@@ -26,7 +26,7 @@ const getBrowserConfig = (browserGroup) => {
 };
 
 const setupConfig = {
-  tests: './paths/**/basicDivorce.en.test.js',
+  tests: './paths/**/basicDivorce.js',
   output: process.cwd() + '/functional-output',
   helpers: {
     WebDriverIO: {

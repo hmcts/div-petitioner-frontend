@@ -28,6 +28,12 @@ exports.config = {
     SessionHelper: { require: './helpers/SessionHelper.js' }
   },
   include: { I: './pages/steps.js' },
+  plugins: {
+    retryFailedStep: {
+      enabled: true,
+      retries: 1
+    }
+  },
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
@@ -70,7 +76,7 @@ function configureChunks() {
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
   if (CONF.e2e.runBasicTests === 'true') {
-    return './paths/**/basicDivorce.en.test.js';
+    return './paths/**/basicDivorce.js';
   } else {
     return './paths/**/*.js';
   }

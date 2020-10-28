@@ -1,4 +1,4 @@
-Feature('Foreign Marriage Certificates').retry(3);
+Feature('Foreign Marriage Certificates @functional').retry(3);
 
 Scenario('Certificate in English ', function(I) {
   I.amOnLoadedPage('/index');

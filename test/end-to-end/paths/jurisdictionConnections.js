@@ -1,4 +1,4 @@
-Feature('New Jurisdiction Journeys').retry(3);
+Feature('New Jurisdiction Journeys @functional').retry(3);
 
 Before((I) => {
   I.amOnLoadedPage('/index');

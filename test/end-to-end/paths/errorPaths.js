@@ -25,9 +25,9 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
   if(urlContainsPreview[0] === 'preview'){
     I.seeCurrentUrlEquals('/cookie-error');
   }
-  else{I.seeInCurrentUrl('/cookie-error');}
+  else{I.seeInCurrentUrl('/login?');}
 
-});
+}).retry(1);
 
 Scenario('check cookie error page exists', (I) => {
   I.amOnLoadedPage('/index');

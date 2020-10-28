@@ -17,7 +17,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Reasons for divorce E2E Tests...').retry(3);
+Feature('Reasons for divorce E2E Tests @functional').retry(3);
 
 Before((I) => {
   I.amOnPage('/index');
@@ -27,14 +27,18 @@ Before((I) => {
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
+
   I.readFinancialRemedy();
   I.selectHelpWithFees();
   I.enterHelpWithFees();
   I.selectDivorceType();
   I.enterMarriageDate();
+
   I.selectMarriedInUk();
+
   I.chooseBothHabituallyResident();
   I.chooseJurisdictionInterstitialContinue();
+
   I.enterPeConfidentialContactDetails();
   I.enterPetitionerAndRespondentNames();
   I.enterMarriageCertificateDetails();
@@ -74,7 +78,13 @@ Scenario('Basic Divorce E2E - with added examples', async function(I) {
   } else{
     await I.checkMyAnswersAndValidateSession();
   }
-  I.amDoneAndSubmitted();
+
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    I.checkGenericErrorPage();
+  }else {
+    I.amDoneAndSubmitted();
+  }
 
 }).retry(2);
 
@@ -106,7 +116,14 @@ Scenario('2 years separation E2E', async function(I) {
   } else{
     await I.checkMyAnswers();
   }
-  I.amDoneAndSubmitted();
+
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    I.checkGenericErrorPage();
+  }else {
+    I.amDoneAndSubmitted();
+  }
+
 }).retry(2);
 
 Scenario('5 years separation E2E', async function(I) {
@@ -134,5 +151,12 @@ Scenario('5 years separation E2E', async function(I) {
   } else{
     await I.checkMyAnswers();
   }
-  I.amDoneAndSubmitted();
+
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    I.checkGenericErrorPage();
+  }else {
+    I.amDoneAndSubmitted();
+  }
+
 }).retry(2);

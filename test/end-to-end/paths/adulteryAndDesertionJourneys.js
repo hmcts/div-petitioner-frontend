@@ -3,7 +3,8 @@ const config = require('config');
 
 Feature('Adultery and Desertion Paths E2E Tests @functional').retry(3);
 
-Before((I) => {
+Before ((I) => {
+
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
@@ -13,7 +14,7 @@ Before((I) => {
   I.readFinancialRemedy();
 });
 
-Scenario('Adultery, with details', async function(I) {
+Scenario ('Adultery, with details', async function(I) {
 
   I.selectHelpWithFees();
   I.enterHelpWithFees();
@@ -51,7 +52,7 @@ Scenario('Adultery, with details', async function(I) {
   I.enterFinancialAdvice();
   I.enterClaimCostsCorrespondent();
 
-  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+  if (['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
     I.withoutUploadFile();
   } else {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -63,15 +64,15 @@ Scenario('Adultery, with details', async function(I) {
   I.checkMyAnswers();
 
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-  if(genericErrorPage) {
+  if (genericErrorPage) {
     I.checkGenericErrorPage();
-  }else {
+  } else {
     I.amDoneAndSubmitted();
   }
 }).retry(2);
 
 
-Scenario('Deserted without agreement', async function(I) {
+Scenario ('Deserted without agreement', async function(I) {
 
   // Fill out all of the application
   // to test CYA content the application must be complete and valid
@@ -116,9 +117,9 @@ Scenario('Deserted without agreement', async function(I) {
   I.checkMyAnswers();
 
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-  if(genericErrorPage) {
+  if (genericErrorPage) {
     I.checkGenericErrorPage();
-  }else {
+  } else {
     I.confirmIWillPayOnline();
   }
 }).retry(2);

@@ -3,7 +3,7 @@
   const button = document.querySelector('.chat-button');
   const webChat = document.querySelector('web-chat');
 
-  button.addEventListener('click', () => {
+  button.addEventListener('click', function () {
     webChat.classList.remove('hidden');
   });
 
@@ -13,28 +13,27 @@
    * To listen for this event, we use the addEventListener DOM API
    * and register a callback.
    */
-  webChat.addEventListener('hide', () => {
+  webChat.addEventListener('hide', function () {
     webChat.classList.add('hidden');
   });
 
-  webChat.addEventListener('metrics', metrics => {
+  webChat.addEventListener('metrics', function (metrics) {
     const metricsDetail = metrics.detail;
-    const status = 'Open';
-    if (status === 'Open') {
-      const ewt = metricsDetail.ewt;
-      const agentCount = metricsDetail.agentCount;
-      message.innerHTML = `Retrieved metrics: EWT = ${ewt}, available agents = ${agentCount}`;
+    const ewt = metricsDetail.ewt;
+    //const ccState = metricsDetail.contactCenterState;
+    const ccState = 'Open';
+    const availableAgents = metricsDetail.availableAgents;
+    if (ccState === 'Open') {
+      message.innerHTML = `Retrieved metrics: EWT = ${ewt}, available agents = ${availableAgents}`;
     } else {
-      button.replaceWith(`Contact centre is ${status} now`);
+      button.replaceWith('Retrieved metrics: EWT = ' + ewt + ', available agents = ' + availableAgents + ', Contact Center State = ' + ccState);
     }
   });
 
   if(isWebChatHidden && !webChat.classList.contains('hidden')){
-    console.log('add hidden');
     webChat.classList.add('hidden');
   }else if(!isWebChatHidden && webChat.classList.contains('hidden')){
     webChat.classList.remove('hidden');
-    console.log('remove hidden');
   }
 
 }).call(this);

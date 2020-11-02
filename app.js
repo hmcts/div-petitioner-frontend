@@ -66,7 +66,8 @@ exports.init = listenForConnections => {
       connectSrc: [
         '\'self\'',
         'wss://webchat.ctsc.hmcts.net',
-        'https://webchat.ctsc.hmcts.net'
+        'https://webchat.ctsc.hmcts.net',
+        'https://webchat-client.ctsc.hmcts.net'
       ],
       mediaSrc: [
         '\'self\'',

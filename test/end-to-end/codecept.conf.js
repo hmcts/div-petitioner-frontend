@@ -12,7 +12,7 @@ exports.config = {
       url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
-      show: false,
+      show: true,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
@@ -78,6 +78,6 @@ function getTests() {
   if (CONF.e2e.runBasicTests === 'true') {
     return './paths/**/basicDivorce.js';
   } else {
-    return './paths/**/*.js';
+    return './paths/**/reasonsForDivorceCy.js';
   }
 }

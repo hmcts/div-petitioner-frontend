@@ -62,6 +62,26 @@ function signOut() {
   I.navByClick(common.signOut);
 }
 
+function navigateTheApplication(ignoreIdamToggle = false , language, commonContent) {
+
+  if (parseBool(true) && !ignoreIdamToggle) {
+    let I = this;
+
+    I.seeInCurrentUrl('/login?');
+
+    I.fillField('username', 'debavigen@mailinator.com');
+    I.fillField('password', 'Testing12345');
+
+    if (language === 'en') {
+      I.navByClick(commonContent.signIn);
+      I.wait(2);
+    } else {
+      I.navByClick(commonContent.signIn);
+      I.wait(2);
+    }
+  }
+}
+
 module.exports = {
   startApplication,
   startApplicationWith,
@@ -69,5 +89,6 @@ module.exports = {
   seeCookieFooter,
   followCookieBannerLink,
   dontGetShownCookieBannerAgain,
-  signOut
+  signOut,
+  navigateTheApplication
 };

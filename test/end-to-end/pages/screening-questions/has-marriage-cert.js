@@ -1,16 +1,29 @@
-const content = require('app/steps/screening-questions/has-marriage-cert/content.json').resources.en.translation.content;
+const contentEn = require('app/steps/screening-questions/has-marriage-cert/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/screening-questions/has-marriage-cert/content.json').resources.cy.translation.content;
+
 const pagePath = '/screening-questions/marriage-certificate';
 
-function haveMarriageCert() {
+function haveMarriageCert(language ,commonContent) {
 
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
-  I.retry(2).click(content.yes);
-  I.moveCursorTo('input[name=submit]');
-  I.scrollPageToBottom();
-  I.navByClick('Continue');
+
+  if (language === 'en') {
+    I.retry(2).click(contentEn.yes);
+    I.moveCursorTo('input[name=submit]');
+    I.scrollPageToBottom();
+    I.navByClick(commonContent.continue);
+    I.wait(2);
+  }else {
+    I.retry(2).click(contentCy.yes);
+    I.moveCursorTo('input[name=submit]');
+    I.scrollPageToBottom();
+    I.navByClick(commonContent.continue);
+    I.wait(2);
+  }
+
 }
 
 function haveNoMarriageCert() {
@@ -18,7 +31,7 @@ function haveNoMarriageCert() {
   const I = this;
 
   I.seeCurrentUrlEquals(pagePath);
-  I.checkOption(content.no);
+  I.checkOption(contentEn.no);
   I.navByClick('Continue');
 }
 

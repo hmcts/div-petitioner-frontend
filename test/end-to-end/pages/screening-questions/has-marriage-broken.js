@@ -8,7 +8,7 @@ function haveBrokenMarriage(language, commonContent) {
   I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
 
   if (language === 'en') {
-    I.retry(2).click(contentEn.yes)
+    I.retry(2).click(contentEn.yes);
     I.navByClick(commonContent.continue);
     I.wait(2);
   } else {

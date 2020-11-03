@@ -1,5 +1,6 @@
 const habituallyResident = require('app/steps/jurisdiction/habitual-residence/content.json').resources.en.translation.content;
-const pagePath = '/jurisdiction/habitual-residence';
+const habituallyResidentCy = require('app/steps/jurisdiction/habitual-residence/content.json').resources.cy.translation.content;
+const pagePath = 'https://petitioner-frontend-aks.aat.platform.hmcts.net/jurisdiction/habitual-residence';
 
 function chooseBothHabituallyResident() {
   setHabitualResidence(this, {
@@ -37,10 +38,17 @@ function setHabitualResidence(I, residenceFor) {
   I.navByClick('Continue');
 }
 
+function chooseBothHabituallyResidentCy() {
+  setHabitualResidence(this, {
+    'petitioner': habituallyResidentCy.yes,
+    'respondent': habituallyResidentCy.yes
+  });
+}
 
 module.exports = {
   chooseBothHabituallyResident,
   chooseNeitherHabituallyResident,
   choosePetitionerHabituallyResident,
-  chooseRespondentHabituallyResident
+  chooseRespondentHabituallyResident,
+  chooseBothHabituallyResidentCy
 };

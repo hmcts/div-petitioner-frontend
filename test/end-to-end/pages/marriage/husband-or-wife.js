@@ -1,4 +1,5 @@
 const content = require('app/steps/marriage/husband-or-wife/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/marriage/husband-or-wife/content.json').resources.cy.translation.content;
 const pagePath = '/about-your-marriage/details';
 
 function selectDivorceType() {
@@ -11,4 +12,14 @@ function selectDivorceType() {
   I.navByClick('Continue');
 }
 
-module.exports = { selectDivorceType };
+async function selectDivorceTypeCy() {
+
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).click(contentCy.husband);
+  await I.navByClick('Parhau');
+}
+
+module.exports = { selectDivorceType, selectDivorceTypeCy };

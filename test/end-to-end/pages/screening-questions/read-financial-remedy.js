@@ -9,4 +9,13 @@ function readFinancialRemedy() {
   I.navByClick('Continue');
 }
 
-module.exports = { readFinancialRemedy };
+async function readFinancialRemedyCy() {
+
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  await I.navByClick('Parhau');
+}
+
+module.exports = { readFinancialRemedy, readFinancialRemedyCy };

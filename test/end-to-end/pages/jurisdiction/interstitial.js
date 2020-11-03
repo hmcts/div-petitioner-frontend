@@ -1,4 +1,5 @@
 const content = require('app/steps/jurisdiction/interstitial/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/jurisdiction/interstitial/content.json').resources.cy.translation.content;
 const pagePath = '/jurisdiction/interstitial';
 
 function chooseJurisdictionInterstitialContinue() {
@@ -21,4 +22,14 @@ function chooseJurisdictionInterstitialNeedInfo() {
   I.navByClick('Continue');
 }
 
-module.exports = { chooseJurisdictionInterstitialContinue, chooseJurisdictionInterstitialNeedInfo };
+async function chooseJurisdictionInterstitialContinueCy() {
+
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).click(contentCy.confident);
+  await I.navByClick('Parhau');
+}
+
+module.exports = { chooseJurisdictionInterstitialContinue, chooseJurisdictionInterstitialNeedInfo, chooseJurisdictionInterstitialContinueCy };

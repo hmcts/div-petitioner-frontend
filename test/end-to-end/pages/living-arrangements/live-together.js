@@ -1,4 +1,5 @@
 const selectContent = require('app/steps/living-arrangements/live-together/content.json').resources.en.translation.content;
+const selectContentCy = require('app/steps/living-arrangements/live-together/content.json').resources.cy.translation.content;
 const pagePath = '/petitioner-respondent/live-together';
 
 function selectLivingTogetherInSameProperty() {
@@ -16,8 +17,12 @@ function completeLivingTogetherPage(I, chosenOption) {
   I.navByClick('Continue');
 }
 
+function selectLivingTogetherInSamePropertyCy() {
+  completeLivingTogetherPage(this, selectContentCy.yes);
+}
 
 module.exports = {
   selectLivingTogetherInSameProperty,
-  selectDoNotLiveTogetherInSameProperty
+  selectDoNotLiveTogetherInSameProperty,
+  selectLivingTogetherInSamePropertyCy
 };

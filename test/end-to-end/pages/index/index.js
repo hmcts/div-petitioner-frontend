@@ -62,6 +62,28 @@ function signOut() {
   I.navByClick(common.signOut);
 }
 
+async function startApplicationCy(ignoreIdamToggle = false) {
+
+  if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
+
+    let I = this;
+    await I.amOnLoadedPage('?lng=cy');
+    I.seeInCurrentUrl('/login?');
+    I.fillField('username', idamConfigHelper.getTestEmail());
+    I.fillField('password', idamConfigHelper.getTestPassword());
+    await I.navByClick('Mewngofnodi');
+    I.wait(2);
+  }
+}
+
+async function getCurrentPageUrl() {
+  const I = this;
+  const url = await I.grabCurrentUrl();
+  const spiltPath = url.split('.net');
+  const pagePath = spiltPath[1].toString();
+  return pagePath;
+}
+
 module.exports = {
   startApplication,
   startApplicationWith,
@@ -69,5 +91,7 @@ module.exports = {
   seeCookieFooter,
   followCookieBannerLink,
   dontGetShownCookieBannerAgain,
-  signOut
+  signOut,
+  startApplicationCy,
+  getCurrentPageUrl
 };

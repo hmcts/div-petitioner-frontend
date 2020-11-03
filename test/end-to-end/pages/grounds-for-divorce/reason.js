@@ -10,4 +10,16 @@ function selectReasonForDivorce(reason) {
   I.checkOption(reason);
   I.navByClick('Continue');
 }
-module.exports = { selectReasonForDivorce };
+async function selectReasonForDivorceCy(reason) {
+
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+
+  I.waitForText(reason);
+  I.checkOption(reason);
+  await I.navByClick('Parhau');
+}
+
+module.exports = { selectReasonForDivorce, selectReasonForDivorceCy };

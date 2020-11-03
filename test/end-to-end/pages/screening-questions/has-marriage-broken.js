@@ -1,4 +1,5 @@
 const content = require('app/steps/screening-questions/has-marriage-broken/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/screening-questions/has-marriage-broken/content.json').resources.cy.translation.content;
 
 function haveBrokenMarriage() {
 
@@ -9,4 +10,14 @@ function haveBrokenMarriage() {
   I.navByClick('Continue');
 }
 
-module.exports = { haveBrokenMarriage };
+async function haveBrokenMarriageCy() {
+
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).click(contentCy.yes);
+  await I.navByClick('Parhau');
+}
+
+
+module.exports = { haveBrokenMarriage, haveBrokenMarriageCy };

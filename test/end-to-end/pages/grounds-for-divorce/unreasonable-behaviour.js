@@ -54,4 +54,14 @@ function enterUnreasonableBehaviourAddMoreExamples() {
   I.navByClick('Continue');
 }
 
-module.exports = { enterUnreasonableBehaviourExample, enterUnreasonableBehaviourAddMoreExamples };
+function enterUnreasonableBehaviourExampleCy() {
+
+  const I = this;
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
+
+  I.navByClick('Parhau');
+}
+
+module.exports = { enterUnreasonableBehaviourExample, enterUnreasonableBehaviourAddMoreExamples, enterUnreasonableBehaviourExampleCy };

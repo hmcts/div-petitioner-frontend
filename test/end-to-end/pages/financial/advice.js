@@ -7,4 +7,12 @@ function enterFinancialAdvice() {
   I.seeCurrentUrlEquals(pagePath);
   I.navByClick('Continue');
 }
-module.exports = { enterFinancialAdvice };
+function enterFinancialAdviceCy() {
+
+  const I = this;
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.navByClick('Parhau');
+}
+
+module.exports = { enterFinancialAdvice, enterFinancialAdviceCy };

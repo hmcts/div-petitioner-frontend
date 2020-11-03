@@ -11,4 +11,16 @@ function enterPetitionerAndRespondentNames() {
   I.navByClick('Continue');
 }
 
-module.exports = { enterPetitionerAndRespondentNames };
+async function enterPetitionerAndRespondentNamesCy() {
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).fillField('petitionerFirstName', 'John');
+  I.fillField('petitionerLastName', 'Smith');
+  I.fillField('respondentFirstName', 'Jane');
+  I.fillField('respondentLastName', 'Jamed');
+  await I.navByClick('Parhau');
+}
+
+module.exports = { enterPetitionerAndRespondentNames, enterPetitionerAndRespondentNamesCy };

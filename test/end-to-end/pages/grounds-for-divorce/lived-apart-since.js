@@ -1,4 +1,6 @@
 const content = require('app/steps/grounds-for-divorce/lived-apart-since/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/grounds-for-divorce/lived-apart-since/content.json').resources.cy.translation.content;
+
 
 function selectLivingApartTime() {
 
@@ -9,4 +11,13 @@ function selectLivingApartTime() {
   I.navByClick('Continue');
 }
 
-module.exports = { selectLivingApartTime };
+function selectLivingApartTimeCy() {
+
+  const I = this;
+
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separation/lived-apart-since');
+  I.checkOption(contentCy.yes);
+  I.navByClick('Parhau');
+}
+
+module.exports = { selectLivingApartTime, selectLivingApartTimeCy };

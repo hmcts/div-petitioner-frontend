@@ -1,4 +1,5 @@
 const content = require('app/steps/screening-questions/has-marriage-cert/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/screening-questions/has-marriage-cert/content.json').resources.cy.translation.content;
 const pagePath = '/screening-questions/marriage-certificate';
 
 function haveMarriageCert() {
@@ -22,4 +23,16 @@ function haveNoMarriageCert() {
   I.navByClick('Continue');
 }
 
-module.exports = { haveMarriageCert, haveNoMarriageCert };
+async function haveMarriageCertCy() {
+
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).click(contentCy.yes);
+  // I.moveCursorTo('input[name=submit]');
+  I.scrollPageToBottom();
+  I.navByClick('Parhau');
+}
+
+module.exports = { haveMarriageCert, haveNoMarriageCert, haveMarriageCertCy };

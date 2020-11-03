@@ -52,9 +52,17 @@ function withoutUploadFile() {
   I.navByClick('Continue');
 }
 
+function withoutUploadFileCy() {
+  const I = this;
+  I.seeInCurrentUrl('/petitioner-respondent/marriage-certificate-upload');
+  I.see('No files uploaded');
+  I.navByClick('Parhau');
+}
+
 module.exports = {
   uploadMarriageCertificateFile,
   deleteAMarriageCertificateFile,
   testUploadResponse,
-  withoutUploadFile
+  withoutUploadFile,
+  withoutUploadFileCy
 };

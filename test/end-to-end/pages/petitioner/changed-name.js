@@ -1,4 +1,5 @@
 const content = require('app/steps/petitioner/changed-name/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/petitioner/changed-name/content.json').resources.cy.translation.content;
 const pagePath = '/petitioner-respondent/changed-name';
 
 function enterPetitionerChangedName() {
@@ -11,4 +12,14 @@ function enterPetitionerChangedName() {
   I.navByClick('Continue');
 }
 
-module.exports = { enterPetitionerChangedName };
+async function enterPetitionerChangedNameCy() {
+  const I = this;
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).click(contentCy.no);
+  I.checkOption(contentCy.marriageCertificate);
+  await I.navByClick('Parhau');
+}
+
+module.exports = { enterPetitionerChangedName, enterPetitionerChangedNameCy };

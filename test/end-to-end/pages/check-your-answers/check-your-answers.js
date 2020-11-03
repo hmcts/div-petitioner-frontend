@@ -1,4 +1,5 @@
 const content = require('app/steps/check-your-answers/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/check-your-answers/content.json').resources.cy.translation.content;
 const jurisdictionContent = require('app/services/jurisdiction/content.json').resources.en.translation.content;
 const getOtherConnections = require('test/end-to-end/helpers/GeneralHelpers.js').getOtherJurisdictionConnections;
 const pagePath = '/check-your-answers';
@@ -77,10 +78,23 @@ function checkMyAnswersRemoveApplication() {
   I.navByClick(content.deleteApplciation);
 }
 
+function checkMyAnswersCy() {
+
+  const I = this;
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.see(contentCy.title);
+
+  I.retry(2).checkOption(contentCy.confirmApply);
+
+  I.navByClick(contentCy.submitOnline);
+}
+
 module.exports = {
   checkMyAnswers,
   checkMyAnswersAndValidateSession,
   checkMyConnectionsAre,
   checkMyAnswersRestoredSession,
-  checkMyAnswersRemoveApplication
+  checkMyAnswersRemoveApplication,
+  checkMyAnswersCy
 };

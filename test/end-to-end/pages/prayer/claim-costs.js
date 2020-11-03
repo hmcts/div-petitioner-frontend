@@ -1,4 +1,5 @@
 const content = require('app/steps/prayer/claim-costs/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/prayer/claim-costs/content.json').resources.cy.translation.content;
 const pagePath = '/about-divorce/claim-costs';
 
 function enterClaimCosts() {
@@ -22,4 +23,14 @@ function enterClaimCostsCorrespondent() {
   I.navByClick('Continue');
 }
 
-module.exports = { enterClaimCosts, enterClaimCostsCorrespondent };
+function enterClaimCostsCy() {
+
+  const I = this;
+
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+  I.checkOption(contentCy.yes);
+  I.navByClick('Parhau');
+}
+
+module.exports = { enterClaimCosts, enterClaimCostsCorrespondent, enterClaimCostsCy };

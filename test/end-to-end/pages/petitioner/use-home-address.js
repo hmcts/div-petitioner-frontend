@@ -1,4 +1,5 @@
 const content = require('app/steps/petitioner/correspondence/use-home-address/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/petitioner/correspondence/use-home-address/content.json').resources.cy.translation.content;
 const prettifyAddress = require('test/end-to-end/helpers/GeneralHelpers.js').prettifyAddress;
 const pagePath = '/petitioner-respondent/petitioner-correspondence/use-home-address';
 
@@ -16,4 +17,18 @@ function enterCorrespondence(addressObj) {
   I.navByClick('Continue');
 }
 
-module.exports = { enterCorrespondence };
+function enterCorrespondenceCy(addressObj) {
+
+  const I = this;
+  I.waitInUrl(pagePath, 5);
+  I.seeInCurrentUrl(pagePath);
+
+  if (addressObj) {
+    I.see(prettifyAddress(addressObj));
+  }
+  I.retry(2).click(contentCy.yes);
+  I.scrollPageToBottom();
+  I.navByClick('Parhau');
+}
+
+module.exports = { enterCorrespondence, enterCorrespondenceCy };

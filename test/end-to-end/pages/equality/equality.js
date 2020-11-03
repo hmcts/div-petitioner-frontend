@@ -16,4 +16,19 @@ async function completeEquality() {
   }
 }
 
-module.exports = { completeEquality };
+async function completeEqualityCy() {
+  const I = this;
+
+  // Wait for page to load
+  I.wait(3);
+  const url = await I.grabCurrentUrl();
+
+  if (url.startsWith(pcqAAT)) {
+    I.seeCurrentUrlEquals(pagePath);
+
+    await I.navByClick('Dydw i ddim eisiau ateb y cwestiynau hyn');
+    I.wait(5);
+  }
+}
+
+module.exports = { completeEquality, completeEqualityCy };

@@ -44,65 +44,26 @@ const filteredWarnings = r => {
   return !excludedWarnings.includes(r.code);
 };
 
-for (let stepKey in s.steps) {
+const languages = ['en', 'cy'];
 
-  if (!excludeSteps.includes(stepKey)) {
+for(let language in languages) {
+  for (let stepKey in s.steps) {
 
-    (function(step) {
+    if (!excludeSteps.includes(stepKey)) {
 
-      let results;
+      (function(step) {
 
-      describe(`GET Requests - Verify accessibility for the page ${step.name}`, () => {
+        let results;
 
-        before((done) => {
-          idamMock.stub();
-
-          co(function* generator() {
-
-            results = yield a11y(agent.get(step.url).url);
-
-          }).then(done, done);
-        });
-
-        after(() => {
-          idamMock.restore();
-        });
-
-        it('should not generate any errors', () => {
-
-          const errors = results
-            .filter((res) => res.type === 'error')
-            .filter(filteredErrors)
-            .filter((err) =>
-              !step.ignorePa11yErrors.includes(err.code)
-            );
-
-          expect(errors.length).to.equal(0, JSON.stringify(errors, null, 2));
-        });
-
-        it('should not generate any warnings', () => {
-
-          const warnings = results
-            .filter((res) => res.type === 'warning')
-            .filter(filteredWarnings)
-            .filter((warn) =>
-              !step.ignorePa11yWarnings.includes(warn.code)
-            );
-
-          expect(warnings.length).to.equal(0, JSON.stringify(warnings, null, 2));
-        });
-
-      });
-
-      if (step instanceof ValidationStep) {
-
-        describe(`POST Requests - Verify accessibility for the page ${step.name}`, () => {
+        describe(`GET Requests - Verify accessibility for the page ${step.name}`, () => {
 
           before((done) => {
             idamMock.stub();
+
             co(function* generator() {
 
-              results = yield a11y(agent.get(step.url).url, 'POST');
+                const url = step.url;
+                results = yield a11y(agent.get(`${url}?lng=${language}`).url);
 
             }).then(done, done);
           });
@@ -137,10 +98,54 @@ for (let stepKey in s.steps) {
 
         });
 
-      }
+        if (step instanceof ValidationStep) {
+
+          describe(`POST Requests - Verify accessibility for the page ${step.name}`, () => {
+
+            before((done) => {
+              idamMock.stub();
+              co(function* generator() {
+
+                results = yield a11y(agent.get(step.url).url, 'POST');
+
+              }).then(done, done);
+            });
+
+            after(() => {
+              idamMock.restore();
+            });
+
+            it('should not generate any errors', () => {
+
+              const errors = results
+                .filter((res) => res.type === 'error')
+                .filter(filteredErrors)
+                .filter((err) =>
+                  !step.ignorePa11yErrors.includes(err.code)
+                );
+
+              expect(errors.length).to.equal(0, JSON.stringify(errors, null, 2));
+            });
+
+            it('should not generate any warnings', () => {
+
+              const warnings = results
+                .filter((res) => res.type === 'warning')
+                .filter(filteredWarnings)
+                .filter((warn) =>
+                  !step.ignorePa11yWarnings.includes(warn.code)
+                );
+
+              expect(warnings.length).to.equal(0, JSON.stringify(warnings, null, 2));
+            });
+
+          });
+
+        }
 
 
-    })(s.steps[stepKey]);
+      })(s.steps[stepKey]);
 
+    }
   }
 }

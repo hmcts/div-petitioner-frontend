@@ -17,7 +17,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('CY - Reasons for divorce E2E Tests @functional99' ).retry(3);
+Feature('CY - Reasons for divorce E2E Tests @functional' ).retry(3);
 
 Before(async (I) => {
   I.amOnPage('/index');
@@ -78,7 +78,7 @@ Scenario('CY -Basic Divorce E2E - with added examples', async function(I) {
     await I.checkMyAnswersCy();
   }
 
-  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
   if(genericErrorPage) {
     I.checkGenericErrorPageCy();
   }else {

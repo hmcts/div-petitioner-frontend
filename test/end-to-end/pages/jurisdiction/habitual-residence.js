@@ -1,6 +1,5 @@
 const habituallyResident = require('app/steps/jurisdiction/habitual-residence/content.json').resources.en.translation.content;
-const habituallyResidentCy = require('app/steps/jurisdiction/habitual-residence/content.json').resources.cy.translation.content;
-const pagePath = 'https://petitioner-frontend-aks.aat.platform.hmcts.net/jurisdiction/habitual-residence';
+const pagePath = '/jurisdiction/habitual-residence';
 
 function chooseBothHabituallyResident() {
   setHabitualResidence(this, {
@@ -32,17 +31,25 @@ function chooseRespondentHabituallyResident() {
 
 function setHabitualResidence(I, residenceFor) {
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
   I.retry(2).click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
   I.retry(2).click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
   I.navByClick('Continue');
 }
 
 function chooseBothHabituallyResidentCy() {
-  setHabitualResidence(this, {
-    'petitioner': habituallyResidentCy.yes,
-    'respondent': habituallyResidentCy.yes
+  setHabitualResidenceCy(this, {
+    'petitioner': habituallyResident.yes,
+    'respondent': habituallyResident.yes
   });
+}
+
+function setHabitualResidenceCy(I, residenceFor) {
+  I.waitInUrl(pagePath, 3);
+  I.seeInCurrentUrl(pagePath);
+  I.retry(2).click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
+  I.retry(2).click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
+  I.navByClick('Parhau');
 }
 
 module.exports = {

@@ -25,7 +25,7 @@ function enterAddressUsingPostcodeCy(stepUrl, testAddressIndex) {
   I.waitInUrl(stepUrl, 5);
   I.seeInCurrentUrl(stepUrl);
   I.fillField('postcode', 'SW9 9PE');
-  I.navByClick('Find address');
+  I.navByClick('Dod o hyd i gyfeiriad');
   I.waitForVisible('#selectAddressIndex');
   I.selectOption('#selectAddressIndex', testAddressIndex);
   I.wait(4);

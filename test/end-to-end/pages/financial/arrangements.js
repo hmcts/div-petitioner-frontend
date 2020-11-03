@@ -23,9 +23,7 @@ function selectFinancialArrangementsCy() {
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  I.retry(2).checkOption(contentCy.yes);
-  I.checkOption(contentCy.petitioner);
-  I.checkOption(contentCy.children);
+  I.retry(2).checkOption(contentCy.no);
   I.navByClick('Parhau');
 }
 

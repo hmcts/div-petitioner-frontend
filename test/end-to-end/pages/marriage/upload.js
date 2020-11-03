@@ -55,7 +55,6 @@ function withoutUploadFile() {
 function withoutUploadFileCy() {
   const I = this;
   I.seeInCurrentUrl('/petitioner-respondent/marriage-certificate-upload');
-  I.see('No files uploaded');
   I.navByClick('Parhau');
 }
 

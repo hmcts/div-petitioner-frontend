@@ -18,7 +18,14 @@ function completeLivingTogetherPage(I, chosenOption) {
 }
 
 function selectLivingTogetherInSamePropertyCy() {
-  completeLivingTogetherPage(this, selectContentCy.yes);
+  completeLivingTogetherPageCy(this, selectContentCy.yes);
+}
+
+function completeLivingTogetherPageCy(I, chosenOption) {
+  I.waitInUrl(pagePath, 3);
+  I.seeInCurrentUrl(pagePath);
+  I.checkOption(chosenOption);
+  I.navByClick('Parhau');
 }
 
 module.exports = {

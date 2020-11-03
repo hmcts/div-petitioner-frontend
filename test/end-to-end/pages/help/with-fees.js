@@ -1,5 +1,5 @@
 const content = require('app/steps/help/need-help/content.json').resources.en.translation.content;
-const contentCy = require('app/steps/help/need-help/content.json').resources.cy.translation.content;
+const contentCy = require('app/steps/help/with-fees/content.json').resources.cy.translation.content;
 const { mockSession } = require('test/fixtures');
 const pagePath = '/pay/help/with-fees';
 

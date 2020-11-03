@@ -18,7 +18,6 @@ async function enterPetitionerChangedNameCy() {
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(contentCy.no);
-  I.checkOption(contentCy.marriageCertificate);
   await I.navByClick('Parhau');
 }
 

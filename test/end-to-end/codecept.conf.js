@@ -78,6 +78,6 @@ function getTests() {
   if (CONF.e2e.runBasicTests === 'true') {
     return './paths/**/basicDivorce.js';
   } else {
-    return './paths/**/reasonsForDivorceCy.js';
+    return './paths/**/*.js';
   }
 }

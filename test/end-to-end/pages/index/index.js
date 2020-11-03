@@ -78,13 +78,28 @@ async function startApplicationCy(ignoreIdamToggle = false) {
 
 async function getCurrentPageUrl() {
   const I = this;
-  const url = await I.grabCurrentUrl();
+  let pagePath;
+
+  let previewUrl = await I.grabCurrentUrl();
   // eslint-disable-next-line no-console
-  console.log('Current Page Url==>::' + url);
-  let spiltPath = url.split('.net');
-  let pagePath = spiltPath[1];
-  // eslint-disable-next-line no-console
-  console.log('Page Path ==> ::' + pagePath);
+  console.log('Current Page Url==>::' + previewUrl);
+  let splitPath = previewUrl.split('-')[5];
+  let urlContainsPreview = splitPath.split('.');
+
+  if(urlContainsPreview[0] === 'preview') {
+
+    let preEnv = previewUrl.split('.internal');
+    pagePath = preEnv[1].toString();
+    // eslint-disable-next-line no-console
+    console.log('Page Path ==> ::' + pagePath);
+
+  } else {
+    let aatEnv = previewUrl.split('.net');
+    pagePath = aatEnv[1].toString();
+    // eslint-disable-next-line no-console
+    console.log('Page Path ==> ::' + pagePath);
+  }
+
   return pagePath;
 }
 

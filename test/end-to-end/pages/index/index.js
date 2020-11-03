@@ -82,7 +82,7 @@ async function getCurrentPageUrl() {
   // eslint-disable-next-line no-console
   console.log('Current Page Url==>::' + url);
   const spiltPath = url.split('.net');
-  const pagePath = spiltPath[1].toString();
+  const pagePath = spiltPath[1].valueOf().trim();
   // eslint-disable-next-line no-console
   console.log('Page Path ==> ::' + pagePath);
   return pagePath;

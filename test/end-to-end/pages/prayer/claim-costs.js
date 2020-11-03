@@ -27,7 +27,7 @@ function enterClaimCostsCy() {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath, 3);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(contentCy.yes);
   I.navByClick('Parhau');

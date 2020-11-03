@@ -76,8 +76,8 @@ function configureChunks() {
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
   if (CONF.e2e.runBasicTests === 'true') {
-    return './paths/**/basicDivorce.js';
+    return './paths/**/reasonsForDivorceCy.js';
   } else {
-    return './paths/**/*.js';
+    return './paths/**/reasonsForDivorceCy.js';
   }
 }

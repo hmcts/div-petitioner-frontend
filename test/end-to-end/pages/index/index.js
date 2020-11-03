@@ -79,8 +79,12 @@ async function startApplicationCy(ignoreIdamToggle = false) {
 async function getCurrentPageUrl() {
   const I = this;
   const url = await I.grabCurrentUrl();
+  // eslint-disable-next-line no-console
+  console.log('Current Page Url==>::' + url);
   const spiltPath = url.split('.net');
   const pagePath = spiltPath[1].toString();
+  // eslint-disable-next-line no-console
+  console.log('Page Path ==> ::' + pagePath);
   return pagePath;
 }
 

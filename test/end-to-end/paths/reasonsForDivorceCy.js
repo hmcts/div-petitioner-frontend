@@ -17,7 +17,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Welsh- Reasons for divorce E2E Tests ' ).retry(3);
+Feature('CY - Reasons for divorce E2E Tests @functional99' ).retry(3);
 
 Before(async (I) => {
   I.amOnPage('/index');
@@ -54,7 +54,7 @@ Before(async (I) => {
 });
 
 
-Scenario('Welsh -Basic Divorce E2E - with added examples', async function(I) {
+Scenario('CY -Basic Divorce E2E - with added examples', async function(I) {
 
   await I.selectReasonForDivorceCy(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExampleCy();
@@ -85,9 +85,9 @@ Scenario('Welsh -Basic Divorce E2E - with added examples', async function(I) {
     I.amDoneAndSubmittedCy();
   }
 
-}).tag('@functional').retry(2);
+}).retry(2);
 
-Scenario('Welsh - 2 years separation E2E', async function(I) {
+Scenario('CY -2 years separation E2E', async function(I) {
 
   await I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   await I.selectReasonForDivorceCy(content['2YearsSeparationHeading']);
@@ -124,7 +124,7 @@ Scenario('Welsh - 2 years separation E2E', async function(I) {
 
 }).retry(2);
 
-Scenario('Welsh - 5 years separation E2E', async function(I) {
+Scenario('CY - 5 years separation E2E', async function(I) {
 
   await I.selectReasonForDivorceCy(content['5YearsSeprationHeading']);
   I.enterSeparationDateNewCy(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
@@ -156,4 +156,4 @@ Scenario('Welsh - 5 years separation E2E', async function(I) {
     I.amDoneAndSubmittedCy();
   }
 
-}).tag('@functional').retry(2);
+}).retry(2);

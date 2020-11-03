@@ -3,6 +3,8 @@ const common = require('app/content/common-en').resources.en.translation;
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
+const aatUrl = 'http://petitioner-frontend-aks.aat.platform.hmcts.net';
+const actualUrl = CONF.e2e.frontendUrl;
 
 function startApplication(ignoreIdamToggle = false) {
 
@@ -72,7 +74,7 @@ async function startApplicationCy(ignoreIdamToggle = false) {
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     await I.navByClick('Mewngofnodi');
-    I.wait(2);
+    I.wait(3);
   }
 }
 
@@ -80,22 +82,19 @@ async function getCurrentPageUrl() {
   const I = this;
   let pagePath;
 
-  let previewUrl = await I.grabCurrentUrl();
+  let url = await I.grabCurrentUrl();
   // eslint-disable-next-line no-console
-  console.log('Current Page Url==>::' + previewUrl);
-  let splitPath = previewUrl.split('-')[5];
-  let urlContainsPreview = splitPath.split('.');
+  console.log('Current Page Url==>::' + actualUrl);
 
-  if(urlContainsPreview[0] === 'preview') {
-
-    let preEnv = previewUrl.split('.internal');
-    pagePath = preEnv[1].toString();
+  if(actualUrl === aatUrl) {
+    let aatEnv = url.split('.net');
+    pagePath = aatEnv[1].toString();
     // eslint-disable-next-line no-console
     console.log('Page Path ==> ::' + pagePath);
 
-  } else {
-    let aatEnv = previewUrl.split('.net');
-    pagePath = aatEnv[1].toString();
+  }else {
+    let preEnv = url.split('.internal');
+    pagePath = preEnv[1].toString();
     // eslint-disable-next-line no-console
     console.log('Page Path ==> ::' + pagePath);
   }

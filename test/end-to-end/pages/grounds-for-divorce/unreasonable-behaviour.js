@@ -54,14 +54,15 @@ function enterUnreasonableBehaviourAddMoreExamples() {
   I.navByClick('Continue');
 }
 
-function enterUnreasonableBehaviourExampleCy() {
+async function enterUnreasonableBehaviourExampleCy() {
 
   const I = this;
+  let pagePath = await I.getCurrentPageUrl();
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 
-  I.navByClick('Parhau');
+  await I.navByClick('Parhau');
 }
 
 module.exports = { enterUnreasonableBehaviourExample, enterUnreasonableBehaviourAddMoreExamples, enterUnreasonableBehaviourExampleCy };

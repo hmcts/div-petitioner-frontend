@@ -78,16 +78,17 @@ function checkMyAnswersRemoveApplication() {
   I.navByClick(content.deleteApplciation);
 }
 
-function checkMyAnswersCy() {
+async function checkMyAnswersCy() {
 
   const I = this;
+  const pagePath = await I.getCurrentPageUrl();
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.see(contentCy.title);
 
   I.retry(2).checkOption(contentCy.confirmApply);
 
-  I.navByClick(contentCy.submitOnline);
+  await I.navByClick(contentCy.submitOnline);
 }
 
 module.exports = {

@@ -11,10 +11,10 @@ function checkGenericErrorPage() {
   I.see(content.title);
 }
 
-function checkGenericErrorPageCy() {
+async function checkGenericErrorPageCy() {
 
   const I = this;
-
+  const pagePath = await I.getCurrentPageUrl();
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.see(contentCy.title);

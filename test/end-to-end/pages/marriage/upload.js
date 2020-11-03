@@ -52,10 +52,11 @@ function withoutUploadFile() {
   I.navByClick('Continue');
 }
 
-function withoutUploadFileCy() {
+async function withoutUploadFileCy() {
   const I = this;
-  I.seeInCurrentUrl('/petitioner-respondent/marriage-certificate-upload');
-  I.navByClick('Parhau');
+  let pagePath = await I.getCurrentPageUrl();
+  I.seeInCurrentUrl(pagePath);
+  await I.navByClick('Parhau');
 }
 
 module.exports = {

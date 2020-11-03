@@ -11,13 +11,13 @@ function selectLivingApartTime() {
   I.navByClick('Continue');
 }
 
-function selectLivingApartTimeCy() {
+async function selectLivingApartTimeCy() {
 
   const I = this;
-
-  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separation/lived-apart-since');
+  let pagePath = await I.getCurrentPageUrl();
+  I.seeInCurrentUrl(pagePath);
   I.checkOption(contentCy.yes);
-  I.navByClick('Parhau');
+  await I.navByClick('Parhau');
 }
 
 module.exports = { selectLivingApartTime, selectLivingApartTimeCy };

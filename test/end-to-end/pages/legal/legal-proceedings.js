@@ -15,14 +15,14 @@ function enterLegalProceedings() {
   I.navByClick('Continue');
 }
 
-function enterLegalProceedingsCy() {
+async function enterLegalProceedingsCy() {
 
   const I = this;
-
+  let pagePath = await I.getCurrentPageUrl();
   I.waitInUrl(pagePath, 3);
   I.seeInCurrentUrl(pagePath);
   I.click('#legalProceedings_' + content.no);
-  I.navByClick('Parhau');
+  await I.navByClick('Parhau');
 }
 
 module.exports = { enterLegalProceedings, enterLegalProceedingsCy };

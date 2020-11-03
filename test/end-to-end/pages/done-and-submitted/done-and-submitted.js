@@ -11,10 +11,10 @@ function amDoneAndSubmitted() {
   I.see(content.title);
 }
 
-function amDoneAndSubmittedCy() {
+async function amDoneAndSubmittedCy() {
 
   const I = this;
-
+  const pagePath = await I.getCurrentPageUrl();
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.see(contentCy.title);

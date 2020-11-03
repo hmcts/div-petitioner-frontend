@@ -10,13 +10,13 @@ function selectRespondentConsentObtained() {
   I.navByClick('Continue');
 }
 
-function selectRespondentConsentObtainedCy() {
+async function selectRespondentConsentObtainedCy() {
 
   const I = this;
-
-  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separated-2-years/respondent-consent');
+  const pagePath = await I.getCurrentPageUrl();
+  I.seeInCurrentUrl(pagePath);
   I.checkOption(contentCy.yes.label);
-  I.navByClick('Parhau');
+  await I.navByClick('Parhau');
 }
 
 module.exports = { selectRespondentConsentObtained, selectRespondentConsentObtainedCy };

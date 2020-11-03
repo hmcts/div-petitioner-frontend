@@ -7,12 +7,14 @@ function enterFinancialAdvice() {
   I.seeCurrentUrlEquals(pagePath);
   I.navByClick('Continue');
 }
-function enterFinancialAdviceCy() {
+
+async function enterFinancialAdviceCy() {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  let pagePath = await I.getCurrentPageUrl();
+  I.waitInUrl(pagePath, 3);
   I.seeInCurrentUrl(pagePath);
-  I.navByClick('Parhau');
+  await I.navByClick('Parhau');
 }
 
 module.exports = { enterFinancialAdvice, enterFinancialAdviceCy };

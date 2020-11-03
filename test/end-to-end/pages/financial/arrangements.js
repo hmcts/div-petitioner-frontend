@@ -16,15 +16,15 @@ function selectFinancialArrangements() {
   I.navByClick('Continue');
 }
 
-function selectFinancialArrangementsCy() {
+async function selectFinancialArrangementsCy() {
 
   const I = this;
-
+  let pagePath = await I.getCurrentPageUrl();
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
   I.retry(2).checkOption(contentCy.no);
-  I.navByClick('Parhau');
+  await I.navByClick('Parhau');
 }
 
 module.exports = { selectFinancialArrangements, selectFinancialArrangementsCy };

@@ -22,7 +22,6 @@ Feature('CY - Reasons for divorce E2E Tests @functional' ).retry(3);
 Before(async (I) => {
   I.amOnPage('/index');
   await I.startApplicationCy();
-  await I.wait(3);
   await I.languagePreferenceCy();
   await I.haveBrokenMarriageCy();
   await I.haveRespondentAddressCy();
@@ -57,103 +56,103 @@ Before(async (I) => {
 Scenario('CY -Basic Divorce E2E - with added examples', async function(I) {
 
   await I.selectReasonForDivorceCy(content.unreasonableBehaviourHeading);
-  I.enterUnreasonableBehaviourExampleCy();
+  await I.enterUnreasonableBehaviourExampleCy();
 
-  I.enterLegalProceedingsCy();
-  I.selectFinancialArrangementsCy();
-  I.enterFinancialAdviceCy();
-  I.enterClaimCostsCy();
+  await I.enterLegalProceedingsCy();
+  await I.selectFinancialArrangementsCy();
+  await I.enterFinancialAdviceCy();
+  await I.enterClaimCostsCy();
 
   if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFileCy();
+    await I.withoutUploadFileCy();
   } else {
-    I.withoutUploadFileCy();
+    await I.withoutUploadFileCy();
   }
 
   await I.completeEqualityCy();
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswersCy();
+    await I.checkMyAnswersCy();
   } else{
     await I.checkMyAnswersCy();
   }
 
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
   if(genericErrorPage) {
-    I.checkGenericErrorPageCy();
+    await I.checkGenericErrorPageCy();
   }else {
-    I.amDoneAndSubmittedCy();
+    await I.amDoneAndSubmittedCy();
   }
 
-}).retry(2);
+}).tag('@functional99').retry(2);
 
 Scenario('CY -2 years separation E2E', async function(I) {
 
   await I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   await I.selectReasonForDivorceCy(content['2YearsSeparationHeading']);
-  I.selectRespondentConsentObtainedCy();
-  I.enterSeparationDateNewCy(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+  await I.selectRespondentConsentObtainedCy();
+  await I.enterSeparationDateNewCy(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.selectLivingApartTimeCy();
+  await I.selectLivingApartTimeCy();
 
-  I.enterLegalProceedingsCy();
-  I.selectFinancialArrangementsCy();
-  I.enterFinancialAdviceCy();
-  I.enterClaimCostsCy();
+  await I.enterLegalProceedingsCy();
+  await I.selectFinancialArrangementsCy();
+  await I.enterFinancialAdviceCy();
+  await I.enterClaimCostsCy();
 
   if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFileCy();
+    await I.withoutUploadFileCy();
   } else {
-    I.withoutUploadFileCy();
+    await I.withoutUploadFileCy();
   }
 
   await I.completeEqualityCy();
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswersCy();
-  } else{
-    await I.checkMyAnswers();
-  }
-
-  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-  if(genericErrorPage) {
-    I.checkGenericErrorPageCy();
-  }else {
-    I.amDoneAndSubmittedCy();
-  }
-
-}).retry(2);
-
-Scenario('CY - 5 years separation E2E', async function(I) {
-
-  await I.selectReasonForDivorceCy(content['5YearsSeprationHeading']);
-  I.enterSeparationDateNewCy(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
-    fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
-  I.selectLivingApartTimeCy();
-  I.enterLegalProceedingsCy();
-  I.selectFinancialArrangementsCy();
-  I.enterFinancialAdviceCy();
-  I.enterClaimCostsCy();
-
-  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFileCy();
-  } else {
-    I.withoutUploadFileCy();
-  }
-
-  await I.completeEqualityCy();
-
-  if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswersCy();
+    await I.checkMyAnswersCy();
   } else{
     await I.checkMyAnswersCy();
   }
 
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
   if(genericErrorPage) {
-    I.checkGenericErrorPageCy();
+    await I.checkGenericErrorPageCy();
   }else {
-    I.amDoneAndSubmittedCy();
+    await I.amDoneAndSubmittedCy();
+  }
+
+}).retry(2);
+
+xScenario('CY - 5 years separation E2E', async function(I) {
+
+  await I.selectReasonForDivorceCy(content['5YearsSeprationHeading']);
+  await I.enterSeparationDateNewCy(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
+    fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+  await I.selectLivingApartTimeCy();
+  await I.enterLegalProceedingsCy();
+  await I.selectFinancialArrangementsCy();
+  await I.enterFinancialAdviceCy();
+  await I.enterClaimCostsCy();
+
+  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+    await I.withoutUploadFileCy();
+  } else {
+    await I.withoutUploadFileCy();
+  }
+
+  await I.completeEqualityCy();
+
+  if (parseBool(config.features.ignoreSessionValidation)) {
+    await I.checkMyAnswersCy();
+  } else{
+    await I.checkMyAnswersCy();
+  }
+
+  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+  if(genericErrorPage) {
+    await I.checkGenericErrorPageCy();
+  }else {
+    await I.amDoneAndSubmittedCy();
   }
 
 }).retry(2);

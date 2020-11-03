@@ -3,7 +3,7 @@
 const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
 const CONF = require('config');
 
-const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeoutValue);
+const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeout);
 const smartWait = parseInt(CONF.saucelabs.smartWait);
 const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;
@@ -13,6 +13,7 @@ const getBrowserConfig = (browserGroup) => {
     if (candidateBrowser) {
       const desiredCapability = supportedBrowsers[browserGroup][candidateBrowser];
       desiredCapability.tunnelIdentifier = tunnelName;
+      desiredCapability.acceptSslCerts = true;
       desiredCapability.tags = ['divorce'];
       browserConfig.push({
         browser: desiredCapability.browserName,
@@ -29,7 +30,7 @@ const setupConfig = {
   tests: './paths/**/basicDivorce.js',
   output: process.cwd() + '/functional-output',
   helpers: {
-    WebDriverIO: {
+    WebDriver: {
       url: process.env.E2E_FRONTEND_URL || CONF.e2e.frontendUrl,
       browser,
       waitForTimeout,

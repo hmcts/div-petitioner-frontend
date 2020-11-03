@@ -2,7 +2,7 @@ class JSWait extends codecept_helper {
 
   _beforeStep(step) {
 
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
 
     // Wait for content to load before checking URL
     if (step.name === 'seeCurrentUrlEquals' || step.name === 'seeInCurrentUrl') {
@@ -11,7 +11,7 @@ class JSWait extends codecept_helper {
   };
 
   async navByClick (text, locator) {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const helperIsPuppeteer = this.helpers['Puppeteer'];
 
     helper.click(text, locator).catch(err => { console.error(err.message); });
@@ -25,7 +25,7 @@ class JSWait extends codecept_helper {
 
   async amOnLoadedPage (url, language ='en') {
     let newUrl = `${url}?lng=${language}`;
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const helperIsPuppeteer = this.helpers['Puppeteer'];
 
     if (helperIsPuppeteer) {

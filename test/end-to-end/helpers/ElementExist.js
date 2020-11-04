@@ -6,13 +6,13 @@ class ElementExist extends Helper {
 
   checkElementExist(selector) {
 
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
-    const isWebDriverIO = typeof this.helpers['WebDriverIO'] !== 'undefined';
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    const isWebDriver = typeof this.helpers['WebDriver'] !== 'undefined';
 
     return helper
       ._locate(selector)
       .then(els => {
-        if (isWebDriverIO) {
+        if (isWebDriver) {
           return !!els.value.length;
         }
         return !!els.length;
@@ -23,7 +23,7 @@ class ElementExist extends Helper {
   }
 
   getPaymentIsOnStub() {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
 
     return helper.grabCurrentUrl()
       .then(url => {

@@ -28,7 +28,7 @@ async function enterClaimCostsCy() {
 
   const I = this;
   let pagePath = await I.getCurrentPageUrl();
-  I.waitInUrl(pagePath, 3);
+  I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(contentCy.yes);
   await I.navByClick('Parhau');

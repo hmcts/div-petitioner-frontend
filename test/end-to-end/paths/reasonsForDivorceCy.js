@@ -53,7 +53,7 @@ Before(async (I) => {
 });
 
 
-Scenario('CY -Basic Divorce E2E - with added examples', async function(I) {
+Scenario('CY -Basic Divorce E2E ', async function(I) {
 
   await I.selectReasonForDivorceCy(content.unreasonableBehaviourHeading);
   await I.enterUnreasonableBehaviourExampleCy();

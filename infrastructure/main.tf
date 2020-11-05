@@ -217,5 +217,8 @@ module "frontend" {
     WEBCHAT_BUTTON_SERVICE_CLOSED = var.webchat_button_service_closed
 
     LAUNCHDARKLY_KEY = data.azurerm_key_vault_secret.launchdarkly_key.value
+
+    E2E_CASEWORKER_EMAIL = data.azurerm_key_vault_secret.e2e_caseworker_email.value
+    E2E_CASEWORKER_PASSWORD = data.azurerm_key_vault_secret.e2e_caseworker_password.value
   }
 }

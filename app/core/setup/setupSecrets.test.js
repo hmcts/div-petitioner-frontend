@@ -20,7 +20,9 @@ describe(modulePath, () => {
           'redis-secret': 'redisValue',
           'idam-secret': 'idamValue',
           'os-places-token': 'postCodeValue',
-          'frontend-secret': 'frontendValue'
+          'frontend-secret': 'frontendValue',
+          'e2e-caseworker-Email': 'email',
+          'e2e-caseworker-password': 'password'
         }
       };
 

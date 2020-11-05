@@ -73,6 +73,8 @@ nodejs:
                 - AppInsightsInstrumentationKey
                 - launchdarkly-key
                 - pcq-token-key
+                - e2eCaseworkerEmail
+                - e2eCaseworkerPassword
 
 redis:
     cluster:

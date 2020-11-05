@@ -24,7 +24,8 @@ const options = {
 };
 
 const production = CONF.environment === 'production';
-const client = production ? transformationServiceClient.init(options) : mockedClient;
+// const client = production ? transformationServiceClient.init(options) : mockedClient;
+const client = transformationServiceClient.init(options);
 const authTokenString = '__auth-token';
 
 const redirectToCheckYourAnswers = (req, res, next) => {

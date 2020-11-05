@@ -206,3 +206,7 @@ document:
     - 'dispenseWithServiceRefused'
     - 'deemedServiceRefused'
     - 'generalOrder'
+
+testUser:
+  idamCitizenEmail: # Defined by e2e caseworker email
+  idamCitizenPassword: # Defined by e2e caseworker password

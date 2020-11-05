@@ -43,5 +43,5 @@ secret: # Defined by SECRET in env
 sessionEncryptionSecret: # Defined by SESSION_ENCRYPTION_SECRET in env
 
 testUser:
-  e2ecaseworkerEmail: # Defined by e2e caseworker email
-  e2ecaseworkerPassword: # Defined by e2e caseworker password
+  idamCitizenEmail: # Defined by e2e caseworker email
+  idamCitizenPassword: # Defined by e2e caseworker password

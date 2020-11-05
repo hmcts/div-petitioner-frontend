@@ -15,8 +15,8 @@ def secrets = [
     secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
     secret('frontend-secret', 'MICROSERVICE_KEY'),
     secret('launchdarkly-key', 'LAUNCHDARKLY_KEY'),
-    secret('e2e-caseworker-email', 'E2E_CASEWORKER_EMAIL'),
-    secret('e2e-caseworker-password', 'E2E_CASEWORKER_PASSWORD')
+    secret('idam-citizen-email', 'IDAM_CITIZEN_EMAIL'),
+   secret('idam-citizen-password', 'IDAM_CITIZEN_PASSWORD')
 
   ]
 ]

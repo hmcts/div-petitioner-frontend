@@ -1,9 +1,10 @@
-
 const content = require('app/steps/screening-questions/has-respondent-address/content').resources.en.translation.content;
 const common = require('app/content/common-en').resources.en.translation;
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
+const citizenEmail = CONF.testUser.idamCitizenPassword;
+const citizenPassword = CONF.idamCitizenPassword;
 
 
 function startApplication(ignoreIdamToggle = false) {
@@ -66,12 +67,11 @@ function signOut() {
 
 function loginInAsCaseworker() {
   let I = this;
-  I.fillField('username', 'test');
-  I.fillField('password', 'test');
+  I.fillField('username', citizenEmail);
+  I.fillField('password', citizenPassword);
   I.navByClick('Sign in');
   I.wait(2);
   I.seeCurrentUrlEquals('/screening-questions/language-preference');
-
 
 
 }

@@ -21,8 +21,8 @@ describe(modulePath, () => {
           'idam-secret': 'idamValue',
           'os-places-token': 'postCodeValue',
           'frontend-secret': 'frontendValue',
-          'e2e-caseworker-Email': 'email',
-          'e2e-caseworker-password': 'password'
+          'idam-citizen-email': 'email',
+          'idam-citizen-password': 'password'
         }
       };
 

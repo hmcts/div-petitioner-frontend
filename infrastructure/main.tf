@@ -44,12 +44,12 @@ data "azurerm_key_vault_secret" "launchdarkly_key" {
 }
 
 data "azurerm_key_vault_secret" "idamCitizenEmail" {
-  name      = "idam_citizen_email"
+  name      = "idam-citizen-email"
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
 
 data "azurerm_key_vault_secret" "idamCitizenPassword" {
-  name      = "idam_citizen_password"
+  name      = "idam-citizen-password"
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
 

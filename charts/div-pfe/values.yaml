@@ -73,7 +73,7 @@ nodejs:
                 - AppInsightsInstrumentationKey
                 - launchdarkly-key
                 - pcq-token-key
-                - idam-citizen-email
+                - idam-citizen-username
                 - idam-citizen-password
 
 redis:

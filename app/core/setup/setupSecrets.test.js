@@ -21,7 +21,7 @@ describe(modulePath, () => {
           'idam-secret': 'idamValue',
           'os-places-token': 'postCodeValue',
           'frontend-secret': 'frontendValue',
-          'idam-citizen-email': 'email',
+          'idam-citizen-username': 'email',
           'idam-citizen-password': 'password'
         }
       };

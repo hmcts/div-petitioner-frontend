@@ -1,13 +1,22 @@
 const pagePath = '/about-divorce/reason-for-divorce/reason';
+const commonContentEn = require('app/content/common-en').resources.en.translation;
+const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function selectReasonForDivorce(reason) {
-
+function selectReasonForDivorce(language = 'en', reason) {
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
+
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
 
-  I.waitForText(reason);
-  I.checkOption(reason);
-  I.navByClick('Continue');
+  if (language === 'en') {
+    I.waitForText(reason);
+    I.checkOption(reason);
+    I.navByClick(commonContent.continue);
+  } else {
+    I.waitForText(reason);
+    I.checkOption(reason);
+    I.navByClick(commonContent.continue);
+  }
 }
 module.exports = { selectReasonForDivorce };

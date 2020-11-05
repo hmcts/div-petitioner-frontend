@@ -1,4 +1,5 @@
 const content = require('app/steps/check-your-answers/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/check-your-answers/content.json').resources.cy.translation.content;
 const jurisdictionContent = require('app/services/jurisdiction/content.json').resources.en.translation.content;
 const getOtherConnections = require('test/end-to-end/helpers/GeneralHelpers.js').getOtherJurisdictionConnections;
 const pagePath = '/check-your-answers';
@@ -32,29 +33,37 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
   return;
 }
 
-function checkMyAnswers() {
+function checkMyAnswers(language = 'en') {
 
   const I = this;
   I.waitInUrl(pagePath, 5);
   I.seeCurrentUrlEquals(pagePath);
-  I.see(content.title);
 
-  I.retry(2).checkOption(content.confirmApply);
-
-  I.navByClick(content.submitOnline);
+  if (language === 'en') {
+    I.see(content.title);
+    I.retry(2).checkOption(content.confirmApply);
+    I.navByClick(content.submitOnline);
+  } else {
+    I.see(contentCy.title);
+    I.retry(2).checkOption(contentCy.confirmApply);
+    I.navByClick(contentCy.submitOnline);
+  }
 }
 
-function checkMyAnswersAndValidateSession() {
+function checkMyAnswersAndValidateSession(language = 'en') {
 
   const I = this;
-
   I.seeCurrentUrlEquals('/check-your-answers');
-  I.see(content.title);
 
-  // Verify static session data still valid
-  I.assertSessionEqualsMockTestData();
-
-  I.checkMyAnswers();
+  if (language === 'en') {
+    I.see(content.title);
+    // Verify static session data still valid
+    I.assertSessionEqualsMockTestData();
+    I.checkMyAnswers('en');
+  } else {
+    I.see(contentCy.title);
+    I.checkMyAnswers('cy');
+  }
 }
 
 function checkMyAnswersRestoredSession() {

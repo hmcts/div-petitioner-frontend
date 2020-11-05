@@ -13,7 +13,7 @@ const getBrowserConfig = (browserGroup) => {
     if (candidateBrowser) {
       const desiredCapability = supportedBrowsers[browserGroup][candidateBrowser];
       desiredCapability.tunnelIdentifier = tunnelName;
-      desiredCapability.acceptSslCerts = true
+      desiredCapability.acceptSslCerts = true;
       desiredCapability.tags = ['divorce'];
       browserConfig.push({
         browser: desiredCapability.browserName,

@@ -3,8 +3,8 @@ const common = require('app/content/common-en').resources.en.translation;
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
-const citizenEmail = CONF.testUser.idamCitizenPassword;
-const citizenPassword = CONF.idamCitizenPassword;
+const citizenEmail = CONF.testUser.idamCitizenEmail;
+const citizenPassword = CONF.testUser.idamCitizenPassword;
 
 
 function startApplication(ignoreIdamToggle = false) {

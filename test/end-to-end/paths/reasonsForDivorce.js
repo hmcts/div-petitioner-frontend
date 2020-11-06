@@ -26,7 +26,7 @@ languages.forEach( language => {
 
   Before( (I) => {
 
-    I.amOnLoadedPage('/', language);
+    I.amOnLoadedPage('/');
     I.startApplication(language);
     I.wait(1);
     I.languagePreference(language);

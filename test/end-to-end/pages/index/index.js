@@ -16,10 +16,10 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
       I.fillField('password', idamConfigHelper.getTestPassword());
       I.navByClick(commonContent.signIn);
     } else {
+      I.amOnLoadedPage('?lng=cy');
       I.seeInCurrentUrl('/login?');
       I.fillField('username', idamConfigHelper.getTestEmail());
       I.fillField('password', idamConfigHelper.getTestPassword());
-
       I.navByClick(commonContent.signIn);
     }
 

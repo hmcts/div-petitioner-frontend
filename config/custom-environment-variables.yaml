@@ -123,3 +123,7 @@ apps:
 
 featureToggles:
   launchDarklyKey: LAUNCHDARKLY_KEY
+
+testUser:
+  idamCitizenEmail: IDAM_CITIZEN_EMAIL
+  idamCitizenPassword: IDAM_CITIZEN_PASSWORD

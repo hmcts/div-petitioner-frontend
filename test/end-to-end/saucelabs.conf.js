@@ -3,7 +3,7 @@
 const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
 const CONF = require('config');
 
-const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeoutValue);
+const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeout);
 const smartWait = parseInt(CONF.saucelabs.smartWait);
 const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
 const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;

@@ -165,8 +165,8 @@ saucelabs:
   username: 'username'
   key: 'privatekey'
   tunnelId: 'reformtunnel'
-  waitForTimeout: 5000
-  smartWait: 5000
+  waitForTimeout: 10000
+  smartWait: 10000
 
 public:
   protocol: 'https'

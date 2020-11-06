@@ -62,7 +62,7 @@ languages.forEach( language => {
   Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {
 
     const reasonContent = language === 'en' ? contentEn : contentCy;
-    I.selectReasonForDivorce(language, reasonContent.unreasonableBehaviourHeading);
+    I.selectReasonForDivorce(language, reasonContent['unreasonableBehaviourHeading']);
     I.enterUnreasonableBehaviourExample(language);
 
     I.enterLegalProceedings(language);

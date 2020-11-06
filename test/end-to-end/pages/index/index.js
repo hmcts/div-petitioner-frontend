@@ -10,17 +10,18 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
     const commonContent = language === 'en' ? commonContentEn : commonContentCy;
     let I = this;
+
+    I.fillField('username', idamConfigHelper.getTestEmail());
+    I.fillField('password', idamConfigHelper.getTestPassword());
+
     if (language === 'en') {
       I.seeInCurrentUrl('/login?');
-      I.fillField('username', idamConfigHelper.getTestEmail());
-      I.fillField('password', idamConfigHelper.getTestPassword());
       I.navByClick(commonContent.signIn);
     } else {
-      I.amOnLoadedPage('?lng=cy');
-      I.seeInCurrentUrl('/login?');
-      I.fillField('username', idamConfigHelper.getTestEmail());
-      I.fillField('password', idamConfigHelper.getTestPassword());
-      I.navByClick(commonContent.signIn);
+      // eslint-disable-next-line no-console
+      console.log('Welsh Click ==>:' + language);
+      I.wait(2);
+      I.navByClick('Parhau');
     }
 
     I.wait(2);

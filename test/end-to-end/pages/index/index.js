@@ -65,7 +65,7 @@ function signOut() {
   I.navByClick(common.signOut);
 }
 
-function loginInAsCaseworker() {
+function loginInAsIdamCitizenUser() {
   let I = this;
   I.fillField('username', citizenEmail);
   I.fillField('password', citizenPassword);
@@ -84,5 +84,5 @@ module.exports = {
   followCookieBannerLink,
   dontGetShownCookieBannerAgain,
   signOut,
-  loginInAsCaseworker
+  loginInAsIdamCitizenUser
 };

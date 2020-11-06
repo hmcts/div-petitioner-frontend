@@ -10,14 +10,16 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
     const commonContent = language === 'en' ? commonContentEn : commonContentCy;
     let I = this;
-    I.wait(1);
-    I.seeInCurrentUrl('/login?');
-    I.fillField('username', idamConfigHelper.getTestEmail());
-    I.fillField('password', idamConfigHelper.getTestPassword());
-
     if (language === 'en') {
+      I.seeInCurrentUrl('/login?');
+      I.fillField('username', idamConfigHelper.getTestEmail());
+      I.fillField('password', idamConfigHelper.getTestPassword());
       I.navByClick(commonContent.signIn);
     } else {
+      I.seeInCurrentUrl('/login?');
+      I.fillField('username', idamConfigHelper.getTestEmail());
+      I.fillField('password', idamConfigHelper.getTestPassword());
+
       I.navByClick(commonContent.signIn);
     }
 

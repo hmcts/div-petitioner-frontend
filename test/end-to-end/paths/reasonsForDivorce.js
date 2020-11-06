@@ -20,7 +20,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Welsh - Divorce E2E Tests @functional');
+Feature('Divorce E2E Tests @functional99');
 
 languages.forEach( language => {
 
@@ -101,7 +101,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(2);
+  });
 
   Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
     const divorceReason = language === 'en' ? contentEn : contentCy;
@@ -147,9 +147,9 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(2);
+  });
 
-  Scenario(`${language.toUpperCase()} - 5 years separation E2E `, async function(I) {
+  xScenario(`${language.toUpperCase()} - 5 years separation E2E `, async function(I) {
 
     I.selectReasonForDivorce(language, content['5YearsSeparationHeading']);
     I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,

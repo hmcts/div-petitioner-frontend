@@ -7,9 +7,8 @@ const parseBool = require('app/core/utils/parseBool');
 
 function startApplication(language = 'en', ignoreIdamToggle = false) {
 
-  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
+    const commonContent = language === 'en' ? commonContentEn : commonContentCy;
     let I = this;
     I.seeInCurrentUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());

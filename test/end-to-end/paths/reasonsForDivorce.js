@@ -20,11 +20,11 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Reasons for divorce E2E Tests @functional99');
+Feature('Welsh - Divorce E2E Tests @functional');
 
 languages.forEach( language => {
 
-  Before( (I, language) => {
+  Before( (I) => {
 
     I.amOnLoadedPage('/', language);
     I.startApplication(language);
@@ -149,7 +149,7 @@ languages.forEach( language => {
 
   }).retry(2);
 
-  xScenario('5 years separation E2E', async function(I) {
+  Scenario(`${language.toUpperCase()} - 5 years separation E2E `, async function(I) {
 
     I.selectReasonForDivorce(language, content['5YearsSeparationHeading']);
     I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
@@ -175,17 +175,23 @@ languages.forEach( language => {
       await I.checkMyAnswers(language);
     }
 
-    const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-    if(genericErrorPage) {
-      I.checkGenericErrorPage(language);
+    if (language === 'en') {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
     }else {
-      I.amDoneAndSubmitted(language);
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
     }
 
   }).retry(2);
 
-  After( (I) => {
-    I.signOut();
-  });
 });
 

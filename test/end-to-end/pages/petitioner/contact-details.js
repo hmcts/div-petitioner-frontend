@@ -14,7 +14,7 @@ function enterPetitionerContactDetails(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
   I.wait(1);
 
   if (parseBool(CONF.features.idam)) {

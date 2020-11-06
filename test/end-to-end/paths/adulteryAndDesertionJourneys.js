@@ -1,11 +1,11 @@
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const config = require('config');
 
-Feature('Adultery and Desertion Paths E2E Tests @functional').retry(3);
+Feature('Adultery and Desertion E2E Tests @functional').retry(3);
 
 Before ((I) => {
 
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();

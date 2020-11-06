@@ -1,7 +1,7 @@
 Feature('New Jurisdiction Journeys @functional').retry(3);
 
 Before((I) => {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -18,7 +18,7 @@ Before((I) => {
 Scenario('Set A & C: Both Habitually Resident', function(I) {
   I.chooseBothHabituallyResident();
   I.chooseJurisdictionInterstitialContinue();
-  I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
+  I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'C');
 });
@@ -31,7 +31,7 @@ Scenario('Set All: Selected via Last Resort page', function(I) {
   I.checkMyConnectionSummaryIs('B', 'C', 'F');
   I.chooseJurisdictionConnectionSummaryShowAll();
   I.chooseMyLastResortConnections('A', 'B', 'C', 'D', 'E', 'F', 'G');
-  I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
+  I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'B', 'C', 'D', 'E', 'F', 'G');
 });
@@ -50,7 +50,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
   I.chooseYesForResidualJurisdiction();
   I.checkMyConnectionSummaryIs('G');
   I.chooseJurisdictionConnectionSummaryContinue();
-  I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
+  I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('G');
 });
@@ -62,5 +62,5 @@ Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', f
   I.chooseNoJurisdictionLastSixMonths();
   I.chooseNoLastHabitualResidence();
   I.chooseNoForResidualJurisdiction();
-  I.seeCurrentUrlEquals('/exit/jurisdiction/no-cnnections');
+  I.seeInCurrentUrl('/exit/jurisdiction/no-cnnections');
 });

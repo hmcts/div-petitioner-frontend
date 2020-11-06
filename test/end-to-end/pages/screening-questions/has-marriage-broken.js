@@ -10,7 +10,7 @@ function haveBrokenMarriage(language = 'en') {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+  I.seeInCurrentUrl('/screening-questions/has-marriage-broken');
 
   if (language === 'en') {
     I.retry(2).click(marriageBrokenContent.yes);

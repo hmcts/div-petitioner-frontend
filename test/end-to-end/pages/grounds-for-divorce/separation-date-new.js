@@ -7,7 +7,7 @@ function enterSeparationDateNew(language = 'en', decisionDay = '1', decisionMont
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/separation-dates');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separation-dates');
   I.fillField('reasonForDivorceDecisionDay', decisionDay);
   I.fillField('reasonForDivorceDecisionMonth', decisionMonth);
   I.fillField('reasonForDivorceDecisionYear', decisionYear);

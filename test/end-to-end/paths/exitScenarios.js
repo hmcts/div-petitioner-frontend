@@ -23,7 +23,7 @@ Feature('Exit paths for divorce @functional').retry(3);
 
 Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
 
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -34,14 +34,14 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.seeCurrentUrlEquals('/exit/separation');
+  I.seeInCurrentUrl('/exit/separation');
   I.navByClick('choose another reason');
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
 });
 
 
 Scenario('Exit if 5 years separation chosen but actual living apart date is less', (I) => {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -52,7 +52,7 @@ Scenario('Exit if 5 years separation chosen but actual living apart date is less
   I.selectReasonForDivorce(content['5YearsSeparationHeading']);
   I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.seeCurrentUrlEquals('/exit/separation');
+  I.seeInCurrentUrl('/exit/separation');
   I.navByClick('choose another reason');
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
 });

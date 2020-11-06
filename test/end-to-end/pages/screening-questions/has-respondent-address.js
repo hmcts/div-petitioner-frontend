@@ -10,7 +10,7 @@ function haveRespondentAddress(language = 'en') {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/respondent-address');
+  I.seeInCurrentUrl('/screening-questions/respondent-address');
 
   if (language === 'en') {
     I.retry(2).click(respondentAddContent.yes);

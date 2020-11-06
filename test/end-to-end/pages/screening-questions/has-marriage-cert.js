@@ -12,7 +12,7 @@ function haveMarriageCert(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.retry(2).click(marriageCertContent.yes);
@@ -32,7 +32,7 @@ function haveNoMarriageCert() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
   I.checkOption(contentEn.no);
   I.navByClick('Continue');
 }

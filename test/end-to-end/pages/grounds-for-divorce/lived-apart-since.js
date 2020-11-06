@@ -7,7 +7,7 @@ function selectLivingApartTime(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/separation/lived-apart-since');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separation/lived-apart-since');
 
   if (language === 'en') {
     I.checkOption(content.yes);

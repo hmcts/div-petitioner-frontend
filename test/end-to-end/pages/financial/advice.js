@@ -7,7 +7,7 @@ function enterFinancialAdvice(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 3);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.navByClick(commonContent.continue);

@@ -7,7 +7,7 @@ function checkGenericErrorPage(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.see(content.title);

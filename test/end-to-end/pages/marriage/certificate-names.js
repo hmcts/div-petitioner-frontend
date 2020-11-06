@@ -8,7 +8,7 @@ function enterMarriageCertificateDetails(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
   I.retry(2).fillField('marriagePetitionerName', 'John Doe');
   I.fillField('marriageRespondentName', 'Jenny Benny');
 

@@ -8,7 +8,7 @@ function enterUnreasonableBehaviourExample(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 
   if (language === 'en') {

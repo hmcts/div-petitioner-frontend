@@ -7,7 +7,7 @@ function selectRespondentConsentObtained(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/separated-2-years/respondent-consent');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separated-2-years/respondent-consent');
 
   if (language === 'en') {
     I.checkOption(content.yes.label);

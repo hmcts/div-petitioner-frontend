@@ -11,7 +11,7 @@ function enterMarriageDate(language = 'en', day = mockSession.marriageDateDay.to
 
   const I = this;
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.retry(2).fillField('marriageDateDay', day);

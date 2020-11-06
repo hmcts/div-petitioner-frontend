@@ -8,7 +8,7 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
   I.waitForElement('#jurisdiction-connections');
 
   connections.forEach((connection) => {
@@ -37,7 +37,7 @@ function checkMyAnswers(language = 'en') {
 
   const I = this;
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.see(content.title);
@@ -53,7 +53,7 @@ function checkMyAnswers(language = 'en') {
 function checkMyAnswersAndValidateSession(language = 'en') {
 
   const I = this;
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
 
   if (language === 'en') {
     I.see(content.title);

@@ -12,7 +12,7 @@ function selectMarriedInUk(language = 'en') {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.retry(2).click(contentEn.yes);
@@ -28,7 +28,7 @@ function selectMarriedElsewhere() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/in-the-uk');
+  I.seeInCurrentUrl('/about-your-marriage/in-the-uk');
   I.checkOption(contentEn.no);
   I.navByClick('Continue');
 }

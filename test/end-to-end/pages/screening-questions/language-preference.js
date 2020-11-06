@@ -10,7 +10,7 @@ function languagePreference(language = 'en') {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/language-preference');
+  I.seeInCurrentUrl('/screening-questions/language-preference');
 
   if (language === 'en') {
     I.retry(2).click(languageContent.yes);

@@ -12,7 +12,7 @@ function enterHelpWithFees(language = 'en', appliedForFees = contentEn.yes) {
   const I = this;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
     I.retry(2).click(contentEn.yes);

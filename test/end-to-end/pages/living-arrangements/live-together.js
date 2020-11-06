@@ -16,7 +16,7 @@ function completeLivingTogetherPage(I, chosenOption, language) {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
 
   I.waitInUrl(pagePath, 5);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
   if (language === 'en') {
     I.checkOption(chosenOption);
     I.navByClick(commonContent.continue);

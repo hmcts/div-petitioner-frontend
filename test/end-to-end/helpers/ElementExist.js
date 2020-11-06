@@ -4,22 +4,22 @@ const Helper = codecept_helper;
 
 class ElementExist extends Helper {
 
-  checkElementExist(selector) {
-
+  async checkElementExist(selector) {
     const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
-    const isWebDriver = typeof this.helpers['WebDriver'] !== 'undefined';
+
+    try {
+      await helper.waitForElement(selector, 3);
+    } catch (e) {
+      console.log('Element Not Found:', selector); /* eslint-disable-line no-console */
+    }
 
     return helper
       ._locate(selector)
       .then(els => {
-        if (isWebDriver) {
-          return !!els.value.length;
-        }
         return !!els.length;
       }).catch(err => {
         throw err;
       });
-
   }
 
   getPaymentIsOnStub() {

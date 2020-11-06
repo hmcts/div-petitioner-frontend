@@ -59,6 +59,10 @@ languages.forEach( language => {
     I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
   });
 
+  After( (I) => {
+    I.signOut();
+  });
+  
   Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {
 
     const reasonContent = language === 'en' ? contentEn : contentCy;
@@ -183,5 +187,4 @@ languages.forEach( language => {
     }
 
   }).retry(2);
-
 });

@@ -24,7 +24,7 @@ Feature('Reasons for divorce E2E Tests @functional99');
 
 languages.forEach( language => {
 
-  Before( (I) => {
+  Before( (I, language) => {
 
     I.amOnLoadedPage('/', language);
     I.startApplication(language);
@@ -188,3 +188,4 @@ languages.forEach( language => {
     I.signOut();
   });
 });
+

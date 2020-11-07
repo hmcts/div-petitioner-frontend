@@ -20,7 +20,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Reasons for divorce E2E Tests @functional').retry(2);
+Feature('Reasons for divorce E2E Tests @functional99').retry(2);
 
 languages.forEach( language => {
 
@@ -164,9 +164,9 @@ languages.forEach( language => {
 
 });
 
-async function loginPageToEnterAddressUsingPostcode( I, language = 'en') {
+async function loginPageToEnterAddressUsingPostcode( I, language) {
 
-  I.amOnLoadedPage('/', language );
+  await I.amOnLoadedPage('/', language );
   I.startApplication(language);
   I.wait(1);
   I.languagePreference(language);

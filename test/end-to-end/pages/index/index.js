@@ -13,15 +13,12 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
 
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
+    I.seeInCurrentUrl('/login?');
 
     if (language === 'en') {
-      I.seeInCurrentUrl('/login?');
       I.navByClick(commonContent.signIn);
     } else {
-      // eslint-disable-next-line no-console
-      console.log('Welsh Click ==>:' + language);
-      I.wait(2);
-      I.navByClick('Parhau');
+      I.navByClick(commonContent.signIn);
     }
 
     I.wait(2);

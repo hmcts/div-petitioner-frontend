@@ -29,7 +29,6 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
   } else {
     I.seeInCurrentUrl('/petitioner-respondent/marriage-certificate-upload');
     I.navByClick(commonContent.continue);
-    // I.withoutUploadFile('cy');
   }
 }
 

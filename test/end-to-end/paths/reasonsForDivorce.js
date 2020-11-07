@@ -105,7 +105,7 @@ languages.forEach( language => {
       }
     }
 
-  });
+  }).retry(2);
 
   Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
 

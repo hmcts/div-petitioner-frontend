@@ -88,7 +88,7 @@ languages.forEach( language => {
       I.withoutUploadFile(language);
     } else {
       const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-      I.uploadMarriageCertificateFile(isDragAndDropSupported);
+      I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
     }
 
     await I.completeEquality(language);

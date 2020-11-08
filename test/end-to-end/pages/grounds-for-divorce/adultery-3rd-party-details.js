@@ -1,13 +1,22 @@
 const { mockSession } = require('test/fixtures');
+const commonContentEn = require('app/content/common-en').resources.en.translation;
+const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function enter3rdPartyDetails() {
+function enter3rdPartyDetails(language ='en') {
 
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/adultery/name-person');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/name-person');
   I.fillField('reasonForDivorceAdultery3rdPartyFirstName', mockSession.reasonForDivorceAdultery3rdPartyFirstName);
   I.fillField('reasonForDivorceAdultery3rdPartyLastName', mockSession.reasonForDivorceAdultery3rdPartyLastName);
-  I.navByClick('Continue');
+
+  if (language === 'en') {
+    I.navByClick(commonContent.continue);
+  } else {
+    I.navByClick(commonContent.continue);
+  }
+
 }
 
 module.exports = { enter3rdPartyDetails };

@@ -1,34 +1,33 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
-const language = ['en'];
 
 Feature('Upload Marriage Certificate @functional').retry(3);
 
 Scenario('Test upload', async function (I) {
-  I.amOnLoadedPage('/');
+  await I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
-  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
+  await I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-  I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
+  I.uploadMarriageCertificate(isDragAndDropSupported);
 });
 
 Scenario('Test remove marriage Certificate', async function (I) {
-  I.amOnLoadedPage('/');
+  await I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
-  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
+  await I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
   I.deleteAMarriageCertificateFile(isDragAndDropSupported);
 });
 
 Scenario('Test ability validate document type', async function (I) {
-  I.amOnLoadedPage('/');
+  await I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
-  I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
+  await I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
 
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
 

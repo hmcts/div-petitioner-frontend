@@ -1,12 +1,20 @@
 const content = require('app/steps/grounds-for-divorce/desertion/agree/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/grounds-for-divorce/desertion/agree/content.json').resources.cy.translation.content;
+const commonContentEn = require('app/content/common-en').resources.en.translation;
+const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function enterDesertionAgreement() {
-
+function enterDesertionAgreement(language ='en') {
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/desertion/agree');
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/desertion/agree');
-  I.checkOption(content.yes);
-  I.navByClick('Continue');
+  if (language === 'en') {
+    I.checkOption(content.yes);
+    I.navByClick(commonContent.continue);
+  } else {
+    I.checkOption(contentCy.yes);
+    I.navByClick(commonContent.continue);
+  }
 }
 
 module.exports = { enterDesertionAgreement };

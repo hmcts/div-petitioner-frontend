@@ -30,7 +30,7 @@ async function startApplicationWith(sessionName) {
   let I = this;
 
   I.amOnLoadedPage('/index');
-  I.startApplication('en');
+  I.startApplication();
   I.haveABasicSession(sessionName);
 }
 

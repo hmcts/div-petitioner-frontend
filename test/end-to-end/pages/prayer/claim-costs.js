@@ -4,7 +4,7 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const pagePath = '/about-divorce/claim-costs';
 
-function enterClaimCosts(language = 'en') {
+function enterClaimCosts(language ='en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
@@ -21,15 +21,26 @@ function enterClaimCosts(language = 'en') {
 
 }
 
-function enterClaimCostsCorrespondent() {
-
+function enterClaimCostsCorrespondent(language ='en') {
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 3);
-  I.seeCurrentUrlEquals(pagePath);
+  I.seeInCurrentUrl(pagePath);
+
   I.checkOption(content.yes);
   I.checkOption( '#correspondent');
   I.navByClick('Continue');
+
+  if (language === 'en') {
+    I.checkOption(content.yes);
+    I.checkOption( '#correspondent');
+    I.navByClick(commonContent.continue);
+  } else {
+    I.checkOption(contentCy.yes);
+    I.checkOption( '#correspondent');
+    I.navByClick(commonContent.continue);
+  }
 }
 
 module.exports = { enterClaimCosts, enterClaimCostsCorrespondent };

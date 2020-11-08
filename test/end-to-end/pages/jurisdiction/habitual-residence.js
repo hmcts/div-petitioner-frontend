@@ -17,18 +17,18 @@ function chooseNeitherHabituallyResident() {
   });
 }
 
-function choosePetitionerHabituallyResident() {
+function choosePetitionerHabituallyResident(language ='en') {
   setHabitualResidence(this, {
     'petitioner': habituallyResident.yes,
     'respondent': habituallyResident.no
-  });
+  }, language);
 }
 
-function chooseRespondentHabituallyResident() {
+function chooseRespondentHabituallyResident(language = 'en') {
   setHabitualResidence(this, {
     'petitioner': habituallyResident.no,
     'respondent': habituallyResident.yes
-  });
+  }, language);
 }
 
 function setHabitualResidence(I, residenceFor, language) {

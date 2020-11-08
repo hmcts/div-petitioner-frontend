@@ -8,7 +8,6 @@ function enterMarriageDate(language = 'en', day = mockSession.marriageDateDay.to
   year = mockSession.marriageDateYear.toString()) {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-
   const I = this;
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
@@ -18,7 +17,6 @@ function enterMarriageDate(language = 'en', day = mockSession.marriageDateDay.to
     I.fillField('marriageDateMonth', month);
     I.fillField('marriageDateYear', year);
     I.navByClick(commonContent.continue);
-
   } else {
     I.retry(2).fillField('marriageDateDay', day);
     I.fillField('marriageDateMonth', month);

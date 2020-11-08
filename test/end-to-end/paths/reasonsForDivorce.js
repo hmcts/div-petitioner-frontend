@@ -61,6 +61,7 @@ languages.forEach( language => {
 
   After( async (I) => {
     I.signOut(language);
+    // await I.browserClose();
   });
 
   Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {

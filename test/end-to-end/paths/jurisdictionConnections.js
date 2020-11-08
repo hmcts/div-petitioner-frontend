@@ -1,30 +1,31 @@
+const language = 'en';
 Feature('New Jurisdiction Journeys @functional').retry(3);
 
 Before((I) => {
   I.amOnLoadedPage('/');
-  I.startApplication();
-  I.languagePreference();
-  I.haveBrokenMarriage();
-  I.haveRespondentAddress();
-  I.haveMarriageCert();
+  I.startApplication(language);
+  I.languagePreference(language);
+  I.haveBrokenMarriage(language);
+  I.haveRespondentAddress(language);
+  I.haveMarriageCert(language);
 
-  I.readFinancialRemedy();
-  I.selectHelpWithFees(false);
-  I.selectDivorceType();
-  I.enterMarriageDate();
-  I.selectMarriedInUk();
+  I.readFinancialRemedy(language);
+  I.selectHelpWithFees(language, false);
+  I.selectDivorceType(language);
+  I.enterMarriageDate(language);
+  I.selectMarriedInUk(language);
 });
 
 Scenario('Set A & C: Both Habitually Resident', function(I) {
-  I.chooseBothHabituallyResident();
-  I.chooseJurisdictionInterstitialContinue();
+  I.chooseBothHabituallyResident(language);
+  I.chooseJurisdictionInterstitialContinue(language);
   I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'C');
 });
 
 Scenario('Set All: Selected via Last Resort page', function(I) {
-  I.chooseRespondentHabituallyResident();
+  I.chooseRespondentHabituallyResident(language);
   I.chooseJurisdictionInterstitialNeedInfo();
   I.chooseBothDomiciled();
   I.chooseYesLastHabitualResidence();
@@ -37,7 +38,7 @@ Scenario('Set All: Selected via Last Resort page', function(I) {
 });
 
 Scenario('Re-set connections: Not confident at Connection Summary 1st time', function(I) {
-  I.choosePetitionerHabituallyResident();
+  I.choosePetitionerHabituallyResident(language);
   I.chooseYesJurisdictionLastTwelveMonths();
   I.chooseJurisdictionInterstitialNeedInfo();
   I.chooseBothDomiciled();
@@ -56,7 +57,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
 });
 
 Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', function(I) {
-  I.choosePetitionerHabituallyResident();
+  I.choosePetitionerHabituallyResident(language);
   I.chooseNoJurisdictionLastTwelveMonths();
   I.choosePetitionerDomiciled();
   I.chooseNoJurisdictionLastSixMonths();

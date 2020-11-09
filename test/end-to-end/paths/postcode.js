@@ -1,7 +1,7 @@
 Feature('Entering address @functional').retry(3);
 
 Scenario('Enter address using postcode', (I) => {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -11,7 +11,7 @@ Scenario('Enter address using postcode', (I) => {
 });
 
 Scenario('Enter address using address outside the UK', (I) => {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();

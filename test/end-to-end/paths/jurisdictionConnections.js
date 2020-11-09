@@ -1,19 +1,19 @@
-const language = 'en';
+const language ='en';
 Feature('New Jurisdiction Journeys @functional').retry(3);
 
 Before((I) => {
-  I.amOnLoadedPage('/');
-  I.startApplication(language);
-  I.languagePreference(language);
-  I.haveBrokenMarriage(language);
-  I.haveRespondentAddress(language);
-  I.haveMarriageCert(language);
+  I.amOnLoadedPage('/index');
+  I.startApplication();
+  I.languagePreference();
+  I.haveBrokenMarriage();
+  I.haveRespondentAddress();
+  I.haveMarriageCert();
 
-  I.readFinancialRemedy(language);
-  I.selectHelpWithFees(language, false);
-  I.selectDivorceType(language);
-  I.enterMarriageDate(language);
-  I.selectMarriedInUk(language);
+  I.readFinancialRemedy();
+  I.selectHelpWithFees(false);
+  I.selectDivorceType();
+  I.enterMarriageDate();
+  I.selectMarriedInUk();
 });
 
 Scenario('Set A & C: Both Habitually Resident', function(I) {

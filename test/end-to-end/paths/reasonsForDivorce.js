@@ -22,7 +22,7 @@ const fiveYearsAgoFormatted = {
 
 languages.forEach( language => {
 
-  Feature(`${language.toUpperCase()} - Reasons for divorce E2E Tests @functional `);
+  Feature(`${language.toUpperCase()} - Reasons for divorce E2E Tests @functional99 `);
 
   Before( async (I) => {
 

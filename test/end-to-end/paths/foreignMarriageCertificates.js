@@ -1,7 +1,7 @@
 Feature('Foreign Marriage Certificates @functional').retry(3);
 
 Scenario('Certificate in English ', function(I) {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();

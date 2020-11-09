@@ -64,12 +64,11 @@ function dontGetShownCookieBannerAgain() {
   I.dontSee(content.cookieLink);
 }
 
-function signOut(language = 'en') {
-  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+function signOut() {
   let I = this;
 
-  I.see(commonContent.signOut);
-  I.navByClick(commonContent.signOut);
+  I.see(commonContentEn.signOut);
+  I.navByClick(commonContentEn.signOut);
 }
 
 module.exports = {

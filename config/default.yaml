@@ -206,3 +206,7 @@ document:
     - 'dispenseWithServiceRefused'
     - 'deemedServiceRefused'
     - 'generalOrder'
+
+testUser:
+  idamCitizenEmail: # Defined by idam citizen username
+  idamCitizenPassword: # Defined by idam citizen password

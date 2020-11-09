@@ -9,7 +9,7 @@ function selectLivingTogetherInSameProperty(language = 'en') {
 }
 
 function selectDoNotLiveTogetherInSameProperty(language = 'en') {
-  completeLivingTogetherPage(selectContent.no, language);
+  completeLivingTogetherPage(this,selectContent.no, language);
 }
 
 function completeLivingTogetherPage(I, chosenOption, language) {

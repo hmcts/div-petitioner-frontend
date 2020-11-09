@@ -8,7 +8,7 @@ Feature('Report A Problem Handling @functional').retry(3);
 
 Scenario('I see link to go the ’Contact us for help’ page', (I) => {
 
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.see(commonContent.problemWithThisPage);
   I.click(`//span[text()="${commonContent.problemWithThisPage}"]`);

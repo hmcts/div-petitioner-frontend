@@ -2,7 +2,7 @@ Feature('Invalid Paths Handling @functional').retry(3);
 
 Scenario('Incorrect URLs are served a 404 page', (I) => {
 
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -12,7 +12,7 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 });
 
 Scenario('Redirects to login page on AAT OR cookie error page for PR build on application start and clear cookies', async (I) => {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();
   //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
@@ -30,7 +30,7 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
 }).retry(1);
 
 Scenario('check cookie error page exists', (I) => {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.amOnLoadedPage('/cookie-error');
   I.see('You must have cookies enabled in your web browser to use this service.');

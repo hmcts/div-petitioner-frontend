@@ -1,6 +1,7 @@
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
+const language = 'en';
 
 Feature('Draft petition store @functional').retry(3);
 
@@ -14,7 +15,7 @@ Scenario('See the check your answers page if session restored from draft petitio
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.enterHelpWithFees();
     I.selectDivorceType();
     I.enterMarriageDate();
@@ -45,7 +46,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.enterHelpWithFees();
     I.selectDivorceType();
     I.enterMarriageDate();
@@ -64,14 +65,14 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
 });
 
 Scenario('Save and close', function (I) {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
   I.haveRespondentAddress();
   I.haveMarriageCert();
   I.readFinancialRemedy();
-  I.selectHelpWithFees();
+  I.selectHelpWithFees(language);
 
   I.clickSaveAndCLose();
   I.seeInCurrentUrl('/exit/application-saved');
@@ -91,7 +92,7 @@ Scenario('Delete application from draft petition store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
     I.amOnLoadedPage('/');
@@ -121,7 +122,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
     I.amOnLoadedPage('/');
@@ -146,7 +147,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
     I.amOnLoadedPage('/index');
@@ -172,7 +173,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
     I.amOnLoadedPage('/');

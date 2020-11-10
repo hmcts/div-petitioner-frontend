@@ -10,15 +10,15 @@ Before((I) => {
   I.haveMarriageCert();
 
   I.readFinancialRemedy();
-  I.selectHelpWithFees(false);
+  I.selectHelpWithFees(language, false);
   I.selectDivorceType();
   I.enterMarriageDate();
   I.selectMarriedInUk();
 });
 
 Scenario('Set A & C: Both Habitually Resident', function(I) {
-  I.chooseBothHabituallyResident(language);
-  I.chooseJurisdictionInterstitialContinue(language);
+  I.chooseBothHabituallyResident();
+  I.chooseJurisdictionInterstitialContinue();
   I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'C');
@@ -45,7 +45,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
   I.chooseYesLastHabitualResidence();
   I.checkMyConnectionSummaryIs('B', 'D', 'E', 'F');
   I.chooseJurisdictionConnectionSummaryNeedInfo();
-  I.chooseNeitherHabituallyResident();
+  I.chooseNeitherHabituallyResident(language);
   I.chooseRespondentDomiciled();
   I.chooseNoLastHabitualResidence();
   I.chooseYesForResidualJurisdiction();

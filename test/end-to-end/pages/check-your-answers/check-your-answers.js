@@ -69,7 +69,7 @@ function checkMyAnswersAndValidateSession(language = 'en') {
 function checkMyAnswersRestoredSession() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
   I.see(content.titleSoFar);
   I.see(content.continueApplication);
 
@@ -79,7 +79,7 @@ function checkMyAnswersRestoredSession() {
 function checkMyAnswersRemoveApplication() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
   I.see(content.titleSoFar);
   I.see(content.deleteApplciation);
 

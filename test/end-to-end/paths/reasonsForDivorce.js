@@ -1,7 +1,6 @@
-const languages = [ 'en', 'cy'];
+const languages = ['en', 'cy'];
 const contentEn = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const contentCy = require('app/steps/grounds-for-divorce/reason/content.json').resources.cy.translation.content;
-const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const moment = require('moment');
 const parseBool = require('app/core/utils/parseBool');
 const config = require('config');
@@ -20,53 +19,14 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
+Feature(' Reasons for divorce E2E Tests @functional99 ');
+
 languages.forEach( language => {
-
-  Feature(`${language.toUpperCase()} - Reasons for divorce E2E Tests @functional99 `);
-
-  Before( async (I) => {
-
-    await I.amOnLoadedPage('/', language );
-    I.startApplication(language);
-    I.wait(1);
-    I.languagePreference(language);
-    I.haveBrokenMarriage(language);
-    I.haveRespondentAddress(language);
-    I.haveMarriageCert(language);
-
-    I.readFinancialRemedy(language);
-    I.selectHelpWithFees(language);
-    I.enterHelpWithFees(language);
-    I.selectDivorceType(language);
-    I.enterMarriageDate(language);
-
-    I.selectMarriedInUk(language);
-
-    I.chooseBothHabituallyResident(language);
-    I.chooseJurisdictionInterstitialContinue(language);
-
-    I.enterPeConfidentialContactDetails(language);
-    I.enterPetitionerAndRespondentNames(language);
-    I.enterMarriageCertificateDetails(language);
-    I.enterPetitionerChangedName(language);
-    I.enterPetitionerContactDetails(language);
-
-    I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
-    I.enterCorrespondence(language);
-    I.selectLivingTogetherInSameProperty(language);
-
-    I.chooseRespondentServiceAddress(language);
-    I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
-  });
-
-  // After( async (I) => {
-  //   I.signOut();
-  //   // await I.browserClose();
-  // });
 
   Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {
 
     const reasonContent = language === 'en' ? contentEn : contentCy;
+    await loginPageToEnterAddressUsingPostcode(I, language);
     I.selectReasonForDivorce(language, reasonContent['unreasonableBehaviourHeading']);
     I.enterUnreasonableBehaviourExample(language);
 
@@ -111,6 +71,7 @@ languages.forEach( language => {
   Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
 
     const divorceReason = language === 'en' ? contentEn : contentCy;
+    await loginPageToEnterAddressUsingPostcode(I, language);
     I.selectReasonForDivorce(language, divorceReason['2YearsSeparationHeading']);
     I.selectRespondentConsentObtained(language);
     I.enterSeparationDateNew(language, twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
@@ -157,7 +118,9 @@ languages.forEach( language => {
 
   xScenario(`${language.toUpperCase()} - 5 years separation E2E `, async function(I) {
 
-    I.selectReasonForDivorce(language, content['5YearsSeparationHeading']);
+    const divorceReason = language === 'en' ? contentEn : contentCy;
+    await loginPageToEnterAddressUsingPostcode(I, language);
+    I.selectReasonForDivorce(language, divorceReason['5YearsSeparationHeading']);
     I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
       fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
     I.selectLivingApartTime(language);
@@ -200,3 +163,39 @@ languages.forEach( language => {
   }).retry(2);
 
 });
+
+async function loginPageToEnterAddressUsingPostcode( I, language) {
+
+  await I.amOnLoadedPage('/', language );
+  I.startApplication(language);
+  I.wait(1);
+  I.languagePreference(language);
+  I.haveBrokenMarriage(language);
+  I.haveRespondentAddress(language);
+  I.haveMarriageCert(language);
+
+  I.readFinancialRemedy(language);
+  I.selectHelpWithFees(language);
+  I.enterHelpWithFees(language);
+  I.selectDivorceType(language);
+  I.enterMarriageDate(language);
+
+  I.selectMarriedInUk(language);
+
+  I.chooseBothHabituallyResident(language);
+  I.chooseJurisdictionInterstitialContinue(language);
+
+  I.enterPeConfidentialContactDetails(language);
+  I.enterPetitionerAndRespondentNames(language);
+  I.enterMarriageCertificateDetails(language);
+  I.enterPetitionerChangedName(language);
+  I.enterPetitionerContactDetails(language);
+
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
+  I.enterCorrespondence(language);
+  I.selectLivingTogetherInSameProperty(language);
+
+  I.chooseRespondentServiceAddress(language);
+  I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
+}
+

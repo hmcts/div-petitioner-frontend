@@ -10,11 +10,11 @@ function chooseBothHabituallyResident(language = 'en') {
   }, language);
 }
 
-function chooseNeitherHabituallyResident() {
+function chooseNeitherHabituallyResident(language) {
   setHabitualResidence(this, {
     'petitioner': habituallyResident.no,
     'respondent': habituallyResident.no
-  });
+  }, language);
 }
 
 function choosePetitionerHabituallyResident(language ='en') {

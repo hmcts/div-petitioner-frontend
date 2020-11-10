@@ -9,27 +9,17 @@ const pagePath = '/pay/help/with-fees';
 function enterHelpWithFees(language = 'en', appliedForFees = contentEn.yes) {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const stepContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.retry(2).click(contentEn.yes);
-    if (appliedForFees) {
-      I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
-    }
-    I.navByClick(commonContent.continue);
-
-  } else {
-    I.retry(2).click(contentCy.yes);
-    if (appliedForFees) {
-      I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
-    }
-
-    I.navByClick(commonContent.continue);
+  I.retry(2).click(stepContent.yes);
+  if (appliedForFees) {
+    I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
   }
-
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterHelpWithFees };

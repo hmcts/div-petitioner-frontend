@@ -14,11 +14,6 @@ function enterSeparationDateNew(language = 'en', decisionDay = '1', decisionMont
   I.fillField('reasonForDivorceLivingApartDay', livingApartDay);
   I.fillField('reasonForDivorceLivingApartMonth', livingApartMonth);
   I.fillField('reasonForDivorceLivingApartYear', livingApartYear);
-
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
+  I.navByClick(commonContent.continue);
 }
 module.exports = { enterSeparationDateNew };

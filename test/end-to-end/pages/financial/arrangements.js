@@ -6,22 +6,17 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 function selectFinancialArrangements(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const stepContent = language === 'en' ? content : contentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.retry(2).checkOption(content.yes);
-    I.checkOption(content.petitioner);
-    I.checkOption(content.children);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.retry(2).checkOption(contentCy.yes);
-    I.checkOption(contentCy.petitioner);
-    I.checkOption(contentCy.children);
-    I.navByClick(commonContent.continue);
-  }
+  I.retry(2).checkOption(stepContent.yes);
+  I.checkOption(stepContent.petitioner);
+  I.checkOption(stepContent.children);
+  I.navByClick(commonContent.continue);
+
 }
 
 module.exports = { selectFinancialArrangements };

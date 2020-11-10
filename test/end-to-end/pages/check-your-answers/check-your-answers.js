@@ -35,19 +35,16 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 
 function checkMyAnswers(language = 'en') {
 
+  const stepContent = language === 'en' ? content : contentCy;
+
   const I = this;
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.see(content.title);
-    I.retry(2).checkOption(content.confirmApply);
-    I.navByClick(content.submitOnline);
-  } else {
-    I.see(contentCy.title);
-    I.retry(2).checkOption(contentCy.confirmApply);
-    I.navByClick(contentCy.submitOnline);
-  }
+  I.see(stepContent.title);
+  I.retry(2).checkOption(stepContent.confirmApply);
+  I.navByClick(stepContent.submitOnline);
+
 }
 
 function checkMyAnswersAndValidateSession(language = 'en') {
@@ -59,11 +56,10 @@ function checkMyAnswersAndValidateSession(language = 'en') {
     I.see(content.title);
     // Verify static session data still valid
     I.assertSessionEqualsMockTestData();
-    I.checkMyAnswers('en');
   } else {
     I.see(contentCy.title);
-    I.checkMyAnswers('cy');
   }
+  I.checkMyAnswers(language);
 }
 
 function checkMyAnswersRestoredSession() {

@@ -19,12 +19,11 @@ function completeLivingTogetherPage(I, chosenOption, language) {
   I.seeInCurrentUrl(pagePath);
   if (language === 'en') {
     I.checkOption(chosenOption);
-    I.navByClick(commonContent.continue);
   } else {
     I.checkOption(selectContentCy.yes);
-    I.navByClick(commonContent.continue);
   }
 
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = {

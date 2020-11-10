@@ -5,17 +5,13 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 function selectRespondentConsentObtained(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const stepContent = language === 'en' ? content : contentCy;
   const I = this;
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separated-2-years/respondent-consent');
 
-  if (language === 'en') {
-    I.checkOption(content.yes.label);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.checkOption(contentCy.yes.label);
-    I.navByClick(commonContent.continue);
-  }
+  I.checkOption(stepContent.yes.label);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { selectRespondentConsentObtained };

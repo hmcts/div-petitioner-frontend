@@ -11,12 +11,7 @@ function enterUnreasonableBehaviourExample(language = 'en') {
   I.seeInCurrentUrl(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
-
+  I.navByClick(commonContent.continue);
 }
 
 function enterUnreasonableBehaviourAddMoreExamples() {

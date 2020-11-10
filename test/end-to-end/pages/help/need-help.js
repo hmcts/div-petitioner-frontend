@@ -14,15 +14,8 @@ function selectHelpWithFees(language ='en', needHelp = true) {
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.retry(2).click(needHelp ? needHelpContent.yes : needHelpContent.no);
-    I.navByClick(commonContent.continue);
-
-  } else {
-    I.retry(2).click(needHelp ? needHelpContent.yes : needHelpContent.no);
-    I.navByClick(commonContent.continue);
-  }
-
+  I.retry(2).click(needHelp ? needHelpContent.yes : needHelpContent.no);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { selectHelpWithFees };

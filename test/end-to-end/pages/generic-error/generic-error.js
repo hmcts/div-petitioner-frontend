@@ -4,16 +4,14 @@ const pagePath = '/generic-error';
 
 function checkGenericErrorPage(language = 'en') {
 
+  const stepContent = language === 'en' ? content : contentCy;
+  
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.see(content.title);
-  } else {
-    I.see(contentCy.title);
-  }
+  I.see(stepContent.title);
 }
 
 module.exports = { checkGenericErrorPage };

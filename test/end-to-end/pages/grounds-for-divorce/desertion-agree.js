@@ -5,16 +5,12 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 function enterDesertionAgreement(language ='en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const stepContent = language === 'en' ? content : contentCy;
   const I = this;
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/desertion/agree');
 
-  if (language === 'en') {
-    I.checkOption(content.yes);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.checkOption(contentCy.yes);
-    I.navByClick(commonContent.continue);
-  }
+  I.checkOption(stepContent.yes);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterDesertionAgreement };

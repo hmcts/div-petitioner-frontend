@@ -42,7 +42,6 @@ function setHabitualResidence(I, residenceFor, language) {
   } else {
     I.navByClick(commonContentCy.continue);
   }
-
 }
 
 

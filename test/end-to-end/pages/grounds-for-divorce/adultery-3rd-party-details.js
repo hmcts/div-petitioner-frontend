@@ -11,12 +11,7 @@ function enter3rdPartyDetails(language ='en') {
   I.fillField('reasonForDivorceAdultery3rdPartyFirstName', mockSession.reasonForDivorceAdultery3rdPartyFirstName);
   I.fillField('reasonForDivorceAdultery3rdPartyLastName', mockSession.reasonForDivorceAdultery3rdPartyLastName);
 
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
-
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enter3rdPartyDetails };

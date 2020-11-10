@@ -24,9 +24,9 @@ class JSWait extends codecept_helper {
   }
 
   async browserClose () {
-    const page = this.helpers['Puppeteer'].page;
-    if (!page.isClosed()) {
-      await page.close();
+    const helperIsPuppeteer = this.helpers['Puppeteer'];
+    if (helperIsPuppeteer && !helperIsPuppeteer.page.isClosed) {
+      await helperIsPuppeteer.page.close();
     }
   }
 
@@ -41,7 +41,7 @@ class JSWait extends codecept_helper {
       }
 
       helper.page.goto(newUrl).catch(err => {
-        console.error(err.message);
+        console.error(`Error while navigating to newUrl=${newUrl}....${err.message}`);
 
       });
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});

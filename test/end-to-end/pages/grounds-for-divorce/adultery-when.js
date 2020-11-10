@@ -3,22 +3,15 @@ const contentCy = require('app/steps/grounds-for-divorce/adultery/when/content.j
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function selectAdulteryWhen(language ='en') {
+function selectAdulteryWhen(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const stepContent = language === 'en' ? content : contentCy;
   const I = this;
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/when');
-  I.checkOption(content.no);
-  I.navByClick('Continue');
 
-  if (language === 'en') {
-    I.checkOption(content.no);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.checkOption(contentCy.no);
-    I.navByClick(commonContent.continue);
-  }
-
+  I.checkOption(stepContent.no);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { selectAdulteryWhen };

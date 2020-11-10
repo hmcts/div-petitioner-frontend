@@ -13,11 +13,7 @@ function enterAddressUsingPostcode(language = 'en', stepUrl, testAddressIndex) {
   I.seeInCurrentUrl(stepUrl);
   I.fillField('postcode', 'SW9 9PE');
 
-  if(language === 'en') {
-    I.navByClick('Find address');
-  } else {
-    I.navByClick('Dod o hyd i gyfeiriad');
-  }
+  I.navByClick(commonContent.findAddress);
 
   I.waitForVisible('#selectAddressIndex');
   I.selectOption('#selectAddressIndex', testAddressIndex);
@@ -25,11 +21,7 @@ function enterAddressUsingPostcode(language = 'en', stepUrl, testAddressIndex) {
   I.waitForElement('#addressLine0');
   I.wait(2);
 
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
+  I.navByClick(commonContent.continue);
 
 }
 

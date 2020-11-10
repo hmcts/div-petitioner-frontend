@@ -14,28 +14,16 @@ function enterDesertionDate(language ='en') {
   I.fillField('reasonForDivorceDesertionDay', mockSession.reasonForDivorceDesertionDay.toString());
   I.fillField('reasonForDivorceDesertionMonth', mockSession.reasonForDivorceDesertionMonth.toString());
   I.fillField('reasonForDivorceDesertionYear', mockSession.reasonForDivorceDesertionYear.toString());
-
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
+  I.navByClick(commonContent.continue);
 }
 
-function checkDesertionDateOnCYAPage(language ='en') {
+function checkDesertionDateOnCYAPage() {
   const I = this;
   I.seeInCurrentUrl('/check-your-answers');
 
   const seperationDate = `${mockSession.reasonForDivorceDesertionDay}/${mockSession.reasonForDivorceDesertionMonth}/${mockSession.reasonForDivorceDesertionYear}`;
   const seperationDateFormatted = moment(seperationDate, DATE_FORMAT).format('Do MMMM YYYY');
   I.see(seperationDateFormatted);
-
-  if (language === 'en') {
-    I.see(seperationDateFormatted);
-  } else {
-    I.see(seperationDateFormatted);
-  }
-
 }
 
 module.exports = { enterDesertionDate, checkDesertionDateOnCYAPage };

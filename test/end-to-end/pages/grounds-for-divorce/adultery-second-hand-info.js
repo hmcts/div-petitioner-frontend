@@ -6,21 +6,15 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 function enterAdulterySecondHandInfo(language ='en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const stepContent = language === 'en' ? content : contentCy;
   const I = this;
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/second-hand-information');
 
-  if (language === 'en') {
-    I.click('#reasonForDivorceAdulterySecondHandInfo_' + content.yes);
-    I.fillField('reasonForDivorceAdulterySecondHandInfoDetails', mockSession.reasonForDivorceAdulterySecondHandInfoDetails);
-    I.navByClick(commonContent.continue);
-    I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
-  } else {
-    I.click('#reasonForDivorceAdulterySecondHandInfo_' + contentCy.yes);
-    I.fillField('reasonForDivorceAdulterySecondHandInfoDetails', mockSession.reasonForDivorceAdulterySecondHandInfoDetails);
-    I.navByClick(commonContent.continue);
-    I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
-  }
+  I.click('#reasonForDivorceAdulterySecondHandInfo_' + stepContent.yes);
+  I.fillField('reasonForDivorceAdulterySecondHandInfoDetails', mockSession.reasonForDivorceAdulterySecondHandInfoDetails);
+  I.navByClick(commonContent.continue);
+  I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
 }
 
 module.exports = { enterAdulterySecondHandInfo };

@@ -35,18 +35,25 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
   return;
 }
 
-function checkMyAnswers(language = 'en') {
+async function checkMyAnswers(language = 'en') {
   const checkYourAnswers = language === 'en' ? contentEn : contentCy;
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
-
   I.see(checkYourAnswers.title);
-  I.retry(2).checkOption(checkYourAnswers.confirmApply);
-  I.navByClick(checkYourAnswers.submitOnline);
+
+  const browserName = await I.getBrowserName();
+  if (browserName === 'safari') {
+    // Safari 13 & Saucelabs doesn't handle scrolling properly, so need to forceClick()
+    I.forceClick(checkYourAnswers.confirmApply);
+  } else {
+    I.retry(2).checkOption(checkYourAnswers.confirmApply);
+  }
+
+  await I.navByClick(checkYourAnswers.submitOnline);
 }
 
-function checkMyAnswersAndValidateSession(language = 'en') {
+async function checkMyAnswersAndValidateSession(language = 'en') {
 
   const I = this;
 
@@ -55,10 +62,10 @@ function checkMyAnswersAndValidateSession(language = 'en') {
     I.see(content.title);
     // Verify static session data still valid
     I.assertSessionEqualsMockTestData();
-    I.checkMyAnswers('en');
+    await I.checkMyAnswers('en');
   } else {
     I.see(contentCy.title);
-    I.checkMyAnswers('cy');
+    await I.checkMyAnswers('cy');
   }
 }
 

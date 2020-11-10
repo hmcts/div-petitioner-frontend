@@ -11,6 +11,7 @@ function chooseRespondentServiceAddress(language = 'en', option) {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
+  I.waitForText(stepContent.yes);
   I.checkOption(option || stepContent.no);
   I.navByClick(commonContent.continue);
 }

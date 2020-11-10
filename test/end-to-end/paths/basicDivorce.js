@@ -41,7 +41,7 @@ Scenario('Get a divorce', async function(I) {
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample(language);
 
-  I.enterLegalProceedings(language);
+  await I.enterLegalProceedings(language);
   I.selectFinancialArrangements(language);
   I.enterFinancialAdvice(language);
   I.enterClaimCosts(language);
@@ -56,7 +56,7 @@ Scenario('Get a divorce', async function(I) {
   await I.completeEquality(language);
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers(language);
+    await I.checkMyAnswers(language);
   } else{
     await I.checkMyAnswersAndValidateSession(language);
   }

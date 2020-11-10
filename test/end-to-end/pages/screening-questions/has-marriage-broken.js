@@ -12,6 +12,7 @@ function haveBrokenMarriage(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
+  I.waitForText(marriageBrokenContent.line1);
   I.retry(2).click(marriageBrokenContent.yes);
   I.navByClick(commonContent.continue);
 }

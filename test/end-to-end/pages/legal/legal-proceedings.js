@@ -4,7 +4,7 @@ const pagePath = '/about-divorce/legal-proceedings';
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function enterLegalProceedings(language = 'en') {
+async function enterLegalProceedings(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
@@ -13,7 +13,15 @@ function enterLegalProceedings(language = 'en') {
 
   if (language === 'en') {
     I.click('#legalProceedings_' + content.yes);
-    I.checkOption(mockSession.legalProceedingsRelated[0]);
+
+    const browserName = await I.getBrowserName();
+    if (browserName === 'safari') {
+      // Safari 13 & Saucelabs doesn't handle scrolling properly, so need to forceClick()
+      I.forceClick(mockSession.legalProceedingsRelated[0]);
+    } else {
+      I.retry(2).checkOption(mockSession.legalProceedingsRelated[0]);
+    }
+
     I.fillField('legalProceedingsDetails', mockSession.legalProceedingsDetails);
     I.navByClick(commonContent.continue);
   } else {

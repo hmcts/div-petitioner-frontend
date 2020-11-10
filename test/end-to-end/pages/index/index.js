@@ -4,6 +4,9 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
+const citizenEmail = CONF.testUser.idamCitizenEmail;
+const citizenPassword = CONF.testUser.idamCitizenPassword;
+
 
 function startApplication(language = 'en', ignoreIdamToggle = false) {
 
@@ -66,6 +69,17 @@ function signOut(language = 'en') {
   I.navByClick(commonContent.signOut);
 }
 
+function loginInAsIdamCitizenUser() {
+  let I = this;
+  I.fillField('username', citizenEmail);
+  I.fillField('password', citizenPassword);
+  I.navByClick('Sign in');
+  I.wait(2);
+  I.seeCurrentUrlEquals('/screening-questions/language-preference');
+
+
+}
+
 module.exports = {
   startApplication,
   startApplicationWith,
@@ -73,5 +87,6 @@ module.exports = {
   seeCookieFooter,
   followCookieBannerLink,
   dontGetShownCookieBannerAgain,
-  signOut
+  signOut,
+  loginInAsIdamCitizenUser
 };

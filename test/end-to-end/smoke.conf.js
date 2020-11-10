@@ -20,17 +20,19 @@ exports.config = {
         ]
       }
     },
-    JSWait: { require: './helpers/JSWait.js' }
+    JSWait: {require: './helpers/JSWait.js'}
   },
+  include: {I: './pages/steps.js'},
+
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
         stdout: '-',
-        options: { steps: true }
+        options: {steps: true}
       },
       'mocha-junit-reporter': {
         stdout: '-',
-        options: { mochaFile: './smoke-output/result.xml' }
+        options: {mochaFile: './smoke-output/result.xml'}
       }
     }
   },

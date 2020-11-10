@@ -43,6 +43,16 @@ data "azurerm_key_vault_secret" "launchdarkly_key" {
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
 
+data "azurerm_key_vault_secret" "idamCitizenEmail" {
+  name      = "idam-citizen-username"
+  key_vault_id = data.azurerm_key_vault.div_key_vault.id
+}
+
+data "azurerm_key_vault_secret" "idamCitizenPassword" {
+  name      = "idam-citizen-password"
+  key_vault_id = data.azurerm_key_vault.div_key_vault.id
+}
+
 locals {
   aseName                             = "core-compute-${var.env}"
   public_hostname                     = "div-pfe-${var.env}.service.${local.aseName}.internal"
@@ -217,5 +227,8 @@ module "frontend" {
     WEBCHAT_BUTTON_SERVICE_CLOSED = var.webchat_button_service_closed
 
     LAUNCHDARKLY_KEY = data.azurerm_key_vault_secret.launchdarkly_key.value
+
+    IDAM_CITIZEN_EMAIL = data.azurerm_key_vault_secret.idamCitizenEmail.value
+    IDAM_CITIZEN_PASSWORD = data.azurerm_key_vault_secret.idamCitizenPassword.value
   }
 }

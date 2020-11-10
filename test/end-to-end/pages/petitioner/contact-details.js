@@ -7,7 +7,7 @@ const pagePath = '/petitioner-respondent/contact-details';
 function enterPetitionerContactDetails() {
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.wait(1);
   if (parseBool(CONF.features.idam)) {

@@ -7,7 +7,7 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.waitInUrl('/check-your-answers');
   I.waitForElement('#jurisdiction-connections');
 
   connections.forEach((connection) => {
@@ -35,7 +35,7 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 function checkMyAnswers() {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.see(content.title);
 
@@ -48,7 +48,7 @@ function checkMyAnswersAndValidateSession() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.waitInUrl('/check-your-answers');
   I.see(content.title);
 
   // Verify static session data still valid
@@ -60,7 +60,7 @@ function checkMyAnswersAndValidateSession() {
 function checkMyAnswersRestoredSession() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.waitInUrl('/check-your-answers');
   I.see(content.titleSoFar);
   I.see(content.continueApplication);
 
@@ -70,7 +70,7 @@ function checkMyAnswersRestoredSession() {
 function checkMyAnswersRemoveApplication() {
   const I = this;
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.waitInUrl('/check-your-answers');
   I.see(content.titleSoFar);
   I.see(content.deleteApplciation);
 

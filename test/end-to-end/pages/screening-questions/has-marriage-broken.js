@@ -4,7 +4,7 @@ function haveBrokenMarriage() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/has-marriage-broken');
+  I.waitInUrl('/screening-questions/has-marriage-broken');
   I.retry(2).click(content.yes);
   I.navByClick('Continue');
 }

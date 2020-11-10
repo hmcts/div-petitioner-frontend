@@ -4,7 +4,7 @@ const pagePath = '/petitioner-respondent/respondent-correspondence/use-home-addr
 function chooseRespondentServiceAddress(option) {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
 
   I.checkOption(option || content.no);

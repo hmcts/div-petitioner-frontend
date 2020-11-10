@@ -11,7 +11,7 @@ function startApplication(ignoreIdamToggle = false) {
 
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
     let I = this;
-    I.seeInCurrentUrl('/login?');
+    I.waitInUrl('/login?');
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.navByClick('Sign in');

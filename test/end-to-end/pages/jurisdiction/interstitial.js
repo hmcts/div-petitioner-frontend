@@ -5,7 +5,7 @@ function chooseJurisdictionInterstitialContinue() {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.retry(2).click(content.confident);
   I.navByClick('Continue');
@@ -15,7 +15,7 @@ function chooseJurisdictionInterstitialNeedInfo() {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.checkOption(content.needInfo);
   I.navByClick('Continue');

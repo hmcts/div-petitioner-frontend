@@ -5,7 +5,7 @@ const pagePath = '/petitioner-respondent/petitioner-correspondence/use-home-addr
 function enterCorrespondence(addressObj) {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
 
   if (addressObj) {

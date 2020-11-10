@@ -4,7 +4,7 @@ const pagePath = '/about-divorce/reason-for-divorce/unreasonable-behaviour';
 function enterUnreasonableBehaviourExample() {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
 

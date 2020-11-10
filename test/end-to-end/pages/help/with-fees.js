@@ -6,7 +6,7 @@ function enterHelpWithFees(appliedForFees = content.yes) {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.retry(2).click(appliedForFees);
   if (appliedForFees) {

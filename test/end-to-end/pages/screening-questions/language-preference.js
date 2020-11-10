@@ -4,7 +4,8 @@ function languagePreference() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/screening-questions/language-preference');
+  I.waitInUrl('/screening-questions/language-preference');
+  I.waitForText(content.question);
   I.retry(2).click(content.yes);
   I.navByClick('Continue');
 }

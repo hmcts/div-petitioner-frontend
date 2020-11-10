@@ -10,7 +10,7 @@ function selectDoNotLiveTogetherInSameProperty() {
 }
 
 function completeLivingTogetherPage(I, chosenOption) {
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.checkOption(chosenOption);
   I.navByClick('Continue');

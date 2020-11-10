@@ -4,7 +4,7 @@ const pagePath = '/petitioner-respondent/changed-name';
 function enterPetitionerChangedName() {
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.retry(2).click(content.yes);
   I.checkOption(content.marriageCertificate);

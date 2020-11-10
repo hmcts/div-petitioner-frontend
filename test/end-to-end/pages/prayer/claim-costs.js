@@ -5,7 +5,7 @@ function enterClaimCosts() {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.checkOption(content.yes);
   I.navByClick('Continue');
@@ -15,7 +15,7 @@ function enterClaimCostsCorrespondent() {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.checkOption(content.yes);
   I.checkOption( '#correspondent');

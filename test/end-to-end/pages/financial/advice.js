@@ -3,7 +3,7 @@ const pagePath = '/about-divorce/financial/advice';
 function enterFinancialAdvice() {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.navByClick('Continue');
 }

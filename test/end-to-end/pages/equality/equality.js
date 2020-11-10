@@ -9,7 +9,7 @@ async function completeEquality() {
   const url = await I.grabCurrentUrl();
 
   if (url.startsWith(pcqAAT)) {
-    I.seeCurrentUrlEquals(pagePath);
+    I.waitInUrl(pagePath);
 
     await I.navByClick('I don\'t want to answer these questions');
     I.wait(5);

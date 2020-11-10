@@ -4,7 +4,7 @@ const pagePath = '/petitioner-respondent/confidential';
 function enterPeConfidentialContactDetails(shareAddress = true) {
 
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.retry(2).checkOption(shareAddress ? content.share : content.keep);
   I.scrollPageToBottom();

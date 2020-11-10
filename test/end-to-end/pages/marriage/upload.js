@@ -15,9 +15,8 @@ function uploadMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
-  I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
+  I.waitInUrl('/petitioner-respondent/marriage-certificate-upload');
   upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
-  I.waitForVisible('.file', 30);
   I.waitForText('Remove', 30);
   I.waitForVisible('input[value="Continue"]:not([disabled])');
   I.navByClick('Continue');
@@ -47,7 +46,7 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
 
 function withoutUploadFile() {
   const I = this;
-  I.seeCurrentUrlEquals('/petitioner-respondent/marriage-certificate-upload');
+  I.waitInUrl('/petitioner-respondent/marriage-certificate-upload');
   I.see('No files uploaded');
   I.navByClick('Continue');
 }

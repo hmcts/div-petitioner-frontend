@@ -2,7 +2,7 @@ const pagePath = '/petitioner-respondent/names';
 
 function enterPetitionerAndRespondentNames() {
   const I = this;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.retry(2).fillField('petitionerFirstName', 'John');
   I.fillField('petitionerLastName', 'Smith');

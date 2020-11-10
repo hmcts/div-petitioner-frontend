@@ -17,9 +17,8 @@ function selectDoNotLiveTogetherInSameProperty(language = 'en') {
 function completeLivingTogetherPage(I, chosenOption, language) {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
-
   I.checkOption(chosenOption);
   I.navByClick(commonContent.continue);
 }

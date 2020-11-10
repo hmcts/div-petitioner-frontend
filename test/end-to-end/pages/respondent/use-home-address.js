@@ -9,7 +9,7 @@ function chooseRespondentServiceAddress(language = 'en', option) {
   const stepContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(option || stepContent.no);
   I.navByClick(commonContent.continue);

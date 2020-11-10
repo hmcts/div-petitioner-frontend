@@ -14,7 +14,7 @@ function enterPetitionerContactDetails(language = 'en') {
   const contactDetails = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.wait(1);
 

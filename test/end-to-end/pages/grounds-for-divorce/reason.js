@@ -6,7 +6,7 @@ function selectReasonForDivorce(language = 'en', reason) {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 3);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
 
   I.waitForText(reason);

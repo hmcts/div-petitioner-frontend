@@ -7,7 +7,7 @@ function amDoneAndSubmitted(language = 'en') {
   const doneAndSubmitted = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.see(doneAndSubmitted.title);
 }

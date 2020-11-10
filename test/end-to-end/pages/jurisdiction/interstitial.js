@@ -10,7 +10,7 @@ function chooseJurisdictionInterstitialContinue(language = 'en') {
   const interstitialContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(interstitialContent.confident);
   I.navByClick(commonContent.continue);
@@ -20,7 +20,7 @@ function chooseJurisdictionInterstitialNeedInfo() {
 
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.checkOption(contentEn.needInfo);
   I.navByClick('Continue');

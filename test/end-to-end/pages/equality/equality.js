@@ -11,6 +11,7 @@ async function completeEquality(language = 'en') {
   const url = await I.grabCurrentUrl();
 
   if (url.startsWith(pcqAAT)) {
+    I.waitInUrl(pagePath);
     I.seeCurrentUrlEquals(pagePath);
     await I.navByClick(stepContent);
     I.wait(5);

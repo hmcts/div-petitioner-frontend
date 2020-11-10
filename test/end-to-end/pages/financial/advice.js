@@ -6,7 +6,7 @@ function enterFinancialAdvice(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 3);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.navByClick(commonContent.continue);
 }

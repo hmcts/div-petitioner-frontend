@@ -10,7 +10,7 @@ function haveMarriageCert(language = 'en') {
   const marriageCertContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(marriageCertContent.yes);
   // I.moveCursorTo('input[name=submit]');

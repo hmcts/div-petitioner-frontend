@@ -15,7 +15,12 @@ function getOtherJurisdictionConnections(connections) {
   return connectionsList;
 }
 
+function merge(intoObject, fromObject) {
+  return Object.assign({}, intoObject, fromObject);
+}
+
 module.exports = {
   prettifyAddress,
-  getOtherJurisdictionConnections
+  getOtherJurisdictionConnections,
+  merge
 };

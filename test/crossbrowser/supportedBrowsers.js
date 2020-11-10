@@ -5,45 +5,58 @@ const supportedBrowsers = {
   microsoftIE11: {
     ie11: {
       browserName: 'internet explorer',
-      name: 'IE11',
-      platform: LATEST_WINDOWS,
-      version: 'latest'
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'IE11',
+        screenResolution: '1280x1024'
+      }
     }
   },
   microsoftEdge: {
     edge: {
       browserName: 'MicrosoftEdge',
-      name: 'Edge_Win10',
-      platform: LATEST_WINDOWS,
-      version: 'latest'
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'Edge_Win10'
+      }
     }
   },
   chrome: {
     chrome_win_latest: {
       browserName: 'chrome',
-      name: 'DIV_WIN_CHROME_LATEST',
-      platform: LATEST_WINDOWS,
-      version: 'latest'
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'WIN_CHROME_LATEST'
+      }
     },
     chrome_mac_latest: {
       browserName: 'chrome',
-      name: 'MAC_CHROME_LATEST',
-      platform: LATEST_MAC,
-      version: 'latest'
+      platformName: LATEST_MAC,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'MAC_CHROME_LATEST'
+      }
     }
   },
   firefox: {
     firefox_win_latest: {
       browserName: 'firefox',
-      name: 'WIN_FIREFOX_LATEST',
-      platform: LATEST_WINDOWS,
-      version: 'latest'
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'WIN_FIREFOX_LATEST'
+      }
     },
     firefox_mac_latest: {
       browserName: 'firefox',
-      name: 'MAC_FIREFOX_LATEST',
-      platform: LATEST_MAC,
-      version: 'latest'
+      platformName: LATEST_MAC,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'MAC_FIREFOX_LATEST'
+      }
     }
   }
 };

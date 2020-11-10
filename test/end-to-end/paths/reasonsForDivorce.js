@@ -30,7 +30,7 @@ languages.forEach( language => {
     I.selectReasonForDivorce(language, reasonContent['unreasonableBehaviourHeading']);
     I.enterUnreasonableBehaviourExample(language);
 
-    I.enterLegalProceedings(language);
+    await I.enterLegalProceedings(language);
     I.selectFinancialArrangements(language);
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
@@ -45,7 +45,7 @@ languages.forEach( language => {
     await I.completeEquality(language);
 
     if (parseBool(config.features.ignoreSessionValidation)) {
-      I.checkMyAnswers(language);
+      await I.checkMyAnswers(language);
     } else{
       await I.checkMyAnswersAndValidateSession(language);
     }
@@ -78,7 +78,7 @@ languages.forEach( language => {
       twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
 
     I.selectLivingApartTime(language);
-    I.enterLegalProceedings(language);
+    await I.enterLegalProceedings(language);
     I.selectFinancialArrangements(language);
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
@@ -93,7 +93,7 @@ languages.forEach( language => {
     await I.completeEquality(language);
 
     if (parseBool(config.features.ignoreSessionValidation)) {
-      I.checkMyAnswers(language);
+      await I.checkMyAnswers(language);
     } else{
       await I.checkMyAnswers(language);
     }
@@ -124,7 +124,7 @@ languages.forEach( language => {
     I.enterSeparationDateNew(language, fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
       fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
     I.selectLivingApartTime(language);
-    I.enterLegalProceedings(language);
+    await I.enterLegalProceedings(language);
     I.selectFinancialArrangements(language);
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
@@ -139,7 +139,7 @@ languages.forEach( language => {
     await I.completeEquality(language);
 
     if (parseBool(config.features.ignoreSessionValidation)) {
-      I.checkMyAnswers(language);
+      await I.checkMyAnswers(language);
     } else{
       await I.checkMyAnswers(language);
     }

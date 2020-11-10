@@ -12,6 +12,7 @@ function haveMarriageCert(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
+  I.waitForText(marriageCertContent.question);
   I.retry(2).click(marriageCertContent.yes);
   // I.moveCursorTo('input[name=submit]');
   I.scrollPageToBottom();

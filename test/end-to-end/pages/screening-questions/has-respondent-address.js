@@ -12,6 +12,7 @@ function haveRespondentAddress(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
+  I.waitForText(respondentAddContent.question);
   I.retry(2).click(respondentAddContent.yes);
   I.navByClick(commonContent.continue);
 }

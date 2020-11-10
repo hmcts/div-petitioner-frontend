@@ -19,7 +19,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature(' Reasons for divorce E2E Tests @functional99 ');
+Feature(' Reasons for divorce E2E Tests @functional ');
 
 languages.forEach( language => {
 
@@ -66,7 +66,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(0);
+  }).retry(1);
 
   Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
 
@@ -114,7 +114,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(0);
+  }).retry(1);
 
   xScenario(`${language.toUpperCase()} - 5 years separation E2E `, async function(I) {
 
@@ -160,7 +160,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(2);
+  }).retry(1);
 
 });
 

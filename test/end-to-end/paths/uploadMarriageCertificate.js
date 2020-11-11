@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
 const language = 'en';
-Feature('Upload Marriage Certificate @functional').retry(3);
+Feature('Upload Marriage Certificate @functional').retry(2);
 
 Scenario('Test upload', async function (I) {
   I.amOnLoadedPage('/index');
@@ -13,7 +13,7 @@ Scenario('Test upload', async function (I) {
 });
 
 Scenario('Test remove marriage Certificate', async function (I) {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();

@@ -19,7 +19,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature(' Reasons for divorce E2E Tests @functional ');
+Feature(' Reasons for divorce E2E Tests @functional ').retry(2);
 
 languages.forEach( language => {
 

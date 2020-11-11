@@ -48,7 +48,7 @@ Scenario('Card payment online failure', async function (I) {
 Scenario('Card payment online cancellation with retry', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
-  I.selectHelpWithFees(false);
+  I.selectHelpWithFees(language, false);
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyAnswers();
 

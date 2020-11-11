@@ -49,8 +49,6 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
   I.waitForVisible('.file', 30);
   I.waitForText('Remove', 30);
   I.click('Remove');
-  I.waitForInvisible('.file');
-  I.dontSee('Remove');
   I.navByClick('Continue');
 }
 

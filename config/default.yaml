@@ -165,7 +165,7 @@ saucelabs:
   username: 'username'
   key: 'privatekey'
   tunnelId: 'reformtunnel'
-  waitForTimeout: 5000
+  waitForTimeout: 60000
   smartWait: 5000
 
 public:

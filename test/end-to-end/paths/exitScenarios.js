@@ -42,20 +42,19 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
 }).retry(1);
 
 
-Scenario('Exit if 5 years separation chosen but actual living apart date is less', (I) => {
-  I.amOnLoadedPage('/');
-  I.startApplication();
+Scenario('Exit if 5 years separation chosen but actual living apart date is less', async (I) => {
+  await I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
-  I.amOnLoadedPage('/about-your-marriage/details');
+  await I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
   I.enterMarriageDate(language, tenYearsAgoFormatted.day, tenYearsAgoFormatted.month, tenYearsAgoFormatted.year);
-  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
+  await I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
   I.selectReasonForDivorce(language, content['5YearsSeparationHeading']);
   I.enterSeparationDateNew(language, fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.seeInCurrentUrl('/exit/separation');
-  I.navByClick('choose another reason');
+  await I.navByClick('choose another reason');
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
 }).retry(1);

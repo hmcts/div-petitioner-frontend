@@ -13,7 +13,7 @@ Before((I) => {
   I.selectHelpWithFees(language, false);
   I.selectDivorceType();
   I.enterMarriageDate();
-  I.selectMarriedInUk();
+  I.selectMarriedInUk(language);
 });
 
 Scenario('Set A & C: Both Habitually Resident', function(I) {

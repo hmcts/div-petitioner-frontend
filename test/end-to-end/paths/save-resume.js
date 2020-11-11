@@ -83,7 +83,7 @@ Scenario('Save and close', function (I) {
 });
 
 Scenario('Delete application from draft petition store', function (I) {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
@@ -95,25 +95,25 @@ Scenario('Delete application from draft petition store', function (I) {
     I.selectHelpWithFees(language);
     I.clearCookie();
 
-    I.amOnLoadedPage('/');
+    I.amOnLoadedPage('/index');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
     I.seeCookie('mockRestoreSession');
   }
 
-  I.startApplication();
+  I.startApplicationWith('basicDivorceSessionData');
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
   I.seeInCurrentUrl('/exit/removed-saved-application');
 
-  const ignoreIdam = true;
-  I.amOnLoadedPage('/index');
-  I.startApplication(ignoreIdam);
-  I.seeInCurrentUrl('/screening-questions/language-preference');
+  // const ignoreIdam = true;
+  // I.amOnLoadedPage('/index');
+  // I.startApplication(ignoreIdam);
+  // I.seeInCurrentUrl('/screening-questions/language-preference');
 });
 
 Scenario('I delete my amend petition from draft store', function (I) {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
@@ -138,7 +138,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
 });
 
 Scenario('I do not delete my amend petition from draft store', function (I) {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
@@ -164,7 +164,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
 });
 
 Scenario('Decline to delete application from draft petition store', function (I) {
-  I.amOnLoadedPage('/');
+  I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();

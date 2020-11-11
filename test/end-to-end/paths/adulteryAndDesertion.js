@@ -76,7 +76,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(2);
+  }).retry(3);
 
 
   Scenario (`${language.toUpperCase()} - Desertion without agreement`, async function(I) {
@@ -128,7 +128,7 @@ languages.forEach( language => {
       I.confirmIWillPayOnline(language);
     }
 
-  }).retry(2);
+  }).retry(3);
 
 });
 

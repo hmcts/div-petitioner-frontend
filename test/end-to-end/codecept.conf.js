@@ -68,7 +68,7 @@ function configureChunks() {
   if (CONF.e2e.runBasicTests === 'true') {
     return 2;
   } else {
-    return 6;
+    return 7;
   }
 }
 

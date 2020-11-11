@@ -17,7 +17,7 @@ Before((I) => {
 });
 
 Scenario('Set A & C: Both Habitually Resident', function(I) {
-  I.chooseBothHabituallyResident();
+  I.chooseBothHabituallyResident(language);
   I.chooseJurisdictionInterstitialContinue();
   I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');

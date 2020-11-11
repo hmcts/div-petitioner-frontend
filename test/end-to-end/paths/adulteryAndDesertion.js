@@ -4,7 +4,7 @@ const contentCy = require('app/steps/grounds-for-divorce/reason/content.json').r
 
 const config = require('config');
 
-Feature( 'Adultery and Desertion E2E Tests @e2e');
+Feature( 'Adultery and Desertion E2E Tests @functional').retry(3);
 
 languages.forEach( language => {
 

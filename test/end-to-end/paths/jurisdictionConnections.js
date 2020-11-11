@@ -54,7 +54,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
   I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('G');
-});
+}).retry(2);
 
 Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', function(I) {
   I.choosePetitionerHabituallyResident(language);
@@ -64,4 +64,4 @@ Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', f
   I.chooseNoLastHabitualResidence();
   I.chooseNoForResidualJurisdiction();
   I.seeInCurrentUrl('/exit/jurisdiction/no-cnnections');
-});
+}).retry(2);

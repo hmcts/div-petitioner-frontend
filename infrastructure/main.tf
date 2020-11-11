@@ -43,7 +43,7 @@ data "azurerm_key_vault_secret" "launchdarkly_key" {
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
 
-data "azurerm_key_vault_secret" "idamCitizenEmail" {
+data "azurerm_key_vault_secret" "idamCitizenUsername" {
   name      = "idam-citizen-username"
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
@@ -228,7 +228,7 @@ module "frontend" {
 
     LAUNCHDARKLY_KEY = data.azurerm_key_vault_secret.launchdarkly_key.value
 
-    IDAM_CITIZEN_EMAIL = data.azurerm_key_vault_secret.idamCitizenEmail.value
+    IDAM_CITIZEN_USERNAME = data.azurerm_key_vault_secret.idamCitizenUsername.value
     IDAM_CITIZEN_PASSWORD = data.azurerm_key_vault_secret.idamCitizenPassword.value
   }
 }

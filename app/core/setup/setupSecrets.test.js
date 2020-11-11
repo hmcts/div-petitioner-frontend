@@ -21,7 +21,7 @@ describe(modulePath, () => {
           'idam-secret': 'idamValue',
           'os-places-token': 'postCodeValue',
           'frontend-secret': 'frontendValue',
-          'idam-citizen-username': 'email',
+          'idam-citizen-username': 'username',
           'idam-citizen-password': 'password'
         }
       };
@@ -41,7 +41,7 @@ describe(modulePath, () => {
         .to.equal(mockConfig.secrets.div['os-places-token']);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(mockConfig.secrets.div['frontend-secret']);
-      expect(mockConfig.testUser.idamCitizenEmail)
+      expect(mockConfig.testUser.idamCitizenUsername)
         .to.equal(mockConfig.secrets.div['idam-citizen-username']);
       expect(mockConfig.testUser.idamCitizenPassword)
         .to.equal(mockConfig.secrets.div['idam-citizen-password']);
@@ -63,8 +63,8 @@ describe(modulePath, () => {
         .to.equal(config.services.postcodeInfo.token);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(config.services.serviceAuthProvider.microserviceKey);
-      expect(mockConfig.testUser.idamCitizenEmail)
-        .to.equal(config.testUser.idamCitizenEmail);
+      expect(mockConfig.testUser.idamCitizenUsername)
+        .to.equal(config.testUser.idamCitizenUsername);
       expect(mockConfig.testUser.idamCitizenPassword)
         .to.equal(config.testUser.idamCitizenPassword);
     });
@@ -89,8 +89,8 @@ describe(modulePath, () => {
         .to.equal(config.services.postcodeInfo.token);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(config.services.serviceAuthProvider.microserviceKey);
-      expect(mockConfig.testUser.idamCitizenEmail)
-        .to.equal(config.testUser.idamCitizenEmail);
+      expect(mockConfig.testUser.idamCitizenUsername)
+        .to.equal(config.testUser.idamCitizenUsername);
       expect(mockConfig.testUser.idamCitizenPassword)
         .to.equal(config.testUser.idamCitizenPassword);
     });

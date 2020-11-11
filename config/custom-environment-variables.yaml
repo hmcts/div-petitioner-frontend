@@ -125,5 +125,5 @@ featureToggles:
   launchDarklyKey: LAUNCHDARKLY_KEY
 
 testUser:
-  idamCitizenEmail: IDAM_CITIZEN_EMAIL
+  idamCitizenUsername: IDAM_CITIZEN_USERNAME
   idamCitizenPassword: IDAM_CITIZEN_PASSWORD

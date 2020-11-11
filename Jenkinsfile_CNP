@@ -15,8 +15,8 @@ def secrets = [
     secret('os-places-token', 'POST_CODE_ACCESS_TOKEN'),
     secret('frontend-secret', 'MICROSERVICE_KEY'),
     secret('launchdarkly-key', 'LAUNCHDARKLY_KEY'),
-    secret('idam-citizen-username', 'IDAM_CITIZEN_EMAIL'),
-   secret('idam-citizen-password', 'IDAM_CITIZEN_PASSWORD')
+    secret('idam-citizen-username', 'IDAM_CITIZEN_USERNAME'),
+    secret('idam-citizen-password', 'IDAM_CITIZEN_PASSWORD')
 
   ]
 ]

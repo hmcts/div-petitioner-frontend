@@ -1,5 +1,5 @@
-const {expect} = require('test/util/chai');
-const {cloneDeep} = require('lodash');
+const { expect } = require('test/util/chai');
+const { cloneDeep } = require('lodash');
 const config = require('config');
 const proxyquire = require('proxyquire');
 
@@ -28,7 +28,7 @@ describe(modulePath, () => {
 
       // Update config with secret setup
       const setupSecrets = proxyquire(modulePath,
-        {config: mockConfig});
+        { config: mockConfig });
       setupSecrets.setup();
 
       expect(mockConfig.secret)
@@ -50,7 +50,7 @@ describe(modulePath, () => {
     it('should not set config values when secrets path is not set', () => {
       // Update config with secret setup
       const setupSecrets = proxyquire(modulePath,
-        {config: mockConfig});
+        { config: mockConfig });
       setupSecrets.setup();
 
       expect(mockConfig.secret)
@@ -70,11 +70,11 @@ describe(modulePath, () => {
     });
 
     it('should only set one config value when single secret path is set', () => {
-      mockConfig.secrets = {div: {'idam-secret': 'idamValue'}};
+      mockConfig.secrets = { div: { 'idam-secret': 'idamValue' } };
 
       // Update config with secret setup
       const setupSecrets = proxyquire(modulePath,
-        {config: mockConfig});
+        { config: mockConfig });
       setupSecrets.setup();
 
       expect(mockConfig.secret)

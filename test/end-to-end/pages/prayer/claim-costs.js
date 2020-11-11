@@ -28,10 +28,6 @@ function enterClaimCostsCorrespondent(language ='en') {
   I.waitInUrl(pagePath, 3);
   I.seeInCurrentUrl(pagePath);
 
-  I.checkOption(content.yes);
-  I.checkOption( '#correspondent');
-  I.navByClick('Continue');
-
   if (language === 'en') {
     I.checkOption(content.yes);
     I.checkOption( '#correspondent');

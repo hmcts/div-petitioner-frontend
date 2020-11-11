@@ -4,7 +4,7 @@ const contentCy = require('app/steps/grounds-for-divorce/reason/content.json').r
 
 const config = require('config');
 
-Feature( 'Adultery and Desertion E2E Tests ...');
+Feature( 'Adultery and Desertion E2E Tests @functional');
 
 languages.forEach( language => {
 
@@ -35,7 +35,7 @@ languages.forEach( language => {
     I.chooseRespondentServiceAddress(language);
     I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
 
-    I.selectReasonForDivorce(divorceReason['adulteryHeading']);
+    I.selectReasonForDivorce(language, divorceReason['adulteryHeading']);
     I.selectWishToName(language);
     I.enter3rdPartyDetails(language);
     I.enterAddressUsingPostcode(language, '/about-divorce/reason-for-divorce/adultery/co-respondent-address');
@@ -76,7 +76,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(2).tag('@functional');
+  }).retry(2);
 
 
   Scenario (`${language.toUpperCase()} - Desertion without agreement`, async function(I) {
@@ -105,7 +105,7 @@ languages.forEach( language => {
 
     I.chooseRespondentServiceAddress(language);
     I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
-    I.selectReasonForDivorce(divorceReason['desertionHeading']);
+    I.selectReasonForDivorce(language, divorceReason['desertionHeading']);
     I.enterDesertionAgreement(language);
     I.enterDesertionDate(language);
     I.selectLivingApartTime(language);
@@ -115,12 +115,9 @@ languages.forEach( language => {
     I.selectFinancialArrangements(language);
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
-
-    const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
+    I.withoutUploadFile(language);
 
     await I.completeEquality(language);
-
     I.checkDesertionDateOnCYAPage(language);
     I.checkMyAnswers(language);
 
@@ -128,10 +125,10 @@ languages.forEach( language => {
     if (genericErrorPage) {
       I.checkGenericErrorPage(language);
     } else {
-      I.confirmIWillPayOnline();
+      I.confirmIWillPayOnline(language);
     }
 
-  }).retry(2).tag('@functional');
+  }).retry(2);
 
 });
 

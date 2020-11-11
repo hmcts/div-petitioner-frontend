@@ -6,10 +6,7 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 function selectAdulteryWhen(language ='en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
-
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/when');
-  I.checkOption(content.no);
-  I.navByClick('Continue');
 
   if (language === 'en') {
     I.checkOption(content.no);

@@ -86,7 +86,7 @@ Scenario('Basic Divorce E2E - with added examples', async function(I) {
     I.amDoneAndSubmitted();
   }
 
-}).retry(2);
+}).retry(3);
 
 Scenario('2 years separation E2E', async function(I) {
 
@@ -124,7 +124,7 @@ Scenario('2 years separation E2E', async function(I) {
     I.amDoneAndSubmitted();
   }
 
-}).retry(2);
+}).retry(3);
 
 Scenario('5 years separation E2E', async function(I) {
 
@@ -159,4 +159,4 @@ Scenario('5 years separation E2E', async function(I) {
     I.amDoneAndSubmitted();
   }
 
-}).retry(2);
+}).retry(3);

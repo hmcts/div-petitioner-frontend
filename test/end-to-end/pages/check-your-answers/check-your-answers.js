@@ -40,7 +40,7 @@ function checkMyAnswers(language = 'en') {
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  I.see(content.title);
+  I.see(checkYourAnswers.title);
   I.retry(2).checkOption(checkYourAnswers.confirmApply);
   I.navByClick(checkYourAnswers.submitOnline);
 }

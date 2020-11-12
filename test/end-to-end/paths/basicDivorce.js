@@ -1,3 +1,4 @@
+const language = 'en';
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const parseBool = require('app/core/utils/parseBool');
 const config = require('config');
@@ -6,59 +7,59 @@ Feature('Basic divorce path');
 
 Scenario('Get a divorce', async function(I) {
 
-  I.amOnPage('/index');
-  I.startApplication();
+  I.amOnLoadedPage('/');
+  I.startApplication(language);
   I.wait(1);
-  I.languagePreference();
-  I.haveBrokenMarriage();
-  I.haveRespondentAddress();
-  I.haveMarriageCert();
+  I.languagePreference(language);
+  I.haveBrokenMarriage(language);
+  I.haveRespondentAddress(language);
+  I.haveMarriageCert(language);
 
-  I.readFinancialRemedy();
-  I.selectHelpWithFees();
-  I.enterHelpWithFees();
-  I.selectDivorceType();
-  I.enterMarriageDate();
+  I.readFinancialRemedy(language);
+  I.selectHelpWithFees(language);
+  I.enterHelpWithFees(language);
+  I.selectDivorceType(language);
+  I.enterMarriageDate(language);
 
-  I.selectMarriedInUk();
+  I.selectMarriedInUk(language);
 
-  I.chooseBothHabituallyResident();
-  I.chooseJurisdictionInterstitialContinue();
+  I.chooseBothHabituallyResident(language);
+  I.chooseJurisdictionInterstitialContinue(language);
 
-  I.enterPeConfidentialContactDetails();
-  I.enterPetitionerAndRespondentNames();
-  I.enterMarriageCertificateDetails();
-  I.enterPetitionerChangedName();
-  I.enterPetitionerContactDetails();
+  I.enterPeConfidentialContactDetails(language);
+  I.enterPetitionerAndRespondentNames(language);
+  I.enterMarriageCertificateDetails(language);
+  I.enterPetitionerChangedName(language);
+  I.enterPetitionerContactDetails(language);
 
-  I.enterAddressUsingPostcode('/petitioner-respondent/address');
-  I.enterCorrespondence();
-  I.selectLivingTogetherInSameProperty();
+  I.enterAddressUsingPostcode(language,'/petitioner-respondent/address');
+  I.enterCorrespondence(language);
+  I.selectLivingTogetherInSameProperty(language);
 
-  I.chooseRespondentServiceAddress();
-  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
+  I.chooseRespondentServiceAddress(language);
+  I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
-  I.enterUnreasonableBehaviourExample();
+  I.enterUnreasonableBehaviourExample(language);
 
-  I.enterLegalProceedings();
-  I.selectFinancialArrangements();
-  I.enterFinancialAdvice();
-  I.enterClaimCosts();
+  I.enterLegalProceedings(language);
+  I.selectFinancialArrangements(language);
+  I.enterFinancialAdvice(language);
+  I.enterClaimCosts(language);
 
   if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFile();
+    I.withoutUploadFile(language);
   } else {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
+    I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
   }
 
-  await I.completeEquality();
+  await I.completeEquality(language);
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
+    I.checkMyAnswers(language);
   } else{
-    await I.checkMyAnswersAndValidateSession();
+    await I.checkMyAnswersAndValidateSession(language);
   }
-  I.amDoneAndSubmitted();
+  I.amDoneAndSubmitted(language);
 
 }).retry(2);

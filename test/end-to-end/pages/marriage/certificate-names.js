@@ -11,13 +11,7 @@ function enterMarriageCertificateDetails(language = 'en') {
   I.seeInCurrentUrl(pagePath);
   I.retry(2).fillField('marriagePetitionerName', 'John Doe');
   I.fillField('marriageRespondentName', 'Jenny Benny');
-
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
-
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterMarriageCertificateDetails };

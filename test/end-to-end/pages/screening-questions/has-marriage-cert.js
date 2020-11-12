@@ -8,24 +8,14 @@ function haveMarriageCert(language = 'en') {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const marriageCertContent = language === 'en' ? contentEn : contentCy;
-
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
-
-  if (language === 'en') {
-    I.retry(2).click(marriageCertContent.yes);
-    // I.moveCursorTo('input[name=submit]');
-    I.scrollPageToBottom();
-    I.navByClick(commonContent.continue);
-
-  } else {
-    I.retry(2).click(marriageCertContent.yes);
-    I.scrollPageToBottom();
-    I.navByClick(commonContent.continue);
-  }
-
+  I.retry(2).click(marriageCertContent.yes);
+  // I.moveCursorTo('input[name=submit]');
+  I.scrollPageToBottom();
+  I.navByClick(commonContent.continue);
 }
 
 function haveNoMarriageCert() {

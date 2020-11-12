@@ -9,13 +9,7 @@ function readFinancialRemedy(language = 'en') {
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
-
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-
-  } else {
-    I.navByClick(commonContent.continue);
-  }
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { readFinancialRemedy };

@@ -8,20 +8,13 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 function selectMarriedInUk(language = 'en') {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-
+  const stepContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
-
-  if (language === 'en') {
-    I.retry(2).click(contentEn.yes);
-    I.navByClick(commonContent.continue);
-
-  } else {
-    I.retry(2).click(contentCy.yes );
-    I.navByClick(commonContent.continue);
-  }
+  I.retry(2).click(stepContent.yes);
+  I.navByClick(commonContent.continue);
 }
 
 function selectMarriedElsewhere() {

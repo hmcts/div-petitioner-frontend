@@ -7,21 +7,13 @@ const pagePath = '/about-your-marriage/details';
 function selectDivorceType(language = 'en') {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-
+  const husbandContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
-
-  if (language === 'en') {
-    I.retry(2).click(contentEn.husband);
-    I.navByClick(commonContent.continue);
-
-  } else {
-    I.retry(2).click(contentCy.husband );
-    I.navByClick(commonContent.continue);
-  }
-
+  I.retry(2).click(husbandContent.husband);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { selectDivorceType };

@@ -13,12 +13,7 @@ function enterPetitionerAndRespondentNames(language = 'en') {
   I.fillField('petitionerLastName', 'Smith');
   I.fillField('respondentFirstName', 'Jane');
   I.fillField('respondentLastName', 'Jamed');
-
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterPetitionerAndRespondentNames };

@@ -168,7 +168,6 @@ async function loginPageToEnterAddressUsingPostcode( I, language) {
 
   await I.amOnLoadedPage('/', language );
   I.startApplication(language);
-  I.wait(1);
   I.languagePreference(language);
   I.haveBrokenMarriage(language);
   I.haveRespondentAddress(language);

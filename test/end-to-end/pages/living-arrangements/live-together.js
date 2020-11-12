@@ -5,11 +5,13 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
 function selectLivingTogetherInSameProperty(language = 'en') {
-  completeLivingTogetherPage(this, selectContent.yes, language);
+  const liveTogether = language === 'en' ? selectContent : selectContentCy;
+  completeLivingTogetherPage(this, liveTogether.yes, language);
 }
 
 function selectDoNotLiveTogetherInSameProperty(language = 'en') {
-  completeLivingTogetherPage(this,selectContent.no, language);
+  const liveTogether = language === 'en' ? selectContent : selectContentCy;
+  completeLivingTogetherPage(this,liveTogether.no, language);
 }
 
 function completeLivingTogetherPage(I, chosenOption, language) {
@@ -17,14 +19,9 @@ function completeLivingTogetherPage(I, chosenOption, language) {
 
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
-  if (language === 'en') {
-    I.checkOption(chosenOption);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.checkOption(selectContentCy.yes);
-    I.navByClick(commonContent.continue);
-  }
 
+  I.checkOption(chosenOption);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = {

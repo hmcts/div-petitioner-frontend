@@ -11,6 +11,7 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 function enterPetitionerContactDetails(language = 'en') {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const contactDetails = language === 'en' ? contentEn : contentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 5);
@@ -20,20 +21,9 @@ function enterPetitionerContactDetails(language = 'en') {
   if (parseBool(CONF.features.idam)) {
     I.see(idamConfigHelper.getTestEmail());
   }
-
-  if (language === 'en') {
-    if (parseBool(CONF.features.idam)) {
-      I.see(idamConfigHelper.getTestEmail());
-    }
-    I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
-    I.retry(2).checkOption(contentEn.petitionerConsent);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
-    I.retry(2).checkOption(contentCy.petitionerConsent);
-    I.navByClick(commonContent.continue);
-  }
-
+  I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
+  I.retry(2).checkOption(contactDetails.petitionerConsent);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterPetitionerContactDetails };

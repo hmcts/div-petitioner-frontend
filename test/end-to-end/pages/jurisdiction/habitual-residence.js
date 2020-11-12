@@ -32,19 +32,14 @@ function chooseRespondentHabituallyResident(language = 'en') {
 }
 
 function setHabitualResidence(I, residenceFor, language) {
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
   I.retry(2).click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
-
-  if (language === 'en') {
-    I.navByClick(commonContentEn.continue);
-  } else {
-    I.navByClick(commonContentCy.continue);
-  }
+  I.navByClick(commonContent.continue);
 
 }
-
 
 module.exports = {
   chooseBothHabituallyResident,

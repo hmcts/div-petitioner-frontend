@@ -7,19 +7,11 @@ function haveBrokenMarriage(language = 'en') {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const marriageBrokenContent = language === 'en' ? contentEn : contentCy;
-
   const I = this;
 
   I.seeInCurrentUrl('/screening-questions/has-marriage-broken');
-
-  if (language === 'en') {
-    I.retry(2).click(marriageBrokenContent.yes);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.retry(2).click(marriageBrokenContent.yes);
-    I.navByClick(commonContent.continue);
-  }
-
+  I.retry(2).click(marriageBrokenContent.yes);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { haveBrokenMarriage };

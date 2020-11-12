@@ -1,4 +1,5 @@
 const content = require('app/steps/check-your-answers/content.json').resources.en.translation.content;
+const contentEn = require('app/steps/check-your-answers/content.json').resources.en.translation.content;
 const contentCy = require('app/steps/check-your-answers/content.json').resources.cy.translation.content;
 const jurisdictionContent = require('app/services/jurisdiction/content.json').resources.en.translation.content;
 const getOtherConnections = require('test/end-to-end/helpers/GeneralHelpers.js').getOtherJurisdictionConnections;
@@ -34,20 +35,14 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 }
 
 function checkMyAnswers(language = 'en') {
-
+  const checkYourAnswers = language === 'en' ? contentEn : contentCy;
   const I = this;
   I.waitInUrl(pagePath, 5);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.see(content.title);
-    I.retry(2).checkOption(content.confirmApply);
-    I.navByClick(content.submitOnline);
-  } else {
-    I.see(contentCy.title);
-    I.retry(2).checkOption(contentCy.confirmApply);
-    I.navByClick(contentCy.submitOnline);
-  }
+  I.see(content.title);
+  I.retry(2).checkOption(checkYourAnswers.confirmApply);
+  I.navByClick(checkYourAnswers.submitOnline);
 }
 
 function checkMyAnswersAndValidateSession(language = 'en') {

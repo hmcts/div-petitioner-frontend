@@ -4,6 +4,7 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 function enterAddressUsingPostcode(language = 'en', stepUrl, testAddressIndex) {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const findAddress = language === 'en' ? 'Find address' : 'Dod o hyd i gyfeiriad';
 
   const I = this;
   if (!testAddressIndex) {
@@ -12,25 +13,14 @@ function enterAddressUsingPostcode(language = 'en', stepUrl, testAddressIndex) {
   I.waitInUrl(stepUrl, 5);
   I.seeInCurrentUrl(stepUrl);
   I.fillField('postcode', 'SW9 9PE');
-
-  if(language === 'en') {
-    I.navByClick('Find address');
-  } else {
-    I.navByClick('Dod o hyd i gyfeiriad');
-  }
+  I.navByClick(findAddress);
 
   I.waitForVisible('#selectAddressIndex');
   I.selectOption('#selectAddressIndex', testAddressIndex);
   I.wait(4);
   I.waitForElement('#addressLine0');
   I.wait(2);
-
-  if (language === 'en') {
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
-  }
-
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterAddressUsingPostcode };

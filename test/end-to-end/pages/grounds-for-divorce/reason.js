@@ -9,14 +9,8 @@ function selectReasonForDivorce(language = 'en', reason) {
   I.waitInUrl(pagePath, 3);
   I.seeInCurrentUrl(pagePath);
 
-  if (language === 'en') {
-    I.waitForText(reason);
-    I.checkOption(reason);
-    I.navByClick(commonContent.continue);
-  } else {
-    I.waitForText(reason);
-    I.checkOption(reason);
-    I.navByClick(commonContent.continue);
-  }
+  I.waitForText(reason);
+  I.checkOption(reason);
+  I.navByClick(commonContent.continue);
 }
 module.exports = { selectReasonForDivorce };

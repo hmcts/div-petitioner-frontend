@@ -9,6 +9,7 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 function enterCorrespondence(language = 'en', addressObj) {
 
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const homeAddress = language === 'en' ? contentEn : contentCy;
   const I = this;
 
   I.waitInUrl(pagePath, 5);
@@ -17,16 +18,9 @@ function enterCorrespondence(language = 'en', addressObj) {
   if (addressObj) {
     I.see(prettifyAddress(addressObj));
   }
-
-  if (language === 'en') {
-    I.retry(2).click(contentEn.yes);
-    I.scrollPageToBottom();
-    I.navByClick(commonContent.continue);
-  } else {
-    I.retry(2).click(contentCy.yes);
-    I.scrollPageToBottom();
-    I.navByClick(commonContent.continue);
-  }
+  I.retry(2).click(homeAddress.yes);
+  I.scrollPageToBottom();
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { enterCorrespondence };

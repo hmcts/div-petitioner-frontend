@@ -17,13 +17,7 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.seeInCurrentUrl('/login?');
-
-    if (language === 'en') {
-      I.navByClick(commonContent.signIn);
-    } else {
-      I.navByClick(commonContent.signIn);
-    }
-
+    I.navByClick(commonContent.signIn);
     I.wait(2);
   }
 }
@@ -81,8 +75,6 @@ function loginInAsIdamCitizenUser() {
   I.navByClick('Sign in');
   I.wait(2);
   I.seeCurrentUrlEquals('/screening-questions/language-preference');
-
-
 }
 
 module.exports = {

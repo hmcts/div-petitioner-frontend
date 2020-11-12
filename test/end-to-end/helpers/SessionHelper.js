@@ -68,25 +68,20 @@ class SessionHelper extends codecept_helper {
 
   //
   // Verify basicDivorceSessionData.js is still valid for the benefit
-  // of other test's setup. Skip if running a Cross Browser test.
+  // of other test's setup.
   //
   async assertSessionEqualsMockTestData() {
     const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
-    const isCrossbrowserTest = typeof this.helpers['WebDriver'] !== 'undefined';
-    if (isCrossbrowserTest) {
-      return null;
-    } else {
-      const connectSidCookie = await helper.grabCookie('connect.sid');
-      const authTokenCookie = await helper.grabCookie('__auth-token');
-      const session = await this.getTheSession(connectSidCookie, authTokenCookie);
-      session.featureToggles.ft_welsh = true;
-      session.petitionerPcqId = 'is_in_session';
-      session.featureToggles.ft_awaiting_amend = true;
+    const connectSidCookie = await helper.grabCookie('connect.sid');
+    const authTokenCookie = await helper.grabCookie('__auth-token');
+    const session = await this.getTheSession(connectSidCookie, authTokenCookie);
+    session.featureToggles.ft_welsh = true;
+    session.petitionerPcqId = 'is_in_session';
+    session.featureToggles.ft_awaiting_amend = true;
 
-      let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
+    let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 
-      return assert.deepEqual(session, expectedSession);
-    }
+    return assert.deepEqual(session, expectedSession);
   }
 
   updateExpectedSessionWithActualSession(expectedSession, actualSession) {

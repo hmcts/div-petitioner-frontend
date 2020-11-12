@@ -7,7 +7,8 @@ function haveRespondentAddress() {
 
   I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
-  I.click(content.yes);
+  I.waitForText(content.question);
+  I.retry(2).click(content.yes);
   I.navByClick('Continue');
 }
 module.exports = { haveRespondentAddress };

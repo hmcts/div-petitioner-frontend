@@ -7,6 +7,7 @@ function selectHelpWithFees(needHelp = true) {
 
   I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
+  I.waitForText(content.question);
   I.retry(2).click(needHelp ? content.yes : content.no);
   I.navByClick('Continue');
 }

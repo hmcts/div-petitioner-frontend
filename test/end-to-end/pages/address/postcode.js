@@ -1,3 +1,4 @@
+const content = require('app/components/AddressLookupStep/content.json').resources.en.translation.content;
 function enterAddressUsingPostcode(stepUrl, testAddressIndex) {
 
   const I = this;
@@ -6,6 +7,7 @@ function enterAddressUsingPostcode(stepUrl, testAddressIndex) {
   }
   I.waitInUrl(stepUrl);
   I.seeCurrentUrlEquals(stepUrl);
+  I.waitForText(content.enterPostcode);
   I.fillField('postcode', 'SW9 9PE');
   I.navByClick('Find address');
   I.waitForVisible('#selectAddressIndex');

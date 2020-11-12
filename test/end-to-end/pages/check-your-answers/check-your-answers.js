@@ -32,19 +32,25 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
   return;
 }
 
-function checkMyAnswers() {
+async function checkMyAnswers() {
 
   const I = this;
   I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
   I.see(content.title);
 
-  I.retry(2).checkOption(content.confirmApply);
+  const browserName = await I.getBrowserName();
+  if (browserName === 'safari') {
+    // Safari 13 & Saucelabs doesn't handle scrolling properly, so need to forceClick()
+    I.forceClick(content.confirmApply);
+  } else {
+    I.retry(2).checkOption(content.confirmApply);
+  }
 
-  I.navByClick(content.submitOnline);
+  await I.navByClick(content.submitOnline);
 }
 
-function checkMyAnswersAndValidateSession() {
+async function checkMyAnswersAndValidateSession() {
 
   const I = this;
 
@@ -54,7 +60,7 @@ function checkMyAnswersAndValidateSession() {
   // Verify static session data still valid
   I.assertSessionEqualsMockTestData();
 
-  I.checkMyAnswers();
+  await I.checkMyAnswers();
 }
 
 function checkMyAnswersRestoredSession() {

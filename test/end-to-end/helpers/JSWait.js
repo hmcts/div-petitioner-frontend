@@ -14,12 +14,18 @@ class JSWait extends codecept_helper {
     const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const helperIsPuppeteer = this.helpers['Puppeteer'];
 
-    helper.click(text, locator).catch(err => { console.error(err.message); });
+    if (!helperIsPuppeteer && helper.config.browser === 'safari') {
+      // Safari 13 & Saucelabs doesn't handle scrolling properly, so need to forceClick()
+      await helper.forceClick(text, locator).catch(err => { console.error(err.message); });
+    } else {
+      await helper.click(text, locator).catch(err => { console.error(err.message); });
+    }
 
     if (helperIsPuppeteer) {
       await helper.page.waitForNavigation({waitUntil: 'networkidle0'});
     } else {
-      await helper.wait(2);
+      const waitTime = (helper.config.browser === 'internet explorer') ? 4 : 2;
+      await helper.wait(waitTime);
     }
   };
 

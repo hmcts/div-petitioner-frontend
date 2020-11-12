@@ -17,7 +17,7 @@ Scenario('Card payment online', async function (I) {
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
   I.amOnLoadedPage('/check-your-answers');
-  I.checkMyAnswers();
+  await I.checkMyAnswers();
 
   I.confirmIWillPayOnline();
   const isPaymentOnStub = await I.getPaymentIsOnStub();
@@ -30,7 +30,7 @@ Scenario('Card payment online failure', async function (I) {
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
   I.amOnLoadedPage('/check-your-answers');
-  I.checkMyAnswers();
+  await I.checkMyAnswers();
 
   // Failure
   I.confirmIWillPayOnline();
@@ -49,7 +49,7 @@ Scenario('Card payment online cancellation with retry', async function (I) {
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(false);
   I.amOnLoadedPage('/check-your-answers');
-  I.checkMyAnswers();
+  await I.checkMyAnswers();
 
   // Cancellation
   I.confirmIWillPayOnline();

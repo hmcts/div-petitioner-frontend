@@ -47,7 +47,7 @@ Scenario ('Adultery, with details', async function(I) {
   I.enterAdulteryDetails();
   I.enterAdulterySecondHandInfo();
 
-  I.enterLegalProceedings();
+  await I.enterLegalProceedings();
   I.selectFinancialArrangements();
   I.enterFinancialAdvice();
   I.enterClaimCostsCorrespondent();
@@ -61,7 +61,7 @@ Scenario ('Adultery, with details', async function(I) {
 
   await I.completeEquality();
 
-  I.checkMyAnswers();
+  await I.checkMyAnswers();
 
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
   if (genericErrorPage) {
@@ -103,7 +103,7 @@ Scenario ('Deserted without agreement', async function(I) {
   I.selectLivingApartTime();
   I.enterDesertionDetails();
 
-  I.enterLegalProceedings();
+  await I.enterLegalProceedings();
   I.selectFinancialArrangements();
   I.enterFinancialAdvice();
   I.enterClaimCosts();
@@ -114,7 +114,7 @@ Scenario ('Deserted without agreement', async function(I) {
   await I.completeEquality();
 
   I.checkDesertionDateOnCYAPage();
-  I.checkMyAnswers();
+  await I.checkMyAnswers();
 
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
   if (genericErrorPage) {

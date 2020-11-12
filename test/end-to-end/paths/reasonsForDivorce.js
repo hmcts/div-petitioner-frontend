@@ -59,7 +59,7 @@ Scenario('Basic Divorce E2E - with added examples', async function(I) {
   I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample();
 
-  I.enterLegalProceedings();
+  await I.enterLegalProceedings();
   I.selectFinancialArrangements();
   I.enterFinancialAdvice();
   I.enterClaimCosts();
@@ -74,7 +74,7 @@ Scenario('Basic Divorce E2E - with added examples', async function(I) {
   await I.completeEquality();
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
+    await I.checkMyAnswers();
   } else{
     await I.checkMyAnswersAndValidateSession();
   }
@@ -97,7 +97,7 @@ Scenario('2 years separation E2E', async function(I) {
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
   I.selectLivingApartTime();
 
-  I.enterLegalProceedings();
+  await I.enterLegalProceedings();
   I.selectFinancialArrangements();
   I.enterFinancialAdvice();
   I.enterClaimCosts();
@@ -112,7 +112,7 @@ Scenario('2 years separation E2E', async function(I) {
   await I.completeEquality();
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
+    await I.checkMyAnswers();
   } else{
     await I.checkMyAnswers();
   }
@@ -132,7 +132,7 @@ Scenario('5 years separation E2E', async function(I) {
   I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
     fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
   I.selectLivingApartTime();
-  I.enterLegalProceedings();
+  await I.enterLegalProceedings();
   I.selectFinancialArrangements();
   I.enterFinancialAdvice();
   I.enterClaimCosts();
@@ -147,7 +147,7 @@ Scenario('5 years separation E2E', async function(I) {
   await I.completeEquality();
 
   if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
+    await I.checkMyAnswers();
   } else{
     await I.checkMyAnswers();
   }

@@ -6,7 +6,7 @@ function chooseRespondentServiceAddress(option) {
   const I = this;
   I.waitInUrl(pagePath);
   I.seeCurrentUrlEquals(pagePath);
-
+  I.waitForText(content.yes);
   I.checkOption(option || content.no);
   I.navByClick('Continue');
 }

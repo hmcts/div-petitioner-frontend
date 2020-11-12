@@ -9,7 +9,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'IE11',
-        screenResolution: '1280x1024'
+        screenResolution: '1400x1050'
       }
     }
   },

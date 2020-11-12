@@ -1,6 +1,6 @@
 Feature('Smoke test', {retries: 2});
 
-Scenario('As a user, I want to be able to see frontend index page and log in as Idam citizen user ', (I) => {
+Scenario('As a user, I want to be able to see the frontend', (I) => {
   I.amOnLoadedPage('/index');
   I.see('Sign in or create an account');
 /*  I.loginInAsIdamCitizenUser();

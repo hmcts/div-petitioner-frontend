@@ -34,7 +34,7 @@ Scenario('Set All: Selected via Last Resort page', function(I) {
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'B', 'C', 'D', 'E', 'F', 'G');
-});
+}).retry(2);
 
 Scenario('Re-set connections: Not confident at Connection Summary 1st time', function(I) {
   I.choosePetitionerHabituallyResident();
@@ -53,7 +53,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', fun
   I.seeCurrentUrlEquals('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('G');
-});
+}).retry(2);
 
 Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', function(I) {
   I.choosePetitionerHabituallyResident();
@@ -63,4 +63,4 @@ Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', f
   I.chooseNoLastHabitualResidence();
   I.chooseNoForResidualJurisdiction();
   I.seeCurrentUrlEquals('/exit/jurisdiction/no-cnnections');
-});
+}).retry(2);

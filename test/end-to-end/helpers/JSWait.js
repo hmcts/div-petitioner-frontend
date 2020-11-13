@@ -23,13 +23,6 @@ class JSWait extends codecept_helper {
     }
   }
 
-  async browserClose () {
-    const page = this.helpers['Puppeteer'].page;
-    if (!page.isClosed()) {
-      await page.close();
-    }
-  }
-
   async amOnLoadedPage (url, language ='en') {
     let newUrl = `${url}?lng=${language}`;
     const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];

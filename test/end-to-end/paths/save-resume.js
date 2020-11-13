@@ -105,11 +105,6 @@ Scenario('Delete application from draft petition store', function (I) {
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
   I.seeInCurrentUrl('/exit/removed-saved-application');
-
-  // const ignoreIdam = true;
-  // I.amOnLoadedPage('/index');
-  // I.startApplication(ignoreIdam);
-  // I.seeInCurrentUrl('/screening-questions/language-preference');
 });
 
 Scenario('I delete my amend petition from draft store', function (I) {

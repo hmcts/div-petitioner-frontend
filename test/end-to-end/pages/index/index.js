@@ -72,5 +72,5 @@ module.exports = {
   seeCookieFooter,
   followCookieBannerLink,
   dontGetShownCookieBannerAgain,
-  signOut,
+  signOut
 };

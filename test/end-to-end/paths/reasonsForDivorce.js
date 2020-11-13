@@ -160,7 +160,7 @@ languages.forEach( language => {
       }
     }
 
-  }).retry(2);
+  }).retry(3);
 
 });
 
@@ -197,4 +197,3 @@ async function loginPageToEnterAddressUsingPostcode( I, language) {
   I.chooseRespondentServiceAddress(language);
   I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
 }
-

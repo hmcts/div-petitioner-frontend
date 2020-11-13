@@ -20,7 +20,10 @@ exports.config = {
         ]
       }
     },
-    JSWait: {require: './helpers/JSWait.js'}
+    ElementExist: { require: './helpers/ElementExist.js' },
+    IdamHelper: { require: './helpers/idamHelper.js' },
+    JSWait: { require: './helpers/JSWait.js' },
+    SessionHelper: { require: './helpers/SessionHelper.js' }
   },
   include: {I: './pages/steps.js'},
 

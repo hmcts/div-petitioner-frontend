@@ -116,7 +116,7 @@ languages.forEach( language => {
 
   }).retry(2);
 
-  xScenario(`${language.toUpperCase()} - 5 years separation E2E `, async function(I) {
+  xScenario(`${language.toUpperCase()} - 5 years separation E2E @nightly `, async function(I) {
 
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);

@@ -44,7 +44,7 @@ languages.forEach( language => {
     I.enterAdulteryDetails(language);
     I.enterAdulterySecondHandInfo(language);
 
-    I.enterLegalProceedings(language);
+    await I.enterLegalProceedings(language);
     I.selectFinancialArrangements(language);
     I.enterFinancialAdvice(language);
     I.enterClaimCostsCorrespondent(language);
@@ -58,7 +58,7 @@ languages.forEach( language => {
 
     await I.completeEquality(language);
 
-    I.checkMyAnswers(language);
+    await I.checkMyAnswers(language);
 
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
@@ -111,7 +111,7 @@ languages.forEach( language => {
     I.selectLivingApartTime(language);
     I.enterDesertionDetails(language);
 
-    I.enterLegalProceedings(language);
+    await I.enterLegalProceedings(language);
     I.selectFinancialArrangements(language);
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
@@ -119,7 +119,7 @@ languages.forEach( language => {
 
     await I.completeEquality(language);
     I.checkDesertionDateOnCYAPage(language);
-    I.checkMyAnswers(language);
+    await I.checkMyAnswers(language);
 
     const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
     if (genericErrorPage) {

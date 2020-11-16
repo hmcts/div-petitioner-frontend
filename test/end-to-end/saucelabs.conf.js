@@ -27,7 +27,7 @@ const getBrowserConfig = (browserGroup) => {
 };
 
 const setupConfig = {
-  tests: './paths/**/basicDivorce.js',
+  tests: './paths/**/*.js',
   output: process.cwd() + '/functional-output',
   helpers: {
     WebDriver: {
@@ -37,7 +37,7 @@ const setupConfig = {
       smartWait,
       cssSelectorsEnabled: 'true',
       host: 'ondemand.eu-central-1.saucelabs.com',
-      port: 80,
+      // port: 80,
       region: 'eu',
       user: process.env.SAUCE_USERNAME || CONF.saucelabs.username,
       key: process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key,

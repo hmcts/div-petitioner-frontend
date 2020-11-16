@@ -4,7 +4,7 @@ function selectMarriageCertificateInEnglish() {
 
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
+  I.seeInCurrentUrl('/about-your-marriage/about-your-marriage-certificate');
   clickCertificateInEnglish(I, 'Yes');
   I.navByClick('Continue');
 }

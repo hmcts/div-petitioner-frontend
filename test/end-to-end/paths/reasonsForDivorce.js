@@ -1,4 +1,6 @@
-const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const languages = ['en', 'cy'];
+const contentEn = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/grounds-for-divorce/reason/content.json').resources.cy.translation.content;
 const moment = require('moment');
 const parseBool = require('app/core/utils/parseBool');
 const config = require('config');
@@ -17,146 +19,181 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Reasons for divorce E2E Tests @functional').retry(3);
+Feature(' Reasons for divorce E2E Tests @functional ').retry(3);
 
-Before((I) => {
-  I.amOnPage('/index');
-  I.startApplication();
-  I.wait(1);
-  I.languagePreference();
-  I.haveBrokenMarriage();
-  I.haveRespondentAddress();
-  I.haveMarriageCert();
+languages.forEach( language => {
 
-  I.readFinancialRemedy();
-  I.selectHelpWithFees();
-  I.enterHelpWithFees();
-  I.selectDivorceType();
-  I.enterMarriageDate();
+  Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {
 
-  I.selectMarriedInUk();
+    const reasonContent = language === 'en' ? contentEn : contentCy;
+    await loginPageToEnterAddressUsingPostcode(I, language);
+    I.selectReasonForDivorce(language, reasonContent['unreasonableBehaviourHeading']);
+    I.enterUnreasonableBehaviourExample(language);
 
-  I.chooseBothHabituallyResident();
-  I.chooseJurisdictionInterstitialContinue();
+    I.enterLegalProceedings(language);
+    I.selectFinancialArrangements(language);
+    I.enterFinancialAdvice(language);
+    I.enterClaimCosts(language);
 
-  I.enterPeConfidentialContactDetails();
-  I.enterPetitionerAndRespondentNames();
-  I.enterMarriageCertificateDetails();
-  I.enterPetitionerChangedName();
-  I.enterPetitionerContactDetails();
+    if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+      I.withoutUploadFile(language);
+    } else {
+      const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
+      I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
+    }
 
-  I.enterAddressUsingPostcode('/petitioner-respondent/address');
-  I.enterCorrespondence();
-  I.selectLivingTogetherInSameProperty();
+    await I.completeEquality(language);
 
-  I.chooseRespondentServiceAddress();
-  I.enterAddressUsingPostcode('/petitioner-respondent/respondent-correspondence-address');
+    if (parseBool(config.features.ignoreSessionValidation)) {
+      I.checkMyAnswers(language);
+    } else{
+      await I.checkMyAnswersAndValidateSession(language);
+    }
+
+    if (language === 'en') {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
+    }else {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
+    }
+
+  }).retry(3);
+
+  Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
+
+    const divorceReason = language === 'en' ? contentEn : contentCy;
+    await loginPageToEnterAddressUsingPostcode(I, language);
+    I.selectReasonForDivorce(language, divorceReason['2YearsSeparationHeading']);
+    I.selectRespondentConsentObtained(language);
+    I.enterSeparationDateNew(language, twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+      twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
+
+    I.selectLivingApartTime(language);
+    I.enterLegalProceedings(language);
+    I.selectFinancialArrangements(language);
+    I.enterFinancialAdvice(language);
+    I.enterClaimCosts(language);
+
+    if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+      I.withoutUploadFile(language);
+    } else {
+      const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
+      I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
+    }
+
+    await I.completeEquality(language);
+
+    if (parseBool(config.features.ignoreSessionValidation)) {
+      I.checkMyAnswers(language);
+    } else{
+      await I.checkMyAnswers(language);
+    }
+
+    if (language === 'en') {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
+    }else {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
+    }
+
+  }).retry(2);
+
+  xScenario(`${language.toUpperCase()} - 5 years separation E2E @nightly `, async function(I) {
+
+    const divorceReason = language === 'en' ? contentEn : contentCy;
+    await loginPageToEnterAddressUsingPostcode(I, language);
+    I.selectReasonForDivorce(language, divorceReason['5YearsSeparationHeading']);
+    I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
+      fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
+    I.selectLivingApartTime(language);
+    I.enterLegalProceedings(language);
+    I.selectFinancialArrangements(language);
+    I.enterFinancialAdvice(language);
+    I.enterClaimCosts(language);
+
+    if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+      I.withoutUploadFile(language);
+    } else {
+      const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
+      I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
+    }
+
+    await I.completeEquality(language);
+
+    if (parseBool(config.features.ignoreSessionValidation)) {
+      I.checkMyAnswers(language);
+    } else{
+      await I.checkMyAnswers(language);
+    }
+
+    if (language === 'en') {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
+    }else {
+      const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
+      if(genericErrorPage) {
+        I.checkGenericErrorPage(language);
+      }else {
+        I.amDoneAndSubmitted(language);
+      }
+    }
+
+  }).retry(3);
+
 });
 
+async function loginPageToEnterAddressUsingPostcode( I, language) {
 
-Scenario('Basic Divorce E2E - with added examples', async function(I) {
+  await I.amOnLoadedPage('/', language );
+  I.startApplication(language);
+  I.languagePreference(language);
+  I.haveBrokenMarriage(language);
+  I.haveRespondentAddress(language);
+  I.haveMarriageCert(language);
 
-  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
-  I.enterUnreasonableBehaviourExample();
+  I.readFinancialRemedy(language);
+  I.selectHelpWithFees(language);
+  I.enterHelpWithFees(language);
+  I.selectDivorceType(language);
+  I.enterMarriageDate(language);
 
-  I.enterLegalProceedings();
-  I.selectFinancialArrangements();
-  I.enterFinancialAdvice();
-  I.enterClaimCosts();
+  I.selectMarriedInUk(language);
 
-  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFile();
-  } else {
-    const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-  }
+  I.chooseBothHabituallyResident(language);
+  I.chooseJurisdictionInterstitialContinue(language);
 
-  await I.completeEquality();
+  I.enterPeConfidentialContactDetails(language);
+  I.enterPetitionerAndRespondentNames(language);
+  I.enterMarriageCertificateDetails(language);
+  I.enterPetitionerChangedName(language);
+  I.enterPetitionerContactDetails(language);
 
-  if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
-  } else{
-    await I.checkMyAnswersAndValidateSession();
-  }
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
+  I.enterCorrespondence(language);
+  I.selectLivingTogetherInSameProperty(language);
 
-  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-  if(genericErrorPage) {
-    I.checkGenericErrorPage();
-  }else {
-    I.amDoneAndSubmitted();
-  }
-
-}).retry(3);
-
-Scenario('2 years separation E2E', async function(I) {
-
-  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
-  I.selectReasonForDivorce(content['2YearsSeparationHeading']);
-  I.selectRespondentConsentObtained();
-  I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
-    twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.selectLivingApartTime();
-
-  I.enterLegalProceedings();
-  I.selectFinancialArrangements();
-  I.enterFinancialAdvice();
-  I.enterClaimCosts();
-
-  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFile();
-  } else {
-    const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-  }
-
-  await I.completeEquality();
-
-  if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
-  } else{
-    await I.checkMyAnswers();
-  }
-
-  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-  if(genericErrorPage) {
-    I.checkGenericErrorPage();
-  }else {
-    I.amDoneAndSubmitted();
-  }
-
-}).retry(3);
-
-Scenario('5 years separation E2E', async function(I) {
-
-  I.selectReasonForDivorce(content['5YearsSeparationHeading']);
-  I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
-    fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
-  I.selectLivingApartTime();
-  I.enterLegalProceedings();
-  I.selectFinancialArrangements();
-  I.enterFinancialAdvice();
-  I.enterClaimCosts();
-
-  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
-    I.withoutUploadFile();
-  } else {
-    const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
-    I.uploadMarriageCertificateFile(isDragAndDropSupported);
-  }
-
-  await I.completeEquality();
-
-  if (parseBool(config.features.ignoreSessionValidation)) {
-    I.checkMyAnswers();
-  } else{
-    await I.checkMyAnswers();
-  }
-
-  const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-  if(genericErrorPage) {
-    I.checkGenericErrorPage();
-  }else {
-    I.amDoneAndSubmitted();
-  }
-
-}).retry(3);
+  I.chooseRespondentServiceAddress(language);
+  I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
+}

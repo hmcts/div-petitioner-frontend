@@ -1,11 +1,12 @@
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
+const language = 'en';
 
 Feature('Draft petition store @functional').retry(3);
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
@@ -14,14 +15,14 @@ Scenario('See the check your answers page if session restored from draft petitio
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.enterHelpWithFees();
     I.selectDivorceType();
     I.enterMarriageDate();
     I.selectMarriedInUk();
     I.clearCookie();
 
-    I.amOnLoadedPage('/index');
+    I.amOnLoadedPage('/');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
     I.seeCookie('mockRestoreSession');
@@ -31,12 +32,12 @@ Scenario('See the check your answers page if session restored from draft petitio
 
   I.checkMyAnswersRestoredSession();
 
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  I.seeInCurrentUrl('/jurisdiction/habitual-residence');
 });
 
 xScenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
   let cookie = '';
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
 
   if (parseBool(CONF.features.idam)) {
     I.startApplication();
@@ -45,7 +46,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.enterHelpWithFees();
     I.selectDivorceType();
     I.enterMarriageDate();
@@ -60,7 +61,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
 
   I.amOnLoadedPage(`/authenticated?toNextUnansweredPage=true&__auth-token=${cookie}`);
 
-  I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
+  I.seeInCurrentUrl('/jurisdiction/habitual-residence');
 });
 
 Scenario('Save and close', function (I) {
@@ -71,10 +72,10 @@ Scenario('Save and close', function (I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
   I.readFinancialRemedy();
-  I.selectHelpWithFees();
+  I.selectHelpWithFees(language);
 
   I.clickSaveAndCLose();
-  I.seeCurrentUrlEquals('/exit/application-saved');
+  I.seeInCurrentUrl('/exit/application-saved');
 
   if (parseBool(CONF.features.idam)) {
     I.see(idamConfigHelper.getTestEmail());
@@ -91,7 +92,7 @@ Scenario('Delete application from draft petition store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
     I.amOnLoadedPage('/index');
@@ -100,15 +101,10 @@ Scenario('Delete application from draft petition store', function (I) {
     I.seeCookie('mockRestoreSession');
   }
 
-  I.startApplication();
+  I.startApplicationWith('basicDivorceSessionData');
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
-  I.seeCurrentUrlEquals('/exit/removed-saved-application');
-
-  const ignoreIdam = true;
-  I.amOnLoadedPage('/index');
-  I.startApplication(ignoreIdam);
-  I.seeCurrentUrlEquals('/screening-questions/language-preference');
+  I.seeInCurrentUrl('/exit/removed-saved-application');
 });
 
 Scenario('I delete my amend petition from draft store', function (I) {
@@ -121,10 +117,10 @@ Scenario('I delete my amend petition from draft store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
-    I.amOnLoadedPage('/index');
+    I.amOnLoadedPage('/');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
     I.seeCookie('mockRestoreSession');
@@ -133,7 +129,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
   I.startApplicationWith('amendPetitionSession');
   I.checkMyAnswersRemoveApplication();
   I.confirmRemoveApplication();
-  I.seeCurrentUrlEquals('/exit/removed-saved-application');
+  I.seeInCurrentUrl('/exit/removed-saved-application');
 });
 
 Scenario('I do not delete my amend petition from draft store', function (I) {
@@ -146,7 +142,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
     I.amOnLoadedPage('/index');
@@ -159,7 +155,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
   I.checkMyAnswersRemoveApplication();
   I.declineRemoveApplicaiton();
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
 });
 
 Scenario('Decline to delete application from draft petition store', function (I) {
@@ -172,10 +168,10 @@ Scenario('Decline to delete application from draft petition store', function (I)
     I.haveRespondentAddress();
     I.haveMarriageCert();
     I.readFinancialRemedy();
-    I.selectHelpWithFees();
+    I.selectHelpWithFees(language);
     I.clearCookie();
 
-    I.amOnLoadedPage('/index');
+    I.amOnLoadedPage('/');
   } else {
     I.setCookie({name: 'mockRestoreSession', value: 'true'});
     I.seeCookie('mockRestoreSession');
@@ -186,5 +182,5 @@ Scenario('Decline to delete application from draft petition store', function (I)
   I.checkMyAnswersRemoveApplication();
   I.declineRemoveApplicaiton();
 
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
 });

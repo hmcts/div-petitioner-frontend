@@ -27,7 +27,7 @@ Scenario('Logout on Save and close', function (I) {
 });
 
 Scenario('Logout on Sign Out', function (I) {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
 
   I.startApplication();
 
@@ -36,10 +36,7 @@ Scenario('Logout on Sign Out', function (I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
   I.readFinancialRemedy();
-
-  I.signOut();
-
-  I.see('Sign in');
+  I.retry(1).signOut();
 
   I.startApplication();
   I.languagePreference();

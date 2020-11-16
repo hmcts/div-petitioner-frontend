@@ -4,5 +4,5 @@ Scenario('Submit an amend petition with an existing statement of truth stops at 
   I.startApplicationWith('amendPetitionSessionWithConfirmation');
   I.amOnLoadedPage('/index');
   I.click('Continue');
-  I.seeCurrentUrlEquals('/check-your-answers');
+  I.seeInCurrentUrl('/check-your-answers');
 });

@@ -38,6 +38,7 @@
         "Scenario": true,
         "xScenario": true,
         "Before": true,
+        "After": true,
         "BeforeSuite": true,
         "AfterSuite": true,
         "codecept_helper": true

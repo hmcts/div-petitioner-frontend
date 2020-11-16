@@ -1,3 +1,4 @@
+const language ='en';
 Feature('Entering address @functional').retry(3);
 
 Scenario('Enter address using postcode', (I) => {
@@ -6,8 +7,8 @@ Scenario('Enter address using postcode', (I) => {
   I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/address');
-  I.enterAddressUsingPostcode('/petitioner-respondent/address');
-  I.seeCurrentUrlEquals('/petitioner-respondent/petitioner-correspondence/use-home-address');
+  I.enterAddressUsingPostcode(language,'/petitioner-respondent/address');
+  I.seeInCurrentUrl('/petitioner-respondent/petitioner-correspondence/use-home-address');
 });
 
 Scenario('Enter address using address outside the UK', (I) => {
@@ -17,5 +18,5 @@ Scenario('Enter address using address outside the UK', (I) => {
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/petitioner-respondent/address');
   I.enterAddressManually('/petitioner-respondent/address');
-  I.seeCurrentUrlEquals('/petitioner-respondent/petitioner-correspondence/use-home-address');
+  I.seeInCurrentUrl('/petitioner-respondent/petitioner-correspondence/use-home-address');
 });

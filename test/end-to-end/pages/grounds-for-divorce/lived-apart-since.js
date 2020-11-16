@@ -1,12 +1,16 @@
-const content = require('app/steps/grounds-for-divorce/lived-apart-since/content.json').resources.en.translation.content;
+const contentEn = require('app/steps/grounds-for-divorce/lived-apart-since/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/grounds-for-divorce/lived-apart-since/content.json').resources.cy.translation.content;
+const commonContentEn = require('app/content/common-en').resources.en.translation;
+const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function selectLivingApartTime() {
-
+function selectLivingApartTime(language = 'en') {
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const livedApart = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/separation/lived-apart-since');
-  I.checkOption(content.yes);
-  I.navByClick('Continue');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separation/lived-apart-since');
+  I.checkOption(livedApart.yes);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { selectLivingApartTime };

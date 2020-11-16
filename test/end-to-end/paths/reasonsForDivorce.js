@@ -121,7 +121,7 @@ languages.forEach( language => {
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
     I.selectReasonForDivorce(language, divorceReason['5YearsSeparationHeading']);
-    I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
+    I.enterSeparationDateNew(language, fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
       fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
     I.selectLivingApartTime(language);
     I.enterLegalProceedings(language);

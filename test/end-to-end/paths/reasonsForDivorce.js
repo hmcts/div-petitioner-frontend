@@ -116,12 +116,12 @@ languages.forEach( language => {
 
   }).retry(2);
 
-  xScenario(`${language.toUpperCase()} - 5 years separation E2E @nightly `, async function(I) {
+  Scenario(`${language.toUpperCase()} - 5 years separation E2E @nightly `, async function(I) {
 
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
     I.selectReasonForDivorce(language, divorceReason['5YearsSeparationHeading']);
-    I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
+    I.enterSeparationDateNew(language, fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
       fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year);
     I.selectLivingApartTime(language);
     I.enterLegalProceedings(language);

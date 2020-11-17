@@ -10,7 +10,7 @@ function selectHelpWithFees(language ='en', needHelp = true) {
   const needHelpContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(needHelp ? needHelpContent.yes : needHelpContent.no);
   I.navByClick(commonContent.continue);

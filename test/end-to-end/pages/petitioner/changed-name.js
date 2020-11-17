@@ -10,7 +10,7 @@ function enterPetitionerChangedName(language = 'en') {
   const changedNameContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(changedNameContent.yes);
   I.checkOption(changedNameContent.marriageCertificate);

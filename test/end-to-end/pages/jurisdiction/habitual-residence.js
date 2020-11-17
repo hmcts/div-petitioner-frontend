@@ -33,12 +33,11 @@ function chooseRespondentHabituallyResident(language = 'en') {
 
 function setHabitualResidence(I, residenceFor, language) {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
   I.retry(2).click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
   I.navByClick(commonContent.continue);
-
 }
 
 module.exports = {

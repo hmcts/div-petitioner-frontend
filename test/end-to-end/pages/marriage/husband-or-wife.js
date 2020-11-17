@@ -10,7 +10,7 @@ function selectDivorceType(language = 'en') {
   const husbandContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(husbandContent.husband);
   I.navByClick(commonContent.continue);

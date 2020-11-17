@@ -10,7 +10,7 @@ function enterAddressUsingPostcode(language = 'en', stepUrl, testAddressIndex) {
   if (!testAddressIndex) {
     testAddressIndex = '0';
   }
-  I.waitInUrl(stepUrl, 5);
+  I.waitInUrl(stepUrl);
   I.seeInCurrentUrl(stepUrl);
   I.fillField('postcode', 'SW9 9PE');
   I.navByClick(findAddress);

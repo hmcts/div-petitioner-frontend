@@ -9,7 +9,7 @@ function enterClaimCosts(language ='en') {
   const claimCosts = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(claimCosts.yes);
   I.navByClick(commonContent.continue);
@@ -20,7 +20,7 @@ function enterClaimCostsCorrespondent(language ='en') {
   const claimCosts = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 3);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
 
   I.checkOption(claimCosts.yes);

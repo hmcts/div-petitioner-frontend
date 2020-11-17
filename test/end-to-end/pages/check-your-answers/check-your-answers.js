@@ -9,7 +9,8 @@ function* checkMyConnectionsAre(...connections) { // eslint-disable-line require
 
   const I = this;
 
-  I.seeInCurrentUrl('/check-your-answers');
+  I.waitInUrl(pagePath);
+  I.seeInCurrentUrl(pagePath);
   I.waitForElement('#jurisdiction-connections');
 
   connections.forEach((connection) => {
@@ -48,8 +49,8 @@ function checkMyAnswers(language = 'en') {
 function checkMyAnswersAndValidateSession(language = 'en') {
 
   const I = this;
-  I.seeInCurrentUrl('/check-your-answers');
 
+  I.waitInUrl(pagePath);
   if (language === 'en') {
     I.see(content.title);
     // Verify static session data still valid
@@ -64,7 +65,7 @@ function checkMyAnswersAndValidateSession(language = 'en') {
 function checkMyAnswersRestoredSession() {
   const I = this;
 
-  I.seeInCurrentUrl('/check-your-answers');
+  I.waitInUrl(pagePath);
   I.see(content.titleSoFar);
   I.see(content.continueApplication);
 
@@ -74,7 +75,7 @@ function checkMyAnswersRestoredSession() {
 function checkMyAnswersRemoveApplication() {
   const I = this;
 
-  I.seeInCurrentUrl('/check-your-answers');
+  I.waitInUrl(pagePath);
   I.see(content.titleSoFar);
   I.see(content.deleteApplciation);
 

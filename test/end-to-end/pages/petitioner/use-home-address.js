@@ -12,7 +12,7 @@ function enterCorrespondence(language = 'en', addressObj) {
   const homeAddress = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath, 5);
+  I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
 
   if (addressObj) {

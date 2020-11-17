@@ -29,7 +29,7 @@
     "test-validation": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/validation/ --reporter spec --recursive --timeout 15000 --exit",
     "test-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. ./node_modules/.bin/codeceptjs run-multiple parallel -c test/end-to-end/codecept.conf.js --grep @functional --steps --reporter mocha-multi",
     "test-overnight-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. codeceptjs run -c test/end-to-end/codecept.conf.js --steps",
-    "test-crossbrowser-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. node_modules/.bin/codeceptjs run-multiple  ${BROWSER_GROUP:-'--all'} -c test/end-to-end/saucelabs.conf.js --grep @nightly --steps --reporter mocha-multi",
+    "test-crossbrowser-e2e": "IGNORE_SESSION_VALIDATION=true NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. node_modules/.bin/codeceptjs run-multiple  ${BROWSER_GROUP:-'--all'} -c test/end-to-end/saucelabs.conf.js --grep @nightly --steps --reporter mocha-multi",
     "lint": "NODE_PATH=. eslint . --fix"
   },
   "pre-commit": [
@@ -164,7 +164,7 @@
     "supertest": "^4.0.2",
     "timekeeper": "^2.1.2",
     "unirest": "^0.6.0",
-    "webdriverio": "^5.22.4"
+    "webdriverio": "^6.7.2"
   },
   "resolutions": {
     "assign-deep": ">=1.0.1",

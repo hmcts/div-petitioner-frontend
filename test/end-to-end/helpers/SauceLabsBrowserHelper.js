@@ -31,15 +31,6 @@ class SauceLabsBrowserHelper extends Helper {
     }
   }
 
-  async getBrowserName() {
-    const webdriver = this.helpers['WebDriver'];
-    if (webdriver) {
-      return await webdriver.config.browser;
-    } else {
-      return null ;
-    }
-  }
-
 }
 
 module.exports = SauceLabsBrowserHelper;

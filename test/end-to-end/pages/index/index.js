@@ -65,6 +65,42 @@ function signOut() {
   I.navByClick(commonContentEn.signOut);
 }
 
+async function completeLoginPageToEnterAddressUsingPostcode(language) {
+
+  let I = this;
+
+  await I.amOnLoadedPage('/', language);
+  I.startApplication(language);
+  I.languagePreference(language);
+  I.haveBrokenMarriage(language);
+  I.haveRespondentAddress(language);
+  I.haveMarriageCert(language);
+
+  I.readFinancialRemedy(language);
+  I.selectHelpWithFees(language);
+  I.enterHelpWithFees(language);
+  I.selectDivorceType(language);
+  I.enterMarriageDate(language);
+
+  I.selectMarriedInUk(language);
+
+  I.chooseBothHabituallyResident(language);
+  I.chooseJurisdictionInterstitialContinue(language);
+
+  I.enterPeConfidentialContactDetails(language);
+  I.enterPetitionerAndRespondentNames(language);
+  I.enterMarriageCertificateDetails(language);
+  I.enterPetitionerChangedName(language);
+  I.enterPetitionerContactDetails(language);
+
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
+  I.enterCorrespondence(language);
+  I.selectLivingTogetherInSameProperty(language);
+
+  I.chooseRespondentServiceAddress(language);
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
+}
+
 module.exports = {
   startApplication,
   startApplicationWith,
@@ -72,5 +108,6 @@ module.exports = {
   seeCookieFooter,
   followCookieBannerLink,
   dontGetShownCookieBannerAgain,
-  signOut
+  signOut,
+  completeLoginPageToEnterAddressUsingPostcode
 };

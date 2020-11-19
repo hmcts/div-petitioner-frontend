@@ -12,7 +12,7 @@ function languagePreference(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
-  I.waitForText(languageContent.question)
+  I.waitForText(languageContent.question);
   I.retry(2).click(languageContent.yes);
   I.navByClick(commonContent.continue);
 }

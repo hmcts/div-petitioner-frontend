@@ -12,7 +12,7 @@ function readFinancialRemedy(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
-  I.waitForText(financialRemedyContent.settlingYourFinances)
+  I.waitForText(financialRemedyContent.settlingYourFinances);
   I.navByClick(commonContent.continue);
 }
 

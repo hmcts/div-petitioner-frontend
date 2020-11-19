@@ -34,6 +34,11 @@ class ElementExist extends Helper {
       });
   }
 
+  async getBrowserName() {
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    return await helper.options.browser;
+  }
+
 }
 
 module.exports = ElementExist;

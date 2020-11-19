@@ -3,6 +3,7 @@ const request = require('supertest');
 const a11y = require('test/util/a11y');
 const { expect } = require('test/util/chai');
 const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
+const languages = ['en', 'cy'];
 let healthCheckStub = { setup: () => { return; } };
 let csurfStub = () => {
   return (req, res, next) => {
@@ -26,7 +27,8 @@ let excludeSteps = [
 // Ignored Errors
 const excludedErrors = [
   'WCAG2AA.Principle1.Guideline1_3.1_3_1.F92,ARIA4',
-  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail'
+  'WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail',
+  'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId'
 ];
 const filteredErrors = r => {
   return !excludedErrors.includes(r.code);
@@ -44,65 +46,23 @@ const filteredWarnings = r => {
   return !excludedWarnings.includes(r.code);
 };
 
-for (let stepKey in s.steps) {
+for(let i in languages) {
 
-  if (!excludeSteps.includes(stepKey)) {
+  for (let stepKey in s.steps) {
+    if (!excludeSteps.includes(stepKey)) {
+      (function(step) {
+        let results;
 
-    (function(step) {
-
-      let results;
-
-      describe(`GET Requests - Verify accessibility for the page ${step.name}`, () => {
-
-        before((done) => {
-          idamMock.stub();
-
-          co(function* generator() {
-
-            results = yield a11y(agent.get(step.url).url);
-
-          }).then(done, done);
-        });
-
-        after(() => {
-          idamMock.restore();
-        });
-
-        it('should not generate any errors', () => {
-
-          const errors = results
-            .filter((res) => res.type === 'error')
-            .filter(filteredErrors)
-            .filter((err) =>
-              !step.ignorePa11yErrors.includes(err.code)
-            );
-
-          expect(errors.length).to.equal(0, JSON.stringify(errors, null, 2));
-        });
-
-        it('should not generate any warnings', () => {
-
-          const warnings = results
-            .filter((res) => res.type === 'warning')
-            .filter(filteredWarnings)
-            .filter((warn) =>
-              !step.ignorePa11yWarnings.includes(warn.code)
-            );
-
-          expect(warnings.length).to.equal(0, JSON.stringify(warnings, null, 2));
-        });
-
-      });
-
-      if (step instanceof ValidationStep) {
-
-        describe(`POST Requests - Verify accessibility for the page ${step.name}`, () => {
+        describe(`GET Requests - Verify accessibility for the page ${step.name} - ${languages[i]}`, () => {
 
           before((done) => {
             idamMock.stub();
             co(function* generator() {
 
-              results = yield a11y(agent.get(step.url).url, 'POST');
+              const url = step.url;
+              // eslint-disable-next-line no-console
+              console.log(agent.get(`${url}?lng=${languages[i]}`).url);
+              results = yield a11y(agent.get(`${url}?lng=${languages[i]}`).url, 'GET');
 
             }).then(done, done);
           });
@@ -137,10 +97,61 @@ for (let stepKey in s.steps) {
 
         });
 
-      }
+        if (step instanceof ValidationStep) {
+
+          describe(`POST Requests - Verify accessibility for the page ${step.name} - ${languages[i]}`, () => {
+
+            before((done) => {
+              idamMock.stub();
+              co(function* generator() {
+
+                const url = step.url;
+                // eslint-disable-next-line no-console
+                console.log(agent.get(`${url}?lng=${languages[i]}`).url);
+                results = yield a11y(agent.get(`${url}?lng=${languages[i]}`).url, 'POST');
+
+              }).then(done, done);
+            });
+
+            after(() => {
+              idamMock.restore();
+            });
+
+            it('should not generate any errors', () => {
+
+              const errors = results
+                .filter((res) => res.type === 'error')
+                .filter(filteredErrors)
+                .filter((err) =>
+                  !step.ignorePa11yErrors.includes(err.code)
+                );
+
+              expect(errors.length)
+                .to
+                .equal(0, JSON.stringify(errors, null, 2));
+            });
+
+            it('should not generate any warnings', () => {
+
+              const warnings = results
+                .filter((res) => res.type === 'warning')
+                .filter(filteredWarnings)
+                .filter((warn) =>
+                  !step.ignorePa11yWarnings.includes(warn.code)
+                );
+
+              expect(warnings.length)
+                .to
+                .equal(0, JSON.stringify(warnings, null, 2));
+            });
+
+          });
+
+        }
 
 
-    })(s.steps[stepKey]);
+      })(s.steps[stepKey]);
 
+    }
   }
 }

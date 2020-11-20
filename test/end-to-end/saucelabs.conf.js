@@ -47,6 +47,7 @@ const setupConfig = {
       region: 'eu',
       capabilities: {}
     },
+    SauceLabsBrowserHelper: { require: './helpers/SauceLabsBrowserHelper.js' },
     SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
     JSWait: { require: './helpers/JSWait.js' },
     ElementExist: { require: './helpers/ElementExist.js' },
@@ -86,6 +87,9 @@ const setupConfig = {
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
+    },
+    safari: {
+      browsers: getBrowserConfig('safari')
     }
   },
   name: 'PFE Frontend Tests'

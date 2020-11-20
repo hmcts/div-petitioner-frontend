@@ -9,7 +9,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'IE11',
-        screenResolution: '1280x1024'
+        screenResolution: '1400x1050'
       }
     }
   },
@@ -20,6 +20,18 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'Edge_Win10'
+      }
+    }
+  },
+  safari: {
+    safari_mac_latest: {
+      browserName: 'safari',
+      platformName: LATEST_MAC,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'MAC_SAFARI_LATEST',
+        seleniumVersion: '3.141.59',
+        screenResolution: '1400x1050'
       }
     }
   },

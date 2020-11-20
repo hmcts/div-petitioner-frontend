@@ -110,6 +110,10 @@ e2e:
   waitForActionValue: E2E_WAIT_FOR_ACTION_VALUE
   runBasicTests: RUN_BASIC_TESTS
 
+saucelabs:
+  waitForTimeout: SAUCELABS_WAIT_FOR_TIMEOUT_VALUE
+  smartWait: SAUCELABS_SMART_WAIT_VALUE
+
 testUrl: TEST_URL
 divorceHttpProxy: DIVORCE_HTTP_PROXY
 

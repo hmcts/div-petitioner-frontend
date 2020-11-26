@@ -17,19 +17,19 @@ class IdamHelper extends Helper {
     if (parseBool(CONF.features.idam)) {
       // Codecept doesn't retry _before() steps even if a .retry() is added to the Scenario.
       // So the below will retry creating a test user if IDAM fails.
-      const maxRetries = 2;
+      const maxAttempts = 3;
       let i;
-      for (i = 1; i <= maxRetries; i++) {
+      for (i = 1; i <= maxAttempts; i++) {
 
         try {
-          console.log(`Creating IDAM test user (attempt ${i} of ${maxRetries+1})...`);
+          console.log(`Creating IDAM test user (attempt ${i} of ${maxAttempts})...`);
           await this.createUser();
           break;
         } catch (err) {
-          if (i < maxRetries) {
+          if (i < maxAttempts) {
             console.log('Failed to create IDAM test user. Retrying...');
           } else {
-            console.error(`ERROR: Could not create IDAM test user after '${i+1}' attempts.`);
+            console.error(`ERROR: Could not create IDAM test user after '${i}' attempts.`);
             throw err ;
           }
         }

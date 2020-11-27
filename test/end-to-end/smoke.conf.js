@@ -20,17 +20,22 @@ exports.config = {
         ]
       }
     },
-    JSWait: { require: './helpers/JSWait.js' }
+    ElementExist: { require: './helpers/ElementExist.js' },
+    IdamHelper: { require: './helpers/idamHelper.js' },
+    JSWait: { require: './helpers/JSWait.js' },
+    SessionHelper: { require: './helpers/SessionHelper.js' }
   },
+  include: {I: './pages/steps.js'},
+
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
         stdout: '-',
-        options: { steps: true }
+        options: {steps: true}
       },
       'mocha-junit-reporter': {
         stdout: '-',
-        options: { mochaFile: './smoke-output/result.xml' }
+        options: {mochaFile: './smoke-output/result.xml'}
       }
     }
   },

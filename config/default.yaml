@@ -166,8 +166,8 @@ saucelabs:
   username: 'username'
   key: 'privatekey'
   tunnelId: 'reformtunnel'
-  waitForTimeout: 5000
-  smartWait: 5000
+  waitForTimeout: 20000
+  smartWait: 20000
 
 public:
   protocol: 'https'
@@ -207,3 +207,7 @@ document:
     - 'dispenseWithServiceRefused'
     - 'deemedServiceRefused'
     - 'generalOrder'
+
+testUser:
+  idamCitizenEmail: # Defined by idam citizen username
+  idamCitizenPassword: # Defined by idam citizen password

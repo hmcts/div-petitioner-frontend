@@ -17,7 +17,7 @@ const availableSessions = {
 class SessionHelper extends codecept_helper {
 
   async getTheSession(connectSidCookie, authTokenCookie) {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const proxyUrl = process.env.E2E_PROXY_SERVER ? `http://${process.env.E2E_PROXY_SERVER}` : '';
     let cookieHeaders = {'Cookie': `${connectSidCookie.name}=${connectSidCookie.value}`};
 
@@ -39,7 +39,7 @@ class SessionHelper extends codecept_helper {
   }
 
   async setTheSession (connectSidCookie, authTokenCookie, session) {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const tokens = new Tokens();
     const csrfToken = tokens.create(session.csrfSecret);
     const proxyUrl = process.env.E2E_PROXY_SERVER ? `http://${process.env.E2E_PROXY_SERVER}` : '';
@@ -71,7 +71,7 @@ class SessionHelper extends codecept_helper {
   // of other test's setup.
   //
   async assertSessionEqualsMockTestData() {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const connectSidCookie = await helper.grabCookie('connect.sid');
     const authTokenCookie = await helper.grabCookie('__auth-token');
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);
@@ -107,7 +107,7 @@ class SessionHelper extends codecept_helper {
   }
 
   async haveABasicSession(sessionName) {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
     const connectSidCookie = await helper.grabCookie('connect.sid');
     const authTokenCookie = await helper.grabCookie('__auth-token');
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);

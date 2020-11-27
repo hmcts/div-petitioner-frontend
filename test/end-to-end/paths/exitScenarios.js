@@ -1,6 +1,8 @@
+const language = 'en';
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const moment = require('moment');
 const twoYearsAgo = moment().subtract(2, 'years').subtract(1, 'day');
+
 const twoYearsAgoFormatted = {
   day: twoYearsAgo.format('D'),
   month: twoYearsAgo.format('M'),
@@ -23,36 +25,36 @@ Feature('Exit paths for divorce @functional').retry(3);
 
 Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
 
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
-  I.enterMarriageDate(tenYearsAgoFormatted.day, tenYearsAgoFormatted.month, tenYearsAgoFormatted.year);
+  I.enterMarriageDate(language, tenYearsAgoFormatted.day, tenYearsAgoFormatted.month, tenYearsAgoFormatted.year);
   I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
-  I.selectReasonForDivorce(content['5YearsSeparationHeading']);
-  I.enterSeparationDateNew(twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
+  I.selectReasonForDivorce(language, content['5YearsSeparationHeading']);
+  I.enterSeparationDateNew(language, twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.seeCurrentUrlEquals('/exit/separation');
+  I.seeInCurrentUrl('/exit/separation');
   I.navByClick('choose another reason');
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
-});
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
+}).retry(1);
 
 
-Scenario('Exit if 5 years separation chosen but actual living apart date is less', (I) => {
-  I.amOnLoadedPage('/index');
+Scenario('Exit if 5 years separation chosen but actual living apart date is less', async (I) => {
+  await I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
-  I.amOnLoadedPage('/about-your-marriage/details');
+  await I.amOnLoadedPage('/about-your-marriage/details');
   I.selectDivorceType();
-  I.enterMarriageDate(tenYearsAgoFormatted.day, tenYearsAgoFormatted.month, tenYearsAgoFormatted.year);
-  I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
-  I.selectReasonForDivorce(content['5YearsSeparationHeading']);
-  I.enterSeparationDateNew(fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
+  I.enterMarriageDate(language, tenYearsAgoFormatted.day, tenYearsAgoFormatted.month, tenYearsAgoFormatted.year);
+  await I.amOnLoadedPage('/about-divorce/reason-for-divorce/reason');
+  I.selectReasonForDivorce(language, content['5YearsSeparationHeading']);
+  I.enterSeparationDateNew(language, fiveYearsAgoFormatted.day, fiveYearsAgoFormatted.month, fiveYearsAgoFormatted.year,
     twoYearsAgoFormatted.day, twoYearsAgoFormatted.month, twoYearsAgoFormatted.year);
-  I.seeCurrentUrlEquals('/exit/separation');
-  I.navByClick('choose another reason');
-  I.seeCurrentUrlEquals('/about-divorce/reason-for-divorce/reason');
-});
+  I.seeInCurrentUrl('/exit/separation');
+  await I.navByClick('choose another reason');
+  I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
+}).retry(1);

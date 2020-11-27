@@ -16,7 +16,7 @@ exports.config = {
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
-          '--no-sandbox',
+          '--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
           `--proxy-server=${process.env.E2E_PROXY_SERVER || ''}`,
           `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS || ''}`
         ]
@@ -68,7 +68,7 @@ function configureChunks() {
   if (CONF.e2e.runBasicTests === 'true') {
     return 2;
   } else {
-    return 5;
+    return 6;
   }
 }
 

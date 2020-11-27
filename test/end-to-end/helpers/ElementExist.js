@@ -4,26 +4,26 @@ const Helper = codecept_helper;
 
 class ElementExist extends Helper {
 
-  checkElementExist(selector) {
+  async checkElementExist(selector) {
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
 
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
-    const isWebDriverIO = typeof this.helpers['WebDriverIO'] !== 'undefined';
+    try {
+      await helper.waitForElement(selector, 3);
+    } catch (e) {
+      console.log('Element Not Found:', selector); /* eslint-disable-line no-console */
+    }
 
     return helper
       ._locate(selector)
       .then(els => {
-        if (isWebDriverIO) {
-          return !!els.value.length;
-        }
         return !!els.length;
       }).catch(err => {
         throw err;
       });
-
   }
 
   getPaymentIsOnStub() {
-    const helper = this.helpers['WebDriverIO'] || this.helpers['Puppeteer'];
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
 
     return helper.grabCurrentUrl()
       .then(url => {
@@ -32,6 +32,11 @@ class ElementExist extends Helper {
       .catch(err => {
         throw err;
       });
+  }
+
+  async getBrowserName() {
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    return await helper.options.browser;
   }
 
 }

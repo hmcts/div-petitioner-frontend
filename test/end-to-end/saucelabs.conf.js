@@ -2,21 +2,28 @@
 
 const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
 const CONF = require('config');
+const merge = require('test/end-to-end/helpers/GeneralHelpers.js').merge;
 
-const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeoutValue);
+const waitForTimeout = parseInt(CONF.saucelabs.waitForTimeout);
 const smartWait = parseInt(CONF.saucelabs.smartWait);
 const browser = process.env.SAUCE_BROWSER || CONF.saucelabs.browser;
-const tunnelName = process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId;
+const defaultSauceOptions = {
+  username: process.env.SAUCE_USERNAME || CONF.saucelabs.username,
+  accessKey: process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key,
+  tunnelIdentifier: process.env.SAUCE_TUNNEL_IDENTIFIER || CONF.saucelabs.tunnelId,
+  acceptSslCerts: true,
+  tags: ['divorce']
+};
+
 const getBrowserConfig = (browserGroup) => {
   const browserConfig = [];
   for (const candidateBrowser in supportedBrowsers[browserGroup]) {
     if (candidateBrowser) {
-      const desiredCapability = supportedBrowsers[browserGroup][candidateBrowser];
-      desiredCapability.tunnelIdentifier = tunnelName;
-      desiredCapability.tags = ['divorce'];
+      const candidateCapabilities = supportedBrowsers[browserGroup][candidateBrowser];
+      candidateCapabilities['sauce:options'] = merge(defaultSauceOptions, candidateCapabilities['sauce:options']);
       browserConfig.push({
-        browser: desiredCapability.browserName,
-        desiredCapabilities: desiredCapability
+        browser: candidateCapabilities.browserName,
+        capabilities: candidateCapabilities
       });
     } else {
       console.error('ERROR: supportedBrowsers.js is empty or incorrectly defined');
@@ -26,10 +33,10 @@ const getBrowserConfig = (browserGroup) => {
 };
 
 const setupConfig = {
-  tests: './paths/**/basicDivorce.js',
+  tests: './paths/**/*.js',
   output: process.cwd() + '/functional-output',
   helpers: {
-    WebDriverIO: {
+    WebDriver: {
       url: process.env.E2E_FRONTEND_URL || CONF.e2e.frontendUrl,
       browser,
       waitForTimeout,
@@ -38,10 +45,9 @@ const setupConfig = {
       host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
       region: 'eu',
-      user: process.env.SAUCE_USERNAME || CONF.saucelabs.username,
-      key: process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key,
-      desiredCapabilities: {}
+      capabilities: {}
     },
+    SauceLabsBrowserHelper: { require: './helpers/SauceLabsBrowserHelper.js' },
     SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
     JSWait: { require: './helpers/JSWait.js' },
     ElementExist: { require: './helpers/ElementExist.js' },
@@ -81,6 +87,9 @@ const setupConfig = {
     },
     firefox: {
       browsers: getBrowserConfig('firefox')
+    },
+    safari: {
+      browsers: getBrowserConfig('safari')
     }
   },
   name: 'PFE Frontend Tests'

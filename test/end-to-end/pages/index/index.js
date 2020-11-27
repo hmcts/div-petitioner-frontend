@@ -1,17 +1,20 @@
 const content = require('app/steps/screening-questions/has-respondent-address/content').resources.en.translation.content;
-const common = require('app/content/common-en').resources.en.translation;
+const commonContentEn = require('app/content/common-en').resources.en.translation;
+const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
 
-function startApplication(ignoreIdamToggle = false) {
+function startApplication(language = 'en', ignoreIdamToggle = false) {
 
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
+    const commonContent = language === 'en' ? commonContentEn : commonContentCy;
     let I = this;
-    I.seeInCurrentUrl('/login?');
+
     I.fillField('username', idamConfigHelper.getTestEmail());
     I.fillField('password', idamConfigHelper.getTestPassword());
-    I.navByClick('Sign in');
+    I.seeInCurrentUrl('/login?');
+    I.navByClick(commonContent.signIn);
     I.wait(2);
   }
 }
@@ -58,8 +61,8 @@ function dontGetShownCookieBannerAgain() {
 function signOut() {
   let I = this;
 
-  I.see(common.signOut);
-  I.navByClick(common.signOut);
+  I.see(commonContentEn.signOut);
+  I.navByClick(commonContentEn.signOut);
 }
 
 module.exports = {

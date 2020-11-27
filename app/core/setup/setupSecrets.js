@@ -19,6 +19,8 @@ const setup = () => {
     setSecret('secrets.div.AppInsightsInstrumentationKey', 'applicationInsights.instrumentationKey');
     setSecret('secrets.div.launchdarkly-key', 'featureToggles.launchDarklyKey');
     setSecret('secrets.div.pcq-token-key', 'services.equalityAndDiversity.tokenKey');
+    setSecret('secrets.div.idam-citizen-username', 'testUser.idamCitizenEmail');
+    setSecret('secrets.div.idam-citizen-password', 'testUser.idamCitizenPassword');
   }
 };
 

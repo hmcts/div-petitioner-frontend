@@ -20,7 +20,9 @@ describe(modulePath, () => {
           'redis-secret': 'redisValue',
           'idam-secret': 'idamValue',
           'os-places-token': 'postCodeValue',
-          'frontend-secret': 'frontendValue'
+          'frontend-secret': 'frontendValue',
+          'idam-citizen-username': 'email',
+          'idam-citizen-password': 'password'
         }
       };
 
@@ -39,6 +41,10 @@ describe(modulePath, () => {
         .to.equal(mockConfig.secrets.div['os-places-token']);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(mockConfig.secrets.div['frontend-secret']);
+      expect(mockConfig.testUser.idamCitizenEmail)
+        .to.equal(mockConfig.secrets.div['idam-citizen-username']);
+      expect(mockConfig.testUser.idamCitizenPassword)
+        .to.equal(mockConfig.secrets.div['idam-citizen-password']);
     });
 
     it('should not set config values when secrets path is not set', () => {
@@ -57,6 +63,10 @@ describe(modulePath, () => {
         .to.equal(config.services.postcodeInfo.token);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(config.services.serviceAuthProvider.microserviceKey);
+      expect(mockConfig.testUser.idamCitizenEmail)
+        .to.equal(config.testUser.idamCitizenEmail);
+      expect(mockConfig.testUser.idamCitizenPassword)
+        .to.equal(config.testUser.idamCitizenPassword);
     });
 
     it('should only set one config value when single secret path is set', () => {
@@ -79,6 +89,10 @@ describe(modulePath, () => {
         .to.equal(config.services.postcodeInfo.token);
       expect(mockConfig.services.serviceAuthProvider.microserviceKey)
         .to.equal(config.services.serviceAuthProvider.microserviceKey);
+      expect(mockConfig.testUser.idamCitizenEmail)
+        .to.equal(config.testUser.idamCitizenEmail);
+      expect(mockConfig.testUser.idamCitizenPassword)
+        .to.equal(config.testUser.idamCitizenPassword);
     });
   });
 });

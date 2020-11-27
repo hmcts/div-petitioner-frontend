@@ -3,18 +3,18 @@ const content = require('app/steps/marriage/about-your-marriage-certificate/cont
 Feature('Foreign Marriage Certificates - Certificate Language @functional').retry(3);
 
 Scenario('Marriage certificate in English, answered Yes', (I) => {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.checkOption(content.yes);
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-your-marriage/foreign-certificate');
+  I.seeInCurrentUrl('/about-your-marriage/foreign-certificate');
 });
 
 Scenario('Marriage certificate not in English, certified translation', (I) => {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -22,12 +22,12 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.click('#certificateInEnglish_No');
   I.click('#certifiedTranslation_Yes');
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-your-marriage/foreign-certificate');
+  I.seeInCurrentUrl('/about-your-marriage/foreign-certificate');
 });
 
 
 Scenario('Marriage certificate not in English, answered No', (I) => {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
@@ -35,15 +35,15 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.click('#certificateInEnglish_No');
   I.click('#certifiedTranslation_No');
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/exit/about-your-marriage/no-certificate-translated');
+  I.seeInCurrentUrl('/exit/about-your-marriage/no-certificate-translated');
 });
 
 Scenario('@overnight: Married in UK, not answered', (I) => {
-  I.amOnLoadedPage('/index');
+  I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/about-your-marriage/about-your-marriage-certificate');
   I.navByClick('Continue');
-  I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
+  I.seeInCurrentUrl('/about-your-marriage/about-your-marriage-certificate');
 });

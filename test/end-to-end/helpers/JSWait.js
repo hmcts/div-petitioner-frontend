@@ -1,13 +1,13 @@
 class JSWait extends codecept_helper {
 
   _beforeStep(step) {
-
     const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
 
     // Wait for content to load before checking URL
     if (step.name === 'seeCurrentUrlEquals' || step.name === 'seeInCurrentUrl') {
       return helper.wait(2);
     }
+    return step;
   };
 
   async navByClick (text, locator) {

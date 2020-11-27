@@ -6,9 +6,10 @@ class ElementExist extends Helper {
 
   async checkElementExist(selector) {
     const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    const shortTimeout = this.helpers['Puppeteer'] ? 3 : 15;
 
     try {
-      await helper.waitForElement(selector, 3);
+      await helper.waitForElement(selector, shortTimeout);
     } catch (e) {
       console.log('Element Not Found:', selector); /* eslint-disable-line no-console */
     }

@@ -76,7 +76,20 @@
     "addressType": "postcode",
     "postcodeError": "false"
   },
-  "respondentSolicitorRepresented": "No",
+  "respondentSolicitorName": "solicitor's name",
+  "respondentSolicitorCompany": "solicitor's Company/Organisat",
+  "respondentSolicitorRepresented": "Yes",
+  "respondentSolicitorAddress": {
+    "address": [
+      "82, LANDOR ROAD",
+      "LONDON",
+      "SW9 9PE"
+    ],
+    "postcode": "SW9 9PE",
+    "addressConfirmed": "true",
+    "addressType": "postcode",
+    "postcodeError": "false"
+  },
   "respondentCorrespondenceUseHomeAddress": "No",
   "respondentKnowsHomeAddress": "Yes",
   "respondentLivesAtLastAddress": "Yes",

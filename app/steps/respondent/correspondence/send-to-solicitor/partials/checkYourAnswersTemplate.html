@@ -1,7 +1,9 @@
 <tr class="govuk-table__row">
   <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">
-    {% if fields.respondentSolicitorRepresented.value === 'No' %}
+    {% if fields.respondentSolicitorRepresented.value === 'Yes' %}
+      {{ content.solicitor | safe }}
+    {% elseif fields.respondentSolicitorRepresented.value === 'No' %}
       {{ content.correspondence }}
     {% endif %}
   </td>

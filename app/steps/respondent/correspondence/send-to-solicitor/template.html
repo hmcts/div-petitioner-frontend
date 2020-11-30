@@ -12,6 +12,12 @@
 
         <div class="govuk-radios govuk-radios--inline">
             {{ radioButton(
+                value = 'Yes',
+                label = content.solicitor,
+                name = 'respondentSolicitorRepresented',
+                field = fields.respondentSolicitorRepresented
+            ) }}
+            {{ radioButton(
                 value = 'No',
                 label = content.correspondence,
                 name = 'respondentSolicitorRepresented',

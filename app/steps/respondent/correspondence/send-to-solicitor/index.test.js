@@ -52,6 +52,13 @@ describe(modulePath, () => {
         content, 'required', [], session);
     });
 
+    it('redirects to the RespondentSolicitorDetails page', done => {
+      const context = { respondentSolicitorRepresented: 'Yes' };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.RespondentSolicitorDetails);
+    });
+
     it('redirects to the RespondentCorrespondenceAddress page', done => {
       const context = { respondentSolicitorRepresented: 'No' };
 
@@ -93,6 +100,38 @@ describe(modulePath, () => {
   describe('Check Your Answers', () => {
     it('renders the cya template', done => {
       testCYATemplate(done, underTest);
+    });
+
+    it('renders when respondentSolicitorRepresented is yes and divorceWho is wife', done => {
+      const contentToExist = [
+        'question',
+        'solicitor'
+      ];
+
+      const valuesToExist = [];
+
+      const context = { respondentSolicitorRepresented: 'Yes' };
+
+      const session = { divorceWho: 'wife' };
+
+      testExistenceCYA(done, underTest, content,
+        contentToExist, valuesToExist, context, session);
+    });
+
+    it('renders when respondentSolicitorRepresented is yes and divorceWho is husband', done => {
+      const contentToExist = [
+        'question',
+        'solicitor'
+      ];
+
+      const valuesToExist = [];
+
+      const context = { respondentSolicitorRepresented: 'Yes' };
+
+      const session = { divorceWho: 'husband' };
+
+      testExistenceCYA(done, underTest, content,
+        contentToExist, valuesToExist, context, session);
     });
 
     it('renders when respondentSolicitorRepresented is no', done => {

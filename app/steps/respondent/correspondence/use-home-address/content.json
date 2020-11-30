@@ -7,7 +7,8 @@
           "question": "Is this where your {{ divorceWho }}’s divorce papers should be sent?",
           "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
           "yes": "Yes, use this address",
-          "no": "No, send them to a different address"
+          "no": "No, send them to a different address",
+          "solicitor": "No, send them to their solicitor"
         },
         "checkYourAnswersContent": {
           "yes": "Yes"
@@ -25,7 +26,8 @@
           "question": "Ai i’r fan hon y dylid anfon papurau ysgariad eich {{ divorceWho }}?",
           "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
           "yes": "Ie, defnyddiwch y cyfeiriad hwn",
-          "no": "Na, dylid eu hanfon i gyfeiriad arall"
+          "no": "Na, dylid eu hanfon i gyfeiriad arall",
+          "solicitor": "[CY} No, send them to their solicitor"
         },
         "checkYourAnswersContent": {
           "yes": "Ydw"

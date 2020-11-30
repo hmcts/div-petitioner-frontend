@@ -1,0 +1,35 @@
+{% from "common/components/formElements.html" import textField %}
+{% extends "question.html" %}
+{% block question %}
+{{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+
+<div id="provide-respondent-details" class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-!-font-weight-bold js-hidden">{{ content.question | safe }}</legend>
+    {{ textField(
+    name = 'respondentSolicitorName',
+    field = fields.respondentSolicitorName,
+    label = content.name
+    ) }}
+    {{ textField(
+    name = 'respondentSolicitorCompany',
+    field = fields.respondentSolicitorCompany,
+    label = content.company
+    ) }}
+    {{ textField(
+    name = 'respondentSolicitorEmail',
+    field = fields.respondentSolicitorEmail,
+    label = content.email
+    ) }}
+    {{ textField(
+    name = 'respondentSolicitorPhoneNumber',
+    field = fields.respondentSolicitorPhoneNumber,
+    label = content.phoneNumber
+    ) }}
+  </fieldset>
+</div>
+
+{% endblock %}

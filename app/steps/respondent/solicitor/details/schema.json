@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "respondent-solicitor-details",
+  "type": "object",
+  "properties": {
+    "respondentSolicitorName": {
+      "type": "string"
+    },
+    "respondentSolicitorCompany": {
+      "type": "string"
+    },
+    "respondentSolicitorEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "respondentSolicitorPhoneNumber": {
+      "type": "string",
+      "minLength": 9,
+      "pattern": "^[0-9 +().-]+$"
+    }
+  },
+  "required": [
+    "respondentSolicitorName",
+    "respondentSolicitorCompany"
+  ]
+}

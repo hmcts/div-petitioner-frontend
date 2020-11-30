@@ -104,7 +104,7 @@ module.exports = {
   'screenHasPrinter': 'Yes',
   'petitionerPhoneNumber': '01234567890',
   'marriageDateDay': 2,
-  'respondentCorrespondenceUseHomeAddress': 'Yes',
+  'respondentCorrespondenceUseHomeAddress': 'Solicitor',
   'reasonForDivorceShowAdultery': false,
   'marriageDateYear': 2001,
   'jurisdictionConnection': [
@@ -136,6 +136,7 @@ module.exports = {
     'addressManual': 'dssxsddsdsds'
   },
   'marriageRespondentName': 'Jenny Benny',
+  'respondentSolicitorCompany': 'sddssd',
   'petitionerHomeAddress': {
     'addressType': 'postcode',
     'postcode': 'SW9 9PE',
@@ -189,5 +190,21 @@ module.exports = {
   'financialOrderFor': [
     'petitioner',
     'children'
-  ]
+  ],
+  'respondentSolicitorAddress': {
+    'addressType': 'manual',
+    'street1': null,
+    'street2': null,
+    'town': null,
+    'postcodeManual': null,
+    'addressConfirmed': 'true',
+    'addressAbroad': '90 Landor Road\nLondon\nSW9 9PE',
+    'validPostcode': false,
+    'postcodeError': null,
+    'url': '/petitioner-respondent/solicitor/address',
+    'address': [
+      'sdsdsdsdsdd'
+    ],
+    'addressManual': 'sdsdsdsdsdd'
+  }
 };

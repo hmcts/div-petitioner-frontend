@@ -19,10 +19,11 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
   I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
 
   let previewUrl = await I.grabCurrentUrl();
-  let splitPath = previewUrl.split('-')[5];
-  let urlContainsPreview = splitPath.split('.');
+  let splitPath = previewUrl.split('-');
+  let urlContainsPreview = splitPath[5].split('.');
+  let urlContainsStaging = splitPath[2].split('.');
 
-  if(urlContainsPreview[0] === 'preview'){
+  if(urlContainsPreview[0] === 'preview' || urlContainsStaging[0] === 'staging'){
     I.seeCurrentUrlEquals('/cookie-error');
   }
   else{I.seeInCurrentUrl('/login?');}

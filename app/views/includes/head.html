@@ -45,8 +45,12 @@
 {% endif %}
 
 {% if features.antennaWebchat and session.language == "en" %}
-    <script src="https://webchat-client.ctsc.hmcts.net/chat-client/1/app-es2015.js" type="module"></script>
-    <script src="https://webchat-client.ctsc.hmcts.net/chat-client/1/app-es5.js" nomodule defer></script>
+    <script src="https://webchat-client.ctsc.hmcts.net/chat-client/1/app-es2015.js" type="module"
+        integrity="sha384-CbFMvE53zH/Vp+gHZKc1ycdWaVicfm29KuW4sCUmkl5bfvgsBNBvjPV8YQ5N2Ml1"
+        crossorigin="anonymous"></script>
+    <script src="https://webchat-client.ctsc.hmcts.net/chat-client/1/app-es5.js" nomodule defer
+        integrity="sha384-sMteVLJuDZO1csxgKi/3foYtk25sxBgh3TRf1TCtVMyYsFl4ek7MuwbqkFpmVYFe"
+        crossorigin="anonymous"></script>
     <script src="/public/javascripts/webchat.js"></script>
 {% endif %}
 

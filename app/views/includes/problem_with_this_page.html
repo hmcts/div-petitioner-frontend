@@ -12,6 +12,7 @@
 
         {% if features.antennaWebchat and session.language == "en" %}
            <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
+           <p id="metrics"></p>
            <web-chat class="hidden"
                 chat-title="HMCTS Web Chat"
                 chat-icon-url="https://webchat-client.ctsc.hmcts.net/chat-client/1/assets/icon.png"
@@ -26,11 +27,10 @@
                 lease-time="24"
                 priority="5"
                 language="English"
-                Service="Divorce"
+                service="Divorce"
                 page-name="Divorce Petitioner Front End">
            </web-chat>
            <button class="chat-button">Talk to an Agent</button>
-            <p class="govuk-body"></p>
         {% endif %}
 
         <p class="govuk-heading-s govuk-!-margin-bottom-1" >{{ common.emailTitle | safe }}</p>

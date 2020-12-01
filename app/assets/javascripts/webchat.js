@@ -2,38 +2,34 @@
 
   const button = document.querySelector('.chat-button');
   const webChat = document.querySelector('web-chat');
+  const message = document.getElementById("metrics");
 
   button.addEventListener('click', function () {
     webChat.classList.remove('hidden');
   });
 
-  /**
-   * When a user clicks the 'Hide' button on the chat client,
-   * an event is dispatched on the web-chat component.
-   * To listen for this event, we use the addEventListener DOM API
-   * and register a callback.
-   */
   webChat.addEventListener('hide', function () {
     webChat.classList.add('hidden');
   });
 
   webChat.addEventListener('metrics', function (metrics) {
     const metricsDetail = metrics.detail;
+    const ccState = metricsDetail.contactCenterState;
     const ewt = metricsDetail.ewt;
-    //const ccState = metricsDetail.contactCenterState;
-    const ccState = 'Open';
     const availableAgents = metricsDetail.availableAgents;
-    if (ccState === 'Open') {
-      message.innerHTML = `Retrieved metrics: EWT = ${ewt}, available agents = ${availableAgents}`;
-    } else {
-      button.replaceWith('Retrieved metrics: EWT = ' + ewt + ', available agents = ' + availableAgents + ', Contact Center State = ' + ccState);
-    }
-  });
+    const today = new Date();
 
-  if(isWebChatHidden && !webChat.classList.contains('hidden')){
-    webChat.classList.add('hidden');
-  }else if(!isWebChatHidden && webChat.classList.contains('hidden')){
-    webChat.classList.remove('hidden');
-  }
+    if ( ccState != "Open" || today.getHours() < 9 || today.getHours() >= 17 ) {
+      message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm or contact us by phone or email.';
+      button.classList.add('hidden');
+    } else if ( ewt < 300 && availableAgents > 0) {
+      message.innerHTML = '';
+      button.classList.remove('hidden');
+    } else {
+      message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
+      button.classList.add('hidden');
+    }
+
+  });
 
 }).call(this);

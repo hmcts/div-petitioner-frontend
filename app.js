@@ -65,9 +65,9 @@ exports.init = listenForConnections => {
       ],
       connectSrc: [
         '\'self\'',
-        'wss://webchat.ctsc.hmcts.net',
+        'https://webchat-client.ctsc.hmcts.net',
         'https://webchat.ctsc.hmcts.net',
-        'https://webchat-client.ctsc.hmcts.net'
+        'wss://webchat.ctsc.hmcts.net'
       ],
       mediaSrc: [
         '\'self\'',
@@ -148,6 +148,7 @@ exports.init = listenForConnections => {
   app.use('/public', express.static(`${__dirname}/public`));
   app.use('/webchat', express.static(`${__dirname}/node_modules/@hmcts/ctsc-web-chat/assets`));
   app.use('/public/locale', express.static(`${__dirname}/app/assets/locale`));
+  app.use('/public/javascripts', express.static(`${__dirname}/app/assets/javascripts`));
 
   // Parsing cookies for the stored encrypted session key
   app.use(cookieParser());

@@ -44,6 +44,12 @@
   <!-- End Google Analytics -->
 {% endif %}
 
+{% if features.antennaWebchat and session.language == "en" %}
+    <script src="https://webchat-client.ctsc.hmcts.net/chat-client/1/app-es2015.js" type="module"></script>
+    <script src="https://webchat-client.ctsc.hmcts.net/chat-client/1/app-es5.js" nomodule defer></script>
+    <script src="/public/javascripts/webchat.js"></script>
+{% endif %}
+
 <!--[if lt IE 9]>
   <style>
     div .govuk-radios__item input {

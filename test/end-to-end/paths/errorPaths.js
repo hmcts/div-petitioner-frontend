@@ -19,6 +19,8 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
   await I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
 
   let previewUrl = await I.grabCurrentUrl();
+  // eslint-disable-next-line no-console
+  console.log('Current Page Url-->:' + previewUrl);
   let splitPath = previewUrl.split('-')[5];
   let urlContainsPreview = splitPath.split('.');
 

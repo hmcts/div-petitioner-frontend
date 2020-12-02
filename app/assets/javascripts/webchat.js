@@ -1,14 +1,14 @@
 (function() {
 
-  const button = document.querySelector('.chat-button');
-  const webChat = document.querySelector('web-chat');
-  const message = document.getElementById("metrics");
+  const button = document.querySelector('#chatButton');
+  const webChat = document.querySelector('#webchatWindow');
+  const message = document.querySelector('#metrics');
 
-  button.addEventListener('click', function () {
+  button.addEventListener('click', () => {
     webChat.classList.remove('hidden');
   });
 
-  webChat.addEventListener('hide', function () {
+  webChat.addEventListener('hide', () => {
     webChat.classList.add('hidden');
   });
 
@@ -19,7 +19,7 @@
     const availableAgents = metricsDetail.availableAgents;
     const today = new Date();
 
-    if ( ccState != "Open" || today.getHours() < 9 || today.getHours() >= 17 ) {
+    if ( ccState != "Open" || today.getHours() < 9 || today.getHours() >= 17 || today.getDay() == 0 || today.getDay() == 6) {
       message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm or contact us by phone or email.';
       button.classList.add('hidden');
     } else if ( ewt < 300 && availableAgents > 0) {

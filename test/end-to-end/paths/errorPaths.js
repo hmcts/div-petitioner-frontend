@@ -11,12 +11,12 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
 });
 
-xScenario('Redirects to login page on AAT OR cookie error page for PR build on application start and clear cookies @Nightly', async (I) => {
-  I.amOnLoadedPage('/index');
+Scenario('Redirects to login page on AAT OR cookie error page for PR build on application start and clear cookies @Nightly', async (I) => {
+  await I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();
   //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
-  I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
+  await I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
 
   let previewUrl = await I.grabCurrentUrl();
   let splitPath = previewUrl.split('-')[5];
@@ -27,7 +27,7 @@ xScenario('Redirects to login page on AAT OR cookie error page for PR build on a
   }
   else{I.seeInCurrentUrl('/login?');}
 
-}).retry(1);
+}).retry(2);
 
 Scenario('check cookie error page exists', (I) => {
   I.amOnLoadedPage('/index');

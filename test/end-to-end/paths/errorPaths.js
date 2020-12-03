@@ -11,24 +11,14 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
 });
 
-Scenario('Redirects to login page on AAT OR cookie error page for PR build on application start and clear cookies @Nightly', async (I) => {
-  await I.amOnLoadedPage('/index');
+Scenario('Redirects to login page if start application with no cookies', async (I) => {
+  I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();
   //This simulates a situation where the browser has no cookies even after the middleware tried to set one for testing whether the browser accepts cookies
-  await I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
+  I.amOnLoadedPage('/authenticated?attemptToSetTestCookie=true');
 
-  let previewUrl = await I.grabCurrentUrl();
-  // eslint-disable-next-line no-console
-  console.log('Current Page Url-->:' + previewUrl);
-  let splitPath = previewUrl.split('-')[5];
-  let urlContainsPreview = splitPath.split('.');
-
-  if(urlContainsPreview[0] === 'preview'){
-    I.seeCurrentUrlEquals('/cookie-error');
-  }
-  else{I.seeInCurrentUrl('/login?');}
-
+  I.seeInCurrentUrl('/login?');
 }).retry(2);
 
 Scenario('check cookie error page exists', (I) => {

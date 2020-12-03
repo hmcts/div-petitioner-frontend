@@ -1,7 +1,7 @@
 (function() {
 
-  const button = document.querySelector('#chatButton');
-  const webChat = document.querySelector('#webchatWindow');
+  const button = document.querySelector('.chat-button');
+  const webChat = document.querySelector('web-chat');
   const message = document.querySelector('#metrics');
 
   button.addEventListener('click', () => {

@@ -23,10 +23,10 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
   console.log('Current Page Url-->:' + currentUrl);
 
   if (currentUrl.includes('-preview')) {
-    I.seeCurrentUrlEquals('/cookie-error');
+    I.seeInCurrentUrl('/cookie-error');
   }
   else {
-    I.seeInCurrentUrl('/login?');
+    I.seeInCurrentUrl('/cookie-error');
   }
 }).retry(2);
 

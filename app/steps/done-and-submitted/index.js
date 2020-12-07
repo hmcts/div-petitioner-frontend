@@ -12,6 +12,14 @@ module.exports = class DoneAndSubmitted extends ExitStep {
       ctx.paymentCompleted = paymentResult && paymentResult.toLowerCase() === 'success';
     }
 
+    if (this.shouldGetAllocatedCourtFromCourtList(session)) {
+      session.allocatedCourt = session.court[session.courts];
+    }
+
     return super.interceptor(ctx, session);
+  }
+
+  shouldGetAllocatedCourtFromCourtList(session) {
+    return !session.hasOwnProperty('allocatedCourt') && session.hasOwnProperty('court') && session.hasOwnProperty('courts');
   }
 };

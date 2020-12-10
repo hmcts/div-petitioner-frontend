@@ -111,6 +111,7 @@
     "uuid": "^3.0.1",
     "webpack": "2.2.1",
     "webpack-archive-plugin": "^3.0.0",
+    "webpack-dev-server": "^3.11.0",
     "xss-filters": "^1.2.7",
     "yarn": "^1.22.0"
   },

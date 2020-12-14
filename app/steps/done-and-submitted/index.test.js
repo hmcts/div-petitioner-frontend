@@ -1,9 +1,10 @@
 const request = require('supertest');
-const { testContent, testExistence, testNonExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
+const { expectSessionValue, testContent, testExistence, testNonExistence, testCustom, testMultipleValuesExistence } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const { expect } = require('test/util/chai');
 const serviceCentreCourt = require('test/examples/courts/serviceCentre');
+const courts = require('test/examples/courts/courts');
 
 const modulePath = 'app/steps/done-and-submitted';
 
@@ -17,6 +18,7 @@ let underTest = {};
 
 describe(modulePath, () => {
   const allocatedCourt = serviceCentreCourt;
+  const court = courts;
 
   beforeEach(() => {
     s = server.init();
@@ -240,6 +242,30 @@ describe(modulePath, () => {
 
     it('contains allocated court opening hours', done => {
       testExistence(done, agent, underTest, allocatedCourt.openingHours);
+    });
+  });
+
+  describe('should retrieve allocated court for previously submitted case', () => {
+    let session = {};
+
+    beforeEach(done => {
+      session = {
+        reasonForDivorce: 'adultery',
+        petitionerNameDifferentToMarriageCertificate: 'No',
+        divorceWho: 'husband',
+        reasonForDivorceAdulteryWishToName: 'Yes',
+        financialOrder: 'No',
+        courts: 'serviceCentre',
+        court
+      };
+
+      withSession(done, agent, session);
+    });
+
+    it('allocated court is retrieved from court list', done => {
+      testCustom(done, agent, underTest, [], () => {
+        expectSessionValue('allocatedCourt', session.court[session.courts], agent, done);
+      });
     });
   });
 

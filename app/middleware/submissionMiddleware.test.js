@@ -63,6 +63,27 @@ describe(modulePath, () => {
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
     });
+    it('redirects to /done-and-submitted if application has been submitted and is in "AwaitingAlternativeService', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingAlternativeService';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+    });
+    it('redirects to /done-and-submitted if application has been submitted and is in "AwaitingProcessServerService', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingProcessServerService';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+    });
+    it('redirects to /done-and-submitted if application has been submitted and is in "AwaitingDWPResponse', () => {
+      req.session.caseId = 'someid';
+      req.session.state = 'AwaitingDWPResponse';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+    });
     it('redirects to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {
       req.session.caseId = 'someid';
       req.session.state = 'AwaitingAmendCase';

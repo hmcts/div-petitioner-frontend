@@ -181,6 +181,9 @@ ccd:
     - 'AwaitingPayment'
     - 'AwaitingAmendCase'
     - 'ServiceApplicationNotApproved'
+    - 'AwaitingAlternativeService'
+    - 'AwaitingProcessServerService'
+    - 'AwaitingDWPResponse'
   courts:
     - 'serviceCentre'
 

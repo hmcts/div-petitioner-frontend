@@ -65,6 +65,30 @@ describe(modulePath, () => {
       expect(next.calledOnce).to.eql(false);
       expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
     });
+
+    describe('Redirections to DN app', () => {
+      const stateRedirectedToDn = ['AwaitingGeneralReferralPayment', 'GeneralConsiderationComplete'];
+      stateRedirectedToDn.forEach(currentState => {
+      // eslint-disable-next-line max-nested-callbacks
+        it(`should redirect to DN when state is ${currentState}`, () => {
+          req.session.state = currentState;
+
+          redirectMiddleware.redirectOnCondition(req, res, next);
+
+          expect(next.calledOnce).to.eql(false);
+          expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+        });
+      });
+    });
+
+    it('should call redirect to DN if the state is GeneralConsiderationComplete', () => {
+      req.session.state = 'GeneralConsiderationComplete';
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce).to.eql(false);
+      expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+    });
   });
 
   context('court information', () => {

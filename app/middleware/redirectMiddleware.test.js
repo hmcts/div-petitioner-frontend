@@ -70,7 +70,7 @@ describe(modulePath, () => {
       const stateRedirectedToDn = ['AwaitingGeneralReferralPayment', 'GeneralConsiderationComplete'];
 
       stateRedirectedToDn.forEach(currentState => {
-         // eslint-disable-next-line max-nested-callbacks
+        // eslint-disable-next-line max-nested-callbacks
         it(`should redirect to DN when state is ${currentState}`, () => {
           req.session.state = currentState;
 

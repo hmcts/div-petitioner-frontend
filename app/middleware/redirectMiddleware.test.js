@@ -67,9 +67,9 @@ describe(modulePath, () => {
     });
 
     describe('Redirections to DN app', () => {
-      const stateRedirectedToDn = ['AwaitingGeneralReferralPayment', 'GeneralConsiderationComplete'];
+      const stateToRedirectToDn = ['AwaitingGeneralReferralPayment', 'GeneralConsiderationComplete'];
 
-      stateRedirectedToDn.forEach(currentState => {
+      stateToRedirectToDn.forEach(currentState => {
         // eslint-disable-next-line max-nested-callbacks
         it(`should redirect to DN when state is ${currentState}`, () => {
           req.session.state = currentState;

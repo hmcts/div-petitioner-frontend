@@ -11,3 +11,4 @@ module.exports = class ExitMarriageBroken extends ExitStep {
     return '/bye';
   }
 };
+

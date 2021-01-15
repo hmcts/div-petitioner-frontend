@@ -17,11 +17,8 @@ withNightlyPipeline("nodejs", product, component) {
 
     enableCrossBrowserTest()
     enableMutationTest()
-    enableSecurityScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
-
-//    enableSlackNotifications('#div-dev')  // can be turned back on once the overnight functionality is working fully
 }

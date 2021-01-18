@@ -7,7 +7,7 @@ const Step = require('app/core/steps/Step');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 const paymentService = require('app/services/payment');
-const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
+// const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
 
 module.exports = class CardPaymentStatus extends Step {
   get middleware() {
@@ -35,22 +35,23 @@ module.exports = class CardPaymentStatus extends Step {
       next();
       return;
     }
-    paymentStatusService
-      .checkAndUpdatePaymentStatus(req)
-      // Check CCD update response then redirect to a step based on payment status.
-      .then(response => {
-        logger.infoWithReq(req, 'payment_status_updated', 'Payment status updated', response);
-        const id = req.session.currentPaymentId;
-        const paymentStatus = req.session.payments[id].status;
-        res.redirect(this.next(paymentStatus).url);
-        next();
-      })
-
-      // Log any errors occurred and end up on the error page.
-      .catch(error => {
-        logger.errorWithReq(req, 'payment_error', 'Error occurred while checking/updating payment status', error.message);
-        res.redirect('/generic-error');
-      });
+    // paymentStatusService
+    //   .checkAndUpdatePaymentStatus(req)
+    //   // Check CCD update response then redirect to a step based on payment status.
+    //   .then(response => {
+    //     logger.infoWithReq(req, 'payment_status_updated', 'Payment status updated', response);
+    logger.infoWithReq(req, 'payment_status_updated', 'Skipping Payment status update');
+    // const id = req.session.currentPaymentId;
+    const paymentStatus = 'success'; // req.session.payments[id].status;
+    res.redirect(this.next(paymentStatus).url);
+    next();
+    // })
+    //
+    // // Log any errors occurred and end up on the error page.
+    // .catch(error => {
+    //   logger.errorWithReq(req, 'payment_error', 'Error occurred while checking/updating payment status', error.message);
+    //   res.redirect('/generic-error');
+    // });
   }
 
   get url() {

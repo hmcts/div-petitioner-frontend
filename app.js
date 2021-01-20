@@ -65,7 +65,6 @@ exports.init = listenForConnections => {
       connectSrc: ['\'self\''],
       mediaSrc: ['\'self\''],
       frameSrc: [
-        '\'none\'',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
       ],

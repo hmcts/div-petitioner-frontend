@@ -72,6 +72,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
 
     if (this.showAllReasonsForDivorce(session)) {
       ignoreDivorceReasons = [];
+      logger.infoWithReq(null, '', 'showing all reasons for divorce');
     }
 
     ctx.reasonForDivorceHasMarriageDate = false;
@@ -99,18 +100,23 @@ module.exports = class ReasonForDivorce extends ValidationStep {
         switch (reason) {
         case reasons.adultery:
           ctx.reasonForDivorceShowAdultery = false;
+          logger.infoWithReq(null, '', 'hit case adultery');
           break;
         case reasons.behaviour:
           ctx.reasonForDivorceShowUnreasonableBehaviour = false;
+          logger.infoWithReq(null, '', 'hit case behaviour');
           break;
         case reasons.desertion:
           ctx.reasonForDivorceShowDesertion = false;
+          logger.infoWithReq(null, '', 'hit case desertion');
           break;
         case reasons.sep2Yr:
           ctx.reasonForDivorceShowTwoYearsSeparation = false;
+          logger.infoWithReq(null, '', 'hit case two year separation');
           break;
         case reasons.sep5Yr:
           ctx.reasonForDivorceShowFiveYearsSeparation = false;
+          logger.infoWithReq(null, '', 'hit case five year separation');
           break;
         default:
           logger.errorWithReq(session.req, 'unknown_reason', `Unknown reason for divorce found: ${reason}`);
@@ -119,6 +125,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     }
 
     if (timeSinceMarriage < datePeriod.FIVE_YEARS) {
+      logger.infoWithReq(null, '', 'removed 5 year separation');
       ctx.reasonForDivorceTimeUntilReason5Years = moment(marriageDate).add(datePeriod.FIVE_YEARS, 'years')
         .format('DD MMMM YYYY');
       ctx.reasonForDivorceShowFiveYearsSeparation = false;
@@ -126,6 +133,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     }
 
     if (timeSinceMarriage < datePeriod.TWO_YEARS) {
+      logger.infoWithReq(null, '', 'removed 2 year separation');
       ctx.reasonForDivorceTimeUntilReason2Years = moment(marriageDate).add(datePeriod.TWO_YEARS, 'years')
         .format('DD MMMM YYYY');
       ctx.reasonForDivorceShowTwoYearsSeparation = false;

@@ -72,7 +72,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
 
     if (this.showAllReasonsForDivorce(session)) {
       ignoreDivorceReasons = [];
-      console.log('showing all reasons for divorce');
+      logger.info('showing all reasons for divorce');
     }
 
     ctx.reasonForDivorceHasMarriageDate = false;
@@ -100,23 +100,23 @@ module.exports = class ReasonForDivorce extends ValidationStep {
         switch (reason) {
         case reasons.adultery:
           ctx.reasonForDivorceShowAdultery = false;
-          console.log('hit case adultery');
+          logger.info('hit case adultery');
           break;
         case reasons.behaviour:
           ctx.reasonForDivorceShowUnreasonableBehaviour = false;
-          console.log('hit case behaviour');
+          logger.info('hit case behaviour');
           break;
         case reasons.desertion:
           ctx.reasonForDivorceShowDesertion = false;
-          console.log('hit case desertion');
+          logger.info('hit case desertion');
           break;
         case reasons.sep2Yr:
           ctx.reasonForDivorceShowTwoYearsSeparation = false;
-          console.log('hit case two year separation');
+          logger.info('hit case two year separation');
           break;
         case reasons.sep5Yr:
           ctx.reasonForDivorceShowFiveYearsSeparation = false;
-          console.log('hit case five year separation');
+          logger.info('hit case five year separation');
           break;
         default:
           logger.errorWithReq(session.req, 'unknown_reason', `Unknown reason for divorce found: ${reason}`);
@@ -125,7 +125,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     }
 
     if (timeSinceMarriage < datePeriod.FIVE_YEARS) {
-      console.log('removed 5 year separation');
+      logger.info('removed 5 year separation');
       ctx.reasonForDivorceTimeUntilReason5Years = moment(marriageDate).add(datePeriod.FIVE_YEARS, 'years')
         .format('DD MMMM YYYY');
       ctx.reasonForDivorceShowFiveYearsSeparation = false;
@@ -133,7 +133,7 @@ module.exports = class ReasonForDivorce extends ValidationStep {
     }
 
     if (timeSinceMarriage < datePeriod.TWO_YEARS) {
-      console.log('removed 2 year separation');
+      logger.info('removed 2 year separation');
       ctx.reasonForDivorceTimeUntilReason2Years = moment(marriageDate).add(datePeriod.TWO_YEARS, 'years')
         .format('DD MMMM YYYY');
       ctx.reasonForDivorceShowTwoYearsSeparation = false;

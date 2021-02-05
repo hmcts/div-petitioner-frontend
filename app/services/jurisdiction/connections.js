@@ -27,6 +27,10 @@ const areBothHabituallyResident = (step, ctx, session) => {
   return isHabitualResident('petitioner', step, ctx, session) && isHabitualResident('respondent', step, ctx, session);
 };
 
+const isSameSexCouple = (step, ctx, session) => {
+  return session.marriageIsSameSexCouple === 'Yes';
+};
+
 const areBothDomiciled = (step, ctx, session) => {
   return isDomiciled('petitioner', step, ctx, session) && isDomiciled('respondent', step, ctx, session);
 };
@@ -212,5 +216,6 @@ module.exports = {
   areBothLastHabitualResident,
   clearJurisdictionSections,
   hasOnlyConnection,
-  clearProceedingSteps
+  clearProceedingSteps,
+  isSameSexCouple
 };

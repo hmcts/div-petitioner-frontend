@@ -95,6 +95,11 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
       return c;
     }
     break;
+  case 'H':
+    if (isEitherDomiciled(step, ctx, session)) {
+      return c;
+    }
+    break;
   default:
     break;
   }
@@ -102,7 +107,7 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
 };
 
 const generationConnections = (step, ctx, session) => {
-  const allConnections = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  const allConnections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
   return allConnections.reduce((petitionerConnections, c) => {
     const letter = getConnectionLetter(

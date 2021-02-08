@@ -23,6 +23,14 @@ const isEitherDomiciled = (step, ctx, session) => {
   return isDomiciled('petitioner', step, ctx, session) || isDomiciled('respondent', step, ctx, session);
 };
 
+const isPetitionerDomiciled = (step, ctx, session) => {
+  return isDomiciled('petitioner', step, ctx, session);
+};
+
+const isRespondentDomiciled = (step, ctx, session) => {
+  return isDomiciled('respondent', step, ctx, session);
+};
+
 const areBothHabituallyResident = (step, ctx, session) => {
   return isHabitualResident('petitioner', step, ctx, session) && isHabitualResident('respondent', step, ctx, session);
 };
@@ -96,7 +104,12 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
     }
     break;
   case 'H':
-    if (isEitherDomiciled(step, ctx, session)) {
+    if (isPetitionerDomiciled(step, ctx, session)) {
+      return c;
+    }
+    break;
+  case 'I':
+    if (isRespondentDomiciled(step, ctx, session)) {
       return c;
     }
     break;
@@ -107,7 +120,7 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
 };
 
 const generationConnections = (step, ctx, session) => {
-  const allConnections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+  const allConnections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
   return allConnections.reduce((petitionerConnections, c) => {
     const letter = getConnectionLetter(
@@ -216,6 +229,8 @@ module.exports = {
   isDomiciled,
   residualJurisdiction,
   isEitherDomiciled,
+  isPetitionerDomiciled,
+  isRespondentDomiciled,
   areBothDomiciled,
   areBothNotDomiciled,
   areBothLastHabitualResident,

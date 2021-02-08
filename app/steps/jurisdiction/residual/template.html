@@ -2,7 +2,7 @@
 {% extends "question.html" %}
 
 {% block question %}
-§  {%- if session.marriageIsSameSexCouple === 'Yes' %}
+    {%- if session.marriageIsSameSexCouple === 'Yes' %}
       {{ content.headingSame | safe }}
     {% else %}
       {{ content.heading | safe }}

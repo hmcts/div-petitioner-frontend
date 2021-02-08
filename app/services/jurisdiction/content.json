@@ -14,13 +14,17 @@
           "connectionF": "My {{ divorceWho }} and I are both domiciled in England and Wales",
           "connectionE": "I’m domiciled and habitually resident in England and Wales and have lived there for at least 6 months",
           "connectionG": "The courts of England and Wales have jurisdiction on a residual basis",
+          "connectionH": "I’m domiciled in England and Wales",
+          "connectionI": "My {{ divorceWho }} is domiciled in England or Wales",
           "legalA": "The Petitioner and the Respondent are habitually resident in England and Wales",
           "legalB": "The Petitioner and the Respondent were last habitually resident, insofar as one of them still resides there",
           "legalC": "The Respondent is habitually resident in England and Wales",
           "legalD": "The Petitioner is habitually resident in England and Wales and has resided there for at least a year immediately prior to the presentation of the petition",
           "legalF": "The Petitioner and Respondent are both domiciled in England and Wales",
           "legalE": "The Petitioner is domiciled and habitually resident in England and Wales and has resided there for at least 6 months immediately prior to the petition",
-          "legalG": "The courts of England and Wales have residual jurisdiction, meaning either: no other court in any EU Member State has jurisdiction and either the Petitioner or the Respondent is domiciled in England and Wales; or (for same sex couples only) the Petitioner or the Respondent married each other in England and Wales, no other court in any EU Member State has jurisdiction, and it would be in the interests of justice for the court to assume jurisdiction in this case"
+          "legalG": "The courts of England and Wales have residual jurisdiction, meaning either: no other court in any EU Member State has jurisdiction and either the Petitioner or the Respondent is domiciled in England and Wales; or (for same sex couples only) the Petitioner or the Respondent married each other in England and Wales, no other court in any EU Member State has jurisdiction, and it would be in the interests of justice for the court to assume jurisdiction in this case",
+          "legalH": "The Petitioner is domiciled in England and Wales",
+          "legalI": "The Respondent is domiciled in England and Wales"
         }
       }
     },
@@ -37,13 +41,17 @@
           "connectionF": "Mae fy nomisil i a fy {{ divorceWho }} yng Nghymru neu Loegr",
           "connectionE": "Mae fy nomisil yng Nghymru neu Loegr, rwyf yn preswylio yno’n arferol ac rwyf wedi byw yno am o leiaf chwe mis",
           "connectionG": "Mae gan lysoedd Cymru a Lloegr awdurdodaeth ar sail weddillol",
+          "connectionH": "Mae fy nomisil yng Nghymru a Lloegr",
+          "connectionI": "Mae domisil fy {{ divorceWho }} yng Nghymru a Lloegr",
           "legalA": "Mae’r Deisebydd a’r Atebydd yn preswylio’n arferol yng Nghymru neu Loegr",
           "legalB": "Roedd y Deisebydd a’r Atebydd yn preswylio’n arferol yno ddiwethaf, i’r graddau y mae un ohonynt yn preswylio yno o hyd",
           "legalC": "Mae’r Atebydd yn preswylio’n arferol yng Nghymru neu Loegr",
           "legalD": "Mae’r Deisebydd yn preswylio’n arferol yng Nghymru neu Loegr ac wedi preswylio yno am o leiaf blwyddyn yn union cyn codi’r ddeiseb",
           "legalF": "Mae’r Deisebydd a’r Atebydd ill dau â’u domisil yng Nghymru neu Loegr",
           "legalE": "Mae’r Deisebydd â’i ddomisil yng Nghymru neu Loegr, mae’n preswylio’n arferol yno, ac wedi preswylio yno am o leiaf chwe mis yn union cyn y ddeiseb",
-          "legalG": "Mae gan lysoedd Cymru a Lloegr awdurdodaeth weddillol. Golyga hyn naill ai nad oes gan unrhyw lys arall yn unrhyw un o aelod-wladwriaethau’r UE awdurdodaeth a bod naill ai’r Deisebydd neu’r Atebydd â’i ddomisil yng Nghymru neu Loegr; neu (yn achos cyplau o’r un rhyw yn unig) fod y Deisebydd a’r Atebydd wedi priodi yng Nghymru neu Loegr, nad oes gan unrhyw lys arall yn unrhyw un o aelod-wladwriaethau’r UE awdurdodaeth, ac y byddai er lles cyfiawnder i’r llys gymryd awdurdodaeth yn yr achos hwn"
+          "legalG": "Mae gan lysoedd Cymru a Lloegr awdurdodaeth weddillol. Golyga hyn naill ai nad oes gan unrhyw lys arall yn unrhyw un o aelod-wladwriaethau’r UE awdurdodaeth a bod naill ai’r Deisebydd neu’r Atebydd â’i ddomisil yng Nghymru neu Loegr; neu (yn achos cyplau o’r un rhyw yn unig) fod y Deisebydd a’r Atebydd wedi priodi yng Nghymru neu Loegr, nad oes gan unrhyw lys arall yn unrhyw un o aelod-wladwriaethau’r UE awdurdodaeth, ac y byddai er lles cyfiawnder i’r llys gymryd awdurdodaeth yn yr achos hwn",
+          "legalH": "Mae domisil y Deisebydd yng Nghymru a Lloegr",
+          "legalI": "Mae domisil yr Atebydd yng Nghymru a Lloegr"
         }
       }
     }

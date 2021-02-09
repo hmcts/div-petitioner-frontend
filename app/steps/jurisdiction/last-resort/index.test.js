@@ -57,7 +57,9 @@ describe(modulePath, () => {
           'legalD',
           'legalF',
           'legalE',
-          'legalG'
+          'legalG',
+          'legalH',
+          'legalI'
         ];
 
         testContent(done, agent, underTest, contentCYA, session, excludeKeys);

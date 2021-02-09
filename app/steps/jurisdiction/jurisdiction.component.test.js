@@ -131,18 +131,18 @@ describe(modulePath, () => {
     });
 
 
-    it('collects connections B, C', done => {
+    it('collects connections B, C, H', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'No', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionDomicile, { jurisdictionPetitionerDomicile: 'Yes', jurisdictionRespondentDomicile: 'No' }))
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'Yes' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['B', 'C'], done));
+        .then(expectConnections(['B', 'C', 'H'], done));
     });
 
 
-    it('collects connections B, D', done => {
+    it('collects connections B, D, I', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'No' })
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
@@ -150,7 +150,7 @@ describe(modulePath, () => {
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'Yes' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['B', 'D'], done));
+        .then(expectConnections(['B', 'D', 'I'], done));
     });
 
 
@@ -178,18 +178,18 @@ describe(modulePath, () => {
     });
 
 
-    it('collects connections C, F', done => {
+    it('collects connections C, F, H, I', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'No', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionDomicile, { jurisdictionPetitionerDomicile: 'Yes', jurisdictionRespondentDomicile: 'Yes' }))
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'No' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['C', 'F'], done));
+        .then(expectConnections(['C', 'F', 'H', 'I'], done));
     });
 
 
-    it('collects connections D, E', done => {
+    it('collects connections D, E, H', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'No' })
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
@@ -197,7 +197,7 @@ describe(modulePath, () => {
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'No' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['D', 'E'], done));
+        .then(expectConnections(['D', 'E', 'H'], done));
     });
 
 
@@ -212,18 +212,18 @@ describe(modulePath, () => {
     });
 
 
-    it('collects connections A, C, D (Respondent domiciled)', done => {
+    it('collects connections A, C, D, I (Respondent domiciled)', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionDomicile, { jurisdictionPetitionerDomicile: 'No', jurisdictionRespondentDomicile: 'Yes' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['A', 'C', 'D'], done));
+        .then(expectConnections(['A', 'C', 'D', 'I'], done));
     });
 
 
-    it('collects connections A, C, F', done => {
+    it('collects connections A, C, F, H, I', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'No' }))
@@ -231,22 +231,22 @@ describe(modulePath, () => {
         .then(completePage(s.steps.JurisdictionLastSixMonths, { jurisdictionLastSixMonths: 'No' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['A', 'C', 'F'], done));
+        .then(expectConnections(['A', 'C', 'F', 'H', 'I'], done));
     });
 
 
-    it('collects connections B, C, F', done => {
+    it('collects connections B, C, F, H, I', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'No', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionDomicile, { jurisdictionPetitionerDomicile: 'Yes', jurisdictionRespondentDomicile: 'Yes' }))
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'Yes' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['B', 'C', 'F'], done));
+        .then(expectConnections(['B', 'C', 'F', 'H', 'I'], done));
     });
 
 
-    it('collects connections B, D, E', done => {
+    it('collects connections B, D, E, H', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'No' })
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
@@ -254,11 +254,11 @@ describe(modulePath, () => {
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'Yes' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['B', 'D', 'E'], done));
+        .then(expectConnections(['B', 'D', 'E', 'H'], done));
     });
 
 
-    it('collects connections D, E, F', done => {
+    it('collects connections D, E, F, H, I', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'No' })
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
@@ -266,29 +266,29 @@ describe(modulePath, () => {
         .then(completePage(s.steps.JurisdictionLastHabitualResidence, { jurisdictionLastHabitualResident: 'No' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['D', 'E', 'F'], done));
+        .then(expectConnections(['D', 'E', 'F', 'H', 'I'], done));
     });
 
 
-    it('collects connections A, C, D, E', done => {
+    it('collects connections A, C, D, E, H', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionDomicile, { jurisdictionPetitionerDomicile: 'Yes', jurisdictionRespondentDomicile: 'No' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['A', 'C', 'D', 'E'], done));
+        .then(expectConnections(['A', 'C', 'D', 'E', 'H'], done));
     });
 
 
-    it('collects connections A, C, D, E, F', done => {
+    it('collects connections A, C, D, E, F, H, I', done => {
       postData(agent, s.steps.JurisdictionHabitualResidence.url, { jurisdictionPetitionerResidence: 'Yes', jurisdictionRespondentResidence: 'Yes' })
         .then(completePage(s.steps.JurisdictionInterstitial, { jurisdictionConfidentLegal: 'No' }))
         .then(completePage(s.steps.JurisdictionLastTwelveMonths, { jurisdictionLastTwelveMonths: 'Yes' }))
         .then(completePage(s.steps.JurisdictionDomicile, { jurisdictionPetitionerDomicile: 'Yes', jurisdictionRespondentDomicile: 'Yes' }))
         .then(completePage(s.steps.JurisdictionConnectionSummary, { connectionSummary: 'Yes' }))
 
-        .then(expectConnections(['A', 'C', 'D', 'E', 'F'], done));
+        .then(expectConnections(['A', 'C', 'D', 'E', 'F', 'H', 'I'], done));
     });
 
 

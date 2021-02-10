@@ -1,57 +1,67 @@
 <link href="{{asset_path}}stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+
+<script>
+  dataLayer = [];
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+
+  {'gtm.start': new Date().getTime(),event:'gtm.js'}
+);var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N6HQ8F6');</script>
+<!-- End Google Tag Manager -->
+
 {% if session.caseId %}
-  <meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="telephone=no">
 {% endif %}
 
 {% if features.webchat and session.language == "en" %}
-  <script src="/webchat/javascript/hmcts-webchat.js"></script>
-  <script type="text/javascript">
-    webchat_init({ // eslint-disable-line
-      uuid: 'script_{{ webchat.chatId }}',
-      tenant: '{{ webchat.tenant }}',
-      channel: 'Divorce',
-      stylesheetURL: 'https://' + window.location.hostname + '/webchat/css/hmcts-webchat-gds-v2.css',
-      busHandlerURL: 'https://' + window.location.hostname + '/webchat/javascript/hmcts-webchat-busHandler.js',
-      btnNoAgents: '/{{ webchat.tenant }}/button_{{ webchat.buttonNoAgents }}/img/logo',
-      btnAgentsBusy: '/{{ webchat.tenant }}/button_{{ webchat.buttonAgentsBusy }}/img/logo',
-      btnServiceClosed: '/{{ webchat.tenant }}/button_{{ webchat.buttonServiceClosed }}/img/logo',
-      chatDownAction: 'showMessage',
-      chatLinkFocusable: false,
-      textChatDown: '{{ common.chatDown | safe }}',
-      textChatClosed: '{{ common.chatClosed | safe }}',
-      textChatWithAnAgent: '{{ common.chatWithAnAgent | safe }}',
-      textNoAgentsAvailable: '{{ common.noAgentsAvailable | safe }}',
-      textAllAgentsBusy: '{{ common.allAgentsBusy | safe }}',
-      textChatAlreadyOpen: '{{ common.chatAlreadyOpen | safe }}',
-      textAdditional: '{{ common.chatOpeningHours | safe }}',
-      gdsMajorVersion: 2
-    });
-  </script>
+<script src="/webchat/javascript/hmcts-webchat.js"></script>
+<script type="text/javascript">
+  webchat_init({ // eslint-disable-line
+    uuid: 'script_{{ webchat.chatId }}',
+    tenant: '{{ webchat.tenant }}',
+    channel: 'Divorce',
+    stylesheetURL: 'https://' + window.location.hostname + '/webchat/css/hmcts-webchat-gds-v2.css',
+    busHandlerURL: 'https://' + window.location.hostname + '/webchat/javascript/hmcts-webchat-busHandler.js',
+    btnNoAgents: '/{{ webchat.tenant }}/button_{{ webchat.buttonNoAgents }}/img/logo',
+    btnAgentsBusy: '/{{ webchat.tenant }}/button_{{ webchat.buttonAgentsBusy }}/img/logo',
+    btnServiceClosed: '/{{ webchat.tenant }}/button_{{ webchat.buttonServiceClosed }}/img/logo',
+    chatDownAction: 'showMessage',
+    chatLinkFocusable: false,
+    textChatDown: '{{ common.chatDown | safe }}',
+    textChatClosed: '{{ common.chatClosed | safe }}',
+    textChatWithAnAgent: '{{ common.chatWithAnAgent | safe }}',
+    textNoAgentsAvailable: '{{ common.noAgentsAvailable | safe }}',
+    textAllAgentsBusy: '{{ common.allAgentsBusy | safe }}',
+    textChatAlreadyOpen: '{{ common.chatAlreadyOpen | safe }}',
+    textAdditional: '{{ common.chatOpeningHours | safe }}',
+    gdsMajorVersion: 2
+  });
+</script>
 {% endif %}
 
-{% if googleAnalyticsId %}
-  <!-- Google Analytics -->
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', '{{googleAnalyticsId}}', 'auto');
-    ga('set', 'anonymizeIp', true);
-    ga('send', 'pageview');
-  </script>
-  <!-- End Google Analytics -->
-{% endif %}
 
 <!--[if lt IE 9]>
-  <style>
-    div .govuk-radios__item input {
-      filter: none;
-    }
-    body.js-enabled .js-hidden {
-      display: block;
-      visibility: visible;
-    }
-  </style>
+<style>
+  div .govuk-radios__item input {
+    filter: none;
+  }
+  body.js-enabled .js-hidden {
+    display: block;
+    visibility: visible;
+  }
+</style>
 <![endif]-->
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6HQ8F6"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+</body>

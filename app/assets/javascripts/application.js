@@ -7,6 +7,41 @@ import './showHideContent';
 
 window.jQuery = $;
 
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ['\'self\''],
+    fontSrc: [
+      '\'self\' data:',
+      'fonts.gstatic.com'
+    ],
+    scriptSrc: [
+      '\'self\'',
+      'www.google-analytics.com',
+      'www.googletagmanager.com',
+      `'nonce-${nonce}'`
+    ],
+    connectSrc: [
+      '\'self\'',
+      'www.google-analytics.com'
+    ],
+    mediaSrc: ['\'self\''],
+    imgSrc: [
+      '\'self\'',
+      '\'self\' data:',
+      'www.google-analytics.com',
+      'stats.g.doubleclick.net',
+      'ssl.gstatic.com',
+      'www.gstatic.com'
+    ],
+    styleSrc: [
+      '\'self\'',
+      '\'unsafe-inline\'',
+      'tagmanager.google.com',
+      'fonts.googleapis.com'
+    ]
+  }
+}));
+
 (function (global) {
   'use strict';
   var DIVORCE = {
@@ -14,8 +49,8 @@ window.jQuery = $;
     SwitchReasonColor: function(){
       var $multipleChoice = $('.govuk-radios__item');
       $multipleChoice.find('input[type="radio"]').click(function(){
-          $multipleChoice.removeClass('selected-reason-state');
-          $(this).parent().addClass('selected-reason-state');
+        $multipleChoice.removeClass('selected-reason-state');
+        $(this).parent().addClass('selected-reason-state');
       });
     },
     saveProgress
@@ -44,12 +79,12 @@ function dateSlice(date)
 (function (global) {
   'use strict';
   var trackExpandableSection = {
-     event: function(label) {
-            ga('send', 'event', {
-            eventCategory: 'Expandable section',
-            eventAction: 'Expandable section clicked',
-            eventLabel: label
-            });
+    event: function(label) {
+      ga('send', 'event', {
+        eventCategory: 'Expandable section',
+        eventAction: 'Expandable section clicked',
+        eventLabel: label
+      });
     }
   } ;
   global.DIVORCE = global.DIVORCE || {};
@@ -57,7 +92,7 @@ function dateSlice(date)
 })(window);
 
 $(document).ready(function() {
-    $('details > summary span.summary').click(function(e){
-         DIVORCE.trackExpandableSection.event($(this).text());
-    });
+  $('details > summary span.summary').click(function(e){
+    DIVORCE.trackExpandableSection.event($(this).text());
+  });
 });

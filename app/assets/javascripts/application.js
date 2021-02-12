@@ -7,7 +7,6 @@ import './showHideContent';
 
 window.jQuery = $;
 
-
 (function (global) {
   'use strict';
   var DIVORCE = {
@@ -15,8 +14,8 @@ window.jQuery = $;
     SwitchReasonColor: function(){
       var $multipleChoice = $('.govuk-radios__item');
       $multipleChoice.find('input[type="radio"]').click(function(){
-        $multipleChoice.removeClass('selected-reason-state');
-        $(this).parent().addClass('selected-reason-state');
+          $multipleChoice.removeClass('selected-reason-state');
+          $(this).parent().addClass('selected-reason-state');
       });
     },
     saveProgress
@@ -45,12 +44,12 @@ function dateSlice(date)
 (function (global) {
   'use strict';
   var trackExpandableSection = {
-    event: function(label) {
-      ga('send', 'event', {
-        eventCategory: 'Expandable section',
-        eventAction: 'Expandable section clicked',
-        eventLabel: label
-      });
+     event: function(label) {
+            ga('send', 'event', {
+            eventCategory: 'Expandable section',
+            eventAction: 'Expandable section clicked',
+            eventLabel: label
+            });
     }
   } ;
   global.DIVORCE = global.DIVORCE || {};
@@ -58,10 +57,7 @@ function dateSlice(date)
 })(window);
 
 $(document).ready(function() {
-  $('details > summary span.summary').click(function(e){
-    DIVORCE.trackExpandableSection.event($(this).text());
-  });
+    $('details > summary span.summary').click(function(e){
+         DIVORCE.trackExpandableSection.event($(this).text());
+    });
 });
-
-
-

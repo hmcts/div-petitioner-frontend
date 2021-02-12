@@ -53,16 +53,24 @@ exports.init = listenForConnections => {
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
     directives: {
-      fontSrc: ['\'self\' data:'],
+      defaultSrc: ['\'self\''],
+      fontSrc: [
+        '\'self\' data:',
+        'fonts.gstatic.com'
+      ],
       scriptSrc: [
         '\'self\'',
         '\'unsafe-inline\'',
         'www.google-analytics.com',
+        'www.googletagmanager.com',
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
       ],
-      connectSrc: ['\'self\''],
+      connectSrc: [
+        '\'self\'',
+        'www.google-analytics.com'
+      ],
       mediaSrc: ['\'self\''],
       frameSrc: [
         'vcc-eu4.8x8.com',
@@ -74,6 +82,12 @@ exports.init = listenForConnections => {
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
+      ],
+      styleSrc: [
+        '\'self\'',
+        '\'unsafe-inline\'',
+        'tagmanager.google.com',
+        'fonts.googleapis.com'
       ]
     }
   }));

@@ -7,40 +7,6 @@ import './showHideContent';
 
 window.jQuery = $;
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ['\'self\''],
-    fontSrc: [
-      '\'self\' data:',
-      'fonts.gstatic.com'
-    ],
-    scriptSrc: [
-      '\'self\'',
-      'www.google-analytics.com',
-      'www.googletagmanager.com',
-      `'nonce-${nonce}'`
-    ],
-    connectSrc: [
-      '\'self\'',
-      'www.google-analytics.com'
-    ],
-    mediaSrc: ['\'self\''],
-    imgSrc: [
-      '\'self\'',
-      '\'self\' data:',
-      'www.google-analytics.com',
-      'stats.g.doubleclick.net',
-      'ssl.gstatic.com',
-      'www.gstatic.com'
-    ],
-    styleSrc: [
-      '\'self\'',
-      '\'unsafe-inline\'',
-      'tagmanager.google.com',
-      'fonts.googleapis.com'
-    ]
-  }
-}));
 
 (function (global) {
   'use strict';
@@ -96,3 +62,6 @@ $(document).ready(function() {
     DIVORCE.trackExpandableSection.event($(this).text());
   });
 });
+
+
+

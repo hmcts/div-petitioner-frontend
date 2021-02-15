@@ -69,7 +69,8 @@ exports.init = listenForConnections => {
       ],
       connectSrc: [
         '\'self\'',
-        'www.google-analytics.com'
+        'www.google-analytics.com',
+        'stats.g.doubleclick.net'
       ],
       mediaSrc: ['\'self\''],
       frameSrc: [

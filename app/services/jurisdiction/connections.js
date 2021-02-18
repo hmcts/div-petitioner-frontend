@@ -104,12 +104,12 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
     }
     break;
   case 'H':
-    if (isPetitionerDomiciled(step, ctx, session)) {
+    if (isPetitionerDomiciled(step, ctx, session) && !areBothDomiciled(step, ctx, session)) {
       return c;
     }
     break;
   case 'I':
-    if (isRespondentDomiciled(step, ctx, session)) {
+    if (isRespondentDomiciled(step, ctx, session) && !areBothDomiciled(step, ctx, session)) {
       return c;
     }
     break;

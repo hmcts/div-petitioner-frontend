@@ -80,7 +80,7 @@ describe(modulePath, () => {
         jurisdictionRespondentDomicile: 'Yes'
       })
         .then(location => {
-          expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
+          expect(location).to.equal(s.steps.JurisdictionInterstitial.url);
         })
         .then(() => {
           return getSession(agent);
@@ -112,7 +112,7 @@ describe(modulePath, () => {
         jurisdictionRespondentDomicile: 'Yes'
       })
         .then(location => {
-          expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
+          expect(location).to.equal(s.steps.JurisdictionInterstitial.url);
         })
         .then(() => {
           return getSession(agent);

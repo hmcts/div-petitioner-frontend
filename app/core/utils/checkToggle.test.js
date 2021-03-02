@@ -1,17 +1,16 @@
 const forEach = require('mocha-each');
-const {invoke} = require('lodash');
-const {expect} = require('test/util/chai');
+const { invoke } = require('lodash');
+const { expect } = require('test/util/chai');
 
 const checkToggle = require('app/core/utils/checkToggle');
 
 const buildSessionWithFeatureToggle = (featureName, featureValue) => {
   const featureToggles = {};
   featureToggles[featureName] = featureValue;
-  return {featureToggles};
+  return { featureToggles };
 };
 
 describe('checkToggle', () => {
-
   forEach([
     ['ft_awaiting_amend', 'isToggleOnAwaitingAmend'],
     ['ft_represented_respondent_journey', 'isToggleOnRepresentedRespondentJourney']

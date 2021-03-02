@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 const { expect, sinon } = require('test/util/chai');
+const forEach = require('mocha-each');
 
 const modulePath = 'app/middleware/submissionMiddleware';
 const underTest = require(modulePath);
@@ -7,15 +8,18 @@ const serviceToken = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
 
+const TEST_CASE_ID = 'test.case.id';
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
+const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
 
 let req = {};
 let res = {};
 let next = {};
 let ctx = {};
+
 
 describe(modulePath, () => {
   describe('#hasSubmitted', () => {
@@ -25,65 +29,68 @@ describe(modulePath, () => {
       res = { redirect: sinon.stub() };
       next = sinon.stub();
     });
+
     it('calls next if application has not been submitted', () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.called).to.eql(false);
       expect(next.calledOnce).to.eql(true);
     });
+
     it('next is called if session.caseId does not exist', () => {
       req.session.state = 'AwaitingPayment';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(next.calledOnce).to.eql(true);
     });
+
     it('next is called if session.state does not exist', () => {
-      req.session.caseId = 'someid';
+      req.session.caseId = TEST_CASE_ID;
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(APPLICATION_SUBMITTED_PATH)).to.eql(true);
     });
+
     it('redirects to /contact-divorce-team if application has multiple cases that are not "Rejected"', () => {
-      req.session.caseId = 'someid';
+      req.session.caseId = TEST_CASE_ID;
       req.session.state = 'MultipleRejectedCases';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(APPLICATION_MULTIPLE_REJECTED_CASES_PATH)).to.eql(true);
     });
+
     it('redirects to /application-submitted if application has been submitted and is in "AwaitingPayment"', () => {
-      req.session.caseId = 'someid';
+      req.session.caseId = TEST_CASE_ID;
       req.session.state = 'AwaitingPayment';
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(APPLICATION_SUBMITTED_PATH)).to.eql(true);
       expect(next.calledOnce).to.eql(false);
     });
-    it('redirects to /done-and-submitted if application has been submitted and is not "AwaitingPayment" or "Rejected"', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'randomstate';
+
+    forEach([
+      ['AwaitingAlternativeService'],
+      ['AwaitingProcessServerService'],
+      ['AwaitingDWPResponse'],
+      ['AosDrafted'],
+      ['AnyOtherState']
+    ])
+      .it('should redirect to /done-and-submitted if application has been submitted and is %s', caseState => {
+        req.session.caseId = TEST_CASE_ID;
+        req.session.state = caseState;
+        req.session.featureToggles = { ft_represented_respondent_journey: true };
+        underTest.hasSubmitted.apply(ctx, [req, res, next]);
+        expect(res.redirect.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+      });
+
+    it('should redirect to /contact-divorce-team if AosDrafted and ft_represented_respondent_journey toggle is off', () => {
+      req.session.caseId = TEST_CASE_ID;
+      req.session.state = 'AosDrafted';
+      req.session.featureToggles = { ft_represented_respondent_journey: false };
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
-      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
+      expect(res.redirect.calledWith(CONTACT_DIVORCE_TEAM_PATH)).to.eql(true);
     });
-    it('redirects to /done-and-submitted if application has been submitted and is in "AwaitingAlternativeService', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingAlternativeService';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(res.redirect.calledOnce).to.eql(true);
-      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
-    });
-    it('redirects to /done-and-submitted if application has been submitted and is in "AwaitingProcessServerService', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingProcessServerService';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(res.redirect.calledOnce).to.eql(true);
-      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
-    });
-    it('redirects to /done-and-submitted if application has been submitted and is in "AwaitingDWPResponse', () => {
-      req.session.caseId = 'someid';
-      req.session.state = 'AwaitingDWPResponse';
-      underTest.hasSubmitted.apply(ctx, [req, res, next]);
-      expect(res.redirect.calledOnce).to.eql(true);
-      expect(res.redirect.calledWith(DONE_AND_SUBMITTED)).to.eql(true);
-    });
+
     it('redirects to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {
       req.session.caseId = 'someid';
       req.session.state = 'AwaitingAmendCase';
@@ -92,6 +99,7 @@ describe(modulePath, () => {
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(AMENDMENT_EXPLANATORY_PAGE)).to.eql(true);
     });
+
     it('does not redirect to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is off', () => {
       req.session.caseId = 'someid';
       req.session.state = 'AwaitingAmendCase';
@@ -99,6 +107,7 @@ describe(modulePath, () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledWith(AMENDMENT_EXPLANATORY_PAGE)).to.eql(false);
     });
+
     it('calls next if application has been submitted and is "Rejected"', () => {
       req.session.caseId = 'someid';
       req.session.state = 'Rejected';
@@ -106,6 +115,7 @@ describe(modulePath, () => {
       expect(res.redirect.called).to.eql(false);
       expect(next.calledOnce).to.eql(true);
     });
+
     context('new case submitted with no state', () => {
       it('redirects to application submitted when redirect feature is set to true and caseId is in session', () => {
         req.session.caseId = 'someid';

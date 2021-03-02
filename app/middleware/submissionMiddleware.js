@@ -1,6 +1,6 @@
 const logger = require('app/services/logger').logger(__filename);
 const paymentStatusService = require('app/steps/pay/card-payment-status/paymentStatusService');
-const { isToggleOnAwaitingAmend } = require('app/core/utils/checkToggle');
+const { isToggleOnAwaitingAmend, isToggleOnRepresentedRespondentJourney } = require('app/core/utils/checkToggle');
 
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
 const DONE_AND_SUBMITTED = '/done-and-submitted';
@@ -46,6 +46,12 @@ const handleCcdCase = (req, res, next) => {
     if (isToggleOnAwaitingAmend(session)) {
       logger.infoWithReq(req, 'awaiting_amend_case', 'Awaiting amend case');
       return res.redirect(AMENDMENT_EXPLANATORY_PATH);
+    }
+    return res.redirect(CONTACT_DIVORCE_TEAM_PATH);
+  case 'AosDrafted':
+    if (isToggleOnRepresentedRespondentJourney(session)) {
+      logger.infoWithReq(req, 'aos_drafted_case', 'Aos Drafted case - redirecting to done and submitted');
+      return res.redirect(DONE_AND_SUBMITTED);
     }
     return res.redirect(CONTACT_DIVORCE_TEAM_PATH);
   default:

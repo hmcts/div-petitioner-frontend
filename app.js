@@ -53,6 +53,7 @@ exports.init = listenForConnections => {
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
     directives: {
+      defaultSrc: ['\'self\''],
       fontSrc: ['\'self\' data:'],
       scriptSrc: [
         '\'self\'',

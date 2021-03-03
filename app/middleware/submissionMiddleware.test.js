@@ -71,7 +71,7 @@ describe(modulePath, () => {
       ['AwaitingProcessServerService'],
       ['AwaitingDWPResponse'],
       ['AosDrafted'],
-      ['AnyOtherUnhandledD8StatesListedState']
+      ['AnyOtherUnhandledD8StatesListed']
     ])
       .it('should redirect to /done-and-submitted if application has been submitted and is %s', caseState => {
         req.session.caseId = TEST_CASE_ID;

@@ -78,6 +78,7 @@ class SessionHelper extends codecept_helper {
     session.featureToggles.ft_welsh = true;
     session.petitionerPcqId = 'is_in_session';
     session.featureToggles.ft_awaiting_amend = true;
+    session.featureToggles.ft_represented_respondent_journey = false;
 
     let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 

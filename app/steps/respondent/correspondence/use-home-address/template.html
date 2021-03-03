@@ -1,12 +1,49 @@
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 {% block question %}
-    {{ content.question | safe }}
+    {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
+        {{ content.updatedQuestion | safe }}
+    {% else %}
+        {{ content.question | safe }}
+    {% endif %}
 {% endblock %}
 
 {% block form %}
     {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
-        feature toggle on
+
+    <p class="govuk-body">{{ content.updatedCorrespondence | safe }}</p>
+
+    {% if fields.divorceSentToAddress.value %}
+        <p class="govuk-body">
+            {{ fields.divorceSentToAddress.value.address | join("<br/>") | safe }}
+        </p>
+    {% endif %}
+
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
+        <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.updatedQuestion | safe }}</legend>
+            {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.updatedRadioOptions.theirAddress,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+            {{ radioButton(
+                value = 'Solicitor',
+                label = content.updatedRadioOptions.solictorAddress,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+            {{ radioButton(
+                value = 'No',
+                label = content.updatedRadioOptions.anotherAddress,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+        </fieldset>
+    </div>
+
     {% else %}
 
     <p class="govuk-body">{{ content.correspondence | safe }}</p>
@@ -35,7 +72,6 @@
             ) }}
         </fieldset>
     </div>
+
     {% endif %}
-
-
 {% endblock %}

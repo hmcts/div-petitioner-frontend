@@ -5,9 +5,20 @@
       "translation": {
         "content": {
           "question": "Is this where your {{ divorceWho }}’s divorce papers should be sent?",
+          "updatedQuestion": "Where should your {{ divorceWho }}'s divorce papers be sent?",
           "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
+          "updatedCorrespondence": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address",
           "yes": "Yes, use this address",
-          "no": "No, send them to a different address"
+          "no": "No, send them to a different address",
+          "updatedRadioOptions": {
+            "theirAddress": "Their Address",
+            "solictorAddress": "Their solicitor's address",
+            "anotherAddress": "Another address"
+          }
+        },
+        "updatedContent": {
+          "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
+          "correspondence": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address"
         },
         "checkYourAnswersContent": {
           "yes": "Yes"
@@ -15,6 +26,9 @@
         "errors": {
           "respondentCorrespondenceUseHomeAddress": {
             "required": "Select whether you want your {{ divorceWho }}’s divorce papers sent to this address"
+          },
+          "divorceSentToAddress": {
+            "required": "You must select an option"
           }
         }
       }
@@ -23,9 +37,16 @@
       "translation": {
         "content": {
           "question": "Ai i’r fan hon y dylid anfon papurau ysgariad eich {{ divorceWho }}?",
+          "updatedQuestion": "[CY] Where should your {{ divorceWho }}'s divorce papers be sent?",
           "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
+          "updatedCorrespondence": "[CY] If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address",
           "yes": "Ie, defnyddiwch y cyfeiriad hwn",
-          "no": "Na, dylid eu hanfon i gyfeiriad arall"
+          "no": "Na, dylid eu hanfon i gyfeiriad arall",
+          "updatedRadioOptions": {
+            "theirAddress": "[CY] Their Address",
+            "solictorAddress": "[CY] Their solicitor's address",
+            "anotherAddress": "[CY] Another address"
+          }
         },
         "checkYourAnswersContent": {
           "yes": "Ydw"

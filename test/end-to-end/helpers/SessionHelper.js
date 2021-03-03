@@ -4,6 +4,7 @@ const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessio
 const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession');
 const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
 const serviceApplicationNotApprovedSession = require('test/end-to-end/data/serviceApplicationNotApprovedSession');
+const asoDraftedSession = require('test/end-to-end/data/aosDraftedSession');
 const Tokens = require('csrf');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
@@ -11,7 +12,8 @@ const availableSessions = {
   basicDivorceSessionData,
   amendPetitionSession,
   amendPetitionSessionWithConfirmation,
-  serviceApplicationNotApprovedSession
+  serviceApplicationNotApprovedSession,
+  asoDraftedSession
 };
 
 class SessionHelper extends codecept_helper {
@@ -78,6 +80,7 @@ class SessionHelper extends codecept_helper {
     session.featureToggles.ft_welsh = true;
     session.petitionerPcqId = 'is_in_session';
     session.featureToggles.ft_awaiting_amend = true;
+    session.featureToggles.ft_represented_respondent_journey = true;
 
     let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 

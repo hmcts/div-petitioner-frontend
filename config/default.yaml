@@ -199,6 +199,7 @@ featureToggles:
   ft_welsh: 'divorce-welsh'
   ft_pcq: 'petitioner-pcq'
   ft_awaiting_amend: 'divorce-amended-application'
+  ft_represented_respondent_journey: 'represented-respondent-journey'
   appwideToggles: ['ft_welsh']
 
 document:

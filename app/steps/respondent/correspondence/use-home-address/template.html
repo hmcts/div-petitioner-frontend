@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block form %}
+    {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
+        feature toggle on
+    {% else %}
 
     <p class="govuk-body">{{ content.correspondence | safe }}</p>
 
@@ -32,5 +35,7 @@
             ) }}
         </fieldset>
     </div>
+    {% endif %}
+
 
 {% endblock %}

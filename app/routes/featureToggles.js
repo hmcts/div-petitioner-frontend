@@ -10,7 +10,15 @@ const fetchAwaitingAmendToggleVariation = (req, res, next) => {
   return featureToggle.callCheckToggle(req, res, next, res.locals.launchDarkly, 'ft_awaiting_amend', featureToggle.toggleFeature);
 };
 
+const fetchRepresentedRespondentJourneyToggleVariation = (req, res, next) => {
+  return featureToggle.callCheckToggle(req, res, next, res.locals.launchDarkly, 'ft_represented_respondent_journey', featureToggle.toggleFeature);
+};
+
 router.use([fetchAwaitingAmendToggleVariation], (req, res, next) => {
+  next();
+});
+
+router.use([fetchRepresentedRespondentJourneyToggleVariation], (req, res, next) => {
   next();
 });
 

@@ -358,6 +358,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
@@ -667,6 +668,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
@@ -976,6 +978,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
@@ -1285,6 +1288,7 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
+      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
       ft_welsh: 'true'
     },
@@ -1317,6 +1321,7 @@ module.exports = {
   reasonForDivorceClaimingAdultery: false,
   marriageCertificateFiles: [],
   featureToggles: {
+    ft_represented_respondent_journey: 'false',
     ft_awaiting_amend: false,
     ft_welsh: true
   }

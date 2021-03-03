@@ -7,9 +7,8 @@ Scenario('Done and Submitted page is displayed when AosDrafted case', async func
   I.startApplicationWith('asoDraftedSession');
   I.amOnLoadedPage('/done-and-submitted');
 
+  I.see(content.title);
   I.see(whoResponds);
-  I.see('Application complete');
   I.see('What happens next');
 
-  I.amDoneAndSubmitted();
 });

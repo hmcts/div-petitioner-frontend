@@ -1,6 +1,10 @@
 const idamExpressMiddleware = require('@hmcts/div-idam-express-middleware');
 const CONF = require('config');
 
+const logging = require('@hmcts/nodejs-logging');
+
+const loggerInstance = logging.Logger.getLogger(__filename);
+
 const confIdam = CONF.idamArgs;
 
 const PUBLIC_HOSTNAME = CONF.public.hostname;
@@ -27,18 +31,23 @@ module.exports = {
       idamArgs.redirectUri = protocol.concat('://', host, path);
       idamArgs.language = language;
     }
+    loggerInstance.debug('idam request - authenticate with following: ', idamArgs);
     return idamExpressMiddleware.authenticate(idamArgs);
   },
   landingPage: () => {
+    loggerInstance.debug('idam request - landingPage with following: ', idamArgs);
     return idamExpressMiddleware.landingPage(idamArgs);
   },
   protect: () => {
+    loggerInstance.debug('idam request - protect with following: ', idamArgs);
     return idamExpressMiddleware.protect(idamArgs);
   },
   logout: () => {
+    loggerInstance.debug('idam request - logout with following: ', idamArgs);
     return idamExpressMiddleware.logout(idamArgs);
   },
   userDetails: () => {
+    loggerInstance.debug('idam request - userDetails with following: ', idamArgs);
     return idamExpressMiddleware.userDetails(idamArgs);
   },
   userId: req => {

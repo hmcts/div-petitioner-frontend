@@ -7,7 +7,7 @@
           "question": "Enter details of your {{ divorceWho }}'s solicitor",
           "solicitorCompanyLabel": "Enter the name of their solicitor's firm",
           "searchButton": "Search",
-          "solicitorNameLabel": "Solicitor's name",
+          "solicitorNameLabel": "Solicitor's name (optional)",
           "solicitorEmailLabel": "Solicitor's email address (optional)",
           "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
@@ -20,7 +20,7 @@
           "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
           "solicitorCompanyLabel": "[CY] Enter the name of their solicitor's firm",
           "searchButton": "[CY] Search",
-          "solicitorNameLabel": "[CY] Solicitor's name",
+          "solicitorNameLabel": "[CY] Solicitor's name (optional)",
           "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
           "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },

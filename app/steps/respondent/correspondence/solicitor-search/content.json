@@ -5,7 +5,7 @@
       "translation": {
         "content": {
           "question": "Enter details of your {{ divorceWho }}'s solicitor",
-          "solicitorCompanyLabel": "Enter the name of their solicitor's firm",
+          "solicitorFirmLabel": "Enter the name of their solicitor's firm",
           "searchButton": "Search",
           "solicitorNameLabel": "Solicitor's name (optional)",
           "solicitorEmailLabel": "Solicitor's email address (optional)",
@@ -18,7 +18,7 @@
       "translation": {
         "content": {
           "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
-          "solicitorCompanyLabel": "[CY] Enter the name of their solicitor's firm",
+          "solicitorFirmLabel": "[CY] Enter the name of their solicitor's firm",
           "searchButton": "[CY] Search",
           "solicitorNameLabel": "[CY] Solicitor's name (optional)",
           "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",

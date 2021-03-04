@@ -65,17 +65,25 @@ exports.init = listenForConnections => {
         'www.googletagmanager.com',
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net'
       ],
       connectSrc: [
         '\'self\'',
         'www.google-analytics.com',
-        'stats.g.doubleclick.net'
+        'stats.g.doubleclick.net',
+        'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net',
+        'wss://webchat.ctsc.hmcts.net'
       ],
-      mediaSrc: ['\'self\''],
+      mediaSrc: [
+        '\'self\'',
+        'https://webchat-client.ctsc.hmcts.net'
+      ],
       frameSrc: [
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/'
       ],
       imgSrc: [
         '\'self\'',
@@ -131,7 +139,7 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      features: { webchat: parseBool(CONF.features.webchat) }
+      features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
     }
   });
 
@@ -151,6 +159,8 @@ exports.init = listenForConnections => {
   // Middleware to serve static assets
   app.use('/public', express.static(`${__dirname}/public`));
   app.use('/webchat', express.static(`${__dirname}/node_modules/@hmcts/ctsc-web-chat/assets`));
+  app.use('/public/locale', express.static(`${__dirname}/app/assets/locale`));
+  app.use('/public/javascripts', express.static(`${__dirname}/app/assets/javascripts`));
 
   // Parsing cookies for the stored encrypted session key
   app.use(cookieParser());

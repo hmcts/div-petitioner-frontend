@@ -1,5 +1,6 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
 
 {% extends "layout.html" %}
 
@@ -39,30 +40,24 @@
 
   {# Email notification copy will be added only when notifications is implemented #}
 
-  <div class="progress">
-    <ol class="progress__list">
-      <li class="progress__item progress__item--complete">
-        <i class="progress__icon"><span class="visually-hidden">{{ content.complete }}</span></i>
-        <span class="progress__label">{{ content.youApply }}</span>
-        <span class="visually-hidden">{{ content.thisIsComplete }}</span>
-      </li>
-      <li class="progress__item progress__item--current">
-        <i class="progress__icon"></i>
-        <span class="progress__label">{{ content.yourRespondes }}</span>
-        <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-      </li>
-      <li class="progress__item">
-        <i class="progress__icon"></i>
-        <span class="progress__label">{{ content.continueDivorce }}</span>
-        <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-      </li>
-      <li class="progress__item">
-        <i class="progress__icon"></i>
-        <span class="progress__label">{{ content.divorceFinalised }}</span>
-        <span class="visually-hidden">{{ content.thisIsIncomplete }}</span>
-      </li>
-    </ol>
-  </div>
+  {{ hmctsProgressBar({
+  items: [
+  {
+  label: { text: content.youApply },
+  complete: true
+  },
+  {
+  label: { text: content.yourResponds },
+  active: true
+  },
+  {
+  label: { text: content.continueDivorce }
+  },
+  {
+  label: { text: content.divorceFinalised }
+  }
+  ]
+  }) }}
 
   {% if session.refusalRejectionReason | length %}
     <p class="govuk-body">{{ content.emailConfirmation | safe }} <strong> {{ session.petitionerEmail }} </strong></p>

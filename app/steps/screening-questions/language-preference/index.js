@@ -17,7 +17,7 @@ module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningVal
 
   postRequest(req, res) {
     const auth = req.cookies['__auth-token'];
-    const organisation = organiationService.setup(`Bearer ${auth}`);
+    const organisation = organiationService.setup(auth);
 
     return organisation.getOrganisationByName('ACTIVE', 'a')
       .then(response => {

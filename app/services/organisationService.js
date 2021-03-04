@@ -17,11 +17,11 @@ const service = {
 };
 
 module.exports = {
-  setup: auth => {
+  setup: serviceAuth => {
     const secret = CONF.services.serviceAuthProvider.microserviceKey;
 
     // Use the mock client if the microservice key is not set.
-    client = secret ? new OrganisationClient(secret, auth) : mockedClient;
+    client = secret ? new OrganisationClient(`Bearer ${secret}`, serviceAuth) : mockedClient;
 
     return service;
   }

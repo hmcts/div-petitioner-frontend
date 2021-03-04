@@ -358,9 +358,9 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true'
+      ft_welsh: 'true',
+      ft_represented_respondent_journey: 'true'
     },
     language: 'en'
   },
@@ -668,9 +668,9 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true'
+      ft_welsh: 'true',
+      ft_represented_respondent_journey: 'true'
     },
     language: 'en'
   },
@@ -979,7 +979,8 @@ module.exports = {
     },
     featureToggles: {
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true'
+      ft_welsh: 'true',
+      ft_represented_respondent_journey: 'true'
     },
     language: 'en'
   },
@@ -1287,9 +1288,9 @@ module.exports = {
       postcode: 'SW9 9PE'
     },
     featureToggles: {
-      ft_represented_respondent_journey: 'false',
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true'
+      ft_welsh: 'true',
+      ft_represented_respondent_journey: 'true'
     },
     language: 'en'
   },
@@ -1320,8 +1321,8 @@ module.exports = {
   reasonForDivorceClaimingAdultery: false,
   marriageCertificateFiles: [],
   featureToggles: {
-    ft_represented_respondent_journey: 'false',
     ft_awaiting_amend: false,
-    ft_welsh: true
+    ft_welsh: true,
+    ft_represented_respondent_journey: false
   }
 };

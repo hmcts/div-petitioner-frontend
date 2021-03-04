@@ -5,10 +5,10 @@
       "translation": {
         "content": {
           "question": "Is this where your {{ divorceWho }}’s divorce papers should be sent?",
-          "correspondence": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address.",
+          "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
           "yes": "Yes, use this address",
           "no": "No, send them to a different address",
-          "ft_resp_sol": {
+          "featureToggleRespSol": {
             "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
             "correspondence": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address",
             "theirAddress": "Their Address",
@@ -34,7 +34,7 @@
           "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
           "yes": "Ie, defnyddiwch y cyfeiriad hwn",
           "no": "Na, dylid eu hanfon i gyfeiriad arall",
-          "ft_resp_sol": {
+          "featureToggleRespSol": {
             "question": "[CY] Where should your {{ divorceWho }}'s divorce papers be sent?",
             "correspondence": "[CY] If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address",
             "theirAddress": "[CY] Their Address",

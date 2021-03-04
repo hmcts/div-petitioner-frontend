@@ -1,0 +1,21 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "This is the respondent solicitor details page"
+        },
+        "errors": {}
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] This is the respondent solicitor details page"
+        },
+        "errors": {}
+      }
+    }
+  }
+}

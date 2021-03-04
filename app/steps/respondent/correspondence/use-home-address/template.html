@@ -1,17 +1,17 @@
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 {% block question %}
-    {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
-        {{ content.ft_resp_sol.question | safe }}
+    {% if session.isRespSolToggleOn %}
+        {{ content.featureToggleRespSol.question | safe }}
     {% else %}
         {{ content.question | safe }}
     {% endif %}
 {% endblock %}
 
 {% block form %}
-    {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
+    {% if session.isRespSolToggleOn %}
 
-    <p class="govuk-body">{{ content.ft_resp_sol.correspondence | safe }}</p>
+    <p class="govuk-body">{{ content.featureToggleRespSol.correspondence | safe }}</p>
 
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
         <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
@@ -19,25 +19,25 @@
             {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
             {{ radioButton(
                 value = 'Yes',
-                label = content.ft_resp_sol.theirAddress,
+                label = content.featureToggleRespSol.theirAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
                 field = fields.respondentCorrespondenceUseHomeAddress
             ) }}
             {{ radioButton(
                 value = 'Solicitor',
-                label = content.ft_resp_sol.solicitorAddress,
+                label = content.featureToggleRespSol.solicitorAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
                 field = fields.respondentCorrespondenceUseHomeAddress,
                 dataTarget='conditional-need-to-know-sol-firm'
             ) }}
             <div id="conditional-need-to-know-sol-firm" class="govuk-radios__conditional {{ 'js-hidden' if fields.respondentCorrespondenceUseHomeAddress.value != 'Solicitor' }}">
                 <p class="govuk-body govuk-!-padding-top-2 govuk-!-padding-bottom-2">
-                  {{ content.ft_resp_sol.needToKnowSolFirm }}
+                  {{ content.featureToggleRespSol.needToKnowSolFirm }}
                 </p>
             </div>
             {{ radioButton(
                 value = 'No',
-                label = content.ft_resp_sol.anotherAddress,
+                label = content.featureToggleRespSol.anotherAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
                 field = fields.respondentCorrespondenceUseHomeAddress
             ) }}
@@ -55,7 +55,7 @@
     {% endif %}
 
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
-        <fieldset id="respondentCorrespondenceUseHomeAddress2" class="govuk-fieldset">
+        <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
             {{ radioButton(

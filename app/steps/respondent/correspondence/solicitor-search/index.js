@@ -6,6 +6,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   get nextStep() {
-    return this.steps.LiveTogether;
+    return this.steps.ReasonForDivorce;
   }
 };

@@ -8,9 +8,9 @@
 {% block form %}
 <div class="govuk-body">
 
+     {# Solicitors firms search section #}
     <div class="govuk-form-group">
       {{ textField(
-      name = 'respondentSolicitorCompany',
       field = fields.respondentSolicitorCompany,
       label = content.solicitorCompanyLabel,
       boldLabel = true
@@ -23,6 +23,7 @@
       }) }}
     </div>
 
+    {# Solicitors firms search result section - Items found #}
     <div class="govuk-form-group">
       <label class="govuk-label--s govuk-label">
         Results
@@ -60,12 +61,23 @@
       <div class="govuk-inset-text">
         <p>If you can't see the firm listed then you can enter the details manually.</p>
 
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="; margin-top: 5px;">
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-top-0">
           Enter details manually
         </button>
       </div>
     </div>
 
+    {# Solicitors firms search result section - Items not found #}
+    <div class="govuk-form-group">
+      <p>There are no results for the firm you entered.</p>
+      <p>This may be because the firm is not registered online with HMCTS.</p>
+      <p>You can check the spelling and search again, or enter the details manually.</p>
+      <button class="govuk-button govuk-button--secondary govuk-!-margin-top-0">
+        Enter details manually
+      </button>
+    </div>
+
+    {# Solicitors firms manual entry section #}
     <div class="govuk-form-group">
       {{ textField(
         name = 'respondentSolicitorName',

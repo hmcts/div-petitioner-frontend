@@ -1,5 +1,6 @@
 const organiationService = require('app/services/organisationService');
 const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep');
+const logger = require('app/services/logger').logger(__filename);
 
 module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningValidationStep {
   get url() {
@@ -26,6 +27,6 @@ module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningVal
       .catch(error => {
         logger.errorWithReq(req, 'amendment_error', 'Error during amendment step', error.message);
         res.redirect('/generic-error');
-    });
+      });
   }
 };

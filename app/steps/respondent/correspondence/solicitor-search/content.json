@@ -9,7 +9,7 @@
           "searchButton": "Search",
           "solicitorNameLabel": "Solicitor's name",
           "solicitorEmailLabel": "Solicitor's email address (optional)",
-          "solicitorNameAddressLabel": "Solicitor's firm and address"
+          "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
         "errors": { }
       }
@@ -22,7 +22,7 @@
           "searchButton": "[CY] Search",
           "solicitorNameLabel": "[CY] Solicitor's name",
           "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
-          "solicitorNameAddressLabel": "Solicitor's firm and address"
+          "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
         "errors": { }
       }

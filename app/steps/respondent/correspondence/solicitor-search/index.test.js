@@ -36,9 +36,7 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['solicitor'];
-
-      testContent(done, agent, underTest, content, session, excludeKeys);
+      testContent(done, agent, underTest, content, session);
     });
   });
 });

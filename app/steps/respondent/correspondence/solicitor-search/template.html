@@ -23,11 +23,11 @@
       }) }}
     </div>
 
-    <div class="govuk-body">
+    <div class="govuk-form-group">
       <label class="govuk-label--s govuk-label">
         Results
       </label>
-      <main class="govuk-main-wrapper">
+      <main class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
         <div class="govuk-grid-row govuk-!-padding-bottom-4">
           <div class="govuk-grid-column-three-quarters">
             <p class="govuk-!-margin-0">Johnson and Clark partners
@@ -82,9 +82,9 @@
        ) }}
 
       {{ textArea(
-         name = 'respondentSolicitorCompany',
-         field = fields.respondentSolicitorCompany,
-         label = content.solicitorNameAddressLabel,
+         name = 'respondentSolicitorAddress',
+         field = fields.respondentSolicitorAddress,
+         label = content.solicitorFirmAddressLabel,
          boldLabel = true
        ) }}
     </div>

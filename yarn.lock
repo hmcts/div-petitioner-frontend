@@ -371,6 +371,13 @@
     on-finished "^2.3.0"
     winston "^2.4.1"
 
+"@hmcts/prd-client@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@hmcts/prd-client/-/prd-client-0.0.6.tgz#5ddbd212d033809ba5b1b2b68733465843d52358"
+  integrity sha512-JjLOBV21c4LBmUZP2D1ne5J5KINMnH3uGPOUG9V+OdDjt+jNqSLK6BERBvWhIPo2tgQIWhUoZze+UcJp32z4og==
+  dependencies:
+    node-fetch "^2.6.1"
+
 "@hmcts/properties-volume@^0.0.9":
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/@hmcts/properties-volume/-/properties-volume-0.0.9.tgz#1c2b29a563fcad9041231442476a4a3b7a8abf7d"
@@ -8578,6 +8585,13 @@ optionator@^0.8.1, optionator@^0.8.2, optionator@^0.8.3:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
     word-wrap "~1.2.3"
+
+organisationclient@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/organisationclient/-/organisationclient-0.0.3.tgz#ee963af3f5a08063de8b0e0b6bc48e4cb809e187"
+  integrity sha512-7VvsJA2BmyQlFw6IJMBQpH2F7iiu3Ahd3AtlnMLMqb8n/Qtwquh0w7Mhky9uVRPfYi8Ru+IaEvbXj7itpIEsqw==
+  dependencies:
+    node-fetch "^2.6.1"
 
 original@^1.0.0:
   version "1.0.2"

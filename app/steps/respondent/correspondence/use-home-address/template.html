@@ -2,7 +2,7 @@
 {% extends "question.html" %}
 {% block question %}
     {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
-        {{ content.updatedQuestion | safe }}
+        {{ content.ft_resp_sol.question | safe }}
     {% else %}
         {{ content.question | safe }}
     {% endif %}
@@ -11,13 +11,7 @@
 {% block form %}
     {% if fields.featureToggles.value.ft_represented_respondent_journey == "true" %}
 
-    <p class="govuk-body">{{ content.updatedCorrespondence | safe }}</p>
-
-    {% if fields.divorceSentToAddress.value %}
-        <p class="govuk-body">
-            {{ fields.divorceSentToAddress.value.address | join("<br/>") | safe }}
-        </p>
-    {% endif %}
+    <p class="govuk-body">{{ content.ft_resp_sol.correspondence | safe }}</p>
 
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
         <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
@@ -25,19 +19,25 @@
             {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
             {{ radioButton(
                 value = 'Yes',
-                label = content.updatedRadioOptions.theirAddress,
+                label = content.ft_resp_sol.theirAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
                 field = fields.respondentCorrespondenceUseHomeAddress
             ) }}
             {{ radioButton(
                 value = 'Solicitor',
-                label = content.updatedRadioOptions.solictorAddress,
+                label = content.ft_resp_sol.solicitorAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
-                field = fields.respondentCorrespondenceUseHomeAddress
+                field = fields.respondentCorrespondenceUseHomeAddress,
+                dataTarget='conditional-need-to-know-sol-firm'
             ) }}
+            <div id="conditional-need-to-know-sol-firm" class="govuk-radios__conditional {{ 'js-hidden' if fields.respondentCorrespondenceUseHomeAddress.value != 'Solicitor' }}">
+                <p class="govuk-body govuk-!-padding-top-2 govuk-!-padding-bottom-2">
+                  {{ content.ft_resp_sol.needToKnowSolFirm }}
+                </p>
+            </div>
             {{ radioButton(
                 value = 'No',
-                label = content.updatedRadioOptions.anotherAddress,
+                label = content.ft_resp_sol.anotherAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
                 field = fields.respondentCorrespondenceUseHomeAddress
             ) }}
@@ -55,7 +55,7 @@
     {% endif %}
 
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
-        <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
+        <fieldset id="respondentCorrespondenceUseHomeAddress2" class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
             {{ radioButton(

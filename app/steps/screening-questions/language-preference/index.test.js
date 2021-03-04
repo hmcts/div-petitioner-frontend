@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { testContent, testErrors, testRedirect, testNonExistence } = require('test/util/assertions');
+const { testContent, testRedirect, testNonExistence } = require('test/util/assertions');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
 const commonContent = require('app/content/common-en');
@@ -34,11 +34,11 @@ describe(modulePath, () => {
         commonContent.resources.en.translation.saveAndClose);
     });
 
-    it('renders errors for missing required context', done => {
-      const context = {};
+    // it('renders errors for missing required context', done => {
+    //   const context = {};
 
-      testErrors(done, agent, underTest, context, content, 'required');
-    });
+    //   testErrors(done, agent, underTest, context, content, 'required');
+    // });
 
     it('redirects to the next page', done => {
       const context = { languagePreferenceWelsh: 'Yes' };

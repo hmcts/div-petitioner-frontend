@@ -7,10 +7,13 @@
 
 {% block form %}
 <div class="govuk-body">
+  <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
      {# Solicitors firms search section #}
     <div class="govuk-form-group">
       {{ textField(
+      name = 'respondentSolicitorCompany',
       field = fields.respondentSolicitorCompany,
       label = content.solicitorCompanyLabel,
       boldLabel = true
@@ -31,8 +34,8 @@
       <main class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
         <div class="govuk-grid-row govuk-!-padding-bottom-4">
           <div class="govuk-grid-column-three-quarters">
-            <p class="govuk-!-margin-0">Johnson and Clark partners
-              <br>57 Cornmarket Street
+            <p class="govuk-!-margin-0">Clarkson ann partners
+              <br>71 Cherry Court
               <br>Oxford
               <br>OX1 3HB
             </p>
@@ -45,7 +48,7 @@
         </div>
         <div class="govuk-grid-row govuk-!-padding-bottom-4">
           <div class="govuk-grid-column-three-quarters">
-            <p class="govuk-!-margin-0">Narran and son
+            <p class="govuk-!-margin-0">Vipers and son
               <br>40 Southgate Street
               <br>Bath
               <br>BA1 1TG
@@ -100,7 +103,7 @@
          boldLabel = true
        ) }}
     </div>
-
+  </fieldset>
 </div>
 
 {% endblock %}

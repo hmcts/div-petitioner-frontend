@@ -107,7 +107,8 @@ features:
   ignoreSessionValidation: false
   browserSupport: false
   strategicPay: false
-  webchat: true
+  webchat: false
+  antennaWebchat: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

@@ -1,0 +1,29 @@
+/* The webchat can pe positioned anywhere
+* on the page by manipulating the CSS properties
+*/
+web-chat {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 320px !important;
+  height: 530px !important;
+}
+
+web-chat.hidden {
+  transform: translateY(1000px);
+}
+
+web-chat.hidden + button.chat-button {
+  display: block;
+}
+
+button.chat-button {
+  display: none;
+  margin-bottom: 20px;
+  outline: none;
+  border: none;
+  padding: 12px;
+  color: #fff;
+  background-color: #00703c;
+  cursor: pointer;
+}

@@ -1,22 +1,96 @@
-{% from "common/components/formElements.html" import textField %}
+{% from "button/macro.njk" import govukButton %}
+{% from "common/components/formElements.html" import textField, textArea %}
 {% extends "question.html" %}
 {% block question %}
-    {{ content.question | safe }}
+{{ content.question | safe }}
 {% endblock %}
 
 {% block form %}
- <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorRepresented.error }}">
-    <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-        {{ errorsFor(fields.respondentSolicitorRepresented) }}
+<div class="govuk-body">
+
+    <div class="govuk-form-group">
+      {{ textField(
+      name = 'respondentSolicitorCompany',
+      field = fields.respondentSolicitorCompany,
+      label = content.solicitorCompanyLabel,
+      boldLabel = true
+      ) }}
+
+      {{ govukButton({
+      text: content.searchButton,
+      classes: 'govuk-button govuk-!-margin-bottom-1 govuk-!-margin-top-1',
+      preventDoubleClick: true
+      }) }}
+    </div>
+
+    <div class="govuk-body">
+      <label class="govuk-label--s govuk-label">
+        Results
+      </label>
+
+      <div class="govuk-!-width-full">
+        <div class="govuk-!-width-three-quarters">
+          <p>Johnson and Clark partners
+            <br>57 Cornmarket Street
+            <br>Oxford
+            <br>OX1 3HB
+          </p>
+        </div>
+        <div class="govuk-!-width-one-quarter">
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style=" margin-top: 35px;">
+            Select
+          </button>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: row; margin-top: 10px;">
+        <div style="width:360px;">
+          <p>Narran and son
+            <br>40 Southgate Street
+            <br>Bath
+            <br>BA1 1TG
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="; margin-top: 35px;"
+                  onclick="selectresult2()">
+            Select
+          </button>
+        </div>
+      </div>
+
+      <div class="govuk-inset-text">
+        <p>If you can't see the firm listed then you can enter the details manually.</p>
+
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="; margin-top: 5px;">
+          Enter details manually
+        </button>
+      </div>
+
+    </div>
+
+    <div class="govuk-form-group">
+      {{ textField(
+        name = 'respondentSolicitorName',
+        field = fields.respondentSolicitorName,
+        label = content.solicitorNameLabel,
+        boldLabel = true
+       ) }}
 
       {{ textField(
-          name = 'respondentSolicitorCompany',
-          field = fields.respondentSolicitorCompany,
-          label = content.respondentSolicitorCompany,
-          boldLabel = true
-      ) }}
-    </fieldset>
+        name = 'respondentSolicitorEmail',
+        field = fields.respondentSolicitorEmail,
+        label = content.solicitorEmailLabel,
+        boldLabel = true
+       ) }}
+
+      {{ textArea(
+         name = 'respondentSolicitorCompany',
+         field = fields.respondentSolicitorCompany,
+         label = content.solicitorNameAddressLabel,
+         boldLabel = true
+       ) }}
+    </div>
+
 </div>
 
 {% endblock %}

@@ -1,0 +1,22 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Enter details of your {{ divorceWho }}'s solicitor",
+          "respondentSolicitorCompany": "Enter the name of their solicitor's firm"
+        },
+        "errors": { }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Enter details of your {{ divorceWho }} solicitor"
+        },
+        "errors": { }
+      }
+    }
+  }
+}

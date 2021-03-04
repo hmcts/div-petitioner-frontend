@@ -39,6 +39,16 @@
       }) }}
     </div>
 
-{% endblock %}
+<h2 class="govuk-heading-m">Results from prd client</h2>
 
+{% for organisation in session.organisations %}
+  <p> Org name - {{organisation.name}} </p>
+  {% for address in organisation.contactInformation %}
+    <p>{{address.addressLineOne}}</p>
+    <p>Post code - {{address.postCode}}</p>
+  {% endfor %}
+  <hr>
+{% endfor %}
+
+{% endblock %}
 {% block saveAndClose %}{% endblock %}

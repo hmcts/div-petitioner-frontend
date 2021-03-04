@@ -45,6 +45,7 @@
     "@hmcts/frontend": "0.0.34-alpha",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/nodejs-logging": "^3.0.1",
+    "@hmcts/prd-client": "^0.0.6",
     "@hmcts/properties-volume": "^0.0.9",
     "add": "^2.0.6",
     "ajv": "^4.10.0",

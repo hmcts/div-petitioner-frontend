@@ -90,6 +90,7 @@ features:
   browserSupport: BROWSER_GROUP
   strategicPay: FEATURE_STRATEGIC_PAY
   webchat: FEATURE_WEBCHAT
+  antennaWebchat: FEATURE_ANTENNA_WEBCHAT
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

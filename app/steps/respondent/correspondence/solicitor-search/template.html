@@ -12,8 +12,6 @@
 
      {# Solicitors firms search section #}
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorFirm.error }}">
-      {{ errorsFor(fields.respondentSolicitorFirm) }}
-
       {{ textField(
       name = 'respondentSolicitorFirm',
       field = fields.respondentSolicitorFirm,
@@ -28,8 +26,8 @@
       }) }}
     </div>
 
-    {# Solicitors firms search result section - Items found #}
-    <div class="govuk-form-group">
+    {# Solicitors firms search result section - Items found (if no solicitor firm and organisation) #}
+    <div class="govuk-form-group {% if not organisations %} js-hidden {% endif %}" id="solicitor-search-results">
       <label class="govuk-label--s govuk-label">
         Results
       </label>
@@ -66,24 +64,24 @@
       <div class="govuk-inset-text">
         <p>If you can't see the firm listed then you can enter the details manually.</p>
 
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-top-0">
+        <a class="govuk-button govuk-button--secondary govuk-!-margin-top-0"  onclick="enterManual()">
           Enter details manually
-        </button>
+        </a>
       </div>
     </div>
 
-    {# Solicitors firms search result section - Items not found #}
-    <div class="govuk-form-group">
+    {# Solicitors firms search result section - Items not found (if solicitor firm and  no organisation) #}
+    <div class="govuk-form-group" id="no-solicitor-search-results">
       <p>There are no results for the firm you entered.</p>
       <p>This may be because the firm is not registered online with HMCTS.</p>
       <p>You can check the spelling and search again, or enter the details manually.</p>
-      <button class="govuk-button govuk-button--secondary govuk-!-margin-top-0">
+      <a class="govuk-button govuk-button--secondary govuk-!-margin-top-0" onclick="enterManual()">
         Enter details manually
-      </button>
+      </a>
     </div>
 
     {# Solicitors firms manual entry section #}
-    <div class="govuk-form-group">
+    <div class="govuk-form-group js-hidden" id="enter-manually">
       {{ textField(
         name = 'respondentSolicitorName',
         field = fields.respondentSolicitorName,
@@ -113,6 +111,15 @@
        ) }}
     </div>
   </fieldset>
+
+  {% block extra_scripts %}
+    <script>
+      function enterManual() {
+        $('#select-address').removeClass('js-hidden');
+        $('#solicitor-search-results').addClass('js-hidden');
+      }
+    </script>
+  {% endblock %}
 </div>
 
 {% endblock %}

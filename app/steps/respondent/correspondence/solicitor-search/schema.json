@@ -4,7 +4,8 @@
   "type": "object",
   "properties": {
     "respondentSolicitorFirm": {
-        "type": "string"
+        "type": "string",
+        "minLength": 3
     }
   },
   "required": [

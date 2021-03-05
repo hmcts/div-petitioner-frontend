@@ -8,4 +8,22 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   get nextStep() {
     return this.steps.ReasonForDivorce;
   }
+
+  validate(ctx, session) {
+    let [isValid, errors] = super.validate(ctx, session); // eslint-disable-line prefer-const
+
+    const respondentSolicitorFirmError = error => {
+      return error.param === 'respondentSolicitorFirm';
+    };
+
+    if (!isValid) {
+      if (ctx.respondentSolicitorFirmError) {
+        errors = errors.filter(
+          respondentSolicitorFirmError
+        );
+      }
+    }
+
+    return [isValid, errors];
+  }
 };

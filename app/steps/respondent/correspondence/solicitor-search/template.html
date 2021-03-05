@@ -11,7 +11,9 @@
   <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
      {# Solicitors firms search section #}
-    <div class="govuk-form-group">
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorFirm.error }}">
+      {{ errorsFor(fields.respondentSolicitorFirm) }}
+
       {{ textField(
       name = 'respondentSolicitorFirm',
       field = fields.respondentSolicitorFirm,

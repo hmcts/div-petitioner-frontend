@@ -12,7 +12,11 @@
           "solicitorEmailLabel": "Solicitor's email address (optional)",
           "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
-        "errors": { }
+        "errors": {
+          "respondentSolicitorFirm": {
+            "invalid": "Please provide a Solicitor firm"
+          }
+        }
       }
     },
     "cy": {
@@ -26,7 +30,11 @@
           "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
           "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
-        "errors": { }
+        "errors": {
+          "respondentSolicitorFirm": {
+            "invalid": "[CY] Please provide a Solicitor firm"
+          }
+        }
       }
     }
   }

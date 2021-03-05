@@ -26,7 +26,7 @@ module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningVal
     return serviceToken.getToken(req)
       .then(serviceAuthToken => {
         organisation = organiationService.setup(auth, serviceAuthToken, tempUrl);
-        return organisation.getOrganisationByName('ACTIVE', 'a');
+        return organisation.getOrganisationByName('active', 'a');
       })
       .then(organisations => {
         req.session.organisations = organisations;

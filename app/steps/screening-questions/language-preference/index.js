@@ -1,4 +1,5 @@
 const organiationService = require('app/services/organisationService');
+const serviceTokenService = require('app/services/serviceToken');
 const ScreeningValidationStep = require('app/core/steps/ScreeningValidationStep');
 const logger = require('app/services/logger').logger(__filename);
 
@@ -17,12 +18,18 @@ module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningVal
 
   postRequest(req, res) {
     const auth = req.cookies['__auth-token'];
-    const organisation = organiationService.setup(auth);
+    const serviceToken = serviceTokenService.setup();
+    const tempUrl = 'https://rd-professional-api-pr-983.service.core-compute-preview.internal/refdata/external/v1/organisations/status';
 
-    return organisation.getOrganisationByName('ACTIVE', 'a')
-      .then(response => {
-        req.session.organisations = response;
+    let organisation = null;
 
+    return serviceToken.getToken(req)
+      .then(serviceAuthToken => {
+        organisation = organiationService.setup(auth, serviceAuthToken, tempUrl);
+        return organisation.getOrganisationByName('ACTIVE', 'a');
+      })
+      .then(organisations => {
+        req.session.organisations = organisations;
         res.redirect(this.steps.ScreeningQuestionsMarriageBroken.url);
       })
       .catch(error => {

@@ -17,15 +17,14 @@ const service = {
 };
 
 module.exports = {
-  setup: auth => {
+  setup: (auth, serviceAuth) => {
     const secret = CONF.services.serviceAuthProvider.microserviceKey;
 
     console.log('auth', auth); // eslint-disable-line no-console
-    console.log('auth', secret); // eslint-disable-line no-console
-
+    console.log('serviceAuth', serviceAuth); // eslint-disable-line no-console
 
     // Use the mock client if the microservice key is not set.
-    client = secret ? new OrganisationClient(`Bearer ${auth}`, secret) : mockedClient;
+    client = secret ? new OrganisationClient(auth, serviceAuth) : mockedClient;
 
     return service;
   }

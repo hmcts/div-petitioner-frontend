@@ -6,8 +6,12 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
     return '/petitioner-respondent/correspondence/send-to-solicitor';
   }
   get nextStep() {
-    const respondentAddress = this.steps.RespondentCorrespondenceAddress;
-    return { respondentSolicitorRepresented: { No: respondentAddress } };
+    return {
+      respondentSolicitorRepresented: {
+        Yes: this.steps.RespondentSolicitorDetails,
+        No: this.steps.RespondentCorrespondenceAddress
+      }
+    };
   }
 
   constructor(steps, section, templatePath, content, schema) {
@@ -18,5 +22,14 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
         remove('respondentSolicitorRepresented');
       }
     });
+  }
+
+  setRespSolToggle(session) {
+    session.isRespSolToggleOn = session.featureToggles.ft_represented_respondent_journey;
+  }
+
+  interceptor(ctx, session) {
+    this.setRespSolToggle(session);
+    return ctx;
   }
 };

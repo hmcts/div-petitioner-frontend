@@ -1,10 +1,50 @@
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 {% block question %}
-    {{ content.question | safe }}
+    {% if session.isRespSolToggleOn %}
+        {{ content.featureToggleRespSol.question | safe }}
+    {% else %}
+        {{ content.question | safe }}
+    {% endif %}
 {% endblock %}
 
 {% block form %}
+    {% if session.isRespSolToggleOn %}
+
+    <p class="govuk-body">{{ content.featureToggleRespSol.correspondence | safe }}</p>
+
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentCorrespondenceUseHomeAddress.error }}">
+        <fieldset id="respondentCorrespondenceUseHomeAddress" class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.updatedQuestion | safe }}</legend>
+            {{ errorsFor(fields.respondentCorrespondenceUseHomeAddress) }}
+            {{ radioButton(
+                value = 'Yes',
+                label = content.featureToggleRespSol.theirAddress,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+            {{ radioButton(
+                value = 'Solicitor',
+                label = content.featureToggleRespSol.solicitorAddress,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress,
+                dataTarget='conditional-need-to-know-sol-firm'
+            ) }}
+            <div id="conditional-need-to-know-sol-firm" class="govuk-radios__conditional {{ 'js-hidden' if fields.respondentCorrespondenceUseHomeAddress.value != 'Solicitor' }}">
+                <p class="govuk-body govuk-!-padding-top-2 govuk-!-padding-bottom-2">
+                  {{ content.featureToggleRespSol.needToKnowSolFirm }}
+                </p>
+            </div>
+            {{ radioButton(
+                value = 'No',
+                label = content.featureToggleRespSol.anotherAddress,
+                name = 'respondentCorrespondenceUseHomeAddress',
+                field = fields.respondentCorrespondenceUseHomeAddress
+            ) }}
+        </fieldset>
+    </div>
+
+    {% else %}
 
     <p class="govuk-body">{{ content.correspondence | safe }}</p>
 
@@ -33,4 +73,5 @@
         </fieldset>
     </div>
 
+    {% endif %}
 {% endblock %}

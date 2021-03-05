@@ -5,7 +5,13 @@
       "translation": {
         "content": {
           "question": "Where should your {{ divorceWho }}’s divorce papers be sent?",
-          "correspondence": "To a different address"
+          "correspondence": "To a different address",
+          "featureToggleRespSol": {
+            "instruction": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address.",
+            "solicitorAddress": "Their solicitor's address",
+            "anotherAddress": "Another address",
+            "needToKnowSolFirm": "You'll need to know the solicitor's name, firm, full address and email."
+          }
         },
         "errors": {
           "respondentSolicitorRepresented": {
@@ -18,7 +24,13 @@
       "translation": {
         "content": {
           "question": "I ble y dylid anfon eich {{ divorceWho }} papurau ysgariad?",
-          "correspondence": "I gyfeiriad gwahanol"
+          "correspondence": "I gyfeiriad gwahanol",
+          "featureToggleRespSol": {
+            "instruction": "[CY] If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address.",
+            "solicitorAddress": "[CY] Their solicitor's address",
+            "anotherAddress": "[CY] Another address",
+            "needToKnowSolFirm": "[CY] You'll need to know the solicitor's name, firm, full address and email."
+          }
         },
         "errors": {
           "respondentSolicitorRepresented": {

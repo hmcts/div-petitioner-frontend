@@ -3,7 +3,7 @@ const { get, find, isEqual, trim } = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
 const {
   validateSearchRequest,
-  fetchOrganisation,
+  fetchOrganisations,
   hasBeenPostedWithoutSubmitButton
 } = require('app/core/utils/respondentSolicitorSearchHelper');
 
@@ -39,6 +39,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       if (isEqual(userAction, UserAction.MANUAL)) {
         logger.infoWithReq(null, 'solicitor_search', 'Manual solicitor search, redirecting to solicitor detail page.');
         req.session.respondentSolicitorOrganisation = null;
+        req.session.respondentSolicitorFirmError = null;
         req.session.organisations = null;
         return res.redirect(this.steps.RespondentSolicitorDetails.url);
       }
@@ -64,11 +65,12 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
         }
         try {
           logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, making api request');
-          req.session.organisations = await fetchOrganisation(req, trim(req.session.respondentSolicitorFirm));
+          req.session.organisations = await fetchOrganisations(req, trim(req.session.respondentSolicitorFirm));
         } catch (error) {
           logger.errorWithReq(null, 'solicitor_search', `Organisation search failed with error: ${error.message}`);
         }
       }
+
       logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, staying on same page');
       return res.redirect(this.url);
     }

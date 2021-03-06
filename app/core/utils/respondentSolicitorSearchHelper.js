@@ -4,7 +4,7 @@ const organisationService = require('app/services/organisationService');
 const MIN_CHARACTERS = 2;
 const ORGANISATION_STATUS = 'active';
 
-const fetchOrganisation = (req, searchCriteria) => {
+const fetchOrganisations = (req, searchCriteria) => {
   const organisation = organisationService.setup(null, null);
   return organisation.getOrganisationByName(ORGANISATION_STATUS, searchCriteria);
 };
@@ -41,6 +41,6 @@ const hasBeenPostedWithoutSubmitButton = ({ body }) => {
 
 module.exports = {
   validateSearchRequest,
-  fetchOrganisation,
+  fetchOrganisations,
   hasBeenPostedWithoutSubmitButton
 };

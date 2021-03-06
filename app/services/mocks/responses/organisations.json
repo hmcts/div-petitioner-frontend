@@ -1,0 +1,77 @@
+[
+  {
+    "contactInformation": [
+      {
+        "addressLine1": "1 Trasna way",
+        "addressLine2": "Lurgan",
+        "addressLine3": "",
+        "country": "United Kingdom",
+        "county": "Armagh",
+        "postCode": "BT25 545",
+        "townCity": "Craigavon"
+      }
+    ],
+    "name": "Campbell & Haughey Solicitors Ltd",
+    "organisationIdentifier": "02-002"
+  },
+  {
+    "contactInformation": [
+      {
+        "addressLine1": "North Bailey House",
+        "addressLine2": "New Inn Hall Street",
+        "addressLine3": "",
+        "country": "United Kingdom",
+        "county": "Oxfordshire",
+        "postCode": "OX1 2EA",
+        "townCity": "Oxford"
+      }
+    ],
+    "name": "Ernser Inc",
+    "organisationIdentifier": "01-101"
+  },
+  {
+    "contactInformation": [
+      {
+        "addressLine1": "2 Kayes Walk",
+        "addressLine2": "Stoney St",
+        "addressLine3": "",
+        "country": "United Kingdom",
+        "county": "Nottingham",
+        "postCode": "NG1 1PZ",
+        "townCity": "Nottinghamshire"
+      }
+    ],
+    "name": "Fisher & Son",
+    "organisationIdentifier": "06-605"
+  },
+  {
+    "contactInformation": [
+      {
+        "addressLine1": "177 Edward St",
+        "addressLine2": "Kemptown",
+        "addressLine3": "",
+        "country": "United Kingdom",
+        "county": "Brighton",
+        "postCode": "BN2 0JB",
+        "townCity": "Brighton and Hove"
+      }
+    ],
+    "name": "Walker McDonald Solicitors",
+    "organisationIdentifier": "08-444"
+  },
+  {
+    "contactInformation": [
+      {
+        "addressLine1": "19/22 Union St",
+        "addressLine2": "Oldham",
+        "addressLine3": "",
+        "country": "United Kingdom",
+        "county": "Greater Manchester",
+        "postCode": "OL1 222",
+        "townCity": "Manchester"
+      }
+    ],
+    "name": "Whitehead & Low Solicitors LLP",
+    "organisationIdentifier": "11-111"
+  }
+]

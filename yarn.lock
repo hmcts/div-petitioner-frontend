@@ -301,6 +301,13 @@
     on-finished "^2.3.0"
     winston "^2.4.5"
 
+"@hmcts/prd-client@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@hmcts/prd-client/-/prd-client-0.0.7.tgz#77b0f82cc37d8e00fe9117cb11237d5c791aef1d"
+  integrity sha512-Kf8DqvuVpx7MoeKylq2734wpJDc/F6646d9ssTJWN+i2vrX3Hi/ckYxyWKx0M7ulwBTsfcCM3/EHGC6gxnEmKA==
+  dependencies:
+    node-fetch "^2.6.1"
+
 "@hmcts/properties-volume@^0.0.9":
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/@hmcts/properties-volume/-/properties-volume-0.0.9.tgz#1c2b29a563fcad9041231442476a4a3b7a8abf7d"

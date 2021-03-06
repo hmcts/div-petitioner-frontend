@@ -1,8 +1,11 @@
 const OrganisationClient = require('@hmcts/prd-client').OrganisationClient;
 const mockedClient = require('app/services/mocks/organisationServiceClient');
-const CONF = require('config');
 
 let client = {};
+
+const hasMandatoryTokens = (authToken, serviceToken) => {
+  return (authToken && serviceToken);
+};
 
 const service = {
   /**
@@ -18,10 +21,8 @@ const service = {
 
 module.exports = {
   setup: (auth, serviceAuth) => {
-    const secret = CONF.services.serviceAuthProvider.microserviceKey;
-
     // Use the mock client if the microservice key is not set.
-    client = secret ? new OrganisationClient(auth, serviceAuth) : mockedClient;
+    client = hasMandatoryTokens(auth, serviceAuth) ? new OrganisationClient(auth, serviceAuth) : mockedClient;
 
     return service;
   }

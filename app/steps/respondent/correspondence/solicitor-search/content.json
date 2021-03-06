@@ -21,6 +21,10 @@
             "paragraph1": "There are no results for the firm you entered.",
             "paragraph2": "This may be because the firm is not registered online with HMCTS.",
             "paragraph3": "You can check the spelling and search again, or enter the details manually."
+          },
+          "searchErrors": {
+            "emptyValue": "Please provide your solicitor firm's name",
+            "toShortValue": "Please provide a least 3 characters"
           }
         },
         "errors": {
@@ -51,6 +55,10 @@
             "paragraph1": "[CY] There are no results for the firm you entered.",
             "paragraph2": "[CY] This may be because the firm is not registered online with HMCTS.",
             "paragraph3": "[CY] You can check the spelling and search again, or enter the details manually."
+          },
+          "searchErrors": {
+            "emptyValue": "[CY] Please provide your solicitor firm's name",
+            "toShortValue": "[CY] Please provide a least 3 characters"
           }
         },
         "errors": {

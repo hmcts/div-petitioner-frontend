@@ -1,49 +1,18 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const { get, find } = require('lodash');
+const { get, find, isEqual, trim } = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
+const {
+  validateSearchRequest,
+  fetchOrganisation,
+  hasBeenPostedWithoutSubmitButton
+} = require('app/core/utils/respondentSolicitorSearchHelper');
 
-const MAX_RAND = 2;
-function apiCall() {
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
-  const v = getRandomInt(MAX_RAND);
-  if (v === 0) {
-    return null;
-  }
-  return [
-    {
-      contactInformation: [
-        {
-          addressLine1: 'Samson ann partners',
-          addressLine2: '71 Cherry Court',
-          addressLine3: null,
-          country: null,
-          county: 'Oxford',
-          postCode: 'OX1 3HB',
-          townCity: null
-        }
-      ],
-      name: 'Organisation 1',
-      organisationIdentifier: 'ORG-01'
-    },
-    {
-      contactInformation: [
-        {
-          addressLine1: 'Vipers and son',
-          addressLine2: '40 Southgate Street',
-          addressLine3: null,
-          country: null,
-          county: 'Bath',
-          postCode: 'BA1 1TG',
-          townCity: 'London'
-        }
-      ],
-      name: 'Organisation 2',
-      organisationIdentifier: 'ORG-02'
-    }
-  ];
-}
+const UserAction = {
+  MANUAL: 'manual',
+  SEARCH: 'search',
+  SELECTION: 'selection',
+  DESELECTION: 'deselection'
+};
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {
   get url() {
@@ -54,49 +23,56 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     return this.steps.ReasonForDivorce;
   }
 
-  handler(req, res) {
+  async handler(req, res) {
     const { body } = req;
+    const searchCriteria = get(body, 'respondentSolicitorFirm');
+    const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
 
-    if (this.hasBeenPostedWithoutSubmitButton(req)) {
+    if (!isValid) {
+      req.session.respondentSolicitorFirmError = errors;
+      return res.redirect(this.url);
+    }
+
+    if (hasBeenPostedWithoutSubmitButton(req)) {
       const userAction = get(body, 'userAction');
 
-      if (userAction === 'manual') {
+      if (isEqual(userAction, UserAction.MANUAL)) {
         logger.infoWithReq(null, 'solicitor_search', 'Manual solicitor search, redirecting to solicitor detail page.');
         req.session.respondentSolicitorOrganisation = null;
         req.session.organisations = null;
         return res.redirect(this.steps.RespondentSolicitorDetails.url);
       }
 
-      if (userAction === 'search') {
-        logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, making api request');
-        req.session.respondentSolicitorOrganisation = null;
-        req.session.respondentSolicitorFirm = get(body, 'respondentSolicitorFirm');
-        req.session.organisations = apiCall();
-      }
-
-      if (userAction === 'selection') {
+      if (isEqual(userAction, UserAction.SELECTION)) {
         logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has selected an organisation');
-        const userSelection = get(body, 'userSelection');
-        req.session.respondentSolicitorOrganisation = find(req.session.organisations, org => {
-          return org.organisationIdentifier === userSelection;
+        req.session.respondentSolicitorOrganisation = find(req.session.organisations, organisation => {
+          return isEqual(organisation.organisationIdentifier, get(body, 'userSelection'));
         });
       }
 
-      if (userAction === 'deselection') {
+      if (isEqual(userAction, UserAction.DESELECTION)) {
         logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has deselected option');
         req.session.respondentSolicitorOrganisation = null;
       }
 
-      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, redirecting to solicitor search');
+      if (isEqual(userAction, UserAction.SEARCH)) {
+        req.session.respondentSolicitorOrganisation = null;
+        req.session.respondentSolicitorFirm = get(body, 'respondentSolicitorFirm');
+
+        if (req.session.respondentSolicitorFirmError) {
+          req.session.respondentSolicitorFirmError = null;
+        }
+        try {
+          logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, making api request');
+          req.session.organisations = await fetchOrganisation(req, trim(req.session.respondentSolicitorFirm));
+        } catch (error) {
+          logger.errorWithReq(null, 'solicitor_search', `Organisation search failed with error: ${error.message}`);
+        }
+      }
+      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, staying on same page');
       return res.redirect(this.url);
     }
 
-    logger.infoWithReq(null, 'solicitor_search', 'Continue clicked, moving to next page (ReasonForDivorce)');
     return super.handler(req, res);
   }
-
-  hasBeenPostedWithoutSubmitButton({body}) {
-    return body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
-  }
-
 };

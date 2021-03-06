@@ -1,6 +1,7 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const logger = require('app/services/logger').logger(__filename);
-const { get } = require('lodash');
+const { get, trim } = require('lodash');
+const { fetchOrganisation, hasBeenPostedWithoutSubmitButton } = require('app/core/utils/respondentSolicitorSearchHelper');
 
 module.exports = class RespondentSolicitorDetails extends ValidationStep {
   get url() {
@@ -11,21 +12,28 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
     return this.steps.ReasonForDivorce;
   }
 
-  handler(req, res) {
+  interceptor(ctx, session) {
+    delete session.organisations;
+    return ctx;
+  }
+
+  async handler(req, res) {
     const { body } = req;
 
-    const hasBeenPostedWithoutSubmitButton = body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
-
-    if (hasBeenPostedWithoutSubmitButton) {
-      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search detected.');
-      // TODOs:
-      // 1. make api call,
-      // 2. add response data to session
+    if (hasBeenPostedWithoutSubmitButton(req)) {
+      logger.infoWithReq(null, 'solicitor_search', 'Organisation search requested.');
       req.session.respondentSolicitorFirm = get(body, 'respondentSolicitorFirm');
-      return res.redirect(this.steps.RespondentCorrespondenceSolicitorSearch.url);
+      try {
+        logger.infoWithReq(null, 'organisation_search', 'Organisation search, making api request');
+        req.session.organisations = await fetchOrganisation(req, trim(req.session.respondentSolicitorFirm));
+        return res.redirect(this.steps.RespondentCorrespondenceSolicitorSearch.url);
+      } catch (error) {
+        logger.errorWithReq(null, 'organisation_search', `Organisation search failed with error: ${error.message}`);
+        logger.infoWithReq(null, 'solicitor_search', 'Returning to solicitor search page');
+        return res.redirect(this.steps.RespondentCorrespondenceSolicitorSearch.url);
+      }
     }
 
-    delete req.session.respondentSolicitorFirm;
     delete req.session.manual;
 
     return super.handler(req, res);

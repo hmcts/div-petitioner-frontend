@@ -1,0 +1,12 @@
+.divorce-organisation-search-result-list {
+  padding-left: 0;
+
+  &__item {
+    list-style-type: none;
+    margin-bottom: 30px;
+
+    &:first-of-type {
+      margin-top: 30px;
+    }
+  }
+}

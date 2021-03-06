@@ -54,6 +54,15 @@
         "county": "Brighton",
         "postCode": "BN2 0JB",
         "townCity": "Brighton and Hove"
+      },
+      {
+        "addressLine1": "6 Castleview park",
+        "addressLine2": "Kemptown",
+        "addressLine3": "",
+        "country": "United Kingdom",
+        "county": "Down",
+        "postCode": "BT67 OLN",
+        "townCity": "Moira"
       }
     ],
     "name": "Walker McDonald Solicitors",

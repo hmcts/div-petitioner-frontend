@@ -53,64 +53,64 @@
     </label>
     <main class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
       {%- if session.respondentSolicitorOrganisation -%}
-      {% set contactInformation = session.respondentSolicitorOrganisation.contactInformation[0] %}
-      <div class="govuk-grid-row govuk-!-padding-bottom-4">
-        <div class="govuk-grid-column-three-quarters">
-          <p class="govuk-!-margin-0">
-            {%- if contactInformation.addressLine1 -%} {{contactInformation.addressLine1}} {%- endif -%}
-            {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
-            {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
-            {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
-            {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
-            {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
-            {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
-          </p>
+        {% set contactInformation = session.respondentSolicitorOrganisation.contactInformation[0] %}
+        <div class="govuk-grid-row govuk-!-padding-bottom-4">
+          <div class="govuk-grid-column-three-quarters">
+            <p class="govuk-!-margin-0">
+              {%- if contactInformation.addressLine1 -%} {{contactInformation.addressLine1}} {%- endif -%}
+              {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
+              {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
+              {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
+              {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
+              {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
+              {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
+            </p>
+          </div>
+          <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
+            <form method="POST" accept-charset="utf-8" class="form" id="deselection"
+                  enctype="application/x-www-form-urlencoded"
+                  autocomplete="off">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <input type="hidden" name="userAction" value="deselection">
+              {{ govukButton({
+              text: content.deselectBtnText,
+              classes: 'govuk-button govuk-button--secondary',
+              preventDoubleClick: true
+              }) }}
+            </form>
+          </div>
         </div>
-        <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
-          <form method="POST" accept-charset="utf-8" class="form" id="deselection"
-                enctype="application/x-www-form-urlencoded"
-                autocomplete="off">
-            <input type="hidden" name="_csrf" value="{{csrfToken}}">
-            <input type="hidden" name="userAction" value="deselection">
-            {{ govukButton({
-            text: content.deselectBtnText,
-            classes: 'govuk-button govuk-button--secondary',
-            preventDoubleClick: true
-            }) }}
-          </form>
-        </div>
-      </div>
       {%- else -%}
-      {%- for organisation in session.organisations -%}
-      {% set contactInformation = organisation.contactInformation[0] %}
-      <div class="govuk-grid-row govuk-!-padding-bottom-4">
-        <div class="govuk-grid-column-three-quarters">
-          <p class="govuk-!-margin-0">
-            {%- if contactInformation.addressLine1 -%} {{contactInformation.addressLine1}} {%- endif -%}
-            {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
-            {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
-            {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
-            {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
-            {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
-            {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
-          </p>
-        </div>
-        <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
-          <form method="POST" accept-charset="utf-8" class="form" id="result_{{organisation.organisationIdentifier}}"
-                enctype="application/x-www-form-urlencoded"
-                autocomplete="off">
-            <input type="hidden" name="_csrf" value="{{csrfToken}}">
-            <input type="hidden" name="userAction" value="selection">
-            <input type="hidden" name="userSelection" value="{{organisation.organisationIdentifier}}">
-            {{ govukButton({
-            text: content.selectBtnText,
-            classes: 'govuk-button govuk-button--secondary',
-            preventDoubleClick: true
-            }) }}
-          </form>
-        </div>
-      </div>
-      {%- endfor -%}
+        {%- for organisation in session.organisations -%}
+          {% set contactInformation = organisation.contactInformation[0] %}
+          <div class="govuk-grid-row govuk-!-padding-bottom-4">
+            <div class="govuk-grid-column-three-quarters">
+              <p class="govuk-!-margin-0">
+                {%- if contactInformation.addressLine1 -%} {{contactInformation.addressLine1}} {%- endif -%}
+                {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
+                {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
+                {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
+                {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
+                {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
+                {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
+              </p>
+            </div>
+            <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
+              <form method="POST" accept-charset="utf-8" class="form" id="result_{{organisation.organisationIdentifier}}"
+                    enctype="application/x-www-form-urlencoded"
+                    autocomplete="off">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" name="userAction" value="selection">
+                <input type="hidden" name="userSelection" value="{{organisation.organisationIdentifier}}">
+                {{ govukButton({
+                text: content.selectBtnText,
+                classes: 'govuk-button govuk-button--secondary',
+                preventDoubleClick: true
+                }) }}
+              </form>
+            </div>
+          </div>
+        {%- endfor -%}
       {%- endif -%}
     </main>
     <div class="govuk-inset-text">
@@ -121,9 +121,9 @@
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <input type="hidden" name="userAction" value="manual">
         {{ govukButton({
-        text: content.enterManuallyBtnText,
-        classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
-        preventDoubleClick: true
+          text: content.enterManuallyBtnText,
+          classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+          preventDoubleClick: true
         }) }}
       </form>
     </div>
@@ -153,9 +153,9 @@
       <input type="hidden" name="_csrf" value="{{csrfToken}}">
       <input type="hidden" name="userAction" value="manual">
       {{ govukButton({
-      text: content.enterManuallyBtnText,
-      classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
-      preventDoubleClick: true
+        text: content.enterManuallyBtnText,
+        classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+        preventDoubleClick: true
       }) }}
     </form>
   </div>

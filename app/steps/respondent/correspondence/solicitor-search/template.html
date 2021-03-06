@@ -1,7 +1,5 @@
-{% from "button/macro.njk" import govukButton %}
-{% from "common/components/formElements.html" import textField, textArea %}
-{% from "common/components/customPageComponents.html" import nextStep %}
 {% from "common/components/respondentSolicitorComponents.html" import solicitorSearch, solicitorSearchResult, searchNoResults %}
+{% from "common/components/customPageComponents.html" import nextStep %}
 {% extends "question.html" %}
 
 {% block two_thirds %}
@@ -16,7 +14,7 @@
   {# Solicitors firms search result section when items are found #}
   {{ solicitorSearchResult(session, content, csrfToken) }}
 
-  {# Solicitors firms search result section - Items not found (if solicitor firm and no organisation list) #}
+  {# Solicitors firms search result section when items not found  #}
   {{ searchNoResults(session, content, csrfToken) }}
 
 </div>

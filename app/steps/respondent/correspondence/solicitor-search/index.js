@@ -57,9 +57,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   handler(req, res) {
     const { body } = req;
 
-    const hasBeenPostedWithoutSubmitButton = body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
-
-    if (hasBeenPostedWithoutSubmitButton) {
+    if (this.hasBeenPostedWithoutSubmitButton(req)) {
       const userAction = get(body, 'userAction');
 
       if (userAction === 'manual') {
@@ -96,4 +94,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     logger.infoWithReq(null, 'solicitor_search', 'Continue clicked, moving to next page (ReasonForDivorce)');
     return super.handler(req, res);
   }
+
+  hasBeenPostedWithoutSubmitButton({body}) {
+    return body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
+  }
+
 };

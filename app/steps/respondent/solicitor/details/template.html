@@ -1,35 +1,25 @@
 {% from "button/macro.njk" import govukButton %}
 {% from "common/components/formElements.html" import textField, textArea %}
+{% from "common/components/respondentSolicitorComponents.html" import solicitorSearch %}
+{% from "common/components/customPageComponents.html" import nextStep %}
 {% extends "question.html" %}
 {% block question %}
 {{ content.question | safe }}
 {% endblock %}
 
-{% block form %}
+{% block two_thirds %}
 <div class="govuk-body">
   <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
     <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
     {# Solicitors firms search section #}
-    <div class="govuk-form-group">
-      {{ textField(
-      name = 'respondentSolicitorFirm',
-      field = fields.respondentSolicitorFirm,
-      label = content.solicitorFirmLabel,
-      boldLabel = true
-      ) }}
-
-      {{ govukButton({
-      text: content.searchButton,
-      classes: 'govuk-button govuk-!-margin-bottom-1 govuk-!-margin-top-1',
-      preventDoubleClick: true
-      }) }}
-    </div>
+    {{ solicitorSearch(session, content, csrfToken) }}
 
     {# Solicitors firms manual entry section #}
     <a class="govuk-button govuk-button--secondary govuk-!-margin-top-0">
       {{content.enterManuallyBtnText}}
     </a>
+    {% block form %}
     <div class="govuk-form-group" id="enter-manually">
       {{ textField(
       name = 'respondentSolicitorName',
@@ -59,8 +49,11 @@
       boldLabel = true
       ) }}
     </div>
+    {% endblock %}
   </fieldset>
+  {{ nextStep(content.continueBtnText, csrfToken) }}
 
+  {% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
 </div>
 
 {% endblock %}

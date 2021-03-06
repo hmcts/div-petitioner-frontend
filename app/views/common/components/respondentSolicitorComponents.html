@@ -42,23 +42,23 @@ session     - (required) Current user session
 content     - (required) Current user context
 csrfToken   - (required) Current csrfToken, provided by the system
 Renders a search result list if available with button to select/deselect.
-It decides to render if the "organisations" object is not null
-Behaviour controlled by module
+It decides to render if the "organisations" object is not null, behaviour controlled by module
 #}
 {% macro solicitorSearchResult(session, content, csrfToken) %}
 {%- if session.organisations | length > 0 -%}
 <div class="govuk-form-group" id="solicitor-search-results">
   <input type="hidden" name="manual" value="manual">
-  <label class="govuk-label--s govuk-label {{ 'js-hidden' if session.respondentSolicitorOrganisation }}">
+  <h1 class="govuk-label--s govuk-label {{ 'js-hidden' if session.respondentSolicitorOrganisation }}">
     {{content.resultsLabel}}
-  </label>
-  <main class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
+  </h1>
+  <div class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
     {%- if session.respondentSolicitorOrganisation -%}
-    {% set contactInformation = session.respondentSolicitorOrganisation.contactInformation[0] %}
+    {% set contactInformation = session.respondentSolicitorOrganisation.contactInformation | first %}
     <div class="govuk-grid-row govuk-!-padding-bottom-4">
       <div class="govuk-grid-column-three-quarters">
         <p class="govuk-!-margin-0">
-          {%- if contactInformation.addressLine1 -%} <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
+          {%- if contactInformation.addressLine1 -%}
+            <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
           {%- endif -%}
           {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
           {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
@@ -84,7 +84,7 @@ Behaviour controlled by module
     </div>
     {%- else -%}
     {%- for organisation in session.organisations -%}
-    {% set contactInformation = organisation.contactInformation[0] %}
+    {% set contactInformation = organisation.contactInformation | first %}
     <div class="govuk-grid-row govuk-!-padding-bottom-4">
       <div class="govuk-grid-column-three-quarters">
         <p class="govuk-!-margin-0">
@@ -115,7 +115,7 @@ Behaviour controlled by module
     </div>
     {%- endfor -%}
     {%- endif -%}
-  </main>
+  </div>
   <div class="govuk-inset-text">
     <p>{{content.searchNoOptionFoundText}}</p>
     <form method="POST" accept-charset="utf-8" class="form" id="noneFound"

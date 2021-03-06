@@ -1,18 +1,12 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const { get, find, isEqual, trim } = require('lodash');
+const { get, find, isEqual } = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
 const {
+  UserAction,
   validateSearchRequest,
-  fetchOrganisations,
+  fetchAndAddOrganisations,
   hasBeenPostedWithoutSubmitButton
 } = require('app/core/utils/respondentSolicitorSearchHelper');
-
-const UserAction = {
-  MANUAL: 'manual',
-  SEARCH: 'search',
-  SELECTION: 'selection',
-  DESELECTION: 'deselection'
-};
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {
   get url() {
@@ -38,9 +32,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
       if (isEqual(userAction, UserAction.MANUAL)) {
         logger.infoWithReq(null, 'solicitor_search', 'Manual solicitor search, redirecting to solicitor detail page.');
-        req.session.respondentSolicitorOrganisation = null;
-        req.session.respondentSolicitorFirmError = null;
-        req.session.organisations = null;
+        this.manualSelectionCleanup(req);
         return res.redirect(this.steps.RespondentSolicitorDetails.url);
       }
 
@@ -53,21 +45,13 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
       if (isEqual(userAction, UserAction.DESELECTION)) {
         logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has deselected option');
-        req.session.respondentSolicitorOrganisation = null;
+        this.deselectionCleanup(req);
       }
 
       if (isEqual(userAction, UserAction.SEARCH)) {
-        req.session.respondentSolicitorOrganisation = null;
-        req.session.respondentSolicitorFirm = get(body, 'respondentSolicitorFirm');
-
-        if (req.session.respondentSolicitorFirmError) {
-          req.session.respondentSolicitorFirmError = null;
-        }
-        try {
-          logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, making api request');
-          req.session.organisations = await fetchOrganisations(req, trim(req.session.respondentSolicitorFirm));
-        } catch (error) {
-          logger.errorWithReq(null, 'solicitor_search', `Organisation search failed with error: ${error.message}`);
+        const requestSucceeded = await fetchAndAddOrganisations(req);
+        if (requestSucceeded) {
+          logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, request complete');
         }
       }
 
@@ -76,5 +60,16 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     }
 
     return super.handler(req, res);
+  }
+
+  deselectionCleanup(req) {
+    req.session.respondentSolicitorOrganisation = null;
+    req.session.respondentSolicitorFirmError = null;
+  }
+
+  manualSelectionCleanup(req) {
+    delete req.session.respondentSolicitorOrganisation;
+    delete req.session.respondentSolicitorFirmError;
+    delete req.session.organisations;
   }
 };

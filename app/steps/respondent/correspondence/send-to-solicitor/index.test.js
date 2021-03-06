@@ -34,7 +34,7 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = { divorceWho: 'wife'};
+      session = { divorceWho: 'wife' };
 
       withSession(done, agent, session);
     });

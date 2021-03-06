@@ -2,5 +2,17 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "respondent-solicitor-details",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "respondentSolicitorName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "respondentSolicitorAddress": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "respondentSolicitorName",
+    "respondentSolicitorAddress"
+  ]
 }

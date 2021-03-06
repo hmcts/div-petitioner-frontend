@@ -7,10 +7,21 @@
           "question": "Enter details of your {{ divorceWho }}'s solicitor",
           "solicitorFirmLabel": "Enter the name of their solicitor's firm",
           "searchButton": "Search",
+          "continueBtnText": "Continue",
+          "deselectBtnText": "Deselect",
+          "selectBtnText": "Select",
+          "enterManuallyBtnText": "Enter details manually",
+          "resultsLabel": "Results",
           "solicitorNameLabel": "Solicitor's name",
           "solicitorReferenceLabel": "Solicitor's reference (optional)",
           "solicitorEmailLabel": "Solicitor's email address (optional)",
-          "solicitorFirmAddressLabel": "Solicitor's firm and address"
+          "solicitorFirmAddressLabel": "Solicitor's firm and address",
+          "searchNoOptionFoundText": "If you can't see the firm listed then you can enter the details manually.",
+          "searchNoResults": {
+            "paragraph1": "There are no results for the firm you entered.",
+            "paragraph2": "This may be because the firm is not registered online with HMCTS.",
+            "paragraph3": "You can check the spelling and search again, or enter the details manually."
+          }
         },
         "errors": {
           "respondentSolicitorFirm": {
@@ -26,10 +37,21 @@
           "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
           "solicitorFirmLabel": "[CY] Enter the name of their solicitor's firm",
           "searchButton": "[CY] Search",
+          "continueBtnText": "[CY] Continue",
+          "deselectBtnText": "[CY] Deselect",
+          "selectBtnText": "[CY] Select",
+          "enterManuallyBtnText": "Enter details manually",
+          "resultsLabel": "[CY] Results",
           "solicitorNameLabel": "[CY] Solicitor's name",
           "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
           "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
-          "solicitorFirmAddressLabel": "Solicitor's firm and address"
+          "solicitorFirmAddressLabel": "[CY] Solicitor's firm and address",
+          "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
+          "searchNoResults": {
+            "paragraph1": "[CY] There are no results for the firm you entered.",
+            "paragraph2": "[CY] This may be because the firm is not registered online with HMCTS.",
+            "paragraph3": "[CY] You can check the spelling and search again, or enter the details manually."
+          }
         },
         "errors": {
           "respondentSolicitorFirm": {

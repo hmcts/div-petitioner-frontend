@@ -4,17 +4,47 @@
     "en": {
       "translation": {
         "content": {
-          "question": "This is the respondent solicitor details page"
+          "question": "Enter details of your {{ divorceWho }}'s solicitor",
+          "enterManuallyBtnText": "Enter details manually",
+          "searchButton": "Search",
+          "solicitorNameLabel": "Solicitor's name",
+          "solicitorReferenceLabel": "Solicitor's reference (optional)",
+          "solicitorEmailLabel": "Solicitor's email address (optional)",
+          "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
-        "errors": {}
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Please provide a solicitor name",
+            "invalid": "Please provide a solicitor name"
+          },
+          "respondentSolicitorAddress": {
+            "required": "Please provide solicitor firm's address",
+            "invalid": "Please provide solicitor firm's address"
+          }
+        }
       }
     },
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] This is the respondent solicitor details page"
+          "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
+          "enterManuallyBtnText": "[CY] Enter details manually",
+          "searchButton": "[CY] Search",
+          "solicitorNameLabel": "[CY] Solicitor's name",
+          "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
+          "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
+          "solicitorFirmAddressLabel": "Solicitor's firm and address"
         },
-        "errors": {}
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "[CY] Please provide a solicitor name",
+            "invalid": "[CY] Please provide a solicitor name"
+          },
+          "respondentSolicitorAddress": {
+            "required": "[CY] Please provide solicitor firm's address",
+            "invalid": "[CY] Please provide solicitor firm's address"
+          }
+        }
       }
     }
   }

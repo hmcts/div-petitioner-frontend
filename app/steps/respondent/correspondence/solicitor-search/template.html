@@ -1,125 +1,148 @@
 {% from "button/macro.njk" import govukButton %}
 {% from "common/components/formElements.html" import textField, textArea %}
+{% from "common/components/customPageComponents.html" import nextStep %}
 {% extends "question.html" %}
-{% block question %}
-{{ content.question | safe }}
-{% endblock %}
 
-{% block form %}
+{% block two_thirds %}
 <div class="govuk-body">
-  <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
-  <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+  <h1 class="govuk-heading-l">{{ content.question | safe }}</h1>
+  <div class="govuk-form-group" id="solicitor-search">
+    <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      <form method="POST" accept-charset="utf-8" class="form" id="searchform"
+            enctype="application/x-www-form-urlencoded"
+            autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="hidden" name="userAction" value="search">
 
-     {# Solicitors firms search section #}
-    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorFirm.error }}">
-      {{ textField(
-      name = 'respondentSolicitorFirm',
-      field = fields.respondentSolicitorFirm,
-      label = content.solicitorFirmLabel,
-      boldLabel = true
-      ) }}
+        {# Solicitors firms search section #}
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorFirm.error }}">
+          {{ textField(
+          name = 'respondentSolicitorFirm',
+          field = fields.respondentSolicitorFirm,
+          label = content.solicitorFirmLabel,
+          boldLabel = true
+          ) }}
 
-      {{ govukButton({
-      text: content.searchButton,
-      classes: 'govuk-button govuk-!-margin-bottom-1 govuk-!-margin-top-1',
-      preventDoubleClick: true
-      }) }}
-    </div>
-
-    {# Solicitors firms search result section - Items found (if no solicitor firm and organisation) #}
-    <div class="govuk-form-group {% if not organisations %} js-hidden {% endif %}" id="solicitor-search-results">
-      <label class="govuk-label--s govuk-label">
-        Results
-      </label>
-      <main class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
-        <div class="govuk-grid-row govuk-!-padding-bottom-4">
-          <div class="govuk-grid-column-three-quarters">
-            <p class="govuk-!-margin-0">Clarkson ann partners
-              <br>71 Cherry Court
-              <br>Oxford
-              <br>OX1 3HB
-            </p>
-          </div>
-          <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
-            <button class="govuk-button govuk-button--secondary">
-              Select
-            </button>
-          </div>
+          {{ govukButton({
+          text: content.searchButton,
+          classes: 'govuk-button govuk-!-margin-bottom-1 govuk-!-margin-top-1',
+          preventDoubleClick: true
+          }) }}
         </div>
-        <div class="govuk-grid-row govuk-!-padding-bottom-4">
-          <div class="govuk-grid-column-three-quarters">
-            <p class="govuk-!-margin-0">Vipers and son
-              <br>40 Southgate Street
-              <br>Bath
-              <br>BA1 1TG
-            </p>
-          </div>
-          <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
-            <button class="govuk-button govuk-button--secondary">
-              Select
-            </button>
-          </div>
-        </div>
-      </main>
-      <div class="govuk-inset-text">
-        <p>If you can't see the firm listed then you can enter the details manually.</p>
+      </form>
+    </fieldset>
+  </div>
 
-        <a class="govuk-button govuk-button--secondary govuk-!-margin-top-0"  onclick="enterManual()">
-          Enter details manually
-        </a>
+  {# Solicitors firms search result section - Items found (if solicitor firm and organisation list) #}
+  {% if session.organisations %}
+  <div class="govuk-form-group" id="solicitor-search-results">
+    <input type="hidden" name="manual" value="manual">
+    <label class="govuk-label--s govuk-label {{ 'js-hidden' if session.respondentSolicitorOrganisation }}">
+      {{content.resultsLabel}}
+    </label>
+    <main class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
+      {%- if session.respondentSolicitorOrganisation -%}
+      {% set contactInformation = session.respondentSolicitorOrganisation.contactInformation[0] %}
+      <div class="govuk-grid-row govuk-!-padding-bottom-4">
+        <div class="govuk-grid-column-three-quarters">
+          <p class="govuk-!-margin-0">
+            {%- if contactInformation.addressLine1 -%} {{contactInformation.addressLine1}} {%- endif -%}
+            {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
+            {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
+            {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
+            {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
+            {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
+            {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
+          </p>
+        </div>
+        <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
+          <form method="POST" accept-charset="utf-8" class="form" id="deselection"
+                enctype="application/x-www-form-urlencoded"
+                autocomplete="off">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" name="userAction" value="deselection">
+              {{ govukButton({
+              text: content.deselectBtnText,
+              classes: 'govuk-button govuk-button--secondary',
+              preventDoubleClick: true
+              }) }}
+          </form>
+        </div>
       </div>
+      {%- else -%}
+      {%- for organisation in session.organisations -%}
+      {% set contactInformation = organisation.contactInformation[0] %}
+      <div class="govuk-grid-row govuk-!-padding-bottom-4">
+        <div class="govuk-grid-column-three-quarters">
+          <p class="govuk-!-margin-0">
+            {%- if contactInformation.addressLine1 -%} {{contactInformation.addressLine1}} {%- endif -%}
+            {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
+            {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
+            {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
+            {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
+            {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
+            {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
+          </p>
+        </div>
+        <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
+          <form method="POST" accept-charset="utf-8" class="form" id="result_{{organisation.organisationIdentifier}}"
+                enctype="application/x-www-form-urlencoded"
+                autocomplete="off">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" name="userAction" value="selection">
+            <input type="hidden" name="userSelection" value="{{organisation.organisationIdentifier}}">
+              {{ govukButton({
+              text: content.selectBtnText,
+              classes: 'govuk-button govuk-button--secondary',
+              preventDoubleClick: true
+              }) }}
+          </form>
+        </div>
+      </div>
+      {%- endfor -%}
+      {%- endif -%}
+
+    </main>
+    <div class="govuk-inset-text">
+      <p>{{content.searchNoOptionFoundText}}</p>
+      <form method="POST" accept-charset="utf-8" class="form" id="noneFound"
+            enctype="application/x-www-form-urlencoded"
+            autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="hidden" name="userAction" value="manual">
+        {{ govukButton({
+        text: content.enterManuallyBtnText,
+        classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+        preventDoubleClick: true
+        }) }}
+      </form>
     </div>
+  </div>
+  {%- endif -%}
 
-    {# Solicitors firms search result section - Items not found (if solicitor firm and  no organisation) #}
-    <div class="govuk-form-group" id="no-solicitor-search-results">
-      <p>There are no results for the firm you entered.</p>
-      <p>This may be because the firm is not registered online with HMCTS.</p>
-      <p>You can check the spelling and search again, or enter the details manually.</p>
-      <a class="govuk-button govuk-button--secondary govuk-!-margin-top-0" onclick="enterManual()">
-        Enter details manually
-      </a>
-    </div>
+  {# Solicitors firms search result section - Items not found (if solicitor firm and no organisation list) #}
+  {%- if not session.organisations and session.respondentSolicitorFirm -%}
+  <div class="govuk-form-group" id="solicitor-search-no-results">
+    <p>{{content.searchNoResults.paragraph1}}</p>
+    <p>{{content.searchNoResults.paragraph2}}</p>
+    <p>{{content.searchNoResults.paragraph3}}</p>
+    <form method="POST" accept-charset="utf-8" class="form" id="noResults"
+          enctype="application/x-www-form-urlencoded"
+          autocomplete="off">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="hidden" name="userAction" value="manual">
+        {{ govukButton({
+        text: content.enterManuallyBtnText,
+        classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+        preventDoubleClick: true
+        }) }}
+    </form>
+  </div>
+  {%- endif -%}
 
-    {# Solicitors firms manual entry section #}
-    <div class="govuk-form-group js-hidden" id="enter-manually">
-      {{ textField(
-        name = 'respondentSolicitorName',
-        field = fields.respondentSolicitorName,
-        label = content.solicitorNameLabel,
-        boldLabel = true
-       ) }}
-
-      {{ textField(
-      name = 'respondentSolicitorReference',
-      field = fields.respondentSolicitorReference,
-      label = content.solicitorReferenceLabel,
-      boldLabel = true
-      ) }}
-
-      {{ textField(
-        name = 'respondentSolicitorEmail',
-        field = fields.respondentSolicitorEmail,
-        label = content.solicitorEmailLabel,
-        boldLabel = true
-       ) }}
-
-      {{ textArea(
-         name = 'respondentSolicitorAddress',
-         field = fields.respondentSolicitorAddress,
-         label = content.solicitorFirmAddressLabel,
-         boldLabel = true
-       ) }}
-    </div>
-  </fieldset>
-
-  {% block extra_scripts %}
-    <script>
-      function enterManual() {
-        $('#select-address').removeClass('js-hidden');
-        $('#solicitor-search-results').addClass('js-hidden');
-      }
-    </script>
-  {% endblock %}
 </div>
+
+{{ nextStep(content.continueBtnText, csrfToken) }}
 
 {% endblock %}

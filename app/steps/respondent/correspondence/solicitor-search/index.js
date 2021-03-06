@@ -43,7 +43,6 @@ function apiCall() {
       organisationIdentifier: 'ORG-02'
     }
   ];
-
 }
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {

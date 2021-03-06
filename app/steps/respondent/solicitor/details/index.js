@@ -1,6 +1,6 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const logger = require('app/services/logger').logger(__filename);
-const {get, trim} = require('lodash');
+const { get, trim } = require('lodash');
 const {
   fetchOrganisations,
   hasBeenPostedWithoutSubmitButton
@@ -21,7 +21,7 @@ module.exports = class RespondentSolicitorDetails extends ValidationStep {
   }
 
   async handler(req, res) {
-    const {body} = req;
+    const { body } = req;
 
     if (hasBeenPostedWithoutSubmitButton(req)) {
       logger.infoWithReq(null, 'solicitor_search', 'Organisation search requested.');

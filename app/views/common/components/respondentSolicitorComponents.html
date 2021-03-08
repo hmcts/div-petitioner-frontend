@@ -145,7 +145,7 @@ It decides to render if the "organisations" object is null and there is no searc
 Behaviour controlled by module
 #}
 {% macro searchNoResults(session, content, csrfToken) %}
-{%- if not session.organisations and session.respondentSolicitorFirm -%}
+{%- if not session.organisations | length and session.respondentSolicitorFirm -%}
 <div class="govuk-form-group" id="solicitor-search-no-results">
   <p>{{content.searchNoResults.paragraph1}}</p>
   <p>{{content.searchNoResults.paragraph2}}</p>

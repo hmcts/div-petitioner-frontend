@@ -21,8 +21,16 @@
                 value = 'Yes',
                 label = content.featureToggleRespSol.theirAddress,
                 name = 'respondentCorrespondenceUseHomeAddress',
-                field = fields.respondentCorrespondenceUseHomeAddress
+                field = fields.respondentCorrespondenceUseHomeAddress,
+                dataTarget='conditional-their-address'
             ) }}
+            <div id="conditional-their-address" class="govuk-radios__conditional {{ 'js-hidden' if fields.respondentCorrespondenceUseHomeAddress.value != 'Yes' }}">
+              {% if fields.respondentCorrespondenceDisplayAddress.value %}
+                <p class="govuk-body govuk-!-padding-top-2 govuk-!-padding-bottom-2">
+                  {{ fields.respondentCorrespondenceDisplayAddress.value.address | join("<br/>") | safe }}
+                </p>
+              {% endif %}
+            </div>
             {{ radioButton(
                 value = 'Solicitor',
                 label = content.featureToggleRespSol.solicitorAddress,

@@ -6,7 +6,7 @@ const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
 
-const modulePath = 'app/steps/respondent/correspondence/send-to-solicitor';
+const modulePath = 'app/steps/respondent/correspondence/solicitor-search';
 
 const content = require(`${modulePath}/content`);
 
@@ -19,7 +19,7 @@ describe(modulePath, () => {
     idamMock.stub();
     s = server.init();
     agent = request.agent(s.app);
-    underTest = s.steps.RespondentCorrespondenceSendToSolicitor;
+    underTest = s.steps.RespondentCorrespondenceSolicitorSearch;
   });
 
   afterEach(() => {
@@ -36,7 +36,24 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      testContent(done, agent, underTest, content, session);
+      const excludedKeys = [
+        'deselectBtnText',
+        'selectBtnText',
+        'enterManuallyBtnText',
+        'resultsLabel',
+        'solicitorNameLabel',
+        'solicitorReferenceLabel',
+        'solicitorEmailLabel',
+        'solicitorFirmAddressLabel',
+        'searchNoOptionFoundText',
+        'searchNoResults.paragraph1',
+        'searchNoResults.paragraph2',
+        'searchNoResults.paragraph3',
+        'searchErrors.emptyValue',
+        'searchErrors.shortValue'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludedKeys);
     });
   });
 });

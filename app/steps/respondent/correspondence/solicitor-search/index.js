@@ -1,5 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const { get, find, isEqual } = require('lodash');
+const {get, find, isEqual, first, values, size, filter} = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
 const {
   UserAction,
@@ -20,7 +20,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
   async handler(req, res) {
     if (hasBeenPostedWithoutSubmitButton(req)) {
-      const { body } = req;
+      const {body} = req;
 
       const userAction = get(body, 'userAction');
 
@@ -63,7 +63,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
           req.session.respondentSolicitorNameError = errors;
           return res.redirect(this.url);
         }
+
         this.errorsCleanup(req);
+        this.mapRespondentSolicitorData(req);
         return super.handler(req, res);
       }
 
@@ -88,5 +90,12 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   errorsCleanup(req) {
     req.session.respondentSolicitorNameError = null;
     req.session.respondentSolicitorFirmError = null;
+  }
+
+  mapRespondentSolicitorData({session}) {
+    let address = filter(values(first(get(session.respondentSolicitorOrganisation, 'contactInformation'))), size);
+    session.respondentSolicitorCompany = get(session.respondentSolicitorOrganisation, 'name');
+    session.respondentSolicitorAddress = {address};
+    session.respondentSolicitorReferenceDataId = get(session.respondentSolicitorOrganisation, 'organisationIdentifier');
   }
 };

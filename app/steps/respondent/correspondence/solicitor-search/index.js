@@ -96,8 +96,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   mapRespondentSolicitorData({ session }) {
-    const respondentSolicitorOrganisation = get(session.respondentSolicitorOrganisation, 'contactInformation');
-    const address = filter(values(first(get(respondentSolicitorOrganisation, 'contactInformation'))), size);
+    const { respondentSolicitorOrganisation } = session;
+    const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
+    const address = filter(values(first(solicitorContactInformation)), size);
     session.respondentSolicitorAddress = { address };
     session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
     session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');

@@ -23,8 +23,9 @@
             "paragraph3": "You can check the spelling and search again, or enter the details manually."
           },
           "searchErrors": {
-            "emptyValue": "Please provide your solicitor firm's name",
-            "shortValue": "Please provide a least 3 characters"
+            "emptyValue": "Please provide a solicitor firm's name",
+            "shortValue": "Please provide at least 3 characters",
+            "solicitorName": "Please provide a solicitor name"
           }
         },
         "errors": {
@@ -58,7 +59,7 @@
           },
           "searchErrors": {
             "emptyValue": "[CY] Please provide your solicitor firm's name",
-            "shortValue": "[CY] Please provide a least 3 characters"
+            "shortValue": "[CY] Please provide at least 3 characters"
           }
         },
         "errors": {

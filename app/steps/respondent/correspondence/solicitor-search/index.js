@@ -4,6 +4,7 @@ const logger = require('app/services/logger').logger(__filename);
 const {
   UserAction,
   validateSearchRequest,
+  validateUserData,
   fetchAndAddOrganisations,
   hasBeenPostedWithoutSubmitButton
 } = require('app/core/utils/respondentSolicitorSearchHelper');
@@ -18,16 +19,15 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   async handler(req, res) {
-    const { body } = req;
-    const searchCriteria = get(body, 'respondentSolicitorFirm');
-    const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
-
-    if (!isValid) {
-      req.session.respondentSolicitorFirmError = errors;
-      return res.redirect(this.url);
-    }
-
     if (hasBeenPostedWithoutSubmitButton(req)) {
+      const { body } = req;
+      const searchCriteria = get(body, 'respondentSolicitorFirm');
+      const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
+
+      if (!isValid) {
+        req.session.respondentSolicitorFirmError = errors;
+        return res.redirect(this.url);
+      }
       const userAction = get(body, 'userAction');
 
       if (isEqual(userAction, UserAction.MANUAL)) {
@@ -55,6 +55,15 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
         }
       }
 
+      if (isEqual(userAction, UserAction.PROVIDED)) {
+        const [isValidated, error] = validateUserData(this.content, req, userAction);
+        if (!isValidated) {
+          req.session.respondentSolicitorNameError = error;
+          return res.redirect(this.url);
+        }
+        return super.handler(req, res);
+      }
+
       logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, staying on same page');
       return res.redirect(this.url);
     }
@@ -68,8 +77,8 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   manualSelectionCleanup(req) {
-    delete req.session.respondentSolicitorOrganisation;
-    delete req.session.respondentSolicitorFirmError;
-    delete req.session.organisations;
+    req.session.respondentSolicitorOrganisation = null;
+    req.session.respondentSolicitorFirmError = null;
+    req.session.organisations = null;
   }
 };

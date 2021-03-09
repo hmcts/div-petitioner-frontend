@@ -1,5 +1,6 @@
 {% from "button/macro.njk" import govukButton %}
 {% from "common/components/formElements.html" import textField, textArea, errorsFor %}
+{% from "common/components/customPageComponents.html" import nextStep %}
 
 {#
 solicitorSearch
@@ -9,8 +10,9 @@ csrfToken   - (required) Current csrfToken, provided by the system
 Renders a search box and button, behaviour controlled by module
 #}
 {% macro solicitorSearch(session, content, csrfToken) %}
-<div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorFirmError.error }}" id="solicitor-search">
-  <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
+<div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorFirmError.error }}"
+     id="solicitor-search">
+  <fieldset class="govuk-fieldset">
     {{ errorsFor(session.respondentSolicitorFirmError) }}
     <form method="POST" accept-charset="utf-8" class="form" id="searchform"
           enctype="application/x-www-form-urlencoded"
@@ -58,7 +60,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
       <div class="govuk-grid-column-three-quarters">
         <p class="govuk-!-margin-0">
           {%- if contactInformation.addressLine1 -%}
-            <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
+          <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
           {%- endif -%}
           {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
           {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
@@ -81,6 +83,40 @@ It decides to render if the "organisations" object is not null, behaviour contro
           }) }}
         </form>
       </div>
+    </div>
+    <div class="govuk-!-padding-top-6">
+      <form method="POST" accept-charset="utf-8" class="form" id="provided"
+            enctype="application/x-www-form-urlencoded"
+            autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="hidden" name="userAction" value="provided">
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorNameError.error }}"
+             id="solicitor-name">
+          <fieldset class="govuk-fieldset">
+            {{ errorsFor(session.respondentSolicitorNameError) }}
+            {{ textField(
+            name = 'respondentSolicitorName',
+            field = fields.respondentSolicitorName,
+            label = content.solicitorNameLabel,
+            boldLabel = true
+            ) }}
+          </fieldset>
+        </div>
+        <div class="govuk-form-group">
+          {{ textField(
+          name = 'respondentSolicitorReference',
+          field = fields.respondentSolicitorReference,
+          label = content.solicitorReferenceLabel,
+          boldLabel = true
+          ) }}
+        </div>
+        {{ govukButton({
+        text: content.continueBtnText,
+        classes: 'govuk-button govuk-button--primary govuk-!-margin-top-6',
+        preventDoubleClick: true
+        }) }}
+        </fieldset>
+      </form>
     </div>
     {%- else -%}
     {%- for organisation in session.organisations -%}
@@ -114,21 +150,24 @@ It decides to render if the "organisations" object is not null, behaviour contro
       </div>
     </div>
     {%- endfor -%}
+    <div class="govuk-inset-text">
+      <p>{{content.searchNoOptionFoundText}}</p>
+      <form method="POST" accept-charset="utf-8" class="form" id="noneFound"
+            enctype="application/x-www-form-urlencoded"
+            autocomplete="off">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="hidden" name="userAction" value="manual">
+        {{ govukButton({
+        text: content.enterManuallyBtnText,
+        classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+        preventDoubleClick: true
+        }) }}
+      </form>
+    </div>
+    <div class="govuk-form-group govuk-!-padding-top-6 govuk-!-padding-bottom-0">
+      {{ nextStep(content.continueBtnText, csrfToken) }}
+    </div>
     {%- endif -%}
-  </div>
-  <div class="govuk-inset-text">
-    <p>{{content.searchNoOptionFoundText}}</p>
-    <form method="POST" accept-charset="utf-8" class="form" id="noneFound"
-          enctype="application/x-www-form-urlencoded"
-          autocomplete="off">
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
-      <input type="hidden" name="userAction" value="manual">
-      {{ govukButton({
-      text: content.enterManuallyBtnText,
-      classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
-      preventDoubleClick: true
-      }) }}
-    </form>
   </div>
 </div>
 {%- endif -%}

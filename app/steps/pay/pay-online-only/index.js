@@ -15,7 +15,6 @@ const requestHandler = require('app/core/helpers/parseRequest');
 const idam = require('app/services/idam');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
-const get = require('lodash/get');
 const parseBool = require('app/core/utils/parseBool');
 
 const feeConfigPropNames = {
@@ -115,7 +114,7 @@ module.exports = class PayOnline extends Step {
     const serviceCallbackUrl = parseBool(CONF.features.strategicPay) ? `${CONF.services.transformation.baseUrl}/payment-update` : '';
 
     const caseId = req.session.caseId;
-    const siteId = get(req.session, 'allocatedCourt.siteId');
+    const caseType = 'DIVORCE';
 
     if (!caseId) {
       logger.errorWithReq(req, 'case_id_missing', 'Case ID is missing');
@@ -157,7 +156,7 @@ module.exports = class PayOnline extends Step {
       // Create payment.
       .then(() => {
         return payment.create(
-          req, user, generatedServiceToken, caseId, siteId, feeCode,
+          req, user, generatedServiceToken, caseId, caseType, feeCode,
           feeVersion, amount, feeDescription, returnUrl, serviceCallbackUrl, req.session.language);
       })
 

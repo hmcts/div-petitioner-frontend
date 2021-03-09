@@ -1,11 +1,7 @@
-const CONF = require('config');
 const { get, trim, isEmpty, size, isUndefined, isEqual } = require('lodash');
 const organisationService = require('app/services/organisationService');
 const serviceTokenService = require('app/services/serviceToken');
 const logger = require('app/services/logger').logger(__filename);
-
-const prdUrl = `${CONF.services.prdClient.baseUrl}`;
-const tempOrganisationApiUrl = 'https://rd-professional-api-pr-983.service.core-compute-preview.internal/refdata/external/v1/organisations/status';
 
 const MIN_CHARACTERS = 2;
 const ORGANISATION_STATUS = 'active';
@@ -24,20 +20,22 @@ const ErrorMessage = {
   SOLICITOR_NAME: 'solicitorName'
 };
 
-const getOrganisationApiUrl = () => {
-  return prdUrl || tempOrganisationApiUrl;
-};
-
 const getServiceAuthToken = req => {
   const serviceToken = serviceTokenService.setup();
   return serviceToken.getToken(req);
 };
 
-const fetchOrganisations = (req, searchCriteria) => {
+const fetchOrganisations = async (req, searchCriteria) => {
   const authToken = req.cookies['__auth-token'];
-  const serviceAuthToken = getServiceAuthToken(req);
-  const organisation = organisationService.setup(authToken, serviceAuthToken, getOrganisationApiUrl());
-  return organisation.getOrganisationByName(ORGANISATION_STATUS, searchCriteria);
+
+  try {
+    const serviceAuthToken = await getServiceAuthToken(req);
+    logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, retrieving organisation token');
+    const organisation = organisationService.setup(authToken, serviceAuthToken);
+    return organisation.getOrganisationByName(ORGANISATION_STATUS, searchCriteria);
+  } catch (error) {
+    logger.errorWithReq(null, 'solicitor_search', `Organisation search failed with error: ${error.message}`);
+  }
 };
 
 const fetchAndAddOrganisations = async req => {
@@ -50,10 +48,15 @@ const fetchAndAddOrganisations = async req => {
   if (req.session.respondentSolicitorFirmError) {
     req.session.respondentSolicitorFirmError = null;
   }
+
   try {
     logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, making api request');
-    req.session.organisations = await fetchOrganisations(req, trim(req.session.respondentSolicitorFirm));
-    organisationsRetrieved = true;
+    const response = await fetchOrganisations(req, trim(req.session.respondentSolicitorFirm));
+
+    if (response) {
+      req.session.organisations = response;
+      organisationsRetrieved = true;
+    }
   } catch (error) {
     logger.errorWithReq(null, 'solicitor_search', `Organisation search failed with error: ${error.message}`);
   }
@@ -99,8 +102,6 @@ const hasBeenPostedWithoutSubmitButton = ({ body }) => {
 
 module.exports = {
   UserAction,
-  getServiceAuthToken,
-  getOrganisationApiUrl,
   validateSearchRequest,
   validateUserData,
   fetchOrganisations,

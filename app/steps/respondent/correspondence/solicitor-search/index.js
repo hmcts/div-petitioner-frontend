@@ -27,7 +27,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       if (isEqual(userAction, UserAction.MANUAL)) {
         logger.infoWithReq(null, 'solicitor_search', 'Manual solicitor search, redirecting to solicitor detail page.');
         this.manualSelectionCleanup(req);
-        return res.redirect(this.steps.RespondentSolicitorDetails.url);
+        return res.redirect(this.steps.RespondentSolicitorSearchManual.url);
       }
 
       if (isEqual(userAction, UserAction.SELECTION)) {

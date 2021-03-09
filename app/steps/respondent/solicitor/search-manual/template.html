@@ -1,59 +1,56 @@
-{% from "button/macro.njk" import govukButton %}
 {% from "common/components/formElements.html" import textField, textArea %}
 {% from "common/components/respondentSolicitorComponents.html" import solicitorSearch %}
-{% from "common/components/customPageComponents.html" import nextStep %}
 {% extends "question.html" %}
 {% block question %}
 {{ content.question | safe }}
 {% endblock %}
 
-{% block two_thirds %}
-<div class="govuk-body">
-  <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+{% block form %}
 
-    {# Solicitors firms search section #}
-    {{ solicitorSearch(session, content, csrfToken) }}
+  <a id="search-solicitor-firm" class="govuk-body govuk-link" href="{{fields.url.value}}/petitioner-respondent/correspondence/solicitor-search">{{content.searchSolicitorFirm}}</a>
+  <br><br>
 
-    {# Solicitors firms manual entry section #}
-    <a class="govuk-button govuk-button--secondary govuk-!-margin-top-0">
-      {{content.enterManuallyBtnText}}
-    </a>
-    {% block form %}
-    <div class="govuk-form-group" id="enter-manually">
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorName.error }}">
+    <fieldset id="respondentSolicitorName" class="govuk-fieldset">
       {{ textField(
       name = 'respondentSolicitorName',
       field = fields.respondentSolicitorName,
       label = content.solicitorNameLabel,
       boldLabel = true
       ) }}
+    </fieldset>
+  </div>
 
+  <div class="govuk-form-group">
+    <fieldset id="respondentSolicitorReference" class="govuk-fieldset">
       {{ textField(
       name = 'respondentSolicitorReference',
       field = fields.respondentSolicitorReference,
       label = content.solicitorReferenceLabel,
       boldLabel = true
       ) }}
+    </fieldset>
+  </div>
 
+  <div class="govuk-form-group">
+    <fieldset id="respondentSolicitorEmail" class="govuk-fieldset">
       {{ textField(
       name = 'respondentSolicitorEmail',
       field = fields.respondentSolicitorEmail,
       label = content.solicitorEmailLabel,
       boldLabel = true
       ) }}
+    </fieldset>
+  </div>
 
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorAddress.error }}">
+    <fieldset id="respondentSolicitorAddress" class="govuk-fieldset">
       {{ textArea(
       name = 'respondentSolicitorAddress',
       field = fields.respondentSolicitorAddress,
       label = content.solicitorFirmAddressLabel,
       boldLabel = true
       ) }}
-    </div>
-    {% endblock %}
-  </fieldset>
-  {{ nextStep(content.continueBtnText, csrfToken) }}
-
-  {% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
-</div>
-
+    </fieldset>
+  </div>
 {% endblock %}

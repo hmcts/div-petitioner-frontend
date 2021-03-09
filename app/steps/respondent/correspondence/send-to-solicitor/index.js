@@ -24,12 +24,12 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
     });
   }
 
-  setRespSolToggle(session) {
-    session.isRespSolToggleOn = session.featureToggles.ft_represented_respondent_journey;
+  setRespSolToggle(ctx, session) {
+    ctx.isRespSolToggleOn = session.featureToggles.ft_represented_respondent_journey;
   }
 
   interceptor(ctx, session) {
-    this.setRespSolToggle(session);
+    this.setRespSolToggle(ctx, session);
     return ctx;
   }
 };

@@ -1,7 +1,7 @@
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 {% block question %}
-    {% if session.isRespSolToggleOn %}
+    {% if fields.isRespSolToggleOn.value === true %}
         {{ content.featureToggleRespSol.question | safe }}
     {% else %}
         {{ content.question | safe }}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block form %}
-    {% if session.isRespSolToggleOn %}
+    {% if fields.isRespSolToggleOn.value === true %}
 
     <p class="govuk-body">{{ content.featureToggleRespSol.correspondence | safe }}</p>
 

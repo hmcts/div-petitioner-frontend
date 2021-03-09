@@ -5,6 +5,7 @@
       "translation": {
         "content": {
           "question": "Enter details of your {{ divorceWho }}'s solicitor",
+          "solicitorFirmLabel": "Enter the name of their solicitor's firm",
           "enterManuallyBtnText": "Enter details manually",
           "searchButton": "Search",
           "continueBtnText": "Continue",
@@ -33,6 +34,7 @@
       "translation": {
         "content": {
           "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
+          "solicitorFirmLabel": "[CY] Enter the name of their solicitor's firm",
           "enterManuallyBtnText": "[CY] Enter details manually",
           "searchButton": "[CY] Search",
           "continueBtnText": "[CY] Continue",

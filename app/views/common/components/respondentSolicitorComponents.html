@@ -57,9 +57,8 @@ It decides to render if the "organisations" object is not null, behaviour contro
     <div class="govuk-grid-row govuk-!-padding-bottom-4">
       <div class="govuk-grid-column-three-quarters">
         <p class="govuk-!-margin-0">
-          {%- if contactInformation.addressLine1 -%}
-            <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
-          {%- endif -%}
+          <strong>{{session.respondentSolicitorOrganisation.name}}</strong>
+          {%- if contactInformation.addressLine1 -%} <br>{{contactInformation.addressLine1}} {%- endif -%}
           {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
           {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
           {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
@@ -75,6 +74,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
           <input type="hidden" name="userAction" value="deselection">
           {{ govukButton({
+          name: 'deselect-'+organisation.organisationIdentifier,
           text: content.deselectBtnText,
           classes: 'govuk-button govuk-button--secondary',
           preventDoubleClick: true
@@ -88,8 +88,8 @@ It decides to render if the "organisations" object is not null, behaviour contro
     <div class="govuk-grid-row govuk-!-padding-bottom-4">
       <div class="govuk-grid-column-three-quarters">
         <p class="govuk-!-margin-0">
-          {%- if contactInformation.addressLine1 -%} <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
-          {%- endif -%}
+          <strong>{{organisation.name}}</strong>
+          {%- if contactInformation.addressLine1 -%} <br>{{contactInformation.addressLine1}} {%- endif -%}
           {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
           {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
           {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
@@ -106,6 +106,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
           <input type="hidden" name="userAction" value="selection">
           <input type="hidden" name="userSelection" value="{{organisation.organisationIdentifier}}">
           {{ govukButton({
+          name: 'select-'+organisation.organisationIdentifier,
           text: content.selectBtnText,
           classes: 'govuk-button govuk-button--secondary',
           preventDoubleClick: true

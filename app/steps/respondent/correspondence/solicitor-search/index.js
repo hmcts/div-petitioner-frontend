@@ -24,6 +24,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       const searchCriteria = get(body, 'respondentSolicitorFirm');
       const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
 
+      req.session.respondentSolicitorFirmError = null;
+      req.session.respondentSolicitorNameError = null;
+
       if (!isValid) {
         req.session.respondentSolicitorFirmError = errors;
         return res.redirect(this.url);

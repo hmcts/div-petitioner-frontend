@@ -10,7 +10,7 @@
             "instruction": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address.",
             "solicitorAddress": "Their solicitor's address",
             "anotherAddress": "Another address",
-            "needToKnowSolFirm": "You'll need to know the solicitor's name, firm, full address and email."
+            "needToKnowSolFirm": "You'll need to know the solicitor's firm, name and email address."
           }
         },
         "errors": {
@@ -29,7 +29,7 @@
             "instruction": "[CY] If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address.",
             "solicitorAddress": "[CY] Their solicitor's address",
             "anotherAddress": "[CY] Another address",
-            "needToKnowSolFirm": "[CY] You'll need to know the solicitor's name, firm, full address and email."
+            "needToKnowSolFirm": "[CY] You'll need to know the solicitor's firm, name and email address."
           }
         },
         "errors": {

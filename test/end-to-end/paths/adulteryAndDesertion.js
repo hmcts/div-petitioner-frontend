@@ -7,7 +7,7 @@ const sendDivorcePapersContentCy = require('app/steps/respondent/correspondence/
 
 const config = require('config');
 
-Feature( 'Adultery and Desertion E2E Tests @g').retry(3);
+Feature( 'Adultery and Desertion E2E Tests @functional').retry(3);
 
 languages.forEach( language => {
 

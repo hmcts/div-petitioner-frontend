@@ -21,16 +21,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   async handler(req, res) {
     if (hasBeenPostedWithoutSubmitButton(req)) {
       const { body } = req;
-      const searchCriteria = get(body, 'respondentSolicitorFirm');
-      const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
 
-      req.session.respondentSolicitorFirmError = null;
-      req.session.respondentSolicitorNameError = null;
-
-      if (!isValid) {
-        req.session.respondentSolicitorFirmError = errors;
-        return res.redirect(this.url);
-      }
       const userAction = get(body, 'userAction');
 
       if (isEqual(userAction, UserAction.MANUAL)) {
@@ -52,6 +43,14 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       if (isEqual(userAction, UserAction.SEARCH)) {
+        const searchCriteria = get(body, 'respondentSolicitorFirm');
+        const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
+        if (!isValid) {
+          req.session.respondentSolicitorFirmError = errors;
+          return res.redirect(this.url);
+        }
+
+        req.session.respondentSolicitorFirmError = null;
         const requestSucceeded = await fetchAndAddOrganisations(req);
         if (requestSucceeded) {
           logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, request complete');
@@ -59,11 +58,12 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       if (isEqual(userAction, UserAction.PROVIDED)) {
-        const [isValidated, error] = validateUserData(this.content, req, userAction);
-        if (!isValidated) {
-          req.session.respondentSolicitorNameError = error;
+        const [isValid, errors] = validateUserData(this.content, req, userAction);
+        if (!isValid) {
+          req.session.respondentSolicitorNameError = errors;
           return res.redirect(this.url);
         }
+        req.session.respondentSolicitorNameError = null;
         return super.handler(req, res);
       }
 

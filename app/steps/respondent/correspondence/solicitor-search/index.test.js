@@ -50,7 +50,8 @@ describe(modulePath, () => {
         'searchNoResults.paragraph2',
         'searchNoResults.paragraph3',
         'searchErrors.emptyValue',
-        'searchErrors.shortValue'
+        'searchErrors.shortValue',
+        'searchErrors.solicitorName'
       ];
 
       testContent(done, agent, underTest, content, session, excludedKeys);

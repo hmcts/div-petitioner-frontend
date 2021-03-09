@@ -82,9 +82,12 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   manualSelectionCleanup(req) {
+    req.session.organisations = null;
     req.session.respondentSolicitorOrganisation = null;
     req.session.respondentSolicitorFirmError = null;
-    req.session.organisations = null;
+    req.session.respondentSolicitorAddress = null;
+    req.session.respondentSolicitorCompany = null;
+    req.session.respondentSolicitorReferenceDataId = null;
   }
 
   errorsCleanup(req) {
@@ -93,9 +96,10 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   mapRespondentSolicitorData({ session }) {
-    const address = filter(values(first(get(session.respondentSolicitorOrganisation, 'contactInformation'))), size);
-    session.respondentSolicitorCompany = get(session.respondentSolicitorOrganisation, 'name');
+    const respondentSolicitorOrganisation = get(session.respondentSolicitorOrganisation, 'contactInformation');
+    const address = filter(values(first(get(respondentSolicitorOrganisation, 'contactInformation'))), size);
     session.respondentSolicitorAddress = { address };
-    session.respondentSolicitorReferenceDataId = get(session.respondentSolicitorOrganisation, 'organisationIdentifier');
+    session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
+    session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
   }
 };

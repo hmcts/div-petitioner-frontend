@@ -4,6 +4,7 @@ const logger = require('app/services/logger').logger(__filename);
 const {
   UserAction,
   validateSearchRequest,
+  validateUserData,
   fetchAndAddOrganisations,
   hasBeenPostedWithoutSubmitButton
 } = require('app/core/utils/respondentSolicitorSearchHelper');
@@ -18,16 +19,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   async handler(req, res) {
-    const { body } = req;
-    const searchCriteria = get(body, 'respondentSolicitorFirm');
-    const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
-
-    if (!isValid) {
-      req.session.respondentSolicitorFirmError = errors;
-      return res.redirect(this.url);
-    }
-
     if (hasBeenPostedWithoutSubmitButton(req)) {
+      const { body } = req;
+
       const userAction = get(body, 'userAction');
 
       if (isEqual(userAction, UserAction.MANUAL)) {
@@ -49,10 +43,28 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       if (isEqual(userAction, UserAction.SEARCH)) {
+        const searchCriteria = get(body, 'respondentSolicitorFirm');
+        const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
+        if (!isValid) {
+          req.session.respondentSolicitorFirmError = errors;
+          return res.redirect(this.url);
+        }
+
+        req.session.respondentSolicitorFirmError = null;
         const requestSucceeded = await fetchAndAddOrganisations(req);
         if (requestSucceeded) {
           logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, request complete');
         }
+      }
+
+      if (isEqual(userAction, UserAction.PROVIDED)) {
+        const [isValid, errors] = validateUserData(this.content, req, userAction);
+        if (!isValid) {
+          req.session.respondentSolicitorNameError = errors;
+          return res.redirect(this.url);
+        }
+        req.session.respondentSolicitorNameError = null;
+        return super.handler(req, res);
       }
 
       logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, staying on same page');
@@ -68,8 +80,8 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   manualSelectionCleanup(req) {
-    delete req.session.respondentSolicitorOrganisation;
-    delete req.session.respondentSolicitorFirmError;
-    delete req.session.organisations;
+    req.session.respondentSolicitorOrganisation = null;
+    req.session.respondentSolicitorFirmError = null;
+    req.session.organisations = null;
   }
 };

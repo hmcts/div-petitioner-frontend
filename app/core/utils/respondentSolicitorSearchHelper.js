@@ -1,4 +1,4 @@
-const { get, trim, isEmpty, size, isUndefined } = require('lodash');
+const { get, trim, isEmpty, size, isUndefined, isEqual } = require('lodash');
 const organisationService = require('app/services/organisationService');
 const serviceTokenService = require('app/services/serviceToken');
 const logger = require('app/services/logger').logger(__filename);
@@ -10,12 +10,14 @@ const UserAction = {
   MANUAL: 'manual',
   SEARCH: 'search',
   SELECTION: 'selection',
-  DESELECTION: 'deselection'
+  DESELECTION: 'deselection',
+  PROVIDED: 'provided'
 };
 
 const ErrorMessage = {
   EMPTY_VALUE: 'emptyValue',
-  SHORT_VALUE: 'shortValue'
+  SHORT_VALUE: 'shortValue',
+  SOLICITOR_NAME: 'solicitorName'
 };
 
 const getServiceAuthToken = req => {
@@ -83,6 +85,17 @@ const validateSearchRequest = (searchCriteria, content, session) => {
   return [true, null];
 };
 
+const validateUserData = (content, req, userAction) => {
+  const { body, session } = req;
+  const solicitorName = get(body, 'respondentSolicitorName');
+  if (isEqual(userAction, UserAction.PROVIDED) && isEmpty(solicitorName)) {
+    const errorMessage = getErrorMessage(ErrorMessage.SOLICITOR_NAME, content, session);
+    return [false, { error: true, errorMessage }];
+  }
+
+  return [true, null];
+};
+
 const hasBeenPostedWithoutSubmitButton = ({ body }) => {
   return body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
 };
@@ -90,6 +103,8 @@ const hasBeenPostedWithoutSubmitButton = ({ body }) => {
 module.exports = {
   UserAction,
   validateSearchRequest,
+  validateUserData,
+  fetchOrganisations,
   fetchAndAddOrganisations,
   hasBeenPostedWithoutSubmitButton
 };

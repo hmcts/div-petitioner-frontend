@@ -50,7 +50,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
           return res.redirect(this.url);
         }
 
-        req.session.respondentSolicitorFirmError = null;
+        this.errorsCleanup(req);
         const requestSucceeded = await fetchAndAddOrganisations(req);
         if (requestSucceeded) {
           logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, request complete');
@@ -63,7 +63,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
           req.session.respondentSolicitorNameError = errors;
           return res.redirect(this.url);
         }
-        req.session.respondentSolicitorNameError = null;
+        this.errorsCleanup(req);
         return super.handler(req, res);
       }
 
@@ -83,5 +83,10 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     req.session.respondentSolicitorOrganisation = null;
     req.session.respondentSolicitorFirmError = null;
     req.session.organisations = null;
+  }
+
+  errorsCleanup(req) {
+    req.session.respondentSolicitorNameError = null;
+    req.session.respondentSolicitorFirmError = null;
   }
 };

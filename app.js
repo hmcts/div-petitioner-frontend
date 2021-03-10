@@ -53,7 +53,10 @@ exports.init = listenForConnections => {
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ['\'self\''],
+      defaultSrc: [
+        '\'self\'',
+        '\'unsafe-inline\''
+      ],
       fontSrc: [
         '\'self\' data:',
         'fonts.gstatic.com'
@@ -88,7 +91,7 @@ exports.init = listenForConnections => {
       imgSrc: [
         '\'self\'',
         'www.google-analytics.com',
-        'hmctspiwik.useconnect.co.uk',
+        'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
       ],

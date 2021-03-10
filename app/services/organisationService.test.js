@@ -1,5 +1,6 @@
 const { expect, sinon } = require('test/util/chai');
 const organisationClient = require('@hmcts/prd-client').OrganisationClient;
+const CONF = require('config');
 
 const modulePath = 'app/services/organisationService';
 const underTest = require(modulePath);
@@ -25,10 +26,11 @@ describe(modulePath, () => {
   ];
 
   describe('module', () => {
-    context('Auth tokens are set', () => {
+    context('Environment is set to production', () => {
       let getOrganisationByNameStub = null;
 
       beforeEach(() => {
+        CONF.environment = 'production';
         getOrganisationByNameStub = sinon.stub(organisationClient.prototype, 'getOrganisationByName')
           .returns(Promise.resolve(getOrganisationByNameSuccess));
       });
@@ -60,8 +62,9 @@ describe(modulePath, () => {
       });
     });
 
-    context('Auth tokens are not set', () => {
+    context('Environment is not set to production', () => {
       beforeEach(() => {
+        CONF.environment = 'testing';
         sinon.spy(mockedClient, 'getOrganisationByName');
       });
 
@@ -69,35 +72,9 @@ describe(modulePath, () => {
         mockedClient.getOrganisationByName.restore();
       });
 
-      it('falls back to mock if auth token and service token are null', done => {
+      it('falls back to the mock', done => {
         // Arrange.
         const client = underTest.setup(null, null);
-        // Act.
-        client.getOrganisationByName()
-          .then(() => {
-            // Assert.
-            expect(mockedClient.getOrganisationByName.called).to.equal(true);
-            done();
-          })
-          .catch(done);
-      });
-
-      it('falls back to mock if auth token is set but service token is null', done => {
-        // Arrange.
-        const client = underTest.setup('some-token', null);
-        // Act.
-        client.getOrganisationByName()
-          .then(() => {
-            // Assert.
-            expect(mockedClient.getOrganisationByName.called).to.equal(true);
-            done();
-          })
-          .catch(done);
-      });
-
-      it('falls back to mock if auth token is not set but service token is set', done => {
-        // Arrange.
-        const client = underTest.setup(null, 'some-token');
         // Act.
         client.getOrganisationByName()
           .then(() => {

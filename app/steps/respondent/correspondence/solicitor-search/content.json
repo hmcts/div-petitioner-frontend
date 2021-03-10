@@ -45,7 +45,7 @@
           "continueBtnText": "[CY] Continue",
           "deselectBtnText": "[CY] Deselect",
           "selectBtnText": "[CY] Select",
-          "enterManuallyBtnText": "Enter details manually",
+          "enterManuallyBtnText": "[CY] Enter details manually",
           "resultsLabel": "[CY] Results",
           "solicitorNameLabel": "[CY] Solicitor's name",
           "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",

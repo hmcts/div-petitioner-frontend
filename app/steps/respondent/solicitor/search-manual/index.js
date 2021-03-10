@@ -11,6 +11,7 @@ module.exports = class RespondentSolicitorSearchManual extends ValidationStep {
 
   interceptor(ctx, session) {
     delete session.organisations;
+    delete session.respondentSolicitorFirm;
 
     if (session.respondentSolicitorAddress && session.respondentSolicitorAddress.address) {
       session.respondentSolicitorAddressManual = this.toString(session.respondentSolicitorAddress.address);

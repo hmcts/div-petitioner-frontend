@@ -46,6 +46,12 @@
     "agentIsTyping": "Agent is typing...",
     "conversationEnded": "The chat session has ended but you can start a new one if you need more help",
     "startNewSession": "Start new session",
-    "endChat": "End chat"
+    "endChat": "End chat",
+    "legalAdviceNotice": "Legal Advice goes here - Waiting to hear back from Dev Team",
+    "prompt": {
+      "message": "[End chat message to go here - Waiting to hear back from Dev Team]",
+      "yes": "Yes",
+      "no": "No"
+    }
   }
 }

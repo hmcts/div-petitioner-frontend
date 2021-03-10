@@ -94,6 +94,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
         <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorNameError.error }}"
              id="solicitor-name">
           <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(session.respondentSolicitorNameError) }}
             {{ textField(
             name = 'respondentSolicitorName',

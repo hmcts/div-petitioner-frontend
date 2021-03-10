@@ -7,7 +7,7 @@ const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
 
-const modulePath = 'app/steps/petitioner-respondent/solicitor/search-manual';
+const modulePath = 'app/steps/respondent/solicitor/search-manual';
 
 const content = require(`${modulePath}/content`);
 

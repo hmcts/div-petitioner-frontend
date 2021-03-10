@@ -5,18 +5,11 @@
       "translation": {
         "content": {
           "question": "Enter details of your {{ divorceWho }}'s solicitor",
-          "solicitorFirmLabel": "Enter the name of their solicitor's firm",
-          "enterManuallyBtnText": "Enter details manually",
-          "searchButton": "Search",
-          "continueBtnText": "Continue",
           "solicitorNameLabel": "Solicitor's name",
           "solicitorReferenceLabel": "Solicitor's reference (optional)",
           "solicitorEmailLabel": "Solicitor's email address (optional)",
           "solicitorFirmAddressLabel": "Solicitor's firm and address",
-          "searchErrors": {
-            "emptyValue": "Please provide your solicitor firm's name",
-            "shortValue": "Please provide a least 3 characters"
-          }
+          "searchSolicitorFirm": "Search to find solicitor firm"
         },
         "errors": {
           "respondentSolicitorName": {
@@ -34,18 +27,11 @@
       "translation": {
         "content": {
           "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
-          "solicitorFirmLabel": "[CY] Enter the name of their solicitor's firm",
-          "enterManuallyBtnText": "[CY] Enter details manually",
-          "searchButton": "[CY] Search",
-          "continueBtnText": "[CY] Continue",
           "solicitorNameLabel": "[CY] Solicitor's name",
           "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
           "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
           "solicitorFirmAddressLabel": "Solicitor's firm and address",
-          "searchErrors": {
-            "emptyValue": "[CY] Please provide your solicitor firm's name",
-            "shortValue": "[CY] Please provide a least 3 characters"
-          }
+          "searchSolicitorFirm": "[CY] Search to find solicitor firm"
         },
         "errors": {
           "respondentSolicitorName": {

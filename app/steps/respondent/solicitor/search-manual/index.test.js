@@ -1,13 +1,12 @@
 const request = require('supertest');
-const { testContent, testCYATemplate, testExistenceCYA, testErrors, testRedirect } = require('test/util/assertions');
+const { testContent, testErrors, testRedirect } = require('test/util/assertions');
 const server = require('app');
 const { withSession } = require('test/util/setup');
 const idamMock = require('test/mocks/idam');
-const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
-const { clone } = require('lodash');
+const co = require('co');
 
-const modulePath = 'app/steps/petitioner-respondent/solicitor/search-manual';
+const modulePath = 'app/steps/respondent/solicitor/search-manual';
 
 const content = require(`${modulePath}/content`);
 
@@ -53,90 +52,62 @@ describe(modulePath, () => {
     it('redirects to ReasonForDivorce when mandatory fields are filled', done => {
       const context = {
         respondentSolicitorName: 'Solicitor name',
-        respondentSolicitorAddress: 'Solicitor address'
+        respondentSolicitorAddressManual: 'Solicitor address'
       };
 
       testRedirect(done, agent, underTest, context, s.steps.ReasonForDivorce);
     });
   });
 
-  describe('Watched session values', () => {
-    // TO DO: CHECK ADDRESS IS FORMATTED INTO A LIST
-    it('removes respondentCorrespondenceUseHomeAddress if respondentHomeAddress is changed', () => {
-      const previousSession = {
-        respondentCorrespondenceUseHomeAddress: 'Yes',
-        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3']
-      };
+  describe('#interceptor', () => {
+    it('should convert address of type array to string type for display', done => {
+      co(function* generator() {
+        const session = {
+          respondentSolicitorAddress: {
+            address: [
+              'line 1',
+              'line 2',
+              'line 3'
+            ]
+          }
+        };
 
-      const session = clone(previousSession);
-      session.respondentHomeAddress = ['Address 1', 'Address 2'];
+        yield underTest.interceptor({}, session);
 
-      const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.respondentCorrespondenceUseHomeAddress)
-        .to.equal('undefined');
-    });
-
-    it('remove respondentCorrespondenceUseHomeAddress if respondentHomeAddress is changed', () => {
-      const previousSession = {
-        respondentCorrespondenceUseHomeAddress: 'Yes',
-        respondentHomeAddress: ['Address 1', 'Address 2', 'Address 3']
-      };
-
-      const session = clone(previousSession);
-      delete session.respondentHomeAddress;
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.respondentCorrespondenceUseHomeAddress)
-        .to.equal('undefined');
-    });
-
-    it('remove respondentCorrespondenceAddress if respondentCorrespondenceUseHomeAddress is changed and is not yes', () => {
-      const previousSession = {
-        respondentCorrespondenceUseHomeAddress: 'Yes',
-        respondentCorrespondenceAddress: ['Address 1', 'Address 2', 'Address 3']
-      };
-
-      const session = clone(previousSession);
-      session.respondentHomeAddress = 'No';
-
-      const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.respondentCorrespondenceAddress)
-        .to.equal('undefined');
+        expect(session).to.deep.equal({
+          respondentSolicitorAddress: {
+            address: [
+              'line 1',
+              'line 2',
+              'line 3'
+            ]
+          },
+          respondentSolicitorAddressManual: 'line 1\nline 2\nline 3'
+        });
+      }).then(done, done);
     });
   });
 
-  describe('Check Your Answers', () => {
-    // TO DO: CHECK IT DISPLAYS ON CHECK YOUR ANSWERS PAGE
-    it('renders the cya template', done => {
-      testCYATemplate(done, underTest);
-    });
+  describe('#action', () => {
+    it('should copy address to an array', done => {
+      co(function* generator() {
+        const ctx = {
+          respondentSolicitorAddressManual: 'line 1\r\nline 2\r\nline 3'
+        };
+        const session = {};
 
-    it('renders when respondentCorrespondenceUseHomeAddress is yes', done => {
-      const contentToExist = [
-        'question',
-        'yes'
-      ];
+        yield underTest.action(ctx, session);
 
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-      const context = { respondentCorrespondenceUseHomeAddress: 'Yes' };
-      const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
-    });
-
-    it('renders when respondentCorrespondenceUseHomeAddress is no', done => {
-      const contentToExist = [
-        'question',
-        'no'
-      ];
-
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-      const context = { respondentCorrespondenceUseHomeAddress: 'No' };
-      const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
+        expect(session).to.deep.equal({
+          respondentSolicitorAddress: {
+            address: [
+              'line 1',
+              'line 2',
+              'line 3'
+            ]
+          }
+        });
+      }).then(done, done);
     });
   });
 });

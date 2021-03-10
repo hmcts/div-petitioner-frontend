@@ -43,11 +43,11 @@
     </fieldset>
   </div>
 
-  <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorAddress.error }}">
-    <fieldset id="respondentSolicitorAddress" class="govuk-fieldset">
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorAddressManual.error }}">
+    <fieldset id="respondentSolicitorAddressManual" class="govuk-fieldset">
       {{ textArea(
-      name = 'respondentSolicitorAddress',
-      field = fields.respondentSolicitorAddress,
+      name = 'respondentSolicitorAddressManual',
+      field = fields.respondentSolicitorAddressManual,
       label = content.solicitorFirmAddressLabel,
       boldLabel = true
       ) }}

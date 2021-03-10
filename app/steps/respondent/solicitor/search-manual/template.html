@@ -11,7 +11,8 @@
   <br><br>
 
   <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorName.error }}">
-    <fieldset id="respondentSolicitorName" class="govuk-fieldset">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
       {{ textField(
       name = 'respondentSolicitorName',
       field = fields.respondentSolicitorName,
@@ -22,7 +23,8 @@
   </div>
 
   <div class="govuk-form-group">
-    <fieldset id="respondentSolicitorReference" class="govuk-fieldset">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
       {{ textField(
       name = 'respondentSolicitorReference',
       field = fields.respondentSolicitorReference,
@@ -33,7 +35,8 @@
   </div>
 
   <div class="govuk-form-group">
-    <fieldset id="respondentSolicitorEmail" class="govuk-fieldset">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
       {{ textField(
       name = 'respondentSolicitorEmail',
       field = fields.respondentSolicitorEmail,
@@ -44,7 +47,8 @@
   </div>
 
   <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorAddressManual.error }}">
-    <fieldset id="respondentSolicitorAddressManual" class="govuk-fieldset">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
       {{ textArea(
       name = 'respondentSolicitorAddressManual',
       field = fields.respondentSolicitorAddressManual,

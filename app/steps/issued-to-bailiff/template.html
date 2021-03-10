@@ -1,0 +1,76 @@
+{% from "warning-text/macro.njk" import govukWarningText %}
+{% from "phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
+{% from "common/components/customPageComponents.html" import documentList, nextStep %}
+
+{% extends "layout.html" %}
+
+{% block back %}{% endblock %}
+
+{% block breadcrumbs %}
+{% set html %}
+  {{ common.feedback | safe }}
+   {% if fields.featureToggles.value.ft_welsh == "true" %}
+    {{ common.languageToggle | safe }}
+   {% endif %}
+{% endset %}
+{{ govukPhaseBanner({
+tag: {
+text: common.phase
+},
+html: html
+}) }}
+{% endblock %}
+
+{% block two_thirds %}
+{% set title = content.title %}
+  <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
+  <p class="govuk-body-s govuk-!-margin-bottom-6">
+    <strong class="govuk-!-font-size-16">Case number:</strong>
+    <span>{{ session.caseId | insertHyphens | safe }}</span>
+    <br>
+    <strong class="govuk-!-font-size-16">Name:</strong>
+    <span>{{ session.petitionerFirstName | safe }}
+      {{ session.petitionerLastName | safe }}</span>
+</p>
+
+{{ hmctsProgressBar({
+items: [
+{
+label: { text: content.youApply },
+complete: true
+},
+{
+label: { text: content.yourResponds },
+active: true
+},
+{
+label: { text: content.continueDivorce }
+},
+{
+label: { text: content.divorceFinalised }
+}
+]
+}) }}
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8">{{content.petitionSent | safe}}</h2>
+<div class="govuk-body">
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara1 | safe}}</p>
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara2 | safe}}</p>
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
+  <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
+
+  {% if (session.downloadableFiles.length > 0) %}
+  {{ govukWarningText({
+  text: content.downloadWarning | safe,
+  iconFallbackText: content.warning
+  }) }}
+  {% endif %}
+
+</div>
+
+{% endblock %}
+
+{% block one_third %}
+ {% include "includes/sideMenu.html" %}
+{% endblock %}

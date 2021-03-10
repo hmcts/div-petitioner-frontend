@@ -121,7 +121,7 @@
     "babel-core": "6.26.3",
     "babel-loader": "7.1.4",
     "babel-preset-env": "1.7.0",
-    "chai": "^4.2.0",
+    "chai": "^4.3.3",
     "chai-as-promised": "^7.1.1",
     "cheerio": "^1.0.0-rc.2",
     "codeceptjs": "^2.6.11",

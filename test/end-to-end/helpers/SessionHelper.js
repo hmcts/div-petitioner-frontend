@@ -5,6 +5,7 @@ const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession'
 const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
 const serviceApplicationNotApprovedSession = require('test/end-to-end/data/serviceApplicationNotApprovedSession');
 const asoDraftedSession = require('test/end-to-end/data/aosDraftedSession');
+const sentToBailiff = require('test/end-to-end/data/sentToBailiffSession');
 const Tokens = require('csrf');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
@@ -13,7 +14,8 @@ const availableSessions = {
   amendPetitionSession,
   amendPetitionSessionWithConfirmation,
   serviceApplicationNotApprovedSession,
-  asoDraftedSession
+  asoDraftedSession,
+  sentToBailiff
 };
 
 class SessionHelper extends codecept_helper {

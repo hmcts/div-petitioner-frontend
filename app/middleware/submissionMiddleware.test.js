@@ -14,6 +14,7 @@ const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
 const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
+const SENT_TO_BAILIFF = '/issued-to-bailiff';
 
 let req = {};
 let res = {};
@@ -71,6 +72,7 @@ describe(modulePath, () => {
       ['AwaitingProcessServerService'],
       ['AwaitingDWPResponse'],
       ['AosDrafted'],
+      ['IssuedToBailiff'],
       ['AnyOtherUnhandledD8StatesListed']
     ])
       .it('should redirect to /done-and-submitted if application has been submitted and is %s', caseState => {
@@ -89,6 +91,14 @@ describe(modulePath, () => {
       underTest.hasSubmitted.apply(ctx, [req, res, next]);
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(CONTACT_DIVORCE_TEAM_PATH)).to.eql(true);
+    });
+
+    it('should redirect to `/issued-to-bailiff` if in IssuedToBailiff state', () => {
+      req.session.caseId = TEST_CASE_ID;
+      req.session.state = 'IssuedToBailiff';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(SENT_TO_BAILIFF)).to.eql(true);
     });
 
     it('redirects to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {

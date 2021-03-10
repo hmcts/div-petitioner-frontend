@@ -16,7 +16,7 @@
             "required": "Please provide a solicitor name",
             "invalid": "Please provide a solicitor name"
           },
-          "respondentSolicitorAddress": {
+          "respondentSolicitorAddressManual": {
             "required": "Please provide solicitor firm's address",
             "invalid": "Please provide solicitor firm's address"
           }
@@ -38,7 +38,7 @@
             "required": "[CY] Please provide a solicitor name",
             "invalid": "[CY] Please provide a solicitor name"
           },
-          "respondentSolicitorAddress": {
+          "respondentSolicitorAddressManual": {
             "required": "[CY] Please provide solicitor firm's address",
             "invalid": "[CY] Please provide solicitor firm's address"
           }

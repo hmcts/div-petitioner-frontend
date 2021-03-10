@@ -22,6 +22,30 @@ const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
 const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
 const TEST_RESP_SOLICITOR_ID = '11-111';
 
+function buildRespondentSolicitorSessionData() {
+  return {
+    divorceWho: 'wife',
+    respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+    respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+    respondentSolicitorOrganisation: {
+      contactInformation: [
+        {
+          addressLine1: '19/22 Union St',
+          addressLine2: 'Oldham',
+          addressLine3: '',
+          country: 'United Kingdom',
+          county: 'Greater Manchester',
+          postCode: 'OL1 222',
+          townCity: 'Manchester'
+        }
+      ],
+      name: TEST_RESP_SOLICITOR_COMPANY,
+      organisationIdentifier: TEST_RESP_SOLICITOR_ID
+    },
+    respondentSolicitorFirm: 'searchCriteria'
+  };
+}
+
 describe(modulePath, () => {
   beforeEach(() => {
     idamMock.stub();
@@ -35,27 +59,7 @@ describe(modulePath, () => {
   });
 
   describe('Solicitor Search', () => {
-    const session = {
-      divorceWho: 'wife',
-      respondentSolicitorFirmError: null,
-      respondentSolicitorNameError: null,
-      respondentSolicitorOrganisation: {
-        contactInformation: [
-          {
-            addressLine1: '19/22 Union St',
-            addressLine2: 'Oldham',
-            addressLine3: '',
-            country: 'United Kingdom',
-            county: 'Greater Manchester',
-            postCode: 'OL1 222',
-            townCity: 'Manchester'
-          }
-        ],
-        name: TEST_RESP_SOLICITOR_COMPANY,
-        organisationIdentifier: TEST_RESP_SOLICITOR_ID
-      },
-      respondentSolicitorFirm: 'solicitors'
-    };
+    const session = buildRespondentSolicitorSessionData();
 
     beforeEach(done => {
       withSession(done, agent, session);
@@ -91,7 +95,7 @@ describe(modulePath, () => {
       });
 
       it('should redirect to solicitor details manual page when user action is MANUAL', done => {
-        testRedirect(done, agent, underTest, { userAction: 'manual' }, s.steps.RespondentSolicitorDetails);
+        testRedirect(done, agent, underTest, { userAction: 'manual' }, s.steps.RespondentSolicitorSearchManual);
       });
 
       it('should not redirect when user action is SELECTION', done => {
@@ -117,27 +121,7 @@ describe(modulePath, () => {
 
   describe('Solicitor search functionality', () => {
     let req = {};
-    const session = {
-      divorceWho: 'wife',
-      respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-      respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
-      respondentSolicitorOrganisation: {
-        contactInformation: [
-          {
-            addressLine1: '19/22 Union St',
-            addressLine2: 'Oldham',
-            addressLine3: '',
-            country: 'United Kingdom',
-            county: 'Greater Manchester',
-            postCode: 'OL1 222',
-            townCity: 'Manchester'
-          }
-        ],
-        name: TEST_RESP_SOLICITOR_COMPANY,
-        organisationIdentifier: TEST_RESP_SOLICITOR_ID
-      },
-      respondentSolicitorFirm: 'searchCriteria'
-    };
+    const session = buildRespondentSolicitorSessionData();
 
     beforeEach(() => {
       req = { session };

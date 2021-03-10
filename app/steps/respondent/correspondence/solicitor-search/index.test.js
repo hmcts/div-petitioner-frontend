@@ -17,6 +17,11 @@ let s = {};
 let agent = {};
 let underTest = {};
 
+const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
+const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
+const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
+const TEST_RESP_SOLICITOR_ID = '11-111';
+
 describe(modulePath, () => {
   beforeEach(() => {
     idamMock.stub();
@@ -46,9 +51,10 @@ describe(modulePath, () => {
             townCity: 'Manchester'
           }
         ],
-        name: 'Whitehead & Low Solicitors LLP', organisationIdentifier: '11-111'
+        name: TEST_RESP_SOLICITOR_COMPANY,
+        organisationIdentifier: TEST_RESP_SOLICITOR_ID
       },
-      respondentSolicitorFirm: 'zczx'
+      respondentSolicitorFirm: 'solicitors'
     };
 
     beforeEach(done => {
@@ -113,8 +119,8 @@ describe(modulePath, () => {
     let req = {};
     const session = {
       divorceWho: 'wife',
-      respondentSolicitorName: 'RespondentSolicitor',
-      respondentSolicitorReference: 'SOL-REF',
+      respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+      respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
       respondentSolicitorOrganisation: {
         contactInformation: [
           {
@@ -127,8 +133,8 @@ describe(modulePath, () => {
             townCity: 'Manchester'
           }
         ],
-        name: 'Whitehead & Low Solicitors LLP',
-        organisationIdentifier: '11-111'
+        name: TEST_RESP_SOLICITOR_COMPANY,
+        organisationIdentifier: TEST_RESP_SOLICITOR_ID
       },
       respondentSolicitorFirm: 'searchCriteria'
     };
@@ -149,13 +155,13 @@ describe(modulePath, () => {
 
       underTest.mapRespondentSolicitorData(req);
 
-      expect(req.session.respondentSolicitorName).to.equal('RespondentSolicitor');
-      expect(req.session.respondentSolicitorReference).to.equal('SOL-REF');
+      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
       expect(req.session).to.not.have.property('respondentSolicitorEmail');
-      expect(req.session.respondentSolicitorCompany).to.equal('Whitehead & Low Solicitors LLP');
+      expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
       expect(req.session.respondentSolicitorAddress).to.have.property('address');
       expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
-      expect(req.session.respondentSolicitorReferenceDataId).to.equal('11-111');
+      expect(req.session.respondentSolicitorReferenceDataId).to.equal(TEST_RESP_SOLICITOR_ID);
     });
 
     it('should map empty array to solicitor address when no solicitor organisation', () => {
@@ -163,8 +169,8 @@ describe(modulePath, () => {
 
       underTest.mapRespondentSolicitorData(req);
 
-      expect(req.session.respondentSolicitorName).to.equal('RespondentSolicitor');
-      expect(req.session.respondentSolicitorReference).to.equal('SOL-REF');
+      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
       expect(req.session).to.not.have.property('respondentSolicitorEmail');
       expect(req.session.respondentSolicitorCompany).to.be.undefined;
       expect(req.session.respondentSolicitorAddress).to.have.property('address');

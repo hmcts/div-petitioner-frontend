@@ -18,7 +18,8 @@ const service = {
 
 module.exports = {
   setup: (auth, serviceAuth) => {
-    client = CONF.environment === 'production' ? new OrganisationClient(auth, serviceAuth) : mockedClient;
+    const isProduction = CONF.environment === 'production';
+    client = isProduction ? new OrganisationClient(auth, serviceAuth) : mockedClient;
 
     return service;
   }

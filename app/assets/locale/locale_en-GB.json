@@ -47,9 +47,9 @@
     "conversationEnded": "The chat session has ended but you can start a new one if you need more help",
     "startNewSession": "Start new session",
     "endChat": "End chat",
-    "legalAdviceNotice": "Legal Advice goes here - Waiting to hear back from Dev Team",
+    "legalAdviceNotice": "Please note, the Web Chat Advisor cannot provide you with legal advice.",
     "prompt": {
-      "message": "[End chat message to go here - Waiting to hear back from Dev Team]",
+      "message": "If you leave the chat you will lose your place in the queue. Are you sure?",
       "yes": "Yes",
       "no": "No"
     }

@@ -105,7 +105,6 @@ module.exports = {
   UserAction,
   validateSearchRequest,
   validateUserData,
-  fetchOrganisations,
   fetchAndAddOrganisations,
   hasBeenPostedWithoutSubmitButton
 };

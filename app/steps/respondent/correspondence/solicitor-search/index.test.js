@@ -91,7 +91,7 @@ describe(modulePath, () => {
       });
 
       it('should redirect to solicitor details manual page when user action is MANUAL', done => {
-        testRedirect(done, agent, underTest, { userAction: 'manual' }, s.steps.RespondentSolicitorDetails);
+        testRedirect(done, agent, underTest, { userAction: 'manual' }, s.steps.RespondentSolicitorSearchManual);
       });
 
       it('should not redirect when user action is SELECTION', done => {

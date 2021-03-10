@@ -61,7 +61,6 @@ describe(modulePath, () => {
   });
 
   describe('Watched session values', () => {
-    // TO DO: CHECK ADDRESS IS FORMATTED INTO A LIST
     it('removes respondentCorrespondenceUseHomeAddress if respondentHomeAddress is changed', () => {
       const previousSession = {
         respondentCorrespondenceUseHomeAddress: 'Yes',
@@ -106,7 +105,6 @@ describe(modulePath, () => {
   });
 
   describe('Check Your Answers', () => {
-    // TO DO: CHECK IT DISPLAYS ON CHECK YOUR ANSWERS PAGE
     it('renders the cya template', done => {
       testCYATemplate(done, underTest);
     });

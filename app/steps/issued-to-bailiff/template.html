@@ -24,7 +24,7 @@ html: html
 
 {% block two_thirds %}
 {% set title = content.title %}
-  <h1 class="govuk-heading-xl">{{ content.mainHeading | safe}}</h1>
+  <h3 class="govuk-heading-m">{{ content.mainHeading | safe}}</h3>
   <p class="govuk-body-s govuk-!-margin-bottom-6">
     <strong class="govuk-!-font-size-16">Case number:</strong>
     <span>{{ session.caseId | insertHyphens | safe }}</span>
@@ -59,14 +59,6 @@ label: { text: content.divorceFinalised }
   <p class="govuk-body"> {{content.amendedApplicationInfoPara2 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara3 | safe}}</p>
   <p class="govuk-body"> {{content.amendedApplicationInfoPara4 | safe}}</p>
-
-  {% if (session.downloadableFiles.length > 0) %}
-  {{ govukWarningText({
-  text: content.downloadWarning | safe,
-  iconFallbackText: content.warning
-  }) }}
-  {% endif %}
-
 </div>
 
 {% endblock %}

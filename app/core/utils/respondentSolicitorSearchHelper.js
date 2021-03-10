@@ -88,6 +88,7 @@ const validateSearchRequest = (searchCriteria, content, session) => {
 const validateUserData = (content, req, userAction) => {
   const { body, session } = req;
   const solicitorName = get(body, 'respondentSolicitorName');
+
   if (isEqual(userAction, UserAction.PROVIDED) && isEmpty(solicitorName)) {
     const errorMessage = getErrorMessage(ErrorMessage.SOLICITOR_NAME, content, session);
     return [false, { error: true, errorMessage }];

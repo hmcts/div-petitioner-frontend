@@ -8,43 +8,50 @@ const mockOrganisations = require('app/services/mocks/responses/organisations.js
 const {
   validateSearchRequest,
   fetchAndAddOrganisations,
-  hasBeenPostedWithoutSubmitButton
+  hasBeenPostedWithoutSubmitButton,
+  validateUserData
 } = require(modulePath);
+
+const Errors = {
+  EMPTY_SOLICITOR_SEARCH: 'emptyValue',
+  SHORT_SOLICITOR_SEARCH: 'shortValue',
+  EMPTY_SOLICITOR_NAME: 'solicitorName'
+};
+
+const content = {
+  resources: {
+    en: {
+      translation: {
+        content: {
+          searchErrors: {
+            emptyValue: Errors.EMPTY_SOLICITOR_SEARCH,
+            shortValue: Errors.SHORT_SOLICITOR_SEARCH,
+            solicitorName: Errors.EMPTY_SOLICITOR_NAME
+          }
+        }
+      }
+    }
+  }
+};
 
 let req = {};
 
 describe(modulePath, () => {
   describe('validateSearchRequest()', () => {
-    const emptyError = 'emptyValue';
-    const shortValueError = 'shortValue';
-
-    const content = {
-      resources: {
-        en: {
-          translation: {
-            content: {
-              searchErrors: {
-                emptyValue: emptyError,
-                shortValue: shortValueError
-              }
-            }
-          }
-        }
-      }
-    };
-
     const session = { language: 'en' };
 
     it('should return no validation errors when search criteria is longer than three characters', () => {
       expect(validateSearchRequest('mock org', content, session)).to.deep.equal([true, null]);
     });
 
-    it('should return EMPTY_VALUE error message when search criteria is empty', () => {
-      expect(validateSearchRequest('', content, session)).to.deep.equal([false, { error: true, errorMessage: emptyError }]);
+    it('should return EMPTY_SOLICITOR_SEARCH error message when search criteria is empty', () => {
+      expect(validateSearchRequest('', content, session))
+        .to.deep.equal([false, { error: true, errorMessage: Errors.EMPTY_SOLICITOR_SEARCH }]);
     });
 
-    it('should return SHORT_VALUE error message when search criteria is less than three characters', () => {
-      expect(validateSearchRequest('co', content, session)).to.deep.equal([false, { error: true, errorMessage: shortValueError }]);
+    it('should return SHORT_SOLICITOR_SEARCH error message when search criteria is less than three characters', () => {
+      expect(validateSearchRequest('co', content, session))
+        .to.deep.equal([false, { error: true, errorMessage: Errors.SHORT_SOLICITOR_SEARCH }]);
     });
   });
 
@@ -133,7 +140,6 @@ describe(modulePath, () => {
       expect(true, hasBeenPostedWithoutSubmitButton(req));
     });
 
-
     it('should return false if request body has a submit property', () => {
       req = { body: { submit: 'true' } };
 
@@ -144,6 +150,49 @@ describe(modulePath, () => {
       req = { body: {} };
 
       expect(false, hasBeenPostedWithoutSubmitButton(req));
+    });
+  });
+
+  describe('validateUserData()', () => {
+    const UserAction = {
+      MANUAL: 'manual',
+      SEARCH: 'search',
+      SELECTION: 'selection',
+      DESELECTION: 'deselection',
+      PROVIDED: 'provided'
+    };
+
+    it('should return no errors when respondentSolicitorName has been populated', () => {
+      req = {
+        body: {
+          respondentSolicitorName: 'Karen Fox Solicitor'
+        },
+        session: { language: 'en' }
+      };
+
+      expect(validateUserData(content, req, UserAction.PROVIDED)).to.deep.equal([true, null]);
+    });
+
+    it('should return EMPTY_SOLICITOR_NAME error message when respondentSolicitorName is an empty string', () => {
+      req = {
+        body: {
+          respondentSolicitorName: ''
+        },
+        session: { language: 'en' }
+      };
+
+      expect(validateUserData(content, req, UserAction.PROVIDED))
+        .to.deep.equal([false, { error: true, errorMessage: Errors.EMPTY_SOLICITOR_NAME }]);
+    });
+
+    it('should return EMPTY_SOLICITOR_NAME error message when respondentSolicitorName has not been provided', () => {
+      req = {
+        body: {},
+        session: { language: 'en' }
+      };
+
+      expect(validateUserData(content, req, UserAction.PROVIDED))
+        .to.deep.equal([false, { error: true, errorMessage: Errors.EMPTY_SOLICITOR_NAME }]);
     });
   });
 });

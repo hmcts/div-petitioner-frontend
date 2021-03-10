@@ -12,6 +12,7 @@ module.exports = class RespondentSolicitorSearchManual extends ValidationStep {
 
   interceptor(ctx, session) {
     delete session.organisations;
+    delete session.respondentSolicitorFirm;
     return ctx;
   }
 

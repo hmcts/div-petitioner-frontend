@@ -1,5 +1,5 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const {get, find, isEqual, first, values, size, filter} = require('lodash');
+const { get, find, isEqual, first, values, size, filter } = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
 const {
   UserAction,
@@ -20,7 +20,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
   async handler(req, res) {
     if (hasBeenPostedWithoutSubmitButton(req)) {
-      const {body} = req;
+      const { body } = req;
 
       const userAction = get(body, 'userAction');
 
@@ -95,11 +95,11 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     req.session.respondentSolicitorFirmError = null;
   }
 
-  mapRespondentSolicitorData({body, session}) {
-    const {respondentSolicitorOrganisation} = session;
+  mapRespondentSolicitorData({ body, session }) {
+    const { respondentSolicitorOrganisation } = session;
     const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
     const address = filter(values(first(solicitorContactInformation)), size);
-    session.respondentSolicitorAddress = {address};
+    session.respondentSolicitorAddress = { address };
     session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
     session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
     session.respondentSolicitorName = get(body, 'respondentSolicitorName');

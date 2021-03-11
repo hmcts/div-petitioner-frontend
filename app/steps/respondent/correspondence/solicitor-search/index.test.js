@@ -138,7 +138,7 @@ describe(modulePath, () => {
       ];
       req.body = {
         respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
       };
 
       underTest.mapRespondentSolicitorData(req);

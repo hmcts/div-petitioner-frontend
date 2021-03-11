@@ -18,6 +18,7 @@
     const availableAgents = metricsDetail.availableAgents;
     const today = new Date();
 
+
     if (ccState !== 'Open' || today.getHours() < 9 || today.getHours() >= 17 || today.getDay() === 0 || today.getDay() === 6) {
       message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
       button.classList.add('hidden');
@@ -29,4 +30,5 @@
       button.classList.add('hidden');
     }
   });
+
 }).call(this);

@@ -121,38 +121,40 @@ It decides to render if the "organisations" object is not null, behaviour contro
       </form>
     </div>
     {%- else -%}
-    {%- for organisation in session.organisations -%}
-    {% set contactInformation = organisation.contactInformation | first %}
-    <div class="govuk-grid-row govuk-!-padding-bottom-4">
-      <div class="govuk-grid-column-three-quarters">
-        <p class="govuk-!-margin-0">
-          <strong>{{organisation.name}}</strong>
-          {%- if contactInformation.addressLine1 -%} <br>{{contactInformation.addressLine1}} {%- endif -%}
-          {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
-          {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
-          {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
-          {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
-          {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
-          {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
-        </p>
+    <div class="organisation-search-results">
+      {%- for organisation in session.organisations -%}
+      {% set contactInformation = organisation.contactInformation | first %}
+      <div class="govuk-grid-row govuk-!-padding-bottom-4">
+        <div class="govuk-grid-column-three-quarters">
+          <p class="govuk-!-margin-0">
+            <strong>{{organisation.name}}</strong>
+            {%- if contactInformation.addressLine1 -%} <br>{{contactInformation.addressLine1}} {%- endif -%}
+            {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
+            {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
+            {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
+            {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
+            {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
+            {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
+          </p>
+        </div>
+        <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
+          <form method="POST" accept-charset="utf-8" class="form" id="result_{{organisation.organisationIdentifier}}"
+                enctype="application/x-www-form-urlencoded"
+                autocomplete="off">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" name="userAction" value="selection">
+            <input type="hidden" name="userSelection" value="{{organisation.organisationIdentifier}}">
+            {{ govukButton({
+            name: 'select-'+organisation.organisationIdentifier,
+            text: content.selectBtnText,
+            classes: 'govuk-button govuk-button--secondary',
+            preventDoubleClick: true
+            }) }}
+          </form>
+        </div>
       </div>
-      <div class="govuk-grid-column-one-quarter govuk-!-padding-top-5">
-        <form method="POST" accept-charset="utf-8" class="form" id="result_{{organisation.organisationIdentifier}}"
-              enctype="application/x-www-form-urlencoded"
-              autocomplete="off">
-          <input type="hidden" name="_csrf" value="{{csrfToken}}">
-          <input type="hidden" name="userAction" value="selection">
-          <input type="hidden" name="userSelection" value="{{organisation.organisationIdentifier}}">
-          {{ govukButton({
-          name: 'select-'+organisation.organisationIdentifier,
-          text: content.selectBtnText,
-          classes: 'govuk-button govuk-button--secondary',
-          preventDoubleClick: true
-          }) }}
-        </form>
-      </div>
+      {%- endfor -%}
     </div>
-    {%- endfor -%}
     <div class="govuk-inset-text">
       <p>{{content.searchNoOptionFoundText}}</p>
       <form method="POST" accept-charset="utf-8" class="form" id="noneFound"

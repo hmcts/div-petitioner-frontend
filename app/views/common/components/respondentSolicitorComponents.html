@@ -104,6 +104,15 @@ It decides to render if the "organisations" object is not null, behaviour contro
             ) }}
           </fieldset>
         </div>
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorEmailError.error }}">
+          {{ errorsFor(session.respondentSolicitorEmailError) }}
+          {{ textField(
+          name = 'respondentSolicitorEmail',
+          field = fields.respondentSolicitorEmail,
+          label = content.solicitorEmailLabel,
+          boldLabel = true
+          ) }}
+        </div>
         <div class="govuk-form-group">
           {{ textField(
           name = 'respondentSolicitorReference',

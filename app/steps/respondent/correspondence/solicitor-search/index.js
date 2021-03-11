@@ -8,6 +8,7 @@ const {
   fetchAndAddOrganisations,
   hasBeenPostedWithoutSubmitButton
 } = require('app/core/utils/respondentSolicitorSearchHelper');
+const { errors } = require('puppeteer');
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {
   get url() {
@@ -58,9 +59,16 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       if (isEqual(userAction, UserAction.PROVIDED)) {
-        const [isValid, errors] = validateUserData(this.content, req, userAction);
-        if (!isValid) {
-          req.session.respondentSolicitorNameError = errors;
+        const errors = validateUserData(this.content, req, userAction);
+
+        if (errors) {
+          errors.map(error => { 
+            console.log(error.errorMessage);
+            req.session[error.key] = [error.errorMessage]; 
+          });
+
+          console.log(req.session);
+
           return res.redirect(this.url);
         }
 

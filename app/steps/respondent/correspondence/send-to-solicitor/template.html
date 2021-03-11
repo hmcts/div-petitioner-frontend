@@ -6,7 +6,7 @@
 
 {% block form %}
 
-  {% if session.isRespSolToggleOn %}
+  {% if fields.isRespSolToggleOn.value === true %}
     <p class="govuk-body">{{ content.featureToggleRespSol.instruction | safe }}</p>
 
     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorRepresented.error }}">

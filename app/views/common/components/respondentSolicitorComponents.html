@@ -13,6 +13,7 @@ Renders a search box and button, behaviour controlled by module
 <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorFirmError.error }}"
      id="solicitor-search">
   <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
     {{ errorsFor(session.respondentSolicitorFirmError) }}
     <form method="POST" accept-charset="utf-8" class="form" id="searchform"
           enctype="application/x-www-form-urlencoded"
@@ -93,6 +94,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
         <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorNameError.error }}"
              id="solicitor-name">
           <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(session.respondentSolicitorNameError) }}
             {{ textField(
             name = 'respondentSolicitorName',

@@ -31,8 +31,8 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     });
   }
 
-  setRespSolToggle(session) {
-    session.isRespSolToggleOn = session.featureToggles.ft_represented_respondent_journey;
+  setRespSolToggle(ctx, session) {
+    ctx.isRespSolToggleOn = session.featureToggles.ft_represented_respondent_journey;
   }
 
   setRespondentCorrespondenceDisplayAddress(ctx, session) {
@@ -49,7 +49,7 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   }
 
   interceptor(ctx, session) {
-    this.setRespSolToggle(session);
+    this.setRespSolToggle(ctx, session);
     return this.setRespondentCorrespondenceDisplayAddress(ctx, session);
   }
 

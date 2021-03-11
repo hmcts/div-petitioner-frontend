@@ -1,20 +1,11 @@
 <tr class="govuk-table__row">
-  <th class="govuk-table__cell" scope="row">{{ content.question | safe }}</th>
   <td class="govuk-table__cell">
-    {%- if fields.respondentSolicitorOrganisation -%}
-    {% set contactInformation = fields.respondentSolicitorOrganisation.contactInformation | first %}
-        <p class="govuk-!-margin-0">
-          {%- if contactInformation.addressLine1 -%}
-          <span class="govuk-!-font-weight-bold">{{contactInformation.addressLine1}}</span>
-          {%- endif -%}
-          {%- if contactInformation.addressLine2 -%} <br>{{contactInformation.addressLine2}} {%- endif -%}
-          {%- if contactInformation.addressLine3 -%} <br>{{contactInformation.addressLine3}} {%- endif -%}
-          {%- if contactInformation.county -%} <br>{{contactInformation.county}} {%- endif -%}
-          {%- if contactInformation.postCode -%} <br>{{contactInformation.postCode}} {%- endif -%}
-          {%- if contactInformation.townCity -%} <br>{{contactInformation.townCity}} {%- endif -%}
-          {%- if contactInformation.country -%} <br>{{contactInformation.country}} {%- endif -%}
-        </p>
-      {% endif %}
+    {{ content.question | safe }}
+  </td>
+  <td class="govuk-table__cell">
+    {% if session.respondentSolicitorAddress %}
+    <span class="address">{{ fields.cyaRespondentSolicitorAddress.value | safe }}</span>
+    {% endif %}
   </td>
   <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
 </tr>

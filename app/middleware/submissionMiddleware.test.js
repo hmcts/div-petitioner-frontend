@@ -72,7 +72,6 @@ describe(modulePath, () => {
       ['AwaitingProcessServerService'],
       ['AwaitingDWPResponse'],
       ['AosDrafted'],
-      ['IssuedToBailiff'],
       ['AnyOtherUnhandledD8StatesListed']
     ])
       .it('should redirect to /done-and-submitted if application has been submitted and is %s', caseState => {

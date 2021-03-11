@@ -62,9 +62,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
         const errors = validateUserData(this.content, req, userAction);
 
         if (errors) {
-          errors.map(error => { 
+          errors.map(error => {
             console.log(error.errorMessage);
-            req.session[error.key] = [error.errorMessage]; 
+            req.session[error.key] = [error.errorMessage];
           });
 
           console.log(req.session);

@@ -90,16 +90,16 @@ const validateUserData = (content, req) => {
   const { body, session } = req;
   const solicitorName = get(body, 'respondentSolicitorName');
   const solicitorEmail = get(body, 'respondentSolicitorEmail');
-  let errors = [];
+  const errors = [];
 
-  if(isEmpty(solicitorName)) {
-    errors.push({key: 'respondentSolicitorNameError', errorMessage: getErrorMessage(ErrorMessage.SOLICITOR_NAME, content, session)})
+  if (isEmpty(solicitorName)) {
+    errors.push({ key: 'respondentSolicitorNameError', errorMessage: getErrorMessage(ErrorMessage.SOLICITOR_NAME, content, session) });
   }
 
   if (isEmpty(solicitorEmail)) {
-    errors.push({key: 'respondentSolicitorEmailError', errorMessage: getErrorMessage[ErrorMessage.SOLICITOR_EMAIL, content, session]});
+    errors.push({ key: 'respondentSolicitorEmailError', errorMessage: getErrorMessage[ErrorMessage.SOLICITOR_EMAIL, content, session] });
   }
-  
+
   return errors;
 };
 

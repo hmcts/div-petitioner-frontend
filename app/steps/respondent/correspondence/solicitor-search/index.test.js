@@ -25,8 +25,6 @@ const TEST_RESP_SOLICITOR_ID = '11-111';
 function buildRespondentSolicitorSessionData() {
   return {
     divorceWho: 'wife',
-    respondentSolicitorName: null,
-    respondentSolicitorReference: null,
     respondentSolicitorOrganisation: {
       contactInformation: [
         {

@@ -18,7 +18,7 @@ let agent = {};
 let underTest = {};
 
 const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
-const TEST_RESP_SOLICITOR_EMAIL = 'testemail';
+const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
 const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
 const TEST_RESP_SOLICITOR_ID = '11-111';
@@ -140,6 +140,11 @@ describe(modulePath, () => {
         'OL1 222',
         'Manchester'
       ];
+      req.body = {
+        respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+        respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
+        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
+      };
 
       underTest.mapRespondentSolicitorData(req);
 
@@ -157,9 +162,9 @@ describe(modulePath, () => {
 
       underTest.mapRespondentSolicitorData(req);
 
-      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
-      expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
-      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
+      expect(req.session.respondentSolicitorName).to.be.undefined;
+      expect(req.session.respondentSolicitorEmail).to.be.undefined;
+      expect(req.session.respondentSolicitorReference).to.be.undefined;
       expect(req.session.respondentSolicitorCompany).to.be.undefined;
       expect(req.session.respondentSolicitorAddress).to.have.property('address');
       expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);

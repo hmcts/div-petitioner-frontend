@@ -56,8 +56,8 @@ describe(modulePath, () => {
         'featureToggleRespSol.needToKnowSolFirm'
       ];
 
-      underTest.setRespSolToggle = givenSession => {
-        givenSession.isRespSolToggleOn = true;
+      underTest.setRespSolToggle = ctx => {
+        ctx.isRespSolToggleOn = true;
       };
 
       testContent(done, agent, underTest, content, session, excludeKeys);

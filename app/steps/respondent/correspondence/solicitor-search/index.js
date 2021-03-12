@@ -6,7 +6,7 @@ const {
   validateSearchRequest,
   validateUserData,
   fetchAndAddOrganisations,
-  hasBeenPostedWithoutSubmitButton} = require('app/core/utils/respondentSolicitorSearchHelper');
+  hasBeenPostedWithoutSubmitButton } = require('app/core/utils/respondentSolicitorSearchHelper');
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {
   get url() {
@@ -57,6 +57,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       if (isEqual(userAction, UserAction.PROVIDED)) {
+        this.errorsCleanup(req);
         const errors = validateUserData(this.content, req, userAction);
 
         if (errors.length) {
@@ -67,7 +68,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
           return res.redirect(this.url);
         }
 
-        this.errorsCleanup(req);
         this.mapRespondentSolicitorData(req);
         return super.handler(req, res);
       }
@@ -99,12 +99,23 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     req.session.respondentSolicitorEmailError = null;
   }
 
-  mapRespondentSolicitorData({ session }) {
+  mapRespondentSolicitorData({ body, session }) {
     const { respondentSolicitorOrganisation } = session;
     const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
     const address = filter(values(first(solicitorContactInformation)), size);
     session.respondentSolicitorAddress = { address };
     session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
     session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
+    session.respondentSolicitorName = get(body, 'respondentSolicitorName');
+    session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
+    session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
+  }
+
+  checkYourAnswersInterceptor(ctx, session) {
+    if (session.respondentSolicitorAddress) {
+      const solicitorDetail = [].concat(session.respondentSolicitorName, session.respondentSolicitorAddress.address);
+      ctx.cyaRespondentSolicitorAddress = solicitorDetail.join('<br>');
+    }
+    return ctx;
   }
 };

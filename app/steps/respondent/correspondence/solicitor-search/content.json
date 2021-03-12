@@ -24,7 +24,7 @@
           },
           "searchErrors": {
             "emptyValue": "Please provide a solicitor firm's name",
-            "shortValue": "Please provide at least 3 characters",
+            "shortValue": "You must enter at least 3 characters",
             "solicitorName": "Please provide a solicitor name",
             "solicitorEmail": "Please provide a solicitor email"
           }
@@ -60,7 +60,7 @@
           },
           "searchErrors": {
             "emptyValue": "[CY] Please provide your solicitor firm's name",
-            "shortValue": "[CY] Please provide at least 3 characters",
+            "shortValue": "[CY] You must enter at least 3 characters",
             "solicitorName": "[CY] Please provide a solicitor name",
             "solicitorEmail": "[CY] Please provide a solicitor email"
           }

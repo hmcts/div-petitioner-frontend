@@ -91,7 +91,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
             autocomplete="off">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <input type="hidden" name="userAction" value="provided">
-        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorNameError.error }}"
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorNameError }}"
              id="solicitor-name">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
@@ -104,14 +104,16 @@ It decides to render if the "organisations" object is not null, behaviour contro
             ) }}
           </fieldset>
         </div>
-        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorEmailError.error }}">
-          {{ errorsFor(session.respondentSolicitorEmailError) }}
-          {{ textField(
-          name = 'respondentSolicitorEmail',
-          field = fields.respondentSolicitorEmail,
-          label = content.solicitorEmailLabel,
-          boldLabel = true
-          ) }}
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorEmailError }}"
+             id="solicitor-email">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+            {{ errorsFor(session.respondentSolicitorEmailError) }}
+            {{ textField(
+            name = 'respondentSolicitorEmail',
+            field = fields.respondentSolicitorEmail,
+            label = content.solicitorEmailLabel,
+            boldLabel = true
+            ) }}
         </div>
         <div class="govuk-form-group">
           {{ textField(

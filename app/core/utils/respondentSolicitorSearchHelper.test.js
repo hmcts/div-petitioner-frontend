@@ -15,7 +15,8 @@ const {
 const Errors = {
   EMPTY_SOLICITOR_SEARCH: 'emptyValue',
   SHORT_SOLICITOR_SEARCH: 'shortValue',
-  EMPTY_SOLICITOR_NAME: 'solicitorName'
+  EMPTY_SOLICITOR_NAME: 'solicitorName',
+  EMPTY_SOLICITOR_EMAIL: 'solicitorEmail'
 };
 
 const content = {
@@ -26,7 +27,8 @@ const content = {
           searchErrors: {
             emptyValue: Errors.EMPTY_SOLICITOR_SEARCH,
             shortValue: Errors.SHORT_SOLICITOR_SEARCH,
-            solicitorName: Errors.EMPTY_SOLICITOR_NAME
+            solicitorName: Errors.EMPTY_SOLICITOR_NAME,
+            solicitorEmail: Errors.EMPTY_SOLICITOR_EMAIL
           }
         }
       }
@@ -154,45 +156,55 @@ describe(modulePath, () => {
   });
 
   describe('validateUserData()', () => {
-    const UserAction = {
-      MANUAL: 'manual',
-      SEARCH: 'search',
-      SELECTION: 'selection',
-      DESELECTION: 'deselection',
-      PROVIDED: 'provided'
-    };
-
-    it('should return no errors when respondentSolicitorName has been populated', () => {
+    it('should return no errors when respondentSolicitorName and respondentSolicitorEmail have been populated', () => {
       req = {
         body: {
-          respondentSolicitorName: 'Karen Fox Solicitor'
+          respondentSolicitorName: 'Karen Fox Solicitor',
+          respondentSolicitorEmail: 'test@email.com'
         },
         session: { language: 'en' }
       };
 
-      expect(validateUserData(content, req, UserAction.PROVIDED)).to.deep.equal([true, null]);
+      expect(validateUserData(content, req)).to.deep.equal([]);
     });
 
     it('should return EMPTY_SOLICITOR_NAME error message when respondentSolicitorName is an empty string', () => {
       req = {
         body: {
-          respondentSolicitorName: ''
+          respondentSolicitorName: '',
+          respondentSolicitorEmail: 'test@email.com'
         },
         session: { language: 'en' }
       };
 
-      expect(validateUserData(content, req, UserAction.PROVIDED))
-        .to.deep.equal([false, { error: true, errorMessage: Errors.EMPTY_SOLICITOR_NAME }]);
+      expect(validateUserData(content, req))
+        .to.deep.equal([{ key: 'respondentSolicitorNameError', errorMessage: Errors.EMPTY_SOLICITOR_NAME }]);
     });
 
-    it('should return EMPTY_SOLICITOR_NAME error message when respondentSolicitorName has not been provided', () => {
+    it('should return EMPTY_SOLICITOR_EMAIL error message when respondentSolicitorEmail is an empty string', () => {
+      req = {
+        body: {
+          respondentSolicitorName: 'Karen Fox Solicitor',
+          respondentSolicitorEmail: ''
+        },
+        session: { language: 'en' }
+      };
+
+      expect(validateUserData(content, req))
+        .to.deep.equal([{ key: 'respondentSolicitorEmailError', errorMessage: Errors.EMPTY_SOLICITOR_EMAIL }]);
+    });
+
+    it('should return EMPTY_SOLICITOR_NAME and EMPTY_SOLICITOR_EMAIL error message when respondentSolicitorName and respondentSolicitorEmail have not been provided', () => {
       req = {
         body: {},
         session: { language: 'en' }
       };
 
-      expect(validateUserData(content, req, UserAction.PROVIDED))
-        .to.deep.equal([false, { error: true, errorMessage: Errors.EMPTY_SOLICITOR_NAME }]);
+      expect(validateUserData(content, req))
+        .to.deep.equal([
+          { key: 'respondentSolicitorNameError', errorMessage: Errors.EMPTY_SOLICITOR_NAME },
+          { key: 'respondentSolicitorEmailError', errorMessage: Errors.EMPTY_SOLICITOR_EMAIL }
+        ]);
     });
   });
 });

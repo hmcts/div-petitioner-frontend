@@ -1,4 +1,4 @@
-const { get, trim, isEmpty, size, isUndefined, isEqual } = require('lodash');
+const { get, trim, isEmpty, size, isUndefined } = require('lodash');
 const organisationService = require('app/services/organisationService');
 const serviceTokenService = require('app/services/serviceToken');
 const logger = require('app/services/logger').logger(__filename);
@@ -97,7 +97,7 @@ const validateUserData = (content, req) => {
   }
 
   if (isEmpty(solicitorEmail)) {
-    errors.push({ key: 'respondentSolicitorEmailError', errorMessage: getErrorMessage[ErrorMessage.SOLICITOR_EMAIL, content, session] });
+    errors.push({ key: 'respondentSolicitorEmailError', errorMessage: getErrorMessage(ErrorMessage.SOLICITOR_EMAIL, content, session) });
   }
 
   return errors;

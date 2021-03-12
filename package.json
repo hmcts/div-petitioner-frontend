@@ -116,7 +116,7 @@
     "yarn": "^1.22.0"
   },
   "devDependencies": {
-    "@hmcts/div-idam-test-harness": "^1.5.0",
+    "@hmcts/div-idam-test-harness": "^1.9.0",
     "@hmcts/eslint-config": "^1.0.5",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.4",

@@ -4,6 +4,7 @@
     "en": {
       "translation": {
         "content": {
+          "help": "Getting help",
           "mainHeading": "Your Divorce",
           "petitionSent": "Your petition has been sent to a court bailiff",
           "youApply": "You apply",
@@ -17,7 +18,7 @@
           "amendedApplicationInfoPara1": "Your application for ‘personal service by a court bailiff’ has been approved and your petition has been sent to a local court bailiff to complete service.",
           "amendedApplicationInfoPara2": "You will get an update once the court bailiff has completed their attempts to serve.",
           "amendedApplicationInfoPara3": "If the court bailiff is able to serve successfully, then your {{ divorceWho }} is given 7 days to respond.",
-          "amendedApplicationInfoPara4": "If your {{ divorceWho }} still does not respond, then you will be able to continue to the next stage and apply for a decree nisi",
+          "amendedApplicationInfoPara4": "If your {{ divorceWho }} still does not respond, then you will be able to continue to the next stage and apply for a decree nisi.",
           "downloadDocumentsHeading": "Download your documents",
           "guidanceHeading": "Guidance on GOV.UK",
           "howToRespondLink": "<a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ divorceWho }} responds</a>",

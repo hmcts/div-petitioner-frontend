@@ -1,4 +1,4 @@
-const { get, trim, isEmpty, size, isUndefined, isEqual } = require('lodash');
+const { get, trim, isEmpty, size, isUndefined } = require('lodash');
 const organisationService = require('app/services/organisationService');
 const serviceTokenService = require('app/services/serviceToken');
 const logger = require('app/services/logger').logger(__filename);
@@ -17,7 +17,8 @@ const UserAction = {
 const ErrorMessage = {
   EMPTY_VALUE: 'emptyValue',
   SHORT_VALUE: 'shortValue',
-  SOLICITOR_NAME: 'solicitorName'
+  SOLICITOR_NAME: 'solicitorName',
+  SOLICITOR_EMAIL: 'solicitorEmail'
 };
 
 const getServiceAuthToken = req => {
@@ -85,16 +86,21 @@ const validateSearchRequest = (searchCriteria, content, session) => {
   return [true, null];
 };
 
-const validateUserData = (content, req, userAction) => {
+const validateUserData = (content, req) => {
   const { body, session } = req;
   const solicitorName = get(body, 'respondentSolicitorName');
+  const solicitorEmail = get(body, 'respondentSolicitorEmail');
+  const errors = [];
 
-  if (isEqual(userAction, UserAction.PROVIDED) && isEmpty(solicitorName)) {
-    const errorMessage = getErrorMessage(ErrorMessage.SOLICITOR_NAME, content, session);
-    return [false, { error: true, errorMessage }];
+  if (isEmpty(solicitorName)) {
+    errors.push({ key: 'respondentSolicitorNameError', errorMessage: getErrorMessage(ErrorMessage.SOLICITOR_NAME, content, session) });
   }
 
-  return [true, null];
+  if (isEmpty(solicitorEmail)) {
+    errors.push({ key: 'respondentSolicitorEmailError', errorMessage: getErrorMessage(ErrorMessage.SOLICITOR_EMAIL, content, session) });
+  }
+
+  return errors;
 };
 
 const hasBeenPostedWithoutSubmitButton = ({ body }) => {

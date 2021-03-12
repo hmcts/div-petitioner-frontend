@@ -14,7 +14,7 @@
           "resultsLabel": "Results",
           "solicitorNameLabel": "Solicitor's name",
           "solicitorReferenceLabel": "Solicitor's reference (optional)",
-          "solicitorEmailLabel": "Solicitor's email address (optional)",
+          "solicitorEmailLabel": "Solicitor's email address",
           "solicitorFirmAddressLabel": "Solicitor's firm and address",
           "searchNoOptionFoundText": "If you can't see the firm listed then you can enter the details manually.",
           "searchNoResults": {
@@ -25,7 +25,8 @@
           "searchErrors": {
             "emptyValue": "Please provide a solicitor firm's name",
             "shortValue": "You must enter at least 3 characters",
-            "solicitorName": "Please provide a solicitor name"
+            "solicitorName": "Please provide a solicitor name",
+            "solicitorEmail": "Please provide a solicitor email"
           }
         },
         "errors": {
@@ -49,7 +50,7 @@
           "resultsLabel": "[CY] Results",
           "solicitorNameLabel": "[CY] Solicitor's name",
           "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
-          "solicitorEmailLabel": "[CY] Solicitor's email address (optional)",
+          "solicitorEmailLabel": "[CY] Solicitor's email address",
           "solicitorFirmAddressLabel": "[CY] Solicitor's firm and address",
           "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
           "searchNoResults": {
@@ -60,7 +61,8 @@
           "searchErrors": {
             "emptyValue": "[CY] Please provide your solicitor firm's name",
             "shortValue": "[CY] You must enter at least 3 characters",
-            "solicitorName": "[CY] Please provide a solicitor name"
+            "solicitorName": "[CY] Please provide a solicitor name",
+            "solicitorEmail": "[CY] Please provide a solicitor email"
           }
         },
         "errors": {

@@ -18,6 +18,7 @@ let agent = {};
 let underTest = {};
 
 const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
+const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
 const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
 const TEST_RESP_SOLICITOR_ID = '11-111';
@@ -25,6 +26,9 @@ const TEST_RESP_SOLICITOR_ID = '11-111';
 function buildRespondentSolicitorSessionData() {
   return {
     divorceWho: 'wife',
+    respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+    respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
+    respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
     respondentSolicitorOrganisation: {
       contactInformation: [
         {
@@ -80,7 +84,8 @@ describe(modulePath, () => {
           'searchNoResults.paragraph3',
           'searchErrors.emptyValue',
           'searchErrors.shortValue',
-          'searchErrors.solicitorName'
+          'searchErrors.solicitorName',
+          'searchErrors.solicitorEmail'
         ];
 
         testContent(done, agent, underTest, content, session, excludedKeys);
@@ -111,7 +116,8 @@ describe(modulePath, () => {
       it('should redirect when user action is PROVIDED and data is provided', done => {
         testRedirect(done, agent, underTest, {
           userAction: 'provided',
-          respondentSolicitorName: 'testSolicitorName'
+          respondentSolicitorName: 'testSolicitorName',
+          respondentSolicitorEmail: 'testSolicitorEmail'
         }, s.steps.ReasonForDivorce);
       });
     });
@@ -136,14 +142,15 @@ describe(modulePath, () => {
       ];
       req.body = {
         respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+        respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
         respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
       };
 
       underTest.mapRespondentSolicitorData(req);
 
       expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+      expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
       expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
-      expect(req.session).to.not.have.property('respondentSolicitorEmail');
       expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
       expect(req.session.respondentSolicitorAddress).to.have.property('address');
       expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
@@ -156,8 +163,8 @@ describe(modulePath, () => {
       underTest.mapRespondentSolicitorData(req);
 
       expect(req.session.respondentSolicitorName).to.be.undefined;
+      expect(req.session.respondentSolicitorEmail).to.be.undefined;
       expect(req.session.respondentSolicitorReference).to.be.undefined;
-      expect(req.session).to.not.have.property('respondentSolicitorEmail');
       expect(req.session.respondentSolicitorCompany).to.be.undefined;
       expect(req.session.respondentSolicitorAddress).to.have.property('address');
       expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);

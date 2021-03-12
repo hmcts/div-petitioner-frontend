@@ -6,8 +6,7 @@ const {
   validateSearchRequest,
   validateUserData,
   fetchAndAddOrganisations,
-  hasBeenPostedWithoutSubmitButton
-} = require('app/core/utils/respondentSolicitorSearchHelper');
+  hasBeenPostedWithoutSubmitButton } = require('app/core/utils/respondentSolicitorSearchHelper');
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {
   get url() {
@@ -58,13 +57,17 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       if (isEqual(userAction, UserAction.PROVIDED)) {
-        const [isValid, errors] = validateUserData(this.content, req, userAction);
-        if (!isValid) {
-          req.session.respondentSolicitorNameError = errors;
+        this.errorsCleanup(req);
+        const errors = validateUserData(this.content, req, userAction);
+
+        if (errors.length) {
+          errors.map(error => {
+            req.session[error.key] = { error: true, errorMessage: error.errorMessage };
+            return error;
+          });
           return res.redirect(this.url);
         }
 
-        this.errorsCleanup(req);
         this.mapRespondentSolicitorData(req);
         return super.handler(req, res);
       }
@@ -93,6 +96,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   errorsCleanup(req) {
     req.session.respondentSolicitorNameError = null;
     req.session.respondentSolicitorFirmError = null;
+    req.session.respondentSolicitorEmailError = null;
   }
 
   mapRespondentSolicitorData({ body, session }) {
@@ -104,6 +108,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
     session.respondentSolicitorName = get(body, 'respondentSolicitorName');
     session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
+    session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
   }
 
   checkYourAnswersInterceptor(ctx, session) {

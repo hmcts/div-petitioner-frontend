@@ -3,11 +3,9 @@
 {% extends "question.html" %}
 
 {% block two_thirds %}
-
 <div class="govuk-body">
   <h1 class="govuk-heading-l">{{ content.question | safe }}</h1>
   <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-
   {# Solicitors firms search section #}
   {{ solicitorSearch(session, content, csrfToken) }}
 
@@ -16,9 +14,6 @@
 
   {# Solicitors firms search result section when items not found  #}
   {{ searchNoResults(session, content, csrfToken) }}
-
 </div>
-
 {% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
-
 {% endblock %}

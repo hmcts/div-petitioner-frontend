@@ -48,7 +48,6 @@ class IdamHelper extends Helper {
 
     args.testEmail = testEmail;
     args.testPassword = testPassword;
-    args.testGroupCode = 'citizens';
     args.roles = [{ code: 'citizen' }];
 
     idamConfigHelper.setTestEmail(testEmail);

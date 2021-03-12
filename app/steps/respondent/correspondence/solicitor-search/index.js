@@ -95,12 +95,22 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     req.session.respondentSolicitorFirmError = null;
   }
 
-  mapRespondentSolicitorData({ session }) {
+  mapRespondentSolicitorData({ body, session }) {
     const { respondentSolicitorOrganisation } = session;
     const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
     const address = filter(values(first(solicitorContactInformation)), size);
     session.respondentSolicitorAddress = { address };
     session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
     session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
+    session.respondentSolicitorName = get(body, 'respondentSolicitorName');
+    session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
+  }
+
+  checkYourAnswersInterceptor(ctx, session) {
+    if (session.respondentSolicitorAddress) {
+      const solicitorDetail = [].concat(session.respondentSolicitorName, session.respondentSolicitorAddress.address);
+      ctx.cyaRespondentSolicitorAddress = solicitorDetail.join('<br>');
+    }
+    return ctx;
   }
 };

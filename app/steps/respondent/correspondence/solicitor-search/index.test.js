@@ -25,8 +25,6 @@ const TEST_RESP_SOLICITOR_ID = '11-111';
 function buildRespondentSolicitorSessionData() {
   return {
     divorceWho: 'wife',
-    respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-    respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
     respondentSolicitorOrganisation: {
       contactInformation: [
         {
@@ -136,6 +134,10 @@ describe(modulePath, () => {
         'OL1 222',
         'Manchester'
       ];
+      req.body = {
+        respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
+      };
 
       underTest.mapRespondentSolicitorData(req);
 
@@ -153,8 +155,8 @@ describe(modulePath, () => {
 
       underTest.mapRespondentSolicitorData(req);
 
-      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
-      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
+      expect(req.session.respondentSolicitorName).to.be.undefined;
+      expect(req.session.respondentSolicitorReference).to.be.undefined;
       expect(req.session).to.not.have.property('respondentSolicitorEmail');
       expect(req.session.respondentSolicitorCompany).to.be.undefined;
       expect(req.session.respondentSolicitorAddress).to.have.property('address');

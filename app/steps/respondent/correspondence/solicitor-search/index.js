@@ -1,12 +1,10 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
-const { get, find, isEqual, first, values, size, filter } = require('lodash');
+const { get, set, unset, find, isEqual } = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
-const {
-  UserAction,
-  validateSearchRequest,
-  validateUserData,
-  fetchAndAddOrganisations,
-  hasBeenPostedWithoutSubmitButton } = require('app/core/utils/respondentSolicitorSearchHelper');
+const requestHandler = require('app/core/helpers/parseRequest');
+const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
+
+const { UserAction } = searchHelper;
 
 module.exports = class RespondentCorrespondenceSolicitorSearch extends ValidationStep {
   get url() {
@@ -17,98 +15,94 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     return this.steps.ReasonForDivorce;
   }
 
-  async handler(req, res) {
-    if (hasBeenPostedWithoutSubmitButton(req)) {
-      const { body } = req;
+  get urlToBind() {
+    return `${this.url}/:searchType*?`;
+  }
 
-      const userAction = get(body, 'userAction');
+  interceptor(ctx, session) {
+    ctx.searchType = session.searchType;
+    ctx.baseUrl = this.url;
+    searchHelper.parseAddressToManualAddress(session);
+    return ctx;
+  }
 
-      if (isEqual(userAction, UserAction.MANUAL)) {
-        logger.infoWithReq(null, 'solicitor_search', 'Manual solicitor search, redirecting to solicitor detail page.');
-        this.manualSelectionCleanup(req);
-        return res.redirect(this.steps.RespondentSolicitorSearchManual.url);
-      }
+  validate(ctx, session) { // eslint-disable-line no-unused-vars
+    return [true, null];
+  }
 
-      if (isEqual(userAction, UserAction.SELECTION)) {
-        logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has selected an organisation');
-        req.session.respondentSolicitorOrganisation = find(req.session.organisations, organisation => {
-          return isEqual(organisation.organisationIdentifier, get(body, 'userSelection'));
-        });
-      }
+  * postRequest(req, res) {
+    const manual = searchHelper.isManual(req.session);
+    searchHelper.mapRespondentSolicitorData(req, manual);
 
-      if (isEqual(userAction, UserAction.DESELECTION)) {
-        logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has deselected option');
-        this.deselectionCleanup(req);
-      }
+    const ctx = yield this.parseCtx(req);
+    const [, errors] = super.validate(ctx, req.session);
+    const isValid = searchHelper.mapValidationErrors(req, errors, manual);
 
-      if (isEqual(userAction, UserAction.SEARCH)) {
-        const searchCriteria = get(body, 'respondentSolicitorFirm');
-        const [isValid, errors] = validateSearchRequest(searchCriteria, this.content, req.session);
-        if (!isValid) {
-          req.session.respondentSolicitorFirmError = errors;
-          return res.redirect(this.url);
-        }
-
-        this.errorsCleanup(req);
-        const requestSucceeded = await fetchAndAddOrganisations(req);
-        if (requestSucceeded) {
-          logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, request complete');
-        }
-      }
-
-      if (isEqual(userAction, UserAction.PROVIDED)) {
-        this.errorsCleanup(req);
-        const errors = validateUserData(this.content, req, userAction);
-
-        if (errors.length) {
-          errors.map(error => {
-            req.session[error.key] = { error: true, errorMessage: error.errorMessage };
-            return error;
-          });
-          return res.redirect(this.url);
-        }
-
-        this.mapRespondentSolicitorData(req);
-        return super.handler(req, res);
-      }
-
-      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, staying on same page');
+    if (searchHelper.isInValidManualData(isValid, manual)) {
+      return res.redirect(`${this.url}/manual`);
+    } else if (searchHelper.isInValidSearchData(isValid, manual)) {
       return res.redirect(this.url);
     }
 
-    return super.handler(req, res);
+    searchHelper.errorsCleanup(req.session);
+    return res.redirect(this.nextStep.url);
   }
 
-  deselectionCleanup(req) {
-    req.session.respondentSolicitorOrganisation = null;
-    req.session.respondentSolicitorFirmError = null;
+  async handler(req, res) {
+    if (!searchHelper.hasBeenPostedWithoutSubmitButton(req)) {
+      return super.handler(req, res);
+    }
+
+    const { body } = req;
+    const userAction = get(body, 'userAction');
+
+    if (isEqual(userAction, UserAction.MANUAL)) {
+      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has selected manual option');
+      searchHelper.resetManualRespondentSolicitorData(req.session);
+      return res.redirect(`${this.url}/manual`);
+    }
+
+    if (isEqual(userAction, UserAction.SELECTION)) {
+      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has selected an organisation');
+      searchHelper.resetRespondentSolicitorData(req.session);
+      req.session.respondentSolicitorOrganisation = find(req.session.organisations, organisation => {
+        return isEqual(organisation.organisationIdentifier, get(body, 'userSelection'));
+      });
+    }
+
+    if (isEqual(userAction, UserAction.DESELECTION)) {
+      logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has deselected option');
+      searchHelper.resetRespondentSolicitorData(req.session);
+    }
+
+    if (isEqual(userAction, UserAction.SEARCH)) {
+      const searchCriteria = get(body, 'respondentSolicitorFirm');
+
+      const [isValid, errors] = searchHelper.validateSearchRequest(searchCriteria, this.content, req.session);
+      if (!isValid) {
+        set(req.session.error, 'respondentSolicitorFirm', errors);
+        return res.redirect(this.url);
+      }
+
+      searchHelper.errorsCleanup(req.session);
+      req.session.respondentSolicitorFirm = searchCriteria;
+      await searchHelper.fetchAndAddOrganisations(req, searchCriteria);
+    }
+
+    logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, staying on same page');
+    return res.redirect(this.url);
   }
 
-  manualSelectionCleanup(req) {
-    req.session.organisations = null;
-    req.session.respondentSolicitorOrganisation = null;
-    req.session.respondentSolicitorFirmError = null;
-    req.session.respondentSolicitorAddress = null;
-    req.session.respondentSolicitorCompany = null;
-    req.session.respondentSolicitorReferenceDataId = null;
-  }
-
-  errorsCleanup(req) {
-    req.session.respondentSolicitorNameError = null;
-    req.session.respondentSolicitorFirmError = null;
-    req.session.respondentSolicitorEmailError = null;
-  }
-
-  mapRespondentSolicitorData({ body, session }) {
-    const { respondentSolicitorOrganisation } = session;
-    const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
-    const address = filter(values(first(solicitorContactInformation)), size);
-    session.respondentSolicitorAddress = { address };
-    session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
-    session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
-    session.respondentSolicitorName = get(body, 'respondentSolicitorName');
-    session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
-    session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
+  getRequest(req, res) {
+    const { session } = req;
+    // get params from url i.e. what searchType
+    const requestParams = requestHandler.parse(this, req);
+    if (isEqual(requestParams.searchType, 'manual')) {
+      set(session, 'searchType', requestParams.searchType);
+    } else {
+      unset(session, 'searchType');
+    }
+    return super.getRequest(req, res);
   }
 
   checkYourAnswersInterceptor(ctx, session) {

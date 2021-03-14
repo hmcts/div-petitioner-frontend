@@ -11,12 +11,14 @@
           "deselectBtnText": "Deselect",
           "selectBtnText": "Select",
           "enterManuallyBtnText": "Enter details manually",
+          "errorSummaryHeading": "There was a problem",
           "resultsLabel": "Results",
           "solicitorNameLabel": "Solicitor's name",
           "solicitorReferenceLabel": "Solicitor's reference (optional)",
           "solicitorEmailLabel": "Solicitor's email address",
           "solicitorFirmAddressLabel": "Solicitor's firm and address",
           "searchNoOptionFoundText": "If you can't see the firm listed then you can enter the details manually.",
+          "searchSolicitorFirm": "Search to find solicitor firm",
           "searchNoResults": {
             "paragraph1": "There are no results for the firm you entered.",
             "paragraph2": "This may be because the firm is not registered online with HMCTS.",
@@ -30,9 +32,17 @@
           }
         },
         "errors": {
-          "respondentSolicitorFirm": {
-            "required": "Please verify Solicitor firm detail",
-            "invalid": "Please verify Solicitor firm detail"
+          "respondentSolicitorName": {
+            "required": "Please provide a solicitor name",
+            "invalid": "Please provide a solicitor name"
+          },
+          "respondentSolicitorEmail": {
+            "required": "Please provide a solicitor email",
+            "invalid": "Please provide a solicitor email"
+          },
+          "respondentSolicitorAddressManual": {
+            "required": "Please provide solicitor firm's address",
+            "invalid": "Please provide solicitor firm's address"
           }
         }
       }
@@ -47,12 +57,14 @@
           "deselectBtnText": "[CY] Deselect",
           "selectBtnText": "[CY] Select",
           "enterManuallyBtnText": "[CY] Enter details manually",
+          "errorSummaryHeading": "[CY] There was a problem",
           "resultsLabel": "[CY] Results",
           "solicitorNameLabel": "[CY] Solicitor's name",
           "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
           "solicitorEmailLabel": "[CY] Solicitor's email address",
           "solicitorFirmAddressLabel": "[CY] Solicitor's firm and address",
           "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
+          "searchSolicitorFirm": "[CY] Search to find solicitor firm",
           "searchNoResults": {
             "paragraph1": "[CY] There are no results for the firm you entered.",
             "paragraph2": "[CY] This may be because the firm is not registered online with HMCTS.",
@@ -66,9 +78,17 @@
           }
         },
         "errors": {
-          "respondentSolicitorFirm": {
-            "required": "[CY] Please provide a Solicitor firm",
-            "invalid": "[CY] Please provide a Solicitor firm"
+          "respondentSolicitorName": {
+            "required": "[CY] Please provide a solicitor name",
+            "invalid": "[CY] Please provide a solicitor name"
+          },
+          "respondentSolicitorEmail": {
+            "required": "[CY] Please provide a solicitor email",
+            "invalid": "[CY] Please provide a solicitor email"
+          },
+          "respondentSolicitorAddressManual": {
+            "required": "[CY] Please provide solicitor firm's address",
+            "invalid": "[CY] Please provide solicitor firm's address"
           }
         }
       }

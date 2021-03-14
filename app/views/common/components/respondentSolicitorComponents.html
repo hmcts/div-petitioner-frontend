@@ -4,17 +4,18 @@
 
 {#
 solicitorSearch
+fields       - (required) Template context fields
 session     - (required) Current user session
 content     - (required) Current user context
 csrfToken   - (required) Current csrfToken, provided by the system
 Renders a search box and button, behaviour controlled by module
 #}
-{% macro solicitorSearch(session, content, csrfToken) %}
-<div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorFirmError.error }}"
+{% macro solicitorSearch(fields, session, content, csrfToken) %}
+<div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorFirm }}"
      id="solicitor-search">
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-    {{ errorsFor(session.respondentSolicitorFirmError) }}
+    {{ errorsFor(session.error.respondentSolicitorFirm) }}
     <form method="POST" accept-charset="utf-8" class="form" id="searchform"
           enctype="application/x-www-form-urlencoded"
           autocomplete="off">
@@ -25,6 +26,7 @@ Renders a search box and button, behaviour controlled by module
         name = 'respondentSolicitorFirm',
         field = fields.respondentSolicitorFirm,
         label = content.solicitorFirmLabel,
+        value = fields.respondentSolicitorFirm,
         boldLabel = true
         ) }}
 
@@ -60,13 +62,14 @@ organisation - (required) An organisation object
 
 {#
 solicitorSearch
+fields       - (required) Template context fields
 session     - (required) Current user session
 content     - (required) Current user context
 csrfToken   - (required) Current csrfToken, provided by the system
 Renders a search result list if available with button to select/deselect.
 It decides to render if the "organisations" object is not null, behaviour controlled by module
 #}
-{% macro solicitorSearchResult(session, content, csrfToken) %}
+{% macro solicitorSearchResult(fields, session, content, csrfToken) %}
 {%- if session.organisations | length > 0 -%}
 <div class="govuk-form-group" id="solicitor-search-results">
   <input type="hidden" name="manual" value="manual">
@@ -100,42 +103,51 @@ It decides to render if the "organisations" object is not null, behaviour contro
             autocomplete="off">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <input type="hidden" name="userAction" value="provided">
-        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorNameError }}"
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorName }}"
              id="solicitor-name">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-            {{ errorsFor(session.respondentSolicitorNameError) }}
+            {{ errorsFor(session.error.respondentSolicitorName) }}
             {{ textField(
             name = 'respondentSolicitorName',
             field = fields.respondentSolicitorName,
             label = content.solicitorNameLabel,
+            value = fields.respondentSolicitorName,
             boldLabel = true
             ) }}
           </fieldset>
         </div>
-        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.respondentSolicitorEmailError }}"
+        <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorEmail }}"
              id="solicitor-email">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-            {{ errorsFor(session.respondentSolicitorEmailError) }}
+            {{ errorsFor(session.error.respondentSolicitorEmail) }}
             {{ textField(
             name = 'respondentSolicitorEmail',
             field = fields.respondentSolicitorEmail,
             label = content.solicitorEmailLabel,
+            value = fields.respondentSolicitorEmail,
             boldLabel = true
             ) }}
+          </fieldset>
         </div>
         <div class="govuk-form-group">
-          {{ textField(
-          name = 'respondentSolicitorReference',
-          field = fields.respondentSolicitorReference,
-          label = content.solicitorReferenceLabel,
-          boldLabel = true
-          ) }}
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+            {{ textField(
+            name = 'respondentSolicitorReference',
+            field = fields.respondentSolicitorReference,
+            label = content.solicitorReferenceLabel,
+            value = fields.respondentSolicitorReference,
+            boldLabel = true
+            ) }}
+          </fieldset>
         </div>
         {{ govukButton({
         text: content.continueBtnText,
         classes: 'govuk-button govuk-button--primary govuk-!-margin-top-6',
-        preventDoubleClick: true
+        preventDoubleClick: true,
+        name: 'submit'
         }) }}
         </fieldset>
       </form>
@@ -172,12 +184,12 @@ It decides to render if the "organisations" object is not null, behaviour contro
         <input type="hidden" name="userAction" value="manual">
         {{ govukButton({
         text: content.enterManuallyBtnText,
-        classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+        classes: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-2',
         preventDoubleClick: true
         }) }}
       </form>
     </div>
-    <div class="govuk-form-group govuk-!-padding-top-6 govuk-!-padding-bottom-0">
+    <div class="govuk-form-group govuk-!-padding-top-6 govuk-!-margin-bottom-2">
       {{ nextStep(content.continueBtnText, csrfToken) }}
     </div>
     {%- endif -%}
@@ -189,6 +201,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
 
 {#
 searchNoResults
+fields       - (required) Template context fields
 session     - (required) Current user session
 content     - (required) Current user context
 csrfToken   - (required) Current csrfToken, provided by the system
@@ -196,7 +209,7 @@ Renders a default message when no result found.
 It decides to render if the "organisations" object is null and there is no search term
 Behaviour controlled by module
 #}
-{% macro searchNoResults(session, content, csrfToken) %}
+{% macro searchNoResults(fields, session, content, csrfToken) %}
 {%- if not session.organisations | length and session.respondentSolicitorFirm -%}
 <div class="govuk-form-group" id="solicitor-search-no-results">
   <p>{{content.searchNoResults.paragraph1}}</p>
@@ -209,7 +222,7 @@ Behaviour controlled by module
     <input type="hidden" name="userAction" value="manual">
     {{ govukButton({
     text: content.enterManuallyBtnText,
-    classes: 'govuk-button govuk-button--secondary govuk-!-margin-top-0',
+    classes: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-2',
     preventDoubleClick: true
     }) }}
   </form>

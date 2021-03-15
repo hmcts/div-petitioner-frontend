@@ -87,12 +87,12 @@ const validateSearchRequest = (searchCriteria, content, session) => {
 
     if (isEmpty(solicitorFirm)) {
       const errorMessage = getErrorMessage(ErrorMessage.EMPTY_VALUE, content, session);
-      return [false, {error: true, errorMessage}];
+      return [false, { error: true, errorMessage }];
     }
 
     if (size(solicitorFirm) <= MIN_CHARACTERS) {
       const errorMessage = getErrorMessage(ErrorMessage.SHORT_VALUE, content, session);
-      return [false, {error: true, errorMessage}];
+      return [false, { error: true, errorMessage }];
     }
   }
   return [true, null];
@@ -105,34 +105,35 @@ const mapValidationErrors = (req, errors, manual) => {
   set(req, 'session.errors', errors);
 
   forEach([
-      'respondentSolicitorName',
-      'respondentSolicitorAddressManual',
-      'respondentSolicitorEmail',
-      'respondentSolicitorCompany'
-    ],
-    item => {
-      const error = find(errors, ['param', item]);
-      if (error) {
-        set(req.session.error, item, {error: true, errorMessage: error.msg});
-      }
-    });
+    'respondentSolicitorName',
+    'respondentSolicitorAddressManual',
+    'respondentSolicitorEmail',
+    'respondentSolicitorCompany'
+  ],
+  item => {
+    const error = find(errors, ['param', item]);
+    if (error) {
+      set(req.session.error, item, { error: true, errorMessage: error.msg });
+    }
+  });
 
   if (!manual) {
     forEach([
-        'respondentSolicitorAddressManual',
-        'respondentSolicitorEmailManual'],
-      (item) => {
-        unset(req.session.error, item);
-        req.session.errors = filter(errors, error => {
-          return !isEqual(error.param, item);
-        });
+      'respondentSolicitorAddressManual',
+      'respondentSolicitorEmailManual'
+    ],
+    item => {
+      unset(req.session.error, item);
+      req.session.errors = filter(errors, error => {
+        return !isEqual(error.param, item);
       });
+    });
   }
 
   return size(keys(req.session.error)) === 0;
 };
 
-const hasBeenPostedWithoutSubmitButton = ({body}) => {
+const hasBeenPostedWithoutSubmitButton = ({ body }) => {
   return body && Object.keys(body).length > 0 && !body.hasOwnProperty('submit');
 };
 
@@ -158,8 +159,8 @@ const parseManualAddress = value => {
     });
 };
 
-const mapRespondentSolicitorData = ({body, session}, manual) => {
-  const {respondentSolicitorOrganisation} = session;
+const mapRespondentSolicitorData = ({ body, session }, manual) => {
+  const { respondentSolicitorOrganisation } = session;
   const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
   let address = filter(values(first(solicitorContactInformation)), size);
 
@@ -169,7 +170,7 @@ const mapRespondentSolicitorData = ({body, session}, manual) => {
     session.respondentSolicitorAddressManual = manualAddress;
   }
 
-  session.respondentSolicitorAddress = {address};
+  session.respondentSolicitorAddress = { address };
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
   session.respondentSolicitorName = get(body, 'respondentSolicitorName');

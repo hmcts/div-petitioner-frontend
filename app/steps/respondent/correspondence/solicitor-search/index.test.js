@@ -5,7 +5,6 @@ const {
   testContent,
   testExistence,
   testMultipleValuesExistence,
-  testNonExistence,
   testCustom,
   testExistenceCYA,
   testCYATemplate
@@ -13,13 +12,17 @@ const {
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
 const { escape } = require('lodash');
+
+const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
 
 const modulePath = 'app/steps/respondent/correspondence/solicitor-search';
 const content = require(`${modulePath}/content`);
 
+
 const contentStrings = content.resources.en.translation.content;
+const { UserAction } = searchHelper;
 const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
 const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
@@ -185,10 +188,6 @@ describe(modulePath, () => {
           withSession(done, agent, session);
         });
 
-        it('should not display the results label when item selected', done => {
-          testNonExistence(done, agent, underTest, contentStrings.resultsLabel);
-        });
-
         it('should display solicitor organisation details', done => {
           testCustom(done, agent, underTest, [], response => {
             expect(response.text.includes(escape('Whitehead & Low Solicitors LLP'))).to.equal(true);
@@ -271,6 +270,92 @@ describe(modulePath, () => {
               address: ['line 1', 'line 2', 'line 3', 'postcode']
             }
           });
+        });
+      });
+    });
+
+    context('UserAction functionality', () => {
+      let req = {};
+      let res = {};
+      let postBody = {};
+      let resetManualRespondentSolicitorData = null;
+      let resetRespondentSolicitorData = null;
+
+      describe('#handler', () => {
+        beforeEach(() => {
+          req = {
+            body: {},
+            method: 'POST',
+            session: {},
+            cookies: { '__auth-token': 'fake.token' },
+            headers: {}
+          };
+          res = {
+            redirect: sinon.stub(),
+            sendStatus: sinon.stub()
+          };
+
+          resetManualRespondentSolicitorData = sinon.stub(searchHelper, 'resetManualRespondentSolicitorData');
+          resetRespondentSolicitorData = sinon.stub(searchHelper, 'resetRespondentSolicitorData');
+        });
+
+        afterEach(() => {
+          req = {};
+          res = {};
+          resetManualRespondentSolicitorData.restore();
+          resetRespondentSolicitorData.restore();
+        });
+
+        it('should not redirect when submitted without submit button', done => {
+          postBody = {};
+          testCustom(done, agent, underTest, [], response => {
+            expect(response.res.headers.location).to.equal(underTest.url);
+          }, 'post', true, postBody);
+        });
+
+        it('should redirect to manual url when UserAction is \'MANUAL\'', async () => {
+          req.body = {
+            userAction: UserAction.MANUAL
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.called).to.eql(true);
+          expect(res.redirect.calledWith(`${underTest.url}/manual`)).to.equal(true);
+          expect(resetManualRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+
+        it('should set solicitor organisation when UserAction is \'SELECTION\'', async () => {
+          req.session.organisations = buildMockOrganisationsList();
+          req.body = {
+            userAction: UserAction.SELECTION,
+            userSelection: '02-002'
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(req.session.respondentSolicitorOrganisation).not.to.be.undefined;
+          expect(resetRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+
+        it('should reset respondent solicitor session data when UserAction is \'DESELECTION\'', async () => {
+          resetRespondentSolicitorData.callThrough();
+
+          const SOME_VALUE = 'SomeValue';
+          req.session = {
+            respondentSolicitorOrganisation: SOME_VALUE,
+            respondentSolicitorName: SOME_VALUE
+          };
+          req.body = {
+            userAction: UserAction.DESELECTION
+          };
+
+          await underTest.handler(req, res);
+
+          expect(req.session.respondentSolicitorOrganisation).to.be.undefined;
+          expect(req.session.respondentSolicitorName).to.be.undefined;
+          expect(resetRespondentSolicitorData.calledOnce).to.equal(true);
         });
       });
     });

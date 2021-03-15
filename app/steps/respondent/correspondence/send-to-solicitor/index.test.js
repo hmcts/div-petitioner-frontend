@@ -40,7 +40,25 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['solicitor'];
+      const excludeKeys = [
+        'featureToggleRespSol.instruction',
+        'featureToggleRespSol.solicitorAddress',
+        'featureToggleRespSol.anotherAddress',
+        'featureToggleRespSol.needToKnowSolFirm'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+
+    it('renders the content from the content file (feature toggle respondent solicitor on)', done => {
+      const excludeKeys = [
+        'correspondence',
+        'featureToggleRespSol.needToKnowSolFirm'
+      ];
+
+      underTest.setRespSolToggle = ctx => {
+        ctx.isRespSolToggleOn = true;
+      };
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });

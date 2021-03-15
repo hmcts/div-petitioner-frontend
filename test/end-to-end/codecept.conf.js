@@ -16,7 +16,7 @@ exports.config = {
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
-          '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
+          '--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
           `--proxy-server=${process.env.E2E_PROXY_SERVER || ''}`,
           `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS || ''}`
         ]

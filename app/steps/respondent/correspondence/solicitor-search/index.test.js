@@ -64,6 +64,7 @@ describe(modulePath, () => {
             'solicitorReferenceLabel',
             'searchSolicitorFirm',
             'solicitorEmailLabel',
+            'solicitorEmailManualLabel',
             'errorSummaryHeading',
             'solicitorFirmAddressLabel',
             'searchNoOptionFoundText',

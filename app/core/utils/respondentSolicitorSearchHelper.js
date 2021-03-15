@@ -84,10 +84,10 @@ const validateSearchRequest = (searchCriteria, content, session) => {
 };
 
 const mapValidationErrors = (req, errors, manual) => {
-  unset(req.session, 'error');
-  unset(req.session, 'errors');
-  set(req.session, 'error', {});
-  set(req.session, 'errors', errors);
+  unset(req, 'session.error');
+  unset(req, 'session.errors');
+  set(req, 'session.error', {});
+  set(req, 'session.errors', errors);
 
   forEach([
     'respondentSolicitorName',

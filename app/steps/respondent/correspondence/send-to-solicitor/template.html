@@ -5,20 +5,54 @@
 {% endblock %}
 
 {% block form %}
- <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorRepresented.error }}">
-    <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
+
+  {% if fields.isRespSolToggleOn.value === true %}
+    <p class="govuk-body">{{ content.featureToggleRespSol.instruction | safe }}</p>
+
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorRepresented.error }}">
+      <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
         <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
         {{ errorsFor(fields.respondentSolicitorRepresented) }}
 
-        <div class="govuk-radios govuk-radios--inline">
-            {{ radioButton(
-                value = 'No',
-                label = content.correspondence,
-                name = 'respondentSolicitorRepresented',
-                field = fields.respondentSolicitorRepresented
-            ) }}
+        <div class="govuk-radios">
+          {{ radioButton(
+          value = 'Yes',
+          label = content.featureToggleRespSol.solicitorAddress,
+          name = 'respondentSolicitorRepresented',
+          field = fields.respondentSolicitorRepresented,
+          dataTarget='conditional-need-to-know-sol-firm'
+          ) }}
+          <div id="conditional-need-to-know-sol-firm" class="govuk-radios__conditional {{ 'js-hidden' if fields.respondentSolicitorRepresented.value != 'Yes' }}">
+            <p class="govuk-body govuk-!-padding-top-2 govuk-!-padding-bottom-2">
+              {{ content.featureToggleRespSol.needToKnowSolFirm }}
+            </p>
+          </div>
+          {{ radioButton(
+          value = 'No',
+          label = content.featureToggleRespSol.anotherAddress,
+          name = 'respondentSolicitorRepresented',
+          field = fields.respondentSolicitorRepresented
+          ) }}
         </div>
-    </fieldset>
-</div>
+      </fieldset>
+    </div>
+
+  {% else %}
+     <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.respondentSolicitorRepresented.error }}">
+        <fieldset id="respondentSolicitorRepresented" class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+            {{ errorsFor(fields.respondentSolicitorRepresented) }}
+
+            <div class="govuk-radios govuk-radios--inline">
+                {{ radioButton(
+                    value = 'No',
+                    label = content.correspondence,
+                    name = 'respondentSolicitorRepresented',
+                    field = fields.respondentSolicitorRepresented
+                ) }}
+            </div>
+        </fieldset>
+     </div>
+  {% endif %}
 
 {% endblock %}

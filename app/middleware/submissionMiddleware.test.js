@@ -14,6 +14,8 @@ const DONE_AND_SUBMITTED = '/done-and-submitted';
 const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
 const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
+const SENT_TO_BAILIFF = '/issued-to-bailiff';
+
 
 let req = {};
 let res = {};
@@ -90,6 +92,18 @@ describe(modulePath, () => {
       expect(res.redirect.calledOnce).to.eql(true);
       expect(res.redirect.calledWith(CONTACT_DIVORCE_TEAM_PATH)).to.eql(true);
     });
+
+    forEach([
+      ['IssuedToBailiff'],
+      ['AwaitingBailiffService']
+    ])
+      .it('should redirect to `/issued-to-bailiff` if in is %s', caseState => {
+        req.session.caseId = TEST_CASE_ID;
+        req.session.state = caseState;
+        underTest.hasSubmitted.apply(ctx, [req, res, next]);
+        expect(res.redirect.calledOnce).to.eql(true);
+        expect(res.redirect.calledWith(SENT_TO_BAILIFF)).to.eql(true);
+      });
 
     it('redirects to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {
       req.session.caseId = 'someid';

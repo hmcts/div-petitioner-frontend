@@ -3,21 +3,93 @@
 const request = require('supertest');
 const {
   testContent,
-  testExistence
+  testExistence,
+  testMultipleValuesExistence,
+  testNonExistence,
+  testCustom,
+  testExistenceCYA,
+  testCYATemplate
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
+const { expect } = require('test/util/chai');
+const { escape } = require('lodash');
 
 const modulePath = 'app/steps/respondent/correspondence/solicitor-search';
 const content = require(`${modulePath}/content`);
 
 const contentStrings = content.resources.en.translation.content;
+const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
+const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
+const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
+const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
+const TEST_RESP_SOLICITOR_ID = '11-111';
 
 let appInstance = {};
 let agent = {};
 let underTest = {};
 let session = {};
+
+function buildResultData() {
+  return {
+    divorceWho: 'wife',
+    respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+    respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
+    respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+    respondentSolicitorOrganisation: {
+      contactInformation: [
+        {
+          addressLine1: '19/22 Union St',
+          addressLine2: 'Oldham',
+          addressLine3: '',
+          country: 'United Kingdom',
+          county: 'Greater Manchester',
+          postCode: 'OL1 222',
+          townCity: 'Manchester'
+        }
+      ],
+      name: TEST_RESP_SOLICITOR_COMPANY,
+      organisationIdentifier: TEST_RESP_SOLICITOR_ID
+    },
+    respondentSolicitorFirm: 'searchCriteria'
+  };
+}
+
+function buildMockOrganisationsList() {
+  return [
+    {
+      contactInformation: [
+        {
+          addressLine1: '1 Trasna way',
+          addressLine2: 'Lurgan',
+          addressLine3: '',
+          country: 'United Kingdom',
+          county: 'Armagh',
+          postCode: 'BT25 545',
+          townCity: 'Craigavon'
+        }
+      ],
+      name: 'Campbell & Haughey Solicitors Ltd',
+      organisationIdentifier: '02-002'
+    },
+    {
+      contactInformation: [
+        {
+          addressLine1: '19/22 Union St',
+          addressLine2: 'Oldham',
+          addressLine3: '',
+          country: 'United Kingdom',
+          county: 'Greater Manchester',
+          postCode: 'OL1 222',
+          townCity: 'Manchester'
+        }
+      ],
+      name: TEST_RESP_SOLICITOR_COMPANY,
+      organisationIdentifier: TEST_RESP_SOLICITOR_ID
+    }
+  ];
+}
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -29,6 +101,7 @@ describe(modulePath, () => {
 
   afterEach(() => {
     idamMock.restore();
+    session = {};
   });
 
   describe('Solicitor Search', () => {
@@ -79,29 +152,9 @@ describe(modulePath, () => {
           testContent(done, agent, underTest, content, session, excludedKeys, { divorceWho: 'wife' }, false);
         });
 
-        xit('renders the content from the content file', done => {
-          const excludedKeys = [
-            'deselectBtnText',
-            'selectBtnText',
-            'enterManuallyBtnText',
-            'resultsLabel',
-            'solicitorNameLabel',
-            'solicitorReferenceLabel',
-            'searchSolicitorFirm',
-            'solicitorEmailLabel',
-            'errorSummaryHeading',
-            'solicitorFirmAddressLabel',
-            'searchNoOptionFoundText',
-            'searchNoResults.paragraph1',
-            'searchNoResults.paragraph2',
-            'searchNoResults.paragraph3',
-            'searchErrors.emptyValue',
-            'searchErrors.shortValue',
-            'searchErrors.solicitorName',
-            'searchErrors.solicitorEmail'
-          ];
-
-          testContent(done, agent, underTest, content, session, excludedKeys);
+        it('#ignorePa11yErrors returns an array', () => {
+          const totalIgnored = 1;
+          expect(underTest.ignorePa11yErrors).to.be.lengthOf(totalIgnored);
         });
       });
 
@@ -111,20 +164,113 @@ describe(modulePath, () => {
           withSession(done, agent, session);
         });
 
+        it('should display correct no search no result paragraph', done => {
+          testMultipleValuesExistence(done, agent, underTest,
+            [
+              contentStrings.searchNoResults.paragraph1,
+              contentStrings.searchNoResults.paragraph2,
+              contentStrings.searchNoResults.paragraph3
+            ], {});
+        });
+
+        it('should display the enter manually text button', done => {
+          testExistence(done, agent, underTest, contentStrings.enterManuallyBtnText);
+        });
+      });
+
+      describe('Search view when result found and selected', () => {
+        beforeEach(done => {
+          session = buildResultData();
+          session.organisations = buildMockOrganisationsList();
+          withSession(done, agent, session);
+        });
+
+        it('should not display the results label when item selected', done => {
+          testNonExistence(done, agent, underTest, contentStrings.resultsLabel);
+        });
+
+        it('should display solicitor organisation details', done => {
+          testCustom(done, agent, underTest, [], response => {
+            expect(response.text.includes(escape('Whitehead & Low Solicitors LLP'))).to.equal(true);
+            expect(response.text.includes(escape('19/22 Union St'))).to.equal(true);
+            expect(response.text.includes(escape('Oldham'))).to.equal(true);
+            expect(response.text.includes(escape('Greater Manchester'))).to.equal(true);
+            expect(response.text.includes(escape('OL1 222'))).to.equal(true);
+            expect(response.text.includes(escape('Manchester'))).to.equal(true);
+            expect(response.text.includes(escape('United Kingdom'))).to.equal(true);
+          });
+        });
+
+        it('should display respondentSolicitorName input', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorNameLabel);
+        });
+
+        it('should display respondentSolicitorEmail input', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorEmailLabel);
+        });
+
+        it('should display respondentSolicitorReference input', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorReferenceLabel);
+        });
+
+        it('should display submit button input', done => {
+          testExistence(done, agent, underTest, content.continueBtnText);
+        });
+      });
+
+      describe('Search view when result found and listed', () => {
+        const getOccurrencesInPage = (response, expectedText) => {
+          return response.text.match(new RegExp(escape(expectedText), 'g')).length;
+        };
+
+        beforeEach(done => {
+          session = buildResultData();
+          session.organisations = buildMockOrganisationsList();
+          session.respondentSolicitorOrganisation = null;
+          withSession(done, agent, session);
+        });
+
+        it('should list of organisation details', done => {
+          const organisationCount = 2;
+
+          testCustom(done, agent, underTest, [], response => {
+            expect(response.text.includes(escape('Whitehead & Low Solicitors LLP'))).to.equal(true);
+            expect(response.text.includes(escape('Campbell & Haughey Solicitors Ltd'))).to.equal(true);
+            expect(getOccurrencesInPage(response, 'select-')).to.equal(organisationCount);
+            expect(response.text.includes(contentStrings.enterManuallyBtnText)).to.equal(true);
+          });
+        });
+      });
+
+      describe('Check Your Answers page', () => {
+        session = {
+          divorceWho: 'wife',
+          respondentSolicitorName: 'Solicitor name',
+          respondentSolicitorAddress: {
+            address: ['line 1', 'line 2', 'line 3', 'postcode']
+          }
+        };
+
+        beforeEach(done => {
+          withSession(done, agent, session);
+        });
+
         afterEach(() => {
           session = {};
         });
 
-        it('should display correct no search result paragraph 1', done => {
-          testExistence(done, agent, underTest, contentStrings.searchNoResults.paragraph1);
+        it('renders the cya template', done => {
+          testCYATemplate(done, underTest, {}, session);
         });
 
-        it('should display correct no search result paragraph 1', done => {
-          testExistence(done, agent, underTest, contentStrings.searchNoResults.paragraph2);
-        });
-
-        it('should display correct no search result paragraph 1', done => {
-          testExistence(done, agent, underTest, contentStrings.searchNoResults.paragraph3);
+        it('renders address', done => {
+          testExistenceCYA(done, underTest, content, [], [], {}, {
+            divorceWho: 'wife',
+            respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorAddress: {
+              address: ['line 1', 'line 2', 'line 3', 'postcode']
+            }
+          });
         });
       });
     });

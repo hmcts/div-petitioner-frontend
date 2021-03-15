@@ -73,9 +73,11 @@ It decides to render if the "organisations" object is not null, behaviour contro
 {%- if session.organisations | length > 0 -%}
 <div class="govuk-form-group" id="solicitor-search-results">
   <input type="hidden" name="manual" value="manual">
-  <h1 class="govuk-label--s govuk-label {{ 'js-hidden' if session.respondentSolicitorOrganisation }}">
-    {{content.resultsLabel}}
-  </h1>
+  {%- if session.respondentSolicitorOrganisation | length === 1 -%}
+    <h1 class="govuk-label--s govuk-label">
+      {{content.resultsLabel}}
+    </h1>
+  {%- endif -%}
   <div class="govuk-main-wrapper govuk-!-padding-top-1 govuk-!-padding-bottom-0">
     {%- if session.respondentSolicitorOrganisation -%}
     <div class="govuk-grid-row govuk-!-padding-bottom-4">

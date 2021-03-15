@@ -243,10 +243,10 @@
     request-promise-native "^1.0.5"
     uuid "^3.1.0"
 
-"@hmcts/div-idam-test-harness@^1.5.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-test-harness/-/div-idam-test-harness-1.6.0.tgz#76f83194a6543b349f007799eeb8224e210a5258"
-  integrity sha512-XxzsN9zUeWi5az4F4UstIMKkYfZFScoBJ5VSVmqs51LTWILFtGQBp7ldEKVu2sgXVszVWaMYBbqhnu0uLXKf/w==
+"@hmcts/div-idam-test-harness@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-idam-test-harness/-/div-idam-test-harness-1.9.0.tgz#4610f0815fd1e6fc539bd2d76cb9e5fd0a5c0858"
+  integrity sha512-IkjNljyUfRhmepdsRpbYjkAf4H9iEC95g/etxshfP/A/80GxA5grWBt+Z3KyGFDjiPAaxF04x1CxqZLevrmEdQ==
   dependencies:
     "@hmcts/div-idam-express-middleware" "^6.5.0"
     request "^2.88.0"

@@ -170,7 +170,7 @@ describe(modulePath, () => {
 
     it('should mapped expected errors when is not manual entry', () => {
       const manual = false;
-      const expectedLength = 2;
+      const expectedLength = 3;
       underTest.mapValidationErrors(req, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);

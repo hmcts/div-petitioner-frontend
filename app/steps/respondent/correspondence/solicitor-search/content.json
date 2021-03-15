@@ -43,8 +43,12 @@
             "invalid": "Please provide a solicitor email"
           },
           "respondentSolicitorAddressManual": {
-            "required": "Please provide solicitor address",
-            "invalid": "Please provide solicitor address"
+            "required": "Please provide a solicitor address",
+            "invalid": "Please provide a solicitor address"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Please provide a solicitor firm",
+            "invalid": "Please provide a solicitor firm"
           }
         }
       }
@@ -91,8 +95,12 @@
             "invalid": "[CY] Please provide a solicitor email"
           },
           "respondentSolicitorAddressManual": {
-            "required": "[CY] Please provide solicitor address",
-            "invalid": "[CY] Please provide solicitor address"
+            "required": "[CY] Please provide a solicitor address",
+            "invalid": "[CY] Please provide a solicitor address"
+          },
+          "respondentSolicitorCompany": {
+            "required": "[CY] Please provide a solicitor firm",
+            "invalid": "[CY] Please provide a solicitor firm"
           }
         }
       }

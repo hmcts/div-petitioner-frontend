@@ -18,7 +18,7 @@
           "solicitorEmailLabel": "Solicitor's email address",
           "solicitorEmailManualLabel": "Solicitor's email address (optional)",
           "solicitorCompanyLabel": "Solicitor's firm",
-          "solicitorFirmAddressLabel": "Solicitor's firm and address",
+          "solicitorFirmAddressLabel": "Solicitor's address",
           "searchNoOptionFoundText": "If you can't see the firm listed then you can enter the details manually.",
           "searchSolicitorFirm": "Search to find solicitor firm",
           "searchNoResults": {
@@ -43,8 +43,8 @@
             "invalid": "Please provide a solicitor email"
           },
           "respondentSolicitorAddressManual": {
-            "required": "Please provide solicitor firm's address",
-            "invalid": "Please provide solicitor firm's address"
+            "required": "Please provide solicitor address",
+            "invalid": "Please provide solicitor address"
           }
         }
       }
@@ -66,7 +66,7 @@
           "solicitorEmailLabel": "[CY] Solicitor's email address",
           "solicitorEmailManualLabel": "[CY] Solicitor's email address (optional)",
           "solicitorCompanyLabel": "[CY] Solicitor's firm",
-          "solicitorFirmAddressLabel": "[CY] Solicitor's firm and address",
+          "solicitorFirmAddressLabel": "[CY] Solicitor's address",
           "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
           "searchSolicitorFirm": "[CY] Search to find solicitor firm",
           "searchNoResults": {
@@ -91,8 +91,8 @@
             "invalid": "[CY] Please provide a solicitor email"
           },
           "respondentSolicitorAddressManual": {
-            "required": "[CY] Please provide solicitor firm's address",
-            "invalid": "[CY] Please provide solicitor firm's address"
+            "required": "[CY] Please provide solicitor address",
+            "invalid": "[CY] Please provide solicitor address"
           }
         }
       }

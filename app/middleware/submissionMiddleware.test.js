@@ -100,6 +100,14 @@ describe(modulePath, () => {
       expect(res.redirect.calledWith(SENT_TO_BAILIFF)).to.eql(true);
     });
 
+    it('should redirect to `/issued-to-bailiff` if in AwaitingBailiffService state', () => {
+      req.session.caseId = TEST_CASE_ID;
+      req.session.state = 'AwaitingBailiffService';
+      underTest.hasSubmitted.apply(ctx, [req, res, next]);
+      expect(res.redirect.calledOnce).to.eql(true);
+      expect(res.redirect.calledWith(SENT_TO_BAILIFF)).to.eql(true);
+    });
+
     it('redirects to /amendment-explanatory-page if application has been submitted and is in "AwaitingAmendCase" and toggle is on', () => {
       req.session.caseId = 'someid';
       req.session.state = 'AwaitingAmendCase';

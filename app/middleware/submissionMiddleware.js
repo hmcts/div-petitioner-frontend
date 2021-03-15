@@ -59,6 +59,9 @@ const handleCcdCase = (req, res, next) => {
   case 'IssuedToBailiff':
     logger.infoWithReq(req, 'issued_to_bailiff', 'Issued To Bailiff - redirecting to ');
     return res.redirect(SENT_TO_BAILIFF);
+  case 'AwaitingBailiffService':
+    logger.infoWithReq(req, 'awaiting_bailiff_service', 'Awaiting Bailiff Service - redirecting to ');
+    return res.redirect(SENT_TO_BAILIFF);
   default:
     logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);

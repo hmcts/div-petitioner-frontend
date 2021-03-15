@@ -1,4 +1,19 @@
-const { get, set, unset, keys, trim, find, forEach, filter, isEmpty, size, isEqual, isUndefined, first, values } = require('lodash');
+const {
+  get,
+  set,
+  unset,
+  keys,
+  trim,
+  find,
+  forEach,
+  filter,
+  isEmpty,
+  size,
+  isEqual,
+  isUndefined,
+  first,
+  values
+} = require('lodash');
 const organisationService = require('app/services/organisationService');
 const serviceTokenService = require('app/services/serviceToken');
 const logger = require('app/services/logger').logger(__filename);
@@ -92,7 +107,8 @@ const mapValidationErrors = (req, errors, manual) => {
   forEach([
     'respondentSolicitorName',
     'respondentSolicitorAddressManual',
-    'respondentSolicitorEmail'
+    'respondentSolicitorEmail',
+    'respondentSolicitorCompany'
   ],
   item => {
     const error = find(errors, ['param', item]);
@@ -102,9 +118,15 @@ const mapValidationErrors = (req, errors, manual) => {
   });
 
   if (!manual) {
-    unset(req.session.error, 'respondentSolicitorAddressManual');
-    req.session.errors = filter(errors, error => {
-      return !isEqual(error.param, 'respondentSolicitorAddressManual');
+    forEach([
+      'respondentSolicitorAddressManual',
+      'respondentSolicitorEmailManual'
+    ],
+    item => {
+      unset(req.session.error, item);
+      req.session.errors = filter(errors, error => {
+        return !isEqual(error.param, item);
+      });
     });
   }
 

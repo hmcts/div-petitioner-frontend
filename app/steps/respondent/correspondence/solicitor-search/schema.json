@@ -18,6 +18,9 @@
       "type": "string",
       "format": "email"
     },
+    "respondentSolicitorCompany": {
+      "type": "string"
+    },
     "respondentSolicitorAddressManual": {
       "type": "string",
       "minLength": 3
@@ -29,6 +32,7 @@
   "required": [
     "respondentSolicitorName",
     "respondentSolicitorEmail",
-    "respondentSolicitorAddressManual"
+    "respondentSolicitorAddressManual",
+    "respondentSolicitorCompany"
   ]
 }

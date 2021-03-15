@@ -19,7 +19,7 @@ Renders input fields for user to enter solicitor details manually.
       autocomplete="off">
   <input type="hidden" name="_csrf" value="{{csrfToken}}">
   <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorName }}">
-    <fieldset class="govuk-fieldset">
+    <fieldset class="govuk-fieldset" id="respondentSolicitorName">
       <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
       {{ errorsFor(session.error.respondentSolicitorName) }}
       {{ textField(
@@ -46,7 +46,7 @@ Renders input fields for user to enter solicitor details manually.
   </div>
 
   <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
+    <fieldset class="govuk-fieldset" id="respondentSolicitorEmailManual">
       <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
       {{ textField(
       name = 'respondentSolicitorEmailManual',
@@ -58,9 +58,10 @@ Renders input fields for user to enter solicitor details manually.
     </fieldset>
   </div>
 
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorCompany }}">
+    <fieldset class="govuk-fieldset" id="respondentSolicitorCompany">
       <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ errorsFor(session.error.respondentSolicitorCompany) }}
       {{ textField(
       name = 'respondentSolicitorCompany',
       field = fields.respondentSolicitorCompany,
@@ -72,7 +73,7 @@ Renders input fields for user to enter solicitor details manually.
   </div>
 
   <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorAddressManual }}">
-    <fieldset class="govuk-fieldset">
+    <fieldset class="govuk-fieldset" id="respondentSolicitorAddressManual">
       {{ errorsFor(session.error.respondentSolicitorAddressManual) }}
       {{ textArea(
       name = 'respondentSolicitorAddressManual',

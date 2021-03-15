@@ -24,11 +24,13 @@ function enterOrganisationManually(language = 'en', stepUrl, organisation = mock
   I.waitForVisible('#solicitor-search-results');
   I.navByClick(enterManually);
 
-  I.waitForVisible('#enter-manually');
+  I.waitForVisible('#manualForm');
+  I.waitInUrl(`${stepUrl}/manual`);
+  I.seeInCurrentUrl(`${stepUrl}/manual`);
   I.fillField('#respondentSolicitorName', organisation.name);
   I.fillField('#respondentSolicitorReference', organisation.reference);
   I.fillField('#respondentSolicitorEmail', organisation.email);
-  I.fillField('#respondentSolicitorAddress', organisation.address);
+  I.fillField('#respondentSolicitorAddressManual', organisation.address);
   I.navByClick(commonContent.continue);
 }
 

@@ -60,6 +60,7 @@ describe(modulePath, () => {
             'resultsLabel',
             'question',
             'solicitorNameLabel',
+            'solicitorEmailManualLabel',
             'solicitorReferenceLabel',
             'searchSolicitorFirm',
             'solicitorEmailLabel',

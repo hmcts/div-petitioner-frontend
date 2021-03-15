@@ -3,8 +3,8 @@ const whoResponds = content.yourResponds.replace('{{ divorceWho }}', 'wife');
 
 Feature('IssuedToBailiff - Sent to Bailiff path @functional').retry(2);
 
-xScenario('Issued-to-bailiff page is displayed when IssuedToBailiff case', async function (I) {
-  await I.startApplicationWith('IssuedToBailiff');
+Scenario('Issued-to-bailiff page is displayed when IssuedToBailiff case', async function (I) {
+  await I.startApplicationWith('issueToBailiffSession');
   await I.amOnLoadedPage('/issued-to-bailiff');
 
   I.see(content.mainHeading);

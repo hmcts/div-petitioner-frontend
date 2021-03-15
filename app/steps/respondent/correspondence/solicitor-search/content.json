@@ -27,7 +27,7 @@
             "paragraph3": "You can check the spelling and search again, or enter the details manually."
           },
           "searchErrors": {
-            "emptyValue": "Please provide a solicitor firm's name",
+            "emptyValue": "Please provide a solicitor's firm name",
             "shortValue": "You must enter at least 3 characters",
             "solicitorName": "Please provide a solicitor name",
             "solicitorEmail": "Please provide a solicitor email"
@@ -35,20 +35,20 @@
         },
         "errors": {
           "respondentSolicitorName": {
-            "required": "Please provide a solicitor name",
-            "invalid": "Please provide a solicitor name"
+            "required": "Please provide a solicitor's name",
+            "invalid": "Please provide a solicitor's name"
           },
           "respondentSolicitorEmail": {
-            "required": "Please provide a solicitor email",
-            "invalid": "Please provide a solicitor email"
+            "required": "Please provide a solicitor's email",
+            "invalid": "Please provide a solicitor's email"
           },
           "respondentSolicitorAddressManual": {
-            "required": "Please provide a solicitor address",
-            "invalid": "Please provide a solicitor address"
+            "required": "Please provide a solicitor's address",
+            "invalid": "Please provide a solicitor's address"
           },
           "respondentSolicitorCompany": {
-            "required": "Please provide a solicitor firm",
-            "invalid": "Please provide a solicitor firm"
+            "required": "Please provide a solicitor's firm",
+            "invalid": "Please provide a solicitor's firm"
           }
         }
       }
@@ -79,7 +79,7 @@
             "paragraph3": "[CY] You can check the spelling and search again, or enter the details manually."
           },
           "searchErrors": {
-            "emptyValue": "[CY] Please provide your solicitor firm's name",
+            "emptyValue": "[CY] Please provide your solicitor's firm name",
             "shortValue": "[CY] You must enter at least 3 characters",
             "solicitorName": "[CY] Please provide a solicitor name",
             "solicitorEmail": "[CY] Please provide a solicitor email"
@@ -87,20 +87,20 @@
         },
         "errors": {
           "respondentSolicitorName": {
-            "required": "[CY] Please provide a solicitor name",
-            "invalid": "[CY] Please provide a solicitor name"
+            "required": "[CY] Please provide a solicitor's name",
+            "invalid": "[CY] Please provide a solicitor's name"
           },
           "respondentSolicitorEmail": {
-            "required": "[CY] Please provide a solicitor email",
-            "invalid": "[CY] Please provide a solicitor email"
+            "required": "[CY] Please provide a solicitor's email",
+            "invalid": "[CY] Please provide a solicitor's email"
           },
           "respondentSolicitorAddressManual": {
-            "required": "[CY] Please provide a solicitor address",
-            "invalid": "[CY] Please provide a solicitor address"
+            "required": "[CY] Please provide a solicitor's address",
+            "invalid": "[CY] Please provide a solicitor's address"
           },
           "respondentSolicitorCompany": {
-            "required": "[CY] Please provide a solicitor firm",
-            "invalid": "[CY] Please provide a solicitor firm"
+            "required": "[CY] Please provide a solicitor's firm",
+            "invalid": "[CY] Please provide a solicitor's firm"
           }
         }
       }

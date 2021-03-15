@@ -105,7 +105,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
         <input type="hidden" name="userAction" value="provided">
         <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorName }}"
              id="solicitor-name">
-          <fieldset id="respondentSolicitorName" class="govuk-fieldset">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(session.error.respondentSolicitorName) }}
             {{ textField(
@@ -119,7 +119,7 @@ It decides to render if the "organisations" object is not null, behaviour contro
         </div>
         <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorEmail }}"
              id="solicitor-email">
-          <fieldset id="respondentSolicitorEmail" class="govuk-fieldset">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
             {{ errorsFor(session.error.respondentSolicitorEmail) }}
             {{ textField(

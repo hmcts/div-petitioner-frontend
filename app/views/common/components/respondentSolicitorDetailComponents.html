@@ -45,15 +45,27 @@ Renders input fields for user to enter solicitor details manually.
     </fieldset>
   </div>
 
-  <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorEmail }}">
+  <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
       <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
-      {{ errorsFor(session.error.respondentSolicitorEmail) }}
       {{ textField(
-      name = 'respondentSolicitorEmail',
-      field = fields.respondentSolicitorEmail,
-      label = content.solicitorEmailLabel,
-      value = fields.respondentSolicitorEmail,
+      name = 'respondentSolicitorEmailManual',
+      field = fields.respondentSolicitorEmailManual,
+      label = content.solicitorEmailManualLabel,
+      value = fields.respondentSolicitorEmailManual,
+      boldLabel = true
+      ) }}
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ textField(
+      name = 'respondentSolicitorCompany',
+      field = fields.respondentSolicitorCompany,
+      label = content.solicitorCompanyLabel,
+      value = fields.respondentSolicitorCompany,
       boldLabel = true
       ) }}
     </fieldset>

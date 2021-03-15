@@ -141,19 +141,21 @@ const mapRespondentSolicitorData = ({ body, session }, manual) => {
   const { respondentSolicitorOrganisation } = session;
   const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
   let address = filter(values(first(solicitorContactInformation)), size);
+  session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
+  session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
 
   if (manual) {
     const manualAddress = get(body, 'respondentSolicitorAddressManual');
     address = parseManualAddress(manualAddress);
     session.respondentSolicitorAddressManual = manualAddress;
+    session.respondentSolicitorCompany = get(body, 'respondentSolicitorCompany');
+    session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmailManual');
   }
 
   session.respondentSolicitorAddress = { address };
-  session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
   session.respondentSolicitorName = get(body, 'respondentSolicitorName');
   session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
-  session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
 };
 
 const errorsCleanup = session => {

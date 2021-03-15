@@ -3,7 +3,7 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 const mockOrganisation = {
   reference: '02-002',
-  name: 'Karen Fox Solicitor',
+  name: 'Karen Fox',
   email: 'karen@karenfox.co.uk'
 };
 
@@ -23,7 +23,7 @@ function enterOrganisationUsingLookup(language = 'en', stepUrl, organisation = m
   I.navByClick(`select-${organisation.reference}`);
   I.wait(4);
   I.fillField('respondentSolicitorName', organisation.name);
-  I.fillField('#respondentSolicitorEmail', organisation.email);
+  I.fillField('respondentSolicitorEmail', organisation.email);
   I.fillField('respondentSolicitorReference', organisation.reference);
   I.wait(2);
   I.navByClick(commonContent.continue);

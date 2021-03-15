@@ -2,7 +2,8 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
 const mockOrganisation = {
-  name: 'Karen Fox Solicitor',
+  name: 'Karen Fox',
+  firmName: 'Karen Fox Solicitor',
   reference: '02-002',
   email: 'karen@karenfox.co.uk',
   address: '1 Main st, Moira, Down, BT77 7RR, N.Ire, U.K'
@@ -27,10 +28,11 @@ function enterOrganisationManually(language = 'en', stepUrl, organisation = mock
   I.waitForVisible('#manualForm');
   I.waitInUrl(`${stepUrl}/manual`);
   I.seeInCurrentUrl(`${stepUrl}/manual`);
-  I.fillField('#respondentSolicitorName', organisation.name);
-  I.fillField('#respondentSolicitorReference', organisation.reference);
-  I.fillField('#respondentSolicitorEmail', organisation.email);
-  I.fillField('#respondentSolicitorAddressManual', organisation.address);
+  I.fillField('respondentSolicitorName', organisation.name);
+  I.fillField('respondentSolicitorReference', organisation.reference);
+  I.fillField('respondentSolicitorEmailManual', organisation.email);
+  I.fillField('respondentSolicitorCompany', organisation.firmName);
+  I.fillField('respondentSolicitorAddressManual', organisation.address);
   I.navByClick(commonContent.continue);
 }
 

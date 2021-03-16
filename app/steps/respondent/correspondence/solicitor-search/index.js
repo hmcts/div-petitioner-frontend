@@ -11,6 +11,10 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     return '/petitioner-respondent/correspondence/solicitor-search';
   }
 
+  get ignorePa11yErrors() {
+    return ['WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID'];
+  }
+
   get nextStep() {
     return this.steps.ReasonForDivorce;
   }

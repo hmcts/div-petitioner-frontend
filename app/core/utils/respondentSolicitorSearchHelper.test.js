@@ -59,6 +59,12 @@ describe(modulePath, () => {
       expect(underTest.validateSearchRequest('co', content, session))
         .to.deep.equal([false, { error: true, errorMessage: Errors.SHORT_SOLICITOR_SEARCH }]);
     });
+
+    it('should return as valid if no search criteria is provided', () => {
+      const searchCriteria = get(req.body, 'respondentSolicitorFirm');
+      expect(underTest.validateSearchRequest(searchCriteria, content, session))
+        .to.deep.equal([true, null]);
+    });
   });
 
   describe('fetchAndAddOrganisations()', () => {
@@ -170,7 +176,7 @@ describe(modulePath, () => {
 
     it('should mapped expected errors when is not manual entry', () => {
       const manual = false;
-      const expectedLength = 2;
+      const expectedLength = 3;
       underTest.mapValidationErrors(req, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
@@ -252,14 +258,14 @@ describe(modulePath, () => {
     });
   });
 
-  describe('mapRespondentSolicitorData()', () => {
+  describe('mapRespondentSolicitorData() - Digital', () => {
     let session = {};
     const buildRespondentSolicitorSessionData = () => {
       return {
         divorceWho: 'wife',
-        respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-        respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
-        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+        respondentSolicitorName: null,
+        respondentSolicitorEmail: null,
+        respondentSolicitorReference: null,
         respondentSolicitorOrganisation: {
           contactInformation: [
             {
@@ -297,6 +303,7 @@ describe(modulePath, () => {
         'OL1 222',
         'Manchester'
       ];
+
       req.body = {
         respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
         respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
@@ -326,6 +333,40 @@ describe(modulePath, () => {
       expect(req.session.respondentSolicitorAddress).to.have.property('address');
       expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);
       expect(req.session.respondentSolicitorReferenceDataId).to.be.undefined;
+    });
+  });
+
+  describe('mapRespondentSolicitorData() - Manual', () => {
+    const manualAddress = 'An\n\raddress\nline\n \r\nlast line';
+    const expectedAddress = ['An', 'address', 'line', 'last line'];
+
+    it('should map current data to expected respondent solicitor payload', () => {
+      req = {
+        body: {
+          respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorEmailManual: TEST_RESP_SOLICITOR_EMAIL,
+          respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+          respondentSolicitorAddressManual: manualAddress,
+          respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY
+        },
+        session: {
+          divorceWho: 'wife',
+          respondentSolicitorName: null,
+          respondentSolicitorEmailManual: null,
+          respondentSolicitorReference: null,
+          respondentSolicitorAddressManual: null
+        }
+      };
+
+      underTest.mapRespondentSolicitorData(req, true);
+
+      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+      expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
+      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
+      expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
+      expect(req.session.respondentSolicitorAddress).to.have.property('address');
+      expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
+      expect(req.session.respondentSolicitorAddressManual).to.equal(manualAddress);
     });
   });
 

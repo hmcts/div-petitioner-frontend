@@ -2,8 +2,9 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
 const mockOrganisation = {
-  reference: '02-002',
-  name: 'Karen Fox Solicitor',
+  reference: '1YSAUCP',
+  searchTerm: 'Divorce',
+  name: 'Karen Fox',
   email: 'karen@karenfox.co.uk'
 };
 
@@ -16,14 +17,14 @@ function enterOrganisationUsingLookup(language = 'en', stepUrl, organisation = m
   I.waitInUrl(stepUrl);
   I.seeInCurrentUrl(stepUrl);
   I.waitForVisible('#solicitor-search');
-  I.fillField('respondentSolicitorFirm', organisation.name);
+  I.fillField('respondentSolicitorFirm', organisation.searchTerm);
   I.navByClick(findAddress);
-
+  I.wait(10);
   I.waitForVisible('#solicitor-search-results');
   I.navByClick(`select-${organisation.reference}`);
   I.wait(4);
   I.fillField('respondentSolicitorName', organisation.name);
-  I.fillField('#respondentSolicitorEmail', organisation.email);
+  I.fillField('respondentSolicitorEmail', organisation.email);
   I.fillField('respondentSolicitorReference', organisation.reference);
   I.wait(2);
   I.navByClick(commonContent.continue);

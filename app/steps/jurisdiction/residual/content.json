@@ -31,6 +31,7 @@
       "translation": {
         "content": {
           "heading": "Awdurdodaeth Weddillol",
+          "headingSame": "Awdurdodaeth Weddillol (cwpl priod o'r un rhyw)",
           "residualTextSame1": "Dengys eich atebion nad yw’r prif seiliau, sy’n rhoi awdurdodaeth i lysoedd Cymru a Lloegr ystyried eich cais am ysgariad, yn berthnasol. Fodd bynnag, efallai y byddwch yn gallu gwneud cais am ysgariad yng Nghymru a Lloegr yn seiliedig ar ‘awdurdodaeth weddillol’ y llys.",
           "residualTextSame2": "Fel rheol, i fod yn gymwys ar gyfer awdurdodaeth weddillol, rhaid i chi neu eich {{ divorceWho }} fod â’ch domisil yng Nghymru neu Loegr, ac ni all yr un ohonoch fod yn ddinesydd gwlad arall yn yr UE (ac eithrio Denmarc) na phreswylio’n arferol mewn gwlad arall yn yr UE (ac eithrio Denmarc).",
           "residualTextSameConHead": "At hynny, os ydych yn briod â rhywun o’r un rhyw, efallai eich bod yn gymwys ar gyfer awdurdodaeth weddillol os yw’r canlynol i gyd yn berthnasol:",

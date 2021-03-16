@@ -14,6 +14,7 @@ const server = require('app');
 const idamMock = require('test/mocks/idam');
 const { expect, sinon } = require('test/util/chai');
 const { escape } = require('lodash');
+const co = require('co');
 
 const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
 
@@ -278,10 +279,6 @@ describe(modulePath, () => {
       let req = {};
       let res = {};
       let postBody = {};
-      let resetManualRespondentSolicitorData = null;
-      let resetRespondentSolicitorData = null;
-      let fetchAndAddOrganisations = null;
-      let validateSearchRequest = null;
 
       describe('#validate', () => {
         it('should return as valid when default validation is called', () => {
@@ -291,6 +288,12 @@ describe(modulePath, () => {
       });
 
       describe('#handler', () => {
+        let resetManualRespondentSolicitorData = null;
+        let resetRespondentSolicitorData = null;
+        let fetchAndAddOrganisations = null;
+        let validateSearchRequest = null;
+        let errorsCleanup = null;
+
         beforeEach(() => {
           req = {
             body: {},
@@ -308,6 +311,7 @@ describe(modulePath, () => {
           resetRespondentSolicitorData = sinon.stub(searchHelper, 'resetRespondentSolicitorData');
           fetchAndAddOrganisations = sinon.stub(searchHelper, 'fetchAndAddOrganisations');
           validateSearchRequest = sinon.stub(searchHelper, 'validateSearchRequest');
+          errorsCleanup = sinon.stub(searchHelper, 'errorsCleanup');
         });
 
         afterEach(() => {
@@ -317,6 +321,7 @@ describe(modulePath, () => {
           resetRespondentSolicitorData.restore();
           fetchAndAddOrganisations.restore();
           validateSearchRequest.restore();
+          errorsCleanup.restore();
         });
 
         it('should not redirect when submitted without submit button', done => {
@@ -397,6 +402,7 @@ describe(modulePath, () => {
           await underTest.handler(req, res);
 
           expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(errorsCleanup.calledOnce).to.equal(true);
           expect(fetchAndAddOrganisations.calledOnce).to.equal(true);
           expect(fetchAndAddOrganisations.calledWith(req, sinon.match(VALID_NAME))).to.equal(true);
         });
@@ -435,6 +441,95 @@ describe(modulePath, () => {
           underTest.getRequest(req, res);
 
           expect(req.session.searchType).to.be.undefined;
+        });
+      });
+
+      describe('#postReuqst', () => {
+        let isManual = null;
+        let mapValidationErrors = null;
+        let isInValidManualData = null;
+        let isInValidSearchData = null;
+        let mapRespondentSolicitorData = null;
+
+        beforeEach(() => {
+          req = {
+            body: {},
+            method: 'POST',
+            session: {},
+            cookies: { '__auth-token': 'fake.token' },
+            headers: {}
+          };
+          res = {
+            redirect: sinon.stub(),
+            sendStatus: sinon.stub()
+          };
+
+          sinon.stub(underTest, 'validate').returns([true]);
+          sinon.stub(underTest, 'parseCtx').resolves();
+
+          isManual = sinon.stub(searchHelper, 'isManual');
+          mapValidationErrors = sinon.stub(searchHelper, 'mapValidationErrors');
+          isInValidManualData = sinon.stub(searchHelper, 'isInValidManualData');
+          isInValidSearchData = sinon.stub(searchHelper, 'isInValidSearchData');
+          mapRespondentSolicitorData = sinon.stub(searchHelper, 'mapRespondentSolicitorData');
+        });
+
+        afterEach(() => {
+          req = {};
+          res = {};
+          underTest.validate.restore();
+          underTest.parseCtx.restore();
+          isManual.restore();
+          mapValidationErrors.restore();
+          isInValidManualData.restore();
+          isInValidSearchData.restore();
+          mapRespondentSolicitorData.restore();
+        });
+
+        it('should redirect to nextStep (Reasons for divorce) when valid data is posted', done => {
+          isManual.returns(false);
+          mapValidationErrors.returns(true);
+
+          co(function* generator() {
+            yield underTest.postRequest(req, res);
+            expect(underTest.parseCtx.calledOnce).to.equal(true);
+            expect(underTest.validate.calledOnce).to.equal(true);
+            expect(isInValidManualData.calledOnce).to.equal(false);
+            expect(isInValidSearchData.calledOnce).to.equal(false);
+            expect(res.redirect.calledWith(underTest.nextStep.url)).to.equal(true);
+            done();
+          });
+        });
+
+        it('should redirect to manual view when invalid data is posted and its manual', done => {
+          isManual.returns(true);
+          mapValidationErrors.returns(false);
+          isInValidManualData.callThrough();
+
+          co(function* generator() {
+            yield underTest.postRequest(req, res);
+            expect(mapRespondentSolicitorData.calledOnce).to.equal(true);
+            expect(isInValidManualData.calledOnce).to.equal(true);
+            expect(isInValidSearchData.calledOnce).to.equal(false);
+            expect(res.redirect.calledWith(`${underTest.url}/manual`)).to.equal(true);
+            done();
+          });
+        });
+
+        it('should redirect to search view when invalid data is posted and its not manual', done => {
+          isManual.returns(false);
+          mapValidationErrors.returns(false);
+          isInValidSearchData.callThrough();
+          isInValidManualData.callThrough();
+
+          co(function* generator() {
+            yield underTest.postRequest(req, res);
+            expect(mapRespondentSolicitorData.calledOnce).to.equal(true);
+            expect(isInValidManualData.calledOnce).to.equal(true);
+            expect(isInValidSearchData.calledOnce).to.equal(true);
+            expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+            done();
+          });
         });
       });
     });

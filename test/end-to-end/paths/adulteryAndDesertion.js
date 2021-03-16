@@ -1,9 +1,6 @@
 const languages = ['en', 'cy'];
-const divorceReasonContentEn = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
-const divorceReasonContentCy = require('app/steps/grounds-for-divorce/reason/content.json').resources.cy.translation.content;
-
-const sendDivorcePapersContentEn = require('app/steps/respondent/correspondence/use-home-address/content.json').resources.en.translation.content.featureToggleRespSol;
-const sendDivorcePapersContentCy = require('app/steps/respondent/correspondence/use-home-address/content.json').resources.cy.translation.content.featureToggleRespSol;
+const contentEn = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const contentCy = require('app/steps/grounds-for-divorce/reason/content.json').resources.cy.translation.content;
 
 const config = require('config');
 
@@ -13,8 +10,7 @@ languages.forEach( language => {
 
   Scenario (`${language.toUpperCase()} - Adultery, with details`, async function(I) {
 
-    const divorceReason = language === 'en' ? divorceReasonContentEn : divorceReasonContentCy;
-    const sendToAddressOption = language === 'en' ? sendDivorcePapersContentEn: sendDivorcePapersContentCy;
+    const divorceReason = language === 'en' ? contentEn : contentCy;
     await stepsStartApplicationToReadFinancialRemedy(I, language);
 
     I.selectHelpWithFees(language);
@@ -36,8 +32,9 @@ languages.forEach( language => {
     I.enterAddressUsingPostcode(language,'/petitioner-respondent/address');
     I.enterCorrespondence(language);
     I.selectLivingTogetherInSameProperty(language);
-    I.chooseRespondentServiceAddress(language, sendToAddressOption['solicitorAddress']);
-    I.enterOrganisationUsingLookup(language, '/petitioner-respondent/correspondence/solicitor-search');
+    I.chooseRespondentServiceAddress(language);
+    I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
+
     I.selectReasonForDivorce(language, divorceReason['adulteryHeading']);
     I.selectWishToName(language);
     I.enter3rdPartyDetails(language);
@@ -84,8 +81,7 @@ languages.forEach( language => {
 
   Scenario (`${language.toUpperCase()} - Desertion without agreement`, async function(I) {
 
-    const divorceReason = language === 'en' ? divorceReasonContentEn : divorceReasonContentCy;
-    const sendToAddressOption = language === 'en' ? sendDivorcePapersContentEn: sendDivorcePapersContentCy;
+    const divorceReason = language === 'en' ? contentEn : contentCy;
     await stepsStartApplicationToReadFinancialRemedy(I, language);
 
     I.selectHelpWithFees(language, false);
@@ -107,8 +103,8 @@ languages.forEach( language => {
     I.enterCorrespondence(language);
     I.selectLivingTogetherInSameProperty(language);
 
-    I.chooseRespondentServiceAddress(language, sendToAddressOption['solicitorAddress']);
-    I.enterOrganisationManually(language, '/petitioner-respondent/correspondence/solicitor-search');
+    I.chooseRespondentServiceAddress(language);
+    I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
     I.selectReasonForDivorce(language, divorceReason['desertionHeading']);
     I.enterDesertionAgreement(language);
     I.enterDesertionDate(language);

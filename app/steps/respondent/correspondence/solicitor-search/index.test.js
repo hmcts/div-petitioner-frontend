@@ -444,7 +444,7 @@ describe(modulePath, () => {
         });
       });
 
-      describe('#postReuqst', () => {
+      describe.skip('#postReuqst', () => {
         let isManual = null;
         let mapValidationErrors = null;
         let isInValidManualData = null;

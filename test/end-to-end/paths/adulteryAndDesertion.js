@@ -108,7 +108,7 @@ languages.forEach( language => {
     I.selectLivingTogetherInSameProperty(language);
 
     I.chooseRespondentServiceAddress(language, sendToAddressOption['solicitorAddress']);
-    I.enterOrganisationManually(language, '/petitioner-respondent/correspondence/solicitor-search');
+    I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
     I.selectReasonForDivorce(language, divorceReason['desertionHeading']);
     I.enterDesertionAgreement(language);
     I.enterDesertionDate(language);

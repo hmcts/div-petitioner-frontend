@@ -21,10 +21,10 @@ function enterOrganisationManually(language = 'en', stepUrl, organisation = mock
   I.waitForVisible('#solicitor-search');
   I.fillField('respondentSolicitorFirm', organisation.name);
   I.navByClick(findAddress);
-
+  I.wait(4);
   I.waitForVisible('#solicitor-search-results');
   I.navByClick(enterManually);
-
+  I.wait(4);
   I.waitForVisible('#manualForm');
   I.waitInUrl(`${stepUrl}/manual`);
   I.seeInCurrentUrl(`${stepUrl}/manual`);

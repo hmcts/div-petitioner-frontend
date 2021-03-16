@@ -59,6 +59,12 @@ describe(modulePath, () => {
       expect(underTest.validateSearchRequest('co', content, session))
         .to.deep.equal([false, { error: true, errorMessage: Errors.SHORT_SOLICITOR_SEARCH }]);
     });
+
+    it('should return as valid if no search criteria is provided', () => {
+      const searchCriteria = get(req.body, 'respondentSolicitorFirm');
+      expect(underTest.validateSearchRequest(searchCriteria, content, session))
+        .to.deep.equal([true, null]);
+    });
   });
 
   describe('fetchAndAddOrganisations()', () => {

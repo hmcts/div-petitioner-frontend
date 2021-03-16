@@ -281,6 +281,13 @@ describe(modulePath, () => {
       let resetManualRespondentSolicitorData = null;
       let resetRespondentSolicitorData = null;
 
+      describe('#validate', () => {
+        it('should return as valid when default validation is called', () => {
+          expect(underTest.validate({}, session))
+            .to.deep.equal([true, null]);
+        });
+      });
+
       describe('#handler', () => {
         beforeEach(() => {
           req = {
@@ -356,6 +363,42 @@ describe(modulePath, () => {
           expect(req.session.respondentSolicitorOrganisation).to.be.undefined;
           expect(req.session.respondentSolicitorName).to.be.undefined;
           expect(resetRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+      });
+
+      describe('#getRequest', () => {
+        beforeEach(() => {
+          req = {
+            body: {},
+            method: 'POST',
+            session: {},
+            cookies: { '__auth-token': 'fake.token' },
+            headers: {},
+            query: { searchType: 'manual' }
+          };
+          res = {
+            redirect: sinon.stub(),
+            sendStatus: sinon.stub()
+          };
+        });
+
+        afterEach(() => {
+          req = {};
+          res = {};
+        });
+
+        it('should set the search type as manual', () => {
+          underTest.getRequest(req, res);
+
+          expect(req.session.searchType).to.equal('manual');
+        });
+
+        it('should not set the search type as manual', () => {
+          req.query = {};
+
+          underTest.getRequest(req, res);
+
+          expect(req.session.searchType).to.be.undefined;
         });
       });
     });

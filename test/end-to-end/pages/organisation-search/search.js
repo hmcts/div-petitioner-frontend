@@ -1,6 +1,3 @@
-const commonContentEn = require('app/content/common-en').resources.en.translation;
-const commonContentCy = require('app/content/common-cy').resources.cy.translation;
-
 const mockOrganisation = {
   reference: '1YSAUCP',
   searchTerm: 'Divorce',
@@ -9,7 +6,7 @@ const mockOrganisation = {
 };
 
 function enterOrganisationUsingLookup(language = 'en', stepUrl, organisation = mockOrganisation) {
-  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const continueButton = language === 'en' ? 'Continue' : '[CY] Continue';
   const findAddress = language === 'en' ? 'Search' : '[CY] Search';
 
   const I = this;
@@ -27,7 +24,7 @@ function enterOrganisationUsingLookup(language = 'en', stepUrl, organisation = m
   I.fillField('respondentSolicitorEmail', organisation.email);
   I.fillField('respondentSolicitorReference', organisation.reference);
   I.wait(2);
-  I.navByClick(commonContent.continue);
+  I.navByClick(continueButton);
 }
 
 module.exports = { enterOrganisationUsingLookup };

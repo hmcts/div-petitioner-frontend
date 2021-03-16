@@ -85,7 +85,6 @@ languages.forEach( language => {
   Scenario (`${language.toUpperCase()} - Desertion without agreement`, async function(I) {
 
     const divorceReason = language === 'en' ? divorceReasonContentEn : divorceReasonContentCy;
-    const sendToAddressOption = language === 'en' ? sendDivorcePapersContentEn: sendDivorcePapersContentCy;
     await stepsStartApplicationToReadFinancialRemedy(I, language);
 
     I.selectHelpWithFees(language, false);
@@ -107,7 +106,7 @@ languages.forEach( language => {
     I.enterCorrespondence(language);
     I.selectLivingTogetherInSameProperty(language);
 
-    I.chooseRespondentServiceAddress(language, sendToAddressOption['solicitorAddress']);
+    I.chooseRespondentServiceAddress(language);
     I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
     I.selectReasonForDivorce(language, divorceReason['desertionHeading']);
     I.enterDesertionAgreement(language);

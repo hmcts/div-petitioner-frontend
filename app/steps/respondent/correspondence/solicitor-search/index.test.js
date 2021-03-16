@@ -1,30 +1,46 @@
 /* eslint no-unused-expressions: "off" */
+/* eslint  max-nested-callbacks: "off" */
 const request = require('supertest');
 const {
-  testRedirect,
-  testContent
+  testContent,
+  testExistence,
+  testMultipleValuesExistence,
+  testCustom,
+  testExistenceCYA,
+  testCYATemplate
 } = require('test/util/assertions');
 const { withSession } = require('test/util/setup');
 const server = require('app');
 const idamMock = require('test/mocks/idam');
-const { expect } = require('test/util/chai');
+const { expect, sinon } = require('test/util/chai');
+const { escape } = require('lodash');
+const co = require('co');
+
+const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
 
 const modulePath = 'app/steps/respondent/correspondence/solicitor-search';
-
 const content = require(`${modulePath}/content`);
 
-let s = {};
-let agent = {};
-let underTest = {};
 
+const contentStrings = content.resources.en.translation.content;
+const { UserAction } = searchHelper;
 const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
+const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
 const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
 const TEST_RESP_SOLICITOR_ID = '11-111';
 
-function buildRespondentSolicitorSessionData() {
+let appInstance = {};
+let agent = {};
+let underTest = {};
+let session = {};
+
+function buildResultData() {
   return {
     divorceWho: 'wife',
+    respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+    respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
+    respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
     respondentSolicitorOrganisation: {
       contactInformation: [
         {
@@ -44,124 +60,478 @@ function buildRespondentSolicitorSessionData() {
   };
 }
 
+function buildMockOrganisationsList() {
+  return [
+    {
+      contactInformation: [
+        {
+          addressLine1: '1 Trasna way',
+          addressLine2: 'Lurgan',
+          addressLine3: '',
+          country: 'United Kingdom',
+          county: 'Armagh',
+          postCode: 'BT25 545',
+          townCity: 'Craigavon'
+        }
+      ],
+      name: 'Campbell & Haughey Solicitors Ltd',
+      organisationIdentifier: '02-002'
+    },
+    {
+      contactInformation: [
+        {
+          addressLine1: '19/22 Union St',
+          addressLine2: 'Oldham',
+          addressLine3: '',
+          country: 'United Kingdom',
+          county: 'Greater Manchester',
+          postCode: 'OL1 222',
+          townCity: 'Manchester'
+        }
+      ],
+      name: TEST_RESP_SOLICITOR_COMPANY,
+      organisationIdentifier: TEST_RESP_SOLICITOR_ID
+    }
+  ];
+}
+
 describe(modulePath, () => {
   beforeEach(() => {
     idamMock.stub();
-    s = server.init();
-    agent = request.agent(s.app);
-    underTest = s.steps.RespondentCorrespondenceSolicitorSearch;
+    appInstance = server.init();
+    agent = request.agent(appInstance.app);
+    underTest = appInstance.steps.RespondentCorrespondenceSolicitorSearch;
   });
 
   afterEach(() => {
     idamMock.restore();
+    session = {};
   });
 
   describe('Solicitor Search', () => {
-    const session = buildRespondentSolicitorSessionData();
+    context('Template Rendering:', () => {
+      session = { divorceWho: 'wife' };
 
-    beforeEach(done => {
-      withSession(done, agent, session);
-    });
+      beforeEach(done => {
+        withSession(done, agent, session);
+      });
 
-    describe('View content rendering', () => {
-      it('renders the content from the content file', done => {
-        const excludedKeys = [
-          'deselectBtnText',
-          'selectBtnText',
-          'enterManuallyBtnText',
-          'resultsLabel',
-          'solicitorNameLabel',
-          'solicitorReferenceLabel',
-          'solicitorEmailLabel',
-          'solicitorFirmAddressLabel',
-          'searchNoOptionFoundText',
-          'searchNoResults.paragraph1',
-          'searchNoResults.paragraph2',
-          'searchNoResults.paragraph3',
-          'searchErrors.emptyValue',
-          'searchErrors.shortValue',
-          'searchErrors.solicitorName'
-        ];
+      afterEach(() => {
+        session = {};
+      });
 
-        testContent(done, agent, underTest, content, session, excludedKeys);
+      describe('Landing page view:', () => {
+        it('should display correct search label', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorFirmLabel);
+        });
+
+        it('should display correct search label', done => {
+          testExistence(done, agent, underTest, contentStrings.searchButton);
+        });
+
+        it('contains references to wife', done => {
+          const excludedKeys = [
+            'deselectBtnText',
+            'selectBtnText',
+            'enterManuallyBtnText',
+            'resultsLabel',
+            'question',
+            'solicitorNameLabel',
+            'solicitorEmailManualLabel',
+            'solicitorReferenceLabel',
+            'searchSolicitorFirm',
+            'solicitorEmailLabel',
+            'solicitorEmailManualLabel',
+            'errorSummaryHeading',
+            'solicitorFirmAddressLabel',
+            'searchNoOptionFoundText',
+            'searchNoResults.paragraph1',
+            'searchNoResults.paragraph2',
+            'searchNoResults.paragraph3',
+            'searchErrors.emptyValue',
+            'searchErrors.shortValue',
+            'searchErrors.solicitorName',
+            'searchErrors.solicitorEmail'
+          ];
+          testContent(done, agent, underTest, content, session, excludedKeys, { divorceWho: 'wife' }, false);
+        });
+
+        it('#ignorePa11yErrors returns an array', () => {
+          const totalIgnored = 1;
+          expect(underTest.ignorePa11yErrors).to.be.lengthOf(totalIgnored);
+        });
+      });
+
+      describe('Search view when no results:', () => {
+        beforeEach(done => {
+          session = { divorceWho: 'wife', organisations: [], respondentSolicitorFirm: 'test' };
+          withSession(done, agent, session);
+        });
+
+        it('should display correct no search no result paragraph', done => {
+          testMultipleValuesExistence(done, agent, underTest,
+            [
+              contentStrings.searchNoResults.paragraph1,
+              contentStrings.searchNoResults.paragraph2,
+              contentStrings.searchNoResults.paragraph3
+            ], {});
+        });
+
+        it('should display the enter manually text button', done => {
+          testExistence(done, agent, underTest, contentStrings.enterManuallyBtnText);
+        });
+      });
+
+      describe('Search view when result found and selected', () => {
+        beforeEach(done => {
+          session = buildResultData();
+          session.organisations = buildMockOrganisationsList();
+          withSession(done, agent, session);
+        });
+
+        it('should display solicitor organisation details', done => {
+          testCustom(done, agent, underTest, [], response => {
+            expect(response.text.includes(escape('Whitehead & Low Solicitors LLP'))).to.equal(true);
+            expect(response.text.includes(escape('19/22 Union St'))).to.equal(true);
+            expect(response.text.includes(escape('Oldham'))).to.equal(true);
+            expect(response.text.includes(escape('Greater Manchester'))).to.equal(true);
+            expect(response.text.includes(escape('OL1 222'))).to.equal(true);
+            expect(response.text.includes(escape('Manchester'))).to.equal(true);
+            expect(response.text.includes(escape('United Kingdom'))).to.equal(true);
+          });
+        });
+
+        it('should display respondentSolicitorName input', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorNameLabel);
+        });
+
+        it('should display respondentSolicitorEmail input', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorEmailLabel);
+        });
+
+        it('should display respondentSolicitorReference input', done => {
+          testExistence(done, agent, underTest, contentStrings.solicitorReferenceLabel);
+        });
+
+        it('should display submit button input', done => {
+          testExistence(done, agent, underTest, content.continueBtnText);
+        });
+      });
+
+      describe('Search view when result found and listed', () => {
+        const getOccurrencesInPage = (response, expectedText) => {
+          return response.text.match(new RegExp(escape(expectedText), 'g')).length;
+        };
+
+        beforeEach(done => {
+          session = buildResultData();
+          session.organisations = buildMockOrganisationsList();
+          session.respondentSolicitorOrganisation = null;
+          withSession(done, agent, session);
+        });
+
+        it('should list of organisation details', done => {
+          const organisationCount = 2;
+
+          testCustom(done, agent, underTest, [], response => {
+            expect(response.text.includes(escape('Whitehead & Low Solicitors LLP'))).to.equal(true);
+            expect(response.text.includes(escape('Campbell & Haughey Solicitors Ltd'))).to.equal(true);
+            expect(getOccurrencesInPage(response, 'select-')).to.equal(organisationCount);
+            expect(response.text.includes(contentStrings.enterManuallyBtnText)).to.equal(true);
+          });
+        });
+      });
+
+      describe('Check Your Answers page', () => {
+        session = {
+          divorceWho: 'wife',
+          respondentSolicitorName: 'Solicitor name',
+          respondentSolicitorAddress: {
+            address: ['line 1', 'line 2', 'line 3', 'postcode']
+          }
+        };
+
+        beforeEach(done => {
+          withSession(done, agent, session);
+        });
+
+        afterEach(() => {
+          session = {};
+        });
+
+        it('renders the cya template', done => {
+          testCYATemplate(done, underTest, {}, session);
+        });
+
+        it('renders address', done => {
+          testExistenceCYA(done, underTest, content, [], [], {}, {
+            divorceWho: 'wife',
+            respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorAddress: {
+              address: ['line 1', 'line 2', 'line 3', 'postcode']
+            }
+          });
+        });
       });
     });
 
-    describe('User action redirection', () => {
-      it('should redirect to reason for divorce page when user action is not handled', done => {
-        testRedirect(done, agent, underTest, {}, s.steps.ReasonForDivorce);
+    context('UserAction functionality', () => {
+      let req = {};
+      let res = {};
+      let postBody = {};
+
+      describe('#validate', () => {
+        it('should return as valid when default validation is called', () => {
+          expect(underTest.validate({}, session))
+            .to.deep.equal([true, null]);
+        });
       });
 
-      it('should redirect to solicitor details manual page when user action is MANUAL', done => {
-        testRedirect(done, agent, underTest, { userAction: 'manual' }, s.steps.RespondentSolicitorSearchManual);
+      describe('#handler', () => {
+        let resetManualRespondentSolicitorData = null;
+        let resetRespondentSolicitorData = null;
+        let fetchAndAddOrganisations = null;
+        let validateSearchRequest = null;
+        let errorsCleanup = null;
+
+        beforeEach(() => {
+          req = {
+            body: {},
+            method: 'POST',
+            session: {},
+            cookies: { '__auth-token': 'fake.token' },
+            headers: {}
+          };
+          res = {
+            redirect: sinon.stub(),
+            sendStatus: sinon.stub()
+          };
+
+          resetManualRespondentSolicitorData = sinon.stub(searchHelper, 'resetManualRespondentSolicitorData');
+          resetRespondentSolicitorData = sinon.stub(searchHelper, 'resetRespondentSolicitorData');
+          fetchAndAddOrganisations = sinon.stub(searchHelper, 'fetchAndAddOrganisations');
+          validateSearchRequest = sinon.stub(searchHelper, 'validateSearchRequest');
+          errorsCleanup = sinon.stub(searchHelper, 'errorsCleanup');
+        });
+
+        afterEach(() => {
+          req = {};
+          res = {};
+          resetManualRespondentSolicitorData.restore();
+          resetRespondentSolicitorData.restore();
+          fetchAndAddOrganisations.restore();
+          validateSearchRequest.restore();
+          errorsCleanup.restore();
+        });
+
+        it('should not redirect when submitted without submit button', done => {
+          postBody = {};
+          testCustom(done, agent, underTest, [], response => {
+            expect(response.res.headers.location).to.equal(underTest.url);
+          }, 'post', true, postBody);
+        });
+
+        it('should redirect to manual url when UserAction is \'MANUAL\'', async () => {
+          req.body = {
+            userAction: UserAction.MANUAL
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.called).to.eql(true);
+          expect(res.redirect.calledWith(`${underTest.url}/manual`)).to.equal(true);
+          expect(resetManualRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+
+        it('should set solicitor organisation when UserAction is \'SELECTION\'', async () => {
+          req.session.organisations = buildMockOrganisationsList();
+          req.body = {
+            userAction: UserAction.SELECTION,
+            userSelection: '02-002'
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(req.session.respondentSolicitorOrganisation).not.to.be.undefined;
+          expect(resetRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+
+        it('should reset respondent solicitor session data when UserAction is \'DESELECTION\'', async () => {
+          resetRespondentSolicitorData.callThrough();
+
+          const SOME_VALUE = 'SomeValue';
+          req.session = {
+            respondentSolicitorOrganisation: SOME_VALUE,
+            respondentSolicitorName: SOME_VALUE
+          };
+          req.body = {
+            userAction: UserAction.DESELECTION
+          };
+
+          await underTest.handler(req, res);
+
+          expect(req.session.respondentSolicitorOrganisation).to.be.undefined;
+          expect(req.session.respondentSolicitorName).to.be.undefined;
+          expect(resetRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+
+        it('should remain on same view when UserAction is \'SEARCH\' and search criteria is invalid', async () => {
+          validateSearchRequest.returns([false, {}]);
+          const TOO_SHORT = 'ab';
+          req.body = {
+            userAction: UserAction.SEARCH,
+            respondentSolicitorFirm: TOO_SHORT
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(fetchAndAddOrganisations.calledOnce).to.equal(false);
+          expect(validateSearchRequest.calledOnce).to.equal(true);
+        });
+
+        it('should call fetchAndAddOrganisations when UserAction is \'SEARCH\' and search criteria is valid', async () => {
+          validateSearchRequest.returns([true, {}]);
+          const VALID_NAME = 'criteria';
+          req.body = {
+            userAction: UserAction.SEARCH,
+            respondentSolicitorFirm: VALID_NAME
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(errorsCleanup.calledOnce).to.equal(true);
+          expect(fetchAndAddOrganisations.calledOnce).to.equal(true);
+          expect(fetchAndAddOrganisations.calledWith(req, sinon.match(VALID_NAME))).to.equal(true);
+        });
       });
 
-      it('should not redirect when user action is SELECTION', done => {
-        testRedirect(done, agent, underTest, { userAction: 'selection' }, s.steps.RespondentCorrespondenceSolicitorSearch);
+      describe('#getRequest', () => {
+        beforeEach(() => {
+          req = {
+            body: {},
+            method: 'POST',
+            session: {},
+            cookies: { '__auth-token': 'fake.token' },
+            headers: {},
+            query: { searchType: 'manual' }
+          };
+          res = {
+            redirect: sinon.stub(),
+            sendStatus: sinon.stub()
+          };
+        });
+
+        afterEach(() => {
+          req = {};
+          res = {};
+        });
+
+        it('should set the search type as manual', () => {
+          underTest.getRequest(req, res);
+
+          expect(req.session.searchType).to.equal('manual');
+        });
+
+        it('should not set the search type as manual', () => {
+          req.query = {};
+
+          underTest.getRequest(req, res);
+
+          expect(req.session.searchType).to.be.undefined;
+        });
       });
 
-      it('should not redirect when user action is SEARCH', done => {
-        testRedirect(done, agent, underTest, { userAction: 'search' }, s.steps.RespondentCorrespondenceSolicitorSearch);
+      describe('#postReuqst', () => {
+        let isManual = null;
+        let mapValidationErrors = null;
+        let isInValidManualData = null;
+        let isInValidSearchData = null;
+        let mapRespondentSolicitorData = null;
+
+        beforeEach(() => {
+          req = {
+            body: {},
+            method: 'POST',
+            session: {},
+            cookies: { '__auth-token': 'fake.token' },
+            headers: {}
+          };
+          res = {
+            redirect: sinon.stub(),
+            sendStatus: sinon.stub()
+          };
+
+          sinon.stub(underTest, 'validate').returns([true]);
+          sinon.stub(underTest, 'parseCtx').resolves();
+
+          isManual = sinon.stub(searchHelper, 'isManual');
+          mapValidationErrors = sinon.stub(searchHelper, 'mapValidationErrors');
+          isInValidManualData = sinon.stub(searchHelper, 'isInValidManualData');
+          isInValidSearchData = sinon.stub(searchHelper, 'isInValidSearchData');
+          mapRespondentSolicitorData = sinon.stub(searchHelper, 'mapRespondentSolicitorData');
+        });
+
+        afterEach(() => {
+          req = {};
+          res = {};
+          underTest.validate.restore();
+          underTest.parseCtx.restore();
+          isManual.restore();
+          mapValidationErrors.restore();
+          isInValidManualData.restore();
+          isInValidSearchData.restore();
+          mapRespondentSolicitorData.restore();
+        });
+
+        it('should redirect to nextStep (Reasons for divorce) when valid data is posted', done => {
+          isManual.returns(false);
+          mapValidationErrors.returns(true);
+
+          co(function* generator() {
+            yield underTest.postRequest(req, res);
+            expect(underTest.parseCtx.calledOnce).to.equal(true);
+            expect(underTest.validate.calledOnce).to.equal(true);
+            expect(isInValidManualData.calledOnce).to.equal(false);
+            expect(isInValidSearchData.calledOnce).to.equal(false);
+            expect(res.redirect.calledWith(underTest.nextStep.url)).to.equal(true);
+            done();
+          });
+        });
+
+        it('should redirect to manual view when invalid data is posted and its manual', done => {
+          isManual.returns(true);
+          mapValidationErrors.returns(false);
+          isInValidManualData.callThrough();
+
+          co(function* generator() {
+            yield underTest.postRequest(req, res);
+            expect(mapRespondentSolicitorData.calledOnce).to.equal(true);
+            expect(isInValidManualData.calledOnce).to.equal(true);
+            expect(isInValidSearchData.calledOnce).to.equal(false);
+            expect(res.redirect.calledWith(`${underTest.url}/manual`)).to.equal(true);
+            done();
+          });
+        });
+
+        it('should redirect to search view when invalid data is posted and its not manual', done => {
+          isManual.returns(false);
+          mapValidationErrors.returns(false);
+          isInValidSearchData.callThrough();
+          isInValidManualData.callThrough();
+
+          co(function* generator() {
+            yield underTest.postRequest(req, res);
+            expect(mapRespondentSolicitorData.calledOnce).to.equal(true);
+            expect(isInValidManualData.calledOnce).to.equal(true);
+            expect(isInValidSearchData.calledOnce).to.equal(true);
+            expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+            done();
+          });
+        });
       });
-
-      it('should not redirect when user action is PROVIDED and required data not provided', done => {
-        testRedirect(done, agent, underTest, { userAction: 'provided' }, s.steps.RespondentCorrespondenceSolicitorSearch);
-      });
-
-      it('should redirect when user action is PROVIDED and data is provided', done => {
-        testRedirect(done, agent, underTest, {
-          userAction: 'provided',
-          respondentSolicitorName: 'testSolicitorName'
-        }, s.steps.ReasonForDivorce);
-      });
-    });
-  });
-
-  describe('Solicitor search functionality', () => {
-    let req = {};
-    const session = buildRespondentSolicitorSessionData();
-
-    beforeEach(() => {
-      req = { session };
-    });
-
-    it('should map current data to expected respondent solicitor payload', () => {
-      const expectedAddress = [
-        '19/22 Union St',
-        'Oldham',
-        'United Kingdom',
-        'Greater Manchester',
-        'OL1 222',
-        'Manchester'
-      ];
-      req.body = {
-        respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
-      };
-
-      underTest.mapRespondentSolicitorData(req);
-
-      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
-      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
-      expect(req.session).to.not.have.property('respondentSolicitorEmail');
-      expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
-      expect(req.session.respondentSolicitorAddress).to.have.property('address');
-      expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
-      expect(req.session.respondentSolicitorReferenceDataId).to.equal(TEST_RESP_SOLICITOR_ID);
-    });
-
-    it('should map empty array to solicitor address when no solicitor organisation', () => {
-      req.session.respondentSolicitorOrganisation = null;
-
-      underTest.mapRespondentSolicitorData(req);
-
-      expect(req.session.respondentSolicitorName).to.be.undefined;
-      expect(req.session.respondentSolicitorReference).to.be.undefined;
-      expect(req.session).to.not.have.property('respondentSolicitorEmail');
-      expect(req.session.respondentSolicitorCompany).to.be.undefined;
-      expect(req.session.respondentSolicitorAddress).to.have.property('address');
-      expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);
-      expect(req.session.respondentSolicitorReferenceDataId).to.be.undefined;
     });
   });
 });

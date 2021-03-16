@@ -4,11 +4,35 @@
   "type": "object",
   "properties": {
     "respondentSolicitorFirm": {
-        "type": "string",
-        "minLength": 3
+      "type": "string",
+      "minLength": 3
+    },
+    "respondentSolicitorName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "respondentSolicitorReference": {
+      "type": "string"
+    },
+    "respondentSolicitorEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "respondentSolicitorCompany": {
+      "type": "string"
+    },
+    "respondentSolicitorAddressManual": {
+      "type": "string",
+      "minLength": 3
+    },
+    "searchType": {
+      "type": "string"
     }
   },
   "required": [
-    "respondentSolicitorFirm"
+    "respondentSolicitorName",
+    "respondentSolicitorEmail",
+    "respondentSolicitorAddressManual",
+    "respondentSolicitorCompany"
   ]
 }

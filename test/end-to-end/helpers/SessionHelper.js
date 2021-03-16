@@ -81,6 +81,7 @@ class SessionHelper extends codecept_helper {
     session.petitionerPcqId = 'is_in_session';
     session.featureToggles.ft_awaiting_amend = true;
     session.featureToggles.ft_represented_respondent_journey = true;
+    session.isRespSolToggleOn = true;
 
     let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 
@@ -94,8 +95,9 @@ class SessionHelper extends codecept_helper {
     expectedSession.feeToBePaid                                 = actualSession.feeToBePaid;
     expectedSession.expires                                     = actualSession.expires;
     expectedSession.cookie.domain                               = actualSession.cookie.domain;
-    expectedSession.marriageCertificateFiles[0]                 = actualSession.marriageCertificateFiles[0];
+    expectedSession.marriageCertificateFiles[0]                  = actualSession.marriageCertificateFiles[0];
     expectedSession.featureToggles                              = actualSession.featureToggles;
+    expectedSession.isRespSolToggleOn                           = actualSession.isRespSolToggleOn;
 
     if (!testingLocally) {
       expectedSession.fetchedDraft                              = actualSession.fetchedDraft;

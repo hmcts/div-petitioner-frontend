@@ -1,0 +1,95 @@
+{% from "button/macro.njk" import govukButton %}
+{% from "common/components/formElements.html" import textField, textArea, errorsFor %}
+
+{#
+solicitorManualDetail
+fields       - (required) Template context fields
+session     - (required) Current user session
+content     - (required) Current user context
+csrfToken   - (required) Current csrfToken, provided by the system
+Renders input fields for user to enter solicitor details manually.
+#}
+{% macro solicitorManualDetail(fields, session, content, csrfToken) %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <a id="search-solicitor-firm-manual" class="govuk-body govuk-link"
+     href="{{fields.baseUrl.value}}">{{content.searchSolicitorFirm}}</a>
+</div>
+<form method="POST" accept-charset="utf-8" class="form" id="manualForm"
+      enctype="application/x-www-form-urlencoded"
+      autocomplete="off">
+  <input type="hidden" name="_csrf" value="{{csrfToken}}">
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorName }}">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ errorsFor(session.error.respondentSolicitorName) }}
+      {{ textField(
+      name = 'respondentSolicitorName',
+      field = fields.respondentSolicitorName,
+      label = content.solicitorNameLabel,
+      value = fields.respondentSolicitorName,
+      boldLabel = true
+      ) }}
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ textField(
+      name = 'respondentSolicitorReference',
+      field = fields.respondentSolicitorReference,
+      label = content.solicitorReferenceLabel,
+      value = fields.respondentSolicitorReference,
+      boldLabel = true
+      ) }}
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ textField(
+      name = 'respondentSolicitorEmailManual',
+      field = fields.respondentSolicitorEmailManual,
+      label = content.solicitorEmailManualLabel,
+      value = fields.respondentSolicitorEmailManual,
+      boldLabel = true
+      ) }}
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorCompany }}">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ errorsFor(session.error.respondentSolicitorCompany) }}
+      {{ textField(
+      name = 'respondentSolicitorCompany',
+      field = fields.respondentSolicitorCompany,
+      label = content.solicitorCompanyLabel,
+      value = fields.respondentSolicitorCompany,
+      boldLabel = true
+      ) }}
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group {{ 'govuk-form-group--error' if session.error.respondentSolicitorAddressManual }}">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+      {{ errorsFor(session.error.respondentSolicitorAddressManual) }}
+      {{ textArea(
+      name = 'respondentSolicitorAddressManual',
+      field = fields.respondentSolicitorAddressManual,
+      label = content.solicitorFirmAddressLabel,
+      value = fields.respondentSolicitorAddressManual,
+      boldLabel = true
+      ) }}
+    </fieldset>
+  </div>
+  {{ govukButton({
+  text: content.continueBtnText,
+  classes: 'govuk-button govuk-button--primary',
+  preventDoubleClick: true,
+  name: 'submit'
+  }) }}
+</form>
+{% endmacro %}

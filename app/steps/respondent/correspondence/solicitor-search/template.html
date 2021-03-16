@@ -1,24 +1,35 @@
 {% from "common/components/respondentSolicitorComponents.html" import solicitorSearch, solicitorSearchResult, searchNoResults %}
-{% from "common/components/customPageComponents.html" import nextStep %}
+{% from "common/components/respondentSolicitorDetailComponents.html" import solicitorManualDetail %}
+{% from "common/errors.html" import errorsForSolicitorSearch %}
 {% extends "question.html" %}
 
 {% block two_thirds %}
+
+{{ errorsForSolicitorSearch(session, content) }}
 
 <div class="govuk-body">
   <h1 class="govuk-heading-l">{{ content.question | safe }}</h1>
   <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
 
-  {# Solicitors firms search section #}
-  {{ solicitorSearch(session, content, csrfToken) }}
+  {% if fields.searchType.value !== 'manual' %}
 
-  {# Solicitors firms search result section when items are found #}
-  {{ solicitorSearchResult(session, content, csrfToken) }}
+    {# Solicitors firms search section #}
+    {{ solicitorSearch(fields, session, content, csrfToken) }}
 
-  {# Solicitors firms search result section when items not found  #}
-  {{ searchNoResults(session, content, csrfToken) }}
+    {# Solicitors firms search result section when items are found #}
+    {{ solicitorSearchResult(fields, session, content, csrfToken) }}
 
+    {# Solicitors firms search result section when items not found #}
+    {{ searchNoResults(fields, session, content, csrfToken) }}
+
+  {% endif %}
+
+  {% if fields.searchType.value === 'manual' %}
+
+    {# Solicitors firms manual entry section #}
+    {{ solicitorManualDetail(fields, session, content, csrfToken) }}
+
+  {% endif %}
 </div>
-
 {% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
-
 {% endblock %}

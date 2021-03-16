@@ -280,6 +280,8 @@ describe(modulePath, () => {
       let postBody = {};
       let resetManualRespondentSolicitorData = null;
       let resetRespondentSolicitorData = null;
+      let fetchAndAddOrganisations = null;
+      let validateSearchRequest = null;
 
       describe('#validate', () => {
         it('should return as valid when default validation is called', () => {
@@ -304,6 +306,8 @@ describe(modulePath, () => {
 
           resetManualRespondentSolicitorData = sinon.stub(searchHelper, 'resetManualRespondentSolicitorData');
           resetRespondentSolicitorData = sinon.stub(searchHelper, 'resetRespondentSolicitorData');
+          fetchAndAddOrganisations = sinon.stub(searchHelper, 'fetchAndAddOrganisations');
+          validateSearchRequest = sinon.stub(searchHelper, 'validateSearchRequest');
         });
 
         afterEach(() => {
@@ -311,6 +315,8 @@ describe(modulePath, () => {
           res = {};
           resetManualRespondentSolicitorData.restore();
           resetRespondentSolicitorData.restore();
+          fetchAndAddOrganisations.restore();
+          validateSearchRequest.restore();
         });
 
         it('should not redirect when submitted without submit button', done => {
@@ -363,6 +369,36 @@ describe(modulePath, () => {
           expect(req.session.respondentSolicitorOrganisation).to.be.undefined;
           expect(req.session.respondentSolicitorName).to.be.undefined;
           expect(resetRespondentSolicitorData.calledOnce).to.equal(true);
+        });
+
+        it('should remain on same view when UserAction is \'SEARCH\' and search criteria is invalid', async () => {
+          validateSearchRequest.returns([false, {}]);
+          const TOO_SHORT = 'ab';
+          req.body = {
+            userAction: UserAction.SEARCH,
+            respondentSolicitorFirm: TOO_SHORT
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(fetchAndAddOrganisations.calledOnce).to.equal(false);
+          expect(validateSearchRequest.calledOnce).to.equal(true);
+        });
+
+        it('should call fetchAndAddOrganisations when UserAction is \'SEARCH\' and search criteria is valid', async () => {
+          validateSearchRequest.returns([true, {}]);
+          const VALID_NAME = 'criteria';
+          req.body = {
+            userAction: UserAction.SEARCH,
+            respondentSolicitorFirm: VALID_NAME
+          };
+
+          await underTest.handler(req, res);
+
+          expect(res.redirect.calledWith(underTest.url)).to.equal(true);
+          expect(fetchAndAddOrganisations.calledOnce).to.equal(true);
+          expect(fetchAndAddOrganisations.calledWith(req, sinon.match(VALID_NAME))).to.equal(true);
         });
       });
 

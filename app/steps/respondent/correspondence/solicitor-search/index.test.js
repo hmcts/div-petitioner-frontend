@@ -444,7 +444,7 @@ describe(modulePath, () => {
         });
       });
 
-      describe('#postReuqst', () => {
+      describe('#postRequest', () => {
         let isManual = null;
         let mapValidationErrors = null;
         let isInValidManualData = null;
@@ -492,10 +492,8 @@ describe(modulePath, () => {
 
           co(function* generator() {
             yield underTest.postRequest(req, res);
-            expect(underTest.parseCtx.calledOnce).to.equal(true);
-            expect(underTest.validate.calledOnce).to.equal(true);
-            expect(isInValidManualData.calledOnce).to.equal(false);
-            expect(isInValidSearchData.calledOnce).to.equal(false);
+            expect(isInValidManualData.calledOnce).to.equal(true);
+            expect(isInValidSearchData.calledOnce).to.equal(true);
             expect(res.redirect.calledWith(underTest.nextStep.url)).to.equal(true);
             done();
           });

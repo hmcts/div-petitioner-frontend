@@ -3,7 +3,7 @@ const contentEn = require('app/steps/grounds-for-divorce/reason/content.json').r
 
 const config = require('config');
 
-Feature('Adultery and Desertion E2E Tests(en) @functional').retry(3);
+Feature('Adultery and Desertion E2E Tests (en) @functional').retry(3);
 
 Scenario(`${language.toUpperCase()} - Adultery, with details (en)`, async function (I) {
 

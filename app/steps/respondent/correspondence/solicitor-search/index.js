@@ -89,7 +89,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       searchHelper.errorsCleanup(req.session);
-      req.session.respondentSolicitorFirm = searchCriteria;
       await searchHelper.fetchAndAddOrganisations(req, searchCriteria);
     }
 
@@ -105,6 +104,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       set(session, 'searchType', requestParams.searchType);
     } else {
       unset(session, 'searchType');
+      searchHelper.errorsManualCleanup(session);
     }
     return super.getRequest(req, res);
   }

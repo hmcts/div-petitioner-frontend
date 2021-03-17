@@ -197,6 +197,14 @@ describe(modulePath, () => {
       expect(get(req.session.error, 'respondentSolicitorCompany.errorMessage')).to.equal('Please provide solicitor\'s firm');
       expect(get(req.session.error, 'respondentSolicitorAddressManual.errorMessage')).to.equal('Please provide solicitor\'s address');
     });
+
+    it('should not have any mapped errors when no validation fails', () => {
+      const manual = false;
+      const expectedLength = 0;
+      underTest.mapValidationErrors(req, [], manual);
+
+      expect(req.session.errors).to.be.lengthOf(expectedLength);
+    });
   });
 
   describe('#errorsManualCleanup()', () => {

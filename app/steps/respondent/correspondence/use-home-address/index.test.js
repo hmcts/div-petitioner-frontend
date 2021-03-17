@@ -45,7 +45,30 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['solicitor'];
+      const excludeKeys = [
+        'featureToggleRespSol.question',
+        'featureToggleRespSol.correspondence',
+        'featureToggleRespSol.theirAddress',
+        'featureToggleRespSol.solicitorAddress',
+        'featureToggleRespSol.anotherAddress',
+        'featureToggleRespSol.needToKnowSolFirm'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+
+    it('renders the content from the content file (feature toggle respondent solicitor on)', done => {
+      const excludeKeys = [
+        'correspondence',
+        'yes',
+        'no',
+        'featureToggleRespSol.needToKnowSolFirm'
+      ];
+
+      underTest.setRespSolToggle = ctx => {
+        ctx.isRespSolToggleOn = true;
+      };
+
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -68,6 +91,13 @@ describe(modulePath, () => {
 
       testRedirect(done, agent, underTest, context,
         s.steps.RespondentCorrespondenceAddress);
+    });
+
+    it('redirects to RespondentSolicitorDetails when Solicitor is selected', done => {
+      const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.RespondentSolicitorDetails);
     });
   });
 

@@ -202,7 +202,7 @@ featureToggles:
   ft_pcq: 'petitioner-pcq'
   ft_awaiting_amend: 'divorce-amended-application'
   ft_represented_respondent_journey: 'represented-respondent-journey'
-  appwideToggles: ['ft_welsh']
+  appwideToggles: ['ft_welsh', 'ft_represented_respondent_journey']
 
 document:
   sessionPath: 'd8'

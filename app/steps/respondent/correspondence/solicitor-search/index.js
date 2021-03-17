@@ -83,7 +83,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     }
 
     if (isEqual(userAction, UserAction.SEARCH)) {
-
       const [isValid, errors] = searchHelper.validateSearchRequest(searchCriteria, this.content, req.session);
       if (!isValid) {
         set(req.session.error, 'respondentSolicitorFirm', errors);

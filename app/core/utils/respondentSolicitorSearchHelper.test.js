@@ -420,6 +420,7 @@ describe(modulePath, () => {
       expect(session.respondentSolicitorAddress).to.be.undefined;
       expect(session.respondentSolicitorAddressManual).to.be.undefined;
       expect(session.respondentSolicitorOrganisation).to.be.undefined;
+      expect(session.respondentSolicitorCompany).to.be.undefined;
     };
 
     beforeEach(() => {
@@ -432,7 +433,8 @@ describe(modulePath, () => {
         respondentSolicitorReference: null,
         respondentSolicitorReferenceDataId: null,
         respondentSolicitorAddress: null,
-        respondentSolicitorAddressManual: null
+        respondentSolicitorAddressManual: null,
+        respondentSolicitorCompany: null
       };
     });
     describe('resetManualRespondentSolicitorData()', () => {

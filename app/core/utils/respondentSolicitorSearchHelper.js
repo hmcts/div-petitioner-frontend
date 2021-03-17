@@ -200,6 +200,7 @@ const resetRespondentSolicitorData = session => {
   unset(session, 'respondentSolicitorReference');
   unset(session, 'respondentSolicitorReferenceDataId');
   unset(session, 'respondentSolicitorAddress');
+  unset(session, 'respondentSolicitorCompany');
   unset(session, 'respondentSolicitorAddressManual');
   errorsCleanup(session);
 };

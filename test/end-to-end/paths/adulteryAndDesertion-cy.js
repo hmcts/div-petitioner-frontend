@@ -1,13 +1,13 @@
 const language = 'cy';
-const contentCy = require('app/steps/grounds-for-divorce/reason/content.json').resources.cy.translation.content;
+const divorceReason = require('app/steps/grounds-for-divorce/reason/content.json').resources.cy.translation.content;
 
 const config = require('config');
 
-Feature('Adultery and Desertion E2E Tests (cy) @nightly').retry(3);
+Feature('Adultery and Desertion E2E Tests (cy) @nightly')
+  .retry(3);
 
-Scenario(`${language.toUpperCase()} - Adultery, with details (cy)`, async function (I) {
+Scenario('Adultery, with details (cy)', async function(I) {
 
-  const divorceReason = contentCy;
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
   I.selectHelpWithFees(language);
@@ -64,10 +64,11 @@ Scenario(`${language.toUpperCase()} - Adultery, with details (cy)`, async functi
     I.amDoneAndSubmitted(language);
   }
 
-}).retry(3);
+})
+  .retry(3);
 
 
-Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async function (I) {
+Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async function(I) {
 
   const divorceReason = contentCy;
   await stepsStartApplicationToReadFinancialRemedy(I, language);
@@ -117,7 +118,6 @@ Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async f
   }
 
 }).retry(3);
-
 
 async function stepsStartApplicationToReadFinancialRemedy(I, language) {
   await I.amOnLoadedPage('/', language);

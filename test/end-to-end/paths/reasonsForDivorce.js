@@ -5,23 +5,28 @@ const moment = require('moment');
 const parseBool = require('app/core/utils/parseBool');
 const config = require('config');
 
-const twoYearsAgo = moment().subtract(2, 'years').subtract(1, 'day');
+const twoYearsAgo = moment()
+  .subtract(2, 'years')
+  .subtract(1, 'day');
 const twoYearsAgoFormatted = {
   day: twoYearsAgo.format('D'),
   month: twoYearsAgo.format('M'),
   year: twoYearsAgo.format('Y')
 };
 
-const fiveYearsAgo = moment().subtract(5, 'years').subtract(1, 'day');
+const fiveYearsAgo = moment()
+  .subtract(5, 'years')
+  .subtract(1, 'day');
 const fiveYearsAgoFormatted = {
   day: fiveYearsAgo.format('D'),
   month: fiveYearsAgo.format('M'),
   year: fiveYearsAgo.format('Y')
 };
 
-Feature(' Reasons for divorce E2E Tests @functional ').retry(3);
+Feature('Reasons for divorce E2E Tests @nightly')
+  .retry(3);
 
-languages.forEach( language => {
+languages.forEach(language => {
 
   Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {
 
@@ -35,7 +40,7 @@ languages.forEach( language => {
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
 
-    if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+    if (['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
       I.withoutUploadFile(language);
     } else {
       const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -46,27 +51,28 @@ languages.forEach( language => {
 
     if (parseBool(config.features.ignoreSessionValidation)) {
       I.checkMyAnswers(language);
-    } else{
+    } else {
       await I.checkMyAnswersAndValidateSession(language);
     }
 
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-      if(genericErrorPage) {
+      if (genericErrorPage) {
         I.checkGenericErrorPage(language);
-      }else {
+      } else {
         I.amDoneAndSubmitted(language);
       }
-    }else {
+    } else {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
-      if(genericErrorPage) {
+      if (genericErrorPage) {
         I.checkGenericErrorPage(language);
-      }else {
+      } else {
         I.amDoneAndSubmitted(language);
       }
     }
 
-  }).retry(3);
+  })
+    .retry(3);
 
   Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
 
@@ -83,7 +89,7 @@ languages.forEach( language => {
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
 
-    if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+    if (['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
       I.withoutUploadFile(language);
     } else {
       const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -94,27 +100,28 @@ languages.forEach( language => {
 
     if (parseBool(config.features.ignoreSessionValidation)) {
       I.checkMyAnswers(language);
-    } else{
+    } else {
       await I.checkMyAnswers(language);
     }
 
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-      if(genericErrorPage) {
+      if (genericErrorPage) {
         I.checkGenericErrorPage(language);
-      }else {
+      } else {
         I.amDoneAndSubmitted(language);
       }
-    }else {
+    } else {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
-      if(genericErrorPage) {
+      if (genericErrorPage) {
         I.checkGenericErrorPage(language);
-      }else {
+      } else {
         I.amDoneAndSubmitted(language);
       }
     }
 
-  }).retry(2);
+  })
+    .retry(2);
 
   Scenario(`${language.toUpperCase()} - 5 years separation E2E @nightly `, async function(I) {
 
@@ -129,7 +136,7 @@ languages.forEach( language => {
     I.enterFinancialAdvice(language);
     I.enterClaimCosts(language);
 
-    if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+    if (['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
       I.withoutUploadFile(language);
     } else {
       const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -140,22 +147,22 @@ languages.forEach( language => {
 
     if (parseBool(config.features.ignoreSessionValidation)) {
       I.checkMyAnswers(language);
-    } else{
+    } else {
       await I.checkMyAnswers(language);
     }
 
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
-      if(genericErrorPage) {
+      if (genericErrorPage) {
         I.checkGenericErrorPage(language);
-      }else {
+      } else {
         I.amDoneAndSubmitted(language);
       }
-    }else {
+    } else {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
-      if(genericErrorPage) {
+      if (genericErrorPage) {
         I.checkGenericErrorPage(language);
-      }else {
+      } else {
         I.amDoneAndSubmitted(language);
       }
     }
@@ -164,9 +171,9 @@ languages.forEach( language => {
 
 });
 
-async function loginPageToEnterAddressUsingPostcode( I, language) {
+async function loginPageToEnterAddressUsingPostcode(I, language) {
 
-  await I.amOnLoadedPage('/', language );
+  await I.amOnLoadedPage('/', language);
   I.startApplication(language);
   I.languagePreference(language);
   I.haveBrokenMarriage(language);
@@ -195,5 +202,5 @@ async function loginPageToEnterAddressUsingPostcode( I, language) {
   I.selectLivingTogetherInSameProperty(language);
 
   I.chooseRespondentServiceAddress(language);
-  I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
 }

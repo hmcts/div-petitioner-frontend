@@ -178,6 +178,7 @@ const mapRespondentSolicitorData = ({ body, session }, manual) => {
   session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorName = get(body, 'respondentSolicitorName');
+  session.respondentSolicitorNameManual = get(body, 'respondentSolicitorNameManual');
 
   if (manual) {
     const manualAddress = get(body, 'respondentSolicitorAddressManual');

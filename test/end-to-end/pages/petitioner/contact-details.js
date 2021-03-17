@@ -19,7 +19,7 @@ function enterPetitionerContactDetails(language = 'en') {
   I.wait(1);
 
   if (parseBool(CONF.features.idam)) {
-    I.see(idamConfigHelper.getTestEmail());
+    I.see(idamConfigHelper.getTestEmail());//TODO - should this be passed as a parameter
   }
   I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
   I.retry(2).checkOption(contactDetails.petitionerConsent);

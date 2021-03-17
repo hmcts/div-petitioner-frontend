@@ -13,67 +13,56 @@ let Helper = codecept_helper;
 
 class IdamHelper extends Helper {
 
-  async _before() {
+  async registerAsNewCitizenUser() {
     if (parseBool(CONF.features.idam)) {
-      // Codecept doesn't retry _before() steps even if a .retry() is added to the Scenario.
-      // So the below will retry creating a test user if IDAM fails.
-      const maxAttempts = 3;
-      let i;
-      for (i = 1; i <= maxAttempts; i++) {
+      console.log('Attempting to create IDAM test user...');//TODO - put retry when calling this helper - https://codecept.io/helpers/#conditional-retries
 
-        try {
-          console.log(`Creating IDAM test user (attempt ${i} of ${maxAttempts})...`);
-          await this.createUser();
-          break;
-        } catch (err) {
-          if (i < maxAttempts) {
-            console.log('Failed to create IDAM test user. Retrying...');
-          } else {
-            console.error(`ERROR: Could not create IDAM test user after '${i}' attempts.`);
-            throw err ;
-          }
-        }
-      }
-    }
-  }
-
-  createUser() {
-    const randomString = randomstring.generate({
-      length: 16,
-      charset: 'numeric'
-    });
-    const emailName = `divorce+pfe-test-${randomString}`;
-    const testEmail = `${emailName}@mailinator.com`;
-    const testPassword = 'genericPassword123';
-
-    args.testEmail = testEmail;
-    args.testPassword = testPassword;
-    args.roles = [{ code: 'citizen' }];
-
-    idamConfigHelper.setTestEmail(testEmail);
-    idamConfigHelper.setTestPassword(testPassword);
-
-    return idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY)
-      .then(() => {
-        console.log('Created IDAM test user:', testEmail);
-      }).catch((err) => {
-        console.error('ERROR: Unable to create IDAM test user:', err);
-        throw err ;
+      const randomString = randomstring.generate({
+        length: 16,
+        charset: 'numeric'
       });
-  }
+      const emailName = `divorce+pfe-test-${randomString}`;
+      const testEmail = `${emailName}@mailinator.com`;
+      const testPassword = 'genericPassword123';
 
-  _after() {
-    if (parseBool(CONF.features.idam)) {
-      console.log('Removing IDAM test user...');
-      const testEmail = args.testEmail;
-      idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
-        .then(() => {
-          console.log('IDAM test user removed:', testEmail);
-        }).catch((err) => {
-          console.error('ERROR: Unable to remove IDAM test user:', err);
-        });
+      args.testEmail = testEmail;
+      args.testPassword = testPassword;
+      args.roles = [{ code: 'citizen' }];
+
+      //TODO - I think these should be moved to after user is created
+      idamConfigHelper.setTestEmail(testEmail);//TODO this might be inefficient - have another look later
+      idamConfigHelper.setTestPassword(testPassword);
+
+      //TODO - use await here? leave it for later
+      //TODO - put return back (when I find out error reason)
+      try {
+        const ret = await idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY);//TODO - does this return something?
+        console.log('ret: ', ret);
+        console.log('Created IDAM test user:', testEmail);//TODO - this is showing up out of sync
+      } catch (err) {
+        console.error('ERROR: Unable to create IDAM test user:', err);
+        throw err;
+      }
+    } else {
+      console.log('IDAM feature is switched off. Test user will not be created.');
     }
   }
+
+  //TODO - _finishTest???
+  // _after() {//TODO - how to clean up after ourselves? - have a flag or list of users and clean it up as last - do it asynchronously (have test as function and get rid of user myself... - then I'd lose the benefit)
+  //   if (parseBool(CONF.features.idam)) {//
+  //     console.log('Removing IDAM test user...');
+  //     const testEmail = args.testEmail;
+  //     idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
+  //       .then(() => {
+  //         console.log('IDAM test user removed:', testEmail);
+  //         //TODO - maybe I should remove user from list here
+  //       }).catch((err) => {
+  //         // console.error('ERROR: Unable to remove IDAM test user:', err);
+  //         console.error('ERROR: Unable to remove IDAM test user:');
+  //       });
+  //   }
+  // }
 }
 
 module.exports = IdamHelper;

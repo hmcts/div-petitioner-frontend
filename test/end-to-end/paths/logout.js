@@ -19,7 +19,7 @@ Scenario('Logout on Save and close', function (I) {
   I.seeCurrentUrlEquals('/exit/application-saved');
 
   if (parseBool(CONF.features.idam)) {
-    I.see(idamConfigHelper.getTestEmail());
+    I.see(idamConfigHelper.getTestEmail());//TODO - should this be passed as a parameter - maybe be a function?
   }
 
   I.navByClick('Back');

@@ -4,6 +4,8 @@ Feature('Foreign Marriage Certificates - Certificate Language @functional').retr
 
 Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.amOnLoadedPage('/');
+  //TODO - start here but maybe make it smarter before scattering this solution
+  // I.registerAsNewCitizenUser();
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();

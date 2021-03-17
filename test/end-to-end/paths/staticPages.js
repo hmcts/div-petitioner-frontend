@@ -4,7 +4,6 @@ const termsAndConditionsContent = require('app/steps/terms-and-conditions/conten
 Feature('Static Pages @functional').retry(3);
 
 Scenario('View the cookies page', (I) => {
-
   I.amOnLoadedPage('/cookie');
 });
 

@@ -78,7 +78,7 @@ Scenario('Save and close', function (I) {
   I.seeInCurrentUrl('/exit/application-saved');
 
   if (parseBool(CONF.features.idam)) {
-    I.see(idamConfigHelper.getTestEmail());
+    I.see(idamConfigHelper.getTestEmail());//TODO - should this be passed as a parameter - perhaps be a function?
   }
 });
 

@@ -2,7 +2,7 @@ const content = require('app/steps/screening-questions/has-respondent-address/co
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const CONF = require('config');
-const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
+const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper');
 const parseBool = require('app/core/utils/parseBool');
 
 function startApplication(language = 'en', ignoreIdamToggle = false) {
@@ -11,7 +11,7 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
     const commonContent = language === 'en' ? commonContentEn : commonContentCy;
     let I = this;
 
-    I.fillField('username', idamConfigHelper.getTestEmail());
+    I.fillField('username', idamConfigHelper.getTestEmail());//TODO - should these be passed as parameters?
     I.fillField('password', idamConfigHelper.getTestPassword());
     I.seeInCurrentUrl('/login?');
     I.navByClick(commonContent.signIn);

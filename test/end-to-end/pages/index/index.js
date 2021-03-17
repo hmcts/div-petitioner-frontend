@@ -5,17 +5,23 @@ const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper');
 const parseBool = require('app/core/utils/parseBool');
 
-function startApplication(language = 'en', ignoreIdamToggle = false) {
-
+function startApplication(
+  language = 'en',
+  ignoreIdamToggle = false,
+  user = { username: idamConfigHelper.getTestEmail(), password: idamConfigHelper.getTestPassword() }//TODO - eventually, I might get rid of the whole idamConfigHelper method (at least for this purpose)
+) {
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
     const commonContent = language === 'en' ? commonContentEn : commonContentCy;
     let I = this;
 
-    I.fillField('username', idamConfigHelper.getTestEmail());//TODO - should these be passed as parameters?
-    I.fillField('password', idamConfigHelper.getTestPassword());
+    // const username = user.username || idamConfigHelper.getTestEmail();
+    // const password = user.password || idamConfigHelper.getTestPassword();
+    I.fillField('username', user.username);//TODO - should these be passed as parameters?
+    I.fillField('password', user.password);
     I.seeInCurrentUrl('/login?');
-    I.navByClick(commonContent.signIn);
-    I.wait(2);
+    I.navByClick(commonContent.signIn);//TODO - if I used html element here (or enter), I wouldn't need language
+    I.wait(2);//TODO - why?
+    //I could wait longer here, but probably not like this...
   }
 }
 

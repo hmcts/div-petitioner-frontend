@@ -12,11 +12,11 @@ exports.config = {
       url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
-      show: false,
+      show: true,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
-          '--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
+          '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
           `--proxy-server=${process.env.E2E_PROXY_SERVER || ''}`,
           `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS || ''}`
         ]
@@ -75,9 +75,10 @@ function configureChunks() {
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
-  if (CONF.e2e.runBasicTests === 'true') {
-    return './paths/**/basicDivorce.js';
-  } else {
-    return './paths/**/*.js';
-  }
+  return './paths/errorPaths.js';
+  // if (CONF.e2e.runBasicTests === 'true') {
+  //   return './paths/**/basicDivorce.js';
+  // } else {
+  //   return './paths/**/*.js';
+  // }
 }

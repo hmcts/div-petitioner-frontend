@@ -10,7 +10,7 @@ function languagePreference(language = 'en') {
   const languageContent = language === 'en' ? contentEn : contentCy;
   const I = this;
 
-  I.waitInUrl(pagePath);
+  I.waitInUrl(pagePath);//TODO - why wait? couldn't we use await on the step before?
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(languageContent.yes);
   I.navByClick(commonContent.continue);

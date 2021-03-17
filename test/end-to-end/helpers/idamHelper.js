@@ -29,20 +29,23 @@ class IdamHelper extends Helper {
       args.testPassword = testPassword;
       args.roles = [{ code: 'citizen' }];
 
-      //TODO - I think these should be moved to after user is created
-      idamConfigHelper.setTestEmail(testEmail);//TODO this might be inefficient - have another look later
-      idamConfigHelper.setTestPassword(testPassword);
-
       //TODO - use await here? leave it for later
       //TODO - put return back (when I find out error reason)
       try {
         const ret = await idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY);//TODO - does this return something?
         console.log('ret: ', ret);
         console.log('Created IDAM test user:', testEmail);//TODO - this is showing up out of sync
+
+        //TODO - I think these should be moved to after user is created
+        idamConfigHelper.setTestEmail(testEmail);//TODO this might be inefficient - have another look later
+        idamConfigHelper.setTestPassword(testPassword);
+
+        // return { username: testEmail, password: testPassword };//TODO - actually returning it using the helper might be a less intrusive way to do this
       } catch (err) {
         console.error('ERROR: Unable to create IDAM test user:', err);
         throw err;
       }
+
     } else {
       console.log('IDAM feature is switched off. Test user will not be created.');
     }

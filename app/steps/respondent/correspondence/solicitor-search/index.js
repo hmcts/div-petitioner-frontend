@@ -59,6 +59,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
     const { body } = req;
     const userAction = get(body, 'userAction');
+    const searchCriteria = get(body, 'respondentSolicitorFirm');
+
+    req.session.respondentSolicitorFirm = searchCriteria;
 
     if (isEqual(userAction, UserAction.MANUAL)) {
       logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has selected manual option');
@@ -80,7 +83,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     }
 
     if (isEqual(userAction, UserAction.SEARCH)) {
-      const searchCriteria = get(body, 'respondentSolicitorFirm');
 
       const [isValid, errors] = searchHelper.validateSearchRequest(searchCriteria, this.content, req.session);
       if (!isValid) {

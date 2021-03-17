@@ -13,7 +13,7 @@ let Helper = codecept_helper;
 
 class IdamHelper extends Helper {
 
-  async _beforeSuite() {
+  async _before() {
     if (parseBool(CONF.features.idam)) {
       // Codecept doesn't retry _before() steps even if a .retry() is added to the Scenario.
       // So the below will retry creating a test user if IDAM fails.
@@ -62,7 +62,7 @@ class IdamHelper extends Helper {
       });
   }
 
-  _afterSuite() {
+  _after() {
     if (parseBool(CONF.features.idam)) {
       console.log('Removing IDAM test user...');
       const testEmail = args.testEmail;

@@ -95,7 +95,7 @@ describe(modulePath, () => {
       ['IssuedToBailiff'],
       ['AwaitingBailiffService']
     ])
-      .it('should redirect to `/issued-to-bailiff` if in is %s', caseState => {
+      .it('should redirect to `/issued-to-bailiff` if is %s', caseState => {
         req.session.caseId = TEST_CASE_ID;
         req.session.state = caseState;
         underTest.hasSubmitted.apply(ctx, [req, res, next]);

@@ -44,6 +44,50 @@
         },
         "errors": {}
       }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "help": "[CY] Getting help",
+          "mainHeading": "[CY] Your Divorce",
+          "petitionSent": "[CY] Your petition has been sent to a court bailiff",
+          "youApply": "[CY] You apply",
+          "yourResponds": "[CY] Your {{ divorceWho }} must respond",
+          "continueDivorce": "[CY] Get a decree nisi",
+          "divorceFinalised": "[CY] You are divorced",
+          "emailHeading": "[CY] Email",
+          "phoneHeading": "[CY] Phone",
+          "divorceEmail": "[CY] divorcecase@justice.gov.uk",
+          "issuedToBailiffInfoPara1": "[CY] Your application for ‘personal service by a court bailiff’ has been approved and your petition has been sent to a local court bailiff to complete service.",
+          "issuedToBailiffInfoPara2": "[CY] You will get an update once the court bailiff has completed their attempts to serve.",
+          "issuedToBailiffInfoPara3": "[CY] If the court bailiff is able to serve successfully, then your {{ divorceWho }} is given 7 days to respond.",
+          "issuedToBailiffInfoPara4": "[CY] If your {{ divorceWho }} still does not respond, then you will be able to continue to the next stage and apply for a decree nisi.",
+          "downloadDocumentsHeading": "[CY] Download your documents",
+          "guidanceHeading": "[CY] Guidance on GOV.UK",
+          "howToRespondLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/respond-to-a-divorce-petition\" target=\"_blank\" aria-label=\"Respond to a divorce application link, This link will open in a new tab.\">How your {{ divorceWho }} responds</a>",
+          "decreeNisiLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-decree-nisi\" target=\"_blank\" aria-label=\"Decree nisi link, This link will open in a new tab.\">Decree nisi</a>",
+          "decreeAbsoluteLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/divorce/apply-for-a-decree-absolute\" target=\"_blank\" aria-label=\"Decree absolute link, This link will open in a new tab.\">Decree absolute</a>",
+          "childrenAndDivorceLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/looking-after-children-divorce/overview\" target=\"_blank\" aria-label=\"Children and divorce link, This link will open in a new tab.\">Children and divorce</a>",
+          "moneyAndPropertyLink": "[CY] <a class=\"govuk-link\" href=\"https://www.gov.uk/money-property-when-relationship-ends\" target=\"_blank\" aria-label=\"Money and property link, This link will open in a new tab.\">Money and property</a>",
+          "files": {
+            "dpetition": "[CY] Divorce application",
+            "respondentAnswers": "[CY] Respondent’s answers",
+            "coRespondentAnswers": "[CY] Co-Respondent’s answers",
+            "certificateOfEntitlement": "[CY] Certificate of Entitlement",
+            "costsOrder": "[CY] Cost Order",
+            "decreeNisi": "[CY] Decree Nisi",
+            "dnAnswers": "[CY] Decree Nisi answers",
+            "clarificationDnRefusalOrder": "[CY] Refusal Order",
+            "rejectionDnRefusalOrder": "[CY] Refusal Order",
+            "deemedAsServedGranted": "[CY] Deemed service order",
+            "dispenseWithServiceGranted": "[CY] Order to dispense",
+            "deemedServiceRefused": "[CY] Deemed service refusal",
+            "dispenseWithServiceRefused": "[CY] Dispensed service refusal",
+            "generalOrder": "[CY] General Order"
+          }
+        },
+        "errors": {}
+      }
     }
   }
 }

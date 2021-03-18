@@ -10,5 +10,4 @@ Scenario('Done and Submitted page is displayed when AosDrafted case', async func
   I.see(content.title);
   I.see(whoResponds);
   I.see('What happens next');
-
 });

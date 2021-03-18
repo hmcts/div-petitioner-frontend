@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions: "off" */
 const { expect, sinon } = require('test/util/chai');
 const forEach = require('mocha-each');
-const { invoke, get } = require('lodash');
+const { invoke, get, set } = require('lodash');
 
 const modulePath = 'app/core/utils/respondentSolicitorSearchHelper';
 const organisationService = require('app/services/organisationService');
@@ -58,6 +58,12 @@ describe(modulePath, () => {
     it('should return SHORT_SOLICITOR_SEARCH error message when search criteria is less than three characters', () => {
       expect(underTest.validateSearchRequest('co', content, session))
         .to.deep.equal([false, { error: true, errorMessage: Errors.SHORT_SOLICITOR_SEARCH }]);
+    });
+
+    it('should return as valid if no search criteria is provided', () => {
+      const searchCriteria = get(req.body, 'respondentSolicitorFirm');
+      expect(underTest.validateSearchRequest(searchCriteria, content, session))
+        .to.deep.equal([true, null]);
     });
   });
 
@@ -163,18 +169,21 @@ describe(modulePath, () => {
   describe('mapValidationErrors()', () => {
     req = { session: { error: null } };
     const validationErrors = [
-      { param: 'respondentSolicitorName', msg: 'Please provide a solicitor name' },
-      { param: 'respondentSolicitorEmail', msg: 'Please provide a solicitor email' },
-      { param: 'respondentSolicitorAddressManual', msg: 'Please provide solicitor firm\'s address' }
+      { param: 'respondentSolicitorName', msg: 'Please provide a solicitor\'s name' },
+      { param: 'respondentSolicitorNameManual', msg: 'Please provide a solicitor\' name' },
+      { param: 'respondentSolicitorEmail', msg: 'Please provide a solicitor\'s email' },
+      { param: 'respondentSolicitorAddressManual', msg: 'Please provide solicitor\'s address' },
+      { param: 'respondentSolicitorCompany', msg: 'Please provide solicitor\'s firm' }
     ];
 
     it('should mapped expected errors when is not manual entry', () => {
       const manual = false;
-      const expectedLength = 3;
+      const expectedLength = 2;
       underTest.mapValidationErrors(req, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
-      expect(get(req.session.error, 'respondentSolicitorName.errorMessage')).to.equal('Please provide a solicitor name');
+      expect(get(req.session.error, 'respondentSolicitorName.errorMessage')).to.equal('Please provide a solicitor\'s name');
+      expect(get(req.session.error, 'respondentSolicitorNameManual.errorMessage')).to.be.undefined;
       expect(get(req.session.error, 'respondentSolicitorAddressManual.errorMessage')).to.be.undefined;
     });
 
@@ -184,9 +193,34 @@ describe(modulePath, () => {
       underTest.mapValidationErrors(req, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
-      expect(get(req.session.error, 'respondentSolicitorName.errorMessage')).to.equal('Please provide a solicitor name');
-      expect(get(req.session.error, 'respondentSolicitorAddressManual.errorMessage')).to.equal('Please provide solicitor firm\'s address');
+      expect(get(req.session.error, 'respondentSolicitorNameManual.errorMessage')).to.equal('Please provide a solicitor\' name');
+      expect(get(req.session.error, 'respondentSolicitorCompany.errorMessage')).to.equal('Please provide solicitor\'s firm');
+      expect(get(req.session.error, 'respondentSolicitorAddressManual.errorMessage')).to.equal('Please provide solicitor\'s address');
     });
+
+    it('should not have any mapped errors when no validation fails', () => {
+      const manual = false;
+      const expectedLength = 0;
+      underTest.mapValidationErrors(req, [], manual);
+
+      expect(req.session.errors).to.be.lengthOf(expectedLength);
+    });
+  });
+
+  describe('#errorsManualCleanup()', () => {
+    const noItems = 0;
+    set(req.session, 'error.respondentSolicitorNameManual', {});
+    req.session.errors = [
+      {
+        param: 'respondentSolicitorNameManual',
+        msg: 'Please provide a solicitor\'s name'
+      }
+    ];
+
+    underTest.errorsManualCleanup(req.session);
+
+    expect(get(req.session.error, 'respondentSolicitorNameManual')).to.be.undefined;
+    expect(req.session.errors).to.have.lengthOf(noItems);
   });
 
   context('Validating if manual or search:', () => {
@@ -252,14 +286,14 @@ describe(modulePath, () => {
     });
   });
 
-  describe('mapRespondentSolicitorData()', () => {
+  describe('mapRespondentSolicitorData() - Digital', () => {
     let session = {};
     const buildRespondentSolicitorSessionData = () => {
       return {
         divorceWho: 'wife',
-        respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-        respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
-        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+        respondentSolicitorName: null,
+        respondentSolicitorEmail: null,
+        respondentSolicitorReference: null,
         respondentSolicitorOrganisation: {
           contactInformation: [
             {
@@ -297,6 +331,7 @@ describe(modulePath, () => {
         'OL1 222',
         'Manchester'
       ];
+
       req.body = {
         respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
         respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
@@ -326,6 +361,36 @@ describe(modulePath, () => {
       expect(req.session.respondentSolicitorAddress).to.have.property('address');
       expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);
       expect(req.session.respondentSolicitorReferenceDataId).to.be.undefined;
+    });
+  });
+
+  describe('mapRespondentSolicitorData() - Manual', () => {
+    const manualAddress = 'An\n\raddress\nline\n \r\nlast line';
+    const expectedAddress = ['An', 'address', 'line', 'last line'];
+
+    it('should map current data to expected respondent solicitor payload', () => {
+      req = {
+        body: {
+          respondentSolicitorNameManual: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorEmailManual: TEST_RESP_SOLICITOR_EMAIL,
+          respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+          respondentSolicitorAddressManual: manualAddress,
+          respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY
+        },
+        session: {
+          divorceWho: 'wife'
+        }
+      };
+
+      underTest.mapRespondentSolicitorData(req, true);
+
+      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+      expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
+      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
+      expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
+      expect(req.session.respondentSolicitorAddress).to.have.property('address');
+      expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
+      expect(req.session.respondentSolicitorAddressManual).to.equal(manualAddress);
     });
   });
 
@@ -373,21 +438,27 @@ describe(modulePath, () => {
   context('Session data reset and clean up:', () => {
     const commonResetExpectations = ({ session }) => {
       expect(session.respondentSolicitorName).to.be.undefined;
+      expect(session.respondentSolicitorNameManual).to.be.undefined;
       expect(session.respondentSolicitorEmail).to.be.undefined;
       expect(session.respondentSolicitorReference).to.be.undefined;
       expect(session.respondentSolicitorReferenceDataId).to.be.undefined;
       expect(session.respondentSolicitorAddress).to.be.undefined;
       expect(session.respondentSolicitorAddressManual).to.be.undefined;
       expect(session.respondentSolicitorOrganisation).to.be.undefined;
+      expect(session.respondentSolicitorCompany).to.be.undefined;
+      expect(session.respondentSolicitorEmailManual).to.be.undefined;
     };
 
     beforeEach(() => {
       req.session = {
         organisations: [],
         respondentSolicitorFirm: null,
+        respondentSolicitorCompany: null,
         respondentSolicitorOrganisation: null,
         respondentSolicitorName: null,
+        respondentSolicitorNameManual: null,
         respondentSolicitorEmail: null,
+        respondentSolicitorEmailManual: null,
         respondentSolicitorReference: null,
         respondentSolicitorReferenceDataId: null,
         respondentSolicitorAddress: null,

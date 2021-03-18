@@ -98,6 +98,15 @@ const validateSearchRequest = (searchCriteria, content, session) => {
   return [true, null];
 };
 
+const excludeErrors = (session, exclusionList, errors) => {
+  forEach(exclusionList, item => {
+    unset(session.error, item);
+  });
+  session.errors = filter(errors, error => {
+    return !exclusionList.includes(error.param);
+  });
+};
+
 const mapValidationErrors = (req, errors, manual) => {
   unset(req, 'session.error');
   unset(req, 'session.errors');
@@ -106,9 +115,10 @@ const mapValidationErrors = (req, errors, manual) => {
 
   forEach([
     'respondentSolicitorName',
-    'respondentSolicitorAddressManual',
     'respondentSolicitorEmail',
-    'respondentSolicitorCompany'
+    'respondentSolicitorCompany',
+    'respondentSolicitorNameManual',
+    'respondentSolicitorAddressManual'
   ],
   item => {
     const error = find(errors, ['param', item]);
@@ -117,17 +127,19 @@ const mapValidationErrors = (req, errors, manual) => {
     }
   });
 
-  if (!manual) {
-    forEach([
+  const { session } = req;
+  if (manual) {
+    excludeErrors(session, [
+      'respondentSolicitorName',
+      'respondentSolicitorEmail'
+    ], errors);
+  } else {
+    excludeErrors(session, [
       'respondentSolicitorAddressManual',
-      'respondentSolicitorEmailManual'
-    ],
-    item => {
-      unset(req.session.error, item);
-      req.session.errors = filter(errors, error => {
-        return !isEqual(error.param, item);
-      });
-    });
+      'respondentSolicitorEmailManual',
+      'respondentSolicitorNameManual',
+      'respondentSolicitorCompany'
+    ], errors);
   }
 
   return size(keys(req.session.error)) === 0;
@@ -163,24 +175,37 @@ const mapRespondentSolicitorData = ({ body, session }, manual) => {
   const { respondentSolicitorOrganisation } = session;
   const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
   let address = filter(values(first(solicitorContactInformation)), size);
+  session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
+  session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
+  session.respondentSolicitorName = get(body, 'respondentSolicitorName');
+  session.respondentSolicitorNameManual = get(body, 'respondentSolicitorNameManual');
 
   if (manual) {
     const manualAddress = get(body, 'respondentSolicitorAddressManual');
     address = parseManualAddress(manualAddress);
     session.respondentSolicitorAddressManual = manualAddress;
+    session.respondentSolicitorCompany = get(body, 'respondentSolicitorCompany');
+    session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmailManual');
+    session.respondentSolicitorName = get(body, 'respondentSolicitorNameManual');
   }
 
   session.respondentSolicitorAddress = { address };
-  session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
-  session.respondentSolicitorName = get(body, 'respondentSolicitorName');
   session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
-  session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
 };
 
 const errorsCleanup = session => {
   unset(session, 'error');
   unset(session, 'errors');
+};
+
+const errorsManualCleanup = session => {
+  excludeErrors(session, [
+    'respondentSolicitorAddressManual',
+    'respondentSolicitorEmailManual',
+    'respondentSolicitorNameManual',
+    'respondentSolicitorCompany'
+  ], session.errors);
 };
 
 const cleanupBeforeSubmit = session => {
@@ -194,7 +219,10 @@ const cleanupBeforeSubmit = session => {
 const resetRespondentSolicitorData = session => {
   unset(session, 'respondentSolicitorOrganisation');
   unset(session, 'respondentSolicitorName');
+  unset(session, 'respondentSolicitorNameManual');
+  unset(session, 'respondentSolicitorCompany');
   unset(session, 'respondentSolicitorEmail');
+  unset(session, 'respondentSolicitorEmailManual');
   unset(session, 'respondentSolicitorReference');
   unset(session, 'respondentSolicitorReferenceDataId');
   unset(session, 'respondentSolicitorAddress');
@@ -225,6 +253,7 @@ module.exports = {
   isInValidSearchData,
   isManual,
   errorsCleanup,
+  errorsManualCleanup,
   parseManualAddress,
   parseAddressToManualAddress,
   mapRespondentSolicitorData,

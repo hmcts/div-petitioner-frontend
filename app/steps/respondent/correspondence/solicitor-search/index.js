@@ -11,6 +11,10 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     return '/petitioner-respondent/correspondence/solicitor-search';
   }
 
+  get ignorePa11yErrors() {
+    return ['WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID'];
+  }
+
   get nextStep() {
     return this.steps.ReasonForDivorce;
   }
@@ -55,6 +59,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
     const { body } = req;
     const userAction = get(body, 'userAction');
+    const searchCriteria = get(body, 'respondentSolicitorFirm');
+
+    req.session.respondentSolicitorFirm = searchCriteria;
 
     if (isEqual(userAction, UserAction.MANUAL)) {
       logger.infoWithReq(null, 'solicitor_search', 'Solicitor search, user has selected manual option');
@@ -76,8 +83,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     }
 
     if (isEqual(userAction, UserAction.SEARCH)) {
-      const searchCriteria = get(body, 'respondentSolicitorFirm');
-
       const [isValid, errors] = searchHelper.validateSearchRequest(searchCriteria, this.content, req.session);
       if (!isValid) {
         set(req.session.error, 'respondentSolicitorFirm', errors);
@@ -85,7 +90,6 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       }
 
       searchHelper.errorsCleanup(req.session);
-      req.session.respondentSolicitorFirm = searchCriteria;
       await searchHelper.fetchAndAddOrganisations(req, searchCriteria);
     }
 
@@ -101,6 +105,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
       set(session, 'searchType', requestParams.searchType);
     } else {
       unset(session, 'searchType');
+      searchHelper.errorsManualCleanup(session);
     }
     return super.getRequest(req, res);
   }

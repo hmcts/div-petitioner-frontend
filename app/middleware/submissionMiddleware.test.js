@@ -16,12 +16,10 @@ const AMENDMENT_EXPLANATORY_PAGE = '/amendment-explanatory-page';
 const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
 const SENT_TO_BAILIFF = '/issued-to-bailiff';
 
-
 let req = {};
 let res = {};
 let next = {};
 let ctx = {};
-
 
 describe(modulePath, () => {
   describe('#hasSubmitted', () => {

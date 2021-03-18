@@ -11,6 +11,10 @@
       "type": "string",
       "minLength": 3
     },
+    "respondentSolicitorNameManual": {
+      "type": "string",
+      "minLength": 3
+    },
     "respondentSolicitorReference": {
       "type": "string"
     },
@@ -31,6 +35,7 @@
   },
   "required": [
     "respondentSolicitorName",
+    "respondentSolicitorNameManual",
     "respondentSolicitorEmail",
     "respondentSolicitorAddressManual",
     "respondentSolicitorCompany"

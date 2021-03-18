@@ -38,6 +38,10 @@
             "required": "Please provide a solicitor's name",
             "invalid": "Please provide a solicitor's name"
           },
+          "respondentSolicitorNameManual": {
+            "required": "Please provide a solicitor's name",
+            "invalid": "Please provide a solicitor's name"
+          },
           "respondentSolicitorEmail": {
             "required": "Please provide a solicitor's email",
             "invalid": "Please provide a solicitor's email"
@@ -87,6 +91,10 @@
         },
         "errors": {
           "respondentSolicitorName": {
+            "required": "[CY] Please provide a solicitor's name",
+            "invalid": "[CY] Please provide a solicitor's name"
+          },
+          "respondentSolicitorNameManual": {
             "required": "[CY] Please provide a solicitor's name",
             "invalid": "[CY] Please provide a solicitor's name"
           },

@@ -38,7 +38,7 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.seeInCurrentUrl('/exit/about-your-marriage/no-certificate-translated');
 });
 
-Scenario('@overnight: Married in UK, not answered', (I) => {
+Scenario('Married in UK, not answered @nightly', (I) => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

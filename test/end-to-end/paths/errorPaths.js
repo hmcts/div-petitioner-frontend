@@ -1,16 +1,9 @@
 Feature('Invalid Paths Handling @functional');
 
-let user;
-
-BeforeSuite(async (I) => {
-  user = await I.registerAsNewCitizenUser();
-});
-
-Scenario.skip('Incorrect URLs are served a 404 page', async(I) => {
+Scenario('Incorrect URLs are served a 404 page', async(I) => {
 
   I.amOnLoadedPage('/index');
-  //TODO do I really need a user for this? TA it later
-  I.startApplication('en', false, user);
+  await I.startApplication();//TODO - replace all when we're certain of this change
   I.languagePreference();
   I.haveBrokenMarriage();
   I.amOnLoadedPage('/nonExistentURL');
@@ -37,9 +30,9 @@ Scenario.skip('Redirects to login page on AAT OR cookie error page for PR build 
   }
 }).retry(2);
 
-Scenario('check cookie error page exists', (I) => {
+Scenario('check cookie error page exists', async (I) => {
   I.amOnLoadedPage('/index');
-  I.startApplication('en', false, user);
+  await I.startApplication();
   I.amOnLoadedPage('/cookie-error');
   I.see('You must have cookies enabled in your web browser to use this service.');
 });

@@ -1,6 +1,3 @@
-const commonContentEn = require('app/content/common-en').resources.en.translation;
-const commonContentCy = require('app/content/common-cy').resources.cy.translation;
-
 const mockOrganisation = {
   searchTerm: 'Divorce',
   name: 'Karen Fox',
@@ -11,7 +8,7 @@ const mockOrganisation = {
 };
 
 function enterOrganisationManually(language = 'en', stepUrl, organisation = mockOrganisation) {
-  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  const continueButton = language === 'en' ? 'Continue' : '[CY] Continue';
   const enterManually = language === 'en' ? 'Enter details manually' : '[CY] Enter details manually';
   const findAddress = language === 'en' ? 'Search' : '[CY] Search';
 
@@ -35,7 +32,7 @@ function enterOrganisationManually(language = 'en', stepUrl, organisation = mock
   I.fillField('respondentSolicitorCompany', organisation.firmName);
   I.fillField('respondentSolicitorAddressManual', organisation.address);
   I.wait(2);
-  I.navByClick(commonContent.continue);
+  I.navByClick(continueButton);
 }
 
 module.exports = { enterOrganisationManually };

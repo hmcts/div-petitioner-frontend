@@ -4,6 +4,8 @@ const serviceCentreCourt = require('test/examples/courts/serviceCentre');
 
 const modulePath = 'app/middleware/redirectMiddleware';
 
+const forEach = require('mocha-each');
+
 const redirectMiddleware = require(modulePath);
 
 const authTokenString = '__auth-token';
@@ -48,6 +50,18 @@ describe(modulePath, () => {
 
       expect(next.calledOnce).to.eql(true);
     });
+
+    forEach([
+      ['IssuedToBailiff'],
+      ['AwaitingBailiffService']
+    ])
+      .it('should call next when the state is %s', caseState => {
+        req.session.state = caseState;
+
+        redirectMiddleware.redirectOnCondition(req, res, next);
+
+        expect(next.calledOnce).to.eql(true);
+      });
 
     it('should call next when the state is AwaitingAmendCase', () => {
       req.session.state = 'AwaitingAmendCase';

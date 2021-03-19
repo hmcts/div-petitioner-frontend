@@ -8,7 +8,7 @@ module.exports = class RespondentCorrespondenceSendToSolicitor extends Validatio
   get nextStep() {
     return {
       respondentSolicitorRepresented: {
-        Yes: this.steps.RespondentSolicitorDetails,
+        Yes: this.steps.RespondentCorrespondenceSolicitorSearch,
         No: this.steps.RespondentCorrespondenceAddress
       }
     };

@@ -1,5 +1,6 @@
 const language = 'en';
 const divorceReason = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
+const sendToAddressOption = require('app/steps/respondent/correspondence/use-home-address/content.json').resources.en.translation.content.featureToggleRespSol;
 
 const config = require('config');
 
@@ -29,9 +30,8 @@ Scenario('Adultery, with details (en)', async function(I) {
   I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
   I.enterCorrespondence(language);
   I.selectLivingTogetherInSameProperty(language);
-  I.chooseRespondentServiceAddress(language);
-  I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
-
+  I.chooseRespondentServiceAddress(language, sendToAddressOption['solicitorAddress']);
+  I.enterOrganisationUsingLookup(language, '/petitioner-respondent/correspondence/solicitor-search');
   I.selectReasonForDivorce(language, divorceReason['adulteryHeading']);
   I.selectWishToName(language);
   I.enter3rdPartyDetails(language);

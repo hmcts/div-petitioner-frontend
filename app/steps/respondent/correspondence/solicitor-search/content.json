@@ -1,0 +1,117 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Enter details of your {{ divorceWho }}'s solicitor",
+          "solicitorFirmLabel": "Enter the name of their solicitor's firm",
+          "searchButton": "Search",
+          "continueBtnText": "Continue",
+          "deselectBtnText": "Deselect",
+          "selectBtnText": "Select",
+          "enterManuallyBtnText": "Enter details manually",
+          "errorSummaryHeading": "There was a problem",
+          "resultsLabel": "Results",
+          "solicitorNameLabel": "Solicitor's name",
+          "solicitorReferenceLabel": "Solicitor's reference (optional)",
+          "solicitorEmailLabel": "Solicitor's email address",
+          "solicitorEmailManualLabel": "Solicitor's email address (optional)",
+          "solicitorCompanyLabel": "Solicitor's firm",
+          "solicitorFirmAddressLabel": "Solicitor's address",
+          "searchNoOptionFoundText": "If you can't see the firm listed then you can enter the details manually.",
+          "searchSolicitorFirm": "Search to find solicitor firm",
+          "searchNoResults": {
+            "paragraph1": "There are no results for the firm you entered.",
+            "paragraph2": "This may be because the firm is not registered online with HMCTS.",
+            "paragraph3": "You can check the spelling and search again, or enter the details manually."
+          },
+          "searchErrors": {
+            "emptyValue": "Please provide a solicitor's firm name",
+            "shortValue": "You must enter at least 3 characters",
+            "solicitorName": "Please provide a solicitor name",
+            "solicitorEmail": "Please provide a solicitor email"
+          }
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Please provide a solicitor's name",
+            "invalid": "Please provide a solicitor's name"
+          },
+          "respondentSolicitorNameManual": {
+            "required": "Please provide a solicitor's name",
+            "invalid": "Please provide a solicitor's name"
+          },
+          "respondentSolicitorEmail": {
+            "required": "Please provide a solicitor's email",
+            "invalid": "Please provide a solicitor's email"
+          },
+          "respondentSolicitorAddressManual": {
+            "required": "Please provide a solicitor's address",
+            "invalid": "Please provide a solicitor's address"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Please provide a solicitor's firm",
+            "invalid": "Please provide a solicitor's firm"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
+          "solicitorFirmLabel": "[CY] Enter the name of their solicitor's firm",
+          "searchButton": "[CY] Search",
+          "continueBtnText": "[CY] Continue",
+          "deselectBtnText": "[CY] Deselect",
+          "selectBtnText": "[CY] Select",
+          "enterManuallyBtnText": "[CY] Enter details manually",
+          "errorSummaryHeading": "[CY] There was a problem",
+          "resultsLabel": "[CY] Results",
+          "solicitorNameLabel": "[CY] Solicitor's name",
+          "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
+          "solicitorEmailLabel": "[CY] Solicitor's email address",
+          "solicitorEmailManualLabel": "[CY] Solicitor's email address (optional)",
+          "solicitorCompanyLabel": "[CY] Solicitor's firm",
+          "solicitorFirmAddressLabel": "[CY] Solicitor's address",
+          "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
+          "searchSolicitorFirm": "[CY] Search to find solicitor firm",
+          "searchNoResults": {
+            "paragraph1": "[CY] There are no results for the firm you entered.",
+            "paragraph2": "[CY] This may be because the firm is not registered online with HMCTS.",
+            "paragraph3": "[CY] You can check the spelling and search again, or enter the details manually."
+          },
+          "searchErrors": {
+            "emptyValue": "[CY] Please provide your solicitor's firm name",
+            "shortValue": "[CY] You must enter at least 3 characters",
+            "solicitorName": "[CY] Please provide a solicitor name",
+            "solicitorEmail": "[CY] Please provide a solicitor email"
+          }
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "[CY] Please provide a solicitor's name",
+            "invalid": "[CY] Please provide a solicitor's name"
+          },
+          "respondentSolicitorNameManual": {
+            "required": "[CY] Please provide a solicitor's name",
+            "invalid": "[CY] Please provide a solicitor's name"
+          },
+          "respondentSolicitorEmail": {
+            "required": "[CY] Please provide a solicitor's email",
+            "invalid": "[CY] Please provide a solicitor's email"
+          },
+          "respondentSolicitorAddressManual": {
+            "required": "[CY] Please provide a solicitor's address",
+            "invalid": "[CY] Please provide a solicitor's address"
+          },
+          "respondentSolicitorCompany": {
+            "required": "[CY] Please provide a solicitor's firm",
+            "invalid": "[CY] Please provide a solicitor's firm"
+          }
+        }
+      }
+    }
+  }
+}

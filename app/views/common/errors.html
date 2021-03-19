@@ -5,3 +5,22 @@
     </span>
   {% endif %}
 {%- endmacro %}
+
+{% macro errorsForSolicitorSearch(fields, content) %}
+  {% if fields.errors.length > 0 %}
+  <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary" autofocus>
+    <h1 class="govuk-error-summary__title" id="error-summary-title">
+      {{ content.errorSummaryHeading | safe }}
+    </h1>
+
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        {% for error in fields.errors %}
+        <li><a href="#{{error.param}}">{{error.msg | safe}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+  {% endif %}
+{% endmacro %}

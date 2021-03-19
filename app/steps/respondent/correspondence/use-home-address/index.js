@@ -10,7 +10,7 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
       respondentCorrespondenceUseHomeAddress: {
         Yes: this.steps.ReasonForDivorce,
         No: this.steps.RespondentCorrespondenceAddress,
-        Solicitor: this.steps.RespondentSolicitorDetails
+        Solicitor: this.steps.RespondentCorrespondenceSolicitorSearch
       }
     };
   }

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "respondent-solicitor-search",
+  "type": "object",
+  "properties": {
+    "respondentSolicitorFirm": {
+      "type": "string",
+      "minLength": 3
+    },
+    "respondentSolicitorName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "respondentSolicitorNameManual": {
+      "type": "string",
+      "minLength": 3
+    },
+    "respondentSolicitorReference": {
+      "type": "string"
+    },
+    "respondentSolicitorEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "respondentSolicitorCompany": {
+      "type": "string"
+    },
+    "respondentSolicitorAddressManual": {
+      "type": "string",
+      "minLength": 3
+    },
+    "searchType": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "respondentSolicitorName",
+    "respondentSolicitorNameManual",
+    "respondentSolicitorEmail",
+    "respondentSolicitorAddressManual",
+    "respondentSolicitorCompany"
+  ]
+}

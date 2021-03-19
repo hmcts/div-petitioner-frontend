@@ -97,7 +97,7 @@ describe(modulePath, () => {
       const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
 
       testRedirect(done, agent, underTest, context,
-        s.steps.RespondentSolicitorDetails);
+        s.steps.RespondentCorrespondenceSolicitorSearch);
     });
   });
 

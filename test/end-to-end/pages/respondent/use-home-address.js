@@ -6,12 +6,12 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 function chooseRespondentServiceAddress(language = 'en', option) {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-  const stepContent = language === 'en' ? contentEn : contentCy;
+  const stepContent = language === 'en' ? contentEn.featureToggleRespSol : contentCy.featureToggleRespSol;
   const I = this;
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
-  I.checkOption(option || stepContent.featureToggleRespSol.anotherAddress);
+  I.checkOption(option || stepContent.anotherAddress);
   I.navByClick(commonContent.continue);
 }
 

@@ -187,6 +187,8 @@ ccd:
     - 'AwaitingProcessServerService'
     - 'AwaitingDWPResponse'
     - 'AosDrafted'
+    - 'AwaitingBailiffService'
+    - 'IssuedToBailiff'
   courts:
     - 'serviceCentre'
 

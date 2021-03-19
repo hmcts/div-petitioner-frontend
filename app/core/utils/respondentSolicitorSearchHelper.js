@@ -118,6 +118,7 @@ const mapValidationErrors = (req, errors, manual) => {
     'respondentSolicitorEmail',
     'respondentSolicitorCompany',
     'respondentSolicitorNameManual',
+    'respondentSolicitorEmailManual',
     'respondentSolicitorAddressManual'
   ],
   item => {
@@ -179,6 +180,7 @@ const mapRespondentSolicitorData = ({ body, session }, manual) => {
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorName = get(body, 'respondentSolicitorName');
   session.respondentSolicitorNameManual = get(body, 'respondentSolicitorNameManual');
+  session.respondentSolicitorEmailManual = get(body, 'respondentSolicitorEmailManual');
 
   if (manual) {
     const manualAddress = get(body, 'respondentSolicitorAddressManual');

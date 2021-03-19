@@ -8,7 +8,9 @@ const APPLICATION_MULTIPLE_REJECTED_CASES_PATH = '/contact-divorce-team';
 const CONTACT_DIVORCE_TEAM_PATH = '/contact-divorce-team';
 const AMENDMENT_EXPLANATORY_PATH = '/amendment-explanatory-page';
 const SERVICE_APPLICATION_NOT_APPROVED_PATH = '/service-application-not-approved';
+const SENT_TO_BAILIFF = '/issued-to-bailiff';
 
+// eslint-disable-next-line complexity
 const handleCcdCase = (req, res, next) => {
   const session = req.session;
   switch (session.state) {
@@ -54,6 +56,12 @@ const handleCcdCase = (req, res, next) => {
       return res.redirect(DONE_AND_SUBMITTED);
     }
     return res.redirect(CONTACT_DIVORCE_TEAM_PATH);
+  case 'IssuedToBailiff':
+    logger.infoWithReq(req, 'issued_to_bailiff', 'Issued To Bailiff - redirecting to ');
+    return res.redirect(SENT_TO_BAILIFF);
+  case 'AwaitingBailiffService':
+    logger.infoWithReq(req, 'awaiting_bailiff_service', 'Awaiting Bailiff Service - redirecting to ');
+    return res.redirect(SENT_TO_BAILIFF);
   default:
     logger.infoWithReq(req, 'case_done_and_submitted', 'Default case state - redirecting to done and submitted');
     return res.redirect(DONE_AND_SUBMITTED);

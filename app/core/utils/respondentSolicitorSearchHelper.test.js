@@ -172,6 +172,7 @@ describe(modulePath, () => {
       { param: 'respondentSolicitorName', msg: 'Please provide a solicitor\'s name' },
       { param: 'respondentSolicitorNameManual', msg: 'Please provide a solicitor\' name' },
       { param: 'respondentSolicitorEmail', msg: 'Please provide a solicitor\'s email' },
+      { param: 'respondentSolicitorEmailManual', msg: 'Please provide a solicitor\'s email' },
       { param: 'respondentSolicitorAddressManual', msg: 'Please provide solicitor\'s address' },
       { param: 'respondentSolicitorCompany', msg: 'Please provide solicitor\'s firm' }
     ];
@@ -184,17 +185,19 @@ describe(modulePath, () => {
       expect(req.session.errors).to.be.lengthOf(expectedLength);
       expect(get(req.session.error, 'respondentSolicitorName.errorMessage')).to.equal('Please provide a solicitor\'s name');
       expect(get(req.session.error, 'respondentSolicitorNameManual.errorMessage')).to.be.undefined;
+      expect(get(req.session.error, 'respondentSolicitorEmailManual.errorMessage')).to.be.undefined;
       expect(get(req.session.error, 'respondentSolicitorAddressManual.errorMessage')).to.be.undefined;
     });
 
     it('should mapped expected errors when is manual entry', () => {
       const manual = true;
-      const expectedLength = 3;
+      const expectedLength = 4;
       underTest.mapValidationErrors(req, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
       expect(get(req.session.error, 'respondentSolicitorNameManual.errorMessage')).to.equal('Please provide a solicitor\' name');
       expect(get(req.session.error, 'respondentSolicitorCompany.errorMessage')).to.equal('Please provide solicitor\'s firm');
+      expect(get(req.session.error, 'respondentSolicitorEmailManual.errorMessage')).to.equal('Please provide a solicitor\'s email');
       expect(get(req.session.error, 'respondentSolicitorAddressManual.errorMessage')).to.equal('Please provide solicitor\'s address');
     });
 

@@ -22,6 +22,10 @@
       "type": "string",
       "format": "email"
     },
+    "respondentSolicitorEmailManual": {
+      "type": "string",
+      "format": "email"
+    },
     "respondentSolicitorCompany": {
       "type": "string"
     },

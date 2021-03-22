@@ -53,6 +53,9 @@
           "respondentSolicitorCompany": {
             "required": "Please provide a solicitor's firm",
             "invalid": "Please provide a solicitor's firm"
+          },
+          "respondentSolicitorEmailManual": {
+            "invalid": "Please provide a solicitor's email"
           }
         }
       }
@@ -109,6 +112,9 @@
           "respondentSolicitorCompany": {
             "required": "[CY] Please provide a solicitor's firm",
             "invalid": "[CY] Please provide a solicitor's firm"
+          },
+          "respondentSolicitorEmailManual": {
+            "invalid": "[CY] Please provide a solicitor's email"
           }
         }
       }

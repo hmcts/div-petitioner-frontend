@@ -186,11 +186,28 @@ describe(modulePath, () => {
   });
 
   describe('Where papers are sent', () => {
-    it('should set the value to \'theirAddress\'', () => {
-      const ctx = { isRespSolToggleOn: true };
-      const session = { language: 'en' };
-      underTest.setRespondentCorrespondenceDisplayAnswer(ctx, session);
-    });
+    const getSolicitorContent = (session, option) => {
+      return content.resources[session.language].translation.content.featureToggleRespSol[option];
+    };
+
+    forEach([
+      ['Yes', 'theirAddress'],
+      ['No', 'anotherAddress'],
+      ['Solicitor', 'solicitorAddress']
+    ])
+      .it('should set the correct value when users option is %s', (useHomeAddress, contentOption) => {
+        const ctx = {
+          isRespSolToggleOn: true,
+          respondentCorrespondenceUseHomeAddress: useHomeAddress
+        };
+        const session = { language: 'en' };
+
+        underTest.setRespondentCorrespondenceDisplayAnswer(ctx, session);
+
+        // eslint-disable-next-line no-unused-expressions
+        expect(ctx.respondentCorrespondenceWherePaperSent).not.to.be.undefined;
+        expect(ctx.respondentCorrespondenceWherePaperSent).to.equal(getSolicitorContent(session, contentOption));
+      });
   });
 
   context('Check Your Answers', () => {

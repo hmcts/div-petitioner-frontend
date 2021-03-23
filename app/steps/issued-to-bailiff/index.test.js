@@ -43,8 +43,7 @@ const interpolationTextFields = [
   'howToRespondLink'
 ];
 
-describe('Template rendering: ' + modulePath, () => {
-
+describe(`Template rendering: ${modulePath}`, () => {
   beforeEach(done => {
     appInstance = appServer.init();
     agent = request.agent(appInstance.app);
@@ -53,9 +52,9 @@ describe('Template rendering: ' + modulePath, () => {
     withSession(done, agent, session);
   });
 
-  afterEach( () => {
+  afterEach(() => {
     session = {};
-  })
+  });
 
   describe('Issued To Bailiff: Template rendering', () => {
     const exclude = downloadFiles.concat(interpolationTextFields);
@@ -86,7 +85,7 @@ describe('Template rendering: ' + modulePath, () => {
       withSession(done, agent, session);
     });
 
-    it('should return the correct list of files', () => {
+    it('should return the correct list of files: dpetition and generalOrder', () => {
       const expectedDocumentsSize = 2;
       const fileTypes = underTest.getDownloadableFiles(session).map(file => {
         return file.type;
@@ -120,5 +119,4 @@ describe('Template rendering: ' + modulePath, () => {
       expect(fileTypes).to.include('dpetition');
     });
   });
-
 });

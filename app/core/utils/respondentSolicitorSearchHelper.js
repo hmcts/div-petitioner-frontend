@@ -162,14 +162,18 @@ const isManual = session => {
   return isEqual(session.searchType, 'manual');
 };
 
-const parseManualAddress = value => {
-  return value.split(/\r?\n/)
+const trimAndRemoveBlanks = list => {
+  return [].concat(list)
     .map(line => {
       return trim(line);
     })
     .filter(item => {
       return !isEmpty(item);
     });
+};
+
+const parseManualAddress = value => {
+  return trimAndRemoveBlanks(value.split(/\r?\n/));
 };
 
 const mapRespondentSolicitorData = ({ body, session }, manual) => {
@@ -194,6 +198,18 @@ const mapRespondentSolicitorData = ({ body, session }, manual) => {
   session.respondentSolicitorAddress = { address };
   session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
   session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
+};
+
+const mapRespondentSolicitorCyaData = session => {
+  const displayContentList = [].concat(
+    get(session, 'respondentSolicitorName'),
+    get(session, 'respondentSolicitorCompany'),
+    get(session, 'respondentSolicitorAddress.address'),
+    get(session, 'respondentSolicitorEmail'),
+    get(session, 'respondentSolicitorReference')
+  );
+
+  return trimAndRemoveBlanks(displayContentList).join('<br>');
 };
 
 const errorsCleanup = session => {
@@ -249,7 +265,6 @@ module.exports = {
   UserAction,
   validateSearchRequest,
   fetchAndAddOrganisations,
-  mapValidationErrors,
   hasBeenPostedWithoutSubmitButton,
   isInValidManualData,
   isInValidSearchData,
@@ -258,8 +273,11 @@ module.exports = {
   errorsManualCleanup,
   parseManualAddress,
   parseAddressToManualAddress,
+  mapValidationErrors,
   mapRespondentSolicitorData,
+  mapRespondentSolicitorCyaData,
   cleanupBeforeSubmit,
   resetManualRespondentSolicitorData,
-  resetRespondentSolicitorData
+  resetRespondentSolicitorData,
+  trimAndRemoveBlanks
 };

@@ -112,8 +112,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
 
   checkYourAnswersInterceptor(ctx, session) {
     if (session.respondentSolicitorAddress) {
-      const solicitorDetail = [].concat(session.respondentSolicitorName, session.respondentSolicitorAddress.address);
-      ctx.cyaRespondentSolicitorAddress = solicitorDetail.join('<br>');
+      ctx.respondentSolicitorDisplayAddress = searchHelper.mapRespondentSolicitorCyaData(session);
     }
     return ctx;
   }

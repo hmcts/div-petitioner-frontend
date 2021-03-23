@@ -42,7 +42,7 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'theirAddress');
       } else if (ctx.respondentCorrespondenceUseHomeAddress === 'No') {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'anotherAddress');
-      } else if (ctx.respondentCorrespondenceUseHomeAddress === 'Solicitor') {
+      } else {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'solicitorAddress');
       }
     }

@@ -110,7 +110,6 @@ describe(modulePath, () => {
     });
   });
 
-
   describe('when respondent lives at same address', () => {
     let session = {};
 
@@ -183,6 +182,14 @@ describe(modulePath, () => {
       const newSession = removeStaleData(previousSession, session);
       expect(typeof newSession.respondentCorrespondenceAddress)
         .to.equal('undefined');
+    });
+  });
+
+  describe('Where papers are sent', () => {
+    it('should set the value to \'theirAddress\'', () => {
+      const ctx = { isRespSolToggleOn: true };
+      const session = { language: 'en' };
+      underTest.setRespondentCorrespondenceDisplayAnswer(ctx, session);
     });
   });
 

@@ -284,113 +284,181 @@ describe(modulePath, () => {
         expect(session.respondentSolicitorAddressManual).to.be.undefined;
       });
     });
-  });
 
-  describe('mapRespondentSolicitorData() - Digital', () => {
-    let session = {};
-    const buildRespondentSolicitorSessionData = () => {
-      return {
-        divorceWho: 'wife',
-        respondentSolicitorName: null,
-        respondentSolicitorEmail: null,
-        respondentSolicitorReference: null,
-        respondentSolicitorOrganisation: {
-          contactInformation: [
-            {
-              addressLine1: '19/22 Union St',
-              addressLine2: 'Oldham',
-              addressLine3: '',
-              country: 'United Kingdom',
-              county: 'Greater Manchester',
-              postCode: 'OL1 222',
-              townCity: 'Manchester'
-            }
-          ],
-          name: TEST_RESP_SOLICITOR_COMPANY,
-          organisationIdentifier: TEST_RESP_SOLICITOR_ID
-        },
-        respondentSolicitorFirm: 'searchCriteria'
-      };
-    };
-
-    beforeEach(() => {
-      session = buildRespondentSolicitorSessionData();
-      req = { session };
-    });
-
-    afterEach(() => {
-      session = {};
-    });
-
-    it('should map current data to expected respondent solicitor payload', () => {
-      const expectedAddress = [
-        '19/22 Union St',
-        'Oldham',
-        'United Kingdom',
-        'Greater Manchester',
-        'OL1 222',
-        'Manchester'
-      ];
-
-      req.body = {
-        respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-        respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
-        respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
-      };
-
-      underTest.mapRespondentSolicitorData(req);
-
-      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
-      expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
-      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
-      expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
-      expect(req.session.respondentSolicitorAddress).to.have.property('address');
-      expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
-      expect(req.session.respondentSolicitorReferenceDataId).to.equal(TEST_RESP_SOLICITOR_ID);
-    });
-
-    it('should map empty array to solicitor address when no solicitor organisation', () => {
-      req.session.respondentSolicitorOrganisation = null;
-
-      underTest.mapRespondentSolicitorData(req);
-
-      expect(req.session.respondentSolicitorName).to.be.undefined;
-      expect(req.session.respondentSolicitorEmail).to.be.undefined;
-      expect(req.session.respondentSolicitorReference).to.be.undefined;
-      expect(req.session.respondentSolicitorCompany).to.be.undefined;
-      expect(req.session.respondentSolicitorAddress).to.have.property('address');
-      expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);
-      expect(req.session.respondentSolicitorReferenceDataId).to.be.undefined;
+    describe('trimAndRemoveBlanks()', () => {
+      const expectedLines = 5;
+      it('should correctly process list of items', () => {
+        const itemsArray = ['Some', ' ', 'items', null, 'in', 'a', 'list', ''];
+        const expectedResult = ['Some', 'items', 'in', 'a', 'list'];
+        const result = underTest.trimAndRemoveBlanks(itemsArray);
+        expect(result).to.deep.equal(expectedResult);
+        expect(result).to.have.lengthOf(expectedLines);
+      });
     });
   });
 
-  describe('mapRespondentSolicitorData() - Manual', () => {
-    const manualAddress = 'An\n\raddress\nline\n \r\nlast line';
-    const expectedAddress = ['An', 'address', 'line', 'last line'];
-
-    it('should map current data to expected respondent solicitor payload', () => {
-      req = {
-        body: {
-          respondentSolicitorNameManual: TEST_RESP_SOLICITOR_NAME,
-          respondentSolicitorEmailManual: TEST_RESP_SOLICITOR_EMAIL,
-          respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
-          respondentSolicitorAddressManual: manualAddress,
-          respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY
-        },
-        session: {
-          divorceWho: 'wife'
-        }
+  context('Session data mapping', () => {
+    describe('mapRespondentSolicitorData() - Digital', () => {
+      let session = {};
+      const buildRespondentSolicitorSessionData = () => {
+        return {
+          divorceWho: 'wife',
+          respondentSolicitorName: null,
+          respondentSolicitorEmail: null,
+          respondentSolicitorReference: null,
+          respondentSolicitorOrganisation: {
+            contactInformation: [
+              {
+                addressLine1: '19/22 Union St',
+                addressLine2: 'Oldham',
+                addressLine3: '',
+                country: 'United Kingdom',
+                county: 'Greater Manchester',
+                postCode: 'OL1 222',
+                townCity: 'Manchester'
+              }
+            ],
+            name: TEST_RESP_SOLICITOR_COMPANY,
+            organisationIdentifier: TEST_RESP_SOLICITOR_ID
+          },
+          respondentSolicitorFirm: 'searchCriteria'
+        };
       };
 
-      underTest.mapRespondentSolicitorData(req, true);
+      beforeEach(() => {
+        session = buildRespondentSolicitorSessionData();
+        req = { session };
+      });
 
-      expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
-      expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
-      expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
-      expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
-      expect(req.session.respondentSolicitorAddress).to.have.property('address');
-      expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
-      expect(req.session.respondentSolicitorAddressManual).to.equal(manualAddress);
+      afterEach(() => {
+        session = {};
+      });
+
+      it('should map current data to expected respondent solicitor payload', () => {
+        const expectedAddress = [
+          '19/22 Union St',
+          'Oldham',
+          'United Kingdom',
+          'Greater Manchester',
+          'OL1 222',
+          'Manchester'
+        ];
+
+        req.body = {
+          respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
+          respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
+        };
+
+        underTest.mapRespondentSolicitorData(req);
+
+        expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+        expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
+        expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
+        expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
+        expect(req.session.respondentSolicitorAddress).to.have.property('address');
+        expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
+        expect(req.session.respondentSolicitorReferenceDataId).to.equal(TEST_RESP_SOLICITOR_ID);
+      });
+
+      it('should map empty array to solicitor address when no solicitor organisation', () => {
+        req.session.respondentSolicitorOrganisation = null;
+
+        underTest.mapRespondentSolicitorData(req);
+
+        expect(req.session.respondentSolicitorName).to.be.undefined;
+        expect(req.session.respondentSolicitorEmail).to.be.undefined;
+        expect(req.session.respondentSolicitorReference).to.be.undefined;
+        expect(req.session.respondentSolicitorCompany).to.be.undefined;
+        expect(req.session.respondentSolicitorAddress).to.have.property('address');
+        expect(req.session.respondentSolicitorAddress.address).to.have.lengthOf(0);
+        expect(req.session.respondentSolicitorReferenceDataId).to.be.undefined;
+      });
+    });
+
+    describe('mapRespondentSolicitorData() - Manual', () => {
+      const manualAddress = 'An\n\raddress\nline\n \r\nlast line';
+      const expectedAddress = ['An', 'address', 'line', 'last line'];
+
+      it('should map current data to expected respondent solicitor payload', () => {
+        req = {
+          body: {
+            respondentSolicitorNameManual: TEST_RESP_SOLICITOR_NAME,
+            respondentSolicitorEmailManual: TEST_RESP_SOLICITOR_EMAIL,
+            respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
+            respondentSolicitorAddressManual: manualAddress,
+            respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY
+          },
+          session: {
+            divorceWho: 'wife'
+          }
+        };
+
+        underTest.mapRespondentSolicitorData(req, true);
+
+        expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
+        expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
+        expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
+        expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
+        expect(req.session.respondentSolicitorAddress).to.have.property('address');
+        expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
+        expect(req.session.respondentSolicitorAddressManual).to.equal(manualAddress);
+      });
+    });
+
+    describe('mapRespondentSolicitorCyaData', () => {
+      it('should correctly generate CYA content when all data is available', () => {
+        req.session = {
+          respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY,
+          respondentSolicitorAddress: {
+            address: [
+              'address line 1',
+              '',
+              'address line 3'
+            ]
+          },
+          respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
+          respondentSolicitorReference: TEST_RESP_SOLICITOR_REF
+        };
+        const expectedCyaContent = [
+          TEST_RESP_SOLICITOR_NAME,
+          TEST_RESP_SOLICITOR_COMPANY,
+          'address line 1',
+          'address line 3',
+          TEST_RESP_SOLICITOR_EMAIL,
+          TEST_RESP_SOLICITOR_REF
+        ].join('<br>');
+
+        const cyaContent = underTest.mapRespondentSolicitorCyaData(req.session);
+
+        expect(cyaContent).to.deep.equal(expectedCyaContent);
+      });
+
+      it('should correctly generate CYA content when some optional data not available', () => {
+        req.session = {
+          respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY,
+          respondentSolicitorAddress: {
+            address: [
+              'address line 1',
+              'address line 2'
+            ]
+          },
+          respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL
+        };
+        const expectedCyaContent = [
+          TEST_RESP_SOLICITOR_NAME,
+          TEST_RESP_SOLICITOR_COMPANY,
+          'address line 1',
+          'address line 2',
+          TEST_RESP_SOLICITOR_EMAIL
+        ].join('<br>');
+
+        const cyaContent = underTest.mapRespondentSolicitorCyaData(req.session);
+
+        expect(cyaContent).to.deep.equal(expectedCyaContent);
+      });
     });
   });
 

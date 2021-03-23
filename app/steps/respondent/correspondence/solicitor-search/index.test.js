@@ -259,18 +259,29 @@ describe(modulePath, () => {
           session = {};
         });
 
-        it('renders the cya template', done => {
+        it('should render the cya template', done => {
           testCYATemplate(done, underTest, {}, session);
         });
 
-        it('renders address', done => {
-          testExistenceCYA(done, underTest, content, [], [], {}, {
+        it('should renders address solicitor address', done => {
+          const contentToExist = ['question'];
+          const valuesToExist = [
+            'divorceWho',
+            'respondentSolicitorDisplayAddress'
+          ];
+          const context = {
+            respondentSolicitorDisplayAddress: 'Solicitor name<br>line 1<br>line 2<br>line 3<br>email@email.com'
+          };
+          session = {
             divorceWho: 'wife',
             respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorEmail: 'email@email.com',
             respondentSolicitorAddress: {
-              address: ['line 1', 'line 2', 'line 3', 'postcode']
+              address: ['line 1', 'line 2', 'line 3']
             }
-          });
+          };
+
+          testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
         });
       });
     });

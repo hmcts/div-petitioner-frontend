@@ -1,11 +1,20 @@
 const request = require('supertest');
-const { testContent, testCYATemplate, testExistenceCYA, testErrors, testRedirect, testExistence } = require('test/util/assertions');
+const {
+  testContent,
+  testCYATemplate,
+  testExistenceCYA,
+  testNoneExistenceCYA,
+  testErrors,
+  testRedirect,
+  testExistence
+} = require('test/util/assertions');
 const server = require('app');
 const { withSession } = require('test/util/setup');
 const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
+const forEach = require('mocha-each');
 
 const modulePath = 'app/steps/respondent/correspondence/use-home-address';
 
@@ -45,7 +54,30 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['solicitor'];
+      const excludeKeys = [
+        'featureToggleRespSol.question',
+        'featureToggleRespSol.correspondence',
+        'featureToggleRespSol.theirAddress',
+        'featureToggleRespSol.solicitorAddress',
+        'featureToggleRespSol.anotherAddress',
+        'featureToggleRespSol.needToKnowSolFirm'
+      ];
+
+      testContent(done, agent, underTest, content, session, excludeKeys);
+    });
+
+    it('renders the content from the content file (feature toggle respondent solicitor on)', done => {
+      const excludeKeys = [
+        'correspondence',
+        'yes',
+        'no',
+        'featureToggleRespSol.needToKnowSolFirm'
+      ];
+
+      underTest.setRespSolToggle = ctx => {
+        ctx.isRespSolToggleOn = true;
+      };
+
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -69,8 +101,14 @@ describe(modulePath, () => {
       testRedirect(done, agent, underTest, context,
         s.steps.RespondentCorrespondenceAddress);
     });
-  });
 
+    it('redirects to RespondentSolicitorDetails when Solicitor is selected', done => {
+      const context = { respondentCorrespondenceUseHomeAddress: 'Solicitor' };
+
+      testRedirect(done, agent, underTest, context,
+        s.steps.RespondentCorrespondenceSolicitorSearch);
+    });
+  });
 
   describe('when respondent lives at same address', () => {
     let session = {};
@@ -147,37 +185,115 @@ describe(modulePath, () => {
     });
   });
 
-  describe('Check Your Answers', () => {
-    it('renders the cya template', done => {
-      testCYATemplate(done, underTest);
+  describe('Where papers are sent', () => {
+    const getSolicitorContent = (session, option) => {
+      return content.resources[session.language].translation.content.featureToggleRespSol[option];
+    };
+
+    forEach([
+      ['Yes', 'theirAddress'],
+      ['No', 'anotherAddress'],
+      ['Solicitor', 'solicitorAddress']
+    ])
+      .it('should set the correct value when users option is %s', (useHomeAddress, contentOption) => {
+        const ctx = {
+          isRespSolToggleOn: true,
+          respondentCorrespondenceUseHomeAddress: useHomeAddress
+        };
+        const session = { language: 'en' };
+
+        underTest.setRespondentCorrespondenceDisplayAnswer(ctx, session);
+
+        // eslint-disable-next-line no-unused-expressions
+        expect(ctx.respondentCorrespondenceWherePaperSent).not.to.be.undefined;
+        expect(ctx.respondentCorrespondenceWherePaperSent).to.equal(getSolicitorContent(session, contentOption));
+      });
+  });
+
+  context('Check Your Answers', () => {
+    describe('Check Your Answers - Default', () => {
+      it('should render the cya template', done => {
+        testCYATemplate(done, underTest);
+      });
+
+      it('should render when respondentCorrespondenceUseHomeAddress is yes', done => {
+        const contentToExist = [
+          'question',
+          'yes'
+        ];
+
+        const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
+        const context = {
+          respondentCorrespondenceUseHomeAddress: 'Yes'
+        };
+        const session = {
+          divorceWho: 'wife',
+          livingArrangementsLastLivedTogetherAddress: {
+            address: ['line 1', 'line 2', 'line 3', 'postcode']
+          }
+        };
+
+        testExistenceCYA(done, underTest, content,
+          contentToExist, valuesToExist, context, session);
+      });
+
+      it('should render when respondentCorrespondenceUseHomeAddress is no', done => {
+        const contentToExist = [
+          'question',
+          'no'
+        ];
+
+        const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
+        const context = {
+          respondentCorrespondenceUseHomeAddress: 'No'
+        };
+        const session = {
+          divorceWho: 'wife',
+          livingArrangementsLastLivedTogetherAddress: {
+            address: ['line 1', 'line 2', 'line 3', 'postcode']
+          }
+
+        };
+
+        testExistenceCYA(done, underTest, content,
+          contentToExist, valuesToExist, context, session);
+      });
     });
 
-    it('renders when respondentCorrespondenceUseHomeAddress is yes', done => {
-      const contentToExist = [
-        'question',
-        'yes'
-      ];
+    describe('Check Your Answers - Feature Toggle', () => {
+      forEach([
+        ['Solicitor', 'Their solicitor\'s address'],
+        ['Yes', 'Their address'],
+        ['No', 'Another address']
+      ])
+        .it('should render correct response for where papers are sent when respondentCorrespondenceUseHomeAddress is %s',
+          (useHomeAddress, wherePaperSent, done) => {
+            const contentToExist = ['featureToggleRespSol.question'];
+            const valuesToExist = ['respondentCorrespondenceWherePaperSent'];
+            const context = {
+              isRespSolToggleOn: true,
+              respondentCorrespondenceUseHomeAddress: useHomeAddress,
+              respondentCorrespondenceWherePaperSent: wherePaperSent
+            };
+            const session = {
+              divorceWho: 'wife',
+              language: 'en'
+            };
 
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-      const context = { respondentCorrespondenceUseHomeAddress: 'Yes' };
-      const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
+            testExistenceCYA(done, underTest, content,
+              contentToExist, valuesToExist, context, session);
+          });
 
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
-    });
+      it('should not render respondentCorrespondenceWherePaperSent if toggle is off', done => {
+        const contentToNotExist = [];
+        const valuesToNotExist = ['respondentCorrespondenceWherePaperSent'];
+        const context = {
+          isRespSolToggleOn: false
+        };
 
-    it('renders when respondentCorrespondenceUseHomeAddress is no', done => {
-      const contentToExist = [
-        'question',
-        'no'
-      ];
-
-      const valuesToExist = ['livingArrangementsLastLivedTogetherAddress'];
-      const context = { respondentCorrespondenceUseHomeAddress: 'No' };
-      const session = { divorceWho: 'wife', livingArrangementsLastLivedTogetherAddress: { address: ['line 1', 'line 2', 'line 3', 'postcode'] } };
-
-      testExistenceCYA(done, underTest, content,
-        contentToExist, valuesToExist, context, session);
+        testNoneExistenceCYA(done, underTest, content,
+          contentToNotExist, valuesToNotExist, context);
+      });
     });
   });
 });

@@ -53,6 +53,8 @@ services:
   feesAndPayments:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'
+  prdClient:
+    baseUrl:
   webchat:
     chatId: 3833071605d5d4518036a09.30917386
     tenant: aG1jdHNzdGFnaW5nMDE
@@ -185,6 +187,8 @@ ccd:
     - 'AwaitingProcessServerService'
     - 'AwaitingDWPResponse'
     - 'AosDrafted'
+    - 'AwaitingBailiffService'
+    - 'IssuedToBailiff'
   courts:
     - 'serviceCentre'
 
@@ -201,7 +205,7 @@ featureToggles:
   ft_pcq: 'petitioner-pcq'
   ft_awaiting_amend: 'divorce-amended-application'
   ft_represented_respondent_journey: 'represented-respondent-journey'
-  appwideToggles: ['ft_welsh']
+  appwideToggles: ['ft_welsh', 'ft_represented_respondent_journey']
 
 document:
   sessionPath: 'd8'

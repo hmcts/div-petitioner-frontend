@@ -224,11 +224,26 @@ describe(modulePath, () => {
       expect(typeof newSession.claimsCostsFrom).to.equal('undefined');
     });
 
-    it(' does not remove reasonForDivorceAdulteryIsNamed or claimsCostsFrom if claimsCosts is set to yes', () => {
+    it('removes claimsCostExplain if claimsCosts is set to no', () => {
+      const previousSession = {
+        claimsCosts: 'Yes',
+        claimsCostExplain: 'Cost explanation'
+      };
+
+      const session = clone(previousSession);
+      session.claimsCosts = 'No';
+
+      const newSession = removeStaleData(previousSession, session);
+
+      expect(typeof newSession.claimsCostExplain).to.equal('undefined');
+    });
+
+    it(' does not remove reasonForDivorceAdulteryIsNamed or claimsCostsFrom or claimsCostExplain if claimsCosts is set to yes', () => {
       const previousSession = {
         claimsCosts: 'No',
         reasonForDivorceAdulteryIsNamed: 'Yes',
-        claimsCostsFrom: ['correspondent']
+        claimsCostsFrom: ['correspondent'],
+        claimsCostExplain: 'Cost explanation'
       };
 
       const session = clone(previousSession);
@@ -240,6 +255,8 @@ describe(modulePath, () => {
         .to.equal(previousSession.reasonForDivorceAdulteryIsNamed);
       expect(newSession.claimsCostsFrom)
         .to.deep.equal(previousSession.claimsCostsFrom);
+      expect(newSession.claimsCostExplain)
+        .to.deep.equal(previousSession.claimsCostExplain);
     });
 
     it('removes data created in interceptor if claimsCosts is set to no', () => {
@@ -368,6 +385,29 @@ describe(modulePath, () => {
       const context = {
         claimsCosts: 'Yes',
         claimsCostsFrom: ['correspondent']
+      };
+
+      const session = {
+        divorceWho: 'wife',
+        reasonForDivorceAdultery3rdPartyFirstName: 'name 1',
+        reasonForDivorceAdultery3rdPartyLastName: 'name 2'
+      };
+
+      testExistenceCYA(done, underTest, content,
+        contentToExist, valuesToExist, context, session);
+    });
+
+    it('renders when claimsCosts is yes and claimsCostExplain is filled in', done => {
+      const contentToExist = [
+        'question',
+        'costDetails'
+      ];
+
+      const valuesToExist = ['claimsCosts'];
+
+      const context = {
+        claimsCosts: 'Yes',
+        claimsCostExplain: 'Cost explanation'
       };
 
       const session = {

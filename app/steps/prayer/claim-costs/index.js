@@ -18,6 +18,7 @@ module.exports = class ClaimCosts extends ValidationStep {
         remove(
           'reasonForDivorceAdulteryIsNamed',
           'claimsCostsFrom',
+          'claimsCostExplain',
           'claimsCostsAppliedForFees',
           'reasonForDivorceClaiming5YearSeparation',
           'reasonForDivorceClaimingAdultery'

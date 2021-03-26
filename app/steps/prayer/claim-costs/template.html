@@ -1,4 +1,5 @@
 {% from "warning-text/macro.njk" import govukWarningText %}
+{% from "common/components/formElements.html" import textArea %}
 {% extends "question.html" %}
 {% block question %}
 {{ content.question | safe }}
@@ -57,7 +58,7 @@
 </div>
 
 <div class="govuk-form-group govuk-details__text {{ 'js-hidden' if fields.claimsCosts.value !== 'Yes'}} {{ 'govuk-form-group--error' if fields.claimsCostsFrom.error }}" id="claim-costs">
-  {% if fields.reasonForDivorceClaimingAdultery.value and fields.reasonForDivorceAdulteryIsNamed.value == 'Yes' %}
+  {%- if fields.reasonForDivorceClaimingAdultery.value and fields.reasonForDivorceAdulteryIsNamed.value == 'Yes' -%}
     <fieldset id="claimsCostsFrom" class="govuk-fieldset">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
           {{ content.whoCosts }}
@@ -83,14 +84,19 @@
       </div>
     </fieldset>
     <br>
+  {%- endif -%}
+  {{ textArea(
+    name='claimsCostExplain',
+    field=fields.claimsCostExplain,
+    label=content.costDetails
+  ) }}
+  <p class="govuk-body">
+    {%- if fields.helpWithFeesReferenceNumber.value -%}
+     {{content.youHaveToPayFeeNow | safe}}
+    {%- else -%}
+      {{content.youHaveToPayFeeAppNow | safe }} {{content.youHaveToPayFeeNow | safe}}
     {%- endif -%}
-    <p class="govuk-body">
-      {%- if fields.helpWithFeesReferenceNumber.value -%}
-       {{content.youHaveToPayFeeNow | safe}}
-      {%- else -%}
-        {{content.youHaveToPayFeeAppNow | safe }} {{content.youHaveToPayFeeNow | safe}}
-      {%- endif -%}
-    </p>
+  </p>
 </div>
 
 {% endblock %}

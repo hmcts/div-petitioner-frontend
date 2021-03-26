@@ -36,6 +36,9 @@
               "correspondent"
             ]
           }
+        },
+        "claimsCostExplain": {
+          "type": "string"
         }
       },
       "required": [
@@ -63,6 +66,9 @@
               "correspondent"
             ]
           }
+        },
+        "claimsCostExplain": {
+          "type": "string"
         }
       },
       "required": [

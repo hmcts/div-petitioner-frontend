@@ -26,11 +26,11 @@ describe(modulePath, () => {
   ];
 
   describe('module', () => {
-    context('Environment is set to production', () => {
+    context('Environment is set to none local', () => {
       let getOrganisationByNameStub = null;
 
       beforeEach(() => {
-        CONF.environment = 'production';
+        CONF.deployment_env = 'aat';
         getOrganisationByNameStub = sinon.stub(organisationClient.prototype, 'getOrganisationByName')
           .returns(Promise.resolve(getOrganisationByNameSuccess));
       });
@@ -62,9 +62,9 @@ describe(modulePath, () => {
       });
     });
 
-    context('Environment is not set to production', () => {
+    context('Environment is set to local', () => {
       beforeEach(() => {
-        CONF.environment = 'testing';
+        CONF.deployment_env = 'local';
         sinon.spy(mockedClient, 'getOrganisationByName');
       });
 

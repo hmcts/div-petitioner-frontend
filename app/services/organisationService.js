@@ -18,10 +18,8 @@ const service = {
 
 module.exports = {
   setup: (auth, serviceAuth) => {
-    // it's not really "prod" env. It's just "not local"
-    const isProduction = CONF.environment === 'production';
-    client = isProduction ? new OrganisationClient(auth, serviceAuth, CONF.services.prdClient.baseUrl) : mockedClient;
-
+    const prdClientUrl = CONF.services.prdClient.baseUrl;
+    client = CONF.deployment_env === 'local' ? mockedClient : new OrganisationClient(auth, serviceAuth, prdClientUrl);
     return service;
   }
 };

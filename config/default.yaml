@@ -54,7 +54,7 @@ services:
     baseUrl: 'http://localhost:4009'
     health: 'http://localhost:4009/health'
   prdClient:
-    baseUrl: 'http://localhost:4017/refdata/external/v1/organisations/status'
+    baseUrl:
   webchat:
     chatId: 3833071605d5d4518036a09.30917386
     tenant: aG1jdHNzdGFnaW5nMDE

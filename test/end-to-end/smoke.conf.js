@@ -15,7 +15,6 @@ exports.config = {
         ignoreHTTPSErrors: true,
         args: [
           '--no-sandbox',
-          `--proxy-server=${CONF.e2e.proxyServer}`,
           `--proxy-bypass-list=${CONF.e2e.proxyBypassList}`
         ]
       }

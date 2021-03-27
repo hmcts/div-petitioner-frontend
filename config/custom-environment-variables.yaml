@@ -104,7 +104,6 @@ idamArgs:
 
 e2e:
   frontendUrl: E2E_FRONTEND_URL
-  proxyServer: E2E_PROXY_SERVER
   proxyBypassList: E2E_PROXY_BYPASS
   outputDirectory: E2E_OUTPUT_DIR
   defaultEnvironmentNodeEnv: E2E_FRONTEND_NODE_ENV

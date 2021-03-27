@@ -1,7 +1,7 @@
 const OrganisationClient = require('@hmcts/prd-client').OrganisationClient;
 const mockedClient = require('app/services/mocks/organisationServiceClient');
 const CONF = require('config');
-const { get } = require('lodash');
+const { get, isEqual } = require('lodash');
 
 let client = {};
 
@@ -17,10 +17,13 @@ const service = {
   }
 };
 
+const isLocalEnvironment = () => {
+  return isEqual(CONF.deployment_env, 'local');
+};
+
 module.exports = {
   setup: (auth, serviceAuth) => {
-    const prdClientUrl = get(CONF, 'services.prdClient.baseUrl');
-    client = CONF.deployment_env === 'local' ? mockedClient : new OrganisationClient(auth, serviceAuth, prdClientUrl);
+    client = isLocalEnvironment() ? mockedClient : new OrganisationClient(auth, serviceAuth, get(CONF, 'services.prdClient.baseUrl'));
     return service;
   }
 };

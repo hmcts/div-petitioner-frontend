@@ -30,7 +30,7 @@ describe(modulePath, () => {
       let getOrganisationByNameStub = null;
 
       beforeEach(() => {
-        CONF.deployment_env = 'aat';
+        CONF.environment = 'production';
         getOrganisationByNameStub = sinon.stub(OrganisationClient.prototype, 'getOrganisationByName')
           .returns(Promise.resolve(getOrganisationByNameSuccess));
       });
@@ -64,7 +64,7 @@ describe(modulePath, () => {
 
     context('Local environment:', () => {
       beforeEach(() => {
-        CONF.deployment_env = 'local';
+        CONF.environment = 'local';
         sinon.spy(mockedClient, 'getOrganisationByName');
       });
 

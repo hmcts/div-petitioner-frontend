@@ -16,7 +16,7 @@ def secrets = [
     secret('frontend-secret', 'MICROSERVICE_KEY'),
     secret('launchdarkly-key', 'LAUNCHDARKLY_KEY'),
     secret('idam-citizen-username', 'IDAM_CITIZEN_EMAIL'),
-   secret('idam-citizen-password', 'IDAM_CITIZEN_PASSWORD')
+    secret('idam-citizen-password', 'IDAM_CITIZEN_PASSWORD')
 
   ]
 ]

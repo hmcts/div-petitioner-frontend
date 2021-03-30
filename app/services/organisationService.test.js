@@ -64,7 +64,7 @@ describe(modulePath, () => {
 
     context('Local environment:', () => {
       beforeEach(() => {
-        CONF.environment = 'local';
+        CONF.environment = 'testing';
         sinon.spy(mockedClient, 'getOrganisationByName');
       });
 
@@ -89,7 +89,7 @@ describe(modulePath, () => {
 
   describe('#getOrganisationByName', () => {
     let client = null;
-    CONF.deployment_env = 'local';
+    CONF.environment = 'testing';
 
     beforeEach(() => {
       sinon.stub(mockedClient, 'getOrganisationByName').resolves(getOrganisationByNameSuccess);

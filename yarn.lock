@@ -11284,7 +11284,7 @@ style-loader@^0.8.3:
   dependencies:
     loader-utils "^0.2.5"
 
-superagent-proxy@^2.0.0:
+superagent-proxy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/superagent-proxy/-/superagent-proxy-2.1.0.tgz#34e91f9024fbace95f0a35c50c69edf2a0d331e2"
   integrity sha512-DnarpKN6Xn8e3pYlFV4Yvsj9yxLY4q5FIsUe5JvN7vjzP+YCfzXv03dTkZSD2yzrSadsNYHf0IgOUJwKjX457A==

@@ -35,6 +35,7 @@ nodejs:
         IDAM_API_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net"
         IDAM_LOGIN_URL: "https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login"
         PUBLIC_HOSTNAME: "https://div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing envs
+        PRD_ORGANISATION_API_URL: "http://rd-professional-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/refdata/external/v1/organisations/status"
 
         IDAM_CLIENT_ID: "divorce"
 

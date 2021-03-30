@@ -1,5 +1,5 @@
 const { expect, sinon } = require('test/util/chai');
-const organisationClient = require('@hmcts/prd-client').OrganisationClient;
+const { OrganisationClient } = require('@hmcts/prd-client');
 const CONF = require('config');
 
 const modulePath = 'app/services/organisationService';
@@ -26,12 +26,12 @@ describe(modulePath, () => {
   ];
 
   describe('module', () => {
-    context('Environment is set to production', () => {
+    context('Production environment:', () => {
       let getOrganisationByNameStub = null;
 
       beforeEach(() => {
         CONF.environment = 'production';
-        getOrganisationByNameStub = sinon.stub(organisationClient.prototype, 'getOrganisationByName')
+        getOrganisationByNameStub = sinon.stub(OrganisationClient.prototype, 'getOrganisationByName')
           .returns(Promise.resolve(getOrganisationByNameSuccess));
       });
 
@@ -62,7 +62,7 @@ describe(modulePath, () => {
       });
     });
 
-    context('Environment is not set to production', () => {
+    context('Local environment:', () => {
       beforeEach(() => {
         CONF.environment = 'testing';
         sinon.spy(mockedClient, 'getOrganisationByName');
@@ -89,6 +89,7 @@ describe(modulePath, () => {
 
   describe('#getOrganisationByName', () => {
     let client = null;
+    CONF.environment = 'testing';
 
     beforeEach(() => {
       sinon.stub(mockedClient, 'getOrganisationByName').resolves(getOrganisationByNameSuccess);

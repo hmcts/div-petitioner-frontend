@@ -36,7 +36,11 @@ describe(modulePath, () => {
     });
 
     it('renders the content from the content file', done => {
-      const excludeKeys = ['residualTextOposite1', 'residualTextOposite2', 'residualTextOposite3'];
+      const excludeKeys = [
+        'residualTextOposite1', 'residualTextOposite2', 'residualTextOposite3',
+        'residualTextSameConHead', 'residualTextSameCon1', 'residualTextSameCon2',
+        'residualTextSameCon3'
+      ];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -56,7 +60,7 @@ describe(modulePath, () => {
       const excludeKeys = [
         'residualTextSame1', 'residualTextSame2', 'residualTextSame3',
         'residualTextSameConHead', 'residualTextSameCon1', 'residualTextSameCon2',
-        'residualTextSameCon3'
+        'residualTextSameCon3', 'headingSame'
       ];
 
       testContent(done, agent, underTest, content, session, excludeKeys);

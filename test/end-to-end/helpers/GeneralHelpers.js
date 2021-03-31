@@ -5,7 +5,7 @@ function prettifyAddress(address) {
 }
 
 function getOtherJurisdictionConnections(connections) {
-  let connectionsList = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  let connectionsList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   connections.forEach((connection) => {
     let index = connectionsList.indexOf(connection);
     if (index > -1) {

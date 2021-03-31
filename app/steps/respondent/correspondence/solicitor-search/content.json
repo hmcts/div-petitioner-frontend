@@ -63,58 +63,58 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "[CY] Enter details of your {{ divorceWho }} solicitor",
-          "solicitorFirmLabel": "[CY] Enter the name of their solicitor's firm",
-          "searchButton": "[CY] Search",
-          "continueBtnText": "[CY] Continue",
-          "deselectBtnText": "[CY] Deselect",
-          "selectBtnText": "[CY] Select",
-          "enterManuallyBtnText": "[CY] Enter details manually",
-          "errorSummaryHeading": "[CY] There was a problem",
-          "resultsLabel": "[CY] Results",
-          "solicitorNameLabel": "[CY] Solicitor's name",
-          "solicitorReferenceLabel": "[CY] Solicitor's reference (optional)",
-          "solicitorEmailLabel": "[CY] Solicitor's email address",
-          "solicitorEmailManualLabel": "[CY] Solicitor's email address (optional)",
-          "solicitorCompanyLabel": "[CY] Solicitor's firm",
-          "solicitorFirmAddressLabel": "[CY] Solicitor's address",
+          "question": "Nodwch fanylion cyfreithiwr eich gŵr/gwraig",
+          "solicitorFirmLabel": "Nodwch enw cwmni ei gyfreithiwr",
+          "searchButton": "Chwilio",
+          "continueBtnText": "Parhau",
+          "deselectBtnText": "Dad-ddewis",
+          "selectBtnText": "Chwilio",
+          "enterManuallyBtnText": "Nodi manylion â llaw",
+          "errorSummaryHeading": "Roedd yna broblem",
+          "resultsLabel": "Canlyniadau",
+          "solicitorNameLabel": "Enw’r cyfreithiwr",
+          "solicitorReferenceLabel": "Cyfeirnod y cyfreithiwr (dewisol)",
+          "solicitorEmailLabel": "Cyfeiriad e-bost y cyfreithiwr",
+          "solicitorEmailManualLabel": "Cyfeiriad e-bost y cyfreithiwr (dewisol)”",
+          "solicitorCompanyLabel": "Cwmni’r cyfreithiwr",
+          "solicitorFirmAddressLabel": "Cyfeiriad y cyfreithiwr",
           "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
-          "searchSolicitorFirm": "[CY] Search to find solicitor firm",
+          "searchSolicitorFirm": "Chwilio i ddod o hyd i gwmni’r cyfreithiwr",
           "searchNoResults": {
-            "paragraph1": "[CY] There are no results for the firm you entered.",
-            "paragraph2": "[CY] This may be because the firm is not registered online with HMCTS.",
-            "paragraph3": "[CY] You can check the spelling and search again, or enter the details manually."
+            "paragraph1": "Nid oes unrhyw ganlyniadau ar gyfer y cwmni a nodwyd gennych.",
+            "paragraph2": "Gall hyn fod oherwydd nad yw’r cwmni wedi cofrestru ar-lein gyda GLlTEM.",
+            "paragraph3": "Gallwch wirio’r sillafiad a chwilio eto, neu gallwch nodi’r manylion â llaw."
           },
           "searchErrors": {
-            "emptyValue": "[CY] Please provide your solicitor's firm name",
-            "shortValue": "[CY] You must enter at least 3 characters",
-            "solicitorName": "[CY] Please provide a solicitor name",
-            "solicitorEmail": "[CY] Please provide a solicitor email"
+            "emptyValue": "Darparwch enw cwmni’r cyfreithiwr",
+            "shortValue": "Rhaid i chi nodi o leiaf 3 nod",
+            "solicitorName": "Darparwch enw’r cyfreithiwr",
+            "solicitorEmail": "Darparwch gyfeiriad e-bost y cyfreithiwr"
           }
         },
         "errors": {
           "respondentSolicitorName": {
-            "required": "[CY] Please provide a solicitor's name",
-            "invalid": "[CY] Please provide a solicitor's name"
+            "required": "Darparwch enw’r cyfreithiwr",
+            "invalid": "Darparwch enw’r cyfreithiwr"
           },
           "respondentSolicitorNameManual": {
-            "required": "[CY] Please provide a solicitor's name",
-            "invalid": "[CY] Please provide a solicitor's name"
+            "required": "Darparwch enw’r cyfreithiwr",
+            "invalid": "Darparwch enw’r cyfreithiwr"
           },
           "respondentSolicitorEmail": {
-            "required": "[CY] Please provide a solicitor's email",
-            "invalid": "[CY] Please provide a solicitor's email"
+            "required": "Darparwch gyfeiriad e-bost y cyfreithiwr",
+            "invalid": "Darparwch gyfeiriad e-bost y cyfreithiwr"
           },
           "respondentSolicitorAddressManual": {
-            "required": "[CY] Please provide a solicitor's address",
-            "invalid": "[CY] Please provide a solicitor's address"
+            "required": "Darparwch gyfeiriad eich cyfreithiwr",
+            "invalid": "Darparwch gyfeiriad eich cyfreithiwr"
           },
           "respondentSolicitorCompany": {
-            "required": "[CY] Please provide a solicitor's firm",
-            "invalid": "[CY] Please provide a solicitor's firm"
+            "required": "Darparwch enw cwmni’r cyfreithiwr",
+            "invalid": "Darparwch enw cwmni’r cyfreithiwr"
           },
           "respondentSolicitorEmailManual": {
-            "invalid": "[CY] Please provide a solicitor's email"
+            "invalid": "Darparwch gyfeiriad e-bost y cyfreithiwr"
           }
         }
       }

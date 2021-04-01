@@ -63,12 +63,12 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "Nodwch fanylion cyfreithiwr eich gŵr/gwraig",
+          "question": "Nodwch fanylion cyfreithiwr eich {{ divorceWho }}",
           "solicitorFirmLabel": "Nodwch enw cwmni ei gyfreithiwr",
           "searchButton": "Chwilio",
           "continueBtnText": "Parhau",
           "deselectBtnText": "Dad-ddewis",
-          "selectBtnText": "Chwilio",
+          "selectBtnText": "Dewis",
           "enterManuallyBtnText": "Nodi manylion â llaw",
           "errorSummaryHeading": "Roedd yna broblem",
           "resultsLabel": "Canlyniadau",

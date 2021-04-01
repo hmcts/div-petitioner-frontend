@@ -35,12 +35,12 @@
           "yes": "Ie, defnyddiwch y cyfeiriad hwn",
           "no": "Na, dylid eu hanfon i gyfeiriad arall",
           "featureToggleRespSol": {
-            "question": "I ba gyfeiriad y dylid anfon papurau ysgaru eich gŵr/gwraig?” ",
+            "question": "I ba gyfeiriad y dylid anfon papurau ysgaru eich {{ divorceWho }}?",
             "correspondence": "Os yw eich gŵr wedi rhoi cyfeiriad penodol ichi anfon ei bapurau ysgaru iddo, rhaid i chi ddefnyddio’r cyfeiriad hwnnw.",
             "theirAddress": "Ei gyfeiriad",
             "solicitorAddress": "Cyfeiriad ei gyfreithiwr",
             "anotherAddress": "Cyfeiriad arall",
-            "needToKnowSolFirm": "Nodwch fanylion cyfreithiwr eich gŵr/gwraig"
+            "needToKnowSolFirm": "Bydd arnoch angen gwybod cwmni’r cyfreithiwr, ei enw a’i gyfeiriad e-bost.”"
           }
         },
         "checkYourAnswersContent": {

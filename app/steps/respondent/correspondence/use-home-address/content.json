@@ -40,7 +40,7 @@
             "theirAddress": "Ei gyfeiriad",
             "solicitorAddress": "Cyfeiriad ei gyfreithiwr",
             "anotherAddress": "Cyfeiriad arall",
-            "needToKnowSolFirm": "Bydd arnoch angen gwybod cwmni’r cyfreithiwr, ei enw a’i gyfeiriad e-bost.”"
+            "needToKnowSolFirm": "Bydd arnoch angen gwybod cwmni’r cyfreithiwr, ei enw a’i gyfeiriad e-bost."
           }
         },
         "checkYourAnswersContent": {

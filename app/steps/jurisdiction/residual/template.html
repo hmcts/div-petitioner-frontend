@@ -2,7 +2,11 @@
 {% extends "question.html" %}
 
 {% block question %}
-    {{ content.heading | safe }}
+    {%- if session.marriageIsSameSexCouple === 'Yes' %}
+      {{ content.headingSame | safe }}
+    {% else %}
+      {{ content.heading | safe }}
+    {% endif -%}
 {% endblock %}
 
 {% block form %}
@@ -13,17 +17,6 @@
     <p class="govuk-body">
       {{ content.residualTextSame2 | safe }}
     </p>
-    <p class="govuk-body">
-      {{ content.residualTextSame3 | safe }}
-    </p>
-    <p class="govuk-body">
-      {{ content.residualTextSameConHead | safe }}
-    </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>{{ content.residualTextSameCon1 | safe }}</li>
-      <li>{{ content.residualTextSameCon2 | safe }}</li>
-      <li>{{ content.residualTextSameCon3 | safe }}</li>
-    </ul>
 
   {% else %}
 

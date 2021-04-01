@@ -23,8 +23,20 @@ const isEitherDomiciled = (step, ctx, session) => {
   return isDomiciled('petitioner', step, ctx, session) || isDomiciled('respondent', step, ctx, session);
 };
 
+const isPetitionerDomiciled = (step, ctx, session) => {
+  return isDomiciled('petitioner', step, ctx, session);
+};
+
+const isRespondentDomiciled = (step, ctx, session) => {
+  return isDomiciled('respondent', step, ctx, session);
+};
+
 const areBothHabituallyResident = (step, ctx, session) => {
   return isHabitualResident('petitioner', step, ctx, session) && isHabitualResident('respondent', step, ctx, session);
+};
+
+const isSameSexCouple = (step, ctx, session) => {
+  return session.marriageIsSameSexCouple === 'Yes';
 };
 
 const areBothDomiciled = (step, ctx, session) => {
@@ -91,6 +103,16 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
       return c;
     }
     break;
+  case 'H':
+    if (isPetitionerDomiciled(step, ctx, session) && !areBothDomiciled(step, ctx, session)) {
+      return c;
+    }
+    break;
+  case 'I':
+    if (isRespondentDomiciled(step, ctx, session) && !areBothDomiciled(step, ctx, session)) {
+      return c;
+    }
+    break;
   default:
     break;
   }
@@ -98,7 +120,7 @@ const getConnectionLetter = (step, ctx, session, petitionerConnections, c) => { 
 };
 
 const generationConnections = (step, ctx, session) => {
-  const allConnections = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  const allConnections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
   return allConnections.reduce((petitionerConnections, c) => {
     const letter = getConnectionLetter(
@@ -207,10 +229,13 @@ module.exports = {
   isDomiciled,
   residualJurisdiction,
   isEitherDomiciled,
+  isPetitionerDomiciled,
+  isRespondentDomiciled,
   areBothDomiciled,
   areBothNotDomiciled,
   areBothLastHabitualResident,
   clearJurisdictionSections,
   hasOnlyConnection,
-  clearProceedingSteps
+  clearProceedingSteps,
+  isSameSexCouple
 };

@@ -68,10 +68,10 @@ describe(modulePath, () => {
       };
       withSession(done, agent, session);
     });
-    it('when the petitioner is habitually resident for at least six months then we redirect to the interstitial page and we have connection E', done => {
+    it('when the petitioner is habitually resident for at least six months then we redirect to the last habitual residence page and we have connection E', done => {
       postData(agent, underTest.url, { jurisdictionLastSixMonths: 'Yes' })
         .then(location => {
-          expect(location).to.equal(s.steps.JurisdictionInterstitial.url);
+          expect(location).to.equal(s.steps.JurisdictionLastHabitualResidence.url);
         })
         .then(() => {
           return getSession(agent);
@@ -99,10 +99,10 @@ describe(modulePath, () => {
       };
       withSession(done, agent, session);
     });
-    it('when the petitioner is habitually resident for at least six months then we redirect to the interstitial page and we have connection E', done => {
+    it('when the petitioner is habitually resident for at least six months then we redirect to the last habitual residence page and we have connection E', done => {
       postData(agent, underTest.url, { jurisdictionLastSixMonths: 'Yes' })
         .then(location => {
-          expect(location).to.equal(s.steps.JurisdictionInterstitial.url);
+          expect(location).to.equal(s.steps.JurisdictionLastHabitualResidence.url);
         })
         .then(() => {
           return getSession(agent);

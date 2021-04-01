@@ -48,7 +48,7 @@ describe(modulePath, () => {
 
     it('renders the content from the content file for A', done => {
       // we are excluding these keys as the content changes based on the last connection. In this case jurisdictionConnection is ['A']
-      const excludeKeys = ['reason-B', 'reason-C', 'reason-D', 'reason-E', 'reason-F', 'reason-G', 'connectionSummaryTitle'];
+      const excludeKeys = ['reason-B', 'reason-C', 'reason-D', 'reason-E', 'reason-F', 'reason-G', 'reason-H', 'reason-I', 'connectionSummaryTitle'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -68,7 +68,7 @@ describe(modulePath, () => {
 
     it('renders the content from the content file for B', done => {
       // we are excluding these keys as the content changes based on the last connection. In this case jurisdictionConnection is ['A']
-      const excludeKeys = ['reason-A', 'reason-C', 'reason-D', 'reason-E', 'reason-F', 'reason-G', 'connectionSummaryTitle'];
+      const excludeKeys = ['reason-A', 'reason-C', 'reason-D', 'reason-E', 'reason-F', 'reason-G', 'reason-H', 'reason-I', 'connectionSummaryTitle'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -89,7 +89,7 @@ describe(modulePath, () => {
 
     it('renders the content from the content file for C', done => {
       // we are excluding these keys as the content changes based on the last connection. In this case jurisdictionConnection is ['A']
-      const excludeKeys = ['reason-B', 'reason-E', 'reason-G', 'connectionSummaryTitle'];
+      const excludeKeys = ['reason-B', 'reason-E', 'reason-G', 'reason-H', 'reason-I', 'connectionSummaryTitle'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });
@@ -109,7 +109,7 @@ describe(modulePath, () => {
 
     it('renders the content from the content file for C', done => {
       // we are excluding these keys as the content changes based on the last connection. In this case jurisdictionConnection is ['A']
-      const excludeKeys = ['reason-B', 'reason-F', 'reason-G', 'connectionSummaryTitle'];
+      const excludeKeys = ['reason-B', 'reason-F', 'reason-G', 'reason-H', 'reason-I', 'connectionSummaryTitle'];
 
       testContent(done, agent, underTest, content, session, excludeKeys);
     });

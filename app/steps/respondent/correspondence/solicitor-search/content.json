@@ -78,7 +78,7 @@
           "solicitorEmailManualLabel": "[CY] Solicitor's email address (optional)",
           "solicitorCompanyLabel": "[CY] Solicitor's firm",
           "solicitorFirmAddressLabel": "[CY] Solicitor's address",
-          "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
+          "searchNoOptionFoundText": "Os na allwch weld y cwmni wedi'i restru yna gallwch nodi’r manylion eich hun.",
           "searchSolicitorFirm": "[CY] Search to find solicitor firm",
           "searchNoResults": {
             "paragraph1": "[CY] There are no results for the firm you entered.",

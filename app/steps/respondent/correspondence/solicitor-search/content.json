@@ -78,7 +78,7 @@
           "solicitorEmailManualLabel": "Cyfeiriad e-bost y cyfreithiwr (dewisol)",
           "solicitorCompanyLabel": "Cwmni’r cyfreithiwr",
           "solicitorFirmAddressLabel": "Cyfeiriad y cyfreithiwr",
-          "searchNoOptionFoundText": "[CY] If you can't see the firm listed then you can enter the details manually.",
+          "searchNoOptionFoundText": "Os na allwch weld y cwmni wedi'i restru yna gallwch nodi’r manylion eich hun.",
           "searchSolicitorFirm": "Chwilio i ddod o hyd i gwmni’r cyfreithiwr",
           "searchNoResults": {
             "paragraph1": "Nid oes unrhyw ganlyniadau ar gyfer y cwmni a nodwyd gennych.",

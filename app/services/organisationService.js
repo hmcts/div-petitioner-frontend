@@ -18,7 +18,7 @@ const service = {
 };
 
 const isLocalEnvironment = () => {
-  return isEqual(CONF.deployment_env, 'local');
+  return !isEqual(CONF.environment, 'production');
 };
 
 module.exports = {

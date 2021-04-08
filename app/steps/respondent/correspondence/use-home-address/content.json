@@ -35,12 +35,12 @@
           "yes": "Ie, defnyddiwch y cyfeiriad hwn",
           "no": "Na, dylid eu hanfon i gyfeiriad arall",
           "featureToggleRespSol": {
-            "question": "[CY] Where should your {{ divorceWho }}'s divorce papers be sent?",
-            "correspondence": "[CY] If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address",
-            "theirAddress": "[CY] Their address",
-            "solicitorAddress": "[CY] Their solicitor's address",
-            "anotherAddress": "[CY] Another address",
-            "needToKnowSolFirm": "[CY] You'll need to know the solicitor's firm, name and email address."
+            "question": "I ba gyfeiriad y dylid anfon papurau ysgaru eich {{ divorceWho }}?",
+            "correspondence": "Os yw eich gŵr wedi rhoi cyfeiriad penodol ichi anfon ei bapurau ysgaru iddo, rhaid i chi ddefnyddio’r cyfeiriad hwnnw.",
+            "theirAddress": "Ei gyfeiriad",
+            "solicitorAddress": "Cyfeiriad ei gyfreithiwr",
+            "anotherAddress": "Cyfeiriad arall",
+            "needToKnowSolFirm": "Bydd arnoch angen gwybod cwmni’r cyfreithiwr, ei enw a’i gyfeiriad e-bost."
           }
         },
         "checkYourAnswersContent": {

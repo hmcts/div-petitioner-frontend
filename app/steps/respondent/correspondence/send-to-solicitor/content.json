@@ -23,7 +23,7 @@
     "cy": {
       "translation": {
         "content": {
-          "question": "I ble y dylid anfon eich {{ divorceWho }} papurau ysgariad?",
+          "question": "I ba gyfeiriad y dylid anfon papurau ysgaru eich {{ divorceWho }}",
           "correspondence": "I gyfeiriad gwahanol",
           "featureToggleRespSol": {
             "instruction": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad penodol ichi anfon ei bapurau ysgaru iddo, rhaid i chi ddefnyddio’r cyfeiriad hwnnw.",

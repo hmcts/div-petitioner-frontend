@@ -57,7 +57,9 @@ describe(modulePath, () => {
           'legalD',
           'legalF',
           'legalE',
-          'legalG'
+          'legalG',
+          'legalH',
+          'legalI'
         ];
 
         testContent(done, agent, underTest, contentCYA, session, excludeKeys);
@@ -226,7 +228,9 @@ describe(modulePath, () => {
         'connectionD',
         'connectionE',
         'connectionF',
-        'connectionG'
+        'connectionG',
+        'connectionH',
+        'connectionI'
       ];
 
       const valuesToExist = [];
@@ -242,7 +246,9 @@ describe(modulePath, () => {
           D: 'connection text',
           E: 'connection text',
           F: 'connection text',
-          G: 'connection text'
+          G: 'connection text',
+          H: 'connection text',
+          I: 'connection text'
         }
       };
 
@@ -266,7 +272,9 @@ describe(modulePath, () => {
         'legalD',
         'legalE',
         'legalF',
-        'legalG'
+        'legalG',
+        'legalH',
+        'legalI'
       ];
 
       const valuesToExist = [];
@@ -282,7 +290,9 @@ describe(modulePath, () => {
           D: 'connection text',
           E: 'connection text',
           F: 'connection text',
-          G: 'connection text'
+          G: 'connection text',
+          H: 'connection text',
+          I: 'connection text'
         }
       };
 

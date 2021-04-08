@@ -106,7 +106,7 @@ describe(modulePath, () => {
       }, agent, session);
     });
 
-    it('when no is selected opposite sex, P is domiciled and R is not domiciled redirect to JurisdictionResidual and no connection is set', done => {
+    it('when no is selected opposite sex, P is domiciled and R is not domiciled redirect to JurisdictionConnectionSummary and connection is set', done => {
       session = {
         marriageIsSameSexCouple: 'No',
         jurisdictionPetitionerDomicile: 'Yes',
@@ -115,13 +115,13 @@ describe(modulePath, () => {
       withSession(() => {
         postData(agent, underTest.url, { jurisdictionLastHabitualResident: 'No' })
           .then(location => {
-            expect(location).to.equal(s.steps.JurisdictionResidual.url);
+            expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
           })
           .then(() => {
             return getSession(agent);
           })
           .then(responseSession => {
-            expect(responseSession.jurisdictionConnection.length).to.equal(0);
+            expect(responseSession.jurisdictionConnection.length).to.equal(1);
             expect(responseSession.marriageIsSameSexCouple).to.equal('No');
             expect(responseSession.jurisdictionPetitionerDomicile).to.equal('Yes');
             expect(responseSession.jurisdictionRespondentDomicile).to.equal('No');
@@ -130,7 +130,7 @@ describe(modulePath, () => {
       }, agent, session);
     });
 
-    it('when no is selected opposite sex, P is not domiciled and R is domiciled redirect to JurisdictionResidual and no connection is set', done => {
+    it('when no is selected opposite sex, P is not domiciled and R is domiciled redirect to JurisdictionConnectionSummary and connection is set', done => {
       session = {
         marriageIsSameSexCouple: 'No',
         jurisdictionPetitionerDomicile: 'No',
@@ -140,13 +140,13 @@ describe(modulePath, () => {
       withSession(() => {
         postData(agent, underTest.url, { jurisdictionLastHabitualResident: 'No' })
           .then(location => {
-            expect(location).to.equal(s.steps.JurisdictionResidual.url);
+            expect(location).to.equal(s.steps.JurisdictionConnectionSummary.url);
           })
           .then(() => {
             return getSession(agent);
           })
           .then(responseSession => {
-            expect(responseSession.jurisdictionConnection.length).to.equal(0);
+            expect(responseSession.jurisdictionConnection.length).to.equal(1);
             expect(responseSession.marriageIsSameSexCouple).to.equal('No');
             expect(responseSession.jurisdictionPetitionerDomicile).to.equal('No');
             expect(responseSession.jurisdictionRespondentDomicile).to.equal('Yes');

@@ -27,11 +27,22 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     ctx.searchType = session.searchType;
     ctx.baseUrl = this.url;
     searchHelper.parseAddressToManualAddress(session);
+
+    if (!session.respondentSolicitorOrganisation) {
+      unset(session, 'errors');
+    }
+
     return ctx;
   }
 
-  validate(ctx, session) { // eslint-disable-line no-unused-vars
-    return [true, null];
+  validate(ctx, session) {
+    let [isValid, errors] = super.validate(ctx, session); // eslint-disable-line prefer-const
+
+    if (!isValid) {
+      isValid = searchHelper.mapValidationErrors(session, errors);
+    }
+
+    return [isValid, errors];
   }
 
   * postRequest(req, res) {
@@ -39,8 +50,7 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
     searchHelper.mapRespondentSolicitorData(req, manual);
 
     const ctx = yield this.parseCtx(req);
-    const [, errors] = super.validate(ctx, req.session);
-    const isValid = searchHelper.mapValidationErrors(req, errors, manual);
+    const [isValid ] = this.validate(ctx, req.session);
 
     if (searchHelper.isInValidManualData(isValid, manual)) {
       return res.redirect(`${this.url}/manual`);

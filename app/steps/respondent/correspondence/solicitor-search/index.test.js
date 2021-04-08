@@ -292,9 +292,12 @@ describe(modulePath, () => {
       let postBody = {};
 
       describe('#validate', () => {
-        it('should return as valid when default validation is called', () => {
-          expect(underTest.validate({}, session))
-            .to.deep.equal([true, null]);
+        it('should return as invalid with errors when validating no data', () => {
+          const totalErrors = 5;
+          const [isValid, errors] = underTest.validate({}, session);
+
+          expect(isValid).to.be.false;
+          expect(errors).to.have.lengthOf(totalErrors);
         });
       });
 
@@ -461,6 +464,7 @@ describe(modulePath, () => {
         let isInValidManualData = null;
         let isInValidSearchData = null;
         let mapRespondentSolicitorData = null;
+        let validate = null;
 
         beforeEach(() => {
           req = {
@@ -475,9 +479,8 @@ describe(modulePath, () => {
             sendStatus: sinon.stub()
           };
 
-          sinon.stub(underTest, 'validate').returns([true]);
           sinon.stub(underTest, 'parseCtx').resolves();
-
+          validate = sinon.stub(underTest, 'validate');
           isManual = sinon.stub(searchHelper, 'isManual');
           mapValidationErrors = sinon.stub(searchHelper, 'mapValidationErrors');
           isInValidManualData = sinon.stub(searchHelper, 'isInValidManualData');
@@ -488,8 +491,8 @@ describe(modulePath, () => {
         afterEach(() => {
           req = {};
           res = {};
-          underTest.validate.restore();
           underTest.parseCtx.restore();
+          validate.restore();
           isManual.restore();
           mapValidationErrors.restore();
           isInValidManualData.restore();
@@ -498,11 +501,13 @@ describe(modulePath, () => {
         });
 
         it('should redirect to nextStep (Reasons for divorce) when valid data is posted', done => {
-          isManual.returns(false);
-          mapValidationErrors.returns(true);
-
           co(function* generator() {
+            validate.returns([true]);
+            isManual.returns(false);
+            mapValidationErrors.returns(true);
+
             yield underTest.postRequest(req, res);
+
             expect(isInValidManualData.calledOnce).to.equal(true);
             expect(isInValidSearchData.calledOnce).to.equal(true);
             expect(res.redirect.calledWith(underTest.nextStep.url)).to.equal(true);
@@ -511,12 +516,13 @@ describe(modulePath, () => {
         });
 
         it('should redirect to manual view when invalid data is posted and its manual', done => {
-          isManual.returns(true);
-          mapValidationErrors.returns(false);
-          isInValidManualData.callThrough();
-
           co(function* generator() {
+            validate.returns([false]);
+            isManual.returns(true);
+            isInValidManualData.callThrough();
+
             yield underTest.postRequest(req, res);
+
             expect(mapRespondentSolicitorData.calledOnce).to.equal(true);
             expect(isInValidManualData.calledOnce).to.equal(true);
             expect(isInValidSearchData.calledOnce).to.equal(false);
@@ -526,13 +532,14 @@ describe(modulePath, () => {
         });
 
         it('should redirect to search view when invalid data is posted and its not manual', done => {
-          isManual.returns(false);
-          mapValidationErrors.returns(false);
-          isInValidSearchData.callThrough();
-          isInValidManualData.callThrough();
-
           co(function* generator() {
+            validate.returns([false]);
+            isManual.returns(false);
+            isInValidSearchData.callThrough();
+            isInValidManualData.callThrough();
+
             yield underTest.postRequest(req, res);
+
             expect(mapRespondentSolicitorData.calledOnce).to.equal(true);
             expect(isInValidManualData.calledOnce).to.equal(true);
             expect(isInValidSearchData.calledOnce).to.equal(true);

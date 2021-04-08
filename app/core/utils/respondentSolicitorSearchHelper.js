@@ -36,6 +36,10 @@ const ErrorMessage = {
   SOLICITOR_EMAIL: 'solicitorEmail'
 };
 
+const isManual = session => {
+  return isEqual(session.searchType, 'manual');
+};
+
 const getServiceAuthToken = req => {
   const serviceToken = serviceTokenService.setup();
   return serviceToken.getToken(req);
@@ -107,11 +111,11 @@ const excludeErrors = (session, exclusionList, errors) => {
   });
 };
 
-const mapValidationErrors = (req, errors, manual) => {
-  unset(req, 'session.error');
-  unset(req, 'session.errors');
-  set(req, 'session.error', {});
-  set(req, 'session.errors', errors);
+const mapValidationErrors = (session, errors) => {
+  unset(session, 'error');
+  unset(session, 'errors');
+  set(session, 'error', {});
+  set(session, 'errors', errors);
 
   forEach([
     'respondentSolicitorName',
@@ -124,11 +128,11 @@ const mapValidationErrors = (req, errors, manual) => {
   item => {
     const error = find(errors, ['param', item]);
     if (error) {
-      set(req.session.error, item, { error: true, errorMessage: error.msg });
+      set(session.error, item, { error: true, errorMessage: error.msg });
     }
   });
 
-  const { session } = req;
+  const manual = isManual(session);
   if (manual) {
     excludeErrors(session, [
       'respondentSolicitorName',
@@ -143,7 +147,7 @@ const mapValidationErrors = (req, errors, manual) => {
     ], errors);
   }
 
-  return size(keys(req.session.error)) === 0;
+  return size(keys(session.error)) === 0;
 };
 
 const hasBeenPostedWithoutSubmitButton = ({ body }) => {
@@ -156,10 +160,6 @@ const isInValidManualData = (valid, manual) => {
 
 const isInValidSearchData = (valid, manual) => {
   return !valid && !manual;
-};
-
-const isManual = session => {
-  return isEqual(session.searchType, 'manual');
 };
 
 const trimAndRemoveBlanks = list => {

@@ -18,10 +18,12 @@ const co = require('co');
 
 const modulePath = 'app/steps/respondent/correspondence/solicitor-search';
 const content = require(`${modulePath}/content`);
+
 const contentStrings = content.resources.en.translation.content;
 
-const {buildResultData, buildMockOrganisationsList} = require('test/util/petitionTestHelper');
+const { buildResultData, buildMockOrganisationsList } = require('test/util/petitionTestHelper');
 const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
+
 const { UserAction } = searchHelper;
 
 let appInstance = {};

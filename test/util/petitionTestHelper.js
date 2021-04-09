@@ -27,7 +27,7 @@ const buildResultData = () => {
     },
     respondentSolicitorFirm: 'searchCriteria'
   };
-}
+};
 
 const buildMockOrganisationsList = () => {
   return [
@@ -62,7 +62,7 @@ const buildMockOrganisationsList = () => {
       organisationIdentifier: TEST_RESP_SOLICITOR_ID
     }
   ];
-}
+};
 
 module.exports = {
   buildResultData,

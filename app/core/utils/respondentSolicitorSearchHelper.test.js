@@ -97,7 +97,7 @@ describe(modulePath, () => {
       });
     });
 
-    context('Organisation service is not successfull', () => {
+    context('Organisation service is not successful', () => {
       beforeEach(() => {
         getToken = sinon.stub().resolves('token');
         getOrganisationByName = sinon.stub().rejects(error);
@@ -167,20 +167,25 @@ describe(modulePath, () => {
   });
 
   describe('mapValidationErrors()', () => {
-    req = { session: { error: null } };
-    const validationErrors = [
-      { param: 'respondentSolicitorName', msg: 'Please provide a solicitor\'s name' },
-      { param: 'respondentSolicitorNameManual', msg: 'Please provide a solicitor\' name' },
-      { param: 'respondentSolicitorEmail', msg: 'Please provide a solicitor\'s email' },
-      { param: 'respondentSolicitorEmailManual', msg: 'Please provide a solicitor\'s email' },
-      { param: 'respondentSolicitorAddressManual', msg: 'Please provide solicitor\'s address' },
-      { param: 'respondentSolicitorCompany', msg: 'Please provide solicitor\'s firm' }
-    ];
+    let validationErrors = [];
+
+    beforeEach(() => {
+      req = { session: { error: null } };
+      validationErrors = [
+        { param: 'respondentSolicitorName', msg: 'Please provide a solicitor\'s name' },
+        { param: 'respondentSolicitorNameManual', msg: 'Please provide a solicitor\' name' },
+        { param: 'respondentSolicitorEmail', msg: 'Please provide a solicitor\'s email' },
+        { param: 'respondentSolicitorEmailManual', msg: 'Please provide a solicitor\'s email' },
+        { param: 'respondentSolicitorAddressManual', msg: 'Please provide solicitor\'s address' },
+        { param: 'respondentSolicitorCompany', msg: 'Please provide solicitor\'s firm' }
+      ];
+    });
 
     it('should mapped expected errors when is not manual entry', () => {
       const manual = false;
       const expectedLength = 2;
-      underTest.mapValidationErrors(req, validationErrors, manual);
+
+      underTest.mapValidationErrors(req.session, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
       expect(get(req.session.error, 'respondentSolicitorName.errorMessage')).to.equal('Please provide a solicitor\'s name');
@@ -192,7 +197,9 @@ describe(modulePath, () => {
     it('should mapped expected errors when is manual entry', () => {
       const manual = true;
       const expectedLength = 4;
-      underTest.mapValidationErrors(req, validationErrors, manual);
+      set(req.session, 'searchType', 'manual');
+
+      underTest.mapValidationErrors(req.session, validationErrors, manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
       expect(get(req.session.error, 'respondentSolicitorNameManual.errorMessage')).to.equal('Please provide a solicitor\' name');
@@ -204,7 +211,8 @@ describe(modulePath, () => {
     it('should not have any mapped errors when no validation fails', () => {
       const manual = false;
       const expectedLength = 0;
-      underTest.mapValidationErrors(req, [], manual);
+
+      underTest.mapValidationErrors(req.session, [], manual);
 
       expect(req.session.errors).to.be.lengthOf(expectedLength);
     });
@@ -212,18 +220,23 @@ describe(modulePath, () => {
 
   describe('#errorsManualCleanup()', () => {
     const noItems = 0;
-    set(req.session, 'error.respondentSolicitorNameManual', {});
-    req.session.errors = [
-      {
-        param: 'respondentSolicitorNameManual',
-        msg: 'Please provide a solicitor\'s name'
-      }
-    ];
 
-    underTest.errorsManualCleanup(req.session);
+    beforeEach(() => {
+      set(req.session, 'error.respondentSolicitorNameManual', {});
+      set(req.session, 'errors', [
+        {
+          param: 'respondentSolicitorNameManual',
+          msg: 'Please provide a solicitor\'s name'
+        }
+      ]);
+    });
 
-    expect(get(req.session.error, 'respondentSolicitorNameManual')).to.be.undefined;
-    expect(req.session.errors).to.have.lengthOf(noItems);
+    it('should clear up errors in session', () => {
+      underTest.errorsManualCleanup(req.session);
+
+      expect(get(req.session.error, 'respondentSolicitorNameManual')).to.be.undefined;
+      expect(req.session.errors).to.have.lengthOf(noItems);
+    });
   });
 
   context('Validating if manual or search:', () => {

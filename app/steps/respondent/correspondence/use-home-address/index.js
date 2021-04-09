@@ -1,5 +1,6 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const { resetRespondentSolicitorData } = require('../../../../core/utils/respondentSolicitorSearchHelper');
 
 module.exports = class RespondentCorrespondenceUseHomeAddress extends ValidationStep {
   get url() {
@@ -75,6 +76,11 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     delete session.respondentCorrespondenceDisplayAddress;
     delete ctx.respondentCorrespondenceDisplayAddress;
     delete ctx.respondentCorrespondenceWherePaperSent;
+
+    // remove solicitor data (if exists) when option changes
+    if (ctx.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
+      resetRespondentSolicitorData(session);
+    }
 
     return [ctx, session];
   }

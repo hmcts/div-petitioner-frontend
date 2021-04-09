@@ -10,7 +10,7 @@
     "start": "NODE_PATH=. node server.js",
     "start-basic": "NODE_ENV=production NODE_PATH=. node server",
     "dev": "NODE_ENV=development NODE_PATH=. grunt dev",
-    "dev-aat": "http_proxy=http://proxyout.reform.hmcts.net:8080 https_proxy=http://proxyout.reform.hmcts.net:8080 NODE_ENV=aat NODE_PATH=. grunt dev",
+    "dev-aat": "NODE_ENV=aat NODE_PATH=. grunt dev",
     "start-debug": "NODE_ENV=development NODE_PATH=. node --inspect=0.0.0.0:9229 server.js",
     "start-debug-ide": "NODE_ENV=development NODE_PATH=. node $NODE_DEBUG_OPTION server.js",
     "start-prod": "NODE_PATH=. grunt start-prod",

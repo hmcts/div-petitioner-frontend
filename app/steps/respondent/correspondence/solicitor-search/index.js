@@ -26,8 +26,8 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   interceptor(ctx, session) {
     ctx.searchType = session.searchType;
     ctx.baseUrl = this.url;
-    searchHelper.parseAddressToManualAddress(session);
 
+    searchHelper.resetSolicitorManualData(session);
     if (!session.respondentSolicitorOrganisation) {
       unset(session, 'errors');
     }

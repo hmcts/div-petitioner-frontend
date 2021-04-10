@@ -229,6 +229,7 @@ const errorsManualCleanup = session => {
 
 const cleanupBeforeSubmit = session => {
   unset(session, 'organisations');
+  unset(session, 'resetManualData');
   errorsCleanup(session);
   if (isManual(session)) {
     unset(session, 'respondentSolicitorOrganisation');
@@ -255,10 +256,15 @@ const resetManualRespondentSolicitorData = session => {
   resetRespondentSolicitorData(session);
 };
 
-const parseAddressToManualAddress = session => {
-  const manualAddress = get(session, 'respondentSolicitorAddress.address');
-  if (manualAddress) {
-    session.respondentSolicitorAddressManual = manualAddress.join('\n');
+const resetSolicitorManualData = session => {
+  if (isUndefined(session.resetManualData)) {
+    const manualAddress = get(session, 'respondentSolicitorAddress.address');
+    if (manualAddress) {
+      session.respondentSolicitorAddressManual = manualAddress.join('\n');
+    }
+    session.respondentSolicitorNameManual = get(session, 'respondentSolicitorName');
+    session.respondentSolicitorEmailManual = get(session, 'respondentSolicitorEmail');
+    session.resetManualData = false;
   }
 };
 
@@ -283,7 +289,7 @@ module.exports = {
   errorsCleanup,
   errorsManualCleanup,
   parseManualAddress,
-  parseAddressToManualAddress,
+  resetSolicitorManualData,
   mapValidationErrors,
   mapRespondentSolicitorData,
   mapRespondentSolicitorCyaData,

@@ -15,7 +15,6 @@ const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
 const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
 const TEST_RESP_SOLICITOR_ID = '11-111';
-const TEST_SEARCH_URL = '/search';
 
 const Errors = {
   EMPTY_SOLICITOR_SEARCH: 'emptyValue',
@@ -374,8 +373,6 @@ describe(modulePath, () => {
         expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
         expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
         expect(req.session.respondentSolicitorAddress).to.have.property('address');
-        expect(req.session.respondentSolicitorAddress).to.have.property('url');
-        expect(req.session.respondentSolicitorAddress.url).to.be.null;
         expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
         expect(req.session.respondentSolicitorReferenceDataId).to.equal(TEST_RESP_SOLICITOR_ID);
       });
@@ -414,15 +411,13 @@ describe(modulePath, () => {
           }
         };
 
-        underTest.mapRespondentSolicitorData(req, TEST_SEARCH_URL);
+        underTest.mapRespondentSolicitorData(req);
 
         expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
         expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
         expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
         expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
         expect(req.session.respondentSolicitorAddress).to.have.property('address');
-        expect(req.session.respondentSolicitorAddress).to.have.property('url');
-        expect(req.session.respondentSolicitorAddress.url).to.equal(`${TEST_SEARCH_URL}/manual`);
         expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
         expect(req.session.respondentSolicitorAddressManual).to.equal(manualAddress);
       });
@@ -522,6 +517,22 @@ describe(modulePath, () => {
       expect(session.error).to.be.undefined;
       expect(session.errors).to.be.undefined;
       expect(session.respondentSolicitorOrganisation).to.be.undefined;
+    });
+  });
+
+  describe('showManualDisplayUrl()', () => {
+    it('should return true if data Solicitor Reference Data id does not exist', () => {
+      const session = { respondentSolicitorCompany: TEST_RESP_SOLICITOR_NAME };
+
+      expect(underTest.showManualDisplayUrl(session)).to.equal(true);
+    });
+
+    it('should return false if data Solicitor Reference Data id does exist', () => {
+      const session = {
+        respondentSolicitorCompany: TEST_RESP_SOLICITOR_NAME,
+        respondentSolicitorReferenceDataId: TEST_RESP_SOLICITOR_REF };
+
+      expect(underTest.showManualDisplayUrl(session)).to.equal(false);
     });
   });
 

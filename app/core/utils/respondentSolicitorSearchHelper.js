@@ -176,11 +176,10 @@ const parseManualAddress = value => {
   return trimAndRemoveBlanks(value.split(/\r?\n/));
 };
 
-const mapRespondentSolicitorData = ({ body, session }, searchUrl = null) => {
+const mapRespondentSolicitorData = ({ body, session }) => {
   const manual = isManual(session);
   const { respondentSolicitorOrganisation } = session;
 
-  let url = searchUrl;
   let address = filter(values(first(get(respondentSolicitorOrganisation, 'contactInformation'))), size);
   session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
@@ -195,10 +194,9 @@ const mapRespondentSolicitorData = ({ body, session }, searchUrl = null) => {
     session.respondentSolicitorCompany = get(body, 'respondentSolicitorCompany');
     session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmailManual');
     session.respondentSolicitorName = get(body, 'respondentSolicitorNameManual');
-    url = `${searchUrl}/manual`;
   }
 
-  session.respondentSolicitorAddress = { address, url };
+  session.respondentSolicitorAddress = { address };
   session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
   session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
 };
@@ -264,6 +262,16 @@ const parseAddressToManualAddress = session => {
   }
 };
 
+const showManualDisplayUrl = session => {
+  let manualEntry = false;
+
+  if (!isEmpty(trim(session.respondentSolicitorCompany)) && isEmpty(trim(session.respondentSolicitorReferenceDataId))) {
+    manualEntry = true;
+  }
+
+  return manualEntry;
+};
+
 module.exports = {
   UserAction,
   validateSearchRequest,
@@ -282,5 +290,6 @@ module.exports = {
   cleanupBeforeSubmit,
   resetManualRespondentSolicitorData,
   resetRespondentSolicitorData,
-  trimAndRemoveBlanks
+  trimAndRemoveBlanks,
+  showManualDisplayUrl
 };

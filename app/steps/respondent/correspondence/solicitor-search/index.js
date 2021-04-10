@@ -46,10 +46,10 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   * postRequest(req, res) {
-    searchHelper.mapRespondentSolicitorData(req, this.url);
+    searchHelper.mapRespondentSolicitorData(req);
 
     const ctx = yield this.parseCtx(req);
-    const [isValid ] = this.validate(ctx, req.session);
+    const [isValid] = this.validate(ctx, req.session);
     const manual = searchHelper.isManual(req.session);
 
     if (searchHelper.isInValidManualData(isValid, manual)) {
@@ -121,9 +121,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   checkYourAnswersInterceptor(ctx, session) {
-    if (session.respondentSolicitorAddress) {
-      ctx.respondentSolicitorDisplayAddress = searchHelper.mapRespondentSolicitorCyaData(session);
-      ctx.respondentSolicitorDisplayUrl = get(session, 'respondentSolicitorAddress.url', '');
+    ctx.respondentSolicitorDisplayAddress = searchHelper.mapRespondentSolicitorCyaData(session);
+    if (searchHelper.showManualDisplayUrl(session)) {
+      ctx.respondentSolicitorDisplayUrl = `${this.url}/manual`;
     }
     return ctx;
   }

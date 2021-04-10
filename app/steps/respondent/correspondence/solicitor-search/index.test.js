@@ -212,6 +212,7 @@ describe(modulePath, () => {
             divorceWho: 'wife',
             respondentSolicitorName: 'Solicitor name',
             respondentSolicitorEmail: 'email@email.com',
+            respondentSolicitorReferenceDataId: 'refId',
             respondentSolicitorAddress: {
               address: ['line 1', 'line 2', 'line 3']
             }
@@ -228,17 +229,17 @@ describe(modulePath, () => {
             'respondentSolicitorDisplayUrl'
           ];
           const context = {
-            respondentSolicitorDisplayAddress: 'Solicitor name<br>line 1<br>line 2<br>line 3<br>email@email.com',
+            respondentSolicitorDisplayAddress: 'Solicitor name<br>Solicitor company<br>line 1<br>line 2<br>line 3<br>email@email.com',
             respondentSolicitorDisplayUrl: `${underTest.url}/manual`
           };
           session = {
             searchType: 'manual',
             divorceWho: 'wife',
             respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorCompany: 'Solicitor company',
             respondentSolicitorEmail: 'email@email.com',
             respondentSolicitorAddress: {
-              address: ['line 1', 'line 2', 'line 3'],
-              url: `${underTest.url}/manual`
+              address: ['line 1', 'line 2', 'line 3']
             }
           };
           testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);

@@ -179,15 +179,15 @@ describe(modulePath, () => {
       });
 
       describe('Check Your Answers page', () => {
-        session = {
-          divorceWho: 'wife',
-          respondentSolicitorName: 'Solicitor name',
-          respondentSolicitorAddress: {
-            address: ['line 1', 'line 2', 'line 3', 'postcode']
-          }
-        };
-
         beforeEach(done => {
+          session = {
+            divorceWho: 'wife',
+            respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorEmail: 'email@email.com',
+            respondentSolicitorAddress: {
+              address: ['line 1', 'line 2', 'line 3']
+            }
+          };
           withSession(done, agent, session);
         });
 
@@ -199,7 +199,7 @@ describe(modulePath, () => {
           testCYATemplate(done, underTest, {}, session);
         });
 
-        it('should renders address solicitor address - search', done => {
+        it('should render expected CYA solicitor address and default change url', done => {
           const contentToExist = ['question'];
           const valuesToExist = [
             'divorceWho',
@@ -208,20 +208,12 @@ describe(modulePath, () => {
           const context = {
             respondentSolicitorDisplayAddress: 'Solicitor name<br>line 1<br>line 2<br>line 3<br>email@email.com'
           };
-          session = {
-            divorceWho: 'wife',
-            respondentSolicitorName: 'Solicitor name',
-            respondentSolicitorEmail: 'email@email.com',
-            respondentSolicitorReferenceDataId: 'refId',
-            respondentSolicitorAddress: {
-              address: ['line 1', 'line 2', 'line 3']
-            }
-          };
+          session = Object.assign(session, { respondentSolicitorReferenceDataId: 'refId' });
 
           testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
         });
 
-        it('should renders address solicitor address - manual', done => {
+        it('should render expected CYA solicitor address and manual change url', done => {
           const contentToExist = ['question'];
           const valuesToExist = [
             'divorceWho',
@@ -232,16 +224,11 @@ describe(modulePath, () => {
             respondentSolicitorDisplayAddress: 'Solicitor name<br>Solicitor company<br>line 1<br>line 2<br>line 3<br>email@email.com',
             respondentSolicitorDisplayUrl: `${underTest.url}/manual`
           };
-          session = {
+          session = Object.assign(session, {
             searchType: 'manual',
-            divorceWho: 'wife',
-            respondentSolicitorName: 'Solicitor name',
-            respondentSolicitorCompany: 'Solicitor company',
-            respondentSolicitorEmail: 'email@email.com',
-            respondentSolicitorAddress: {
-              address: ['line 1', 'line 2', 'line 3']
-            }
-          };
+            respondentSolicitorCompany: 'Solicitor company'
+          });
+
           testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
         });
       });

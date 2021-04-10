@@ -199,7 +199,7 @@ describe(modulePath, () => {
           testCYATemplate(done, underTest, {}, session);
         });
 
-        it('should renders address solicitor address', done => {
+        it('should renders address solicitor address - search', done => {
           const contentToExist = ['question'];
           const valuesToExist = [
             'divorceWho',
@@ -217,6 +217,30 @@ describe(modulePath, () => {
             }
           };
 
+          testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
+        });
+
+        it('should renders address solicitor address - manual', done => {
+          const contentToExist = ['question'];
+          const valuesToExist = [
+            'divorceWho',
+            'respondentSolicitorDisplayAddress',
+            'respondentSolicitorDisplayUrl'
+          ];
+          const context = {
+            respondentSolicitorDisplayAddress: 'Solicitor name<br>line 1<br>line 2<br>line 3<br>email@email.com',
+            respondentSolicitorDisplayUrl: `${underTest.url}/manual`
+          };
+          session = {
+            searchType: 'manual',
+            divorceWho: 'wife',
+            respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorEmail: 'email@email.com',
+            respondentSolicitorAddress: {
+              address: ['line 1', 'line 2', 'line 3'],
+              url: `${underTest.url}/manual`
+            }
+          };
           testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
         });
       });

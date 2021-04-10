@@ -15,6 +15,7 @@ const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
 const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
 const TEST_RESP_SOLICITOR_ID = '11-111';
+const TEST_SEARCH_URL = '/search';
 
 const Errors = {
   EMPTY_SOLICITOR_SEARCH: 'emptyValue',
@@ -121,7 +122,7 @@ describe(modulePath, () => {
       });
     });
 
-    context('Service token service is not successfull', () => {
+    context('Service token service is not successful', () => {
       beforeEach(() => {
         getToken = sinon.stub().rejects(error);
         getOrganisationByName = sinon.stub().resolves(mockOrganisations);
@@ -373,6 +374,8 @@ describe(modulePath, () => {
         expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
         expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
         expect(req.session.respondentSolicitorAddress).to.have.property('address');
+        expect(req.session.respondentSolicitorAddress).to.have.property('url');
+        expect(req.session.respondentSolicitorAddress.url).to.be.null;
         expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
         expect(req.session.respondentSolicitorReferenceDataId).to.equal(TEST_RESP_SOLICITOR_ID);
       });
@@ -406,17 +409,20 @@ describe(modulePath, () => {
             respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY
           },
           session: {
-            divorceWho: 'wife'
+            divorceWho: 'wife',
+            searchType: 'manual'
           }
         };
 
-        underTest.mapRespondentSolicitorData(req, true);
+        underTest.mapRespondentSolicitorData(req, TEST_SEARCH_URL);
 
         expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
         expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
         expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
         expect(req.session.respondentSolicitorCompany).to.equal(TEST_RESP_SOLICITOR_COMPANY);
         expect(req.session.respondentSolicitorAddress).to.have.property('address');
+        expect(req.session.respondentSolicitorAddress).to.have.property('url');
+        expect(req.session.respondentSolicitorAddress.url).to.equal(`${TEST_SEARCH_URL}/manual`);
         expect(req.session.respondentSolicitorAddress.address).to.have.deep.members(expectedAddress);
         expect(req.session.respondentSolicitorAddressManual).to.equal(manualAddress);
       });

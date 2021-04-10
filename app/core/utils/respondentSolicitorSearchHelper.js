@@ -176,10 +176,12 @@ const parseManualAddress = value => {
   return trimAndRemoveBlanks(value.split(/\r?\n/));
 };
 
-const mapRespondentSolicitorData = ({ body, session }, manual) => {
+const mapRespondentSolicitorData = ({ body, session }, searchUrl = null) => {
+  const manual = isManual(session);
   const { respondentSolicitorOrganisation } = session;
-  const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
-  let address = filter(values(first(solicitorContactInformation)), size);
+
+  let url = searchUrl;
+  let address = filter(values(first(get(respondentSolicitorOrganisation, 'contactInformation'))), size);
   session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorName = get(body, 'respondentSolicitorName');
@@ -193,9 +195,10 @@ const mapRespondentSolicitorData = ({ body, session }, manual) => {
     session.respondentSolicitorCompany = get(body, 'respondentSolicitorCompany');
     session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmailManual');
     session.respondentSolicitorName = get(body, 'respondentSolicitorNameManual');
+    url = `${searchUrl}/manual`;
   }
 
-  session.respondentSolicitorAddress = { address };
+  session.respondentSolicitorAddress = { address, url };
   session.respondentSolicitorReferenceDataId = get(respondentSolicitorOrganisation, 'organisationIdentifier');
   session.respondentSolicitorReference = get(body, 'respondentSolicitorReference');
 };

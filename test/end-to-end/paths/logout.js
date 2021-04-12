@@ -2,7 +2,7 @@ const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
 
-Feature('Logout Session @functional').retry(3);
+Feature('Logout Session @nightly').retry(3);
 
 Scenario('Logout on Save and close', function (I) {
   I.amOnLoadedPage('/index');

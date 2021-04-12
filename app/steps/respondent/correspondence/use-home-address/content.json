@@ -7,7 +7,15 @@
           "question": "Is this where your {{ divorceWho }}’s divorce papers should be sent?",
           "correspondence": "If your {{ divorceWho }} has given you an address for the papers to be sent (known as a correspondence address) you must give that address to the court.",
           "yes": "Yes, use this address",
-          "no": "No, send them to a different address"
+          "no": "No, send them to a different address",
+          "featureToggleRespSol": {
+            "question": "Where should your {{ divorceWho }}'s divorce papers be sent?",
+            "correspondence": "If your {{ divorceWho }} has given you a specific address to send their divorce papers to, you must use that address",
+            "theirAddress": "Their address",
+            "solicitorAddress": "Their solicitor's address",
+            "anotherAddress": "Another address",
+            "needToKnowSolFirm": "You'll need to know the solicitor's firm, name and email address."
+          }
         },
         "checkYourAnswersContent": {
           "yes": "Yes"
@@ -25,7 +33,15 @@
           "question": "Ai i’r fan hon y dylid anfon papurau ysgariad eich {{ divorceWho }}?",
           "correspondence": "Os yw eich {{ divorceWho }} wedi rhoi cyfeiriad ichi anfon y papurau (hynny yw, cyfeiriad gohebu) mae’n rhaid ichi roi’r cyfeiriad i’r llys.",
           "yes": "Ie, defnyddiwch y cyfeiriad hwn",
-          "no": "Na, dylid eu hanfon i gyfeiriad arall"
+          "no": "Na, dylid eu hanfon i gyfeiriad arall",
+          "featureToggleRespSol": {
+            "question": "I ba gyfeiriad y dylid anfon papurau ysgaru eich {{ divorceWho }}?",
+            "correspondence": "Os yw eich gŵr wedi rhoi cyfeiriad penodol ichi anfon ei bapurau ysgaru iddo, rhaid i chi ddefnyddio’r cyfeiriad hwnnw.",
+            "theirAddress": "Ei gyfeiriad",
+            "solicitorAddress": "Cyfeiriad ei gyfreithiwr",
+            "anotherAddress": "Cyfeiriad arall",
+            "needToKnowSolFirm": "Bydd arnoch angen gwybod cwmni’r cyfreithiwr, ei enw a’i gyfeiriad e-bost."
+          }
         },
         "checkYourAnswersContent": {
           "yes": "Ydw"

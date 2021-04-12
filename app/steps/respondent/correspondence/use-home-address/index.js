@@ -1,15 +1,18 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const { resetRespondentSolicitorData } = require('../../../../core/utils/respondentSolicitorSearchHelper');
 
 module.exports = class RespondentCorrespondenceUseHomeAddress extends ValidationStep {
   get url() {
     return '/petitioner-respondent/respondent-correspondence/use-home-address';
   }
+
   get nextStep() {
     return {
       respondentCorrespondenceUseHomeAddress: {
         Yes: this.steps.ReasonForDivorce,
-        No: this.steps.RespondentCorrespondenceAddress
+        No: this.steps.RespondentCorrespondenceAddress,
+        Solicitor: this.steps.RespondentCorrespondenceSolicitorSearch
       }
     };
   }
@@ -30,6 +33,22 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     });
   }
 
+  setRespSolToggle(ctx, session) {
+    ctx.isRespSolToggleOn = session.featureToggles.ft_represented_respondent_journey;
+  }
+
+  setRespondentCorrespondenceDisplayAnswer(ctx, session) {
+    if (ctx.isRespSolToggleOn === true) {
+      if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
+        ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'theirAddress');
+      } else if (ctx.respondentCorrespondenceUseHomeAddress === 'No') {
+        ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'anotherAddress');
+      } else {
+        ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'solicitorAddress');
+      }
+    }
+  }
+
   setRespondentCorrespondenceDisplayAddress(ctx, session) {
     ctx.respondentCorrespondenceDisplayAddress = '';
 
@@ -44,7 +63,9 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   }
 
   interceptor(ctx, session) {
-    return this.setRespondentCorrespondenceDisplayAddress(ctx, session);
+    this.setRespSolToggle(ctx, session);
+    this.setRespondentCorrespondenceDisplayAddress(ctx, session);
+    return ctx;
   }
 
   action(ctx, session) {
@@ -54,11 +75,23 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     // remove data used for template
     delete session.respondentCorrespondenceDisplayAddress;
     delete ctx.respondentCorrespondenceDisplayAddress;
+    delete ctx.respondentCorrespondenceWherePaperSent;
+
+    // remove solicitor data (if exists) when option changes
+    if (ctx.respondentCorrespondenceUseHomeAddress !== 'Solicitor') {
+      resetRespondentSolicitorData(session);
+    }
 
     return [ctx, session];
   }
 
+  getDestinationResponse(session, option) {
+    return this.content.resources[session.language].translation.content.featureToggleRespSol[option];
+  }
+
   checkYourAnswersInterceptor(ctx, session) {
-    return this.setRespondentCorrespondenceDisplayAddress(ctx, session);
+    this.setRespondentCorrespondenceDisplayAnswer(ctx, session);
+    this.setRespondentCorrespondenceDisplayAddress(ctx, session);
+    return ctx;
   }
 };

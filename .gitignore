@@ -30,3 +30,4 @@ local*.yaml
 .scannerwork/
 config/local*
 /config/development.yaml
+*.run.xml

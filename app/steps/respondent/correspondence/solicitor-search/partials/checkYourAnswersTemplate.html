@@ -1,0 +1,9 @@
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    {{ content.question | safe }}
+  </td>
+  <td class="govuk-table__cell">
+    <span class="address">{{ fields.respondentSolicitorDisplayAddress.value | safe }}</span>
+  </td>
+  <td class="govuk-table__cell govuk-table__cell--numeric"><a class="govuk-link" aria-label="{{ content.change }} {{ content.question | safe }}" href="{{ content.url | safe }}">{{ content.change }}</a></td>
+</tr>

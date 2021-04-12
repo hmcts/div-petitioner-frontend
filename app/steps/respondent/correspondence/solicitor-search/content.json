@@ -1,0 +1,123 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "question": "Enter details of your {{ divorceWho }}'s solicitor",
+          "solicitorFirmLabel": "Enter the name of their solicitor's firm",
+          "searchButton": "Search",
+          "continueBtnText": "Continue",
+          "deselectBtnText": "Deselect",
+          "selectBtnText": "Select",
+          "enterManuallyBtnText": "Enter details manually",
+          "errorSummaryHeading": "There was a problem",
+          "resultsLabel": "Results",
+          "solicitorNameLabel": "Solicitor's name",
+          "solicitorReferenceLabel": "Solicitor's reference (optional)",
+          "solicitorEmailLabel": "Solicitor's email address",
+          "solicitorEmailManualLabel": "Solicitor's email address (optional)",
+          "solicitorCompanyLabel": "Solicitor's firm",
+          "solicitorFirmAddressLabel": "Solicitor's address",
+          "searchNoOptionFoundText": "If you can't see the firm listed then you can enter the details manually.",
+          "searchSolicitorFirm": "Search to find solicitor firm",
+          "searchNoResults": {
+            "paragraph1": "There are no results for the firm you entered.",
+            "paragraph2": "This may be because the firm is not registered online with HMCTS.",
+            "paragraph3": "You can check the spelling and search again, or enter the details manually."
+          },
+          "searchErrors": {
+            "emptyValue": "Please provide a solicitor's firm name",
+            "shortValue": "You must enter at least 3 characters",
+            "solicitorName": "Please provide a solicitor name",
+            "solicitorEmail": "Please provide a solicitor email"
+          }
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Please provide a solicitor's name",
+            "invalid": "Please provide a solicitor's name"
+          },
+          "respondentSolicitorNameManual": {
+            "required": "Please provide a solicitor's name",
+            "invalid": "Please provide a solicitor's name"
+          },
+          "respondentSolicitorEmail": {
+            "required": "Please provide a solicitor's email",
+            "invalid": "Please provide a solicitor's email"
+          },
+          "respondentSolicitorAddressManual": {
+            "required": "Please provide a solicitor's address",
+            "invalid": "Please provide a solicitor's address"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Please provide a solicitor's firm",
+            "invalid": "Please provide a solicitor's firm"
+          },
+          "respondentSolicitorEmailManual": {
+            "invalid": "Please provide a solicitor's email"
+          }
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "question": "Nodwch fanylion cyfreithiwr eich {{ divorceWho }}",
+          "solicitorFirmLabel": "Nodwch enw cwmni ei gyfreithiwr",
+          "searchButton": "Chwilio",
+          "continueBtnText": "Parhau",
+          "deselectBtnText": "Dad-ddewis",
+          "selectBtnText": "Dewis",
+          "enterManuallyBtnText": "Nodi manylion â llaw",
+          "errorSummaryHeading": "Roedd yna broblem",
+          "resultsLabel": "Canlyniadau",
+          "solicitorNameLabel": "Enw’r cyfreithiwr",
+          "solicitorReferenceLabel": "Cyfeirnod y cyfreithiwr (dewisol)",
+          "solicitorEmailLabel": "Cyfeiriad e-bost y cyfreithiwr",
+          "solicitorEmailManualLabel": "Cyfeiriad e-bost y cyfreithiwr (dewisol)",
+          "solicitorCompanyLabel": "Cwmni’r cyfreithiwr",
+          "solicitorFirmAddressLabel": "Cyfeiriad y cyfreithiwr",
+          "searchNoOptionFoundText": "Os na allwch weld y cwmni wedi'i restru yna gallwch nodi’r manylion eich hun.",
+          "searchSolicitorFirm": "Chwilio i ddod o hyd i gwmni’r cyfreithiwr",
+          "searchNoResults": {
+            "paragraph1": "Nid oes unrhyw ganlyniadau ar gyfer y cwmni a nodwyd gennych.",
+            "paragraph2": "Gall hyn fod oherwydd nad yw’r cwmni wedi cofrestru ar-lein gyda GLlTEM.",
+            "paragraph3": "Gallwch wirio’r sillafiad a chwilio eto, neu gallwch nodi’r manylion â llaw."
+          },
+          "searchErrors": {
+            "emptyValue": "Darparwch enw cwmni’r cyfreithiwr",
+            "shortValue": "Rhaid i chi nodi o leiaf 3 nod",
+            "solicitorName": "Darparwch enw’r cyfreithiwr",
+            "solicitorEmail": "Darparwch gyfeiriad e-bost y cyfreithiwr"
+          }
+        },
+        "errors": {
+          "respondentSolicitorName": {
+            "required": "Darparwch enw’r cyfreithiwr",
+            "invalid": "Darparwch enw’r cyfreithiwr"
+          },
+          "respondentSolicitorNameManual": {
+            "required": "Darparwch enw’r cyfreithiwr",
+            "invalid": "Darparwch enw’r cyfreithiwr"
+          },
+          "respondentSolicitorEmail": {
+            "required": "Darparwch gyfeiriad e-bost y cyfreithiwr",
+            "invalid": "Darparwch gyfeiriad e-bost y cyfreithiwr"
+          },
+          "respondentSolicitorAddressManual": {
+            "required": "Darparwch gyfeiriad eich cyfreithiwr",
+            "invalid": "Darparwch gyfeiriad eich cyfreithiwr"
+          },
+          "respondentSolicitorCompany": {
+            "required": "Darparwch enw cwmni’r cyfreithiwr",
+            "invalid": "Darparwch enw cwmni’r cyfreithiwr"
+          },
+          "respondentSolicitorEmailManual": {
+            "invalid": "Darparwch gyfeiriad e-bost y cyfreithiwr"
+          }
+        }
+      }
+    }
+  }
+}

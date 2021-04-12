@@ -41,8 +41,10 @@ module.exports = class JurisdictionLastHabitualResidence extends ValidationStep 
 
     if (noPriorConnections && areBothLastHabitualResident(this.name, ctx, clonedSession)) {
       nextStepLogicHelper.jurisdictionWhereTo = 'JurisdictionInterstitial';
-    } else if (noPriorConnections && (clonedSession.marriageIsSameSexCouple === 'Yes' || isEitherDomiciled(this.name, ctx, clonedSession))) {
+    } else if (noPriorConnections && (clonedSession.marriageIsSameSexCouple === 'Yes')) {
       nextStepLogicHelper.jurisdictionWhereTo = 'JurisdictionResidual';
+    } else if (noPriorConnections && (isEitherDomiciled(this.name, ctx, clonedSession))) {
+      nextStepLogicHelper.jurisdictionWhereTo = 'JurisdictionConnectionSummary';
     } else if (noPriorConnections && !areBothDomiciled(this.name, ctx, clonedSession)) {
       nextStepLogicHelper.jurisdictionWhereTo = 'ExitNoConnections';
     } else {

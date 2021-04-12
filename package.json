@@ -10,7 +10,7 @@
     "start": "NODE_PATH=. node server.js",
     "start-basic": "NODE_ENV=production NODE_PATH=. node server",
     "dev": "NODE_ENV=development NODE_PATH=. grunt dev",
-    "dev-aat": "http_proxy=http://proxyout.reform.hmcts.net:8080 https_proxy=http://proxyout.reform.hmcts.net:8080 NODE_ENV=aat NODE_PATH=. grunt dev",
+    "dev-aat": "NODE_ENV=aat NODE_PATH=. grunt dev",
     "start-debug": "NODE_ENV=development NODE_PATH=. node --inspect=0.0.0.0:9229 server.js",
     "start-debug-ide": "NODE_ENV=development NODE_PATH=. node $NODE_DEBUG_OPTION server.js",
     "start-prod": "NODE_PATH=. grunt start-prod",
@@ -29,7 +29,6 @@
     "test-unit": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha './app/**/*.test.js' --reporter spec --recursive -t 15000 --exit",
     "test-validation": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. mocha test/validation/ --reporter spec --recursive --timeout 15000 --exit",
     "test-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. ./node_modules/.bin/codeceptjs run-multiple parallel -c test/end-to-end/codecept.conf.js --grep @functional --steps --reporter mocha-multi",
-    "test-overnight-e2e": "NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. codeceptjs run -c test/end-to-end/codecept.conf.js --steps",
     "test-crossbrowser-e2e": "IGNORE_SESSION_VALIDATION=true NODE_ENV=testing LOG_LEVEL=OFF NODE_PATH=. node_modules/.bin/codeceptjs run-multiple  ${BROWSER_GROUP:-'--all'} -c test/end-to-end/saucelabs.conf.js --grep @nightly --steps --reporter mocha-multi",
     "lint": "NODE_PATH=. eslint . --fix"
   },
@@ -45,6 +44,7 @@
     "@hmcts/frontend": "0.0.34-alpha",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/nodejs-logging": "^3.0.1",
+    "@hmcts/prd-client": "^0.0.8",
     "@hmcts/properties-volume": "^0.0.9",
     "add": "^2.0.6",
     "ajv": "^4.10.0",
@@ -103,9 +103,9 @@
     "serialize-javascript": ">=2.1.1",
     "serve-favicon": "^2.3.0",
     "string-replace-webpack-plugin": "^0.1.3",
-    "stryker": "^0.23.0",
+    "stryker": "^0.35.1",
     "superagent": "5.2.1",
-    "superagent-proxy": "^2.0.0",
+    "superagent-proxy": "^2.1.0",
     "tar": "^2.2.2",
     "tmp": "^0.0.33",
     "uuid": "^3.0.1",
@@ -116,7 +116,7 @@
     "yarn": "^1.22.0"
   },
   "devDependencies": {
-    "@hmcts/div-idam-test-harness": "^1.5.0",
+    "@hmcts/div-idam-test-harness": "^1.9.0",
     "@hmcts/eslint-config": "^1.0.5",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.4",
@@ -142,6 +142,7 @@
     "jsdom": "^11.2.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
+    "mocha-each": "^2.0.1",
     "mocha-junit-reporter": "^1.23.3",
     "mocha-multi": "^1.1.3",
     "mochawesome": "^6.2.0",
@@ -187,7 +188,8 @@
     "bl": ">=3.0.1",
     "dot-prop": ">=5.1.1",
     "ini": ">=1.3.6",
-    "axios": ">=0.21.1"
+    "axios": ">=0.21.1",
+    "netmask": ">=2.0.1"
   },
   "nyc": {
     "report-dir": "coverage",

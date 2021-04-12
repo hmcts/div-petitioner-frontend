@@ -4,6 +4,8 @@ const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessio
 const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession');
 const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
 const serviceApplicationNotApprovedSession = require('test/end-to-end/data/serviceApplicationNotApprovedSession');
+const asoDraftedSession = require('test/end-to-end/data/aosDraftedSession');
+const issueToBailiffSession = require('test/end-to-end/data/issuedToBailiffSession');
 const Tokens = require('csrf');
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
@@ -11,7 +13,9 @@ const availableSessions = {
   basicDivorceSessionData,
   amendPetitionSession,
   amendPetitionSessionWithConfirmation,
-  serviceApplicationNotApprovedSession
+  serviceApplicationNotApprovedSession,
+  asoDraftedSession,
+  issueToBailiffSession
 };
 
 class SessionHelper extends codecept_helper {
@@ -78,6 +82,8 @@ class SessionHelper extends codecept_helper {
     session.featureToggles.ft_welsh = true;
     session.petitionerPcqId = 'is_in_session';
     session.featureToggles.ft_awaiting_amend = true;
+    session.featureToggles.ft_represented_respondent_journey = true;
+    session.isRespSolToggleOn = true;
 
     let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
 
@@ -91,8 +97,9 @@ class SessionHelper extends codecept_helper {
     expectedSession.feeToBePaid                                 = actualSession.feeToBePaid;
     expectedSession.expires                                     = actualSession.expires;
     expectedSession.cookie.domain                               = actualSession.cookie.domain;
-    expectedSession.marriageCertificateFiles[0]                 = actualSession.marriageCertificateFiles[0];
+    expectedSession.marriageCertificateFiles[0]                  = actualSession.marriageCertificateFiles[0];
     expectedSession.featureToggles                              = actualSession.featureToggles;
+    expectedSession.isRespSolToggleOn                           = actualSession.isRespSolToggleOn;
 
     if (!testingLocally) {
       expectedSession.fetchedDraft                              = actualSession.fetchedDraft;

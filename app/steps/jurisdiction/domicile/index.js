@@ -8,6 +8,7 @@ const {
   areBothHabituallyResident,
   hasLivedMonths,
   isDomiciled,
+  isSameSexCouple,
   clearProceedingSteps
 } = require('app/services/jurisdiction/connections');
 
@@ -58,7 +59,9 @@ module.exports = class JurisdictionDomicile extends ValidationStep {
       return nextStep.jurisdictionWhereTo;
     };
 
-    if (noPriorConnections && areBothDomiciled(this.name, ctx, clonedSession)) {
+    if (isSameSexCouple(this.name, ctx, session) && areBothDomiciled(this.name, ctx, clonedSession)) {
+      nextStepLogicHelper.jurisdictionWhereTo = 'JurisdictionLastHabitualResidence';
+    } else if (noPriorConnections && areBothDomiciled(this.name, ctx, clonedSession)) {
       nextStepLogicHelper.jurisdictionWhereTo = 'JurisdictionInterstitial';
     } else if (!clonedSession.jurisdictionConnection.includes('A') && isHabitualResident('petitioner', this.name, ctx, clonedSession) && (areBothDomiciled(this.name, ctx, clonedSession) || isDomiciled('petitioner', this.name, ctx, clonedSession))) {
       nextStepLogicHelper.jurisdictionWhereTo = hasLivedMonths(TWELVE_MONTHS, this.name, ctx, clonedSession) ? 'JurisdictionLastHabitualResidence' : 'JurisdictionLastSixMonths';

@@ -68,8 +68,10 @@ describe(modulePath, () => {
       it('should render the content from the content file for deemed service', done => {
         const deemedDataContent = Object.assign(dataContent, { serviceName: 'deemed service' });
         const exclude = [
+          'serviceRefusalInfo.bailiff',
           'serviceRefusalInfo.dispensed',
           'refusalDocumentInfo',
+          'serviceApplicationLabel.bailiff',
           'serviceApplicationLabel.dispensed',
           'files.respondentAnswers',
           'files.coRespondentAnswers',
@@ -138,8 +140,10 @@ describe(modulePath, () => {
       it('should render the content from the content file for dispense with service', done => {
         const dispenseDataContent = Object.assign(dataContent, { serviceName: 'dispense with service' });
         const exclude = [
+          'serviceRefusalInfo.bailiff',
           'serviceRefusalInfo.deemed',
           'refusalDocumentInfo',
+          'serviceApplicationLabel.bailiff',
           'serviceApplicationLabel.deemed',
           'files.respondentAnswers',
           'files.coRespondentAnswers',
@@ -158,6 +162,58 @@ describe(modulePath, () => {
       it('should have one \'dispenseWithServiceRefused\' label in template view', done => {
         const dispenseWithServiceRefusedFileLabel = getTemplateFileLabel(content, 'dispenseWithServiceRefused');
         testExistence(done, agent, underTest, dispenseWithServiceRefusedFileLabel);
+      });
+
+      it('should have one \'generalOrder\' label in template view', done => {
+        const generalFileLabel = getTemplateFileLabel(content, 'generalOrder');
+        testExistence(done, agent, underTest, generalFileLabel);
+      });
+    });
+
+    describe('Bailiff template', () => {
+      beforeEach(done => {
+        session = buildServiceRefusalSession({ serviceApplicationType: 'bailiff', d8: [] });
+        session.d8 = [
+          {
+            id: '27387e86-7fb8-4b72-8786-64ea22cb746d',
+            createdBy: 0,
+            createdOn: null,
+            lastModifiedBy: 0,
+            modifiedOn: null,
+            fileName: 'generalOrder2020-09-09.pdf',
+            fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/27387e86-7fb8-4b72-8786-64ea22cb746d',
+            mimeType: null,
+            status: null
+          }
+        ];
+        withSession(done, agent, session);
+      });
+
+      afterEach(() => {
+        session = {};
+      });
+
+      it('should render the content from the content file for bailiff service', done => {
+        const dispenseDataContent = Object.assign(dataContent, { serviceName: 'court bailiff service' });
+        const exclude = [
+          'serviceRefusalInfo.deemed',
+          'serviceRefusalInfo.dispensed',
+          'refusalDocumentInfo',
+          'serviceApplicationLabel.deemed',
+          'serviceApplicationLabel.dispensed',
+          'files.respondentAnswers',
+          'files.coRespondentAnswers',
+          'files.certificateOfEntitlement',
+          'files.costsOrder',
+          'files.dnAnswers',
+          'files.clarificationDnRefusalOrder',
+          'files.rejectionDnRefusalOrder',
+          'files.deemedAsServedGranted',
+          'files.dispenseWithServiceGranted',
+          'files.deemedServiceRefused',
+          'files.dispenseWithServiceRefused'
+        ];
+        testContent(done, agent, underTest, content, session, exclude, dispenseDataContent, true);
       });
 
       it('should have one \'generalOrder\' label in template view', done => {

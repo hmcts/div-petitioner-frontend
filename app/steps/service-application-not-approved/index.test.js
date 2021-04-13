@@ -68,8 +68,10 @@ describe(modulePath, () => {
       it('should render the content from the content file for deemed service', done => {
         const deemedDataContent = Object.assign(dataContent, { serviceName: 'deemed service' });
         const exclude = [
+          'serviceRefusalInfo.bailiff',
           'serviceRefusalInfo.dispensed',
           'refusalDocumentInfo',
+          'serviceApplicationLabel.bailiff',
           'serviceApplicationLabel.dispensed',
           'files.respondentAnswers',
           'files.coRespondentAnswers',
@@ -138,8 +140,10 @@ describe(modulePath, () => {
       it('should render the content from the content file for dispense with service', done => {
         const dispenseDataContent = Object.assign(dataContent, { serviceName: 'dispense with service' });
         const exclude = [
+          'serviceRefusalInfo.bailiff',
           'serviceRefusalInfo.deemed',
           'refusalDocumentInfo',
+          'serviceApplicationLabel.bailiff',
           'serviceApplicationLabel.deemed',
           'files.respondentAnswers',
           'files.coRespondentAnswers',

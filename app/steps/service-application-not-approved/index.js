@@ -8,6 +8,7 @@ const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { getDownloadableFiles, getCurrentContent } = require('app/core/utils/viewHelper');
 
 const serviceApplicationFileTypeMap = {
+  bailiff: 'generalOrder',
   deemed: 'deemedServiceRefused',
   dispensed: 'dispenseWithServiceRefused'
 };

@@ -16,84 +16,20 @@ const { expect, sinon } = require('test/util/chai');
 const { escape } = require('lodash');
 const co = require('co');
 
-const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
-
 const modulePath = 'app/steps/respondent/correspondence/solicitor-search';
 const content = require(`${modulePath}/content`);
 
-
 const contentStrings = content.resources.en.translation.content;
+
+const { buildResultData, buildMockOrganisationsList } = require('test/util/petitionTestHelper');
+const searchHelper = require('app/core/utils/respondentSolicitorSearchHelper');
+
 const { UserAction } = searchHelper;
-const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
-const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
-const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
-const TEST_RESP_SOLICITOR_COMPANY = 'Whitehead & Low Solicitors LLP';
-const TEST_RESP_SOLICITOR_ID = '11-111';
 
 let appInstance = {};
 let agent = {};
 let underTest = {};
 let session = {};
-
-function buildResultData() {
-  return {
-    divorceWho: 'wife',
-    respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
-    respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL,
-    respondentSolicitorReference: TEST_RESP_SOLICITOR_REF,
-    respondentSolicitorOrganisation: {
-      contactInformation: [
-        {
-          addressLine1: '19/22 Union St',
-          addressLine2: 'Oldham',
-          addressLine3: '',
-          country: 'United Kingdom',
-          county: 'Greater Manchester',
-          postCode: 'OL1 222',
-          townCity: 'Manchester'
-        }
-      ],
-      name: TEST_RESP_SOLICITOR_COMPANY,
-      organisationIdentifier: TEST_RESP_SOLICITOR_ID
-    },
-    respondentSolicitorFirm: 'searchCriteria'
-  };
-}
-
-function buildMockOrganisationsList() {
-  return [
-    {
-      contactInformation: [
-        {
-          addressLine1: '1 Trasna way',
-          addressLine2: 'Lurgan',
-          addressLine3: '',
-          country: 'United Kingdom',
-          county: 'Armagh',
-          postCode: 'BT25 545',
-          townCity: 'Craigavon'
-        }
-      ],
-      name: 'Campbell & Haughey Solicitors Ltd',
-      organisationIdentifier: '02-002'
-    },
-    {
-      contactInformation: [
-        {
-          addressLine1: '19/22 Union St',
-          addressLine2: 'Oldham',
-          addressLine3: '',
-          country: 'United Kingdom',
-          county: 'Greater Manchester',
-          postCode: 'OL1 222',
-          townCity: 'Manchester'
-        }
-      ],
-      name: TEST_RESP_SOLICITOR_COMPANY,
-      organisationIdentifier: TEST_RESP_SOLICITOR_ID
-    }
-  ];
-}
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -243,15 +179,15 @@ describe(modulePath, () => {
       });
 
       describe('Check Your Answers page', () => {
-        session = {
-          divorceWho: 'wife',
-          respondentSolicitorName: 'Solicitor name',
-          respondentSolicitorAddress: {
-            address: ['line 1', 'line 2', 'line 3', 'postcode']
-          }
-        };
-
         beforeEach(done => {
+          session = {
+            divorceWho: 'wife',
+            respondentSolicitorName: 'Solicitor name',
+            respondentSolicitorEmail: 'email@email.com',
+            respondentSolicitorAddress: {
+              address: ['line 1', 'line 2', 'line 3']
+            }
+          };
           withSession(done, agent, session);
         });
 
@@ -263,7 +199,7 @@ describe(modulePath, () => {
           testCYATemplate(done, underTest, {}, session);
         });
 
-        it('should renders address solicitor address', done => {
+        it('should render expected CYA solicitor address and default change url', done => {
           const contentToExist = ['question'];
           const valuesToExist = [
             'divorceWho',
@@ -272,14 +208,26 @@ describe(modulePath, () => {
           const context = {
             respondentSolicitorDisplayAddress: 'Solicitor name<br>line 1<br>line 2<br>line 3<br>email@email.com'
           };
-          session = {
-            divorceWho: 'wife',
-            respondentSolicitorName: 'Solicitor name',
-            respondentSolicitorEmail: 'email@email.com',
-            respondentSolicitorAddress: {
-              address: ['line 1', 'line 2', 'line 3']
-            }
+          session = Object.assign(session, { respondentSolicitorReferenceDataId: 'refId' });
+
+          testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
+        });
+
+        it('should render expected CYA solicitor address and manual change url', done => {
+          const contentToExist = ['question'];
+          const valuesToExist = [
+            'divorceWho',
+            'respondentSolicitorDisplayAddress',
+            'respondentSolicitorDisplayUrl'
+          ];
+          const context = {
+            respondentSolicitorDisplayAddress: 'Solicitor name<br>Solicitor company<br>line 1<br>line 2<br>line 3<br>email@email.com',
+            respondentSolicitorDisplayUrl: `${underTest.url}/manual`
           };
+          session = Object.assign(session, {
+            searchType: 'manual',
+            respondentSolicitorCompany: 'Solicitor company'
+          });
 
           testExistenceCYA(done, underTest, content, contentToExist, valuesToExist, context, session);
         });

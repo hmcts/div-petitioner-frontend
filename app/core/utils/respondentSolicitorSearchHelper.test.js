@@ -121,7 +121,7 @@ describe(modulePath, () => {
       });
     });
 
-    context('Service token service is not successfull', () => {
+    context('Service token service is not successful', () => {
       beforeEach(() => {
         getToken = sinon.stub().rejects(error);
         getOrganisationByName = sinon.stub().resolves(mockOrganisations);
@@ -275,7 +275,7 @@ describe(modulePath, () => {
       });
     });
 
-    describe('parseAddressToManualAddress()', () => {
+    describe('resetManualSolicitorData()', () => {
       it('should parse address to manual address format', () => {
         const session = {
           respondentSolicitorAddress: {
@@ -283,7 +283,7 @@ describe(modulePath, () => {
           }
         };
 
-        underTest.parseAddressToManualAddress(session);
+        underTest.resetSolicitorManualData(session);
 
         expect(session.respondentSolicitorAddressManual).to.equal('Solicitor\naddress');
       });
@@ -295,9 +295,36 @@ describe(modulePath, () => {
           }
         };
 
-        underTest.parseAddressToManualAddress(session);
+        underTest.resetSolicitorManualData(session);
 
         expect(session.respondentSolicitorAddressManual).to.be.undefined;
+      });
+
+      it('should reset manual data', () => {
+        const session = {
+          respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL
+        };
+
+        underTest.resetSolicitorManualData(session);
+
+        expect(session).to.have.property('resetManualData');
+        expect(session.resetManualData).to.equal(false);
+        expect(session).to.have.property('respondentSolicitorNameManual');
+        expect(session).to.have.property('respondentSolicitorEmailManual');
+      });
+
+      it('should not reset manual data', () => {
+        const session = {
+          resetManualData: false,
+          respondentSolicitorName: TEST_RESP_SOLICITOR_NAME,
+          respondentSolicitorEmail: TEST_RESP_SOLICITOR_EMAIL
+        };
+
+        underTest.resetSolicitorManualData(session);
+
+        expect(session).not.to.have.property('respondentSolicitorNameManual');
+        expect(session).not.to.have.property('respondentSolicitorEmailManual');
       });
     });
 
@@ -406,11 +433,12 @@ describe(modulePath, () => {
             respondentSolicitorCompany: TEST_RESP_SOLICITOR_COMPANY
           },
           session: {
-            divorceWho: 'wife'
+            divorceWho: 'wife',
+            searchType: 'manual'
           }
         };
 
-        underTest.mapRespondentSolicitorData(req, true);
+        underTest.mapRespondentSolicitorData(req);
 
         expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
         expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
@@ -495,7 +523,8 @@ describe(modulePath, () => {
     beforeEach(() => {
       session = {
         organisations: [{ item: 1 }], error: {}, errors: [],
-        respondentSolicitorOrganisation: {}
+        respondentSolicitorOrganisation: {},
+        resetManualData: false
       };
     });
 
@@ -503,6 +532,7 @@ describe(modulePath, () => {
       underTest.cleanupBeforeSubmit(session);
 
       expect(session.organisations).to.be.undefined;
+      expect(session.resetManualData).to.be.undefined;
       expect(session.error).to.be.undefined;
       expect(session.errors).to.be.undefined;
       expect(session.respondentSolicitorOrganisation).not.to.be.undefined;
@@ -516,6 +546,22 @@ describe(modulePath, () => {
       expect(session.error).to.be.undefined;
       expect(session.errors).to.be.undefined;
       expect(session.respondentSolicitorOrganisation).to.be.undefined;
+    });
+  });
+
+  describe('showManualDisplayUrl()', () => {
+    it('should return true if data Solicitor Reference Data id does not exist', () => {
+      const session = { respondentSolicitorCompany: TEST_RESP_SOLICITOR_NAME };
+
+      expect(underTest.showManualDisplayUrl(session)).to.equal(true);
+    });
+
+    it('should return false if data Solicitor Reference Data id does exist', () => {
+      const session = {
+        respondentSolicitorCompany: TEST_RESP_SOLICITOR_NAME,
+        respondentSolicitorReferenceDataId: TEST_RESP_SOLICITOR_REF };
+
+      expect(underTest.showManualDisplayUrl(session)).to.equal(false);
     });
   });
 

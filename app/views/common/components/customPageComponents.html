@@ -30,3 +30,14 @@
 </form>
 {% endmacro %}
 
+{% macro saveAndClose(btnLabel, csrfToken) %}
+<form method="POST" accept-charset="utf-8" class="form" id="saveForm"
+      enctype="application/x-www-form-urlencoded"
+      autocomplete="off">
+  <input type="hidden" name="_csrf" value="{{csrfToken}}">
+  <div class="govuk-form-group">
+    <input name="saveAndClose" type="submit" class="govuk-link govuk-!-font-size-19" value="{{ btnLabel }}" />
+  </div>
+</form>
+{% endmacro %}
+

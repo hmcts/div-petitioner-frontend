@@ -258,8 +258,10 @@ const resetManualRespondentSolicitorData = session => {
 
 const resetSolicitorManualData = session => {
   if (isUndefined(session.resetManualData)) {
-    const manualAddress = get(session, 'respondentSolicitorAddress.address', []);
-    session.respondentSolicitorAddressManual = manualAddress.join('\n');
+    const manualAddress = get(session, 'respondentSolicitorAddress.address');
+    if (manualAddress) {
+      session.respondentSolicitorAddressManual = manualAddress.join('\n');
+    }
     session.respondentSolicitorNameManual = get(session, 'respondentSolicitorName');
     session.respondentSolicitorEmailManual = get(session, 'respondentSolicitorEmail');
     session.resetManualData = false;

@@ -6,12 +6,14 @@
         "content": {
           "title": "Your service application has been refused",
           "mainHeading": "Your '{{ serviceName }}' application has been refused",
-          "serviceRefusalInfo":{
+          "serviceRefusalInfo": {
+            "bailiff": "The court has refused your application for '{{ serviceName }}'.",
             "deemed": "The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
             "dispensed": "The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
           "refusalDocumentInfo": "You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'.",
           "serviceApplicationLabel": {
+            "bailiff": "court bailiff service",
             "deemed": "deemed service",
             "dispensed": "dispense with service"
           },
@@ -120,11 +122,13 @@
           "title": "[CY] Your application has been refused",
           "mainHeading": "[CY] Your '{{ serviceName }}' application has been refused",
           "serviceRefusalInfo": {
+            "bailiff": "[CY] The court has refused your application for '{{ serviceName }}'.",
             "deemed": "[CY] The court has refused your application for '{{ serviceName }}' that your {{ divorceWho }} received the divorce application.",
             "dispensed": "[CY] The court has refused your application to '{{ serviceName }}' that your {{ divorceWho }} doesn’t have to be served the divorce application."
           },
           "refusalDocumentInfo": "[CY] You can read the court’s reasons for this in the '{{ refusalDocumentLabel }}' document in 'Download your documents'.",
           "serviceApplicationLabel": {
+            "bailiff": "[CY] court bailiff service",
             "deemed": "[CY] deemed service",
             "dispensed": "[CY] dispense with service"
           },

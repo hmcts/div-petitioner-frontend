@@ -26,8 +26,8 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   interceptor(ctx, session) {
     ctx.searchType = session.searchType;
     ctx.baseUrl = this.url;
-    searchHelper.parseAddressToManualAddress(session);
 
+    searchHelper.resetSolicitorManualData(session);
     if (!session.respondentSolicitorOrganisation) {
       unset(session, 'errors');
     }
@@ -46,11 +46,11 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   * postRequest(req, res) {
-    const manual = searchHelper.isManual(req.session);
-    searchHelper.mapRespondentSolicitorData(req, manual);
+    searchHelper.mapRespondentSolicitorData(req);
 
     const ctx = yield this.parseCtx(req);
-    const [isValid ] = this.validate(ctx, req.session);
+    const [isValid] = this.validate(ctx, req.session);
+    const manual = searchHelper.isManual(req.session);
 
     if (searchHelper.isInValidManualData(isValid, manual)) {
       return res.redirect(`${this.url}/manual`);
@@ -121,8 +121,9 @@ module.exports = class RespondentCorrespondenceSolicitorSearch extends Validatio
   }
 
   checkYourAnswersInterceptor(ctx, session) {
-    if (session.respondentSolicitorAddress) {
-      ctx.respondentSolicitorDisplayAddress = searchHelper.mapRespondentSolicitorCyaData(session);
+    ctx.respondentSolicitorDisplayAddress = searchHelper.mapRespondentSolicitorCyaData(session);
+    if (searchHelper.showManualDisplayUrl(session)) {
+      ctx.respondentSolicitorDisplayUrl = `${this.url}/manual`;
     }
     return ctx;
   }

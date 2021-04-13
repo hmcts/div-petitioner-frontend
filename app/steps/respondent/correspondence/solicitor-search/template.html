@@ -1,5 +1,6 @@
 {% from "common/components/respondentSolicitorComponents.html" import solicitorSearch, solicitorSearchResult, searchNoResults %}
 {% from "common/components/respondentSolicitorDetailComponents.html" import solicitorManualDetail %}
+{% from "common/components/customPageComponents.html" import saveAndClose %}
 {% from "common/errors.html" import errorsForSolicitorSearch %}
 {% extends "question.html" %}
 
@@ -31,5 +32,5 @@
 
   {% endif %}
 </div>
-{% block saveAndClose %}{% include "includes/save_and_close.html" %}{% endblock %}
+{{saveAndClose(common.saveAndClose, csrfToken)}}
 {% endblock %}

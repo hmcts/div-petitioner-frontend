@@ -10,6 +10,7 @@ const mockOrganisations = require('app/services/mocks/responses/organisations.js
 
 const underTest = require(modulePath);
 
+const YES_VALUE = 'Yes';
 const TEST_RESP_SOLICITOR_NAME = 'RespondentSolicitor';
 const TEST_RESP_SOLICITOR_EMAIL = 'test@email';
 const TEST_RESP_SOLICITOR_REF = 'SOL-REF';
@@ -395,7 +396,7 @@ describe(modulePath, () => {
 
         underTest.mapRespondentSolicitorData(req);
 
-        expect(req.session.respondentSolicitorRepresented).to.equal('Yes');
+        expect(req.session.respondentSolicitorRepresented).to.equal(YES_VALUE);
         expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
         expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
         expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
@@ -410,7 +411,7 @@ describe(modulePath, () => {
 
         underTest.mapRespondentSolicitorData(req);
 
-        expect(req.session.respondentSolicitorRepresented).to.equal('Yes');
+        expect(req.session.respondentSolicitorRepresented).to.equal(YES_VALUE);
         expect(req.session.respondentSolicitorName).to.be.undefined;
         expect(req.session.respondentSolicitorEmail).to.be.undefined;
         expect(req.session.respondentSolicitorReference).to.be.undefined;
@@ -442,7 +443,7 @@ describe(modulePath, () => {
 
         underTest.mapRespondentSolicitorData(req);
 
-        expect(req.session.respondentSolicitorRepresented).to.equal('Yes');
+        expect(req.session.respondentSolicitorRepresented).to.equal(YES_VALUE);
         expect(req.session.respondentSolicitorName).to.equal(TEST_RESP_SOLICITOR_NAME);
         expect(req.session.respondentSolicitorEmail).to.equal(TEST_RESP_SOLICITOR_EMAIL);
         expect(req.session.respondentSolicitorReference).to.equal(TEST_RESP_SOLICITOR_REF);
@@ -570,7 +571,7 @@ describe(modulePath, () => {
 
   context('Session data reset and clean up:', () => {
     const commonResetExpectations = ({ session }) => {
-      expect(req.session.respondentSolicitorRepresented).to.be.undefined;
+      expect(session.respondentSolicitorRepresented).to.be.undefined;
       expect(session.respondentSolicitorName).to.be.undefined;
       expect(session.respondentSolicitorNameManual).to.be.undefined;
       expect(session.respondentSolicitorEmail).to.be.undefined;
@@ -586,7 +587,7 @@ describe(modulePath, () => {
     beforeEach(() => {
       req.session = {
         organisations: [],
-        respondentSolicitorRepresented: 'Yes',
+        respondentSolicitorRepresented: YES_VALUE,
         respondentSolicitorFirm: null,
         respondentSolicitorCompany: null,
         respondentSolicitorOrganisation: null,

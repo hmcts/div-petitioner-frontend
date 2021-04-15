@@ -180,6 +180,8 @@ const mapRespondentSolicitorData = ({ body, session }) => {
   const manual = isManual(session);
   const { respondentSolicitorOrganisation } = session;
 
+  session.respondentSolicitorRepresented = 'Yes';
+
   let address = filter(values(first(get(respondentSolicitorOrganisation, 'contactInformation'))), size);
   session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
@@ -237,6 +239,7 @@ const cleanupBeforeSubmit = session => {
 };
 
 const resetRespondentSolicitorData = session => {
+  unset(session, 'respondentSolicitorRepresented');
   unset(session, 'respondentSolicitorOrganisation');
   unset(session, 'respondentSolicitorName');
   unset(session, 'respondentSolicitorNameManual');

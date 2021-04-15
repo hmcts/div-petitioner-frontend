@@ -54,16 +54,24 @@ exports.init = listenForConnections => {
   app.use(helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ['\'self\''],
-      fontSrc: ['\'self\' data:'],
+      fontSrc: [
+        '\'self\' data:',
+        'fonts.gstatic.com'
+      ],
       scriptSrc: [
         '\'self\'',
         '\'unsafe-inline\'',
         'www.google-analytics.com',
+        'www.googletagmanager.com',
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
       ],
-      connectSrc: ['\'self\''],
+      connectSrc: [
+        '\'self\'',
+        'www.google-analytics.com',
+        'stats.g.doubleclick.net'
+      ],
       mediaSrc: ['\'self\''],
       frameSrc: [
         'vcc-eu4.8x8.com',
@@ -75,6 +83,12 @@ exports.init = listenForConnections => {
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
+      ],
+      styleSrc: [
+        '\'self\'',
+        '\'unsafe-inline\'',
+        'tagmanager.google.com',
+        'fonts.googleapis.com'
       ]
     }
   }));

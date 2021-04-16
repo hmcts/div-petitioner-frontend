@@ -11,11 +11,12 @@ properties([
 
 def product = "div"
 def component = "pfe"
+final CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES = 480
 
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
-    enableCrossBrowserTest()
+    enableCrossBrowserTest(CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
     enableMutationTest()
 
     after('crossBrowserTest') {

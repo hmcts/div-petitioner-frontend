@@ -16,7 +16,7 @@ final CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES = 480
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
 
-    enableCrossBrowserTest(CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
+    enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'safari', 'chrome', 'firefox'], CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
     enableMutationTest()
     enableFullFunctionalTest()
 

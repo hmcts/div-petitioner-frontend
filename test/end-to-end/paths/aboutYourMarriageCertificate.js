@@ -25,7 +25,6 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.seeInCurrentUrl('/about-your-marriage/foreign-certificate');
 });
 
-
 Scenario('Marriage certificate not in English, answered No', (I) => {
   I.amOnLoadedPage('/');
   I.startApplication();

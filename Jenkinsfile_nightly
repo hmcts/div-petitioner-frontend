@@ -14,7 +14,7 @@ def component = "pfe"
 
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
-    echo "Running test for TEST_URL ${TEST_URL}..."
+    env.FEATURE_IDAM = 'true'
 
     enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'safari', 'chrome', 'firefox'])
     enableMutationTest()

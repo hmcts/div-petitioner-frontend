@@ -16,7 +16,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.FEATURE_IDAM = 'true'
 
-    enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'safari', 'chrome', 'firefox'])
+    enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'chrome', 'firefox'])
     enableMutationTest()
     enableFullFunctionalTest()
 

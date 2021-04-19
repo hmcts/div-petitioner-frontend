@@ -37,7 +37,6 @@ withPipeline("nodejs", product, component) {
 
   env.FEATURE_IDAM = 'true'
   env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
-  env.CASE_ORCHESTRATION_SERVICE_DRAFT_URL = 'http://div-cos-aat.service.core-compute-aat.internal/draftsapi/version/1'
 
   if (env.CHANGE_TITLE) {
     if(env.CHANGE_TITLE.startsWith('[PREVIEW]')) {

@@ -21,7 +21,7 @@ const tenYearsAgoFormatted = {
   year: tenYearsAgo.format('Y')
 };
 
-Feature('Exit paths for divorce @nightly').retry(3);
+Feature('Exit paths for divorce').retry(3);
 
 Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
 

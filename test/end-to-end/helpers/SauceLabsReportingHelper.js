@@ -21,14 +21,21 @@ module.exports = function() {
   });
 
   // Setting test failure on SauceLabs
-  event.dispatcher.on(event.test.failed, (a) => {
+  event.dispatcher.on(event.test.failed, (test) => {
+    // eslint-disable-next-line no-console
+    console.log('4 - ops');
 
     // eslint-disable-next-line no-console
-    console.log(1);
+    console.log(test.ctx.currentTest.title);// _currentRetry: 0,
     // eslint-disable-next-line no-console
-    console.log(a);
+    console.log(test.ctx.currentTest._retries);// _currentRetry: 0,
     // eslint-disable-next-line no-console
-    console.log(2);
+    console.log(test.ctx.currentTest._currentRetry);// _currentRetry: 0,
+    // eslint-disable-next-line no-console
+    console.log(test.ctx);// _currentRetry: 0,
+
+    // eslint-disable-next-line no-console
+    console.log('5 - ops');
     //TODO - do not merge to master
 
     let sessionId = container.helpers('WebDriver').browser.sessionId;

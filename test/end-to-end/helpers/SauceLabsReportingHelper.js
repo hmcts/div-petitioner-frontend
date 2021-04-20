@@ -5,7 +5,6 @@ const CONF = require('config');
 const sauceUsername = process.env.SAUCE_USERNAME || CONF.saucelabs.username;
 const sauceKey = process.env.SAUCE_ACCESS_KEY || CONF.saucelabs.key;
 
-
 function updateSauceLabsResult(result, sessionId) {
   console.log('SauceOnDemandSessionID=' + sessionId + ' job-name=div-petitioner-frontend'); /* eslint-disable-line no-console, prefer-template */
   return 'curl -X PUT -s -d \'{"passed": ' + result + '}\' -u ' + sauceUsername + ':' + sauceKey + ' https://eu-central-1.saucelabs.com/rest/v1/' + sauceUsername + '/jobs/' + sessionId;
@@ -22,7 +21,15 @@ module.exports = function() {
   });
 
   // Setting test failure on SauceLabs
-  event.dispatcher.on(event.test.failed, () => {
+  event.dispatcher.on(event.test.failed, (a) => {
+
+    // eslint-disable-next-line no-console
+    console.log(1);
+    // eslint-disable-next-line no-console
+    console.log(a);
+    // eslint-disable-next-line no-console
+    console.log(2);
+    //TODO - do not merge to master
 
     let sessionId = container.helpers('WebDriver').browser.sessionId;
     exec(updateSauceLabsResult('false', sessionId));

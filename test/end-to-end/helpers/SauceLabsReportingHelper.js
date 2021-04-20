@@ -30,11 +30,11 @@ module.exports = function() {
     // eslint-disable-next-line no-console
     console.log(test.ctx.currentTest);// _currentRetry: 0,
     // eslint-disable-next-line no-console
-    console.log(test.ctx.currentTest.title);// _currentRetry: 0,
-    // eslint-disable-next-line no-console
-    console.log(test.ctx.currentTest._retries);// _currentRetry: 0,
-    // eslint-disable-next-line no-console
-    console.log(test.ctx.currentTest._currentRetry);// _currentRetry: 0,
+    // console.log(test.ctx.currentTest.title);// _currentRetry: 0,
+    // // eslint-disable-next-line no-console
+    // console.log(test.ctx.currentTest._retries);// _currentRetry: 0,
+    // // eslint-disable-next-line no-console
+    // console.log(test.ctx.currentTest._currentRetry);// _currentRetry: 0,
 
     // eslint-disable-next-line no-console
     console.log('5 - ops');

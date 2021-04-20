@@ -21,7 +21,11 @@ module.exports = function() {
   });
 
   // Setting test failure on SauceLabs
-  event.dispatcher.on(event.test.failed, (test) => {
+  event.dispatcher.on(event.test.failed, (test, error) => {
+    // eslint-disable-next-line no-console
+    console.log('3 - ops');
+    // eslint-disable-next-line no-console
+    console.log(error);// _currentRetry: 0,
     // eslint-disable-next-line no-console
     console.log('4 - ops');
 

@@ -23,12 +23,11 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Reasons for divorce E2E Tests @nightly')
-  .retry(3);
+Feature('Reasons for divorce E2E Tests').retry(3);
 
 languages.forEach(language => {
 
-  Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function(I) {
+  Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function (I) {
 
     const reasonContent = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
@@ -74,7 +73,7 @@ languages.forEach(language => {
   })
     .retry(3);
 
-  Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function(I) {
+  Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function (I) {
 
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
@@ -123,7 +122,7 @@ languages.forEach(language => {
   })
     .retry(2);
 
-  Scenario(`${language.toUpperCase()} - 5 years separation E2E @nightly `, async function(I) {
+  Scenario(`${language.toUpperCase()} - 5 years separation E2E`, async function (I) {
 
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);

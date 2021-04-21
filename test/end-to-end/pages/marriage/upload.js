@@ -2,9 +2,7 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const pagePath = '/petitioner-respondent/marriage-certificate-upload';
 
-function upload(file, isDragAndDropSupported) {
-  const I = this;
-
+function upload(I, file, isDragAndDropSupported) {
   if (isDragAndDropSupported) {
     I.attachFile('.dz-hidden-input', file);
   }
@@ -26,7 +24,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
 
   if (language === 'en') {
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
-    upload.call('/assets/image.jpg', isDragAndDropSupported);//
+    upload.call(I, '/assets/image.jpg', isDragAndDropSupported);//
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
@@ -39,7 +37,7 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {
   const I = this;
 
   I.seeInCurrentUrl(pagePath);
-  upload.call(assetPath, isDragAndDropSupported);
+  upload.call(I, assetPath, isDragAndDropSupported);
   I.waitForVisible('input[value="Continue"]:not([disabled])', 60);
 }
 
@@ -48,8 +46,8 @@ function deleteMarriageCertificateFile(isDragAndDropSupported) {
 
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeInCurrentUrl(pagePath);
-  upload.call('/assets/image.jpg', isDragAndDropSupported);
-  //TODO - consider removing/replacing these waitForVisible functions (saucelabs have probably not implemented those)
+  upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
+  I.waitForVisible('.file');//TODO - consider removing/replacing these waitForVisible functions (saucelabs have probably not implemented those)
   I.waitForText('Remove', 30);
   I.click('Remove');
   I.navByClick('Continue');

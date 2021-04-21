@@ -60,14 +60,15 @@ function withoutUploadFile(language = 'en') {
 }
 
 function upload(I, file, isDragAndDropSupported) {
+
+  console.log('whoami...');
+  console.log(I);
+  console.log('...whoami');
+
   if (isDragAndDropSupported) {
     I.attachFile('.dz-hidden-input', file);
   }
   else {
-    console.log('available methods...');
-    console.log(I);
-    console.log('---');
-    console.log('...available methods');
     // I.waitForVisible('.file-upload-input');//This is the issue
     I.attachFile('.file-upload-input', file);
     I.click('Upload');

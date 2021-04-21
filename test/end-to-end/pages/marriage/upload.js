@@ -35,7 +35,6 @@ function deleteMarriageCertificateFile(isDragAndDropSupported) {
   I.seeInCurrentUrl(pagePath);
   upload(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForText('Remove', 30);
-  I.waitForText('image.jpg', 30);//TODO - just testing
   I.click('Remove');
   I.navByClick('Continue');
 }

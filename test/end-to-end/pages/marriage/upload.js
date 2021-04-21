@@ -65,6 +65,10 @@ function upload(I, file, isDragAndDropSupported) {
   console.log(I);
   console.log('...whoami');
 
+  console.log('whatisthis...');
+  console.log(this);
+  console.log('...whatisthis');
+
   if (isDragAndDropSupported) {
     I.attachFile('.dz-hidden-input', file);
   }

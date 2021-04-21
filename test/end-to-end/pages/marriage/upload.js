@@ -15,7 +15,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
     upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
-    I.waitForVisible('input[value="Continue"]:not([disabled])');
+    // I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
   } else {
     I.navByClick(commonContent.continue);

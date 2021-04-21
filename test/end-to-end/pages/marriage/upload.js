@@ -61,7 +61,7 @@ function withoutUploadFile(language = 'en') {
 
 function upload(I, file, isDragAndDropSupported) {
   if (isDragAndDropSupported) {
-    I.attachFile('Drag and drop files here', file);
+    I.attachFile('.dz-message-copy', file);
   }
   else {
     I.waitForVisible('.file-upload-input');//This is the issue

@@ -9,7 +9,7 @@ public:
 
 showSitemap: true
 featureToggles:
-  launchDarklyKey: 'sdk-c7dde30a-a551-41ab-bd67-f0ccd5a705de'
+  launchDarklyKey: 'PUT KEY HERE'
 
 services:
   idamAuthentication:

@@ -43,7 +43,7 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {
   I.waitForVisible('input[value="Continue"]:not([disabled])', 60);
 }
 
-function deleteAMarriageCertificateFile(isDragAndDropSupported) {
+function deleteMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
@@ -73,7 +73,7 @@ function withoutUploadFile(language = 'en') {
 
 module.exports = {
   uploadMarriageCertificateFile,
-  deleteAMarriageCertificateFile,
+  deleteMarriageCertificateFile,
   testUploadResponse,
   withoutUploadFile
 };

@@ -15,10 +15,12 @@ def component = "pfe"
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.FEATURE_IDAM = 'true'
+    echo "SauceLabs: ${env.SAUCE_USERNAME} | ${env.SAUCE_ACCESS_KEY}"
 
     enableCrossBrowserTest(['safari'])
 
     after('crossBrowserTest') {
+      echo "Confirming... SauceLabs: ${env.SAUCE_USERNAME} | ${env.SAUCE_ACCESS_KEY}"
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 

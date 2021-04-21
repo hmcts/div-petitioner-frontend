@@ -14,7 +14,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
 
   if (language === 'en') {
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
-    upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
+    upload(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
@@ -27,7 +27,7 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {
   const I = this;
 
   I.seeInCurrentUrl(pagePath);
-  upload.call(I, assetPath, isDragAndDropSupported);
+  upload(I, assetPath, isDragAndDropSupported);
   I.waitForVisible('input[value="Continue"]:not([disabled])', 60);
 }
 
@@ -36,7 +36,7 @@ function deleteMarriageCertificateFile(isDragAndDropSupported) {
 
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeInCurrentUrl(pagePath);
-  upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
+  upload(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForVisible('.file');//TODO - consider removing/replacing these waitForVisible functions (saucelabs have probably not implemented those)
   I.waitForText('Remove', 30);
   I.click('Remove');
@@ -67,7 +67,6 @@ function upload(I, file, isDragAndDropSupported) {
     console.log('available methods...');
     console.log(I);
     console.log('---');
-    console.log(Object.keys(I));
     console.log('...available methods');
     // I.waitForVisible('.file-upload-input');//This is the issue
     I.attachFile('.file-upload-input', file);

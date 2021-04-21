@@ -73,7 +73,7 @@ function upload(I, file, isDragAndDropSupported) {
     I.attachFile('.dz-hidden-input', file);
   }
   else {
-    // I.waitForVisible('.file-upload-input');//This is the issue
+    I.waitForVisible('.file-upload-input');//This is the issue
     I.attachFile('.file-upload-input', file);
     I.click('Upload');
   }

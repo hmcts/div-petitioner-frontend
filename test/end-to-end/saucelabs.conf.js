@@ -48,13 +48,19 @@ const setupConfig = {
       capabilities: {}
     },
     SauceLabsBrowserHelper: { require: './helpers/SauceLabsBrowserHelper.js' },
-    // SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
+    SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
     JSWait: { require: './helpers/JSWait.js' },
     ElementExist: { require: './helpers/ElementExist.js' },
     IdamHelper: { require: './helpers/idamHelper.js' },
     SessionHelper: { require: './helpers/SessionHelper.js' }
   },
   include: { I: './pages/steps.js' },
+  plugins: {
+    retryFailedStep: {
+      enabled: true,
+      retries: 1
+    }
+  },
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {

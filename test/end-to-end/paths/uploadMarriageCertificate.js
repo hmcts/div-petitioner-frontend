@@ -11,7 +11,7 @@ Scenario('Test upload remove marriage Certificate', async function (I) {
   I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
   I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
-  // I.deleteMarriageCertificateFile(isDragAndDropSupported);
+  I.deleteMarriageCertificateFile(isDragAndDropSupported);
   I.say('done');
 });
 

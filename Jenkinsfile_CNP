@@ -17,7 +17,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.FEATURE_IDAM = 'true'
     echo "SauceLabs: ${env.SAUCE_USERNAME} | ${env.SAUCE_ACCESS_KEY}"
 
-    enableCrossBrowserTest(['safari'])
+    enableCrossBrowserTest(['chrome'])
 
     after('crossBrowserTest') {
       echo "Confirming... SauceLabs: ${env.SAUCE_USERNAME} | ${env.SAUCE_ACCESS_KEY}"

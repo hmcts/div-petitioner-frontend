@@ -3,7 +3,7 @@ deployment_env: 'aat'
 services:
   postcodeInfo:
     url: 'https://api.ordnancesurvey.co.uk/places/v1'
-    token: # Defined by POST_CODE_ACCESS_TOKEN in env
+    token: 'c4cb22c098c24eda8ba0df7eaaae66ef'
   idamAuthentication:
     health: 'https://idam-web-public.aat.platform.hmcts.net/health'
   idamApp:
@@ -11,8 +11,7 @@ services:
   serviceAuthProvider:
     baseUrl: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
     health: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal/health'
-    microserviceKey: # Microservice key should be defined as MICROSERVICE_KEY in env
-
+    microserviceKey: '2eaea72ca1d74f5192bac27c963c490b'
   payment:
     baseUrl: 'http://payment-api-aat.service.core-compute-aat.internal'
     health: 'http://payment-api-aat.service.core-compute-aat.internal/health'
@@ -32,14 +31,14 @@ idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'
   idamApiUrl: 'https://idam-api.aat.platform.hmcts.net'
   idamLoginUrl: 'https://idam-web-public.aat.platform.hmcts.net/login'
-  idamSecret: # Defined by IDAM_SECRET in env
+  idamSecret: '170aba568e004b4ea2021b6124ce4f2e''
 
-evidenceManagementClient:
+evidenceManagmentClient:
   url: 'http://div-emca-aat.service.core-compute-aat.internal'
   health: 'http://div-emca-aat.service.core-compute-aat.internal/health'
 
 
-secret: # Defined by SECRET in env
+secret: 'cc145270f8cc458497814e6f516b0a31'
 sessionEncryptionSecret: # Defined by SESSION_ENCRYPTION_SECRET in env
 
 featureToggles:

@@ -4,7 +4,34 @@
 # This file is used for any development config which should not be version controlled.
 # For example, you can add a LaunchDarkly SDK here to test locally and it will not be pushed to Git.
 # ---
+public:
+  hostname: 'localhost'
 
 showSitemap: true
 featureToggles:
-  launchDarklyKey: 'Insert LD SDK here'
+  launchDarklyKey: 'sdk-c7dde30a-a551-41ab-bd67-f0ccd5a705de'
+
+services:
+  idamAuthentication:
+    health: 'https://localhost:3501/health'
+  idamApp:
+    health: 'http://localhost:5000/health'
+  serviceAuthProvider:
+    baseUrl: 'http://localhost:4502'
+    health: 'http://localhost:4502/health'
+    microserviceName: 'divorce_frontend'
+    microserviceKey: 'AAAAAAAAAAAAAAAA'
+
+secret: ccd_gateway_secret
+sessionEncryptionSecret: ccd_gateway_secret
+
+features:
+  idam: true
+
+idamArgs:
+  redirectUri: 'http://localhost:3000/authenticated'
+  indexUrl: '/index'
+  idamApiUrl: 'http://localhost:5000'
+  idamLoginUrl: 'http://localhost:3501/login'
+  idamSecret: 'ccd_gateway_secret'
+  idamClientID: 'ccd_gateway'

@@ -1,7 +1,6 @@
 const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const transformationServiceClient = require('app/services/transformationServiceClient');
-const mockedClient = require('app/services/mocks/transformationServiceClient');
 const parseRequest = require('app/core/helpers/parseRequest');
 const httpStatus = require('http-status-codes');
 const { isEmpty } = require('lodash');
@@ -23,8 +22,7 @@ const options = {
   baseUrl: CONF.services.transformation.baseUrl
 };
 
-const production = CONF.environment === 'production';
-const client = production ? transformationServiceClient.init(options) : mockedClient;
+const client = transformationServiceClient.init(options);
 const authTokenString = '__auth-token';
 
 const redirectToCheckYourAnswers = (req, res, next) => {

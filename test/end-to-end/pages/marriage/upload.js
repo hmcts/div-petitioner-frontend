@@ -2,17 +2,6 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const pagePath = '/petitioner-respondent/marriage-certificate-upload';
 
-function upload(I, file, isDragAndDropSupported) {
-  if (isDragAndDropSupported) {
-    I.attachFile('.dz-hidden-input', file);
-  }
-  else {
-    I.waitForVisible('.file-upload-input');
-    I.attachFile('.file-upload-input', file);
-    I.click('Upload');
-  }
-}
-
 function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) {
   // eslint-disable-next-line no-console
   console.log(`drag and drop support: ${isDragAndDropSupported}`);
@@ -24,7 +13,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
 
   if (language === 'en') {
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
-    upload.call(I, '/assets/image.jpg', isDragAndDropSupported);//
+    upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
@@ -67,6 +56,17 @@ function withoutUploadFile(language = 'en') {
     I.navByClick(commonContent.continue);
   }
 
+}
+
+function upload(I, file, isDragAndDropSupported) {
+  if (isDragAndDropSupported) {
+    I.attachFile('.dz-hidden-input', file);
+  }
+  else {
+    I.waitForVisible('.file-upload-input');
+    I.attachFile('.file-upload-input', file);
+    I.click('Upload');
+  }
 }
 
 module.exports = {

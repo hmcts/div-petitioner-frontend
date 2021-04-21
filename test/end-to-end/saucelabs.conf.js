@@ -48,7 +48,7 @@ const setupConfig = {
       capabilities: {}
     },
     SauceLabsBrowserHelper: { require: './helpers/SauceLabsBrowserHelper.js' },
-    SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
+    // SauceLabsReportingHelper: { require: './helpers/SauceLabsReportingHelper.js' },
     JSWait: { require: './helpers/JSWait.js' },
     ElementExist: { require: './helpers/ElementExist.js' },
     IdamHelper: { require: './helpers/idamHelper.js' },

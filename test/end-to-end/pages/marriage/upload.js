@@ -26,7 +26,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
 
   if (language === 'en') {
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
-    upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
+    upload.call('/assets/image.jpg', isDragAndDropSupported);//
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
@@ -39,7 +39,7 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {
   const I = this;
 
   I.seeInCurrentUrl(pagePath);
-  upload.call(I, assetPath, isDragAndDropSupported);
+  upload.call(assetPath, isDragAndDropSupported);
   I.waitForVisible('input[value="Continue"]:not([disabled])', 60);
 }
 
@@ -48,7 +48,7 @@ function deleteAMarriageCertificateFile(isDragAndDropSupported) {
 
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeInCurrentUrl(pagePath);
-  upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
+  upload.call('/assets/image.jpg', isDragAndDropSupported);
   I.waitForVisible('.file', 30);
   I.waitForText('Remove', 30);
   I.click('Remove');

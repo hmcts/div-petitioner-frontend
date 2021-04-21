@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const pagePath = '/petitioner-respondent/marriage-certificate-upload';
@@ -15,6 +16,11 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
     upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
+    console.log('available methods...');
+    console.log(I);
+    console.log('---');
+    console.log(Object.keys(I));
+    console.log('...available methods');
     // I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
   } else {

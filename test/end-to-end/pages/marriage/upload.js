@@ -31,11 +31,11 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {//TODO - when is
 function deleteMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
-  I.say('Drag and Drop supported: ' + isDragAndDropSupported);
+  I.say('Drag and Drop supported: ' + isDragAndDropSupported);//TODO - I think this does the same as the upload function
   I.seeInCurrentUrl(pagePath);
   upload(I, '/assets/image.jpg', isDragAndDropSupported);
-  I.waitForVisible('.file');//TODO - consider removing/replacing these waitForVisible functions (saucelabs have probably not implemented those)
   I.waitForText('Remove', 30);
+  I.waitForText('image.jpg', 30);//TODO - just testing
   I.click('Remove');
   I.navByClick('Continue');
 }

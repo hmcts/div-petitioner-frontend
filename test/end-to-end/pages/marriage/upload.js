@@ -16,6 +16,8 @@ function upload(file, isDragAndDropSupported) {
 }
 
 function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) {
+  // eslint-disable-next-line no-console
+  console.log(`drag and drop support: ${isDragAndDropSupported}`);
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 

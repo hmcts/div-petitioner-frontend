@@ -49,7 +49,7 @@ function deleteMarriageCertificateFile(isDragAndDropSupported) {
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeInCurrentUrl(pagePath);
   upload.call('/assets/image.jpg', isDragAndDropSupported);
-  I.waitForVisible('.file', 30);
+  I.waitForVisible('.file');//TODO - consider removing/replacing these waitForVisible functions (saucelabs have probably not implemented those)
   I.waitForText('Remove', 30);
   I.click('Remove');
   I.navByClick('Continue');

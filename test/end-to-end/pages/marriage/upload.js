@@ -5,8 +5,7 @@ const pagePath = '/petitioner-respondent/marriage-certificate-upload';
 
 function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) {
   // eslint-disable-next-line no-console
-  console.log(`drag and drop support: ${isDragAndDropSupported}`);
-  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  // const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
   I.waitInUrl(pagePath);
@@ -17,13 +16,11 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
     upload(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
   }
+  // I.navByClick(commonContent.continue);
 }
 
-function testUploadResponse(isDragAndDropSupported, assetPath) {
+function testUploadResponse(isDragAndDropSupported, assetPath) {//TODO - when is this used
   const I = this;
 
   I.seeInCurrentUrl(pagePath);

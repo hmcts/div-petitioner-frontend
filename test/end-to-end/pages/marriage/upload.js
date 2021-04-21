@@ -16,12 +16,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
     upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
-    console.log('available methods...');
-    console.log(I);
-    console.log('---');
-    console.log(Object.keys(I));
-    console.log('...available methods');
-    // I.waitForVisible('input[value="Continue"]:not([disabled])');
+    I.waitForVisible('input[value="Continue"]:not([disabled])');
     I.navByClick(commonContent.continue);
   } else {
     I.navByClick(commonContent.continue);
@@ -69,7 +64,12 @@ function upload(I, file, isDragAndDropSupported) {
     I.attachFile('.dz-hidden-input', file);
   }
   else {
-    I.waitForVisible('.file-upload-input');
+    console.log('available methods...');
+    console.log(I);
+    console.log('---');
+    console.log(Object.keys(I));
+    console.log('...available methods');
+    // I.waitForVisible('.file-upload-input');//This is the issue
     I.attachFile('.file-upload-input', file);
     I.click('Upload');
   }

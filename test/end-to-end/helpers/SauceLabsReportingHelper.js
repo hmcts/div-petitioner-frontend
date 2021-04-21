@@ -25,7 +25,7 @@ module.exports = function() {
     // eslint-disable-next-line no-console
     console.log('3 - ops');
     // eslint-disable-next-line no-console
-    console.log(error);// _currentRetry: 0,
+    console.log(error);//TODO - keep this - really useful - maybe I can log it
     // eslint-disable-next-line no-console
     console.log('4 - ops');
 
@@ -39,7 +39,7 @@ module.exports = function() {
     // console.log(test.ctx.currentTest._retries);// _currentRetry: 0,
     // // eslint-disable-next-line no-console
     // console.log(test.ctx.currentTest._currentRetry);// _currentRetry: 0,
-    
+
     // eslint-disable-next-line no-console
     console.log('5 - ops');
     //TODO - do not merge to master

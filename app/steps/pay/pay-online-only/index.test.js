@@ -36,7 +36,6 @@ const idamUserDetailsMiddlewareMock = (req, res, next) => {
 };
 
 describe(modulePath, () => {
-  const allocatedCourt = serviceCentreCourt;
 
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
@@ -189,7 +188,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', 'DIVORCE', code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -208,7 +207,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = '';
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', 'DIVORCE', code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -255,7 +254,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = CONF.services.transformation.baseUrl.concat('/payment-update');
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', 'DIVORCE', code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -274,7 +273,7 @@ describe(modulePath, () => {
             );
             const serviceCallbackUrl = '';
             expect(create.calledWith(
-              sinon.match.any, {}, 'token', 'some-case-id', allocatedCourt.siteId, code, version, amount,
+              sinon.match.any, {}, 'token', 'some-case-id', 'DIVORCE', code, version, amount,
               'Filing an application for a divorce, nullity or civil partnership dissolution – fees order 1.2.',
               returnUrl, serviceCallbackUrl
             )).to.equal(true);
@@ -285,14 +284,14 @@ describe(modulePath, () => {
       });
 
       context('Court is selected', () => {
-        it('creates payment with the site ID of the court', done => {
+        it('creates payment with the Case Type ID of the court', done => {
           // Act.
           testCustom(done, agent, underTest, [], () => {
             // Assert.
             expect(code).to.not.eql(null);
             expect(version).to.not.eql(null);
             expect(amount).to.not.eql(null);
-            expect(create.calledWith(sinon.match.any, {}, 'token', session.caseId, allocatedCourt.siteId, code, version, amount)).to.equal(true);
+            expect(create.calledWith(sinon.match.any, {}, 'token', session.caseId, 'DIVORCE', code, version, amount)).to.equal(true);
           }, 'post');
         });
       });

@@ -10,8 +10,7 @@ function enterUnreasonableBehaviourExample(language = 'en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
-  I.see(commonContent.continue);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 
 }
 

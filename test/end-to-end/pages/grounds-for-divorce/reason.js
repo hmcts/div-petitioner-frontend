@@ -11,7 +11,6 @@ function selectReasonForDivorce(language = 'en', reason) {
 
   I.waitForText(reason);
   I.checkOption(reason);
-  I.see(commonContent.continue);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 module.exports = { selectReasonForDivorce };

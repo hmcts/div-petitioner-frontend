@@ -14,8 +14,7 @@ function selectRespondentConsentObtained(language = 'en') {
   } else {
     I.checkOption(contentCy.yes.label);
   }
-  I.see(commonContent.continue);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { selectRespondentConsentObtained };

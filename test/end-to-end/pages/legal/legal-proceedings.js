@@ -18,8 +18,7 @@ function enterLegalProceedings(language = 'en') {
   } else {
     I.click('#legalProceedings_' + content.no);
   }
-  I.see(commonContent.continue);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { enterLegalProceedings };

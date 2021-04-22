@@ -12,8 +12,7 @@ function confirmIWillPayOnline(language) {
   if (language === 'en') {
     I.waitForText(feeContent);
   }
-  I.see(commonContent.continue);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 
 }
 

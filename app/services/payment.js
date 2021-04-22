@@ -14,9 +14,9 @@ const service = {
    * @see @hmcts/div-pay-client for params
    * @returns {Promise}
    */
-  create: (req, user, serviceToken, caseReference, siteId, feeCode,
+  create: (req, user, serviceToken, caseReference, caseType, feeCode,
     feeVersion, amountInput, description, returnUrl, serviceCallbackUrl, language) => {
-    return client.create(user, serviceToken, caseReference, siteId, feeCode,
+    return client.create(user, serviceToken, caseReference, caseType, feeCode,
       feeVersion, amountInput, description, returnUrl, serviceCallbackUrl, language)
       .then(response => {
         const { id, amount, status, reference, date_created } = response; // eslint-disable-line camelcase

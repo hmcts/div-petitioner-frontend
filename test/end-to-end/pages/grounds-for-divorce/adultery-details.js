@@ -8,6 +8,7 @@ function enterAdulteryDetails(language ='en') {
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/details');
   I.fillField('reasonForDivorceAdulteryDetails', mockSession.reasonForDivorceAdulteryDetails);
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/second-hand-information');
 }

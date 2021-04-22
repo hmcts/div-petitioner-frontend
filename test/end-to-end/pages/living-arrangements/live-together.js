@@ -20,6 +20,7 @@ function completeLivingTogetherPage(I, chosenOption, language) {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(chosenOption);
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
 }
 

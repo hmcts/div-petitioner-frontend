@@ -15,6 +15,7 @@ function enterMarriageDate(language = 'en', day = mockSession.marriageDateDay.to
   I.retry(2).fillField('marriageDateDay', day);
   I.fillField('marriageDateMonth', month);
   I.fillField('marriageDateYear', year);
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
 }
 

@@ -15,6 +15,7 @@ function enterPeConfidentialContactDetails(language = 'en', shareAddress = true)
 
   I.retry(2).checkOption(shareAddress ? confidentialContent.share : confidentialContent.keep);
   I.scrollPageToBottom();
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
 }
 

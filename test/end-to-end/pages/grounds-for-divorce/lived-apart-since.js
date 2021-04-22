@@ -10,6 +10,7 @@ function selectLivingApartTime(language = 'en') {
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/separation/lived-apart-since');
   I.checkOption(livedApart.yes);
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
 }
 

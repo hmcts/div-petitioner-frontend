@@ -11,11 +11,11 @@ function selectRespondentConsentObtained(language = 'en') {
 
   if (language === 'en') {
     I.checkOption(content.yes.label);
-    I.navByClick(commonContent.continue);
   } else {
     I.checkOption(contentCy.yes.label);
-    I.navByClick(commonContent.continue);
   }
+  I.see(commonContent.continue);
+  I.navByClick(commonContent.continue);
 }
 
 module.exports = { selectRespondentConsentObtained };

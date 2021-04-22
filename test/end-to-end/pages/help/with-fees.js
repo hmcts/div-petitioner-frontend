@@ -18,6 +18,7 @@ function enterHelpWithFees(language = 'en', appliedForFees = contentEn.yes) {
   if (appliedForFees) {
     I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
   }
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
 }
 

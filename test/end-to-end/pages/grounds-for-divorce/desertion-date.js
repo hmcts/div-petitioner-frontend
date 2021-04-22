@@ -14,6 +14,7 @@ function enterDesertionDate(language ='en') {
   I.fillField('reasonForDivorceDesertionDay', mockSession.reasonForDivorceDesertionDay.toString());
   I.fillField('reasonForDivorceDesertionMonth', mockSession.reasonForDivorceDesertionMonth.toString());
   I.fillField('reasonForDivorceDesertionYear', mockSession.reasonForDivorceDesertionYear.toString());
+  I.see(commonContent.continue);
   I.navByClick(commonContent.continue);
 
 }

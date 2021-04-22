@@ -3,10 +3,9 @@ const divorceReason = require('app/steps/grounds-for-divorce/reason/content.json
 
 const config = require('config');
 
-Feature('Adultery and Desertion E2E Tests (cy)')
-  .retry(3);
+Feature('Adultery and Desertion E2E Tests (cy)').retry(3);
 
-Scenario('Adultery, with details (cy)', async function(I) {
+Scenario('Adultery, with details (cy)', async function (I) {
 
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
@@ -56,7 +55,6 @@ Scenario('Adultery, with details (cy)', async function(I) {
   await I.completeEquality(language);
 
   I.checkMyAnswers(language);
-
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'Mae yna broblem\')]');
   if (genericErrorPage) {
     I.checkGenericErrorPage(language);
@@ -64,11 +62,9 @@ Scenario('Adultery, with details (cy)', async function(I) {
     I.amDoneAndSubmitted(language);
   }
 
-})
-  .retry(3);
+});
 
-
-Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async function(I) {
+Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async function (I) {
 
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
@@ -116,7 +112,7 @@ Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async f
     I.confirmIWillPayOnline(language);
   }
 
-}).retry(3);
+});
 
 async function stepsStartApplicationToReadFinancialRemedy(I, language) {
   await I.amOnLoadedPage('/', language);

@@ -36,7 +36,6 @@ const idamUserDetailsMiddlewareMock = (req, res, next) => {
 };
 
 describe(modulePath, () => {
-
   beforeEach(() => {
     sinon.stub(applicationFeeMiddleware, 'updateApplicationFeeMiddleware')
       .callsArgWith(two);

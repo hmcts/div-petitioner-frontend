@@ -13,6 +13,6 @@ function haveRespondentAddress(language = 'en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(respondentAddContent.yes);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 module.exports = { haveRespondentAddress };

@@ -14,7 +14,7 @@ function languagePreference(language = 'en') {
   I.seeInCurrentUrl(pagePath);
   I.see(languageContent.yes);
   I.retry(2).click(languageContent.yes);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { languagePreference: languagePreference };

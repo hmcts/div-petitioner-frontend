@@ -10,7 +10,7 @@ function enter3rdPartyDetails(language ='en') {
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/name-person');
   I.fillField('reasonForDivorceAdultery3rdPartyFirstName', mockSession.reasonForDivorceAdultery3rdPartyFirstName);
   I.fillField('reasonForDivorceAdultery3rdPartyLastName', mockSession.reasonForDivorceAdultery3rdPartyLastName);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { enter3rdPartyDetails };

@@ -4,7 +4,7 @@ const parseBool = require('app/core/utils/parseBool');
 
 Feature('Logout Session @cross-browser-test').retry(3);
 
-Scenario('Logout on Save and close', function (I) {
+Scenario.skip('Logout on Save and close', function (I) {
   I.amOnLoadedPage('/index');
 
   I.startApplication();
@@ -15,7 +15,7 @@ Scenario('Logout on Save and close', function (I) {
   I.haveMarriageCert();
   I.readFinancialRemedy();
 
-  I.clickSaveAndCLose();
+  I.clickSaveAndClose();
   I.seeCurrentUrlEquals('/exit/application-saved');
 
   if (parseBool(CONF.features.idam)) {
@@ -26,7 +26,7 @@ Scenario('Logout on Save and close', function (I) {
   I.startApplication();
 });
 
-Scenario('Logout on Sign Out', function (I) {
+Scenario.skip('Logout on Sign Out', function (I) {
   I.amOnLoadedPage('/');
 
   I.startApplication();

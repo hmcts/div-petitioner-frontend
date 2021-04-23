@@ -1,9 +1,7 @@
-const content = require('app/content/common-en').resources.en.translation;
-
-function clickSaveAndCLose() {
+function clickSaveAndClose() {
   const I = this;
 
-  I.navByClick(content.saveAndClose);
+  I.click('saveAndClose');
 }
 
-module.exports = { clickSaveAndCLose };
+module.exports = { clickSaveAndClose };

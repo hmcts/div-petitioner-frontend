@@ -74,7 +74,7 @@ Scenario('Save and close', function (I) {
   I.readFinancialRemedy();
   I.selectHelpWithFees(language);
 
-  I.clickSaveAndCLose();
+  I.clickSaveAndClose();
   I.seeInCurrentUrl('/exit/application-saved');
 
   if (parseBool(CONF.features.idam)) {

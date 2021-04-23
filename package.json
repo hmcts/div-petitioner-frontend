@@ -68,7 +68,7 @@
     "express": "4.16.1",
     "express-limiter": "^1.6.0",
     "express-nunjucks": "2.2.3",
-    "express-session": "1.15.6",
+    "express-session": "1.17.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "formidable": "^1.1.1",

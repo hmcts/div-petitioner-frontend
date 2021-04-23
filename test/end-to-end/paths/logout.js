@@ -4,7 +4,7 @@ const parseBool = require('app/core/utils/parseBool');
 
 Feature('Logout Session @cross-browser-test').retry(3);
 
-Scenario.skip('Logout on Save and close', function (I) {
+Scenario('Logout on Save and close', function (I) {
   I.amOnLoadedPage('/index');
 
   I.startApplication();
@@ -26,7 +26,7 @@ Scenario.skip('Logout on Save and close', function (I) {
   I.startApplication();
 });
 
-Scenario.skip('Logout on Sign Out', function (I) {
+Scenario('Logout on Sign Out', function (I) {
   I.amOnLoadedPage('/');
 
   I.startApplication();
@@ -36,7 +36,7 @@ Scenario.skip('Logout on Sign Out', function (I) {
   I.haveRespondentAddress();
   I.haveMarriageCert();
   I.readFinancialRemedy();
-  I.retry(1).signOut();
+  I.retry(3).signOut();
 
   I.startApplication();
   I.languagePreference();

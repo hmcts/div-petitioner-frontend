@@ -38,7 +38,7 @@ Scenario('Get a divorce', async function(I) {
 
   I.chooseRespondentServiceAddress(language);
   I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.selectReasonForDivorce(language, content.unreasonableBehaviourHeading);
   I.enterUnreasonableBehaviourExample(language);
 
   I.enterLegalProceedings(language);

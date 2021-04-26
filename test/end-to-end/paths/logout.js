@@ -26,7 +26,7 @@ Scenario('Logout on Save and close', function (I) {
   I.startApplication();
 });
 
-Scenario('Logout on Sign Out', function (I) {
+Scenario.skip('Logout on Sign Out', function (I) {
   I.amOnLoadedPage('/');
 
   I.startApplication();

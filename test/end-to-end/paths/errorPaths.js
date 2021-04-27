@@ -11,7 +11,7 @@ Scenario('Incorrect URLs are served a 404 page', (I) => {
 
 });
 
-Scenario.skip('Redirects to login page on AAT OR cookie error page for PR build on application start and clear cookies', async (I) => {
+Scenario('Redirects to login page on AAT OR cookie error page for PR build on application start and clear cookies', async (I) => {
   await I.amOnLoadedPage('/index');
   I.startApplication();
   I.clearCookie();
@@ -28,7 +28,7 @@ Scenario.skip('Redirects to login page on AAT OR cookie error page for PR build 
   else {
     I.seeInCurrentUrl('/login?');
   }
-}).retry(2);
+});
 
 Scenario('check cookie error page exists', (I) => {
   I.amOnLoadedPage('/index');

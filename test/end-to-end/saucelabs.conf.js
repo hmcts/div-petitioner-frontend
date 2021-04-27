@@ -55,12 +55,6 @@ const setupConfig = {
     SessionHelper: { require: './helpers/SessionHelper.js' }
   },
   include: { I: './pages/steps.js' },
-  plugins: {
-    retryFailedStep: {
-      enabled: true,
-      retries: 1
-    }
-  },
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {

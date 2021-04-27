@@ -1,7 +1,7 @@
-const language ='en';
+const language = 'en';
 Feature('New Jurisdiction Journeys @functional').retry(3);
 
-Scenario('Set A & C: Both Habitually Resident', async function(I) {
+Scenario('Set A & C: Both Habitually Resident', async function (I) {
   await completeLoginPageToSelectMarriedInUk(I);
   I.chooseBothHabituallyResident(language);
   I.chooseJurisdictionInterstitialContinue();
@@ -10,7 +10,7 @@ Scenario('Set A & C: Both Habitually Resident', async function(I) {
   I.checkMyConnectionsAre('A', 'C');
 });
 
-Scenario('Set All: Selected via Last Resort page', async function(I) {
+Scenario('Set All: Selected via Last Resort page', async function (I) {
   await completeLoginPageToSelectMarriedInUk(I);
   I.chooseRespondentHabituallyResident(language);
   I.chooseJurisdictionInterstitialNeedInfo();
@@ -22,9 +22,9 @@ Scenario('Set All: Selected via Last Resort page', async function(I) {
   I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('A', 'B', 'C', 'D', 'E', 'F', 'G');
-}).retry(3);
+});
 
-xScenario('Re-set connections: Not confident at Connection Summary 1st time', async function(I) {
+Scenario('Re-set connections: Not confident at Connection Summary 1st time', async function (I) {
   await completeLoginPageToSelectMarriedInUk(I);
   I.choosePetitionerHabituallyResident(language);
   I.chooseYesJurisdictionLastTwelveMonths();
@@ -33,27 +33,27 @@ xScenario('Re-set connections: Not confident at Connection Summary 1st time', as
   I.chooseYesLastHabitualResidence();
   I.checkMyConnectionSummaryIs('B', 'D', 'E', 'F');
   I.chooseJurisdictionConnectionSummaryNeedInfo();
+  I.say('I want to change my answers');
+
   I.chooseNeitherHabituallyResident(language);
   I.chooseRespondentDomiciled();
   I.chooseNoLastHabitualResidence();
-  I.chooseYesForResidualJurisdiction();
+  I.chooseJurisdictionConnectionSummaryShowAll();
   I.checkMyConnectionSummaryIs('G');
-  I.chooseJurisdictionConnectionSummaryContinue();
+  I.chooseMyLastResortConnections('D');
   I.seeInCurrentUrl('/petitioner-respondent/confidential');
   I.amOnLoadedPage('/check-your-answers');
   I.checkMyConnectionsAre('G');
-}).retry(3);
+});
 
-xScenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', async function(I) {
+Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', async function (I) {
   await completeLoginPageToSelectMarriedInUk(I);
   I.choosePetitionerHabituallyResident(language);
   I.chooseNoJurisdictionLastTwelveMonths();
-  I.choosePetitionerDomiciled();
-  I.chooseNoJurisdictionLastSixMonths();
+  I.chooseNeitherDomiciled();
   I.chooseNoLastHabitualResidence();
-  I.chooseNoForResidualJurisdiction();
   I.seeInCurrentUrl('/exit/jurisdiction/no-cnnections');
-}).retry(3);
+});
 
 async function completeLoginPageToSelectMarriedInUk(I) {
   await I.amOnLoadedPage('/');

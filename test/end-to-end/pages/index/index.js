@@ -63,6 +63,7 @@ function dontGetShownCookieBannerAgain() {
 function signOut() {
   let I = this;
 
+  I.waitForNavigation();
   I.see(commonContentEn.signOut);
   I.navByClick(commonContentEn.signOut);
 }

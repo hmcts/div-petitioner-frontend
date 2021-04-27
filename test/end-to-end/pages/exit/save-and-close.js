@@ -1,7 +1,8 @@
 function clickSaveAndClose() {
   const I = this;
 
-  I.click('saveAndClose');
+  I.waitForNavigation();
+  I.clickLink('saveAndClose');
 }
 
 module.exports = { clickSaveAndClose };

@@ -64,7 +64,7 @@ xScenario('See next unanswered question if toNextUnansweredPage=true in query st
   I.seeInCurrentUrl('/jurisdiction/habitual-residence');
 });
 
-Scenario.skip('Save and close', function (I) {
+Scenario('Save and close', function (I) {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();

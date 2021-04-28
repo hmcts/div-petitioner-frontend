@@ -13,9 +13,9 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
 
     const username = idamConfigHelper.getTestEmail();
     const password = idamConfigHelper.getTestPassword();
-    I.see('Sign in');
-    I.fillField('username', username);
-    I.fillField('password', password);
+    I.waitForElement('#username', 5);
+    I.fillField('#username', username);
+    I.fillField('#password', password);
     I.seeInCurrentUrl('/login?');
     I.navByClick(commonContent.signIn);
     I.wait(2);

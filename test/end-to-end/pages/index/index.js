@@ -13,7 +13,7 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
 
     const username = idamConfigHelper.getTestEmail();
     const password = idamConfigHelper.getTestPassword();
-    I.waitForElement('#username', 5);
+    I.waitForElement('#username');
     I.fillField('#username', username);
     I.fillField('#password', password);
     I.seeInCurrentUrl('/login?');

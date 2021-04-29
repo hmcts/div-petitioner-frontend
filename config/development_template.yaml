@@ -35,3 +35,7 @@ idamArgs:
   idamLoginUrl: 'http://localhost:3501/login'
   idamSecret: 'ccd_gateway_secret'
   idamClientID: 'ccd_gateway'
+
+payment:
+  baseUrl: 'http://localhost:8765'
+  health: 'http://localhost:8765/health'

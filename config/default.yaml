@@ -43,8 +43,8 @@ services:
     microserviceName: 'divorce_frontend'
     microserviceKey: # Microservice key should be defined as MICROSERVICE_KEY in env
   payment:
-    baseUrl: 'http://localhost:4401'
-    health: 'http://localhost:4401/health'
+    baseUrl: 'http://localhost:8765'
+    health: 'http://localhost:8765/health'
     serviceIdentification: 'DIV1'
   transformation:
     baseUrl: 'http://localhost:4012'

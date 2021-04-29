@@ -64,7 +64,7 @@ Scenario('Adultery, with details (cy)', async function (I) {
 
 });
 
-Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async function (I) {
+Scenario(`${language.toUpperCase()} - Desertion without agreement (cy) @functional`, async function (I) {
 
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 

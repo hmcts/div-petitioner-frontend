@@ -9,8 +9,9 @@ function enterDesertionAgreement(language ='en') {
   const I = this;
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/desertion/agree');
-  I.checkOption(content.yes);
-  I.click(commonContent.continue);
+  I.retry(3).checkOption(content.yes);
+  I.retry(3).seeInField('submit', commonContent.continue);
+  I.clickLink('submit');
 }
 
 module.exports = { enterDesertionAgreement };

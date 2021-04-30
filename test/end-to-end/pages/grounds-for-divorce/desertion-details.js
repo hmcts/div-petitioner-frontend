@@ -8,8 +8,8 @@ function enterDesertionDetails(language ='en') {
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/desertion/details');
   I.fillField('reasonForDivorceDesertionDetails', mockSession.reasonForDivorceDesertionDetails);
-  I.click(commonContent.continue);
-
+  I.retry(3).seeInField('submit', commonContent.continue);
+  I.clickLink('submit');
 }
 
 module.exports = { enterDesertionDetails };

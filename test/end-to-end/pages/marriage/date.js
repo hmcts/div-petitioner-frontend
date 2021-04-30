@@ -12,10 +12,10 @@ function enterMarriageDate(language = 'en', day = mockSession.marriageDateDay.to
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
 
-  I.retry(2).fillField('marriageDateDay', day);
+  I.retry(3).fillField('marriageDateDay', day);
   I.fillField('marriageDateMonth', month);
   I.fillField('marriageDateYear', year);
-  I.retry(3).click(commonContent.continue);
+  I.retry(3).clickLink(commonContent.continue);
 }
 
 module.exports = { enterMarriageDate };

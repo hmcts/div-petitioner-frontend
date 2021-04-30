@@ -13,7 +13,8 @@ function selectHelpWithFees(language ='en', needHelp = true) {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(needHelp ? needHelpContent.yes : needHelpContent.no);
-  I.click(commonContent.continue);
+  I.retry(3).seeInField('submit', commonContent.continue);
+  I.clickLink('submit');
 }
 
 module.exports = { selectHelpWithFees };

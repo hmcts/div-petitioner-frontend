@@ -20,7 +20,8 @@ function enterCorrespondence(language = 'en', addressObj) {
   }
   I.retry(2).click(homeAddress.yes);
   I.scrollPageToBottom();
-  I.click(commonContent.continue);
+  I.retry(3).seeInField('submit', commonContent.continue);
+  I.clickLink('submit');
 }
 
 module.exports = { enterCorrespondence };

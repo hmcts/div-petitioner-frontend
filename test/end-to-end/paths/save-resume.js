@@ -51,7 +51,7 @@ Scenario('Save and close', function (I) {
   if (parseBool(CONF.features.idam)) {
     I.see(idamConfigHelper.getTestEmail());
   }
-});
+}).retry(3);
 
 Scenario('Delete application from draft petition store', function (I) {
   I.amOnLoadedPage('/index');

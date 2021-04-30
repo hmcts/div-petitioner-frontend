@@ -112,7 +112,7 @@ Scenario(`${language.toUpperCase()} - Desertion without agreement (cy) @function
     I.confirmIWillPayOnline(language);
   }
 
-});
+}).retry(3);
 
 async function stepsStartApplicationToReadFinancialRemedy(I, language) {
   await I.amOnLoadedPage('/', language);

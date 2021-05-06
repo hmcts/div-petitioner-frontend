@@ -18,7 +18,7 @@ function enterHelpWithFees(language = 'en', appliedForFees = contentEn.yes) {
   if (appliedForFees) {
     I.fillField('helpWithFeesReferenceNumber', mockSession.helpWithFeesReferenceNumber);
   }
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { enterHelpWithFees };

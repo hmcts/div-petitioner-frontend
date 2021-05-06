@@ -53,7 +53,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswersAndValidateSession(language);
     }
-
+    
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -70,8 +70,7 @@ languages.forEach(language => {
       }
     }
 
-  })
-    .retry(3);
+  });
 
   Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function (I) {
 
@@ -102,7 +101,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-
+    
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -119,8 +118,7 @@ languages.forEach(language => {
       }
     }
 
-  })
-    .retry(2);
+  });
 
   Scenario(`${language.toUpperCase()} - 5 years separation E2E`, async function (I) {
 
@@ -149,7 +147,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-
+    
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -166,7 +164,7 @@ languages.forEach(language => {
       }
     }
 
-  }).retry(3);
+  });
 
 });
 

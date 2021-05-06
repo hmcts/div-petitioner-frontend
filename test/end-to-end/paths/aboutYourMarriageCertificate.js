@@ -25,7 +25,6 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.seeInCurrentUrl('/about-your-marriage/foreign-certificate');
 });
 
-
 Scenario('Marriage certificate not in English, answered No', (I) => {
   I.amOnLoadedPage('/');
   I.startApplication();
@@ -38,7 +37,7 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.seeInCurrentUrl('/exit/about-your-marriage/no-certificate-translated');
 });
 
-Scenario('Married in UK, not answered @nightly', (I) => {
+Scenario('Married in UK, not answered @cross-browser-test', (I) => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

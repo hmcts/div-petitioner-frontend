@@ -176,10 +176,13 @@ const parseManualAddress = value => {
   return trimAndRemoveBlanks(value.split(/\r?\n/));
 };
 
-const mapRespondentSolicitorData = ({ body, session }, manual) => {
+const mapRespondentSolicitorData = ({ body, session }) => {
+  const manual = isManual(session);
   const { respondentSolicitorOrganisation } = session;
-  const solicitorContactInformation = get(respondentSolicitorOrganisation, 'contactInformation');
-  let address = filter(values(first(solicitorContactInformation)), size);
+
+  session.respondentSolicitorRepresented = 'Yes';
+
+  let address = filter(values(first(get(respondentSolicitorOrganisation, 'contactInformation'))), size);
   session.respondentSolicitorEmail = get(body, 'respondentSolicitorEmail');
   session.respondentSolicitorCompany = get(respondentSolicitorOrganisation, 'name');
   session.respondentSolicitorName = get(body, 'respondentSolicitorName');
@@ -228,6 +231,7 @@ const errorsManualCleanup = session => {
 
 const cleanupBeforeSubmit = session => {
   unset(session, 'organisations');
+  unset(session, 'resetManualData');
   errorsCleanup(session);
   if (isManual(session)) {
     unset(session, 'respondentSolicitorOrganisation');
@@ -235,6 +239,7 @@ const cleanupBeforeSubmit = session => {
 };
 
 const resetRespondentSolicitorData = session => {
+  unset(session, 'respondentSolicitorRepresented');
   unset(session, 'respondentSolicitorOrganisation');
   unset(session, 'respondentSolicitorName');
   unset(session, 'respondentSolicitorNameManual');
@@ -254,11 +259,26 @@ const resetManualRespondentSolicitorData = session => {
   resetRespondentSolicitorData(session);
 };
 
-const parseAddressToManualAddress = session => {
-  const manualAddress = get(session, 'respondentSolicitorAddress.address');
-  if (manualAddress) {
-    session.respondentSolicitorAddressManual = manualAddress.join('\n');
+const resetSolicitorManualData = session => {
+  if (isUndefined(session.resetManualData)) {
+    const manualAddress = get(session, 'respondentSolicitorAddress.address');
+    if (manualAddress) {
+      session.respondentSolicitorAddressManual = manualAddress.join('\n');
+    }
+    session.respondentSolicitorNameManual = get(session, 'respondentSolicitorName');
+    session.respondentSolicitorEmailManual = get(session, 'respondentSolicitorEmail');
+    session.resetManualData = false;
   }
+};
+
+const showManualDisplayUrl = session => {
+  let manualEntry = false;
+
+  if (!isEmpty(trim(session.respondentSolicitorCompany)) && isEmpty(trim(session.respondentSolicitorReferenceDataId))) {
+    manualEntry = true;
+  }
+
+  return manualEntry;
 };
 
 module.exports = {
@@ -272,12 +292,13 @@ module.exports = {
   errorsCleanup,
   errorsManualCleanup,
   parseManualAddress,
-  parseAddressToManualAddress,
+  resetSolicitorManualData,
   mapValidationErrors,
   mapRespondentSolicitorData,
   mapRespondentSolicitorCyaData,
   cleanupBeforeSubmit,
   resetManualRespondentSolicitorData,
   resetRespondentSolicitorData,
-  trimAndRemoveBlanks
+  trimAndRemoveBlanks,
+  showManualDisplayUrl
 };

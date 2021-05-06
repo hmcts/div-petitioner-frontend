@@ -15,7 +15,7 @@ function selectFinancialArrangements(language = 'en') {
   I.retry(2).checkOption(financialArrangements.yes);
   I.checkOption(financialArrangements.petitioner);
   I.checkOption(financialArrangements.children);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { selectFinancialArrangements };

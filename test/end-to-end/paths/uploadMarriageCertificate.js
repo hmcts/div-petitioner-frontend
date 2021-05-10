@@ -1,7 +1,7 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
 const language = 'en';
 
-Feature('Upload Marriage Certificate @cross-browser-test').retry(3);
+Feature('Upload Marriage Certificate').retry(3);
 
 Scenario('Test upload remove marriage Certificate', async function (I) {
   I.amOnLoadedPage('/index');
@@ -11,7 +11,8 @@ Scenario('Test upload remove marriage Certificate', async function (I) {
   I.amOnLoadedPage('/petitioner-respondent/marriage-certificate-upload');
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
   I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
-  I.deleteAMarriageCertificateFile(isDragAndDropSupported);
+  I.click('Back');
+  I.deleteMarriageCertificateFile(isDragAndDropSupported);
 });
 
 Scenario('Test ability validate document type', async function (I) {

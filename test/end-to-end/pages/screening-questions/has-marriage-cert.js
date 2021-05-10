@@ -15,7 +15,7 @@ function haveMarriageCert(language = 'en') {
   I.retry(2).click(marriageCertContent.yes);
   // I.moveCursorTo('input[name=submit]');
   I.scrollPageToBottom();
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 function haveNoMarriageCert() {

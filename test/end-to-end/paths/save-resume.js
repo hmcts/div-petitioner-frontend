@@ -24,42 +24,13 @@ Scenario('See the check your answers page if session restored from draft petitio
 
     I.amOnLoadedPage('/');
   } else {
-    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.setCookie({ name: 'mockRestoreSession', value: 'true' });
     I.seeCookie('mockRestoreSession');
   }
 
   I.startApplication();
 
   I.checkMyAnswersRestoredSession();
-
-  I.seeInCurrentUrl('/jurisdiction/habitual-residence');
-});
-
-xScenario('See next unanswered question if toNextUnansweredPage=true in query string and session restored from draft petition store', async function (I) {
-  let cookie = '';
-  I.amOnLoadedPage('/');
-
-  if (parseBool(CONF.features.idam)) {
-    I.startApplication();
-    I.languagePreference();
-    I.haveBrokenMarriage();
-    I.haveRespondentAddress();
-    I.haveMarriageCert();
-    I.readFinancialRemedy();
-    I.selectHelpWithFees(language);
-    I.enterHelpWithFees();
-    I.selectDivorceType();
-    I.enterMarriageDate();
-    I.selectMarriedInUk();
-    cookie = await I.grabCookie('__auth-token');
-    I.clearCookie();
-    I.wait(2);
-  } else {
-    I.setCookie({name: 'mockRestoreSession', value: 'true'});
-    I.seeCookie('mockRestoreSession');
-  }
-
-  I.amOnLoadedPage(`/authenticated?toNextUnansweredPage=true&__auth-token=${cookie}`);
 
   I.seeInCurrentUrl('/jurisdiction/habitual-residence');
 });
@@ -74,7 +45,7 @@ Scenario('Save and close', function (I) {
   I.readFinancialRemedy();
   I.selectHelpWithFees(language);
 
-  I.clickSaveAndCLose();
+  I.clickSaveAndClose();
   I.seeInCurrentUrl('/exit/application-saved');
 
   if (parseBool(CONF.features.idam)) {
@@ -97,7 +68,7 @@ Scenario('Delete application from draft petition store', function (I) {
 
     I.amOnLoadedPage('/index');
   } else {
-    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.setCookie({ name: 'mockRestoreSession', value: 'true' });
     I.seeCookie('mockRestoreSession');
   }
 
@@ -122,7 +93,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
 
     I.amOnLoadedPage('/');
   } else {
-    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.setCookie({ name: 'mockRestoreSession', value: 'true' });
     I.seeCookie('mockRestoreSession');
   }
 
@@ -147,7 +118,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
 
     I.amOnLoadedPage('/index');
   } else {
-    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.setCookie({ name: 'mockRestoreSession', value: 'true' });
     I.seeCookie('mockRestoreSession');
   }
 
@@ -173,7 +144,7 @@ Scenario('Decline to delete application from draft petition store', function (I)
 
     I.amOnLoadedPage('/');
   } else {
-    I.setCookie({name: 'mockRestoreSession', value: 'true'});
+    I.setCookie({ name: 'mockRestoreSession', value: 'true' });
     I.seeCookie('mockRestoreSession');
   }
 

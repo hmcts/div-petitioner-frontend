@@ -268,15 +268,14 @@
     request-promise-native "^1.0.7"
     socks5-https-client "^1.2.1"
 
-"@hmcts/div-pay-client@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@hmcts/div-pay-client/-/div-pay-client-7.0.1.tgz#0065ff64c6db0b5fe1e482cc9d566d326232d69f"
-  integrity sha512-7eaw36ow6966f8Vd1XRIBg0Q41RjfZHu783L9k/Lup054V9HdOW29egPc3U/Jko4nVilHqEEEdDIi+AwzH94QQ==
+"@hmcts/div-pay-client@7.0.6":
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/@hmcts/div-pay-client/-/div-pay-client-7.0.6.tgz#28c7795b5872864423d546fe48cd4a4eb78882e5"
+  integrity sha512-rPNDVniPE0FB1NY6vymDOHoA/l7Awxc9lnSG5TImnrMNjDdOO/hnQbJyesYdLrTkGzg2m6EWXmG0c9tHaRkWdA==
   dependencies:
     "@hmcts/nodejs-logging" "^3.0.0"
+    axios "^0.21.1"
     lodash "^4.17.15"
-    request "^2.81.0"
-    request-promise-native "^1.0.5"
 
 "@hmcts/div-service-auth-provider-client@^3.0.1":
   version "3.0.1"
@@ -307,7 +306,7 @@
     js-yaml "^3.8.4"
     superagent "5"
 
-"@hmcts/nodejs-logging@^3.0.0", "@hmcts/nodejs-logging@^3.0.1":
+"@hmcts/nodejs-logging@^3.0.0", "@hmcts/nodejs-logging@^3.0.1", "@hmcts/nodejs-logging@^3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@hmcts/nodejs-logging/-/nodejs-logging-3.0.2.tgz#3327278e820c07fd075562932c6c56d637fc760a"
   integrity sha512-NKkBxoUGDrqzwZxthkbk60l5P2D7XVfdddVxcOOT3I87JpiOrhOY0WgSS9gWUUKTZFnEETfOms9wwawdlHiMAg==
@@ -1209,7 +1208,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-axios@>=0.21.1, axios@^0.19.1:
+axios@>=0.21.1, axios@^0.19.1, axios@^0.21.1:
   version "0.21.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
   integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==

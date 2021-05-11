@@ -45,7 +45,6 @@
     "@hmcts/div-service-auth-provider-client": "^3.0.1",
     "@hmcts/frontend": "0.0.34-alpha",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
-    "@hmcts/nodejs-logging": "^3.0.1",
     "@hmcts/prd-client": "^0.0.8",
     "@hmcts/properties-volume": "^0.0.9",
     "add": "^2.0.6",
@@ -171,6 +170,7 @@
     "webdriverio": "^7.5.0"
   },
   "resolutions": {
+    "@hmcts/nodejs-logging": "^3.0.2",
     "assign-deep": ">=1.0.1",
     "braces": "^2.3.2",
     "debug": "^3.1.0",

@@ -91,7 +91,7 @@
     "jsonwebtoken": "^8.2.2",
     "launchdarkly-node-server-sdk": "^5.13.1",
     "loadsh": "^0.0.3",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "negotiator": "^0.6.1",
     "nomnoml": "0.2.0",

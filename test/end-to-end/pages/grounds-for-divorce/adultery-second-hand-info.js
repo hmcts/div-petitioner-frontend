@@ -12,7 +12,7 @@ function enterAdulterySecondHandInfo(language ='en') {
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/adultery/second-hand-information');
   I.click('#reasonForDivorceAdulterySecondHandInfo_' + content.yes);
   I.fillField('reasonForDivorceAdulterySecondHandInfoDetails', mockSession.reasonForDivorceAdulterySecondHandInfoDetails);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
   I.seeCurrentUrlEquals('/about-divorce/legal-proceedings');
 }
 

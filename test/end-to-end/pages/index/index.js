@@ -13,8 +13,9 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
 
     const username = idamConfigHelper.getTestEmail();
     const password = idamConfigHelper.getTestPassword();
-    I.fillField('username', username);
-    I.fillField('password', password);
+    I.waitForElement('#username');
+    I.fillField('#username', username);
+    I.fillField('#password', password);
     I.seeInCurrentUrl('/login?');
     I.navByClick(commonContent.signIn);
     I.wait(2);
@@ -63,6 +64,7 @@ function dontGetShownCookieBannerAgain() {
 function signOut() {
   let I = this;
 
+  I.waitForNavigation();
   I.see(commonContentEn.signOut);
   I.navByClick(commonContentEn.signOut);
 }

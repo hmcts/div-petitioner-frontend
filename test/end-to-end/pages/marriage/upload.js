@@ -1,19 +1,7 @@
+/* eslint-disable no-console */
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 const pagePath = '/petitioner-respondent/marriage-certificate-upload';
-
-function upload(file, isDragAndDropSupported) {
-  const I = this;
-
-  if (isDragAndDropSupported) {
-    I.attachFile('.dz-hidden-input', file);
-  }
-  else {
-    I.waitForVisible('.file-upload-input');
-    I.attachFile('.file-upload-input', file);
-    I.click('Upload');
-  }
-}
 
 function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
@@ -24,30 +12,27 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
 
   if (language === 'en') {
     I.say('Drag and Drop supported: ' + isDragAndDropSupported);
-    upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
+    upload(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
   }
+  I.click(commonContent.continue);
 }
 
 function testUploadResponse(isDragAndDropSupported, assetPath) {
   const I = this;
 
   I.seeInCurrentUrl(pagePath);
-  upload.call(I, assetPath, isDragAndDropSupported);
+  upload(I, assetPath, isDragAndDropSupported);
   I.waitForVisible('input[value="Continue"]:not([disabled])', 60);
 }
 
-function deleteAMarriageCertificateFile(isDragAndDropSupported) {
+function deleteMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
   I.say('Drag and Drop supported: ' + isDragAndDropSupported);
   I.seeInCurrentUrl(pagePath);
-  upload.call(I, '/assets/image.jpg', isDragAndDropSupported);
-  I.waitForVisible('.file', 30);
+  upload(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForText('Remove', 30);
   I.click('Remove');
   I.navByClick('Continue');
@@ -62,16 +47,28 @@ function withoutUploadFile(language = 'en') {
 
   if (language === 'en') {
     I.see('No files uploaded');
-    I.navByClick(commonContent.continue);
-  } else {
-    I.navByClick(commonContent.continue);
   }
+  I.click(commonContent.continue);
 
+}
+
+function upload(I, file, isDragAndDropSupported) {
+  if (isDragAndDropSupported) {
+    I.click('.faux-link');
+    I.attachFile('input[type="file"]', file);
+    //Drag and drop is a known Puppeteer issue: https://github.com/puppeteer/puppeteer/issues/1376
+  }
+  else {
+    I.waitForVisible('.file-upload-input');
+    I.click('.file-upload-input');
+    I.attachFile('.file-upload-input', file);
+    I.click('Upload');
+  }
 }
 
 module.exports = {
   uploadMarriageCertificateFile,
-  deleteAMarriageCertificateFile,
+  deleteMarriageCertificateFile,
   testUploadResponse,
   withoutUploadFile
 };

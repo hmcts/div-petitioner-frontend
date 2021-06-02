@@ -5,6 +5,7 @@ Scenario('Should continue if there is a csrf token set', async function (I) {
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
+  I.waitForNavigation();
   let csrfToken = await I.grabValueFrom('input[name=_csrf]');
   if (!csrfToken) {
     throw new Error('Missing csrfToken');
@@ -17,7 +18,9 @@ Scenario('Redirects to error when csrf gets modified', (I) => {
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
+  I.waitForNavigation();
   I.fillField('input[name=_csrf]', 'modifedCsrfToken');
   I.haveRespondentAddress();
   I.dontSeeInCurrentUrl('/screening-questions/marriage-certificate');
+  I.seeCurrentUrlEquals('/generic-error');
 });

@@ -15,11 +15,10 @@ function enterLegalProceedings(language = 'en') {
     I.click('#legalProceedings_' + content.yes);
     I.checkOption(mockSession.legalProceedingsRelated[0]);
     I.fillField('legalProceedingsDetails', mockSession.legalProceedingsDetails);
-    I.navByClick(commonContent.continue);
   } else {
     I.click('#legalProceedings_' + content.no);
-    I.navByClick(commonContent.continue);
   }
+  I.click(commonContent.continue);
 }
 
 module.exports = { enterLegalProceedings };

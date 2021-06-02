@@ -13,7 +13,7 @@ function chooseJurisdictionInterstitialContinue(language = 'en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(interstitialContent.confident);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 function chooseJurisdictionInterstitialNeedInfo() {

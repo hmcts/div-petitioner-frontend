@@ -12,7 +12,7 @@ function chooseRespondentServiceAddress(language = 'en', option) {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(option || stepContent.anotherAddress);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { chooseRespondentServiceAddress };

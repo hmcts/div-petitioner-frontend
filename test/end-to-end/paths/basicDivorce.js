@@ -1,5 +1,4 @@
 const language = 'en';
-const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const parseBool = require('app/core/utils/parseBool');
 const config = require('config');
 
@@ -38,7 +37,7 @@ Scenario('Get a divorce', async function(I) {
 
   I.chooseRespondentServiceAddress(language);
   I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(content.unreasonableBehaviourHeading);
+  I.selectReasonForDivorce(language, 'Behaviour');
   I.enterUnreasonableBehaviourExample(language);
 
   I.enterLegalProceedings(language);

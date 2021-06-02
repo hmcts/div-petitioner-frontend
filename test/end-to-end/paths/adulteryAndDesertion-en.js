@@ -4,10 +4,9 @@ const sendToAddressOption = require('app/steps/respondent/correspondence/use-hom
 
 const config = require('config');
 
-Feature('Adultery and Desertion E2E Tests (en) @functional')
-  .retry(3);
+Feature('Adultery and Desertion E2E Tests (en) @functional').retry(3);
 
-Scenario('Adultery, with details (en)', async function(I) {
+Scenario('Adultery, with details (en)', async function (I) {
 
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
@@ -64,10 +63,10 @@ Scenario('Adultery, with details (en)', async function(I) {
     I.amDoneAndSubmitted(language);
   }
 
-}).retry(3);
+});
 
 
-Scenario('Desertion without agreement (en)', async function(I) {
+Scenario('Desertion without agreement (en)', async function (I) {
 
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
@@ -115,7 +114,7 @@ Scenario('Desertion without agreement (en)', async function(I) {
     I.confirmIWillPayOnline(language);
   }
 
-}).retry(3);
+});
 
 async function stepsStartApplicationToReadFinancialRemedy(I, language) {
   await I.amOnLoadedPage('/', language);

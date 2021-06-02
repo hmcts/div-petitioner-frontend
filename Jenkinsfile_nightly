@@ -11,14 +11,16 @@ properties([
 
 def product = "div"
 def component = "pfe"
+final CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES = 240
+final FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES = 240
 
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.FEATURE_IDAM = 'true'
 
-    enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'firefox'])
+    enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'firefox', 'safari'], CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
     enableMutationTest()
-    enableFullFunctionalTest()
+    enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

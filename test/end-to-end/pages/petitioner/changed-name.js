@@ -14,7 +14,7 @@ function enterPetitionerChangedName(language = 'en') {
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(changedNameContent.yes);
   I.checkOption(changedNameContent.marriageCertificate);
-  I.navByClick(commonContent.continue);
+  I.click(commonContent.continue);
 }
 
 module.exports = { enterPetitionerChangedName };

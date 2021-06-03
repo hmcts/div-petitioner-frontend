@@ -140,12 +140,12 @@ exports.init = listenForConnections => {
     `${__dirname}/app/steps`,
     `${__dirname}/app/components`,
     `${__dirname}/app/views`,
+    `${__dirname}/node_modules/cmc-cookies-manager/shared-component/components`,
     `${__dirname}/node_modules/govuk-frontend`,
     `${__dirname}/node_modules/govuk-frontend/components`,
     `${__dirname}/node_modules/@hmcts/frontend`,
     `${__dirname}/node_modules/@hmcts/frontend/components`
   ]);
-
 
   const isDev = app.get('env') === 'development';
 
@@ -273,7 +273,7 @@ exports.init = listenForConnections => {
     });
   }
 
-  app.get('/cookie', i18nTemplate('cookie', (view, req, res) => {
+  app.get('/cookies', i18nTemplate('cookie', (view, req, res) => {
     res.render(view, {});
   }));
 

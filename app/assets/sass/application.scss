@@ -245,10 +245,42 @@ input.link{
   cursor: pointer;
 }
 
+.cookies-page {
+  margin: 0;
+
+  .govuk-notification-banner {
+    border: 5px solid;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .govuk-notification-banner__heading {
+    font-size: 23px;
+    margin-top: 0px;
+    font-family: "GDS Transport", arial, sans-serif;
+  }
+}
+
 #global-cookie-message {
   width: 100%;
   background-color: #d5e8f3;
-  padding: 10px;
+
+  #cm_cookie_notification {
+    padding: 10px 0;
+  }
+
+  #set-cookie-preferences {
+    font-size: 19px;
+  }
+
+  .govuk-body, .govuk-grid-row, .govuk-button-group {
+    margin-bottom: 10px !important;
+  }
+
+  .govuk-button {
+    margin-right: 10px;
+    margin-bottom: 0px;
+  }
 
   p {
     margin: 0 !important;

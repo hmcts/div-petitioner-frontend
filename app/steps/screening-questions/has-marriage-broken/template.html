@@ -2,17 +2,6 @@
 {% from "common/components/formElements.html" import yesNoRadioHeading %}
 {% extends "question.html" %}
 
-{% block skipLink %}
-  <div id="global-cookie-message" style="display: block;">
-    <div class="govuk-width-container">
-      <p class="govuk-body-s">
-          {{ content.cookie | safe }}
-          <a class="govuk-link" href="/cookie" target="_blank">{{ content.cookieLink | safe }}</a>
-      </p>
-    </div>
-  </div>
-{% endblock %}
-
 {% block question %}
     {{ content.question | safe }}
 {% endblock %}

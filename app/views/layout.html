@@ -11,14 +11,13 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block skipLink %}{% endblock %}
-
 {% block bodyStart %}
-  {% if cookieText.length > 0 %}
-    <div id="global-cookie-message" style="display: block;">
-      <p class="govuk-body govuk-!-font-size-16">{{ cookieText | safe }}</p>
+  <div id="global-cookie-message">
+    <div class="govuk-width-container">
+      {% set serviceName = 'Divorce' %}
+      {% include "cookie-manager/cookie-banner.njk" %}
     </div>
-  {% endif %}
+  </div>
 {% endblock %}
 
 {% block header %}

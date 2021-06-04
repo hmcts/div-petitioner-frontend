@@ -5,7 +5,7 @@ Feature('Static Pages').retry(3);
 
 Scenario('View the cookies page', (I) => {
 
-  I.amOnLoadedPage('/cookie');
+  I.amOnLoadedPage('/cookies');
 });
 
 Scenario('View the terms and conditions page', (I) => {

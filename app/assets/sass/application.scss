@@ -246,6 +246,7 @@ input.link{
 }
 
 .cookies-page {
+  width: 66.6666%;
   margin: 0;
 
   .govuk-notification-banner {
@@ -258,6 +259,10 @@ input.link{
     font-size: 23px;
     margin-top: 0px;
     font-family: "GDS Transport", arial, sans-serif;
+  }
+
+  .govuk-radios {
+    margin-bottom: 40px;
   }
 }
 

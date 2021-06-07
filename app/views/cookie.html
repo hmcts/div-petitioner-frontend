@@ -4,6 +4,12 @@
   {{ common.serviceName }} - Cookies - GOV.UK
 {% endblock %}
 
+{% block bodyStart %}
+<span style="display:none;">
+  {{ super() }}
+</span>
+{% endblock %}
+
 {% block content %}
 <div class="cookies-page">
   <h1 class="govuk-heading-xl">Cookies</h1>

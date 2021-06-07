@@ -13,10 +13,8 @@
 
 {% block bodyStart %}
   <div id="global-cookie-message">
-    <div class="govuk-width-container">
-      {% set serviceName = 'Divorce' %}
-      {% include "cookie-manager/cookie-banner.njk" %}
-    </div>
+    {% set serviceName = 'Divorce' %}
+    {% include "cookie-manager/cookie-banner.njk" %}
   </div>
 {% endblock %}
 

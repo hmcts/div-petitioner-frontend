@@ -1,0 +1,50 @@
+.cookies-page {
+  width: 66.6666%;
+  margin: 0;
+
+  .govuk-notification-banner {
+    border: 5px solid;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .govuk-notification-banner__heading {
+    font-size: 23px;
+    margin-top: 0px;
+    font-family: "GDS Transport", arial, sans-serif;
+  }
+
+  .govuk-notification-banner__title {
+    display: none;
+  }
+
+  .govuk-radios {
+    margin-bottom: 40px;
+  }
+}
+
+#global-cookie-message {
+  width: 100%;
+  background-color: #d5e8f3;
+
+  #cm_cookie_notification {
+    padding: 20px 0;
+  }
+
+  #set-cookie-preferences {
+    font-size: 19px;
+  }
+
+  .govuk-body, .govuk-grid-row, .govuk-button-group {
+    margin-bottom: 10px !important;
+  }
+
+  .govuk-button {
+    margin-right: 10px;
+    margin-bottom: 0px;
+  }
+
+  p {
+    margin: 0 !important;
+  }
+}

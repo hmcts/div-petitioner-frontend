@@ -26,6 +26,7 @@ describe(modulePath, () => {
   describe('#createSerializer', () => {
     it('should return a serializer with parse and stringify functions', () => {
       const serializer = sessionSerializer.createSerializer(req);
+
       expect(serializer.hasOwnProperty('parse')).to.eql(true);
       expect(serializer.hasOwnProperty('stringify')).to.eql(true);
     });
@@ -58,6 +59,7 @@ describe(modulePath, () => {
         const serializer = sessionSerializer.createSerializer(req, res);
         const encryptedData = serializer.stringify(session);
         const parsedData = JSON.parse(encryptedData);
+
         expect(parsedData.hasOwnProperty('iv')).to.eql(true);
         expect(parsedData.hasOwnProperty('encryptedSession')).to.eql(true);
       });
@@ -68,6 +70,7 @@ describe(modulePath, () => {
         const serializer = sessionSerializer.createSerializer(req, res);
         const encryptedData = serializer.stringify(session);
         const decryptedData = serializer.parse(encryptedData);
+
         expect(decryptedData).to.eql(session);
       });
     });
@@ -76,12 +79,13 @@ describe(modulePath, () => {
   describe('#encryptData', () => {
     it('returns object with string if no passwordHash supplied', () => {
       const encryptedData = sessionSerializer.encryptData(req, session);
+
       expect(encryptedData).to.eql({ string: session });
     });
 
     it('returns object with string if no passwordHash supplied', () => {
-      const encryptedData = sessionSerializer
-        .encryptData(req, sessionStringified, passwordHash);
+      const encryptedData = sessionSerializer.encryptData(req, sessionStringified, passwordHash);
+
       expect(encryptedData.hasOwnProperty('encryptedSession')).to.eql(true);
       expect(encryptedData.hasOwnProperty('iv')).to.eql(true);
     });
@@ -89,7 +93,7 @@ describe(modulePath, () => {
     it('throws error if not able to encrypt', () => {
       expect(() => {
         return sessionSerializer.encryptData(req, session, passwordHash);
-      }).to.throw('The "data" argument must be one of type string, Buffer, TypedArray, or DataView. Received type object');
+      }).to.throw('The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object');
     });
   });
 
@@ -101,43 +105,43 @@ describe(modulePath, () => {
     });
 
     it('returns default string if no passwordHash', () => {
-      const encryptedData = sessionSerializer
-        .encryptData(req, sessionStringified, passwordHash);
+      const encryptedData = sessionSerializer.encryptData(req, sessionStringified, passwordHash);
       const string = sessionSerializer.decryptData(req, encryptedData);
+
       expect(string).to.equal(defaultSessionString);
     });
 
     it('returns string object if no passwordHash', () => {
-      const string = sessionSerializer
-        .decryptData(req, { string: sessionStringified });
+      const string = sessionSerializer.decryptData(req, { string: sessionStringified });
+
       expect(string).to.eql(sessionStringified);
     });
 
     it('returns default string if no iv supplied', () => {
       const string = sessionSerializer.decryptData(req, { encryptedSession: 'test' });
+
       expect(string).to.equal(defaultSessionString);
     });
 
     it('returns default string if no encryptedSession supplied', () => {
       const string = sessionSerializer.decryptData(req, { iv: 'test' });
+
       expect(string).to.equal(defaultSessionString);
     });
 
     it('returns decryptData', () => {
-      const encryptedData = sessionSerializer
-        .encryptData(req, sessionStringified, passwordHash);
-      const string = sessionSerializer
-        .decryptData(req, encryptedData, passwordHash);
+      const encryptedData = sessionSerializer.encryptData(req, sessionStringified, passwordHash);
+      const string = sessionSerializer.decryptData(req, encryptedData, passwordHash);
+
       expect(string).to.eql(sessionStringified);
     });
 
     it('throws error if not able to encrypt', () => {
-      const encryptedData = sessionSerializer
-        .encryptData(req, sessionStringified, passwordHash);
+      const encryptedData = sessionSerializer.encryptData(req, sessionStringified, passwordHash);
+
       expect(() => {
-        return sessionSerializer
-          .decryptData(req, encryptedData, passwordHash.split(0, 1));
-      }).to.throw('The "key" argument must be one of type Buffer, TypedArray, DataView, string, or KeyObject. Received type object');
+        return sessionSerializer.decryptData(req, encryptedData, passwordHash.split(0, 1));
+      }).to.throw('The "key" argument must be of type string or an instance of Buffer, TypedArray, DataView, or KeyObject. Received an instance of Array');
     });
   });
 });

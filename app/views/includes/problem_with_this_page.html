@@ -15,7 +15,7 @@
           class="hidden"
           chat-title="HMCTS Web Chat"
           chat-icon-url="https://webchat-client.ctsc.hmcts.net/chat-client/1/assets/icon.png"
-          url="webchat.ctsc.hmcts.net"
+          url="{{ antennaWebchat.url }}"
           secure-connections="true"
           api-version="1.0"
           metrics-polling-interval="5"
@@ -26,7 +26,7 @@
           lease-time="24"
           priority="5"
           language="English"
-          service="Divorce"
+          service="{{ antennaWebchat.service }}"
           page-name="Divorce Petitioner Front End">
         </web-chat>
         <button class="chat-button">Talk to an Agent</button>

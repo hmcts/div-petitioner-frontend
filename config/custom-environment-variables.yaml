@@ -42,6 +42,9 @@ services:
     buttonNoAgents: WEBCHAT_BUTTON_NO_AGENTS
     buttonAgentsBusy: WEBCHAT_BUTTON_AGENTS_BUSY
     buttonServiceClosed: WEBCHAT_BUTTON_SERVICE_CLOSED
+  antennaWebchat:
+    url: ANTENNA_WEBCHAT_URL
+    service: ANTENNA_WEBCHAT_SERVICE
   equalityAndDiversity:
     url: EQUALITY_URL
     tokenKey: DIV_TOKEN_KEY

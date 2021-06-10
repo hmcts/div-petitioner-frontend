@@ -13,14 +13,13 @@
         <p id="metrics"></p>
         <web-chat
           class="hidden"
-          chat-title="HMCTS Web Chat"
+          chat-title="Ask Divorce Web Chat"
           chat-icon-url="https://webchat-client.ctsc.hmcts.net/chat-client/1/assets/icon.png"
           url="{{ antennaWebchat.url }}"
           secure-connections="true"
           api-version="1.0"
-          metrics-polling-interval="5"
+          metrics-polling-interval="20"
           locale-url="/public/locale"
-          auth-token="tkn3214"
           route-point-identifier="Default"
           work-flow-type=""
           lease-time="24"
@@ -28,6 +27,19 @@
           language="English"
           service="{{ antennaWebchat.service }}"
           page-name="Divorce Petitioner Front End">
+        </web-chat>
+        <web-chat
+                id="avayaWebchat"
+                chat-title="Ask Probate"
+                chat-icon-url="public/images/icon.png"
+                locale-url="public/locales/avaya-webchat"
+                url="webchat.ctsc.hmcts.net"
+                secure-connections="true"
+                api-version="1.0"
+                metrics-polling-interval="30"
+                Language="English"
+                Service="Probate"
+                page-name="Apply for Probate">
         </web-chat>
         <button class="chat-button">Talk to an Agent</button>
         {% endif %}

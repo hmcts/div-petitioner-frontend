@@ -70,7 +70,8 @@ exports.init = listenForConnections => {
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'https://webchat-client.ctsc.hmcts.net',
-        'https://webchat-client.training.ctsc.hmcts.net'
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net'
       ],
       connectSrc: [
         '\'self\'',
@@ -79,24 +80,28 @@ exports.init = listenForConnections => {
         'https://webchat-client.ctsc.hmcts.net',
         'https://webchat-client.training.ctsc.hmcts.net',
         'https://webchat.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net',
         'wss://webchat.ctsc.hmcts.net'
       ],
       mediaSrc: [
         '\'self\'',
         'https://webchat-client.ctsc.hmcts.net',
-        'https://webchat-client.training.ctsc.hmcts.net'
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net'
       ],
       frameSrc: [
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
-        'https://webchat-client.training.ctsc.hmcts.net/chat-client/1/'
+        'https://webchat-client.training.ctsc.hmcts.net/chat-client/1/',
+        'https://webchat.training.ctsc.hmcts.net/chat-client/1/'
       ],
       imgSrc: [
         '\'self\'',
         'www.google-analytics.com',
         'https://webchat-client.ctsc.hmcts.net/chat-client/1/',
         'https://webchat-client.training.ctsc.hmcts.net/chat-client/1/',
+        'https://webchat.training.ctsc.hmcts.net/chat-client/1/',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
       ],

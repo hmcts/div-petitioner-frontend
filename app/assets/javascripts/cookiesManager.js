@@ -197,12 +197,9 @@ function deleteCookieFromCurrentAndUpperDomain(cookieName) {
   document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=${hostname};path=/;`;
   document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=${dotHostname};path=/;`;
 
-  const dots = hostname.split('.');
   // eslint-disable-next-line no-magic-numbers
-  const upperDomain = `${dots[dots.length - 2]}.${dots[dots.length - 1]}`;
-  const dotUpperDomain = `.${upperDomain}`;
+  const upperDomain = 'apply-divorce.service.gov.uk';
   document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=${upperDomain};path=/;`;
-  document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=${dotUpperDomain};path=/;`;
 }
 
 function apmPreferencesUpdated(cookieStatus) {

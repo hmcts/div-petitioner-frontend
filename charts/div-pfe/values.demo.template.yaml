@@ -3,5 +3,5 @@ nodejs:
     image: ${IMAGE_NAME}
     ingressHost: ${SERVICE_FQDN}
     environment:
-      ANTENNA_WEBCHAT_URL: "webchat-client.training.ctsc.hmcts.net"
+      ANTENNA_WEBCHAT_URL: "webchat.training.ctsc.hmcts.net"
       ANTENNA_WEBCHAT_SERVICE: "Testing"

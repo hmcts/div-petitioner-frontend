@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block bodyStart %}
-<span style="display:none;">
+<div class="cookies-policy-banner">
   {{ super() }}
-</span>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="cookies-page">
   <h1 class="govuk-heading-xl">Cookies</h1>
-  {% include "cookie-manager/cookie-success-banner.njk" %}
+  {% include "includes/cookies/cookie-manager/cookie-success-banner.njk" %}
   <p class="govuk-body-m">Cookies are files saved on your phone, tablet or computer when you visit a website. Most
     websites need cookies to work properly.</p>
   <p class="govuk-body-m">This service uses cookies to:</p>
@@ -189,7 +189,7 @@
       </tr>
     </tbody>
   </table>
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Allow cookies that measure website use?</legend>
+  <div class="govuk-fieldset__legend govuk-fieldset__legend--s">Allow cookies that measure website use?</div>
   <div class="govuk-radios">
     <div class="govuk-radios__item">
       <input type="radio" name="analytics" id="radio-analytics-on" value="true" class="govuk-radios__input">
@@ -202,9 +202,9 @@
       </label>
     </div>
   </div>
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+  <div class="govuk-fieldset__legend govuk-fieldset__legend--s">
     Allow cookies that measure website application performance monitoring?
-  </legend>
+  </div>
   <div class="govuk-radios">
     <div class="govuk-radios__item">
       <input type="radio" name="apm" id="radio-apm-on" value="true" class="govuk-radios__input">

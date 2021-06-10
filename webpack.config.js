@@ -17,16 +17,16 @@ module.exports = {
   entry: {
     common: [
       'jquery',
-      './node_modules/jquery-migrate/dist/jquery-migrate.js',
       './app/assets/javascripts/application.js',
-      './node_modules/dropzone/dist/dropzone.js',
-      './app/assets/javascripts/documentUpload.js',
-      './app/assets/javascripts/validation.js',
-      './app/assets/javascripts/dynamicFields.js',
+      './app/assets/javascripts/cookiesManager.js',
       './app/assets/javascripts/disable-enable-button.js',
+      './app/assets/javascripts/documentUpload.js',
+      './app/assets/javascripts/dynamicFields.js',
+      './app/assets/javascripts/validation.js',
       './app/assets/javascripts/webchat.js',
+      './node_modules/dropzone/dist/dropzone.js',
       './node_modules/govuk_frontend_toolkit/javascripts/govuk/show-hide-content.js',
-      './node_modules/cmc-cookies-manager/shared-component/components/cookie-manager/cookies-manager.js'
+      './node_modules/jquery-migrate/dist/jquery-migrate.js'
     ],
     sitemap: './app/steps/sitemap/client.js',
     css: './tmp/sass/application.scss'

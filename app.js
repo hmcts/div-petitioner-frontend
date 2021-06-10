@@ -140,7 +140,6 @@ exports.init = listenForConnections => {
     `${__dirname}/app/steps`,
     `${__dirname}/app/components`,
     `${__dirname}/app/views`,
-    `${__dirname}/node_modules/cmc-cookies-manager/shared-component/components`,
     `${__dirname}/node_modules/govuk-frontend`,
     `${__dirname}/node_modules/govuk-frontend/components`,
     `${__dirname}/node_modules/@hmcts/frontend`,

@@ -19,7 +19,7 @@
     const today = new Date();
 
 
-    if (ccState !== 'Open' || today.getHours() < 9 || today.getHours() >= 17 || today.getDay() === 0 || today.getDay() === 6) {
+    if (ccState !== 'Open') {
       message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
       button.classList.add('hidden');
     } else if (ewt < 300 && availableAgents > 0) {

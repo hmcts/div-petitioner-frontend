@@ -19,7 +19,7 @@
 
     console.log(`Webchat State is: (${ccState}), EWT is: (${ewt}), Available agents is: (${availableAgents})`);
     if (ccState !== 'Open') {
-      console.log('Webchat is open')
+      console.log('Webchat is closed')
       message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
       button.classList.add('hidden');
     } else if (ewt < 300 && availableAgents > 0) {

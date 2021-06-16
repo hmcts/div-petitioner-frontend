@@ -64,6 +64,8 @@ services:
   antennaWebchat:
     url: 'webchat.training.ctsc.hmcts.net'
     service: 'Testing'
+    integrityCodeEs5: 'sha384-q2frIrgzQ2N01xiqrV6qtO/w01EzprxDOqVngE7cybQ/Hl4GsH15Qi0M+A0dX3Lm'
+    integrityCodeEs2015: 'sha384-iEIeVUq/ncVpaigZAlCikuomSR9QyL2yiApzGyMAsdgFi8ljx86/VPCQdyST4uhZ'
   equalityAndDiversity:
     name: 'Equality and Diversity Service'
     url: 'http://localhost:4000'

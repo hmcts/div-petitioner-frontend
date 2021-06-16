@@ -70,6 +70,7 @@ exports.init = listenForConnections => {
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com',
         'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net',
         'https://webchat-client.training.ctsc.hmcts.net',
         'https://webchat.training.ctsc.hmcts.net'
       ],
@@ -156,7 +157,9 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
+      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service,
+        integrityCodeEs5: CONF.services.antennaWebchat.integrityCodeEs5,
+        integrityCodeEs2015: CONF.services.antennaWebchat.integrityCodeEs2015 },
       features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
     }
   });

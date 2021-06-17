@@ -42,6 +42,11 @@ services:
     buttonNoAgents: WEBCHAT_BUTTON_NO_AGENTS
     buttonAgentsBusy: WEBCHAT_BUTTON_AGENTS_BUSY
     buttonServiceClosed: WEBCHAT_BUTTON_SERVICE_CLOSED
+  antennaWebchat:
+    url: ANTENNA_WEBCHAT_URL
+    service: ANTENNA_WEBCHAT_SERVICE
+    integrityCodeEs5: ANTENNA_WEBCHAT_INTEGRITY_CODE_ES5
+    integrityCodeEs2015: ANTENNA_WEBCHAT_INTEGRITY_CODE_ES2015
   equalityAndDiversity:
     url: EQUALITY_URL
     tokenKey: DIV_TOKEN_KEY
@@ -90,6 +95,7 @@ features:
   browserSupport: BROWSER_GROUP
   strategicPay: FEATURE_STRATEGIC_PAY
   webchat: FEATURE_WEBCHAT
+  antennaWebchat: FEATURE_ANTENNA_WEBCHAT
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

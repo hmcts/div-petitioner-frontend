@@ -62,6 +62,12 @@ nodejs:
         WEBCHAT_BUTTON_NO_AGENTS: 7732814745cac6f4603c4d1.53357933 # TODO override per env or move to vault
         WEBCHAT_BUTTON_AGENTS_BUSY: 2042157415cc19c95669039.65793052 # TODO override per env or move to vault
         WEBCHAT_BUTTON_SERVICE_CLOSED: 20199488815cc1a89e0861d5.73103009 # TODO override per env or move to vault
+
+        ANTENNA_WEBCHAT_URL: "webchat.ctsc.hmcts.net"
+        ANTENNA_WEBCHAT_SERVICE: "Divorce"
+        ANTENNA_WEBCHAT_INTEGRITY_CODE_ES5: "sha384-x4qinxjHZ68StA6PoO+fOuyILAN5FIpCD3zSaZwALNx5MLF9V0v4IN+fMldgwqAt"
+        ANTENNA_WEBCHAT_INTEGRITY_CODE_ES2015: "sha384-Nn5VeZWuMqoRlyQ5sWJOUY/j+uUmkrD+Rq4cyyZf8A8Xv8NprwcW2PdFvXgrvKW9"
+
     keyVaults:
         div:
             secrets:

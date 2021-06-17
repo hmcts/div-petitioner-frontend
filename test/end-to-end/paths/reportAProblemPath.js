@@ -18,6 +18,11 @@ Scenario('I see link to go the ’Contact us for help’ page', (I) => {
     I.see(commonContent.webChatTitle);
   }
 
+  // antennaWebchat
+  if (config.features.antennaWebchat) {
+    I.see(commonContent.webChatTitle);
+  }
+
   // telephone
   I.see(commonContent.phoneTitle);
   I.see(phone);

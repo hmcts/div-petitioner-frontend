@@ -1,2 +1,8 @@
 <!-- Javascript -->
 <script src="{{ asset_path }}javascripts/bundle--common.js"></script>
+<script src="https://{{ antennaWebchat.url }}/chat-client/1/app-es2015.js" type="module"
+        integrity="{{ antennaWebchat.integrityCodeEs2015 }}"
+        crossorigin="anonymous"></script>
+<script src="https://{{ antennaWebchat.url }}/chat-client/1/app-es5.js" nomodule defer
+        integrity="{{ antennaWebchat.integrityCodeEs5 }}"
+        crossorigin="anonymous"></script>

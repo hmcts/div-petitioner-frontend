@@ -36,6 +36,12 @@ module.exports = function(grunt) {
             cwd: 'app/assets/images',
             src: '**',
             dest: 'tmp/images/'
+          },
+          {
+            expand: true,
+            cwd: 'app/assets/locale',
+            src: '**',
+            dest: 'tmp/locale/'
           }
         ]
       }
@@ -51,7 +57,7 @@ module.exports = function(grunt) {
         options: { spawn: false }
       },
       assets: {
-        files: ['app/assets/**/*', '!app/assets/sass/**', '!app/assets/javascripts/**'],
+        files: ['app/assets/**/*', '!app/assets/sass/**', '!app/assets/javascripts/**', '!app/assets/locale/**'],
         tasks: ['webpack:dev'],
         options: { spawn: false }
       }

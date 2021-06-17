@@ -15,6 +15,10 @@ nodejs:
         PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
         EQUALITY_URL: "https://pcq.aat.platform.hmcts.net"
         PRD_ORGANISATION_API_URL: "http://rd-professional-api-aat.service.core-compute-aat.internal/refdata/external/v1/organisations/status"
+        ANTENNA_WEBCHAT_URL: "webchat.training.ctsc.hmcts.net"
+        ANTENNA_WEBCHAT_SERVICE: "Testing"
+        ANTENNA_WEBCHAT_INTEGRITY_CODE_ES5: "sha384-q2frIrgzQ2N01xiqrV6qtO/w01EzprxDOqVngE7cybQ/Hl4GsH15Qi0M+A0dX3Lm"
+        ANTENNA_WEBCHAT_INTEGRITY_CODE_ES2015: "sha384-iEIeVUq/ncVpaigZAlCikuomSR9QyL2yiApzGyMAsdgFi8ljx86/VPCQdyST4uhZ"
     keyVaults:
         div:
             secrets:

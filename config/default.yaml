@@ -61,6 +61,11 @@ services:
     buttonNoAgents: 7732814745cac6f4603c4d1.53357933
     buttonAgentsBusy: 2042157415cc19c95669039.65793052
     buttonServiceClosed: 20199488815cc1a89e0861d5.73103009
+  antennaWebchat:
+    url: 'webchat.training.ctsc.hmcts.net'
+    service: 'Testing'
+    integrityCodeEs5: 'sha384-q2frIrgzQ2N01xiqrV6qtO/w01EzprxDOqVngE7cybQ/Hl4GsH15Qi0M+A0dX3Lm'
+    integrityCodeEs2015: 'sha384-iEIeVUq/ncVpaigZAlCikuomSR9QyL2yiApzGyMAsdgFi8ljx86/VPCQdyST4uhZ'
   equalityAndDiversity:
     name: 'Equality and Diversity Service'
     url: 'http://localhost:4000'
@@ -110,6 +115,7 @@ features:
   browserSupport: false
   strategicPay: false
   webchat: true
+  antennaWebchat: false
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

@@ -24,7 +24,8 @@ module.exports = {
       './app/assets/javascripts/validation.js',
       './app/assets/javascripts/dynamicFields.js',
       './node_modules/govuk_frontend_toolkit/javascripts/govuk/show-hide-content.js',
-      './app/assets/javascripts/disable-enable-button.js'
+      './app/assets/javascripts/disable-enable-button.js',
+      './app/assets/javascripts/webchat.js'
     ],
     sitemap: './app/steps/sitemap/client.js',
     css: './tmp/sass/application.scss'

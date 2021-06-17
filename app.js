@@ -53,7 +53,10 @@ exports.init = listenForConnections => {
   // content security policy to allow only assets from same domain
   app.use(helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ['\'self\''],
+      defaultSrc: [
+        '\'self\'',
+        '\'unsafe-inline\''
+      ],
       fontSrc: [
         '\'self\' data:',
         'fonts.gstatic.com'
@@ -65,22 +68,45 @@ exports.init = listenForConnections => {
         'www.googletagmanager.com',
         'hmctspiwik.useconnect.co.uk',
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net',
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net'
       ],
       connectSrc: [
         '\'self\'',
         'www.google-analytics.com',
-        'stats.g.doubleclick.net'
+        'stats.g.doubleclick.net',
+        'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net',
+        'wss://webchat.ctsc.hmcts.net',
+        'wss://webchat.training.ctsc.hmcts.net'
       ],
-      mediaSrc: ['\'self\''],
+      mediaSrc: [
+        '\'self\'',
+        'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net'
+      ],
       frameSrc: [
         'vcc-eu4.8x8.com',
-        'vcc-eu4b.8x8.com'
+        'vcc-eu4b.8x8.com',
+        'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net'
       ],
       imgSrc: [
         '\'self\'',
         'www.google-analytics.com',
-        'hmctspiwik.useconnect.co.uk',
+        'https://webchat-client.ctsc.hmcts.net',
+        'https://webchat-client.training.ctsc.hmcts.net',
+        'https://webchat.training.ctsc.hmcts.net',
+        'https://webchat.ctsc.hmcts.net',
         'vcc-eu4.8x8.com',
         'vcc-eu4b.8x8.com'
       ],
@@ -131,7 +157,10 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      features: { webchat: parseBool(CONF.features.webchat) }
+      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service,
+        integrityCodeEs5: CONF.services.antennaWebchat.integrityCodeEs5,
+        integrityCodeEs2015: CONF.services.antennaWebchat.integrityCodeEs2015 },
+      features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
     }
   });
 
@@ -151,6 +180,8 @@ exports.init = listenForConnections => {
   // Middleware to serve static assets
   app.use('/public', express.static(`${__dirname}/public`));
   app.use('/webchat', express.static(`${__dirname}/node_modules/@hmcts/ctsc-web-chat/assets`));
+  app.use('/public/locale', express.static(`${__dirname}/app/assets/locale`));
+  app.use('/public/javascripts', express.static(`${__dirname}/app/assets/javascripts`));
 
   // Parsing cookies for the stored encrypted session key
   app.use(cookieParser());

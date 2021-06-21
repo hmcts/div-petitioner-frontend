@@ -10,95 +10,96 @@
 
 {% block form %}
 
+{% if session.reasonForDivorce !== 'desertion' %}
+    <p class="govuk-body">{{ content.info1 | safe }} </p>
+    <p class="govuk-body">{{ content.info2 | safe }}</p>
+{% endif %}
 
-    {% if session.reasonForDivorce !== 'desertion' %}
-        <p class="govuk-body">{{ content.info1 | safe }} </p>
-        <p class="govuk-body">{{ content.info2 | safe }}</p>
-    {% endif %}
-        {{ yesNoRadioHeading(
-            legend = content.sepQues,
-            name ='livedApartEntireTime',
-            field = fields.livedApartEntireTime,
-            yes = content.yes,
-            no = content.no,
-            targetYes = '',
-            targetNo = 'livedTogetherSince',
-            screenReader = content.sepQues
-        ) }}
+{{ yesNoRadioHeading(
+    legend = content.sepQues,
+    name = 'livedApartEntireTime',
+    field = fields.livedApartEntireTime,
+    yes = content.yes,
+    no = content.no,
+    targetYes = '',
+    targetNo = 'livedTogetherSince',
+    screenReader = content.sepQues
+) }}
 
 
-        <div id="livedTogetherSince" class="js-hidden">
-            <h2 class="govuk-heading-m">
-                {{ content.question.text }}
-                {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ content.question.6months }}
-                {% elif fields.livingTogetherMonths.value < 6 %}
-                    {% if fields.livingTogetherWeeks.value === 1 %}
-                        {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
-                    {% elif fields.livingTogetherWeeks.value > 1  %}
-                       {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
-                    {% endif %}
-                    {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
-                        {{ content.question.and }}
-                    {% endif %}
-                    {% if fields.liveTogetherPeriodRemainingDays.value === 1 %}
-                      {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
-                    {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
-                      {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
-                    {% endif %}
-                {% endif %}
-                {{ content.question.since }}
-                {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ fields.referenceDate.value }}
-                {% elif fields.livingTogetherMonths.value < 6 %}
-                    {{ fields.mostRecentSeparationDate.value }}
-                {% endif %}
-                {{ content.question.mark }}
-            </h2>
+<div id="livedTogetherSince" class="js-hidden">
+    <h2 class="govuk-heading-m">
+        {{ content.question.text }}
+        {% if fields.livingTogetherMonths.value >= 6 %}
+            {{ content.question.6months }}
+        {% elif fields.livingTogetherMonths.value < 6 %}
+            {% if fields.livingTogetherWeeks.value === 1 %}
+                {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
+            {% elif fields.livingTogetherWeeks.value > 1  %}
+               {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
+            {% endif %}
+            {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
+                {{ content.question.and }}
+            {% endif %}
+            {% if fields.liveTogetherPeriodRemainingDays.value === 1 %}
+              {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
+            {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
+              {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
+            {% endif %}
+        {% endif %}
+        {{ content.question.since }}
+        {% if fields.livingTogetherMonths.value >= 6 %}
+            {{ fields.referenceDate.value }}
+        {% elif fields.livingTogetherMonths.value < 6 %}
+            {{ fields.mostRecentSeparationDate.value }}
+        {% endif %}
+        {{ content.question.mark }}
+    </h2>
 
-            <p class="govuk-body">
-                {% if fields.livingTogetherMonths.value >= 6 %}
-                    {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.sepYears.value }} {{ content.question.yearsAndMonths }}
-                {% elif fields.livingTogetherMonths.value < 6 %}
-                    {{ content.question.livedMore }}
-                    {% if fields.livingTogetherWeeks.value === 1  %}
-                        {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
-                    {% elif fields.livingTogetherWeeks.value > 1 %}
-                        {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
-                    {% endif %}
-                    {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
-                        {{ content.question.and }}
-                    {% endif %}
-                    {% if fields.liveTogetherPeriodRemainingDays.value === 1 %}
-                        {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
-                    {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
-                        {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
-                    {% endif %}
-                    {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
-                {% endif %}
-            </p>
+    <p class="govuk-body">
+        {% if fields.livingTogetherMonths.value >= 6 %}
+            {{ fields.referenceDate.value }} {{ content.question.exactDate }} {{ fields.sepYears.value }} {{ content.question.yearsAndMonths }}
+        {% elif fields.livingTogetherMonths.value < 6 %}
+            {{ content.question.livedMore }}
+            {% if fields.livingTogetherWeeks.value === 1  %}
+                {{ fields.livingTogetherWeeks.value }} {{ content.question.week }}
+            {% elif fields.livingTogetherWeeks.value > 1 %}
+                {{ fields.livingTogetherWeeks.value }} {{ content.question.weeks }}
+            {% endif %}
+            {% if (fields.livingTogetherWeeks.value > 0) and (fields.liveTogetherPeriodRemainingDays.value > 0) %}
+                {{ content.question.and }}
+            {% endif %}
+            {% if fields.liveTogetherPeriodRemainingDays.value === 1 %}
+                {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.day }}
+            {% elif fields.liveTogetherPeriodRemainingDays.value > 1 %}
+                {{ fields.liveTogetherPeriodRemainingDays.value }} {{ content.question.days }}
+            {% endif %}
+            {{ content.question.since }} {{ fields.mostRecentSeparationDate.value }} {{ content.question.needNotToUse }}
+        {% endif %}
+    </p>
 
-            <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">{{content.howThisAffects | safe }}</span>
-                </summary>
-                <div class="govuk-details__text">
-                    <p class="govuk-body">{{ content.mustSpentYr | safe }}</p>
-                    <p class="govuk-body">{{ content.onlyUpTo6Months | safe }}</p>
-                    {% if fields.livingTogetherMonths.value >= 6 %}
-                       <p class="govuk-body">{{ content.ifMoreThan6Months | safe }}</p>
-                    {% elif fields.livingTogetherMonths.value < 6 %}
-                       <p class="govuk-body">{{ content.ifLessThan6Months | safe }}</p>
-                    {% endif %}
-                </div>
-            </details>
-
-            {{ yesNoRadioHeading(
-                legend = content.question1.text,
-                name ='livedTogetherMoreTimeThanPermitted',
-                field = fields.livedTogetherMoreTimeThanPermitted,
-                yes = content.yes,
-                no = content.no
-            ) }}
+    <details class="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">{{content.howThisAffects | safe }}</span>
+        </summary>
+        <div class="govuk-details__text">
+            <p class="govuk-body">{{ content.mustSpentYr | safe }}</p>
+            <p class="govuk-body">{{ content.onlyUpTo6Months | safe }}</p>
+            {% if fields.livingTogetherMonths.value >= 6 %}
+               <p class="govuk-body">{{ content.ifMoreThan6Months | safe }}</p>
+            {% elif fields.livingTogetherMonths.value < 6 %}
+               <p class="govuk-body">{{ content.ifLessThan6Months | safe }}</p>
+            {% endif %}
         </div>
+    </details>
+
+
+    {{ yesNoRadioHeading(
+        legend = content.question.text,
+        name = 'livedTogetherMoreTimeThanPermitted',
+        field = fields.livedTogetherMoreTimeThanPermitted,
+        yes = content.yes,
+        no = content.no
+    ) }}
+</div>
 {% endblock %}

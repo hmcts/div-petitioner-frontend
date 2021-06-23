@@ -43,7 +43,7 @@ nodejs:
         EVIDENCE_MANAGEMENT_CLIENT_API_DOWNLOAD_ENDPOINT: "/emclientapi/version/1/download"
         NODE_ENV: "production"
         NODE_PATH: "."
-        POST_CODE_URL: "https://api.ordnancesurvey.co.uk/places/v1"
+        POST_CODE_URL: "https://api.os.uk/search/places/v1"
         RATE_LIMITER_ENABLED: "false" # seems like this is never enabled?
         RATE_LIMITER_EXPIRE: "3600000"
         RATE_LIMITER_TOTAL: "3600"

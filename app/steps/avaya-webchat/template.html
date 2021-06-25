@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+<head>
+    <title>Web Chat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="{{asset_path}}stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="govuk-details__text">
+        <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
+        <p id="metrics"></p>
+        <web-chat
+                chat-title="Ask Divorce Web Chat"
+                chat-icon-url="https://webchat-client.ctsc.hmcts.net/chat-client/1/assets/icon.png"
+                url="{{ antennaWebchat.url }}"
+                secure-connections="true"
+                api-version="1.0"
+                metrics-polling-interval="20"
+                locale-url="/public/locale"
+                route-point-identifier="Default"
+                work-flow-type=""
+                lease-time="24"
+                priority="5"
+                language="English"
+                service="{{ antennaWebchat.service }}"
+                page-name="Apply for a Divorce - Petitioner">
+        </web-chat>
+    </div>
+</body>
+

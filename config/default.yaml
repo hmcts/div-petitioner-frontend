@@ -62,7 +62,7 @@ services:
     buttonAgentsBusy: 2042157415cc19c95669039.65793052
     buttonServiceClosed: 20199488815cc1a89e0861d5.73103009
   antennaWebchat:
-    url: 'webchat-client.training.ctsc.hmcts.net'
+    url: 'webchat.training.ctsc.hmcts.net'
     service: 'Testing'
   equalityAndDiversity:
     name: 'Equality and Diversity Service'

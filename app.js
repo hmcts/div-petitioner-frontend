@@ -157,9 +157,7 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       webchat: CONF.services.webchat,
-      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service,
-        integrityCodeEs5: CONF.services.antennaWebchat.integrityCodeEs5,
-        integrityCodeEs2015: CONF.services.antennaWebchat.integrityCodeEs2015 },
+      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
       features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
     }
   });

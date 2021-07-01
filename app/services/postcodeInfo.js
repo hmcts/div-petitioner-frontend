@@ -15,7 +15,7 @@ exports.client = (
       const proxy = CONF.divorceHttpProxy;
       return co(function* generator() {
         try {
-          let request = sa.get(`${url}/addresses/postcode?postcode=${encodeURIComponent(postcode)}&key=${tokenString}`)
+          let request = sa.get(`${url}/postcode?postcode=${encodeURIComponent(postcode)}&key=${tokenString}`)
             .timeout(timeout);
           if (proxy) {
             request = request.proxy(proxy);

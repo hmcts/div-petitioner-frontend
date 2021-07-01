@@ -18,7 +18,7 @@ idam_api_url = "https://idam-api.demo.platform.hmcts.net"
 
 payment_service_url = "http://payment-api-demo.service.core-compute-demo.internal"
 
-post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
+post_code_url = "https://api.os.uk/search/places/v1"
 
 feature_strategic_pay = "true"
 

@@ -6,7 +6,7 @@
         "content": {
           "question": "When did you get married?",
           "useTheDate": "Use the date on your marriage certificate",
-          "exampleDate": "For example, 31 3 2002",
+          "exampleDate": "For example, 25 3 2002",
           "day": "Day",
           "month": "Month",
           "year": "Year",

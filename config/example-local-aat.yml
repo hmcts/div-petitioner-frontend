@@ -2,7 +2,7 @@ deployment_env: 'aat'
 
 services:
   postcodeInfo:
-    url: 'https://api.ordnancesurvey.co.uk/places/v1'
+    url: 'https://api.os.uk/search/places/v1'
     token: # Defined by POST_CODE_ACCESS_TOKEN in env
   idamAuthentication:
     health: 'https://idam-web-public.aat.platform.hmcts.net/health'

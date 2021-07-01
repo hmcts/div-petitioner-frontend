@@ -18,6 +18,6 @@ idam_api_url = "http://idam-api-idam-sprod.service.core-compute-idam-sprod.inter
 
 payment_service_url = "http://payment-api-sprod.service.core-compute-sprod.internal"
 
-post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
+post_code_url = "https://api.os.uk/search/places/v1"
 
 decree_nisi_frontend_url = "https://div-dn-sprod.service.core-compute-sprod.internal"

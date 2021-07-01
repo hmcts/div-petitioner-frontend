@@ -18,7 +18,7 @@ idam_api_url = "https://idam-api.aat.platform.hmcts.net"
 
 payment_service_url = "http://payment-api-aat.service.core-compute-aat.internal"
 
-post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
+post_code_url = "https://api.os.uk/search/places/v1"
 
 capacity = "2"
 

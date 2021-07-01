@@ -18,7 +18,7 @@ idam_api_url = "https://idam-api.platform.hmcts.net"
 
 payment_service_url = "https://payment.platform.hmcts.net"
 
-post_code_url = "https://api.ordnancesurvey.co.uk/places/v1"
+post_code_url = "https://api.os.uk/search/places/v1"
 
 decree_nisi_frontend_url = "https://www.decree-nisi.apply-divorce.service.gov.uk"
 

@@ -31,19 +31,15 @@
     const ewt = metricsDetail.ewt;
     const availableAgents = metricsDetail.availableAgents;
 
-    console.log(`Webchat State is: (${ccState}), EWT is: (${ewt}), Available agents is: (${availableAgents})`);
     if (ccState !== 'Open') {
-      console.log('Webchat is closed')
       message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
-      button.classList.add('hidden');
+      button.classList.remove('hidden');
     } else if (ewt < 300 && availableAgents > 0) {
-      console.log('There are available agents')
       message.innerHTML = '';
       button.classList.remove('hidden');
     } else {
-      console.log('No available agents')
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
-      button.classList.add('hidden');
+      button.classList.remove('hidden');
     }
   });
 

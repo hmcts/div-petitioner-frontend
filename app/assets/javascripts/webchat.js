@@ -33,13 +33,13 @@
 
     if (ccState !== 'Open') {
       message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
-      button.classList.add('hidden');
+      button.classList.add('add');
     } else if (ewt < 300 && availableAgents > 0) {
       message.innerHTML = '';
       button.classList.remove('hidden');
     } else {
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
-      button.classList.add('hidden');
+      button.classList.add('add');
     }
   });
 

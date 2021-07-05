@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ common.serviceName }} - Contact Us - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ content.heading1 | safe }}</h1>
+        <p class="govuk-heading-m" id="avaya-web-chat-header"> {{ common.helpHeading3 | safe }} </p>
+        {% include "includes/web_chat.html" %}
+    </div>
+</div>
+{% endblock %}

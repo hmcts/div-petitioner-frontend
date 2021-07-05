@@ -268,6 +268,10 @@ exports.init = listenForConnections => {
     res.render(view, {});
   }));
 
+  app.get('/contact-divorce', i18nTemplate('contact-divorce', (view, req, res) => {
+    res.render(view, {});
+  }));
+
   // 1px image used for tracking
   app.get('/noJS.png', (req, res) => {
     res.send('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');

@@ -39,7 +39,7 @@
       button.classList.remove('hidden');
     } else {
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
-      button.classList.remove('hidden');
+      button.classList.add('hidden');
     }
   });
 

@@ -21,8 +21,7 @@ let excludeSteps = [
   'PayByCard',
   'CardPaymentStatus',
   'GovPayStub',
-  'Submit',
-  'ContactUs'
+  'Submit'
 ];
 
 // Ignored Errors

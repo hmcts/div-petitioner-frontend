@@ -65,8 +65,6 @@ nodejs:
 
         ANTENNA_WEBCHAT_URL: "webchat.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Divorce"
-        ANTENNA_WEBCHAT_INTEGRITY_CODE_ES5: "sha384-x4qinxjHZ68StA6PoO+fOuyILAN5FIpCD3zSaZwALNx5MLF9V0v4IN+fMldgwqAt"
-        ANTENNA_WEBCHAT_INTEGRITY_CODE_ES2015: "sha384-Nn5VeZWuMqoRlyQ5sWJOUY/j+uUmkrD+Rq4cyyZf8A8Xv8NprwcW2PdFvXgrvKW9"
 
     keyVaults:
         div:

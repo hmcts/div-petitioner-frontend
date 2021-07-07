@@ -7,6 +7,24 @@ web-chat {
   bottom: 10px;
   width: 320px !important;
   height: 530px !important;
+  background-color: white;
+  z-index: 1000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#avayaWebchat {
+  position: static;
+  display: inline;
+  background-color: white;
+  z-index: 1000;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#avayaWebchat .container {
+  height: 510px;
+  background-color: white;
 }
 
 web-chat.hidden {

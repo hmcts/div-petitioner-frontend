@@ -5,7 +5,7 @@ const CONF = require('config');
 const logger = require('app/services/logger')
   .logger(__filename);
 
-const algorithm = 'aes-256-cbc';
+const algorithm = 'aes-256-gcm';
 const bufferSize = 16;
 const iv = Buffer.alloc(bufferSize, 0); // Initialization vector.
 const keyLen = 32;

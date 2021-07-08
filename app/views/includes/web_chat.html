@@ -1,0 +1,33 @@
+{% if features.webchat and session.language == "en" %}
+    <p class="govuk-heading-s govuk-!-margin-bottom-1" id="ctsc-web-chat-header">{{ common.webChatTitle | safe }}</p>
+    <div id="ctsc-web-chat"></div>
+{% endif %}
+
+{% if features.antennaWebchat and session.language == "en" %}
+    <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
+    <p class="govuk-body" id="metrics"></p>
+    <web-chat
+            class="hidden"
+            chat-title="Ask Divorce Web Chat"
+            chat-icon-url="https://{{ antennaWebchat.url }}/chat-client/1/assets/icon.png"
+            url="{{ antennaWebchat.url }}"
+            secure-connections="true"
+            api-version="1.0"
+            metrics-polling-interval="20"
+            locale-url="/public/locale"
+            route-point-identifier="Default"
+            work-flow-type=""
+            lease-time="24"
+            priority="5"
+            language="English"
+            service="{{ antennaWebchat.service }}"
+            page-name="Apply for a Divorce - Petitioner">
+    </web-chat>
+    <button class="chat-button">Talk to an Agent</button>
+{% endif %}
+
+<p class="govuk-heading-s govuk-!-margin-bottom-1">{{ common.emailTitle | safe }}</p>
+<p class="govuk-body">{{ common.emailIfProblems | safe }}<br>{{ common.responseTime }}</p>
+
+<p class="govuk-heading-s govuk-!-margin-bottom-1">{{ common.phoneTitle | safe }}</p>
+<p class="govuk-body">{{ common.phoneToCallIfProblems | safe }}</p>

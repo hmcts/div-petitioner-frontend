@@ -38,7 +38,7 @@
       message.innerHTML = '';
       button.classList.remove('hidden');
     } else {
-      message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
+     // message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
       button.classList.add('hidden');
     }
   });

@@ -9,8 +9,8 @@
           "yes": "Yes",
           "no": "No",
           "marriageBrokenDownNo": "The only legal ground for divorce in England and Wales is that your marriage has broken down irretrievably.",
-          "cookie": "This service uses cookies to make the site simpler.",
-          "cookieLink": "Find out more about cookies",
+          "cookie": "We use some essential cookies to make this service work.",
+          "cookieLink": "View cookie",
           "warning": "Warning"
         },
         "errors": {
@@ -28,8 +28,8 @@
           "yes": "Do",
           "no": "Naddo",
           "marriageBrokenDownNo": "Yr unig reswm cyfreithiol dros gael ysgariad yng Nghymru a Lloegr yw bod y briodas wedi chwalu’n anadferadwy.",
-          "cookie": "Mae’r gwasanaeth hwn yn defnyddio cwcis i wneud y safle hwn yn symlach i’w ddefnyddio.",
-          "cookieLink": "Mwy o wybodaeth am gwcis",
+          "cookie": "We use some essential cookies to make this service work.",
+          "cookieLink": "View cookie",
           "warning": "Rhybudd"
         },
         "errors": {

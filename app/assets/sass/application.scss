@@ -24,6 +24,7 @@
 @import 'progress';
 @import 'phase-banner';
 @import 'organisation-search';
+@import 'cookies';
 @import 'gov-uk-frontend-toolkit-backward-compatable';
 @import 'web-chat';
 
@@ -243,16 +244,6 @@ input.link{
   border: none;
   padding: 0;
   cursor: pointer;
-}
-
-#global-cookie-message {
-  width: 100%;
-  background-color: #d5e8f3;
-  padding: 10px;
-
-  p {
-    margin: 0 !important;
-  }
 }
 
 .govuk-related-items {

@@ -173,8 +173,6 @@
 {% endmacro %}
 
 {% macro checkBoxCustom(id, name, field, value, label, title, dataTarget = '', arialabelledBy) %}
-
-
     <div class="govuk-checkboxes__item" data-target="{{ dataTarget }}">
       <input id="{{ id }}"
              type="checkbox"
@@ -191,7 +189,6 @@
       <label class="govuk-label govuk-checkboxes__label" for="{{ id }}">{{ label | safe }}</label>
       {% if title %}{{ title | safe }}<br> {% endif %}
     </div>
-
 {% endmacro %}
 
 {% macro inputTextLabel(id, name, content, field) %}

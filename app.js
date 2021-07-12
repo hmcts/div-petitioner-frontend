@@ -135,7 +135,6 @@ exports.init = listenForConnections => {
     `${__dirname}/node_modules/@hmcts/frontend/components`
   ]);
 
-
   const isDev = app.get('env') === 'development';
 
   expressNunjucks(app, {
@@ -260,7 +259,7 @@ exports.init = listenForConnections => {
     });
   }
 
-  app.get('/cookie', i18nTemplate('cookie', (view, req, res) => {
+  app.get('/cookies', i18nTemplate('cookie', (view, req, res) => {
     res.render(view, {});
   }));
 

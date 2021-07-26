@@ -1,9 +1,4 @@
-{% if features.webchat and session.language == "en" %}
-    <p class="govuk-heading-s govuk-!-margin-bottom-1" id="ctsc-web-chat-header">{{ common.webChatTitle | safe }}</p>
-    <div id="ctsc-web-chat"></div>
-{% endif %}
-
-{% if features.antennaWebchat and session.language == "en" %}
+{% if session.language == "en" %}
     <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
     <p class="govuk-body" id="metrics"></p>
     <web-chat

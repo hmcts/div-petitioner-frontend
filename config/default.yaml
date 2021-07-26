@@ -55,12 +55,6 @@ services:
     health: 'http://localhost:4009/health'
   prdClient:
     baseUrl:
-  webchat:
-    chatId: 3833071605d5d4518036a09.30917386
-    tenant: aG1jdHNzdGFnaW5nMDE
-    buttonNoAgents: 7732814745cac6f4603c4d1.53357933
-    buttonAgentsBusy: 2042157415cc19c95669039.65793052
-    buttonServiceClosed: 20199488815cc1a89e0861d5.73103009
   antennaWebchat:
     url: 'webchat.training.ctsc.hmcts.net'
     service: 'Testing'
@@ -112,8 +106,6 @@ features:
   ignoreSessionValidation: false
   browserSupport: false
   strategicPay: false
-  webchat: false
-  antennaWebchat: true
   antennaWebchatUserAttribute: false
 
 idamArgs:

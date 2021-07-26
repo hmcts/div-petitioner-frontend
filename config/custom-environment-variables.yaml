@@ -94,6 +94,7 @@ features:
   strategicPay: FEATURE_STRATEGIC_PAY
   webchat: FEATURE_WEBCHAT
   antennaWebchat: FEATURE_ANTENNA_WEBCHAT
+  antennaWebchatUserAttribute: FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

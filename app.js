@@ -147,7 +147,8 @@ exports.init = listenForConnections => {
     globals: {
       webchat: CONF.services.webchat,
       antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
-      features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
+      features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat),
+        antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute) }
     }
   });
 

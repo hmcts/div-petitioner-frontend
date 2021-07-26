@@ -26,7 +26,10 @@
                 priority="5"
                 language="English"
                 service="{{ antennaWebchat.service }}"
-                page-name="Apply for a Divorce - Petitioner">
+                page-name="Apply for a Divorce - Petitioner"
+                {% if features.antennaWebchatNewApi %}
+                User="Chat"
+                {% endif %}>
         </web-chat>
     </div>
     <!-- Javascript -->

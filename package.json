@@ -109,7 +109,7 @@
     "stryker": "^0.35.1",
     "superagent": "5.2.1",
     "superagent-proxy": "^2.1.0",
-    "tar": "^6.1.1",
+    "tar": ">=6.1.1",
     "tmp": "^0.0.33",
     "uuid": "^3.0.1",
     "webpack": "2.2.1",
@@ -202,7 +202,8 @@
     "ws": "^7.4.6",
     "glob-parent": "^5.1.2",
     "dns-packet": "^5.2.4",
-    "normalize-url": "^6.0.1"
+    "normalize-url": "^6.0.1",
+    "tar": ">=6.1.1"
   },
   "nyc": {
     "report-dir": "coverage",

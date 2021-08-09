@@ -109,7 +109,7 @@
     "stryker": "^0.35.1",
     "superagent": "5.2.1",
     "superagent-proxy": "^2.1.0",
-    "tar": "^3.2.3",
+    "tar": "^6.1.1",
     "tmp": "^0.0.33",
     "uuid": "^3.0.1",
     "webpack": "2.2.1",

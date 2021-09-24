@@ -56,7 +56,7 @@ function onGovPay(I) {
   I.wait(3);
   I.waitForText('Enter card details', 20);
   I.waitInUrl('www.payments.service.gov.uk/card_details');
-  I.see('£550.00');
+  I.see('£592.00');
 }
 
 module.exports = { payOnGovPay, payOnGovPayFailure, cancelOnGovPay };

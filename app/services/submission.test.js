@@ -120,7 +120,7 @@ describe(modulePath, () => {
         const featureTest = featureToggleConfig
           .when('fullPaymentEventDataSubmission', true, generatePaymentEventData, responsePayment => {
             // Assert.
-            const ammountFromMock = 55000;
+            const ammountFromMock = 59200;
             const output = underTest
               .generatePaymentEventData(session, responsePayment);
             expect(output.payment).to.have.property('PaymentChannel', 'online');

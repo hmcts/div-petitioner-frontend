@@ -67,7 +67,7 @@ describe(modulePath, () => {
   describe('New Application - success', () => {
     it('renders the content from the content file', done => {
       const excludeKeys = [ 'explanation' ];
-      const dataContent = { feeToBePaid: '550' };
+      const dataContent = { feeToBePaid: '592' };
       testContent(
         done,
         agent,

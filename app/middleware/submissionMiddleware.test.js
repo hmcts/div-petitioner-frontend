@@ -167,7 +167,7 @@ describe(modulePath, () => {
       beforeEach(() => {
         query = sinon.stub().resolves({
           id: '1',
-          amount: 55000,
+          amount: 59200,
           status: 'Success',
           reference: 'some-reference',
           external_reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -199,7 +199,7 @@ describe(modulePath, () => {
       beforeEach(() => {
         query = sinon.stub().resolves({
           id: '1',
-          amount: 55000,
+          amount: 59200,
           status: 'Failed',
           reference: 'some-reference',
           external_reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -231,7 +231,7 @@ describe(modulePath, () => {
       beforeEach(() => {
         query = sinon.stub().resolves({
           id: '1',
-          amount: 55000,
+          amount: 59200,
           status: 'Success',
           reference: 'some-reference',
           external_reference: 'a65-f836-4f61-a628-727199ef6c20',

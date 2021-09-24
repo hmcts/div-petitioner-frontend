@@ -8,7 +8,7 @@ module.exports = {
     return new Promise(resolve => {
       resolve({
         id: '1',
-        amount: 550,
+        amount: 592,
         status: 'created',
         external_reference: '123',
         reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -32,7 +32,7 @@ module.exports = {
     return new Promise(resolve => {
       resolve({
         id: '1',
-        amount: 550,
+        amount: 592,
         status: outcome === true ? 'success' : 'failed',
         reference: 'a65-f836-4f61-a628-727199ef6c20',
         date_created: 1519116121853,
@@ -56,7 +56,7 @@ module.exports = {
         {
           payments: [
             {
-              amount: 550,
+              amount: 592,
               date_created: '2019-09-10T14:11:47.125+0000',
               date_updated: '2019-09-10T14:17:15.605+0000',
               currency: 'GBP',
@@ -76,7 +76,7 @@ module.exports = {
                   code: 'FEE0002',
                   version: '4',
                   volume: 1,
-                  calculated_amount: 550,
+                  calculated_amount: 592,
                   memo_line: 'GOV - App for divorce/nullity of marriage or CP',
                   natural_account_code: '4481102159',
                   ccd_case_number: '1568124197377724',

@@ -1,5 +1,5 @@
 const content = require('app/steps/pay/pay-online-only/content.json').resources.en.translation.content;
-const feeContent = content.applicationFee.replace('{{ feeToBePaid }}', '550');
+const feeContent = content.applicationFee.replace('{{ feeToBePaid }}', '592');
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 

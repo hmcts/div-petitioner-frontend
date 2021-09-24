@@ -18,7 +18,7 @@ describe(modulePath, () => {
   };
   const querySuccess = {
     id: '1',
-    amount: 55000,
+    amount: 59200,
     status: 'Success',
     reference: 'some-reference',
     external_reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -28,7 +28,7 @@ describe(modulePath, () => {
   const queryAllPaymentsSuccess = {
     payments: [
       {
-        amount: 55000,
+        amount: 59200,
         status: 'Success',
         payment_reference: 'some-reference'
       }

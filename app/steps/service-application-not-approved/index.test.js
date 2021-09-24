@@ -51,7 +51,7 @@ describe(modulePath, () => {
 
   describe('Template Rendering', () => {
     const dataContent = {
-      feeToResendApplication: '50',
+      feeToResendApplication: '53',
       feeToEnforce: '45'
     };
 

@@ -1,7 +1,6 @@
 const feeTypes = require('app/services/feeTypes');
 
 const mockFeeResponse = (feeType = '') => {
-
   if (feeType === feeTypes.amendFee) {
     return {
       feeCode: 'FEE0269',

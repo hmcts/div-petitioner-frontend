@@ -87,6 +87,7 @@ features:
   browserSupport: BROWSER_GROUP
   strategicPay: FEATURE_STRATEGIC_PAY
   antennaWebchatUserAttribute: FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE
+  newFees: FEATURE_NEW_FEES
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

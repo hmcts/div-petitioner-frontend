@@ -6,6 +6,11 @@ const modulePath = 'app/services/payment';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
+
+const newFee = 59200;
+const oldFee = 55000;
+const applicationFee = parseBool(CONF.features.newFees) ? newFee : oldFee;
 
 describe(modulePath, () => {
   const createSuccess = {
@@ -18,7 +23,7 @@ describe(modulePath, () => {
   };
   const querySuccess = {
     id: '1',
-    amount: 59200,
+    amount: applicationFee,
     status: 'Success',
     reference: 'some-reference',
     external_reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -28,7 +33,7 @@ describe(modulePath, () => {
   const queryAllPaymentsSuccess = {
     payments: [
       {
-        amount: 59200,
+        amount: applicationFee,
         status: 'Success',
         payment_reference: 'some-reference'
       }

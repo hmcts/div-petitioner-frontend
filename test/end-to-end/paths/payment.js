@@ -1,5 +1,8 @@
 const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
-const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', '£592');
+const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
+const applicationFee = parseBool(CONF.features.newFees) ? '£592' : '£550';
+const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', applicationFee);
 const language = 'en';
 
 Feature('Payment method @functional').retry(3);

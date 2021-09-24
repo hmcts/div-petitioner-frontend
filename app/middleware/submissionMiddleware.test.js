@@ -7,6 +7,8 @@ const underTest = require(modulePath);
 const serviceToken = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
+const config = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 const TEST_CASE_ID = 'test.case.id';
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
@@ -148,6 +150,11 @@ describe(modulePath, () => {
     let getToken = null;
     let query = null;
     let update = null;
+    const newFee = 59200;
+    const oldFee = 55000;
+    const applicationFee = parseBool(config.features.newFees) ? newFee : oldFee;
+
+
     beforeEach(() => {
       getToken = sinon.stub().resolves('token');
       sinon.stub(serviceToken, 'setup').returns({ getToken });
@@ -167,7 +174,7 @@ describe(modulePath, () => {
       beforeEach(() => {
         query = sinon.stub().resolves({
           id: '1',
-          amount: 59200,
+          amount: applicationFee,
           status: 'Success',
           reference: 'some-reference',
           external_reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -199,7 +206,7 @@ describe(modulePath, () => {
       beforeEach(() => {
         query = sinon.stub().resolves({
           id: '1',
-          amount: 59200,
+          amount: applicationFee,
           status: 'Failed',
           reference: 'some-reference',
           external_reference: 'a65-f836-4f61-a628-727199ef6c20',
@@ -231,7 +238,7 @@ describe(modulePath, () => {
       beforeEach(() => {
         query = sinon.stub().resolves({
           id: '1',
-          amount: 59200,
+          amount: applicationFee,
           status: 'Success',
           reference: 'some-reference',
           external_reference: 'a65-f836-4f61-a628-727199ef6c20',

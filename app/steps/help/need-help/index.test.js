@@ -12,6 +12,10 @@ const modulePath = 'app/steps/help/need-help';
 
 const { withSession } = require('test/util/setup');
 const content = require(`${modulePath}/content`);
+const CONF = require('config');
+const parseBool = require('app/core/utils/parseBool');
+
+const applicationFee = parseBool(CONF.features.newFees) ? '592' : '550';
 
 let s = {};
 let agent = {};
@@ -67,7 +71,7 @@ describe(modulePath, () => {
   describe('New Application - success', () => {
     it('renders the content from the content file', done => {
       const excludeKeys = [ 'explanation' ];
-      const dataContent = { feeToBePaid: '592' };
+      const dataContent = { feeToBePaid: applicationFee };
       testContent(
         done,
         agent,

@@ -80,7 +80,7 @@ commonProps:
     feeCode: 'FEE0002'
     version: 4
     amount: 550.00
-    newAmount: 592.00
+    newAmount: 593.00
   amendFee:
     feeCode: 'FEE0269'
     version: 1

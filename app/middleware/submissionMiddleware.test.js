@@ -150,7 +150,7 @@ describe(modulePath, () => {
     let getToken = null;
     let query = null;
     let update = null;
-    const newFee = 59200;
+    const newFee = 59300;
     const oldFee = 55000;
     const applicationFee = parseBool(config.features.newFees) ? newFee : oldFee;
 

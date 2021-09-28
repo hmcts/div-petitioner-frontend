@@ -15,7 +15,7 @@ const content = require(`${modulePath}/content`);
 const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
 
-const applicationFee = parseBool(CONF.features.newFees) ? '592' : '550';
+const applicationFee = parseBool(CONF.features.newFees) ? '593' : '550';
 
 let s = {};
 let agent = {};

@@ -4,7 +4,7 @@ const cardExpiryYear = moment().add(2, 'years').format('Y');
 
 const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
-const applicationFee = parseBool(CONF.features.newFees) ? '£592.00' : '£550.00';
+const applicationFee = parseBool(CONF.features.newFees) ? '£593.00' : '£550.00';
 
 function payOnGovPay() {
 

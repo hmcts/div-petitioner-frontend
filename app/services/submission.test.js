@@ -128,7 +128,7 @@ describe(modulePath, () => {
             expect(output.payment).to.have.property('PaymentTransactionId', '123');
             expect(output.payment).to.have.property('PaymentReference', 'a65-f836-4f61-a628-727199ef6c20');
             expect(output.payment).to.have.property('PaymentDate', '20022018');
-            const newFee = 59200;
+            const newFee = 59300;
             const oldFee = 55000;
             expect(output.payment).to.have.property('PaymentAmount', parseBool(CONF.features.newFees) ? newFee : oldFee);
             expect(output.payment).to.have.property('PaymentStatus', 'created');

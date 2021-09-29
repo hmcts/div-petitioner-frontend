@@ -24,6 +24,7 @@ nodejs:
         # Features
         FEATURE_IDAM: "true"
         FEATURE_STRATEGIC_PAY: "true"
+        FEATURE_NEW_FEES: "false"
 
         CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/draftsapi/version/1"
         CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"

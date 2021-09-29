@@ -6,6 +6,7 @@ const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { getDownloadableFiles, getCurrentContent } = require('app/core/utils/viewHelper');
+const parseBool = require('app/core/utils/parseBool');
 
 const serviceApplicationFileTypeMap = {
   bailiff: 'generalOrder',
@@ -70,7 +71,12 @@ module.exports = class ServiceApplicationNotApproved extends Step {
   }
 
   getFeeToResendApplication() {
-    return config.commonProps.appWithoutNoticeFee.amount;
+    if (parseBool(config.features.newFees)) {
+      return config.commonProps.appWithoutNoticeFee.newAmount;
+    }
+    else {
+      return config.commonProps.appWithoutNoticeFee.amount;
+    }
   }
 
   getEnforcementFee() {

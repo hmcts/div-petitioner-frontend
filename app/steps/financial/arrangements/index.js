@@ -1,5 +1,7 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const config = require('config');
+const parseBool = require('app/core/utils/parseBool');
 
 module.exports = class FinancialArrangements extends ValidationStep {
   get url() {
@@ -45,11 +47,18 @@ module.exports = class FinancialArrangements extends ValidationStep {
     return [isValid, errors];
   }
 
+  interceptor(ctx, session) {
+    ctx.financialOrderApplicationFee = parseBool(config.features.newFees) ? config.commonProps.financialOrderApplicationFeeNew : config.commonProps.financialOrderApplicationOldFee;
+    ctx.appWithoutNoticeFeeToBePaid = parseBool(config.features.newFees) ? config.commonProps.appWithoutNoticeFee.newAmount : config.commonProps.appWithoutNoticeFee.amount;
+    return super.interceptor(ctx, session);
+  }
+
   action(ctx, session) {
     if (ctx.financialOrder === 'No') {
       delete ctx.financialOrderFor;
       delete session.financialOrderFor;
     }
+
     return [ctx, session];
   }
 };

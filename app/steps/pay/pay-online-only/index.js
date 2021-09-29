@@ -18,6 +18,7 @@ const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 const parseBool = require('app/core/utils/parseBool');
 
+
 const feeConfigPropNames = {
   applicationFee: 'applicationFee',
   amendFee: 'amendFee'
@@ -55,7 +56,8 @@ module.exports = class PayOnline extends Step {
 
   interceptor(ctx, session) {
     if (!session.feeToBePaid) {
-      ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : CONF.commonProps.applicationFee.amount;
+      const applicationFee = parseBool(CONF.features.newFees) ? CONF.commonProps.applicationFee.newAmount : CONF.commonProps.applicationFee.amount;
+      ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : applicationFee;
     }
     return ctx;
   }

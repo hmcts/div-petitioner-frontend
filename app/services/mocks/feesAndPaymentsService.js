@@ -17,14 +17,16 @@ const mockFeeResponse = (feeType = '') => {
     return {
       feeCode: 'FEE0228',
       version: 1,
-      amount: 50
+      amount: 50,
+      newAmount: 53
     };
   }
 
   return {
     feeCode: 'FEE0002',
     version: 4,
-    amount: 550
+    amount: 550,
+    newAmount: 593
   };
 };
 

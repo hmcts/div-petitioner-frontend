@@ -20,6 +20,10 @@ const modulePath = 'app/steps/pay/pay-online-only';
 
 const content = require(`${modulePath}/content`);
 
+const parseBool = require('app/core/utils/parseBool');
+
+const applicationFee = parseBool(CONF.features.newFees) ? '593' : '550';
+
 let s = {};
 let agent = {};
 let underTest = {};
@@ -66,7 +70,7 @@ describe(modulePath, () => {
   describe('New Application', () => {
     it('renders the content from the content file', done => {
       const excludeKeys = ['paymentDescription'];
-      const dataContent = { feeToBePaid: '550' };
+      const dataContent = { feeToBePaid: applicationFee };
       testContent(done, agent, underTest, content, dataContent, excludeKeys);
     });
   });

@@ -74,9 +74,8 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     if (parseBool(config.features.newFees)) {
       return config.commonProps.appWithoutNoticeFee.newAmount;
     }
-    else {
-      return config.commonProps.appWithoutNoticeFee.amount;
-    }
+
+    return config.commonProps.appWithoutNoticeFee.amount;
   }
 
   getEnforcementFee() {

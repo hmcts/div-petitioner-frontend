@@ -13,6 +13,7 @@ function selectDivorceType(language = 'en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(husbandContent.husband);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

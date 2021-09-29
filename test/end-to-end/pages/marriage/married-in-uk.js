@@ -14,6 +14,7 @@ function selectMarriedInUk(language = 'en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(stepContent.yes);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

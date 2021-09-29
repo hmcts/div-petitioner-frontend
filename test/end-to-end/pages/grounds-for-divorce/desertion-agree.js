@@ -10,6 +10,7 @@ function enterDesertionAgreement(language ='en') {
 
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/desertion/agree');
   I.checkOption(content.yes);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

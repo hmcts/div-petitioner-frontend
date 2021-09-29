@@ -8,6 +8,7 @@ function enterFinancialAdvice(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 module.exports = { enterFinancialAdvice };

@@ -37,6 +37,7 @@ function setHabitualResidence(I, residenceFor, language) {
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click('#jurisdictionPetitionerResidence_' + residenceFor.petitioner);
   I.retry(2).click('#jurisdictionRespondentResidence_' + residenceFor.respondent);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

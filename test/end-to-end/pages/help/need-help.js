@@ -13,6 +13,7 @@ function selectHelpWithFees(language ='en', needHelp = true) {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(needHelp ? needHelpContent.yes : needHelpContent.no);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

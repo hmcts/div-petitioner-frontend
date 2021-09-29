@@ -9,6 +9,7 @@ function readFinancialRemedy(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

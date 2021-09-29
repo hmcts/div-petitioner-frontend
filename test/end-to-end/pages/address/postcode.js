@@ -19,6 +19,7 @@ function enterAddressUsingPostcode(language = 'en', stepUrl, testAddressIndex) {
   I.selectOption('#selectAddressIndex', testAddressIndex);
   I.wait(4);
   I.waitForElement('#addressLine0');
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

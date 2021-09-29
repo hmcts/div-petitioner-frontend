@@ -14,6 +14,7 @@ function selectRespondentConsentObtained(language = 'en') {
   } else {
     I.checkOption(contentCy.yes.label);
   }
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

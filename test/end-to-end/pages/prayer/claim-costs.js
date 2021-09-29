@@ -12,6 +12,7 @@ function enterClaimCosts(language ='en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.checkOption(claimCosts.yes);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 
@@ -25,6 +26,7 @@ function enterClaimCostsCorrespondent(language ='en') {
 
   I.checkOption(claimCosts.yes);
   I.checkOption( '#correspondent');
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 
 }

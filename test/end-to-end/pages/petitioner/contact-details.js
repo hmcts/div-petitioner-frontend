@@ -23,6 +23,7 @@ function enterPetitionerContactDetails(language = 'en') {
   }
   I.retry(2).fillField('petitionerPhoneNumber', '01234567890');
   I.retry(2).checkOption(contactDetails.petitionerConsent);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

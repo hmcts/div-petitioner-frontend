@@ -13,6 +13,7 @@ function chooseJurisdictionInterstitialContinue(language = 'en') {
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.retry(2).click(interstitialContent.confident);
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

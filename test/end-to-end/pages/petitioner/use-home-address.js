@@ -20,6 +20,7 @@ function enterCorrespondence(language = 'en', addressObj) {
   }
   I.retry(2).click(homeAddress.yes);
   I.scrollPageToBottom();
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 

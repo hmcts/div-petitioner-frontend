@@ -16,6 +16,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
   }
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 }
 
@@ -48,6 +49,7 @@ function withoutUploadFile(language = 'en') {
   if (language === 'en') {
     I.see('No files uploaded');
   }
+  I.waitForContinueButtonEnabled();
   I.click(commonContent.continue);
 
 }

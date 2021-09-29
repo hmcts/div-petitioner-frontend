@@ -110,7 +110,7 @@ features:
   browserSupport: false
   strategicPay: false
   antennaWebchatUserAttribute: false
-  newFees: false
+  newFees: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

@@ -72,8 +72,8 @@ function signOut() {
 function waitForContinueButtonEnabled() {
   let I = this;
 
-  I.waitForElement('button[type = "submit"]:not(:disabled)', '90');
-  I.scrollTo('button[type = "submit"]:not(:disabled)');
+  I.waitForElement('input[type = "submit"]:not(:disabled)', '90');
+  I.scrollTo('input[type = "submit"]:not(:disabled)');
 }
 
 module.exports = {

@@ -2,14 +2,14 @@ const language = 'en';
 
 Feature('Payment method @functional').retry(3);
 
-Scenario('Fee displays on /pay/help/need-help page', function (I) {
+xScenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.seeInCurrentUrl('/screening-questions/language-preference');
   I.amOnLoadedPage('/pay/help/need-help');
 });
 
-Scenario('Card payment online', async function (I) {
+xScenario('Card payment online', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(language,false);
@@ -22,7 +22,7 @@ Scenario('Card payment online', async function (I) {
   I.amDoneAndSubmitted();
 });
 
-Scenario('Card payment online failure', async function (I) {
+xScenario('Card payment online failure', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(language,false);
@@ -41,7 +41,7 @@ Scenario('Card payment online failure', async function (I) {
   I.amDoneAndSubmitted();
 });
 
-Scenario('Card payment online cancellation with retry', async function (I) {
+xScenario('Card payment online cancellation with retry', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(language, false);

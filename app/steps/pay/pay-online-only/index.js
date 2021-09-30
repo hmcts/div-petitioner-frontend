@@ -106,7 +106,7 @@ module.exports = class PayOnline extends Step {
 
     // Amount is specified in pound sterling.
     const amount = parseInt(
-      parseBool(CONF.features.newFees) ? CONF.commonProps[feeType(req)].newAmount : CONF.commonProps[feeType(req)].newAmount
+      parseBool(CONF.features.newFees) ? CONF.commonProps[feeType(req)].newAmount : CONF.commonProps[feeType(req)].amount
     );
     const hostParts = req.get('host').split(':');
     // if hostParts is a length of 2, it is a valid hostname:port url

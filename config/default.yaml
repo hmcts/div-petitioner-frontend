@@ -92,7 +92,7 @@ commonProps:
     feeCode: 'FEE0228'
     version: 1
     amount: 53.00
-  financialOrderApplicationFeeNew: 275
+  financialOrderApplicationFee: 275
   smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
   courtPhoneNumberEn: '0000 111 2220'

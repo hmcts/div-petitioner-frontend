@@ -1,15 +1,20 @@
+const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
+const applicationFee = '£593';
+const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', applicationFee);
 const language = 'en';
 
 Feature('Payment method @functional').retry(3);
 
-xScenario('Fee displays on /pay/help/need-help page', function (I) {
+Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.seeInCurrentUrl('/screening-questions/language-preference');
   I.amOnLoadedPage('/pay/help/need-help');
+  I.waitForText(payHelpContent.question);
+  I.see(payHelpFeeContent);
 });
 
-xScenario('Card payment online', async function (I) {
+Scenario('Card payment online', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(language,false);
@@ -22,7 +27,7 @@ xScenario('Card payment online', async function (I) {
   I.amDoneAndSubmitted();
 });
 
-xScenario('Card payment online failure', async function (I) {
+Scenario('Card payment online failure', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(language,false);
@@ -41,7 +46,7 @@ xScenario('Card payment online failure', async function (I) {
   I.amDoneAndSubmitted();
 });
 
-xScenario('Card payment online cancellation with retry', async function (I) {
+Scenario('Card payment online cancellation with retry', async function (I) {
   I.startApplicationWith('basicDivorceSessionData');
   I.amOnLoadedPage('/pay/help/need-help');
   I.selectHelpWithFees(language, false);

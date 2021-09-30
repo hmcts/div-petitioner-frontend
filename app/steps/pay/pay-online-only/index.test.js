@@ -20,9 +20,7 @@ const modulePath = 'app/steps/pay/pay-online-only';
 
 const content = require(`${modulePath}/content`);
 
-const parseBool = require('app/core/utils/parseBool');
-
-const applicationFee = parseBool(CONF.features.newFees) ? '593' : '550';
+const applicationFee = '593';
 
 let s = {};
 let agent = {};
@@ -162,8 +160,7 @@ describe(modulePath, () => {
 
       const code = CONF.commonProps.amendFee.feeCode;
       const version = CONF.commonProps.amendFee.version;
-      const amendFeeAmount = parseBool(CONF.features.newFees) ? CONF.commonProps.amendFee.newAmount : CONF.commonProps.amendFee.amount;
-      const amount = parseInt(amendFeeAmount);
+      const amount = parseInt(CONF.commonProps.amendFee.amount);
 
       beforeEach(done => {
         session = {
@@ -228,8 +225,7 @@ describe(modulePath, () => {
 
       const code = CONF.commonProps.applicationFee.feeCode;
       const version = CONF.commonProps.applicationFee.version;
-      const feeAmount = parseBool(CONF.features.newFees) ? '593' : '550';
-      const amount = parseInt(feeAmount);
+      const amount = parseInt(applicationFee);
 
       beforeEach(done => {
         session = {

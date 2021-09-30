@@ -79,24 +79,19 @@ commonProps:
   applicationFee:
     feeCode: 'FEE0002'
     version: 4
-    amount: 550.00
-    newAmount: 593.00
+    amount: 593.00
   amendFee:
     feeCode: 'FEE0269'
     version: 1
     amount: 95.00
-    newAmount: 95.00
   enforcementFee:
     feeCode: 'FEE0448'
     version: 1
     amount: 110.00
-    newAmount: 110.00
   appWithoutNoticeFee:
     feeCode: 'FEE0228'
     version: 1
-    amount: 50.00
-    newAmount: 53.00
-  financialOrderApplicationOldFee: 255
+    amount: 53.00
   financialOrderApplicationFeeNew: 275
   smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'

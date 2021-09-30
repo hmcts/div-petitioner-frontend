@@ -5,30 +5,26 @@ const mockFeeResponse = (feeType = '') => {
     return {
       feeCode: 'FEE0269',
       version: 1,
-      amount: 95,
-      newAmount: 95
+      amount: 95
     };
   } else if (feeType === feeTypes.enforcementFee) {
     return {
       feeCode: 'FEE0448',
       version: 1,
-      amount: 110,
-      newAmount: 110
+      amount: 110
     };
   } else if (feeType === feeTypes.appWithoutNoticeFee) {
     return {
       feeCode: 'FEE0228',
       version: 1,
-      amount: 50,
-      newAmount: 53
+      amount: 53
     };
   }
 
   return {
     feeCode: 'FEE0002',
     version: 4,
-    amount: 550,
-    newAmount: 593
+    amount: 593
   };
 };
 

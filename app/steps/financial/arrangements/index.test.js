@@ -10,10 +10,9 @@ const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
 const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
-const finOrderFee = parseBool(config.features.newFees) ? config.commonProps.financialOrderApplicationFeeNew : config.commonProps.financialOrderApplicationOldFee;
-const appWithoutNoticeFee = parseBool(config.features.newFees) ? config.commonProps.appWithoutNoticeFee.newAmount : config.commonProps.appWithoutNoticeFee.amount;
+const finOrderFee = config.commonProps.financialOrderApplicationFee;
+const appWithoutNoticeFee = config.commonProps.appWithoutNoticeFee.amount;
 
 
 const modulePath = 'app/steps/financial/arrangements';

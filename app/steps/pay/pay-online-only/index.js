@@ -56,7 +56,7 @@ module.exports = class PayOnline extends Step {
 
   interceptor(ctx, session) {
     if (!session.feeToBePaid) {
-      const applicationFee = parseBool(CONF.features.newFees) ? CONF.commonProps.applicationFee.newAmount : CONF.commonProps.applicationFee.amount;
+      const applicationFee = CONF.commonProps.applicationFee.amount;
       ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : applicationFee;
     }
     return ctx;
@@ -101,7 +101,7 @@ module.exports = class PayOnline extends Step {
 
     const feeCode = CONF.commonProps[feeType(req)].feeCode;
     const feeVersion = CONF.commonProps[feeType(req)].version;
-    const feeAmount = parseBool(CONF.features.newFees) ? CONF.commonProps[feeType(req)].newAmount : CONF.commonProps[feeType(req)].amount;
+    const feeAmount = CONF.commonProps[feeType(req)].amount;
     const feeDescription = this.content.resources[req.session.language].translation.content.paymentDescription;
     logger.infoWithReq(req, 'payments_description', `Payment description (${req.session.language}): `, feeDescription);
 

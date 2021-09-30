@@ -1,10 +1,5 @@
-const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
-const newFee = 593;
-const oldFee = 550;
-const applicationFee = parseBool(config.features.newFees) ? newFee : oldFee;
-
+const applicationFee = 593;
 
 module.exports = {
   /**

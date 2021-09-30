@@ -85,10 +85,12 @@ commonProps:
     feeCode: 'FEE0269'
     version: 1
     amount: 95.00
+    newAmount: 95.00
   enforcementFee:
     feeCode: 'FEE0448'
     version: 1
     amount: 110.00
+    newAmount: 110.00
   appWithoutNoticeFee:
     feeCode: 'FEE0228'
     version: 1
@@ -110,7 +112,7 @@ features:
   browserSupport: false
   strategicPay: false
   antennaWebchatUserAttribute: false
-  newFees: false
+  newFees: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

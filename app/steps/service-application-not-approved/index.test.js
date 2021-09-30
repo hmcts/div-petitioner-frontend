@@ -57,7 +57,7 @@ describe(modulePath, () => {
   describe('Template Rendering', () => {
     const dataContent = {
       feeToResendApplication,
-      feeToEnforce: '45'
+      feeToEnforce: '110'
     };
 
     describe('Deemed service template', () => {

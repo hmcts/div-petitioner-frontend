@@ -90,7 +90,7 @@ commonProps:
     feeCode: 'FEE0448'
     version: 1
     amount: 110.00
-    ewAmount: 110.00
+    newAmount: 110.00
   appWithoutNoticeFee:
     feeCode: 'FEE0228'
     version: 1

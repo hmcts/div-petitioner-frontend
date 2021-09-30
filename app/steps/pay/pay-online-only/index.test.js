@@ -162,9 +162,8 @@ describe(modulePath, () => {
 
       const code = CONF.commonProps.amendFee.feeCode;
       const version = CONF.commonProps.amendFee.version;
-      const amount = parseInt(
-        CONF.commonProps.amendFee.amount
-      );
+      const amendFeeAmount = parseBool(CONF.features.newFees) ? CONF.commonProps.amendFee.newAmount : CONF.commonProps.amendFee.amount;
+      const amount = parseInt(amendFeeAmount);
 
       beforeEach(done => {
         session = {

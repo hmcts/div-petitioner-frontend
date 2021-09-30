@@ -12,7 +12,6 @@ Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.startApplication();
   I.seeInCurrentUrl('/screening-questions/language-preference');
   I.amOnLoadedPage('/pay/help/need-help');
-  I.waitForText(payHelpContent.question);
   I.see(payHelpFeeContent);
 });
 

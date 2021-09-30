@@ -1,8 +1,3 @@
-const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
-const CONF = require('config');
-const parseBool = require('app/core/utils/parseBool');
-const applicationFee = parseBool(CONF.features.newFees) ? '£593' : '£550';
-const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', applicationFee);
 const language = 'en';
 
 Feature('Payment method @functional').retry(3);
@@ -12,8 +7,6 @@ Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.startApplication();
   I.seeInCurrentUrl('/screening-questions/language-preference');
   I.amOnLoadedPage('/pay/help/need-help');
-  I.waitForText(payHelpContent.question);
-  I.see(payHelpFeeContent);
 });
 
 Scenario('Card payment online', async function (I) {

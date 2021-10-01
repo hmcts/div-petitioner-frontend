@@ -8,8 +8,6 @@ const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/transformationServiceClient');
 const featureToggleConfig = require('test/util/featureToggles');
 const mockedPaymentClient = require('app/services/mocks/payment');
-const parseBool = require('app/core/utils/parseBool');
-
 
 describe(modulePath, () => {
   const submitSuccess = {
@@ -128,9 +126,8 @@ describe(modulePath, () => {
             expect(output.payment).to.have.property('PaymentTransactionId', '123');
             expect(output.payment).to.have.property('PaymentReference', 'a65-f836-4f61-a628-727199ef6c20');
             expect(output.payment).to.have.property('PaymentDate', '20022018');
-            const newFee = 59300;
-            const oldFee = 55000;
-            expect(output.payment).to.have.property('PaymentAmount', parseBool(CONF.features.newFees) ? newFee : oldFee);
+            const applicationFee = 59300;
+            expect(output.payment).to.have.property('PaymentAmount', applicationFee);
             expect(output.payment).to.have.property('PaymentStatus', 'created');
             expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
             expect(output.payment).to.have.property('PaymentSiteId', 'AA07');

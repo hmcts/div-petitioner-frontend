@@ -110,6 +110,8 @@ Scenario('Desertion without agreement (en)', async function (I) {
   const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
   if (genericErrorPage) {
     I.checkGenericErrorPage(language);
+  } else {
+    I.confirmIWillPayOnline(language);
   }
 
 });

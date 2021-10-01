@@ -7,8 +7,6 @@ const underTest = require(modulePath);
 const serviceToken = require('app/services/serviceToken');
 const paymentService = require('app/services/payment');
 const submissionService = require('app/services/submission');
-const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
 const TEST_CASE_ID = 'test.case.id';
 const APPLICATION_SUBMITTED_PATH = '/application-submitted';
@@ -150,10 +148,7 @@ describe(modulePath, () => {
     let getToken = null;
     let query = null;
     let update = null;
-    const newFee = 59300;
-    const oldFee = 55000;
-    const applicationFee = parseBool(config.features.newFees) ? newFee : oldFee;
-
+    const applicationFee = 59300;
 
     beforeEach(() => {
       getToken = sinon.stub().resolves('token');

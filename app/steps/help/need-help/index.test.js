@@ -12,10 +12,9 @@ const modulePath = 'app/steps/help/need-help';
 
 const { withSession } = require('test/util/setup');
 const content = require(`${modulePath}/content`);
-const CONF = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
-const applicationFee = parseBool(CONF.features.newFees) ? '593' : '550';
+
+const applicationFee = '593';
 
 let s = {};
 let agent = {};

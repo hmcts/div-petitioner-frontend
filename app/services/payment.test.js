@@ -6,11 +6,8 @@ const modulePath = 'app/services/payment';
 const underTest = require(modulePath);
 const mockedClient = require('app/services/mocks/payment');
 const CONF = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
-const newFee = 59300;
-const oldFee = 55000;
-const applicationFee = parseBool(CONF.features.newFees) ? newFee : oldFee;
+const applicationFee = 59300;
 
 describe(modulePath, () => {
   const createSuccess = {

@@ -10,10 +10,8 @@ const modulePath = 'app/steps/done-and-submitted';
 
 const content = require(`${modulePath}/content`);
 const config = require('config');
-const parseBool = require('app/core/utils/parseBool');
 
-const finOrderFee = parseBool(config.features.newFees) ? config.commonProps.financialOrderApplicationFeeNew : config.commonProps.financialOrderApplicationOldFee;
-
+const finOrderFee = config.commonProps.financialOrderApplicationFee;
 
 const contentStrings = content.resources.en.translation.content;
 

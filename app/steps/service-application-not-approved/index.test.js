@@ -12,10 +12,7 @@ const modulePath = 'app/steps/service-application-not-approved';
 
 const content = require(`${modulePath}/content`);
 
-const CONF = require('config');
-const parseBool = require('app/core/utils/parseBool');
-
-const feeToResendApplication = parseBool(CONF.features.newFees) ? '53' : '50';
+const feeToResendApplication = '53';
 
 let appInstance = {};
 let agent = {};

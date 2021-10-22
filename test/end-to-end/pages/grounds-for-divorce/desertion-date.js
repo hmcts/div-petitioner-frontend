@@ -4,9 +4,10 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 const moment = require('moment');
 const CONF = require('config');
+
 const DATE_FORMAT = CONF.dateFormat;
 
-function enterDesertionDate(language ='en') {
+function enterDesertionDate(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
@@ -15,10 +16,9 @@ function enterDesertionDate(language ='en') {
   I.fillField('reasonForDivorceDesertionMonth', mockSession.reasonForDivorceDesertionMonth.toString());
   I.fillField('reasonForDivorceDesertionYear', mockSession.reasonForDivorceDesertionYear.toString());
   I.click(commonContent.continue);
-
 }
 
-function checkDesertionDateOnCYAPage(language ='en') {
+function checkDesertionDateOnCYAPage(language = 'en') {
   const I = this;
   I.seeInCurrentUrl('/check-your-answers');
 

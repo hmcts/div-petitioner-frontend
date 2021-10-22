@@ -2,7 +2,7 @@
 
 const CONF = require('config');
 
-let args = {
+const args = {
   idamApiUrl: CONF.idamArgs.idamApiUrl,
   accountsEndpoint: CONF.idamArgs.idamTestSupportCreateAccountEndpoint,
   testForename: CONF.idamArgs.idamTestForename,
@@ -18,11 +18,11 @@ const getArgs = () => {
   return args;
 };
 
-const setTestEmail = (email) => {
+const setTestEmail = email => {
   testEmail = email;
 };
 
-const setTestPassword = (password) => {
+const setTestPassword = password => {
   testPassword = password;
 };
 

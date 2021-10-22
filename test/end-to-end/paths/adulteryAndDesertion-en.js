@@ -6,8 +6,7 @@ const config = require('config');
 
 Feature('Adultery and Desertion E2E Tests (en) @functional').retry(3);
 
-Scenario('Adultery, with details (en)', async function (I) {
-
+Scenario('Adultery, with details (en)', async I => {
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
   I.selectHelpWithFees(language);
@@ -29,9 +28,9 @@ Scenario('Adultery, with details (en)', async function (I) {
   I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
   I.enterCorrespondence(language);
   I.selectLivingTogetherInSameProperty(language);
-  I.chooseRespondentServiceAddress(language, sendToAddressOption['solicitorAddress']);
+  I.chooseRespondentServiceAddress(language, sendToAddressOption.solicitorAddress);
   I.enterOrganisationUsingLookup(language, '/petitioner-respondent/correspondence/solicitor-search');
-  I.selectReasonForDivorce(language, divorceReason['adulteryHeading']);
+  I.selectReasonForDivorce(language, divorceReason.adulteryHeading);
   I.selectWishToName(language);
   I.enter3rdPartyDetails(language);
   I.enterAddressUsingPostcode(language, '/about-divorce/reason-for-divorce/adultery/co-respondent-address');
@@ -62,12 +61,10 @@ Scenario('Adultery, with details (en)', async function (I) {
   } else {
     I.amDoneAndSubmitted(language);
   }
-
 });
 
 
-Scenario('Desertion without agreement (en)', async function (I) {
-
+Scenario('Desertion without agreement (en)', async I => {
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
   I.selectHelpWithFees(language, false);
@@ -91,7 +88,7 @@ Scenario('Desertion without agreement (en)', async function (I) {
 
   I.chooseRespondentServiceAddress(language);
   I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(language, divorceReason['desertionHeading']);
+  I.selectReasonForDivorce(language, divorceReason.desertionHeading);
   I.enterDesertionAgreement(language);
   I.enterDesertionDate(language);
   I.selectLivingApartTime(language);
@@ -113,7 +110,6 @@ Scenario('Desertion without agreement (en)', async function (I) {
   } else {
     I.confirmIWillPayOnline(language);
   }
-
 });
 
 async function stepsStartApplicationToReadFinancialRemedy(I, language) {

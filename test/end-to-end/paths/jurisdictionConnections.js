@@ -1,7 +1,7 @@
 const language = 'en';
 Feature('New Jurisdiction Journeys @functional').retry(3);
 
-Scenario('Set A & C: Both Habitually Resident', async function (I) {
+Scenario('Set A & C: Both Habitually Resident', async I => {
   await completeLoginPageToSelectMarriedInUk(I);
   I.chooseBothHabituallyResident(language);
   I.chooseJurisdictionInterstitialContinue();
@@ -10,7 +10,7 @@ Scenario('Set A & C: Both Habitually Resident', async function (I) {
   I.checkMyConnectionsAre('A', 'C');
 });
 
-Scenario('Set All: Selected via Last Resort page', async function (I) {
+Scenario('Set All: Selected via Last Resort page', async I => {
   await completeLoginPageToSelectMarriedInUk(I);
   I.chooseRespondentHabituallyResident(language);
   I.chooseJurisdictionInterstitialNeedInfo();
@@ -24,7 +24,7 @@ Scenario('Set All: Selected via Last Resort page', async function (I) {
   I.checkMyConnectionsAre('A', 'B', 'C', 'D', 'E', 'F', 'G');
 });
 
-Scenario('Re-set connections: Not confident at Connection Summary 1st time', async function (I) {
+Scenario('Re-set connections: Not confident at Connection Summary 1st time', async I => {
   await completeLoginPageToSelectMarriedInUk(I);
   I.choosePetitionerHabituallyResident(language);
   I.chooseYesJurisdictionLastTwelveMonths();
@@ -46,7 +46,7 @@ Scenario('Re-set connections: Not confident at Connection Summary 1st time', asy
   I.checkMyConnectionsAre('G');
 });
 
-Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', async function (I) {
+Scenario('Jurisdiction Exit: Petitioner does not have eligible jurisdiction.', async I => {
   await completeLoginPageToSelectMarriedInUk(I);
   I.choosePetitionerHabituallyResident(language);
   I.chooseNoJurisdictionLastTwelveMonths();

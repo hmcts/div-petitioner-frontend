@@ -1,7 +1,6 @@
 const residualJurisdiction = require('app/steps/jurisdiction/residual/content.json').resources.en.translation.content;
 
 function chooseYesForResidualJurisdiction() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/residual');
@@ -10,7 +9,6 @@ function chooseYesForResidualJurisdiction() {
 }
 
 function chooseNoForResidualJurisdiction() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/residual');

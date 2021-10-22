@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
+
 const pagePath = '/petitioner-respondent/marriage-certificate-upload';
 
 function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) {
@@ -11,7 +12,7 @@ function uploadMarriageCertificateFile(language = 'en', isDragAndDropSupported) 
   I.seeInCurrentUrl(pagePath);
 
   if (language === 'en') {
-    I.say('Drag and Drop supported: ' + isDragAndDropSupported);
+    I.say(`Drag and Drop supported: ${isDragAndDropSupported}`);
     upload(I, '/assets/image.jpg', isDragAndDropSupported);
     I.waitForText('Remove', 30);
     I.waitForVisible('input[value="Continue"]:not([disabled])');
@@ -30,7 +31,7 @@ function testUploadResponse(isDragAndDropSupported, assetPath) {
 function deleteMarriageCertificateFile(isDragAndDropSupported) {
   const I = this;
 
-  I.say('Drag and Drop supported: ' + isDragAndDropSupported);
+  I.say(`Drag and Drop supported: ${isDragAndDropSupported}`);
   I.seeInCurrentUrl(pagePath);
   upload(I, '/assets/image.jpg', isDragAndDropSupported);
   I.waitForText('Remove', 30);
@@ -49,16 +50,14 @@ function withoutUploadFile(language = 'en') {
     I.see('No files uploaded');
   }
   I.click(commonContent.continue);
-
 }
 
 function upload(I, file, isDragAndDropSupported) {
   if (isDragAndDropSupported) {
     I.click('.faux-link');
     I.attachFile('input[type="file"]', file);
-    //Drag and drop is a known Puppeteer issue: https://github.com/puppeteer/puppeteer/issues/1376
-  }
-  else {
+    // Drag and drop is a known Puppeteer issue: https://github.com/puppeteer/puppeteer/issues/1376
+  } else {
     I.waitForVisible('.file-upload-input');
     I.click('.file-upload-input');
     I.attachFile('.file-upload-input', file);

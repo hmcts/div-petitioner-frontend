@@ -6,10 +6,9 @@ const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
 
 function startApplication(language = 'en', ignoreIdamToggle = false) {
-
   if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
     const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-    let I = this;
+    const I = this;
 
     const username = idamConfigHelper.getTestEmail();
     const password = idamConfigHelper.getTestPassword();
@@ -23,8 +22,7 @@ function startApplication(language = 'en', ignoreIdamToggle = false) {
 }
 
 async function startApplicationWith(sessionName) {
-
-  let I = this;
+  const I = this;
 
   I.amOnLoadedPage('/index');
   I.startApplication();
@@ -32,7 +30,7 @@ async function startApplicationWith(sessionName) {
 }
 
 function* seeCookieBanner() {
-  let I = this;
+  const I = this;
 
   yield I.waitForVisible('#global-cookie-message');
   I.see(content.cookie);
@@ -40,14 +38,14 @@ function* seeCookieBanner() {
 }
 
 function* seeCookieFooter() {
-  let I = this;
+  const I = this;
 
   yield I.waitForVisible('#footer');
   I.see('Cookies', '#footer a[href="/cookie"]');
 }
 
 function followCookieBannerLink(cookiePageLink) {
-  let I = this;
+  const I = this;
   const cookieTitle = 'body h1';
 
   I.amOnLoadedPage(cookiePageLink);
@@ -55,14 +53,14 @@ function followCookieBannerLink(cookiePageLink) {
 }
 
 function dontGetShownCookieBannerAgain() {
-  let I = this;
+  const I = this;
 
   I.dontSee(content.cookie);
   I.dontSee(content.cookieLink);
 }
 
 function signOut() {
-  let I = this;
+  const I = this;
 
   I.waitForNavigation();
   I.see(commonContentEn.signOut);

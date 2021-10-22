@@ -1,10 +1,10 @@
 const content = require('app/steps/service-application-not-approved/content.json').resources.en.translation.content;
+
 const infoToContactRespondent = content.infoToContactRespondent.replace('{{ divorceWho }}', 'husband');
 
 Feature('Service Application Rejected - Deemed @functional').retry(2);
 
-Scenario('Service application not approved screen with expected information', async function (I) {
-
+Scenario('Service application not approved screen with expected information', async I => {
   I.startApplicationWith('serviceApplicationNotApprovedSession');
   I.amOnLoadedPage('/service-application-not-approved');
 

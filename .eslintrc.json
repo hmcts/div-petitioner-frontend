@@ -40,27 +40,17 @@
     "max-len": [
       "error",
       {
-        "code": 120,
+        "code": 180,
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true,
         "ignoreComments": true,
         "ignoreTrailingComments": true,
-        "ignoreRegExpLiterals": true,
-        "ignorePattern": ".*exports.*=.*class.*|.*if \\(.*\\)|.*\\?.*\\:.*|.*\\|\\|.*|.*\\&\\&.*"
+        "ignoreRegExpLiterals": true
       }
     ],
     "arrow-body-style": ["error", "always"],
     "no-process-env": "off",
-    "no-magic-numbers": [
-      "error",
-      {
-        "ignoreArrayIndexes": true,
-        "enforceConst" : true,
-        "ignore": [
-          -1, 0, 1
-        ]
-      }
-    ],
+    "no-magic-numbers": "off",
     "max-nested-callbacks": [
       "error", 4
     ],
@@ -74,6 +64,26 @@
     "line-comment-position": "off",
     "no-throw-literal": "off",
     "object-curly-newline": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "no-prototype-builtins": "off",
+    "camelcase": "off",
+    "id-blacklist": "off",
+    "no-unused-expressions": "off",
+    "no-param-reassign": "off",
+    "no-shadow": "off",
+    "no-invalid-this": "off",
+    "init-declarations": "off",
+    "no-use-before-define": "off",
+    "require-await": "off",
+    "no-undefined": "off",
+    "no-continue": "off",
+    "no-plusplus": "off",
+    "no-useless-catch": "off",
+    "no-empty-function": "off",
+    "guard-for-in": "off",
+    "func-names": "off",
+    "no-return-await": "off",
+    "no-mixed-requires": "off",
+    "no-await-in-loop": "off"
   }
 }

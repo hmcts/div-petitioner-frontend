@@ -1,19 +1,19 @@
 Feature('Simulated invalid CSRF token').retry(3);
 
-Scenario('Should continue if there is a csrf token set', async function (I) {
+Scenario('Should continue if there is a csrf token set', async I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
   I.haveBrokenMarriage();
   I.waitForNavigation();
-  let csrfToken = await I.grabValueFrom('input[name=_csrf]');
+  const csrfToken = await I.grabValueFrom('input[name=_csrf]');
   if (!csrfToken) {
     throw new Error('Missing csrfToken');
   }
   I.seeInCurrentUrl('/screening-questions/respondent-address');
 });
 
-Scenario('Redirects to error when csrf gets modified', (I) => {
+Scenario('Redirects to error when csrf gets modified', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

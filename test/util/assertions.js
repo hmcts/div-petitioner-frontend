@@ -13,9 +13,9 @@ const Interpolator = require('node_modules/i18next/dist/commonjs/Interpolator').
 nunjucks.configure({ autoescape: false });
 const interpolator = new Interpolator();
 
-const createSession = (agent) => {
+const createSession = agent => {
   return getSession(agent)
-    .then((res) => {
+    .then(res => {
       const tokens = new Tokens();
 
       agent.csrfToken = tokens.create(res.body.csrfSecret);
@@ -27,13 +27,12 @@ const createSession = (agent) => {
     });
 };
 
-const getSession = (agent) => {
+const getSession = agent => {
   return agent.get('/session')
     .expect(200);
 };
 
 const postToUrl = (agent, url, data) => {
-
   return agent.post(url)
     .set('X-CSRF-token', agent.csrfToken)
     .type('form')
@@ -46,17 +45,23 @@ const getUrl = (agent, url) => {
 };
 
 exports.postData = (agent, url, data) => {
-  const postForm = () => postToUrl(agent, url, data).expect(302);
-  const returnUrl = (res) => res.headers.location;
+  const postForm = () => {
+    return postToUrl(agent, url, data).expect(302);
+  };
+  const returnUrl = res => {
+    return res.headers.location;
+  };
 
   return createSession(agent)
     .then(postForm)
     .then(returnUrl);
 };
 
-exports.getSession = (agent) => {
+exports.getSession = agent => {
   return getSession(agent)
-    .then(res => res.body);
+    .then(res => {
+      return res.body;
+    });
 };
 
 exports.expectSessionValue = (fieldName, value, agent, done) => {
@@ -88,11 +93,13 @@ exports.expectSessionValue = (fieldName, value, agent, done) => {
  * @returns {*}
  */
 exports.testContent = (done, agent, underTest, content, session = {}, excludeKeys = [], dataContent = {}, hasEntities = false) => {
-  const getPage = () => getUrl(agent, underTest.url);
-  const checkContent = (res) => {
+  const getPage = () => {
+    return getUrl(agent, underTest.url);
+  };
+  const checkContent = res => {
     const pageContent = Object.assign({}, session, CONF.commonProps, dataContent);
     let text = res.text.toLowerCase();
-    if(hasEntities === true){
+    if (hasEntities === true) {
       text = unescape(text);
     }
     const missingContent = [];
@@ -119,7 +126,7 @@ exports.testContent = (done, agent, underTest, content, session = {}, excludeKey
 
 const getStepCtx = (underTest, data, session) => {
   return new Promise(resolve => {
-    co(function*() {
+    co(function* () {
       const ctx = yield underTest.checkYourAnswersInterceptor(data, session);
       resolve(ctx);
     });
@@ -127,17 +134,15 @@ const getStepCtx = (underTest, data, session) => {
 };
 
 const getCYATemplate = (underTest, data = {}, session = {}) => {
-  return new Promise((resolve) => {
-
-    co(function*() {
-
+  return new Promise(resolve => {
+    co(function* () {
       // get CheckYourAnswers content
       const checkYourAnswersContent = underTest.steps.CheckYourAnswers ? yield underTest.steps.CheckYourAnswers.generateContent(data, session) : {};
 
       const stepCtx = yield underTest.checkYourAnswersInterceptor(data, session);
 
       // generate content
-      let content = yield underTest.generateContent(stepCtx, session);
+      const content = yield underTest.generateContent(stepCtx, session);
       const checkYourAnswersSpecificContent = yield underTest.generateCheckYourAnswersContent(stepCtx, session);
       Object.assign(content, checkYourAnswersSpecificContent, checkYourAnswersContent, { url: underTest.url });
 
@@ -148,21 +153,17 @@ const getCYATemplate = (underTest, data = {}, session = {}) => {
       const html = nunjucks.render(underTest.checkYourAnswersTemplate, { content, fields, data, session });
 
       resolve(html);
-
     });
-
   });
-
 };
 
 exports.testCYATemplate = (done, underTest, data, session) => {
-
-  const checkTemplate = (html) => {
+  const checkTemplate = html => {
     expect(html.length).to.not.equal(0);
     return html;
   };
 
-  const checkChangeLink = (html) => {
+  const checkChangeLink = html => {
     expect(html).to.contain(underTest.url);
   };
 
@@ -178,7 +179,6 @@ exports.testNoCYATemplate = (done, underTest) => {
 };
 
 exports.testExistenceCYA = (done, underTest, content, contentToExist = [], valuesToExist = [], data = {}, session = {}) => {
-
   const checkContentExists = html => {
     const pageContent = Object.assign({}, data, CONF.commonProps, session);
     const text = html.toLowerCase();
@@ -199,7 +199,6 @@ exports.testExistenceCYA = (done, underTest, content, contentToExist = [], value
   };
 
   const checkValuesExists = html => {
-
     valuesToExist.forEach(value => {
       const dataToTest = data[value] ? data[value] : session[value];
       expect(dataToTest).to.not.be.undefined;
@@ -211,11 +210,9 @@ exports.testExistenceCYA = (done, underTest, content, contentToExist = [], value
         expect(html).to.contain(dataToTest);
       }
     });
-
   };
 
-  const checkExists = (html) => {
-
+  const checkExists = html => {
     if (contentToExist.length) {
       checkContentExists(html);
     }
@@ -223,7 +220,6 @@ exports.testExistenceCYA = (done, underTest, content, contentToExist = [], value
     if (valuesToExist.length) {
       checkValuesExists(html);
     }
-
   };
 
   return getCYATemplate(underTest, clone(data), session)
@@ -232,7 +228,6 @@ exports.testExistenceCYA = (done, underTest, content, contentToExist = [], value
 };
 
 exports.testNoneExistenceCYA = (done, underTest, content, contentToNotExist = [], valuesToNotExist = [], data = {}, session = {}) => {
-
   const checkContentExists = html => {
     const pageContent = Object.assign({}, data, CONF.commonProps, session);
     const text = html.toLowerCase();
@@ -246,20 +241,18 @@ exports.testNoneExistenceCYA = (done, underTest, content, contentToNotExist = []
   };
 
   const checkValuesExists = html => {
-
     return getStepCtx(underTest, data, session)
-      .then(function(ctx) {
+      .then(ctx => {
         valuesToNotExist.forEach(value => {
           expect(html).to.not.contain(ctx[value]);
         });
-      }).catch(error => {
+      })
+      .catch(error => {
         done(error);
       });
-
   };
 
-  const checkNotExists = (html) => {
-
+  const checkNotExists = html => {
     if (contentToNotExist.length) {
       checkContentExists(html);
     }
@@ -267,7 +260,6 @@ exports.testNoneExistenceCYA = (done, underTest, content, contentToNotExist = []
     if (valuesToNotExist.length) {
       checkValuesExists(html);
     }
-
   };
 
   return getCYATemplate(underTest, data, session)
@@ -283,7 +275,7 @@ exports.testErrors = (done, agent, underTest, data, content, type, onlyKeys = []
     return getUrl(agent, underTest.url);
   };
 
-  const checkErrors = (res) => {
+  const checkErrors = res => {
     const pageContent = Object.assign({}, data, session, CONF.commonProps);
 
     forEach(content.resources.en.translation.errors, (v, k) => {
@@ -315,8 +307,7 @@ exports.testValidation = (done, agent, underTest, data, content, expectedErrors 
     return getUrl(agent, underTest.url);
   };
 
-  const checkErrors = (res) => {
-
+  const checkErrors = res => {
     const $ = cheerio.load(res.text);
 
     let errorMessages = [];
@@ -329,7 +320,7 @@ exports.testValidation = (done, agent, underTest, data, content, expectedErrors 
 
     const flattenedMessages = flatten(content.resources.en.translation.errors);
 
-    forEach(expectedErrors, (key) => {
+    forEach(expectedErrors, key => {
       const message = flattenedMessages[key];
 
       // fail if key is not found in content file
@@ -338,10 +329,14 @@ exports.testValidation = (done, agent, underTest, data, content, expectedErrors 
       expectedErrorMessages.push(message);
     });
 
-    forEach(errorMessages, (error) => {
+    forEach(errorMessages, error => {
       expect(expectedErrorMessages).to.include(error);
-      errorMessages = errorMessages.filter(e => e !== error);
-      expectedErrorMessages = expectedErrorMessages.filter(e => e !== error);
+      errorMessages = errorMessages.filter(e => {
+        return e !== error;
+      });
+      expectedErrorMessages = expectedErrorMessages.filter(e => {
+        return e !== error;
+      });
     });
 
     // if expectedErrorMessages is not empty an expected error was not found
@@ -367,12 +362,16 @@ exports.testRedirect = (done, agent, underTest, data, redirect) => {
 
   return createSession(agent)
     .then(checkRedirect)
-    .then(() => done(), done);
+    .then(() => {
+      return done();
+    }, done);
 };
 
 exports.testMultipleValuesExistence = (done, agent, underTest, textArray = [], data) => {
-  const getPage = () => getUrl(agent, underTest.url);
-  const checkExists = (res) => {
+  const getPage = () => {
+    return getUrl(agent, underTest.url);
+  };
+  const checkExists = res => {
     textArray.forEach(text => {
       if (data) {
         text = interpolator.interpolate(text, data);
@@ -388,8 +387,10 @@ exports.testMultipleValuesExistence = (done, agent, underTest, textArray = [], d
 };
 
 exports.testExistence = (done, agent, underTest, text, data) => {
-  const getPage = () => getUrl(agent, underTest.url);
-  const checkExists = (res) => {
+  const getPage = () => {
+    return getUrl(agent, underTest.url);
+  };
+  const checkExists = res => {
     if (data) {
       text = interpolator.interpolate(text, data);
     }
@@ -404,9 +405,11 @@ exports.testExistence = (done, agent, underTest, text, data) => {
 };
 
 exports.testNonExistence = (done, agent, underTest, text, data, selector) => {
-  let stringsToTest = Array.isArray(text) ? text : [text];
-  const getPage = () => getUrl(agent, underTest.url);
-  const checkNotExists = (res) => {
+  const stringsToTest = Array.isArray(text) ? text : [text];
+  const getPage = () => {
+    return getUrl(agent, underTest.url);
+  };
+  const checkNotExists = res => {
     stringsToTest.forEach(string => {
       if (string) {
         text = interpolator.interpolate(string, data);
@@ -428,7 +431,7 @@ exports.testNonExistence = (done, agent, underTest, text, data, selector) => {
 
 exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
   const checkHttpStatus = () => {
-    let request = agent[method](underTest.url);
+    const request = agent[method](underTest.url);
 
     if (method !== 'get') {
       request.set('X-CSRF-token', agent.csrfToken);
@@ -440,7 +443,9 @@ exports.testHttpStatus = (done, agent, underTest, status, method = 'get') => {
 
   return createSession(agent)
     .then(checkHttpStatus)
-    .then(() => done(), done);
+    .then(() => {
+      return done();
+    }, done);
 };
 
 exports.testCustom = (done, agent, underTest, cookies = [], callback, method = 'get', createsNewSession = true, data) => {
@@ -455,7 +460,7 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
       request = request.set('cookie', [request.cookies, ...cookies].join(';'));
     }
 
-    if (data){
+    if (data) {
       request = request
         .type('form')
         .send(data);
@@ -468,9 +473,12 @@ exports.testCustom = (done, agent, underTest, cookies = [], callback, method = '
   if (createsNewSession) {
     return createSession(agent)
       .then(runCallback)
-      .then(() => done(), done);
-  } else {
-    return runCallback()
-      .then(() => done(), done);
+      .then(() => {
+        return done();
+      }, done);
   }
+  return runCallback()
+    .then(() => {
+      return done();
+    }, done);
 };

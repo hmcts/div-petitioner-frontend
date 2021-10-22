@@ -96,15 +96,16 @@ module.exports = {
     }
   },
   jurisdictionPetitionerResidence: 'Yes',
-  marriageCertificateFiles: [{
-    createdBy: 0,
-    createdOn: '2019-02-22T00:00:00.000+0000',
-    lastModifiedBy: 0,
-    modifiedOn: null,
-    fileName: 'Screenshot 2019-02-22 at 13.09.15.png',
-    fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/c36adbbb-5fbb-4db2-baf5-e806540f5c93',
-    mimeType: null,
-    status: null
-  }]
+  marriageCertificateFiles: [
+    {
+      createdBy: 0,
+      createdOn: '2019-02-22T00:00:00.000+0000',
+      lastModifiedBy: 0,
+      modifiedOn: null,
+      fileName: 'Screenshot 2019-02-22 at 13.09.15.png',
+      fileUrl: 'http://dm-store-aat.service.core-compute-aat.internal/documents/c36adbbb-5fbb-4db2-baf5-e806540f5c93',
+      mimeType: null,
+      status: null
+    }
+  ]
 };
-

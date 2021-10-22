@@ -3,7 +3,6 @@ const pagePath = `${pcqAAT}/start-page`;
 
 
 async function completeEquality(language = 'en') {
-
   const I = this;
   const stepContent = language === 'en' ? 'I don\'t want to answer these questions' : 'Dydw i ddim eisiau ateb y cwestiynau hyn';
   I.wait(3);

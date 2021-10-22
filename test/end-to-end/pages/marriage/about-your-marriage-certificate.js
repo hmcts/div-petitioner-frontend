@@ -1,7 +1,6 @@
 const content = require('app/steps/marriage/about-your-marriage-certificate/content.json').resources.en.translation.content;
 
 function selectMarriageCertificateInEnglish() {
-
   const I = this;
 
   I.seeInCurrentUrl('/about-your-marriage/about-your-marriage-certificate');
@@ -10,7 +9,6 @@ function selectMarriageCertificateInEnglish() {
 }
 
 function selectMarriageCertificateNotEnglishWithTranslation() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
@@ -21,7 +19,6 @@ function selectMarriageCertificateNotEnglishWithTranslation() {
 }
 
 function selectMarriageCertificateNotEnglishNoTranslation() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/about-your-marriage/about-your-marriage-certificate');
@@ -34,12 +31,10 @@ function selectMarriageCertificateNotEnglishNoTranslation() {
 
 function clickCertificateInEnglish(I, value) {
   I.click(`#certificateInEnglish_${value}`);
-
 }
 
 function clickCertifiedTranslation(I, value) {
   I.click(`#certifiedTranslation_${value}`);
-
 }
 
 module.exports = {

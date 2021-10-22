@@ -26,12 +26,10 @@ const fiveYearsAgoFormatted = {
 Feature('Reasons for divorce E2E Tests').retry(3);
 
 languages.forEach(language => {
-
-  Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async function (I) {
-
+  Scenario(`${language.toUpperCase()} - Basic Divorce E2E `, async I => {
     const reasonContent = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
-    I.selectReasonForDivorce(language, reasonContent['unreasonableBehaviourHeading']);
+    I.selectReasonForDivorce(language, reasonContent.unreasonableBehaviourHeading);
     I.enterUnreasonableBehaviourExample(language);
 
     I.enterLegalProceedings(language);
@@ -53,7 +51,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswersAndValidateSession(language);
     }
-    
+
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -69,11 +67,9 @@ languages.forEach(language => {
         I.amDoneAndSubmitted(language);
       }
     }
-
   });
 
-  Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async function (I) {
-
+  Scenario(`${language.toUpperCase()} - 2 years separation E2E `, async I => {
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
     I.selectReasonForDivorce(language, divorceReason['2YearsSeparationHeading']);
@@ -101,7 +97,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-    
+
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -117,11 +113,9 @@ languages.forEach(language => {
         I.amDoneAndSubmitted(language);
       }
     }
-
   });
 
-  Scenario(`${language.toUpperCase()} - 5 years separation E2E`, async function (I) {
-
+  Scenario(`${language.toUpperCase()} - 5 years separation E2E`, async I => {
     const divorceReason = language === 'en' ? contentEn : contentCy;
     await loginPageToEnterAddressUsingPostcode(I, language);
     I.selectReasonForDivorce(language, divorceReason['5YearsSeparationHeading']);
@@ -147,7 +141,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-    
+
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -163,13 +157,10 @@ languages.forEach(language => {
         I.amDoneAndSubmitted(language);
       }
     }
-
   });
-
 });
 
 async function loginPageToEnterAddressUsingPostcode(I, language) {
-
   await I.amOnLoadedPage('/', language);
   I.startApplication(language);
   I.languagePreference(language);

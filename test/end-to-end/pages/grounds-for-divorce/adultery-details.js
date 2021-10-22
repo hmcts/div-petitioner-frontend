@@ -2,7 +2,7 @@ const { mockSession } = require('test/fixtures');
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function enterAdulteryDetails(language ='en') {
+function enterAdulteryDetails(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 

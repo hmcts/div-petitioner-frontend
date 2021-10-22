@@ -1,20 +1,24 @@
 const language = 'en';
 const content = require('app/steps/grounds-for-divorce/reason/content.json').resources.en.translation.content;
 const moment = require('moment');
-const twoYearsAgo = moment().subtract(2, 'years').subtract(1, 'day');
+
+const twoYearsAgo = moment().subtract(2, 'years')
+  .subtract(1, 'day');
 
 const twoYearsAgoFormatted = {
   day: twoYearsAgo.format('D'),
   month: twoYearsAgo.format('M'),
   year: twoYearsAgo.format('Y')
 };
-const fiveYearsAgo = moment().subtract(5, 'years').subtract(1, 'day');
+const fiveYearsAgo = moment().subtract(5, 'years')
+  .subtract(1, 'day');
 const fiveYearsAgoFormatted = {
   day: fiveYearsAgo.format('D'),
   month: fiveYearsAgo.format('M'),
   year: fiveYearsAgo.format('Y')
 };
-const tenYearsAgo = moment().subtract(10, 'years').subtract(1, 'day');
+const tenYearsAgo = moment().subtract(10, 'years')
+  .subtract(1, 'day');
 const tenYearsAgoFormatted = {
   day: tenYearsAgo.format('D'),
   month: tenYearsAgo.format('M'),
@@ -23,8 +27,7 @@ const tenYearsAgoFormatted = {
 
 Feature('Exit paths for divorce').retry(3);
 
-Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
-
+Scenario('Exit if 5 years separation chosen but actual decision date is less', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
@@ -42,7 +45,7 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
 }).retry(1);
 
 
-Scenario('Exit if 5 years separation chosen but actual living apart date is less', async (I) => {
+Scenario('Exit if 5 years separation chosen but actual living apart date is less', async I => {
   await I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

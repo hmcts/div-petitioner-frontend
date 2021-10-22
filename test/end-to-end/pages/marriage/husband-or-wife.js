@@ -2,10 +2,10 @@ const contentEn = require('app/steps/marriage/husband-or-wife/content.json').res
 const contentCy = require('app/steps/marriage/husband-or-wife/content.json').resources.cy.translation.content;
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
+
 const pagePath = '/about-your-marriage/details';
 
 function selectDivorceType(language = 'en') {
-
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const husbandContent = language === 'en' ? contentEn : contentCy;
   const I = this;

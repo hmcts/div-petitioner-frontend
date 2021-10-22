@@ -5,7 +5,9 @@ function stubReq({ body } = {}) {
     body: body || {},
     query: {},
     params: {},
-    param: name => this.params[name]
+    param: name => {
+      return this.params[name];
+    }
   };
   validations(req, {}, () => {});
   return req;

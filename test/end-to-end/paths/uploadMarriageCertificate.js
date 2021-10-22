@@ -1,9 +1,10 @@
 const content = require('app/steps/marriage/upload/content.json').resources.en.translation.content;
+
 const language = 'en';
 
 Feature('Upload Marriage Certificate').retry(3);
 
-Scenario('Test upload remove marriage Certificate', async function (I) {
+Scenario('Test upload remove marriage Certificate', async I => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
@@ -15,7 +16,7 @@ Scenario('Test upload remove marriage Certificate', async function (I) {
   I.deleteMarriageCertificateFile(isDragAndDropSupported);
 });
 
-Scenario('Test ability validate document type', async function (I) {
+Scenario('Test ability validate document type', async I => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
@@ -24,7 +25,7 @@ Scenario('Test ability validate document type', async function (I) {
 
   const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
 
-  if(isDragAndDropSupported) {
+  if (isDragAndDropSupported) {
     // Test can upload .pdf
     I.testUploadResponse(isDragAndDropSupported, '/assets/test_pdf.pdf');
     I.dontSee(content.errorUnknown);

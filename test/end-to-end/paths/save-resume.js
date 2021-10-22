@@ -1,11 +1,12 @@
 const CONF = require('config');
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
+
 const language = 'en';
 
 Feature('Draft petition store @functional').retry(3);
 
-Scenario('See the check your answers page if session restored from draft petition store', function (I) {
+Scenario('See the check your answers page if session restored from draft petition store', I => {
   I.amOnLoadedPage('/');
 
   if (parseBool(CONF.features.idam)) {
@@ -35,7 +36,7 @@ Scenario('See the check your answers page if session restored from draft petitio
   I.seeInCurrentUrl('/jurisdiction/habitual-residence');
 });
 
-Scenario('Save and close', function (I) {
+Scenario('Save and close', I => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
@@ -53,7 +54,7 @@ Scenario('Save and close', function (I) {
   }
 });
 
-Scenario('Delete application from draft petition store', function (I) {
+Scenario('Delete application from draft petition store', I => {
   I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
@@ -78,7 +79,7 @@ Scenario('Delete application from draft petition store', function (I) {
   I.seeInCurrentUrl('/exit/removed-saved-application');
 });
 
-Scenario('I delete my amend petition from draft store', function (I) {
+Scenario('I delete my amend petition from draft store', I => {
   I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
@@ -103,7 +104,7 @@ Scenario('I delete my amend petition from draft store', function (I) {
   I.seeInCurrentUrl('/exit/removed-saved-application');
 });
 
-Scenario('I do not delete my amend petition from draft store', function (I) {
+Scenario('I do not delete my amend petition from draft store', I => {
   I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {
@@ -129,7 +130,7 @@ Scenario('I do not delete my amend petition from draft store', function (I) {
   I.seeInCurrentUrl('/check-your-answers');
 });
 
-Scenario('Decline to delete application from draft petition store', function (I) {
+Scenario('Decline to delete application from draft petition store', I => {
   I.amOnLoadedPage('/index');
 
   if (parseBool(CONF.features.idam)) {

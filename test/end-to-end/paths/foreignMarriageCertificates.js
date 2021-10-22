@@ -1,6 +1,6 @@
 Feature('Foreign Marriage Certificates @functional').retry(3);
 
-Scenario('Certificate in English ', function(I) {
+Scenario('Certificate in English ', I => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.languagePreference();
@@ -20,7 +20,7 @@ Scenario('Certificate in English ', function(I) {
   I.seeInCurrentUrl('/jurisdiction/habitual-residence');
 });
 
-Scenario('Certificate not English but with translation', function(I) {
+Scenario('Certificate not English but with translation', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
@@ -40,7 +40,7 @@ Scenario('Certificate not English but with translation', function(I) {
   I.seeCurrentUrlEquals('/jurisdiction/habitual-residence');
 });
 
-Scenario('Certificate not English with no translation - exit page - and can go back', function(I) {
+Scenario('Certificate not English with no translation - exit page - and can go back', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

@@ -1,11 +1,11 @@
 const moment = require('moment');
 
-const cardExpiryYear = moment().add(2, 'years').format('Y');
+const cardExpiryYear = moment().add(2, 'years')
+  .format('Y');
 
 const applicationFee = '£593.00';
 
 function payOnGovPay() {
-
   const I = this;
 
   onGovPay(this);
@@ -25,7 +25,6 @@ function payOnGovPay() {
 }
 
 function payOnGovPayFailure() {
-
   const I = this;
 
   onGovPay(this);
@@ -44,7 +43,6 @@ function payOnGovPayFailure() {
 }
 
 function cancelOnGovPay() {
-
   const I = this;
 
   onGovPay(this);

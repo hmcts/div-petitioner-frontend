@@ -2,7 +2,7 @@ const content = require('app/steps/marriage/about-your-marriage-certificate/cont
 
 Feature('Foreign Marriage Certificates - Certificate Language @functional').retry(3);
 
-Scenario('Marriage certificate in English, answered Yes', (I) => {
+Scenario('Marriage certificate in English, answered Yes', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
@@ -13,7 +13,7 @@ Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.seeInCurrentUrl('/about-your-marriage/foreign-certificate');
 });
 
-Scenario('Marriage certificate not in English, certified translation', (I) => {
+Scenario('Marriage certificate not in English, certified translation', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
@@ -25,7 +25,7 @@ Scenario('Marriage certificate not in English, certified translation', (I) => {
   I.seeInCurrentUrl('/about-your-marriage/foreign-certificate');
 });
 
-Scenario('Marriage certificate not in English, answered No', (I) => {
+Scenario('Marriage certificate not in English, answered No', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();
@@ -37,7 +37,7 @@ Scenario('Marriage certificate not in English, answered No', (I) => {
   I.seeInCurrentUrl('/exit/about-your-marriage/no-certificate-translated');
 });
 
-Scenario('Married in UK, not answered @cross-browser-test', (I) => {
+Scenario('Married in UK, not answered @cross-browser-test', I => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

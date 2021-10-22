@@ -3,7 +3,7 @@ const contentCy = require('app/steps/grounds-for-divorce/desertion/agree/content
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function enterDesertionAgreement(language ='en') {
+function enterDesertionAgreement(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const content = language === 'en' ? contentEn : contentCy;
   const I = this;

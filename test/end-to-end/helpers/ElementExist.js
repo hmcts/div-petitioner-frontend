@@ -3,10 +3,9 @@
 const Helper = codecept_helper;
 
 class ElementExist extends Helper {
-
   async checkElementExist(selector) {
-    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
-    const shortTimeout = this.helpers['Puppeteer'] ? 3 : 15;
+    const helper = this.helpers.WebDriver || this.helpers.Puppeteer;
+    const shortTimeout = this.helpers.Puppeteer ? 3 : 15;
 
     try {
       await helper.waitForElement(selector, shortTimeout);
@@ -17,14 +16,15 @@ class ElementExist extends Helper {
     return helper
       ._locate(selector)
       .then(els => {
-        return !!els.length;
-      }).catch(err => {
+        return Boolean(els.length);
+      })
+      .catch(err => {
         throw err;
       });
   }
 
   getPaymentIsOnStub() {
-    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    const helper = this.helpers.WebDriver || this.helpers.Puppeteer;
 
     return helper.grabCurrentUrl()
       .then(url => {
@@ -36,10 +36,9 @@ class ElementExist extends Helper {
   }
 
   async getBrowserName() {
-    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    const helper = this.helpers.WebDriver || this.helpers.Puppeteer;
     return await helper.options.browser;
   }
-
 }
 
 module.exports = ElementExist;

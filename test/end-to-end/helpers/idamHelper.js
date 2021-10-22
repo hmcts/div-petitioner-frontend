@@ -5,14 +5,14 @@ const randomstring = require('randomstring');
 const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
 
 const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper');
-let args = idamConfigHelper.getArgs();
+
+const args = idamConfigHelper.getArgs();
 const CONF = require('config');
 const parseBool = require('app/core/utils/parseBool');
 
-let Helper = codecept_helper;
+const Helper = codecept_helper;
 
 class IdamHelper extends Helper {
-
   async _before() {
     if (parseBool(CONF.features.idam)) {
       // Codecept doesn't retry _before() steps even if a .retry() is added to the Scenario.
@@ -20,7 +20,6 @@ class IdamHelper extends Helper {
       const maxAttempts = 3;
       let i;
       for (i = 1; i <= maxAttempts; i++) {
-
         try {
           console.log(`Creating IDAM test user (attempt ${i} of ${maxAttempts})...`);
           await this.createUser();
@@ -30,7 +29,7 @@ class IdamHelper extends Helper {
             console.log('Failed to create IDAM test user. Retrying...');
           } else {
             console.error(`ERROR: Could not create IDAM test user after '${i}' attempts.`);
-            throw err ;
+            throw err;
           }
         }
       }
@@ -56,9 +55,10 @@ class IdamHelper extends Helper {
     return idamExpressTestHarness.createUser(args, process.env.E2E_IDAM_PROXY)
       .then(() => {
         console.log('Created IDAM test user:', testEmail);
-      }).catch((err) => {
+      })
+      .catch(err => {
         console.error('ERROR: Unable to create IDAM test user:', err);
-        throw err ;
+        throw err;
       });
   }
 
@@ -69,7 +69,8 @@ class IdamHelper extends Helper {
       idamExpressTestHarness.removeUser(args, process.env.E2E_IDAM_PROXY)
         .then(() => {
           console.log('IDAM test user removed:', testEmail);
-        }).catch((err) => {
+        })
+        .catch(err => {
           console.error('ERROR: Unable to remove IDAM test user:', err);
         });
     }

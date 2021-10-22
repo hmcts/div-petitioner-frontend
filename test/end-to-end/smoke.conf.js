@@ -4,7 +4,7 @@ const CONF = require('config');
 
 exports.config = {
   tests: './smoke/*.js',
-  output: process.cwd() + '/smoke-output',
+  output: `${process.cwd()}/smoke-output`,
   helpers: {
     Puppeteer: {
       url: CONF.testUrl || CONF.e2e.frontendUrl,
@@ -24,17 +24,17 @@ exports.config = {
     JSWait: { require: './helpers/JSWait.js' },
     SessionHelper: { require: './helpers/SessionHelper.js' }
   },
-  include: {I: './pages/steps.js'},
+  include: { I: './pages/steps.js' },
 
   mocha: {
     reporterOptions: {
       'codeceptjs-cli-reporter': {
         stdout: '-',
-        options: {steps: true}
+        options: { steps: true }
       },
       'mocha-junit-reporter': {
         stdout: '-',
-        options: {mochaFile: './smoke-output/result.xml'}
+        options: { mochaFile: './smoke-output/result.xml' }
       }
     }
   },

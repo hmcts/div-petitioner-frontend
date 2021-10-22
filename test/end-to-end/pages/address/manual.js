@@ -1,5 +1,4 @@
 function enterAddressManually(stepUrl) {
-
   const I = this;
 
   I.seeInCurrentUrl(stepUrl);
@@ -8,4 +7,5 @@ function enterAddressManually(stepUrl) {
   I.fillField('addressManual', 'some address entered manually');
   I.navByClick('Continue');
 }
+
 module.exports = { enterAddressManually };

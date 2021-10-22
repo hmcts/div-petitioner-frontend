@@ -2,10 +2,10 @@ const contentEn = require('app/steps/screening-questions/language-preference/con
 const contentCy = require('app/steps/screening-questions/language-preference/content.json').resources.cy.translation.content;
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
+
 const pagePath = '/screening-questions/language-preference';
 
 function languagePreference(language = 'en') {
-
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const languageContent = language === 'en' ? contentEn : contentCy;
   const I = this;
@@ -17,4 +17,4 @@ function languagePreference(language = 'en') {
   I.click(commonContent.continue);
 }
 
-module.exports = { languagePreference: languagePreference };
+module.exports = { languagePreference };

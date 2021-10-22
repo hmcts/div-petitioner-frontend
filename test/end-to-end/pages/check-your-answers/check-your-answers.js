@@ -3,36 +3,34 @@ const contentEn = require('app/steps/check-your-answers/content.json').resources
 const contentCy = require('app/steps/check-your-answers/content.json').resources.cy.translation.content;
 const jurisdictionContent = require('app/services/jurisdiction/content.json').resources.en.translation.content;
 const getOtherConnections = require('test/end-to-end/helpers/GeneralHelpers.js').getOtherJurisdictionConnections;
+
 const pagePath = '/check-your-answers';
 
 function* checkMyConnectionsAre(...connections) { // eslint-disable-line require-yield
-
   const I = this;
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
   I.waitForElement('#jurisdiction-connections');
 
-  connections.forEach((connection) => {
-    let expectedFriendlyContent = jurisdictionContent['connection' + connection.toUpperCase()]
+  connections.forEach(connection => {
+    const expectedFriendlyContent = jurisdictionContent[`connection${connection.toUpperCase()}`]
       .replace('{{ divorceWho }}', 'husband');
-    let expectedLegalContent = jurisdictionContent['legal' + connection.toUpperCase()];
+    const expectedLegalContent = jurisdictionContent[`legal${connection.toUpperCase()}`];
 
     I.see(expectedFriendlyContent, '#jurisdiction-connections');
     I.see(expectedLegalContent, '#jurisdiction-legal-connections');
   });
 
-  let otherConnections = getOtherConnections(connections);
-  otherConnections.forEach((unwantedConnection) => {
-    let unwantedFriendlyContent = jurisdictionContent['connection' + unwantedConnection.toUpperCase()]
+  const otherConnections = getOtherConnections(connections);
+  otherConnections.forEach(unwantedConnection => {
+    const unwantedFriendlyContent = jurisdictionContent[`connection${unwantedConnection.toUpperCase()}`]
       .replace('{{ divorceWho }}', 'husband');
-    let unwantedLegalContent = jurisdictionContent['legal' + unwantedConnection.toUpperCase()];
+    const unwantedLegalContent = jurisdictionContent[`legal${unwantedConnection.toUpperCase()}`];
 
     I.dontSee(unwantedFriendlyContent, '#jurisdiction-connections');
     I.dontSee(unwantedLegalContent, '#jurisdiction-legal-connections');
   });
-
-  return;
 }
 
 function checkMyAnswers(language = 'en') {
@@ -47,7 +45,6 @@ function checkMyAnswers(language = 'en') {
 }
 
 function checkMyAnswersAndValidateSession(language = 'en') {
-
   const I = this;
 
   I.waitInUrl(pagePath);

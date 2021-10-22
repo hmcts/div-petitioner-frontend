@@ -10,4 +10,5 @@ function enterFinancialAdvice(language = 'en') {
   I.seeInCurrentUrl(pagePath);
   I.click(commonContent.continue);
 }
+
 module.exports = { enterFinancialAdvice };

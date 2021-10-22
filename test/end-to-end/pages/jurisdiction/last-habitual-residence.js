@@ -1,7 +1,6 @@
 const content = require('app/steps/jurisdiction/last-habitual-residence/content.json').resources.en.translation.content;
 
 
-
 function chooseYesLastHabitualResidence() {
   completeLastHabitualResidence(this, content.yes);
 }

@@ -1,7 +1,6 @@
 const content = require('app/steps/jurisdiction/last-twelve-months/content.json').resources.en.translation.content;
 
 function chooseYesJurisdictionLastTwelveMonths() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/last-twelve-months');
@@ -10,7 +9,6 @@ function chooseYesJurisdictionLastTwelveMonths() {
 }
 
 function chooseNoJurisdictionLastTwelveMonths() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/last-twelve-months');

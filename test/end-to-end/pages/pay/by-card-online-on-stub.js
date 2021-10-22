@@ -1,7 +1,6 @@
-const content = require ('app/steps/pay/gov-pay-stub/content.json').resources.en.translation.content;
+const content = require('app/steps/pay/gov-pay-stub/content.json').resources.en.translation.content;
 
 function payOnStubPages(success = true) {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/pay/gov-pay-stub');

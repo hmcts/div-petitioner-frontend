@@ -42,7 +42,7 @@ const keysToIgnore = [
   'Submit',
   'UnreasonableBehaviour',
   'WithFees'
-].reduce(function (res, key) {
+].reduce((res, key) => {
   res[key] = true;
   return res;
 }, {});
@@ -98,19 +98,18 @@ const getHTMLValidationResults = step => {
       }
     });
 
-    setTimeout((error) => {
+    setTimeout(error => {
       rejected = true;
       reject(error);
     }, htmlValidationTimeout);
   });
 };
 
-const testHtml = (step) => {
+const testHtml = step => {
   let results = {};
 
-  describe(`Validate html for the page ${step.name}`, function() {
-
-    before(function(done) {
+  describe(`Validate html for the page ${step.name}`, () => {
+    before(done => {
       let retries = 0;
 
       const getValidationResults = () => {
@@ -120,7 +119,7 @@ const testHtml = (step) => {
             done();
           })
           .catch(() => {
-            if(retries < maxHtmlValidationRetries) {
+            if (retries < maxHtmlValidationRetries) {
               // there was an error when validating the html, try again
               retries++;
               getValidationResults();
@@ -134,14 +133,18 @@ const testHtml = (step) => {
     });
 
     it('should not have any html errors', () => {
-      const errors = filter(results, (r) => r.type === 'error')
+      const errors = filter(results, r => {
+        return r.type === 'error';
+      })
         .filter(filteredErrors);
 
       expect(errors.length).to.equal(0, JSON.stringify(errors, null, 2));
     });
 
     it('should not have any html warnings', () => {
-      const warnings = filter(results, (r) => r.type === 'info')
+      const warnings = filter(results, r => {
+        return r.type === 'info';
+      })
         .filter(filteredWarnings);
 
       expect(warnings.length).to.equal(0, JSON.stringify(warnings, null, 2));
@@ -149,7 +152,7 @@ const testHtml = (step) => {
   });
 };
 
-for (let stepKey in s.steps) {
+for (const stepKey in s.steps) {
   // If step is to be ignored - continue
   if (keysToIgnore[stepKey]) continue;
 

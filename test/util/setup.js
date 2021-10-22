@@ -1,11 +1,9 @@
 const Tokens = require('csrf');
 
 exports.withSession = (done, agent, data = {}) => {
-
   agent.get('/session')
     .expect(200)
-    .then(function (res) {
-
+    .then(res => {
       const tokens = new Tokens();
       const csrfToken = tokens.create(res.body.csrfSecret);
 

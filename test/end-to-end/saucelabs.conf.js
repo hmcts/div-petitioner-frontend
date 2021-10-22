@@ -14,7 +14,7 @@ const defaultSauceOptions = {
   tags: ['divorce']
 };
 
-const getBrowserConfig = (browserGroup) => {
+const getBrowserConfig = browserGroup => {
   const browserConfig = [];
   for (const candidateBrowser in supportedBrowsers[browserGroup]) {
     if (candidateBrowser) {
@@ -33,7 +33,7 @@ const getBrowserConfig = (browserGroup) => {
 
 const setupConfig = {
   tests: './paths/**/*.js',
-  output: process.cwd() + '/functional-output',
+  output: `${process.cwd()}/functional-output`,
   helpers: {
     WebDriver: {
       url: process.env.E2E_FRONTEND_URL || CONF.e2e.frontendUrl,

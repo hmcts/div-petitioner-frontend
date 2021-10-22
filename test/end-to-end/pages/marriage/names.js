@@ -3,7 +3,6 @@ const commonContentEn = require('app/content/common-en').resources.en.translatio
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
 function enterPetitionerAndRespondentNames(language = 'en') {
-
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 

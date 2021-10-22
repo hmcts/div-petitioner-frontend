@@ -5,8 +5,7 @@ const config = require('config');
 
 Feature('Adultery and Desertion E2E Tests (cy)').retry(3);
 
-Scenario('Adultery, with details (cy)', async function (I) {
-
+Scenario('Adultery, with details (cy)', async I => {
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
   I.selectHelpWithFees(language);
@@ -31,7 +30,7 @@ Scenario('Adultery, with details (cy)', async function (I) {
   I.chooseRespondentServiceAddress(language);
   I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
 
-  I.selectReasonForDivorce(language, divorceReason['adulteryHeading']);
+  I.selectReasonForDivorce(language, divorceReason.adulteryHeading);
   I.selectWishToName(language);
   I.enter3rdPartyDetails(language);
   I.enterAddressUsingPostcode(language, '/about-divorce/reason-for-divorce/adultery/co-respondent-address');
@@ -61,11 +60,9 @@ Scenario('Adultery, with details (cy)', async function (I) {
   } else {
     I.amDoneAndSubmitted(language);
   }
-
 });
 
-Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async function (I) {
-
+Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async I => {
   await stepsStartApplicationToReadFinancialRemedy(I, language);
 
   I.selectHelpWithFees(language, false);
@@ -89,7 +86,7 @@ Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async f
 
   I.chooseRespondentServiceAddress(language);
   I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
-  I.selectReasonForDivorce(language, divorceReason['desertionHeading']);
+  I.selectReasonForDivorce(language, divorceReason.desertionHeading);
   I.enterDesertionAgreement(language);
   I.enterDesertionDate(language);
   I.selectLivingApartTime(language);
@@ -111,7 +108,6 @@ Scenario(`${language.toUpperCase()} - Desertion without agreement (cy)`, async f
   } else {
     I.confirmIWillPayOnline(language);
   }
-
 });
 
 async function stepsStartApplicationToReadFinancialRemedy(I, language) {

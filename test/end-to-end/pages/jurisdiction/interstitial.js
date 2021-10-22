@@ -1,11 +1,11 @@
 const contentEn = require('app/steps/jurisdiction/interstitial/content.json').resources.en.translation.content;
 const contentCy = require('app/steps/jurisdiction/interstitial/content.json').resources.cy.translation.content;
+
 const pagePath = '/jurisdiction/interstitial';
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
 function chooseJurisdictionInterstitialContinue(language = 'en') {
-
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const interstitialContent = language === 'en' ? contentEn : contentCy;
   const I = this;
@@ -17,7 +17,6 @@ function chooseJurisdictionInterstitialContinue(language = 'en') {
 }
 
 function chooseJurisdictionInterstitialNeedInfo() {
-
   const I = this;
 
   I.waitInUrl(pagePath);

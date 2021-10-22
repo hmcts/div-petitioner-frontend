@@ -22,9 +22,7 @@ const strykerConfiguration = config => {
     htmlReporter: { baseDir: 'functional-output/mutation-components' },
     mochaOptions: {
       files:
-        [
-          'app/components/**/*.test.js'
-        ],
+        ['app/components/**/*.test.js'],
       timeout: 8000
     },
     logLevel: 'debug',

@@ -2,9 +2,10 @@ const contentEn = require('app/steps/prayer/claim-costs/content.json').resources
 const contentCy = require('app/steps/prayer/claim-costs/content.json').resources.cy.translation.content;
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
+
 const pagePath = '/about-divorce/claim-costs';
 
-function enterClaimCosts(language ='en') {
+function enterClaimCosts(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const claimCosts = language === 'en' ? contentEn : contentCy;
   const I = this;
@@ -15,7 +16,7 @@ function enterClaimCosts(language ='en') {
   I.click(commonContent.continue);
 }
 
-function enterClaimCostsCorrespondent(language ='en') {
+function enterClaimCostsCorrespondent(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const claimCosts = language === 'en' ? contentEn : contentCy;
   const I = this;
@@ -24,9 +25,8 @@ function enterClaimCostsCorrespondent(language ='en') {
   I.seeInCurrentUrl(pagePath);
 
   I.checkOption(claimCosts.yes);
-  I.checkOption( '#correspondent');
+  I.checkOption('#correspondent');
   I.click(commonContent.continue);
-
 }
 
 module.exports = { enterClaimCosts, enterClaimCostsCorrespondent };

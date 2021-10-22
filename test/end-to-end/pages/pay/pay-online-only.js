@@ -1,4 +1,5 @@
 const content = require('app/steps/pay/pay-online-only/content.json').resources.en.translation.content;
+
 const applicationFee = '593';
 const feeContent = content.applicationFee.replace('{{ feeToBePaid }}', applicationFee);
 const commonContentEn = require('app/content/common-en').resources.en.translation;
@@ -14,7 +15,6 @@ function confirmIWillPayOnline(language) {
     I.waitForText(feeContent);
   }
   I.click(commonContent.continue);
-
 }
 
 module.exports = { confirmIWillPayOnline };

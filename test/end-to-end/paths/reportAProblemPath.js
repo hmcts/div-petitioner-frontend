@@ -6,8 +6,7 @@ const hours = config.get('commonProps.courtOpeningHourEn');
 
 Feature('Report A Problem Handling @cross-browser-test').retry(3);
 
-Scenario('I see link to go the ’Contact us for help’ page', (I) => {
-
+Scenario('I see link to go the ’Contact us for help’ page', I => {
   I.amOnLoadedPage('/index');
   I.startApplication();
   I.see(commonContent.problemWithThisPage);

@@ -3,7 +3,7 @@ const contentCy = require('app/steps/grounds-for-divorce/adultery/wish-to-name/c
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
-function selectWishToName(language ='en') {
+function selectWishToName(language = 'en') {
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const wishToName = language === 'en' ? contentEn : contentCy;
   const I = this;

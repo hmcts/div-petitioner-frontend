@@ -13,10 +13,10 @@ function testApp(session = {}) {
   app.use(sessions.inmemory());
   app.set('view engine', 'html');
   app.set('views', ['app/views/', 'lib/', 'test/views']);
-  app.use('/public', express.static(__dirname + '/public'));
-  app.use('/public', express.static(__dirname + '/govuk_modules/govuk_template/assets'));
-  app.use('/public', express.static(__dirname + '/govuk_modules/govuk_frontend_toolkit'));
-  app.use('/public/images/icons', express.static(__dirname + '/govuk_modules/govuk_frontend_toolkit/images'));
+  app.use('/public', express.static(`${__dirname}/public`));
+  app.use('/public', express.static(`${__dirname}/govuk_modules/govuk_template/assets`));
+  app.use('/public', express.static(`${__dirname}/govuk_modules/govuk_frontend_toolkit`));
+  app.use('/public/images/icons', express.static(`${__dirname}/govuk_modules/govuk_frontend_toolkit/images`));
   const nunjucks = require('express-nunjucks');
 
   app.use(/^(?!\/check-session$).*/, (req, res, next) => {
@@ -44,7 +44,7 @@ const withSession = (app, res, done, callback) => {
   request(app)
     .get('/check-session')
     .set('Cookie', sessionCookie)
-    .expect(function(res) {
+    .expect(res => {
       callback(res.body);
     })
     .expect(200, done);

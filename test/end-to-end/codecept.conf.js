@@ -6,7 +6,7 @@ const waitForAction = parseInt(CONF.e2e.waitForActionValue);
 
 exports.config = {
   tests: getTests(),
-  output: process.cwd() + '/functional-output',
+  output: `${process.cwd()}/functional-output`,
   helpers: {
     Puppeteer: {
       url: CONF.e2e.frontendUrl,
@@ -67,9 +67,8 @@ exports.config = {
 function configureChunks() {
   if (CONF.e2e.runBasicTests === 'true') {
     return 2;
-  } else {
-    return 6;
   }
+  return 6;
 }
 
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
@@ -77,7 +76,6 @@ function configureChunks() {
 function getTests() {
   if (CONF.e2e.runBasicTests === 'true') {
     return './paths/**/basicDivorce.js';
-  } else {
-    return './paths/**/*.js';
   }
+  return './paths/**/*.js';
 }

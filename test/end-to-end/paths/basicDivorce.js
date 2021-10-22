@@ -4,8 +4,7 @@ const config = require('config');
 
 Feature('Basic divorce path');
 
-Scenario('Get a divorce', async function(I) {
-
+Scenario('Get a divorce', async I => {
   I.amOnLoadedPage('/');
   I.startApplication(language);
   I.wait(1);
@@ -31,12 +30,12 @@ Scenario('Get a divorce', async function(I) {
   I.enterPetitionerChangedName(language);
   I.enterPetitionerContactDetails(language);
 
-  I.enterAddressUsingPostcode(language,'/petitioner-respondent/address');
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/address');
   I.enterCorrespondence(language);
   I.selectLivingTogetherInSameProperty(language);
 
   I.chooseRespondentServiceAddress(language);
-  I.enterAddressUsingPostcode(language,'/petitioner-respondent/respondent-correspondence-address');
+  I.enterAddressUsingPostcode(language, '/petitioner-respondent/respondent-correspondence-address');
   I.selectReasonForDivorce(language, 'Behaviour');
   I.enterUnreasonableBehaviourExample(language);
 
@@ -45,7 +44,7 @@ Scenario('Get a divorce', async function(I) {
   I.enterFinancialAdvice(language);
   I.enterClaimCosts(language);
 
-  if(['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
+  if (['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
     I.withoutUploadFile(language);
   } else {
     const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
@@ -56,9 +55,8 @@ Scenario('Get a divorce', async function(I) {
 
   if (parseBool(config.features.ignoreSessionValidation)) {
     I.checkMyAnswers(language);
-  } else{
+  } else {
     await I.checkMyAnswersAndValidateSession(language);
   }
   I.amDoneAndSubmitted(language);
-
 }).retry(2);

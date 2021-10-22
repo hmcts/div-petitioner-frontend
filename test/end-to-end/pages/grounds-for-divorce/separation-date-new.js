@@ -3,7 +3,6 @@ const commonContentCy = require('app/content/common-cy').resources.cy.translatio
 
 function enterSeparationDateNew(language = 'en', decisionDay = '1', decisionMonth = '1', decisionYear = '2013',
   livingApartDay = '1', livingApartMonth = '1', livingApartYear = '2013') {
-
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const I = this;
 
@@ -16,4 +15,5 @@ function enterSeparationDateNew(language = 'en', decisionDay = '1', decisionMont
   I.fillField('reasonForDivorceLivingApartYear', livingApartYear);
   I.click(commonContent.continue);
 }
+
 module.exports = { enterSeparationDateNew };

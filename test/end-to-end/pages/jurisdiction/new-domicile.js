@@ -1,5 +1,4 @@
 function chooseBothDomiciled() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
@@ -10,7 +9,6 @@ function chooseBothDomiciled() {
 }
 
 function chooseNeitherDomiciled() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
@@ -21,7 +19,6 @@ function chooseNeitherDomiciled() {
 }
 
 function choosePetitionerDomiciled() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
@@ -32,7 +29,6 @@ function choosePetitionerDomiciled() {
 }
 
 function chooseRespondentDomiciled() {
-
   const I = this;
 
   I.seeCurrentUrlEquals('/jurisdiction/domicile');
@@ -41,6 +37,7 @@ function chooseRespondentDomiciled() {
   I.click('[for~="jurisdictionRespondentDomicile_Yes"]');
   I.navByClick('Continue');
 }
+
 module.exports = {
   chooseBothDomiciled,
   choosePetitionerDomiciled,

@@ -20,7 +20,7 @@ module.exports = class Graph extends Step {
       {},
       ctx,
       { graphData },
-      { graph },
+      { graph }
     );
   }
 

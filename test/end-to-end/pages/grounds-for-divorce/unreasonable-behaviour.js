@@ -1,4 +1,5 @@
 const { mockSession } = require('test/fixtures');
+
 const pagePath = '/about-divorce/reason-for-divorce/unreasonable-behaviour';
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
@@ -11,11 +12,9 @@ function enterUnreasonableBehaviourExample(language = 'en') {
   I.seeInCurrentUrl(pagePath);
   I.fillField('reasonForDivorceBehaviourDetails[]', mockSession.reasonForDivorceBehaviourDetails[0]);
   I.click(commonContent.continue);
-
 }
 
 function enterUnreasonableBehaviourAddMoreExamples() {
-
   const I = this;
 
   I.seeCurrentUrlEquals(pagePath);

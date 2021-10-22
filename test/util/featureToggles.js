@@ -1,5 +1,6 @@
 const CONF = require('config');
 const { cloneDeep } = require('lodash');
+
 const originalConfig = cloneDeep(CONF);
 
 /**
@@ -18,8 +19,8 @@ function when(features, enabled, test, ...testParameters) {
     return accumulator.concat(`${feature} is ${valueList[index] ? 'enabled' : 'disabled'}`);
   }, []);
   this.title = `${this.title} when ${criteriaDescription.join(', ')}`;
-  return (done) => {
-    const cleanup = (err) => {
+  return done => {
+    const cleanup = err => {
       featureList.forEach(value => {
         CONF.features[value] = originalConfig.features[value];
       });

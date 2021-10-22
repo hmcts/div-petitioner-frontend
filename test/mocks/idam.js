@@ -1,34 +1,34 @@
 const sinon = require('sinon');
 const idamExpress = require('@hmcts/div-idam-express-middleware');
 
-let onAuthenticate = () => {
+const onAuthenticate = () => {
   return (req, res, next) => {
     next();
   };
 };
 
-let onLanding = () => {
+const onLanding = () => {
   return (req, res, next) => {
     next();
   };
 };
 
-let onProtect = () => {
+const onProtect = () => {
   return (req, res, next) => {
     next();
   };
 };
 
-let onLogout = () => {
+const onLogout = () => {
   return (req, res, next) => {
     next();
   };
 };
 
-let onUserDetails = () => {
+const onUserDetails = () => {
   return (req, res, next) => {
     next();
-  }; 
+  };
 };
 
 const stub = () => {

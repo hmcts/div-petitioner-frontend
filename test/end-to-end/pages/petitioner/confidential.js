@@ -1,11 +1,11 @@
 const contentEn = require('app/steps/petitioner/confidential/content.json').resources.en.translation.content;
 const contentCy = require('app/steps/petitioner/confidential/content.json').resources.cy.translation.content;
+
 const pagePath = '/petitioner-respondent/confidential';
 const commonContentEn = require('app/content/common-en').resources.en.translation;
 const commonContentCy = require('app/content/common-cy').resources.cy.translation;
 
 function enterPeConfidentialContactDetails(language = 'en', shareAddress = true) {
-
   const commonContent = language === 'en' ? commonContentEn : commonContentCy;
   const confidentialContent = language === 'en' ? contentEn : contentCy;
 

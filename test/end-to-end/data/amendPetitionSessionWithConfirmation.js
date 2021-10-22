@@ -1,2 +1,3 @@
 const baseAmendSession = require('./amendPetitionSession');
-module.exports = Object.assign(baseAmendSession, { 'confirmPrayer': 'Yes' });
+
+module.exports = Object.assign(baseAmendSession, { confirmPrayer: 'Yes' });

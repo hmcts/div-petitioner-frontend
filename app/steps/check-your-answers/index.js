@@ -92,19 +92,9 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   // the order in which the check your answers section should be shown
-  checkYourAnswersSectionOrder(session) {
-    if (session.featureToggles.ft_welsh) {
-      return [
-        'screening-questions',
-        'about-your-marriage',
-        'jurisdiction',
-        'petitioner-respondent',
-        'about-divorce',
-        'pay'
-      ];
-    }
-
+  checkYourAnswersSectionOrder() {
     return [
+      'screening-questions',
       'about-your-marriage',
       'jurisdiction',
       'petitioner-respondent',

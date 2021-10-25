@@ -740,7 +740,7 @@ describe(modulePath, () => {
           expect(req.session.confirmPrayer).to.equal('Yes');
           done();
         });
-      });
+      }).timeout(30000);
     });
   });
 

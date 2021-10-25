@@ -71,7 +71,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // generate and order CYA templates
     const templates = yield this.getNextTemplates(this.steps.Index, clonedCtx);
     clonedCtx.stepTemplates = this.orderTemplatesBasedOnArray(
-      this.checkYourAnswersSectionOrder(), templates
+      this.checkYourAnswersSectionOrder(session), templates
     );
 
     const hasNextStep = clonedCtx.nextStepUrl !== this.url || session.saveAndResumeUrl;
@@ -92,7 +92,18 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   // the order in which the check your answers section should be shown
-  checkYourAnswersSectionOrder() {
+  checkYourAnswersSectionOrder(session) {
+    if (session.featureToggles) {
+      return [
+        'screening-questions',
+        'about-your-marriage',
+        'jurisdiction',
+        'petitioner-respondent',
+        'about-divorce',
+        'pay'
+      ];
+    }
+
     return [
       'screening-questions',
       'about-your-marriage',

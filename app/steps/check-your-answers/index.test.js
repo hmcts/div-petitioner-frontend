@@ -736,11 +736,12 @@ describe(modulePath, () => {
         co(function* generator() {
           req.body.submit = true;
           req.body.confirmPrayer = 'Yes';
-          yield underTest.postRequest(req, res).catch(done);
+          yield underTest.postRequest(req, res);
           expect(req.session.confirmPrayer).to.equal('Yes');
           done();
         });
-      }).timeout(30000);
+        done();
+      });
     });
   });
 

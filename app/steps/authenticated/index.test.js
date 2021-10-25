@@ -54,7 +54,7 @@ describe(modulePath, () => {
       const context = {};
 
       testRedirect(done, agent, underTest, context,
-      s.steps.ScreeningQuestionsLanguagePreference);
+        s.steps.ScreeningQuestionsLanguagePreference);
     });
   });
 

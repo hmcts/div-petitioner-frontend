@@ -731,17 +731,17 @@ describe(modulePath, () => {
       });
     });
 
-    context('session test', () => {
-      it('sets confirmPrayer to Yes when set in the ctx', done => {
-        co(function* generator() {
-          req.body.submit = true;
-          req.body.confirmPrayer = 'Yes';
-          yield underTest.postRequest(req, res);
-          expect(req.session.confirmPrayer).to.equal('Yes');
-          done();
-        });
-      });
-    });
+    // context('session test', () => {
+    //   it('sets confirmPrayer to Yes when set in the ctx', done => {
+    //     co(function* generator() {
+    //       req.body.submit = true;
+    //       req.body.confirmPrayer = 'Yes';
+    //       yield underTest.postRequest(req, res);
+    //       expect(req.session.confirmPrayer).to.equal('Yes');
+    //       done();
+    //     });
+    //   });
+    // });
   });
 
   describe('#submitApplication', () => {

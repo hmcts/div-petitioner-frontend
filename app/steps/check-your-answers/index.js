@@ -71,7 +71,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // generate and order CYA templates
     const templates = yield this.getNextTemplates(this.steps.Index, clonedCtx);
     clonedCtx.stepTemplates = this.orderTemplatesBasedOnArray(
-      this.checkYourAnswersSectionOrder(session), templates
+      this.checkYourAnswersSectionOrder(), templates
     );
 
     const hasNextStep = clonedCtx.nextStepUrl !== this.url || session.saveAndResumeUrl;

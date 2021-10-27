@@ -1,5 +1,5 @@
 const unirest = require('unirest');
-// const { assert } = require('chai');
+const { assert } = require('chai');
 const basicDivorceSessionData = require('test/end-to-end/data/basicDivorceSessionData');
 const amendPetitionSession = require('test/end-to-end/data/amendPetitionSession');
 const amendPetitionSessionWithConfirmation = require('test/end-to-end/data/amendPetitionSessionWithConfirmation');
@@ -75,19 +75,19 @@ class SessionHelper extends codecept_helper {
   // of other test's setup.
   //
   async assertSessionEqualsMockTestData() {
-    // const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
-    // const connectSidCookie = await helper.grabCookie('connect.sid');
-    // const authTokenCookie = await helper.grabCookie('__auth-token');
-    // const session = await this.getTheSession(connectSidCookie, authTokenCookie);
-    // session.featureToggles.ft_welsh = true;
-    // session.petitionerPcqId = 'is_in_session';
-    // session.featureToggles.ft_awaiting_amend = true;
-    // session.featureToggles.ft_represented_respondent_journey = true;
-    // session.isRespSolToggleOn = true;
-    //
-    // let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
-    //
-    // return assert.deepEqual(session, expectedSession);
+    const helper = this.helpers['WebDriver'] || this.helpers['Puppeteer'];
+    const connectSidCookie = await helper.grabCookie('connect.sid');
+    const authTokenCookie = await helper.grabCookie('__auth-token');
+    const session = await this.getTheSession(connectSidCookie, authTokenCookie);
+    session.featureToggles.ft_welsh = true;
+    session.petitionerPcqId = 'is_in_session';
+    session.featureToggles.ft_awaiting_amend = true;
+    session.featureToggles.ft_represented_respondent_journey = true;
+    session.isRespSolToggleOn = true;
+
+    let expectedSession = this.updateExpectedSessionWithActualSession(basicDivorceSessionData, session);
+
+    return assert.deepEqual(session, expectedSession);
   }
 
   updateExpectedSessionWithActualSession(expectedSession, actualSession) {

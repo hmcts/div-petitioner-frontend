@@ -42,8 +42,7 @@ languages.forEach(language => {
     if (['safari', 'microsoftEdge'].includes(config.features.browserSupport)) {
       I.withoutUploadFile(language);
     } else {
-      I.waitForVisible('.faux-link');
-      const isDragAndDropSupported = await I.checkElementExist('.dropzone-container');
+      const isDragAndDropSupported = await I.checkElementExist('.dz-hidden-input');
       I.uploadMarriageCertificateFile(language, isDragAndDropSupported);
     }
 
@@ -54,7 +53,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswersAndValidateSession(language);
     }
-
+    
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -102,7 +101,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-
+    
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -148,7 +147,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-
+    
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {

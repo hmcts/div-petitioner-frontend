@@ -61,4 +61,4 @@ Scenario('Get a divorce', async function(I) {
   }
   I.amDoneAndSubmitted(language);
 
-}).retry(2);
+}).retry(5);

@@ -3,7 +3,7 @@ const divorceReason = require('app/steps/grounds-for-divorce/reason/content.json
 
 const config = require('config');
 
-Feature('Adultery and Desertion E2E Tests (cy)').retry(3);
+Feature('Adultery and Desertion E2E Tests (cy)').retry(5);
 
 Scenario('Adultery, with details (cy)', async function (I) {
 

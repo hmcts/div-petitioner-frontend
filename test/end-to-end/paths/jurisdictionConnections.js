@@ -1,5 +1,5 @@
 const language = 'en';
-Feature('New Jurisdiction Journeys @functional').retry(3);
+Feature('New Jurisdiction Journeys @functional').retry(5);
 
 Scenario('Set A & C: Both Habitually Resident', async function (I) {
   await completeLoginPageToSelectMarriedInUk(I);

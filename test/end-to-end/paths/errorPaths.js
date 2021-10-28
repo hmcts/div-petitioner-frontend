@@ -1,4 +1,4 @@
-Feature('Invalid Paths Handling').retry(3);
+Feature('Invalid Paths Handling').retry(5);
 
 Scenario('Incorrect URLs are served a 404 page', (I) => {
 

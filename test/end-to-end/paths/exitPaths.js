@@ -1,4 +1,4 @@
-Feature('Exit route @functional').retry(3);
+Feature('Exit route @functional').retry(5);
 
 Scenario('Reaching the have marriage certificate exit page', (I) => {
   I.amOnLoadedPage('/index');

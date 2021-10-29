@@ -1,4 +1,4 @@
-Feature('Amend petition @functional').retry(2);
+Feature('Amend petition @functional').retry(5);
 
 Scenario('Submit an amend petition with an existing statement of truth stops at Check Your Answers', async function(I) {
   I.startApplicationWith('amendPetitionSessionWithConfirmation');

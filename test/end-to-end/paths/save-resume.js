@@ -3,7 +3,7 @@ const idamConfigHelper = require('test/end-to-end/helpers/idamConfigHelper.js');
 const parseBool = require('app/core/utils/parseBool');
 const language = 'en';
 
-Feature('Draft petition store @functional').retry(3);
+Feature('Draft petition store @functional').retry(5);
 
 Scenario('See the check your answers page if session restored from draft petition store', function (I) {
   I.amOnLoadedPage('/');

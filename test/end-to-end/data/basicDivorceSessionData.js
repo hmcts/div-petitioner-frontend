@@ -1309,10 +1309,12 @@ module.exports = {
   legalProceedingsDetails: 'The legal proceeding details',
   language: 'en',
   financialOrder: 'Yes',
+  financialOrderApplicationFee: 275,
   financialOrderFor: [
     'petitioner',
     'children'
   ],
+  appWithoutNoticeFeeToBePaid: 53,
   claimsCosts: 'Yes',
   reasonForDivorceAdulteryIsNamed: 'No',
   claimsCostsFrom: ['respondent'],

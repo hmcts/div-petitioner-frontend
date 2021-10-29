@@ -1,4 +1,4 @@
-Feature('Simulated invalid CSRF token').retry(3);
+Feature('Simulated invalid CSRF token').retry(5);
 
 Scenario('Should continue if there is a csrf token set', async function (I) {
   I.amOnLoadedPage('/');

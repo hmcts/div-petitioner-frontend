@@ -1,5 +1,5 @@
 const language ='en';
-Feature('Entering address @functional').retry(3);
+Feature('Entering address @functional').retry(5);
 
 Scenario('Enter address using postcode', (I) => {
   I.amOnLoadedPage('/index');

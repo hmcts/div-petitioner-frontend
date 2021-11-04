@@ -1,4 +1,4 @@
-Feature('Cookie Banner @cross-browser-test').retry(3);
+Feature('Cookie Banner @cross-browser-test').retry(5);
 
 Scenario('The cookie banner displays when page is first hit', function*(I) {
 

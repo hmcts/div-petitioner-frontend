@@ -175,6 +175,7 @@
   "resolutions": {
     "assign-deep": ">=1.0.1",
     "braces": "^2.3.2",
+    "browserslist": "^4.16.5",
     "debug": "^3.1.0",
     "growl": "^1.10.2",
     "handlebars": ">=4.3.0",

@@ -61,7 +61,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "cryptiles": "^4.1.2",
     "csrf": "^3.0.6",
-    "css-loader": "^0.28.11",
+    "css-loader": "^6.5.1",
     "csurf": "^1.9.0",
     "dns-packet": "^5.2.4",
     "dotenv": "^5.0.0",

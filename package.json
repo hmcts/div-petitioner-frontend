@@ -175,6 +175,7 @@
   "resolutions": {
     "assign-deep": ">=1.0.1",
     "braces": "^2.3.2",
+    "browserslist": "^4.16.5",
     "debug": "^3.1.0",
     "growl": "^1.10.2",
     "handlebars": ">=4.3.0",
@@ -182,6 +183,7 @@
     "hoek": "^4.2.1",
     "https-proxy-agent": ">=2.2.3",
     "js-yaml": "^3.13.0",
+    "json-schema": "^0.4.0",
     "lodash": "^4.17.21",
     "mime": "^1.4.1",
     "minimist": "^1.2.5",

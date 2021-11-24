@@ -7,19 +7,17 @@ const parseBool = require('app/core/utils/parseBool');
 
 function startApplication(language = 'en', ignoreIdamToggle = false) {
 
-  if (parseBool(CONF.features.idam) && !ignoreIdamToggle) {
-    const commonContent = language === 'en' ? commonContentEn : commonContentCy;
-    let I = this;
+  const commonContent = language === 'en' ? commonContentEn : commonContentCy;
+  let I = this;
 
-    const username = idamConfigHelper.getTestEmail();
-    const password = idamConfigHelper.getTestPassword();
-    I.waitForElement('#username');
-    I.fillField('#username', username);
-    I.fillField('#password', password);
-    I.seeInCurrentUrl('/login?');
-    I.navByClick(commonContent.signIn);
-    I.wait(2);
-  }
+  const username = idamConfigHelper.getTestEmail();
+  const password = idamConfigHelper.getTestPassword();
+  I.waitForElement('#username');
+  I.fillField('#username', username);
+  I.fillField('#password', password);
+  I.seeInCurrentUrl('/login?');
+  I.navByClick(commonContent.signIn);
+  I.wait(2);
 }
 
 async function startApplicationWith(sessionName) {

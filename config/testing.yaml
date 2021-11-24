@@ -10,7 +10,7 @@ session:
   ttl: 60 # s
 
 features:
-  idam: false
+  idam: true
 
 featureToggles:
   enabled: false

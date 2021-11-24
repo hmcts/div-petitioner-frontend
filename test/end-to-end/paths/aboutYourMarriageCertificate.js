@@ -2,7 +2,7 @@ const content = require('app/steps/marriage/about-your-marriage-certificate/cont
 
 Feature('Foreign Marriage Certificates - Certificate Language @functional').retry(5);
 
-Scenario('Marriage certificate in English, answered Yes', (I) => {
+Scenario('Marriage certificate in English, answered Yes @now', (I) => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.languagePreference();

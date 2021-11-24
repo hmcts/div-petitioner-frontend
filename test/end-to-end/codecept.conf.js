@@ -12,11 +12,11 @@ exports.config = {
       url: CONF.e2e.frontendUrl,
       waitForTimeout,
       waitForAction,
-      show: false,
+      show: true,
       chrome: {
         ignoreHTTPSErrors: true,
         args: [
-          '--headless', '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
+          '--disable-gpu', '--no-sandbox', '--allow-running-insecure-content', '--ignore-certificate-errors',
           `--proxy-server=${process.env.E2E_PROXY_SERVER || ''}`,
           `--proxy-bypass-list=${process.env.E2E_PROXY_BYPASS || ''}`
         ]
@@ -66,9 +66,9 @@ exports.config = {
 // Reduce chunks on Preview env
 function configureChunks() {
   if (CONF.e2e.runBasicTests === 'true') {
-    return 2;
+    return 1;
   } else {
-    return 6;
+    return 1;
   }
 }
 

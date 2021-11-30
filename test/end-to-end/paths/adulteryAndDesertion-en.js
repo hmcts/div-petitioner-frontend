@@ -4,7 +4,7 @@ const sendToAddressOption = require('app/steps/respondent/correspondence/use-hom
 
 const config = require('config');
 
-Feature('Adultery and Desertion E2E Tests (en) @functional').retry(3);
+Feature('Adultery and Desertion E2E Tests (en) @functional').retry(5);
 
 Scenario('Adultery, with details (en)', async function (I) {
 

@@ -21,7 +21,7 @@ const tenYearsAgoFormatted = {
   year: tenYearsAgo.format('Y')
 };
 
-Feature('Exit paths for divorce').retry(3);
+Feature('Exit paths for divorce').retry(5);
 
 Scenario('Exit if 5 years separation chosen but actual decision date is less', (I) => {
 
@@ -39,7 +39,7 @@ Scenario('Exit if 5 years separation chosen but actual decision date is less', (
   I.seeInCurrentUrl('/exit/separation');
   I.navByClick('choose another reason');
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
-}).retry(1);
+}).retry(5);
 
 
 Scenario('Exit if 5 years separation chosen but actual living apart date is less', async (I) => {
@@ -57,4 +57,4 @@ Scenario('Exit if 5 years separation chosen but actual living apart date is less
   I.seeInCurrentUrl('/exit/separation');
   await I.navByClick('choose another reason');
   I.seeInCurrentUrl('/about-divorce/reason-for-divorce/reason');
-}).retry(1);
+}).retry(5);

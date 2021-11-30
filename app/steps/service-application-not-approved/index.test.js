@@ -12,6 +12,8 @@ const modulePath = 'app/steps/service-application-not-approved';
 
 const content = require(`${modulePath}/content`);
 
+const feeToResendApplication = '53';
+
 let appInstance = {};
 let agent = {};
 let underTest = {};
@@ -51,8 +53,8 @@ describe(modulePath, () => {
 
   describe('Template Rendering', () => {
     const dataContent = {
-      feeToResendApplication: '50',
-      feeToEnforce: '45'
+      feeToResendApplication,
+      feeToEnforce: '110'
     };
 
     describe('Deemed service template', () => {

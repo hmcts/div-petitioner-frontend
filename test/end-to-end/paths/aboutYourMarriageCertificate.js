@@ -1,6 +1,6 @@
 const content = require('app/steps/marriage/about-your-marriage-certificate/content.json').resources.en.translation.content;
 
-Feature('Foreign Marriage Certificates - Certificate Language @functional').retry(3);
+Feature('Foreign Marriage Certificates - Certificate Language @functional').retry(5);
 
 Scenario('Marriage certificate in English, answered Yes', (I) => {
   I.amOnLoadedPage('/');

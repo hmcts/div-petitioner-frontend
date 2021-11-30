@@ -55,12 +55,6 @@ services:
     health: 'http://localhost:4009/health'
   prdClient:
     baseUrl:
-  webchat:
-    chatId: 3833071605d5d4518036a09.30917386
-    tenant: aG1jdHNzdGFnaW5nMDE
-    buttonNoAgents: 7732814745cac6f4603c4d1.53357933
-    buttonAgentsBusy: 2042157415cc19c95669039.65793052
-    buttonServiceClosed: 20199488815cc1a89e0861d5.73103009
   antennaWebchat:
     url: 'webchat.training.ctsc.hmcts.net'
     service: 'Testing'
@@ -85,7 +79,7 @@ commonProps:
   applicationFee:
     feeCode: 'FEE0002'
     version: 4
-    amount: 550.00
+    amount: 593.00
   amendFee:
     feeCode: 'FEE0269'
     version: 1
@@ -97,8 +91,8 @@ commonProps:
   appWithoutNoticeFee:
     feeCode: 'FEE0228'
     version: 1
-    amount: 50.00
-  financialOrderApplicationFee: 255
+    amount: 53.00
+  financialOrderApplicationFee: 275
   smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
   courtPhoneNumberEn: '0000 111 2220'
@@ -112,8 +106,8 @@ features:
   ignoreSessionValidation: false
   browserSupport: false
   strategicPay: false
-  webchat: false
-  antennaWebchat: true
+  antennaWebchatUserAttribute: false
+  newFees: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'
@@ -170,7 +164,6 @@ saucelabs:
   browser: 'chrome'
   username: 'username'
   key: 'privatekey'
-  tunnelId: 'reformtunnel'
   waitForTimeout: 20000
   smartWait: 20000
 

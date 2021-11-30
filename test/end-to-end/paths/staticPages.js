@@ -1,7 +1,7 @@
 const privacyPolicyContent = require('app/steps/privacy-policy/content.json').resources.en.translation.content;
 const termsAndConditionsContent = require('app/steps/terms-and-conditions/content.json').resources.en.translation.content;
 
-Feature('Static Pages').retry(3);
+Feature('Static Pages').retry(5);
 
 Scenario('View the cookies page', (I) => {
 

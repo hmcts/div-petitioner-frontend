@@ -144,9 +144,8 @@ exports.init = listenForConnections => {
     filters: nunjucksFilters,
     loader: nunjucks.FileSystemLoader,
     globals: {
-      webchat: CONF.services.webchat,
       antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
-      features: { webchat: parseBool(CONF.features.webchat), antennaWebchat: parseBool(CONF.features.antennaWebchat) }
+      features: { antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute) }
     }
   });
 

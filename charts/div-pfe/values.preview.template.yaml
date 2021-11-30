@@ -17,6 +17,7 @@ nodejs:
         PRD_ORGANISATION_API_URL: "http://rd-professional-api-aat.service.core-compute-aat.internal/refdata/external/v1/organisations/status"
         ANTENNA_WEBCHAT_URL: "webchat.training.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Testing"
+        FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE: "true"
 
     keyVaults:
         div:

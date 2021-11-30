@@ -47,7 +47,7 @@
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/nodejs-logging": "^3.0.1",
     "@hmcts/prd-client": "^0.0.8",
-    "@hmcts/properties-volume": "^0.0.9",
+    "@hmcts/properties-volume": "^0.0.13",
     "add": "^2.0.6",
     "ajv": "^4.10.0",
     "applicationinsights": "1.5.0",

@@ -8,7 +8,8 @@ USER root
 RUN apk add python2 make g++
 USER hmcts
 
-RUN yarn && npm rebuild node-sass
+RUN yarn && npm rebuild node-sass && addgroup -g 1001 -S hmcts && \
+    adduser -u 1001 -S hmcts -G hmcts -s /bin/sh
 
 COPY --chown=hmcts:hmcts . .
 RUN yarn setup && rm -r node_modules/ && yarn install --production && rm -r ~/.cache/yarn

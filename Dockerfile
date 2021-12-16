@@ -5,7 +5,8 @@ COPY --chown=hmcts:hmcts package.json yarn.lock ./
 FROM base as build
 
 USER root
-RUN apk add python2 make g++ && adduser -u 1001 -S hmcts -G hmcts -s /bin/sh
+RUN usermod -u 1001 hmcts -G hmcts
+RUN apk add python2 make g++
 USER hmcts
 
 RUN yarn && npm rebuild node-sass

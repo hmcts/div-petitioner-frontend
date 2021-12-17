@@ -145,7 +145,10 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
-      features: { antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute) }
+      features: {
+        antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
+        dynatrace: parseBool(CONF.features.dynatrace)
+      }
     }
   });
 

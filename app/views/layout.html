@@ -12,10 +12,12 @@
 {% endblock %}
 
 {% block bodyStart %}
-  <div id="global-cookie-message">
-    {% set serviceName = 'Divorce' %}
-    {% include "includes/cookies/cookie-manager/cookie-banner.njk" %}
-  </div>
+  {% id features.dynatrace %}
+    <div id="global-cookie-message">
+      {% set serviceName = 'Divorce' %}
+      {% include "includes/cookies/cookie-manager/cookie-banner.njk" %}
+    </div>
+  {% endif %}
 {% endblock %}
 
 {% block header %}

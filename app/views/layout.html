@@ -12,9 +12,9 @@
 {% endblock %}
 
 {% block bodyStart %}
+  {% set serviceName = 'Divorce' %}
   {% id features.dynatrace %}
     <div id="global-cookie-message">
-      {% set serviceName = 'Divorce' %}
       {% include "includes/cookies/cookie-manager/cookie-banner.njk" %}
     </div>
   {% endif %}

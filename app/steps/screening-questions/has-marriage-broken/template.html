@@ -2,6 +2,7 @@
 {% from "common/components/formElements.html" import yesNoRadioHeading %}
 {% extends "question.html" %}
 
+<!--TODO: Remove this while block once dynatrace cookie been released-->
 {% block skipLink %}
 {% if not features.dynatrace %}
   <div id="global-cookie-message" style="display: block;">

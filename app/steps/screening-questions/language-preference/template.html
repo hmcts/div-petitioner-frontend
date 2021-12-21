@@ -2,6 +2,19 @@
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 
+{% block skipLink %}
+{% if not features.dynatrace %}
+  <div id="global-cookie-message" style="display: block;">
+    <div class="govuk-width-container">
+      <p class="govuk-body-s">
+        {{ content.cookie | safe }}
+        <a class="govuk-link" href="/cookie" target="_blank">{{ content.cookieLink | safe }}</a>
+      </p>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
+
 {% block question %}
     {{ content.question | safe }}
 {% endblock %}

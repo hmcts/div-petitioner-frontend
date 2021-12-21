@@ -22,7 +22,8 @@ module.exports = class Step {
   get ignorePa11yWarnings() {
     return [
       // A11y thinks first paragraph should be a list
-      'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.2'
+      'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.2',
+      'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.SameName'
     ];
   }
   get urlToBind() {

@@ -19,9 +19,6 @@ withNightlyPipeline("nodejs", product, component) {
     env.FEATURE_IDAM = 'true'
 
     enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'firefox', 'safari'], CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
-    enableMutationTest()
-    enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
-    enableFortifyScan()
 
     after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

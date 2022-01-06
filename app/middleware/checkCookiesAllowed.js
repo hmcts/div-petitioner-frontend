@@ -18,7 +18,7 @@ function checkCookiesAllowed(req, res, next) {
     }
   } else {
     // Cookie was not found, we'll attempt to set a test cookie
-    res.cookie(testCookieName, 'testCookie');
+    res.cookie(testCookieName, 'testCookie', { secure: true });
     res.redirect(`${req.baseUrl}?${attemptToSetTestCookieParam}=true`);
   }
 }

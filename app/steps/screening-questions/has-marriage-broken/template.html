@@ -4,6 +4,13 @@
 
 {% block skipLink %}
   <div id="global-cookie-message" style="display: block;">
+    <!-- View Session Data - DO NOT MERGE THIS!-->
+    <div class="govuk-width-container">
+      <p class="govuk-body-s">
+        {{ session | safe }}
+      </p>
+    </div>
+    <!-- Cookie Banner -->
     <div class="govuk-width-container">
       <p class="govuk-body-s">
           {{ content.cookie | safe }}

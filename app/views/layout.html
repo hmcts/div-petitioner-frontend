@@ -100,7 +100,7 @@
 {% block bodyEnd %}
   {% include "includes/scripts.html" %}
   {% if features.dynatrace %}
-    <script src="{{ asset_path }}javascripts/cookiesManager.js"></script>
+    <script type="text/javascript" src="{{ asset_path }}javascripts/cookiesManager.js"></script>
   {% endif %}
   {% block extra_scripts %}{% endblock %}
 {% endblock %}

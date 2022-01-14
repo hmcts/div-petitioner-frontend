@@ -10,8 +10,6 @@
           "yes": "Welsh/English (bi-lingual)",
           "no": "English only",
           "languagePreferenceWelshNo": "All documents will be in English.",
-          "cookie": "We use some essential cookies to make this service work.",
-          "cookieLink": "View cookie",
           "warning": "Warning"
         },
         "errors": {
@@ -30,8 +28,6 @@
           "yes": "Cymraeg a Saesneg",
           "no": "Saesneg yn unig",
           "languagePreferenceWelshNo": "Bydd yr holl ddogfennau yn Saesneg.",
-          "cookie": "We use some essential cookies to make this service work.",
-          "cookieLink": "View cookie",
           "warning": "Rhybudd"
         },
         "errors": {

@@ -2,7 +2,7 @@
 set -ex
 
 # Setup required environment variables. TEST_URL should be set by CNP
-export E2E_FRONTEND_URL="https://div-pfe-pr-925.service.core-compute-preview.internal/"
+export E2E_FRONTEND_URL="https://petitioner-frontend-aks.aat.platform.hmcts.net/"
 export E2E_FRONTEND_NODE_ENV=${E2E_FRONTEND_NODE_ENV:-"production"}
 export IDAM_API_URL=${IDAM_API_URL:-"https://idam-api.aat.platform.hmcts.net"}
 export COURT_PHONENUMBER_EN=${COURT_PHONENUMBER_EN:-"0300 303 0642"}

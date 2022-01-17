@@ -271,3 +271,8 @@ input.link{
   background-size: 100%;
   background-image: url("../images/icon-file-download.png");
 }
+
+//TODO: Remove this css once dynatrace cookie been released
+.govuk-skip-link {
+  display: none !important;
+}

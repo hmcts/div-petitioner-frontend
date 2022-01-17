@@ -1194,7 +1194,7 @@ axios@>=0.21.1, axios@^0.19.1:
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
   integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
-    follow-redirects "^1.10.0"
+    follow-redirects "^1.14.7"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -3175,7 +3175,7 @@ css-loader@^0.28.11:
     loader-utils "^1.0.2"
     lodash.camelcase "^4.3.0"
     object-assign "^4.1.1"
-    postcss "^5.0.6"
+    postcss "^8.2.13"
     postcss-modules-extract-imports "^1.2.0"
     postcss-modules-local-by-default "^1.2.0"
     postcss-modules-scope "^1.1.0"
@@ -5915,7 +5915,7 @@ http-proxy@^1.17.0:
   integrity sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
   dependencies:
     eventemitter3 "^4.0.0"
-    follow-redirects "^1.0.0"
+    follow-redirects "^1.14.7"
     requires-port "^1.0.0"
 
 http-signature@~1.2.0:
@@ -10366,7 +10366,7 @@ selfsigned@^1.10.8:
   resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.8.tgz#0d17208b7d12c33f8eac85c41835f27fc3d81a30"
   integrity sha512-2P4PtieJeEwVgTU9QEcwIRDQ/mXJLX8/+I3ur+Pg16nS8oNbrGxEso9NyYWy8NAmXiNl4dlAp5MwoNeCWzON4w==
   dependencies:
-    node-forge "^0.10.0"
+    node-forge "^1.0.0"
 
 semver-diff@^2.0.0:
   version "2.1.0"

@@ -135,7 +135,6 @@ exports.init = listenForConnections => {
     `${__dirname}/node_modules/@hmcts/frontend/components`
   ]);
 
-
   const isDev = app.get('env') === 'development';
 
   expressNunjucks(app, {
@@ -146,7 +145,10 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
-      features: { antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute) }
+      features: {
+        antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
+        dynatrace: parseBool(CONF.features.dynatrace) // Dynatrace Feature Toggle
+      }
     }
   });
 
@@ -259,7 +261,7 @@ exports.init = listenForConnections => {
     });
   }
 
-  app.get('/cookie', i18nTemplate('cookie', (view, req, res) => {
+  app.get('/cookies', i18nTemplate('cookie', (view, req, res) => {
     res.render(view, {});
   }));
 

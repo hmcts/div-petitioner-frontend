@@ -10,8 +10,6 @@
           "yes": "Welsh/English (bi-lingual)",
           "no": "English only",
           "languagePreferenceWelshNo": "All documents will be in English.",
-          "cookie": "This service uses cookies to make the site simpler.",
-          "cookieLink": "Find out more about cookies",
           "warning": "Warning"
         },
         "errors": {
@@ -30,8 +28,6 @@
           "yes": "Cymraeg a Saesneg",
           "no": "Saesneg yn unig",
           "languagePreferenceWelshNo": "Bydd yr holl ddogfennau yn Saesneg.",
-          "cookie": "Mae’r gwasanaeth hwn yn defnyddio cwcis i wneud y safle hwn yn symlach i’w ddefnyddio.",
-          "cookieLink": "Mwy o wybodaeth am gwcis",
           "warning": "Rhybudd"
         },
         "errors": {

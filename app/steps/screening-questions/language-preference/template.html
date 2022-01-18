@@ -2,7 +2,7 @@
 {% from "common/components/formElements.html" import radioButton %}
 {% extends "question.html" %}
 
-% block skipLink %}
+{% block skipLink %}
 {% if not features.dynatrace %}
 <div id="global-cookie-message" style="display: block;">
   <div class="govuk-width-container">

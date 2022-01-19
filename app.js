@@ -261,7 +261,7 @@ exports.init = listenForConnections => {
     });
   }
 
-  app.get('/cookies', i18nTemplate('cookie', (view, req, res) => {
+  app.get('/cookie', i18nTemplate('cookie', (view, req, res) => {
     res.render(view, {});
   }));
 

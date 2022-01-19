@@ -43,7 +43,7 @@ function* seeCookieFooter() {
   let I = this;
 
   yield I.waitForVisible('#footer');
-  I.see('Cookies', '#footer a[href="/cookies"]');
+  I.see('Cookies', '#footer a[href="/cookie"]');
 }
 
 function followCookieBannerLink(cookiePageLink) {

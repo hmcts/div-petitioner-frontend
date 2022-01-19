@@ -52,7 +52,10 @@ describe(modulePath, () => {
     });
 
     it('#ignorePa11yWarnings returns an array', () => {
-      expect(step.ignorePa11yWarnings).to.eql([]);
+      expect(step.ignorePa11yWarnings).to.eql([
+        'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.2',
+        'WCAG2AA.Principle1.Guideline1_3.1_3_1.H71.SameName'
+      ]);
     });
 
     it('#fields returns an array', () => {

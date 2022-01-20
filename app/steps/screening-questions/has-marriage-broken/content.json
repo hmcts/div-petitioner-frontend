@@ -26,6 +26,8 @@
           "yes": "Do",
           "no": "Naddo",
           "marriageBrokenDownNo": "Yr unig reswm cyfreithiol dros gael ysgariad yng Nghymru a Lloegr yw bod y briodas wedi chwalu’n anadferadwy.",
+          "cookie": "We use some essential cookies to make this service work.",
+          "cookieLink": "View cookie",
           "warning": "Rhybudd"
         },
         "errors": {

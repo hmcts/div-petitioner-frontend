@@ -39,10 +39,17 @@ $(document).ready(() => {
 // eslint-disable-next-line no-invalid-this
 }).call(this);
 
+function validateSelectedValues(selVal) {
+  if (selVal !== true) {
+    return false;
+  }
+  return true;
+}
+
 function setCookiePreference() {
   const expiryDays = 365;
-  const getAnalyticsSelectedValue = document.querySelector('input[name="analytics"]:checked');
-  const getApmSelectedValue = document.querySelector('input[name="apm"]:checked');
+  const getAnalyticsSelectedValue = validateSelectedValues(document.querySelector('input[name="analytics"]:checked'));
+  const getApmSelectedValue = validateSelectedValues(document.querySelector('input[name="apm"]:checked'));
   // eslint-disable-next-line no-magic-numbers,no-use-before-define
   setCookie('cookies_preferences_set', true, expiryDays);
   // eslint-disable-next-line no-use-before-define

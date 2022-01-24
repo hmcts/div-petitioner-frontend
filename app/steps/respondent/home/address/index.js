@@ -10,7 +10,7 @@ module.exports = class RespondentHomeAddress extends AddressLookupStep {
       const respondentHomeAddressIsNotKnown = !session.respondentKnowsHomeAddress || session.respondentKnowsHomeAddress === 'No';
       const notLivingTogether = session.livingArrangementsLiveTogether === 'No';
 
-      if (respondentHomeAddressIsNotKnown && notLivingTogether) {
+      if (notLivingTogether) {
         remove('respondentHomeAddress');
       }
     });

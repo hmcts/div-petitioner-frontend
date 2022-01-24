@@ -1,6 +1,7 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
 const { resetRespondentSolicitorData } = require('../../../../core/utils/respondentSolicitorSearchHelper');
+const logging = require('@hmcts/nodejs-logging');
 
 module.exports = class RespondentCorrespondenceUseHomeAddress extends ValidationStep {
   get url() {
@@ -21,13 +22,17 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     super(steps, section, templatePath, content, schema);
 
     watch('respondentCorrespondenceUseHomeAddress', (previousSession, session, remove) => {
+      const loggerInstance = logging.Logger.getLogger('name');
       if (session.respondentCorrespondenceUseHomeAddress !== 'Yes') {
+        loggerInstance.info('MEEEEEE respondentCorrespondenceAddress removed');
         remove('respondentCorrespondenceAddress');
       }
     });
 
     watch('respondentHomeAddress', (previousSession, session, remove) => {
+      const loggerInstance = logging.Logger.getLogger('name');
       if (session.respondentCorrespondenceUseHomeAddress === 'Yes') {
+        loggerInstance.info('MEEEEEE respondentCorrespondenceAddress respondentCorrespondenceUseHomeAddress removed');
         remove('respondentCorrespondenceAddress', 'respondentCorrespondenceUseHomeAddress');
       }
     });
@@ -38,6 +43,8 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   }
 
   setRespondentCorrespondenceDisplayAnswer(ctx, session) {
+    const loggerInstance = logging.Logger.getLogger('name');
+    loggerInstance.info('MEEEEEE setRespondentCorrespondenceDisplayAnswer called');
     if (ctx.isRespSolToggleOn === true) {
       if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'theirAddress');
@@ -50,6 +57,8 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   }
 
   setRespondentCorrespondenceDisplayAddress(ctx, session) {
+    const loggerInstance = logging.Logger.getLogger('name');
+    loggerInstance.info('MEEEEEE setRespondentCorrespondenceDisplayAddress called');
     ctx.respondentCorrespondenceDisplayAddress = '';
 
     if (session.livingArrangementsLiveTogether === 'Yes') {
@@ -70,6 +79,8 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
 
   action(ctx, session) {
     if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
+      const loggerInstance = logging.Logger.getLogger('name');
+      loggerInstance.info(`MEEEEEE respondentCorrespondenceUseHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
       session.respondentCorrespondenceAddress = session.respondentHomeAddress;
     }
     // remove data used for template

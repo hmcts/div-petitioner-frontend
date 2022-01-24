@@ -41,8 +41,8 @@ $(document).ready(() => {
 
 function setCookiePreference() {
   const expiryDays = 365;
-  const getAnalyticsSelectedValue = document.querySelector('input[name="analytics"]:checked') === 'true';
-  const getApmSelectedValue = document.querySelector('input[name="apm"]:checked') === 'true';
+  const getAnalyticsSelectedValue = document.querySelector('input[name="analytics"]:checked').value === 'true';
+  const getApmSelectedValue = document.querySelector('input[name="apm"]:checked').value === 'true';
   // eslint-disable-next-line no-magic-numbers,no-use-before-define
   setCookie('cookies_preferences_set', true, expiryDays);
   // eslint-disable-next-line no-use-before-define

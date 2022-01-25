@@ -28,7 +28,7 @@ nodejs:
 
         CASE_ORCHESTRATION_SERVICE_DRAFT_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/draftsapi/version/1"
         CASE_ORCHESTRATION_SERVICE_URL: "http://div-cos-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
-        DECREE_NISI_FRONTEND_URL: "https://div-dn-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
         EVIDENCE_MANAGEMENT_CLIENT_API_URL: "http://div-emca-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         FEES_AND_PAYMENTS_URL: "http://div-fps-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         PAYMENT_SERVICE_URL: "http://payment-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"

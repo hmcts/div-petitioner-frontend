@@ -48,8 +48,10 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     if (ctx.isRespSolToggleOn === true) {
       if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'theirAddress');
+        loggerInstance.info(`MEEEEEE respondentCorrespondenceUseHomeAddress YES ${JSON.stringify(ctx.respondentCorrespondenceWherePaperSent)}`);
       } else if (ctx.respondentCorrespondenceUseHomeAddress === 'No') {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'anotherAddress');
+        loggerInstance.info(`MEEEEEE respondentCorrespondenceUseHomeAddress NO ${JSON.stringify(ctx.respondentCorrespondenceWherePaperSent)}`);
       } else {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'solicitorAddress');
       }
@@ -64,8 +66,10 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     if (session.livingArrangementsLiveTogether === 'Yes') {
       ctx.respondentCorrespondenceDisplayAddress = session.petitionerHomeAddress; // eslint-disable-line max-len
     } else if (session.respondentHomeAddress) {
+      loggerInstance.info(`MEEEEEE respondentHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
       ctx.respondentCorrespondenceDisplayAddress = session.respondentHomeAddress; // eslint-disable-line max-len
     } else if (session.livingArrangementsLastLivedTogetherAddress) {
+      loggerInstance.info(`MEEEEEE livingArrangementsLastLivedTogetherAddress ${JSON.stringify(session.livingArrangementsLastLivedTogetherAddress)}`);
       ctx.respondentCorrespondenceDisplayAddress = session.livingArrangementsLastLivedTogetherAddress; // eslint-disable-line max-len
     }
     return ctx;

@@ -43,15 +43,11 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   }
 
   setRespondentCorrespondenceDisplayAnswer(ctx, session) {
-    const loggerInstance = logging.Logger.getLogger('name');
-    loggerInstance.info('MEEEEEE setRespondentCorrespondenceDisplayAnswer called');
     if (ctx.isRespSolToggleOn === true) {
       if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'theirAddress');
-        loggerInstance.info(`MEEEEEE respondentCorrespondenceUseHomeAddress YES ${JSON.stringify(ctx.respondentCorrespondenceWherePaperSent)}`);
       } else if (ctx.respondentCorrespondenceUseHomeAddress === 'No') {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'anotherAddress');
-        loggerInstance.info(`MEEEEEE respondentCorrespondenceUseHomeAddress NO ${JSON.stringify(ctx.respondentCorrespondenceWherePaperSent)}`);
       } else {
         ctx.respondentCorrespondenceWherePaperSent = this.getDestinationResponse(session, 'solicitorAddress');
       }
@@ -66,10 +62,11 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     if (session.livingArrangementsLiveTogether === 'Yes') {
       ctx.respondentCorrespondenceDisplayAddress = session.petitionerHomeAddress; // eslint-disable-line max-len
     } else if (session.respondentHomeAddress) {
-      loggerInstance.info(`MEEEEEE respondentHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
+      loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(session.respondentContactDetailsConfidential)}`);
+      loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
       ctx.respondentCorrespondenceDisplayAddress = session.respondentHomeAddress; // eslint-disable-line max-len
     } else if (session.livingArrangementsLastLivedTogetherAddress) {
-      loggerInstance.info(`MEEEEEE livingArrangementsLastLivedTogetherAddress ${JSON.stringify(session.livingArrangementsLastLivedTogetherAddress)}`);
+      loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress livingArrangementsLastLivedTogetherAddress ${JSON.stringify(session.livingArrangementsLastLivedTogetherAddress)}`);
       ctx.respondentCorrespondenceDisplayAddress = session.livingArrangementsLastLivedTogetherAddress; // eslint-disable-line max-len
     }
     return ctx;
@@ -84,7 +81,7 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
   action(ctx, session) {
     if (ctx.respondentCorrespondenceUseHomeAddress === 'Yes') {
       const loggerInstance = logging.Logger.getLogger('name');
-      loggerInstance.info(`MEEEEEE respondentCorrespondenceUseHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
+      loggerInstance.info(`MEEEEEE action respondentCorrespondenceUseHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
       session.respondentCorrespondenceAddress = session.respondentHomeAddress;
     }
     // remove data used for template

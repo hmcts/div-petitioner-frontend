@@ -8,9 +8,16 @@ module.exports = class RespondentHomeAddress extends AddressLookupStep {
     this.schemaScope = 'respondentHomeAddress';
 
     watch('respondentKnowsHomeAddress', (previousSession, session, remove) => {
+      const respondentHomeAddressIsNotKnown = (!session.respondentKnowsHomeAddress || session.respondentKnowsHomeAddress === 'No');
       const loggerInstance = logging.Logger.getLogger('name');
       const notLivingTogether = session.livingArrangementsLiveTogether === 'No';
-      if (notLivingTogether) {
+      loggerInstance.info('########## respondentKnowsHomeAddress');
+      loggerInstance.info(`MEEEEEE respondentKnowsHomeAddress value ${!session.respondentKnowsHomeAddress}`);
+      loggerInstance.info(`MEEEEEE respondentKnowsHomeAddress value ${session.respondentKnowsHomeAddress}`);
+      loggerInstance.info(`MEEEEEE livingArrangementsLiveTogether value ${session.livingArrangementsLiveTogether}`);
+      loggerInstance.info(`MEEEEEE respondentHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
+      loggerInstance.info('##########');
+      if (respondentHomeAddressIsNotKnown && notLivingTogether) {
         loggerInstance.info('MEEEEEE respondentHomeAddress removed');
         remove('respondentHomeAddress');
       }

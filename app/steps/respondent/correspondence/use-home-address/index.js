@@ -64,7 +64,9 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     } else if (session.respondentHomeAddress) {
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(session.respondentContactDetailsConfidential)}`);
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
-      ctx.respondentCorrespondenceDisplayAddress = session.respondentHomeAddress; // eslint-disable-line max-len
+      if (session.respondentContactDetailsConfidential === 'share') {
+        ctx.respondentCorrespondenceDisplayAddress = session.respondentHomeAddress; // eslint-disable-line max-len
+      }
     } else if (session.livingArrangementsLastLivedTogetherAddress) {
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress livingArrangementsLastLivedTogetherAddress ${JSON.stringify(session.livingArrangementsLastLivedTogetherAddress)}`);
       ctx.respondentCorrespondenceDisplayAddress = session.livingArrangementsLastLivedTogetherAddress; // eslint-disable-line max-len

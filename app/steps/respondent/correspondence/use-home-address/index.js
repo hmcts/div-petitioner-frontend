@@ -68,6 +68,8 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
       if (session.respondentContactDetailsConfidential === 'share') {
         loggerInstance.info('MEEEEEE setRespondentCorrespondenceDisplayAddress respondentContactDetailsConfidential should not run');
         ctx.respondentCorrespondenceDisplayAddress = session.respondentHomeAddress; // eslint-disable-line max-len
+      } else {
+        session.respondentHomeAddress = '';
       }
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentCorrespondenceDisplayAddress ${JSON.stringify(ctx.respondentCorrespondenceDisplayAddress)}`);
     } else if (session.livingArrangementsLastLivedTogetherAddress) {

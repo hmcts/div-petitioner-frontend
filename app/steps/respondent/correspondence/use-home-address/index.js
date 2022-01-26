@@ -35,10 +35,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
         loggerInstance.info('MEEEEEE respondentCorrespondenceAddress respondentCorrespondenceUseHomeAddress removed');
         remove('respondentCorrespondenceAddress', 'respondentCorrespondenceUseHomeAddress');
       }
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        loggerInstance.info('MEEEEEE watch respondentHomeAddress should remove');
-        remove('respondentHomeAddress');
-      }
     });
   }
 

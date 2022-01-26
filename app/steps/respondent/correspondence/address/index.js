@@ -9,6 +9,7 @@ module.exports = class RespondentCorrespondenceAddress extends AddressLookupStep
   get url() {
     return '/petitioner-respondent/respondent-correspondence-address';
   }
+
   get nextStep() {
     return this.steps.ReasonForDivorce;
   }

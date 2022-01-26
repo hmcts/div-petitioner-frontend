@@ -167,6 +167,8 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // generate fields
     const fields = step.generateFields(stepCtx, session);
 
+    logger.warnWithReq(null, 'fields', JSON.stringify(fields));
+
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
       // render check your answers templates

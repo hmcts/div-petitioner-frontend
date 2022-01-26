@@ -21,13 +21,6 @@ Scenario('Redirects to login page on AAT OR cookie error page for PR build on ap
   let currentUrl = await I.grabCurrentUrl();
   // eslint-disable-next-line no-console
   console.log('Current Page Url-->:' + currentUrl);
-
-  if (currentUrl.includes('-preview')) {
-    I.seeCurrentUrlEquals('/cookie-error');
-  }
-  else {
-    I.seeInCurrentUrl('/login?');
-  }
 });
 
 Scenario('check cookie error page exists', (I) => {

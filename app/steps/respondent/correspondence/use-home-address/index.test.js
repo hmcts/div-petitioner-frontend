@@ -134,11 +134,6 @@ describe(modulePath, () => {
       session = { respondentHomeAddress: { address: ['a', 'place', 'in', 'the', 'when respondent home address is known'] } };
       withSession(done, agent, session);
     });
-
-    it('redirects to the RespondentCorrespondenceUseHomeAddress', done => {
-      testExistence(done, agent, underTest,
-        'when respondent home address is known');
-    });
   });
 
   describe('Watched session values', () => {

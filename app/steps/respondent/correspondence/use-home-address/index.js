@@ -60,13 +60,16 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     ctx.respondentCorrespondenceDisplayAddress = '';
 
     if (session.livingArrangementsLiveTogether === 'Yes') {
+      loggerInstance.info('MEEEEEE setRespondentCorrespondenceDisplayAddress livingArrangementsLiveTogether YES');
       ctx.respondentCorrespondenceDisplayAddress = session.petitionerHomeAddress; // eslint-disable-line max-len
     } else if (session.respondentHomeAddress) {
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(session.respondentContactDetailsConfidential)}`);
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(session.respondentHomeAddress)}`);
       if (session.respondentContactDetailsConfidential === 'share') {
+        loggerInstance.info('MEEEEEE setRespondentCorrespondenceDisplayAddress respondentContactDetailsConfidential should not run');
         ctx.respondentCorrespondenceDisplayAddress = session.respondentHomeAddress; // eslint-disable-line max-len
       }
+      loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress respondentHomeAddress ${JSON.stringify(ctx.respondentCorrespondenceDisplayAddress)}`);
     } else if (session.livingArrangementsLastLivedTogetherAddress) {
       loggerInstance.info(`MEEEEEE setRespondentCorrespondenceDisplayAddress livingArrangementsLastLivedTogetherAddress ${JSON.stringify(session.livingArrangementsLastLivedTogetherAddress)}`);
       ctx.respondentCorrespondenceDisplayAddress = session.livingArrangementsLastLivedTogetherAddress; // eslint-disable-line max-len

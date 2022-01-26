@@ -1,5 +1,6 @@
 const ValidationStep = require('app/core/steps/ValidationStep');
 const { watch } = require('app/core/helpers/staleDataManager');
+const logging = require('@hmcts/nodejs-logging');
 
 module.exports = class LastLivedTogether extends ValidationStep {
   get url() {
@@ -29,8 +30,10 @@ module.exports = class LastLivedTogether extends ValidationStep {
 
 
   action(ctx, session) {
+    const loggerInstance = logging.Logger.getLogger('name');
     if (ctx.livingArrangementsLastLivedTogether === 'Yes') {
       // copy petitioner home address as last place they lived together
+      loggerInstance.info(`MEEEEEE action LastLivedTogether ${ctx.livingArrangementsLastLivedTogether}`);
       ctx.livingArrangementsLastLivedTogetherAddress = session.petitionerHomeAddress; // eslint-disable-line max-len
     } else {
       delete session.livingArrangementsLastLivedTogetherAddress;

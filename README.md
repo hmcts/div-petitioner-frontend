@@ -15,73 +15,71 @@ or disable it altogether by setting `featureToggles` `enabled` to `false` in `co
 **Building locally**
 
 You need to have Yarn and Redis installed. This can be done with brew as follows:
-```
+```sh
 brew install yarn
 brew install redis
 ```
 
 If it's your first time running the app then run this command to setup the Grunt config files:
-```
+```sh
 yarn setup
 ```
 
 If necessary you can run redis via docker using:
-```
+```sh
 docker-compose up redis
 ```
 
 To run the front end app, run the following from the front end project root folder:
-```
+```sh
 yarn add redis-server & yarn dev
 ```
 
 The application will now be running on ```https://localhost:3000```.
 
 To run the tests and lint, run the following:
-```
+```sh
 yarn test
 yarn lint
 ```
 
-
 **Building with Docker**
 
 To begin download the azure client cli
-```
+```sh
 brew update && brew install azure-cli
 ```
 
 After it has finished downloaded run:
-```
+```sh
 az login
 ```
 
 This should open a browser window for you to login, use your HMCTS account
 
 After logging in run the following command:
-```
+```sh
 az acr login --name hmctspublic --subscription DCD-CNP-Prod
 az acr login --name hmctsprivate --subscription DCD-CNP-Prod
 ```
 
 To build the docker containers afresh:
-```
+```sh
 make build
 ```
-
 
 **Install dependencies**
 
 To install NPM dependencies (This installs the dev dependencies to your local folder):
-```
+```sh
 make install
 ```
 
 **Start the app**
-```
+
+```sh
 make dev
 ```
-
 The application will now be running on  ```https://localhost:3000```.
 
 ## Running locally but pointing to real AAT services
@@ -100,7 +98,7 @@ All commands from the package.json are available through make. They will be run
 inside a docker container, ensuring a consistent dev environment.
 
 For example:
-```
+```sh
 make test
 make test-unit
 make test-e2e

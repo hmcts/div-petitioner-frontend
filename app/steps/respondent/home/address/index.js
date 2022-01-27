@@ -7,10 +7,16 @@ module.exports = class RespondentHomeAddress extends AddressLookupStep {
     this.schemaScope = 'respondentHomeAddress';
 
     watch('respondentKnowsHomeAddress', (previousSession, session, remove) => {
-      const respondentHomeAddressIsNotKnown = !session.respondentKnowsHomeAddress || session.respondentKnowsHomeAddress === 'No';
-      const notLivingTogether = session.livingArrangementsLiveTogether === 'No';
+      const respondentHomeAddressIsNotKnown = (!session.respondentKnowsHomeAddress || session.respondentKnowsHomeAddress === 'No');
+      const notLivingTogether = (session.livingArrangementsLiveTogether === 'No');
 
       if (respondentHomeAddressIsNotKnown && notLivingTogether) {
+        remove('respondentHomeAddress');
+      }
+    });
+
+    watch('respondentLivesAtLastAddress', (previousSession, session, remove) => {
+      if (session.respondentContactDetailsConfidential === 'keep') {
         remove('respondentHomeAddress');
       }
     });
@@ -19,6 +25,7 @@ module.exports = class RespondentHomeAddress extends AddressLookupStep {
   get url() {
     return '/petitioner-respondent/home-address';
   }
+
   get nextStep() {
     return this.steps.RespondentCorrespondenceUseHomeAddress;
   }

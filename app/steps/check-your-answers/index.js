@@ -32,6 +32,12 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         remove('respondentHomeAddress');
       }
     });
+
+    watch('respondentCorrespondenceUseHomeAddress', (previousSession, session, remove) => {
+      if (session.respondentContactDetailsConfidential === 'keep') {
+        remove('respondentCorrespondenceAddress');
+      }
+    });
   }
 
   next(ctx, session) {

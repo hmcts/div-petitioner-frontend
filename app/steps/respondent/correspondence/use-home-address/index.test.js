@@ -180,8 +180,20 @@ describe(modulePath, () => {
       session.respondentHomeAddress = 'No';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.respondentCorrespondenceAddress)
-        .to.equal('undefined');
+      expect(typeof newSession.respondentCorrespondenceAddress).to.equal('undefined');
+    });
+
+    it('remove respondentCorrespondenceAddress if respondentCorrespondenceUseHomeAddress is changed confidential set to keep', () => {
+      const previousSession = {
+        respondentContactDetailsConfidential: 'keep',
+        respondentCorrespondenceAddress: ['Address 1', 'Address 2', 'Address 3']
+      };
+
+      const session = clone(previousSession);
+      session.respondentCorrespondenceUseHomeAddress = 'Yes';
+
+      const newSession = removeStaleData(previousSession, session);
+      expect(typeof newSession.respondentCorrespondenceAddress).to.equal('undefined');
     });
   });
 

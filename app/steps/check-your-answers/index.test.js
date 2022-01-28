@@ -1050,5 +1050,31 @@ describe(modulePath, () => {
         expect(newSession).not.to.have.property(property);
       });
     });
+
+    it('remove respondentHomeAddress if respondentLivesAtLastAddress is changed and confidential set to keep', () => {
+      const previousSession = {
+        respondentContactDetailsConfidential: 'keep',
+        respondentHomeAddress: 'Confidential home address'
+      };
+      session = clone(previousSession);
+      session.respondentLivesAtLastAddress = 'No';
+
+      const newSession = removeStaleData(previousSession, session);
+
+      expect(typeof newSession.respondentHomeAddress).to.equal('undefined');
+    });
+
+    it('remove respondentCorrespondenceAddress if respondentCorrespondenceUseHomeAddress is changed and confidential set to keep', () => {
+      const previousSession = {
+        respondentContactDetailsConfidential: 'keep',
+        respondentCorrespondenceAddress: 'Confidential correspondence address'
+      };
+      session = clone(previousSession);
+      session.respondentCorrespondenceUseHomeAddress = 'No';
+
+      const newSession = removeStaleData(previousSession, session);
+
+      expect(typeof newSession.respondentCorrespondenceAddress).to.equal('undefined');
+    });
   });
 });

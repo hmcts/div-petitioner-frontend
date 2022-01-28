@@ -22,7 +22,8 @@ module.exports = class ServiceApplicationNotApproved extends Step {
     return [
       // A11y thinks link to download document is empty href
       'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoHref',
-      'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.Placeholder'
+      'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.Placeholder',
+      'WCAG2AA.Principle1.Guideline1_3.1_3_1.H48.2'
     ];
   }
 

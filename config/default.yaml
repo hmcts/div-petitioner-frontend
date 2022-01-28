@@ -108,6 +108,7 @@ features:
   strategicPay: false
   antennaWebchatUserAttribute: false
   newFees: true
+  dynatrace: false
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

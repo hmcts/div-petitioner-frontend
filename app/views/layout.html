@@ -11,12 +11,11 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block skipLink %}{% endblock %}
-
 {% block bodyStart %}
-  {% if cookieText.length > 0 %}
-    <div id="global-cookie-message" style="display: block;">
-      <p class="govuk-body govuk-!-font-size-16">{{ cookieText | safe }}</p>
+  {% set serviceName = 'Divorce' %}
+  {% if features.dynatrace %}
+    <div id="global-cookie-message">
+      {% include "includes/cookies/cookie-manager/cookie-banner.njk" %}
     </div>
   {% endif %}
 {% endblock %}
@@ -75,7 +74,7 @@
     meta: {
       items: [
         {
-          href: "/cookie",
+          href: "/cookies",
           text: common.cookies
         },
         {

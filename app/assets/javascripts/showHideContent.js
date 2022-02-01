@@ -15,7 +15,7 @@
 
     // Adds ARIA attributes to control + associated content
     function initToggledContent () {
-      var $control = jQuery(this)
+      var $control = $(this)
       var $content = getToggledContent($control)
 
       // Set aria-controls and defaults
@@ -28,15 +28,19 @@
 
     // Return toggled content for control
     function getToggledContent ($control) {
-      var id = $control.attr('aria-controls')
+      var id = $control.attr('aria-controls');
 
       // ARIA attributes aren't set before init
       if (!id) {
-        id = $control.closest('[data-target]').data('target')
+        id = $control.closest('[data-target]').data('target');
+      }
+
+      if (!id) {
+        return [];
       }
 
       // Find show/hide content by id
-      return jQuery('#' + id)
+      return $('#' + id)
     }
 
     // Show toggled content for control
@@ -74,11 +78,11 @@
       // All radios in this group which control content
       var selector = selectors.radio + '[name="' + $control.attr('name') + '"][aria-controls]'
       var $form = $control.closest('form')
-      var $radios = $form.length ? $form.find(selector) : jQuery(selector)
+      var $radios = $form.length ? $form.find(selector) : $(selector)
 
       // Hide content for radios in group
       $radios.each(function () {
-        hideToggledContent(jQuery(this))
+        hideToggledContent($(this))
       })
 
       // Select content for this control
@@ -99,20 +103,20 @@
 
     // Set up event handlers etc
     function init ($container, elementSelector, eventSelectors, handler) {
-      $container = $container || jQuery(document.body)
+      $container = $container || $(document.body)
 
       // Handle control clicks
       function deferred () {
-        var $control = jQuery(this)
+        var $control = $(this)
         handler($control, getToggledContent($control))
       }
 
       // Prepare ARIA attributes
-      var $controls = jQuery(elementSelector)
+      var $controls = $(elementSelector)
       $controls.each(initToggledContent)
 
       // Handle events
-      jQuery.each(eventSelectors, function (idx, eventSelector) {
+      $.each(eventSelectors, function (idx, eventSelector) {
         $container.on('click.' + selectors.namespace, eventSelector, deferred)
       })
 
@@ -127,12 +131,12 @@
       var radioGroups = []
 
       // Build an array of radio group selectors
-      return jQuery(selectors.radio).map(function () {
-        var groupName = jQuery(this).attr('name')
+      return $(selectors.radio).map(function () {
+        var groupName = $(this).attr('name')
 
-        if (jQuery.inArray(groupName, radioGroups) === -1) {
+        if ($.inArray(groupName, radioGroups) === -1) {
           radioGroups.push(groupName)
-          return 'input[type="radio"][name="' + jQuery(this).attr('name') + '"]'
+          return 'input[type="radio"][name="' + $(this).attr('name') + '"]'
         }
         return null
       })
@@ -150,7 +154,7 @@
 
     // Remove event handlers
     self.destroy = function ($container) {
-      $container = $container || jQuery(document.body)
+      $container = $container || $(document.body)
       $container.off('.' + selectors.namespace)
     }
   }

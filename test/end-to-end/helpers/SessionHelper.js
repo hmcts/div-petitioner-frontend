@@ -92,6 +92,7 @@ class SessionHelper extends codecept_helper {
   updateExpectedSessionWithActualSession(expectedSession, actualSession) {
     const testingLocally = CONF.e2e.frontendUrl.indexOf('localhost:3000') > -1;
 
+    expectedSession.language                                    = actualSession.language;
     expectedSession.csrfSecret                                  = actualSession.csrfSecret;
     expectedSession.feeToBePaid                                 = actualSession.feeToBePaid;
     expectedSession.expires                                     = actualSession.expires;

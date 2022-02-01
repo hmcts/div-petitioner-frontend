@@ -14,6 +14,7 @@ const stepsHelper = require('app/core/helpers/steps');
 const { watch } = require('app/core/helpers/staleDataManager');
 const RespondentHomeAddress = require('app/steps/respondent/home/address/index.js');
 const RespondentCorrespondenceAddress = require('app/steps/respondent/correspondence/address/index.js');
+const RespondentCorrespondenceUseHomeAddress = require('app/steps/respondent/correspondence/use-home-address/index.js');
 
 const maximumNumberOfSteps = 500;
 
@@ -176,7 +177,7 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         step.checkYourAnswersTemplate, { content, fields, session }
       );
 
-      if (step instanceof RespondentHomeAddress || step instanceof RespondentCorrespondenceAddress) {
+      if (step instanceof RespondentHomeAddress || step instanceof RespondentCorrespondenceAddress || step instanceof RespondentCorrespondenceUseHomeAddress) {
         if (session.respondentContactDetailsConfidential === 'keep') {
           html = '';
         }

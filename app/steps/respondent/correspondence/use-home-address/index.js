@@ -21,10 +21,6 @@ module.exports = class RespondentCorrespondenceUseHomeAddress extends Validation
     super(steps, section, templatePath, content, schema);
 
     watch('respondentCorrespondenceUseHomeAddress', (previousSession, session, remove) => {
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        remove('respondentCorrespondenceAddress');
-      }
-
       if (session.respondentCorrespondenceUseHomeAddress !== 'Yes') {
         remove('respondentCorrespondenceAddress');
       }

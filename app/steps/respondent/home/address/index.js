@@ -14,12 +14,6 @@ module.exports = class RespondentHomeAddress extends AddressLookupStep {
         remove('respondentHomeAddress');
       }
     });
-
-    watch('respondentLivesAtLastAddress', (previousSession, session, remove) => {
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        remove('respondentHomeAddress');
-      }
-    });
   }
 
   get url() {

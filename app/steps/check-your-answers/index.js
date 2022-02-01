@@ -28,18 +28,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     watch('confirmPrayer', (previousSession, session, remove) => {
       remove('confirmPrayer');
     });
-
-    watch('respondentLivesAtLastAddress', (previousSession, session, remove) => {
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        remove('respondentHomeAddress');
-      }
-    });
-
-    watch('respondentCorrespondenceUseHomeAddress', (previousSession, session, remove) => {
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        remove('respondentCorrespondenceAddress');
-      }
-    });
   }
 
   next(ctx, session) {

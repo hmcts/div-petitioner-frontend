@@ -96,18 +96,5 @@ describe(modulePath, () => {
       const newSession = removeStaleData(previousSession, session);
       expect(newSession.respondentHomeAddress).to.equal(respondentHomeAddress);
     });
-
-    it('remove respondentHomeAddress if respondentLivesAtLastAddress is changed and confidential set to keep', () => {
-      const previousSession = {
-        respondentContactDetailsConfidential: 'keep',
-        respondentHomeAddress: 'Confidential correspondence address'
-      };
-      const session = clone(previousSession);
-      session.respondentLivesAtLastAddress = 'No';
-
-      const newSession = removeStaleData(previousSession, session);
-
-      expect(typeof newSession.respondentHomeAddress).to.equal('undefined');
-    });
   });
 });

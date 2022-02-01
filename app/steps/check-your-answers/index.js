@@ -40,12 +40,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         remove('respondentCorrespondenceAddress');
       }
     });
-
-    watch('respondentSolicitorRepresented', (previousSession, session, remove) => {
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        remove('respondentCorrespondenceAddress');
-      }
-    });
   }
 
   next(ctx, session) {
@@ -166,12 +160,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
       return;
     }
 
-    if (step instanceof RespondentHomeAddress || step instanceof RespondentCorrespondenceAddress) {
-      if (session.respondentContactDetailsConfidential === 'keep') {
-        return;
-      }
-    }
-
     stepCtx = step.checkYourAnswersInterceptor(stepCtx, session);
 
     const checkYourAnswersContent = this.generateContent(
@@ -196,12 +184,18 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
       // render check your answers templates
-      const html = nunjucks.render(
+      let html = nunjucks.render(
         step.checkYourAnswersTemplate, { content, fields, session }
       );
 
-      // push template into array to render in cya template
-      // use the root url to catogorize the template
+      if (step instanceof RespondentHomeAddress || step instanceof RespondentCorrespondenceAddress) {
+        if (session.respondentContactDetailsConfidential === 'keep') {
+          html = '';
+        }
+      }
+
+      // push template into array to render in check-your-answers template
+      // use the root url to categorise the template
       return { // eslint-disable-line consistent-return
         category: step.url.split('/')[1],
         html

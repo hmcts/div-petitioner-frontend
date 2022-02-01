@@ -38,6 +38,12 @@ module.exports = class CheckYourAnswers extends ValidationStep {
         remove('respondentCorrespondenceAddress');
       }
     });
+
+    watch('respondentSolicitorRepresented', (previousSession, session, remove) => {
+      if (session.respondentContactDetailsConfidential === 'keep') {
+        remove('respondentCorrespondenceAddress');
+      }
+    });
   }
 
   next(ctx, session) {
@@ -74,6 +80,11 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   * interceptor(ctx, session) {
+    if (session.respondentContactDetailsConfidential === 'keep') {
+      session.respondentHomeAddress = '';
+      session.respondentCorrespondenceAddress = '';
+    }
+
     const confirmPrayer = ctx.confirmPrayer;
 
     //  set the ctx to the current session then update with the current ctx

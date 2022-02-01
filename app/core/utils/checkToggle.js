@@ -10,13 +10,7 @@ const isToggleOnRepresentedRespondentJourney = session => {
   return toggle.ft_represented_respondent_journey;
 };
 
-const isToggleOnWelsh = session => {
-  const toggle = get(session, 'featureToggles', { ft_welsh: false });
-  return toggle.ft_welsh;
-};
-
 module.exports = {
   isToggleOnAwaitingAmend,
-  isToggleOnRepresentedRespondentJourney,
-  isToggleOnWelsh
+  isToggleOnRepresentedRespondentJourney
 };

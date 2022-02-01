@@ -12,6 +12,8 @@ const parseBool = require('app/core/utils/parseBool');
 const ExitStep = require('app/core/steps/ExitStep');
 const stepsHelper = require('app/core/helpers/steps');
 const { watch } = require('app/core/helpers/staleDataManager');
+const RespondentHomeAddress = require('app/steps/respondent/home/address/index.js');
+const RespondentCorrespondenceAddress = require('app/steps/respondent/correspondence/address/index.js');
 
 const maximumNumberOfSteps = 500;
 
@@ -80,11 +82,6 @@ module.exports = class CheckYourAnswers extends ValidationStep {
   }
 
   * interceptor(ctx, session) {
-    if (session.respondentContactDetailsConfidential === 'keep') {
-      session.respondentHomeAddress = '';
-      session.respondentCorrespondenceAddress = '';
-    }
-
     const confirmPrayer = ctx.confirmPrayer;
 
     //  set the ctx to the current session then update with the current ctx
@@ -167,6 +164,12 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     const [isValid] = step.validate(stepCtx, session);
     if (!isValid) {
       return;
+    }
+
+    if (step instanceof RespondentHomeAddress || step instanceof RespondentCorrespondenceAddress) {
+      if (session.respondentContactDetailsConfidential === 'keep') {
+        return;
+      }
     }
 
     stepCtx = step.checkYourAnswersInterceptor(stepCtx, session);

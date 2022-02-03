@@ -95,7 +95,7 @@ function setCookie(cname, cvalue, exdays) {
   // eslint-disable-next-line no-magic-numbers
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   const expires = `expires=${d.toUTCString()}`;
-  document.cookie = `${cname}=${cvalue};${expires};path=/;domain=apply-divorce.service.gov.uk;Secure=true`;
+  document.cookie = `${cname}=${cvalue};${expires};path=/;domain=aat.platform.hmcts.net;Secure=true`;
 }
 
 function getCookie(cname) {

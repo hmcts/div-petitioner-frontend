@@ -7,7 +7,7 @@ module.exports = class GenericError extends Step {
   }
 
   * getRequest(req, res) {
-    res.status(statusCodes.OK);
+    res.status(statusCodes.NO_CONTENT);
     yield super.getRequest(req, res);
   }
 };

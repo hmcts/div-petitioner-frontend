@@ -26,7 +26,7 @@ describe(modulePath, () => {
     });
 
     it('checks correct http status is used', done => {
-      testHttpStatus(done, agent, underTest, statusCodes.OK);
+      testHttpStatus(done, agent, underTest, statusCodes.NO_CONTENT);
     });
   });
 });

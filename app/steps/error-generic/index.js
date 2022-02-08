@@ -7,7 +7,7 @@ module.exports = class GenericError extends Step {
   }
 
   * getRequest(req, res) {
-    res.status(statusCodes.INTERNAL_SERVER_ERROR);
+    res.status(statusCodes.OK);
     yield super.getRequest(req, res);
   }
 };

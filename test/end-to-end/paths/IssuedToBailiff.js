@@ -1,7 +1,7 @@
 const content = require('app/steps/issued-to-bailiff/content.json').resources.en.translation.content;
 const whoResponds = content.yourResponds.replace('{{ divorceWho }}', 'wife');
 
-Feature('IssuedToBailiff - Sent to Bailiff path').retry(3);
+Feature('IssuedToBailiff - Sent to Bailiff path').retry(5);
 
 Scenario('Issued-to-bailiff page is displayed when IssuedToBailiff case', async function (I) {
   await I.startApplicationWith('issueToBailiffSession');

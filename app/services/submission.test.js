@@ -120,14 +120,14 @@ describe(modulePath, () => {
         const featureTest = featureToggleConfig
           .when('fullPaymentEventDataSubmission', true, generatePaymentEventData, responsePayment => {
             // Assert.
-            const ammountFromMock = 55000;
             const output = underTest
               .generatePaymentEventData(session, responsePayment);
             expect(output.payment).to.have.property('PaymentChannel', 'online');
             expect(output.payment).to.have.property('PaymentTransactionId', '123');
             expect(output.payment).to.have.property('PaymentReference', 'a65-f836-4f61-a628-727199ef6c20');
             expect(output.payment).to.have.property('PaymentDate', '20022018');
-            expect(output.payment).to.have.property('PaymentAmount', ammountFromMock);
+            const applicationFee = 59300;
+            expect(output.payment).to.have.property('PaymentAmount', applicationFee);
             expect(output.payment).to.have.property('PaymentStatus', 'created');
             expect(output.payment).to.have.property('PaymentFeeId', 'some-code');
             expect(output.payment).to.have.property('PaymentSiteId', 'AA07');

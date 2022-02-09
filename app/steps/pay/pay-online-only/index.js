@@ -18,6 +18,7 @@ const logger = require('app/services/logger').logger(__filename);
 const get = require('lodash/get');
 const parseBool = require('app/core/utils/parseBool');
 
+
 const feeConfigPropNames = {
   applicationFee: 'applicationFee',
   amendFee: 'amendFee'
@@ -55,7 +56,8 @@ module.exports = class PayOnline extends Step {
 
   interceptor(ctx, session) {
     if (!session.feeToBePaid) {
-      ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : CONF.commonProps.applicationFee.amount;
+      const applicationFee = CONF.commonProps.applicationFee.amount;
+      ctx.feeToBePaid = session.previousCaseId ? CONF.commonProps.amendFee.amount : applicationFee;
     }
     return ctx;
   }
@@ -99,13 +101,12 @@ module.exports = class PayOnline extends Step {
 
     const feeCode = CONF.commonProps[feeType(req)].feeCode;
     const feeVersion = CONF.commonProps[feeType(req)].version;
+    const feeAmount = CONF.commonProps[feeType(req)].amount;
     const feeDescription = this.content.resources[req.session.language].translation.content.paymentDescription;
     logger.infoWithReq(req, 'payments_description', `Payment description (${req.session.language}): `, feeDescription);
 
     // Amount is specified in pound sterling.
-    const amount = parseInt(
-      CONF.commonProps[feeType(req)].amount
-    );
+    const amount = parseInt(feeAmount);
     const hostParts = req.get('host').split(':');
     // if hostParts is a length of 2, it is a valid hostname:port url
     const port = hostParts.length === 2 ? hostParts[1] : ''; // eslint-disable-line no-magic-numbers

@@ -9,6 +9,11 @@ const idamMock = require('test/mocks/idam');
 const { removeStaleData } = require('app/core/helpers/staleDataManager');
 const { expect } = require('test/util/chai');
 const { clone } = require('lodash');
+const config = require('config');
+
+const finOrderFee = config.commonProps.financialOrderApplicationFee;
+const appWithoutNoticeFee = config.commonProps.appWithoutNoticeFee.amount;
+
 
 const modulePath = 'app/steps/financial/arrangements';
 
@@ -34,7 +39,10 @@ describe(modulePath, () => {
     let session = {};
 
     beforeEach(done => {
-      session = { divorceWho: 'husband' };
+      session = { divorceWho: 'husband',
+        financialOrderApplicationFee: finOrderFee,
+        appWithoutNoticeFeeToBePaid: appWithoutNoticeFee
+      };
       withSession(done, agent, session);
     });
 

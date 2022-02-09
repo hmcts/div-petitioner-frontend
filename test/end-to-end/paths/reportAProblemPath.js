@@ -4,7 +4,7 @@ const commonContent = require('app/content/common-en').resources.en.translation;
 const phone = config.get('commonProps.courtPhoneNumberEn');
 const hours = config.get('commonProps.courtOpeningHourEn');
 
-Feature('Report A Problem Handling @cross-browser-test').retry(3);
+Feature('Report A Problem Handling @cross-browser-test').retry(5);
 
 Scenario('I see link to go the ’Contact us for help’ page', (I) => {
 

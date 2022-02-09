@@ -9,6 +9,9 @@ const courts = require('test/examples/courts/courts');
 const modulePath = 'app/steps/done-and-submitted';
 
 const content = require(`${modulePath}/content`);
+const config = require('config');
+
+const finOrderFee = config.commonProps.financialOrderApplicationFee;
 
 const contentStrings = content.resources.en.translation.content;
 
@@ -127,7 +130,8 @@ describe(modulePath, () => {
         session = {
           caseId: '123',
           divorceWho: 'husband',
-          financialOrder: 'Yes'
+          financialOrder: 'Yes',
+          financialOrderApplicationFee: finOrderFee
         };
 
         withSession(done, agent, session);

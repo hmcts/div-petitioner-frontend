@@ -79,7 +79,7 @@ commonProps:
   applicationFee:
     feeCode: 'FEE0002'
     version: 4
-    amount: 550.00
+    amount: 593.00
   amendFee:
     feeCode: 'FEE0269'
     version: 1
@@ -91,8 +91,8 @@ commonProps:
   appWithoutNoticeFee:
     feeCode: 'FEE0228'
     version: 1
-    amount: 50.00
-  financialOrderApplicationFee: 255
+    amount: 53.00
+  financialOrderApplicationFee: 275
   smartSurveyFeedbackUrl: 'https://www.smartsurvey.co.uk/s/Divorce_Feedback'
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
   courtPhoneNumberEn: '0000 111 2220'
@@ -107,6 +107,8 @@ features:
   browserSupport: false
   strategicPay: false
   antennaWebchatUserAttribute: false
+  newFees: true
+  dynatrace: false
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

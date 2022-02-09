@@ -1,8 +1,9 @@
 const payHelpContent = require('app/steps/help/need-help/content.json').resources.en.translation.content;
-const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', '£550');
+const applicationFee = '£593';
+const payHelpFeeContent = payHelpContent.explanation.replace('<strong>£{{ feeToBePaid }}</strong>', applicationFee);
 const language = 'en';
 
-Feature('Payment method @functional').retry(3);
+Feature('Payment method @functional').retry(5);
 
 Scenario('Fee displays on /pay/help/need-help page', function (I) {
   I.amOnLoadedPage('/');

@@ -20,6 +20,8 @@ const modulePath = 'app/steps/pay/pay-online-only';
 
 const content = require(`${modulePath}/content`);
 
+const applicationFee = '593';
+
 let s = {};
 let agent = {};
 let underTest = {};
@@ -66,7 +68,7 @@ describe(modulePath, () => {
   describe('New Application', () => {
     it('renders the content from the content file', done => {
       const excludeKeys = ['paymentDescription'];
-      const dataContent = { feeToBePaid: '550' };
+      const dataContent = { feeToBePaid: applicationFee };
       testContent(done, agent, underTest, content, dataContent, excludeKeys);
     });
   });
@@ -158,9 +160,7 @@ describe(modulePath, () => {
 
       const code = CONF.commonProps.amendFee.feeCode;
       const version = CONF.commonProps.amendFee.version;
-      const amount = parseInt(
-        CONF.commonProps.amendFee.amount
-      );
+      const amount = parseInt(CONF.commonProps.amendFee.amount);
 
       beforeEach(done => {
         session = {
@@ -225,9 +225,7 @@ describe(modulePath, () => {
 
       const code = CONF.commonProps.applicationFee.feeCode;
       const version = CONF.commonProps.applicationFee.version;
-      const amount = parseInt(
-        CONF.commonProps.applicationFee.amount
-      );
+      const amount = parseInt(applicationFee);
 
       beforeEach(done => {
         session = {

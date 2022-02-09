@@ -23,7 +23,7 @@ const fiveYearsAgoFormatted = {
   year: fiveYearsAgo.format('Y')
 };
 
-Feature('Reasons for divorce E2E Tests').retry(3);
+Feature('Reasons for divorce E2E Tests').retry(5);
 
 languages.forEach(language => {
 
@@ -53,7 +53,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswersAndValidateSession(language);
     }
-    
+
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -101,7 +101,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-    
+
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {
@@ -147,7 +147,7 @@ languages.forEach(language => {
     } else {
       await I.checkMyAnswers(language);
     }
-    
+
     if (language === 'en') {
       const genericErrorPage = await I.checkElementExist('//h1[contains(text(), \'There has been a problem\')]');
       if (genericErrorPage) {

@@ -2,6 +2,8 @@ const moment = require('moment');
 
 const cardExpiryYear = moment().add(2, 'years').format('Y');
 
+const applicationFee = '£593.00';
+
 function payOnGovPay() {
 
   const I = this;
@@ -56,7 +58,7 @@ function onGovPay(I) {
   I.wait(3);
   I.waitForText('Enter card details', 20);
   I.waitInUrl('www.payments.service.gov.uk/card_details');
-  I.see('£550.00');
+  I.see(applicationFee);
 }
 
 module.exports = { payOnGovPay, payOnGovPayFailure, cancelOnGovPay };

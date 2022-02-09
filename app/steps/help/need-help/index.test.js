@@ -13,6 +13,9 @@ const modulePath = 'app/steps/help/need-help';
 const { withSession } = require('test/util/setup');
 const content = require(`${modulePath}/content`);
 
+
+const applicationFee = '593';
+
 let s = {};
 let agent = {};
 let underTest = {};
@@ -67,7 +70,7 @@ describe(modulePath, () => {
   describe('New Application - success', () => {
     it('renders the content from the content file', done => {
       const excludeKeys = [ 'explanation' ];
-      const dataContent = { feeToBePaid: '550' };
+      const dataContent = { feeToBePaid: applicationFee };
       testContent(
         done,
         agent,

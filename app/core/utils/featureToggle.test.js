@@ -20,9 +20,9 @@ describe('FeatureToggle', () => {
         },
         redirectPage: '/dummy-page',
         launchDarkly: {
-          ftValue: { ft_welsh: true }
+          ftValue: { ft_pcq: true }
         },
-        featureToggleKey: 'ft_welsh',
+        featureToggleKey: 'ft_pcq',
         callbackFn: sinon.spy()
       };
       const featureToggle = new FeatureToggle();
@@ -61,7 +61,7 @@ describe('FeatureToggle', () => {
         next: sinon.spy(),
         redirectPage: '/dummy-page',
         launchDarkly: {},
-        featureToggleKey: 'ft_welsh',
+        featureToggleKey: 'ft_pcq',
         callbackFn: () => {
           return true;
         }

@@ -12,6 +12,9 @@ const parseBool = require('app/core/utils/parseBool');
 const ExitStep = require('app/core/steps/ExitStep');
 const stepsHelper = require('app/core/helpers/steps');
 const { watch } = require('app/core/helpers/staleDataManager');
+const RespondentHomeAddress = require('app/steps/respondent/home/address/index.js');
+const RespondentCorrespondenceAddress = require('app/steps/respondent/correspondence/address/index.js');
+const RespondentCorrespondenceUseHomeAddress = require('app/steps/respondent/correspondence/use-home-address/index.js');
 
 const maximumNumberOfSteps = 500;
 
@@ -160,12 +163,18 @@ module.exports = class CheckYourAnswers extends ValidationStep {
     // ensure there are some fields to show
     if (Object.keys(fields).length) {
       // render check your answers templates
-      const html = nunjucks.render(
+      let html = nunjucks.render(
         step.checkYourAnswersTemplate, { content, fields, session }
       );
 
-      // push template into array to render in cya template
-      // use the root url to catogorize the template
+      if (step instanceof RespondentHomeAddress || step instanceof RespondentCorrespondenceAddress || step instanceof RespondentCorrespondenceUseHomeAddress) {
+        if (session.respondentContactDetailsConfidential === 'keep') {
+          html = '';
+        }
+      }
+
+      // push template into array to render in check-your-answers template
+      // use the root url to categorise the template
       return { // eslint-disable-line consistent-return
         category: step.url.split('/')[1],
         html

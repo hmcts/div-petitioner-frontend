@@ -180,8 +180,7 @@ describe(modulePath, () => {
       session.respondentHomeAddress = 'No';
 
       const newSession = removeStaleData(previousSession, session);
-      expect(typeof newSession.respondentCorrespondenceAddress)
-        .to.equal('undefined');
+      expect(typeof newSession.respondentCorrespondenceAddress).to.equal('undefined');
     });
   });
 

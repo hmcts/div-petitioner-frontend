@@ -44,12 +44,7 @@ function withoutUploadFile(language = 'en') {
 
   I.waitInUrl(pagePath);
   I.seeInCurrentUrl(pagePath);
-
-  if (language === 'en') {
-    I.see('No files uploaded');
-  }
   I.click(commonContent.continue);
-
 }
 
 function upload(I, file, isDragAndDropSupported) {

@@ -18,6 +18,8 @@ nodejs:
         ANTENNA_WEBCHAT_URL: "webchat.training.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Testing"
         FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE: "true"
+        FEATURE_DYNATRACE: "false"
+        DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
 
     keyVaults:
         div:

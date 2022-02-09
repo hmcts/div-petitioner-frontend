@@ -2,10 +2,10 @@ apiVersion: v2
 appVersion: "1.0"
 description: Divorce - Petitioner frontend
 name: div-pfe
-version: 2.0.7
+version: 2.0.8
 dependencies:
   - name: nodejs
-    version: 2.3.8
+    version: 2.4.0
     repository: '@hmctspublic'
   - name: redis
     version: 10.6.18

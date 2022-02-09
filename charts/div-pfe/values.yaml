@@ -71,6 +71,8 @@ nodejs:
         ANTENNA_WEBCHAT_URL: "webchat.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Divorce"
 
+        FEATURE_DYNATRACE: "false"
+
     keyVaults:
         div:
             secrets:

@@ -69,6 +69,10 @@ nodejs:
 
         FEATURE_DYNATRACE: "false"
 
+        # Leave AAT as default for now, until we have a release window to change in prod, then switch prod to default
+        # COOKIE_DOMAIN: "apply-divorce.service.gov.uk"
+        COOKIE_DOMAIN: "aat.platform.hmcts.net"
+
     keyVaults:
         div:
             secrets:

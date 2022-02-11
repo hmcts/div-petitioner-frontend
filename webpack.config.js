@@ -1,4 +1,5 @@
 'use strict';
+const CONF = require('config');
 const fs = require('fs');
 const path = require('path');
 
@@ -10,7 +11,6 @@ const extractSass = new ExtractTextPlugin({
   filename: 'stylesheets/application.css',
   allChunks: true
 });
-
 
 module.exports = {
   target: 'node',
@@ -45,6 +45,10 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './tmp/images', to: 'images' }
     ]),
+    new webpack.DefinePlugin({
+      // Replace variable values of COOKIEDOMAIN in JS files with the value of CONF.cookieDomain (as a quoted str)
+      'COOKIEDOMAIN': JSON.stringify(CONF.cookieDomain)
+    }),
     extractSass,
     function() {
       this.plugin('done', stats => {

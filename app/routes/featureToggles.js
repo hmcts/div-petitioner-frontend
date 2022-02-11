@@ -22,10 +22,6 @@ router.use([
   next();
 });
 
-router.get('*', (req, res, next) => {
-  return featureToggle.callCheckToggle(req, res, next, res.locals.launchDarkly, 'ft_welsh', featureToggle.toggleFeature);
-});
-
 router.get('/equality-and-diversity', (req, res, next) => {
   return featureToggle.callCheckToggle(req, res, next, res.locals.launchDarkly, 'ft_pcq', completeEqualityTask);
 });

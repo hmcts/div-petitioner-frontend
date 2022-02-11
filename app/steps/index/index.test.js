@@ -48,13 +48,11 @@ describe(modulePath, () => {
       withSession(done, agent);
     });
 
-    // it('should immediately redirect to the need welsh question step page if authenticated', done => {
-    it('should immediately redirect to the has marriage broken question step page if authenticated', done => {
+    it('should immediately redirect to the need welsh question step page if authenticated', done => {
       const context = {};
 
       testRedirect(done, agent, underTest, context,
-        // s.steps.ScreeningQuestionsLanguagePreference);
-        s.steps.ScreeningQuestionsMarriageBroken);
+        s.steps.ScreeningQuestionsLanguagePreference);
     });
 
     it('should set up the current host as the redirect uri for idam', done => {

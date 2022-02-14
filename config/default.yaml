@@ -201,11 +201,10 @@ featureToggles:
     firstName: 'Divorce'
     lastName: 'Frontend'
     key: 'a69bdaed-b2dd-4c54-acfa-bf3df80dbe17'
-  ft_welsh: 'divorce-welsh'
   ft_pcq: 'petitioner-pcq'
   ft_awaiting_amend: 'divorce-amended-application'
   ft_represented_respondent_journey: 'represented-respondent-journey'
-  appwideToggles: ['ft_welsh', 'ft_represented_respondent_journey']
+  appwideToggles: ['ft_represented_respondent_journey']
 
 document:
   sessionPath: 'd8'

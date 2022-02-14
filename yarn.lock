@@ -9024,7 +9024,7 @@ postcss-colormin@^2.1.8:
   integrity sha1-ZjFBfV8OkJo9fsJrJMio0eT5bks=
   dependencies:
     colormin "^1.0.5"
-    postcss "^5.0.13"
+    postcss "^8.2.13"
     postcss-value-parser "^3.2.3"
 
 postcss-convert-values@^2.3.4:

@@ -86,6 +86,7 @@ The application will now be running on  ```https://localhost:3000```.
 
 ## Running locally but pointing to real AAT services
 
+
 This allows you to run the app while connecting to real IDAM/COS/Payment etc.. services in AAT
 
 * Make a copy of `config/example-local-aat.yaml` as `local-aat.yaml` (this file is .gitignored and shouldn't be commited to git because it contains secrets)

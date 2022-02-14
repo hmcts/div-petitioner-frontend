@@ -5,3 +5,4 @@ nodejs:
     environment:
       ANTENNA_WEBCHAT_URL: "webchat-client.training.ctsc.hmcts.net"
       ANTENNA_WEBCHAT_SERVICE: "Testing"
+      COOKIE_DOMAIN: "demo.platform.hmcts.net"

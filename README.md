@@ -95,6 +95,15 @@ This allows you to run the app while connecting to real IDAM/COS/Payment etc.. s
 * Run the app using `yarn dev-aat`
 
 ##  Testing
+## Running test locally but pointing to  AAT services
+
+This allows you to run the test locally pointing to AAT
+
+* Make a copy of `config/example-local-aat.yaml` as `local-aat.yaml` (this file is .gitignored and shouldn't be commited to git because it contains secrets)
+* Copy the secrets into _local-aat.yaml_ - the secret values can be found in the `div-aat` vault in the Azure portal
+* update frontendUrl with test URL
+* Connect to the VPN
+* Run the test using `yarn test-standalone`
 
 All commands from the package.json are available through make. They will be run
 inside a docker container, ensuring a consistent dev environment.

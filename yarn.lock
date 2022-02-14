@@ -5915,7 +5915,7 @@ http-proxy@^1.17.0:
   integrity sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
   dependencies:
     eventemitter3 "^4.0.0"
-    follow-redirects "^1.0.0"
+    follow-redirects "^1.14.8"
     requires-port "^1.0.0"
 
 http-signature@~1.2.0:
@@ -9014,7 +9014,7 @@ postcss-calc@^5.2.0:
   resolved "https://registry.yarnpkg.com/postcss-calc/-/postcss-calc-5.3.1.tgz#77bae7ca928ad85716e2fda42f261bf7c1d65b5e"
   integrity sha1-d7rnypKK2FcW4v2kLyYb98HWW14=
   dependencies:
-    postcss "^5.0.2"
+    postcss "^8.2.13"
     postcss-message-helpers "^2.0.0"
     reduce-css-calc "^1.2.6"
 
@@ -9024,7 +9024,7 @@ postcss-colormin@^2.1.8:
   integrity sha1-ZjFBfV8OkJo9fsJrJMio0eT5bks=
   dependencies:
     colormin "^1.0.5"
-    postcss "^5.0.13"
+    postcss "^8.2.13"
     postcss-value-parser "^3.2.3"
 
 postcss-convert-values@^2.3.4:
@@ -10337,14 +10337,14 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   integrity sha1-9YdyIs4+kx7a4DnxfrNxbnE3+M8=
   dependencies:
-    ajv "^5.0.0"
+    ajv "^6.2.13"
 
 schema-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-1.0.0.tgz#0b79a93204d7b600d4b2850d1f66c2a34951c770"
   integrity sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==
   dependencies:
-    ajv "^6.1.0"
+    ajv "^6.2.13"
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 

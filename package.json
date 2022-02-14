@@ -50,7 +50,7 @@
     "@hmcts/prd-client": "^0.0.8",
     "@hmcts/properties-volume": "^0.0.13",
     "add": "^2.0.6",
-    "ajv": "^6.12.3",
+    "ajv": "^4.0.10",
     "applicationinsights": "1.5.0",
     "applicationinsights-native-metrics": "^0.0.5",
     "audit": "^0.0.6",

@@ -321,7 +321,7 @@
   resolved "https://registry.yarnpkg.com/@hmcts/prd-client/-/prd-client-0.0.8.tgz#d5c99e3f632b9168373806c17d03c962b80b2d32"
   integrity sha512-E/mLDxt0JuUJHIzMrY7ZxLL49eEiTqtdoXsmr4a4acRvjrCNy4gnUxgKaBtGZdzSeb/LEDha1YbX0hZUGAaJYw==
   dependencies:
-    node-fetch "^2.6.1"
+    node-fetch "^2.6.7"
 
 "@hmcts/properties-volume@^0.0.13":
   version "0.0.13"
@@ -1176,7 +1176,7 @@ autoprefixer@^6.3.1:
     caniuse-db "^1.0.30000634"
     normalize-range "^0.1.2"
     num2fraction "^1.2.2"
-    postcss "^5.2.16"
+    postcss "^8.2.13"
     postcss-value-parser "^3.2.3"
 
 aws-sign2@~0.7.0:
@@ -3175,7 +3175,7 @@ css-loader@^0.28.11:
     loader-utils "^1.0.2"
     lodash.camelcase "^4.3.0"
     object-assign "^4.1.1"
-    postcss "^5.0.6"
+    postcss "^8.2.13"
     postcss-modules-extract-imports "^1.2.0"
     postcss-modules-local-by-default "^1.2.0"
     postcss-modules-scope "^1.1.0"
@@ -3249,7 +3249,7 @@ cssnano@^3.10.0:
     defined "^1.0.0"
     has "^1.0.1"
     object-assign "^4.0.1"
-    postcss "^5.0.14"
+    postcss "^8.2.13"
     postcss-calc "^5.2.0"
     postcss-colormin "^2.1.8"
     postcss-convert-values "^2.3.4"
@@ -5915,7 +5915,7 @@ http-proxy@^1.17.0:
   integrity sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
   dependencies:
     eventemitter3 "^4.0.0"
-    follow-redirects "^1.0.0"
+    follow-redirects "^1.14.8"
     requires-port "^1.0.0"
 
 http-signature@~1.2.0:
@@ -5980,7 +5980,7 @@ icss-utils@^2.1.0:
   resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-2.1.0.tgz#83f0a0ec378bf3246178b6c2ad9136f135b1c962"
   integrity sha1-g/Cg7DeL8yRheLbCrZE28TWxyWI=
   dependencies:
-    postcss "^6.0.1"
+    postcss "^8.2.13"
 
 ieee754@^1.1.13, ieee754@^1.1.4:
   version "1.2.1"
@@ -9014,7 +9014,7 @@ postcss-calc@^5.2.0:
   resolved "https://registry.yarnpkg.com/postcss-calc/-/postcss-calc-5.3.1.tgz#77bae7ca928ad85716e2fda42f261bf7c1d65b5e"
   integrity sha1-d7rnypKK2FcW4v2kLyYb98HWW14=
   dependencies:
-    postcss "^5.0.2"
+    postcss "^8.2.13"
     postcss-message-helpers "^2.0.0"
     reduce-css-calc "^1.2.6"
 
@@ -9152,7 +9152,7 @@ postcss-modules-extract-imports@^1.2.0:
   resolved "https://registry.yarnpkg.com/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.2.1.tgz#dc87e34148ec7eab5f791f7cd5849833375b741a"
   integrity sha512-6jt9XZwUhwmRUhb/CkyJY020PYaPJsCyt3UjbaWo6XEbH/94Hmv6MP7fG2C5NDU/BcHzyGYxNtHvM+LTf9HrYw==
   dependencies:
-    postcss "^6.0.1"
+    postcss "^8.2.13"
 
 postcss-modules-local-by-default@^1.2.0:
   version "1.2.0"
@@ -9160,7 +9160,7 @@ postcss-modules-local-by-default@^1.2.0:
   integrity sha1-99gMOYxaOT+nlkRmvRlQCn1hwGk=
   dependencies:
     css-selector-tokenizer "^0.7.0"
-    postcss "^6.0.1"
+    postcss "^8.2.13"
 
 postcss-modules-scope@^1.1.0:
   version "1.1.0"
@@ -9168,7 +9168,7 @@ postcss-modules-scope@^1.1.0:
   integrity sha1-1upkmUx5+XtipytCb75gVqGUu5A=
   dependencies:
     css-selector-tokenizer "^0.7.0"
-    postcss "^6.0.1"
+    postcss "^8.2.13"
 
 postcss-modules-values@^1.3.0:
   version "1.3.0"
@@ -9176,7 +9176,7 @@ postcss-modules-values@^1.3.0:
   integrity sha1-7P+p1+GSUYOJ9CrQ6D9yrsRW6iA=
   dependencies:
     icss-replace-symbols "^1.1.0"
-    postcss "^6.0.1"
+    postcss "^8.2.13"
 
 postcss-normalize-charset@^1.1.0:
   version "1.1.1"
@@ -10337,14 +10337,14 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   integrity sha1-9YdyIs4+kx7a4DnxfrNxbnE3+M8=
   dependencies:
-    ajv "^5.0.0"
+    ajv "^6.12.3"
 
 schema-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-1.0.0.tgz#0b79a93204d7b600d4b2850d1f66c2a34951c770"
   integrity sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==
   dependencies:
-    ajv "^6.1.0"
+    ajv "^6.12.3"
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
@@ -10366,7 +10366,7 @@ selfsigned@^1.10.8:
   resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.8.tgz#0d17208b7d12c33f8eac85c41835f27fc3d81a30"
   integrity sha512-2P4PtieJeEwVgTU9QEcwIRDQ/mXJLX8/+I3ur+Pg16nS8oNbrGxEso9NyYWy8NAmXiNl4dlAp5MwoNeCWzON4w==
   dependencies:
-    node-forge "^0.10.0"
+    node-forge "^1.0.0"
 
 semver-diff@^2.0.0:
   version "2.1.0"
@@ -11236,7 +11236,7 @@ stryker@^0.35.1:
     inquirer "~6.2.0"
     istanbul-lib-instrument "~3.1.0"
     lodash "~4.17.4"
-    log4js "~4.0.2"
+    log4js "^6.4.0"
     mkdirp "~0.5.1"
     prettier "~1.16.1"
     progress "~2.0.0"
@@ -12347,7 +12347,7 @@ webpack@2.2.1:
   dependencies:
     acorn "^4.0.4"
     acorn-dynamic-import "^2.0.0"
-    ajv "^4.7.0"
+    ajv "^6.12.3"
     ajv-keywords "^1.1.1"
     async "^2.1.2"
     enhanced-resolve "^3.0.0"

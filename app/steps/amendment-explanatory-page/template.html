@@ -10,9 +10,7 @@
 {% block breadcrumbs %}
 {% set html %}
   {{ common.feedback | safe }}
-   {% if fields.featureToggles.value.ft_welsh == "true" %}
-    {{ common.languageToggle | safe }}
-   {% endif %}
+  {{ common.languageToggle | safe }}
 {% endset %}
 {{ govukPhaseBanner({
 tag: {

@@ -79,7 +79,6 @@ class SessionHelper extends codecept_helper {
     const connectSidCookie = await helper.grabCookie('connect.sid');
     const authTokenCookie = await helper.grabCookie('__auth-token');
     const session = await this.getTheSession(connectSidCookie, authTokenCookie);
-    session.featureToggles.ft_welsh = true;
     session.petitionerPcqId = 'is_in_session';
     session.featureToggles.ft_awaiting_amend = true;
     session.featureToggles.ft_represented_respondent_journey = true;

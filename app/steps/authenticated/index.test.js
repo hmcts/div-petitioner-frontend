@@ -50,13 +50,11 @@ describe(modulePath, () => {
   });
 
   describe('success', () => {
-    // it('should immediately redirect to the need welsh step page', done => {
-    it('should immediately redirect to the has marriage broken step page', done => {
+    it('should immediately redirect to the need welsh step page', done => {
       const context = {};
 
       testRedirect(done, agent, underTest, context,
-        // s.steps.ScreeningQuestionsLanguagePreference);
-        s.steps.ScreeningQuestionsMarriageBroken);
+        s.steps.ScreeningQuestionsLanguagePreference);
     });
   });
 

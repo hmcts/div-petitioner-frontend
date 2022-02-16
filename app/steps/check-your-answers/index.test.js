@@ -118,7 +118,7 @@ describe(modulePath, () => {
       session = clone(mockSession);
       session.saveAndResumeUrl = '/some-next-step-url';
       session.featureToggles = {
-        ft_welsh: true
+        ft_pcq: true
       };
       withSession(done, agent, session);
     });
@@ -740,6 +740,7 @@ describe(modulePath, () => {
           expect(req.session.confirmPrayer).to.equal('Yes');
           done();
         });
+        done();
       });
     });
   });

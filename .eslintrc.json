@@ -51,16 +51,7 @@
     ],
     "arrow-body-style": ["error", "always"],
     "no-process-env": "off",
-    "no-magic-numbers": [
-      "error",
-      {
-        "ignoreArrayIndexes": true,
-        "enforceConst" : true,
-        "ignore": [
-          -1, 0, 1
-        ]
-      }
-    ],
+    "no-magic-numbers": "off",
     "max-nested-callbacks": [
       "error", 4
     ],

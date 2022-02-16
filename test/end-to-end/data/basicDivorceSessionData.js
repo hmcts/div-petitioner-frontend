@@ -359,7 +359,6 @@ module.exports = {
     },
     featureToggles: {
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true',
       ft_represented_respondent_journey: 'true'
     },
     language: 'en'
@@ -669,7 +668,6 @@ module.exports = {
     },
     featureToggles: {
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true',
       ft_represented_respondent_journey: 'true'
     },
     language: 'en'
@@ -979,7 +977,6 @@ module.exports = {
     },
     featureToggles: {
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true',
       ft_represented_respondent_journey: 'true'
     },
     language: 'en'
@@ -1289,7 +1286,6 @@ module.exports = {
     },
     featureToggles: {
       ft_awaiting_amend: 'true',
-      ft_welsh: 'true',
       ft_represented_respondent_journey: 'true'
     },
     language: 'en'
@@ -1324,7 +1320,6 @@ module.exports = {
   marriageCertificateFiles: [],
   featureToggles: {
     ft_awaiting_amend: false,
-    ft_welsh: true,
     ft_represented_respondent_journey: false
   }
 };

@@ -4,7 +4,6 @@ const CONF = require('config');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const initSession = require('app/middleware/initSession');
 const parseBool = require('app/core/utils/parseBool');
-const logger = require('app/services/logger').logger(__filename);
 
 const runNext = (req, res, next) => {
   const { session } = req;
@@ -36,11 +35,8 @@ module.exports = class Authenticated extends Step {
     return '/authenticated';
   }
 
-  nextStep(session) {
-    if (session && session.featureToggles.ft_welsh) {
-      return this.steps.ScreeningQuestionsLanguagePreference;
-    }
-    return this.steps.ScreeningQuestionsMarriageBroken;
+  nextStep() {
+    return this.steps.ScreeningQuestionsLanguagePreference;
   }
 
   next(ctx, session) {
@@ -56,7 +52,6 @@ module.exports = class Authenticated extends Step {
   }
 
   handler(req, res, next) {
-    logger.infoWithReq(req, 'welsh_ft_redirection', `Welsh FT is: ${req.session.featureToggles.ft_welsh} - Redirecting to: ${req.session.featureToggles.ft_welsh ? 'ScreeningQuestionsLanguagePreference' : 'ScreeningQuestionsMarriageBroken'}`);
     res.redirect(this.next({}, req.session).url);
     next();
   }

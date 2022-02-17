@@ -10,8 +10,7 @@ module.exports = {
   csrfSecret: 'XXXXXXXX',
   featureToggles: {
     ft_awaiting_amend: true,
-    ft_represented_respondent_journey: true,
-    ft_welsh: true
+    ft_represented_respondent_journey: true
   },
   expires: 99999999,
   language: 'en',

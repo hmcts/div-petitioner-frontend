@@ -145,7 +145,6 @@ exports.init = listenForConnections => {
     loader: nunjucks.FileSystemLoader,
     globals: {
       antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
-      cookieDomain: CONF.cookieDomain,
       features: {
         antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
         dynatrace: parseBool(CONF.features.dynatrace) // Dynatrace Feature Toggle

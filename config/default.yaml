@@ -193,7 +193,7 @@ ccd:
 languages: ['en', 'cy']
 
 featureToggles:
-  enabled: true
+  enabled: false
   launchDarklyKey: 'SDK_KEY'
   launchDarklyUser:
     firstName: 'Divorce'

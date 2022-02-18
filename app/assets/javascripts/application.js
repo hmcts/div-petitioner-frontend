@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars  */
 /* eslint-disable no-undef  */
 const saveProgress = require('./save-progress');
-const govukFrontend = require('govuk-frontend/all');
+const govukFrontend = require('govuk-frontend');
+govukFrontend.initAll();
 
 import './showHideContent';
 

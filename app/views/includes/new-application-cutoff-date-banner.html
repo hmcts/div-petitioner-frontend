@@ -1,0 +1,12 @@
+{% from "notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+<p class="govuk-notification-banner__heading">
+  Submit your application by 31 March 2022.  If you do not, you'll need to start your application again using our new system.
+  <a class="govuk-notification-banner__link" href="#" target="_blank" rel="noopener">Read more about the new system</a>.
+</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+html: html
+}) }}

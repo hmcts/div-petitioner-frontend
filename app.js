@@ -120,7 +120,7 @@ exports.init = listenForConnections => {
   //  moved here to make it at start of middleware as recommended in docs
   app.use(favicon(path.join(__dirname, 'public', manifest.STATIC_ASSET_PATH, 'images', 'favicon.ico')));
 
-  app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')));
+  app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets')));
   app.use('/hmcts-assets', express.static(path.join(__dirname, '/node_modules/@hmcts/frontend/assets')));
 
   // Application settings
@@ -129,8 +129,8 @@ exports.init = listenForConnections => {
     `${__dirname}/app/steps`,
     `${__dirname}/app/components`,
     `${__dirname}/app/views`,
-    `${__dirname}/node_modules/govuk-frontend`,
-    `${__dirname}/node_modules/govuk-frontend/components`,
+    `${__dirname}/node_modules/govuk-frontend/govuk`,
+    `${__dirname}/node_modules/govuk-frontend/govuk/components`,
     `${__dirname}/node_modules/@hmcts/frontend`,
     `${__dirname}/node_modules/@hmcts/frontend/components`
   ]);

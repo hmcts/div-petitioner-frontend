@@ -293,10 +293,10 @@
   resolved "https://registry.yarnpkg.com/@hmcts/eslint-config/-/eslint-config-1.4.0.tgz#e713457cee3758a43394c2974913885aaae8a41b"
   integrity sha1-5xNFfO43WKQzlMKXSROIWqropBs=
 
-"@hmcts/frontend@0.0.34-alpha":
-  version "0.0.34-alpha"
-  resolved "https://registry.yarnpkg.com/@hmcts/frontend/-/frontend-0.0.34-alpha.tgz#0d39b6d06c632ccb7c578fc91e3311306da9db0d"
-  integrity sha512-+q3IB4L3UHsD5cs/11PDWEftDAmDV6eYkxm9eoNtXAfea93VhXNFA9ZEIV+TM7v/9xaAIkmDj9C4kCSUb1Hl3g==
+"@hmcts/frontend@0.0.50-alpha":
+  version "0.0.50-alpha"
+  resolved "https://registry.yarnpkg.com/@hmcts/frontend/-/frontend-0.0.50-alpha.tgz#4c1f1bc87312a2929ac60e54cdd3fc28782b98f9"
+  integrity sha512-can9fxgQxw0ihRvjvz/+O7xbG0OiQbTcs3CCMQct41a2BPC6iIja3vgwNIy5TD2Vt52kYUq+fg2HGGybyjprTg==
 
 "@hmcts/nodejs-healthcheck@^1.7.0":
   version "1.7.0"
@@ -5364,10 +5364,10 @@ govuk-elements-sass@~3.0.2:
   dependencies:
     govuk_frontend_toolkit "^6.0.2"
 
-govuk-frontend@^2.11.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-2.13.0.tgz#0273f7c92070abd6450c73a006ebb3ddc793463a"
-  integrity sha512-6XDtTt5plSrPQvPgLFN4LCtb9ULuqoXCgkHy5c7XE/70/sVm47RPbLR11tYGPcmV8cOApBhW0wL8y8ryspHfpw==
+govuk-frontend@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-4.0.1.tgz#bceff58ecb399272cba32bd2b357fe16198e3249"
+  integrity sha512-X+B88mqYHoxAz0ID87Uxo3oHqdKBRnNHd3Cz8+u8nvQUAsrEzROFLK+t7sAu7e+fKqCCrJyIgx6Cmr6dIGnohQ==
 
 govuk_frontend_toolkit@^6.0.2:
   version "6.0.4"

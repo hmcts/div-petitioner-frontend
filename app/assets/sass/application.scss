@@ -9,7 +9,7 @@
   @return url('../images/' + $file);
 }
 
-@import '~govuk-frontend/all';
+@import '~govuk-frontend/govuk/all';
 @import '~@hmcts/frontend/all';
 
 @import 'file-upload';
@@ -27,6 +27,7 @@
 @import 'cookies';
 @import 'gov-uk-frontend-toolkit-backward-compatable';
 @import 'web-chat';
+@import 'new-application-cutoff-date-banner';
 
 input.govuk-link {
   border: none;

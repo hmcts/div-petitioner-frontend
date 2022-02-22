@@ -10,6 +10,7 @@ if (CONF.environment !== 'testing') {
 const listenForConnections = true;
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
 logger.info(`
 
               ==========================================================================================

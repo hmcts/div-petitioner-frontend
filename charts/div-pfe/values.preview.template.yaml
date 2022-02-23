@@ -20,7 +20,6 @@ nodejs:
         FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE: "true"
         FEATURE_DYNATRACE: "false"
         DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
-        COOKIE_DOMAIN: "aat.platform.hmcts.net"
 
     keyVaults:
         div:

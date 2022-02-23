@@ -75,7 +75,7 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
-cookieDomain: "aat.platform.hmcts.net"
+cookieDomain: "Test.Cookie.Domain.Value"
 
 commonProps:
   applicationFee:

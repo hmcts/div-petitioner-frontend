@@ -75,6 +75,8 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
+cookieDomain: "Test.Cookie.Domain.Value"
+
 commonProps:
   applicationFee:
     feeCode: 'FEE0002'
@@ -108,7 +110,7 @@ features:
   strategicPay: false
   antennaWebchatUserAttribute: false
   newFees: true
-  dynatrace: false
+  dynatrace: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

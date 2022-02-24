@@ -90,6 +90,8 @@ features:
   newFees: FEATURE_NEW_FEES
   dynatrace: FEATURE_DYNATRACE
 
+cookieDomain: COOKIE_DOMAIN
+
 idamArgs:
   idamApiUrl: IDAM_API_URL
   idamLoginUrl: IDAM_LOGIN_URL

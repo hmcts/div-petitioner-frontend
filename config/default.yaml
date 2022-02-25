@@ -75,7 +75,7 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
-cookieDomain: "Test.Cookie.Domain.Value"
+cookieDomain: "Test.Cookie.Domain.Value.Default"
 
 commonProps:
   applicationFee:

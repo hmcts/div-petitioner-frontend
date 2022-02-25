@@ -3,6 +3,14 @@ const webpackConfig = require('./webpack.config.js');
 const ArchivePlugin = require('webpack-archive-plugin');
 const CONF = require("config");
 
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
+logger.info(`
+
+              ==========================================================================================
+                Grunt Reads Cookie Domain As: ${CONF.cookieDomain}
+              ==========================================================================================
+`);
 
 module.exports = function(grunt) {
   grunt.initConfig({

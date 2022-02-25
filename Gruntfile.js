@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const ArchivePlugin = require('webpack-archive-plugin');
-const CONF = require("config");
+const CONF = require('@hmcts/properties-volume').addTo(require('config'));
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 

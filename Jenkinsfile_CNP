@@ -38,17 +38,6 @@ withPipeline("nodejs", product, component) {
   env.FEATURE_IDAM = 'true'
   env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
 
-  node {
-    // Log env variable
-    echo "========================================="
-    echo "========================================="
-    echo "env Main: ${env}"
-    echo "========================================="
-    echo sh(script: 'env|sort', returnStdout: true)
-    echo "========================================="
-    echo "========================================="
-  }
-
   if (env.CHANGE_TITLE) {
     if(env.CHANGE_TITLE.startsWith('[PREVIEW]')) {
       env.RUN_BASIC_TESTS = "true"

@@ -46,16 +46,15 @@ withPipeline("nodejs", product, component) {
     }
   }
 
-  node {
-    // Log env variable
-    echo "========================================="
-    echo "========================================="
-    echo "env Main: ${env}"
-    echo "========================================="
-    //echo sh(script: 'env|sort', returnStdout: true)
-    echo "========================================="
-    echo "========================================="
-  }
+  // Log env variable
+  echo "========================================="
+  echo "========================================="
+  echo "env Main: ${env}"
+  echo "========================================="
+  //echo sh(script: 'env|sort', returnStdout: true)
+  echo "========================================="
+  echo "========================================="
+  
   after('build') {
     yarnBuilder.yarn('setup')
   }

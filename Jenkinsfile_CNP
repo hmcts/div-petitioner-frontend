@@ -7,9 +7,6 @@ String component = "pfe"
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-// Log env variable
-echo sh(script: 'env|sort', returnStdout: true)
-
 def secrets = [
   'div-${env}': [
     secret('session-secret', 'SECRET'),
@@ -37,6 +34,9 @@ withPipeline("nodejs", product, component) {
   // installCharts()
   enableAksStagingDeployment()
   disableLegacyDeployment()
+
+  // Log env variable
+  echo sh(script: 'env|sort', returnStdout: true)
 
   env.FEATURE_IDAM = 'true'
   env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'

@@ -321,7 +321,7 @@
   resolved "https://registry.yarnpkg.com/@hmcts/prd-client/-/prd-client-0.0.8.tgz#d5c99e3f632b9168373806c17d03c962b80b2d32"
   integrity sha512-E/mLDxt0JuUJHIzMrY7ZxLL49eEiTqtdoXsmr4a4acRvjrCNy4gnUxgKaBtGZdzSeb/LEDha1YbX0hZUGAaJYw==
   dependencies:
-    node-fetch "^2.6.7ajv@^4.7.0:"
+    node-fetch "^2.6.7"
 
 "@hmcts/properties-volume@^0.0.13":
   version "0.0.13"

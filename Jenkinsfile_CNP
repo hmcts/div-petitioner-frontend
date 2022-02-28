@@ -30,13 +30,15 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
+node {
+  // Log env variable
+  echo sh(script: 'env|sort', returnStdout: true)
+}
+
 withPipeline("nodejs", product, component) {
   // installCharts()
   enableAksStagingDeployment()
   disableLegacyDeployment()
-
-  // Log env variable
-  echo sh(script: 'env|sort', returnStdout: true)
 
   env.FEATURE_IDAM = 'true'
   env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'

@@ -47,19 +47,14 @@ withPipeline("nodejs", product, component) {
   }
 
   node {
-    try {
-      // Log env variable
-      echo "========================================="
-      echo "========================================="
-      echo "env Main: ${env}"
-      echo "========================================="
-      //echo sh(script: 'env|sort', returnStdout: true)
-      echo "========================================="
-      echo "========================================="
-    }
-    catch (exception) {
-      echo 'Error getting env vars'
-    }
+    // Log env variable
+    echo "========================================="
+    echo "========================================="
+    echo "env Main: ${env}"
+    echo "========================================="
+    //echo sh(script: 'env|sort', returnStdout: true)
+    echo "========================================="
+    echo "========================================="
   }
   after('build') {
     yarnBuilder.yarn('setup')

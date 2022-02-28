@@ -7,6 +7,10 @@ String component = "pfe"
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
+// Log env variable
+echo "env: ${env}"
+echo "env.ENV: ${env.ENV}"
+
 def secrets = [
   'div-${env}': [
     secret('session-secret', 'SECRET'),

@@ -30,16 +30,15 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
-node {
-  // Log env variable
-  echo "========================================="
-  echo "========================================="
-  echo "env Main: ${env}"
-  echo "========================================="
-  echo sh(script: 'env|sort', returnStdout: true)
-  echo "========================================="
-  echo "========================================="
-}
+// Log env variable
+echo "========================================="
+echo "========================================="
+echo "env Main: ${env}"
+echo "========================================="
+//echo sh(script: 'env|sort', returnStdout: true)
+echo env.getEnvironment()
+echo "========================================="
+echo "========================================="
 
 withPipeline("nodejs", product, component) {
   // installCharts()

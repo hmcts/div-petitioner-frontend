@@ -8,8 +8,7 @@ String component = "pfe"
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 // Log env variable
-echo "env: ${env}"
-echo "env.ENV: ${env.ENV}"
+echo sh(script: 'env|sort', returnStdout: true)
 
 def secrets = [
   'div-${env}': [

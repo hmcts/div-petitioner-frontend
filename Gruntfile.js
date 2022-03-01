@@ -1,4 +1,4 @@
-const webpack = require('webpack');x
+const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const ArchivePlugin = require('webpack-archive-plugin');
 const CONF = require("config");

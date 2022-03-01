@@ -32,7 +32,7 @@ module.exports = {
     css: './tmp/sass/application.scss'
   },
   output: {
-    path: path.resolve(__dirname, '/public/[hash]'),
+    path: path.resolve(__dirname, './public/[hash]'),
     filename: 'javascripts/bundle--[name].js'
   },
   plugins: [

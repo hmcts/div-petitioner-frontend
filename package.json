@@ -72,7 +72,7 @@
     "express-nunjucks": "2.2.3",
     "express-session": "1.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "file-loader": "^0.10.1",
+    "file-loader": "^6.2.0",
     "formidable": "^1.1.1",
     "fstream": "^1.0.12",
     "glob": "^7.1.1",

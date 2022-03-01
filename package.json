@@ -117,7 +117,8 @@
     "webpack-archive-plugin": "^3.0.0",
     "webpack-dev-server": "^3.11.0",
     "xss-filters": "^1.2.7",
-    "yarn": "^1.22.0"
+    "yarn": "^1.22.0",
+    "yargs-parser": "18.1.2"
   },
   "devDependencies": {
     "@hmcts/div-idam-test-harness": "^1.9.0",
@@ -190,7 +191,6 @@
     "minimist": "^1.2.5",
     "serialize-javascript": ">=2.1.1",
     "tunnel-agent": "^0.6.0",
-    "yargs-parser": "18.1.2",
     "bl": ">=3.0.1",
     "dot-prop": ">=5.1.1",
     "ini": ">=1.3.6",

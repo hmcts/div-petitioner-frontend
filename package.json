@@ -214,7 +214,8 @@
     "is-svg": "^4.2.2",
     "vm2": "^3.9.4",
     "node-forge": ">=1.0.0",
-    "postcss": ">=7.0.36"
+    "postcss": ">=7.0.36",
+    "node-fetch": ">=2.6.7"
   },
   "nyc": {
     "report-dir": "coverage",

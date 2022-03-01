@@ -103,9 +103,7 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      }
-    ],
-    loaders: [
+      },
       { test: /public/, loader: 'imports-loader?this=>window' },
       { test: /public/, loader: 'imports-loader?$=jquery' }
     ]

@@ -212,7 +212,8 @@
     "set-value": "^4.0.1",
     "color-string": "^1.5.5",
     "is-svg": "^4.2.2",
-    "vm2": "^3.9.4"
+    "vm2": "^3.9.4",
+    "node-forge": ">=1.0.0"
   },
   "nyc": {
     "report-dir": "coverage",

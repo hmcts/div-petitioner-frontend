@@ -6,7 +6,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
   filename: 'stylesheets/application.css',
@@ -61,15 +60,7 @@ module.exports = {
     }
   ],
   optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        minify: TerserPlugin.uglifyJsMinify,
-        // `terserOptions` options will be passed to `uglify-js`
-        // Link to options - https://github.com/mishoo/UglifyJS#minify-options
-        terserOptions: {},
-      }),
-    ],
+    minimize: true
   },
   module: {
     rules: [

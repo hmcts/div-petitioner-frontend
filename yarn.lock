@@ -932,7 +932,7 @@ ajv-keywords@^2.1.0:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
   integrity sha1-YXmX/F9gV2iUxDX5QNgZ4TW4B2I=
 
-ajv-keywords@^3.5.2:
+ajv-keywords@^3.1.0, ajv-keywords@^3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==
@@ -954,7 +954,7 @@ ajv@>=6.12.3, ajv@^8.0.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-ajv@^5.0.0, ajv@^5.2.3, ajv@^5.3.0:
+ajv@^5.2.3, ajv@^5.3.0:
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   integrity sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=
@@ -964,7 +964,7 @@ ajv@^5.0.0, ajv@^5.2.3, ajv@^5.3.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.5:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.5:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -1368,7 +1368,7 @@ async-listener@^0.6.0:
     semver "^5.3.0"
     shimmer "^1.1.0"
 
-async@^2.0.0, async@^2.1.2, async@^2.2.0, async@^2.6.0, async@^2.6.1, async@^2.6.2, async@^2.6.3:
+async@^2.0.0, async@^2.2.0, async@^2.4.1, async@^2.6.0, async@^2.6.1, async@^2.6.2, async@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
   integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
@@ -4471,15 +4471,15 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-text-webpack-plugin@^2.1.0:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-2.1.2.tgz#756ef4efa8155c3681833fbc34da53b941746d6c"
-  integrity sha1-dW7076gVXDaBgz+8NNpTuUF0bWw=
+extract-text-webpack-plugin@^4.0.0-beta.0:
+  version "4.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-4.0.0-beta.0.tgz#f7361d7ff430b42961f8d1321ba8c1757b5d4c42"
+  integrity sha512-Hypkn9jUTnFr0DpekNam53X47tXn3ucY08BQumv7kdGgeVUBLq3DJHJTi6HNxv4jl9W+Skxjz9+RnK0sJyqqjA==
   dependencies:
-    async "^2.1.2"
-    loader-utils "^1.0.2"
-    schema-utils "^0.3.0"
-    webpack-sources "^1.0.1"
+    async "^2.4.1"
+    loader-utils "^1.1.0"
+    schema-utils "^0.4.5"
+    webpack-sources "^1.1.0"
 
 extract-zip@^1.6.5:
   version "1.7.0"
@@ -10198,12 +10198,13 @@ sax@^1.2.4, sax@~1.2.1:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-schema-utils@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
-  integrity sha1-9YdyIs4+kx7a4DnxfrNxbnE3+M8=
+schema-utils@^0.4.5:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.7.tgz#ba74f597d2be2ea880131746ee17d0a093c68187"
+  integrity sha512-v/iwU6wvwGK8HbU9yi3/nhGzP0yGSuhQMzL6ySiec1FSrZZDkhm4noOSWzrNFo/jEc+SJY6jRTwuwbSXJPDUnQ==
   dependencies:
-    ajv "^5.0.0"
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
 
 schema-utils@^3.1.0, schema-utils@^3.1.1:
   version "3.1.1"
@@ -12126,7 +12127,7 @@ webpack-dev-server@^4.7.4:
     webpack-dev-middleware "^5.3.1"
     ws "^8.4.2"
 
-webpack-sources@^1.0.1:
+webpack-sources@^1.1.0:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.4.3.tgz#eedd8ec0b928fbf1cbfe994e22d2d890f330a933"
   integrity sha512-lgTS3Xhv1lCOKo7SA5TjKXMjpSM4sBjNV5+q2bqesbSPs5FjGmU6jjtBSkX9b4qW87vDIsCIlUPOEhbZrMdjeQ==

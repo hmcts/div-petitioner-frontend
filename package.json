@@ -111,14 +111,15 @@
     "superagent": "5.2.1",
     "superagent-proxy": "^3.0.0",
     "tar": "^4.4.18",
+    "terser-webpack-plugin": "^4.2.3",
     "tmp": "^0.0.33",
     "uuid": "^3.0.1",
     "webpack": "4.0.0",
     "webpack-archive-plugin": "^3.0.0",
     "webpack-dev-server": "^3.11.3",
     "xss-filters": "^1.2.7",
-    "yarn": "^1.22.0",
-    "yargs-parser": "18.1.2"
+    "yargs-parser": "18.1.2",
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "@hmcts/div-idam-test-harness": "^1.9.0",

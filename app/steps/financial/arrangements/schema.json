@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "financial-arrangements",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "financial-arrangements",
   "oneOf": [
     {
       "type": "object",

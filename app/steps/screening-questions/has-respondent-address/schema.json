@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "has-respondent-address",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "has-respondent-address",
   "type": "object",
   "properties": {
     "screenHasRespondentAddress": {

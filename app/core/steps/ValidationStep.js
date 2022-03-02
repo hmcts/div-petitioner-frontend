@@ -1,6 +1,7 @@
 const { filter, isEqual, map, mapValues, reduce, uniqWith, cloneDeep, find } = require('lodash');
 const staleDataManager = require('app/core//helpers/staleDataManager');
 const Ajv = require('ajv');
+const addFormats = require('ajv-formats');
 const Step = require('./Step');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
@@ -21,6 +22,8 @@ const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
 const stepsHelper = require('app/core/helpers/steps');
 
 const ajv = new Ajv();
+addFormats(ajv);
+ajv.addVocabulary(['switch', 'ignoreParser']);
 
 module.exports = class ValidationStep extends Step {
   get middleware() {

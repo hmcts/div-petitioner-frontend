@@ -20,7 +20,7 @@ const walkMap = require('app/core/utils/treeWalker');
 const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
 const stepsHelper = require('app/core/helpers/steps');
 
-const ajv = new Ajv({ allErrors: true, v5: true });
+const ajv = new Ajv();
 
 module.exports = class ValidationStep extends Step {
   get middleware() {

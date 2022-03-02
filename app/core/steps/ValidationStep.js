@@ -21,9 +21,6 @@ const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
 const stepsHelper = require('app/core/helpers/steps');
 
 const ajv = new Ajv({ allErrors: true, v5: true });
-const ajvPath = require('path');
-
-ajv.addMetaSchema(require(ajvPath.join(__dirname, '/node_modules/ajv/lib/refs/json-schema-draft-06.json')));
 
 module.exports = class ValidationStep extends Step {
   get middleware() {

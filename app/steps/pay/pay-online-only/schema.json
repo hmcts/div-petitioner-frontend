@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "payOnlineOnly",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "payOnlineOnly",
   "type": "object",
   "properties": {}
 }

@@ -1,6 +1,6 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "jurisdiction-last-resort",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "jurisdiction-last-resort",
     "type": "object",
     "properties": {
         "jurisdictionLastResortConnections": {

@@ -1,6 +1,6 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "reasonForDivorceAdulteryDetails",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "reasonForDivorceAdulteryDetails",
     "oneOf": [
         {
           "type": "object",

@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "language-preference",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "language-preference",
   "type": "object",
   "properties": {
     "languagePreferenceWelsh": {

@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "respondent-solicitor-search",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "respondent-solicitor-search",
   "type": "object",
   "properties": {
     "respondentSolicitorFirm": {

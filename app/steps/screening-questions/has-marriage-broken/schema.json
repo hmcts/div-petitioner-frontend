@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "has-marriage-broken",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "has-marriage-broken",
   "type": "object",
   "properties": {
     "screenHasMarriageBroken": {

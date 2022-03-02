@@ -1,6 +1,6 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "connectionsummary",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "connectionsummary",
     "type": "object",
     "properties": {
         "connectionSummary": {

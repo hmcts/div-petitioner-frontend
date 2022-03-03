@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "upload-marriage-certificate",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "upload-marriage-certificate",
   "type": "object",
   "properties": {
     "marriageCertificateFiles": {

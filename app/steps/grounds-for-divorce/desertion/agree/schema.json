@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "desertion-agree",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "desertion-agree",
   "type": "object",
   "properties": {
     "reasonForDivorceDesertionAgreed": {

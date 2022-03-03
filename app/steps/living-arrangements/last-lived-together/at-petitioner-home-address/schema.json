@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "last-lived-together",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "last-lived-together",
   "type": "object",
   "properties": {
     "livingArrangementsLastLivedTogether": {

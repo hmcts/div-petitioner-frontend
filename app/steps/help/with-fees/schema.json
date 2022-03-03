@@ -1,6 +1,6 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "with-fees",
+   "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "with-fees",
     "type": "object",
     "properties": {
         "helpWithFeesAppliedForFees": {

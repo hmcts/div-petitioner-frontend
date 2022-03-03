@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "adultery-3rd-party-details",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "adultery-3rd-party-details",
   "type": "object",
   "properties": {
     "reasonForDivorceAdultery3rdPartyFirstName": {

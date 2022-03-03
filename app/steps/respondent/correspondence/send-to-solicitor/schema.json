@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "respondent-correspondence-send-to-solicitor",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "respondent-correspondence-send-to-solicitor",
   "type": "object",
   "properties": {
     "respondentSolicitorRepresented": {

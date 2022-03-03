@@ -93,7 +93,7 @@ describe(modulePath, () => {
     it('throws error if not able to encrypt', () => {
       expect(() => {
         return sessionSerializer.encryptData(req, session, passwordHash);
-      }).to.throw('The "data" argument must be one of type string, Buffer, TypedArray, or DataView. Received type object');
+      }).to.throw('The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object');
     });
   });
 
@@ -141,7 +141,7 @@ describe(modulePath, () => {
 
       expect(() => {
         return sessionSerializer.decryptData(req, encryptedData, passwordHash.split(0, 1));
-      }).to.throw('The "key" argument must be one of type Buffer, TypedArray, DataView, string, or KeyObject. Received type object');
+      }).to.throw('The "key" argument must be of type string or an instance of Buffer, TypedArray, DataView, or KeyObject. Received an instance of Array');
     });
   });
 });

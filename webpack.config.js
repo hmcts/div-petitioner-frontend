@@ -32,7 +32,7 @@ module.exports = {
     css: './tmp/sass/application.scss'
   },
   output: {
-    path: './public/[hash]',
+    path: path.resolve(__dirname, './public/[hash]'),
     filename: 'javascripts/bundle--[name].js'
   },
   plugins: [
@@ -59,6 +59,9 @@ module.exports = {
       });
     }
   ],
+  optimization: {
+    minimize: true
+  },
   module: {
     rules: [
       {
@@ -91,9 +94,7 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      }
-    ],
-    loaders: [
+      },
       { test: /public/, loader: 'imports-loader?this=>window' },
       { test: /public/, loader: 'imports-loader?$=jquery' }
     ]

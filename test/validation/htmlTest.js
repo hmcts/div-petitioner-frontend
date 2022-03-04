@@ -125,7 +125,7 @@ const testHtml = (step) => {
               retries++;
               getValidationResults();
             } else {
-              throw new Error('Unable to valiate HTML');
+              throw new Error('Unable to validate HTML');
             }
           });
       };

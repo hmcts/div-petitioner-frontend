@@ -30,6 +30,17 @@ window.jQuery = $;
     enableDisableButton.init();
 
     govukFrontend.initAll();
+
+    // COOKIEDOMAIN is populated by WebPack config
+    // eslint-disable-next-line no-undef
+    const cookieDomain = COOKIEDOMAIN;
+    // eslint-disable-next-line no-console
+    console.log(`
+
+              ==========================================================================================
+                Cookie Domain: ${cookieDomain}
+              ==========================================================================================
+    `);
   });
 
 })(window);

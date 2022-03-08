@@ -73,6 +73,8 @@ nodejs:
 
         FEATURE_DYNATRACE: "false"
 
+        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
+
         # Leave AAT as default for now, until we have a release window to change in prod, then switch prod to default
         # COOKIE_DOMAIN: "apply-divorce.service.gov.uk"
         COOKIE_DOMAIN: "Test.Cookie.Domain.Value.Values"

@@ -111,6 +111,7 @@ features:
   antennaWebchatUserAttribute: false
   newFees: true
   dynatrace: true
+  newAppCutoffDateBanner: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

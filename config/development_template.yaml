@@ -1,9 +1,0 @@
-# ---
-# Used when running the app locally, make a copy of this file a name it `development.yaml`.
-# That file will be used for any development config and it will not be version controlled.
-# That means you can add a LaunchDarkly key to it to the app locally and it will not be pushed to Git.
-# ---
-
-showSitemap: true
-featureToggles:
-  launchDarklyKey: 'Insert LD SDK here'

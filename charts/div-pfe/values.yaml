@@ -69,6 +69,9 @@ nodejs:
 
         FEATURE_DYNATRACE: "false"
 
+        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
+
+
     keyVaults:
         div:
             secrets:

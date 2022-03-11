@@ -8009,6 +8009,11 @@ nock@9.2.6:
     qs "^6.5.1"
     semver "^5.5.0"
 
+node-bin-setup@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.1.0.tgz#9df94c41335a8f41958a639b2736f860582a209c"
+  integrity sha512-pTeU6NgUrexiLNtd+AKwvg6cngHMvj5FZ5e2bbv2ogBSIc9yhkXSSaTScfSRZnwHIh5YFmYSYlemLWkiKD7rog==
+
 node-cache@^4.2.0:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/node-cache/-/node-cache-4.2.1.tgz#efd8474dee4edec4138cdded580f5516500f7334"
@@ -8147,6 +8152,13 @@ node.extend@^1.1.6, node.extend@~1.1.6:
   dependencies:
     has "^1.0.3"
     is "^3.2.1"
+
+node@^12.22.7:
+  version "12.22.10"
+  resolved "https://registry.yarnpkg.com/node/-/node-12.22.10.tgz#2f6c9e8b91f19c19ccca2e342373cb759807b7e6"
+  integrity sha512-AGoksMiarOVe6ylhirJaMWqBbdAPou50ulfAT8/1EsGjOzi3R/ewpkabguqAAWmTSlr07gs0RTrh3o077GHcoA==
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 nodemon@^1.7.1:
   version "1.19.4"

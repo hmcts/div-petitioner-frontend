@@ -21,8 +21,9 @@ const redirectOnCondition = (req, res, next) => {
   const today = new Date();
   const cutoff = new Date('2022-03-31T16:00:00');
   logger.infoWithReq(req, 'PFE Cutoff Landing Page Check', `Case Ref: ${caseId}. Date: ${today}. Cutoff Date: ${cutoff}`);
-  // if (today >= cutoff && !caseId) {
-  if (today < cutoff && !caseId) {
+  // if (session && !caseId && today >= cutoff) {
+  if (session && !caseId && today < cutoff) {
+    logger.infoWithReq((req, 'New application cutoff date reached, and no in progress application.  Redirecting to cutoff landing page'));
     return res.redirect('/cutoff-landing-page');
   }
 

@@ -21,9 +21,9 @@ const redirectOnCondition = (req, res, next) => {
   // ==================================================================================================================
   // Cutoff Date Landing Page Redirect
   // ==================================================================================================================
-  const debug = true;
+  const debugCutOffLandingPage = true;
   const debugLog = msg => {
-    if (!debug) {
+    if (!debugCutOffLandingPage) {
       return;
     }
     const debugLogger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);

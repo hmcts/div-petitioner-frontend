@@ -33,7 +33,8 @@ const redirectOnCondition = (req, res, next) => {
 
   const today = new Date();
   const cutoffDate = new Date('2022-03-31T16:00:00');
-  const cutoff = today >= cutoffDate;
+  //const cutoff = today >= cutoffDate;
+  const cutoff = true; // Force this for testing
   const redirectionStates = [
     'AwaitingPayment',
     'AwaitingHWFDecision',

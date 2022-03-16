@@ -18,14 +18,68 @@ const redirectOnCondition = (req, res, next) => {
     return res.redirect(`${appLandingPage}${queryString}`);
   }
 
+  // ==================================================================================================================
+  // Cutoff Date Landing Page Redirect
+  // ==================================================================================================================
+  const debug = true;
+  const debugLog = msg => {
+    if (!debug) {
+      return;
+    }
+    const debugLogger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
+    debugLogger.info(msg);
+  };
+
   const today = new Date();
-  const cutoff = new Date('2022-03-31T16:00:00');
-  logger.infoWithReq(req, 'PFE Cutoff Landing Page Check', `Case Ref: ${caseId}. Date: ${today}. Cutoff Date: ${cutoff}`);
-  // if (session && !caseId && today >= cutoff) {
-  if (session && !caseId && today < cutoff) {
-    logger.infoWithReq((req, 'New application cutoff date reached, and no in progress application.  Redirecting to cutoff landing page'));
+  const cutoffDate = new Date('2022-03-31T16:00:00');
+  const cutoff = today >= cutoffDate;
+  const redirectionStates = [
+    'AwaitingPayment',
+    'AwaitingHWFDecision',
+    'AwaitingDocuments',
+    'Withdrawn',
+    'PendingRejection',
+    'Rejected'
+  ];
+  const redirect = redirectionStates.includes(caseState);
+  debugLog(`
+      =================================================================================================================
+        Date: ${today}
+        Application cutoff date: ${cutoffDate}
+        Cutoff reached: ${cutoff}
+        Case Id: ${caseId}
+        Case State: ${caseState}
+        State Redirect: ${redirect}
+      =================================================================================================================
+    `);
+  if (cutoff && ((session && !caseId) || redirect)) {
+    debugLog(`
+      =================================================================================================================
+        Application cutoff date reached, and redirection is required for this request.
+        Redirecting to cutoff landing page.
+      =================================================================================================================
+    `);
     return res.redirect('/cutoff-landing-page');
   }
+  let logMsg = `
+      =================================================================================================================
+        Application cutoff date reached, redirection not required for this request.
+        No redirect.
+      =================================================================================================================
+    `;
+  if (!cutoff) {
+    logMsg = `
+      =================================================================================================================
+        Application cutoff date not reached.
+        No redirect.
+      =================================================================================================================
+    `;
+  }
+  debugLog(logMsg);
+  // ==================================================================================================================
+  // End Cutoff Date Landing Page Redirect
+  // ==================================================================================================================
 
   return next();
 };

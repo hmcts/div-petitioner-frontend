@@ -1,0 +1,94 @@
+.govuk-new-application-cutoff-date-banner {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-bottom: 30px;
+  border: 5px solid #1d70b8;
+  background-color: #1d70b8;
+}
+
+.govuk-new-application-cutoff-date-banner__header {
+  padding: 2px 15px 5px;
+  border-bottom: 1px solid transparent;
+}
+
+.govuk-new-application-cutoff-date-banner__title {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+.govuk-new-application-cutoff-date-banner__content {
+  color: #0b0c0c;
+  padding: 15px;
+  background-color: #ffffff;
+}
+
+.govuk-new-application-cutoff-date-banner__content > :last-child {
+  margin-bottom: 0;
+}
+
+.govuk-new-application-cutoff-date-banner__heading {
+  font-family: "nta", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.govuk-new-application-cutoff-date-banner__heading__title {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.govuk-new-application-cutoff-date-banner__content > * {
+  box-sizing: border-box;
+  max-width: initial;
+}
+
+@media (min-width: 40.0625em) {
+  .govuk-new-application-cutoff-date-banner {
+    margin-bottom: 50px;
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.31579;
+  }
+
+  .govuk-new-application-cutoff-date-banner__header {
+    padding: 2px 20px 5px;
+  }
+
+  .govuk-new-application-cutoff-date-banner__title {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.31579;
+  }
+
+  .govuk-new-application-cutoff-date-banner__content {
+    padding: 20px;
+  }
+
+  .govuk-new-application-cutoff-date-banner__heading__title {
+    margin-bottom: 20px;
+  }
+  .govuk-new-application-cutoff-date-banner__heading {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.31579;
+  }
+}

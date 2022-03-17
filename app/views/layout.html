@@ -48,11 +48,6 @@
         },
         html: html
     }) }}
-    {% if features.newAppCutoffDateBanner %}
-      {% block newApplicationCutOffDateBanner %}
-        {% include "includes/new-application-cutoff-date-banner.html" %}
-      {% endblock %}
-    {% endif %}
     {% block back %}
     <a class="govuk-back-link" href="#" onclick="history.go(-1); return false;">{{common.back}}</a>
     {% endblock %}

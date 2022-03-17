@@ -6,7 +6,7 @@
         "content": {
           "title": "You need to pay the fee",
           "info": "Your application has been submitted, but won’t be processed until you have paid the fee.",
-          "pay": "If you need to make any changes to your application you’ll need to contact the divorce centre on {{courtPhoneNumberEn}} (from {{courtOpeningHourEn}})."
+          "pay": "If you need to make any changes to your application you’ll need to contact the divorce centre on {{courtPhoneNumberEn}} (from {{courtOpeningHourEnLine1}}<br>{{courtOpeningHourEnLine2}}<br>{{courtOpeningHourEnLine3}})"
         }
       }
     },

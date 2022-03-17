@@ -89,7 +89,6 @@ features:
   antennaWebchatUserAttribute: FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE
   newFees: FEATURE_NEW_FEES
   dynatrace: FEATURE_DYNATRACE
-  newAppCutoffDateBanner: FEATURE_NEW_APP_CUTOFF_DATE_BANNER
 
 cookieDomain: COOKIE_DOMAIN
 

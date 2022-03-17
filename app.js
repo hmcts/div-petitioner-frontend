@@ -147,8 +147,7 @@ exports.init = listenForConnections => {
       antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
       features: {
         antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
-        dynatrace: parseBool(CONF.features.dynatrace), // Dynatrace Feature Toggle
-        newAppCutoffDateBanner: parseBool(CONF.features.newAppCutoffDateBanner) // New application cutoff date banner
+        dynatrace: parseBool(CONF.features.dynatrace) // Dynatrace Feature Toggle
       }
     }
   });

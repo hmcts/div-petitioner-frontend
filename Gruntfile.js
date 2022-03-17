@@ -24,6 +24,7 @@ module.exports = function(grunt) {
       prod: {
         plugins: webpackConfig.plugins.concat(
           new webpack.DefinePlugin({ 'process.env': { NODE_ENV: 'production' } }),
+          new webpack.optimize.UglifyJsPlugin(),
           // Replace variable values of COOKIEDOMAIN in JS files with the value of CONF.cookieDomain (as a quoted str)
           new webpack.DefinePlugin({ 'COOKIEDOMAIN': JSON.stringify(CONF.cookieDomain) })
         )

@@ -15,6 +15,7 @@ logger.info(`
 
               ==========================================================================================
                 Cookie Domain: ${CONF.cookieDomain}
+                newAppCutoffDateBanner: ${CONF.features.newAppCutoffDateBanner}
               ==========================================================================================
 `);
 

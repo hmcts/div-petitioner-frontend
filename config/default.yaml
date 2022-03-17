@@ -75,6 +75,8 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
+newAppCutoffDate: "2022-03-31T16:00:00"
+
 cookieDomain: "Test.Cookie.Domain.Value.Default"
 
 commonProps:

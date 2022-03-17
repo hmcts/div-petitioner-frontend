@@ -91,6 +91,8 @@ features:
   dynatrace: FEATURE_DYNATRACE
   newAppCutoffDateBanner: FEATURE_NEW_APP_CUTOFF_DATE_BANNER
 
+newAppCutoffDate: NEW_APP_CUTOFF_DATE
+
 cookieDomain: COOKIE_DOMAIN
 
 idamArgs:

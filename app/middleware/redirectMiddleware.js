@@ -34,16 +34,11 @@ const redirectOnCondition = (req, res, next) => {
 
     const today = new Date();
     const cutoffDate = new Date(CONF.newAppCutoffDate);
-    let cutoff = today >= cutoffDate;
-    if (CONF.newAppCutoffDateOverride) {
-      cutoff = true;
-    }
+    const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
     const redirectionStates = CONF.newAppCutoffRedirectStates;
-    let redirect = redirectionStates.includes(caseState);
+    const redirect = CONF.newAppCutoffRedirectStates ? true : redirectionStates.includes(caseState);
     const redirectOn = redirectionStates.indexOf(caseState);
-    if (CONF.newAppCutoffStateOverride) {
-      redirect = true;
-    }
+
     debugLog(`
       =================================================================================================================
         Date: ${today}

@@ -54,11 +54,11 @@ const redirectOnCondition = (req, res, next) => {
         State Redirect: ${redirect}
       =================================================================================================================
     `);
-    if (redirect) {
+    if (redirect && !CONF.newAppCutoffStateOverride) {
       debugLog(`
       =================================================================================================================
         Redirect Match At Pos: ${redirectOn}
-        Redirect Match Value: ${caseState}
+        Redirect Match Value: ${redirectionStates[redirectOn]}
       =================================================================================================================
     `);
     }

@@ -76,6 +76,17 @@ paymentDateFormat: 'DDMMYYYY'
 testUrl: 'https://localhost:3000'
 
 newAppCutoffDate: "2022-03-31T16:00:00"
+newAppCutoffDateOverride: false
+newAppCutoffRedirectStates: [
+    'AwaitingPayment',
+    'AwaitingHWFDecision',
+    'AwaitingDocuments',
+    'Withdrawn',
+    'PendingRejection',
+    'Rejected'
+]
+newAppCutoffStateOverride: false
+newAppCutoffDebug: false
 
 cookieDomain: "Test.Cookie.Domain.Value.Default"
 
@@ -114,6 +125,7 @@ features:
   newFees: true
   dynatrace: true
   newAppCutoffDateBanner: true
+  newAppCutoff: true
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

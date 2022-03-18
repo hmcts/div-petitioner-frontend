@@ -70,7 +70,19 @@ nodejs:
         FEATURE_DYNATRACE: "false"
 
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
+        FEATURE_NEW_APP_CUTOFF: false
         NEW_APP_CUTOFF_DATE: "2022-03-31T16:00:00"
+        NEW_APP_CUTOFF_DATE_OVERRIDE: false
+        NEW_APP_CUTOFF_REDIRECT_STATES: [
+            'AwaitingPayment',
+            'AwaitingHWFDecision',
+            'AwaitingDocuments',
+            'Withdrawn',
+            'PendingRejection',
+            'Rejected'
+        ]
+        NEW_APP_CUTOFF_STATE_OVERRIDE: false
+        NEW_APP_CUTOFF_DEBUG: false
 
         # Leave AAT as default for now, until we have a release window to change in prod, then switch prod to default
         # COOKIE_DOMAIN: "apply-divorce.service.gov.uk"

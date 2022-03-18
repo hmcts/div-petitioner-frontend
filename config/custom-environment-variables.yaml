@@ -90,8 +90,13 @@ features:
   newFees: FEATURE_NEW_FEES
   dynatrace: FEATURE_DYNATRACE
   newAppCutoffDateBanner: FEATURE_NEW_APP_CUTOFF_DATE_BANNER
+  newAppCutoff: FEATURE_NEW_APP_CUTOFF
 
 newAppCutoffDate: NEW_APP_CUTOFF_DATE
+newAppCutoffDateOverride: NEW_APP_CUTOFF_DATE_OVERRIDE
+newAppCutoffRedirectStates: NEW_APP_CUTOFF_REDIRECT_STATES
+newAppCutoffStateOverride: NEW_APP_CUTOFF_STATE_OVERRIDE
+newAppCutoffDebug: NEW_APP_CUTOFF_DEBUG
 
 cookieDomain: COOKIE_DOMAIN
 

@@ -4,6 +4,7 @@ const logger = require('app/services/logger').logger(__filename);
 
 const authTokenString = '__auth-token';
 
+/* eslint-disable complexity */
 const redirectOnCondition = (req, res, next) => {
   const session = req.session;
   const caseState = _.get(session, 'state');
@@ -21,30 +22,29 @@ const redirectOnCondition = (req, res, next) => {
   // ==================================================================================================================
   // Cutoff Date Landing Page Redirect
   // ==================================================================================================================
-  const debugCutOffLandingPage = true;
-  const debugLog = msg => {
-    if (!debugCutOffLandingPage) {
-      return;
+  if (CONF.features.newAppCutoff) {
+    const debugLog = msg => {
+      if (!CONF.newAppCutoffDebug) {
+        return;
+      }
+      const debugLogger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
+      debugLogger.info(msg);
+    };
+
+    const today = new Date();
+    const cutoffDate = new Date(CONF.newAppCutoffDate);
+    let cutoff = today >= cutoffDate;
+    if (CONF.newAppCutoffDateOverride) {
+      cutoff = true;
     }
-    const debugLogger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
-
-    debugLogger.info(msg);
-  };
-
-  const today = new Date();
-  const cutoffDate = new Date(CONF.newAppCutoffDate);
-  // const cutoff = today >= cutoffDate;
-  const cutoff = true; // Force this for testing
-  const redirectionStates = [
-    'AwaitingPayment',
-    'AwaitingHWFDecision',
-    'AwaitingDocuments',
-    'Withdrawn',
-    'PendingRejection',
-    'Rejected'
-  ];
-  const redirect = redirectionStates.includes(caseState);
-  debugLog(`
+    const redirectionStates = CONF.newAppCutoffRedirectStates;
+    let redirect = redirectionStates.includes(caseState);
+    const redirectOn = redirectionStates.indexOf(caseState);
+    if (CONF.newAppCutoffStateOverride) {
+      redirect = true;
+    }
+    debugLog(`
       =================================================================================================================
         Date: ${today}
         Application cutoff date: ${cutoffDate}
@@ -54,35 +54,45 @@ const redirectOnCondition = (req, res, next) => {
         State Redirect: ${redirect}
       =================================================================================================================
     `);
-  if (cutoff && ((session && !caseId) || redirect)) {
-    debugLog(`
+    if (redirect) {
+      debugLog(`
+      =================================================================================================================
+        Redirect Match At Pos: ${redirectOn}
+        Redirect Match Value: ${caseState}
+      =================================================================================================================
+    `);
+    }
+    if (cutoff && ((session && !caseId) || redirect)) {
+      debugLog(`
       =================================================================================================================
         Application cutoff date reached, and redirection is required for this request.
         Redirecting to cutoff landing page.
       =================================================================================================================
     `);
-    return res.redirect('/cutoff-landing-page');
-  }
-  let logMsg = `
+      return res.redirect('/cutoff-landing-page');
+    }
+    let logMsg = `
       =================================================================================================================
         Application cutoff date reached, redirection not required for this request.
         No redirect.
       =================================================================================================================
     `;
-  if (!cutoff) {
-    logMsg = `
+    if (!cutoff) {
+      logMsg = `
       =================================================================================================================
         Application cutoff date not reached.
         No redirect.
       =================================================================================================================
     `;
+    }
+    debugLog(logMsg);
   }
-  debugLog(logMsg);
   // ==================================================================================================================
   // End Cutoff Date Landing Page Redirect
   // ==================================================================================================================
 
   return next();
 };
+/* eslint-enable complexity */
 
 module.exports = { redirectOnCondition };

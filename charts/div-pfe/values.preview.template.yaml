@@ -24,6 +24,7 @@ nodejs:
         FEATURE_NEW_APP_CUTOFF: true
         NEW_APP_CUTOFF_DATE: "2022-03-31T16:00:00"
         NEW_APP_CUTOFF_DATE_OVERRIDE: true
+        NEW_APP_CUTOFF_CASEID_OVERRIDE: false
         NEW_APP_CUTOFF_REDIRECT_STATES: [
             'AwaitingPayment',
             'AwaitingHWFDecision',

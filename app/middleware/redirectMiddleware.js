@@ -35,6 +35,7 @@ const redirectOnCondition = (req, res, next) => {
     const today = new Date();
     const cutoffDate = new Date(CONF.newAppCutoffDate);
     const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
+    const hasCaseId = CONF.newAppCutoffCaseIdOverride ? true : session && caseId;
     const redirectionStates = CONF.newAppCutoffRedirectStates;
     const redirect = CONF.newAppCutoffRedirectStates ? true : redirectionStates.includes(caseState);
     const redirectOn = redirectionStates.indexOf(caseState);
@@ -57,7 +58,7 @@ const redirectOnCondition = (req, res, next) => {
       =================================================================================================================
     `);
     }
-    if (cutoff && ((session && !caseId) || redirect)) {
+    if (cutoff && (hasCaseId || redirect)) {
       debugLog(`
       =================================================================================================================
         Application cutoff date reached, and redirection is required for this request.

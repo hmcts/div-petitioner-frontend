@@ -22,7 +22,7 @@ nodejs:
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"
         DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
 
-        FEATURE_NEW_APP_CUTOFF: "true"
+        FEATURE_NEW_APP_CUTOFF: "false"
         ################################################################################################################
         # JS DateTime value representing when the new application cutoff will take effect
         NEW_APP_CUTOFF_DATE: "2022-03-31T16:00:00"

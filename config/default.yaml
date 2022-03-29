@@ -81,11 +81,11 @@ newAppCutoffDate: "2022-03-31T16:00:00"
 
 # Boolean.  True: New app cutoff date test evaluates true.
 #           False: New app cutoff is evaluated against current server datetime.
-newAppCutoffDateOverride: "false"
+newAppCutoffDateOverride: false
 
 # Boolean. True: Test for existence of a caseId evaluates to true.
 #          False: Check for caseId within session object.
-newAppCutoffCaseIdOverride: "false"
+newAppCutoffCaseIdOverride: false
 
 # Array of case states that will trigger a redirect.
 newAppCutoffRedirectStates: [
@@ -99,10 +99,10 @@ newAppCutoffRedirectStates: [
 
 # Boolean.  True: Case state redirect check evaluates to true.
 #           False: Case state evaluated against array.
-newAppCutoffStateOverride: "false"
+newAppCutoffStateOverride: false
 
 # Boolean.  Toggle verbose logging of new app cutoff evaluation steps.
-newAppCutoffDebug: "false"
+newAppCutoffDebug: false
 #######################################################################################################################
 
 cookieDomain: "Test.Cookie.Domain.Value.Default"

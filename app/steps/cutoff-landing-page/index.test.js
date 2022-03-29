@@ -2,7 +2,7 @@ const request = require('supertest');
 const { testContent } = require('test/util/assertions');
 const server = require('app');
 
-const modulePath = 'app/steps/accessibility-statement';
+const modulePath = 'app/steps/cutoff-landing-page';
 
 const content = require(`${modulePath}/content`);
 

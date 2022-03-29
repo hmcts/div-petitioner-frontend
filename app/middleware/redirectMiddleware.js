@@ -32,22 +32,42 @@ const redirectOnCondition = (req, res, next) => {
       debugLogger.info(msg);
     };
 
+    const caseIdExists = () => {
+      if (CONF.newAppCutoffCaseIdOverride || (session && caseId)) {
+        return true;
+      }
+      return false;
+    };
+
+    const redirectionStates = CONF.newAppCutoffRedirectStates;
+    const checkState = () => {
+      if (CONF.newAppCutoffStateOverride || redirectionStates.includes(caseState) || !caseState) {
+        return true;
+      }
+      return false;
+    };
+
     const today = new Date();
     const cutoffDate = new Date(CONF.newAppCutoffDate);
     const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
-    const hasCaseId = CONF.newAppCutoffCaseIdOverride ? true : session && caseId;
-    const redirectionStates = CONF.newAppCutoffRedirectStates;
-    const redirect = CONF.newAppCutoffRedirectStates ? true : redirectionStates.includes(caseState);
+    const hasCaseId = caseIdExists();
+    const redirect = checkState();
     const redirectOn = redirectionStates.indexOf(caseState);
 
+    debugLog(JSON.stringify(session));
     debugLog(`
       =================================================================================================================
         Date: ${today}
         Application cutoff date: ${cutoffDate}
         Cutoff reached: ${cutoff}
+        Cutoff Override: ${CONF.newAppCutoffDateOverride}
         Case Id: ${caseId}
+        Has Case Id: ${hasCaseId}
+        Case Id Override: ${CONF.newAppCutoffCaseIdOverride}
         Case State: ${caseState}
         State Redirect: ${redirect}
+        State Redirect On: ${redirectionStates[redirectOn]}
+        State Override: ${CONF.newAppCutoffStateOverride}
       =================================================================================================================
     `);
     if (redirect && !CONF.newAppCutoffStateOverride) {
@@ -58,7 +78,7 @@ const redirectOnCondition = (req, res, next) => {
       =================================================================================================================
     `);
     }
-    if (cutoff && (hasCaseId || redirect)) {
+    if (cutoff && (!hasCaseId || redirect)) {
       debugLog(`
       =================================================================================================================
         Application cutoff date reached, and redirection is required for this request.

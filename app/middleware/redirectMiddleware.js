@@ -22,9 +22,9 @@ const redirectOnCondition = (req, res, next) => {
   // ==================================================================================================================
   // Cutoff Date Landing Page Redirect
   // ==================================================================================================================
-  if (CONF.features.newAppCutoff) {
+  if (JSON.parse(CONF.features.newAppCutoff)) {
     const debugLog = msg => {
-      if (!CONF.newAppCutoffDebug) {
+      if (!JSON.parse(CONF.newAppCutoffDebug)) {
         return;
       }
       const debugLogger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
@@ -34,11 +34,11 @@ const redirectOnCondition = (req, res, next) => {
 
     const today = new Date();
     const cutoffDate = new Date(CONF.newAppCutoffDate);
-    const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
-    const hasCaseId = CONF.newAppCutoffCaseIdOverride || Boolean(session && caseId);
+    const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
+    const hasCaseId = JSON.parse(CONF.newAppCutoffCaseIdOverride) || Boolean(session && caseId);
     const redirectionStates = CONF.newAppCutoffRedirectStates;
-    const stateToCheck = CONF.newAppCutoffUseStateToCheck ? CONF.newAppCutoffStateToCheck : caseState;
-    const redirect = CONF.newAppCutoffStateOverride || redirectionStates.includes(stateToCheck) || !stateToCheck;
+    const stateToCheck = JSON.parse(CONF.newAppCutoffUseStateToCheck) ? CONF.newAppCutoffStateToCheck : caseState;
+    const redirect = JSON.parse(CONF.newAppCutoffStateOverride) || redirectionStates.includes(stateToCheck) || !stateToCheck;
     const redirectOn = redirectionStates.indexOf(stateToCheck);
 
     debugLog(JSON.stringify(session));

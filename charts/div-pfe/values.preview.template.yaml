@@ -22,14 +22,14 @@ nodejs:
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"
         DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
 
-        FEATURE_NEW_APP_CUTOFF: "false"
+        FEATURE_NEW_APP_CUTOFF: "true"
         ################################################################################################################
         # JS DateTime value representing when the new application cutoff will take effect
-        NEW_APP_CUTOFF_DATE: "2022-03-31T16:00:00"
+        NEW_APP_CUTOFF_DATE: "2022-03-30T16:00:00"
 
         # Boolean.  True: New app cutoff date test evaluates true.
         #           False: New app cutoff is evaluated against current server datetime.
-        NEW_APP_CUTOFF_DATE_OVERRIDE: true
+        NEW_APP_CUTOFF_DATE_OVERRIDE: false
 
         # Boolean. True: Test for existence of a caseId evaluates to true.
         #          False: Check for caseId within session object.

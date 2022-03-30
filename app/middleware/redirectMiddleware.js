@@ -32,27 +32,13 @@ const redirectOnCondition = (req, res, next) => {
       debugLogger.info(msg);
     };
 
-    const caseIdExists = () => {
-      if (CONF.newAppCutoffCaseIdOverride || (session && caseId)) {
-        return true;
-      }
-      return false;
-    };
-
-    const redirectionStates = CONF.newAppCutoffRedirectStates;
-    const checkState = (state = caseState) => {
-      if (CONF.newAppCutoffStateOverride || redirectionStates.includes(state) || !state) {
-        return true;
-      }
-      return false;
-    };
-
     const today = new Date();
     const cutoffDate = new Date(CONF.newAppCutoffDate);
     const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
-    const hasCaseId = caseIdExists();
+    const hasCaseId = CONF.newAppCutoffCaseIdOverride || Boolean(session && caseId);
+    const redirectionStates = CONF.newAppCutoffRedirectStates;
     const stateToCheck = CONF.newAppCutoffUseStateToCheck ? CONF.newAppCutoffStateToCheck : caseState;
-    const redirect = checkState(stateToCheck);
+    const redirect = CONF.newAppCutoffStateOverride || redirectionStates.includes(stateToCheck) || !stateToCheck;
     const redirectOn = redirectionStates.indexOf(stateToCheck);
 
     debugLog(JSON.stringify(session));
@@ -69,16 +55,10 @@ const redirectOnCondition = (req, res, next) => {
         State Redirect: ${redirect}
         State Redirect On: ${redirectionStates[redirectOn]}
         State Override: ${CONF.newAppCutoffStateOverride}
-      =================================================================================================================
-    `);
-    if (redirect && !CONF.newAppCutoffStateOverride) {
-      debugLog(`
-      =================================================================================================================
         Redirect Match At Pos: ${redirectOn}
         Redirect Match Value: ${redirectionStates[redirectOn]}
       =================================================================================================================
     `);
-    }
     if (cutoff && (!hasCaseId || redirect)) {
       debugLog(`
       =================================================================================================================

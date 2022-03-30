@@ -35,7 +35,7 @@ describe(modulePath, () => {
   });
 
   context('generic tests', () => {
-    if (cutoff) {
+    if (cutoff && CONF.features.newAppCutoff) {
       it('should redirect to landing page when there is no session', () => {
         delete req.session;
 

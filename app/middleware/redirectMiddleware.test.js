@@ -16,7 +16,7 @@ const expectedUrl = `${dnFrontend.url}${dnFrontend.landing}${queryString}`;
 // Landing page config
 const today = new Date();
 const cutoffDate = new Date(CONF.newAppCutoffDate);
-const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
+const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
 const landingPageUrl = '/cutoff-landing-page';
 
 describe(modulePath, () => {
@@ -35,7 +35,7 @@ describe(modulePath, () => {
   });
 
   context('generic tests', () => {
-    if (cutoff && CONF.features.newAppCutoff) {
+    if (cutoff && JSON.parse(CONF.features.newAppCutoff)) {
       it('should redirect to landing page when there is no session', () => {
         delete req.session;
 
@@ -109,7 +109,8 @@ describe(modulePath, () => {
       ['IssuedToBailiff'],
       ['AwaitingBailiffService']
     ])
-      .it('should call next when the state is %s', caseState => {
+      .it('should call next when a caseId exists and the state is %s', caseState => {
+        req.session.caseId = 'TestCaseId';
         req.session.state = caseState;
 
         redirectMiddleware.redirectOnCondition(req, res, next);
@@ -119,7 +120,8 @@ describe(modulePath, () => {
           .eql(true);
       });
 
-    it('should call next when the state is AwaitingAmendCase', () => {
+    it('should call next when a caseId exists and the state is AwaitingAmendCase', () => {
+      req.session.caseId = 'TestCaseId';
       req.session.state = 'AwaitingAmendCase';
 
       redirectMiddleware.redirectOnCondition(req, res, next);
@@ -129,7 +131,8 @@ describe(modulePath, () => {
         .eql(true);
     });
 
-    it('should call redirect to DN if the state is AwaitingDecreeNisi', () => {
+    it('should call redirect to DN if a caseId exists and the state is AwaitingDecreeNisi', () => {
+      req.session.caseId = 'TestCaseId';
       req.session.state = 'AwaitingDecreeNisi';
 
       redirectMiddleware.redirectOnCondition(req, res, next);
@@ -174,6 +177,7 @@ describe(modulePath, () => {
       it('should call next when court is not CTSC', () => {
         req.session.courts = 'eastMidlands';
         req.session.state = 'AwaitingDecreeNisi';
+        req.session.caseId = 'TestCaseId';
 
         redirectMiddleware.redirectOnCondition(req, res, next);
 
@@ -196,6 +200,7 @@ describe(modulePath, () => {
     it('should call next when court is not CTSC', () => {
       req.session.allocatedCourt = { courtId: 'eastMidlands' };
       req.session.state = 'AwaitingDecreeNisi';
+      req.session.caseId = 'TestCaseId';
 
       redirectMiddleware.redirectOnCondition(req, res, next);
 

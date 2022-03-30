@@ -24,7 +24,7 @@ exports.config = {
     JSWait: { require: './helpers/JSWait.js' },
     SessionHelper: { require: './helpers/SessionHelper.js' }
   },
-  include: {I: './pages/steps.js'},
+  //include: {I: './pages/steps.js'},
 
   mocha: {
     reporterOptions: {

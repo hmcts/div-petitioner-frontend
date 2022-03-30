@@ -17,6 +17,7 @@ const expectedUrl = `${dnFrontend.url}${dnFrontend.landing}${queryString}`;
 const today = new Date();
 const cutoffDate = new Date(CONF.newAppCutoffDate);
 const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
+const landingPageUrl = '/cutoff-landing-page';
 
 describe(modulePath, () => {
   let req = {}, res = {}, next = {};
@@ -41,7 +42,7 @@ describe(modulePath, () => {
         redirectMiddleware.redirectOnCondition(req, res, next);
 
         expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+        expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
       });
 
       it('should redirect to landing page when there is no state', () => {
@@ -50,7 +51,7 @@ describe(modulePath, () => {
         redirectMiddleware.redirectOnCondition(req, res, next);
 
         expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+        expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
       });
 
       it('should redirect to landing page when there is no caseId', () => {
@@ -59,17 +60,20 @@ describe(modulePath, () => {
         redirectMiddleware.redirectOnCondition(req, res, next);
 
         expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+        expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
       });
 
       forEach(CONF.newAppCutoffRedirectStates)
-        .it('should redirect to landing page when the state is %s', caseState => {
+        .it('should redirect to landing page when a caseId exists and the state is %s', caseState => {
           req.session.state = caseState;
+          req.session.caseId = 'TestCaseId';
+          // Remove the allocatedCourt to handle any missing overlap with CONF.ccd.d8States
+          delete req.session.allocatedCourt;
 
           redirectMiddleware.redirectOnCondition(req, res, next);
 
           expect(next.calledOnce).to.eql(false);
-          expect(res.redirect.calledWith(expectedUrl)).to.eql(true);
+          expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
         });
     } else {
       it('should call next when there is no session', () => {
@@ -99,23 +103,14 @@ describe(modulePath, () => {
           .to
           .eql(true);
       });
+    }
 
-      forEach([
-        ['IssuedToBailiff'],
-        ['AwaitingBailiffService']
-      ])
-        .it('should call next when the state is %s', caseState => {
-          req.session.state = caseState;
-
-          redirectMiddleware.redirectOnCondition(req, res, next);
-
-          expect(next.calledOnce)
-            .to
-            .eql(true);
-        });
-
-      it('should call next when the state is AwaitingAmendCase', () => {
-        req.session.state = 'AwaitingAmendCase';
+    forEach([
+      ['IssuedToBailiff'],
+      ['AwaitingBailiffService']
+    ])
+      .it('should call next when the state is %s', caseState => {
+        req.session.state = caseState;
 
         redirectMiddleware.redirectOnCondition(req, res, next);
 
@@ -123,9 +118,18 @@ describe(modulePath, () => {
           .to
           .eql(true);
       });
-    }
 
-    it('should call redirect to DN if the state is not AwaitingPayment and not AwaitingAmendCase', () => {
+    it('should call next when the state is AwaitingAmendCase', () => {
+      req.session.state = 'AwaitingAmendCase';
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(true);
+    });
+
+    it('should call redirect to DN if the state is AwaitingDecreeNisi', () => {
       req.session.state = 'AwaitingDecreeNisi';
 
       redirectMiddleware.redirectOnCondition(req, res, next);

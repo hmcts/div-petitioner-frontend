@@ -4,7 +4,7 @@ Scenario('Smoke Test ', (I) => {
   I.amOnLoadedPage('/');
   I.startApplication();
   I.wait(1);
-  I.languagePreference();
+  // I.languagePreference();
   I.signOut();
 });
 

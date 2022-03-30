@@ -97,6 +97,15 @@ newAppCutoffRedirectStates: [
     'Rejected'
 ]
 
+# Boolean.  True: Case states from sessions will be overridden by newAppCutoffStateToCheck for landing page redirection
+#           False: Case states from sessions will be evaluated for landing page redirection
+# NB: Will be ignored if newAppCutoffStateOverride is True.
+newAppCutoffUseStateToCheck: false
+
+# String. Case state to validate against newAppCutoffRedirectStates array when newAppCutoffUseStateToCheck is True.
+#         Will be ignored if newAppCutoffStateOverride is True, or newAppCutoffUseStateToCheck is False.
+newAppCutoffStateToCheck: 'TestState'
+
 # Boolean.  True: Case state redirect check evaluates to true.
 #           False: Case state evaluated against array.
 newAppCutoffStateOverride: false

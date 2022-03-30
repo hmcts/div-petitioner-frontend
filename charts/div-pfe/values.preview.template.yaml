@@ -45,6 +45,18 @@ nodejs:
             'Rejected'
         ]
 
+        # Boolean.  True: Case states from sessions will be overridden by NEW_APP_CUTOFF_STATE_TO_CHECK for landing
+        #                 page redirection
+        #           False: Case states from sessions will be evaluated for landing page redirection
+        # NB: Will be ignored if NEW_APP_CUTOFF_STATE_OVERRIDE is True.
+        NEW_APP_CUTOFF_USE_STATE_TO_CHECK: false
+
+        # String. Case state to validate against NEW_APP_CUTOFF_REDIRECT_STATES array when
+        #         NEW_APP_CUTOFF_USE_STATE_TO_CHECK is True.
+        #         Will be ignored if NEW_APP_CUTOFF_STATE_OVERRIDE is True, or NEW_APP_CUTOFF_USE_STATE_TO_CHECK is
+        #         False.
+        NEW_APP_CUTOFF_STATE_TO_CHECK: 'TestState'
+
         # Boolean.  True: Case state redirect check evaluates to true.
         #           False: Case state evaluated against array.
         NEW_APP_CUTOFF_STATE_OVERRIDE: false

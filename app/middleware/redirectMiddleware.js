@@ -40,8 +40,8 @@ const redirectOnCondition = (req, res, next) => {
     };
 
     const redirectionStates = CONF.newAppCutoffRedirectStates;
-    const checkState = () => {
-      if (CONF.newAppCutoffStateOverride || redirectionStates.includes(caseState) || !caseState) {
+    const checkState = (state = caseState) => {
+      if (CONF.newAppCutoffStateOverride || redirectionStates.includes(state) || !state) {
         return true;
       }
       return false;
@@ -51,8 +51,9 @@ const redirectOnCondition = (req, res, next) => {
     const cutoffDate = new Date(CONF.newAppCutoffDate);
     const cutoff = CONF.newAppCutoffDateOverride ? true : today >= cutoffDate;
     const hasCaseId = caseIdExists();
-    const redirect = checkState();
-    const redirectOn = redirectionStates.indexOf(caseState);
+    const stateToCheck = CONF.newAppCutoffUseStateToCheck ? CONF.newAppCutoffStateToCheck : caseState;
+    const redirect = checkState(stateToCheck);
+    const redirectOn = redirectionStates.indexOf(stateToCheck);
 
     debugLog(JSON.stringify(session));
     debugLog(`

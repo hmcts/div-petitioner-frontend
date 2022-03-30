@@ -25,7 +25,8 @@ nodejs:
         FEATURE_NEW_APP_CUTOFF: "true"
         ################################################################################################################
         # JS DateTime value representing when the new application cutoff will take effect
-        NEW_APP_CUTOFF_DATE: "2022-03-30T16:00:00"
+        # Servers use UTC!  Adjust values accordingly!
+        NEW_APP_CUTOFF_DATE: "2022-03-30T15:00:00"
 
         # Boolean.  True: New app cutoff date test evaluates true.
         #           False: New app cutoff is evaluated against current server datetime.

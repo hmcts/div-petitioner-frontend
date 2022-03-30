@@ -77,7 +77,8 @@ testUrl: 'https://localhost:3000'
 
 #######################################################################################################################
 # JS DateTime value representing when the new application cutoff will take effect
-newAppCutoffDate: "2022-03-31T16:00:00"
+# Servers use UTC!  Adjust values accordingly!
+newAppCutoffDate: "2022-03-30T15:00:00"
 
 # Boolean.  True: New app cutoff date test evaluates true.
 #           False: New app cutoff is evaluated against current server datetime.

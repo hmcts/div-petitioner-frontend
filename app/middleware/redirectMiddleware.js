@@ -21,8 +21,13 @@ const redirectOnCondition = (req, res, next) => {
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
-    // eslint-disable-next-line no-undefined
-  } else if (JSON.parse(CONF.features.newAppCutoff) && (!typeof caseId === undefined || redirect)) {
+  }
+
+  // eslint-disable-next-line no-undefined
+  logger.infoWithReq(req, `TypeOf CaseId: ${typeof caseId === undefined}`);
+  // eslint-disable-next-line no-undefined
+  if (JSON.parse(CONF.features.newAppCutoff) && (!typeof caseId === undefined || redirect)) {
+    logger.infoWithReq(req, 'PFE redirecting to Landing Page', `Case Ref: ${caseId}. Redirect check Passed.`);
     return res.redirect('/cutoff-landing-page');
   }
 

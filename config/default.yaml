@@ -75,6 +75,46 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
+#######################################################################################################################
+# JS DateTime value representing when the new application cutoff will take effect
+# Servers use UTC!  Adjust values accordingly!
+newAppCutoffDate: "2022-03-31T15:00:00"
+
+# Boolean.  True: New app cutoff date test evaluates true.
+#           False: New app cutoff is evaluated against current server datetime.
+newAppCutoffDateOverride: false
+
+# Boolean. True: Test for existence of a caseId evaluates to true.
+#          False: Check for caseId within session object.
+newAppCutoffCaseIdOverride: false
+
+# Array of case states that will trigger a redirect.
+newAppCutoffRedirectStates: [
+    'AwaitingPayment',
+    'AwaitingHWFDecision',
+    'AwaitingDocuments',
+    'Withdrawn',
+    'PendingRejection',
+    'Rejected'
+]
+
+# Boolean.  True: Case states from sessions will be overridden by newAppCutoffStateToCheck for landing page redirection
+#           False: Case states from sessions will be evaluated for landing page redirection
+# NB: Will be ignored if newAppCutoffStateOverride is True.
+newAppCutoffUseStateToCheck: false
+
+# String. Case state to validate against newAppCutoffRedirectStates array when newAppCutoffUseStateToCheck is True.
+#         Will be ignored if newAppCutoffStateOverride is True, or newAppCutoffUseStateToCheck is False.
+newAppCutoffStateToCheck: 'TestState'
+
+# Boolean.  True: Case state redirect check evaluates to true.
+#           False: Case state evaluated against array.
+newAppCutoffStateOverride: false
+
+# Boolean.  Toggle verbose logging of new app cutoff evaluation steps.
+newAppCutoffDebug: false
+#######################################################################################################################
+
 cookieDomain: "Test.Cookie.Domain.Value.Default"
 
 commonProps:
@@ -112,6 +152,7 @@ features:
   newFees: true
   dynatrace: true
   newAppCutoffDateBanner: true
+  newAppCutoff: false
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

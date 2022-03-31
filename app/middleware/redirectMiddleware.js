@@ -23,7 +23,7 @@ const redirectOnCondition = (req, res, next) => {
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
     // eslint-disable-next-line no-undefined
-  } else if (parseBool(CONF.features.newAppCutoff) && (!typeof caseId === undefined || redirect)) {
+  } else if (parseBool(CONF.features.newAppCutoff)) {
     return res.redirect('/cutoff-landing-page');
   }
 

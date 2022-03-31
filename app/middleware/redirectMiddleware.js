@@ -14,21 +14,28 @@ const redirectOnCondition = (req, res, next) => {
   logger.infoWithReq(req, `Redirection States: ${redirectionStates}`);
   const redirect = redirectionStates.includes(caseState) || !caseState;
   logger.infoWithReq(req, `Redirect: ${redirect}`);
-  logger.infoWithReq(req, `Toggle: ${CONF.features.newAppCutoff}`);
+  const toggle = JSON.parse(CONF.features.newAppCutoff);
+  logger.infoWithReq(req, `Toggle: ${toggle}`);
   // eslint-disable-next-line no-undefined
   logger.infoWithReq(req, `TypeOf CaseId: ${typeof caseId === undefined}`);
+  let redirStr = '';
 
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);
   if (caseState && CONF.ccd.courts.includes(courtId) && !CONF.ccd.d8States.includes(caseState)) {
     logger.infoWithReq(req, 'PFE redirecting to DN', `Case Ref: ${caseId}. Redirect check Passed.`);
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
-    return res.redirect(`${appLandingPage}${queryString}`);
+    redirStr = `${appLandingPage}${queryString}`;
   }
 
-  if (JSON.parse(CONF.features.newAppCutoff) && (redirect)) {
+  if (toggle && redirect) {
     logger.infoWithReq(req, 'PFE redirecting to Landing Page', `Case Ref: ${caseId}. Redirect check Passed.`);
-    return res.redirect('/cutoff-landing-page');
+    redirStr = '/cutoff-landing-page';
+  }
+
+  logger.infoWithReq(req, `RedirStr: ${redirStr}`);
+  if (redirStr !== '') {
+    return res.redirect(redirStr);
   }
 
   return next();

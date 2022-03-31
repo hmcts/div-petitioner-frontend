@@ -26,9 +26,7 @@ const redirectOnCondition = (req, res, next) => {
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     redirStr = `${appLandingPage}${queryString}`;
-  }
-
-  if (toggle && redirect) {
+  } else if (toggle && redirect) {
     logger.infoWithReq(req, 'PFE redirecting to Landing Page', `Case Ref: ${caseId}. Redirect check Passed.`);
     redirStr = '/cutoff-landing-page';
   }

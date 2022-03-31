@@ -10,7 +10,7 @@ const redirectOnCondition = (req, res, next) => {
   const caseState = _.get(session, 'state');
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
   const caseId = _.get(session, 'caseId');
-  const redirectFeatureOn = parseBool(CONF.features.antennaWebchatUserAttribute);
+  const redirectFeatureOn = parseBool(CONF.features.newAppCutoff);
   logger.infoWithReq(req, caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
   logger.infoWithReq(req, `Redirection States: ${redirectionStates}`);
@@ -23,7 +23,6 @@ const redirectOnCondition = (req, res, next) => {
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
-    // eslint-disable-next-line no-undefined
   } else if (redirectFeatureOn) {
     return res.redirect('/cutoff-landing-page');
   }

@@ -10,7 +10,6 @@ const redirectOnCondition = (req, res, next) => {
   const caseState = _.get(session, 'state');
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
   const caseId = _.get(session, 'caseId');
-  const hasCaseId = Boolean(session && caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
   const redirect = redirectionStates.includes(caseState) || !caseState;
 
@@ -19,7 +18,6 @@ const redirectOnCondition = (req, res, next) => {
   logger.infoWithReq(req, `
     =================================================================================================================
       Case Id: ${caseId}
-      Has Case Id: ${hasCaseId}
       Case State: ${caseState}
       State Redirect: ${redirect}
     =================================================================================================================
@@ -29,7 +27,8 @@ const redirectOnCondition = (req, res, next) => {
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
-  } else if (JSON.parse(CONF.features.newAppCutoff) && (!hasCaseId || redirect)) {
+    // eslint-disable-next-line no-undefined
+  } else if (JSON.parse(CONF.features.newAppCutoff) && (!typeof caseId === undefined || redirect)) {
     return res.redirect('/cutoff-landing-page');
   }
 

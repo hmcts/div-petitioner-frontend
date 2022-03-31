@@ -9,6 +9,11 @@ const redirectOnCondition = (req, res, next) => {
   const caseState = _.get(session, 'state');
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
   const caseId = _.get(session, 'caseId');
+  logger.infoWithReq(req, caseId);
+  const redirectionStates = CONF.newAppCutoffRedirectStates;
+  logger.infoWithReq(req, redirectionStates);
+  const redirect = redirectionStates.includes(caseState) || !caseState;
+  logger.infoWithReq(req, redirect);
 
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);
   if (caseState && CONF.ccd.courts.includes(courtId) && !CONF.ccd.d8States.includes(caseState)) {

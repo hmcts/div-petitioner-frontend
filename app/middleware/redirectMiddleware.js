@@ -12,18 +12,9 @@ const redirectOnCondition = (req, res, next) => {
   const caseId = _.get(session, 'caseId');
   const hasCaseId = Boolean(session && caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
-  const stateToCheck = caseState;
-  const redirect = redirectionStates.includes(stateToCheck) || !stateToCheck;
-  const redirectOn = redirectionStates.indexOf(stateToCheck);
+  const redirect = redirectionStates.includes(caseState) || !caseState;
 
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);
-  if (caseState && CONF.ccd.courts.includes(courtId) && !CONF.ccd.d8States.includes(caseState)) {
-    logger.infoWithReq(req, 'PFE redirecting to DN', `Case Ref: ${caseId}. Redirect check Passed.`);
-    const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
-    const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
-    return res.redirect(`${appLandingPage}${queryString}`);
-  }
-
   logger.infoWithReq(req, JSON.stringify(session));
   logger.infoWithReq(req, `
     =================================================================================================================
@@ -31,10 +22,14 @@ const redirectOnCondition = (req, res, next) => {
       Has Case Id: ${hasCaseId}
       Case State: ${caseState}
       State Redirect: ${redirect}
-      State Redirect On: ${redirectionStates[redirectOn]}
     =================================================================================================================
   `);
-  if (!hasCaseId || redirect) {
+  if (caseState && CONF.ccd.courts.includes(courtId) && !CONF.ccd.d8States.includes(caseState)) {
+    logger.infoWithReq(req, 'PFE redirecting to DN', `Case Ref: ${caseId}. Redirect check Passed.`);
+    const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
+    const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
+    return res.redirect(`${appLandingPage}${queryString}`);
+  } else if (JSON.parse(CONF.features.newAppCutoff) && (!hasCaseId || redirect)) {
     return res.redirect('/cutoff-landing-page');
   }
 

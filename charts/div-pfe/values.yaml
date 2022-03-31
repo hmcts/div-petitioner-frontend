@@ -70,7 +70,7 @@ nodejs:
         FEATURE_DYNATRACE: "false"
 
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
-        FEATURE_NEW_APP_CUTOFF: "true"
+        FEATURE_NEW_APP_CUTOFF: "false"
 
         ################################################################################################################
         # JS DateTime value representing when the new application cutoff will take effect

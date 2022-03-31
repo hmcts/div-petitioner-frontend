@@ -14,9 +14,6 @@ const queryString = `?${authTokenString}=authToken`;
 const expectedUrl = `${dnFrontend.url}${dnFrontend.landing}${queryString}`;
 
 // Landing page config
-const today = new Date();
-const cutoffDate = new Date(CONF.newAppCutoffDate);
-const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
 const landingPageUrl = '/cutoff-landing-page';
 
 describe(modulePath, () => {
@@ -35,7 +32,7 @@ describe(modulePath, () => {
   });
 
   context('generic tests', () => {
-    if (cutoff && JSON.parse(CONF.features.newAppCutoff)) {
+    if (JSON.parse(CONF.features.newAppCutoff)) {
       it('should redirect to landing page when there is no session', () => {
         delete req.session;
 

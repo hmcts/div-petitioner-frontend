@@ -152,7 +152,7 @@ features:
   newFees: true
   dynatrace: true
   newAppCutoffDateBanner: true
-  newAppCutoff: true
+  newAppCutoff: false
 
 idamArgs:
   redirectUri: 'https://localhost:3000/authenticated'

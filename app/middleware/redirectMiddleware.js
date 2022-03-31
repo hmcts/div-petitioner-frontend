@@ -1,6 +1,7 @@
 const CONF = require('config');
 const _ = require('lodash');
 const logger = require('app/services/logger').logger(__filename);
+const parseBool = require('app/core/utils/parseBool');
 
 const authTokenString = '__auth-token';
 
@@ -22,7 +23,7 @@ const redirectOnCondition = (req, res, next) => {
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
     // eslint-disable-next-line no-undefined
-  } else if (JSON.parse(CONF.features.newAppCutoff)) {
+  } else if (parseBool(CONF.features.newAppCutoff) && (!typeof caseId === undefined || redirect)) {
     return res.redirect('/cutoff-landing-page');
   }
 

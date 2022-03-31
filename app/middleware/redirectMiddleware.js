@@ -7,11 +7,17 @@ const authTokenString = '__auth-token';
 /* eslint-disable complexity */
 const redirectOnCondition = (req, res, next) => {
   const session = req.session;
+  logger.infoWithReq(req, JSON.stringify(session));
   const caseState = _.get(session, 'state');
+  logger.infoWithReq(req, caseState);
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
+  logger.infoWithReq(req, courtId);
   const caseId = _.get(session, 'caseId');
+  logger.infoWithReq(req, caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
+  logger.infoWithReq(req, redirectionStates);
   const redirect = redirectionStates.includes(caseState) || !caseState;
+  logger.infoWithReq(req, redirect);
 
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);
   logger.infoWithReq(req, JSON.stringify(session));

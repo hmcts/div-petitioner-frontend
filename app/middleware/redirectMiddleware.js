@@ -26,6 +26,11 @@ const redirectOnCondition = (req, res, next) => {
     return res.redirect(`${appLandingPage}${queryString}`);
   }
 
+  if (JSON.parse(CONF.features.newAppCutoff) && (redirect)) {
+    logger.infoWithReq(req, 'PFE redirecting to Landing Page', `Case Ref: ${caseId}. Redirect check Passed.`);
+    return res.redirect('/cutoff-landing-page');
+  }
+
   return next();
 };
 

@@ -6,6 +6,8 @@ const authTokenString = '__auth-token';
 
 const redirectOnCondition = (req, res, next) => {
   const session = req.session;
+  logger.infoWithReq(req, `Req: ${JSON.parse(req)}`);
+  logger.infoWithReq(req, `Session: ${JSON.parse(session)}`);
   const caseState = _.get(session, 'state');
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
   const caseId = _.get(session, 'caseId');
@@ -23,6 +25,7 @@ const redirectOnCondition = (req, res, next) => {
     return res.redirect(`${appLandingPage}${queryString}`);
   }
 
+  logger.infoWithReq(req, `Toggle: ${CONF.features.newAppCutoff}`);
   // eslint-disable-next-line no-undefined
   logger.infoWithReq(req, `TypeOf CaseId: ${typeof caseId === undefined}`);
   // eslint-disable-next-line no-undefined

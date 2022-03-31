@@ -6,8 +6,8 @@ const authTokenString = '__auth-token';
 
 const redirectOnCondition = (req, res, next) => {
   const session = req.session;
-  logger.infoWithReq(req, `Req: ${req}`);
-  logger.infoWithReq(req, `Session: ${session}`);
+  logger.infoWithReq(req, `Req: ${JSON.parse(req)}`);
+  logger.infoWithReq(req, `Session: ${JSON.parse(session)}`);
   const caseState = _.get(session, 'state');
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
   const caseId = _.get(session, 'caseId');

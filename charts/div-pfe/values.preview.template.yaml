@@ -17,12 +17,12 @@ nodejs:
         PRD_ORGANISATION_API_URL: "http://rd-professional-api-aat.service.core-compute-aat.internal/refdata/external/v1/organisations/status"
         ANTENNA_WEBCHAT_URL: "webchat.training.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Testing"
-        FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE: "true"
+        FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE: "false"
         FEATURE_DYNATRACE: "false"
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"
         DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
 
-        FEATURE_NEW_APP_CUTOFF: "true"
+        FEATURE_NEW_APP_CUTOFF: true
         ################################################################################################################
         # JS DateTime value representing when the new application cutoff will take effect
         # Servers use UTC!  Adjust values accordingly!

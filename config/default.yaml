@@ -111,8 +111,6 @@ newAppCutoffStateToCheck: 'TestState'
 #           False: Case state evaluated against array.
 newAppCutoffStateOverride: false
 
-# Boolean.  Toggle verbose logging of new app cutoff evaluation steps.
-newAppCutoffDebug: false
 #######################################################################################################################
 
 cookieDomain: "Test.Cookie.Domain.Value.Default"

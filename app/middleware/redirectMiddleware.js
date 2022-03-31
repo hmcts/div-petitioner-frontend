@@ -24,7 +24,7 @@ const redirectOnCondition = (req, res, next) => {
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
     // eslint-disable-next-line no-undefined
-  } else if (redirectFeatureOn && (!typeof caseId === undefined || redirect)) {
+  } else if (redirectFeatureOn) {
     return res.redirect('/cutoff-landing-page');
   }
   return next();

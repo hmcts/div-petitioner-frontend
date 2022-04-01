@@ -19,6 +19,8 @@ const redirectOnCondition = (req, res, next) => {
   // eslint-disable-next-line no-undefined
   logger.infoWithReq(req, `TypeOf CaseId: ${typeof caseId === undefined}`);
   const isIndex = req.originalUrl === '/' || req.originalUrl === '/index';
+  logger.infoWithReq(req, `isIndex: ${isIndex}`);
+  logger.infoWithReq(req, `Original URL: ${req.originalUrl}`);
   let redirStr = '';
 
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);

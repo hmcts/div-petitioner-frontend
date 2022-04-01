@@ -42,7 +42,7 @@ module.exports = class ScreeningValidationStep extends ValidationStep {
       logger.infoWithReq(req, `Screening Validation TypeOf CaseId: ${typeof caseId === undefined}`);
       if (toggle && redirect) {
         logger.infoWithReq(req, 'PFE redirecting to Landing Page', `Case Ref: ${caseId}. Redirect check Passed.`);
-        res.redirect('/cutoff-landing-page');
+        return res.redirect('/cutoff-landing-page');
       }
 
       return next();

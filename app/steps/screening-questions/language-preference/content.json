@@ -4,16 +4,40 @@
     "en": {
       "translation": {
         "content": {
-          "title": "Service Unavailable",
-          "statement": "Online applications are unavailable at the moment.  You'll be able to start a new online application from 6 April 2022."
+          "question": "What language do you want us to use when we contact you?",
+          "line1": "We’ll send you emails and documents as we progress your case.",
+          "line2": "Choose which language you’d like these in.",
+          "yes": "Welsh/English (bi-lingual)",
+          "no": "English only",
+          "languagePreferenceWelshNo": "All documents will be in English.",
+          "cookie": "We use some essential cookies to make this service work.",
+          "cookieLink": "View cookie",
+          "warning": "Warning"
+        },
+        "errors": {
+          "languagePreferenceWelsh": {
+            "required": "Choose the languages you want your documents and correspondence in."
+          }
         }
       }
     },
     "cy": {
       "translation": {
         "content": {
-          "title": "Service Unavailable",
-          "statement": "Online applications are unavailable at the moment.  You'll be able to start a new online application from 6 April 2022."
+          "question": "Pa iaith yr hoffech inni ei defnyddio wrth gysylltu efo chi?",
+          "line1": "Byddwn yn anfon ebyst a dogfennau atoch wrth i ni ddelio gyda’ch achos.",
+          "line2": "Dewisiwch pa iaith yr hoffech eu cael.",
+          "yes": "Cymraeg a Saesneg",
+          "no": "Saesneg yn unig",
+          "languagePreferenceWelshNo": "Bydd yr holl ddogfennau yn Saesneg.",
+          "cookie": "We use some essential cookies to make this service work.",
+          "cookieLink": "View cookie",
+          "warning": "Rhybudd"
+        },
+        "errors": {
+          "languagePreferenceWelsh": {
+            "required": "Dewisiwch yr iaith yr hoffech gael eich dogfennau a’ch gohebiaeth."
+          }
         }
       }
     }

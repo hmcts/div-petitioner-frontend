@@ -1,7 +1,55 @@
-{% extends "layout.html" %}
+{% from "warning-text/macro.njk" import govukWarningText %}
+{% from "common/components/formElements.html" import radioButton %}
+{% extends "question.html" %}
 
-{% block two_thirds %}
-<h1 class="govuk-heading-l">{{ content.title }}</h1>
-
-<h2 class="govuk-heading-m">{{ content.statement | safe }}</h2>
+{% block skipLink %}
+{% if not features.dynatrace %}
+<div id="global-cookie-message" style="display: block;">
+  <div class="govuk-width-container">
+    <p class="govuk-body-s">
+      {{ content.cookie | safe }}
+      <a class="govuk-link" href="/cookies" target="_blank">{{ content.cookieLink | safe }}</a>
+    </p>
+  </div>
+</div>
+{% endif %}
 {% endblock %}
+
+{% block question %}
+    {{ content.question | safe }}
+{% endblock %}
+
+{% block form %}
+  <p class="govuk-body"> {{ content.line1 | safe }}</p>
+  <p class="govuk-body"> {{ content.line2 | safe }}</p>
+
+    <div class="govuk-form-group {{ 'govuk-form-group--error' if fields.languagePreferenceWelsh.error }}">
+      <fieldset id="languagePreferenceWelsh" class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend visually-hidden">{{ content.question | safe }}</legend>
+        {{ errorsFor(fields.fields.languagePreferenceWelsh) }}
+        {{ radioButton(
+            value = 'No',
+            label = content.no,
+            name = 'languagePreferenceWelsh',
+            field = fields.languagePreferenceWelsh,
+            defaultChecked = true
+        ) }}
+        {{ radioButton(
+            value = 'Yes',
+            label = content.yes,
+            name = 'languagePreferenceWelsh',
+            field = fields.languagePreferenceWelsh
+        ) }}
+      </fieldset>
+    </div>
+
+    <div class="govuk-details__text js-hidden govuk-!-margin-bottom-3" id="language-preference-no">
+      {{ govukWarningText({
+          text: content.languagePreferenceWelshNo | safe,
+          iconFallbackText: content.warning
+      }) }}
+    </div>
+
+{% endblock %}
+
+{% block saveAndClose %}{% endblock %}

@@ -23,6 +23,8 @@ module.exports = class ScreeningValidationStep extends ValidationStep {
   }
 
   get postMiddleware() {
-    return [redirectToLandingPageOnCondition];
+    return [
+      redirectToLandingPageOnCondition
+    ];
   }
 };

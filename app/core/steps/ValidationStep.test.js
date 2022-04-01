@@ -5,7 +5,6 @@ const { expect, sinon } = require('test/util/chai');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { redirectOnCondition } = require('app/middleware/redirectMiddleware');
-const { redirectToLandingPageOnCondition } = require('app/middleware/redirectLandingPage');
 const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const {
   restoreFromDraftStore,
@@ -50,7 +49,6 @@ describe(modulePath, () => {
     it('returns postMiddleware for validation step', () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
       const middleware = [
-        redirectToLandingPageOnCondition,
         saveSessionToDraftStore,
         saveSessionToDraftStoreAndReply
       ];

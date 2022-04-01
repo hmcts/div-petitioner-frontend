@@ -20,8 +20,9 @@ module.exports = class Index extends Step {
   get middleware() {
     logger.infoWithReq(null, 'Index get middleware');
     const idamAuthenticate = (req, res, next) => {
-      logger.infoWithReq(req, 'idamAuthenticate');
+      logger.infoWithReq(req, 'idamAuthenticate Start');
       const auth = authenticate('https', req.get('host'), '/authenticated', req.session.language);
+      logger.infoWithReq(req, 'idamAuthenticate End');
       return auth(req, res, next);
     };
 

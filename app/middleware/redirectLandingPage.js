@@ -2,7 +2,6 @@ const CONF = require('config');
 const logger = require('app/services/logger').logger(__filename);
 const parseBool = require('app/core/utils/parseBool');
 
-const authTokenString = '__auth-token';
 
 const redirectToLandingPageOnCondition = (req, res, next) => {
   const redirectFeatureOn = parseBool(CONF.features.newAppCutoff);
@@ -18,9 +17,7 @@ const redirectToLandingPageOnCondition = (req, res, next) => {
   logger.infoWithReq(req, `Redirect feature: ${redirectFeatureOn}`);
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}.`);
   if (redirectFeatureOn && redirect) {
-    const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
-    const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
-    return res.redirect(`${appLandingPage}${queryString}`);
+    return res.redirect('/contact-divorce-team');
   }
   return next();
 };

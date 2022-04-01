@@ -36,7 +36,7 @@ describe(modulePath, () => {
     it('returns postMiddleware for validation step', () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
       const middleware = [];
-      expect(underTest.postMiddleware).to.not.eql(middleware);
+      expect(underTest.postMiddleware).to.eql(middleware);
     });
   });
 });

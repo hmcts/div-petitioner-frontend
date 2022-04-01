@@ -8,7 +8,7 @@ const redirectToLandingPageOnCondition = (req, res, next) => {
   logger.infoWithReq(req, 'PFE redirect check', 'Redirect straightaway');
   const { session } = req;
   logger.infoWithReq(req, `Case ref: ${session.caseId}`);
-  if (redirectFeatureOn && typeof session.caseId === 'undefined') {
+  if (typeof session.caseId === 'undefined') {
     return res.redirect('/cutoff-landing-page');
   }
   return next();

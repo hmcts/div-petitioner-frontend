@@ -30,7 +30,6 @@ module.exports = class ValidationStep extends Step {
       initSession,
       sessionTimeout,
       redirectOnCondition,
-      redirectToLandingPageOnCondition,
       restoreFromDraftStore,
       setIdamUserDetails,
       hasSubmitted,
@@ -40,6 +39,7 @@ module.exports = class ValidationStep extends Step {
 
   get postMiddleware() {
     return [
+      redirectToLandingPageOnCondition,
       saveSessionToDraftStore,
       saveSessionToDraftStoreAndReply
     ];

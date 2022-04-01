@@ -16,7 +16,6 @@ module.exports = class ScreeningValidationStep extends ValidationStep {
       initSession,
       sessionTimeout,
       redirectOnCondition,
-      redirectToLandingPageOnCondition,
       restoreFromDraftStore,
       setIdamUserDetails,
       hasSubmitted
@@ -24,6 +23,8 @@ module.exports = class ScreeningValidationStep extends ValidationStep {
   }
 
   get postMiddleware() {
-    return [];
+    return [
+      redirectToLandingPageOnCondition
+    ];
   }
 };

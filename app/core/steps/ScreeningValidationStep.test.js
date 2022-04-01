@@ -25,7 +25,6 @@ describe(modulePath, () => {
         initSession,
         sessionTimeout,
         redirectOnCondition,
-        redirectToLandingPageOnCondition,
         restoreFromDraftStore,
         setIdamUserDetails,
         hasSubmitted
@@ -37,7 +36,7 @@ describe(modulePath, () => {
   describe('#postMiddleware', () => {
     it('returns postMiddleware for validation step', () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
-      const middleware = [];
+      const middleware = [redirectToLandingPageOnCondition];
       expect(underTest.postMiddleware).to.eql(middleware);
     });
   });

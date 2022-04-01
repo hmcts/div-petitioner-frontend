@@ -37,7 +37,6 @@ describe(modulePath, () => {
         initSession,
         sessionTimeout,
         redirectOnCondition,
-        redirectToLandingPageOnCondition,
         restoreFromDraftStore,
         setIdamUserDetails,
         hasSubmitted,
@@ -51,6 +50,7 @@ describe(modulePath, () => {
     it('returns postMiddleware for validation step', () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
       const middleware = [
+        redirectToLandingPageOnCondition,
         saveSessionToDraftStore,
         saveSessionToDraftStoreAndReply
       ];

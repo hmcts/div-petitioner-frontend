@@ -5,6 +5,7 @@ const Step = require('./Step');
 const initSession = require('app/middleware/initSession');
 const sessionTimeout = require('app/middleware/sessionTimeout');
 const { redirectOnCondition } = require('app/middleware/redirectMiddleware');
+const { redirectToLandingPageOnCondition } = require('app/middleware/redirectLandingPage');
 const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const {
   restoreFromDraftStore,
@@ -29,6 +30,7 @@ module.exports = class ValidationStep extends Step {
       initSession,
       sessionTimeout,
       redirectOnCondition,
+      redirectToLandingPageOnCondition,
       restoreFromDraftStore,
       setIdamUserDetails,
       hasSubmitted,

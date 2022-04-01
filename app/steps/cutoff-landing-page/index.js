@@ -1,6 +1,6 @@
-const Step = require('app/core/steps/Step');
+const ScreeningValidationStep = require("../../core/steps/ScreeningValidationStep");
 
-module.exports = class CutOffLandingPage extends Step {
+module.exports = class CutOffLandingPage extends ScreeningValidationStep {
   get url() {
     return '/cutoff-landing-page';
   }

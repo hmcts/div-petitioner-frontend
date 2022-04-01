@@ -231,6 +231,10 @@ exports.init = listenForConnections => {
     res.redirect('/index');
   });
 
+  app.get('/screening-questions/language-preference', (req, res) => {
+    res.redirect('/cutoff-landing-page');
+  });
+
 
   // feature toggles routes
   app.use(featureToggles);

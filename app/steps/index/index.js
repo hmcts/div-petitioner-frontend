@@ -2,7 +2,8 @@ const Step = require('app/core/steps/Step');
 const { authenticate } = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
 const parseBool = require('../../core/utils/parseBool');
-const CONF = require('config')
+const CONF = require('config');
+
 const redirectFeatureOn = parseBool(CONF.features.newAppCutoff);
 
 module.exports = class Index extends Step {
@@ -14,9 +15,8 @@ module.exports = class Index extends Step {
     if (redirectFeatureOn) {
       return this.steps.CutOffLandingPage;
     }
-    else{
-      return this.steps.ScreeningQuestionsLanguagePreference;
-    }
+
+    return this.steps.ScreeningQuestionsLanguagePreference;
   }
 
   next(ctx, session) {

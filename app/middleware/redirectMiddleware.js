@@ -18,7 +18,7 @@ const redirectOnCondition = (req, res, next) => {
   logger.infoWithReq(req, `Toggle: ${toggle}`);
   // eslint-disable-next-line no-undefined
   logger.infoWithReq(req, `TypeOf CaseId: ${typeof caseId === undefined}`);
-  const isIndex = req.originalUrl === '/' || req.originalUrl === '/index' || req.originalUrl === '/screening-questions/language-preference';
+  const isIndex = req.originalUrl === '/screening-questions/language-preference';
   logger.infoWithReq(req, `isIndex: ${isIndex}`);
   logger.infoWithReq(req, `Original URL: ${req.originalUrl}`);
 
@@ -28,9 +28,14 @@ const redirectOnCondition = (req, res, next) => {
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
     return res.redirect(`${appLandingPage}${queryString}`);
-  } else if (isIndex) {
+  }
+
+  if (isIndex) {
+    logger.infoWithReq(req, 'Is Index, -> Next()');
     return next();
-  } else if (toggle && redirect) {
+  }
+
+  if (toggle && redirect) {
     logger.infoWithReq(req, 'PFE redirecting to Landing Page', `Case Ref: ${caseId}. Redirect check Passed.`);
     return res.redirect('/cutoff-landing-page');
   }

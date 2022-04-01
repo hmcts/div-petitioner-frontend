@@ -12,7 +12,7 @@ const redirectOnCondition = (req, res, next) => {
   logger.infoWithReq(req, caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
   logger.infoWithReq(req, `Redirection States: ${redirectionStates}`);
-  const redirect = redirectionStates.includes(caseState) || !caseState;
+  const redirect = redirectionStates.includes(caseState);
   logger.infoWithReq(req, `Redirect: ${redirect}`);
   const toggle = JSON.parse(CONF.features.newAppCutoff);
   logger.infoWithReq(req, `Toggle: ${toggle}`);

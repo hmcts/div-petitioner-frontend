@@ -4,6 +4,7 @@ const CONF = require('config');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const initSession = require('app/middleware/initSession');
 const parseBool = require('app/core/utils/parseBool');
+const redirectFeatureOn = parseBool(CONF.features.newAppCutoff);
 
 const runNext = (req, res, next) => {
   const { session } = req;
@@ -36,7 +37,12 @@ module.exports = class Authenticated extends Step {
   }
 
   nextStep() {
-    return this.steps.ScreeningQuestionsLanguagePreference;
+    if (redirectFeatureOn) {
+      return this.steps.CutOffLandingPage;
+    }
+    else{
+      return this.steps.ScreeningQuestionsLanguagePreference;
+    }
   }
 
   next(ctx, session) {

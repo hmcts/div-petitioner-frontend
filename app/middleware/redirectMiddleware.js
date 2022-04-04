@@ -22,7 +22,7 @@ const redirectOnCondition = (req, res, next) => {
   // ==================================================================================================================
   // Cutoff Date Landing Page Redirect
   // ==================================================================================================================
-  if (JSON.parse(CONF.features.newAppCutoff)) {
+  if (JSON.parse(CONF.features.newAppCutoff) && req.originalUrl !== '/cutoff-landing-page') {
     const debugLog = msg => {
       if (!JSON.parse(CONF.newAppCutoffDebug)) {
         return;

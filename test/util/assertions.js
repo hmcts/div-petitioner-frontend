@@ -358,15 +358,31 @@ exports.testValidation = (done, agent, underTest, data, content, expectedErrors 
     .then(done, done);
 };
 
+const checkRedirect = (agent, underTestUrl, data, redirectUrl) => {
+  return postToUrl(agent, underTestUrl, data)
+    .expect(302)
+    .expect('location', redirectUrl);
+};
+
 exports.testRedirect = (done, agent, underTest, data, redirect) => {
-  const checkRedirect = () => {
-    return postToUrl(agent, underTest.url, data)
-      .expect(302)
-      .expect('location', redirect.url);
-  };
+  // const checkRedirect = () => {
+  //   return postToUrl(agent, underTest.url, data)
+  //     .expect(302)
+  //     .expect('location', redirect.url);
+  // };
 
   return createSession(agent)
-    .then(checkRedirect)
+    .then(checkRedirect(agent, underTest.url, data, redirect.url))
+    .then(() => done(), done);
+};
+
+exports.testConditionalRedirect = (done, agent, underTest,
+  on = {context:{}, redirect:{}},
+  off = {context:{}, redirect:{}}
+) => {
+  return createSession(agent)
+    .then(checkRedirect(agent, underTest.url, on.context, on.redirect.url))
+    .then(checkRedirect(agent, underTest.url, off.context, off.redirect.url))
     .then(() => done(), done);
 };
 

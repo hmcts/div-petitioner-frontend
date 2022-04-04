@@ -1,5 +1,6 @@
 const request = require('supertest');
-const { testRedirect, testCustom } = require('test/util/assertions');
+// const { testRedirect, testCustom } = require('test/util/assertions');
+const { testConditionalRedirect, testCustom } = require('test/util/assertions');
 const config = require('config');
 const server = require('app');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
@@ -10,15 +11,11 @@ const initSession = require('app/middleware/initSession');
 const modulePath = 'app/steps/index';
 
 const { withSession } = require('test/util/setup');
-const parseBool = require('../../core/utils/parseBool');
-const CONF = require('config');
 
 let s = {};
 let agent = {};
 let underTest = {};
 const two = 2;
-
-const redirectFeatureOn = parseBool(CONF.features.newAppCutoff);
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -52,21 +49,21 @@ describe(modulePath, () => {
       withSession(done, agent);
     });
 
-    if (redirectFeatureOn) {
-      it('should immediately redirect to the cutoff landing page if authenticated', done => {
-        const context = {};
+    it('should immediately redirect based on redirect feature', done => {
+      const context = {};
 
-        testRedirect(done, agent, underTest, context,
-          s.steps.CutOffLandingPage);
-      });
-    } else {
-      it('should immediately redirect to the need welsh question step page if authenticated', done => {
-        const context = {};
+      testConditionalRedirect(done, agent, underTest,
+        { context, redirect: s.steps.CutOffLandingPage },
+        { context, redirect: s.steps.ScreeningQuestionsLanguagePreference }
+      );
+    });
 
-        testRedirect(done, agent, underTest, context,
-          s.steps.ScreeningQuestionsLanguagePreference);
-      });
-    }
+    // it('should immediately redirect to the need welsh question step page if authenticated', done => {
+    //   const context = {};
+    //
+    //   testRedirect(done, agent, underTest, context,
+    //     s.steps.ScreeningQuestionsLanguagePreference);
+    // });
 
     it('should set up the current host as the redirect uri for idam', done => {
       testCustom(done, agent, underTest, [], response => {

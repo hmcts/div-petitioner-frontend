@@ -54,17 +54,22 @@ describe(modulePath, () => {
   });
 
   describe('success', () => {
+    it('should immediately redirect based on redirect feature', () => {
+      expect(underTest.nextStep(true)).to.eql(s.steps.CutOffLandingPage);
+      expect(underTest.nextStep(false)).to.eql(s.steps.ScreeningQuestionsLanguagePreference);
+    });
+
     if (redirectFeatureOn) {
       it('should immediately redirect to the cutoff landing page', done => {
         const context = {};
-
+        expect(underTest.nextStep()).to.eql(s.steps.CutOffLandingPage);
         testRedirect(done, agent, underTest, context,
           s.steps.CutOffLandingPage);
       });
     } else {
       it('should immediately redirect to the need welsh step page', done => {
         const context = {};
-
+        expect(underTest.nextStep()).to.eql(s.steps.ScreeningQuestionsLanguagePreference);
         testRedirect(done, agent, underTest, context,
           s.steps.ScreeningQuestionsLanguagePreference);
       });

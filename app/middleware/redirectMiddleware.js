@@ -18,7 +18,7 @@ const redirectOnCondition = (req, res, next) => {
   logger.infoWithReq(req, `Toggle: ${toggle}`);
   // eslint-disable-next-line no-undefined
   logger.infoWithReq(req, `TypeOf CaseId: ${typeof caseId === undefined}`);
-  const isIndex = req.originalUrl === '/screening-questions/language-preference';
+  const isIndex = req.originalUrl === '/authenticated';
   logger.infoWithReq(req, `isIndex: ${isIndex}`);
   logger.infoWithReq(req, `Original URL: ${req.originalUrl}`);
 

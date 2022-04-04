@@ -11,6 +11,8 @@ const { mockSession } = require('test/fixtures');
 const { clone } = require('lodash');
 const checkCookiesAllowed = require('app/middleware/checkCookiesAllowed');
 const initSession = require('app/middleware/initSession');
+const parseBool = require('app/core/utils/parseBool');
+const CONF = require('config');
 
 const modulePath = 'app/steps/authenticated';
 
@@ -19,6 +21,8 @@ let agent = {};
 let underTest = {};
 let landingPageStub = {};
 const two = 2;
+
+const redirectFeatureOn = parseBool(CONF.features.newAppCutoff);
 
 describe(modulePath, () => {
   beforeEach(() => {
@@ -50,12 +54,21 @@ describe(modulePath, () => {
   });
 
   describe('success', () => {
-    it('should immediately redirect to the need welsh step page', done => {
-      const context = {};
+    if (redirectFeatureOn) {
+      it('should immediately redirect to the cutoff landing page', done => {
+        const context = {};
 
-      testRedirect(done, agent, underTest, context,
-        s.steps.ScreeningQuestionsLanguagePreference);
-    });
+        testRedirect(done, agent, underTest, context,
+          s.steps.CutOffLandingPage);
+      });
+    } else {
+      it('should immediately redirect to the need welsh step page', done => {
+        const context = {};
+
+        testRedirect(done, agent, underTest, context,
+          s.steps.ScreeningQuestionsLanguagePreference);
+      });
+    }
   });
 
   describe('idam on', () => {

@@ -20,7 +20,7 @@ module.exports = class Index extends Step {
   }
 
   next(ctx, session) {
-    return this.nextStep(session);
+    return this.nextStep(redirectFeatureOn, session);
   }
 
   get middleware() {

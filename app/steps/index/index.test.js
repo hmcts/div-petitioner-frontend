@@ -60,14 +60,14 @@ describe(modulePath, () => {
     if (redirectFeatureOn) {
       it('should immediately redirect to the cutoff landing page if authenticated', done => {
         const context = {};
-
+        expect(underTest.nextStep()).to.eql(s.steps.CutOffLandingPage);
         testRedirect(done, agent, underTest, context,
           s.steps.CutOffLandingPage);
       });
     } else {
       it('should immediately redirect to the need welsh question step page if authenticated', done => {
         const context = {};
-
+        expect(underTest.nextStep()).to.eql(s.steps.ScreeningQuestionsLanguagePreference);
         testRedirect(done, agent, underTest, context,
           s.steps.ScreeningQuestionsLanguagePreference);
       });

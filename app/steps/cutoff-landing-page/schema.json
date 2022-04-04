@@ -1,14 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "language-preference",
+  "id": "cutoff-landing-page",
   "type": "object",
   "properties": {
-    "languagePreferenceWelsh": {
-        "type": "string",
-        "enum": ["Yes", "No"]
-    }
-  },
-  "required": [
-    "languagePreferenceWelsh"
-  ]
+  }
 }

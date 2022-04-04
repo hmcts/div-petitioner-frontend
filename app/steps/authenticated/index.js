@@ -37,8 +37,8 @@ module.exports = class Authenticated extends Step {
     return '/authenticated';
   }
 
-  nextStep() {
-    if (redirectFeatureOn) {
+  nextStep(redirectFeature = redirectFeatureOn) {
+    if (redirectFeature) {
       return this.steps.CutOffLandingPage;
     }
 
@@ -46,7 +46,7 @@ module.exports = class Authenticated extends Step {
   }
 
   next(ctx, session) {
-    return this.nextStep(session);
+    return this.nextStep(redirectFeatureOn, session);
   }
 
   get middleware() {

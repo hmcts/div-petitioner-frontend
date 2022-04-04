@@ -11,8 +11,8 @@ module.exports = class Index extends Step {
     return '/index';
   }
 
-  nextStep() {
-    if (redirectFeatureOn) {
+  nextStep(redirectFeature = redirectFeatureOn) {
+    if (redirectFeature) {
       return this.steps.CutOffLandingPage;
     }
 

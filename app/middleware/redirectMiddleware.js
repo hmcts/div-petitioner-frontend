@@ -4,7 +4,11 @@ const logger = require('app/services/logger').logger(__filename);
 
 const authTokenString = '__auth-token';
 
-const pfeRedirectCheck = (req, res, session, caseState, courtId, caseId) => {
+const pfeRedirectCheck = req => {
+  const session = req.session;
+  const caseState = _.get(session, 'state');
+  const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
+  const caseId = _.get(session, 'caseId');
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);
   if (caseState && CONF.ccd.courts.includes(courtId) && !CONF.ccd.d8States.includes(caseState)) {
     logger.infoWithReq(req, 'PFE redirecting to DN', `Case Ref: ${caseId}. Redirect check Passed.`);
@@ -15,7 +19,10 @@ const pfeRedirectCheck = (req, res, session, caseState, courtId, caseId) => {
   return false;
 };
 
-const newAppCutoffRedirectCheck = (req, res, session, caseState, courtId, caseId) => {
+const newAppCutoffRedirectCheck = req => {
+  const session = req.session;
+  const caseState = _.get(session, 'state');
+  const caseId = _.get(session, 'caseId');
   const today = new Date();
   const cutoffDate = new Date(CONF.newAppCutoffDate);
   const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
@@ -65,12 +72,7 @@ const newAppCutoffRedirectCheck = (req, res, session, caseState, courtId, caseId
 };
 
 const redirectOnCondition = (req, res, next) => {
-  const session = req.session;
-  const caseState = _.get(session, 'state');
-  const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
-  const caseId = _.get(session, 'caseId');
-
-  const pfeRedirect = pfeRedirectCheck(req, res, session, caseState, courtId, caseId);
+  const pfeRedirect = pfeRedirectCheck(req);
   if (pfeRedirect) {
     logger.infoWithReq(req, `PFE Redirect Target: ${pfeRedirect}`);
     return res.redirect(pfeRedirect);
@@ -81,7 +83,7 @@ const redirectOnCondition = (req, res, next) => {
   // Cutoff Date Landing Page Redirect
   // ==================================================================================================================
   if (JSON.parse(CONF.features.newAppCutoff) && req.originalUrl !== '/cutoff-landing-page') {
-    const newAppCutoffRedirect = newAppCutoffRedirectCheck(req, res, session, caseState, courtId, caseId);
+    const newAppCutoffRedirect = newAppCutoffRedirectCheck(req);
     if (newAppCutoffRedirect) {
       logger.infoWithReq(req, `New App Cutoff Redirect Target: ${newAppCutoffRedirect}`);
       return res.redirect(newAppCutoffRedirect);
@@ -95,4 +97,4 @@ const redirectOnCondition = (req, res, next) => {
   return next();
 };
 
-module.exports = { redirectOnCondition };
+module.exports = { redirectOnCondition, pfeRedirectCheck, newAppCutoffRedirectCheck };

@@ -34,6 +34,46 @@ describe(modulePath, () => {
     next = sinon.stub();
   });
 
+  context('PFE Redirect Check Tests', () => {
+    it('should return false when there is no session', () => {
+      delete req.session;
+      expect(redirectMiddleware.pfeRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should return false when there is no state', () => {
+      delete req.session.state;
+      expect(redirectMiddleware.pfeRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should not return false when state is AwaitingDecreeNisi', () => {
+      req.session.state = 'AwaitingDecreeNisi';
+      expect(redirectMiddleware.pfeRedirectCheck(req)).to.not.eql(false);
+    });
+  });
+
+  context('New App Cutoff Landing Page Redirect Check Tests', () => {
+    it('should not return false when there is no session', () => {
+      delete req.session;
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.not.eql(false);
+    });
+
+    it('should not return false when there is no state', () => {
+      delete req.session.state;
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.not.eql(false);
+    });
+
+    it('should not return false when there is no caseId', () => {
+      delete req.session.caseId;
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.not.eql(false);
+    });
+
+    it('should return false when there is a caseId and the state is AwaitingAmendCase', () => {
+      req.session.caseId = 'TestCaseId';
+      req.session.state = 'AwaitingAmendCase';
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.eql(false);
+    });
+  });
+
   context('generic tests', () => {
     if (cutoff && JSON.parse(CONF.features.newAppCutoff)) {
       it('should redirect to landing page when there is no session', () => {

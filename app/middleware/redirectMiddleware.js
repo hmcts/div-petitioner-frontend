@@ -23,19 +23,12 @@ const newAppCutoffRedirectCheck = req => {
   const session = req.session;
   const caseState = _.get(session, 'state');
   const caseId = _.get(session, 'caseId');
-  const today = new Date();
-  const cutoffDate = new Date(CONF.newAppCutoffDate);
-  const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
   const hasCaseId = JSON.parse(CONF.newAppCutoffCaseIdOverride) || Boolean(session && caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
   const redirect = JSON.parse(CONF.newAppCutoffStateOverride) || redirectionStates.includes(caseState) || !caseState;
 
   logger.infoWithReq(null, 'New App Cutoff redirect check', `
     =================================================================================================================
-      Date: ${today}
-      Application cutoff date: ${cutoffDate}
-      Cutoff reached: ${cutoff}
-      Cutoff Override: ${CONF.newAppCutoffDateOverride}
       Case Id: ${caseId}
       Has Case Id: ${hasCaseId}
       Case Id Override: ${CONF.newAppCutoffCaseIdOverride}
@@ -44,30 +37,20 @@ const newAppCutoffRedirectCheck = req => {
       Case State Override: ${CONF.newAppCutoffStateOverride}
     =================================================================================================================
   `);
-  if (cutoff && (!hasCaseId || redirect)) {
+  if (!hasCaseId || redirect) {
     logger.infoWithReq(null, 'New App Cutoff redirect result', `
     =================================================================================================================
-      Application cutoff date reached, and redirection is required for this request.
       Redirecting to cutoff landing page.
     =================================================================================================================
-  `);
+    `);
     return '/cutoff-landing-page';
   }
-  let logMsg = `
+
+  logger.infoWithReq(null, 'New App Cutoff redirect result', `
     =================================================================================================================
-      Application cutoff date reached, redirection not required for this request.
       No redirect.
     =================================================================================================================
-  `;
-  if (!cutoff) {
-    logMsg = `
-    =================================================================================================================
-      Application cutoff date not reached.
-      No redirect.
-    =================================================================================================================
-  `;
-  }
-  logger.infoWithReq(null, 'New App Cutoff redirect result', logMsg);
+  `);
   return false;
 };
 
@@ -79,9 +62,6 @@ const redirectOnCondition = (req, res, next) => {
   }
   logger.infoWithReq(req, `PFE Redirect ${pfeRedirect}`);
 
-  // ==================================================================================================================
-  // Cutoff Date Landing Page Redirect
-  // ==================================================================================================================
   if (JSON.parse(CONF.features.newAppCutoff) && req.originalUrl !== '/cutoff-landing-page') {
     const newAppCutoffRedirect = newAppCutoffRedirectCheck(req);
     if (newAppCutoffRedirect) {
@@ -90,9 +70,6 @@ const redirectOnCondition = (req, res, next) => {
     }
     logger.infoWithReq(req, `New App Cutoff Redirect ${newAppCutoffRedirect}`);
   }
-  // ==================================================================================================================
-  // End Cutoff Date Landing Page Redirect
-  // ==================================================================================================================
 
   return next();
 };

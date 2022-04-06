@@ -7,7 +7,7 @@ const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMidd
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
 
-const modulePath = 'app/core/steps/ScreeningValidationStep';
+const modulePath = 'app/core/steps/AppCutoffScreeningValidationStep';
 const UnderTest = require(modulePath);
 
 const fixtures = requireDir(module, `${__dirname}/../fixtures`);
@@ -16,7 +16,7 @@ let underTest = {};
 
 describe(modulePath, () => {
   describe('#middleware', () => {
-    it('returns middleware for screening validation step', () => {
+    it('returns middleware for app cutoff screening validation step', () => {
       underTest = new UnderTest({}, 'screening-questions', null, fixtures.content.simple, fixtures.schemas.simple);
       const middleware = [
         idamProtect,

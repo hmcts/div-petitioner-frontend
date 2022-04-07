@@ -48,6 +48,30 @@ describe(modulePath, () => {
     });
   });
 
+  context('Amend Journey Redirect Check Tests', () => {
+    it('should return false when there is no session', () => {
+      delete req.session;
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should return false when there is no previousCaseId', () => {
+      delete req.session.previousCaseId;
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should return a url when there is a previousCaseId and the originalUrl is /cutoff-landing-page', () => {
+      req.session.previousCaseId = 'TestCaseId';
+      req.originalUrl = '/cutoff-landing-page';
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql('/screening-questions/language-preference');
+    });
+
+    it('should return true when there is a previousCaseId and the originalUrl is not /cutoff-landing-page', () => {
+      req.session.previousCaseId = 'TestCaseId';
+      delete req.originalUrl;
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql(true);
+    });
+  });
+
   context('New App Cutoff Landing Page Redirect Check Tests', () => {
     it('should not return false when there is no session', () => {
       delete req.session;

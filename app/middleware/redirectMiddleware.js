@@ -54,6 +54,18 @@ const newAppCutoffRedirectCheck = req => {
   return false;
 };
 
+const amendRedirectCheck = req => {
+  const session = req.session;
+  if (session && session.hasOwnProperty('previousCaseId')) {
+    logger.infoWithReq(req, `Amend Journey for Previous Case Id: ${session.previousCaseId}`);
+    if (req.originalUrl === '/cutoff-landing-page') {
+      return '/screening-questions/language-preference';
+    }
+    return true;
+  }
+  return false;
+};
+
 const redirectOnCondition = (req, res, next) => {
   const pfeRedirect = pfeRedirectCheck(req);
   if (pfeRedirect) {
@@ -61,6 +73,17 @@ const redirectOnCondition = (req, res, next) => {
     return res.redirect(pfeRedirect);
   }
   logger.infoWithReq(req, `PFE Redirect ${pfeRedirect}`);
+
+  const amendRedirect = amendRedirectCheck(req);
+  if (amendRedirect) {
+    if (amendRedirect === true) {
+      logger.infoWithReq(req, 'Amend Journey Redirect true - skipping New App Cutoff Redirect Check');
+      return next();
+    }
+    logger.infoWithReq(req, `Amend Journey Redirect Target: ${amendRedirect}`);
+    return res.redirect(amendRedirect);
+  }
+  logger.infoWithReq(req, `Amend Journey Redirect ${amendRedirect}`);
 
   if (JSON.parse(CONF.features.newAppCutoff) && req.originalUrl !== '/cutoff-landing-page') {
     const newAppCutoffRedirect = newAppCutoffRedirectCheck(req);
@@ -74,4 +97,4 @@ const redirectOnCondition = (req, res, next) => {
   return next();
 };
 
-module.exports = { redirectOnCondition, pfeRedirectCheck, newAppCutoffRedirectCheck };
+module.exports = { redirectOnCondition, pfeRedirectCheck, amendRedirectCheck, newAppCutoffRedirectCheck };

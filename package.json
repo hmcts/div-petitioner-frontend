@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "private": true,
   "engines": {
-    "node": ">=16.14.2"
+    "node": ">=14.19.1"
   },
   "scripts": {
     "start": "NODE_PATH=. node server.js",
@@ -46,7 +46,7 @@
     "@hmcts/div-service-auth-provider-client": "^3.0.1",
     "@hmcts/frontend": "0.0.34-alpha",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
-    "@hmcts/nodejs-logging": "^3.0.1",
+    "@hmcts/nodejs-logging": "^3.0.4",
     "@hmcts/prd-client": "^0.0.8",
     "@hmcts/properties-volume": "^0.0.13",
     "add": "^2.0.6",

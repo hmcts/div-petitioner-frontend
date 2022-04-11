@@ -39,6 +39,7 @@ services:
   antennaWebchat:
     url: ANTENNA_WEBCHAT_URL
     service: ANTENNA_WEBCHAT_SERVICE
+    version: ANTENNA_WEBCHAT_VERSION
   equalityAndDiversity:
     url: EQUALITY_URL
     tokenKey: DIV_TOKEN_KEY

@@ -94,7 +94,7 @@
     "launchdarkly-node-server-sdk": "^5.13.1",
     "loadsh": "^0.0.3",
     "lodash": "^4.17.21",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "negotiator": "^0.6.1",
     "nomnoml": "0.2.0",
     "nunjucks": "^3.2.0",

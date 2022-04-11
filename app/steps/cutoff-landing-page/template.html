@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+
+{% block two_thirds %}
+<h1 class="govuk-heading-l">{{ content.title }}</h1>
+
+<h2 class="govuk-heading-m">{{ content.statement | safe }}</h2>
+{% endblock %}

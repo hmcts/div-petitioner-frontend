@@ -17,7 +17,7 @@ nodejs:
         PRD_ORGANISATION_API_URL: "http://rd-professional-api-aat.service.core-compute-aat.internal/refdata/external/v1/organisations/status"
         ANTENNA_WEBCHAT_URL: "webchat-client.pp.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Testing"
-        ANTENNA_WEBCHAT_VERSION: "1-6-12"
+        ANTENNA_WEBCHAT_VERSION: "1"
         FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE: "true"
         FEATURE_DYNATRACE: "false"
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"

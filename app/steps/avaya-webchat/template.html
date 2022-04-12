@@ -14,7 +14,7 @@
         <web-chat
                 id="avayaWebchat"
                 chat-title="Ask Divorce Web Chat"
-                chat-icon-url="https://{{ antennaWebchat.url }}/chat-client/1/assets/icon.png"
+                chat-icon-url="https://{{ antennaWebchat.url }}/chat-client/{{ antennaWebchat.version }}/assets/icon.png"
                 url="{{ antennaWebchat.url }}"
                 secure-connections="true"
                 api-version="1.0"
@@ -33,7 +33,7 @@
         </web-chat>
     </div>
     <!-- Javascript -->
-    <script src="https://{{ antennaWebchat.url }}/chat-client/1/app-es2015.js"></script>
-    <script src="https://{{ antennaWebchat.url }}/chat-client/1/app-es5.js"></script>
+    <script src="https://{{ antennaWebchat.url }}/chat-client/{{ antennaWebchat.version }}/app-es2015.js"></script>
+    <script src="https://{{ antennaWebchat.url }}/chat-client/{{ antennaWebchat.version }}/app-es5.js"></script>
 </body>
 

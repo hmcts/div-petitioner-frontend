@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@DTSPO-6559/kv-secret-find")
 
 String product = "div"
 String component = "pfe"

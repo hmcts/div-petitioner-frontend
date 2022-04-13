@@ -32,6 +32,11 @@ data "azurerm_key_vault_secret" "redis_secret" {
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
 
+data "azurerm_key_vault_secret" "appinsights_secret" {
+  name = "AppInsightsInstrumentationKey"
+  key_vault_id = data.azurerm_key_vault.div_key_vault.id
+}
+
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name = "${var.component}-redis-connection-string"
   value = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
@@ -102,7 +107,7 @@ module "frontend" {
   ilbIp                           = var.ilbIp
   is_frontend                     = var.env != "preview" ? 1: 0
   subscription                    = var.subscription
-  appinsights_instrumentation_key = var.appinsights_instrumentation_key
+  appinsights_instrumentation_key = data.azurerm_key_vault_secret.appinsights_secret.value
   additional_host_name            = var.env != "preview" ? var.additional_host_name : "null"
   https_only                      = "false"
   capacity                        = var.capacity

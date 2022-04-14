@@ -220,7 +220,8 @@
     "css-what": ">=5.0.1",
     "trim-newlines": ">=3.0.1",
     "nth-check": ">=2.0.1",
-    "validator": ">=13.7.0"
+    "validator": ">=13.7.0",
+    "async": ">=3.2.2"
   },
   "nyc": {
     "report-dir": "coverage",

@@ -58,6 +58,7 @@ services:
   antennaWebchat:
     url: 'webchat.training.ctsc.hmcts.net'
     service: 'Testing'
+    version: '1'
   equalityAndDiversity:
     name: 'Equality and Diversity Service'
     url: 'http://localhost:4000'

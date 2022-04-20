@@ -53,6 +53,11 @@ data "azurerm_key_vault_secret" "idamCitizenPassword" {
   key_vault_id = data.azurerm_key_vault.div_key_vault.id
 }
 
+data "azurerm_key_vault_secret" "appinsights_secret" {
+  name = "AppInsightsInstrumentationKey"
+  key_vault_id = data.azurerm_key_vault.div_key_vault.id
+}
+
 locals {
   aseName                             = "core-compute-${var.env}"
   public_hostname                     = "div-pfe-${var.env}.service.${local.aseName}.internal"
@@ -102,7 +107,7 @@ module "frontend" {
   ilbIp                           = var.ilbIp
   is_frontend                     = var.env != "preview" ? 1: 0
   subscription                    = var.subscription
-  appinsights_instrumentation_key = var.appinsights_instrumentation_key
+  appinsights_instrumentation_key = data.azurerm_key_vault_secret.appinsights_secret.value
   additional_host_name            = var.env != "preview" ? var.additional_host_name : "null"
   https_only                      = "false"
   capacity                        = var.capacity

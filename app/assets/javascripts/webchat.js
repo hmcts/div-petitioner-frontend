@@ -24,20 +24,36 @@
     webChat.classList.add('hidden');
   });
 
+  // Duplicate child nodes from one element to another
+  const copyChildNodes = (srcEl, destEl) => {
+    srcEl.childNodes.forEach(child => {
+      const clone = child.cloneNode(true);
+      destEl.append(clone);
+    });
+  };
 
+  // Remove child nodes from an element
+  const removeChildNodes = parentEl => {
+    while (parentEl.firstChild) {
+      parentEl.removeChild(parentEl.firstChild);
+    }
+  };
   webChat.addEventListener('metrics', function(metrics) {
     const metricsDetail = metrics.detail;
     const ccState = metricsDetail.contactCenterState;
     const ewt = metricsDetail.ewt;
     const availableAgents = metricsDetail.availableAgents;
+    const openHoursMessage = document.querySelector('#webchatHours');
 
     if (ccState !== 'Open') {
-      message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
+      copyChildNodes(openHoursMessage, message);
       button.classList.add('hidden');
     } else if (ewt < 300 && availableAgents > 0) {
+      removeChildNodes(message);
       message.innerHTML = '';
       button.classList.remove('hidden');
     } else {
+      removeChildNodes(message);
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
       button.classList.add('hidden');
     }

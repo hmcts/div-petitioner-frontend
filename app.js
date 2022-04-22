@@ -144,10 +144,15 @@ exports.init = listenForConnections => {
     filters: nunjucksFilters,
     loader: nunjucks.FileSystemLoader,
     globals: {
-      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
+      antennaWebchat: {
+        url: CONF.services.antennaWebchat.url,
+        service: CONF.services.antennaWebchat.service,
+        version: CONF.services.antennaWebchat.version
+      },
       features: {
         antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
-        dynatrace: parseBool(CONF.features.dynatrace) // Dynatrace Feature Toggle
+        dynatrace: parseBool(CONF.features.dynatrace), // Dynatrace Feature Toggle
+        newAppCutoffDateBanner: parseBool(CONF.features.newAppCutoffDateBanner) // New application cutoff date banner
       }
     }
   });

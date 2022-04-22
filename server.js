@@ -9,6 +9,16 @@ if (CONF.environment !== 'testing') {
 
 const listenForConnections = true;
 
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
+logger.info(`
+
+              ==========================================================================================
+                Cookie Domain: ${CONF.cookieDomain}
+                newAppCutoffDateBanner: ${CONF.features.newAppCutoffDateBanner}
+              ==========================================================================================
+`);
+
 if (CONF.applicationInsights.instrumentationKey) {
   appInsights.setup(CONF.applicationInsights.instrumentationKey)
     .setAutoCollectConsole(true, true)

@@ -138,67 +138,83 @@ exports.init = listenForConnections => {
   const isDev = app.get('env') === 'development';
 
   // Get webchat opening hours for div
-  https.globalAgent.options.rejectUnauthorized = false; // required.  webchat server has an incomplete cert chain.
-  // Set options for https.request
-  const hoursOptions = {
-    hostname: 'webchat.ctsc.hmcts.net',
-    path: '/openinghours/v1/callcentreservice/Divorce',
-    method: 'GET'
-  };
-  // Convert string to title case
-  const toTitleCase = str => {
-    // eslint-disable-next-line arrow-body-style
-    return str.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
-  };
-  // Convert time to 12hr, short format
-  const to12Hr = str => {
-    return new Date(`1970-01-01T${str}`).toLocaleTimeString([], { hour: 'numeric', hour12: 'true' });
-  };
-  // Parse JSON response from webchat openinghours call into html table
-  const parseOpenHoursToText = (open, htmlStr, idx = 0) => {
-    const cell = {
-      start: '<td style="padding-right: 25px;">',
-      end: '</td>'
+  const getOpeningHours = () => {
+    // Convert string to title case
+    const toTitleCase = str => {
+      // eslint-disable-next-line arrow-body-style
+      return str.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
     };
-    const row = {
-      start: '<tr>',
-      end: '</tr>'
+    // Convert time to 12hr, short format
+    const to12Hr = str => {
+      return new Date(`1970-01-01T${str}`).toLocaleTimeString([], { hour: 'numeric', hour12: 'true' });
     };
-    const head = {
-      start: '<th style="text-align: left; padding-right: 25px">',
-      end: '</th>'
+    // Parse JSON response from webchat openinghours call into html table
+    const parseOpenHoursToText = (open, htmlStr, idx = 0) => {
+      const cell = {
+        start: '<td style="padding-right: 25px;">',
+        end: '</td>'
+      };
+      const row = {
+        start: '<tr>',
+        end: '</tr>'
+      };
+      const head = {
+        start: '<th style="text-align: left; padding-right: 25px">',
+        end: '</th>'
+      };
+      const headers = {
+        day: `${head.start}Day${head.end}`,
+        from: `${head.start}From${head.end}`,
+        until: `${head.start}Until${head.end}`
+      };
+      const table = {
+        start: `<table>${row.start}${headers.day}${headers.from}${headers.until}${row.end}`,
+        end: '</table>'
+      };
+      let html = htmlStr;
+      let i = idx;
+      if (i === 0) {
+        html = table.start;
+      }
+      const day = cell.start + toTitleCase(open[i].dayOfWeek) + cell.end;
+      const from = cell.start + to12Hr(open[i].from) + cell.end;
+      const until = cell.start + to12Hr(open[i].until) + cell.end;
+      const newRow = row.start + day + from + until + row.end;
+      html += newRow;
+      if (i < open.length - 1) {
+        i += 1;
+        return parseOpenHoursToText(open, html, i);
+      }
+      html += table.end;
+      return html;
     };
-    const headers = {
-      day: `${head.start}Day${head.end}`,
-      from: `${head.start}From${head.end}`,
-      until: `${head.start}Until${head.end}`
+    // rejectUnauthorized required for this request only.
+    // WebChat server has an incomplete cert chain.
+    https.globalAgent.options.rejectUnauthorized = false;
+    // Set options for https.request
+    const hoursOptions = {
+      hostname: 'webchat.ctsc.hmcts.net',
+      path: '/openinghours/v1/callcentreservice/Divorce',
+      method: 'GET'
     };
-    const table = {
-      start: `<table>${row.start}${headers.day}${headers.from}${headers.until}${row.end}`,
-      end: '</table>'
-    };
-    let html = htmlStr;
-    let i = idx;
-    if (i === 0) {
-      html = table.start;
-    }
-    const day = cell.start + toTitleCase(open[i].dayOfWeek) + cell.end;
-    const from = cell.start + to12Hr(open[i].from) + cell.end;
-    const until = cell.start + to12Hr(open[i].until) + cell.end;
-    const newRow = row.start + day + from + until + row.end;
-    html += newRow;
-    if (i < open.length - 1) {
-      i += 1;
-      return parseOpenHoursToText(open, html, i);
-    }
-    html += table.end;
-    return html;
-  };
-  // Get opening hours for webchat for div, parse into html table and pass to templates via nunjucks
-  const getWebchatHours = https.request(hoursOptions, res => {
-    res.on('data', d => {
-      const openHours = `<p>Web chat is now closed. Please come back during the following hours:</p>${parseOpenHoursToText(JSON.parse(d).daysOfWeekOpen)}<p>Alternatively, contact us using one of the ways below.</p>`;
-      // logger.infoWithReq(getWebchatHours, openHours);
+    // Get opening hours for webchat for div, parse into html table and pass to templates via nunjucks
+    const getWebchatHours = https.request(hoursOptions, response => {
+      response.on('data', d => {
+        const openHours = `<p>Web chat is now closed. Please come back during the following hours:</p>${parseOpenHoursToText(JSON.parse(d).daysOfWeekOpen)}<p>Alternatively, contact us using one of the ways below.</p>`;
+        // logger.infoWithReq(getWebchatHours, openHours);
+        expressNunjucks(app, {
+          globals: {
+            antennaWebchat: {
+              hours: openHours
+            }
+          }
+        });
+      });
+    });
+    // If unable to get webchat openinghours, log error and return alternative message.
+    getWebchatHours.on('error', er => {
+      logger.infoWithReq(getWebchatHours, `Error getting webchat hours ${er}`);
+      const openHours = '<p>Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.</p>';
       expressNunjucks(app, {
         globals: {
           antennaWebchat: {
@@ -207,22 +223,17 @@ exports.init = listenForConnections => {
         }
       });
     });
-  });
-  // If unable to get webchat openinghours, log error and return alternative message.
-  getWebchatHours.on('error', er => {
-    logger.infoWithReq(getWebchatHours, `Error getting webchat hours ${er}`);
-    const openHours = '<p>Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.</p>';
-    expressNunjucks(app, {
-      globals: {
-        antennaWebchat: {
-          hours: openHours
-        }
-      }
-    });
-  });
-  getWebchatHours.end();
-  https.globalAgent.options.rejectUnauthorized = true;
+    getWebchatHours.end();
+    https.globalAgent.options.rejectUnauthorized = true;
+  };
+  getOpeningHours();
 
+  // This is too much!  Restrict to templates only.  Consider moving to middleware.
+  // app.all('*', (req, res, next) => {
+  //   logger.infoWithReq(req, 'Getting Opening Hours!');
+  //   getOpeningHours();
+  //   next();
+  // });
   expressNunjucks(app, {
     autoescape: true,
     watch: isDev,

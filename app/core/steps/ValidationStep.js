@@ -19,6 +19,7 @@ const requestHandler = require('app/core/helpers/parseRequest');
 const walkMap = require('app/core/utils/treeWalker');
 const removeEmptyValues = require('app/core/helpers/removeEmptyValues');
 const stepsHelper = require('app/core/helpers/steps');
+const { getOpeningHours } = require('app/middleware/getWebchatOpenHours');
 
 const ajv = new Ajv({ allErrors: true, v5: true });
 
@@ -28,6 +29,7 @@ module.exports = class ValidationStep extends Step {
       idamProtect,
       initSession,
       sessionTimeout,
+      getOpeningHours,
       redirectOnCondition,
       restoreFromDraftStore,
       setIdamUserDetails,

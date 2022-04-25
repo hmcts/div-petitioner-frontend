@@ -15,6 +15,7 @@
   const button = document.querySelector('.chat-button');
   const webChat = document.querySelector('web-chat');
   const message = document.querySelector('#metrics');
+  const openHoursMessage = document.querySelector('#webchatHours');
 
   button.addEventListener('click', () => {
     windowOpener('/avaya-webchat', 'Web Chat - Divorce', 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=350,height=550,left=100,top=100');
@@ -24,24 +25,25 @@
     webChat.classList.add('hidden');
   });
 
-  // Duplicate child nodes from one element to another
-  const copyChildNodes = (srcEl, destEl) => {
-    srcEl.childNodes.forEach(child => {
+  // Show webchat Opening Hours Message
+  const displayOpenHoursMessage = () => {
+    openHoursMessage.childNodes.forEach(child => {
       const clone = child.cloneNode(true);
-      destEl.append(clone);
+      message.append(clone);
     });
   };
 
-  // Remove child nodes from an element
-  const removeChildNodes = parentEl => {
-    while (parentEl.firstChild) {
-      parentEl.removeChild(parentEl.firstChild);
+  // Clear webchat availability messages
+  const clearWebchatAvailabilityMessages = () => {
+    while (message.firstChild) {
+      message.removeChild(message.firstChild);
     }
+    message.innerHTML = '';
   };
 
   // Set initial state.  Should only be visible until JS downloads from webchat server.
   const awaitingWebchat = () => {
-    removeChildNodes(message);
+    clearWebchatAvailabilityMessages();
     message.innerHTML = 'Awaiting response from Webchat Server...';
     button.classList.add('hidden');
   };
@@ -52,17 +54,16 @@
     const ccState = metricsDetail.contactCenterState;
     const ewt = metricsDetail.ewt;
     const availableAgents = metricsDetail.availableAgents;
-    const openHoursMessage = document.querySelector('#webchatHours');
 
     if (ccState !== 'Open') {
-      copyChildNodes(openHoursMessage, message);
+      clearWebchatAvailabilityMessages();
+      displayOpenHoursMessage();
       button.classList.add('hidden');
     } else if (ewt < 300 && availableAgents > 0) {
-      removeChildNodes(message);
-      message.innerHTML = '';
+      clearWebchatAvailabilityMessages();
       button.classList.remove('hidden');
     } else {
-      removeChildNodes(message);
+      clearWebchatAvailabilityMessages();
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
       button.classList.add('hidden');
     }

@@ -38,6 +38,15 @@
       parentEl.removeChild(parentEl.firstChild);
     }
   };
+
+  // Set initial state.  Should only be visible until JS downloads from webchat server.
+  const awaitingWebchat = () => {
+    removeChildNodes(message);
+    message.innerHTML = 'Awaiting response from Webchat Server...';
+    button.classList.add('hidden');
+  };
+  awaitingWebchat();
+
   webChat.addEventListener('metrics', function(metrics) {
     const metricsDetail = metrics.detail;
     const ccState = metricsDetail.contactCenterState;

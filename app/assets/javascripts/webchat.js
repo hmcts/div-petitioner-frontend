@@ -55,15 +55,14 @@
     const ewt = metricsDetail.ewt;
     const availableAgents = metricsDetail.availableAgents;
 
+    clearWebchatAvailabilityMessages();
+
     if (ccState !== 'Open') {
-      clearWebchatAvailabilityMessages();
       displayOpenHoursMessage();
       button.classList.add('hidden');
     } else if (ewt < 300 && availableAgents > 0) {
-      clearWebchatAvailabilityMessages();
       button.classList.remove('hidden');
     } else {
-      clearWebchatAvailabilityMessages();
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
       button.classList.add('hidden');
     }

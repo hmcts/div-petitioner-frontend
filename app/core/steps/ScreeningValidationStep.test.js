@@ -7,6 +7,7 @@ const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
+const { getOpeningHours } = require('app/middleware/getWebchatOpenHours');
 
 const modulePath = 'app/core/steps/ScreeningValidationStep';
 const UnderTest = require(modulePath);
@@ -23,6 +24,7 @@ describe(modulePath, () => {
         idamProtect,
         initSession,
         sessionTimeout,
+        getOpeningHours,
         redirectOnCondition,
         restoreFromDraftStore,
         setIdamUserDetails,

@@ -33,7 +33,7 @@ const getOpeningHours = (req, res, next) => {
       until: `${head.start}Until${head.end}`
     };
     const table = {
-      start: `<table>${row.start}${headers.day}${headers.from}${headers.until}${row.end}`,
+      start: `<table><caption style="display: none">Divorce Web Chat Opening Hours</caption>${row.start}${headers.day}${headers.from}${headers.until}${row.end}`,
       end: '</table>'
     };
     let html = htmlStr;

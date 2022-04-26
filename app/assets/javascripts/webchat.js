@@ -25,29 +25,16 @@
     webChat.classList.add('hidden');
   });
 
-  // Show webchat Opening Hours Message
-  const displayOpenHoursMessage = () => {
-    openHoursMessage.childNodes.forEach(child => {
-      const clone = child.cloneNode(true);
-      message.append(clone);
-    });
-  };
-
-  // Clear webchat availability messages
+  // Clear webchat availability messages and hide button
   const clearWebchatAvailabilityMessages = () => {
-    while (message.firstChild) {
-      message.removeChild(message.firstChild);
-    }
+    openHoursMessage.classList.add('hidden');
     message.innerHTML = '';
+    button.classList.add('hidden');
   };
 
   // Set initial state.  Should only be visible until JS downloads from webchat server.
-  const awaitingWebchat = () => {
-    clearWebchatAvailabilityMessages();
-    message.innerHTML = 'Awaiting response from Webchat Server...';
-    button.classList.add('hidden');
-  };
-  awaitingWebchat();
+  clearWebchatAvailabilityMessages();
+  message.innerHTML = 'Awaiting response from Webchat Server...';
 
   webChat.addEventListener('metrics', function(metrics) {
     const metricsDetail = metrics.detail;
@@ -58,13 +45,11 @@
     clearWebchatAvailabilityMessages();
 
     if (ccState !== 'Open') {
-      displayOpenHoursMessage();
-      button.classList.add('hidden');
+      openHoursMessage.classList.remove('hidden');
     } else if (ewt < 300 && availableAgents > 0) {
       button.classList.remove('hidden');
     } else {
       message.innerHTML = 'All our webchat QMCAs are busy helping other people. Please try again later or contact us using one of the ways below.';
-      button.classList.add('hidden');
     }
   });
 

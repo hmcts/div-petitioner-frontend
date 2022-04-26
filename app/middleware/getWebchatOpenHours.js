@@ -21,6 +21,64 @@ const to12Hr = str => {
 // Default message
 const antennaWebchatHours = '<p>Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.</p>';
 
+// Validate returned json data
+const validateJSONData = responseData => {
+  let parsedData = '';
+  try {
+    parsedData = JSON.parse(responseData).daysOfWeekOpen;
+  } catch (error) {
+    logger.info(`
+
+              ==========================================================================================
+                getWebchatOpenHours: Error JSON Parsing responseData
+                ------------------------------------------------------
+                ${error}
+              ==========================================================================================
+              `);
+    return false;
+  }
+
+  const schema = {
+    type: 'array',
+    maxItems: 7,
+    items: {
+      type: 'object',
+      properties: {
+        dayOfWeek: { type: 'string' },
+        from: { type: 'string' },
+        until: { type: 'string' }
+      },
+      required: ['dayOfWeek', 'from', 'until'],
+      additionalProperties: false
+    }
+  };
+  const validate = ajv.compile(schema);
+
+  const valid = validate(parsedData);
+
+  if (!valid) {
+    logger.info(`
+
+              ==========================================================================================
+                getWebchatOpenHours: AJV JSON Validation Error
+                ------------------------------------------------------
+                ${ajv.errorsText(validate.errors)}
+              ==========================================================================================
+              `);
+    return false;
+  }
+
+  logger.info(`
+
+              ==========================================================================================
+                getWebchatOpenHours: Parsed JSON Data Format is Valid
+                ------------------------------------------------------
+                ${JSON.stringify(parsedData)}
+              ==========================================================================================
+              `);
+  return parsedData;
+};
+
 // Validate cell values
 const validateCellValues = (cells, rowNum) => {
   const validDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
@@ -107,64 +165,6 @@ const parseOpenHoursToHtml = (open, htmlStr, idx = 0) => {
   }
   html += table.end;
   return html;
-};
-
-// Validate returned json data
-const validateJSONData = responseData => {
-  let parsedData = '';
-  try {
-    parsedData = JSON.parse(responseData).daysOfWeekOpen;
-  } catch (error) {
-    logger.info(`
-
-              ==========================================================================================
-                getWebchatOpenHours: Error JSON Parsing responseData
-                ------------------------------------------------------
-                ${error}
-              ==========================================================================================
-              `);
-    return false;
-  }
-
-  const schema = {
-    type: 'array',
-    maxItems: 7,
-    items: {
-      type: 'object',
-      properties: {
-        dayOfWeek: { type: 'string' },
-        from: { type: 'string' },
-        until: { type: 'string' }
-      },
-      required: ['dayOfWeek', 'from', 'until'],
-      additionalProperties: false
-    }
-  };
-  const validate = ajv.compile(schema);
-
-  const valid = validate(parsedData);
-
-  if (!valid) {
-    logger.info(`
-
-              ==========================================================================================
-                getWebchatOpenHours: AJV JSON Validation Error
-                ------------------------------------------------------
-                ${ajv.errorsText(validate.errors)}
-              ==========================================================================================
-              `);
-    return false;
-  }
-
-  logger.info(`
-
-              ==========================================================================================
-                getWebchatOpenHours: Parsed JSON Data Format is Valid
-                ------------------------------------------------------
-                ${JSON.stringify(parsedData)}
-              ==========================================================================================
-              `);
-  return parsedData;
 };
 
 // Prefix html table with message text

@@ -67,6 +67,8 @@ nodejs:
         ANTENNA_WEBCHAT_URL: "webchat.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Divorce"
 
+        FEATURE_WEBCHAT_AVAILABILITY_TOGGLE: "false"
+
         FEATURE_DYNATRACE: "false"
 
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"

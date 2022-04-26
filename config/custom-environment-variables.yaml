@@ -88,6 +88,7 @@ features:
   browserSupport: BROWSER_GROUP
   strategicPay: FEATURE_STRATEGIC_PAY
   antennaWebchatUserAttribute: FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE
+  antennaWebchatAvailabilityToggle: FEATURE_ANTENNA_WEBCHAT_AVAILABILITY_TOGGLE
   newFees: FEATURE_NEW_FEES
   dynatrace: FEATURE_DYNATRACE
   newAppCutoffDateBanner: FEATURE_NEW_APP_CUTOFF_DATE_BANNER

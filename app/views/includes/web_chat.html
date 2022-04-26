@@ -1,7 +1,9 @@
 {% if session.language == "en" %}
     <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
     <p class="govuk-body" id="metrics"></p>
-    <div class="hidden" id="webchatHours">{{ antennaWebchat_hours | safe }}</div>
+    {% if features.antennaWebchatAvailabilityToggle %}
+      <div class="hidden" id="webchatHours">{{ antennaWebchat_hours | safe }}</div>
+    {% endif %}
     <web-chat
             class="hidden"
             chat-title="Ask Divorce Web Chat"

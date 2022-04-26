@@ -150,6 +150,7 @@ features:
   browserSupport: false
   strategicPay: false
   antennaWebchatUserAttribute: false
+  antennaWebchatAvailabilityToggle: false
   newFees: true
   dynatrace: true
   newAppCutoffDateBanner: true

@@ -1,9 +1,16 @@
 const https = require('https');
+const parseBool = require('app/core/utils/parseBool');
+const CONF = require('config');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 // Get webchat opening hours for div
 const getOpeningHours = (req, res, next) => {
+  logger.info(`antenaWebchatAvailabilityToggle: ${CONF.features.antennaWebchatAvailabilityToggle}`);
+  if (!parseBool(CONF.features.antennaWebchatAvailabilityToggle)) {
+    logger.info('SKIPPING WEBCHAT AVAILABILITY HOURS MIDDLEWARE');
+    return next();
+  }
   // Convert string to title case
   const toTitleCase = str => {
     // eslint-disable-next-line arrow-body-style
@@ -74,7 +81,7 @@ const getOpeningHours = (req, res, next) => {
                 ${res.locals.antennaWebchat_hours}
               ==========================================================================================
       `);
-      next();
+      return next();
     });
   });
   // If unable to get webchat openinghours, log error and return alternative message.
@@ -90,7 +97,7 @@ const getOpeningHours = (req, res, next) => {
                 ${res.locals.antennaWebchat_hours}
               ==========================================================================================
     `);
-    next();
+    return next();
   });
   getWebchatHours.end();
   https.globalAgent.options.rejectUnauthorized = true;

@@ -27,14 +27,18 @@
 
   // Clear webchat availability messages and hide button
   const clearWebchatAvailabilityMessages = () => {
-    openHoursMessage.classList.add('hidden');
+    if (openHoursMessage !== null) {
+      openHoursMessage.classList.add('hidden');
+    }
     message.innerHTML = '';
     button.classList.add('hidden');
   };
 
   // Set initial state.  Should only be visible until JS downloads from webchat server.
-  clearWebchatAvailabilityMessages();
-  message.innerHTML = 'Awaiting response from Webchat Server...';
+  if (openHoursMessage === null) {
+    clearWebchatAvailabilityMessages();
+    message.innerHTML = 'Awaiting response from Webchat Server...';
+  }
 
   webChat.addEventListener('metrics', function(metrics) {
     const metricsDetail = metrics.detail;
@@ -44,8 +48,12 @@
 
     clearWebchatAvailabilityMessages();
 
-    if (ccState !== 'Open') {
-      openHoursMessage.classList.remove('hidden');
+    if (ccState !== 'Close') {
+      if (openHoursMessage === null) {
+        message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
+      } else {
+        openHoursMessage.classList.remove('hidden');
+      }
     } else if (ewt < 300 && availableAgents > 0) {
       button.classList.remove('hidden');
     } else {

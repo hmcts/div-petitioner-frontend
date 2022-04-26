@@ -151,6 +151,7 @@ exports.init = listenForConnections => {
       },
       features: {
         antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
+        antennaWebchatAvailabilityToggle: parseBool(CONF.features.antennaWebchatAvailabilityToggle),
         dynatrace: parseBool(CONF.features.dynatrace), // Dynatrace Feature Toggle
         newAppCutoffDateBanner: parseBool(CONF.features.newAppCutoffDateBanner) // New application cutoff date banner
       }

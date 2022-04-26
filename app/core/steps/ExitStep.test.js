@@ -3,6 +3,7 @@ const idam = require('app/services/idam');
 const initSession = require('app/middleware/initSession');
 const co = require('co');
 const featureToggleConfig = require('test/util/featureToggles');
+const { getOpeningHours } = require('app/middleware/getWebchatOpenHours');
 
 const modulePath = 'app/core/steps/ExitStep';
 const UnderTest = require(modulePath);
@@ -14,8 +15,9 @@ describe(modulePath, () => {
     it('returns middleware to logout from idam when idam feature is true', done => {
       const test = complete => {
         sinon.stub(idam, 'logout').returns('idamLogout');
-        expect(step.middleware[0]).to.eql(initSession);
-        expect(step.middleware[1]).to.eql(idam.logout());
+        expect(step.middleware[0]).to.eql(getOpeningHours);
+        expect(step.middleware[1]).to.eql(initSession);
+        expect(step.middleware[2]).to.eql(idam.logout());
         idam.logout.restore();
         complete();
       };
@@ -27,8 +29,9 @@ describe(modulePath, () => {
     it('returns middleware to logout when idam feature is false', done => {
       const test = complete => {
         sinon.stub(idam, 'logout').returns('idamLogout');
-        expect(step.middleware[0]).to.eql(initSession);
-        expect(step.middleware[1]).to.not.eql(idam.logout());
+        expect(step.middleware[0]).to.eql(getOpeningHours);
+        expect(step.middleware[1]).to.eql(initSession);
+        expect(step.middleware[2]).to.not.eql(idam.logout());
         idam.logout.restore();
         complete();
       };
@@ -55,8 +58,8 @@ describe(modulePath, () => {
   context('constructor logout is false', () => {
     const step = new UnderTest(null, null, null, null, { logout: false });
 
-    it('returns empty middleware', done => {
-      expect(step.middleware).to.eql([]);
+    it('returns only getOpeningHours middleware', done => {
+      expect(step.middleware).to.eql([getOpeningHours]);
       done();
     });
 

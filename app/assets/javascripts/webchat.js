@@ -35,7 +35,7 @@
   };
 
   // Set initial state.  Should only be visible until JS downloads from webchat server.
-  if (openHoursMessage === null) {
+  if (openHoursMessage !== null) {
     clearWebchatAvailabilityMessages();
     message.innerHTML = 'Awaiting response from Webchat Server...';
   }

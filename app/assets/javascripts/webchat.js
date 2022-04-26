@@ -48,7 +48,7 @@
 
     clearWebchatAvailabilityMessages();
 
-    if (ccState !== 'Close') {
+    if (ccState !== 'Open') {
       if (openHoursMessage === null) {
         message.innerHTML = 'Web chat is now closed. Come back Monday to Friday 9am to 5pm. Or contact us using one of the ways below.';
       } else {

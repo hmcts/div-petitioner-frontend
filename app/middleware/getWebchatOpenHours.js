@@ -7,21 +7,34 @@ const ajv = new Ajv({ allErrors: true });
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-// Convert string to title case
-const toTitleCase = str => {
-  // eslint-disable-next-line arrow-body-style
-  return str.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
-};
-
-// Convert time to 12hr, short format
-const to12Hr = str => {
-  return new Date(`1970-01-01T${str}`).toLocaleTimeString([], { hour: 'numeric', hour12: 'true' });
+// Set options for https.request
+const requestOptions = {
+  hostname: 'webchat.ctsc.hmcts.net',
+  path: '/openinghours/v1/callcentreservice/Divorce',
+  method: 'GET'
 };
 
 // Default message
 const antennaWebchatHours = '<p>Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.</p>';
 
-// Validate returned json data
+// Convert day name string to title case
+const dayToTitleCase = day => {
+  const validDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  if (validDays.includes(day.toLowerCase())) {
+    // eslint-disable-next-line arrow-body-style
+    return day.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
+  }
+  return 'Invalid Day';
+};
+
+// Convert time to 12hr, short format
+const timeTo12Hr = time => {
+  let convertedTime = new Date(`1970-01-01T${time}`).toLocaleTimeString([], { hour: 'numeric', hour12: 'true' });
+  convertedTime = convertedTime === 'Invalid Date' ? 'Invalid Time' : convertedTime;
+  return convertedTime;
+};
+
+// Validate returned json data format
 const validateJSONData = responseData => {
   let parsedData = '';
   try {
@@ -81,14 +94,13 @@ const validateJSONData = responseData => {
 
 // Validate cell values
 const validateCellValues = (cells, rowNum) => {
-  const validDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-  const day = toTitleCase(cells.dayOfWeek);
-  const from = to12Hr(cells.from);
-  const until = to12Hr(cells.until);
+  const day = dayToTitleCase(cells.dayOfWeek);
+  const from = timeTo12Hr(cells.from);
+  const until = timeTo12Hr(cells.until);
   const validation = [
-    validDays.includes(day.toLowerCase()),
-    from !== 'Invalid Date',
-    until !== 'Invalid Date'
+    day !== 'Invalid Day',
+    from !== 'Invalid Time',
+    until !== 'Invalid Time'
   ];
   if (validation.includes(false)) {
     let errorMessage = `
@@ -122,7 +134,7 @@ const validateCellValues = (cells, rowNum) => {
 };
 
 // Parse JSON response from webchat openinghours call into html table
-const parseOpenHoursToHtml = (open, htmlStr, idx = 0) => {
+const parseOpenHoursToHtml = (openHrsData, htmlStr, idx = 0) => {
   const cell = {
     start: '<td style="padding-right: 25px;">',
     end: '</td>'
@@ -150,7 +162,7 @@ const parseOpenHoursToHtml = (open, htmlStr, idx = 0) => {
   if (i === 0) {
     html = table.start;
   }
-  const cellVals = validateCellValues(open[i], i);
+  const cellVals = validateCellValues(openHrsData[i], i);
   if (!cellVals) {
     return false;
   }
@@ -159,9 +171,9 @@ const parseOpenHoursToHtml = (open, htmlStr, idx = 0) => {
   const until = cell.start + cellVals.until + cell.end;
   const newRow = row.start + day + from + until + row.end;
   html += newRow;
-  if (i < open.length - 1) {
+  if (i < openHrsData.length - 1) {
     i += 1;
-    return parseOpenHoursToHtml(open, html, i);
+    return parseOpenHoursToHtml(openHrsData, html, i);
   }
   html += table.end;
   return html;
@@ -202,15 +214,8 @@ const getOpeningHours = (req, res, next) => {
   // WebChat server has an incomplete cert chain.
   https.globalAgent.options.rejectUnauthorized = false;
 
-  // Set options for https.request
-  const hoursOptions = {
-    hostname: 'webchat.ctsc.hmcts.net',
-    path: '/openinghours/v1/callcentreservice/Divorce',
-    method: 'GET'
-  };
-
   // Get opening hours for webchat for div, parse into html table and pass to templates via nunjucks
-  const getWebchatHours = https.request(hoursOptions, response => {
+  const getWebchatHours = https.request(requestOptions, response => {
     response.on('data', d => {
       res.locals.antennaWebchat_hours = formatOpenHoursMessage(d);
       logger.info(`
@@ -224,6 +229,8 @@ const getOpeningHours = (req, res, next) => {
       return next();
     });
   });
+  getWebchatHours.end();
+  https.globalAgent.options.rejectUnauthorized = true;
 
   // If unable to get webchat openinghours, log error and return alternative message.
   getWebchatHours.on('error', er => {
@@ -240,8 +247,14 @@ const getOpeningHours = (req, res, next) => {
     `);
     return next();
   });
-  getWebchatHours.end();
-  https.globalAgent.options.rejectUnauthorized = true;
 };
 
-module.exports = { getOpeningHours };
+module.exports = {
+  dayToTitleCase,
+  timeTo12Hr,
+  validateJSONData,
+  validateCellValues,
+  parseOpenHoursToHtml,
+  formatOpenHoursMessage,
+  getOpeningHours
+};

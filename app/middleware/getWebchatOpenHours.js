@@ -7,42 +7,29 @@ const ajv = new Ajv({ allErrors: true });
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
+const config = CONF.webchatAvailability;
 // Set options for https.request
-const webchatAvailabilityHostName = 'webchat.ctsc.hmcts.net';
-const webchatAvailabilityVersion = 'v1';
-const webchatAvailabilityPath = `/openinghours/${webchatAvailabilityVersion}/callcentreservice/Divorce`;
+const webchatAvailabilityHostName = config.url.hostName;
+const webchatAvailabilityPath = `${config.url.path_1}${config.url.version}${config.url.path_2}`;
 
 // Property of response Obj containing relevant JSON data
-const webchatAvailabilityResponseProperty = 'daysOfWeekOpen';
+const webchatAvailabilityResponseProperty = config.format.responseProperty;
 
 // Schema for AJV validation of JSON data
-const webchatAvailabilityJSONSchema = {
-  type: 'array',
-  maxItems: 7,
-  items: {
-    type: 'object',
-    properties: {
-      dayOfWeek: { type: 'string' },
-      from: { type: 'string' },
-      until: { type: 'string' }
-    },
-    required: ['dayOfWeek', 'from', 'until'],
-    additionalProperties: false
-  }
-};
+const webchatAvailabilityJSONSchema = config.format.jsonSchema;
 
 // Validate day name values against this array
 // Ensure all entries in the array are lowercase
-const validDayNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+const validDayNames = config.format.validDayNames;
 
 // Default availability <p> text
 // Returned when unable to obtain availability data from API call
-const webchatAvailabilityDefaultMessage = 'Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.';
+const webchatAvailabilityDefaultMessage = config.messages.defaultMessage;
 
 // availability prefix/suffix text (availability data is rendered as a table sandwiched between these <p>'s
-const webchatAvailabilityPrefixMessage = 'Web chat is now closed. Please come back during the following hours:';
+const webchatAvailabilityPrefixMessage = config.messages.prefixMessage;
 // Table rendered here -->
-const webchatAvailabilitySuffixMessage = 'Alternatively, contact us using one of the ways below.';
+const webchatAvailabilitySuffixMessage = config.messages.suffixMessage;
 
 // Convert day name string to title case
 // returns 'Invalid Day' on error

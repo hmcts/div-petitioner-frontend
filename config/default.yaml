@@ -78,7 +78,7 @@ testUrl: 'https://localhost:3000'
 
 webchatAvailability:
   url:
-    hostName: 'webchat.ctsc.hmcts.net'
+    hostName: 'webchat.pp.ctsc.hmcts.net'
     path_1: '/openinghours/'
     version: 'v1'
     path_2: '/callcentreservice/Divorce'

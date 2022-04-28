@@ -9,7 +9,7 @@ const getWebchatOpenHours = require(modulePath);
 
 const config = CONF.webchatAvailability;
 
-const testOpenHrsData = [
+const validOpenHrsData = [
   {
     dayOfWeek: 'MONDAY',
     from: '08:00:00',
@@ -27,7 +27,7 @@ const testOpenHrsData = [
   }
 ];
 
-const testCells = [
+const invalidOpenHrsData = [
   {
     dayOfWeek: 'MONDAY',
     from: '08:00:00',
@@ -67,7 +67,7 @@ describe(modulePath, () => {
   });
 
   if (parseBool(CONF.features.antennaWebchatAvailabilityToggle)) {
-    context('generic tests', () => {
+    context('Day/Time string format and validation tests', () => {
       it('will correctly title case the name of a day', () => {
         const result = getWebchatOpenHours.dayToTitleCase('MONDAY');
         expect(result)
@@ -99,7 +99,7 @@ describe(modulePath, () => {
 
     context('JSON data tests', () => {
       it('will return valid JSON data from daysOfWeekOpen property of response object', () => {
-        const responseData = `{ "${config.format.responseProperty}": ${JSON.stringify(testOpenHrsData)}}`;
+        const responseData = `{ "${config.format.responseProperty}": ${JSON.stringify(validOpenHrsData)}}`;
         const result = getWebchatOpenHours.validateJSONData(responseData);
         expect(result)
           .to
@@ -107,7 +107,7 @@ describe(modulePath, () => {
           .eql(false);
         expect(result)
           .to
-          .eql(testOpenHrsData);
+          .eql(validOpenHrsData);
       });
 
       it('will return false when daysOfWeekOpen property of response object does not exist', () => {
@@ -235,7 +235,7 @@ describe(modulePath, () => {
       });
 
       it('will return a valid Object when valid day/from/until values are provided', () => {
-        const result = getWebchatOpenHours.validateCellValues(testCells[0], 0);
+        const result = getWebchatOpenHours.validateCellValues(invalidOpenHrsData[0], 0);
         expect(result)
           .to
           .not
@@ -246,21 +246,21 @@ describe(modulePath, () => {
       });
 
       it('will return false when an invalid day is provided', () => {
-        const result = getWebchatOpenHours.validateCellValues(testCells[1], 1);
+        const result = getWebchatOpenHours.validateCellValues(invalidOpenHrsData[1], 1);
         expect(result)
           .to
           .eql(false);
       });
 
       it('will return false when an invalid from time is provided', () => {
-        const result = getWebchatOpenHours.validateCellValues(testCells[2], 2);
+        const result = getWebchatOpenHours.validateCellValues(invalidOpenHrsData[2], 2);
         expect(result)
           .to
           .eql(false);
       });
 
       it('will return false when an invalid until time is provided', () => {
-        const result = getWebchatOpenHours.validateCellValues(testCells[3], 3);
+        const result = getWebchatOpenHours.validateCellValues(invalidOpenHrsData[3], 3);
         expect(result)
           .to
           .eql(false);
@@ -277,21 +277,21 @@ describe(modulePath, () => {
       });
 
       it('will return a valid HTML string when valid day/from/until values are provided', () => {
-        const result = getWebchatOpenHours.parseOpenHoursToTable(testOpenHrsData);
+        const result = getWebchatOpenHours.parseOpenHoursToTable(validOpenHrsData);
         expect(result)
           .to
           .eql('<table><caption style="display: none">Divorce Web Chat Opening Hours</caption><tr><th style="text-align: left; padding-right: 25px">Day</th><th style="text-align: left; padding-right: 25px">From</th><th style="text-align: left; padding-right: 25px">Until</th></tr><tr><td style="padding-right: 25px;">Monday</td><td style="padding-right: 25px;">8 AM</td><td style="padding-right: 25px;">8 PM</td></tr><tr><td style="padding-right: 25px;">Tuesday</td><td style="padding-right: 25px;">7 AM</td><td style="padding-right: 25px;">7 PM</td></tr><tr><td style="padding-right: 25px;">Wednesday</td><td style="padding-right: 25px;">9 AM</td><td style="padding-right: 25px;">9 PM</td></tr></table>');
       });
 
       it('will return false when any invalid day/from/until values are provided', () => {
-        const result = getWebchatOpenHours.parseOpenHoursToTable(testCells);
+        const result = getWebchatOpenHours.parseOpenHoursToTable(invalidOpenHrsData);
         expect(result)
           .to
           .eql(false);
       });
 
       it('will return valid HTML messages and table when JSON data validates', () => {
-        const responseData = `{ "daysOfWeekOpen": ${JSON.stringify(testOpenHrsData)}}`;
+        const responseData = `{ "daysOfWeekOpen": ${JSON.stringify(validOpenHrsData)}}`;
         const result = getWebchatOpenHours.formatOpenHoursMessage(responseData);
         expect(result)
           .to
@@ -316,9 +316,9 @@ describe(modulePath, () => {
     });
 
     context('HTTPS request tests', () => {
-      it('res object will contain locals.antennaWebchat_Hours, containing a valid HTML message if the api call is successful', done => {
-        const responseData = `{ "daysOfWeekOpen": ${JSON.stringify(testOpenHrsData)}}`;
-        const stub = sinon.stub(https, 'request', (options, cBack) => {
+      it('will return a res object that contains locals.antennaWebchat_Hours, containing a valid HTML message if the api call is successful', done => {
+        const responseData = `{ "daysOfWeekOpen": ${JSON.stringify(validOpenHrsData)}}`;
+        const stub = sinon.stub(https, 'request').callsFake((options, cBack) => {
           const on = (code, action) => {
             if (code === 'data') {
               action(responseData);
@@ -340,8 +340,8 @@ describe(modulePath, () => {
         });
       });
 
-      it('res object will contain locals.antennaWebchat_Hours, containing the default HTML message  if the api call fails', done => {
-        const stub = sinon.stub(https, 'request', (options, cBack) => {
+      it('will return a res object that contains locals.antennaWebchat_Hours, containing the default HTML message if the api call fails', done => {
+        const stub = sinon.stub(https, 'request').callsFake((options, cBack) => {
           const on = (code, action) => {
             if (code === 'error') {
               action('Error');
@@ -366,8 +366,8 @@ describe(modulePath, () => {
       });
     });
   } else {
-    context('generic tests', () => {
-      it('res object will not contain locals.antennaWebchat_Hours', done => {
+    context('Feature toggle disabled tests', () => {
+      it('will return a res object that does not contain locals.antennaWebchat_Hours', done => {
         getWebchatOpenHours.getOpeningHours(req, res, next = () => {
           // eslint-disable-next-line no-unused-expressions
           expect(res.locals.antennaWebchat_hours).to.not.exist;

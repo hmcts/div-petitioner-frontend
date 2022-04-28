@@ -21,6 +21,7 @@ const staleDataManager = require('app/core/helpers/staleDataManager');
 const fs = require('fs');
 
 const stepsHelper = require('app/core/helpers/steps');
+
 const modulePath = 'app/core/steps/ValidationStep';
 const UnderTest = require(modulePath);
 

@@ -96,6 +96,38 @@ const validateJSONData = responseData => {
     return false;
   }
 
+  const validateNoEmptyValues = (idx = 0) => {
+    let i = idx;
+    if (parsedData[i].dayOfWeek.length < 1) {
+      return false;
+    }
+    if (parsedData[i].from.length < 1) {
+      return false;
+    }
+    if (parsedData[i].until.length < 1) {
+      return false;
+    }
+    if (i < parsedData.length - 1) {
+      i += 1;
+      return validateNoEmptyValues(i);
+    }
+    return true;
+  };
+
+  const noEmptyValues = validateNoEmptyValues();
+
+  if (!noEmptyValues) {
+    logger.info(`
+
+              ==========================================================================================
+                getWebchatOpenHours: Error Parsing JSON Values
+                ------------------------------------------------------
+                One or more fields contain empty values
+              ==========================================================================================
+              `);
+    return false;
+  }
+
   logger.info(`
 
               ==========================================================================================

@@ -8,19 +8,46 @@ const ajv = new Ajv({ allErrors: true });
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 // Set options for https.request
-const requestOptions = {
-  hostname: 'webchat.ctsc.hmcts.net',
-  path: '/openinghours/v1/callcentreservice/Divorce',
-  method: 'GET'
+const webchatAvailabilityHostName = 'webchat.ctsc.hmcts.net';
+const webchatAvailabilityVersion = 'v1';
+const webchatAvailabilityPath = `/openinghours/${webchatAvailabilityVersion}/callcentreservice/Divorce`;
+
+// Property of response Obj containing relevant JSON data
+const webchatAvailabilityResponseProperty = 'daysOfWeekOpen';
+
+// Schema for AJV validation of JSON data
+const webchatAvailabilityJSONSchema = {
+  type: 'array',
+  maxItems: 7,
+  items: {
+    type: 'object',
+    properties: {
+      dayOfWeek: { type: 'string' },
+      from: { type: 'string' },
+      until: { type: 'string' }
+    },
+    required: ['dayOfWeek', 'from', 'until'],
+    additionalProperties: false
+  }
 };
 
-// Default message
-const antennaWebchatHours = '<p>Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.</p>';
+// Validate day name values against this array
+// Ensure all entries in the array are lowercase
+const validDayNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+// Default availability <p> text
+// Returned when unable to obtain availability data from API call
+const webchatAvailabilityDefaultMessage = 'Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.';
+
+// availability prefix/suffix text (availability data is rendered as a table sandwiched between these <p>'s
+const webchatAvailabilityPrefixMessage = 'Web chat is now closed. Please come back during the following hours:';
+// Table rendered here -->
+const webchatAvailabilitySuffixMessage = 'Alternatively, contact us using one of the ways below.';
 
 // Convert day name string to title case
+// returns 'Invalid Day' on error
 const dayToTitleCase = day => {
-  const validDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-  if (validDays.includes(day.toLowerCase())) {
+  if (validDayNames.includes(day.toLowerCase())) {
     // eslint-disable-next-line arrow-body-style
     return day.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
   }
@@ -28,6 +55,7 @@ const dayToTitleCase = day => {
 };
 
 // Convert time to 12hr, short format
+// returns 'Invalid Time' on error
 const timeTo12Hr = time => {
   let convertedTime = new Date(`1970-01-01T${time}`).toLocaleTimeString([], { hour: 'numeric', hour12: 'true' });
   convertedTime = convertedTime === 'Invalid Date' ? 'Invalid Time' : convertedTime;
@@ -35,10 +63,11 @@ const timeTo12Hr = time => {
 };
 
 // Validate returned json data format
+// returns false on error
 const validateJSONData = responseData => {
   let parsedData = '';
   try {
-    parsedData = JSON.parse(responseData).daysOfWeekOpen;
+    parsedData = JSON.parse(responseData)[webchatAvailabilityResponseProperty];
   } catch (error) {
     logger.info(`
 
@@ -51,21 +80,7 @@ const validateJSONData = responseData => {
     return false;
   }
 
-  const schema = {
-    type: 'array',
-    maxItems: 7,
-    items: {
-      type: 'object',
-      properties: {
-        dayOfWeek: { type: 'string' },
-        from: { type: 'string' },
-        until: { type: 'string' }
-      },
-      required: ['dayOfWeek', 'from', 'until'],
-      additionalProperties: false
-    }
-  };
-  const validate = ajv.compile(schema);
+  const validate = ajv.compile(webchatAvailabilityJSONSchema);
 
   const valid = validate(parsedData);
 
@@ -93,6 +108,7 @@ const validateJSONData = responseData => {
 };
 
 // Validate cell values
+// returns false on error
 const validateCellValues = (cells, rowNum) => {
   const day = dayToTitleCase(cells.dayOfWeek);
   const from = timeTo12Hr(cells.from);
@@ -133,8 +149,18 @@ const validateCellValues = (cells, rowNum) => {
   return { day, from, until };
 };
 
+// Parse string to HTML paragraph elem
+const parseMessageToParagraph = paraStr => {
+  const p = {
+    start: '<p>',
+    end: '</p>'
+  };
+  return `${p.start}${paraStr}${p.end}`;
+};
+
 // Parse JSON response from webchat openinghours call into html table
-const parseOpenHoursToHtml = (openHrsData, htmlStr, idx = 0) => {
+// returns false on error
+const parseOpenHoursToTable = (openHrsData, htmlStr, idx = 0) => {
   const cell = {
     start: '<td style="padding-right: 25px;">',
     end: '</td>'
@@ -173,21 +199,23 @@ const parseOpenHoursToHtml = (openHrsData, htmlStr, idx = 0) => {
   html += newRow;
   if (i < openHrsData.length - 1) {
     i += 1;
-    return parseOpenHoursToHtml(openHrsData, html, i);
+    return parseOpenHoursToTable(openHrsData, html, i);
   }
   html += table.end;
   return html;
 };
 
-// Prefix html table with message text
+// Return prefix <p> + <table> + suffix <p>
+// returns default message <p> on error
 const formatOpenHoursMessage = responseData => {
-  const prefix = '<p>Web chat is now closed. Please come back during the following hours:</p>';
-  const suffix = '<p>Alternatively, contact us using one of the ways below.</p>';
-  let htmlStr = antennaWebchatHours;
+  const prefix = parseMessageToParagraph(webchatAvailabilityPrefixMessage);
+  const suffix = parseMessageToParagraph(webchatAvailabilitySuffixMessage);
+  let htmlStr = parseMessageToParagraph(webchatAvailabilityDefaultMessage);
+  let table = '';
 
   const parsedData = validateJSONData(responseData);
   if (parsedData) {
-    const table = parseOpenHoursToHtml(parsedData);
+    table = parseOpenHoursToTable(parsedData);
     if (table) {
       htmlStr = prefix + table + suffix;
     }
@@ -196,7 +224,7 @@ const formatOpenHoursMessage = responseData => {
   return htmlStr;
 };
 
-// Get webchat opening hours for div
+// Get webchat opening hours for div via https.request
 const getOpeningHours = (req, res, next) => {
   // Skip if feature toggle is false
   logger.info(`antenaWebchatAvailabilityToggle: ${CONF.features.antennaWebchatAvailabilityToggle}`);
@@ -213,6 +241,13 @@ const getOpeningHours = (req, res, next) => {
   // rejectUnauthorized required for this request only.
   // WebChat server has an incomplete cert chain.
   https.globalAgent.options.rejectUnauthorized = false;
+
+  // Options for https.request
+  const requestOptions = {
+    hostname: webchatAvailabilityHostName,
+    path: webchatAvailabilityPath,
+    method: 'GET'
+  };
 
   // Get opening hours for webchat for div, parse into html table and pass to templates via nunjucks
   const getWebchatHours = https.request(requestOptions, response => {
@@ -234,7 +269,7 @@ const getOpeningHours = (req, res, next) => {
 
   // If unable to get webchat openinghours, log error and return alternative message.
   getWebchatHours.on('error', er => {
-    res.locals.antennaWebchat_hours = antennaWebchatHours;
+    res.locals.antennaWebchat_hours = parseMessageToParagraph(webchatAvailabilityDefaultMessage);
     logger.info(`
 
               ==========================================================================================
@@ -254,7 +289,8 @@ module.exports = {
   timeTo12Hr,
   validateJSONData,
   validateCellValues,
-  parseOpenHoursToHtml,
+  parseMessageToParagraph,
+  parseOpenHoursToTable,
   formatOpenHoursMessage,
   getOpeningHours
 };

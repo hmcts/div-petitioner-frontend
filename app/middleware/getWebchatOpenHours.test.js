@@ -311,6 +311,18 @@ describe(modulePath, () => {
         .to
         .eql(`<p>${config.messages.defaultMessage}</p>`);
     });
+
+    it('will return valid default HTML message when table data fails to validate', () => {
+      const responseData = `{ "daysOfWeekOpen": ${JSON.stringify(invalidOpenHrsData)}}`;
+      const result = getWebchatOpenHours.formatOpenHoursMessage(responseData);
+      expect(result)
+        .to
+        .not
+        .eql(false);
+      expect(result)
+        .to
+        .eql(`<p>${config.messages.defaultMessage}</p>`);
+    });
   });
 
   context('HTTPS request tests', () => {

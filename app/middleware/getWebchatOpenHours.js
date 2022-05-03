@@ -31,6 +31,14 @@ const webchatAvailabilityPrefixMessage = config.messages.prefixMessage;
 // Table rendered here -->
 const webchatAvailabilitySuffixMessage = config.messages.suffixMessage;
 
+// Enable/disable debug output
+const debugEnabled = parseBool(config.debug);
+const webchatAvailabilityDebug = message => {
+  if (debugEnabled) {
+    logger.info(message);
+  }
+};
+
 // Convert day name string to title case
 // returns 'Invalid Day' on error
 const dayToTitleCase = day => {
@@ -56,7 +64,7 @@ const validateJSONData = responseData => {
   try {
     parsedData = JSON.parse(responseData)[webchatAvailabilityResponseProperty];
   } catch (error) {
-    logger.info(`
+    webchatAvailabilityDebug(`
 
               ==========================================================================================
                 getWebchatOpenHours: Error JSON Parsing responseData
@@ -72,7 +80,7 @@ const validateJSONData = responseData => {
   const valid = validate(parsedData);
 
   if (!valid) {
-    logger.info(`
+    webchatAvailabilityDebug(`
 
               ==========================================================================================
                 getWebchatOpenHours: AJV JSON Validation Error
@@ -104,7 +112,7 @@ const validateJSONData = responseData => {
   const noEmptyValues = validateNoEmptyValues();
 
   if (!noEmptyValues) {
-    logger.info(`
+    webchatAvailabilityDebug(`
 
               ==========================================================================================
                 getWebchatOpenHours: Error Parsing JSON Values
@@ -115,7 +123,7 @@ const validateJSONData = responseData => {
     return false;
   }
 
-  logger.info(`
+  webchatAvailabilityDebug(`
 
               ==========================================================================================
                 getWebchatOpenHours: Parsed JSON Data Format is Valid
@@ -162,7 +170,7 @@ const validateCellValues = (cells, rowNum) => {
     errorMessage += `
               ==========================================================================================
               `;
-    logger.info(errorMessage);
+    webchatAvailabilityDebug(errorMessage);
     return false;
   }
   return { day, from, until };
@@ -246,9 +254,9 @@ const formatOpenHoursMessage = responseData => {
 // Get webchat opening hours for div via https.request
 const getWebchatOpeningHours = (req, res, next) => {
   // Skip if feature toggle is false
-  logger.info(`antenaWebchatAvailabilityToggle: ${CONF.features.antennaWebchatAvailabilityToggle}`);
+  webchatAvailabilityDebug(`antenaWebchatAvailabilityToggle: ${CONF.features.antennaWebchatAvailabilityToggle}`);
   if (!parseBool(CONF.features.antennaWebchatAvailabilityToggle)) {
-    logger.info(`
+    webchatAvailabilityDebug(`
 
               ==========================================================================================
                 SKIPPING WEBCHAT AVAILABILITY HOURS MIDDLEWARE
@@ -272,7 +280,7 @@ const getWebchatOpeningHours = (req, res, next) => {
   const getWebchatHours = https.request(requestOptions, response => {
     response.on('data', d => {
       res.locals.antennaWebchat_hours = formatOpenHoursMessage(d);
-      logger.info(`
+      webchatAvailabilityDebug(`
 
               ==========================================================================================
                 getWebchatOpenHours: Got webchat opening hours
@@ -289,7 +297,7 @@ const getWebchatOpeningHours = (req, res, next) => {
   // If unable to get webchat openinghours, log error and return alternative message.
   getWebchatHours.on('error', er => {
     res.locals.antennaWebchat_hours = parseMessageToParagraph(webchatAvailabilityDefaultMessage);
-    logger.info(`
+    webchatAvailabilityDebug(`
 
               ==========================================================================================
                 getWebchatOpenHours: Error getting webchat opening hours:

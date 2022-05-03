@@ -45,6 +45,7 @@ services:
     tokenKey: DIV_TOKEN_KEY
 
 webchatAvailability:
+  debug: ANTENNA_WEBCHAT_AVAILABILITY_DEBUG
   url:
     hostName: ANTENNA_WEBCHAT_URL
 

@@ -340,7 +340,7 @@ describe(modulePath, () => {
       });
 
       // eslint-disable-next-line no-invalid-this
-      getWebchatOpenHours.getOpeningHours(req, res, next = () => {
+      getWebchatOpenHours.getWebchatOpeningHours(req, res, next = () => {
         stub.restore();
         featureToggle.restore();
         // eslint-disable-next-line no-unused-expressions
@@ -365,7 +365,7 @@ describe(modulePath, () => {
       });
 
       // eslint-disable-next-line no-invalid-this
-      getWebchatOpenHours.getOpeningHours(req, res, next = () => {
+      getWebchatOpenHours.getWebchatOpeningHours(req, res, next = () => {
         stub.restore();
         featureToggle.restore();
         // eslint-disable-next-line no-unused-expressions
@@ -383,7 +383,7 @@ describe(modulePath, () => {
   context('Feature toggle disabled tests', () => {
     it('will return a res object that does not contain locals.antennaWebchat_Hours', done => {
       const featureToggle = sinon.stub(CONF.features, 'antennaWebchatAvailabilityToggle').value(false);
-      getWebchatOpenHours.getOpeningHours(req, res, next = () => {
+      getWebchatOpenHours.getWebchatOpeningHours(req, res, next = () => {
         featureToggle.restore();
         // eslint-disable-next-line no-unused-expressions
         expect(res.locals.antennaWebchat_hours).to.not.exist;

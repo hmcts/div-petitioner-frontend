@@ -7,7 +7,7 @@ const { hasSubmitted } = require('app/middleware/submissionMiddleware');
 const { restoreFromDraftStore } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
-const { getOpeningHours } = require('app/middleware/getWebchatOpenHours');
+const { getWebchatOpeningHours } = require('app/middleware/getWebchatOpenHours');
 
 module.exports = class ScreeningValidationStep extends ValidationStep {
   get middleware() {
@@ -15,7 +15,7 @@ module.exports = class ScreeningValidationStep extends ValidationStep {
       idamProtect,
       initSession,
       sessionTimeout,
-      getOpeningHours,
+      getWebchatOpeningHours,
       redirectOnCondition,
       restoreFromDraftStore,
       setIdamUserDetails,

@@ -8,7 +8,7 @@ const statusCodes = require('http-status-codes');
 const co = require('co');
 const FeatureToggle = require('app/core/utils/featureToggle');
 const logger = require('app/services/logger').logger(__filename);
-const { getOpeningHours } = require('app/middleware/getWebchatOpenHours');
+const { getWebchatOpeningHours } = require('app/middleware/getWebchatOpenHours');
 
 const defualtNext = () => {};
 
@@ -151,7 +151,7 @@ module.exports = class Step {
   }
 
   get middleware() {
-    return [getOpeningHours];
+    return [getWebchatOpeningHours];
   }
 
   get postMiddleware() {

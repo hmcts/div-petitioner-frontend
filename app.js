@@ -290,13 +290,13 @@ exports.init = listenForConnections => {
     app.use((req, res) => {
       logger.errorWithReq(req, 'not_found', 'User attempted to view a page that was not found', req.originalUrl);
       // Get the webchat opening hours on a 404
-      const { getOpeningHours } = require('app/middleware/getWebchatOpenHours');
+      const { getWebchatOpeningHours } = require('app/middleware/getWebchatOpenHours');
 
       const redirectTo404 = () => {
         steps.Error404.handler(req, res);
       };
 
-      getOpeningHours(req, res, redirectTo404);
+      getWebchatOpeningHours(req, res, redirectTo404);
 
       // steps.Error404.handler(req, res);
     });

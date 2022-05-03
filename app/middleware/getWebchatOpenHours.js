@@ -244,7 +244,7 @@ const formatOpenHoursMessage = responseData => {
 };
 
 // Get webchat opening hours for div via https.request
-const getOpeningHours = (req, res, next) => {
+const getWebchatOpeningHours = (req, res, next) => {
   // Skip if feature toggle is false
   logger.info(`antenaWebchatAvailabilityToggle: ${CONF.features.antennaWebchatAvailabilityToggle}`);
   if (!parseBool(CONF.features.antennaWebchatAvailabilityToggle)) {
@@ -311,5 +311,5 @@ module.exports = {
   parseMessageToParagraph,
   parseOpenHoursToTable,
   formatOpenHoursMessage,
-  getOpeningHours
+  getWebchatOpeningHours
 };

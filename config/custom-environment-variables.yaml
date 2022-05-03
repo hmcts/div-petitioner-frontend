@@ -44,6 +44,10 @@ services:
     url: EQUALITY_URL
     tokenKey: DIV_TOKEN_KEY
 
+webchatAvailability:
+  url:
+    hostName: ANTENNA_WEBCHAT_URL
+
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET
 

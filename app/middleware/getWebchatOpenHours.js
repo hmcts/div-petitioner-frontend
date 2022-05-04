@@ -197,7 +197,7 @@ const parseOpenHoursToTable = (openHrsData, htmlStr, idx = 0) => {
     end: '</tr>'
   };
   const head = {
-    start: '<th style="text-align: left; padding-right: 25px">',
+    start: '<th style="text-align: left; padding-right: 25px;">',
     end: '</th>'
   };
   const hCells = {
@@ -207,7 +207,7 @@ const parseOpenHoursToTable = (openHrsData, htmlStr, idx = 0) => {
   };
   hCells.fullRow = `${row.start}${hCells.day}${hCells.from}${hCells.until}${row.end}`;
   const table = {
-    start: `<table><caption style="display: none">Divorce Web Chat Opening Hours</caption>${hCells.fullRow}`,
+    start: `<table style="margin-bottom: 1em;"><caption style="display: none;">Divorce Web Chat Opening Hours</caption>${hCells.fullRow}`,
     end: '</table>'
   };
   let html = htmlStr;

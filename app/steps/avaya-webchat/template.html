@@ -11,6 +11,9 @@
     <div class="govuk-details__text">
         <p class="govuk-heading-s govuk-!-margin-bottom-1" id="antenna-web-chat-header">{{ common.webChatTitle | safe }}</p>
         <p id="metrics"></p>
+        {% if features.antennaWebchatAvailabilityToggle %}
+          <div class="hidden" id="webchatHours">{{ antennaWebchat_hours | safe }}</div>
+        {% endif %}
         <web-chat
                 id="avayaWebchat"
                 chat-title="Ask Divorce Web Chat"

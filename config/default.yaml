@@ -76,6 +76,34 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
+webchatAvailability:
+  url:
+    hostName: 'webchat.pp.ctsc.hmcts.net'
+    path_1: '/openinghours/'
+    version: 'v1'
+    path_2: '/callcentreservice/Divorce'
+  format:
+    responseProperty: 'daysOfWeekOpen'
+    jsonSchema: {
+      type: 'array',
+      maxItems: 7,
+      items: {
+        type: 'object',
+        properties: {
+          dayOfWeek: { type: 'string' },
+          from: { type: 'string' },
+          until: { type: 'string' }
+        },
+        required: [ 'dayOfWeek', 'from', 'until' ],
+        additionalProperties: false
+      }
+    }
+    validDayNames: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+  messages:
+    defaultMessage: 'Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.'
+    prefixMessage: 'Web chat is now closed. Please come back during the following hours:'
+    suffixMessage: 'Alternatively, contact us using one of the ways below.'
+
 #######################################################################################################################
 # JS DateTime value representing when the new application cutoff will take effect
 # Servers use UTC!  Adjust values accordingly!
@@ -152,6 +180,7 @@ features:
   browserSupport: false
   strategicPay: false
   antennaWebchatUserAttribute: false
+  antennaWebchatAvailabilityToggle: false
   newFees: true
   dynatrace: true
   newAppCutoffDateBanner: true

@@ -118,10 +118,6 @@ nodejs:
         NEW_APP_CUTOFF_DEBUG: false
         ################################################################################################################
 
-        # Leave AAT as default for now, until we have a release window to change in prod, then switch prod to default
-        # COOKIE_DOMAIN: "apply-divorce.service.gov.uk"
-        COOKIE_DOMAIN: "Test.Cookie.Domain.Value.Values"
-
 
     keyVaults:
         div:

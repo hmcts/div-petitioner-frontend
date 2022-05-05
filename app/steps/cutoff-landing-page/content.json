@@ -1,0 +1,22 @@
+{
+  "lng": "en",
+  "resources": {
+    "en": {
+      "translation": {
+        "content": {
+          "title": "Service Unavailable",
+          "statement": "Online applications are unavailable at the moment.  You'll be able to start a new online application from 6 April 2022."
+        }
+      }
+    },
+    "cy": {
+      "translation": {
+        "content": {
+          "title": "Service Unavailable",
+          "statement": "Online applications are unavailable at the moment.  You'll be able to start a new online application from 6 April 2022."
+        }
+      }
+    }
+  }
+}
+

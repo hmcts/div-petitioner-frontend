@@ -65,19 +65,23 @@ exports.config = {
 
 // Reduce chunks on Preview env
 function configureChunks() {
-  if (CONF.e2e.runBasicTests === 'true') {
-    return 2;
-  } else {
-    return 6;
-  }
+  // Disable basic tests for now (redirect in effect from 31st March 2022)
+  // if (CONF.e2e.runBasicTests === 'true') {
+  //   return 2;
+  // } else {
+  //   return 6;
+  // }
+  return 6;
 }
 
 // Temporarily turn off functional tests in Preview until more stable (#DIV-2734).
 // E2E tests must be run manually against Preview in the meantime.
 function getTests() {
-  if (CONF.e2e.runBasicTests === 'true') {
-    return './paths/**/basicDivorce.js';
-  } else {
-    return './paths/**/*.js';
-  }
+  // Disable basic tests for now (redirect in effect from 31st March 2022)
+  // if (CONF.e2e.runBasicTests === 'true') {
+  //   return './paths/**/basicDivorce.js';
+  // } else {
+  //   return './paths/**/*.js';
+  // }
+  return './paths/**/*.js';
 }

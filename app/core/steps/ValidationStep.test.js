@@ -14,10 +14,12 @@ const {
 } = require('app/middleware/draftPetitionStoreMiddleware');
 const { idamProtect } = require('app/middleware/idamProtectMiddleware');
 const { setIdamUserDetails } = require('app/middleware/setIdamDetailsToSessionMiddleware');
+const { getWebchatOpeningHours } = require('app/middleware/getWebchatOpenHours');
 const Step = require('app/core/steps/Step');
 const requestHandler = require('app/core/helpers/parseRequest');
 const staleDataManager = require('app/core/helpers/staleDataManager');
 const fs = require('fs');
+
 const stepsHelper = require('app/core/helpers/steps');
 
 const modulePath = 'app/core/steps/ValidationStep';
@@ -35,6 +37,7 @@ describe(modulePath, () => {
         idamProtect,
         initSession,
         sessionTimeout,
+        getWebchatOpeningHours,
         redirectOnCondition,
         restoreFromDraftStore,
         setIdamUserDetails,

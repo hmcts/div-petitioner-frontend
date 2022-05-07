@@ -144,8 +144,6 @@ newAppCutoffStateOverride: false
 newAppCutoffDebug: false
 #######################################################################################################################
 
-cookieDomain: "Test.Cookie.Domain.Value.Default"
-
 commonProps:
   applicationFee:
     feeCode: 'FEE0002'
@@ -182,7 +180,7 @@ features:
   antennaWebchatUserAttribute: false
   antennaWebchatAvailabilityToggle: false
   newFees: true
-  dynatrace: true
+  dynatrace: false
   newAppCutoffDateBanner: true
   newAppCutoff: false
 

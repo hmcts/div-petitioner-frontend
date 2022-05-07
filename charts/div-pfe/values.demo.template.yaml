@@ -6,4 +6,3 @@ nodejs:
       ANTENNA_WEBCHAT_URL: "webchat-client.training.ctsc.hmcts.net"
       ANTENNA_WEBCHAT_SERVICE: "Testing"
       ANTENNA_WEBCHAT_VERSION: "1"
-      COOKIE_DOMAIN: "demo.platform.hmcts.net"

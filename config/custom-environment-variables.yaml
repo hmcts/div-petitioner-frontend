@@ -108,8 +108,6 @@ newAppCutoffStateToCheck: NEW_APP_CUTOFF_STATE_TO_CHECK
 newAppCutoffStateOverride: NEW_APP_CUTOFF_STATE_OVERRIDE
 newAppCutoffDebug: NEW_APP_CUTOFF_DEBUG
 
-cookieDomain: COOKIE_DOMAIN
-
 idamArgs:
   idamApiUrl: IDAM_API_URL
   idamLoginUrl: IDAM_LOGIN_URL

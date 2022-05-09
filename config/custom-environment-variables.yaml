@@ -39,9 +39,15 @@ services:
   antennaWebchat:
     url: ANTENNA_WEBCHAT_URL
     service: ANTENNA_WEBCHAT_SERVICE
+    version: ANTENNA_WEBCHAT_VERSION
   equalityAndDiversity:
     url: EQUALITY_URL
     tokenKey: DIV_TOKEN_KEY
+
+webchatAvailability:
+  debug: ANTENNA_WEBCHAT_AVAILABILITY_DEBUG
+  url:
+    hostName: ANTENNA_WEBCHAT_URL
 
 secret: SECRET
 sessionEncryptionSecret: SESSION_ENCRYPTION_SECRET
@@ -87,6 +93,7 @@ features:
   browserSupport: BROWSER_GROUP
   strategicPay: FEATURE_STRATEGIC_PAY
   antennaWebchatUserAttribute: FEATURE_ANTENNA_WEBCHAT_USER_ATTRIBUTE
+  antennaWebchatAvailabilityToggle: FEATURE_ANTENNA_WEBCHAT_AVAILABILITY_TOGGLE
   newFees: FEATURE_NEW_FEES
   dynatrace: FEATURE_DYNATRACE
   newAppCutoffDateBanner: FEATURE_NEW_APP_CUTOFF_DATE_BANNER
@@ -100,8 +107,6 @@ newAppCutoffUseStateToCheck: NEW_APP_CUTOFF_USE_STATE_TO_CHECK
 newAppCutoffStateToCheck: NEW_APP_CUTOFF_STATE_TO_CHECK
 newAppCutoffStateOverride: NEW_APP_CUTOFF_STATE_OVERRIDE
 newAppCutoffDebug: NEW_APP_CUTOFF_DEBUG
-
-cookieDomain: COOKIE_DOMAIN
 
 idamArgs:
   idamApiUrl: IDAM_API_URL

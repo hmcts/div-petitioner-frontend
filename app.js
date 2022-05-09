@@ -144,15 +144,19 @@ exports.init = listenForConnections => {
     filters: nunjucksFilters,
     loader: nunjucks.FileSystemLoader,
     globals: {
-      antennaWebchat: { url: CONF.services.antennaWebchat.url, service: CONF.services.antennaWebchat.service },
+      antennaWebchat: {
+        url: CONF.services.antennaWebchat.url,
+        service: CONF.services.antennaWebchat.service,
+        version: CONF.services.antennaWebchat.version
+      },
       features: {
         antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
+        antennaWebchatAvailabilityToggle: parseBool(CONF.features.antennaWebchatAvailabilityToggle),
         dynatrace: parseBool(CONF.features.dynatrace), // Dynatrace Feature Toggle
         newAppCutoffDateBanner: parseBool(CONF.features.newAppCutoffDateBanner) // New application cutoff date banner
       }
     }
   });
-
   // Disallow search index idexing
   app.use((req, res, next) => {
     // Setting headers stops pages being indexed even if indexed pages link to them.
@@ -285,7 +289,16 @@ exports.init = listenForConnections => {
     // redirect user if page not found
     app.use((req, res) => {
       logger.errorWithReq(req, 'not_found', 'User attempted to view a page that was not found', req.originalUrl);
-      steps.Error404.handler(req, res);
+      // Get the webchat opening hours on a 404
+      const { getWebchatOpeningHours } = require('app/middleware/getWebchatOpenHours');
+
+      const redirectTo404 = () => {
+        steps.Error404.handler(req, res);
+      };
+
+      getWebchatOpeningHours(req, res, redirectTo404);
+
+      // steps.Error404.handler(req, res);
     });
   }
 

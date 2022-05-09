@@ -67,6 +67,9 @@ nodejs:
         ANTENNA_WEBCHAT_URL: "webchat.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Divorce"
 
+        ANTENNA_WEBCHAT_AVAILABILITY_DEBUG: "false"
+        FEATURE_WEBCHAT_AVAILABILITY_TOGGLE: "false"
+
         FEATURE_DYNATRACE: "false"
 
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
@@ -114,10 +117,6 @@ nodejs:
         # Boolean.  Toggle verbose logging of new app cutoff evaluation steps.
         NEW_APP_CUTOFF_DEBUG: false
         ################################################################################################################
-
-        # Leave AAT as default for now, until we have a release window to change in prod, then switch prod to default
-        # COOKIE_DOMAIN: "apply-divorce.service.gov.uk"
-        COOKIE_DOMAIN: "Test.Cookie.Domain.Value.Values"
 
 
     keyVaults:

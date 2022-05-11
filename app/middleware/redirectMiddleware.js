@@ -23,18 +23,16 @@ const newAppCutoffRedirectCheck = req => {
   const session = req.session;
   const caseState = _.get(session, 'state');
   const caseId = _.get(session, 'caseId');
-  const hasCaseId = JSON.parse(CONF.newAppCutoffCaseIdOverride) || Boolean(session && caseId);
+  const hasCaseId = Boolean(session && caseId);
   const redirectionStates = CONF.newAppCutoffRedirectStates;
-  const redirect = JSON.parse(CONF.newAppCutoffStateOverride) || redirectionStates.includes(caseState) || !caseState;
+  const redirect = redirectionStates.includes(caseState) || !caseState;
 
   logger.infoWithReq(null, 'New App Cutoff redirect check', `
     =================================================================================================================
       Case Id: ${caseId}
       Has Case Id: ${hasCaseId}
-      Case Id Override: ${CONF.newAppCutoffCaseIdOverride}
       Case State: ${caseState}
       Case State Redirect: ${redirect}
-      Case State Override: ${CONF.newAppCutoffStateOverride}
     =================================================================================================================
   `);
   if (!hasCaseId || redirect) {

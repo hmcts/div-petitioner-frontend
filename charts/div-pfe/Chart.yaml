@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: "1.0"
 description: Divorce - Petitioner frontend
 name: div-pfe
-version: 2.0.18
+version: 2.0.19
 dependencies:
   - name: nodejs
     version: 2.4.3

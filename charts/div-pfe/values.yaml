@@ -3,6 +3,14 @@ nodejs:
     aadIdentityName: divorce
     image: "hmctspublic.azurecr.io/div/pfe:latest"
     ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing environments
+    memoryLimits: '256Mi'
+    memoryRequests: '256Mi'
+    cpuLimits: '1000m'
+    cpuRequests: '200m'
+    autoscaling:
+      enabled: true
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 80 # Default is 80% target CPU utilization
     environment:
         MICROSERVICE_NAME: "divorce_frontend"
         # Info provider config

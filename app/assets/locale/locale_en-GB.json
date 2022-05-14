@@ -2,7 +2,7 @@
   "iconAltText": "Web chat icon",
   "hideChat": "Hide",
   "noAvailableAgents": "No agents are currently available",
-  "contactCenterClosed": "The Contact Center is closed",
+  "contactCenterClosed": "We are sorry, the Contact Centre is now closed",
   "connectionLost": "Connection lost",
   "connected": "Connected",
   "failedToSendRequest": "Something failed while sending the request",

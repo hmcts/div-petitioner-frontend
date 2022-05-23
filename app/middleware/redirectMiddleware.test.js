@@ -13,10 +13,7 @@ const dnFrontend = CONF.apps.dn;
 const queryString = `?${authTokenString}=authToken`;
 const expectedUrl = `${dnFrontend.url}${dnFrontend.landing}${queryString}`;
 
-// Landing page config
-const today = new Date();
-const cutoffDate = new Date(CONF.newAppCutoffDate);
-const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
+// Landing page Url
 const landingPageUrl = '/cutoff-landing-page';
 
 describe(modulePath, () => {
@@ -34,77 +31,181 @@ describe(modulePath, () => {
     next = sinon.stub();
   });
 
+  context('PFE Redirect Check Tests', () => {
+    it('should return false when there is no session', () => {
+      delete req.session;
+      expect(redirectMiddleware.pfeRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should return false when there is no state', () => {
+      delete req.session.state;
+      expect(redirectMiddleware.pfeRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should not return false when state is AwaitingDecreeNisi', () => {
+      req.session.state = 'AwaitingDecreeNisi';
+      expect(redirectMiddleware.pfeRedirectCheck(req)).to.not.eql(false);
+    });
+  });
+
+  context('Amend Journey Redirect Check Tests', () => {
+    it('should return false when there is no session', () => {
+      delete req.session;
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should return false when there is no previousCaseId', () => {
+      delete req.session.previousCaseId;
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql(false);
+    });
+
+    it('should return a url when there is a previousCaseId and the originalUrl is /cutoff-landing-page', () => {
+      req.session.previousCaseId = 'TestCaseId';
+      req.originalUrl = '/cutoff-landing-page';
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql('/screening-questions/language-preference');
+    });
+
+    it('should return true when there is a previousCaseId and the originalUrl is not /cutoff-landing-page', () => {
+      req.session.previousCaseId = 'TestCaseId';
+      delete req.originalUrl;
+      expect(redirectMiddleware.amendRedirectCheck(req)).to.eql(true);
+    });
+  });
+
+  context('New App Cutoff Landing Page Redirect Check Tests', () => {
+    it('should not return false when there is no session', () => {
+      delete req.session;
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.not.eql(false);
+    });
+
+    it('should not return false when there is no state', () => {
+      delete req.session.state;
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.not.eql(false);
+    });
+
+    it('should not return false when there is no caseId', () => {
+      delete req.session.caseId;
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.not.eql(false);
+    });
+
+    it('should return false when there is a caseId and the state is AwaitingAmendCase', () => {
+      req.session.caseId = 'TestCaseId';
+      req.session.state = 'AwaitingAmendCase';
+      expect(redirectMiddleware.newAppCutoffRedirectCheck(req)).to.eql(false);
+    });
+  });
+
+  context('newAppCutoff Feature Toggle Enabled Tests', () => {
+    it('should redirect to landing page when there is no session', () => {
+      const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+        .value(true);
+      delete req.session;
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(false);
+      expect(res.redirect.calledWith(landingPageUrl))
+        .to
+        .eql(true);
+      featureToggle.restore();
+    });
+
+    it('should redirect to landing page when there is no state', () => {
+      const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+        .value(true);
+      delete req.session.state;
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(false);
+      expect(res.redirect.calledWith(landingPageUrl))
+        .to
+        .eql(true);
+      featureToggle.restore();
+    });
+
+    it('should redirect to landing page when there is no caseId', () => {
+      const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+        .value(true);
+      delete req.session.caseId;
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(false);
+      expect(res.redirect.calledWith(landingPageUrl))
+        .to
+        .eql(true);
+      featureToggle.restore();
+    });
+
+    forEach(CONF.newAppCutoffRedirectStates)
+      .it('should redirect to landing page when a caseId exists and the state is %s', caseState => {
+        const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+          .value(true);
+        req.session.state = caseState;
+        req.session.caseId = 'TestCaseId';
+        // Remove the allocatedCourt to handle any missing overlap with CONF.ccd.d8States
+        delete req.session.allocatedCourt;
+
+        redirectMiddleware.redirectOnCondition(req, res, next);
+
+        expect(next.calledOnce)
+          .to
+          .eql(false);
+        expect(res.redirect.calledWith(landingPageUrl))
+          .to
+          .eql(true);
+        featureToggle.restore();
+      });
+  });
+
+  context('newAppCutoff Feature Toggle Disabled Tests', () => {
+    // newAppCutoff Feature Toggle Disabled
+    it('should call next when there is no session', () => {
+      const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+        .value(false);
+      delete req.session;
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(true);
+      featureToggle.restore();
+    });
+
+    it('should call next when there is no state', () => {
+      const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+        .value(false);
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(true);
+      featureToggle.restore();
+    });
+
+    it('should call next when the state is AwaitingPayment', () => {
+      const featureToggle = sinon.stub(CONF.features, 'newAppCutoff')
+        .value(false);
+      req.session.state = 'AwaitingPayment';
+
+      redirectMiddleware.redirectOnCondition(req, res, next);
+
+      expect(next.calledOnce)
+        .to
+        .eql(true);
+      featureToggle.restore();
+    });
+  });
+
   context('generic tests', () => {
-    if (cutoff && JSON.parse(CONF.features.newAppCutoff)) {
-      it('should redirect to landing page when there is no session', () => {
-        delete req.session;
-
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
-      });
-
-      it('should redirect to landing page when there is no state', () => {
-        delete req.session.state;
-
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
-      });
-
-      it('should redirect to landing page when there is no caseId', () => {
-        delete req.session.caseId;
-
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce).to.eql(false);
-        expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
-      });
-
-      forEach(CONF.newAppCutoffRedirectStates)
-        .it('should redirect to landing page when a caseId exists and the state is %s', caseState => {
-          req.session.state = caseState;
-          req.session.caseId = 'TestCaseId';
-          // Remove the allocatedCourt to handle any missing overlap with CONF.ccd.d8States
-          delete req.session.allocatedCourt;
-
-          redirectMiddleware.redirectOnCondition(req, res, next);
-
-          expect(next.calledOnce).to.eql(false);
-          expect(res.redirect.calledWith(landingPageUrl)).to.eql(true);
-        });
-    } else {
-      it('should call next when there is no session', () => {
-        delete req.session;
-
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce)
-          .to
-          .eql(true);
-      });
-
-      it('should call next when there is no state', () => {
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce)
-          .to
-          .eql(true);
-      });
-
-      it('should call next when the state is AwaitingPayment', () => {
-        req.session.state = 'AwaitingPayment';
-
-        redirectMiddleware.redirectOnCondition(req, res, next);
-
-        expect(next.calledOnce)
-          .to
-          .eql(true);
-      });
-    }
-
     forEach([
       ['IssuedToBailiff'],
       ['AwaitingBailiffService']

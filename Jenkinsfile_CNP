@@ -1,5 +1,7 @@
 #!groovy
 
+import uk.gov.hmcts.contino.GithubAPI
+
 @Library("Infrastructure")
 
 String product = "div"
@@ -30,6 +32,60 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
+labels = [
+  "enable_mutation_test",
+  "enable_fortify_scan",
+  "enable_full_functional_test"
+]
+
+def checkRepoForLabel(label) {
+  if (new GithubAPI(this).getLabelsbyPattern(env.BRANCH_NAME, "enable").contains(label)) {
+    return true
+  }
+  return false
+}
+
+labelStates = [atLeastOneEnabled: false]
+def testLabel(label) {
+  if (label == "atLeastOneEnabled") {
+    return
+  }
+  def labelExists = checkRepoForLabel(label)
+  labelStates.put(label, labelExists)
+  if (labelExists && !labelStates.atLeastOneEnabled) {
+    labelStates.atLeastOneEnabled = true
+  }
+}
+
+def checkLabels() {
+  labels.each { label ->
+    testLabel(label)
+  }
+  // Hardcode enable_all label
+  if (!labelStates.containsKey("enable_all")) {
+    testLabel("enable_all")
+  }
+}
+checkLabels()
+
+def checkLabel(label) {
+  if (labelStates.enable_all || labelStates.get(label)) {
+    return true
+  }
+  return false
+}
+
+if (checkLabel("atLeastOneEnabled")) {
+  properties([
+    pipelineTriggers([cron('00 21 * * *')]),
+    parameters([
+      string(name: 'URL_TO_TEST', defaultValue: 'https://petitioner-frontend-aks.aat.platform.hmcts.net', description: 'The URL you want to run these tests against'),
+    ])
+  ])
+
+  final FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES = 240
+}
+
 withPipeline("nodejs", product, component) {
   // installCharts()
   enableAksStagingDeployment()
@@ -43,6 +99,31 @@ withPipeline("nodejs", product, component) {
       env.RUN_BASIC_TESTS = "true"
     } else {
       loadVaultSecrets(secrets)
+    }
+  }
+
+  onPR() {
+    if (checkLabel("atLeastOneEnabled")) {
+      env.TEST_URL = params.URL_TO_TEST
+      env.FEATURE_IDAM = 'true'
+    }
+    if (checkLabel("enable_mutation_test")) {
+      enableMutationTest()
+    }
+    if (checkLabel("enable_full_functional_test")) {
+      enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
+
+      after('fullFunctionalTest') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+      }
+    }
+    if (checkLabel("enable_fortify_scan")) {
+      enableFortifyScan()
+
+      after('fortify-scan') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+      }
     }
   }
 

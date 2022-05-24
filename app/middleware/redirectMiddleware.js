@@ -4,92 +4,95 @@ const logger = require('app/services/logger').logger(__filename);
 
 const authTokenString = '__auth-token';
 
-/* eslint-disable complexity */
-const redirectOnCondition = (req, res, next) => {
+const pfeRedirectCheck = req => {
   const session = req.session;
   const caseState = _.get(session, 'state');
   const courtId = _.get(session, 'allocatedCourt.courtId', _.get(session, 'courts'));
   const caseId = _.get(session, 'caseId');
-
   logger.infoWithReq(req, 'PFE redirect check', `Case Ref: ${caseId}. Case State: ${caseState}. Court ID: ${courtId}.`);
   if (caseState && CONF.ccd.courts.includes(courtId) && !CONF.ccd.d8States.includes(caseState)) {
     logger.infoWithReq(req, 'PFE redirecting to DN', `Case Ref: ${caseId}. Redirect check Passed.`);
     const appLandingPage = `${CONF.apps.dn.url}${CONF.apps.dn.landing}`;
     const queryString = `?${authTokenString}=${req.cookies[authTokenString]}`;
-    return res.redirect(`${appLandingPage}${queryString}`);
+    return `${appLandingPage}${queryString}`;
+  }
+  return false;
+};
+
+const newAppCutoffRedirectCheck = req => {
+  const session = req.session;
+  const caseState = _.get(session, 'state');
+  const caseId = _.get(session, 'caseId');
+  const hasCaseId = Boolean(session && caseId);
+  const redirectionStates = CONF.newAppCutoffRedirectStates;
+  const redirect = redirectionStates.includes(caseState) || !caseState;
+
+  logger.infoWithReq(null, 'New App Cutoff redirect check', `
+    =================================================================================================================
+      Case Id: ${caseId}
+      Has Case Id: ${hasCaseId}
+      Case State: ${caseState}
+      Case State Redirect: ${redirect}
+    =================================================================================================================
+  `);
+  if (!hasCaseId || redirect) {
+    logger.infoWithReq(null, 'New App Cutoff redirect result', `
+    =================================================================================================================
+      Redirecting to cutoff landing page.
+    =================================================================================================================
+    `);
+    return '/cutoff-landing-page';
   }
 
-  // ==================================================================================================================
-  // Cutoff Date Landing Page Redirect
-  // ==================================================================================================================
-  if (JSON.parse(CONF.features.newAppCutoff)) {
-    const debugLog = msg => {
-      if (!JSON.parse(CONF.newAppCutoffDebug)) {
-        return;
-      }
-      const debugLogger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+  logger.infoWithReq(null, 'New App Cutoff redirect result', `
+    =================================================================================================================
+      No redirect.
+    =================================================================================================================
+  `);
+  return false;
+};
 
-      debugLogger.info(msg);
-    };
-
-    const today = new Date();
-    const cutoffDate = new Date(CONF.newAppCutoffDate);
-    const cutoff = JSON.parse(CONF.newAppCutoffDateOverride) ? true : today >= cutoffDate;
-    const hasCaseId = JSON.parse(CONF.newAppCutoffCaseIdOverride) || Boolean(session && caseId);
-    const redirectionStates = CONF.newAppCutoffRedirectStates;
-    const stateToCheck = JSON.parse(CONF.newAppCutoffUseStateToCheck) ? CONF.newAppCutoffStateToCheck : caseState;
-    const redirect = JSON.parse(CONF.newAppCutoffStateOverride) || redirectionStates.includes(stateToCheck) || !stateToCheck;
-    const redirectOn = redirectionStates.indexOf(stateToCheck);
-
-    debugLog(JSON.stringify(session));
-    debugLog(`
-      =================================================================================================================
-        Date: ${today}
-        Application cutoff date: ${cutoffDate}
-        Cutoff reached: ${cutoff}
-        Cutoff Override: ${CONF.newAppCutoffDateOverride}
-        Case Id: ${caseId}
-        Has Case Id: ${hasCaseId}
-        Case Id Override: ${CONF.newAppCutoffCaseIdOverride}
-        Case State: ${caseState}
-        State Redirect: ${redirect}
-        State Redirect On: ${redirectionStates[redirectOn]}
-        State Override: ${CONF.newAppCutoffStateOverride}
-        Redirect Match At Pos: ${redirectOn}
-        Redirect Match Value: ${redirectionStates[redirectOn]}
-      =================================================================================================================
-    `);
-    if (cutoff && (!hasCaseId || redirect)) {
-      debugLog(`
-      =================================================================================================================
-        Application cutoff date reached, and redirection is required for this request.
-        Redirecting to cutoff landing page.
-      =================================================================================================================
-    `);
-      return res.redirect('/cutoff-landing-page');
+const amendRedirectCheck = req => {
+  const session = req.session;
+  if (session && session.hasOwnProperty('previousCaseId')) {
+    logger.infoWithReq(req, `Amend Journey for Previous Case Id: ${session.previousCaseId}`);
+    if (req.originalUrl === '/cutoff-landing-page') {
+      return '/screening-questions/language-preference';
     }
-    let logMsg = `
-      =================================================================================================================
-        Application cutoff date reached, redirection not required for this request.
-        No redirect.
-      =================================================================================================================
-    `;
-    if (!cutoff) {
-      logMsg = `
-      =================================================================================================================
-        Application cutoff date not reached.
-        No redirect.
-      =================================================================================================================
-    `;
-    }
-    debugLog(logMsg);
+    return true;
   }
-  // ==================================================================================================================
-  // End Cutoff Date Landing Page Redirect
-  // ==================================================================================================================
+  return false;
+};
+
+const redirectOnCondition = (req, res, next) => {
+  const pfeRedirect = pfeRedirectCheck(req);
+  if (pfeRedirect) {
+    logger.infoWithReq(req, `PFE Redirect Target: ${pfeRedirect}`);
+    return res.redirect(pfeRedirect);
+  }
+  logger.infoWithReq(req, `PFE Redirect ${pfeRedirect}`);
+
+  const amendRedirect = amendRedirectCheck(req);
+  if (amendRedirect) {
+    if (amendRedirect === true) {
+      logger.infoWithReq(req, 'Amend Journey Redirect true - skipping New App Cutoff Redirect Check');
+      return next();
+    }
+    logger.infoWithReq(req, `Amend Journey Redirect Target: ${amendRedirect}`);
+    return res.redirect(amendRedirect);
+  }
+  logger.infoWithReq(req, `Amend Journey Redirect ${amendRedirect}`);
+
+  if (JSON.parse(CONF.features.newAppCutoff) && req.originalUrl !== '/cutoff-landing-page') {
+    const newAppCutoffRedirect = newAppCutoffRedirectCheck(req);
+    if (newAppCutoffRedirect) {
+      logger.infoWithReq(req, `New App Cutoff Redirect Target: ${newAppCutoffRedirect}`);
+      return res.redirect(newAppCutoffRedirect);
+    }
+    logger.infoWithReq(req, `New App Cutoff Redirect ${newAppCutoffRedirect}`);
+  }
 
   return next();
 };
-/* eslint-enable complexity */
 
-module.exports = { redirectOnCondition };
+module.exports = { redirectOnCondition, pfeRedirectCheck, amendRedirectCheck, newAppCutoffRedirectCheck };

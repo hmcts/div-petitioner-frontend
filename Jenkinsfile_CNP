@@ -75,17 +75,6 @@ def checkLabel(label) {
   return false
 }
 
-if (checkLabel("atLeastOneEnabled")) {
-  properties([
-    pipelineTriggers([cron('00 21 * * *')]),
-    parameters([
-      string(name: 'URL_TO_TEST', defaultValue: 'https://petitioner-frontend-aks.aat.platform.hmcts.net', description: 'The URL you want to run these tests against'),
-    ])
-  ])
-
-  final FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES = 240
-}
-
 withPipeline("nodejs", product, component) {
   // installCharts()
   enableAksStagingDeployment()
@@ -99,31 +88,6 @@ withPipeline("nodejs", product, component) {
       env.RUN_BASIC_TESTS = "true"
     } else {
       loadVaultSecrets(secrets)
-    }
-  }
-
-  onPR() {
-    if (checkLabel("atLeastOneEnabled")) {
-      env.TEST_URL = params.URL_TO_TEST
-      env.FEATURE_IDAM = 'true'
-    }
-    if (checkLabel("enable_mutation_test")) {
-      enableMutationTest()
-    }
-    if (checkLabel("enable_full_functional_test")) {
-      enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
-
-      after('fullFunctionalTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-      }
-    }
-    if (checkLabel("enable_fortify_scan")) {
-      enableFortifyScan()
-
-      after('fortify-scan') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
-      }
     }
   }
 
@@ -148,5 +112,41 @@ withPipeline("nodejs", product, component) {
   after('functionalTest:preview') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+}
+
+if (checkLabel("atLeastOneEnabled")) {
+  properties([
+    pipelineTriggers([cron('00 21 * * *')]),
+    parameters([
+      string(name: 'URL_TO_TEST', defaultValue: "https://${product}-${component}-pr-${CHANGE_ID}.service.core-compute-preview.internal", description: 'The URL you want to run these tests against'),
+    ])
+  ])
+
+  final FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES = 240
+
+  withNightlyPipeline("nodejs", product, component) {
+    onPR() {
+      env.TEST_URL = params.URL_TO_TEST
+      env.FEATURE_IDAM = 'true'
+      if (checkLabel("enable_mutation_test")) {
+        enableMutationTest()
+      }
+      if (checkLabel("enable_full_functional_test")) {
+        enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
+
+        after('fullFunctionalTest') {
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+        }
+      }
+      if (checkLabel("enable_fortify_scan")) {
+        enableFortifyScan()
+
+        after('fortify-scan') {
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+        }
+      }
+    }
   }
 }

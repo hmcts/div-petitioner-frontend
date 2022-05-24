@@ -107,6 +107,16 @@ make test-e2e
 make lint
 ...
 ```
+### Running additional tests in the Jenkins PR Pipeline
+
+1. Add one or more appropriate labels to your PR in GitHub. Valid labels are:
+
+- ```enable_security_scan```
+- ```enable_mutation_test```
+- ```enable_fortify_scan```
+- ```enable_all```
+
+2. Trigger a build of your PR in Jenkins.  Once the regular pipeline completes, the nightly pipeline will trigger to execute your chosen test(s).
 
 ## Licensing
 

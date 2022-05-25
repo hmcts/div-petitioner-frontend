@@ -111,7 +111,6 @@ make lint
 
 1. Add one or more appropriate labels to your PR in GitHub. Valid labels are:
 
-- ```enable_mutation_test```
 - ```enable_fortify_scan```
 - ```enable_full_functional_test```
 - ```enable_all_tests_and_scans```

@@ -33,7 +33,6 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 def labels = [
-  "enable_mutation_test",
   "enable_fortify_scan",
   "enable_full_functional_test"
 ]
@@ -124,9 +123,6 @@ if (checkLabel("atLeastOneEnabled")) {
     onPR() {
       env.TEST_URL = params.URL_TO_TEST
       env.FEATURE_IDAM = 'true'
-      if (checkLabel("enable_mutation_test")) {
-        enableMutationTest()
-      }
       if (checkLabel("enable_full_functional_test")) {
         enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
 

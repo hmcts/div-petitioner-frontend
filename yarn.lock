@@ -11066,7 +11066,7 @@ sockjs-client@^1.5.0:
   integrity sha512-qVHJlyfdHFht3eBFZdKEXKTlb7I4IV41xnVNo8yUKA1UHcPJwgW2SvTq9LhnjjCywSkSK7c/e4nghU0GOoMCRQ==
   dependencies:
     debug "^3.2.7"
-    eventsource "^1.1.0"
+    eventsource ">=2.0.2"
     faye-websocket "^0.11.4"
     inherits "^2.0.4"
     url-parse "^1.5.10"

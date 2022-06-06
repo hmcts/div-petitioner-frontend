@@ -3,6 +3,14 @@ nodejs:
     aadIdentityName: divorce
     image: "hmctspublic.azurecr.io/div/pfe:latest"
     ingressHost: "div-pfe-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal" # override in public facing environments
+    memoryLimits: '256Mi'
+    memoryRequests: '256Mi'
+    cpuLimits: '1000m'
+    cpuRequests: '200m'
+    autoscaling:
+      enabled: true
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 80 # Default is 80% target CPU utilization
     environment:
         MICROSERVICE_NAME: "divorce_frontend"
         # Info provider config
@@ -67,7 +75,24 @@ nodejs:
         ANTENNA_WEBCHAT_URL: "webchat.ctsc.hmcts.net"
         ANTENNA_WEBCHAT_SERVICE: "Divorce"
 
+        ANTENNA_WEBCHAT_AVAILABILITY_DEBUG: "false"
+        FEATURE_WEBCHAT_AVAILABILITY_TOGGLE: "false"
+
         FEATURE_DYNATRACE: "false"
+
+        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
+        FEATURE_NEW_APP_CUTOFF: "false"
+
+        # Array of case states that will trigger a redirect.
+        NEW_APP_CUTOFF_REDIRECT_STATES: [
+            'AwaitingPayment',
+            'AwaitingHWFDecision',
+            'AwaitingDocuments',
+            'Withdrawn',
+            'PendingRejection',
+            'Rejected'
+        ]
+
 
     keyVaults:
         div:

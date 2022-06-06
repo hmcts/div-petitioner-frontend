@@ -30,6 +30,7 @@ window.jQuery = $;
     enableDisableButton.init();
 
     govukFrontend.initAll();
+
   });
 
 })(window);

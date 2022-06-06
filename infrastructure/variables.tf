@@ -275,7 +275,7 @@ variable "webchat_button_service_closed" {
 }
 
 variable "node_version" {
-  default = "12.14.1"
+  default = "12.20.0"
 }
 
 variable "enable_ase" {

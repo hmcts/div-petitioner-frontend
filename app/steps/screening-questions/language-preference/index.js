@@ -4,6 +4,7 @@ module.exports = class ScreeningQuestionsLanguagePreference extends ScreeningVal
   get url() {
     return '/screening-questions/language-preference';
   }
+
   get nextStep() {
     return {
       languagePreferenceWelsh: {

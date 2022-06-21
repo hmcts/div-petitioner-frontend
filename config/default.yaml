@@ -136,7 +136,7 @@ commonProps:
   smartSurveyFeedbackDonePageUrl: 'https://www.smartsurvey.co.uk/s/Divorce_ExitSurvey_Applicant'
   courtPhoneNumberEn: '0000 111 2220'
   courtPhoneNumberCy: '0000 111 2220'
-  courtOpeningHourEn: 'Monday to Friday, 8am to 8pm, Saturday 8am to 2pm'
+  courtOpeningHourEn: 'Monday to Friday, 8am to 6pm'
   courtOpeningHourCy: 'Dydd Llun i ddydd Gwener, 8am i 8pm, dydd Sadwrn 8am i 2pm'
   courtEmail: 'simulate-delivered@notifications.service.gov.uk'
 

@@ -227,7 +227,7 @@ variable "court_phone_number_cy" {
 }
 
 variable "court_opening_hours_en" {
-  default = "Monday to Friday, 8am to 8pm, Saturday 8am to 2pm"
+  default = "Monday to Friday, 8am to 6pm"
 }
 
 variable "court_opening_hours_cy" {

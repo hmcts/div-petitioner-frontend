@@ -8,6 +8,14 @@ if (CONF.environment !== 'testing') {
 }
 
 const listenForConnections = true;
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
+logger.info(`
+
+              ==========================================================================================
+                phone number: ${CONF.courtOpeningHourEn}
+              ==========================================================================================
+`);
 
 if (CONF.applicationInsights.instrumentationKey) {
   appInsights.setup(CONF.applicationInsights.instrumentationKey)

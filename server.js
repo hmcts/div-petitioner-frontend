@@ -13,7 +13,7 @@ const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 logger.info(`
 
               ==========================================================================================
-                phone number: ${CONF.courtOpeningHourEn}
+                phone number: ${CONF.commonProps.courtOpeningHourEn}
               ==========================================================================================
 `);
 

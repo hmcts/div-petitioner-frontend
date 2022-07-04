@@ -95,10 +95,7 @@ function setCookie(cname, cvalue, exdays) {
   // eslint-disable-next-line no-magic-numbers
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   const expires = `expires=${d.toUTCString()}`;
-  // COOKIEDOMAIN is populated by WebPack config
-  // eslint-disable-next-line no-undef
-  const cookieDomain = COOKIEDOMAIN;
-  document.cookie = `${cname}=${cvalue};${expires};path=/;domain=${cookieDomain};Secure=true`;
+  document.cookie = `${cname}=${cvalue};${expires};path=/;domain=aat.platform.hmcts.net;Secure=true`;
 }
 
 function getCookie(cname) {

@@ -26,7 +26,7 @@ describe(modulePath, () => {
     });
 
     it('checks correct http status is used', done => {
-      testHttpStatus(done, agent, underTest, statusCodes.INTERNAL_SERVER_ERROR);
+      testHttpStatus(done, agent, underTest, statusCodes.OK);
     });
   });
 });

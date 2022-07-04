@@ -76,18 +76,33 @@ paymentDateFormat: 'DDMMYYYY'
 
 testUrl: 'https://localhost:3000'
 
-#######################################################################################################################
-# JS DateTime value representing when the new application cutoff will take effect
-# Servers use UTC!  Adjust values accordingly!
-newAppCutoffDate: "2022-03-31T15:00:00"
-
-# Boolean.  True: New app cutoff date test evaluates true.
-#           False: New app cutoff is evaluated against current server datetime.
-newAppCutoffDateOverride: false
-
-# Boolean. True: Test for existence of a caseId evaluates to true.
-#          False: Check for caseId within session object.
-newAppCutoffCaseIdOverride: false
+webchatAvailability:
+  url:
+    hostName: 'webchat.pp.ctsc.hmcts.net'
+    path_1: '/openinghours/'
+    version: 'v1'
+    path_2: '/callcentreservice/Divorce'
+  format:
+    responseProperty: 'daysOfWeekOpen'
+    jsonSchema: {
+      type: 'array',
+      maxItems: 7,
+      items: {
+        type: 'object',
+        properties: {
+          dayOfWeek: { type: 'string' },
+          from: { type: 'string' },
+          until: { type: 'string' }
+        },
+        required: [ 'dayOfWeek', 'from', 'until' ],
+        additionalProperties: false
+      }
+    }
+    validDayNames: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+  messages:
+    defaultMessage: 'Web chat is currently closed. Please try again later.  Alternatively, contact us using one of the ways below.'
+    prefixMessage: 'Web chat is now closed. Please come back during the following hours:'
+    suffixMessage: 'Alternatively, contact us using one of the ways below.'
 
 # Array of case states that will trigger a redirect.
 newAppCutoffRedirectStates: [
@@ -98,25 +113,6 @@ newAppCutoffRedirectStates: [
     'PendingRejection',
     'Rejected'
 ]
-
-# Boolean.  True: Case states from sessions will be overridden by newAppCutoffStateToCheck for landing page redirection
-#           False: Case states from sessions will be evaluated for landing page redirection
-# NB: Will be ignored if newAppCutoffStateOverride is True.
-newAppCutoffUseStateToCheck: false
-
-# String. Case state to validate against newAppCutoffRedirectStates array when newAppCutoffUseStateToCheck is True.
-#         Will be ignored if newAppCutoffStateOverride is True, or newAppCutoffUseStateToCheck is False.
-newAppCutoffStateToCheck: 'TestState'
-
-# Boolean.  True: Case state redirect check evaluates to true.
-#           False: Case state evaluated against array.
-newAppCutoffStateOverride: false
-
-# Boolean.  Toggle verbose logging of new app cutoff evaluation steps.
-newAppCutoffDebug: false
-#######################################################################################################################
-
-cookieDomain: "Test.Cookie.Domain.Value.Default"
 
 commonProps:
   applicationFee:
@@ -150,8 +146,9 @@ features:
   browserSupport: false
   strategicPay: false
   antennaWebchatUserAttribute: false
+  antennaWebchatAvailabilityToggle: false
   newFees: true
-  dynatrace: true
+  dynatrace: false
   newAppCutoffDateBanner: true
   newAppCutoff: false
 

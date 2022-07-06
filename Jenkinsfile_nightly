@@ -1,7 +1,7 @@
 #!groovy
 
 properties([
-        pipelineTriggers([cron('00 21 * * *')]),
+        pipelineTriggers([cron('00 5 * * *')]),
         parameters([
           string(name: 'RUNNING_ENV', defaultValue: 'aat', description: 'Environment to test'),
                 string(name: 'URL_TO_TEST', defaultValue: 'https://petitioner-frontend-aks.aat.platform.hmcts.net', description: 'The URL you want to run these tests against'),
@@ -19,7 +19,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_URL = params.URL_TO_TEST
     env.FEATURE_IDAM = 'true'
 
-    enableCrossBrowserTest(['microsoftIE11', 'microsoftEdge', 'firefox', 'safari'], CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
+    enableCrossBrowserTest(CROSS_BROWSER_TESTS_TIMEOUT_IN_MINUTES)
     enableMutationTest()
     enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
     enableFortifyScan()

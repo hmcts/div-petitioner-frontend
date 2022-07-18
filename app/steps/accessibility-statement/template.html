@@ -29,7 +29,13 @@
 <p class="govuk-body">{{ content.needMoreInformation | safe }}</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>{{ content.email | safe }}</li>
-  <li>{{ content.phone | safe }}</li>
+  <li>
+    {% if i18n.currentLanguage == "en" %}
+      call {{ commonProps.en.courtPhoneNumber | safe }} ({{ commonProps.en.courtOpeningHours | safe }} {{ commonProps.en.courtOpeningHours2 | safe}})
+    {% else %}
+      {{ content.phone | safe }}
+    {% endif %}
+  </li>
 </ul>
 <p class="govuk-body">{{ content.considerYourRequest | safe }}</p>
 

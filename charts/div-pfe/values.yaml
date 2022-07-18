@@ -61,7 +61,7 @@ nodejs:
         COURT_EMAIL: "contactdivorce@justice.gov.uk"
         COURT_PHONENUMBER_EN: "0300 303 0642"
         COURT_PHONENUMBER_CY: "0300 303 5171"
-        COURT_OPENINGHOURS_EN: 'Monday to Friday, 8am to 6pm'
+        COURT_OPENINGHOURS_EN: 'Monday - Friday - Phones and Webchat are open 8am-6pm. <br>Closed on Saturday and Sunday.'
         COURT_OPENINGHOURS_CY: "Dydd Llun i ddydd Gwener, 8:30am - 5pm"
         COURT_SERVICE_CENTRE_SITEID: "CTSC"
         SERVICE_CENTRE_NAME: "Courts and Tribunals Service Centre"

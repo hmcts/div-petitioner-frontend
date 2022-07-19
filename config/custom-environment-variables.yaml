@@ -64,6 +64,7 @@ commonProps:
   courtPhoneNumberEn: COURT_PHONENUMBER_EN
   courtPhoneNumberCy: COURT_PHONENUMBER_CY
   courtOpeningHourEn: COURT_OPENINGHOURS_EN
+  courtOpeningHourEn2: COURT_OPENINGHOURS_EN_2
   courtOpeningHourCy: COURT_OPENINGHOURS_CY
   courtEmail: COURT_EMAIL
 

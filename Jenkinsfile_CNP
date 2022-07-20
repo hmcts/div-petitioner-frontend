@@ -1,6 +1,7 @@
 #!groovy
 
-@Library("Infrastructure")
+// @Library("Infrastructure")
+@Library('Infrastructure@Add-Tests-To-Master-Pipeline')
 
 String product = "div"
 String component = "pfe"

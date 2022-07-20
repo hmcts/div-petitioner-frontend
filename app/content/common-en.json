@@ -15,7 +15,7 @@
         "errorSummaryHeading": "There was a problem",
         "problemWithThisPage": "Contact us for help",
         "phoneTitle": "Telephone",
-        "phoneToCallIfProblems": "{{courtPhoneNumberEn}}<br>{{courtOpeningHourEn}}<br>{{courtOpeningHourEn2}}.",
+        "phoneToCallIfProblems": "{{courtPhoneNumberEn}}<br>{{courtOpeningHourEn}}.",
         "emailTitle": "Send us a message",
         "emailIfProblems": "<a class=\"govuk-link\" href=\"mailto:{{ courtEmail }}\" aria-label=\"Send us a message at at {{ courtEmail }}, this link opens a new email.\">Send us a message</a>",
         "responseTime": "We aim to get back to you within 5 days",

@@ -7,7 +7,7 @@
           "title": "There is a problem with your application",
           "info": "You need to contact us about your divorce application.",
           "contactTitle": "Contact Us",
-          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}}<br>{{courtOpeningHourEn2}})",
+          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}})",
           "contactEmail": "Email: {{courtEmail}}"
         }
       }

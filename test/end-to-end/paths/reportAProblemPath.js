@@ -3,7 +3,6 @@ const commonContent = require('app/content/common-en').resources.en.translation;
 
 const phone = config.get('commonProps.courtPhoneNumberEn');
 const hours = config.get('commonProps.courtOpeningHourEn');
-const hours_2 = config.get('commonProps.courtOpeningHourEn2');
 
 Feature('Report A Problem Handling @cross-browser-test').retry(5);
 
@@ -20,7 +19,6 @@ Scenario('I see link to go the ’Contact us for help’ page', (I) => {
   I.see(commonContent.phoneTitle);
   I.see(phone);
   I.see(hours);
-  I.see(hours_2);
 
   // email
   I.see(commonContent.emailTitle);

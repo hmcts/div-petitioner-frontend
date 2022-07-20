@@ -8,7 +8,7 @@
           "info": "Your application has now been submitted.",
           "info2": "You can contact us if you need help with your divorce application.",
           "contactTitle": "Contact Us",
-          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}}<br>{{courtOpeningHourEn2}})",
+          "contactPhone": "Phone: {{courtPhoneNumberEn}} ({{courtOpeningHourEn}})",
           "contactEmail": "Email: {{courtEmail}}"
         }
       }

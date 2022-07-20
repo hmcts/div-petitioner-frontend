@@ -27,7 +27,6 @@ function commonContentMiddleware(req, res, next) {
           courtPhoneNumberEn: CONF.commonProps.courtPhoneNumberEn,
           courtPhoneNumberCy: CONF.commonProps.courtPhoneNumberCy,
           courtOpeningHourEn: CONF.commonProps.courtOpeningHourEn,
-          courtOpeningHourEn2: CONF.commonProps.courtOpeningHourEn2,
           courtOpeningHourCy: CONF.commonProps.courtOpeningHourCy,
           courtEmail: CONF.commonProps.courtEmail
         });

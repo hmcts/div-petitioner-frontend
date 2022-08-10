@@ -240,12 +240,12 @@ describe(modulePath, () => {
       });
     });
 
-    it('contains allocated court phone number', done => {
-      testExistence(done, agent, underTest, allocatedCourt.phoneNumber);
+    it('contains CTSC phone number', done => {
+      testExistence(done, agent, underTest, config.commonProps.en.courtPhoneNumber);
     });
 
-    it('contains allocated court opening hours', done => {
-      testExistence(done, agent, underTest, allocatedCourt.openingHours);
+    it('contains CTSC opening hours', done => {
+      testExistence(done, agent, underTest, config.commonProps.en.courtOpeningHours);
     });
   });
 

@@ -241,11 +241,11 @@ describe(modulePath, () => {
     });
 
     it('contains CTSC phone number', done => {
-      testExistence(done, agent, underTest, config.commonProps.en.courtPhoneNumberEn);
+      testExistence(done, agent, underTest, config.commonProps.courtPhoneNumberEn);
     });
 
     it('contains CTSC opening hours', done => {
-      testExistence(done, agent, underTest, config.commonProps.en.courtOpeningHourEn);
+      testExistence(done, agent, underTest, config.commonProps.courtOpeningHourEn);
     });
   });
 

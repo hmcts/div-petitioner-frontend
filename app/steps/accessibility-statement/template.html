@@ -31,7 +31,7 @@
   <li>{{ content.email | safe }}</li>
   <li>
     {% if i18n.currentLanguage == "en" %}
-      call {{ commonProps.en.courtPhoneNumber | safe }} ({{ commonProps.en.courtOpeningHours | safe }})
+      call {{ commonProps.courtPhoneNumberEn | safe }} ({{ commonProps.courtOpeningHoursEn | safe }})
     {% else %}
       {{ content.phone | safe }}
     {% endif %}

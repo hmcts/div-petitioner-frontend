@@ -174,10 +174,10 @@
     {{ session.allocatedCourt.email | safe if session.allocatedCourt.email }}
   </p>
   <p class="govuk-body">
-    {{ commonProps.en.courtPhoneNumber | safe }}
+    {{ commonProps.courtPhoneNumberEn | safe }}
   </p>
   <p class="govuk-body">
-    {{ commonProps.en.courtOpeningHours | safe }}
+    {{ commonProps.courtOpeningHoursEn | safe }}
   </p>
 
   {% if session.helpWithFeesReferenceNumber %}
@@ -220,8 +220,8 @@
       </li>
       <li>
         <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
-        {{ commonProps.en.courtPhoneNumber | safe }}<br>
-        {{ commonProps.en.courtOpeningHours | safe }}<br>
+        {{ commonProps.courtPhoneNumberEn | safe }}<br>
+        {{ commonProps.courtOpeningHoursEn | safe }}<br>
       </li>
 
       <li>

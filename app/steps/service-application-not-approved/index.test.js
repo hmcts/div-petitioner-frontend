@@ -5,6 +5,7 @@ const { withSession } = require('test/util/setup');
 const applicationFeeMiddleware = require('app/middleware/updateApplicationFeeMiddleware');
 const server = require('app');
 const { expect } = require('test/util/chai');
+const CONF = require('config');
 
 const mockServiceRefusalSession = require('test/fixtures/mockServiceRefusalSession');
 
@@ -280,12 +281,12 @@ describe(modulePath, () => {
       });
     });
 
-    it('should contain allocated court phone number', done => {
-      testExistence(done, agent, underTest, allocatedCourt.phoneNumber);
+    it('should contain CTSC phone number', done => {
+      testExistence(done, agent, underTest, CONF.commonProps.courtPhoneNumberEn);
     });
 
-    it('should contain allocated court opening hours', done => {
-      testExistence(done, agent, underTest, allocatedCourt.openingHours);
+    it('should contain CTSC opening hours', done => {
+      testExistence(done, agent, underTest, CONF.commonProps.courtOpeningHourEn);
     });
   });
 

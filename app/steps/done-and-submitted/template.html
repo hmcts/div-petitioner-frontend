@@ -220,8 +220,13 @@
       </li>
       <li>
         <h4 class="govuk-heading-xs govuk-!-margin-0">{{ content.phoneHeading }}</h4>
-        {{ session.allocatedCourt.phoneNumber | safe if session.allocatedCourt.phoneNumber }}<br>
-        {{ session.allocatedCourt.openingHours | safe if session.allocatedCourt.openingHours }}<br>
+        {% if session.language == "cy" %}
+          {{ commonProps.cy.courtPhoneNumber | safe }}<br>
+          {{ commonProps.cy.courtOpeningHours | safe }}<br>
+        {% else %}
+          {{ commonProps.en.courtPhoneNumber | safe }}<br>
+          {{ commonProps.en.courtOpeningHours | safe }}<br>
+        {% endif %}
       </li>
 
       <li>

@@ -149,6 +149,16 @@ exports.init = listenForConnections => {
         service: CONF.services.antennaWebchat.service,
         version: CONF.services.antennaWebchat.version
       },
+      commonProps: {
+        en: {
+          courtPhoneNumber: CONF.commonProps.courtPhoneNumberEn,
+          courtOpeningHours: CONF.commonProps.courtOpeningHourEn
+        },
+        cy: {
+          courtPhoneNumber: CONF.commonProps.courtPhoneNumberCy,
+          courtOpeningHours: CONF.commonProps.courtOpeningHourCy
+        }
+      },
       features: {
         antennaWebchatUserAttribute: parseBool(CONF.features.antennaWebchatUserAttribute),
         antennaWebchatAvailabilityToggle: parseBool(CONF.features.antennaWebchatAvailabilityToggle),

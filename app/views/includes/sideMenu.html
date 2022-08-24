@@ -8,8 +8,13 @@
     </li>
     <li>
       <h4 class="govuk-heading-s govuk-!-margin-0">{{ content.phoneHeading }}</h4>
-      {{ session.court.serviceCentre.phoneNumber | safe if session.court.serviceCentre.phoneNumber }}<br>
-      {{ session.court.serviceCentre.openingHours | safe if session.court.serviceCentre.openingHours }}<br>
+      {% if session.language == "cy" %}
+        {{ commonProps.cy.courtPhoneNumber | safe }}<br>
+        {{ commonProps.cy.courtOpeningHours | safe }}<br>
+      {% else %}
+        {{ commonProps.en.courtPhoneNumber | safe }}<br>
+        {{ commonProps.en.courtOpeningHours | safe }}<br>
+      {% endif %}
     </li>
 
     <li>

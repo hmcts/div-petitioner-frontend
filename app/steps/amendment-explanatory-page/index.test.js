@@ -7,6 +7,7 @@ const { expect, sinon } = require('test/util/chai');
 const mockAwaitingAmendSession = require('test/fixtures/mockAwaitingAmendSession');
 const mockAmendedSession = require('test/fixtures/mockAmendedSession');
 const submission = require('app/services/submission');
+const CONF = require('config');
 
 const modulePath = 'app/steps/amendment-explanatory-page';
 
@@ -181,12 +182,12 @@ describe(modulePath, () => {
       });
     });
 
-    it('contains serviceCentre phone number', done => {
-      testExistence(done, agent, underTest, serviceCentre.phoneNumber);
+    it('contains CTSC phone number', done => {
+      testExistence(done, agent, underTest, CONF.commonProps.courtPhoneNumberEn);
     });
 
-    it('contains serviceCentre opening hours', done => {
-      testExistence(done, agent, underTest, serviceCentre.openingHours);
+    it('contains CTSC opening hours', done => {
+      testExistence(done, agent, underTest, CONF.commonProps.courtOpeningHourEn);
     });
   });
 

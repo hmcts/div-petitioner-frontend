@@ -1,6 +1,7 @@
 #!groovy
 
-@Library("Infrastructure")
+
+@Library("Infrastructure@DTSPO-6455/yarn_v3_upgrade")
 
 String product = "div"
 String component = "pfe"

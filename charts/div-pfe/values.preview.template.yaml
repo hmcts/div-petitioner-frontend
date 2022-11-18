@@ -25,7 +25,7 @@ nodejs:
         FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"
         DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
 
-        FEATURE_NEW_APP_CUTOFF: "false"
+        FEATURE_NEW_APP_CUTOFF: "true"
 
         # Array of case states that will trigger a redirect.
         NEW_APP_CUTOFF_REDIRECT_STATES: [

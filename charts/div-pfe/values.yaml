@@ -80,8 +80,8 @@ nodejs:
 
         FEATURE_DYNATRACE: "false"
 
-        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
-        FEATURE_NEW_APP_CUTOFF: "false"
+        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"
+        FEATURE_NEW_APP_CUTOFF: "true"
 
         # Array of case states that will trigger a redirect.
         NEW_APP_CUTOFF_REDIRECT_STATES: [

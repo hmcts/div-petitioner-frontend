@@ -22,10 +22,10 @@ nodejs:
         ANTENNA_WEBCHAT_AVAILABILITY_DEBUG: "true"
         FEATURE_ANTENNA_WEBCHAT_AVAILABILITY_TOGGLE: "true"
         FEATURE_DYNATRACE: "false"
-        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "true"
+        FEATURE_NEW_APP_CUTOFF_DATE_BANNER: "false"
         DECREE_NISI_FRONTEND_URL: "https://decree-nisi-aks.aat.platform.hmcts.net"
 
-        FEATURE_NEW_APP_CUTOFF: "false"
+        FEATURE_NEW_APP_CUTOFF: "true"
 
         # Array of case states that will trigger a redirect.
         NEW_APP_CUTOFF_REDIRECT_STATES: [

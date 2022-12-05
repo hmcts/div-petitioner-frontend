@@ -23,16 +23,16 @@ withNightlyPipeline("nodejs", product, component) {
     enableFullFunctionalTest(FULL_FUNCTIONAL_TESTS_TIMEOUT_IN_MINUTES)
     enableFortifyScan()
 
-    after('crossBrowserTest') {
+    afterSuccess('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 
-    after('fullFunctionalTest') {
+    afterSuccess('fullFunctionalTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 
-    after('fortify-scan') {
+    afterSuccess('fortify-scan') {
       steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
     }
 

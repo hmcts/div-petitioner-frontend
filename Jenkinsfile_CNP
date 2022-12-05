@@ -46,15 +46,15 @@ withPipeline("nodejs", product, component) {
     }
   }
 
-  after('build') {
+  afterSuccess('build') {
     yarnBuilder.yarn('setup')
   }
 
-  after('test') {
+  afterSuccess('test') {
     yarnBuilder.yarn('test-validation')
   }
 
-  after('functionalTest:aat') {
+  afterSuccess('functionalTest:aat') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }
@@ -64,7 +64,7 @@ withPipeline("nodejs", product, component) {
     env.NODE_CONFIG_ENV = 'preview'
   }
 
-  after('functionalTest:preview') {
+  afterSuccess('functionalTest:preview') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }

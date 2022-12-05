@@ -227,7 +227,8 @@
     "loader-utils": "^1.4.1",
     "got": "^11.8.5",
     "minimatch": "^3.0.5",
-    "scss-tokenizer": "^0.4.3"
+    "scss-tokenizer": "^0.4.3",
+    "decode-uri-component": "^0.2.1"
   },
   "nyc": {
     "report-dir": "coverage",

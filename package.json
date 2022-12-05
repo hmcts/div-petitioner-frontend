@@ -212,7 +212,7 @@
     "set-value": "^4.0.1",
     "color-string": "^1.5.5",
     "is-svg": "^4.2.2",
-    "vm2": "^3.9.11",
+    "vm2": "^3.9.4",
     "node-forge": ">=1.3.0",
     "postcss": ">=7.0.36",
     "follow-redirects": ">=1.14.8",
@@ -223,11 +223,7 @@
     "validator": ">=13.7.0",
     "async": ">=3.2.2",
     "eventsource": ">=1.1.1",
-    "moment": "2.29.4",
-    "loader-utils": "^1.4.1",
-    "got": "^11.8.5",
-    "minimatch": "^3.0.5",
-    "scss-tokenizer": "^0.4.3"
+    "moment": "2.29.4"
   },
   "nyc": {
     "report-dir": "coverage",

@@ -50,7 +50,7 @@
     "@hmcts/prd-client": "^0.0.8",
     "@hmcts/properties-volume": "^0.0.13",
     "add": "^2.0.6",
-    "ajv": "^6.12.3",
+    "ajv": "^4.10.0",
     "applicationinsights": "1.5.0",
     "applicationinsights-native-metrics": "^0.0.5",
     "audit": "^0.0.6",
@@ -230,8 +230,7 @@
     "scss-tokenizer": "^0.4.3",
     "decode-uri-component": "^0.2.1",
     "qs": "^6.9.7",
-    "express": "^4.17.3",
-    "ajv": "^6.12.3"
+    "express": "^4.17.3"
   },
   "nyc": {
     "report-dir": "coverage",

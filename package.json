@@ -67,7 +67,7 @@
     "dns-packet": "^5.2.4",
     "dotenv": "^5.0.0",
     "dropzone": "^5.1.1",
-    "express": "4.16.1",
+    "express": "4.17.3",
     "express-limiter": "^1.6.0",
     "express-nunjucks": "2.2.3",
     "express-session": "1.17.1",

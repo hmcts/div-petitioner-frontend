@@ -2,10 +2,10 @@ apiVersion: v2
 appVersion: "1.0"
 description: Divorce - Petitioner frontend
 name: div-pfe
-version: 2.0.24
+version: 2.0.25
 dependencies:
   - name: nodejs
-    version: 2.4.9
+    version: 2.4.11
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
   - name: redis
     version: 16.11.3

@@ -2,7 +2,7 @@
 
 @Library("Infrastructure")
 
-String product = "div"
+String product = div
 String component = "pfe"
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)

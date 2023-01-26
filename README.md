@@ -3,7 +3,7 @@
 This repo is for the frontend part of the journey that the petitioner will go through to apply for a divorce.
 
 ## Setup
-
+..
 **Config**
 
 For development only config, rename the `config/development_template.yaml` file to `config/development.yaml`. Running the app with the node environment set to `development` will ensure this file is used.

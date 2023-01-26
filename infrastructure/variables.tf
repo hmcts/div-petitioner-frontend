@@ -18,7 +18,7 @@ variable "instance_size" {
 
 variable "component" {}
 
-variable "product" {}
+variable product {}
 
 variable "location" {
   default = "UK South"

@@ -90,6 +90,13 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   resource_group_name  = "core-infra-${var.env}"
 }
 
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-${var.component}-${var.env}"
+  location = "${var.location}"
+
+  tags = "${var.common_tags}"
+}
+
 module "redis-cache" {
   source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product     = var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.component}-redis"

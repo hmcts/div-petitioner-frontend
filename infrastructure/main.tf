@@ -4,18 +4,18 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "${var.product}-${var.component}-${var.env}"
-  location = "${var.location}"
+  location = var.location
 
-  tags = "${var.common_tags}"
+  tags = var.common_tags
 }
 
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-${var.component}-appinsights-${var.env}"
-  location            = "${var.appinsights_location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.appinsights_location
+  resource_group_name = azurerm_resource_group.rg.name
   application_type    = "Web"
 
-  tags = "${var.common_tags}"
+  tags = var.common_tags
 }
 
 data "azurerm_key_vault" "div_key_vault" {

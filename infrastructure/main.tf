@@ -2,6 +2,22 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-${var.component}-${var.env}"
+  location = "${var.location}"
+
+  tags = "${var.common_tags}"
+}
+
+resource "azurerm_application_insights" "appinsights" {
+  name                = "${var.product}-${var.component}-appinsights-${var.env}"
+  location            = "${var.appinsights_location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  application_type    = "Web"
+
+  tags = "${var.common_tags}"
+}
+
 data "azurerm_key_vault" "div_key_vault" {
   name                = local.vaultName
   resource_group_name = local.vaultName
@@ -88,13 +104,6 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   name                 = "core-infra-subnet-1-${var.env}"
   virtual_network_name = "core-infra-vnet-${var.env}"
   resource_group_name  = "core-infra-${var.env}"
-}
-
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.product}-${var.component}-${var.env}"
-  location = "${var.location}"
-
-  tags = "${var.common_tags}"
 }
 
 module "redis-cache" {

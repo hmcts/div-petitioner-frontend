@@ -2,18 +2,18 @@ apiVersion: v2
 appVersion: "1.0"
 description: Divorce - Petitioner frontend
 name: div-pfe
-version: 2.0.24
+version: 2.0.25
 dependencies:
   - name: nodejs
-    version: 2.4.8
+    version: 2.4.13
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
   - name: redis
-    version: 16.11.3
+    version: 17.7.2
     repository: "https://charts.bitnami.com/bitnami"
     tags:
       - pr
   - name: idam-pr
-    version: 2.2.6
+    version: 2.2.7
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     tags:
       - idam-pr

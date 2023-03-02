@@ -64,7 +64,7 @@
     "csrf": "^3.0.6",
     "css-loader": "^0.28.11",
     "csurf": "^1.9.0",
-    "dns-packet": "^5.2.4",
+    "dns-packet": "^5.4.0",
     "dotenv": "^5.0.0",
     "dropzone": "^5.1.1",
     "express": "4.17.3",

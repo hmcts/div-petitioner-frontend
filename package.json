@@ -52,7 +52,7 @@
     "add": "^2.0.6",
     "ajv": "^4.10.0",
     "applicationinsights": "1.5.0",
-    "applicationinsights-native-metrics": "^0.0.5",
+    "applicationinsights-native-metrics": "^0.0.9",
     "audit": "^0.0.6",
     "body-parser": "^1.14.1",
     "co": "^4.6.0",

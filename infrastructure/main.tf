@@ -99,4 +99,35 @@ module "redis-cache" {
   common_tags = var.common_tags
 }
 
+module "frontend" {
+  source                          = "git@github.com:hmcts/cnp-module-webapp?ref=master"
+  product                         = "${var.product}-${var.component}"
+  location                        = var.location
+  env                             = var.env
+  ilbIp                           = var.ilbIp
+  is_frontend                     = var.env != "preview" ? 1: 0
+  subscription                    = var.subscription
+  appinsights_instrumentation_key = data.azurerm_key_vault_secret.appinsights_secret.value
+  additional_host_name            = var.env != "preview" ? var.additional_host_name : "null"
+  https_only                      = "false"
+  capacity                        = var.capacity
+  common_tags                     = var.common_tags
+  asp_name                        = local.asp_name
+  asp_rg                          = local.asp_rg
+  instance_size                   = var.instance_size
+  enable_ase                      = var.enable_ase
+
+  app_settings = {
+    // Node specific vars
+    NODE_ENV  = var.node_env
+    NODE_PATH = var.node_path
+    WEBSITE_NODE_DEFAULT_VERSION = var.node_version
+
+    UV_THREADPOOL_SIZE = var.uv_threadpool_size
+    NODE_CONFIG_DIR    = var.node_config_dir
+
+    // Logging vars
+    REFORM_TEAM         = var.reform_team
+    REFORM_SERVICE_NAME = var.component
+    REFORM_ENVIRONMENT  = var.env
 

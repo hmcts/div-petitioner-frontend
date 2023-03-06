@@ -31,7 +31,7 @@ local*.yaml
 config/local*
 /config/development.yaml
 *.run.xml
-.pnp.*
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins

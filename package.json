@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "private": true,
   "engines": {
-    "node": ">=14.18.1"
+    "node": ">=14.9.3"
   },
   "scripts": {
     "start": "NODE_PATH=. node server.js",
@@ -240,5 +240,5 @@
       "text"
     ]
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.5.0"
 }

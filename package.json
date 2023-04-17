@@ -229,7 +229,10 @@
     "scss-tokenizer": "^0.4.3",
     "decode-uri-component": "^0.2.1",
     "qs": "^6.9.7",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "jsdom": ">=16.5.0",
+    "jsonwebtoken": " >=9.0.0",
+    "request": "^2.88.0"
   },
   "nyc": {
     "report-dir": "coverage",

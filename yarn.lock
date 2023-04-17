@@ -5146,7 +5146,7 @@ __metadata:
     moment: ^2.29.4
     negotiator: ^0.6.1
     nock: 9.2.6
-    node-sass: ">=7.0.0"
+    node-sass: 8.0.0
     nomnoml: 0.2.0
     nunjucks: ^3.2.0
     nyc: ^15.0.0
@@ -11403,7 +11403,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-sass@npm:>=7.0.0":
+"node-sass@npm:8.0.0":
   version: 8.0.0
   resolution: "node-sass@npm:8.0.0"
   dependencies:

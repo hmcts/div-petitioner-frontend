@@ -32,7 +32,9 @@ config/local*
 /config/development.yaml
 *.run.xml
 
+.pnp.*
 .yarn/*
+!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases

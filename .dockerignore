@@ -1,8 +1,14 @@
-.git
-.github
-infrastructure
-kubernetes
-node_modules
+# exclude all by default
+*
 
-Jenkinsfile*
-README.md
+# exceptions from `exclude all` rule
+!acb.tpl.yaml
+!acb.yaml
+!package.json
+!yarn.lock
+
+!tsconfig.json
+!webpack/**
+!src/main/**
+!config/**
+!webpack.config.js

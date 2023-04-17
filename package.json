@@ -99,7 +99,7 @@
     "nunjucks": "^3.2.0",
     "redis": "^3.1.1",
     "redis-server": "^1.2.2",
-    "request": "^2.87.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "require-directory": "^2.1.1",
     "sass-loader": "^6.0.3",

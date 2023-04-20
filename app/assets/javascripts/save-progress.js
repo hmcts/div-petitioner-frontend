@@ -1,4 +1,3 @@
-/*
 const $ = require('jquery');
 
 const saveInterval = 15000;
@@ -28,4 +27,3 @@ function saveProgress(previousData = '') {
 }
 
 module.exports = saveProgress;
-*/

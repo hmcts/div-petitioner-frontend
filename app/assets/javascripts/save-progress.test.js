@@ -1,4 +1,3 @@
-/*
 const { expect } = require('chai');
 const nock = require('nock');
 const { JSDOM } = require('jsdom');
@@ -62,4 +61,3 @@ describe(__filename, () => {
     endPoint.done();
   });
 });
-*/

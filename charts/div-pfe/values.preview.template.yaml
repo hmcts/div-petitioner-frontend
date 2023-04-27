@@ -12,7 +12,7 @@ nodejs:
         APPINSIGHTS_INSTRUMENTATIONKEY: "dummykey"
         FEATURE_STRATEGIC_PAY: "false"
         REDISCLOUD_URL: "redis://${SERVICE_NAME}-redis-master:6379"
-        PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.service.core-compute-preview.internal"
+        PUBLIC_HOSTNAME: "https://${SERVICE_NAME}.preview.platform.hmcts.net"
         EQUALITY_URL: "https://pcq.aat.platform.hmcts.net"
         PRD_ORGANISATION_API_URL: "http://rd-professional-api-aat.service.core-compute-aat.internal/refdata/external/v1/organisations/status"
         ANTENNA_WEBCHAT_URL: "webchat.pp.ctsc.hmcts.net"

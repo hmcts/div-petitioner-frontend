@@ -141,7 +141,7 @@ describe(modulePath, () => {
 
       expect(() => {
         return sessionSerializer.decryptData(req, encryptedData, passwordHash.split(0, 1));
-      }).to.throw('The "key" argument must be of type string or an instance of Buffer, TypedArray, DataView, or KeyObject. Received an instance of Array');
+      }).to.throw('The "key" argument must be of type string or an instance of ArrayBuffer, Buffer, TypedArray, DataView, KeyObject, or CryptoKey. Received an instance of Array');
     });
   });
 });

@@ -39,7 +39,7 @@ describe(modulePath, () => {
     idamMock.restore();
   });
 
-  describe.skip('Jurisdiction Connections are collected correctly for opposite sex couples', () => {
+  describe('Jurisdiction Connections are collected correctly for opposite sex couples', () => {
     let session = {};
 
     beforeEach(done => {

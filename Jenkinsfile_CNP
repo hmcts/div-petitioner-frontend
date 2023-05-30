@@ -54,22 +54,17 @@ withPipeline("nodejs", product, component) {
     yarnBuilder.yarn('test-validation')
   }
 
+  afterSuccess('functionalTest:aat') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+
   before('functionalTest:preview') {
     //This is to force the loading of preview.yaml instead of testing.yaml in PRs
     env.NODE_CONFIG_ENV = 'preview'
   }
 
-  before('functionalTest:aat') {
-    //This is to force the loading of preview.yaml instead of testing.yaml in PRs
-    env.NODE_CONFIG_ENV = 'testing'
-  }
-
   afterSuccess('functionalTest:preview') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-  }
-
-  afterSuccess('functionalTest:aat') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }

@@ -1,4 +1,3 @@
-/*
 const { expect } = require('chai');
 const nock = require('nock');
 const { JSDOM } = require('jsdom');
@@ -34,7 +33,7 @@ describe(__filename, () => {
     delete global.document;
   });
 
-  it('posts serialized form data', async () => {
+  it.skip('posts serialized form data', async () => {
     const endPoint = nock('https://localhost')
       .post('/test', "foo=Some+text+with+spaces...")
       .reply(200)
@@ -47,7 +46,7 @@ describe(__filename, () => {
     endPoint.done();
   });
 
-  it('does not re-post form data if it remains unchanged', async () => {
+  it.skip('does not re-post form data if it remains unchanged', async () => {
     const endPoint = nock('https://localhost')
       .post('/test', "foo=Some+text+with+spaces...")
       .times(1)
@@ -62,4 +61,3 @@ describe(__filename, () => {
     endPoint.done();
   });
 });
-*/

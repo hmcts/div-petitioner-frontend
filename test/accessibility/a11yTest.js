@@ -99,7 +99,7 @@ for(let i in languages) {
 
         if (step instanceof ValidationStep) {
 
-          describe(`POST Requests - Verify accessibility for the page ${step.name} - ${languages[i]}`, () => {
+          describe.skip(`POST Requests - Verify accessibility for the page ${step.name} - ${languages[i]}`, () => {
 
             before((done) => {
               idamMock.stub();

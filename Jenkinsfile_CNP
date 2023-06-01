@@ -54,14 +54,14 @@ withPipeline("nodejs", product, component) {
     yarnBuilder.yarn('test-validation')
   }
 
-  before('functionalTest:aat') {
-    //This is to force the loading of preview.yaml instead of testing.yaml in PRs
-    env.NODE_CONFIG_ENV = 'aat'
+  before('functionalTest:preview') {
+    env.NODE_ENV= 'ci'
+    sh 'printenv'
   }
 
-  afterSuccess('functionalTest:aat') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  before('functionalTest:aat') {
+    env.NODE_ENV= 'ci'
+    sh 'printenv'
   }
 
   before('functionalTest:preview') {
@@ -70,6 +70,16 @@ withPipeline("nodejs", product, component) {
   }
 
   afterSuccess('functionalTest:preview') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+  }
+
+  before('functionalTest:aat') {
+    //This is to force the loading of preview.yaml instead of testing.yaml in PRs
+    env.NODE_CONFIG_ENV = 'aat'
+  }
+
+  afterSuccess('functionalTest:aat') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
   }

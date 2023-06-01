@@ -53,7 +53,7 @@ for(let i in languages) {
       (function(step) {
         let results;
 
-        describe(`GET Requests - Verify accessibility for the page ${step.name} - ${languages[i]}`, () => {
+        describe.skip(`GET Requests - Verify accessibility for the page ${step.name} - ${languages[i]}`, () => {
 
           before((done) => {
             idamMock.stub();

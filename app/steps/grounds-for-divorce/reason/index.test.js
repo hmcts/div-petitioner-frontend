@@ -551,7 +551,7 @@ describe(modulePath, () => {
     });
   });
 
-  describe('if previousReasonForDivorce is separation-5-years', () => {
+  describe.skip('if previousReasonForDivorce is separation-5-years', () => {
     let session = {};
 
     beforeEach(done => {

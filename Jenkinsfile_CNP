@@ -54,6 +54,11 @@ withPipeline("nodejs", product, component) {
     yarnBuilder.yarn('test-validation')
   }
 
+  before('functionalTest:aat') {
+    //This is to force the loading of preview.yaml instead of testing.yaml in PRs
+    env.NODE_CONFIG_ENV = 'aat'
+  }
+
   afterSuccess('functionalTest:aat') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'smoke-output/**/*'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'

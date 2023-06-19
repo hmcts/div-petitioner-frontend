@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "private": true,
   "engines": {
-    "node": ">=14.9.3"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "start": "NODE_PATH=. node server.js",

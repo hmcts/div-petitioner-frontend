@@ -90,7 +90,7 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   resource_group_name  = "core-infra-${var.env}"
 }
 
-module "nfdiv-frontend-redis6" {
+module "redis-cache" {
   source   = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product  = var.product
   name     = "${var.product}-${var.component}-${var.env}"

@@ -90,16 +90,17 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   resource_group_name  = "core-infra-${var.env}"
 }
 
-module "redis-cache" {
-  source      = "git@github.com:hmcts/cnp-module-redis?ref=master"
-  product     = var.env != "preview" ? "${var.product}-redis" : "${var.product}-${var.component}-redis"
-  location    = var.location
-  env         = var.env
+module "nfdiv-frontend-redis6" {
+  source   = "git@github.com:hmcts/cnp-module-redis?ref=master"
+  product  = var.product
+  name     = "${var.product}-${var.component}-${var.env}"
+  location = var.location
+  env      = var.env
   private_endpoint_enabled = true
   redis_version = "6"
   business_area = "cft"
   public_network_access_enabled = false
-  common_tags = var.common_tags
+  common_tags  = var.common_tags
 }
 
 

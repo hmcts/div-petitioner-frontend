@@ -102,7 +102,7 @@ nodejs:
                 - idam-secret
                 - os-places-token
                 - frontend-secret
-                - pfe-redis-connection-string
+                - redis-connection-string
                 - AppInsightsInstrumentationKey
                 - launchdarkly-key
                 - pcq-token-key

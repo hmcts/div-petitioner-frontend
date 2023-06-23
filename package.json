@@ -68,7 +68,7 @@
     "dropzone": "^5.1.1",
     "express": "4.18.2",
     "express-limiter": "^1.6.0",
-    "express-nunjucks": "2.2.3",
+    "express-nunjucks": "2.2.5",
     "express-session": "1.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^6.2.0",

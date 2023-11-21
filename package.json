@@ -233,7 +233,8 @@
     "express": "^4.17.3",
     "jsdom": ">=21.1.1",
     "jsonwebtoken": " >=9.0.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "openssl-nodejs": "^1.0.5"
   },
   "nyc": {
     "report-dir": "coverage",

@@ -5260,6 +5260,7 @@ __metadata:
     nomnoml: 0.2.0
     nunjucks: ^3.2.0
     nyc: ^15.0.0
+    openssl-nodejs: ^1.0.5
     pa11y: ^4.0.1
     pre-commit: ^1.1.3
     proxyquire: ^1.8.0
@@ -12105,6 +12106,13 @@ __metadata:
   bin:
     opener: bin/opener-bin.js
   checksum: 33b620c0d53d5b883f2abc6687dd1c5fd394d270dbe33a6356f2d71e0a2ec85b100d5bac94694198ccf5c30d592da863b2292c5539009c715a9c80c697b4f6cc
+  languageName: node
+  linkType: hard
+
+"openssl-nodejs@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "openssl-nodejs@npm:1.0.5"
+  checksum: 68a66e0becd53d1ae50dff63abbe28ab1c4a2ab9e4b585306a048bf8e48975dad53261d8b40ca5b720d930548320ba4d74ed3a30dc7f24da2ba63d2c74fad282
   languageName: node
   linkType: hard
 

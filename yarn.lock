@@ -5071,7 +5071,7 @@ __metadata:
     eslint-plugin-mocha: ^4.12.1
     express: 4.18.2
     express-limiter: ^1.6.0
-    express-nunjucks: 2.2.3
+    express-nunjucks: 2.2.5
     express-session: 1.17.1
     extract-text-webpack-plugin: ^4.0.0-beta.0
     file-loader: ^6.2.0
@@ -6059,13 +6059,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-nunjucks@npm:2.2.3":
-  version: 2.2.3
-  resolution: "express-nunjucks@npm:2.2.3"
+"express-nunjucks@npm:2.2.5":
+  version: 2.2.5
+  resolution: "express-nunjucks@npm:2.2.5"
   dependencies:
-    assign-deep: ^0.4.5
-    nunjucks-async-loader: ^1.1.1
-  checksum: 49f1b795ecef74b0b33893accce0b8f2db1788d4e07e3fa0fa143296970f3984830156d43c23c4e0f5c456298960366a37d26aab0808701f83713d11500d45e2
+    assign-deep: 1.0.1
+    nunjucks-async-loader: 1.1.5
+  checksum: 43725f84dbe2875c79e0205425f35d5ed0c54396482a2e10df12559e2b6397b3cde7f024d7288eb3d90fb60dcb884f7525b9bdf3e18d5f26363ed1d449ac5e47
   languageName: node
   linkType: hard
 
@@ -11578,7 +11578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nunjucks-async-loader@npm:^1.1.1":
+"nunjucks-async-loader@npm:1.1.5":
   version: 1.1.5
   resolution: "nunjucks-async-loader@npm:1.1.5"
   dependencies:

@@ -40,20 +40,11 @@ const setup = app => {
             logger.errorWithReq(null, 'Health check failed on redis:', error);
           });
       }),
-      'idam-api': healthcheck.web(`${config.idamArgs.idamApiUrl}/health`,
-        healthOptions('Health check failed on idam-api:')
-      ),
       'evidence-management-client': healthcheck.web(`${config.evidenceManagementClient.url}/health`,
         healthOptions('Health check failed on evidence-management-client:')
       ),
       'case-orchestration-service': healthcheck.web(`${config.services.transformation.baseUrl}/health`,
         healthOptions('Health check failed on case-orchestration-service:')
-      ),
-      'service-auth-provider': healthcheck.web(`${config.services.serviceAuthProvider.baseUrl}/health`,
-        healthOptions('Health check failed on service-auth-provider:')
-      ),
-      'payment-api': healthcheck.web(`${config.services.payment.baseUrl}/health`,
-        healthOptions('Health check failed on payment-api:')
       ),
       'fees-and-payments-service': healthcheck.web(`${config.services.feesAndPayments.baseUrl}/health`,
         healthOptions('Health check failed on fees and payments service:')

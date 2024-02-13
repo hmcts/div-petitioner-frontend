@@ -5231,7 +5231,7 @@ __metadata:
     express-session: 1.17.1
     extract-text-webpack-plugin: ^4.0.0-beta.0
     file-loader: ^6.2.0
-    flat: ^4.0.0
+    flat: ^5.0.0
     formidable: ^1.1.1
     fstream: ^1.0.12
     glob: ^7.1.1
@@ -6761,7 +6761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat@npm:^4.0.0, flat@npm:^4.1.0":
+"flat@npm:^4.1.0":
   version: 4.1.1
   resolution: "flat@npm:4.1.1"
   dependencies:
@@ -6772,7 +6772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat@npm:^5.0.2":
+"flat@npm:^5.0.0, flat@npm:^5.0.2":
   version: 5.0.2
   resolution: "flat@npm:5.0.2"
   bin:

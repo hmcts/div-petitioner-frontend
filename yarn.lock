@@ -412,15 +412,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/div-pay-client@npm:7.0.1":
-  version: 7.0.1
-  resolution: "@hmcts/div-pay-client@npm:7.0.1"
+"@hmcts/div-pay-client@npm:7.0.6":
+  version: 7.0.6
+  resolution: "@hmcts/div-pay-client@npm:7.0.6"
   dependencies:
-    "@hmcts/nodejs-logging": "npm:^3.0.0"
-    lodash: "npm:^4.17.15"
-    request: "npm:^2.81.0"
-    request-promise-native: "npm:^1.0.5"
-  checksum: d8ccf85db38e12a3341bb0eb935152dc5c0adb2c9d2dc7c0c75736ebc09edb551c025f1e4e10e0350da286364bd22b483b40d0acf66029eede0eec42d104a286
+    "@hmcts/nodejs-logging": ^3.0.0
+    axios: ^0.21.1
+    lodash: ^4.17.15
+  checksum: 9ce457e6c77f73d157a1c25c63cd1885127059e7fbfd299407be04b808d1c5a0e6e094630cd93674961de27192cca6c38ea2958f140f7cb246591b23e73cc3bd
   languageName: node
   linkType: hard
 
@@ -5191,7 +5190,7 @@ __metadata:
     "@hmcts/div-document-express-handler": ^1.1.0
     "@hmcts/div-idam-express-middleware": ^6.6.2
     "@hmcts/div-idam-test-harness": ^1.9.0
-    "@hmcts/div-pay-client": 7.0.1
+    "@hmcts/div-pay-client": 7.0.6
     "@hmcts/div-service-auth-provider-client": ^3.0.1
     "@hmcts/eslint-config": ^1.0.5
     "@hmcts/frontend": 0.0.34-alpha

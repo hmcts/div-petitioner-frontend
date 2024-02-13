@@ -494,14 +494,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/properties-volume@npm:^0.0.13":
-  version: 0.0.13
-  resolution: "@hmcts/properties-volume@npm:0.0.13"
+"@hmcts/properties-volume@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "@hmcts/properties-volume@npm:0.0.14"
   dependencies:
-    "@hmcts/nodejs-logging": "npm:^3.0.0"
-    lodash: "npm:^4.17.11"
-    path: "npm:^0.12.7"
-  checksum: 7046728d3b3f3ba2290d933bc8c7cf3eec84cd03f8bf8b66d380caf328f436e32ea8774331c9910110e9318c3129c22ec8dc9c785169430462fd20cccfe742cd
+    "@hmcts/nodejs-logging": ^4.0.4
+    lodash: ^4.17.11
+    path: ^0.12.7
+  checksum: 3859effd7c1579f151a050e85514ca73a341ae9a6be9246e8f3995cf86eafceecac8f64fba38281b3c20f518f1dae744428dbf5c3d6a33782d493dcb3995aeec
   languageName: node
   linkType: hard
 
@@ -5198,7 +5198,7 @@ __metadata:
     "@hmcts/nodejs-healthcheck": ^1.7.0
     "@hmcts/nodejs-logging": ^3.0.1
     "@hmcts/prd-client": ^0.0.8
-    "@hmcts/properties-volume": ^0.0.13
+    "@hmcts/properties-volume": ^0.0.14
     add: ^2.0.6
     ajv: ^4.10.0
     applicationinsights: ^2.5.0

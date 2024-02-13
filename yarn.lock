@@ -2155,17 +2155,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-loader@npm:7.1.4":
-  version: 7.1.4
-  resolution: "babel-loader@npm:7.1.4"
+"babel-loader@npm:7.1.5":
+  version: 7.1.5
+  resolution: "babel-loader@npm:7.1.5"
   dependencies:
-    find-cache-dir: "npm:^1.0.0"
-    loader-utils: "npm:^1.0.2"
-    mkdirp: "npm:^0.5.1"
+    find-cache-dir: ^1.0.0
+    loader-utils: ^1.0.2
+    mkdirp: ^0.5.1
   peerDependencies:
     babel-core: 6
     webpack: 2 || 3 || 4
-  checksum: ee78f3378d35792d205717f85a58df46d6815328f0d483bf6f0efc61b7ad98e314b3d320fcc0e533a749fcfd720f254ecbddebc32c467bf2a02a9f93f26589b8
+  checksum: bef446fd0ad112312629addc0b248282ced6e4bd1d48101affa5e8863910d33689c1a57aa20377ee0c042833cebb3f9d4eef5666782a49362a79c65f33042f23
   languageName: node
   linkType: hard
 
@@ -5204,7 +5204,7 @@ __metadata:
     applicationinsights: ^2.5.0
     audit: ^0.0.6
     babel-core: 6.26.3
-    babel-loader: 7.1.4
+    babel-loader: 7.1.5
     babel-preset-env: 1.7.0
     body-parser: ^1.14.1
     chai: ^4.2.0

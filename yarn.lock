@@ -881,6 +881,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/readable-stream@npm:^4.0.0":
+  version: 4.0.10
+  resolution: "@types/readable-stream@npm:4.0.10"
+  dependencies:
+    "@types/node": "*"
+    safe-buffer: ~5.1.1
+  checksum: dc7cb95be737d442770fcaf1fbe3860c011f5f024c6f09c8b032f95b7ef9cce0031302715afe13e18d264b3a162e5838ce78873ec8d63eb238db49bc70906a21
+  languageName: node
+  linkType: hard
+
 "@types/redis@npm:^2.8.18":
   version: 2.8.32
   resolution: "@types/redis@npm:2.8.32"
@@ -2696,13 +2706,14 @@ __metadata:
   linkType: hard
 
 "bl@npm:>=3.0.1":
-  version: 6.0.10
-  resolution: "bl@npm:6.0.10"
+  version: 6.0.12
+  resolution: "bl@npm:6.0.12"
   dependencies:
-    buffer: "npm:^6.0.3"
-    inherits: "npm:^2.0.4"
-    readable-stream: "npm:^4.2.0"
-  checksum: 3aa89407420402c7d7862a84901e90d4ae92d0efb98fe63985c1574008c6de81dd42e6ef29494207e251a6bbb662db5f55e221f44b226a97eecfc787d8604b3f
+    "@types/readable-stream": ^4.0.0
+    buffer: ^6.0.3
+    inherits: ^2.0.4
+    readable-stream: ^4.2.0
+  checksum: 10cdc8264a7f3c53f62ec6942ace2f9fa8c1437ea3d466606ad9dc2585f6f08405907875f7ab454af79453efaafa0e0f53e382dad95b7d4b288ef912e53e6125
   languageName: node
   linkType: hard
 

@@ -1,1 +1,220 @@
-{"actions":[],"advisories":{"1089034":{"findings":[{"version":"5.5.2","paths":["ajv","webpack>ajv","request>har-validator>ajv","@hmcts/div-document-express-handler>request>har-validator>ajv","@hmcts/div-idam-express-middleware>request-promise-core>request>har-validator>ajv","@hmcts/div-idam-express-middleware>request-promise-native>request-promise-core>request>har-validator>ajv"]}],"metadata":null,"vulnerable_versions":"<6.12.3","module_name":"ajv","severity":"moderate","github_advisory_id":"GHSA-v88g-cgmw-v5xw","cves":["CVE-2020-15366"],"access":"public","patched_versions":">=6.12.3","cvss":{"score":5.6,"vectorString":"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"},"updated":"2023-01-27T05:08:06.000Z","recommendation":"Upgrade to version 6.12.3 or later","cwe":["CWE-915","CWE-1321"],"found_by":null,"deleted":null,"id":1089034,"references":"- https://nvd.nist.gov/vuln/detail/CVE-2020-15366\n- https://github.com/ajv-validator/ajv/commit/65b2f7d76b190ac63a0d4e9154c712d7aa37049f\n- https://github.com/ajv-validator/ajv/releases/tag/v6.12.3\n- https://hackerone.com/bugs?subject=user&report_id=894259\n- https://github.com/ajv-validator/ajv/tags\n- https://github.com/advisories/GHSA-v88g-cgmw-v5xw","created":"2022-02-10T23:30:59.000Z","reported_by":null,"title":"Prototype Pollution in Ajv","npm_advisory_id":null,"overview":"An issue was discovered in ajv.validate() in Ajv (aka Another JSON Schema Validator) 6.12.2. A carefully crafted JSON schema could be provided that allows execution of other code by prototype pollution. (While untrusted schemas are recommended against, the worst case of an untrusted schema should be a denial of service, not execution of code.)","url":"https://github.com/advisories/GHSA-v88g-cgmw-v5xw"},"1092972":{"findings":[{"version":"2.88.2","paths":["request","@hmcts/div-document-express-handler>request","@hmcts/div-idam-express-middleware>request-promise-core>request","@hmcts/div-idam-express-middleware>request-promise-native>request-promise-core>request"]}],"metadata":null,"vulnerable_versions":"<=2.88.2","module_name":"request","severity":"moderate","github_advisory_id":"GHSA-p8p7-x288-28g6","cves":["CVE-2023-28155"],"access":"public","patched_versions":"<0.0.0","cvss":{"score":6.1,"vectorString":"CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"},"updated":"2023-08-14T20:53:47.000Z","recommendation":"None","cwe":["CWE-918"],"found_by":null,"deleted":null,"id":1092972,"references":"- https://nvd.nist.gov/vuln/detail/CVE-2023-28155\n- https://github.com/request/request/issues/3442\n- https://github.com/request/request/pull/3444\n- https://doyensec.com/resources/Doyensec_Advisory_RequestSSRF_Q12023.pdf\n- https://security.netapp.com/advisory/ntap-20230413-0007/\n- https://github.com/github/advisory-database/pull/2500\n- https://github.com/cypress-io/request/blob/master/lib/redirect.js#L116\n- https://github.com/request/request/blob/master/lib/redirect.js#L111\n- https://github.com/cypress-io/request/pull/28\n- https://github.com/cypress-io/request/commit/c5bcf21d40fb61feaff21a0e5a2b3934a440024f\n- https://github.com/cypress-io/request/releases/tag/v3.0.0\n- https://github.com/advisories/GHSA-p8p7-x288-28g6","created":"2023-03-16T15:30:19.000Z","reported_by":null,"title":"Server-Side Request Forgery in Request","npm_advisory_id":null,"overview":"The `request` package through 2.88.2 for Node.js and the `@cypress/request` package prior to 3.0.0 allow a bypass of SSRF mitigations via an attacker-controller server that does a cross-protocol redirect (HTTP to HTTPS, or HTTPS to HTTP).\n\nNOTE: The `request` package is no longer supported by the maintainer.","url":"https://github.com/advisories/GHSA-p8p7-x288-28g6"},"1094550":{"findings":[{"version":"3.9.19","paths":["superagent-proxy>proxy-agent>pac-proxy-agent>pac-resolver>degenerator>vm2"]}],"metadata":null,"vulnerable_versions":"<=3.9.19","module_name":"vm2","severity":"critical","github_advisory_id":"GHSA-cchq-frgv-rjh5","cves":["CVE-2023-37466"],"access":"public","patched_versions":"<0.0.0","cvss":{"score":9.8,"vectorString":"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"},"updated":"2023-11-05T05:04:46.000Z","recommendation":"None","cwe":["CWE-94"],"found_by":null,"deleted":null,"id":1094550,"references":"- https://github.com/patriksimek/vm2/security/advisories/GHSA-cchq-frgv-rjh5\n- https://nvd.nist.gov/vuln/detail/CVE-2023-37466\n- https://security.netapp.com/advisory/ntap-20230831-0007/\n- https://gist.github.com/leesh3288/f693061e6523c97274ad5298eb2c74e9\n- https://github.com/advisories/GHSA-cchq-frgv-rjh5","created":"2023-07-13T17:02:02.000Z","reported_by":null,"title":"vm2 Sandbox Escape vulnerability","npm_advisory_id":null,"overview":"In vm2 for versions up to 3.9.19, `Promise` handler sanitization can be bypassed, allowing attackers to escape the sandbox and run arbitrary code.\n\n### Impact\nRemote Code Execution, assuming the attacker has arbitrary code execution primitive inside the context of vm2 sandbox.\n\n### Patches\nNone.\n\n### Workarounds\nNone.\n\n### References\nPoC - https://gist.github.com/leesh3288/f693061e6523c97274ad5298eb2c74e9\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n- Open an issue in [VM2](https://github.com/patriksimek/vm2)\n\nThanks to [Xion](https://twitter.com/0x10n) (SeungHyun Lee) of [KAIST Hacking Lab](https://kaist-hacking.github.io/) for disclosing this vulnerability.","url":"https://github.com/advisories/GHSA-cchq-frgv-rjh5"},"1094744":{"findings":[{"version":"3.9.19","paths":["superagent-proxy>proxy-agent>pac-proxy-agent>pac-resolver>degenerator>vm2"]}],"metadata":null,"vulnerable_versions":"<=3.9.19","module_name":"vm2","severity":"critical","github_advisory_id":"GHSA-g644-9gfx-q4q4","cves":["CVE-2023-37903"],"access":"public","patched_versions":"<0.0.0","cvss":{"score":9.8,"vectorString":"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"},"updated":"2023-11-09T05:01:00.000Z","recommendation":"None","cwe":["CWE-78"],"found_by":null,"deleted":null,"id":1094744,"references":"- https://github.com/patriksimek/vm2/security/advisories/GHSA-g644-9gfx-q4q4\n- https://nvd.nist.gov/vuln/detail/CVE-2023-37903\n- https://security.netapp.com/advisory/ntap-20230831-0007/\n- https://github.com/advisories/GHSA-g644-9gfx-q4q4","created":"2023-07-13T17:01:58.000Z","reported_by":null,"title":"vm2 Sandbox Escape vulnerability","npm_advisory_id":null,"overview":"In vm2 for versions up to 3.9.19, Node.js custom inspect function allows attackers to escape the sandbox and run arbitrary code.\n\n### Impact\nRemote Code Execution, assuming the attacker has arbitrary code execution primitive inside the context of vm2 sandbox.\n\n### Patches\nNone.\n\n### Workarounds\nNone.\n\n### References\nPoC is to be disclosed on or after the 5th of September.\n\n### Similarity with [CVE-2023-37466](https://nvd.nist.gov/vuln/detail/CVE-2023-37466)\nWhile this advisory might look similar to [CVE-2023-37466](https://nvd.nist.gov/vuln/detail/CVE-2023-37466), it is a completely different way of escaping the sandbox.\n\n### For more information\nIf you have any questions or comments about this advisory:\n\n- Open an issue in [VM2](https://github.com/patriksimek/vm2)\n\nThanks to [Xion](https://twitter.com/0x10n) (SeungHyun Lee) of [KAIST Hacking Lab](https://kaist-hacking.github.io/) for disclosing this vulnerability.","url":"https://github.com/advisories/GHSA-g644-9gfx-q4q4"},"1094861":{"findings":[{"version":"1.1.2","paths":["stryker>typed-rest-client"]}],"metadata":null,"vulnerable_versions":"<1.8.0","module_name":"typed-rest-client","severity":"critical","github_advisory_id":"GHSA-558p-m34m-vpmq","cves":["CVE-2023-30846"],"access":"public","patched_versions":">=1.8.0","cvss":{"score":9.1,"vectorString":"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"},"updated":"2023-11-12T05:01:10.000Z","recommendation":"Upgrade to version 1.8.0 or later","cwe":["CWE-522"],"found_by":null,"deleted":null,"id":1094861,"references":"- https://github.com/microsoft/typed-rest-client/security/advisories/GHSA-558p-m34m-vpmq\n- https://nvd.nist.gov/vuln/detail/CVE-2023-30846\n- https://github.com/microsoft/typed-rest-client/pull/207\n- https://github.com/microsoft/typed-rest-client/commit/f9ff755631b982ee1303dfc3e3c823d0d31233e8\n- https://security.netapp.com/advisory/ntap-20230601-0008/\n- https://github.com/advisories/GHSA-558p-m34m-vpmq","created":"2023-04-27T14:02:11.000Z","reported_by":null,"title":"Potential leak of authentication data to 3rd parties","npm_advisory_id":null,"overview":"### Impact\nUsers of typed-rest-client library version 1.7.3 or lower are vulnerable to leak authentication data to 3rd parties. \n\nThe flow of the vulnerability is as follows:\n\n1. Send any request with `BasicCredentialHandler`, `BearerCredentialHandler` or `PersonalAccessTokenCredentialHandler` \n2. The target host may return a redirection (3xx), with a link to a second host.\n3. The next request will use the credentials to authenticate with the second host, by setting the `Authorization` header.\n\nThe expected behavior is that the next request will *NOT* set the `Authorization` header.\n\n\n### Patches\nThe problem was fixed on April 1st 2020.\n\n\n### Workarounds\nThere is no workaround.\n\n### References\nThis is similar to the following issues in nature:\n1. [HTTP authentication leak in redirects](https://curl.haxx.se/docs/CVE-2018-1000007.html) - I used the same solution as CURL did.\n2. [CVE-2018-1000007](https://nvd.nist.gov/vuln/detail/CVE-2018-1000007).","url":"https://github.com/advisories/GHSA-558p-m34m-vpmq"},"1095527":{"findings":[{"version":"0.5.1","paths":["config>json5","@hmcts/div-document-express-handler>config>json5","string-replace-webpack-plugin>css-loader>loader-utils>json5","string-replace-webpack-plugin>file-loader>webpack>loader-utils>json5"]}],"metadata":null,"vulnerable_versions":"<1.0.2","module_name":"json5","severity":"high","github_advisory_id":"GHSA-9c47-m6qq-7p4h","cves":["CVE-2022-46175"],"access":"public","patched_versions":">=1.0.2","cvss":{"score":7.1,"vectorString":"CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:H"},"updated":"2024-01-23T21:22:58.000Z","recommendation":"Upgrade to version 1.0.2 or later","cwe":["CWE-1321"],"found_by":null,"deleted":null,"id":1095527,"references":"- https://github.com/json5/json5/security/advisories/GHSA-9c47-m6qq-7p4h\n- https://nvd.nist.gov/vuln/detail/CVE-2022-46175\n- https://github.com/json5/json5/issues/199\n- https://github.com/json5/json5/issues/295\n- https://github.com/json5/json5/pull/298\n- https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3S26TLPLVFAJTUN3VIXFDEBEXDYO22CE/\n- https://github.com/json5/json5/commit/62a65408408d40aeea14c7869ed327acead12972\n- https://github.com/json5/json5/commit/7774c1097993bc3ce9f0ac4b722a32bf7d6871c8\n- https://lists.debian.org/debian-lts-announce/2023/11/msg00021.html\n- https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3S26TLPLVFAJTUN3VIXFDEBEXDYO22CE/\n- https://github.com/advisories/GHSA-9c47-m6qq-7p4h","created":"2022-12-29T01:51:03.000Z","reported_by":null,"title":"Prototype Pollution in JSON5 via Parse Method","npm_advisory_id":null,"overview":"The `parse` method of the JSON5 library before and including version `2.2.1` does not restrict parsing of keys named `__proto__`, allowing specially crafted strings to pollute the prototype of the resulting object.\n\nThis vulnerability pollutes the prototype of the object returned by `JSON5.parse` and not the global Object prototype, which is the commonly understood definition of Prototype Pollution. However, polluting the prototype of a single object can have significant security impact for an application if the object is later used in trusted operations.\n\n## Impact\nThis vulnerability could allow an attacker to set arbitrary and unexpected keys on the object returned from `JSON5.parse`. The actual impact will depend on how applications utilize the returned object and how they filter unwanted keys, but could include denial of service, cross-site scripting, elevation of privilege, and in extreme cases, remote code execution.\n\n## Mitigation\nThis vulnerability is patched in json5 v2.2.2 and later. A patch has also been backported for json5 v1 in versions v1.0.2 and later.\n\n## Details\n \nSuppose a developer wants to allow users and admins to perform some risky operation, but they want to restrict what non-admins can do. To accomplish this, they accept a JSON blob from the user, parse it using `JSON5.parse`, confirm that the provided data does not set some sensitive keys, and then performs the risky operation using the validated data:\n \n```js\nconst JSON5 = require('json5');\n\nconst doSomethingDangerous = (props) => {\n  if (props.isAdmin) {\n    console.log('Doing dangerous thing as admin.');\n  } else {\n    console.log('Doing dangerous thing as user.');\n  }\n};\n\nconst secCheckKeysSet = (obj, searchKeys) => {\n  let searchKeyFound = false;\n  Object.keys(obj).forEach((key) => {\n    if (searchKeys.indexOf(key) > -1) {\n      searchKeyFound = true;\n    }\n  });\n  return searchKeyFound;\n};\n\nconst props = JSON5.parse('{\"foo\": \"bar\"}');\nif (!secCheckKeysSet(props, ['isAdmin', 'isMod'])) {\n  doSomethingDangerous(props); // \"Doing dangerous thing as user.\"\n} else {\n  throw new Error('Forbidden...');\n}\n```\n \nIf the user attempts to set the `isAdmin` key, their request will be rejected:\n \n```js\nconst props = JSON5.parse('{\"foo\": \"bar\", \"isAdmin\": true}');\nif (!secCheckKeysSet(props, ['isAdmin', 'isMod'])) {\n  doSomethingDangerous(props);\n} else {\n  throw new Error('Forbidden...'); // Error: Forbidden...\n}\n```\n \nHowever, users can instead set the `__proto__` key to `{\"isAdmin\": true}`. `JSON5` will parse this key and will set the `isAdmin` key on the prototype of the returned object, allowing the user to bypass the security check and run their request as an admin:\n \n```js\nconst props = JSON5.parse('{\"foo\": \"bar\", \"__proto__\": {\"isAdmin\": true}}');\nif (!secCheckKeysSet(props, ['isAdmin', 'isMod'])) {\n  doSomethingDangerous(props); // \"Doing dangerous thing as admin.\"\n} else {\n  throw new Error('Forbidden...');\n}\n ```","url":"https://github.com/advisories/GHSA-9c47-m6qq-7p4h"},"1096410":{"findings":[{"version":"4.3.1","paths":["cryptiles>boom>hoek"]}],"metadata":null,"vulnerable_versions":"<=6.1.3","module_name":"hoek","severity":"high","github_advisory_id":"GHSA-c429-5p7v-vgjp","cves":["CVE-2020-36604"],"access":"public","patched_versions":"<0.0.0","cvss":{"score":8.1,"vectorString":"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"},"updated":"2024-02-07T18:59:37.000Z","recommendation":"None","cwe":["CWE-1321"],"found_by":null,"deleted":null,"id":1096410,"references":"- https://nvd.nist.gov/vuln/detail/CVE-2020-36604\n- https://github.com/hapijs/hoek/issues/352\n- https://github.com/hapijs/hoek/commit/4d0804bc6135ad72afdc5e1ec002b935b2f5216a\n- https://github.com/hapijs/hoek/commit/948baf98634a5c206875b67d11368f133034fa90\n- https://github.com/advisories/GHSA-c429-5p7v-vgjp","created":"2022-09-25T00:00:27.000Z","reported_by":null,"title":"hoek subject to prototype pollution via the clone function.","npm_advisory_id":null,"overview":"hoek versions prior to 8.5.1, and 9.x prior to 9.0.3 are vulnerable to prototype pollution in the clone function. If an object with the __proto__ key is passed to clone() the key is converted to a prototype. This issue has been patched in version 9.0.3, and backported to 8.5.1. ","url":"https://github.com/advisories/GHSA-c429-5p7v-vgjp"}},"muted":[],"metadata":{"vulnerabilities":{"info":0,"low":0,"moderate":10,"high":5,"critical":3},"dependencies":925,"devDependencies":1,"optionalDependencies":0,"totalDependencies":926}}
+{
+  "actions": [],
+  "advisories": {
+    "1089034": {
+      "findings": [
+        {
+          "version": "5.5.2",
+          "paths": [
+            "ajv",
+            "webpack>ajv",
+            "request>har-validator>ajv",
+            "@hmcts/div-document-express-handler>request>har-validator>ajv",
+            "@hmcts/div-idam-express-middleware>request-promise-core>request>har-validator>ajv",
+            "@hmcts/div-idam-express-middleware>request-promise-native>request-promise-core>request>har-validator>ajv"
+          ]
+        }
+      ],
+      "metadata": null,
+      "vulnerable_versions": "<6.12.3",
+      "module_name": "ajv",
+      "severity": "moderate",
+      "github_advisory_id": "GHSA-v88g-cgmw-v5xw",
+      "cves": [
+        "CVE-2020-15366"
+      ],
+      "access": "public",
+      "patched_versions": ">=6.12.3",
+      "cvss": {
+        "score": 5.6,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"
+      },
+      "updated": "2023-01-27T05:08:06.000Z",
+      "recommendation": "Upgrade to version 6.12.3 or later",
+      "cwe": [
+        "CWE-915",
+        "CWE-1321"
+      ],
+      "found_by": null,
+      "deleted": null,
+      "id": 1089034,
+      "references": "- https://nvd.nist.gov/vuln/detail/CVE-2020-15366\n- https://github.com/ajv-validator/ajv/commit/65b2f7d76b190ac63a0d4e9154c712d7aa37049f\n- https://github.com/ajv-validator/ajv/releases/tag/v6.12.3\n- https://hackerone.com/bugs?subject=user&report_id=894259\n- https://github.com/ajv-validator/ajv/tags\n- https://github.com/advisories/GHSA-v88g-cgmw-v5xw",
+      "created": "2022-02-10T23:30:59.000Z",
+      "reported_by": null,
+      "title": "Prototype Pollution in Ajv",
+      "npm_advisory_id": null,
+      "overview": "An issue was discovered in ajv.validate() in Ajv (aka Another JSON Schema Validator) 6.12.2. A carefully crafted JSON schema could be provided that allows execution of other code by prototype pollution. (While untrusted schemas are recommended against, the worst case of an untrusted schema should be a denial of service, not execution of code.)",
+      "url": "https://github.com/advisories/GHSA-v88g-cgmw-v5xw"
+    },
+    "1094550": {
+      "findings": [
+        {
+          "version": "3.9.19",
+          "paths": [
+            "superagent-proxy>proxy-agent>pac-proxy-agent>pac-resolver>degenerator>vm2"
+          ]
+        }
+      ],
+      "metadata": null,
+      "vulnerable_versions": "<=3.9.19",
+      "module_name": "vm2",
+      "severity": "critical",
+      "github_advisory_id": "GHSA-cchq-frgv-rjh5",
+      "cves": [
+        "CVE-2023-37466"
+      ],
+      "access": "public",
+      "patched_versions": "<0.0.0",
+      "cvss": {
+        "score": 9.8,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      },
+      "updated": "2023-11-05T05:04:46.000Z",
+      "recommendation": "None",
+      "cwe": [
+        "CWE-94"
+      ],
+      "found_by": null,
+      "deleted": null,
+      "id": 1094550,
+      "references": "- https://github.com/patriksimek/vm2/security/advisories/GHSA-cchq-frgv-rjh5\n- https://nvd.nist.gov/vuln/detail/CVE-2023-37466\n- https://security.netapp.com/advisory/ntap-20230831-0007/\n- https://gist.github.com/leesh3288/f693061e6523c97274ad5298eb2c74e9\n- https://github.com/advisories/GHSA-cchq-frgv-rjh5",
+      "created": "2023-07-13T17:02:02.000Z",
+      "reported_by": null,
+      "title": "vm2 Sandbox Escape vulnerability",
+      "npm_advisory_id": null,
+      "overview": "In vm2 for versions up to 3.9.19, `Promise` handler sanitization can be bypassed, allowing attackers to escape the sandbox and run arbitrary code.\n\n### Impact\nRemote Code Execution, assuming the attacker has arbitrary code execution primitive inside the context of vm2 sandbox.\n\n### Patches\nNone.\n\n### Workarounds\nNone.\n\n### References\nPoC - https://gist.github.com/leesh3288/f693061e6523c97274ad5298eb2c74e9\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n- Open an issue in [VM2](https://github.com/patriksimek/vm2)\n\nThanks to [Xion](https://twitter.com/0x10n) (SeungHyun Lee) of [KAIST Hacking Lab](https://kaist-hacking.github.io/) for disclosing this vulnerability.",
+      "url": "https://github.com/advisories/GHSA-cchq-frgv-rjh5"
+    },
+    "1094744": {
+      "findings": [
+        {
+          "version": "3.9.19",
+          "paths": [
+            "superagent-proxy>proxy-agent>pac-proxy-agent>pac-resolver>degenerator>vm2"
+          ]
+        }
+      ],
+      "metadata": null,
+      "vulnerable_versions": "<=3.9.19",
+      "module_name": "vm2",
+      "severity": "critical",
+      "github_advisory_id": "GHSA-g644-9gfx-q4q4",
+      "cves": [
+        "CVE-2023-37903"
+      ],
+      "access": "public",
+      "patched_versions": "<0.0.0",
+      "cvss": {
+        "score": 9.8,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      },
+      "updated": "2023-11-09T05:01:00.000Z",
+      "recommendation": "None",
+      "cwe": [
+        "CWE-78"
+      ],
+      "found_by": null,
+      "deleted": null,
+      "id": 1094744,
+      "references": "- https://github.com/patriksimek/vm2/security/advisories/GHSA-g644-9gfx-q4q4\n- https://nvd.nist.gov/vuln/detail/CVE-2023-37903\n- https://security.netapp.com/advisory/ntap-20230831-0007/\n- https://github.com/advisories/GHSA-g644-9gfx-q4q4",
+      "created": "2023-07-13T17:01:58.000Z",
+      "reported_by": null,
+      "title": "vm2 Sandbox Escape vulnerability",
+      "npm_advisory_id": null,
+      "overview": "In vm2 for versions up to 3.9.19, Node.js custom inspect function allows attackers to escape the sandbox and run arbitrary code.\n\n### Impact\nRemote Code Execution, assuming the attacker has arbitrary code execution primitive inside the context of vm2 sandbox.\n\n### Patches\nNone.\n\n### Workarounds\nNone.\n\n### References\nPoC is to be disclosed on or after the 5th of September.\n\n### Similarity with [CVE-2023-37466](https://nvd.nist.gov/vuln/detail/CVE-2023-37466)\nWhile this advisory might look similar to [CVE-2023-37466](https://nvd.nist.gov/vuln/detail/CVE-2023-37466), it is a completely different way of escaping the sandbox.\n\n### For more information\nIf you have any questions or comments about this advisory:\n\n- Open an issue in [VM2](https://github.com/patriksimek/vm2)\n\nThanks to [Xion](https://twitter.com/0x10n) (SeungHyun Lee) of [KAIST Hacking Lab](https://kaist-hacking.github.io/) for disclosing this vulnerability.",
+      "url": "https://github.com/advisories/GHSA-g644-9gfx-q4q4"
+    },
+    "1094861": {
+      "findings": [
+        {
+          "version": "1.1.2",
+          "paths": [
+            "stryker>typed-rest-client"
+          ]
+        }
+      ],
+      "metadata": null,
+      "vulnerable_versions": "<1.8.0",
+      "module_name": "typed-rest-client",
+      "severity": "critical",
+      "github_advisory_id": "GHSA-558p-m34m-vpmq",
+      "cves": [
+        "CVE-2023-30846"
+      ],
+      "access": "public",
+      "patched_versions": ">=1.8.0",
+      "cvss": {
+        "score": 9.1,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+      },
+      "updated": "2023-11-12T05:01:10.000Z",
+      "recommendation": "Upgrade to version 1.8.0 or later",
+      "cwe": [
+        "CWE-522"
+      ],
+      "found_by": null,
+      "deleted": null,
+      "id": 1094861,
+      "references": "- https://github.com/microsoft/typed-rest-client/security/advisories/GHSA-558p-m34m-vpmq\n- https://nvd.nist.gov/vuln/detail/CVE-2023-30846\n- https://github.com/microsoft/typed-rest-client/pull/207\n- https://github.com/microsoft/typed-rest-client/commit/f9ff755631b982ee1303dfc3e3c823d0d31233e8\n- https://security.netapp.com/advisory/ntap-20230601-0008/\n- https://github.com/advisories/GHSA-558p-m34m-vpmq",
+      "created": "2023-04-27T14:02:11.000Z",
+      "reported_by": null,
+      "title": "Potential leak of authentication data to 3rd parties",
+      "npm_advisory_id": null,
+      "overview": "### Impact\nUsers of typed-rest-client library version 1.7.3 or lower are vulnerable to leak authentication data to 3rd parties. \n\nThe flow of the vulnerability is as follows:\n\n1. Send any request with `BasicCredentialHandler`, `BearerCredentialHandler` or `PersonalAccessTokenCredentialHandler` \n2. The target host may return a redirection (3xx), with a link to a second host.\n3. The next request will use the credentials to authenticate with the second host, by setting the `Authorization` header.\n\nThe expected behavior is that the next request will *NOT* set the `Authorization` header.\n\n\n### Patches\nThe problem was fixed on April 1st 2020.\n\n\n### Workarounds\nThere is no workaround.\n\n### References\nThis is similar to the following issues in nature:\n1. [HTTP authentication leak in redirects](https://curl.haxx.se/docs/CVE-2018-1000007.html) - I used the same solution as CURL did.\n2. [CVE-2018-1000007](https://nvd.nist.gov/vuln/detail/CVE-2018-1000007).",
+      "url": "https://github.com/advisories/GHSA-558p-m34m-vpmq"
+    },
+    "1096410": {
+      "findings": [
+        {
+          "version": "4.3.1",
+          "paths": [
+            "cryptiles>boom>hoek"
+          ]
+        }
+      ],
+      "metadata": null,
+      "vulnerable_versions": "<=6.1.3",
+      "module_name": "hoek",
+      "severity": "high",
+      "github_advisory_id": "GHSA-c429-5p7v-vgjp",
+      "cves": [
+        "CVE-2020-36604"
+      ],
+      "access": "public",
+      "patched_versions": "<0.0.0",
+      "cvss": {
+        "score": 8.1,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+      },
+      "updated": "2024-02-07T18:59:37.000Z",
+      "recommendation": "None",
+      "cwe": [
+        "CWE-1321"
+      ],
+      "found_by": null,
+      "deleted": null,
+      "id": 1096410,
+      "references": "- https://nvd.nist.gov/vuln/detail/CVE-2020-36604\n- https://github.com/hapijs/hoek/issues/352\n- https://github.com/hapijs/hoek/commit/4d0804bc6135ad72afdc5e1ec002b935b2f5216a\n- https://github.com/hapijs/hoek/commit/948baf98634a5c206875b67d11368f133034fa90\n- https://github.com/advisories/GHSA-c429-5p7v-vgjp",
+      "created": "2022-09-25T00:00:27.000Z",
+      "reported_by": null,
+      "title": "hoek subject to prototype pollution via the clone function.",
+      "npm_advisory_id": null,
+      "overview": "hoek versions prior to 8.5.1, and 9.x prior to 9.0.3 are vulnerable to prototype pollution in the clone function. If an object with the __proto__ key is passed to clone() the key is converted to a prototype. This issue has been patched in version 9.0.3, and backported to 8.5.1. ",
+      "url": "https://github.com/advisories/GHSA-c429-5p7v-vgjp"
+    }
+  },
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 10,
+      "high": 5,
+      "critical": 3
+    },
+    "dependencies": 925,
+    "devDependencies": 1,
+    "optionalDependencies": 0,
+    "totalDependencies": 926
+  }
+}

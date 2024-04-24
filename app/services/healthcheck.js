@@ -46,9 +46,6 @@ const setup = app => {
       'case-orchestration-service': healthcheck.web(`${config.services.transformation.baseUrl}/health`,
         healthOptions('Health check failed on case-orchestration-service:')
       ),
-      'service-auth-provider': healthcheck.web(`${config.services.serviceAuthProvider.baseUrl}/health`,
-        healthOptions('Health check failed on service-auth-provider:')
-      ),
       'fees-and-payments-service': healthcheck.web(`${config.services.feesAndPayments.baseUrl}/health`,
         healthOptions('Health check failed on fees and payments service:')
       )

@@ -3,12 +3,12 @@ const fs = require('fs');
 const path = require('path');
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const extractSass = new ExtractTextPlugin({
+const miniCssExtractPlugin = new MiniCssExtractPlugin({
   filename: 'stylesheets/application.css',
-  allChunks: true
+  chunkFilename: '[id].css',
 });
 
 module.exports = {
@@ -44,9 +44,9 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './tmp/images', to: 'images' }
     ]),
-    extractSass,
+    miniCssExtractPlugin,
     function() {
-      this.plugin('done', stats => {
+      this.hooks.emit.tapAsync('done', stats => {
         fs.writeFileSync(
           path.join(__dirname, 'manifest.json'),
           JSON.stringify({ STATIC_ASSET_PATH: stats.hash })
@@ -61,19 +61,17 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: extractSass.extract({
-          use: [
-            { loader: 'css-loader' },
-            {
-              loader: 'sass-loader',
-              options: {
-                includePaths: [
-                  'node_modules/govuk-frontend'
-                ]
-              }
+        use: [
+          miniCssExtractPlugin.loader, 'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [
+                'node_modules/govuk-frontend'
+              ]
             }
-          ]
-        })
+          }
+        ]
       },
       {
         test: /\.(jpg|png|svg)$/,
@@ -90,8 +88,18 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      { test: /public/, loader: 'imports-loader?this=>window' },
-      { test: /public/, loader: 'imports-loader?$=jquery' }
+      {
+        test: /public/,
+        use: {
+          loader: 'imports-loader',
+          options: {
+            imports: [
+              'default this=>window',
+              'default $=jquery'
+            ]
+          }
+        }
+      }
     ]
   }
 };

@@ -7,7 +7,10 @@ module.exports = function(grunt) {
 
     webpack: {
       options: webpackConfig,
-      dev: { devtool: 'sourcemap' },
+      dev: {
+        devtool: 'sourcemap',
+        mode: 'development'
+      },
       assets: {
         plugins: webpackConfig.plugins.concat(
           new ArchivePlugin({ output: 'dist', format: 'tar' })
@@ -16,7 +19,8 @@ module.exports = function(grunt) {
       prod: {
         plugins: webpackConfig.plugins.concat(
           new webpack.DefinePlugin({ 'process.env': { NODE_ENV: 'production' } })
-        )
+        ),
+        mode: 'production'
       }
     },
 

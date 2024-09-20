@@ -1,14 +1,14 @@
-'use strict';
-const fs = require('fs');
 const path = require('path');
-
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ArchivePlugin = require('webpack-archive-plugin');
+const NodemonPlugin = require('nodemon-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const extractSass = new ExtractTextPlugin({
+const miniCssExtract = new MiniCssExtractPlugin({
   filename: 'stylesheets/application.css',
-  allChunks: true
+  chunkFilename: '[id].css'
 });
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
     css: './tmp/sass/application.scss'
   },
   output: {
-    path: path.resolve(__dirname, './public/[hash]'),
+    path: path.resolve(__dirname, './public/[fullhash]'),
     filename: 'javascripts/bundle--[name].js'
   },
   plugins: [
@@ -41,12 +41,14 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new CopyWebpackPlugin([
-      { from: './tmp/images', to: 'images' }
-    ]),
-    extractSass,
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './tmp/images', to: 'images' }
+      ]
+    }),
+    miniCssExtract,
     function() {
-      this.plugin('done', stats => {
+      this.hooks.done.tap('ManifestPlugin', stats => {
         fs.writeFileSync(
           path.join(__dirname, 'manifest.json'),
           JSON.stringify({ STATIC_ASSET_PATH: stats.hash })
@@ -61,19 +63,20 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: extractSass.extract({
-          use: [
-            { loader: 'css-loader' },
-            {
-              loader: 'sass-loader',
-              options: {
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
                 includePaths: [
                   'node_modules/govuk-frontend'
                 ]
               }
             }
-          ]
-        })
+          }
+        ]
       },
       {
         test: /\.(jpg|png|svg)$/,
@@ -90,8 +93,13 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      { test: /public/, loader: 'imports-loader?this=>window' },
-      { test: /public/, loader: 'imports-loader?$=jquery' }
+      {
+        test: /public/,
+        use: [
+          { loader: 'imports-loader', options: { imports: 'default this=>window' } },
+          { loader: 'imports-loader', options: { imports: 'default $=jquery' } }
+        ]
+      }
     ]
   }
 };

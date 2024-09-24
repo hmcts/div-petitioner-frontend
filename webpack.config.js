@@ -74,7 +74,6 @@ module.exports = (env, argv) => {
         });
       },
 
-      // Not compiling. Fix.  Needs to specify dev plugins.  Probably syntax.
       isProd ? {} : [
         new ArchivePlugin({ output: 'dist', format: 'tar' }),
         new NodemonPlugin({
@@ -86,7 +85,8 @@ module.exports = (env, argv) => {
           args: argv['flags'] || [],
           verbose: true
         })
-      ],
+      ]
+    ],
 
     optimization: {
       minimize: true

@@ -88,6 +88,8 @@ module.exports = (env, argv) => {
       ]
     ],
 
+    watch: !isProd,
+
     optimization: {
       minimize: true
     },
@@ -133,6 +135,14 @@ module.exports = (env, argv) => {
           ]
         }
       ]
+    },
+
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 9000,
+      hot: true
     }
+
   }
 }

@@ -12,7 +12,7 @@ const miniCssExtract = new MiniCssExtractPlugin({
   chunkFilename: '[id].css'
 });
 
-module.exports = (env, argv) => {
+module.exports = (argv) => {
   const isProd = argv.mode === 'production';
   // target: 'node', this is unused, remove?
 
@@ -93,6 +93,7 @@ module.exports = (env, argv) => {
     optimization: {
       minimize: true
     },
+
     module: {
       rules: [
         {

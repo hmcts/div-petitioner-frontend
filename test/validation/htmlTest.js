@@ -55,6 +55,7 @@ const keysToIgnore = [
   'Equality',
   'Error400',
   'Error404',
+  'Error500',
   'GenericError',
   'ExitNoCertificateTranslated',
   'ExitDesertionAgree',

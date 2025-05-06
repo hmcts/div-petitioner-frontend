@@ -57,3 +57,7 @@ redis:
   architecture: standalone
   auth:
     enabled: false
+  serviceAccount:
+    create: false
+    name: "divorce"
+    automountServiceAccountToken: true

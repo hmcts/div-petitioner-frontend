@@ -1,13 +1,13 @@
 # ---- Base image ----
-FROM hmctspublic.azurecr.io/base/node:14-alpine as base
+FROM hmctspublic.azurecr.io/base/node:20-alpine AS base
 USER root
-RUN corepack enable
-RUN apk add git
+RUN corepack enable && \
+    apk add git
 USER hmcts
 COPY --chown=hmcts:hmcts . .
 RUN yarn install && yarn cache clean
 
 # ---- Runtime image ----
-FROM base as runtime
+FROM base AS runtime
 COPY . .
 EXPOSE 3000

@@ -595,6 +595,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/hashes@npm:^1.1.5":
+  version: 1.8.0
+  resolution: "@noble/hashes@npm:1.8.0"
+  checksum: c94e98b941963676feaba62475b1ccfa8341e3f572adbb3b684ee38b658df44100187fa0ef4220da580b13f8d27e87d5492623c8a02ecc61f23fb9960c7918f5
+  languageName: node
+  linkType: hard
+
 "@npmcli/agent@npm:^2.0.0":
   version: 2.2.0
   resolution: "@npmcli/agent@npm:2.2.0"
@@ -726,6 +733,15 @@ __metadata:
   version: 1.20.0
   resolution: "@opentelemetry/semantic-conventions@npm:1.20.0"
   checksum: c71d466ab37158c57ff15a8fcb55682c812993b9d0d8e05114094abbe70f5ce2735909d70b749fddbc0621e5cdae19fecbb4e087034f606bce98e3bf9c74613e
+  languageName: node
+  linkType: hard
+
+"@paralleldrive/cuid2@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@paralleldrive/cuid2@npm:2.2.2"
+  dependencies:
+    "@noble/hashes": ^1.1.5
+  checksum: f7f6ac70e0268ec2c72e555719240d5c2c9a859ce541ac1c637eed3f3ee971b42881d299dedafbded53e7365b9e98176c5a31c442c1112f7e9e7306f2fd0ecbb
   languageName: node
   linkType: hard
 
@@ -5232,7 +5248,7 @@ __metadata:
     extract-text-webpack-plugin: ^4.0.0-beta.0
     file-loader: ^6.2.0
     flat: ^4.0.0
-    formidable: ^1.1.1
+    formidable: ^2.0.0
     fstream: ^1.0.12
     glob: ^7.1.1
     govuk-elements-sass: ~3.0.2
@@ -6959,10 +6975,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formidable@npm:^1.1.1, formidable@npm:^1.2.0, formidable@npm:^1.2.1":
+"formidable@npm:^1.2.0, formidable@npm:^1.2.1":
   version: 1.2.6
   resolution: "formidable@npm:1.2.6"
   checksum: 2b68ed07ba88302b9c63f8eda94f19a460cef6017bfda48348f09f41d2a36660c9353137991618e0e4c3db115b41e4b8f6fa63bc973b7a7c91dec66acdd02a56
+  languageName: node
+  linkType: hard
+
+"formidable@npm:^2.0.0":
+  version: 2.1.5
+  resolution: "formidable@npm:2.1.5"
+  dependencies:
+    "@paralleldrive/cuid2": ^2.2.2
+    dezalgo: ^1.0.4
+    once: ^1.4.0
+    qs: ^6.11.0
+  checksum: b7a38dbf3f2d32858e9199f9e1597038d22854dc7f3120e30a05097fd538c3a5ebdfcb1b14ed3d68139f592176e64a3544aa14b5be624e26fe5b383a5c096a74
   languageName: node
   linkType: hard
 

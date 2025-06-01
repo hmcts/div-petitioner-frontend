@@ -72,7 +72,7 @@
     "express-session": "1.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^6.2.0",
-    "formidable": "^1.1.1",
+    "formidable": "^2.0.0",
     "fstream": "^1.0.12",
     "glob": "^7.1.1",
     "govuk-elements-sass": "~3.0.2",

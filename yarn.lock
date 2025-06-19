@@ -5468,7 +5468,7 @@ __metadata:
     jsdom-global: ^3.0.2
     jsonwebtoken: ^9.0.0
     launchdarkly-node-server-sdk: ^5.13.1
-    loadsh: ^0.0.3
+    loadsh: ^0.0.4
     lodash: ^4.17.21
     mocha: ^9.2.1
     mocha-each: ^2.0.1
@@ -10336,10 +10336,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loadsh@npm:^0.0.3":
-  version: 0.0.3
-  resolution: "loadsh@npm:0.0.3"
-  checksum: 8e3c5ce39bc09540a8279845af7d8b21170cc736c5e0a5dc02d30faf35aed375227c6f8ac3a4079d8b779a3f8cb943005a279685f4c212f67d3ef28206528759
+"loadsh@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "loadsh@npm:0.0.4"
+  checksum: 9462e64433f16bf89213a87077f792ba89a192f719413d8167560194d1f58e8ec076a3ea1cf75a483fe6bb7a5d4465801c280eab7b1ddb5437fee7f4dee493f8
   languageName: node
   linkType: hard
 

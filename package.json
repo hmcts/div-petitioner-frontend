@@ -116,7 +116,7 @@
     "webpack-archive-plugin": "^3.0.0",
     "webpack-dev-server": "^3.11.3",
     "xss-filters": "^1.2.7",
-    "yargs-parser": "18.1.2",
+    "yargs-parser": "18.1.3",
     "yarn": "^1.22.0"
   },
   "devDependencies": {
